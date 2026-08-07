@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `expression` of the form `"<num1>+<num2>"` where `<num1>` and `<num2>` represent positive integers.
 
@@ -7,12 +7,13 @@ Add a pair of parentheses to `expression` such that after the addition of parent
 Return `expression`* after adding a pair of parentheses such that *`expression`* evaluates to the **smallest** possible value.* If there are multiple answers that yield the same result, return any of them.
 
 The input has been generated such that the original value of `expression`, and the value of `expression` after adding any pair of parentheses that meets the requirements fits within a signed 32-bit integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that 170 is the smallest possible value.
 - **Input:** $expression = "999+999"$
 - **Output:** `"(999+999)"`
 - **Explanation:** The expression evaluates to 999 + 999 = 1998.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{expression.length} \le 10$
 

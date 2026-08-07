@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -20,11 +20,12 @@ Write an SQL query to find the customers who have made consecutive transactions 
 Return *the result table ordered by* $\text{customer}_{id}, \text{consecutive}_{start}, \text{consecutive}_{end}$ *in **ascending** order.*
 
 The query result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

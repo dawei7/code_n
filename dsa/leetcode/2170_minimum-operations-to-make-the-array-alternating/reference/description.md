@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of `n` positive integers.
 
@@ -11,12 +11,13 @@ The array `nums` is called **alternating** if:
 In one **operation**, you can choose an index `i` and **change** $\text{nums}[i]$ into **any** positive integer.
 
 Return *the **minimum number of operations** required to make the array alternating*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It can be proven that it is not possible to make the array alternating in less t
 One way to make the array alternating is by converting it to [1,2,<u>**1**</u>,2,<u>**1**</u>].
 The number of operations required in this case is 2.
 Note that the array cannot be converted to [<u>**2**</u>,2,2,2,2] because in this case nums[0] == nums[1] which violates the conditions of an alternating array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a 2D matrix `matrix`, handle multiple queries of the following types:
 
@@ -13,7 +13,8 @@ Implement the NumMatrix class:
 - `void update(int row, int col, int val)` **Updates** the value of $\text{matrix}[row][col]$ to be `val`.
 
 - `int sumRegion(int row1, int col1, int row2, int col2)` Returns the **sum** of the elements of `matrix` inside the rectangle defined by its **upper left corner** `(row1, col1)` and **lower right corner** `(row2, col2)`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Implement the NumMatrix class:
 
 Return the results of all `sum` operations in order. An update changes subsequent sums and contributes no item to the returned list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ numMatrix.sumRegion(2, 1, 4, 3); // return 8 (i.e. sum of the left red rectangle
 numMatrix.update(3, 2, 2);       // matrix changes from left image to right image
 numMatrix.sumRegion(2, 1, 4, 3); // return 10 (i.e. sum of the right red rectangle)
 ```
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

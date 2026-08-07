@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">**in-place**</a>. The order of the elements may be changed. Then return *the number of elements in *`nums`* which are not equal to *`val`.
 
@@ -8,7 +8,18 @@ Consider the number of elements in `nums` which are not equal to `val` be `k`, t
 
 - Return `k`.
 
-**Custom Judge:**
+### 2. Function Contract
+
+**Inputs**
+
+- `nums`: The integer array to filter.
+- `val`: The value whose occurrences must be removed.
+
+**Return value**
+
+Return $k$, the count of values not equal to `val`. The same call mutates `nums` in place so that `nums[:k]` contains exactly those retained values; their order is not constrained. Values at indices $k$ and beyond are unspecified.
+
+### 3. Custom Judge
 
 The judge will test your solution with the following code:
 
@@ -28,18 +39,8 @@ for (int i = 0; i < actualLength; i++) {
 ```
 
 If all assertions pass, then your solution will be **accepted**.
-### Function Contract
 
-**Inputs**
-
-- `nums`: The integer array to filter.
-- `val`: The value whose occurrences must be removed.
-
-**Return value**
-
-Return $k$, the count of values not equal to `val`. The same call mutates `nums` in place so that `nums[:k]` contains exactly those retained values; their order is not constrained. Values at indices $k$ and beyond are unspecified.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 - **Explanation:** Your function should return k = 5, with the first five elements of nums containing 0, 0, 1, 3, and 4.
 Note that the five elements can be returned in any order.
 It does not matter what you leave beyond the returned k (hence they are underscores).
-### Constraints
+
+### 5. Constraints
 
 - $0 \le \text{nums.length} \le 100$
 

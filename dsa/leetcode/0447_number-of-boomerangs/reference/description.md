@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given `n` `points` in the plane that are all **distinct**, where $\text{points}[i] = [x_{i}, y_{i}]$. A **boomerang** is a tuple of points `(i, j, k)` such that the distance between `i` and `j` equals the distance between `i` and `k` **(the order of the tuple matters)**.
 
 Return *the number of boomerangs*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return *the number of boomerangs*.
 
 - Return the number of ordered boomerangs. The first point is the pivot, and the remaining two points are different equidistant endpoints.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the number of boomerangs*.
 
 - **Input:** $points = [[1,1]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{points.length}$
 

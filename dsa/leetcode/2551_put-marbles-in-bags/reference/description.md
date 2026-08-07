@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `k` bags. You are given a **0-indexed** integer array `weights` where $\text{weights}[i]$ is the weight of the $$i^{\text{th}}$$ marble. You are also given the integer `k.`
 
@@ -13,12 +13,13 @@ Divide the marbles into the `k` bags according to the following rules:
 The **score** after distributing the marbles is the sum of the costs of all the `k` bags.
 
 Return *the **difference** between the **maximum** and **minimum** scores among marble distributions*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Thus, we return their difference 10 - 6 = 4.
 - **Output:** `0`
 - **Explanation:** The only distribution possible is [1],[3].
 Since both the maximal and minimal score are the same, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{weights.length} \le 10^{5}$
 

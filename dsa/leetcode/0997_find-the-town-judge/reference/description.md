@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a town, there are `n` people labeled from `1` to `n`. There is a rumor that one of these people is secretly the town judge.
 
@@ -13,12 +13,13 @@ If the town judge exists, then:
 You are given an array `trust` where $\text{trust}[i] = [a_{i}, b_{i}]$ representing that the person labeled $a_{i}$ trusts the person labeled $b_{i}$. If a trust relationship does not exist in `trust` array, then such a trust relationship does not exist.
 
 Return *the label of the town judge if the town judge exists and can be identified, or return *`-1`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *the label of the town judge if the town judge exists and can be identifi
 
 - **Input:** $n = 3, trust = [[1,3],[2,3],[3,1]]$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

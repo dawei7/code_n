@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **maximum tree** is a tree where every node has a value greater than any other value in its subtree.
 
@@ -21,12 +21,13 @@ Note that we were not given `a` directly, only a root node $root = Construct(a)$
 Suppose `b` is a copy of `a` with the value `val` appended to it. It is guaranteed that `b` has unique values.
 
 Return `Construct(b)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return `Construct(b)`.
 - **Input:** `root = [5,2,3,null,1], val = 4`
 - **Output:** `[5,2,4,null,1,3]`
 - **Explanation:** a = [2,1,5,3], b = [2,1,5,3,4]
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 100]`.
 

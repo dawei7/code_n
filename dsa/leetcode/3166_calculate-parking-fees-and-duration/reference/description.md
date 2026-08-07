@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `ParkingTransactions`
 
@@ -20,7 +20,13 @@ Write a solution to find the **total parking fee** paid by each car **across all
 
 Return *the result table ordered by *$\text{car}_{id}$*** **in** ascending **** order.*
 
-**Note:** Test cases are generated in such a way that an individual car cannot be in multiple parking lots at the same time.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+Test cases are generated in such a way that an individual car cannot be in multiple parking lots at the same time.
 
 The result format is in the following example.
 
@@ -76,10 +82,8 @@ ParkingTransactions table:
 
 	Total fee paid: 6.00, total hours: 4.5, average hourly fee: 1.33, most time spent in lot 2: 2.5 hours.</li>
 
-**Note:** Output table is ordered by car_id in ascending order.
+### 4. Note
+
+Output table is ordered by car_id in ascending order.
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

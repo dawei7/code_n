@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
@@ -7,12 +7,13 @@ The **frequency group** for a value `k` is the set of characters that appear exa
 The **majority frequency group** is the frequency group that contains the largest number of **distinct** characters.
 
 Return a string containing all characters in the majority frequency group, in **any** order. If two or more frequency groups tie for that largest size, pick the group whose frequency `k` is **larger**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -131,7 +132,8 @@ All characters share the same frequency 1, they are all in the majority frequenc
 Both characters `'p'` and `'f'` share the same frequency 2, they are in the majority frequency group. There is a tie in group size with frequency 1, but we pick the higher frequency: 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

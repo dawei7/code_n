@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a tree (i.e. a connected, undirected graph with no cycles) consisting of `n` nodes numbered from `0` to $n - 1$ and exactly $n - 1$ edges.
 
@@ -13,12 +13,13 @@ A **good path** is a simple path that satisfies the following conditions:
 Return *the number of distinct good paths*.
 
 Note that a path and its reverse are counted as the **same** path. For example, `0 -> 1` is considered to be the same as `1 -> 0`. A single node is also considered as a valid path.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ There are 2 additional good paths: 0 -> 1 and 2 -> 3.
 - **Input:** $vals = [1], edges = []$
 - **Output:** `1`
 - **Explanation:** The tree consists of only one node, so there is one good path.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{vals.length}$
 

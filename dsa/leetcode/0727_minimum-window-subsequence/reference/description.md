@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given strings `s1` and `s2`, return *the minimum contiguous substring part of *`s1`*, so that *`s2`* is a subsequence of the part*.
 
 If there is no such window in `s1` that covers all characters in `s2`, return the empty string `""`. If there are multiple such minimum-length windows, return the one with the **left-most starting index**.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(s1: str, s2: str) -> str`
 
@@ -18,7 +19,7 @@ Let $n = \lvert\texttt{s1}\rvert$ and $m = \lvert\texttt{s2}\rvert$.
 
 Return the shortest qualifying substring of `s1`. On a length tie, return the window with the left-most starting index. Return `""` if no qualifying window exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the shortest qualifying substring of `s1`. On a length tie, return the wi
 
 - **Input:** $s1 = "jmeqksfrsdcmsiwvaovztaqenprpvnbstl", s2 = "u"$
 - **Output:** `""`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length} \le 2 * 10^{4}$
 

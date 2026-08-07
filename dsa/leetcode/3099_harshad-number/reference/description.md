@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 An integer divisible by the **sum** of its digits is said to be a **Harshad** number. You are given an integer `x`. Return* the sum of the digits *of* *`x`* *if* *`x`* *is a **Harshad** number, otherwise, return* *`-1`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,6 +33,7 @@ The sum of digits of `x` is `9`. `18` is divisible by `9`. So `18` is a Harshad 
 The sum of digits of `x` is `5`. `23` is not divisible by `5`. So `23` is not a Harshad number and the answer is `-1`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le x \le 100$

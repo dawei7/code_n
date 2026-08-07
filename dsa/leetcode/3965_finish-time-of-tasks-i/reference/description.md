@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of tasks in a project, numbered from 0 to $n - 1$. These tasks are connected as a **tree** rooted at task 0. This is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that task $u_{i}$ is the parent of task $v_{i}$.
 
@@ -19,7 +19,8 @@ The **finish time** of each task is calculated as follows:
 	</li>
 
 Return the finish time of the root task 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Return the finish time of the root task 0.
 
 Return the finish time of task `0` after applying the leaf and non-leaf rules recursively throughout the tree. The result is guaranteed to be exactly representable as an integer below $2^{53}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -125,7 +126,8 @@ Return the finish time of task `0` after applying the leaf and non-leaf rules re
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

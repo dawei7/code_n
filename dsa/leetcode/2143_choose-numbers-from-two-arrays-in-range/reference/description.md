@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2` of length `n`.
 
@@ -17,11 +17,12 @@ Two **balanced** ranges from `[l_1, r_1]` and `[l_2, r_2]` are considered to be 
 - $\text{nums1}[i]$ is picked in the first range, and $\text{nums2}[i]$ is picked in the second range or **vice versa** for at least one `i`.
 
 Return *the number of **different** ranges that are balanced. *Since the answer may be very large, return it **modulo** $10^{9} + 7$*.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ The sum of the numbers chosen from nums1 equals the sum of the numbers chosen fr
 The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 0 = 0.
 - [0, 1] where we choose nums2[0] and nums1[1].
 The sum of the numbers chosen from nums1 equals the sum of the numbers chosen from nums2: 1 = 1.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

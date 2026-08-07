@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A chef has collected data on the `satisfaction` level of his `n` dishes. Chef can cook any dish in 1 unit of time.
 
@@ -7,12 +7,13 @@ A chef has collected data on the `satisfaction` level of his `n` dishes. Chef ca
 Return the maximum sum of **like-time coefficient **that the chef can obtain after preparing some amount of dishes.
 
 Dishes can be prepared in **any **order and the chef can discard some dishes to get this maximum value.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Each dish is prepared in one unit of time.
 - **Input:** $satisfaction = [-1,-4,-5]$
 - **Output:** `0`
 - **Explanation:** People do not like the dishes. No dish is prepared.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{satisfaction.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D matrix `grid` of size `m x n`. In one **operation**, you can change the value of **any** cell to **any** non-negative number. You need to perform some **operations** such that each cell $\text{grid}[i][j]$ is:
 
@@ -7,12 +7,13 @@ You are given a 2D matrix `grid` of size `m x n`. In one **operation**, you can 
 - Different from the cell to its right, i.e. $\text{grid}[i][j] \neq \text{grid}[i][j + 1]$ (if it exists).
 
 Return the **minimum** number of operations needed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ The matrix becomes `[[1,0,1],[1,0,1]]` which satisfies the properties, by doing 
 There is a single column. We can change the value to 1 in each cell using 2 operations.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 1000$
 

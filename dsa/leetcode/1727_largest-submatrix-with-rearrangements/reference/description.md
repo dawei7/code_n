@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a binary matrix `matrix` of size `m x n`, and you are allowed to rearrange the **columns** of the `matrix` in any order.
 
 Return *the area of the largest submatrix within *`matrix`* where **every** element of the submatrix is *`1`* after reordering the columns optimally.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The largest submatrix of 1s, in bold, has an area of 3.
 - **Input:** $matrix = [[1,1,0],[1,0,1]]$
 - **Output:** `2`
 - **Explanation:** Notice that you must rearrange entire columns, and there is no way to make a submatrix of 1s larger than an area of 2.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

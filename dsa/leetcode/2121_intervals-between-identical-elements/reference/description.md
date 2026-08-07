@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of `n` integers `arr`.
 
@@ -6,13 +6,16 @@ The **interval** between two elements in `arr` is defined as the **absolute diff
 
 Return *an array* `intervals` *of length* `n` *where* $\text{intervals}[i]$ *is **the sum of intervals** between *$\text{arr}[i]$* and each element in *`arr`* with the same value as *$\text{arr}[i]$*.*
 
-**Note:** `|x|` is the absolute value of `x`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+`|x|` is the absolute value of `x`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ Return *an array* `intervals` *of length* `n` *where* $\text{intervals}[i]$ *is 
 - Index 1: There is only one 5 in the array, so its sum of intervals to identical elements is 0.
 - Index 2: Two more 10s are found at indices 0 and 3. |2 - 0| + |2 - 3| = 3
 - Index 3: Two more 10s are found at indices 0 and 2. |3 - 0| + |3 - 2| = 4
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{arr.length}$
 
@@ -43,4 +47,6 @@ Return *an array* `intervals` *of length* `n` *where* $\text{intervals}[i]$ *is 
 
 - $1 \le \text{arr}[i] \le 10^{5}$
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/sum-of-distances/description/" target="_blank"> 2615: Sum of Distances.</a>
+### 6. Note
+
+This question is the same as <a href="https://leetcode.com/problems/sum-of-distances/description/" target="_blank"> 2615: Sum of Distances.</a>

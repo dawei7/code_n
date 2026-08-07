@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a `rows x cols` binary `matrix` filled with `0`'s and `1`'s, find the largest rectangle containing only `1`'s and return *its area*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a `rows x cols` binary `matrix` filled with `0`'s and `1`'s, find the larg
 
 Return the maximum number of cells in an axis-aligned all-`1` rectangle.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the maximum number of cells in an axis-aligned all-`1` rectangle.
 
 - **Input:** $matrix = [["1"]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $rows = \text{matrix.length}$
 

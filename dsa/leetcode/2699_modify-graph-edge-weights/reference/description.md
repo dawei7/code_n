@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected weighted** **connected** graph containing `n` nodes labeled from `0` to $n - 1$, and an integer array `edges` where $\text{edges}[i] = [a_{i}, b_{i}, w_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ with weight $w_{i}$.
 
@@ -8,13 +8,16 @@ Your task is to modify **all edges** with a weight of `-1` by assigning them **p
 
 Return *an array containing all edges (even unmodified ones) in any order if it is possible to make the shortest distance from *`source`* to *`destination`* equal to *`target`*, or an **empty array** if it's impossible.*
 
-**Note:** You are not allowed to modify the weights of edges with initial positive weights.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+You are not allowed to modify the weights of edges with initial positive weights.
+
+### 4. Examples
 
 #### Example 1
 
@@ -49,7 +52,8 @@ Return *an array containing all edges (even unmodified ones) in any order if it 
 - **Input:** $n = 4, edges = [[1,0,4],[1,2,3],[2,3,5],[0,3,-1]], source = 0, destination = 2, target = 6$
 - **Output:** `[[1,0,4],[1,2,3],[2,3,5],[0,3,1]]`
 - **Explanation:** The graph above shows a modified graph having the shortest distance from 0 to 2 as 6.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 100$
 

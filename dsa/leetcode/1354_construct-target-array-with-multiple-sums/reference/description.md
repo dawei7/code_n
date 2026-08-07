@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `target` of n integers. From a starting array `arr` consisting of `n` 1's, you may perform the following procedure :
 
@@ -9,12 +9,13 @@ You are given an array `target` of n integers. From a starting array `arr` consi
 - You may repeat this procedure as many times as needed.
 
 Return `true` *if it is possible to construct the* `target` *array from* `arr`*, otherwise, return* `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true` *if it is possible to construct the* `target` *array from* `arr`*,
 
 - **Input:** $target = [8,5]$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{target.length}$
 

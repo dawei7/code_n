@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two strings `s1` and `s2` of equal length consisting of letters `"x"` and `"y"` **only**. Your task is to make these two strings equal to each other. You can swap any two characters that belong to **different** strings, which means: swap $\text{s1}[i]$ and $\text{s2}[j]$.
 
 Return the minimum number of swaps required to make `s1` and `s2` equal, or return `-1` if it is impossible to do so.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that you cannot swap s1[0] and s1[1] to make s1 equal to "yx", cause we can
 
 - **Input:** $s1 = "xx", s2 = "xy"$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length} \le 1000$
 

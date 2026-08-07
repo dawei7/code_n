@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the size of a **0-indexed** memory array. All memory units are initially free.
 
@@ -8,7 +8,14 @@ You have a memory allocator with the following functionalities:
 
 - **Free** all memory units with the given id `mID`.
 
-**Note** that:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that:
 
 - Multiple blocks can be allocated to the same `mID`.
 
@@ -21,12 +28,8 @@ Implement the `Allocator` class:
 - `int allocate(int size, int mID)` Find the **leftmost** block of `size` **consecutive** free memory units and allocate it with the id `mID`. Return the block's first index. If such a block does not exist, return `-1`.
 
 - `int freeMemory(int mID)` Free all memory units with the id `mID`. Return the number of memory units you have freed.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ loc.freeMemory(1); // Free all memory units with mID 1. The memory array becomes
 loc.allocate(10, 2); // We can not find any free block with 10 consecutive free memory units, so we return -1.
 loc.freeMemory(7); // Free all memory units with mID 7. The memory array remains the same since there is no memory unit with mID 7. We return 0.
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n, size, mID \le 1000$
 

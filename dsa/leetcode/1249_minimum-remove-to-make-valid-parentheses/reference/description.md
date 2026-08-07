@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string s of `'('` , `')'` and lowercase English characters.
 
@@ -11,12 +11,13 @@ Formally, a *parentheses string* is valid if and only if:
 - It can be written as `AB` (`A` concatenated with `B`), where `A` and `B` are valid strings, or
 
 - It can be written as `(A)`, where `A` is a valid string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Formally, a *parentheses string* is valid if and only if:
 - **Input:** `s = "))(("`
 - **Output:** `""`
 - **Explanation:** An empty string is also valid.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

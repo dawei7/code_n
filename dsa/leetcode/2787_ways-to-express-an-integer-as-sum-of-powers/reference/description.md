@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two **positive** integers `n` and `x`.
 
@@ -7,12 +7,13 @@ Return *the number of ways *`n`* can be expressed as the sum of the *$$x^{\text{
 Since the result can be very large, return it modulo $10^{9} + 7$.
 
 For example, if $n = 160$ and $x = 3$, one way to express `n` is $n = 2^{3} + 3^{3} + 5^{3}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ It can be shown that it is the only way to express 10 as the sum of the 2^nd pow
 - **Explanation:** We can express n in the following ways:
 - n = $4^{1}$ = 4.
 - n = $3^{1}$ + $1^{1}$ = 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 300$
 

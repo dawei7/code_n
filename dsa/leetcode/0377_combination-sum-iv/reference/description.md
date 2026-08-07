@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array of **distinct** integers `nums` and a target integer `target`, return *the number of possible combinations that add up to* `target`.
 
 The test cases are generated so that the answer can fit in a **32-bit** integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ The test cases are generated so that the answer can fit in a **32-bit** integer.
 
 Return the number of ordered sequences of values from `nums` whose sum equals `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that different sequences are counted as different combinations.
 
 - **Input:** `nums = [9], target = 3`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `t`. Return the **smallest** number greater than or equal to `n` such that the **product of its digits** is divisible by `t`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The digit product of 10 is 0, which is divisible by 2, making it the smallest nu
 The digit product of 16 is 6, which is divisible by 3, making it the smallest number greater than or equal to 15 that satisfies the condition.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

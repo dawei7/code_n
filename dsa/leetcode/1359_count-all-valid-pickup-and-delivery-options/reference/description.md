@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given `n` orders, each order consists of a pickup and a delivery service.
 
 Count all valid pickup/delivery possible sequences such that delivery(i) is always after of pickup(i).
 
 Since the answer may be too large, return it modulo $10^{9}$ + 7.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,6 +29,7 @@ This is an invalid order (P1,D2,P2,D1) because Pickup 2 is after of Delivery 2.
 
 - **Input:** $n = 3$
 - **Output:** `90`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 500$

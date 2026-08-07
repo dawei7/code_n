@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `ribbons`, where $\text{ribbons}[i]$ represents the length of the $$i^{\text{th}}$$ ribbon, and an integer `k`. You may cut any of the ribbons into any number of segments of **positive integer** lengths, or perform no cuts at all.
 
@@ -17,11 +17,12 @@ You are given an integer array `ribbons`, where $\text{ribbons}[i]$ represents t
 	</li>
 
 Your task is to determine the **maximum** length of ribbon, `x`, that allows you to cut *at least* `k` ribbons, each of length `x`. You can discard any leftover ribbon from the cuts. If it is **impossible** to cut `k` ribbons of the same length, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Now you have 4 ribbons of length 4.
 - **Input:** $ribbons = [5,7,9], k = 22$
 - **Output:** `0`
 - **Explanation:** You cannot obtain k ribbons of the same positive integer length.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{ribbons.length} \le 10^{5}$
 

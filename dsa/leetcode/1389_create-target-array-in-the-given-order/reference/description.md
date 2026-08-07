@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two arrays of integers `nums` and `index`. Your task is to create *target* array under the following rules:
 
@@ -11,12 +11,13 @@ Given two arrays of integers `nums` and `index`. Your task is to create *target*
 Return the *target* array.
 
 It is guaranteed that the insertion operations will be valid.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ nums       index     target
 
 - **Input:** `nums = [1], index = [0]`
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, \text{index.length} \le 100$
 

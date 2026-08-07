@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -13,7 +13,8 @@ In one operation, you may **increment** any element by 1.
 Return the **minimum** number of operations required to transform `nums` into an **alternating prime** array.
 
 A **prime** number is a natural number greater than 1 with only two factors, 1 and itself.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Index parity is zero-based. Let $N=\texttt{nums.length}$ and let $M=\max(\texttt
 
 Return the minimum number of unit increments required so every even-indexed value is prime and every odd-indexed value is non-prime.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ No operations are needed.
 Total operations = 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

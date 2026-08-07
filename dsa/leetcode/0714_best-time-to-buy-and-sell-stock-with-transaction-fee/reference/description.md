@@ -1,20 +1,21 @@
-## Description
+### 1. Description
 
 You are given an array `prices` where $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day, and an integer `fee` representing a transaction fee.
 
 Find the maximum profit you can achieve. You may complete as many transactions as you like, but you need to pay the transaction fee for each transaction.
 
-**Note:**
-
-- You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
-
-- The transaction fee is only charged once for each stock purchase and sale.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
+
+- The transaction fee is only charged once for each stock purchase and sale.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.
 
 - **Input:** $prices = [1,3,7,5,10,3], fee = 3$
 - **Output:** `6`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{prices.length} \le 5 * 10^{4}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the number of elements that have **both** a strictly smaller and a strictly greater element appear in *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ In total there are 2 elements having both a strictly smaller and a strictly grea
 - **Output:** `2`
 - **Explanation:** The element 3 has the element -3 strictly smaller than it and the element 90 strictly greater than it.
 Since there are two elements with the value 3, in total there are 2 elements having both a strictly smaller and a strictly greater element appear in nums.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

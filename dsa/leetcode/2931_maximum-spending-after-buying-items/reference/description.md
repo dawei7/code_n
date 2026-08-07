@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** $m * n$ integer matrix `values`, representing the values of $m * n$ different items in `m` different shops. Each shop has `n` items where the $$j^{\text{th}}$$ item in the $$i^{\text{th}}$$ shop has a value of $\text{values}[i][j]$. Additionally, the items in the $$i^{\text{th}}$$ shop are sorted in non-increasing order of value. That is, $\text{values}[i][j] \ge \text{values}[i][j + 1]$ for all $0 \le j < n - 1$.
 
@@ -8,15 +8,18 @@ On each day, you would like to buy a single item from one of the shops. Specific
 
 - Buy the rightmost available item `j` for the price of $\text{values}[i][j] * d$. That is, find the greatest index `j` such that item `j` was never bought before, and buy it for the price of $\text{values}[i][j] * d$.
 
-**Note** that all items are pairwise different. For example, if you have bought item `0` from shop `1`, you can still buy item `0` from any other shop.
-
-Return *the **maximum amount of money that can be spent** on buying all * $m * n$ *products*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that all items are pairwise different. For example, if you have bought item `0` from shop `1`, you can still buy item `0` from any other shop.
+
+Return *the **maximum amount of money that can be spent** on buying all * $m * n$ *products*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -49,7 +52,8 @@ On the ninth day, we buy product 0 from shop 1 for a price of values[1][0] * 9 =
 On the tenth day, we buy product 0 from shop 0 for a price of values[0][0] * 10 = 100.
 Hence, our total spending is equal to 386.
 It can be shown that 386 is the maximum amount of money that can be spent buying all m * n products.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le m = \text{values.length} \le 10$
 

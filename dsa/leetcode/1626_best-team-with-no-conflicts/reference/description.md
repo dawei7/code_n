@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are the manager of a basketball team. For the upcoming tournament, you want to choose the team with the highest overall score. The score of the team is the **sum** of scores of all the players in the team.
 
 However, the basketball team is not allowed to have **conflicts**. A **conflict** exists if a younger player has a **strictly higher** score than an older player. A conflict does **not** occur between players of the same age.
 
 Given two lists, `scores` and `ages`, where each $\text{scores}[i]$ and $\text{ages}[i]$ represents the score and age of the $$i^{\text{th}}$$ player, respectively, return *the highest overall score of all possible basketball teams*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Given two lists, `scores` and `ages`, where each $\text{scores}[i]$ and $\text{a
 - **Input:** $scores = [1,2,3,5], ages = [8,9,10,1]$
 - **Output:** `6`
 - **Explanation:** It is best to choose the first 3 players.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{scores.length}, \text{ages.length} \le 1000$
 

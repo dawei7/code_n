@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of `n` integers `nums` and an integer `target`, find the number of index triplets `i`, `j`, `k` with $0 \le i < j < k < n$ that satisfy the condition $\text{nums}[i] + \text{nums}[j] + \text{nums}[k] < target$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given an array of `n` integers `nums` and an integer `target`, find the number o
 
 Return the number of qualifying index triplets.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the number of qualifying index triplets.
 
 - **Input:** `nums = [0], target = 0`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

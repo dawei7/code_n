@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `k`, return the number of subarrays of `nums` where the bitwise `AND` of the elements of the subarray equals `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Subarrays having an `AND` value of 1 are: `[<u>**1**</u>,1,2]`, `[1,<u>**1**</u>
 Subarrays having an `AND` value of 2 are: `[1,**<u>2</u>**,3]`, `[1,<u>**2,3**</u>]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

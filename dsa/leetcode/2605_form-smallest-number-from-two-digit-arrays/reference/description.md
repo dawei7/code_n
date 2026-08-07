@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two arrays of **unique** digits `nums1` and `nums2`, return *the **smallest** number that contains **at least** one digit from each array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given two arrays of **unique** digits `nums1` and `nums2`, return *the **smalles
 - **Input:** $nums1 = [3,5,2,6], nums2 = [3,1,7]$
 - **Output:** `3`
 - **Explanation:** The number 3 contains the digit 3 which exists in both arrays.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 9$
 

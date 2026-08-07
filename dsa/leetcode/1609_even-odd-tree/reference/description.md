@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A binary tree is named **Even-Odd** if it meets the following conditions:
 
@@ -9,12 +9,13 @@ A binary tree is named **Even-Odd** if it meets the following conditions:
 - For every **odd-indexed** level, all nodes at the level have **even** integer values in **strictly decreasing** order (from left to right).
 
 Given the `root` of a binary tree, *return *`true`* if the binary tree is **Even-Odd**, otherwise return *`false`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Node values in level 2 must be in strictly increasing order, so the tree is not 
 - **Input:** `root = [5,9,1,3,5,7]`
 - **Output:** `false`
 - **Explanation:** Node values in the level 1 should be even integers.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

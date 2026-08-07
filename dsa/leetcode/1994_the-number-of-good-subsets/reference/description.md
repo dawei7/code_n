@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. We call a subset of `nums` **good** if its product can be represented as a product of one or more **distinct prime** numbers.
 
@@ -13,12 +13,13 @@ You are given an integer array `nums`. We call a subset of `nums` **good** if it
 Return *the number of different **good** subsets in *`nums`* **modulo** *$10^{9} + 7$.
 
 A **subset** of `nums` is any array that can be obtained by deleting some (possibly none or all) elements from `nums`. Two subsets are different if and only if the chosen indices to delete are different.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ A **subset** of `nums` is any array that can be obtained by deleting some (possi
 - [2,15]: product is 30, which is the product of distinct primes 2, 3, and 5.
 - [3]: product is 3, which is the product of distinct prime 3.
 - [15]: product is 15, which is the product of distinct primes 3 and 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

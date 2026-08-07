@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that is initialized with a list of **different** words. Provided a string, you should determine if you can change exactly one character in this string to match any word in the data structure.
 
@@ -9,12 +9,13 @@ Implement the `MagicDictionary` class:
 - `void buildDict(String[] dictionary)` Sets the data structure with an array of distinct strings `dictionary`.
 
 - `bool search(String searchWord)` Returns `true` if you can change **exactly one character** in `searchWord` to match any string in the data structure, otherwise returns `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ magicDictionary.search("hhllo"); // We can change the second 'h' to 'e' to match
 magicDictionary.search("hell"); // return False
 magicDictionary.search("leetcoded"); // return False
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{dictionary.length} \le 100$
 

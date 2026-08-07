@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given 3 positive integers $\text{num}_{zeros}$, $\text{num}_{ones}$, and `limit`.
 
@@ -13,12 +13,13 @@ A binary array `arr` is called **stable** if:
 Return an integer denoting the *total* number of **stable** binary arrays.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,6 +57,7 @@ The only possible stable binary array is `[1,0,1]`.
 All the possible stable binary arrays are `[0,0,1,0,1,1]`, `[0,0,1,1,0,1]`, `[0,1,0,0,1,1]`, `[0,1,0,1,0,1]`, `[0,1,0,1,1,0]`, `[0,1,1,0,0,1]`, `[0,1,1,0,1,0]`, `[1,0,0,1,0,1]`, `[1,0,0,1,1,0]`, `[1,0,1,0,0,1]`, `[1,0,1,0,1,0]`, `[1,0,1,1,0,0]`, `[1,1,0,0,1,0]`, and `[1,1,0,1,0,0]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le zero, one, limit \le 1000$

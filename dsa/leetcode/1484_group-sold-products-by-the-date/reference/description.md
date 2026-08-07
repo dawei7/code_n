@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table `Activities`:
 
@@ -20,12 +20,13 @@ The sold products names for each date should be sorted lexicographically.
 Return the result table ordered by $\text{sell}_{date}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

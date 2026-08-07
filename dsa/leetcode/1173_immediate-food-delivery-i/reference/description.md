@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Delivery`
 
@@ -20,7 +20,8 @@ If the customer's preferred delivery date is the same as the order date, then th
 Write a solution to find the percentage of immediate orders in the table, **rounded to 2 decimal places**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 ## Contract
 
@@ -32,7 +33,7 @@ The result format is in the following example.
 
 `Result` ($\text{immediate}_{percentage}$: `decimal(5,2)`)
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers, `k` and `limit`. Your task is to find a non-empty **subsequence** of `nums` that:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums` and two integers, `k` and `limit`. Your ta
 Return the *product* of the numbers in such a subsequence. If no subsequence satisfies the requirements, return -1.
 
 The **alternating sum** of a **0-indexed** array is defined as the **sum** of the elements at **even** indices **minus** the **sum** of the elements at **odd** indices.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -93,7 +94,8 @@ The subsequences with an alternating sum of 0 are:
 The subsequence `[2, 2, 3, 3]` has the greatest product with an alternating sum equal to `k`, but `36 > 9`. The next greatest product is 9, which is within the limit.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 150$
 

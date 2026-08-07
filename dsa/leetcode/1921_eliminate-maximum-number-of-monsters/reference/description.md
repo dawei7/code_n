@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are playing a video game where you are defending your city from a group of `n` monsters. You are given a **0-indexed** integer array `dist` of size `n`, where $\text{dist}[i]$ is the **initial distance** in kilometers of the $$i^{\text{th}}$$ monster from the city.
 
@@ -9,12 +9,13 @@ You have a weapon that, once fully charged, can eliminate a **single** monster. 
 You lose when any monster reaches your city. If a monster reaches the city at the exact moment the weapon is fully charged, it counts as a **loss**, and the game ends before you can use your weapon.
 
 Return *the **maximum** number of monsters that you can eliminate before you lose, or *`n`* if you can eliminate all the monsters before they reach the city.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ You can only eliminate 1 monster.
 In the beginning, the distances of the monsters are [3,2,4]. You eliminate the first monster.
 After a minute, the distances of the monsters are [X,0,2], so you lose.
 You can only eliminate 1 monster.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{dist.length} = \text{speed.length}$
 

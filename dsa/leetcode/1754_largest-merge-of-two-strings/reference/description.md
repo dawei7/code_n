@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `word1` and `word2`. You want to construct a string `merge` in the following way: while either `word1` or `word2` are non-empty, choose **one** of the following options:
 
@@ -16,12 +16,13 @@ You are given two strings `word1` and `word2`. You want to construct a string `m
 Return *the lexicographically **largest** *`merge`* you can construct*.
 
 A string `a` is lexicographically larger than a string `b` (of the same length) if in the first position where `a` and `b` differ, `a` has a character strictly larger than the corresponding character in `b`. For example, `"abcd"` is lexicographically larger than `"abcc"` because the first position they differ is at the fourth character, and `d` is greater than `c`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ A string `a` is lexicographically larger than a string `b` (of the same length) 
 
 - **Input:** $word1 = "abcabc", word2 = "abdcaba"$
 - **Output:** `"abdcabcabcaba"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 3000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, the number of nodes in a directed graph where the nodes are labeled from `0` to $n - 1$. Each edge is red or blue in this graph, and there could be self-edges and parallel edges.
 
@@ -9,12 +9,13 @@ You are given two arrays `redEdges` and `blueEdges` where:
 - $\text{blueEdges}[j] = [u_{j}, v_{j}]$ indicates that there is a directed blue edge from node $u_{j}$ to node $v_{j}$ in the graph.
 
 Return an array `answer` of length `n`, where each $\text{answer}[x]$ is the length of the shortest path from node `0` to node `x` such that the edge colors alternate along the path, or `-1` if such a path does not exist.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return an array `answer` of length `n`, where each $\text{answer}[x]$ is the len
 
 - **Input:** $n = 3, redEdges = [[0,1]], blueEdges = [[2,1]]$
 - **Output:** `[0,1,-1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

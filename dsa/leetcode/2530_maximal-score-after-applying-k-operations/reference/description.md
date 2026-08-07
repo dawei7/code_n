@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `k`. You have a **starting score** of `0`.
 
@@ -13,12 +13,13 @@ In one **operation**:
 Return *the maximum possible **score** you can attain after applying **exactly*** `k` *operations*.
 
 The ceiling function `ceil(val)` is the least integer greater than or equal to `val`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Operation 1: Select i = 1, so nums becomes [1,**<u>4</u>**,3,3,3]. Your score in
 Operation 2: Select i = 1, so nums becomes [1,**<u>2</u>**,3,3,3]. Your score increases by 4.
 Operation 3: Select i = 2, so nums becomes [1,2,<u>**1**</u>,3,3]. Your score increases by 3.
 The final score is 10 + 4 + 3 = 17.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, k \le 10^{5}$
 

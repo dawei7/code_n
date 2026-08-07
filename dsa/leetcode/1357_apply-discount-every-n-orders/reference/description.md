@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a supermarket that is frequented by many customers. The products sold at the supermarket are represented as two parallel integer arrays `products` and `prices`, where the $$i^{\text{th}}$$ product has an ID of $\text{products}[i]$ and a price of $\text{prices}[i]$.
 
@@ -11,12 +11,13 @@ Implement the `Cashier` class:
 - `Cashier(int n, int discount, int[] products, int[] prices)` Initializes the object with `n`, the `discount`, and the `products` and their `prices`.
 
 - `double getBill(int[] product, int[] amount)` Returns the final total of the bill with the discount applied (if any). Answers within $10^{-5}$ of the actual value will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ cashier.getBill([7,5,3,1,6,4,2],[10,10,10,9,9,9,7]); // return 7350.0. 6^th cust
                                                      // Actual bill = 14700 * ((100 - 50) / 100) = 7350.
 cashier.getBill([2,3,5],[5,3,2]);                    // return 2500.0.  7^th customer, no discount.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

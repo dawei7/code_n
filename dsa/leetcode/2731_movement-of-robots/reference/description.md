@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Some robots are standing on an infinite number line with their initial coordinates given by a **0-indexed** integer array `nums` and will start moving once given the command to move. The robots will move a unit distance each second.
 
@@ -8,7 +8,12 @@ If two robots collide, they will start moving in opposite directions.
 
 Return *the sum of distances between all the pairs of robots *`d` *seconds after the command. *Since the sum can be very large, return it modulo $10^{9} + 7$.
 
-**Note: **
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - For two robots at the index `i` and `j`, pair `(i,j)` and pair `(j,i)` are considered the same pair.
 
@@ -21,12 +26,8 @@ Return *the sum of distances between all the pairs of robots *`d` *seconds after
 - For example, if a robot is positioned in 0 going to the right and another is positioned in 1 going to the left, the next second the first one will be in 0, heading left, and another will be in 1, heading right.
 
 	</li>
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The sum of the pairs of all distances = 2 + 4 + 2 = 8.
 After 1 second, the positions are [2,-1].
 After 2 seconds, the positions are [3,-2].
 The distance between the two robots is abs(-2 - 3) = 5.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

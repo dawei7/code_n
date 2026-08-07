@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given the array of integers `nums`, you will choose two different indices `i` and `j` of that array. *Return the maximum value of* $(\text{nums}[i]-1)*(\text{nums}[j]-1)$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Given the array of integers `nums`, you will choose two different indices `i` an
 
 - **Input:** `nums = [3,7]`
 - **Output:** `12`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 500$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_{i}, \text{beauty}_{i}]$ denotes the **price** and **beauty** of an item respectively.
 
 You are also given a **0-indexed** integer array `queries`. For each $\text{queries}[j]$, you want to determine the **maximum beauty** of an item whose **price** is **less than or equal** to $\text{queries}[j]$. If no such item exists, then the answer to this query is `0`.
 
 Return *an array *`answer`* of the same length as *`queries`* where *$\text{answer}[j]$* is the answer to the *$$j^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Note that multiple items can have the same price and/or beauty.
 - **Explanation:**
 No item has a price less than or equal to 5, so no item can be chosen.
 Hence, the answer to the query is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{items.length}, \text{queries.length} \le 10^{5}$
 

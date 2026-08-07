@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given the `head` of a **doubly linked list**, which contains nodes that have a next pointer and a previous pointer.
 
 Return an integer array which contains the elements of the linked list **in order**.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return an integer array which contains the elements of the linked list **in orde
 **Output:** [3,2,3,2,3,2]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the given list is in the range `[1, 50]`.
 

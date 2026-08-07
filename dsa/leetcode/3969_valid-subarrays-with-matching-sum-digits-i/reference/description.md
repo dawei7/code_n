@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer digit `x`.
 
@@ -9,7 +9,8 @@ A **subarray** `nums[l..r]` is considered **valid** if the sum of its elements s
 - The last digit of the sum is equal to `x`.
 
 Return the number of valid subarrays.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ For indices $0 \le l \le r < n$, `nums[l..r]` denotes the contiguous, nonempty i
 
 Return the number of index pairs $(l,r)$ for which the decimal representation of $\sum_{i=l}^{r}\texttt{\text{nums}[i]}$ begins with `x` and ends with `x`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ The only subarray is `nums[0..0]` with a sum of 1, which does not satisfy the co
 Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1500$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A shop is selling candies at a discount. For **every two** candies sold, the shop gives a **third** candy for **free**.
 
@@ -7,12 +7,13 @@ The customer can choose **any** candy to take away for free as long as the cost 
 - For example, if there are `4` candies with costs `1`, `2`, `3`, and `4`, and the customer buys candies with costs `2` and `3`, they can take the candy with cost `1` for free, but not the candy with cost `4`.
 
 Given a **0-indexed** integer array `cost`, where $\text{cost}[i]$ denotes the cost of the $$i^{\text{th}}$$ candy, return *the **minimum cost** of buying **all** the candies*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Hence, the minimum cost to buy all candies is 9 + 7 + 5 + 2 = 23.
 - **Output:** `10`
 - **Explanation:** Since there are only 2 candies, we buy both of them. There is not a third candy we can take for free.
 Hence, the minimum cost to buy all candies is 5 + 5 = 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{cost.length} \le 100$
 

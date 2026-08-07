@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an integer array `nums` that consists of `n` **unique **elements, but you have forgotten it. However, you do remember every pair of adjacent elements in `nums`.
 
@@ -7,12 +7,13 @@ You are given a 2D integer array `adjacentPairs` of size $n - 1$ where each $\te
 It is guaranteed that every adjacent pair of elements $\text{nums}[i]$ and `nums[i+1]` will exist in `adjacentPairs`, either as `[nums[i], nums[i+1]]` or `[nums[i+1], nums[i]]`. The pairs can appear **in any order**.
 
 Return *the original array *`nums`*. If there are multiple solutions, return **any of them***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Another solution is [-3,1,4,-2], which would also be accepted.
 
 - **Input:** $adjacentPairs = [[100000,-100000]]$
 - **Output:** `[100000,-100000]`
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = n$
 

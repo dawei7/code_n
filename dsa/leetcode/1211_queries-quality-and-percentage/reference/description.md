@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Queries`
 
@@ -38,12 +38,13 @@ Both `quality` and `poor_query_percentage` should be **rounded to 2 decimal plac
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

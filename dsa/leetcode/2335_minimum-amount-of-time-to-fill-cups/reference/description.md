@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You have a water dispenser that can dispense cold, warm, and hot water. Every second, you can either fill up `2` cups with **different** types of water, or `1` cup of any type of water.
 
 You are given a **0-indexed** integer array `amount` of length `3` where $\text{amount}[0]$, $\text{amount}[1]$, and $\text{amount}[2]$ denote the number of cold, warm, and hot water cups you need to fill respectively. Return *the **minimum** number of seconds needed to fill up all the cups*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Second 7: Fill up a hot cup.
 - **Input:** $amount = [5,0,0]$
 - **Output:** `5`
 - **Explanation:** Every second, we fill up a cold cup.
-### Constraints
+
+### 4. Constraints
 
 - $\text{amount.length} = 3$
 

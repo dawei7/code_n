@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. The **range** of a subarray of `nums` is the difference between the largest and smallest element in the subarray.
 
 Return *the **sum of all** subarray ranges of *`nums`*.*
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,9 +42,13 @@ So the sum of all ranges is 0 + 0 + 0 + 2 + 0 + 2 = 4.
 - **Input:** `nums = [4,-2,-3,4,1]`
 - **Output:** `59`
 - **Explanation:** The sum of all subarray ranges of nums is 59.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 
 - $-10^{9} \le \text{nums}[i] \le 10^{9}$
-### Follow-up Could you find a solution with `O(n)` time complexity?
+
+### 5. Follow-up
+
+Could you find a solution with `O(n)` time complexity?

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an array `colors`, in which there are three colors: `1`, `2` and `3`.
 
 You are also given some queries. Each query consists of two integers `i` and `c`, return the shortest distance between the given index `i` and the target color `c`. If there is no solution return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $n = \lvert\texttt{colors}\rvert$ and $q = \lvert\texttt{queries}\rvert$. Fo
 
 - Return a list of $q$ integers in query order. For each `[i, c]`, return the minimum distance to a position `j` satisfying $\text{colors}[j] = c$, or `-1` when no such position exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The nearest 1 from index 6 is at index 3 (3 steps away).
 - **Input:** $colors = [1,2], queries = [[0,3]]$
 - **Output:** `[-1]`
 - **Explanation:** There is no 3 in the array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{colors.length} \le 5*10^{4}$
 

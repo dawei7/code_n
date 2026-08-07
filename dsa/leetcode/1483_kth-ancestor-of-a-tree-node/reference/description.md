@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a tree with `n` nodes numbered from `0` to $n - 1$ in the form of a parent array `parent` where $\text{parent}[i]$ is the parent of $$i^{\text{th}}$$ node. The root of the tree is node `0`. Find the $$k^{\text{th}}$$ ancestor of a given node.
 
@@ -9,12 +9,13 @@ Implement the `TreeAncestor` class:
 - `TreeAncestor(int n, int[] parent)` Initializes the object with the number of nodes in the tree and the parent array.
 
 - `int getKthAncestor(int node, int k)` return the $$k^{\text{th}}$$ ancestor of the given node `node`. If there is no such ancestor, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ treeAncestor.getKthAncestor(3, 1); // returns 1 which is the parent of 3
 treeAncestor.getKthAncestor(5, 2); // returns 0 which is the grandparent of 5
 treeAncestor.getKthAncestor(6, 3); // returns -1 because there is no such ancestor
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 5 * 10^{4}$
 

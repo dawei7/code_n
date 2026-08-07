@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Your friend is typing his `name` into a keyboard. Sometimes, when typing a character `c`, the key might get *long pressed*, and the character will be typed 1 or more times.
 
 You examine the `typed` characters of the keyboard. Return `True` if it is possible that it was your friends name, with some characters (possibly none) being long pressed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ You examine the `typed` characters of the keyboard. Return `True` if it is possi
 - **Input:** $name = "saeed", typed = "ssaaedd"$
 - **Output:** `false`
 - **Explanation:** 'e' must have been pressed twice, but it was not in the typed output.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{name.length}, \text{typed.length} \le 1000$
 

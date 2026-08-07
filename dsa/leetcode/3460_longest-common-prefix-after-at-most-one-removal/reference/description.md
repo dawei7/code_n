@@ -1,15 +1,18 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t`.
 
 Return the **length** of the **longest common prefix** between `s` and `t` after removing **at most** one character from `s`.
 
-**Note:** `s` can be left without any removal.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+`s` can be left without any removal.
+
+### 4. Examples
 
 #### Example 1
 
@@ -59,7 +62,8 @@ No removal is needed.
 `s` and `t` cannot have a common prefix.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

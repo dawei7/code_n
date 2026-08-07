@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -7,12 +7,13 @@ Your goal is to start at index `0` and reach index $n - 1$. You can only jump to
 The score for a jump from index `i` to index `j` is calculated as $(j - i) * \text{nums}[i]$.
 
 Return the **maximum** possible **total score** by the time you reach the last index.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ First, jump to index 1 and then jump to the last index. The final score is $1 * 
 Jump directly to the last index. The final score is $4 * 4 = 16$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

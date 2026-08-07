@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `num` sorted in non-decreasing order.
 
@@ -9,12 +9,13 @@ You can perform the following operation any number of times:
 - Then, remove the elements at indices `i` and `j` from `nums`. The remaining elements retain their original order, and the array is re-indexed.
 
 Return the **minimum** length of `nums` after applying the operation zero or more times.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Since both numbers are equal, they cannot be removed.
 ![](images/tcase3.gif)
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

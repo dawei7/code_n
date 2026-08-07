@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** `n x n` integer matrix `grid`, *return the number of pairs *$(r_{i}, c_{j})$* such that row *$r_{i}$* and column *$c_{j}$* are equal*.
 
 A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A row and column pair is considered equal if they contain the same elements in t
 - (Row 0, Column 0): [3,1,2,2]
 - (Row 2, Column 2): [2,4,2,2]
 - (Row 3, Column 2): [2,4,2,2]
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

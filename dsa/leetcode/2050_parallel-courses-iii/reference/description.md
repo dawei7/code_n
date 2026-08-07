@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, which indicates that there are `n` courses labeled from `1` to `n`. You are also given a 2D integer array `relations` where $\text{relations}[j] = [\text{prevCourse}_{j}, \text{nextCourse}_{j}]$ denotes that course $\text{prevCourse}_{j}$ has to be completed **before** course $\text{nextCourse}_{j}$ (prerequisite relationship). Furthermore, you are given a **0-indexed** integer array `time` where $\text{time}[i]$ denotes how many **months** it takes to complete the $(i+1)^th$ course.
 
@@ -10,13 +10,16 @@ You must find the **minimum** number of months needed to complete all the course
 
 Return *the **minimum** number of months needed to complete all the courses*.
 
-**Note:** The test cases are generated such that it is possible to complete every course (i.e., the graph is a directed acyclic graph).
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The test cases are generated such that it is possible to complete every course (i.e., the graph is a directed acyclic graph).
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ You can complete them after 1, 2, and 3 months respectively.
 Course 4 can be taken only after course 3 is completed, i.e., after 3 months. It is completed after 3 + 4 = 7 months.
 Course 5 can be taken only after courses 1, 2, 3, and 4 have been completed, i.e., after max(1,2,3,7) = 7 months.
 Thus, the minimum time needed to complete all the courses is 7 + 5 = 12 months.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 5 * 10^{4}$
 

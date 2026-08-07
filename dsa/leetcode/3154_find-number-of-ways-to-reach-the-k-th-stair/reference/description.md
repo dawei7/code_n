@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **non-negative** integer `k`. There exists a staircase with an infinite number of stairs, with the **lowest** stair numbered 0.
 
@@ -10,13 +10,16 @@ Alice has an integer `jump`, with an initial value of 0. She starts on stair 1 a
 
 Return the *total* number of ways Alice can reach stair `k`.
 
-**Note** that it is possible that Alice reaches the stair `k`, and performs some operations to reach the stair `k` again.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that it is possible that Alice reaches the stair `k`, and performs some operations to reach the stair `k` again.
+
+### 4. Examples
 
 #### Example 1
 
@@ -87,6 +90,7 @@ The 4 possible ways of reaching stair 1 are:
 	</li>
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $0 \le k \le 10^{9}$

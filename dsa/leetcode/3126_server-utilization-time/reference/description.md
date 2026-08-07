@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Servers`
 
@@ -102,6 +102,6 @@ Servers table:
 
 The accumulated runtime for all servers totals approximately 44.46 hours, equivalent to one full day plus some additional hours. However, since we consider only full days, the final output is rounded to 1 full day.</div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

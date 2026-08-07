@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `k`, an element $\text{nums}[i]$ is considered **good** if it is **strictly** greater than the elements at indices $i - k$ and $i + k$ (if those indices exist). If neither of these indices *exists*, $\text{nums}[i]$ is still considered **good**.
 
 Return the **sum** of all the **good** elements in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The good numbers are $\text{nums}[1] = 3$, $\text{nums}[4] = 5$, and $\text{nums
 The only good number is $\text{nums}[0] = 2$ because it is strictly greater than $\text{nums}[1]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

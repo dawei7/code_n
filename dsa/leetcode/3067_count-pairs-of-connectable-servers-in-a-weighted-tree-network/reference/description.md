@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an unrooted weighted tree with `n` vertices representing servers numbered from `0` to $n - 1$, an array `edges` where $\text{edges}[i] = [a_{i}, b_{i}, \text{weight}_{i}]$ represents a bidirectional edge between vertices $a_{i}$ and $b_{i}$ of weight $\text{weight}_{i}$. You are also given an integer `signalSpeed`.
 
@@ -13,12 +13,13 @@ Two servers `a` and `b` are **connectable** through a server `c` if:
 - The path from `c` to `b` and the path from `c` to `a` do not share any edges.
 
 Return *an integer array* `count` *of length* `n` *where* $\text{count}[i]$ *is the **number** of server pairs that are **connectable** through* *the server* `i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ In the case of the given path graph, count[c] is equal to the number of servers 
 - **Explanation:** Through server 0, there are 2 pairs of connectable servers: (4, 5) and (4, 6).
 Through server 6, there are 2 pairs of connectable servers: (4, 5) and (0, 5).
 It can be shown that no two servers are connectable through servers other than 0 and 6.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 1000$
 

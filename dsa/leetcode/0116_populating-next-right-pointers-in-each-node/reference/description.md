@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **perfect binary tree** where all leaves are on the same level, and every parent has two children. The binary tree has the following definition:
 
@@ -14,7 +14,8 @@ struct Node {
 Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to `NULL`.
 
 Initially, all next pointers are set to `NULL`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Initially, all next pointers are set to `NULL`.
 
 Return the original root after populating every horizontal `next` link. The app serializes each linked level and uses `#` to mark its end.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,12 +38,14 @@ Return the original root after populating every horizontal `next` link. The app 
 
 - **Input:** `root = []`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 2^{12} - 1]$.
 
 - $-1000 \le \text{Node.val} \le 1000$
-### Follow-up
+
+### 5. Follow-up
 
 - You may only use constant extra space.
 

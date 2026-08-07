@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a text file `file.txt`, print just the 10th line of the file.
 
@@ -31,7 +31,7 @@ Line 10
 
 2. There's at least three different solutions. Try to explore all possibilities.</div>
 
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 

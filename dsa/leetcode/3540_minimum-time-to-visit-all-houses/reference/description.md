@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `forward` and `backward`, both of size `n`. You are also given another integer array `queries`.
 
@@ -11,11 +11,12 @@ There are `n` houses *arranged in a circle*. The houses are connected via roads 
 You can walk at a pace of **one** meter per second. Starting from house 0, find the **minimum** time taken to visit each house in the order specified by `queries`.
 
 Return the **minimum** total time taken to visit the houses.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,9 @@ Return the **minimum** total time taken to visit the houses.
 
 The path followed is $<u>0</u>^(0) → <u>1</u>^(1) →​​​​​​​ <u>2</u>^(5) <u>→</u> 1^(7) <u>→</u>​​​​​​​ <u>0</u>^(8) <u>→</u> <u>2</u>^(12)$.
 
-**Note:** The notation used is $node^(total time)$, `→` represents forward road, and `<u>→</u>` represents backward road.
+### 4. Note
+
+The notation used is $node^(total time)$, `→` represents forward road, and `<u>→</u>` represents backward road.
 
 </div>
 #### Example 2
@@ -43,7 +46,8 @@ The path followed is $<u>0</u>^(0) → <u>1</u>^(1) →​​​​​​​ <u>
 The path travelled is `<u>0</u> →​​​​​​​ <u>1</u> →​​​​​​​ <u>2</u> →​​​​​​​ <u>3</u> → <u>0</u>`. Each step is in the forward direction and requires 1 second.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s`, a string `a`, a string `b`, and an integer `k`.
 
@@ -19,12 +19,13 @@ An index `i` is **beautiful** if:
 	</li>
 
 Return *the array that contains beautiful indices in **sorted order from smallest to largest***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Thus we return [16,33] as the result.
 - **Explanation:** There is 1 beautiful index: [0].
 - The index 0 is beautiful as s[0..0] == "a" and there exists an index 0 with s[0..0] == "a" and |0 - 0| <= 4.
 Thus we return [0] as the result.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{s.length} \le 5 * 10^{5}$
 

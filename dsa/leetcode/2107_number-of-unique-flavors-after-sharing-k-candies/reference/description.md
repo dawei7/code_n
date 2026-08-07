@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `candies`, where $\text{candies}[i]$ represents the flavor of the $$i^{\text{th}}$$ candy. Your mom wants you to share these candies with your little sister by giving her `k` **consecutive** candies, but you want to keep as many flavors of candies as possible.
 
 Return *the **maximum** number of **unique** flavors of candy you can keep after sharing ** with your sister.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that you can also share the candies with flavors [2,2] and eat the candies 
 You do not have to give any candies.
 You can eat the candies with flavors [2,4,5].
 There are 3 unique flavors, so return 3.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{candies.length} \le 10^{5}$
 

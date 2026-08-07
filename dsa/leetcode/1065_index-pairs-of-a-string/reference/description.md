@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `text` and an array of strings `words`, return *an array of all index pairs *`[i, j]`* so that the substring *`text[i...j]`* is in `words`*.
 
 Return the pairs `[i, j]` in sorted order (i.e., sort them by their first coordinate, and in case of ties sort them by their second coordinate).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Each returned pair `[i, j]` uses inclusive zero-based boundaries and therefore r
 
 - Every pair `[i, j]` whose represented substring is a member of `words`, sorted first by `i` and then by `j`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Each returned pair `[i, j]` uses inclusive zero-based boundaries and therefore r
 - **Input:** $text = "ababa", words = ["aba","ab"]$
 - **Output:** `[[0,1],[0,2],[2,3],[2,4]]`
 - **Explanation:** Notice that matches can overlap, see "aba" is found in [0,2] and [2,4].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 100$
 

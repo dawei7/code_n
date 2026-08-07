@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `ideas` that represents a list of names to be used in the process of naming a company. The process of naming a company is as follows:
 
@@ -11,12 +11,13 @@ You are given an array of strings `ideas` that represents a list of names to be 
 - Otherwise, it is not a valid name.
 
 Return *the number of **distinct** valid names for the company*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The following are some examples of invalid selections:
 - **Input:** $ideas = ["lack","back"]$
 - **Output:** `0`
 - **Explanation:** There are no valid selections. Therefore, 0 is returned.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{ideas.length} \le 5 * 10^{4}$
 

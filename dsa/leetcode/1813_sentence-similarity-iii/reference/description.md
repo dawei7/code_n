@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `sentence1` and `sentence2`, each representing a **sentence** composed of words. A sentence is a list of **words** that are separated by a **single** space with no leading or trailing spaces. Each word consists of only uppercase and lowercase English characters.
 
@@ -11,12 +11,13 @@ For example,
 - $s1 = "Frog cool"$ and $s2 = "Frogs are cool"$ are **not** similar, since although there is a sentence `"s are"` inserted into `s1`, it is not separated from `"Frog"` by a space.
 
 Given two sentences `sentence1` and `sentence2`, return **true** if `sentence1` and `sentence2` are **similar**. Otherwise, return **false**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ No single sentence can be inserted inside one of the sentences to make it equal 
 `sentence2` can be turned to `sentence1` by inserting "right now" at the end of the sentence.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence1.length}, \text{sentence2.length} \le 100$
 

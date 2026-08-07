@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -83,10 +83,12 @@ The query result format is in the following example.
 
 - The result is ordered by hierarchy_level ascending, and then by subordinate_id ascending.
 
-**Note:** The output is ordered first by hierarchy_level in ascending order, then by subordinate_id in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
+
+### 3. Note
+
+The output is ordered first by hierarchy_level in ascending order, then by subordinate_id in ascending order.
+
+</div>

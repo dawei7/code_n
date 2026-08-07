@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** arrays, `nums1` and `nums2`, consisting of non-negative integers. Let there be another array, `nums3`, which contains the bitwise XOR of **all pairings** of integers between `nums1` and `nums2` (every integer in `nums1` is paired with every integer in `nums2` **exactly once**).
 
 Return* the **bitwise XOR** of all integers in *`nums3`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ All possible pairs of bitwise XORs are nums1[0] ^ nums2[0], nums1[0] ^ nums2[1],
 and nums1[1] ^ nums2[1].
 Thus, one possible nums3 array is [2,5,1,6].
 2 ^ 5 ^ 1 ^ 6 = 0, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 

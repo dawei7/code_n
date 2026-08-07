@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are n people in a social group labeled from `0` to $n - 1$. You are given an array `logs` where $\text{logs}[i] = [\text{timestamp}_{i}, x_{i}, y_{i}]$ indicates that $x_{i}$ and $y_{i}$ will be friends at the time $\text{timestamp}_{i}$.
 
 Friendship is **symmetric**. That means if `a` is friends with `b`, then `b` is friends with `a`. Also, person `a` is acquainted with a person `b` if `a` is friends with `b`, or `a` is a friend of someone acquainted with `b`.
 
 Return *the earliest time for which every person became acquainted with every other person*. If there is no such earliest time, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ At each timestamp, the event adds an undirected friendship between its two disti
 
 Return the earliest event timestamp whose chronological prefix leaves exactly one acquaintance group containing all `n` people. Return `-1` if more than one group remains after every event.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The sixth event occurs at timestamp = 20190301, and after 0 and 3 become friends
 - **Input:** $logs = [[0,2,0],[1,0,1],[3,0,3],[4,1,2],[7,3,1]], n = 4$
 - **Output:** `3`
 - **Explanation:** At timestamp = 3, all the persons (i.e., 0, 1, 2, and 3) become friends.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 

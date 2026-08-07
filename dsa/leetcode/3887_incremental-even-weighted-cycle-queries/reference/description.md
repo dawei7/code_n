@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`.
 
@@ -9,7 +9,8 @@ You are also given a 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, 
 Process the edges in `edges` in the given order. For each edge, add it to the graph only if, after adding it, the sum of the weights of the edges in **every** cycle in the resulting graph is **even**.
 
 Return an integer denoting the number of edges that are successfully added to the graph.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Let $N=n$ and $M=\lvert\texttt{edges}\rvert$. The graph is undirected, begins em
 
 Return the number of accepted edges after all $M$ proposals have been processed in order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ Return the number of accepted edges after all $M$ proposals have been processed 
 - Note that the cycle $0 - 1 - 2 - 0$ has total edge weight $1 + 1 + 0 = 2$, which is an even number.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 5 * 10^{4}$
 

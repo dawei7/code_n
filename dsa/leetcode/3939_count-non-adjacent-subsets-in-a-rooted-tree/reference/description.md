@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a rooted tree with `n` nodes labeled from 0 to $n - 1$, represented by an integer array `parent` of length `n`, where:
 
@@ -15,7 +15,8 @@ A non-empty subset of nodes is called **valid** if:
 - No **two** selected nodes are **adjacent** in the tree (no node and its direct parent are both included in the subset).
 
 Return the number of valid subsets modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Let $N=\lvert\texttt{parent}\rvert=\lvert\texttt{nums}\rvert$ and $K=k$. Two nod
 
 Return the number of valid node subsets modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ The valid subsets are:
 No other subset satisfies both conditions. Therefore, the answer is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{parent.length} = \text{nums.length}$
 

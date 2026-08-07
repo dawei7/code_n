@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **XOR total** of an array is defined as the bitwise `XOR` of** all its elements**, or `0` if the array is** empty**.
 
@@ -6,15 +6,18 @@ The **XOR total** of an array is defined as the bitwise `XOR` of** all its eleme
 
 Given an array `nums`, return *the **sum** of all **XOR totals** for every **subset** of *`nums`.
 
-**Note:** Subsets with the **same** elements should be counted **multiple** times.
-
-An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by deleting some (possibly zero) elements of `b`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Subsets with the **same** elements should be counted **multiple** times.
+
+An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by deleting some (possibly zero) elements of `b`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -45,7 +48,8 @@ An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by 
 - **Input:** `nums = [3,4,5,6,7,8]`
 - **Output:** `480`
 - **Explanation:** The sum of all XOR totals for every subset is 480.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 12$
 

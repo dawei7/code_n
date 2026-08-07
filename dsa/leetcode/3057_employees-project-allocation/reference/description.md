@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Project`
 
@@ -34,11 +34,12 @@ Write a solution to find the **employees** who are allocated to projects with a 
 Return t*he result table ordered by* $\text{employee}_{id}$, $\text{project}_{id}$ *in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

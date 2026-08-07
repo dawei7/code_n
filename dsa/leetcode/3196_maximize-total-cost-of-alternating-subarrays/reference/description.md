@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` with length `n`.
 
@@ -14,13 +14,16 @@ $cost(0, i_{1}) + cost(i_{1} + 1, i_{2}) + ... + cost(i_{k} − 1 + 1, n − 1)$
 
 Return an integer denoting the *maximum total cost* of the subarrays after splitting the array optimally.
 
-**Note:** If `nums` is not split into subarrays, i.e. $k = 1$, the total cost is simply $cost(0, n - 1)$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+If `nums` is not split into subarrays, i.e. $k = 1$, the total cost is simply $cost(0, n - 1)$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -70,7 +73,8 @@ We cannot split the array further, so the answer is 0.
 Selecting the whole array gives a total cost of $1 + 1 = 2$, which is the maximum.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

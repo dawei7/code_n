@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are the operator of a Centennial Wheel that has **four gondolas**, and each gondola has room for **up** **to** **four people**. You have the ability to rotate the gondolas **counterclockwise**, which costs you `runningCost` dollars.
 
@@ -7,12 +7,13 @@ You are given an array `customers` of length `n` where $\text{customers}[i]$ is 
 You can stop the wheel at any time, including **before** **serving** **all** **customers**. If you decide to stop serving customers, **all subsequent rotations are free** in order to get all the customers down safely. Note that if there are currently more than four customers waiting at the wheel, only four will board the gondola, and the rest will wait **for the next rotation**.
 
 Return* the minimum number of rotations you need to perform to maximize your profit.* If there is **no scenario** where the profit is positive, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ The highest profit was $122 after rotating the wheel 7 times.
 4. 5 customers arrive, 4 board and 1 waits, the wheel rotates. Current profit is 11 * $1 - 4 *$92 = -$357.
 5. 1 customer arrives, 2 board and 0 wait, the wheel rotates. Current profit is 13 * $1 - 5 *$92 = -$447.
 The profit was never positive, so return -1.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{customers.length}$
 

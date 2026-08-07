@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return the maximum possible sum of a subarray of `nums` that is a palindrome.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums) -> int`
 
@@ -19,7 +20,7 @@ For indices $0 \le l \le r < n$, the subarray `nums[l..r]` is palindromic exactl
 
 Return the maximum element sum among all palindromic subarrays of `nums`. The result may exceed a 32-bit signed integer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -81,7 +82,8 @@ No subarray with length greater than 1 is a palindrome. The largest element in t
 The subarray with only one element is a palindrome. Therefore, the answer is 1000.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

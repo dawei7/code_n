@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `occupiedIntervals`, where $\text{occupiedIntervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represents a time interval during which you are occupied. Each interval starts at $\text{start}_{i}$ and ends at $\text{end}_{i}$, **inclusive**. These intervals may **overlap**.
 
@@ -9,7 +9,8 @@ Your task is to merge **all** occupied intervals that overlap or touch, then rem
 Two intervals touch if the second interval starts **immediately after** the first one ends. For example, `[1, 1]` and `[2, 2]` touch and should be merged into `[1, 2]`.
 
 Return the **remaining** occupied intervals in **sorted** order. The returned intervals must be **non-overlapping** and must contain the **minimum** number of intervals possible. If there are no remaining occupied points, return an empty list.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(occupiedIntervals, freeStart, freeEnd) -> list[\text{list}[int]]$
 
@@ -23,7 +24,7 @@ $solve(occupiedIntervals, freeStart, freeEnd) -> list[\text{list}[int]]$
 
 Return all integer points covered by at least one occupied interval but not by `[freeStart, freeEnd]`, encoded as sorted inclusive intervals. Consecutive remaining integer points belong to the same output interval, so the result is non-overlapping and uses the minimum possible number of intervals.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ Return all integer points covered by at least one occupied interval but not by `
 - Excluding the free interval `[3, 8]` results in `[1, 2]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{occupiedIntervals.length} \le 5 * 10^{4}$
 

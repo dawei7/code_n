@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer `num`, find the closest two integers in absolute difference whose product equals $num + 1$ or $num + 2$.
 
 Return the two integers in any order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Return the two integers in any order.
 
 - **Input:** $num = 999$
 - **Output:** `[40,25]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 10^{9}$

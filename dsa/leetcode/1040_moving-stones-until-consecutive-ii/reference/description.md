@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are some stones in different positions on the X-axis. You are given an integer array `stones`, the positions of the stones.
 
@@ -13,12 +13,13 @@ Return *an integer array *`answer`* of length *`2`* where*:
 - $\text{answer}[0]$ *is the minimum number of moves you can play, and*
 
 - $\text{answer}[1]$ *is the maximum number of moves you can play*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Or, we can move 9 -> 5, 4 -> 6 for two moves to finish the game.
 - **Explanation:** We can move 3 -> 8 then 10 -> 7 to finish the game.
 Or, we can move 3 -> 7, 4 -> 8, 5 -> 9 to finish the game.
 Notice we cannot move 10 -> 2 to finish the game, because that would be an illegal move.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{stones.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We can use run-length encoding (i.e., **RLE**) to encode a sequence of integers. In a run-length encoded array of even length `encoding` (**0-indexed**), for all even `i`, $\text{encoding}[i]$ tells us the number of times that the non-negative integer value $encoding[i + 1]$ is repeated in the sequence.
 
@@ -11,12 +11,13 @@ Implement the `RLEIterator` class:
 - `RLEIterator(int[] encoded)` Initializes the object with the encoded array `encoded`.
 
 - `int next(int n)` Exhausts the next `n` elements and returns the last element exhausted in this way. If there is no element left to exhaust, return `-1` instead.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ rLEIterator.next(1); // exhausts 1 term of the sequence, returning 5. The remain
 rLEIterator.next(2); // exhausts 2 terms, returning -1. This is because the first term exhausted was 5,
 but the second term did not exist. Since the last term exhausted does not exist, we return -1.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{encoding.length} \le 1000$
 

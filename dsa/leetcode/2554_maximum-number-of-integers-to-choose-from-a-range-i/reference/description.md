@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `banned` and two integers `n` and `maxSum`. You are choosing some number of integers following the below rules:
 
@@ -11,12 +11,13 @@ You are given an integer array `banned` and two integers `n` and `maxSum`. You a
 - The sum of the chosen integers should not exceed `maxSum`.
 
 Return *the **maximum** number of integers you can choose following the mentioned rules*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return *the **maximum** number of integers you can choose following the mentione
 - **Output:** `7`
 - **Explanation:** You can choose the integers 1, 2, 3, 4, 5, 6, and 7.
 They are from the range [1, 7], all did not appear in banned, and their sum is 28, which did not exceed maxSum.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{banned.length} \le 10^{4}$
 

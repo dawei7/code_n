@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ An index `i` is **balanced** if the sum of elements **strictly** to the left of 
 If there are no elements to the left, the sum is considered as 0. Similarly, if there are no elements to the right, the product is considered as 1.
 
 Return an integer denoting the **smallest** balanced index. If no balanced index exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ where $R_{N-1} = 1$. Index `i` is balanced exactly when $L_i = R_i$.
 Return the smallest balanced index. Return `-1` when no index satisfies the
 equality.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ For index $i = 0$:
 - Since the left sum does not equal the right product, index 0 is not balanced.
 
 Therefore, no balanced index exists and the answer is -1.</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **Attention**: In this version, the number of operations that can be performed, has been increased to **twice**.<!-- notionvc: 278e7cb2-3b05-42fa-8ae9-65f5fd6f7585 -->
 
@@ -10,13 +10,16 @@ We call two integers `x` and `y` **almost equal** if both integers can become eq
 
 Return the number of indices `i` and `j` in `nums` where `i < j` such that $\text{nums}[i]$ and $\text{nums}[j]$ are **almost equal**.
 
-**Note** that it is allowed for an integer to have leading zeros after performing an operation.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that it is allowed for an integer to have leading zeros after performing an operation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,7 +59,8 @@ The almost equal pairs of elements are:
 - 10 and 100. By swapping the first 0 with the digit 1 in 100, you get 010, which is 10.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 5000$
 

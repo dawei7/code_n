@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: Heights
 
@@ -18,11 +18,12 @@ Write a solution to calculate the amount of rainwater can be **trapped between t
 Return *the result table in ***any*** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

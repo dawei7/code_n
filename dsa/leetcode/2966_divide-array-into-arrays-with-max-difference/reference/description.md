@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n` where `n` is a multiple of 3 and a positive integer `k`.
 
@@ -7,12 +7,13 @@ Divide the array `nums` into $n / 3$ arrays of size **3** satisfying the followi
 - The difference between **any** two elements in one array is **less than or equal** to `k`.
 
 Return a **2D** array containing the arrays. If it is impossible to satisfy the conditions, return an empty array. And if there are multiple answers, return **any** of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Because there are four 2s there will be an array with the elements 2 and 5 no ma
 The difference between any two elements in each array is less than or equal to 14.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

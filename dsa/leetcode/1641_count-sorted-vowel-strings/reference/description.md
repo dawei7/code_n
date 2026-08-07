@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of strings of length *`n`* that consist only of vowels (*`a`*, *`e`*, *`i`*, *`o`*, *`u`*) and are **lexicographically sorted**.*
 
 A string `s` is **lexicographically sorted** if for all valid `i`, $s[i]$ is the same as or comes before `s[i+1]` in the alphabet.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ Note that "ea" is not a valid string since 'e' comes after 'a' in the alphabet.
 
 - **Input:** $n = 33$
 - **Output:** `66045`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$

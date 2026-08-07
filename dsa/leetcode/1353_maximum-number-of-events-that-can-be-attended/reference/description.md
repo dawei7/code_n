@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of `events` where $\text{events}[i] = [\text{startDay}_{i}, \text{endDay}_{i}]$. Every event `i` starts at $\text{startDay}_{i}$_ and ends at $\text{endDay}_{i}$.
 
 You can attend an event `i` at any day `d` where $\text{startDay}_{i} \le d \le \text{endDay}_{i}$. You can only attend one event at any time `d`.
 
 Return *the maximum number of events you can attend*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Attend the third event on day 3.
 
 - **Input:** $events= [[1,2],[2,3],[3,4],[1,2]]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{events.length} \le 10^{5}$
 

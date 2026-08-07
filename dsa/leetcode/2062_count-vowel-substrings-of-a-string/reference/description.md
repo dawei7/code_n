@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **substring** is a contiguous (non-empty) sequence of characters within a string.
 
 A **vowel substring** is a substring that **only** consists of vowels (`'a'`, `'e'`, `'i'`, `'o'`, and `'u'`) and has **all five** vowels present in it.
 
 Given a string `word`, return *the number of **vowel substrings** in* `word`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Given a string `word`, return *the number of **vowel substrings** in* `word`.
 - "cu**<u>aieuou</u>**ac"
 - "cu**<u>aieuoua</u>**c"
 - "cua**<u>ieuoua</u>**c"
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the number of **unique palindromes of length three** that are a **subsequence** of *`s`.
 
@@ -9,12 +9,13 @@ A **palindrome** is a string that reads the same forwards and backwards.
 A **subsequence** of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
 
 - For example, `"ace"` is a subsequence of `"<u>a</u>b<u>c</u>d<u>e</u>"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ A **subsequence** of a string is a new string generated from the original string
 - "bcb" (subsequence of "<u>b</u>b<u>cb</u>aba")
 - "bab" (subsequence of "<u>b</u>bcb<u>ab</u>a")
 - "aba" (subsequence of "bbcb<u>aba</u>")
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 10^{5}$
 

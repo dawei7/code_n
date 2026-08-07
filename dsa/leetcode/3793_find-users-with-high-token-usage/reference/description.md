@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `prompts`
 
@@ -98,7 +98,7 @@ The Results table is ordered by avg_tokens in descending order, then by user_id 
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 **Input table**
 

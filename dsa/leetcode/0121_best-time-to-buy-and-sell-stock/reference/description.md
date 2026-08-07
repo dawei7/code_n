@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an array `prices` where $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day.
 
 You want to maximize your profit by choosing a **single day** to buy one stock and choosing a **different day in the future** to sell that stock.
 
 Return *the maximum profit you can achieve from this transaction*. If you cannot achieve any profit, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return *the maximum profit you can achieve from this transaction*. If you cannot
 
 Return the maximum profit from at most one purchase followed by one later sale.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 - **Input:** $prices = [7,6,4,3,1]$
 - **Output:** `0`
 - **Explanation:** In this case, no transactions are done and the max profit = 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prices.length} \le 10^{5}$
 

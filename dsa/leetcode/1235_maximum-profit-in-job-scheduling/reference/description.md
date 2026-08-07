@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 We have `n` jobs, where every job is scheduled to be done from $\text{startTime}[i]$ to $\text{endTime}[i]$, obtaining a profit of $\text{profit}[i]$.
 
 You're given the `startTime`, `endTime` and `profit` arrays, return the maximum profit you can take such that there are no two jobs in the subset with overlapping time range.
 
 If you choose a job that ends at time `X` you will be able to start another job that starts at time `X`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Profit obtained 150 = 20 + 70 + 60.
 
 - **Input:** $startTime = [1,1,1], endTime = [2,3,4], profit = [5,6,4]$
 - **Output:** `6`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{startTime.length} = \text{endTime.length} = \text{profit.length} \le 5 * 10^{4}$
 

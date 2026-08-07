@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In this problem, a rooted tree is a **directed** graph such that, there is exactly one node (the root) for which all other nodes are descendants of this node, plus every node has exactly one parent, except for the root node which has no parents.
 
@@ -7,12 +7,13 @@ The given input is a directed graph that started as a rooted tree with `n` nodes
 The resulting graph is given as a 2D-array of `edges`. Each element of `edges` is a pair $[u_{i}, v_{i}]$ that represents a **directed** edge connecting nodes $u_{i}$ and $v_{i}$, where $u_{i}$ is a parent of child $v_{i}$.
 
 Return *an edge that can be removed so that the resulting graph is a rooted tree of* `n` *nodes*. If there are multiple answers, return the answer that occurs last in the given 2D-array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *an edge that can be removed so that the resulting graph is a rooted tree
 
 - **Input:** $edges = [[1,2],[2,3],[3,4],[4,1],[1,5]]$
 - **Output:** `[4,1]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length}$
 

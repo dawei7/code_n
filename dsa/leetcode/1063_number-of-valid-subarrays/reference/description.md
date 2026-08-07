@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the number of non-empty **subarrays** with the leftmost element of the subarray not larger than other elements in the subarray*.
 
 A **subarray** is a **contiguous** part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $N = \lvert\texttt{nums}\rvert$. Each pair of inclusive left and right bound
 
 - The total number of valid subarrays.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Let $N = \lvert\texttt{nums}\rvert$. Each pair of inclusive left and right bound
 - **Input:** `nums = [2,2,2]`
 - **Output:** `6`
 - **Explanation:** There are 6 valid subarrays: [2],[2],[2],[2,2],[2,2],[2,2,2].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `num1` and `num2`.
 
@@ -7,12 +7,13 @@ In one operation, you can choose integer `i` in the range `[0, 60]` and subtract
 Return *the integer denoting the **minimum** number of operations needed to make* `num1` *equal to* `0`.
 
 If it is impossible to make `num1` equal to `0`, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ It can be proven, that 3 is the minimum number of operations that we need to per
 - **Input:** $num1 = 5, num2 = 7$
 - **Output:** `-1`
 - **Explanation:** It can be proven, that it is impossible to make 5 equal to 0 with the given operation.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num1 \le 10^{9}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s` of zeros and ones, *return the maximum score after splitting the string into two **non-empty** substrings* (i.e. **left** substring and **right** substring).
 
 The score after splitting a string is the number of **zeros** in the **left** substring plus the number of **ones** in the **right** substring.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ left = "01110" and right = "1", score = 2 + 1 = 3
 
 - **Input:** `s = "1111"`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 500$
 

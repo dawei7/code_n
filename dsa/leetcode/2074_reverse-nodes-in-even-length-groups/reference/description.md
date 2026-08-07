@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `head` of a linked list.
 
@@ -13,12 +13,13 @@ The nodes in the linked list are **sequentially** assigned to **non-empty** grou
 Note that the length of the last group may be less than or equal to $1 + the length of the second to last group$.
 
 **Reverse** the nodes in each group with an **even** length, and return *the* `head` *of the modified linked list*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Note that the length of the last group may be less than or equal to $1 + the len
 - The length of the first group is 1. No reversal occurs.
 - The length of the second group is 2. The nodes are reversed.
 - The length of the last group is 2. The nodes are reversed.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{5}]$.
 

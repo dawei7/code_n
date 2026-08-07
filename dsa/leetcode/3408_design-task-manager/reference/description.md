@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a task management system that allows users to manage their tasks, each associated with a priority. The system should efficiently handle adding, modifying, executing, and removing tasks.
 
@@ -14,13 +14,16 @@ Implement the `TaskManager` class:
 
 - `int execTop()` executes the task with the **highest** priority across all users. If there are multiple tasks with the same **highest** priority, execute the one with the highest `taskId`. After executing, the** **`taskId`** **is **removed** from the system. Return the `userId` associated with the executed task. If no tasks are available, return -1.
 
-**Note** that a user may be assigned multiple tasks.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that a user may be assigned multiple tasks.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ taskManager.rmv(101); // Removes task 101 from the system.
 taskManager.add(5, 105, 15); // Adds task 105 with priority 15 for User 5.
 
 taskManager.execTop(); // return 5. Executes task 105 for User 5.</div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{tasks.length} \le 10^{5}$
 

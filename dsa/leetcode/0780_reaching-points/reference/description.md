@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given four integers `sx`, `sy`, `tx`, and `ty`, return `true`* if it is possible to convert the point *`(sx, sy)`* to the point *`(tx, ty)` *through some operations**, or *`false`* otherwise*.
 
 The allowed operation on some point `(x, y)` is to convert it to either $(x, x + y)$ or $(x + y, y)$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ One series of moves that transforms the starting point to the target is:
 
 - **Input:** $sx = 1, sy = 1, tx = 1, ty = 1$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le sx, sy, tx, ty \le 10^{9}$

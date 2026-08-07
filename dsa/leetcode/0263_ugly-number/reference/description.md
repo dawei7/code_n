@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 An **ugly number** is a *positive* integer which does not have a prime factor other than 2, 3, and 5.
 
 Given an integer `n`, return `true` *if* `n` *is an **ugly number***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given an integer `n`, return `true` *if* `n` *is an **ugly number***.
 
 Return `true` exactly when `n` is positive and has no prime factor other than `2`, `3`, or `5`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ Return `true` exactly when `n` is positive and has no prime factor other than `2
 - **Input:** $n = 14$
 - **Output:** `false`
 - **Explanation:** 14 is not ugly since it includes the prime factor 7.
-### Constraints
+
+### 4. Constraints
 
 - $-2^{31} \le n \le 2^{31} - 1$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a pizza with `3n` slices of varying size, you and your friends will take slices of pizza as follows:
 
@@ -11,12 +11,13 @@ There is a pizza with `3n` slices of varying size, you and your friends will tak
 - Repeat until there are no more slices of pizzas.
 
 Given an integer array `slices` that represent the sizes of the pizza slices in a clockwise direction, return *the maximum possible sum of slice sizes that you can pick*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Given an integer array `slices` that represent the sizes of the pizza slices in 
 - **Input:** $slices = [8,9,8,6,1,1]$
 - **Output:** `16`
 - **Explanation:** Pick pizza slice of size 8 in each turn. If you pick slice with size 9 your partners will pick slices of size 8.
-### Constraints
+
+### 4. Constraints
 
 - $3 * n = \text{slices.length}$
 

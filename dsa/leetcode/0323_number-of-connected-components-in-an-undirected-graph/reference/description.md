@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You have a graph of `n` nodes. You are given an integer `n` and an array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between $a_{i}$ and $b_{i}$ in the graph.
 
 Return *the number of connected components in the graph*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Return *the number of connected components in the graph*.
 
 Return the number of maximal groups of nodes connected by paths.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the number of maximal groups of nodes connected by paths.
 
 - **Input:** $n = 5, edges = [[0,1],[1,2],[2,3],[3,4]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2000$
 

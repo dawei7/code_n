@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **product difference** between two pairs `(a, b)` and `(c, d)` is defined as $(a * b) - (c * d)$.
 
@@ -7,12 +7,13 @@ The **product difference** between two pairs `(a, b)` and `(c, d)` is defined as
 Given an integer array `nums`, choose four **distinct** indices `w`, `x`, `y`, and `z` such that the **product difference** between pairs $(\text{nums}[w], \text{nums}[x])$ and $(\text{nums}[y], \text{nums}[z])$ is **maximized**.
 
 Return *the **maximum** such product difference*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ The product difference is (6 * 7) - (2 * 4) = 34.
 - **Output:** `64`
 - **Explanation:** We can choose indices 3 and 6 for the first pair (9, 8) and indices 1 and 5 for the second pair (2, 4).
 The product difference is (9 * 8) - (2 * 4) = 64.
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{nums.length} \le 10^{4}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree and an integer `limit`, delete all **insufficient nodes** in the tree simultaneously, and return *the root of the resulting binary tree*.
 
 A node is **insufficient** if every root to **leaf** path intersecting this node has a sum strictly less than `limit`.
 
 A **leaf** is a node with no children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ A **leaf** is a node with no children.
 
 - **Input:** `root = [1,2,-3,-5,null,4,null], limit = -1`
 - **Output:** `[1,null,-3,4]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 5000]`.
 

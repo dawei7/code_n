@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -15,7 +15,8 @@ Among all such pairs:
 - If multiple pairs have the same `x`, choose the one with the smallest possible value of `y`.
 
 Return an integer array `[x, y]`. If no valid pair exists, return `[-1, -1]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Pairs are ordered lexicographically: a smaller `x` takes priority, and `y` break
 
 Return `[x, y]` for the lexicographically smallest valid pair. Return `[-1, -1]` when no valid pair exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ Both values have the same frequency, so no valid pair exists. Return `[-1, -1]`.
 There is only one value in the array, so no valid pair exists. Return `[-1, -1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

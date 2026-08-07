@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `arr` and a filtering function `fn`, return a filtered array `filteredArr`.
 
@@ -11,12 +11,13 @@ The `fn` function takes one or two arguments:
 `filteredArr` should only contain the elements from the `arr` for which the expression $fn(\text{arr}[i], i)$ evaluates to a **truthy** value. A **truthy** value is a value where `Boolean(value)` returns `true`.
 
 Please solve it without the built-in `Array.filter` method.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ In this case, the function removes elements not at index 0
 - **Output:** `[-2,0,1,2]`
 - **Explanation:**
 Falsey values such as 0 should be filtered out
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{arr.length} \le 1000$
 

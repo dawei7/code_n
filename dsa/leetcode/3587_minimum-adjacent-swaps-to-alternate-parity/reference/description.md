@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of **distinct** integers.
 
@@ -9,12 +9,13 @@ An arrangement of the array is considered **valid** if the parity of adjacent el
 Return the **minimum** number of adjacent swaps required to transform `nums` into any valid arrangement.
 
 If it is impossible to rearrange `nums` such that no two adjacent elements have the same parity, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ The array is already a valid arrangement. Thus, no operations are needed.
 No valid arrangement is possible. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

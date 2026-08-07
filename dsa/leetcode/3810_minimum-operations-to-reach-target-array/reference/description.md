@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums` and `target`, each of length `n`, where $\text{nums}[i]$ is the current value at index `i` and $\text{target}[i]$ is the desired value at index `i`.
 
@@ -15,7 +15,8 @@ You may perform the following operation any number of times (including zero):
 	</li>
 
 Return the **minimum** number of operations required to make `nums` equal to `target`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Let $N=\lvert\texttt{nums}\rvert=\lvert\texttt{target}\rvert$. One operation cho
 
 Return the fewest operations required to transform `nums` into `target` exactly.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return the fewest operations required to transform `nums` into `target` exactly.
 - Thus, 2 operations are required to convert `nums` to `target`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} = \text{target.length} \le 10^{5}$
 

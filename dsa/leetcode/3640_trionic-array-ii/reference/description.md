@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -11,12 +11,13 @@ A **trionic subarray** is a contiguous subarray `nums[l...r]` (with $0 \le l < r
 - `nums[q...r]` is **strictly** increasing.
 
 Return the **maximum** sum of any trionic subarray in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ Pick $l = 0$, $p = 1$, $q = 2$, $r = 3$:
 - Sum = $1 + 4 + 2 + 7 = 14$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $4 \le n = \text{nums.length} \le 10^{5}$
 

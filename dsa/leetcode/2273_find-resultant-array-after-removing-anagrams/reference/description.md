@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string array `words`, where $\text{words}[i]$ consists of lowercase English letters.
 
@@ -7,12 +7,13 @@ In one operation, select any index `i` such that `0 < i < words.length` and $wor
 Return `words` *after performing all operations*. It can be shown that selecting the indices for each operation in **any** arbitrary order will lead to the same result.
 
 An **Anagram** is a word or phrase formed by rearranging the letters of a different word or phrase using all the original letters exactly once. For example, `"dacb"` is an anagram of `"abdc"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ We can no longer perform any operations, so ["abba","cd"] is the final answer.
 - **Output:** `["a","b","c","d","e"]`
 - **Explanation:**
 No two adjacent strings in words are anagrams of each other, so no operations are performed.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

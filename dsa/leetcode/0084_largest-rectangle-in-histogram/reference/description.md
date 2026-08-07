@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of integers `heights` representing the histogram's bar height where the width of each bar is `1`, return *the area of the largest rectangle in the histogram*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array of integers `heights` representing the histogram's bar height whe
 
 Return the maximum area of an axis-aligned rectangle covered by consecutive histogram bars.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ The largest rectangle is shown in the red area, which has an area = 10 units.
 
 - **Input:** $heights = [2,4]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{heights.length} \le 10^{5}$
 

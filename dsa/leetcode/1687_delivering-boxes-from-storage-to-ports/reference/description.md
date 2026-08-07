@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have the task of delivering some boxes from storage to their ports using only one ship. However, this ship has a **limit** on the **number of boxes** and the **total weight** that it can carry.
 
@@ -21,12 +21,13 @@ The boxes need to be delivered **in the order they are given**. The ship will fo
 The ship must end at storage after all the boxes have been delivered.
 
 Return *the **minimum** number of **trips** the ship needs to make to deliver all boxes to their respective ports.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ So the total number of trips is 2 + 2 + 2 = 6.
 - The ship takes the third and fourth boxes, goes to port 2, then returns to storage. 2 trips.
 - The ship takes the fifth and sixth boxes, goes to port 3, then returns to storage. 2 trips.
 So the total number of trips is 2 + 2 + 2 = 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{boxes.length} \le 10^{5}$
 

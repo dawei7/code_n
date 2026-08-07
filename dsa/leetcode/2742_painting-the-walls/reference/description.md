@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays, `cost` and `time`, of size `n` representing the costs and the time taken to paint `n` different walls respectively. There are two painters available:
 
@@ -7,12 +7,13 @@ You are given two **0-indexed** integer arrays, `cost` and `time`, of size `n` r
 - A** free painter** that paints **any** wall in `1` unit of time at a cost of `0`. But the free painter can only be used if the paid painter is already **occupied**.
 
 Return *the minimum amount of money required to paint the *`n`* walls.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the minimum amount of money required to paint the *`n`* walls.*
 - **Input:** $cost = [2,3,4,2], time = [1,1,1,1]$
 - **Output:** `4`
 - **Explanation:** The walls at index 0 and 3 will be painted by the paid painter, and it will take 2 units of time; meanwhile, the free painter will paint the walls at index 1 and 2, free of cost in 2 units of time. Thus, the total cost is 2 + 2 = 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{cost.length} \le 500$
 

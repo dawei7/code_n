@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` having length `n` and a 2D integer array `queries` where $\text{queries}[i] = [idx, val]$.
 
@@ -8,15 +8,18 @@ For each query:
 
 - Choose an integer `k` with $1 \le k < n$ to split the array into the non-empty prefix `nums[0..k-1]` and suffix `nums[k..n-1]` such that the sum of the counts of **distinct** prime values in each part is **maximum**.
 
-**Note:** The changes made to the array in one query persist into the next query.
-
-Return an array containing the result for each query, in the order they are given.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The changes made to the array in one query persist into the next query.
+
+Return an array containing the result for each query, in the order they are given.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +55,8 @@ Return an array containing the result for each query, in the order they are give
 - The output is `[0]`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n = \text{nums.length} \le 5 * 10^{4}$
 

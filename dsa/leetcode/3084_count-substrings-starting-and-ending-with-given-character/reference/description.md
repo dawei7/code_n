@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 You are given a string `s` and a character `c`. Return *the total number of substrings of *`s`* that start and end with *`c`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ You are given a string `s` and a character `c`. Return *the total number of subs
 **Explanation:** There are a total of `6` substrings in `s` and all start and end with `"z"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

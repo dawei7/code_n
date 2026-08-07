@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `grid` of size `m x n` that represents a map of the items in a shop. The integers in the grid represent the following:
 
@@ -23,12 +23,13 @@ You are interested in the **positions** of the `k` **highest-ranked** items whos
 - The column number (**smaller** column number has a higher rank).
 
 Return *the *`k`* highest-ranked items within the price range **sorted** by their rank (highest to lowest)*. If there are fewer than `k` reachable items within the price range, return ***all** of them*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ The ranks of these items are:
 - (2,0) with distance 6
 Thus, the 2 highest ranked items in the price range are (2,1) and (2,0).
 Note that k = 3 but there are only 2 reachable items within the price range.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

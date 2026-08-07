@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s`, return `true` *if the *`s`* can be palindrome after deleting **at most one** character from it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given a string `s`, return `true` *if the *`s`* can be palindrome after deleting
 
 - **Input:** `s = "abc"`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

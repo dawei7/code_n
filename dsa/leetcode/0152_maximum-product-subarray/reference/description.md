@@ -1,11 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, find a subarray that has the largest product, and return *the product*.
 
 The test cases are generated so that the answer will fit in a **32-bit** integer.
 
-**Note** that the product of an array with a single element is the value of that element.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +14,11 @@ The test cases are generated so that the answer will fit in a **32-bit** integer
 
 Return the maximum product among all non-empty contiguous subarrays of `nums`.
 
-### Examples
+### 3. Note
+
+that the product of an array with a single element is the value of that element.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +30,8 @@ Return the maximum product among all non-empty contiguous subarrays of `nums`.
 - **Input:** `nums = [-2,0,-1]`
 - **Output:** `0`
 - **Explanation:** The result cannot be 2, because [-2,-1] is not a subarray.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

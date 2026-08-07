@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `transactions`, where $\text{transactions}[i]$ represents the amount of the $$i^{\text{th}}$$ transaction:
 
@@ -9,7 +9,8 @@ You are given an integer array `transactions`, where $\text{transactions}[i]$ re
 The account starts with a balance of 0, and the balance **must never become negative**. Transactions must be considered in the given order, but you are allowed to skip some transactions.
 
 Return an integer denoting the **maximum number of transactions** that can be performed without the balance ever going negative.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ The performed transactions form a subsequence of this array. Starting from zero,
 
 Return the largest possible number of performed transactions. The selected amounts themselves do not need to be returned.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ All transactions are negative. Including any would make the balance negative.
 All transactions can be taken in order, balance: `0 → 3 → 1 → 4 → 2 → 3 → 2`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{transactions.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Olympic`
 
@@ -28,11 +28,12 @@ The Olympic table is sorted according to the following rules:
 Write a solution to sort the Olympic table.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

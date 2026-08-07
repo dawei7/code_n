@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `time` in the form of ` hh:mm`, where some of the digits in the string are hidden (represented by `?`).
 
 The valid times are those inclusively between `00:00` and `23:59`.
 
 Return *the latest valid time you can get from* `time`* by replacing the hidden* *digits*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the latest valid time you can get from* `time`* by replacing the hidden*
 
 - **Input:** $time = "1?:22"$
 - **Output:** `"19:22"`
-### Constraints
+
+### 4. Constraints
 
 - `time` is in the format `hh:mm`.
 

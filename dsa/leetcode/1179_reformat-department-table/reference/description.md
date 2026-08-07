@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Department`
 
@@ -20,12 +20,13 @@ Reformat the table such that there is a department id column and a revenue colum
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

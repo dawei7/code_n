@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of prime numbers that are strictly less than* `n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `n`, return *the number of prime numbers that are strictly less
 
 Return the number of primes in the half-open interval $[0,n)$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ Return the number of primes in the half-open interval $[0,n)$.
 
 - **Input:** $n = 1$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 5 * 10^{6}$

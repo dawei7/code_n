@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A conveyor belt has packages that must be shipped from one port to another within `days` days.
 
 The $$i^{\text{th}}$$ package on the conveyor belt has a weight of $\text{weights}[i]$. Each day, we load the ship with packages on the conveyor belt (in the order given by `weights`). We may not load more weight than the maximum weight capacity of the ship.
 
 Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within `days` days.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Note that the cargo must be shipped in the order given, so using a ship of capac
 2nd day: 2
 3rd day: 3
 4th day: 1, 1
-### Constraints
+
+### 4. Constraints
 
 - $1 \le days \le \text{weights.length} \le 5 * 10^{4}$
 

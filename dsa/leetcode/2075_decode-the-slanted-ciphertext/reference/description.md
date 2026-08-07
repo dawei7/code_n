@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A string `originalText` is encoded using a **slanted transposition cipher** to a string `encodedText` with the help of a matrix having a **fixed number of rows** `rows`.
 
@@ -22,13 +22,16 @@ The blue arrows depict how `originalText` is placed in the matrix, and the red a
 
 Given the encoded string `encodedText` and number of rows `rows`, return *the original string* `originalText`.
 
-**Note:** `originalText` **does not** have any trailing spaces `' '`. The test cases are generated such that there is only one possible `originalText`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+`originalText` **does not** have any trailing spaces `' '`. The test cases are generated such that there is only one possible `originalText`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ The blue arrows show how we can find originalText from encodedText.
 - **Input:** $encodedText = "coding", rows = 1$
 - **Output:** `"coding"`
 - **Explanation:** Since there is only 1 row, both originalText and encodedText are the same.
-### Constraints
+
+### 5. Constraints
 
 - $0 \le \text{encodedText.length} \le 10^{6}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of integers `arr` and an integer `target`.
 
 You have to find **two non-overlapping sub-arrays** of `arr` each with a sum equal `target`. There can be multiple answers so you have to find an answer where the sum of the lengths of the two sub-arrays is **minimum**.
 
 Return *the minimum sum of the lengths* of the two required sub-arrays, or return `-1` if you cannot find such two sub-arrays.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the minimum sum of the lengths* of the two required sub-arrays, or retur
 - **Input:** `arr = [4,3,2,6,2,3,4], target = 6`
 - **Output:** `-1`
 - **Explanation:** We have only one sub-array of sum = 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

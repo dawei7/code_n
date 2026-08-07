@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a list of equivalent string pairs `synonyms` where $\text{synonyms}[i] = [s_{i}, t_{i}]$ indicates that $s_{i}$ and $t_{i}$ are equivalent strings. You are also given a sentence `text`.
 
 Return *all possible synonymous sentences **sorted lexicographically***.
-### Function Contract
+
+### 2. Function Contract
 
 ### Inputs
 
@@ -16,7 +17,7 @@ For the complexity discussion, let $P$ be the number of synonym pairs, $V$ the n
 
 Return every possible synonymous sentence in lexicographically ascending order. Each output preserves the number and order of word positions from `text`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return every possible synonymous sentence in lexicographically ascending order. 
 
 - **Input:** $synonyms = [["happy","joy"],["cheerful","glad"]], text = "I am happy today but was sad yesterday"$
 - **Output:** `["I am happy today but was sad yesterday","I am joy today but was sad yesterday"]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{synonyms.length} \le 10$
 

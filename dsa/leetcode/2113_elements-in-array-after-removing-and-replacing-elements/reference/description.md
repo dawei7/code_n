@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. Initially on minute `0`, the array is unchanged. Every minute, the **leftmost** element in `nums` is removed until no elements remain. Then, every minute, one element is appended to the **end** of `nums`, in the order they were removed in, until the original array is restored. This process repeats indefinitely.
 
@@ -11,11 +11,12 @@ You are also given a 2D integer array `queries` of size `n` where $\text{queries
 - `-1` if $\text{index}_{j} \ge \text{nums.length}$ at minute $\text{time}_{j}$
 
 Return *an integer array `ans` of size *`n` *where *$\text{ans}[j]$* is the answer to the *$$j^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ At minute 0, nums[0] is 2.
 At minute 1, nums[0] does not exist.
 At minute 2, nums[0] is 2.
 At minute 3, nums[0] does not exist.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

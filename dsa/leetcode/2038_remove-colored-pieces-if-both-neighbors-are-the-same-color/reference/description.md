@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` pieces arranged in a line, and each piece is colored either by `'A'` or by `'B'`. You are given a string `colors` of length `n` where $\text{colors}[i]$ is the color of the $$i^{\text{th}}$$ piece.
 
@@ -13,12 +13,13 @@ Alice and Bob are playing a game where they take **alternating turns** removing 
 - If a player cannot make a move on their turn, that player **loses** and the other player **wins**.
 
 Assuming Alice and Bob play optimally, return `true`* if Alice wins, or return *`false`* if Bob wins*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Next is Bob's turn.
 He has many options for which 'B' piece to remove. He can pick any.
 On Alice's second turn, she has no more pieces that she can remove.
 Thus, Bob wins, so return false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{colors.length} \le 10^{5}$
 

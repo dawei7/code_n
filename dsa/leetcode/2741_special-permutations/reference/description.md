@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` containing `n` **distinct** positive integers. A permutation of `nums` is called special if:
 
 - For all indexes $0 \le i < n - 1$, either $\text{nums}[i] \% nums[i+1] = 0$ or $nums[i+1] \% \text{nums}[i] = 0$.
 
 Return *the total number of special permutations. *As the answer could be large, return it **modulo **$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return *the total number of special permutations. *As the answer could be large,
 - **Input:** `nums = [1,4,3]`
 - **Output:** `2`
 - **Explanation:** [3,1,4] and [4,1,3] are the two special permutations of nums.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 14$
 

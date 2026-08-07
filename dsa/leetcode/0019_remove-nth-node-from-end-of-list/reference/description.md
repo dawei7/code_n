@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list, remove the $$n^{\text{th}}$$ node from the end of the list and return its head.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Let $sz$ be the number of nodes in `head`.
 
 Return the head of the linked list after removing its $n$th node from the end.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return the head of the linked list after removing its $n$th node from the end.
 
 - **Input:** $head = [1,2], n = 1$
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is `sz`.
 

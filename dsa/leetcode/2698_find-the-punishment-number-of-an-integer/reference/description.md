@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, return *the **punishment number*** of `n`.
 
@@ -7,12 +7,13 @@ The **punishment number** of `n` is defined as the sum of the squares of all int
 - $1 \le i \le n$
 
 - The decimal representation of $i * i$ can be partitioned into contiguous substrings such that the sum of the integer values of these substrings equals `i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,6 +34,7 @@ Hence, the punishment number of 10 is 1 + 81 + 100 = 182
 - 10 since 10 * 10 = 100 and 100 can be partitioned into 10 + 0.
 - 36 since 36 * 36 = 1296 and 1296 can be partitioned into 1 + 29 + 6.
 Hence, the punishment number of 37 is 1 + 81 + 100 + 1296 = 1478
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

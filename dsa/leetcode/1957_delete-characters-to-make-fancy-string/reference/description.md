@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **fancy string** is a string where no **three** **consecutive** characters are equal.
 
 Given a string `s`, delete the **minimum** possible number of characters from `s` to make it **fancy**.
 
 Return *the final string after the deletion*. It can be shown that the answer will always be **unique**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ No three consecutive characters are equal, so return "aabaa".
 - **Input:** `s = "aab"`
 - **Output:** `"aab"`
 - **Explanation:** No three consecutive characters are equal, so return "aab".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

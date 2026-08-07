@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given 3 positives numbers `a`, `b` and `c`. Return the minimum flips required in some bits of `a` and `b` to make ( `a` OR `b` == `c` ). (bitwise OR operation).
 
 Flip operation consists of change **any** single bit 1 to 0 or change the bit 0 to 1 in their binary representation.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Flip operation consists of change **any** single bit 1 to 0 or change the bit 0 
 
 - **Input:** $a = 1, b = 2, c = 3$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le a \le 10^{9}$
 

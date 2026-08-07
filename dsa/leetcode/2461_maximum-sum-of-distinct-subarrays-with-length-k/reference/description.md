@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. Find the maximum subarray sum of all the subarrays of `nums` that meet the following conditions:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums` and an integer `k`. Find the maximum subar
 Return *the maximum subarray sum of all the subarrays that meet the conditions**.* If no subarray meets the conditions, return `0`.
 
 *A **subarray** is a contiguous non-empty sequence of elements within an array.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ We return 15 because it is the maximum subarray sum of all the subarrays that me
 - **Explanation:** The subarrays of nums with length 3 are:
 - [4,4,4] which does not meet the requirements because the element 4 is repeated.
 We return 0 because no subarrays meet the conditions.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

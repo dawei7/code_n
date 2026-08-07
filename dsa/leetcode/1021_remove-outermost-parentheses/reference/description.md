@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A valid parentheses string is either empty `""`, $"(" + A + ")"$, or $A + B$, where `A` and `B` are valid parentheses strings, and `+` represents string concatenation.
 
@@ -9,12 +9,13 @@ A valid parentheses string `s` is primitive if it is nonempty, and there does no
 Given a valid parentheses string `s`, consider its primitive decomposition: $s = P_{1} + P_{2} + ... + P_{k}$, where $P_{i}$ are primitive valid parentheses strings.
 
 Return `s` *after removing the outermost parentheses of every primitive string in the primitive decomposition of *`s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ After removing outer parentheses of each part, this is "()()" + "()" + "()(())" 
 - **Explanation:**
 The input string is "()()", with primitive decomposition "()" + "()".
 After removing outer parentheses of each part, this is "" + "" = "".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

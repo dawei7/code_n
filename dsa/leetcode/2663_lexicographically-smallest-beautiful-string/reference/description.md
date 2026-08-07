@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A string is **beautiful** if:
 
@@ -13,12 +13,13 @@ Return *the lexicographically smallest string of length *`n`*, which is larger t
 A string `a` is lexicographically larger than a string `b` (of the same length) if in the first position where `a` and `b` differ, `a` has a character strictly larger than the corresponding character in `b`.
 
 - For example, `"abcd"` is lexicographically larger than `"abcc"` because the first position they differ is at the fourth character, and `d` is greater than `c`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be proven that there is no string that is lexicographically larger than t
 - **Input:** `s = "dc", k = 4`
 - **Output:** `""`
 - **Explanation:** It can be proven that there is no string that is lexicographically larger than the string "dc" and is beautiful.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

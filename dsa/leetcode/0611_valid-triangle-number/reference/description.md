@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given an integer array `nums`, return *the number of triplets chosen from the ar
 
 - **Input:** `nums = [4,2,3,4]`
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

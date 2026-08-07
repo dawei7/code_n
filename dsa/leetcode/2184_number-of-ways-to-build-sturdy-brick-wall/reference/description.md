@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given integers `height` and `width` which specify the dimensions of a brick wall you are building. You are also given a **0-indexed** array of **unique** integers `bricks`, where the $$i^{\text{th}}$$ brick has a height of `1` and a width of $\text{bricks}[i]$. You have an **infinite **supply of each type of brick and bricks may **not** be rotated.
 
 Each row in the wall must be exactly `width` units long. For the wall to be **sturdy**, adjacent rows in the wall should **not **join bricks at the same location, except at the ends of the wall.
 
 Return *the number of ways to build a **sturdy **wall.* Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that the third wall in the diagram is not sturdy because adjacent rows join
 - **Output:** `0`
 - **Explanation:**
 There are no ways to build a sturdy wall because the only type of brick we have is longer than the width of the wall.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le height \le 100$
 

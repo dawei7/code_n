@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, reorder it such that $\text{nums}[0] \le \text{nums}[1] \ge \text{nums}[2] \le \text{nums}[3]...$.
 
 You may assume the input array always has a valid answer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You may assume the input array always has a valid answer.
 
 Return `None`. The function mutates `nums` in place so adjacent comparisons alternate between $\le$ and $\ge$, beginning with $\text{nums}[0] \le \text{nums}[1]$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return `None`. The function mutates `nums` in place so adjacent comparisons alte
 
 - **Input:** `nums = [6,6,5,6,3,8]`
 - **Output:** `[6,6,5,6,3,8]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

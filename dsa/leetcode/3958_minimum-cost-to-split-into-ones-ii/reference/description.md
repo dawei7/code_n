@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -7,7 +7,8 @@ In one operation, you may split an integer `x` into two positive integers `a` an
 The cost of this operation is $a * b$.
 
 Return the **minimum** total cost required to split the integer `n` into `n` ones.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Every split must produce two positive integers, so neither part may be zero.
 
 Return the minimum possible sum of operation costs after every remaining piece equals one. The result can exceed the range of a signed 32-bit integer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -107,6 +108,7 @@ One optimal set of operations is:
 Thus, the minimum total cost is $4 + 1 + 1 = 6$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{7}$

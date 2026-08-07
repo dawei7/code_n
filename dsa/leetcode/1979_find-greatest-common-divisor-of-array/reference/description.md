@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return** ***the **greatest common divisor** of the smallest number and largest number in *`nums`.
 
 The **greatest common divisor** of two numbers is the largest positive integer that evenly divides both numbers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The greatest common divisor of 3 and 8 is 1.
 The smallest number in nums is 3.
 The largest number in nums is 3.
 The greatest common divisor of 3 and 3 is 3.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 1000$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. An index `i` is part of a **hill** in `nums` if the closest non-equal neighbors of `i` are smaller than $\text{nums}[i]$. Similarly, an index `i` is part of a **valley** in `nums` if the closest non-equal neighbors of `i` are larger than $\text{nums}[i]$. Adjacent indices `i` and `j` are part of the **same** hill or valley if $\text{nums}[i] = \text{nums}[j]$.
 
 Note that for an index to be part of a hill or valley, it must have a non-equal neighbor on **both** the left and right of the index.
 
 Return *the number of hills and valleys in *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ At index 3: The closest non-equal neighbors of 5 are 6 and 4. Since 5 < 6 and 5 
 At index 4: The closest non-equal neighbors of 4 are 5 and 1. Since 4 < 5 and 4 > 1, index 4 is neither a hill nor a valley.
 At index 5: There is no non-equal neighbor of 1 on the right, so index 5 is neither a hill nor a valley.
 There are 0 hills and valleys so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -11,12 +11,13 @@ From any index `i`, you can jump to another index `j` under the following rules:
 For each index `i`, find the **maximum** **value** in `nums` that can be reached by following **any** sequence of valid jumps starting at `i`.
 
 Return an array `ans` where $\text{ans}[i]$ is the **maximum** **value** reachable starting from index `i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Thus, $ans = [2, 2, 3]$.
 Thus, $ans = [3, 3, 3]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

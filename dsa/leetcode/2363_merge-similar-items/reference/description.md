@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two 2D integer arrays, `items1` and `items2`, representing two sets of items. Each array `items` has the following properties:
 
@@ -8,13 +8,16 @@ You are given two 2D integer arrays, `items1` and `items2`, representing two set
 
 Return *a 2D integer array* `ret` *where* $\text{ret}[i] = [\text{value}_{i}, \text{weight}_{i}]$*,* *with* $\text{weight}_{i}$ *being the **sum of weights** of all items with value* $\text{value}_{i}$.
 
-**Note:** `ret` should be returned in **ascending** order by value.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+`ret` should be returned in **ascending** order by value.
+
+### 4. Examples
 
 #### Example 1
 
@@ -43,7 +46,8 @@ Therefore, we return [[1,4],[2,4],[3,4]].
 The item with value = 2 occurs in items1 with weight = 2 and in items2 with weight = 2, total weight = 2 + 2 = 4.
 The item with value = 7 occurs in items2 with weight = 1, total weight = 1.
 Therefore, we return [[1,7],[2,4],[7,1]].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{items1.length}, \text{items2.length} \le 1000$
 

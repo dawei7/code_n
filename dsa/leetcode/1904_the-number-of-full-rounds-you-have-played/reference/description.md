@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are participating in an online chess tournament. There is a chess round that starts every `15` minutes. The first round of the day starts at `00:00`, and after every `15` minutes, a new round starts.
 
@@ -14,13 +14,16 @@ If `logoutTime` is **earlier** than `loginTime`, this means you have played from
 
 Return *the number of full chess rounds you have played in the tournament*.
 
-**Note:** All the given times follow the 24-hour clock. That means the first round of the day starts at `00:00` and the last round of the day starts at `23:45`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+All the given times follow the 24-hour clock. That means the first round of the day starts at `00:00` and the last round of the day starts at `23:45`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ You did not play the full round from 10:00 to 10:15 because you logged out at 10
 - **Output:** `22`
 - **Explanation:** You played 10 full rounds from 21:30 to 00:00 and 12 full rounds from 00:00 to 03:00.
 10 + 12 = 22.
-### Constraints
+
+### 5. Constraints
 
 - `loginTime` and `logoutTime` are in the format `hh:mm`.
 

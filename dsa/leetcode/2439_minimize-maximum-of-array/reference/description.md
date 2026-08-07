@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` comprising of `n` non-negative integers.
 
@@ -11,12 +11,13 @@ In one operation, you must:
 - Increase $nums[i - 1]$ by 1.
 
 Return* the **minimum** possible value of the **maximum** integer of *`nums`* after performing **any** number of operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Therefore, we return 5.
 - **Output:** `10`
 - **Explanation:**
 It is optimal to leave nums as is, and since 10 is the maximum value, we return 10.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

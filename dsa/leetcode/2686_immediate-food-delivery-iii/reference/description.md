@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Delivery`
 
@@ -22,11 +22,12 @@ Write a solution to find the percentage of immediate orders on each unique $\tex
 Return *the result table ordered by* $\text{order}_{date}$ *in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$, merge all overlapping intervals, and return *an array of the non-overlapping intervals that cover all the intervals in the input*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array of `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \t
 
 Return the merged, mutually non-overlapping intervals covering the complete input union.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the merged, mutually non-overlapping intervals covering the complete inpu
 - **Input:** $intervals = [[4,7],[1,4]]$
 - **Output:** `[[1,7]]`
 - **Explanation:** Intervals [1,4] and [4,7] are considered overlapping.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{intervals.length} \le 10^{4}$
 

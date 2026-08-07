@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -11,12 +11,13 @@ An array is **trionic** if there exist indices `0 < p < q < n − 1` such that:
 - `nums[q...n − 1]` is **strictly** increasing.
 
 Return `true` if `nums` is trionic, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Pick $p = 2$, $q = 4$:
 There is no way to pick `p` and `q` to form the required three segments.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 100$
 

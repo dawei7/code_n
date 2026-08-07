@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Products`
 
@@ -19,7 +19,13 @@ Return *the result table ordered by* $\text{product}_{id}$ *in **ascending** ord
 
 The result format is in the following example.
 
-**Note** that the name may contain multiple such sequences, but each should have length three.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+that the name may contain multiple such sequences, but each should have length three.
 
 **Example:**
 
@@ -62,14 +68,10 @@ products table:
 
 - Product 6: Item003Description contains 003, which is exactly three digits.
 
-**Note:**
+### 4. Note
 
 - Results are ordered by $\text{product}_{id}$ in ascending order.
 
 - Only products with exactly three consecutive digits in their names are included in the result.
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

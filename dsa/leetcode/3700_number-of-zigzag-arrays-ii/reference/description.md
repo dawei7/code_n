@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `l`, and `r`.
 
@@ -17,7 +17,8 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 A **sequence** is said to be **strictly increasing** if each element is strictly greater than its previous one (if exists).
 
 A **sequence** is said to be **strictly decreasing** if each element is strictly smaller than its previous one (if exists).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Every element must lie in the inclusive integer interval `[l, r]`. Adjacent valu
 
 Return the total number of valid length-`n` ZigZag arrays, reduced modulo $10^9+7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ There are only 2 valid ZigZag arrays of length $n = 3$ using values in the range
 All arrays meet the ZigZag conditions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{9}$
 

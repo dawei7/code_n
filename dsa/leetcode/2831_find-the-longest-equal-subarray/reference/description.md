@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `k`.
 
@@ -7,12 +7,13 @@ A subarray is called **equal** if all of its elements are equal. Note that the e
 Return *the length of the **longest** possible equal subarray after deleting **at most** *`k`* elements from *`nums`.
 
 A **subarray** is a contiguous, possibly empty sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ It can be proven that no longer equal subarrays can be created.
 After deleting them, nums becomes equal to [1, 1, 1, 1].
 The array itself is an equal subarray, so the answer is 4.
 It can be proven that no longer equal subarrays can be created.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

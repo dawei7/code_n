@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers.
 
 Return *the **total frequencies** of elements in** *`nums` *such that those elements all have the **maximum** frequency*.
 
 The **frequency** of an element is the number of occurrences of that element in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ So the number of elements in the array with maximum frequency is 4.
 - **Output:** `5`
 - **Explanation:** All elements of the array have a frequency of 1 which is the maximum.
 So the number of elements in the array with maximum frequency is 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

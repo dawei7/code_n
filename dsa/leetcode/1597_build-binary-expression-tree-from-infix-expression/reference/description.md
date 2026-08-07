@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **<a href="https://en.wikipedia.org/wiki/Binary_expression_tree" target="_blank">binary expression tree</a>** is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (numbers), and internal nodes (nodes with 2 children) correspond to the operators `'+'` (addition), `'-'` (subtraction), `'*'` (multiplication), and `'/'` (division).
 
@@ -11,7 +11,8 @@ Return *any valid **binary expression tree**, whose **<a href="https://en.wikipe
 **Please note that order of operations applies in **`s`**.** That is, expressions in parentheses are evaluated first, and multiplication and division happen before addition and subtraction.
 
 Operands must also appear in the **same order** in both `s` and the in-order traversal of the tree.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Operands must also appear in the **same order** in both `s` and the in-order tra
 
 Return the root `Node` of the constructed binary expression tree. Operands are leaf nodes and operators are internal nodes with left and right children.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The third tree below is also not valid. Although it produces the same result and
 - **Input:** `s = "1+2+3+4+5"`
 - **Output:** `[+,+,5,+,4,null,null,+,3,null,null,1,2]`
 - **Explanation:** The tree [+,+,5,+,+,null,null,1,2,3,4] is also one of many other valid trees.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

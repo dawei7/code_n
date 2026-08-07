@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree, rearrange the tree in **in-order** so that the leftmost node in the tree is now the root of the tree, and every node has no left child and only one right child.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given the `root` of a binary search tree, rearrange the tree in **in-order** so 
 
 - **Input:** `root = [5,1,7]`
 - **Output:** `[1,null,5,null,7]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the given tree will be in the range `[1, 100]`.
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array `nums` of `n` integers where $\text{nums}[i]$ is in the range `[1, n]`, return *an array of all the integers in the range* `[1, n]` *that do not appear in* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array `nums` of `n` integers where $\text{nums}[i]$ is in the range `[1
 
 - Return an array containing every value in $[1, n]$ that is absent from `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given an array `nums` of `n` integers where $\text{nums}[i]$ is in the range `[1
 
 - **Input:** `nums = [1,1]`
 - **Output:** `[2]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

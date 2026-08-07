@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D **0-indexed **integer array `dimensions`.
 
 For all indices `i`, $0 \le i < \text{dimensions.length}$, $\text{dimensions}[i][0]$ represents the length and $\text{dimensions}[i][1]$ represents the width of the rectangle `i`.
 
 Return *the **area** of the rectangle having the **longest** diagonal. If there are multiple rectangles with the longest diagonal, return the area of the rectangle having the **maximum** area.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ So, the rectangle at index 1 has a greater diagonal length therefore we return a
 - **Input:** $dimensions = [[3,4],[4,3]]$
 - **Output:** `12`
 - **Explanation:** Length of diagonal is the same for both which is 5, so maximum area = 12.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{dimensions.length} \le 100$
 

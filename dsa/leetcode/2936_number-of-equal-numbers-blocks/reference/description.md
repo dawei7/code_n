@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of integers, `nums`. The following property holds for `nums`:
 
@@ -12,12 +12,15 @@ Since `nums` is a very large array, you are given an instance of the class `BigA
 
 Let's partition the array into **maximal** blocks such that each block contains **equal values**. Return* the number of these blocks.*
 
-**Note** that if you want to test your solution using a custom test, behavior for tests with `nums.length > 10` is undefined.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that if you want to test your solution using a custom test, behavior for tests with `nums.length > 10` is undefined.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ So the answer would be 5.
 - **Input:** `nums = [1,2,3,4,5,6,7]`
 - **Output:** `7`
 - **Explanation:** Since all numbers are distinct, there are 7 blocks here and each element representing one block. So the answer would be 7.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{15}$
 

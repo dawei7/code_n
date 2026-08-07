@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer `n`, your task is to count how many strings of length `n` can be formed under the following rules:
 
@@ -15,12 +15,13 @@ Given an integer `n`, your task is to count how many strings of length `n` can b
 - Each vowel `'u'` may only be followed by an `'a'`.
 
 Since the answer may be too large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,6 +38,7 @@ Since the answer may be too large, return it modulo $10^{9} + 7$.
 
 - **Input:** $n = 5$
 - **Output:** `68`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{4}$

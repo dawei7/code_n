@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{library}_{books}$
 
@@ -138,7 +138,7 @@ Output table is ordered by current_borrowers in descending order, then by book_t
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

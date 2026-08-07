@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A permutation `perm` of $n + 1$ integers of all the integers in the range `[0, n]` can be represented as a string `s` of length `n` where:
 
@@ -7,12 +7,13 @@ A permutation `perm` of $n + 1$ integers of all the integers in the range `[0, n
 - $s[i] = 'D'$ if $\text{perm}[i] > perm[i + 1]$.
 
 Given a string `s`, reconstruct the permutation `perm` and return it. If there are multiple valid permutations perm, return **any of them**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Given a string `s`, reconstruct the permutation `perm` and return it. If there a
 
 - **Input:** `s = "DDI"`
 - **Output:** `[3,2,0,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

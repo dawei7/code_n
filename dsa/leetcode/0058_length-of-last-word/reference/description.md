@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s` consisting of words and spaces, return *the length of the **last** word in the string.*
 
 A **word** is a maximal substring consisting of non-space characters only.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **word** is a maximal substring consisting of non-space characters only.
 
 Return the character count of the final maximal non-space substring.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return the character count of the final maximal non-space substring.
 - **Input:** `s = "luffy is still joyboy"`
 - **Output:** `6`
 - **Explanation:** The last word is "joyboy" with length 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

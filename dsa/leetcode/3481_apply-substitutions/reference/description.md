@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given a `replacements` mapping and a `text` string that may contain **placeholders** formatted as `%var%`, where each `var` corresponds to a key in the `replacements` mapping. Each replacement value may itself contain **one or more** such **placeholders**. Each **placeholder** is replaced by the value associated with its corresponding replacement key.
 
 Return the fully substituted `text` string which **does not** contain any **placeholders**.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Return the fully substituted `text` string which **does not** contain any **plac
 - The final text becomes `"bce_ace_abcace"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{replacements.length} \le 10$
 

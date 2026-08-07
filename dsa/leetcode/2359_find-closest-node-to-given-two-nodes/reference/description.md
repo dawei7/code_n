@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **directed** graph of `n` nodes numbered from `0` to $n - 1$, where each node has **at most one** outgoing edge.
 
@@ -9,12 +9,13 @@ You are also given two integers `node1` and `node2`.
 Return *the **index** of the node that can be reached from both *`node1`* and *`node2`*, such that the **maximum** between the distance from *`node1`* to that node, and from *`node2`* to that node is **minimized***. If there are multiple answers, return the node with the **smallest** index, and if no possible answer exists, return `-1`.
 
 Note that `edges` may contain cycles.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The maximum of those two distances is 1. It can be proven that we cannot get a n
 - **Output:** `2`
 - **Explanation:** The distance from node 0 to node 2 is 2, and the distance from node 2 to itself is 0.
 The maximum of those two distances is 2. It can be proven that we cannot get a node with a smaller maximum distance than 2, so we return node 2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length}$
 

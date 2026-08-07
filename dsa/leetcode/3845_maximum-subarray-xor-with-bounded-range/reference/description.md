@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a non-negative integer array `nums` and an integer `k`.
 
 You must select a **subarray** of `nums` such that the **difference** between its **maximum** and **minimum** elements is at most `k`. The **value** of this subarray is the bitwise XOR of all elements in the subarray.
 
 Return an integer denoting the **maximum** possible **value** of the selected subarray.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ Let $V=2^{15}$ denote the exclusive upper bound on every input value and on ever
 
 Return the maximum XOR value over all valid pairs of boundaries $(l,r)$. A length-one subarray is always valid because its maximum and minimum are equal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Return the maximum XOR value over all valid pairs of boundaries $(l,r)$. A lengt
 - The value is 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 4 * 10^{4}$
 

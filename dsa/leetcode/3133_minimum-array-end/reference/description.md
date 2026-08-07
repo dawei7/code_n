@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `x`. You have to construct an array of **positive** integers `nums` of size `n` where for every $0 \le i < n - 1$, $nums[i + 1]$ is **greater than** $\text{nums}[i]$, and the result of the bitwise `AND` operation between all elements of `nums` is `x`.
 
 Return the **minimum** possible value of $nums[n - 1]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ Return the **minimum** possible value of $nums[n - 1]$.
 `nums` can be `[7,15]` and its last element is 15.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, x \le 10^{8}$

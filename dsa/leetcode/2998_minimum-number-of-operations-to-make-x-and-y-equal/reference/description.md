@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two positive integers `x` and `y`.
 
@@ -13,12 +13,13 @@ In one operation, you can do one of the four following operations:
 - Increment `x` by `1`.
 
 Return *the **minimum** number of operations required to make * `x` *and* `y` equal.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,6 +51,7 @@ It can be shown that 4 is the minimum number of operations required to make 54 e
 4. Increment x by 1
 5. Increment x by 1
 It can be shown that 5 is the minimum number of operations required to make 25 equal to 30.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le x, y \le 10^{4}$

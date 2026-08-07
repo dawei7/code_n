@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `sales`
 
@@ -155,7 +155,7 @@ The result table is ordered by season in ascending order.
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

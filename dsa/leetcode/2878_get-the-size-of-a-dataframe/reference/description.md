@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame players:
@@ -20,12 +20,13 @@ Return the result as an array:
 `[number of rows, number of columns]`
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

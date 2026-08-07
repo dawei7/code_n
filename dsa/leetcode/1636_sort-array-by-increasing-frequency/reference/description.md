@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, sort the array in **increasing** order based on the frequency of the values. If multiple values have the same frequency, sort them in **decreasing** order.
 
 Return the *sorted array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the *sorted array*.
 
 - **Input:** `nums = [-1,1,-6,4,5,-6,1,4,1]`
 - **Output:** `[5,-1,4,4,-6,-6,1,1,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

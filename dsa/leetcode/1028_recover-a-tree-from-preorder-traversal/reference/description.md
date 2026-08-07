@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We run a preorder depth-first search (DFS) on the `root` of a binary tree.
 
@@ -7,12 +7,13 @@ At each node in this traversal, we output `D` dashes (where `D` is the depth of 
 If a node has only one child, that child is guaranteed to be **the left child**.
 
 Given the output `traversal` of this traversal, recover the tree and return *its* `root`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Given the output `traversal` of this traversal, recover the tree and return *its
 
 - **Input:** $traversal = "1-401--349---90--88"$
 - **Output:** `[1,401,null,349,88,90]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the original tree is in the range `[1, 1000]`.
 

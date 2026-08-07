@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 LeetCode wants to give one of its best employees the option to travel among `n` cities to collect algorithm problems. But all work and no play makes Jack a dull boy, you could take vacations in some particular cities and weeks. Your job is to schedule the traveling to maximize the number of vacation days you could take, but there are certain rules and restrictions you need to follow.
 
@@ -19,7 +19,8 @@ Rules and restrictions:
 - We do not consider the impact of flight hours on the calculation of vacation days.
 
 Given the two matrices `flights` and `days`, return *the maximum vacation days you could take during *`k`* weeks*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ chosen for one week becomes the origin for the next Monday.
 Return the maximum total vacation days across all $k$ weeks. The result counts only the allowances in the cities
 where the traveler spends each week; flight time and work days add nothing.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ One of the best strategies is:
 2nd week : fly from city 0 to city 1 on Monday, and play 7 days.
 3rd week : fly from city 1 to city 2 on Monday, and play 7 days.
 Ans = 7 + 7 + 7 = 21
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{flights.length}$
 

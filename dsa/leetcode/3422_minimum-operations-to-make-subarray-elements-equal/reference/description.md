@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:
 
 - Increase or decrease any element of `nums` by 1.
 
 Return the **minimum** number of operations required to ensure that **at least** one subarray of size `k` in `nums` has all elements equal.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return the **minimum** number of operations required to ensure that **at least**
 - The subarray `[-2, -2]` of size $k = 2$ already contains all equal elements, so no operations are needed. Hence, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

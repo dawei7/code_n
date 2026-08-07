@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two arrays of strings `wordsContainer` and `wordsQuery`.
 
 For each $\text{wordsQuery}[i]$, you need to find a string from `wordsContainer` that has the **longest common suffix** with $\text{wordsQuery}[i]$. If there are two or more strings in `wordsContainer` that share the longest common suffix, find the string that is the **smallest** in length. If there are two or more such strings that have the **same** smallest length, find the one that occurred **earlier** in `wordsContainer`.
 
 Return *an array of integers *`ans`*, where *$\text{ans}[i]$* is the index of the string in *`wordsContainer`* that has the **longest common suffix** with *$\text{wordsQuery}[i]$*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Let's look at each $\text{wordsQuery}[i]$ separately:
 - For $\text{wordsQuery}[2] = "acbfegh"$, strings from `wordsContainer` that share the longest common suffix `"gh"` are at indices 0, 1, and 2. Among these, the answer is the string at index 2 because it has the shortest length of 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{wordsContainer.length}, \text{wordsQuery.length} \le 10^{4}$
 

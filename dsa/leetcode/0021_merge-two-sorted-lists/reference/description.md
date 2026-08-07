@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given the heads of two sorted linked lists `list1` and `list2`.
 
 Merge the two lists into one **sorted** list. The list should be made by splicing together the nodes of the first two lists.
 
 Return *the head of the merged linked list*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Return *the head of the merged linked list*.
 
 Return the head of the merged non-decreasing linked list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return the head of the merged non-decreasing linked list.
 
 - **Input:** $list1 = [], list2 = [0]$
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in both lists is in the range `[0, 50]`.
 

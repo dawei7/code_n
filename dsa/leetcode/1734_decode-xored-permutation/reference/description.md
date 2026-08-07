@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is an integer array `perm` that is a permutation of the first `n` positive integers, where `n` is always **odd**.
 
 It was encoded into another integer array `encoded` of length $n - 1$, such that $\text{encoded}[i] = \text{perm}[i] XOR perm[i + 1]$. For example, if $perm = [1,3,2]$, then $encoded = [2,1]$.
 
 Given the `encoded` array, return *the original array* `perm`. It is guaranteed that the answer exists and is unique.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given the `encoded` array, return *the original array* `perm`. It is guaranteed 
 
 - **Input:** $encoded = [6,5,4,6]$
 - **Output:** `[2,4,1,5,3]`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n < 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a URL `startUrl` and an interface `HtmlParser`, implement **a Multi-threaded web crawler** to crawl all links that are under the **same hostname** as `startUrl`.
 
@@ -31,7 +31,8 @@ interface HtmlParser {
 Note that `getUrls(String url)` simulates performing an HTTP request. You can treat it as a blocking function call that waits for an HTTP request to finish. It is guaranteed that `getUrls(String url)` will return the URLs within **15ms. ** Single-threaded solutions will exceed the time limit so, can your multi-threaded web crawler do better?
 
 Below are two examples explaining the functionality of the problem. For custom testing purposes, you'll have three variables `urls`, `edges` and `startUrl`. Notice that you will only have access to `startUrl` in your code, while `urls` and `edges` are not directly accessible to you in code.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -54,7 +55,7 @@ Let $V$ be the number of same-host URLs reachable from `startUrl`, and let $E$ b
 
 Return every URL reachable from `startUrl` through a path consisting only of URLs with the starting hostname. Include `startUrl`, include every qualifying URL exactly once, exclude all off-host URLs, and return the result in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -95,7 +96,8 @@ edges = [[0,2],[2,1],[3,2],[3,1],[3,0]]
 startUrl = "http://news.google.com"
 - **Output:** `["http://news.google.com"]`
 - **Explanation:** The startUrl links to all other pages that do not share the same hostname.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{urls.length} \le 1000$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents a point on the **X-Y** plane, return *the maximum number of points that lie on the same straight line*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array of `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents 
 
 Return the maximum number of input points that are collinear.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the maximum number of input points that are collinear.
 
 - **Input:** $points = [[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 300$
 

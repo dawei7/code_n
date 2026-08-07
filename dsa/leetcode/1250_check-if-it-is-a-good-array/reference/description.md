@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `nums` of positive integers. Your task is to select some subset of `nums`, multiply each element by an integer and add all these numbers. The array is said to be **good **if you can obtain a sum of `1` from the array by any possible subset and multiplicand.
 
 Return `True` if the array is **good **otherwise return `False`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return `True` if the array is **good **otherwise return `False`.
 
 - **Input:** `nums = [3,6]`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

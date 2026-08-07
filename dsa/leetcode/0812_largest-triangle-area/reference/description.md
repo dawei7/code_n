@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of points on the **X-Y** plane `points` where $\text{points}[i] = [x_{i}, y_{i}]$, return *the area of the largest triangle that can be formed by any three different points*. Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Given an array of points on the **X-Y** plane `points` where $\text{points}[i] =
 
 - **Input:** $points = [[1,0],[0,0],[0,1]]$
 - **Output:** `0.50000`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{points.length} \le 50$
 

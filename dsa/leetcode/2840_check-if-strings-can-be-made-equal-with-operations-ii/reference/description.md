@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s1` and `s2`, both of length `n`, consisting of **lowercase** English letters.
 
@@ -7,12 +7,13 @@ You can apply the following operation on **any** of the two strings **any** numb
 - Choose any two indices `i` and `j` such that `i < j` and the difference $j - i$ is **even**, then **swap** the two characters at those indices in the string.
 
 Return `true`* if you can make the strings *`s1`* and *`s2`* equal, and *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true`* if you can make the strings *`s1`* and *`s2`* equal, and *`false`
 - **Input:** $s1 = "abe", s2 = "bea"$
 - **Output:** `false`
 - **Explanation:** It is not possible to make the two strings equal.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s1.length} = \text{s2.length}$
 

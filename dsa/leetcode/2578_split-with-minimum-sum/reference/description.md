@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a positive integer `num`, split it into two non-negative integers `num1` and `num2` such that:
 
@@ -11,17 +11,18 @@ Given a positive integer `num`, split it into two non-negative integers `num1` a
 
 Return *the **minimum** possible sum of* `num1` *and* `num2`.
 
-**Notes:**
-
-- It is guaranteed that `num` does not contain any leading zeros.
-
-- The order of occurrence of the digits in `num1` and `num2` may differ from the order of occurrence of `num`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- It is guaranteed that `num` does not contain any leading zeros.
+
+- The order of occurrence of the digits in `num1` and `num2` may differ from the order of occurrence of `num`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,6 +34,7 @@ Return *the **minimum** possible sum of* `num1` *and* `num2`.
 - **Input:** $num = 687$
 - **Output:** `75`
 - **Explanation:** We can split 687 so that num1 is 68 and num2 is 7, which would give an optimal sum of 75.
-### Constraints
+
+### 5. Constraints
 
 - $10 \le num \le 10^{9}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a tree rooted at node 0, consisting of `n` nodes numbered from `0` to $n - 1$. The tree is represented by an array `parent` of size `n`, where $\text{parent}[i]$ is the parent of node `i`. Since node 0 is the root, $\text{parent}[0] = -1$.
 
@@ -10,7 +10,14 @@ Consider an empty string `dfsStr`, and define a recursive function `dfs(int x)` 
 
 - Add the character $s[x]$ to the end of the string `dfsStr`.
 
-**Note** that `dfsStr` is shared across all recursive calls of `dfs`.
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that `dfsStr` is shared across all recursive calls of `dfs`.
 
 You need to find a boolean array `answer` of size `n`, where for each index `i` from `0` to $n - 1$, you do the following:
 
@@ -19,12 +26,8 @@ You need to find a boolean array `answer` of size `n`, where for each index `i` 
 - If the resulting string `dfsStr` is a palindrome, then set $\text{answer}[i]$ to `true`. Otherwise, set $\text{answer}[i]$ to `false`.
 
 Return the array `answer`.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +67,8 @@ Return the array `answer`.
 Every call on `dfs(x)` results in a palindrome string.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{parent.length} = \text{s.length}$
 

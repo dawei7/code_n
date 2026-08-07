@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` representing a valid expression, implement a basic calculator to evaluate it, and return *the result of the evaluation*.
 
-**Note:** You are **not** allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +12,11 @@ Given a string `s` representing a valid expression, implement a basic calculator
 
 Return the integer value of the complete expression.
 
-### Examples
+### 3. Note
+
+You are **not** allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +30,8 @@ Return the integer value of the complete expression.
 
 - **Input:** `s = "(1+(4+5+2)-3)+(6+8)"`
 - **Output:** `23`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 3 * 10^{5}$
 

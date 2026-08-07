@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In an `n*n` grid, there is a snake that spans 2 cells and starts moving from the top left corner at `(0, 0)` and `(0, 1)`. The grid has empty cells represented by zeros and blocked cells represented by ones. The snake wants to reach the lower right corner at `(n-1, n-2)` and `(n-1, n-1)`.
 
@@ -19,12 +19,13 @@ In one move the snake can:
 Return the minimum number of moves to reach the target.
 
 If there is no way to reach the target, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ If there is no way to reach the target, return `-1`.
 [1,1,1,0,0,1],
 [1,1,1,0,0,0]]
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 

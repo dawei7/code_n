@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer `columnNumber`, return *its corresponding column title as it appears in an Excel sheet*.
 
@@ -14,7 +14,8 @@ AA -> 27
 AB -> 28
 ...
 ```
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ AB -> 28
 
 Return its Excel-style uppercase column title.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,6 +39,7 @@ Return its Excel-style uppercase column title.
 
 - **Input:** $columnNumber = 701$
 - **Output:** `"ZY"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le columnNumber \le 2^{31} - 1$

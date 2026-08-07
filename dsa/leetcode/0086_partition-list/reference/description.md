@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list and a value `x`, partition it such that all nodes **less than** `x` come before nodes **greater than or equal** to `x`.
 
 You should **preserve** the original relative order of the nodes in each of the two partitions.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ You should **preserve** the original relative order of the nodes in each of the 
 
 Return the head of the stable partitioned list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the head of the stable partitioned list.
 
 - **Input:** $head = [2,1], x = 2$
 - **Output:** `[1,2]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[0, 200]`.
 

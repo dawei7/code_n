@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. Transform `nums` by performing the following operations in the **exact** order specified:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums`. Transform `nums` by performing the follow
 - Sort the modified array in **non-decreasing** order.
 
 Return the resulting array after performing these operations.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return the resulting array after performing these operations.
 - After sorting `nums` in non-descending order, `nums = [0, 0, 1, 1, 1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

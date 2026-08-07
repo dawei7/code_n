@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **factorial** of a positive integer `n` is the product of all positive integers less than or equal to `n`.
 
@@ -13,12 +13,13 @@ However, these operations are still applied using the usual order of operations 
 Additionally, the division that we use is floor division such that $10 * 9 / 8 = 90 / 8 = 11$.
 
 Given an integer `n`, return *the clumsy factorial of *`n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ Given an integer `n`, return *the clumsy factorial of *`n`.
 - **Input:** $n = 10$
 - **Output:** `12`
 - **Explanation:** 12 = 10 * 9 / 8 + 7 - 6 * 5 / 4 + 3 - 2 * 1
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$

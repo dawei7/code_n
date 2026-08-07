@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There is a special keyboard with **all keys in a single row**.
 
 Given a string `keyboard` of length `26` indicating the layout of the keyboard (indexed from `0` to `25`). Initially, your finger is at index `0`. To type a character, you have to move your finger to the index of the desired character. The time taken to move your finger from index `i` to index `j` is $|i - j|$.
 
 You want to type a string `word`. Write a function to calculate how much time it takes to type it with one finger.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Let $m = \lvert\texttt{word}\rvert$. The finger starts at keyboard position `0`;
 
 - The integer sum of the absolute distances for all $m$ moves.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Total time = 2 + 1 + 1 = 4.
 
 - **Input:** $keyboard = "pqrstuvwxyzabcdefghijklmno", word = "leetcode"$
 - **Output:** `73`
-### Constraints
+
+### 4. Constraints
 
 - $\text{keyboard.length} = 26$
 

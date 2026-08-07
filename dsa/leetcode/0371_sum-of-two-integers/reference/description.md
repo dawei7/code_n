@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two integers `a` and `b`, return *the sum of the two integers without using the operators* `+` *and* `-`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two integers `a` and `b`, return *the sum of the two integers without usin
 
 Return the ordinary integer sum of `a` and `b`, computed without addition or subtraction operators.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Return the ordinary integer sum of `a` and `b`, computed without addition or sub
 
 - **Input:** $a = 2, b = 3$
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $-1000 \le a, b \le 1000$

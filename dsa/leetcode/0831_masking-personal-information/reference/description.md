@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a personal information string `s`, representing either an **email address** or a **phone number**. Return *the **masked** personal information using the below rules*.
 
@@ -46,12 +46,13 @@ To mask a phone number:
 
 	</li>
 - `"XXXX"` is the last 4 digits of the **local number**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Note that even though "ab" is 2 characters, it still must have 5 asterisks in th
 - **Explanation:** s is a phone number.
 There are 10 digits, so the local number is 10 digits and the country code is 0 digits.
 Thus, the resulting masked number is "***-***-7890".
-### Constraints
+
+### 4. Constraints
 
 - `s` is either a **valid** email or a phone number.
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of length `n`, you want to create an array `ans` of length `2n` where $\text{ans}[i] = \text{nums}[i]$ and $ans[i + n] = \text{nums}[i]$ for $0 \le i < n$ (**0-indexed**).
 
 Specifically, `ans` is the **concatenation** of two `nums` arrays.
 
 Return *the array *`ans`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the array *`ans`.
 - **Explanation:** The array ans is formed as follows:
 - ans = [nums[0],nums[1],nums[2],nums[3],nums[0],nums[1],nums[2],nums[3]]
 - ans = [1,3,2,1,1,3,2,1]
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

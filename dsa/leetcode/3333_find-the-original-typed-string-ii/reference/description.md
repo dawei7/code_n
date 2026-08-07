@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice is attempting to type a specific string on her computer. However, she tends to be clumsy and **may** press a key for too long, resulting in a character being typed **multiple** times.
 
@@ -7,12 +7,13 @@ You are given a string `word`, which represents the **final** output displayed o
 Return the total number of *possible* original strings that Alice *might* have intended to type, if she was trying to type a string of size **at least** `k`.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The only possible string is `"aabbccdd"`.
 **Output:** 8
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 5 * 10^{5}$
 

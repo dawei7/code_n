@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and a positive integer `x`.
 
@@ -12,13 +12,16 @@ You are **initially** at position `0` in the array and you can visit other posit
 
 Return *the **maximum** total score you can get*.
 
-**Note** that initially you have $\text{nums}[0]$ points.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that initially you have $\text{nums}[0]$ points.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ The total score will be: 2 + 6 + 1 + 9 - 5 = 13.
 - **Output:** `20`
 - **Explanation:** All the integers in the array have the same parities, so we can visit all of them without losing any score.
 The total score is: 2 + 4 + 6 + 8 = 20.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary array `nums` of length `n`, a **positive** integer `k` and a **non-negative** integer `maxChanges`.
 
@@ -9,12 +9,13 @@ Alice plays a game, where the goal is for Alice to pick up `k` ones from `nums` 
 - Select any two adjacent indices `x` and `y` ($|x - y| = 1$) such that $\text{nums}[x] = 1$, $\text{nums}[y] = 0$, then swap their values (set $\text{nums}[y] = 1$ and $\text{nums}[x] = 0$). If $y = aliceIndex$, Alice picks up the one after this move and $\text{nums}[y]$ becomes `0`.
 
 Return *the **minimum** number of moves required by Alice to pick **exactly ***`k` *ones*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Note that it may be possible for Alice to pick up `3` ones using some other sequ
 - Select $x = 1$ and $y = 0$ again, and perform an action of the second type. `nums` becomes `[**<u>1</u>**,0,0,0]`. As $y = aliceIndex$, Alice picks up the one and `nums` becomes `[**<u>0</u>**,0,0,0]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

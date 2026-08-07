@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even.
 
@@ -9,12 +9,13 @@ You repeat the following procedure $n / 2$ times:
 - Add $(minElement + maxElement) / 2$ to `averages`.
 
 Return the **minimum** element in `averages`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -138,7 +139,8 @@ The smallest element of averages, 5.5, is returned.</div>
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 50$
 

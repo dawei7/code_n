@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a single positive integer `x`, we will write an expression of the form `x (op1) x (op2) x (op3) x ...` where each operator `op1`, `op2`, etc. is either addition, subtraction, multiplication, or division (`+`, `-`, `*`, or `/)`. For example, with $x = 3$, we might write $3 * 3 / 3 + 3 - 3$ which is a value of 3.
 
@@ -13,12 +13,13 @@ When writing such an expression, we adhere to the following conventions:
 - It is not allowed to use the unary negation operator (`-`). For example, "$x - x$" is a valid expression as it only uses subtraction, but "$-x + x$" is not because it uses negation.
 
 We would like to write an expression with the least number of operators such that the expression equals the given `target`. Return the least number of operators used.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The expression contains 8 operations.
 - **Output:** `3`
 - **Explanation:** 100 * 100 * 100 * 100.
 The expression contains 3 operations.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le x \le 100$
 

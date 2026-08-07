@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list, return *the list after sorting it in **ascending order***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `head` of a linked list, return *the list after sorting it in **ascend
 
 Return the head of the list after its nodes have been rearranged into ascending order, or `null` when the input is empty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the head of the list after its nodes have been rearranged into ascending 
 
 - **Input:** $head = []$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[0, 5 * 10^{4}]$.
 

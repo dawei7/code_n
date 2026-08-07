@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 One way to serialize a binary tree is to use **preorder traversal**. When we encounter a non-null node, we record the node's value. If it is a null node, we record using a sentinel value such as `'#'`.
 
@@ -14,8 +14,7 @@ You may assume that the input format is always valid.
 
 - For example, it could never contain two consecutive commas, such as `"1,,3"`.
 
-**Note: **You are not allowed to reconstruct the tree.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +24,11 @@ You may assume that the input format is always valid.
 
 Return `true` if the entire token sequence is exactly one valid binary-tree preorder serialization; otherwise return `false`.
 
-### Examples
+### 3. Note
+
+You are not allowed to reconstruct the tree.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ Return `true` if the entire token sequence is exactly one valid binary-tree preo
 
 - **Input:** $preorder = "9,#,#,1"$
 - **Output:** `false`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{preorder.length} \le 10^{4}$
 

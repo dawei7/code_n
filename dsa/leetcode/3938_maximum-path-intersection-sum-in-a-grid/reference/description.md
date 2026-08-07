@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`.
 
@@ -13,7 +13,8 @@ Each player must choose a valid path from their respective starting cell to thei
 A cell is called **shared** if it belongs to **both** chosen paths.
 
 Return an integer denoting the **maximum** possible sum of values of all **shared** cells.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ For a chosen pair of paths, each matrix coordinate visited by both paths contrib
 
 Return the greatest intersection score attainable by any valid pair of paths.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ One optimal pair of paths is shown in the diagram.
 - The sum is $4 + (-1) = 3$, which is the maximum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

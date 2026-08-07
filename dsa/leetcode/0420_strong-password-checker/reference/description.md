@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A password is considered strong if the below conditions are all met:
 
@@ -17,7 +17,8 @@ In one step, you can:
 - Delete one character from `password`, or
 
 - Replace one character of `password` with another character.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ In one step, you can:
 Return the minimum number of permitted insertions, deletions, and replacements required to satisfy every strength
 condition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ condition.
 
 - **Input:** $password = "1337C0d3"$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{password.length} \le 50$
 

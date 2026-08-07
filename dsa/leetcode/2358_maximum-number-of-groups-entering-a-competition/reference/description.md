@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer array `grades` which represents the grades of students in a university. You would like to enter **all** these students into a competition in **ordered** non-empty groups, such that the ordering meets the following conditions:
 
@@ -7,12 +7,13 @@ You are given a positive integer array `grades` which represents the grades of s
 - The total number of students in the $$i^{\text{th}}$$ group is **less than** the total number of students in the $(i + 1)^th$ group, for all groups (except the last).
 
 Return *the **maximum** number of groups that can be formed*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ It can be shown that it is not possible to form more than 3 groups.
 - **Input:** $grades = [8,8]$
 - **Output:** `1`
 - **Explanation:** We can only form 1 group, since forming 2 groups would lead to an equal number of students in both groups.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grades.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array `intervals` where $\text{intervals}[i] = [l_{i}, r_{i}]$ represent the interval $[l_{i}, r_{i})$, remove all intervals that are covered by another interval in the list.
 
 The interval `[a, b)` is covered by the interval `[c, d)` if and only if $c \le a$ and $b \le d$.
 
 Return *the number of remaining intervals*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return *the number of remaining intervals*.
 
 - **Input:** $intervals = [[1,4],[2,3]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{intervals.length} \le 1000$
 

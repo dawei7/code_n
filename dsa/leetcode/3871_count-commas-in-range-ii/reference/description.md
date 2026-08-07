@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -9,7 +9,8 @@ In **standard** formatting:
 - A comma is inserted after **every three** digits from the right.
 
 - Numbers with **fewer** than 4 digits contain no commas.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Format each integer in ordinary decimal notation without leading zeros. Insert a
 
 Return the total number of commas in the formatted representations of all integers $x$ for which $1\le x\le n$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,6 +48,7 @@ The numbers `"1,000"`, `"1,001"`, and `"1,002"` each contain one comma, giving a
 **​​​​​​​**All numbers from 1 to 998 have fewer than four digits. Therefore, no commas are used.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{15}$

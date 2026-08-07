@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of characters `'U'`, `'D'`, `'L'`, and `'R'`, representing moves on an infinite 2D Cartesian grid.
 
@@ -15,7 +15,8 @@ You are also given a positive integer `k`.
 You **must** choose and remove **exactly one** contiguous substring of length `k` from `s`. Then, start from coordinate `(0, 0)` and perform the remaining moves in order.
 
 Return an integer denoting the number of **distinct** final coordinates reachable.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Every possible start position for a length-`k` substring is considered. The reta
 
 Return the number of distinct endpoints produced by the valid substring removals.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ After removing a substring of length 4, `s` can only be the empty string. The fi
 After removing a substring of length 1, `s` becomes `"U"`, which always ends at `(0, 1)`, so there is only one distinct final coordinate.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

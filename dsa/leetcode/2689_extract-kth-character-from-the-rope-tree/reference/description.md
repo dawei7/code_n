@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree and an integer `k`. Besides the left and right children, every node of this tree has two other properties, a **string** `node.val` containing only lowercase English letters (possibly empty) and a non-negative integer `node.len`. There are two types of nodes in this tree:
 
@@ -14,12 +14,15 @@ The tree described above is called a *Rope* binary tree. Now we define $S[node]$
 
 Return* k-th character of the string* $S[root]$.
 
-**Note:** If `s` and `p` are two strings, `concat(s, p)` is a string obtained by concatenating `p` to `s`. For example, $concat("ab", "zz") = "abzz"$.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+If `s` and `p` are two strings, `concat(s, p)` is a string obtained by concatenating `p` to `s`. For example, $concat("ab", "zz") = "abzz"$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -45,7 +48,8 @@ You can see that S[root] = concat(concat("abc", "efg"), concat("hij", "klm")) = 
 You can see that S[root] = "ropetree". So S[root][7], which represents 8th character of it, is equal to "e".
 
 ![](images/example3.png)
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{3}]$
 

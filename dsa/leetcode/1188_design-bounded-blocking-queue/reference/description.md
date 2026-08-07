@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement a thread-safe bounded blocking queue that has the following methods:
 
@@ -13,7 +13,8 @@ Implement a thread-safe bounded blocking queue that has the following methods:
 Your implementation will be tested using multiple threads at the same time. Each thread will either be a producer thread that only makes calls to the `enqueue` method or a consumer thread that only makes calls to the `dequeue` method. The `size` method will be called after every test case.
 
 Please do not use built-in implementations of bounded blocking queue as this will not be accepted in an interview.
-### Function Contract
+
+### 2. Function Contract
 
 **Class interface**
 
@@ -28,7 +29,7 @@ Multiple threads can invoke the instance concurrently. Each producer thread call
 
 After each test case, the judge calls `size()`. Enqueue has no return value; dequeue returns the removed integer; and size returns an integer from $0$ through `capacity`. When multiple producers or consumers are runnable together, the operating system may choose their relative order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,7 +75,8 @@ queue.dequeue();    // Consumer thread C3 calls dequeue.
 queue.enqueue(3);   // One of the producer threads enqueues 3 to the queue.
 queue.size();       // 1 element remaining in the queue.
 Since the number of threads for producer/consumer is greater than 1, we do not know how the threads will be scheduled in the operating system, even though the input seems to imply the ordering. Therefore, any of the output [1,0,2] or [1,2,0] or [0,1,2] or [0,2,1] or [2,0,1] or [2,1,0] will be accepted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le Number of Prdoucers \le 8$
 

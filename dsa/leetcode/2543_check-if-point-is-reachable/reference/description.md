@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an infinitely large grid. You are currently at point `(1, 1)`, and you need to reach the point `(targetX, targetY)` using a finite number of steps.
 
@@ -13,12 +13,13 @@ In one **step**, you can move from point `(x, y)` to any one of the following po
 - $(x, 2 * y)$
 
 Given two integers `targetX` and `targetY` representing the X-coordinate and Y-coordinate of your final position, return `true` *if you can reach the point from* `(1, 1)` *using some number of steps, and *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ Given two integers `targetX` and `targetY` representing the X-coordinate and Y-c
 - **Input:** $targetX = 4, targetY = 7$
 - **Output:** `true`
 - **Explanation:** You can follow the path (1,1) -> (1,2) -> (1,4) -> (1,8) -> (1,7) -> (2,7) -> (4,7).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le targetX, targetY \le 10^{9}$

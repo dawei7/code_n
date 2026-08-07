@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **no-zero** integer is a **positive** integer that **does not contain the digit** 0 in its decimal representation.
 
@@ -9,7 +9,8 @@ Given an integer `n`, count the number of pairs `(a, b)` where:
 - $a + b = n$
 
 Return an integer denoting the number of such pairs.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Both addends must be positive and must use only decimal digits from `1` through 
 
 Return the number of ordered no-zero pairs whose sum is exactly `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,6 +60,7 @@ The pairs are `(1, 2)` and `(2, 1)`.
 The pairs are `(2, 9)`, `(3, 8)`, `(4, 7)`, `(5, 6)`, `(6, 5)`, `(7, 4)`, `(8, 3)`, and `(9, 2)`. Note that `(1, 10)` and `(10, 1)` do not satisfy the conditions because 10 contains 0 in its decimal representation.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{15}$

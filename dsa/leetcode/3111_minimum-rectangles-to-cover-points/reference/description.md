@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$. You are also given an integer `w`. Your task is to **cover** **all** the given points with rectangles.
 
@@ -8,13 +8,16 @@ A point is considered covered by a rectangle if it lies within or on the boundar
 
 Return an integer denoting the **minimum** number of rectangles needed so that each point is covered by **at least one** rectangle*.*
 
-**Note:** A point may be covered by more than one rectangle.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A point may be covered by more than one rectangle.
+
+### 4. Examples
 
 #### Example 1
 
@@ -99,7 +102,8 @@ The image above shows one possible placement of rectangles to cover the points:
 - A rectangle with a lower end at `(2, 0)` and its upper end at `(2, 3)`
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{points.length} \le 10^{5}$
 

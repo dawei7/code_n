@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Movies`
 
@@ -50,12 +50,13 @@ Write a solution to:
 - Find the movie name with the **highest average** rating in `February 2020`. In case of a tie, return the lexicographically smaller movie name.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

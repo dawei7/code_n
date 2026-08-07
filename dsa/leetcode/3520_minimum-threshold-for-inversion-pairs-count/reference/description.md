@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` and an integer `k`.
 
@@ -13,11 +13,12 @@ An inversion pair with a **threshold** `x` is defined as a pair of indices `(i, 
 Your task is to determine the **minimum** integer $\text{min}_{threshold}$ such that there are **at least** `k` inversion pairs with threshold $\text{min}_{threshold}$.
 
 If no such integer exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ For threshold $x = 8$, the pairs are:
 There are less than `k` inversion pairs if we choose any integer less than 8 as threshold.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

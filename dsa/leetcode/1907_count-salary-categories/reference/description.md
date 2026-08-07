@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Accounts`
 
@@ -26,12 +26,13 @@ The result table **must** contain all three categories. If there are no accounts
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

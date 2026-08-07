@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array nums, return *the number of **AND triples***.
 
@@ -11,12 +11,13 @@ An **AND triple** is a triple of indices `(i, j, k)` such that:
 - $0 \le k < \text{nums.length}$
 
 - $\text{nums}[i] \& \text{nums}[j] \& \text{nums}[k] = 0$, where `&` represents the bitwise-AND operator.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ An **AND triple** is a triple of indices `(i, j, k)` such that:
 
 - **Input:** `nums = [0,0,0]`
 - **Output:** `27`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

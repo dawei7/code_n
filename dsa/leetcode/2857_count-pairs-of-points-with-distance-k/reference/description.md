@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **2D** integer array `coordinates` and an integer `k`, where $\text{coordinates}[i] = [x_{i}, y_{i}]$ are the coordinates of the $$i^{\text{th}}$$ point in a 2D plane.
 
 We define the **distance** between two points $(x_{1}, y_{1})$ and $(x_{2}, y_{2})$ as $(x1 XOR x2) + (y1 XOR y2)$ where `XOR` is the bitwise `XOR` operation.
 
 Return *the number of pairs *`(i, j)`* such that *`i < j`* and the distance between points *`i`* and *`j`* is equal to *`k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the number of pairs *`(i, j)`* such that *`i < j`* and the distance betw
 - **Input:** $coordinates = [[1,3],[1,3],[1,3],[1,3],[1,3]], k = 0$
 - **Output:** `10`
 - **Explanation:** Any two chosen pairs will have a distance of 0. There are 10 ways to choose two pairs.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{coordinates.length} \le 50000$
 

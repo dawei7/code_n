@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are stacking blocks to form a pyramid. Each block has a color, which is represented by a single letter. Each row of blocks contains **one less block** than the row beneath it and is centered on top.
 
@@ -9,12 +9,13 @@ To make the pyramid aesthetically pleasing, there are only specific **triangular
 You start with a bottom row of blocks `bottom`, given as a single string, that you **must** use as the base of the pyramid.
 
 Given `bottom` and `allowed`, return `true`* if you can build the pyramid all the way to the top such that **every triangular pattern** in the pyramid is in *`allowed`*, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ There are three triangular patterns in the pyramid, which are "BCC", "CDE", and 
 - **Output:** `false`
 - **Explanation:** The allowed triangular patterns are shown on the right.
 Starting from the bottom (level 4), there are multiple ways to build level 3, but trying all the possibilites, you will get always stuck before building level 1.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{bottom.length} \le 6$
 

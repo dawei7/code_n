@@ -1,18 +1,21 @@
-## Description
+### 1. Description
 
 There is a test that has `n` types of questions. You are given an integer `target` and a **0-indexed** 2D integer array `types` where $\text{types}[i] = [\text{count}_{i}, \text{marks}_{i}]$ indicates that there are $\text{count}_{i}$ questions of the $$i^{\text{th}}$$ type, and each one of them is worth $\text{marks}_{i}$ points.
 
 Return *the number of ways you can earn **exactly** *`target`* points in the exam*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
-**Note** that questions of the same type are indistinguishable.
-
-- For example, if there are `3` questions of the same type, then solving the $1^st$ and $2^nd$ questions is the same as solving the $1^st$ and $3^rd$ questions, or the $2^nd$ and $3^rd$ questions.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that questions of the same type are indistinguishable.
+
+- For example, if there are `3` questions of the same type, then solving the $1^st$ and $2^nd$ questions is the same as solving the $1^st$ and $3^rd$ questions, or the $2^nd$ and $3^rd$ questions.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Return *the number of ways you can earn **exactly** *`target`* points in the exa
 - **Input:** $target = 18, types = [[6,1],[3,2],[2,3]]$
 - **Output:** `1`
 - **Explanation:** You can only earn 18 points by answering all questions.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le target \le 1000$
 

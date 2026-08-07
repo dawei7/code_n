@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `a` and `b` of the same length. Choose an index and split both strings **at the same index**, splitting `a` into two strings: $a_{prefix}$ and $a_{suffix}$ where $a = a_{prefix} + a_{suffix}$, and splitting `b` into two strings: $b_{prefix}$ and $b_{suffix}$ where $b = b_{prefix} + b_{suffix}$. Check if $a_{prefix} + b_{suffix}$ or $b_{prefix} + a_{suffix}$ forms a palindrome.
 
@@ -6,13 +6,16 @@ When you split a string `s` into $s_{prefix}$ and $s_{suffix}$, either $s_{suffi
 
 Return `true`* if it is possible to form** a palindrome string, otherwise return *`false`.
 
-**Notice** that $x + y$ denotes the concatenation of strings `x` and `y`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Notice
+
+that $x + y$ denotes the concatenation of strings `x` and `y`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Then, a_prefix + b_suffix = "" + "y" = "y", which is a palindrome.
 a_prefix = "ula", a_suffix = "cfd"
 b_prefix = "jiz", b_suffix = "alu"
 Then, a_prefix + b_suffix = "ula" + "alu" = "ulaalu", which is a palindrome.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{a.length}, \text{b.length} \le 10^{5}$
 

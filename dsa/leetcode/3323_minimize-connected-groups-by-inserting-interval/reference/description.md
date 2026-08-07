@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array `intervals`, where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represents the start and the end of interval `i`. You are also given an integer `k`.
 
@@ -15,11 +15,12 @@ A **connected group** of intervals is a maximal collection of intervals that, wh
 - However, a group of intervals `[[1, 2], [3, 4]]` is not connected because the segment `(2, 3)` is not covered.
 
 Return the **minimum** number of connected groups after adding **exactly one** new interval to the array.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ After adding the interval `[3, 5]`, we have two connected groups: `[[1, 3], [3, 
 After adding the interval `[1, 1]`, we have three connected groups: `[[1, 1], [1, 1]]`, `[[3, 3]]`, and `[[5, 10]]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{intervals.length} \le 10^{5}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a non-negative integer `x`, return *the square root of *`x`* rounded down to the nearest integer*. The returned integer should be **non-negative** as well.
 
 You **must not use** any built-in exponent function or operator.
 
 - For example, do not use `pow(x, 0.5)` in c++ or `x ** 0.5` in python.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ You **must not use** any built-in exponent function or operator.
 
 Return $\lfloor\sqrt{x}\rfloor$ as a non-negative integer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ Return $\lfloor\sqrt{x}\rfloor$ as a non-negative integer.
 - **Input:** $x = 8$
 - **Output:** `2`
 - **Explanation:** The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le x \le 2^{31} - 1$

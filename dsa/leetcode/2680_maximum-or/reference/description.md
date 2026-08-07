@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n` and an integer `k`. In an operation, you can choose an element and multiply it by `2`.
 
 Return *the maximum possible value of *$\text{nums}[0] | \text{nums}[1] | ... | nums[n - 1]$ *that can be obtained after applying the operation on nums at most *`k`* times*.
 
 Note that `a | b` denotes the **bitwise or** between two integers `a` and `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Note that `a | b` denotes the **bitwise or** between two integers `a` and `b`.
 - **Input:** `nums = [8,1,2], k = 2`
 - **Output:** `35`
 - **Explanation:** If we apply the operation twice on index 0, we yield a new array of [32,1,2]. Thus, we return 32|1|2 = 35.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

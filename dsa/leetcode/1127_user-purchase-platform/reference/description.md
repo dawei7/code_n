@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Spending`
 
@@ -21,7 +21,8 @@ Write a solution to find the total number of users and the total amount spent us
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -35,7 +36,7 @@ $Spending(\text{user}_{id}, \text{spend}_{date}, platform, amount)$ contains $R$
 - Use `0` for both measures when a date-category pair has no users.
 - Result row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `books` of length `n` where $\text{books}[i]$ denotes the number of books on the $$i^{\text{th}}$$ shelf of a bookshelf.
 
 You are going to take books from a **contiguous** section of the bookshelf spanning from `l` to `r` where $0 \le l \le r < n$. For each index `i` in the range $l \le i < r$, you must take **strictly fewer** books from shelf `i` than shelf $i + 1$.
 
 Return *the **maximum** number of books you can take from the bookshelf.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return *the **maximum** number of books you can take from the bookshelf.*
 
 Return an integer representing the maximum total number of books obtainable from a contiguous section under strictly increasing quantities.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ It can be proven that 12 is the maximum number of books you can take.
 - Take 7 books from shelf 3.
 You have taken 13 books so return 13.
 It can be proven that 13 is the maximum number of books you can take.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{books.length} \le 10^{5}$
 

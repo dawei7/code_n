@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `units` of size `m × n` where $\text{units}[i][j]$ represents the capacity of the $$j^{\text{th}}$$ unit in the $$i^{\text{th}}$$ device. Each device contains **exactly** `n` units.
 
@@ -14,12 +14,7 @@ You may perform the following operation any number of times (including zero):
 
 Return the **maximum** possible sum of the ratings of all devices after any number of such operations.
 
-**Note:**
-
-- Devices can receive units from multiple devices, regardless of whether they have been selected.
-
-- The rating of an empty device is 0.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +26,13 @@ Let $m$ be the number of devices, $n$ the units per device, and $U=mn$ the total
 
 Return the maximum possible sum of final device ratings after zero or more legal transfers. The total may exceed the range of a signed 32-bit integer.
 
-### Examples
+### 3. Note
+
+- Devices can receive units from multiple devices, regardless of whether they have been selected.
+
+- The rating of an empty device is 0.
+
+### 4. Examples
 
 #### Example 1
 
@@ -87,7 +88,8 @@ Return the maximum possible sum of final device ratings after zero or more legal
 - No transfers increase the sum of ratings. Thus, the sum of ratings is $5 + 1 = 6$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le m = \text{units.length} \le 10^{5}$
 

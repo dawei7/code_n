@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a binary string `s`, you can split `s` into 3 **non-empty** strings `s1`, `s2`, and `s3` where $s1 + s2 + s3 = s$.
 
 Return the number of ways `s` can be split such that the number of ones is the same in `s1`, `s2`, and `s3`. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the number of ways `s` can be split such that the number of ones is the s
 "0|0|00"
 "0|00|0"
 "00|0|0"
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 10^{5}$
 

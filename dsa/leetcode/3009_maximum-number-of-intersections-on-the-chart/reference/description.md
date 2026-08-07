@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 There is a line chart consisting of `n` points connected by line segments. You are given a **1-indexed** integer array `y`. The $$k^{\text{th}}$$ point has coordinates $(k, y[k])$. There are no horizontal lines; that is, no two consecutive points have the same y-coordinate.
 
 We can draw an infinitely long horizontal line. Return *the **maximum** number of points of intersection of the line with the chart*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ We can draw an infinitely long horizontal line. Return *the **maximum** number o
 - **Input:** $y = [2,1,3,4,5]$
 - **Output:** `2`
 - **Explanation:** As you can see in the image above, the line y = 1.5 has 2 intersections with the chart (in red crosses). You can also see the line y = 2 which intersects the chart in 2 points (in red crosses). It can be shown that there is no horizontal line intersecting the chart at more than 2 points. So the answer would be 2.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{y.length} \le 10^{5}$
 

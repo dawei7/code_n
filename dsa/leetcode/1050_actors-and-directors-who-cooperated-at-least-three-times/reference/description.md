@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `ActorDirector`
 
@@ -18,12 +18,13 @@ Write a solution to find all the pairs $(\text{actor}_{id}, \text{director}_{id}
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

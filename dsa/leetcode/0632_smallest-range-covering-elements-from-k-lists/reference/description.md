@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You have `k` lists of sorted integers in **non-decreasing order**. Find the **smallest** range that includes at least one number from each of the `k` lists.
 
 We define the range `[a, b]` is smaller than range `[c, d]` if $b - a < d - c$ **or** `a < c` if $b - a = d - c$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ List 3: [5, 18, 22, 30], 22 is in range [20,24].
 
 - **Input:** `nums = [[1,2,3],[1,2,3],[1,2,3]]`
 - **Output:** `[1,1]`
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = k$
 

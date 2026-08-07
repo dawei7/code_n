@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `p`.
 
@@ -15,7 +15,8 @@ After each query, determine whether there exists **any good subsequence** in the
 Return the **number** of queries for which a **good subsequence** exists.
 
 The term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Queries are processed from left to right on the same mutable logical array. A se
 
 Return the number of updates after which at least one non-empty proper subsequence has GCD exactly `p`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -158,7 +159,8 @@ Thus, the answer is 2.
 Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 5 * 10^{4}$
 

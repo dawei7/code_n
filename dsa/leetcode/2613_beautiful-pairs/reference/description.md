@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2` of the same length. A pair of indices `(i,j)` is called **beautiful** if$|\text{nums1}[i] - \text{nums1}[j]| + |\text{nums2}[i] - \text{nums2}[j]|$ is the smallest amongst all possible indices pairs where `i < j`.
 
@@ -9,11 +9,12 @@ Note that
 - `|x|` denotes the absolute value of `x`.
 
 - A pair of indices $(i_{1}, j_{1})$ is lexicographically smaller than $(i_{2}, j_{2})$ if $i_{1} < i_{2}$ or $i_{1} = i_{2}$ and $j_{1} < j_{2}$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Note that
 - **Input:** $nums1 = [1,2,4,3,2,5], nums2 = [1,4,2,3,5,1]$
 - **Output:** `[1,4]`
 - **Explanation:** Consider index 1 and index 4. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `points` representing integer coordinates of some points on a 2D plane, where $\text{points}[i] = [x_{i}, y_{i}]$.
 
 The distance between two points is defined as their Manhattan distance.
 
 Return *the **minimum** possible value for **maximum** distance between any two points by removing exactly one point*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The maximum distance after removing each point is the following:
 Removing any of the points results in the maximum distance between any two points of 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{points.length} \le 10^{5}$
 

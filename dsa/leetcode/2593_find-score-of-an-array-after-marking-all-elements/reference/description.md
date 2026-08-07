@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of positive integers.
 
@@ -13,12 +13,13 @@ Starting with $score = 0$, apply the following algorithm:
 - Repeat until all the array elements are marked.
 
 Return *the score you get after applying the above algorithm*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Our score is 1 + 2 + 4 = 7.
 - 2 is the smallest unmarked element, since there are two of them, we choose the left-most one, so we mark the one at index 0 and its right adjacent element: [<u>2</u>,<u>3</u>,<u>5</u>,<u>1</u>,<u>3</u>,2].
 - 2 is the only remaining unmarked element, so we mark it: [<u>2</u>,<u>3</u>,<u>5</u>,<u>1</u>,<u>3</u>,<u>2</u>].
 Our score is 1 + 2 + 2 = 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

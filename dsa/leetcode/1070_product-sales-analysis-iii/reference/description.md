@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -27,12 +27,13 @@ Write a solution to find all sales that occurred in the **first year** each prod
 Return a table with the following columns: **product_id**,** first_year**, **quantity, **and** price**.
 
 Return the result in any order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

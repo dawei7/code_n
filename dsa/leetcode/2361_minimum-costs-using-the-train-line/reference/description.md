@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A train line going through a city has two routes, the regular route and the express route. Both routes go through the **same** $n + 1$ stops labeled from `0` to `n`. Initially, you start on the regular route at stop `0`.
 
@@ -17,11 +17,12 @@ Note that:
 Return *a **1-indexed** array *`costs`* of length *`n`*, where *$\text{costs}[i]$* is the **minimum** cost to reach stop *`i`* from stop *`0`.
 
 Note that a stop can be counted as **reached** from either route.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Note that a different route could be taken to reach the other stops with minimum
 - Take the express route from stop 2 to stop 3, costing 3 + 6 = 9.
 The total cost is 10 + 5 + 9 = 24.
 Note that the expressCost is paid again to transfer back to the express route.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{regular.length} = \text{express.length}$
 

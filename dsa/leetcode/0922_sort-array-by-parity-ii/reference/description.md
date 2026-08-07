@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, half of the integers in `nums` are **odd**, and the other half are **even**.
 
 Sort the array so that whenever $\text{nums}[i]$ is odd, `i` is **odd**, and whenever $\text{nums}[i]$ is even, `i` is **even**.
 
 Return *any answer array that satisfies this condition*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return *any answer array that satisfies this condition*.
 
 - **Input:** `nums = [2,3]`
 - **Output:** `[2,3]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 2 * 10^{4}$
 

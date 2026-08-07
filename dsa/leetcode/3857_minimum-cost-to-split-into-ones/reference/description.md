@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -7,7 +7,8 @@ In one operation, you may split an integer `x` into two positive integers `a` an
 The cost of this operation is $a * b$.
 
 Return an integer denoting the **minimum** total cost required to split the integer `n` into `n` ones.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ The process finishes only when its multiset of parts contains `n` copies of `1` 
 
 Return the minimum possible sum of all operation costs over a complete sequence of splits.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -119,6 +120,7 @@ Thus, the minimum total cost is $4 + 1 + 1 = 6$.
 
 </div>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 500$

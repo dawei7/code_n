@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return the count of all numbers with unique digits, `x`, where $0 \le x < 10^n$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `n`, return the count of all numbers with unique digits, `x`, w
 
 Return the number of integers in $[0,10^n)$ that contain no repeated decimal digit.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Return the number of integers in $[0,10^n)$ that contain no repeated decimal dig
 
 - **Input:** $n = 0$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 8$

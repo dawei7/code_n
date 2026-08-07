@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the customer visit log of a shop represented by a **0-indexed** string `customers` consisting only of characters `'N'` and `'Y'`:
 
@@ -14,13 +14,16 @@ If the shop closes at the $$j^{\text{th}}$$ hour ($0 \le j \le n$), the **penalt
 
 Return* the **earliest** hour at which the shop must be closed to incur a **minimum** penalty.*
 
-**Note** that if a shop closes at the $$j^{\text{th}}$$ hour, it means the shop is closed at the hour `j`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that if a shop closes at the $$j^{\text{th}}$$ hour, it means the shop is closed at the hour `j`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -43,7 +46,8 @@ Closing the shop at 2^nd or 4^th hour gives a minimum penalty. Since 2 is earlie
 - **Input:** $customers = "YYYY"$
 - **Output:** `4`
 - **Explanation:** It is best to close the shop at the 4^th hour as customers arrive at each hour.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{customers.length} \le 10^{5}$
 

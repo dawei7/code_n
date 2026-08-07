@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given two integer arrays `arr1` and `arr2`, return the minimum number of operations (possibly zero) needed to make `arr1` strictly increasing.
 
 In one operation, you can choose two indices $0 \le i < \text{arr1.length}$ and $0 \le j < \text{arr2.length}$ and do the assignment $\text{arr1}[i] = \text{arr2}[j]$.
 
 If there is no way to make `arr1` strictly increasing, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ If there is no way to make `arr1` strictly increasing, return `-1`.
 - **Input:** $arr1 = [1,5,3,6,7], arr2 = [1,6,3,3]$
 - **Output:** `-1`
 - **Explanation:** You can't make arr1 strictly increasing.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr1.length}, \text{arr2.length} \le 2000$
 

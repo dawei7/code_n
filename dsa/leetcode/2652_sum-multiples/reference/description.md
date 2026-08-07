@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, find the sum of all integers in the range `[1, n]` **inclusive** that are divisible by `3`, `5`, or `7`.
 
 Return *an integer denoting the sum of all numbers in the given range satisfying the constraint.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Return *an integer denoting the sum of all numbers in the given range satisfying
 - **Input:** $n = 9$
 - **Output:** `30`
 - **Explanation:** Numbers in the range [1, 9] that are divisible by 3, 5, or 7 are 3, 5, 6, 7, 9. The sum of these numbers is 30.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{3}$

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. There exists an array `arr` of length `nums.length`, where $\text{arr}[i]$ is the sum of $|i - j|$ over all `j` such that $\text{nums}[j] = \text{nums}[i]$ and $j \neq i$. If there is no such `j`, set $\text{arr}[i]$ to be `0`.
 
 Return *the array *`arr`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,10 +26,13 @@ When i = 4, arr[4] = 0 because there is no other index with value 2.
 - **Input:** `nums = [0,5,3]`
 - **Output:** `[0,0,0]`
 - **Explanation:** Since each element in nums is distinct, arr[i] = 0 for all i.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
 - $0 \le \text{nums}[i] \le 10^{9}$
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/intervals-between-identical-elements/description/" target="_blank"> 2121: Intervals Between Identical Elements.</a>
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/intervals-between-identical-elements/description/" target="_blank"> 2121: Intervals Between Identical Elements.</a>

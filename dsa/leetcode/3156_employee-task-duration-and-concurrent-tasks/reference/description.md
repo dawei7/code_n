@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Tasks`
 
@@ -88,10 +88,12 @@ Tasks table:
 
 	</li>
 
-**Note:** Output table is ordered by employee_id in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
+
+### 3. Note
+
+Output table is ordered by employee_id in ascending order.
+
+</div>

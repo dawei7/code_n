@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design an algorithm that accepts a stream of integers and retrieves the product of the last `k` integers of the stream.
 
@@ -35,12 +35,13 @@ productOfNumbers.getProduct(4); // return 0. The product of the last 4 numbers i
 productOfNumbers.add(8);        // [3,0,2,5,4,8]
 productOfNumbers.getProduct(2); // return 32. The product of the last 2 numbers is 4 * 8 = 32
 ```
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $0 \le num \le 100$
 
@@ -50,4 +51,6 @@ productOfNumbers.getProduct(2); // return 32. The product of the last 2 numbers 
 
 - The product of the stream at any point in time will fit in a **32-bit** integer.
 
-**Follow-up: **Can you implement **both** `GetProduct` and `Add` to work in `O(1)` time complexity instead of `O(k)` time complexity?
+### 4. Follow-up
+
+Can you implement **both** `GetProduct` and `Add` to work in `O(1)` time complexity instead of `O(k)` time complexity?

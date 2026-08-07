@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `num` consisting of only digits. A string of digits is called **balanced **if the sum of the digits at even indices is equal to the sum of digits at odd indices.
 
 Return `true` if `num` is **balanced**, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return `true` if `num` is **balanced**, otherwise return `false`.
 - Since both are equal the `num` is balanced.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{num.length} \le 100$
 

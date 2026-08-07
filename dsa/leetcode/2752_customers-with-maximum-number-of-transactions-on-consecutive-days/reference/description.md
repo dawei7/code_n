@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -20,11 +20,12 @@ Write a solution to find all $\text{customer}_{id}$ who made the maximum number 
 Return all $\text{customer}_{id}$ with the maximum number of consecutive transactions. Order the result table by $\text{customer}_{id}$ in **ascending** order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

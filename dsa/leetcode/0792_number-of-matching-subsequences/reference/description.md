@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a string `s` and an array of strings `words`, return *the number of* $\text{words}[i]$ *that is a subsequence of* `s`.
 
 A **subsequence** of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
 
 - For example, `"ace"` is a subsequence of `"abcde"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ A **subsequence** of a string is a new string generated from the original string
 
 - **Input:** `s = "dsahjpjauf", words = ["ahjpjau","ja","ahbwzgqnuk","tnmlanowax"]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{4}$
 

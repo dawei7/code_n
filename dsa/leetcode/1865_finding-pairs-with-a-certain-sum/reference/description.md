@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2`. You are tasked to implement a data structure that supports queries of two types:
 
@@ -13,12 +13,13 @@ Implement the `FindSumPairs` class:
 - `void add(int index, int val)` Adds `val` to $\text{nums2}[index]$, i.e., apply $\text{nums2}[index] += val$.
 
 - `int count(int tot)` Returns the number of pairs `(i, j)` such that $\text{nums1}[i] + \text{nums2}[j] = tot$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ findSumPairs.add(0, 1); // now nums2 = [**<u>2</u>**,4,5,4,5,4]
 findSumPairs.add(1, 1); // now nums2 = [2,**<u>5</u>**,5,4,5,4]
 findSumPairs.count(7);  // return 11; pairs (2,1), (2,2), (2,4), (3,1), (3,2), (3,4), (4,1), (4,2), (4,4) make 2 + 5 and pairs (5,3), (5,5) make 3 + 4
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} \le 1000$
 

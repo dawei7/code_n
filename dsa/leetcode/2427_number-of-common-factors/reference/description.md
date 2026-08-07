@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two positive integers `a` and `b`, return *the number of **common** factors of *`a`* and *`b`.
 
 An integer `x` is a **common factor** of `a` and `b` if `x` divides both `a` and `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,6 +21,7 @@ An integer `x` is a **common factor** of `a` and `b` if `x` divides both `a` and
 - **Input:** $a = 25, b = 30$
 - **Output:** `2`
 - **Explanation:** The common factors of 25 and 30 are 1, 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le a, b \le 1000$

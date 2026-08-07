@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `cities`
 
@@ -103,7 +103,11 @@ cities table:
 
 	</li>
 
-**Note:**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
 
 - Results are ordered by matching_letter_count in descending order
 
@@ -112,7 +116,3 @@ cities table:
 - Cities in each row are ordered alphabetically
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

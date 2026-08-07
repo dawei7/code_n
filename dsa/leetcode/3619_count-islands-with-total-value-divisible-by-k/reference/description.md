@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `grid` and a positive integer `k`. An **island** is a group of **positive** integers (representing land) that are **4-directionally** connected (horizontally or vertically).
 
 The **total value** of an island is the sum of the values of all cells in the island.
 
 Return the number of islands with a total value **divisible by** `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The grid contains four islands. The islands highlighted in blue have a total val
 The grid contains six islands, each with a total value that is divisible by 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

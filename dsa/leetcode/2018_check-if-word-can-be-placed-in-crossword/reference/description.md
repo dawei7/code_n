@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `board`, representing the** current **state of a crossword puzzle. The crossword contains lowercase English letters (from solved words), `' '` to represent any **empty **cells, and `'#'` to represent any **blocked** cells.
 
@@ -13,12 +13,13 @@ A word can be placed** horizontally** (left to right **or** right to left) or **
 - There must not be any empty cells `' '` or other lowercase letters **directly above or below** the word if the word was placed **vertically**.
 
 Given a string `word`, return `true`* if *`word`* can be placed in *`board`*, or *`false`* **otherwise***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Given a string `word`, return `true`* if *`word`* can be placed in *`board`*, or
 - **Input:** $board = [["#", " ", "#"], [" ", " ", "#"], ["#", " ", "c"]], word = "ca"$
 - **Output:** `true`
 - **Explanation:** The word "ca" can be placed as shown above (right to left).
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{board.length}$
 

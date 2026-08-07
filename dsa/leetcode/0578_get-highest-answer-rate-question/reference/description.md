@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `SurveyLog`
 
@@ -25,7 +25,8 @@ The **answer rate** for a question is the number of times a user answered the qu
 Write a solution to report the question that has the highest **answer rate**. If multiple questions have the same maximum **answer rate**, report the question with the smallest $\text{question}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -37,7 +38,7 @@ Only `"answer"` actions contribute to a rate's numerator and only `"show"` actio
 
 Return a one-row table with a $\text{survey}_{log}$ column containing the selected $\text{question}_{id}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

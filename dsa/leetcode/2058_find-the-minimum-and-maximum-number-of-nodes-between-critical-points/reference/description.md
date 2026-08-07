@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **critical point** in a linked list is defined as **either** a **local maxima** or a **local minima**.
 
@@ -9,12 +9,13 @@ A node is a **local minima** if the current node has a value **strictly smaller*
 Note that a node can only be a local maxima/minima if there exists **both** a previous node and a next node.
 
 Given a linked list `head`, return *an array of length 2 containing *`[minDistance, maxDistance]`* where *`minDistance`* is the **minimum distance** between **any two distinct** critical points and *`maxDistance`* is the **maximum distance** between **any two distinct** critical points. If there are **fewer** than two critical points, return *`[-1, -1]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The maximum distance is between the third and the sixth node. maxDistance = 6 - 
 Both the minimum and maximum distances are between the second and the fifth node.
 Thus, minDistance and maxDistance is 5 - 2 = 3.
 Note that the last node is not considered a local maxima because it does not have a next node.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[2, 10^{5}]$.
 

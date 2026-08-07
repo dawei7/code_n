@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ The **digit range** of an integer is defined as the difference between its **lar
 For example, the digit range of 5724 is $7 - 2 = 5$.
 
 Return the sum of all integers in `nums` whose **digit range** is equal to the **maximum digit range** among all integers in the array.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums) -> int`
 
@@ -25,7 +26,7 @@ Each array position is a separate contribution candidate. The digit range of a v
 
 Return the sum of all values whose digit range equals the largest digit range present anywhere in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -110,7 +111,8 @@ The maximum digit range is 5. The integers with this digit range are 5724 and 35
 The maximum digit range is 9. Both integers have this digit range, so the answer is $90 + 900 = 990$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

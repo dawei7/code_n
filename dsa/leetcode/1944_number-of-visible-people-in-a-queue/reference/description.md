@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` people standing in a queue, and they numbered from `0` to $n - 1$ in **left to right** order. You are given an array `heights` of **distinct** integers where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ person.
 
 A person can **see** another person to their right in the queue if everybody in between is **shorter** than both of them. More formally, the $$i^{\text{th}}$$ person can see the $$j^{\text{th}}$$ person if `i < j` and $min(\text{heights}[i], \text{heights}[j]) > max(heights[i+1], heights[i+2], ..., heights[j-1])$.
 
 Return *an array *`answer`* of length *`n`* where *$\text{answer}[i]$* is the **number of people** the *$$i^{\text{th}}$$* person can **see** to their right in the queue*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Person 5 can see no one since nobody is to the right of them.
 
 - **Input:** $heights = [5,1,2,3,10]$
 - **Output:** `[4,1,1,1,0]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{heights.length}$
 

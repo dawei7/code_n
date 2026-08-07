@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
@@ -8,17 +8,20 @@ The **xor-beauty** of the array is the XORing of **the effective values of all t
 
 Return *the xor-beauty of* `nums`.
 
-**Note** that:
-
-- `val1 | val2` is bitwise OR of `val1` and `val2`.
-
-- `val1 & val2` is bitwise AND of `val1` and `val2`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that:
+
+- `val1 | val2` is bitwise OR of `val1` and `val2`.
+
+- `val1 & val2` is bitwise AND of `val1` and `val2`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Xor-beauty of array will be bitwise XOR of all beauties = 1 ^ 0 ^ 1 ^ 4 ^ 1 ^ 4 
 - **Input:** `nums = [15,45,20,2,34,35,5,44,32,30]`
 - **Output:** `34`
 - **Explanation:** The xor-beauty of the given array is 34.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

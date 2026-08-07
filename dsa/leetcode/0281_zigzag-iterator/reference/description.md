@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two vectors of integers `v1` and `v2`, implement an iterator to return their elements alternately.
 
@@ -9,7 +9,8 @@ Implement the `ZigzagIterator` class:
 - `boolean hasNext()` returns `true` if the iterator still has elements, and `false` otherwise.
 
 - `int next()` returns the current element of the iterator and moves the iterator to the next element.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Implement the `ZigzagIterator` class:
 
 The app adapter repeatedly calls the native iterator's `next()` method while `hasNext()` is true and returns the resulting list of integers.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The app adapter repeatedly calls the native iterator's `next()` method while `ha
 
 - **Input:** $v1 = [], v2 = [1]$
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{v1.length}, \text{v2.length} \le 1000$
 

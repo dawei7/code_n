@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `k`. You are also given:
 
@@ -17,12 +17,13 @@ The matrix should also satisfy the following conditions:
 - The number $\text{left}_{i}$ should appear in a **column** that is strictly **left** of the column at which the number $\text{right}_{i}$ appears for all `i` from `0` to $m - 1$.
 
 Return ***any** matrix that satisfies the conditions*. If no answer exists, return an empty matrix.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Note that there may be multiple correct answers.
 - **Output:** `[]`
 - **Explanation:** From the first two conditions, 3 has to be below 1 but the third conditions needs 3 to be above 1 to be satisfied.
 No matrix can satisfy all the conditions, so we return the empty matrix.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le k \le 400$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer array `queries`.
 
@@ -9,12 +9,13 @@ For each query $\text{queries}[i]$, you need to find the element at index $\text
 Return an integer array `answer`, where $\text{answer}[i]$ is the value at $gcdPairs[\text{queries}[i]]$ for each query.
 
 The term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ So, the answer is `[gcdPairs[queries[0]], gcdPairs[queries[1]], gcdPairs[queries
 $gcdPairs = [2]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 10^{5}$
 

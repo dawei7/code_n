@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ![](images/cinema_seats_1.png)
 
@@ -17,12 +17,13 @@ A four-person group must be assigned to four seats in the **same** row. The grou
 A block can be used only if **none** of its seats are reserved. Each seat can be assigned to **at most **one group.
 
 Return an integer denoting the **maximum** number of four-person groups that can be assigned.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return an integer denoting the **maximum** number of four-person groups that can
 
 - **Input:** $n = 4, reservedSeats = [[4,3],[1,4],[4,6],[1,7]]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

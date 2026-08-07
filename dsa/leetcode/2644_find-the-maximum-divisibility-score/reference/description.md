@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums` and `divisors`.
 
 The **divisibility score** of $\text{divisors}[i]$ is the number of indices `j` such that $\text{nums}[j]$ is divisible by $\text{divisors}[i]$.
 
 Return the integer $\text{divisors}[i]$ with the **maximum** divisibility score. If multiple integers have the maximum score, return the smallest one.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ The divisibility score of $\text{divisors}[1]$ is 0 since none of the numbers in
 The divisibility score of $\text{divisors}[2]$ is 1 since $\text{nums}[0]$ is divisible by 20.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, \text{divisors.length} \le 1000$
 

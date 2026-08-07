@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Write a generator function that takes an integer `n` as an argument and returns a generator object which yields the **factorial sequence**.
 
 The **factorial sequence** is defined by the relation $n! = n * (n-1) * (n-2) * ... * 2 * 1​​​.$
 
 The factorial of 0 is defined as 1.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,6 +38,7 @@ gen.next().value // 2
 - **Explanation:**
 const gen = factorial(0)
 gen.next().value // 1
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 18$

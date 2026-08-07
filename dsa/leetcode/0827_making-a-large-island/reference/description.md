@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `n x n` binary matrix `grid`. You are allowed to change **at most one** `0` to be `1`.
 
 Return *the size of the largest **island** in* `grid` *after applying this operation*.
 
 An **island** is a 4-directionally connected group of `1`s.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ An **island** is a 4-directionally connected group of `1`s.
 - **Input:** `grid = [[1,1],[1,1]]`
 - **Output:** `4`
 - **Explanation:** Can't change any 0 to 1, only one island with area = 4.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length}$
 

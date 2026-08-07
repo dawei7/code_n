@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Write code that enhances all date objects such that you can call the `date.nextDay()` method on any date object and it will return the next day in the format *YYYY-MM-DD* as a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,6 +20,7 @@ date.nextDay(); // "2014-06-21"
 - **Input:** $date = "2017-10-31"$
 - **Output:** `"2017-11-01"`
 - **Explanation:** The day after 2017-10-31 is 2017-11-01.
-### Constraints
+
+### 4. Constraints
 
 - `new Date(date)` is a valid date object

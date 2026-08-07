@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words`.
 
@@ -21,7 +21,8 @@ Partition `words` into the **minimum** number of groups such that:
 - Every pair of strings in the same group are **equivalent**.
 
 Return an integer denoting the **minimum** number of groups.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ denote the total number of input characters.
 
 Return an integer equal to the minimum number of groups in a partition where every two strings in the same group are equivalent.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -99,7 +100,8 @@ The strings can be partitioned into the following groups:
 ​​​​​​​​​​​​​​All pairs of strings in each group are equivalent.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 10^{5}$
 

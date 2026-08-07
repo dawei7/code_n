@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You want to build `n` new buildings in a city. The new buildings will be built in a line and are labeled from `1` to `n`.
 
@@ -15,12 +15,13 @@ Additionally, there are city restrictions on the maximum height of specific buil
 It is guaranteed that each building will appear **at most once** in `restrictions`, and building `1` will **not** be in `restrictions`.
 
 Return *the **maximum possible height** of the **tallest** building*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ We can build the buildings with heights [0,1,2,3,4,5], and the tallest building 
 - **Output:** `5`
 - **Explanation:** The green area in the image indicates the maximum allowed height for each building.
 We can build the buildings with heights [0,1,2,3,3,4,4,5,4,3], and the tallest building has a height of 5.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{9}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Bikes`
 
@@ -21,11 +21,12 @@ Write a solution to find the **last** **time** when each bike was used.
 Return the result table ordered by the bikes that were **most recently used**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

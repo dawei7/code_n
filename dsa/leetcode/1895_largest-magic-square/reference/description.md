@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 A `k x k` **magic square** is a `k x k` grid filled with integers such that every row sum, every column sum, and both diagonal sums are **all equal**. The integers in the magic square **do not have to be distinct**. Every `1 x 1` grid is trivially a **magic square**.
 
 Given an `m x n` integer `grid`, return *the **size** (i.e., the side length *`k`*) of the **largest magic square** that can be found within this grid*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Every row sum, column sum, and diagonal sum of this magic square is equal to 12.
 
 - **Input:** `grid = [[5,1,3,1],[9,3,3,1],[1,3,3,8]]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `rectangles` where $\text{rectangles}[i] = [l_{i}, w_{i}]$ represents the $$i^{\text{th}}$$ rectangle of length $l_{i}$ and width $w_{i}$.
 
@@ -7,12 +7,13 @@ You can cut the $$i^{\text{th}}$$ rectangle to form a square with a side length 
 Let `maxLen` be the side length of the **largest** square you can obtain from any of the given rectangles.
 
 Return *the **number** of rectangles that can make a square with a side length of *`maxLen`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ The largest possible square is of length 5, and you can get it out of 3 rectangl
 
 - **Input:** $rectangles = [[2,3],[3,7],[4,3],[3,7]]$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rectangles.length} \le 1000$
 

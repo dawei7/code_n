@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of **distinct** positive integers. You need to sort the array in **increasing** order based on the sum of the digits of each number. If two numbers have the same digit sum, the **smaller** number appears first in the sorted order.
 
 Return the **minimum** number of swaps required to rearrange `nums` into this sorted order.
 
 A **swap** is defined as exchanging the values at two distinct positions in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ A **swap** is defined as exchanging the values at two distinct positions in the 
 - Thus, the minimum number of swaps required to rearrange `nums` is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

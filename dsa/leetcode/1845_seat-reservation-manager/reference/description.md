@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a system that manages the reservation state of `n` seats that are numbered from `1` to `n`.
 
@@ -9,12 +9,13 @@ Implement the `SeatManager` class:
 - `int reserve()` Fetches the **smallest-numbered** unreserved seat, reserves it, and returns its number.
 
 - `void unreserve(int seatNumber)` Unreserves the seat with the given `seatNumber`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ seatManager.reserve();    // The available seats are [4,5], so return the lowest
 seatManager.reserve();    // The only available seat is seat 5, so return 5.
 seatManager.unreserve(5); // Unreserve seat 5, so now the available seats are [5].
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

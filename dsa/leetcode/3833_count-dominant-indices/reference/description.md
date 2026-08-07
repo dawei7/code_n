@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -8,8 +8,7 @@ Your task is to count the number of indices `i` that are **dominant**.
 
 The **average** of a set of numbers is the value obtained by adding all the numbers together and dividing the sum by the total number of numbers.
 
-**Note**: The **rightmost** element of any array is **not** **dominant**.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +20,11 @@ Let $N=\lvert\texttt{nums}\rvert$. For an eligible index $i<N-1$, its right suff
 
 Return the number of indices `i` whose value is strictly greater than the average of all elements at indices greater than `i`.
 
-### Examples
+### 3. Note
+
+: The **rightmost** element of any array is **not** **dominant**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -55,7 +58,8 @@ Return the number of indices `i` whose value is strictly greater than the averag
 - Index $i = 2$ is not dominant as there are no elements to its right. Thus, the answer is 1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

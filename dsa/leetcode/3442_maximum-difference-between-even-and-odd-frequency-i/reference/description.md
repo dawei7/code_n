@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
@@ -9,12 +9,13 @@ Your task is to find the **maximum** difference $diff = freq(a_{1}) - freq(a_{2}
 - $a_{2}$ has an **even frequency** in the string.
 
 Return this **maximum** difference.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return this **maximum** difference.
 - The maximum difference is $3 - 2 = 1$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 100$
 

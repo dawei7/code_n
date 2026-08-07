@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `arr`, find a pattern of length `m` that is repeated `k` or more times.
 
 A **pattern** is a subarray (consecutive sub-sequence) that consists of one or more values, repeated multiple times **consecutively **without overlapping. A pattern is defined by its length and the number of repetitions.
 
 Return `true` *if there exists a pattern of length* `m` *that is repeated* `k` *or more times, otherwise return* `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` *if there exists a pattern of length* `m` *that is repeated* `k` *
 - **Input:** `arr = [1,2,1,2,1,3], m = 2, k = 3`
 - **Output:** `false`
 - **Explanation:** The pattern (1,2) is of length 2 but is repeated only 2 times. There is no pattern of length 2 that is repeated 3 or more times.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 100$
 

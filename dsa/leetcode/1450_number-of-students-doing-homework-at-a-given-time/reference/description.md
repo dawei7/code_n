@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given two integer arrays `startTime` and `endTime` and given an integer `queryTime`.
 
 The `ith` student started doing their homework at the time $\text{startTime}[i]$ and finished it at time $\text{endTime}[i]$.
 
 Return *the number of students* doing their homework at time `queryTime`. More formally, return the number of students where `queryTime` lays in the interval `[startTime[i], endTime[i]]` inclusive.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The third student started doing homework at time 3 and finished at time 7 and wa
 - **Input:** $startTime = [4], endTime = [4], queryTime = 4$
 - **Output:** `1`
 - **Explanation:** The only student was doing their homework at the queryTime.
-### Constraints
+
+### 4. Constraints
 
 - $\text{startTime.length} = \text{endTime.length}$
 

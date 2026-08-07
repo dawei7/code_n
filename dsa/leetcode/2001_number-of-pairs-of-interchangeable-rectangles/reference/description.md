@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given `n` rectangles represented by a **0-indexed** 2D integer array `rectangles`, where $\text{rectangles}[i] = [\text{width}_{i}, \text{height}_{i}]$ denotes the width and height of the $$i^{\text{th}}$$ rectangle.
 
 Two rectangles `i` and `j` (`i < j`) are considered **interchangeable** if they have the **same** width-to-height ratio. More formally, two rectangles are **interchangeable** if $\text{width}_{i}/\text{height}_{i} = \text{width}_{j}/\text{height}_{j}$ (using decimal division, not integer division).
 
 Return *the **number** of pairs of **interchangeable** rectangles in *`rectangles`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the **number** of pairs of **interchangeable** rectangles in *`rectangle
 - **Input:** $rectangles = [[4,5],[7,8]]$
 - **Output:** `0`
 - **Explanation:** There are no interchangeable pairs of rectangles.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{rectangles.length}$
 

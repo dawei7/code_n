@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Teams`
 
@@ -17,11 +17,12 @@ Write a solution to report all the possible matches of the league. Note that eve
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

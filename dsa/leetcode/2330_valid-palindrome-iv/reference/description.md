@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` consisting of only lowercase English letters. In one operation, you can change **any** character of `s` to any **other** character.
 
 Return `true`* if you can make *`s`* a palindrome after performing **exactly** one or two operations, or return *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return `true`* if you can make *`s`* a palindrome after performing **exactly** o
 
 Return `True` if the string can be transformed into a palindrome in exactly one or two character replacements; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Two operations could be performed to make s a palindrome so return true.
 - **Input:** `s = "abcdef"`
 - **Output:** `false`
 - **Explanation:** It is not possible to make s a palindrome using one or two operations so return false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

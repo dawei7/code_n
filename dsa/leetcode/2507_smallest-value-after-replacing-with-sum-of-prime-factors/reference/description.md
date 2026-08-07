@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`.
 
@@ -7,12 +7,13 @@ Continuously replace `n` with the sum of its **prime factors**.
 - Note that if a prime factor divides `n` multiple times, it should be included in the sum as many times as it divides `n`.
 
 Return *the smallest value *`n`* will take on.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Return *the smallest value *`n`* will take on.*
 - **Output:** `3`
 - **Explanation:** Initially, n = 3.
 3 is the smallest value n will take on.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$

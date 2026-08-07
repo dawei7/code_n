@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a tree (i.e., a connected, undirected graph with no cycles) structure country network consisting of `n` cities numbered from `0` to $n - 1$ and exactly $n - 1$ roads. The capital city is city `0`. You are given a 2D integer array `roads` where $\text{roads}[i] = [a_{i}, b_{i}]$ denotes that there exists a **bidirectional road** connecting cities $a_{i}$ and $b_{i}$.
 
@@ -9,12 +9,13 @@ There is a car in each city. You are given an integer `seats` that indicates the
 A representative can use the car in their city to travel or change the car and ride with another representative. The cost of traveling between two cities is one liter of fuel.
 
 Return *the minimum number of liters of fuel to reach the capital city*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ It can be proven that 7 is the minimum number of liters of fuel needed.
 - **Input:** $roads = [], seats = 1$
 - **Output:** `0`
 - **Explanation:** No representatives need to travel to the capital city.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -19,12 +19,13 @@ Write a solution to calculate the bonus of each employee. The bonus of an employ
 Return the result table ordered by $\text{employee}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

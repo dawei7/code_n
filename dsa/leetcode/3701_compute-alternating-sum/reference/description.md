@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 The **alternating sum** of `nums` is the value obtained by **adding** elements at even indices and **subtracting** elements at odd indices. That is, $\text{nums}[0] - \text{nums}[1] + \text{nums}[2] - \text{nums}[3]...$
 
 Return an integer denoting the alternating sum of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Indices are zero-based. Values at indices $0,2,4,\ldots$ have positive signs, wh
 
 Return the signed sum of all elements under that alternating sign pattern.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return the signed sum of all elements under that alternating sign pattern.
 - The alternating sum is $\text{nums}[0] = 100$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

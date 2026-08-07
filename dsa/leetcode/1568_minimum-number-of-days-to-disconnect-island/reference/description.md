@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary grid `grid` where `1` represents land and `0` represents water. An **island** is a maximal **4-directionally** (horizontal or vertical) connected group of `1`'s.
 
@@ -7,12 +7,13 @@ The grid is said to be **connected** if we have **exactly one island**, otherwis
 In one day, we are allowed to change **any **single land cell `(1)` into a water cell `(0)`.
 
 Return *the minimum number of days to disconnect the grid*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Change land grid[1][1] and grid[0][2] to water and get 2 disconnected island.
 - **Input:** `grid = [[1,1]]`
 - **Output:** `2`
 - **Explanation:** Grid of full water is also disconnected ([[1,1]] -> [[0,0]]), 0 islands.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

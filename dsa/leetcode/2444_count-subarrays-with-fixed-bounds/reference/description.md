@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `minK` and `maxK`.
 
@@ -11,12 +11,13 @@ A **fixed-bound subarray** of `nums` is a subarray that satisfies the following 
 Return *the **number** of fixed-bound subarrays*.
 
 A **subarray** is a **contiguous** part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A **subarray** is a **contiguous** part of an array.
 - **Input:** `nums = [1,1,1,1], minK = 1, maxK = 1`
 - **Output:** `10`
 - **Explanation:** Every subarray of nums is a fixed-bound subarray. There are 10 possible subarrays.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

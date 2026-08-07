@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An ant is on a boundary. It sometimes goes **left** and sometimes **right**.
 
@@ -10,17 +10,18 @@ You are given an array of **non-zero** integers `nums`. The ant starts reading `
 
 Return *the number of times the ant **returns** to the boundary.*
 
-**Notes:**
-
-- There is an infinite space on both sides of the boundary.
-
-- We check whether the ant is on the boundary only after it has moved $|\text{nums}[i]|$ units. In other words, if the ant crosses the boundary during its movement, it does not count.<!-- notionvc: 5ff95338-8634-4d02-a085-1e83c0be6fcd -->
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- There is an infinite space on both sides of the boundary.
+
+- We check whether the ant is on the boundary only after it has moved $|\text{nums}[i]|$ units. In other words, if the ant crosses the boundary during its movement, it does not count.<!-- notionvc: 5ff95338-8634-4d02-a085-1e83c0be6fcd -->
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ After the second step, the ant is 5 steps to the right of the boundary<!-- notio
 After the third step, the ant is 2 steps to the right of the boundary<!-- notionvc: 61ace51c-559f-4bc6-800f-0a0db2540433 -->.
 After the fourth step, the ant is 2 steps to the left of the boundary<!-- notionvc: 61ace51c-559f-4bc6-800f-0a0db2540433 -->.
 The ant never returned to the boundary, so the answer is 0.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` that has lowercase English letters in its **even** indices and digits in its **odd** indices.
 
@@ -10,13 +10,16 @@ For every **odd** index `i`, you want to replace the digit $s[i]$ with the resul
 
 Return `s`* *after replacing all digits. It is **guaranteed** that* *$shift(s[i-1], s[i])$* *will never exceed* *`'z'`.
 
-**Note** that `shift(c, x)` is **not** a preloaded function, but an operation *to be implemented* as part of the solution.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that `shift(c, x)` is **not** a preloaded function, but an operation *to be implemented* as part of the solution.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ Return `s`* *after replacing all digits. It is **guaranteed** that* *$shift(s[i-
 - s[3] -> shift('b',2) = 'd'
 - s[5] -> shift('c',3) = 'f'
 - s[7] -> shift('d',4) = 'h'
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

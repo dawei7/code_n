@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` node of a binary tree, your task is to create a string representation of the tree following a specific set of formatting rules. The representation should be based on a preorder traversal of the binary tree and must adhere to the following guidelines:
 
@@ -14,12 +14,13 @@ Given the `root` node of a binary tree, your task is to create a string represen
 - **Omitting Empty Parentheses**: Any empty parentheses pairs (i.e., `()`) should be omitted from the final string representation of the tree, with one specific exception: when a node has a right child but no left child. In such cases, you must include an empty pair of parentheses to indicate the absence of the left child. This ensures that the one-to-one mapping between the string representation and the original binary tree structure is maintained.
 
 	In summary, empty parentheses pairs should be omitted when a node has only a left child or no children. However, when a node has a right child but no left child, an empty pair of parentheses must precede the representation of the right child to reflect the tree's structure accurately.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Given the `root` node of a binary tree, your task is to create a string represen
 - **Input:** `root = [1,2,3,null,4]`
 - **Output:** `"1(2()(4))(3)"`
 - **Explanation:** Almost the same as the first example, except the () after 2 is necessary to indicate the absence of a left child for 2 and the presence of a right child.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

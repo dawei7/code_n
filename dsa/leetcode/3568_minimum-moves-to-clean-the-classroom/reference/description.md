@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` grid `classroom` where a student volunteer is tasked with cleaning up litter scattered around the room. Each cell in the grid is one of the following:
 
@@ -17,12 +17,13 @@ You are also given an integer `energy`, representing the student's maximum energ
 Each move to an adjacent cell (up, down, left, or right) costs 1 unit of energy. If the energy reaches 0, the student can only continue if they are on a reset area `'R'`, which resets the energy to its **maximum** capacity `energy`.
 
 Return the **minimum** number of moves required to collect all litter items, or `-1` if it's impossible.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -82,7 +83,8 @@ Return the **minimum** number of moves required to collect all litter items, or 
 No valid path collects all `'L'`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{classroom.length} \le 20$
 

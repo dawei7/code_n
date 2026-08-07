@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A social media company is trying to monitor activity on their site by analyzing the number of tweets that occur in select periods of time. These periods can be partitioned into smaller **time chunks** based on a certain frequency (every **minute**, **hour**, or **day**).
 
@@ -46,12 +46,13 @@ tweetCounts.getTweetCountsPerFrequency("minute", "tweet3", 0, 60); // return [2,
 tweetCounts.recordTweet("tweet3", 120);                            // New tweet "tweet3" at time 120
 tweetCounts.getTweetCountsPerFrequency("hour", "tweet3", 0, 210);  // return [4]; chunk [0,210] had 4 tweets
 ```
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $0 \le time, startTime, endTime \le 10^{9}$
 

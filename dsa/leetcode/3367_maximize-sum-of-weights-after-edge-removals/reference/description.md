@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an **undirected** tree with `n` nodes numbered `0` to $n - 1$. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight $w_{i}$ in the tree.
 
@@ -9,12 +9,13 @@ Your task is to remove *zero or more* edges such that:
 - The sum of the weights of the remaining edges is **maximized**.
 
 Return the **maximum **possible sum of weights for the remaining edges after making the necessary removals.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return the **maximum **possible sum of weights for the remaining edges after mak
 - The sum of weights is 65. Thus, the answer is 65.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

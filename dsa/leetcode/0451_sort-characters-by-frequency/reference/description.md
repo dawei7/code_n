@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s`, sort it in **decreasing order** based on the **frequency** of the characters. The **frequency** of a character is the number of times it appears in the string.
 
 Return *the sorted string*. If there are multiple answers, return *any of them*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return *the sorted string*. If there are multiple answers, return *any of them*.
 
 Uppercase and lowercase forms are distinct characters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Note that "cacaca" is incorrect, as the same characters must be together.
 - **Output:** `"bbAa"`
 - **Explanation:** "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{5}$
 

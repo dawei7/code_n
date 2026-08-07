@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 The **frequency** of an element is the number of times it occurs in an array.
 
 You are given an integer array `nums` and an integer `k`. In one operation, you can choose an index of `nums` and increment the element at that index by `1`.
 
 Return *the **maximum possible frequency** of an element after performing **at most** *`k`* operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return *the **maximum possible frequency** of an element after performing **at m
 
 - **Input:** `nums = [3,9,6], k = 2`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

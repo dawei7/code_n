@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You have `n` bulbs in a row numbered from `1` to `n`. Initially, all the bulbs are turned off. We turn on **exactly one** bulb every day until all bulbs are on after `n` days.
 
 You are given an array `bulbs` of length `n` where $\text{bulbs}[i] = x$ means that on the $(i+1)^th$ day, we will turn on the bulb at position `x` where `i` is **0-indexed** and `x` is **1-indexed.**
 
 Given an integer `k`, return *the **minimum day number** such that there exists two **turned on** bulbs that have **exactly** `k` bulbs between them that are **all turned off**. If there isn't such day, return `-1`.*
-### Function Contract
+
+### 2. Function Contract
 
 $solve(bulbs: \text{list}[int], k: int) -> int$
 
@@ -18,7 +19,7 @@ $solve(bulbs: \text{list}[int], k: int) -> int$
 
 Return the earliest one-based day when such a pair of lit endpoints exists. Return `-1` when no day satisfies the condition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ We return 2 because on the second day, there were two on bulbs with one off bulb
 
 - **Input:** $bulbs = [1,2,3], k = 1$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{bulbs.length}$
 

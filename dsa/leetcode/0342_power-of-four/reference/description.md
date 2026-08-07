@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *`true` if it is a power of four. Otherwise, return `false`*.
 
 An integer `n` is a power of four, if there exists an integer `x` such that $n = 4^x$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ An integer `n` is a power of four, if there exists an integer `x` such that $n =
 
 Return `true` exactly when `n` equals an integer power of four; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` exactly when `n` equals an integer power of four; otherwise return
 
 - **Input:** $n = 1$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $-2^{31} \le n \le 2^{31} - 1$
 

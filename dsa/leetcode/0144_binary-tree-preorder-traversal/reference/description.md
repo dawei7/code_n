@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the preorder traversal of its nodes' values*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `root` of a binary tree, return *the preorder traversal of its nodes' 
 
 Return the node values in root-left-right preorder.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ Return the node values in root-left-right preorder.
 **Output:** [1]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[0, 100]`.
 

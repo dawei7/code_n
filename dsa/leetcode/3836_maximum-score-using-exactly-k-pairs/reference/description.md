@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` of lengths `n` and `m` respectively, and an integer `k`.
 
@@ -13,7 +13,8 @@ For each chosen pair `(i, j)`, you gain a score of $\text{nums1}[i] * \text{nums
 The total **score** is the **sum** of the products of all selected pairs.
 
 Return an integer representing the **maximum** achievable total score.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ $\sum_{t=1}^{K}\texttt{nums1}[i_t]\texttt{nums2}[j_t].$
 
 Return the largest score among all legal selections of exactly $K$ pairs.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -93,7 +94,8 @@ The optimal choice of index pairs is:
 The total score is $-3 + (-4) = -7$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums1.length} \le 100$
 

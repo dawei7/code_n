@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Person`
 
@@ -22,7 +22,8 @@ For Pandas users, please note that you are supposed to modify `Person` in place.
 After running your script, the answer shown is the `Person` table. The driver will first compile and run your piece of code and then show the `Person` table. The final order of the `Person` table **does not matter**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ The result format is in the following example.
 
 Modify `Person` so each email remains exactly once at its smallest original `id`. The final row order does not matter.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

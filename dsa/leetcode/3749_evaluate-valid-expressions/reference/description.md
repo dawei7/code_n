@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `expression` that represents a nested mathematical expression in a simplified form.
 
@@ -19,7 +19,8 @@ The **operations** are defined as follows:
 - $div(a,b) = a / b$
 
 Return an integer representing the **result** after fully evaluating the expression.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ There is no whitespace in the grammar. Operands are separated by one comma and e
 
 Return the integer obtained after recursively applying every encoded operation to its two evaluated operands.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ The expression is a single integer literal, so the result is -42.
 Therefore, the entire expression evaluates to 8.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{expression.length} \le 10^{5}$
 

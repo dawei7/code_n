@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `transactions`, where $\text{transactions}[i] = [\text{cost}_{i}, \text{cashback}_{i}]$.
 
 The array describes transactions, where each transaction must be completed exactly once in **some order**. At any given moment, you have a certain amount of `money`. In order to complete transaction `i`, $money \ge \text{cost}_{i}$ must hold true. After performing a transaction, `money` becomes $money - \text{cost}_{i} + \text{cashback}_{i}$.
 
 Return* the minimum amount of *`money`* required before any transaction so that all of the transactions can be completed **regardless of the order** of the transactions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ It can be shown that starting with money < 10 will fail to complete all transact
 - If transactions are in the order [[3,0],[0,3]], the minimum money required to complete the transactions is 3.
 - If transactions are in the order [[0,3],[3,0]], the minimum money required to complete the transactions is 0.
 Thus, starting with money = 3, the transactions can be performed in any order.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{transactions.length} \le 10^{5}$
 

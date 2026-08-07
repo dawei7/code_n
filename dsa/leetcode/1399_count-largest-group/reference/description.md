@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
 We need to group the numbers from `1` to `n` according to the sum of its digits. For example, the numbers 14 and 5 belong to the **same** group, whereas 13 and 3 belong to **different** groups.
 
 Return the number of groups that have the largest size, i.e. the **maximum** number of elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ There are 4 groups with largest size.
 - **Input:** $n = 2$
 - **Output:** `2`
 - **Explanation:** There are 2 groups [1], [2] of size 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Stadium`
 
@@ -20,12 +20,13 @@ Write a solution to display the records with three or more rows with **consecuti
 Return the result table ordered by $\text{visit}_{date}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

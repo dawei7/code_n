@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a restaurant with a single chef. You are given an array `customers`, where $\text{customers}[i] = [\text{arrival}_{i}, \text{time}_{i}]:$
 
@@ -9,12 +9,13 @@ There is a restaurant with a single chef. You are given an array `customers`, wh
 When a customer arrives, he gives the chef his order, and the chef starts preparing it once he is idle. The customer waits till the chef finishes preparing his order. The chef does not prepare food for more than one customer at a time. The chef prepares food for customers **in the order they were given in the input**.
 
 Return *the **average** waiting time of all customers*. Solutions within $10^{-5}$ from the actual answer are considered accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ So the average waiting time = (2 + 6 + 7) / 3 = 5.
 3) The third customer arrives at time 10, the chef takes his order and starts preparing it at time 11, and finishes at time 14, so the waiting time of the third customer is 14 - 10 = 4.
 4) The fourth customer arrives at time 20, the chef takes his order and starts preparing it immediately at time 20, and finishes at time 21, so the waiting time of the fourth customer is 21 - 20 = 1.
 So the average waiting time = (2 + 6 + 4 + 1) / 4 = 3.25.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{customers.length} \le 10^{5}$
 

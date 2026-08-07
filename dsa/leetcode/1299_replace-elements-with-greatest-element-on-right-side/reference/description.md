@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `arr`, replace every element in that array with the greatest element among the elements to its right, and replace the last element with `-1`.
 
 After doing so, return the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ After doing so, return the array.
 - **Input:** `arr = [400]`
 - **Output:** `[-1]`
 - **Explanation:** There are no elements to the right of index 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

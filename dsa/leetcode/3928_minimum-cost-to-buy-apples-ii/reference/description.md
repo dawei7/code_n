@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an integer array `prices` of length `n`, where $\text{prices}[i]$ is the price of apples at shop `i`.
 
@@ -19,7 +19,8 @@ For each shop `i`, you can either:
 The forward path, where you travel empty, and the return path may be **different**.
 
 Return an integer array `ans` of length `n`, where $\text{ans}[i]$ is the **minimum** total cost to buy apples starting from shop `i`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ Let $m = \texttt{roads.length}$. For an edge $e$, define its empty weight as $c_
 
 Return an integer array `ans` of length `n`. For each start `i`, $\text{ans}[i]$ is the minimum of the local price and every valid empty journey to a purchase shop followed by a loaded journey back to `i`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -234,7 +235,8 @@ Thus, the answer is `[8, 4, 6]`.
 Thus, the answer is `[5, 11, 1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given three integer arrays `a`, `b`, and `c`, return the number of triplets $(a[i], b[j], c[k])$, such that the bitwise `XOR` between the elements of each triplet has an **even** number of set bits.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Consider these four triplets:
 - $(a[1], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{a.length}, \text{b.length}, \text{c.length} \le 10^{5}$
 

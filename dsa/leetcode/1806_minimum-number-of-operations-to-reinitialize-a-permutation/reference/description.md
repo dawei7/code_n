@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **even** integer `n`​​​​​​. You initially have a permutation `perm` of size `n`​​ where $\text{perm}[i] = i$​ **(0-indexed)**​​​​.
 
@@ -11,12 +11,13 @@ In one operation, you will create a new array `arr`, and for each `i`:
 You will then assign `arr`​​​​ to `perm`.
 
 Return *the minimum **non-zero** number of operations you need to perform on *`perm`* to return the permutation to its initial value.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ So it takes only 2 operations.
 
 - **Input:** $n = 6$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 1000$
 

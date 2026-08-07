@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two positive integers `n` and `k`.
 
 You can choose **any** bit in the **binary representation** of `n` that is equal to 1 and change it to 0.
 
 Return the *number of changes* needed to make `n` equal to `k`. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,6 +51,7 @@ We can change the first and fourth bits of `n`. The resulting integer is $n = (<
 It is not possible to make `n` equal to `k`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, k \le 10^{6}$

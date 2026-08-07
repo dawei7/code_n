@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a long table with a line of plates and candles arranged on top of it. You are given a **0-indexed** string `s` consisting of characters `'*'` and `'|'` only, where a `'*'` represents a **plate** and a `'|'` represents a **candle**.
 
@@ -7,12 +7,13 @@ You are also given a **0-indexed** 2D integer array `queries` where $\text{queri
 - For example, `s = "||**||**|*"`, and a query `[3, 8]` denotes the substring `"*||**<u>**</u>**|"`. The number of plates between candles in this substring is `2`, as each of the two plates has at least one candle **in the substring** to its left **and** right.
 
 Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to the* $$i^{\text{th}}$$ *query*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *an integer array* `answer` *where* $\text{answer}[i]$ *is the answer to 
 - **Explanation:**
 - queries[0] has nine plates between candles.
 - The other queries have zero plates between candles.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 10^{5}$
 

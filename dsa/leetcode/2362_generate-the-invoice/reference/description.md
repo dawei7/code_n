@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Products`
 
@@ -32,11 +32,12 @@ Write a solution to show the details of the invoice with the highest price. If t
 Return the result table in **any order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

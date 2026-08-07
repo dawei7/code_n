@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 We know that `4` and `7` are **lucky** digits. Also, a number is called **lucky** if it contains **only** lucky digits.
 
 You are given an integer `k`, return* the *$$k^{\text{th}}$$* lucky number represented as a **string**.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ You are given an integer `k`, return* the *$$k^{\text{th}}$$* lucky number repre
 - **Input:** $k = 1000$
 - **Output:** `"777747447"`
 - **Explanation:** It can be shown that the 1000^th lucky number is 777747447.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 10^{9}$

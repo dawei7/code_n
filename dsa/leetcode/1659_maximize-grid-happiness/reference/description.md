@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given four integers, `m`, `n`, `introvertsCount`, and `extrovertsCount`. You have an `m x n` grid, and there are two types of people: introverts and extroverts. There are `introvertsCount` introverts and `extrovertsCount` extroverts.
 
@@ -13,12 +13,13 @@ The **happiness** of each person is calculated as follows:
 Neighbors live in the directly adjacent cells north, east, south, and west of a person's cell.
 
 The **grid happiness** is the **sum** of each person's happiness. Return* the **maximum possible grid happiness**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The grid happiness is 90 + 80 + 90 = 260.
 
 - **Input:** $m = 2, n = 2, introvertsCount = 4, extrovertsCount = 0$
 - **Output:** `240`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 5$
 

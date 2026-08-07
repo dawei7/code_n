@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **positive** integers `n` and `k`.
 
@@ -11,7 +11,8 @@ A **valid sequence** is a sequence of `k` positive integers such that:
 Return the number of valid sequences. Since the answer may be very large, return it **modulo** $10^{9}​​​​​​​ + 7$.
 
 Two sequences are considered **different** if they differ at any index. For example, `[1, 1, 2]` and `[1, 2, 1]` are considered different sequences.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ and $\prod_{i=1}^{k}a_i$ is even.
 
 Return the number of distinct valid ordered sequences, reduced modulo $10^9+7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -130,7 +131,8 @@ There are 2 sequences with an even product, thus the answer is 2.
 The only possible sequence of length $k = 5$ whose sum is 5 is `[1, 1, 1, 1, 1]`, which has an odd product. Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{5}$
 

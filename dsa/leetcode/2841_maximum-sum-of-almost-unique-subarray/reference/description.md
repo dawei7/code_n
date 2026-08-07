@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two positive integers `m` and `k`.
 
@@ -7,12 +7,13 @@ Return *the **maximum sum** out of all **almost unique** subarrays of length *`k
 A subarray of `nums` is **almost unique** if it contains at least `m` distinct elements.
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 - **Input:** `nums = [1,2,1,2,1,2,1], m = 3, k = 3`
 - **Output:** `0`
 - **Explanation:** There are no subarrays of size k = 3 that contain at least m = 3 distinct elements in the given array [1,2,1,2,1,2,1]. Therefore, no almost unique subarrays exist, and the maximum sum is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

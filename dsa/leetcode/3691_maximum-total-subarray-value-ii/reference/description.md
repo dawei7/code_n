@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -9,12 +9,13 @@ The **value** of a subarray `nums[l..r]` is defined as: $max(nums[l..r]) - min(n
 The **total value** is the sum of the **values** of all chosen subarrays.
 
 Return the **maximum** possible total value you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ One optimal approach is:
 Adding these gives $4 + 4 + 4 = 12$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 5 * 10^​​​​​​​4$
 

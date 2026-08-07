@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array of `events` where $\text{events}[i] = [\text{startTime}_{i}, \text{endTime}_{i}, \text{value}_{i}]$. The $$i^{\text{th}}$$ event starts at $\text{startTime}_{i}$_ and ends at $\text{endTime}_{i}$, and if you attend this event, you will receive a value of $\text{value}_{i}$. You can choose **at most** **two** **non-overlapping** events to attend such that the sum of their values is **maximized**.
 
 Return *this **maximum** sum.*
 
 Note that the start time and end time is **inclusive**: that is, you cannot attend two events where one of them starts and the other ends at the same time. More specifically, if you attend an event with end time `t`, the next event must start at or after $t + 1$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Note that the start time and end time is **inclusive**: that is, you cannot atte
 - **Input:** $events = [[1,5,3],[1,5,1],[6,6,5]]$
 - **Output:** `8`
 - **Explanation:** Choose events 0 and 2 for a sum of 3 + 5 = 8.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{events.length} \le 10^{5}$
 

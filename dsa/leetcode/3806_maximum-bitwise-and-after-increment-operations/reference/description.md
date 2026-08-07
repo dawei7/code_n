@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `k` and `m`.
 
 You may perform **at most** `k` operations. In one operation, you may choose any index `i` and **increase** $\text{nums}[i]$ by 1.
 
 Return an integer denoting the **maximum** possible **bitwise AND** of any **subset** of size `m` after performing up to `k` operations optimally.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Operations may be distributed among indices i
 
 Return the greatest integer that can equal the bitwise AND of some size-`m` subset after no more than `k` increments.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Return the greatest integer that can equal the bitwise AND of some size-`m` subs
 - The two chosen values become `[2, 2]`, and their bitwise AND is 2, which is the maximum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 5 * 10^{4}$
 

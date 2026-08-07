@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `grid` of size `m x n`, and an integer `limit`.
 
@@ -7,7 +7,8 @@ You may remove zero or more columns from the grid, but at least one column must 
 A grid is called **consistent** if for every row `i`, and for every pair of adjacent remaining columns `a` and `b` with `a < b`, the following holds: $|\text{grid}[i][b] - \text{grid}[i][a]| \le limit$.
 
 Return the **maximum** number of columns that can remain such that the resulting grid is **consistent**.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(grid, limit) -> int`
 
@@ -24,7 +25,7 @@ Column removal preserves relative order, and at least one column must remain. A 
 
 Return the largest number of columns that can be retained while every adjacent retained pair is compatible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the largest number of columns that can be retained while every adjacent r
 - Thus, the maximum number of columns that can remain is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 250$
 

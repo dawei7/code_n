@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -11,12 +11,13 @@ Find the longest subsequence of `nums` that meets the following requirements:
 Return* the length of the **longest** **subsequence** that meets the requirements.*
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The subsequence has a length of 4, so we return 4.
 - **Explanation:**
 The longest subsequence that meets the requirements is [1].
 The subsequence has a length of 1, so we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

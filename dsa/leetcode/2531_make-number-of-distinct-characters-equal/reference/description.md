@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** strings `word1` and `word2`.
 
 A **move** consists of choosing two indices `i` and `j` such that $0 \le i < \text{word1.length}$ and $0 \le j < \text{word2.length}$ and swapping $\text{word1}[i]$ with $\text{word2}[j]$.
 
 Return `true` *if it is possible to get the number of distinct characters in* `word1` *and* `word2` *to be equal with **exactly one** move. *Return `false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` *if it is possible to get the number of distinct characters in* `w
 - **Input:** $word1 = "abcde", word2 = "fghij"$
 - **Output:** `true`
 - **Explanation:** Both resulting strings will have 5 distinct characters, regardless of which indices we swap.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 10^{5}$
 

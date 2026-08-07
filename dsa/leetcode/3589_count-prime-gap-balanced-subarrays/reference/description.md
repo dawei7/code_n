@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -12,17 +12,18 @@ A **subarray** is called **prime-gap balanced** if:
 
 Return the count of **prime-gap balanced subarrays** in `nums`.
 
-**Note:**
-
-- A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-
-- A prime number is a natural number greater than 1 with only two factors, 1 and itself.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- A **subarray** is a contiguous **non-empty** sequence of elements within an array.
+
+- A prime number is a natural number greater than 1 with only two factors, 1 and itself.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Prime-gap balanced subarrays are:
 Thus, the answer is 4.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

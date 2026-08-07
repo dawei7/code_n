@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string array `numbers` that represents phone numbers. Return `true` if no phone number is a prefix of any other phone number; otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ No number is a prefix of another number, so the output is `true`.
 The string `"001"` is a prefix of the string `"00153"`. Thus, the output is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{numbers.length} \le 50$
 

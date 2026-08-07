@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word` of size `n`, and an integer `k` such that `k` divides `n`.
 
@@ -7,12 +7,13 @@ In one operation, you can pick any two indices `i` and `j`, that are divisible b
 Return *the **minimum** number of operations required to make* `word` ***k-periodic***.
 
 We say that `word` is **k-periodic** if there is some string `s` of length `k` such that `word` can be obtained by concatenating `s` an arbitrary number of times. For example, if $word = “ababab”$, then `word` is 2-periodic for `s = "ab"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ We can obtain a 2-periodic string by applying the operations in the table below.
 <div id="gtx-trans" style="position: absolute; left: 107px; top: 238.5px;">
 <div class="gtx-trans-icon"> </div>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{word.length} \le 10^{5}$
 

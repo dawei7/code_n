@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given a `m x n` `grid` filled with non-negative numbers, find a path from top left to bottom right, which minimizes the sum of all numbers along its path.
 
-**Note:** You can only move either down or right at any point in time.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +12,11 @@ Given a `m x n` `grid` filled with non-negative numbers, find a path from top le
 
 Return the smallest sum attainable along an allowed top-left-to-bottom-right path, including both endpoints.
 
-### Examples
+### 3. Note
+
+You can only move either down or right at any point in time.
+
+### 4. Examples
 
 #### Example 1
 
@@ -26,7 +29,8 @@ Return the smallest sum attainable along an allowed top-left-to-bottom-right pat
 
 - **Input:** `grid = [[1,2,3],[4,5,6]]`
 - **Output:** `12`
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{grid.length}$
 

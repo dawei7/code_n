@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `goal`.
 
@@ -7,12 +7,13 @@ You want to choose a subsequence of `nums` such that the sum of its elements is 
 Return *the **minimum** possible value of* $abs(sum - goal)$.
 
 Note that a subsequence of an array is an array formed by removing some elements **(possibly all or none)** of the original array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The absolute difference is abs(-4 - (-5)) = abs(1) = 1, which is the minimum.
 
 - **Input:** `nums = [1,2,3], goal = -7`
 - **Output:** `7`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 40$
 

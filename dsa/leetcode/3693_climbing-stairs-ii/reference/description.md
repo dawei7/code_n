@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are climbing a staircase with $n + 1$ steps, numbered from 0 to `n`.
 
@@ -9,7 +9,8 @@ From step `i`, you can jump **only** to step $i + 1$, $i + 2$, or $i + 3$. The c
 You start from step 0 with $cost = 0$.
 
 Return the **minimum** total cost to reach step `n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Only jumps of length $1$, $2$, or $3$ are permitted. Landing on step $j$ after l
 
 Return the minimum total cost of any valid route from step $0$ to step $n$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -113,7 +114,8 @@ Thus, the minimum total cost is $5 + 6 = 11$
 The optimal path is `0 → 3` with total cost = $\text{costs}[3] + (3 - 0)^2 = 3 + 9 = 12$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{costs.length} \le 10^{5}​​​​​​​$
 

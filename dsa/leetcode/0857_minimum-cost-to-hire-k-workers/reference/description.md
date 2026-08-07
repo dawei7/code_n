@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` workers. You are given two integer arrays `quality` and `wage` where $\text{quality}[i]$ is the quality of the $$i^{\text{th}}$$ worker and $\text{wage}[i]$ is the minimum wage expectation for the $$i^{\text{th}}$$ worker.
 
@@ -9,12 +9,13 @@ We want to hire exactly `k` workers to form a **paid group**. To hire a group of
 - In the group, each worker's pay must be directly proportional to their quality. This means if a worker’s quality is double that of another worker in the group, then they must be paid twice as much as the other worker.
 
 Given the integer `k`, return *the least amount of money needed to form a paid group satisfying the above conditions*. Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Given the integer `k`, return *the least amount of money needed to form a paid g
 - **Input:** $quality = [3,1,10,10,1], wage = [4,8,2,2,7], k = 3$
 - **Output:** `30.66667`
 - **Explanation:** We pay 4 to 0^th worker, 13.33333 to 2^nd and 3^rd workers separately.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{quality.length} = \text{wage.length}$
 

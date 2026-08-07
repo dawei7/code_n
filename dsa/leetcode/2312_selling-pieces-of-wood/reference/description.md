@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n` that represent the height and width of a rectangular piece of wood. You are also given a 2D integer array `prices`, where $\text{prices}[i] = [h_{i}, w_{i}, \text{price}_{i}]$ indicates you can sell a rectangular piece of wood of height $h_{i}$ and width $w_{i}$ for $\text{price}_{i}$ dollars.
 
@@ -7,12 +7,13 @@ To cut a piece of wood, you must make a vertical or horizontal cut across the **
 Return *the **maximum** money you can earn after cutting an *`m x n`* piece of wood*.
 
 Note that you can cut the piece of wood as many times as you want.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It can be shown that 19 is the maximum amount of money that can be earned.
 This obtains a total of 30 + 2 = 32 money earned.
 It can be shown that 32 is the maximum amount of money that can be earned.
 Notice that we cannot rotate the 1 x 4 piece of wood to obtain a 4 x 1 piece of wood.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 200$
 

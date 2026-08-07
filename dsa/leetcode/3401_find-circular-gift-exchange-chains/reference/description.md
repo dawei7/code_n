@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `SecretSanta`
 
@@ -79,6 +79,6 @@ The result table is ordered by the chain length and total gift value of the chai
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

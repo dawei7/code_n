@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `matchsticks` where $\text{matchsticks}[i]$ is the length of the $$i^{\text{th}}$$ matchstick. You want to use **all the matchsticks** to make one square. You **should not break** any stick, but you can link them up, and each matchstick must be used **exactly one time**.
 
 Return `true` if you can make this square and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return `true` if you can make this square and `false` otherwise.
 Each array entry represents a separate physical stick. Every entry must contribute to one side in full, without
 splitting or leaving any stick unused.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ splitting or leaving any stick unused.
 - **Input:** $matchsticks = [3,3,3,3,4]$
 - **Output:** `false`
 - **Explanation:** You cannot find a way to form a square with all the matchsticks.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{matchsticks.length} \le 15$
 

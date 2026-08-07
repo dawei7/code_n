@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, each of which represents a non-negative rational number, return `true` if and only if they represent the same number. The strings may use parentheses to denote the repeating part of the rational number.
 
@@ -23,12 +23,13 @@ A **rational number** can be represented using up to three parts: `<IntegerPart>
 The repeating portion of a decimal expansion is conventionally denoted within a pair of round brackets. For example:
 
 - $1/6 = 0.16666666... = 0.1(6) = 0.1666(6) = 0.166(66)$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The repeating portion of a decimal expansion is conventionally denoted within a 
 - **Output:** `true`
 - **Explanation:** "0.9(9)" represents 0.999999999... repeated forever, which equals 1.  [<a href="https://en.wikipedia.org/wiki/0.999..." target="_blank">See this link for an explanation.</a>]
 "1." represents the number 1, which is formed correctly: (IntegerPart) = "1" and (NonRepeatingPart) = "".
-### Constraints
+
+### 4. Constraints
 
 - Each part consists only of digits.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `8 x 8` chessboard containing `n` pieces (rooks, queens, or bishops). You are given a string array `pieces` of length `n`, where $\text{pieces}[i]$ describes the type (rook, queen, or bishop) of the $$i^{\text{th}}$$ piece. In addition, you are given a 2D integer array `positions` also of length `n`, where $\text{positions}[i] = [r_{i}, c_{i}]$ indicates that the $$i^{\text{th}}$$ piece is currently at the **1-based** coordinate $(r_{i}, c_{i})$ on the chessboard.
 
@@ -14,19 +14,20 @@ You must make a **move** for every piece on the board simultaneously. A **move c
 
 Return *the number of **valid** move combinations*​​​​​.
 
-**Notes:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - **No two pieces** will start in the** same** square.
 
 - You may choose the square a piece is already on as its **destination**.
 
 - If two pieces are **directly adjacent** to each other, it is valid for them to **move past each other** and swap positions in one second.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return *the number of **valid** move combinations*​​​​​.
 - **Input:** $pieces = ["bishop"], positions = [[4,3]]$
 - **Output:** `12`
 - **Explanation:** The image above shows the possible squares the piece can move to.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{pieces.length}$
 

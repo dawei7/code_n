@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Along a long library corridor, there is a line of seats and decorative plants. You are given a **0-indexed** string `corridor` of length `n` consisting of letters `'S'` and `'P'` where each `'S'` represents a seat and each `'P'` represents a plant.
 
@@ -7,12 +7,13 @@ One room divider has **already** been installed to the left of index `0`, and **
 Divide the corridor into non-overlapping sections, where each section has **exactly two seats** with any number of plants. There may be multiple ways to perform the division. Two ways are **different** if there is a position with a room divider installed in the first way but not in the second way.
 
 Return *the number of ways to divide the corridor*. Since the answer may be very large, return it **modulo** $10^{9} + 7$. If there is no way, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Installing any would create some section that does not have exactly two seats.
 - **Input:** $corridor = "S"$
 - **Output:** `0`
 - **Explanation:** There is no way to divide the corridor because there will always be a section that does not have exactly two seats.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{corridor.length}$
 

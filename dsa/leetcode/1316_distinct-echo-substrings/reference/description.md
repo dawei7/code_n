@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Return the number of **distinct** non-empty substrings of `text` that can be written as the concatenation of some string with itself (i.e. it can be written as $a + a$ where `a` is some string).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Return the number of **distinct** non-empty substrings of `text` that can be wri
 - **Input:** $text = "leetcodeleetcode"$
 - **Output:** `2`
 - **Explanation:** The 2 substrings are "ee" and "leetcodeleetcode".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 2000$
 

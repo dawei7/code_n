@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **1-indexed** integer array `prices`, where $\text{prices}[i]$ is the price of a particular stock on the $$i^{\text{th}}$$ day, your task is to select some of the elements of `prices` such that your selection is **linear**.
 
@@ -11,11 +11,12 @@ A **subsequence** is an array that can be derived from another array by deleting
 The **score** of a selection `indexes`, is equal to the sum of the following array: `[prices[indexes[1]], prices[indexes[2]], ..., prices[indexes[k]]`.
 
 Return *the **maximum** **score** that a linear selection can have*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ It can be shown that the maximum sum a linear selection can have is 20.
 - **Output:** `35`
 - **Explanation:** We can select all of the indexes [1,2,3,4,5]. Since each element has a difference of exactly 1 from its previous element, our selection is linear.
 The sum of all the elements is 35 which is the maximum possible some out of every selection.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prices.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer matrix `board` and a 2D character matrix `pattern`. Where $0 \le \text{board}[r][c] \le 9$ and each element of `pattern` is either a digit or a lowercase English letter.
 
@@ -19,11 +19,12 @@ An integer matrix `part` matches `pattern` if we can replace cells containing le
 	</li>
 
 Return *an array of length *`2`* containing the row number and column number of the upper-left corner of a submatrix of *`board`* which matches *`pattern`*. If there is more than one such submatrix, return the coordinates of the submatrix with the lowest row index, and in case there is still a tie, return the coordinates of the submatrix with the lowest column index. If there are no suitable answers, return* `[-1, -1]`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -153,7 +154,8 @@ Note that since the corresponding values of `"a"` and `"b"` must differ, the sub
 **Explanation:** Since the values of the matched submatrix must be the same, there is no match. Hence, we return `[-1,-1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{board.length} \le 50$
 

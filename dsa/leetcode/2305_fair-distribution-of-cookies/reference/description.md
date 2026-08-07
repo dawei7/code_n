@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `cookies`, where $\text{cookies}[i]$ denotes the number of cookies in the $$i^{\text{th}}$$ bag. You are also given an integer `k` that denotes the number of children to distribute **all** the bags of cookies to. All the cookies in the same bag must go to the same child and cannot be split up.
 
 The **unfairness** of a distribution is defined as the **maximum** **total** cookies obtained by a single child in the distribution.
 
 Return *the **minimum** unfairness of all distributions*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that there is no distribution with an unfairness less than 31.
 - The 3^rd child receives [4,1,2] which has a total of 4 + 1 + 2 = 7 cookies.
 The unfairness of the distribution is max(7,7,7) = 7.
 It can be shown that there is no distribution with an unfairness less than 7.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{cookies.length} \le 8$
 

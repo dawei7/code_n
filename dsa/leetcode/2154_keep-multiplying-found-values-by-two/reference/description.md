@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`. You are also given an integer `original` which is the first number that needs to be searched for in `nums`.
 
@@ -11,12 +11,13 @@ You then do the following steps:
 - **Repeat** this process with the new number as long as you keep finding the number.
 
 Return *the **final** value of *`original`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *the **final** value of *`original`.
 - **Output:** `4`
 - **Explanation:**
 - 4 is not found in nums. Thus, 4 is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an **undirected** tree with `n` nodes labeled from `0` to $n - 1$, and rooted at node `0`. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -7,12 +7,13 @@ A node is **good** if all the subtrees rooted at its children have the same size
 Return the number of **good** nodes in the given tree.
 
 A **subtree** of `treeName` is a tree consisting of a node in `treeName` and all of its descendants.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ All nodes except node 9 are good.
 
 </div>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

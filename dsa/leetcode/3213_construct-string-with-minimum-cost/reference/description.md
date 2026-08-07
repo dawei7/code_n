@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `target`, an array of strings `words`, and an integer array `costs`, both arrays of the same length.
 
@@ -13,12 +13,13 @@ You can perform the following operation any number of times (including **zero**)
 - The cost of operation is $\text{costs}[i]$.
 
 Return the **minimum** cost to make `s` equal to `target`. If it's not possible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The minimum cost can be achieved by performing the following operations:
 It is impossible to make `s` equal to `target`, so we return -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{target.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `p`.
 
@@ -13,7 +13,8 @@ For each query:
 - **Update** `p` to $p^x \% (10^{9} + 7)$.
 
 Return an array `ans` where the $\text{ans}[i]$ represents the value of `p` after processing the $$i^{\text{th}}$$ query.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ Let $N$ be the initial length, $Q$ the query count, and $V$ the maximum inserted
 
 Return an array of length $Q$ whose element `i` is the updated `p` after query `i` has been processed.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -131,7 +132,8 @@ Thus, $ans = [1296, 220296870]$
 
 </div>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 × 10^{4}$
 

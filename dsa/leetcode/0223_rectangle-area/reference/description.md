@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given the coordinates of two **rectilinear** rectangles in a 2D plane, return *the total area covered by the two rectangles*.
 
 The first rectangle is defined by its **bottom-left** corner `(ax1, ay1)` and its **top-right** corner `(ax2, ay2)`.
 
 The second rectangle is defined by its **bottom-left** corner `(bx1, by1)` and its **top-right** corner `(bx2, by2)`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ The second rectangle is defined by its **bottom-left** corner `(bx1, by1)` and i
 
 Return the area covered by at least one rectangle, counting their overlap only once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return the area covered by at least one rectangle, counting their overlap only o
 
 - **Input:** $ax1 = -2, ay1 = -2, ax2 = 2, ay2 = 2, bx1 = -2, by1 = -2, bx2 = 2, by2 = 2$
 - **Output:** `16`
-### Constraints
+
+### 4. Constraints
 
 - $-10^{4} \le ax1 \le ax2 \le 10^{4}$
 

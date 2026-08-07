@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are several cards **arranged in a row**, and each card has an associated number of points. The points are given in the integer array `cardPoints`.
 
@@ -7,12 +7,13 @@ In one step, you can take one card from the beginning or from the end of the row
 Your score is the sum of the points of the cards you have taken.
 
 Given the integer array `cardPoints` and the integer `k`, return the *maximum score* you can obtain.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Given the integer array `cardPoints` and the integer `k`, return the *maximum sc
 - **Input:** $cardPoints = [9,7,7,9,7,7,9], k = 7$
 - **Output:** `55`
 - **Explanation:** You have to take all the cards. Your score is the sum of points of all cards.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{cardPoints.length} \le 10^{5}$
 

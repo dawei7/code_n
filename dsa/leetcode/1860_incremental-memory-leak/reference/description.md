@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two integers `memory1` and `memory2` representing the available memory in bits on two memory sticks. There is currently a faulty program running that consumes an increasing amount of memory every second.
 
 At the $$i^{\text{th}}$$ second (starting from 1), `i` bits of memory are allocated to the stick with **more available memory** (or from the first memory stick if both have the same available memory). If neither stick has at least `i` bits of available memory, the program **crashes**.
 
 Return *an array containing *`[crashTime, memory1_crash, memory2_crash]`*, where *`crashTime`* is the time (in seconds) when the program crashed and *$\text{memory1}_{crash}$* and *$\text{memory2}_{crash}$* are the available bits of memory in the first and second sticks respectively*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,6 +32,7 @@ Return *an array containing *`[crashTime, memory1_crash, memory2_crash]`*, where
 - At the 4^th second, 4 bits of memory are allocated to stick 2. The second stick now has 4 bits of available memory.
 - At the 5^th second, 5 bits of memory are allocated to stick 1. The first stick now has 0 bits of available memory.
 - At the 6^th second, the program crashes. The sticks have 0 and 4 bits available respectively.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le memory1, memory2 \le 2^{31} - 1$

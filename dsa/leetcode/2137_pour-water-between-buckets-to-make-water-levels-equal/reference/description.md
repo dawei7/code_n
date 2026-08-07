@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You have `n` buckets each containing some gallons of water in it, represented by a **0-indexed** integer array `buckets`, where the $$i^{\text{th}}$$ bucket contains $\text{buckets}[i]$ gallons of water. You are also given an integer `loss`.
 
 You want to make the amount of water in each bucket equal. You can pour any amount of water from one bucket to another bucket (not necessarily an integer). However, every time you pour `k` gallons of water, you spill `loss` **percent** of `k`.
 
 Return *the **maximum** amount of water in each bucket after making the amount of water equal. *Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ All buckets have 3.5 gallons of water in them so return 3.5.
 - **Input:** $buckets = [3,3,3,3], loss = 40$
 - **Output:** `3.00000`
 - **Explanation:** All buckets already have the same amount of water in them.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{buckets.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Weather`
 
@@ -20,7 +20,8 @@ Write a solution to find all dates' `id` with higher temperatures compared to it
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ The result format is in the following example.
 
 Return one `id` column containing dates that are warmer than yesterday, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

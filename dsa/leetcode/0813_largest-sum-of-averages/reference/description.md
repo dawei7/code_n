@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. You can partition the array into **at most** `k` non-empty adjacent subarrays. The **score** of a partition is the sum of the averages of each subarray.
 
 Note that the partition must use every integer in `nums`, and that the score is not necessarily an integer.
 
 Return *the maximum **score** you can achieve of all the possible partitions*. Answers within $10^{-6}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ That partition would lead to a score of 5 + 2 + 6 = 13, which is worse.
 
 - **Input:** `nums = [1,2,3,4,5,6,7], k = 4`
 - **Output:** `20.50000`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

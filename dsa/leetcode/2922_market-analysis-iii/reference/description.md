@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -49,11 +49,12 @@ Write a solution to find the **top seller** who has sold the highest number of**
 Return *the result table ordered by* $\text{seller}_{id}$ *in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

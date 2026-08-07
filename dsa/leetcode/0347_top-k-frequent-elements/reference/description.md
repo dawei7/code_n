@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the* `k` *most frequent elements*. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given an integer array `nums` and an integer `k`, return *the* `k` *most frequen
 
 Return the unique set of `k` most-frequent values as an array in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return the unique set of `k` most-frequent values as an array in any order.
 **Output:** [1,2]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

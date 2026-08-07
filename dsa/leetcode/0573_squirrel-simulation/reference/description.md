@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `height` and `width` representing a garden of size `height x width`. You are also given:
 
@@ -13,7 +13,8 @@ The squirrel can only take at most one nut at one time and can move in four dire
 Return *the **minimal distance** for the squirrel to collect all the nuts and put them under the tree one by one*.
 
 The **distance** is the number of moves.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Let $n$ be the number of entries in `nuts`. Because movement is axis-aligned, th
 
 Return the smallest total move count for a route that carries every nut to `tree`, never carrying more than one nut at once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return the smallest total move count for a route that carries every nut to `tree
 
 - **Input:** $height = 1, width = 3, tree = [0,1], squirrel = [0,0], nuts = [[0,2]]$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le height, width \le 100$
 

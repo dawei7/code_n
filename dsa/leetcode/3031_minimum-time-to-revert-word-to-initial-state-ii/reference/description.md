@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `word` and an integer `k`.
 
@@ -8,15 +8,18 @@ At every second, you must perform the following operations:
 
 - Add any `k` characters to the end of `word`.
 
-**Note** that you do not necessarily need to add the same characters that you removed. However, you must perform **both** operations at every second.
-
-Return *the **minimum** time greater than zero required for* `word` *to revert to its **initial** state*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you do not necessarily need to add the same characters that you removed. However, you must perform **both** operations at every second.
+
+Return *the **minimum** time greater than zero required for* `word` *to revert to its **initial** state*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ It can be shown that 1 second is the minimum time greater than zero required for
 - **Explanation:** At every second, we will remove the first 2 characters of word, and add the same characters to the end of word.
 After 4 seconds, word becomes equal to "abcbabcd" and reverts to its initial state.
 It can be shown that 4 seconds is the minimum time greater than zero required for word to revert to its initial state.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{word.length} \le 10^{6}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
 In one operation, you can select any **substring** of `s` that is **not** the entire string and **sort** it in **non-descending alphabetical** order.
 
 Return the **minimum** number of operations required to make `s` sorted in **non-descending** order. If it is not possible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Return the minimum number of permitted operations needed to make the whole
 string non-descending. Return `-1` if no sequence of permitted operations can
 do so.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ do so.
 - It is impossible to sort `s` under the given constraints. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

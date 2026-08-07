@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, *find three numbers whose product is maximum and return the maximum product*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given an integer array `nums`, *find three numbers whose product is maximum and 
 
 - **Input:** `nums = [-1,-2,-3]`
 - **Output:** `-6`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{4}$
 

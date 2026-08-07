@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `score` of size `n`, where $\text{score}[i]$ is the score of the $$i^{\text{th}}$$ athlete in a competition. All the scores are guaranteed to be **unique**.
 
@@ -13,12 +13,13 @@ The athletes are **placed** based on their scores, where the $1^st$ place athlet
 - For the $4^th$ place to the $$n^{\text{th}}$$ place athlete, their rank is their placement number (i.e., the $$x^{\text{th}}$$ place athlete's rank is `"x"`).
 
 Return an array `answer` of size `n` where $\text{answer}[i]$ is the **rank** of the $$i^{\text{th}}$$ athlete.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return an array `answer` of size `n` where $\text{answer}[i]$ is the **rank** of
 - **Input:** $score = [10,3,8,9,4]$
 - **Output:** `["Gold Medal","5","Bronze Medal","Silver Medal","4"]`
 - **Explanation:** The placements are [1^st, 5^th, 3^rd, 2^nd, 4^th].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{score.length}$
 

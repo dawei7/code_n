@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A generic microwave supports cooking times for:
 
@@ -23,12 +23,13 @@ There can be multiple ways to set the microwave to cook for `targetSeconds` seco
 Return *the **minimum cost** to set* `targetSeconds` *seconds of cooking time*.
 
 Remember that one minute consists of `60` seconds.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The cost is: 2 + 1 + 2 + 1 + 2 + 1 = 9.
 - **Explanation:** The optimal way is to push two digits: 7 6, interpreted as 76 seconds.
 The finger moves to 7 (with cost 1), pushes 7 (with cost 2), moves to 6 (with cost 1), and pushes 6 (with cost 2). The total cost is: 1 + 2 + 1 + 2 = 6
 Note other possible ways are 0076, 076, 0116, and 116, but none of them produces the minimum cost.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le startAt \le 9$
 

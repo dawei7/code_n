@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -7,12 +7,13 @@ For every **positive** integer `g`, we define the **beauty** of `g` as the **pro
 Return the **sum** of **beauty** values for all positive integers `g`.
 
 Since the answer could be very large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -162,7 +163,8 @@ Calculating beauty for each GCD:
 Total beauty is $2 + 4 + 6 = 12$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{4}$
 

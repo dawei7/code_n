@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ Find the **minimum **length of a subarray that is **not** **identical** to any o
 Return an integer denoting the **minimum possible length** of such a **subarray**.
 
 Two **subarrays** are considered identical if they have the same length and the same elements in corresponding positions.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -19,7 +20,7 @@ Let $n=\texttt{nums.length}$. Every nonempty interval of consecutive indices def
 
 Return the minimum length of a subarray sequence that occurs exactly once in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -83,7 +84,8 @@ Subarrays of length 2:
 - `[2, 1]` → appears once
 
 There is at least one subarray of length 2 that is unique, so the smallest unique subarray length is 2.</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

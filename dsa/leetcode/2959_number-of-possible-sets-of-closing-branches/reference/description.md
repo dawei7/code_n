@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a company with `n` branches across the country, some of which are connected by roads. Initially, all branches are reachable from each other by traveling some roads.
 
@@ -10,15 +10,20 @@ You are given integers `n`, `maxDistance`, and a **0-indexed** 2D array `roads`,
 
 Return *the number of possible sets of closing branches, so that any branch has a distance of at most *`maxDistance`* from any other*.
 
-**Note** that, after closing a branch, the company will no longer have access to any roads connected to it.
-
-**Note** that, multiple roads are allowed.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that, after closing a branch, the company will no longer have access to any roads connected to it.
+
+### 4. Note
+
+that, multiple roads are allowed.
+
+### 5. Examples
 
 #### Example 1
 
@@ -56,7 +61,8 @@ It can be proven, that there are only 7 possible sets of closing branches.
 - The set [], after closing, the active branch is [0].
 - The set [0], after closing, there are no active branches.
 It can be proven, that there are only 2 possible sets of closing branches.
-### Constraints
+
+### 6. Constraints
 
 - $1 \le n \le 10$
 

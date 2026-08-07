@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -52,7 +52,8 @@ Write a solution to report the $\text{customer}_{id}$ and $\text{customer}_{name
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -86,7 +87,7 @@ The result format is in the following example.
 
 Return columns $\text{customer}_{id}$ and `name` for customers whose total spending is at least 100 in June 2020 (`2020-06-01` through `2020-06-30`) and independently at least 100 in July 2020 (`2020-07-01` through `2020-07-31`). Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

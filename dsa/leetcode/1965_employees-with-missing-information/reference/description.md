@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -35,12 +35,13 @@ Write a solution to report the IDs of all the employees with **missing informati
 Return the result table ordered by $\text{employee}_{id}$ **in ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

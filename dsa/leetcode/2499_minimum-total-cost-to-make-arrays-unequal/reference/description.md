@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2`, of equal length `n`.
 
@@ -7,12 +7,13 @@ In one operation, you can swap the values of any two indices of `nums1`. The **c
 Find the **minimum** total cost of performing the given operation **any** number of times such that $\text{nums1}[i] \neq \text{nums2}[i]$ for all $0 \le i \le n - 1$ after performing all the operations.
 
 Return *the **minimum total cost** such that *`nums1` and `nums2`* satisfy the above condition*. In case it is not possible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The total cost needed here is 10, which is the minimum possible.
 - **Explanation:**
 It can be shown that it is not possible to satisfy the given conditions irrespective of the number of operations we perform.
 Hence, we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

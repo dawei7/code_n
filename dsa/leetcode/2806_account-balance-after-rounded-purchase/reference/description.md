@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Initially, you have a bank account balance of **100** dollars.
 
@@ -8,17 +8,18 @@ When making the purchase, first the `purchaseAmount` **is rounded to the nearest
 
 Return an integer denoting your final bank account balance after this purchase.
 
-**Notes:**
-
-- 0 is considered to be a multiple of 10 in this problem.
-
-- When rounding, 5 is rounded upward (5 is rounded to 10, 15 is rounded to 20, 25 to 30, and so on).
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- 0 is considered to be a multiple of 10 in this problem.
+
+- When rounding, 5 is rounded upward (5 is rounded to 10, 15 is rounded to 20, 25 to 30, and so on).
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,6 +57,7 @@ The nearest multiple of 10 to 15 is 20. So your account balance becomes 100 - 20
 10 is a multiple of 10 itself. So your account balance becomes 100 - 10 = 90.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $0 \le purchaseAmount \le 100$

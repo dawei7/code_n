@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Numbers`
 
@@ -18,7 +18,8 @@ The <a href="https://en.wikipedia.org/wiki/Median" target="_blank">**median**</a
 Write a solution to report the **median** of all the numbers in the database after decompressing the `Numbers` table. Round the median to **one decimal point**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -28,7 +29,7 @@ The result format is in the following example.
 
 Return a one-row table with a `median` column. Its value is the middle decompressed value when $T$ is odd or the average of the two middle values when $T$ is even, rounded to one decimal place.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

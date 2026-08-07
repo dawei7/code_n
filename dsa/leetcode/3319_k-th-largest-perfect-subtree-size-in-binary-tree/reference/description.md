@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary tree** and an integer `k`.
 
 Return an integer denoting the size of the $$k^{\text{th}}$$ **largest* *perfect binary*** *subtree, or `-1` if it doesn't exist.
 
 A **perfect binary tree** is a tree where all leaves are on the same level, and every parent has two children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ The sizes of the perfect binary subtrees in non-increasing order are `[7, 3, 3, 
 The sizes of the perfect binary subtrees in non-increasing order are `[1, 1]`. There are fewer than 3 perfect binary subtrees.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 2000]`.
 

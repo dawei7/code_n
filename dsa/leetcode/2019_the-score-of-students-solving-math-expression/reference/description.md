@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` that contains digits `0-9`, addition symbols `'+'`, and multiplication symbols `'*'` **only**, representing a **valid** math expression of **single digit numbers** (e.g., `3+5*2`). This expression was given to `n` elementary school students. The students were instructed to get the answer of the expression by following this **order of operations**:
 
@@ -15,12 +15,13 @@ You are given an integer array `answers` of length `n`, which are the submitted 
 - Otherwise, this student will be rewarded `0` points.
 
 Return *the sum of the points of the students*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The points for the students are: [5,0,0,5,5,2,2]. The sum of the points is 5+0+0
 If a student had incorrectly done (6+0)*1, the answer would also be 6.
 By the rules of grading, the students will still be rewarded 5 points (as they got the correct answer), not 2 points.
 The points for the students are: [0,0,5,0,0,5]. The sum of the points is 10.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 31$
 

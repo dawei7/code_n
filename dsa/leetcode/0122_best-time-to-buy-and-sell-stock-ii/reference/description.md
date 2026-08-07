@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `prices` where $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day.
 
 On each day, you may decide to buy and/or sell the stock. You can only hold **at most one** share of the stock at any time. However, you can sell and buy the stock multiple times on the **same day**, ensuring you never hold more than one share of the stock.
 
 Find and return *the **maximum** profit you can achieve*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Find and return *the **maximum** profit you can achieve*.
 
 Return the maximum profit from any valid sequence of purchases and sales while holding at most one share.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Total profit is 4.
 - **Input:** $prices = [7,6,4,3,1]$
 - **Output:** `0`
 - **Explanation:** There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prices.length} \le 3 * 10^{4}$
 

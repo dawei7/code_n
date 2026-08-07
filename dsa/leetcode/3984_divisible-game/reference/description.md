@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -21,7 +21,8 @@ The **score difference** is Alice's score **minus** Bob's score.
 Alice wants to **maximize** the score difference. If there are multiple values of `k` that achieve the **maximum** score difference, she chooses the **smallest** such `k`.
 
 Return the **product** of the **maximum** score difference and the chosen value of `k`. Since the result can be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums) -> int`
 
@@ -37,7 +38,7 @@ Alice also chooses an integer $k>1$. Within her selected range, each multiple of
 
 Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. The maximum difference can be negative, but the returned residue is in the usual nonnegative modulo range.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -93,7 +94,8 @@ Return $(maximum score difference * smallest maximizing k) mod 1_000_000_007$. T
 - Therefore, the answer is $-1 * 2 = -2$. Modulo $10^{9} + 7$, this equals 1000000005.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid` containing **distinct** positive integers.
 
@@ -13,7 +13,8 @@ The relative order stays the same if for all pairs of elements in the original m
 For example, if `grid = [[2, 4, 5], [7, 3, 9]]` then a good replacement could be either `grid = [[1, 2, 3], [2, 1, 4]]` or `grid = [[1, 2, 3], [3, 1, 4]]`.
 
 Return *the **resulting** matrix.* If there are multiple answers, return **any** of them.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Return *the **resulting** matrix.* If there are multiple answers, return **any**
 
 Return an $m \times n$ matrix of positive integers that preserves row-wise and column-wise relative order while minimizing the maximum value in the matrix.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The maximum number in the matrix is 2. It can be shown that no smaller value can
 - **Input:** `grid = [[10]]`
 - **Output:** `[[1]]`
 - **Explanation:** We replace the only number in the matrix with 1.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You would like to make dessert and are preparing to buy the ingredients. You have `n` ice cream base flavors and `m` types of toppings to choose from. You must follow these rules when making your dessert:
 
@@ -19,12 +19,13 @@ You are given three inputs:
 You want to make a dessert with a total cost as close to `target` as possible.
 
 Return *the closest possible cost of the dessert to *`target`. If there are multiple, return *the **lower** one.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Total: 3 + 4 + 10 + 0 = 17. You cannot make a dessert with a total cost of 18.
 - **Input:** $baseCosts = [3,10], toppingCosts = [2,5], target = 9$
 - **Output:** `8`
 - **Explanation:** It is possible to make desserts with cost 8 and 10. Return 8 as it is the lower cost.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{baseCosts.length}$
 

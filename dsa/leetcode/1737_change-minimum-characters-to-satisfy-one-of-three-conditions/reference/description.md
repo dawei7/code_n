@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `a` and `b` that consist of lowercase letters. In one operation, you can change any character in `a` or `b` to **any lowercase letter**.
 
@@ -11,12 +11,13 @@ Your goal is to satisfy **one** of the following three conditions:
 - **Both** `a` and `b` consist of **only one** distinct letter.
 
 Return *the **minimum** number of operations needed to achieve your goal.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The best way was done in 2 operations (either condition 1 or condition 3).
 - **Input:** $a = "dabadd", b = "cda"$
 - **Output:** `3`
 - **Explanation:** The best way is to make condition 1 true by changing b to "eee".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{a.length}, \text{b.length} \le 10^{5}$
 

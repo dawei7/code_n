@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame employees
@@ -15,12 +15,13 @@ A company plans to provide its employees with a bonus.
 Write a solution to create a new column name `bonus` that contains the **doubled values** of the `salary` column.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

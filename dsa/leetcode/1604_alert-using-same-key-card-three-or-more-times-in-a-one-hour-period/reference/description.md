@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 LeetCode company workers use key-cards to unlock office doors. Each time a worker uses their key-card, the security system saves the worker's name and the time when it was used. The system emits an **alert** if any worker uses the key-card **three or more times** in a one-hour period.
 
@@ -9,12 +9,13 @@ Access times are given in the **24-hour time format "HH:MM"**, such as `"23:51"`
 Return a *list of unique worker names who received an alert for frequent keycard use*. Sort the names in **ascending order alphabetically**.
 
 Notice that `"10:00"` - `"11:00"` is considered to be within a one-hour period, while `"22:51"` - `"23:52"` is not considered to be within a one-hour period.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Notice that `"10:00"` - `"11:00"` is considered to be within a one-hour period, 
 - **Input:** $keyName = ["alice","alice","alice","bob","bob","bob","bob"], keyTime = ["12:01","12:00","18:00","21:00","21:20","21:30","23:00"]$
 - **Output:** `["bob"]`
 - **Explanation:** "bob" used the keycard 3 times in a one-hour period ("21:00","21:20", "21:30").
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{keyName.length}, \text{keyTime.length} \le 10^{5}$
 

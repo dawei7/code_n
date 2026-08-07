@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` employees, each with a unique id from `0` to $n - 1$.
 
@@ -11,12 +11,13 @@ You are given a 2D integer array `logs` where $\text{logs}[i] = [\text{id}_{i}, 
 Note that the $$i^{\text{th}}$$ task starts the moment right after the $(i - 1)^th$ task ends, and the $0^th$ task starts at time `0`.
 
 Return *the id of the employee that worked the task with the longest time.* If there is a tie between two or more employees, return* the **smallest** id among them*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The tasks with the longest time is task 1. The employee that worked on it is 3, 
 Task 0 started at 0 and ended at 10 with 10 units of times.
 Task 1 started at 10 and ended at 20 with 10 units of times.
 The tasks with the longest time are tasks 0 and 1. The employees that worked on them are 0 and 1, so we return the smallest id 0.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 500$
 

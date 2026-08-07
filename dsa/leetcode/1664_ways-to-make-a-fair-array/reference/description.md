@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You can choose **exactly one** index (**0-indexed**) and remove the element. Notice that the index of the elements may change after the removal.
 
@@ -13,12 +13,13 @@ For example, if `nums = [6,1,7,4,1]`:
 An array is **fair** if the sum of the odd-indexed values equals the sum of the even-indexed values.
 
 Return the ***number** of indices that you could choose such that after the removal, *`nums`* **is **fair**. *
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ There is 1 index that you can remove to make nums fair.
 - **Input:** `nums = [1,2,3]`
 - **Output:** `0`
 - **Explanation:** You cannot make a fair array after removing any index.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

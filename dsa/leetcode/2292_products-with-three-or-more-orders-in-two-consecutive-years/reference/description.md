@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Orders`
 
@@ -20,11 +20,12 @@ Write a solution to report the IDs of all the products that were ordered three o
 Return the result table in **any order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

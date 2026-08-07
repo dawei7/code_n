@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return **any** array containing `n` **unique** integers such that they add up to `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,6 +22,7 @@ Given an integer `n`, return **any** array containing `n` **unique** integers su
 
 - **Input:** $n = 1$
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of `n` integers `differences`, which describes the **differences **between each pair of **consecutive **integers of a **hidden** sequence of length $(n + 1)$. More formally, call the hidden sequence `hidden`, then we have that $\text{differences}[i] = hidden[i + 1] - \text{hidden}[i]$.
 
@@ -15,12 +15,13 @@ You are further given two integers `lower` and `upper` that describe the **inclu
 	</li>
 
 Return *the number of **possible** hidden sequences there are.* If there are no possible sequences, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Thus, we return 4.
 - **Input:** $differences = [4,-7,2], lower = 3, upper = 6$
 - **Output:** `0`
 - **Explanation:** There are no possible hidden sequences. Thus, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{differences.length}$
 

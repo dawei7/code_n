@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `timeReq` and an integer `splitTime`.
 
@@ -18,12 +18,15 @@ The WBC devises a clever strategy to fight the bacteria:
 
 You must determine the **minimum** time required to eliminate all the bacterial strains.
 
-**Note** that the bacterial strains can be eliminated in any order.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that the bacterial strains can be eliminated in any order.
+
+### 4. Examples
 
 #### Example 1
 
@@ -59,7 +62,8 @@ The elimination process goes as follows:
 - The 2 new WBCs eliminate the bacteria at times $t = 5 + 10$ and $t = 5 + 4$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{timeReq.length} \le 10^{5}$
 

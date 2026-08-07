@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a tournament where `n` players are participating. The players are standing in a single row and are numbered from `1` to `n` based on their **initial** standing position (player `1` is the first player in the row, player `2` is the second player in the row, etc.).
 
@@ -19,12 +19,13 @@ After each round is over, the winners are lined back up in the row based on the 
 The players numbered `firstPlayer` and `secondPlayer` are the best in the tournament. They can win against any other player before they compete against each other. If any two other players compete against each other, either of them might win, and thus you may **choose** the outcome of this round.
 
 Given the integers `n`, `firstPlayer`, and `secondPlayer`, return *an integer array containing two values, the **earliest** possible round number and the **latest** possible round number in which these two players will compete against each other, respectively*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Fourth round: 2, 4
 - **Output:** `[1,1]`
 - **Explanation:** The players numbered 1 and 5 compete in the first round.
 There is no way to make them compete in any other round.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 28$
 

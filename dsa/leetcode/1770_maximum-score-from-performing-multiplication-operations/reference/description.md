@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums` and `multipliers`** **of size `n` and `m` respectively, where $n \ge m$.
 
@@ -14,12 +14,13 @@ You begin with a score of `0`. You want to perform **exactly** `m` operations. O
 - Remove `x` from `nums`.
 
 Return *the **maximum** score after performing *`m` *operations.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The total score is 9 + 4 + 1 = 14.
 - Choose from the end, [-2,7,**<u>1</u>**], adding 1 * 4 = 4 to the score.
 - Choose from the end, [-2,**<u>7</u>**], adding 7 * 6 = 42 to the score.
 The total score is 50 + 15 - 9 + 4 + 42 = 102.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 On a 2D plane, we place `n` stones at some integer coordinate points. Each coordinate point may have at most one stone.
 
 A stone can be removed if it shares either **the same row or the same column** as another stone that has not been removed.
 
 Given an array `stones` of length `n` where $\text{stones}[i] = [x_{i}, y_{i}]$ represents the location of the $$i^{\text{th}}$$ stone, return *the largest possible number of stones that can be removed*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Stones [0,0] and [1,1] cannot be removed since they do not share a row/column wi
 - **Input:** $stones = [[0,0]]$
 - **Output:** `0`
 - **Explanation:** [0,0] is the only stone on the plane, so you cannot remove it.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stones.length} \le 1000$
 

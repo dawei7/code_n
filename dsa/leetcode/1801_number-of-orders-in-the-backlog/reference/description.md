@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `orders`, where each $\text{orders}[i] = [\text{price}_{i}, \text{amount}_{i}, \text{orderType}_{i}]$ denotes that $\text{amount}_{i}$_ orders have been placed of type $\text{orderType}_{i}$ at the price $\text{price}_{i}$. The $\text{orderType}_{i}$ is:
 
@@ -15,12 +15,13 @@ There is a **backlog** that consists of orders that have not been executed. The 
 - Vice versa, if the order is a `sell` order, you look at the `buy` order with the **largest** price in the backlog. If that `buy` order's price is **larger than or equal to** the current `sell` order's price, they will match and be executed, and that `buy` order will be removed from the backlog. Else, the `sell` order is added to the backlog.
 
 Return *the total **amount** of orders in the backlog after placing all the orders from the input*. Since this number can be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Finally, the backlog has 5 buy orders with price 10, and 1 buy order with price 
 - 999999995 orders of type buy with price 5 are placed. The least price of a sell order is 7, so the 999999995 orders are added to the backlog.
 - 1 order of type sell with price 5 is placed. It is matched with the buy order of the highest price, which is 5, and that buy order is removed from the backlog.
 Finally, the backlog has (1000000000-3) sell orders with price 7, and (999999995-1) buy orders with price 5. So the total number of orders = 1999999991, which is equal to 999999984 % ($10^{9}$ + 7).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{orders.length} \le 10^{5}$
 

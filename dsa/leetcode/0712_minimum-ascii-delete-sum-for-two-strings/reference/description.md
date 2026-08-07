@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two strings `s1` and `s2`, return *the lowest **ASCII** sum of deleted characters to make two strings equal*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ adds 100[d] + 101[e] + 101[e] to the sum.
 Deleting "e" from "leet" adds 101[e] to the sum.
 At the end, both strings are equal to "let", and the answer is 100+101+101+101 = 403.
 If instead we turned both strings into "lee" or "eet", we would get answers of 433 or 417, which are higher.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length} \le 1000$
 

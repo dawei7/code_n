@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Follow`
 
@@ -25,7 +25,8 @@ Write a solution to report the **second-degree users** and the number of their f
 Return the result table **ordered** by `follower` **in alphabetical order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -35,7 +36,7 @@ The result format is in the following example.
 
 For each user who appears as both a `follower` and a `followee`, return that user's identifier as `follower` and their number of direct followers as `num`. Sort the result by `follower` in ascending alphabetical order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

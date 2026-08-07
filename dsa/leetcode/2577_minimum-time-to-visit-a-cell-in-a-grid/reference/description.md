@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a `m x n` matrix `grid` consisting of **non-negative** integers where $\text{grid}[row][col]$ represents the **minimum** time required to be able to visit the cell `(row, col)`, which means you can visit the cell `(row, col)` only when the time you visit it is greater than or equal to $\text{grid}[row][col]$.
 
 You are standing in the **top-left** cell of the matrix in the $0^th$ second, and you must move to **any** adjacent cell in the four directions: up, down, left, and right. Each move you make takes 1 second.
 
 Return *the **minimum** time required in which you can visit the bottom-right cell of the matrix*. If you cannot visit the bottom-right cell, then return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The final time is 7. It can be shown that it is the minimum time possible.
 - **Input:** `grid = [[0,2,4],[3,2,1],[1,0,4]]`
 - **Output:** `-1`
 - **Explanation:** There is no path from the top left to the bottom-right cell.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

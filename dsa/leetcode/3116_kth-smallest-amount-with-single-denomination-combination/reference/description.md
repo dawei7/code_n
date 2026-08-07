@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `coins` representing coins of different denominations and an integer `k`.
 
 You have an infinite number of coins of each denomination. However, you are **not allowed** to combine coins of different denominations.
 
 Return the $$k^{\text{th}}$$ **smallest** amount that can be made using these coins.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Coin 2 produces multiples of 2: 2, 4, 6, 8, 10, 12, etc.
 All of the coins combined produce: 2, 4, 5, 6, 8, 10, <u>**12**</u>, 14, 15, etc.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{coins.length} \le 15$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers, `n` and `threshold`, as well as a **directed** weighted graph of `n` nodes numbered from 0 to $n - 1$. The graph is represented by a **2D** integer array `edges`, where $\text{edges}[i] = [A_{i}, B_{i}, W_{i}]$ indicates that there is an edge going from node $A_{i}$ to node $B_{i}$ with weight $W_{i}$.
 
@@ -11,12 +11,13 @@ You have to remove some edges from this graph (possibly **none**), so that it sa
 - Each node has **at most** `threshold` outgoing edges.
 
 Return the **minimum** possible value of the **maximum** edge weight after removing the necessary edges. If it is impossible for all conditions to be satisfied, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ Remove the edges `1 -> 3` and `1 -> 4`. The maximum weight among the remaining e
 **Output:** -1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

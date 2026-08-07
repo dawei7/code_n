@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The $$i^{\text{th}}$$coupon has:
 
@@ -17,12 +17,13 @@ A coupon is considered **valid** if all of the following conditions hold:
 - $\text{isActive}[i]$ is **true**.
 
 Return an array of the **codes** of all valid coupons, **sorted** first by their **businessLine** in the order: `"electronics"`, `"grocery"`, `"pharmacy", "restaurant"`, and then by **code** in lexicographical (ascending) order within each category.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ Return an array of the **codes** of all valid coupons, **sorted** first by their
 - Third coupon has invalid business line (invalid).
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{code.length} = \text{businessLine.length} = \text{isActive.length}$
 

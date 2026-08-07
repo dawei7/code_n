@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `moves` consisting of the characters `'U'`, `'D'`, `'L'`, `'R'`, and `'_'`.
 
@@ -15,7 +15,8 @@ Starting from the origin `(0, 0)`, each character represents one move on a 2D pl
 - `'_'`: Can be independently replaced with any one of `'U'`, `'D'`, `'L'`, or `'R'`.
 
 Return the maximum **Manhattan distance** from the origin that can be achieved after all moves have been performed.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Let $x$ be the net rightward displacement from the fixed `R` and `L` commands, l
 
 Return the greatest possible value of $\lvert x_{\mathrm{final}}\rvert+\lvert y_{\mathrm{final}}\rvert$ after replacing all $q$ wildcards and performing all moves.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ One optimal choice is:
 The final Manhattan distance from the origin is $|0 - 1| + |0 - 2| = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{moves.length} \le 10^{5}$
 

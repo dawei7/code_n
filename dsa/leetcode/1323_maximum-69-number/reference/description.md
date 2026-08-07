@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a positive integer `num` consisting only of digits `6` and `9`.
 
 Return *the maximum number you can get by changing **at most** one digit (*`6`* becomes *`9`*, and *`9`* becomes *`6`*)*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The maximum number is 9969.
 - **Input:** $num = 9999$
 - **Output:** `9999`
 - **Explanation:** It is better not to apply any change.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 10^{4}$
 

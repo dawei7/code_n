@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a function `fn`, return a **memoized** version of that function.
 
@@ -11,12 +11,13 @@ You can assume there are **3 **possible input functions: `sum`**, **`fib`**, **a
 - `fib`** **accepts a single integer `n` and returns `1` if $n \le 1$ or $fib(n - 1) + fib(n - 2)$ otherwise.
 
 - `factorial` accepts a single integer `n` and returns `1` if $n \le 1$ or $factorial(n - 1) * n$ otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ values = [[5],[]]
 - **Explanation:**
 **fib(5) = 8 // "call"
 // "getCallCount" - total call count: 1
-### Constraints
+
+### 4. Constraints
 
 - $0 \le a, b \le 10^{5}$
 

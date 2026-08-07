@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list, group all the nodes with odd indices together followed by the nodes with even indices, and return *the reordered list*.
 
@@ -7,7 +7,8 @@ The **first** node is considered **odd**, and the **second** node is **even**, a
 Note that the relative order inside both the even and odd groups should remain as it was in the input.
 
 You must solve the problem in `O(1)` extra space complexity and `O(n)` time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ You must solve the problem in `O(1)` extra space complexity and `O(n)` time comp
 
 Return the head of the same nodes linked with all original odd-position nodes before all original even-position nodes, while preserving order inside both groups.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the head of the same nodes linked with all original odd-position nodes be
 
 - **Input:** $head = [2,1,3,5,6,4,7]$
 - **Output:** `[2,3,6,7,1,5,4]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the linked list is in the range $[0, 10^{4}]$.
 

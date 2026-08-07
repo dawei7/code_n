@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges`​​​​​​​ of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -13,7 +13,8 @@ Return an array of `n` integers where the $$i^{\text{th}}$$ element is the **max
 A **subgraph** is a graph whose vertices and edges are subsets of the original graph.
 
 A **connected subgraph** is a subgraph in which every pair of its vertices is reachable from one another using only its edges.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ Assign weight $+1$ to every good node and $-1$ to every bad node. The score of a
 
 Return `answer`, where $\text{answer}[i]$ is the maximum weight sum of any connected subgraph containing node `i`. Different nodes may attain their maxima with different subgraphs, and the maximizing subgraph need not be unique.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ Return `answer`, where $\text{answer}[i]$ is the maximum weight sum of any conne
 For each node, including the other node only adds another bad node, so the best score for both nodes is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

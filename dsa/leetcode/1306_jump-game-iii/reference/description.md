@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of non-negative integers `arr`, you are initially positioned at `start` index of the array. When you are at index `i`, you can jump to $i + \text{arr}[i]$ or $i - \text{arr}[i]$, check if you can reach **any** index with value 0.
 
 Notice that you can not jump outside of the array at any time.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ index 0 -> index 4 -> index 1 -> index 3
 - **Input:** `arr = [3,0,2,1,2], start = 2`
 - **Output:** `false`
 - **Explanation:** There is no way to reach at index 1 with value 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 5 * 10^{4}$
 

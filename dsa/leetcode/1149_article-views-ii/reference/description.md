@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Views`
 
@@ -21,7 +21,8 @@ Write a solution to find all the people who viewed more than one article on the 
 Return the result table sorted by `id` in ascending order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -35,7 +36,7 @@ A person qualifies if there is at least one $\text{view}_{date}$ on which that $
 
 - A one-column table named `id` containing each qualifying $\text{viewer}_{id}$ exactly once, in ascending order. If no person qualifies, return the same column with no rows.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

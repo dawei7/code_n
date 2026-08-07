@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given the two integers, `n` and `m` and two integer arrays, `hBars` and `vBars`. The grid has $n + 2$ horizontal and $m + 2$ vertical bars, creating 1 x 1 unit cells. The bars are indexed starting from `1`.
 
 You can **remove** some of the bars in `hBars` from horizontal bars and some of the bars in `vBars` from vertical bars. Note that other bars are fixed and cannot be removed.
 
 Return an integer denoting the **maximum area** of a *square-shaped* hole in the grid, after removing some bars (possibly none).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ To get the maximum square-shaped hole, we remove horizontal bar 2 and vertical b
 One way to get the maximum square-shaped hole is by removing horizontal bar 3, and vertical bar 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

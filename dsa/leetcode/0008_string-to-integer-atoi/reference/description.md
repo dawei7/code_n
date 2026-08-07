@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement the `myAtoi(string s)` function, which converts a string to a 32-bit signed integer.
 
@@ -13,7 +13,8 @@ The algorithm for `myAtoi(string s)` is as follows:
 - **Rounding**: If the integer is out of the 32-bit signed integer range $[-2^{31}, 2^{31} - 1]$, then round the integer to remain in the range. Specifically, integers less than $-2^{31}$ should be rounded to $-2^{31}$, and integers greater than $2^{31} - 1$ should be rounded to $2^{31} - 1$.
 
 Return the integer as the final result.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Return the integer as the final result.
 
 Return the parsed value after applying the sign and clamping it to the signed 32-bit range.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -114,7 +115,8 @@ Step 3: "<u>0</u>-1" ("0" is read in; reading stops because the next character i
 Reading stops at the first non-digit character 'w'.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length} \le 200$
 

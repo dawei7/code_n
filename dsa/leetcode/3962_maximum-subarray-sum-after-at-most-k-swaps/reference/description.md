@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -7,7 +7,8 @@ You are allowed to perform **at most** `k` swap operations on the array.
 In one swap operation, you may choose any two indices `i` and `j` and swap $\text{nums}[i]$ and $\text{nums}[j]$.
 
 Return an integer denoting the **maximum possible subarray sum** after performing the swaps.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $n$ be the length of `nums`, and let $M$ be the number of distinct values in
 
 Return the maximum possible sum of a nonempty contiguous subarray after performing at most `k` swaps. The result may be negative when every array value is negative.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ The maximum possible subarray sum after at most $k = 2$ swaps is the sum of the 
 - Among these sums, the maximum is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1500$
 

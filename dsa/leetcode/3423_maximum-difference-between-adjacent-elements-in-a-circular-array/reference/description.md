@@ -1,14 +1,17 @@
-## Description
+### 1. Description
 
 Given a **circular** array `nums`, find the **maximum** absolute difference between adjacent elements.
 
-**Note**: In a circular array, the first and last elements are adjacent.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: In a circular array, the first and last elements are adjacent.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Because `nums` is circular, $\text{nums}[0]$ and $\text{nums}[2]$ are adjacent. 
 The adjacent elements $\text{nums}[0]$ and $\text{nums}[1]$ have the maximum absolute difference of $|-5 - (-10)| = 5$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

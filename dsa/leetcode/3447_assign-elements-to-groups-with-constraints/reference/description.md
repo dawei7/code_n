@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `groups`, where $\text{groups}[i]$ represents the size of the $$i^{\text{th}}$$ group. You are also given an integer array `elements`.
 
@@ -12,13 +12,16 @@ Your task is to assign **one** element to each group based on the following rule
 
 Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of the element chosen for group `i`, or -1 if no suitable element exists.
 
-**Note**: An element may be assigned to more than one group.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: An element may be assigned to more than one group.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +67,8 @@ Return an integer array `assigned`, where $\text{assigned}[i]$ is the index of t
 $\text{elements}[0] = 2$ is assigned to the groups with even values, and $\text{elements}[1] = 1$ is assigned to the groups with odd values.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{groups.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **binary string** `s`, and a **2D** integer array `queries` where $\text{queries}[i] = [\text{first}_{i}, \text{second}_{i}]$.
 
@@ -9,12 +9,13 @@ The answer to the $$i^{\text{th}}$$ query is the endpoints (**0-indexed**) of th
 *Return an array* `ans` *where* $\text{ans}[i] = [\text{left}_{i}, \text{right}_{i}]$ *is the answer to the* $$i^{\text{th}}$$ *query.*
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - **Input:** `s = "1", queries = [[4,5]]`
 - **Output:** `[[0,0]]`
 - **Explanation:** For this example, the substring in range [0,0] has a decimal value of **1**, and **1 ^ 4 = 5**. So, the answer is [0,0].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

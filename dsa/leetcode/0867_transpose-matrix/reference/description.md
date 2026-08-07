@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a 2D integer array `matrix`, return *the **transpose** of* `matrix`.
 
 The **transpose** of a matrix is the matrix flipped over its main diagonal, switching the matrix's row and column indices.
 
 ![](images/hint_transpose.png)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ The **transpose** of a matrix is the matrix flipped over its main diagonal, swit
 
 - **Input:** $matrix = [[1,2,3],[4,5,6]]$
 - **Output:** `[[1,4],[2,5],[3,6]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

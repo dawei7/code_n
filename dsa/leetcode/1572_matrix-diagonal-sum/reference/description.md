@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a square matrix `mat`, return the sum of the matrix diagonals.
 
 Only include the sum of all the elements on the primary diagonal and all the elements on the secondary diagonal that are not part of the primary diagonal.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Notice that element mat[1][1] = 5 is counted only once.
 
 - **Input:** $mat = [[**5**]]$
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{mat.length} = \text{mat}[i].length$
 

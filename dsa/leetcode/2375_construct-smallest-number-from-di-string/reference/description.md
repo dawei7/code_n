@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `pattern` of length `n` consisting of the characters `'I'` meaning **increasing** and `'D'` meaning **decreasing**.
 
@@ -11,12 +11,13 @@ A **0-indexed** string `num` of length $n + 1$ is created using the following co
 - If $\text{pattern}[i] = 'D'$, then $\text{num}[i] > num[i + 1]$.
 
 Return *the lexicographically **smallest** possible string *`num`* that meets the conditions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Note that "123414321" is not possible because the digit '1' is used more than on
 - **Explanation:**
 Some possible values of num are "9876", "7321", and "8742".
 It can be proven that "4321" is the smallest possible num that meets the conditions.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length} \le 8$
 

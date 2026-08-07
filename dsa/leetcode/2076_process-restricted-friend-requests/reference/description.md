@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` indicating the number of people in a network. Each person is labeled from `0` to $n - 1$.
 
@@ -10,13 +10,16 @@ A friend request is **successful **if $u_{j}$ and $v_{j}$ can be **friends**. Ea
 
 Return *a **boolean array** *`result`,* where each *$\text{result}[j]$* is *`true`* if the *$$j^{\text{th}}$$* friend request is **successful** or *`false`* if it is not*.
 
-**Note:** If $u_{j}$ and $v_{j}$ are already direct friends, the request is still **successful**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+If $u_{j}$ and $v_{j}$ are already direct friends, the request is still **successful**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,7 +44,8 @@ Request 1: Person 0 and person 2 cannot be friends since person 0 and person 1 w
 Request 1: Person 1 and person 2 cannot be friends since they are directly restricted.
 Request 2: Person 3 and person 1 can be friends, so they become direct friends.
 Request 3: Person 3 and person 4 cannot be friends since person 0 and person 1 would be indirect friends (0--4--3--1).
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 1000$
 

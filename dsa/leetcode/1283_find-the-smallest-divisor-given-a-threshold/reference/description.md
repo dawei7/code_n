@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `threshold`, we will choose a positive integer `divisor`, divide all the array by it, and sum the division's result. Find the **smallest** `divisor` such that the result mentioned above is less than or equal to `threshold`.
 
 Each result of the division is rounded to the nearest integer greater than or equal to that element. (For example: $7/3 = 3$ and $10/2 = 5$).
 
 The test cases are generated so that there will be an answer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ If the divisor is 4 we can get a sum of 7 (1+1+2+3) and if the divisor is 5 the 
 
 - **Input:** `nums = [44,22,33,11,1], threshold = 5`
 - **Output:** `44`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

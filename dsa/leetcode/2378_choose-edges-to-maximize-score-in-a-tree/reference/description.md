@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **weighted** tree consisting of `n` nodes numbered from `0` to $n - 1$.
 
@@ -8,7 +8,13 @@ Choose some edges from the tree such that no two chosen edges are **adjacent** a
 
 Return *the **maximum** sum of the chosen edges*.
 
-**Note**:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+:
 
 - You are allowed to **not** choose any edges in the tree, the sum of weights in this case will be `0`.
 
@@ -17,11 +23,8 @@ Return *the **maximum** sum of the chosen edges*.
 		<li>In other words, they are adjacent if $\text{Edge}_{1}$ connects nodes `a` and `b` and $\text{Edge}_{2}$ connects nodes `b` and `c`.
 
 	</li>
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ It can be shown that no better score can be obtained.
 - **Output:** `7`
 - **Explanation:** We choose the edge with weight 7.
 Note that we cannot choose more than one edge because all edges are adjacent to each other.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{edges.length}$
 

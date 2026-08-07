@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Alice and Bob continue their games with stones. There is a row of n stones, and each stone has an associated value. You are given an integer array `stones`, where $\text{stones}[i]$ is the **value** of the $$i^{\text{th}}$$ stone.
 
 Alice and Bob take turns, with **Alice** starting first. On each turn, the player may remove any stone from `stones`. The player who removes a stone **loses** if the **sum** of the values of **all removed stones** is divisible by `3`. Bob will win automatically if there are no remaining stones (even if it is Alice's turn).
 
 Assuming both players play **optimally**, return `true` *if Alice wins and* `false` *if Bob wins*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Since all the stones are removed and the sum of values is not divisible by 3, Bo
 - Turn 4: Bob removes the third stone with value 2. Sum of removed stones = 1 + 3 + 4 + 2 = 10.
 - Turn 5: Alice removes the first stone with value 5. Sum of removed stones = 1 + 3 + 4 + 2 + 5 = 15.
 Alice loses the game because the sum of the removed stones (15) is divisible by 3. Bob wins the game.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stones.length} \le 10^{5}$
 

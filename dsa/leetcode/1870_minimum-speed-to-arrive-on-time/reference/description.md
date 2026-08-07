@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a floating-point number `hour`, representing the amount of time you have to reach the office. To commute to the office, you must take `n` trains in sequential order. You are also given an integer array `dist` of length `n`, where $\text{dist}[i]$ describes the distance (in kilometers) of the $$i^{\text{th}}$$ train ride.
 
@@ -9,12 +9,13 @@ Each train can only depart at an integer hour, so you may need to wait in betwee
 Return *the **minimum positive integer** speed **(in kilometers per hour)** that all the trains must travel at for you to reach the office on time, or *`-1`* if it is impossible to be on time*.
 
 Tests are generated such that the answer will not exceed $10^{7}$ and `hour` will have **at most two digits after the decimal point**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Tests are generated such that the answer will not exceed $10^{7}$ and `hour` wil
 - **Input:** $dist = [1,3,2], hour = 1.9$
 - **Output:** `-1`
 - **Explanation:** It is impossible because the earliest the third train can depart is at the 2 hour mark.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{dist.length}$
 

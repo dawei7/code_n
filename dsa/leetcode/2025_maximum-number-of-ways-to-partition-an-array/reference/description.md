@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n`. The number of ways to **partition** `nums` is the number of `pivot` indices that satisfy both conditions:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** integer array `nums` of length `n`. The number of 
 You are also given an integer `k`. You can choose to change the value of **one** element of `nums` to `k`, or to leave the array **unchanged**.
 
 Return *the **maximum** possible number of ways to **partition** *`nums`* to satisfy both conditions after changing **at most** one element*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ There are two ways to partition the array:
 - **Output:** `4`
 - **Explanation:** One optimal approach is to change nums[2] to k. The array becomes [22,4,<u>**-33**</u>,-20,-15,15,-16,7,19,-10,0,-13,-14].
 There are four ways to partition the array.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

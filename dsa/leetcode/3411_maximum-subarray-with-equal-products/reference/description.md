@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums`.
 
@@ -11,12 +11,13 @@ An array `arr` is called **product equivalent** if $prod(arr) = lcm(arr) * gcd(a
 - `lcm(arr)` is the LCM of all elements of `arr`.
 
 Return the length of the **longest** **product equivalent** subarray of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The longest product equivalent subarray is $[3, 4, 5].$
 **Output:** 5
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **peak** in an array `arr` is an element that is **greater** than its previous and next element in `arr`.
 
@@ -12,15 +12,16 @@ You have to process queries of two types:
 
 Return an array `answer` containing the results of the queries of the first type in order.<!-- notionvc: a9ccef22-4061-4b5a-b4cc-a2b2a0e12f30 -->
 
-**Notes:**
-
-- The **first** and the **last** element of an array or a subarray<!-- notionvc: fcffef72-deb5-47cb-8719-3a3790102f73 --> **cannot** be a peak.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- The **first** and the **last** element of an array or a subarray<!-- notionvc: fcffef72-deb5-47cb-8719-3a3790102f73 --> **cannot** be a peak.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Second query: The number of peaks in the `[4,1,4]` is 0.
 Third query: The second 4 is a peak in the `[4,1,4,2,1]`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

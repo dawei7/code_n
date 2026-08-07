@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` and two integers `encCost` and `flatCost`.
 
@@ -15,7 +15,8 @@ For a segment of length `L` containing `X` sensitive elements:
 If a segment has **even length**, you may split it into **two contiguous segments** of **equal** length and the cost of this split is the **sum** of **costs** of the resulting segments.
 
 Return an integer denoting the **minimum possible total cost** over all valid partitions.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -43,7 +44,7 @@ follow the same rule independently. An odd-length segment cannot be split.
 Return the minimum possible sum of final-segment costs over every valid
 recursive equal-halving partition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -91,7 +92,8 @@ recursive equal-halving partition.
 The string `s = "00"` has length 2 and contains no sensitive elements, so storing it as a single segment costs $flatCost = 2$, which is the minimum possible total cost.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

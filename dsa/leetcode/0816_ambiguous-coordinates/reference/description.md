@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We had some 2-dimensional coordinates, like `"(1, 3)"` or `"(2, 0.5)"`. Then, we removed all commas, decimal points, and spaces and ended up with the string s.
 
@@ -9,12 +9,13 @@ Return *a list of strings representing all possibilities for what our original c
 Our original representation never had extraneous zeroes, so we never started with numbers like `"00"`, `"0.0"`, `"0.00"`, `"1.0"`, `"001"`, `"00.01"`, or any other number that can be represented with fewer digits. Also, a decimal point within a number never occurs without at least one digit occurring before it, so we never started with numbers like `".1"`.
 
 The final answer list can be returned in any order. All coordinates in the final answer have exactly one space between them (occurring after the comma.)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The final answer list can be returned in any order. All coordinates in the final
 
 - **Input:** `s = "(00011)"`
 - **Output:** `["(0, 0.011)","(0.001, 1)"]`
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{s.length} \le 12$
 

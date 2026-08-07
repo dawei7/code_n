@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` where `nums2` is **an anagram** of `nums1`. Both arrays may contain duplicates.
 
 Return *an index mapping array *`mapping`* from *`nums1`* to *`nums2`* where *$\text{mapping}[i] = j$* means the *$$i^{\text{th}}$$* element in *`nums1`* appears in *`nums2`* at index *`j`. If there are multiple answers, return **any of them**.
 
 An array `a` is **an anagram** of an array `b` means `b` is made by randomizing the order of the elements in `a`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ An array `a` is **an anagram** of an array `b` means `b` is made by randomizing 
 
 When a value occurs more than once, the contract requires only value equality at the selected position. It does not require different occurrences in `nums1` to use distinct positions in `nums2`, so any matching index is acceptable for each output entry.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ When a value occurs more than once, the contract requires only value equality at
 
 - **Input:** $nums1 = [84,46], nums2 = [84,46]$
 - **Output:** `[0,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} \le 100$
 

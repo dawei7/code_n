@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Friends`
 
@@ -18,11 +18,12 @@ Write a solution to find **all** **pairs** of users who are friends with each ot
 Return *the result table ordered by *$\text{user}_{id1},$ $\text{user}_{id2}$* in **ascending****** **order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

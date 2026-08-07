@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a special ranking system, each voter gives a rank from highest to lowest to all teams participating in the competition.
 
@@ -7,12 +7,13 @@ The ordering of teams is decided by who received the most position-one votes. If
 You are given an array of strings `votes` which is the votes of all voters in the ranking systems. Sort all teams according to the ranking system described above.
 
 Return *a string of all teams **sorted** by the ranking system*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ X is the winner due to the tie-breaking rule. X has the same votes as W for the 
 - **Input:** $votes = ["ZMNAGUEDSJYLBOPHRQICWFXTVK"]$
 - **Output:** `"ZMNAGUEDSJYLBOPHRQICWFXTVK"`
 - **Explanation:** Only one voter, so their votes are used for the ranking.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{votes.length} \le 1000$
 

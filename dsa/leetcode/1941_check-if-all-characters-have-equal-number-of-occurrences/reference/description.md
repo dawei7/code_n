@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s`, return `true`* if *`s`* is a **good** string, or *`false`* otherwise*.
 
 A string `s` is **good** if **all** the characters that appear in `s` have the **same** number of occurrences (i.e., the same frequency).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ A string `s` is **good** if **all** the characters that appear in `s` have the *
 - **Output:** `false`
 - **Explanation:** The characters that appear in s are 'a' and 'b'.
 'a' occurs 3 times while 'b' occurs 2 times, which is not the same number of times.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

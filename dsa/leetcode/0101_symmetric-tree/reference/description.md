@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, *check whether it is a mirror of itself* (i.e., symmetric around its center).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `root` of a binary tree, *check whether it is a mirror of itself* (i.e
 
 Return `true` when the tree mirrors itself around its center; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return `true` when the tree mirrors itself around its center; otherwise return `
 
 - **Input:** `root = [1,2,2,null,3,null,3]`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

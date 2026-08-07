@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of **permutations** of the **1-indexed** array* `nums = [1, 2, ..., n]`*, such that it's **self-divisible***.
 
@@ -17,11 +17,12 @@ A **permutation** of an array is a rearrangement of the elements of that array, 
 - `[3, 1, 2]`
 
 - `[3, 2, 1]`
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,6 +42,7 @@ nums = [2,1]: This is self-divisible since gcd(nums[1], 1) == 1 and gcd(nums[2],
 - **Output:** `3`
 - **Explanation:** The array [1,2,3] has 3 self-divisble permutations: [1,3,2], [3,1,2], [2,3,1].
 It can be shown that the other 3 permutations are not self-divisible. Hence the answer is 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 12$

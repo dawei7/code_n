@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 There are `n` **unique** virus variants in an infinite 2D grid. You are given a 2D array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents a virus originating at $(x_{i}, y_{i})$ on day `0`. Note that it is possible for **multiple **virus variants to originate at the **same** point.
 
 Every day, each cell infected with a virus variant will spread the virus to **all **neighboring points in the **four** cardinal directions (i.e. up, down, left, and right). If a cell has multiple variants, all the variants will spread without interfering with each other.
 
 Given an integer `k`, return *the **minimum integer** number of days for **any** point to contain **at least** *`k`* of the unique virus variants*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Given an integer `k`, return *the **minimum integer** number of days for **any**
 - **Input:** $points = [[3,3],[1,2],[9,2]], k = 3$
 - **Output:** `4`
 - **Explanation:** On day 4, the point (5,2) will contain all 3 viruses. Note that this is not the only point that will contain all 3 virus variants.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{points.length}$
 

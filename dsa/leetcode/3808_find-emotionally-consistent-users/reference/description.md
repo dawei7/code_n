@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `reactions`
 
@@ -24,7 +24,29 @@ Write a solution to identify **emotionally consistent users** based on the follo
 
 Return *the result table ordered by* $\text{reaction}_{ratio}$ *in **descending** order and then by* $\text{user}_{id}$ *in **ascending** order*.
 
-**Note:**
+### 2. Function Contract
+
+**Input table**
+
+- `reactions`: One row per distinct ($\text{user}_{id}$, $\text{content}_{id}$) pair, with the three columns defined in the Description.
+
+For a user with $R_u$ reaction rows, let $C_{u,t}$ be the number whose `reaction` is type $t$. The user qualifies only when $R_u \ge 5$ and some type satisfies
+
+$\frac{C_{u,t}}{R_u} \ge 0.60.$
+
+Because 60% is greater than half, at most one reaction type can satisfy this condition for a user.
+
+**Result table**
+
+Return exactly these columns:
+
+- $\text{user}_{id}$
+- $\text{dominant}_{reaction}$, the qualifying reaction type
+- $\text{reaction}_{ratio}$, the qualifying type's count divided by the user's total reaction count
+
+Include one row for each qualifying user. Sort the rows by $\text{reaction}_{ratio} DESC, \text{user}_{id} ASC$.
+
+### 3. Note
 
 - $\text{reaction}_{ratio}$ should be rounded to `2` decimal places
 
@@ -109,25 +131,3 @@ reactions table:
 The Results table is ordered by reaction_ratio in descending order, then by user_id in ascending order.
 
 </div>
-
-### Function Contract
-
-**Input table**
-
-- `reactions`: One row per distinct ($\text{user}_{id}$, $\text{content}_{id}$) pair, with the three columns defined in the Description.
-
-For a user with $R_u$ reaction rows, let $C_{u,t}$ be the number whose `reaction` is type $t$. The user qualifies only when $R_u \ge 5$ and some type satisfies
-
-$\frac{C_{u,t}}{R_u} \ge 0.60.$
-
-Because 60% is greater than half, at most one reaction type can satisfy this condition for a user.
-
-**Result table**
-
-Return exactly these columns:
-
-- $\text{user}_{id}$
-- $\text{dominant}_{reaction}$, the qualifying reaction type
-- $\text{reaction}_{ratio}$, the qualifying type's count divided by the user's total reaction count
-
-Include one row for each qualifying user. Sort the rows by $\text{reaction}_{ratio} DESC, \text{user}_{id} ASC$.

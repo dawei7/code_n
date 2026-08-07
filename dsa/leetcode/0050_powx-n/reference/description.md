@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_blank">pow(x, n)</a>, which calculates `x` raised to the power `n` (i.e., $x^n$).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Implement <a href="http://www.cplusplus.com/reference/valarray/pow/" target="_bl
 
 Return $x^n$ as a floating-point number.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return $x^n$ as a floating-point number.
 - **Input:** $x = 2.00000, n = -2$
 - **Output:** `0.25000`
 - **Explanation:** $2^{-2}$ = 1/$2^{2}$ = 1/4 = 0.25
-### Constraints
+
+### 4. Constraints
 
 - `-100.0 < x < 100.0`
 

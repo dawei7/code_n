@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given two valid times `startTime` and `endTime`, each represented as a string in the format `"HH:MM:SS"`.
 
 Return the number of seconds that have elapsed from `startTime` to `endTime`.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(startTime, endTime) -> int`
 
@@ -18,7 +19,7 @@ Both values describe times within the same day. Hours range from `00` through `2
 
 Return the number of elapsed seconds from `startTime` to `endTime`. The result lies between `0` and `86399`, inclusive.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return the number of elapsed seconds from `startTime` to `endTime`. The result l
 `endTime` is 25 minutes and 4 seconds ahead of `startTime`, which equals 1504 seconds.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{startTime.length} = 8$
 

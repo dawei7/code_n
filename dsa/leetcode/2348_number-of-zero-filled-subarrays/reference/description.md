@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the number of **subarrays** filled with *`0`.
 
 A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ There is no occurrence of a subarray with a size more than 3 filled with 0. Ther
 - **Input:** `nums = [2,10,2019]`
 - **Output:** `0`
 - **Explanation:** There is no subarray filled with 0. Therefore, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

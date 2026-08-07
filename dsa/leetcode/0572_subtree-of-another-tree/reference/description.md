@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the roots of two binary trees `root` and `subRoot`, return `true` if there is a subtree of `root` with the same structure and node values of` subRoot` and `false` otherwise.
 
 A subtree of a binary tree `tree` is a tree that consists of a node in `tree` and all of this node's descendants. The tree `tree` could also be considered as a subtree of itself.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ A subtree of a binary tree `tree` is a tree that consists of a node in `tree` an
 
 - **Input:** `root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the `root` tree is in the range `[1, 2000]`.
 

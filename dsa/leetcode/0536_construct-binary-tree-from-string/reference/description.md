@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You need to construct a binary tree from a string consisting of parenthesis and integers.
 
 The whole input represents a binary tree. It contains an integer followed by zero, one or two pairs of parenthesis. The integer represents the root's value and a pair of parenthesis contains a child binary tree with the same structure.
 
 You always start to construct the **left** child node of the parent first if it exists.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -18,7 +19,7 @@ You always start to construct the **left** child node of the parent first if it 
 Each returned `TreeNode` has an integer `val` and optional `left` and `right` child references. Multi-digit and
 negative values form one node value; the first child expression belongs to `left` and the second to `right`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ negative values form one node value; the first child expression belongs to `left
 
 - **Input:** `s = "-4(2(3)(1))(6(5)(7))"`
 - **Output:** `[-4,2,6,3,1,5,7]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length} \le 3 * 10^{4}$
 

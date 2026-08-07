@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D matrix `grid` consisting of positive integers.
 
@@ -11,12 +11,13 @@ You have to select *one or more* cells from the matrix such that the following c
 Your score will be the **sum** of the values of the selected cells.
 
 Return the **maximum** score you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ We can select the cells with values 1, 3, and 4 that are colored above.
 We can select the cells with values 7 and 8 that are colored above.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grid.length}, \text{grid}[i].length \le 10$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `TeamStats`
 
@@ -25,7 +25,13 @@ Write a solution to calculate the **points** and **rank** for each team in the l
 
 - `0` points for a **loss**
 
-**Note:** Teams with the same points must be assigned the same rank.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+Teams with the same points must be assigned the same rank.
 
 Return *the result table ordered by* `points` *in **descending**,** **and then by* $\text{team}_{name}$ *in **ascending **order.*
 
@@ -77,7 +83,3 @@ The query result format is in the following example.
 The output table is ordered by points in descending order, then by team_name in ascending order.
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

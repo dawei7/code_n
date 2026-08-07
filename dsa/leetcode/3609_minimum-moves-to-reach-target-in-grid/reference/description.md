@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given four integers `sx`, `sy`, `tx`, and `ty`, representing two points `(sx, sy)` and `(tx, ty)` on an infinitely large 2D grid.
 
@@ -11,12 +11,13 @@ At any point `(x, y)`, define $m = max(x, y)$. You can either:
 - Move to $(x, y + m)$.
 
 Return the **minimum** number of moves required to reach `(tx, ty)`. If it is impossible to reach the target, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ Thus, the minimum number of moves to reach `(2, 3)` is 3.
 - It is impossible to reach `(2, 2)` from `(1, 1)` using the allowed moves. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le sx \le tx \le 10^{9}$
 

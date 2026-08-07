@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a <a href="https://en.wikipedia.org/wiki/Snake_(video_game)" target="_blank">Snake game</a> that is played on a device with screen size `height x width`. <a href="http://patorjk.com/games/snake/" target="_blank">Play the game online</a> if you are not familiar with the game.
 
@@ -17,7 +17,8 @@ Implement the `SnakeGame` class:
 - `SnakeGame(int width, int height, int[][] food)` Initializes the object with a screen of size `height x width` and the positions of the `food`.
 
 - `int move(String direction)` Returns the score of the game after applying one `direction` move by the snake. If the game is over, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ Implement the `SnakeGame` class:
 
 The app adapter returns every move's score or `-1` result. The native method returns the result of one move.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ snakeGame.move("U"); // return 1
 snakeGame.move("L"); // return 2, snake eats the second food. No more food appears.
 snakeGame.move("U"); // return -1, game over because snake collides with border
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le width, height \le 10^{4}$
 

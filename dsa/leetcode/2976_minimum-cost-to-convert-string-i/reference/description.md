@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** strings `source` and `target`, both of length `n` and consisting of **lowercase** English letters. You are also given two **0-indexed** character arrays `original` and `changed`, and an integer array `cost`, where $\text{cost}[i]$ represents the cost of changing the character $\text{original}[i]$ to the character $\text{changed}[i]$.
 
@@ -6,13 +6,16 @@ You start with the string `source`. In one operation, you can pick a character `
 
 Return *the **minimum** cost to convert the string *`source`* to the string *`target`* using **any** number of operations. If it is impossible to convert* `source` *to* `target`, *return* `-1`.
 
-**Note** that there may exist indices `i`, `j` such that $\text{original}[j] = \text{original}[i]$ and $\text{changed}[j] = \text{changed}[i]$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that there may exist indices `i`, `j` such that $\text{original}[j] = \text{original}[i]$ and $\text{changed}[j] = \text{changed}[i]$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ It can be shown that this is the minimum possible cost.
 - **Input:** $source = "abcd", target = "abce", original = ["a"], changed = ["e"], cost = [10000]$
 - **Output:** `-1`
 - **Explanation:** It is impossible to convert source to target because the value at index 3 cannot be changed from 'd' to 'e'.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{source.length} = \text{target.length} \le 10^{5}$
 

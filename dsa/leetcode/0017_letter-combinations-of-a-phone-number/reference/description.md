@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a string containing digits from `2-9` inclusive, return all possible letter combinations that the number could represent. Return the answer in **any order**.
 
 A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
 
 ![](images/1200px-telephone-keypad2svg.png)
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ A mapping of digits to letters (just like on the telephone buttons) is given bel
 
 Return all strings formed by selecting one mapped letter for each digit, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return all strings formed by selecting one mapped letter for each digit, in any 
 
 - **Input:** $digits = "2"$
 - **Output:** `["a","b","c"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{digits.length} \le 4$
 

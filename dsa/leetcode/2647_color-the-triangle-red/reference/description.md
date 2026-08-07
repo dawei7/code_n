@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. Consider an equilateral triangle of side length `n`, broken up into $n^{2}$ unit equilateral triangles. The triangle has `n` **1-indexed** rows where the $$i^{\text{th}}$$ row has $2i - 1$ unit equilateral triangles.
 
@@ -28,11 +28,12 @@ Initially, all the unit triangles are **white**. You want to choose `k` triangle
 Choose the minimum `k` possible and set `k` triangles red before running this algorithm such that after the algorithm stops, all unit triangles are colored red.
 
 Return *a 2D list of the coordinates of the triangles that you will color red initially*. The answer has to be of the smallest size possible. If there are multiple valid solutions, return any.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,6 +56,7 @@ It can be shown that choosing any 4 triangles and running the algorithm will not
 - **Explanation:** Initially, we choose the shown 3 triangles to be red. Then, we run the algorithm:
 - Choose (2,2) that has three red neighbors and color it red.
 It can be shown that choosing any 2 triangles and running the algorithm will not make all triangles red.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -11,7 +11,8 @@ If your available resources are less than $\text{nums}[i]$, you may perform an o
 After processing the $$i^{\text{th}}$$ element, your available resources decrease by $\text{nums}[i]$.
 
 Return an integer denoting the **minimum total cost** required to process all elements. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums, k) -> int`
 
@@ -28,7 +29,7 @@ Before processing element `i`, one or more operations may be performed only when
 
 Return the minimum total cost of all operations needed to process every element, reduced modulo $M$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -82,7 +83,8 @@ Return the minimum total cost of all operations needed to process every element,
 To process all elements, we can use the initial 10 units of resources without performing any operations. Thus, the total cost required is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

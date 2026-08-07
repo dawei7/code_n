@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array of integers `coordinates` of length `n` and an integer `k`, where $0 \le k < n$.
 
@@ -11,12 +11,13 @@ An **increasing path** of length `m` is defined as a list of points $(x_{1}, y_{
 - $(x_{i}, y_{i})$ is in the given coordinates for all `i` where $1 \le i \le m$.
 
 Return the **maximum** length of an **increasing path** that contains $\text{coordinates}[k]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return the **maximum** length of an **increasing path** that contains $\text{coo
 `(2, 1)`, `(5, 6)` is the longest increasing path that contains `(5, 6)`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{coordinates.length} \le 10^{5}$
 

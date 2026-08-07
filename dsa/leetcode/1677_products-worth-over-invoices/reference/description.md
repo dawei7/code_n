@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Product`
 
@@ -39,7 +39,8 @@ Write a solution that will, for all products, return each product name with the 
 Return the result table ordered by $\text{product}_{name}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -50,7 +51,7 @@ The result format is in the following example.
 
 Return a table with columns `name`, `rest`, `paid`, `canceled`, and `refunded` containing the aggregated sums for all products, ordered by `name` ascending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

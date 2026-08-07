@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `l` and `r`.
 
@@ -11,7 +11,8 @@ Return an integer representing the number of fancy integers in the range `[l, r]
 A sequence is said to be **strictly increasing** if each element is **strictly greater** than its previous one (if exists).
 
 A sequence is said to be **strictly decreasing** if each element is **strictly less** than its previous one (if exists).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Use each integer's ordinary decimal representation without leading zeros. For a 
 
 Return an integer equal to the number of values $x$ satisfying $l\le x\le r$ for which $x$ is good, its digit sum is good, or both.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -91,6 +92,7 @@ Therefore, the answer is 1.
 Therefore, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le l \le r \le 10^{15}$

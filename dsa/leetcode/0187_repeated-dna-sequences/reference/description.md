@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **DNA sequence** is composed of a series of nucleotides abbreviated as `'A'`, `'C'`, `'G'`, and `'T'`.
 
@@ -7,7 +7,8 @@ The **DNA sequence** is composed of a series of nucleotides abbreviated as `'A'`
 When studying **DNA**, it is useful to identify repeated sequences within the DNA.
 
 Given a string `s` that represents a **DNA sequence**, return all the **`10`-letter-long** sequences (substrings) that occur more than once in a DNA molecule. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Given a string `s` that represents a **DNA sequence**, return all the **`10`-let
 
 Return each repeated length-10 substring once, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return each repeated length-10 substring once, in any order.
 
 - **Input:** `s = "AAAAAAAAAAAAA"`
 - **Output:** `["AAAAAAAAAA"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

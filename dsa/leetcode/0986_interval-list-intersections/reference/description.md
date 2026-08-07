@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two lists of closed intervals, `firstList` and `secondList`, where $\text{firstList}[i] = [\text{start}_{i}, \text{end}_{i}]$ and $\text{secondList}[j] = [\text{start}_{j}, \text{end}_{j}]$. Each list of intervals is pairwise **disjoint** and in **sorted order**.
 
@@ -7,12 +7,13 @@ Return *the intersection of these two interval lists*.
 A **closed interval** `[a, b]` (with $a \le b$) denotes the set of real numbers `x` with $a \le x \le b$.
 
 The **intersection** of two closed intervals is a set of real numbers that are either empty or represented as a closed interval. For example, the intersection of `[1, 3]` and `[2, 4]` is `[2, 3]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ The **intersection** of two closed intervals is a set of real numbers that are e
 
 - **Input:** $firstList = [[1,3],[5,9]], secondList = []$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{firstList.length}, \text{secondList.length} \le 1000$
 

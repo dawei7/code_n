@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **1****-indexed** array `nums`. Your task is to select a **complete subset** from `nums` where every pair of selected indices multiplied is a perfect square,. i. e. if you select $a_{i}$ and $a_{j}$, $i * j$ must be a perfect square.
 
 Return the *sum* of the complete subset with the *maximum sum*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ We select elements at indices 2 and 8 and $2 * 8$ is a perfect square.
 We select elements at indices 1, 4, and 9. $1 * 4$, $1 * 9$, $4 * 9$ are perfect squares.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{4}$
 

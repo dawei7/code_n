@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. Your task is to remove **all elements** from the array by performing one of the following operations at each step until `nums` is empty:
 
@@ -7,12 +7,13 @@ You are given an integer array `nums`. Your task is to remove **all elements** f
 - If fewer than three elements remain in `nums`, remove all the remaining elements in a single operation. The cost of this operation is the **maximum** of the remaining elements.
 
 Return the **minimum** cost required to remove all the elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Initially, `nums = [2, 1, 3, 3]`.
 The cost to remove all elements is $2 + 3 = 5$. This is the minimum cost to remove all elements in `nums`. Hence, the output is 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

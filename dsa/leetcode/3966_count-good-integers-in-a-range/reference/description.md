@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `l`, `r` and `k`.
 
@@ -7,7 +7,8 @@ A number is considered **good** if the **absolute difference** between every pai
 Return the number of **good** integers in the range `[l, r]` (inclusive).
 
 The **absolute difference** between values `x` and `y` is defined as $abs(x - y)$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $D$ be the number of decimal digits in `r`.
 
 Return the number of integers $x$ in the inclusive range $[l,r]$ for which every adjacent pair of digits has absolute difference at most `k`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Return the number of integers $x$ in the inclusive range $[l,r]$ for which every
 - Thus, the answer is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $10 \le l \le r \le 10^{15}$
 

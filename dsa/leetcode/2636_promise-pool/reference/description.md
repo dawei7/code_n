@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of asynchronous functions `functions` and a **pool limit** `n`, return an asynchronous function `promisePool`. It should return a promise that resolves when all the input functions resolve.
 
@@ -7,7 +7,8 @@ Given an array of asynchronous functions `functions` and a **pool limit** `n`, r
 For example, if $n = 1$, `promisePool` will execute one function at a time in series. However, if $n = 2$, it first executes two functions. When either of the two functions resolve, a 3rd function should be executed (if available), and so on until there are no functions left to execute.
 
 You can assume all `functions` never reject. It is acceptable for `promisePool` to return a promise that resolves any value.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ You can assume all `functions` never reject. It is acceptable for `promisePool` 
 
 Return a promise that resolves when all $m$ functions have resolved, executing at most `n` functions concurrently.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ At t=0, the 1st function is executed. Pool size is 1.
 At t=300, the 1st function resolves and the 2nd function is executed. Pool size is 1.
 At t=700, the 2nd function resolves and the 3rd function is executed. Pool size is 1.
 At t=900, the 3rd function resolves. Pool size is 0 so the returned promise resolves.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{functions.length} \le 10$
 

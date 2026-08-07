@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list and an integer `val`, remove all the nodes of the linked list that has $\text{Node.val} = val$, and return *the new head*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given the `head` of a linked list and an integer `val`, remove all the nodes of 
 
 Return the new head after removing every matching node while retaining the other nodes in their original order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the new head after removing every matching node while retaining the other
 
 - **Input:** $head = [7,7,7,7], val = 7$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[0, 10^{4}]$.
 

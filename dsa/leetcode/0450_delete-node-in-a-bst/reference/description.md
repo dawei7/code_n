@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a root node reference of a BST and a key, delete the node with the given key in the BST. Return *the **root node reference** (possibly updated) of the BST*.
 
@@ -7,7 +7,8 @@ Basically, the deletion can be divided into two stages:
 - Search for a node to remove.
 
 - If the node is found, delete the node.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Basically, the deletion can be divided into two stages:
 
 The standalone app defines a minimal local equivalent of LeetCode's injected `TreeNode` model. It accepts and returns level-order tree values, using `None` for a missing child.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Please notice that another valid answer is [5,2,6,null,4,null,7] and it's also a
 
 - **Input:** `root = [], key = 0`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{4}]$.
 

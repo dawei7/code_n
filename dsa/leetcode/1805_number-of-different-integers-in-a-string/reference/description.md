@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word` that consists of digits and lowercase English letters.
 
@@ -7,12 +7,13 @@ You will replace every non-digit character with a space. For example, `"a123bc34
 Return *the number of **different** integers after performing the replacement operations on *`word`.
 
 Two integers are considered different if their decimal representations **without any leading zeros** are different.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Two integers are considered different if their decimal representations **without
 - **Output:** `1`
 - **Explanation:** The three integers "1", "01", and "001" all represent the same integer because
 the leading zeros are ignored when comparing their decimal values.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 1000$
 

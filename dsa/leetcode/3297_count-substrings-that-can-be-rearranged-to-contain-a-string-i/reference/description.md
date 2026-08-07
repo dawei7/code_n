@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two strings `word1` and `word2`.
 
 A string `x` is called **valid** if `x` can be rearranged to have `word2` as a prefix.
 
 Return the total number of **valid** substrings of `word1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ All the substrings except substrings of size 1 and size 2 are valid.
 **Output:** 0
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length} \le 10^{5}$
 

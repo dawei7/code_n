@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges`​​​​​​​ of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -9,7 +9,8 @@ In one operation, you may pick an edge with index `i` and **toggle **both of its
 Return an array of edge indices whose operations transform `start` into `target`. Among all valid sequences with **minimum possible length**, return the edge indices in **increasing**​​​​​​​ order.
 
 If it is impossible to transform `start` into `target`, return an array containing a single element equal to -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $N=n$. Selecting edge `i` toggles exactly the two bits at the endpoints list
 
 Return the increasing list of edge indices in a shortest valid toggle sequence. Return `[]` when `start` already equals `target`, and return `[-1]` when no sequence can reach `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -88,7 +89,8 @@ After these operations, the resulting string becomes `"0010001"`, which matches 
 There is no sequence of edge toggles that transforms `"00"` into `"01"`. Therefore, we return `[-1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{start.length} = \text{target.length} \le 10^{5}$
 

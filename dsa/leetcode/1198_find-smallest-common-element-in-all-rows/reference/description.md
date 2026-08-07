@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` matrix `mat` where every row is sorted in **strictly** **increasing** order, return *the **smallest common element** in all rows*.
 
 If there is no common element, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -15,7 +16,7 @@ Let $m$ be `mat.length` and let $n$ be the length of each row. An element is com
 
 Return the smallest integer present in every row of `mat`, or `-1` when no such integer exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the smallest integer present in every row of `mat`, or `-1` when no such 
 
 - **Input:** $mat = [[1,2,3],[2,3,4],[2,3,5]]$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

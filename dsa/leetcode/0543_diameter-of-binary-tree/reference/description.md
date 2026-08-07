@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the length of the **diameter** of the tree*.
 
 The **diameter** of a binary tree is the **length** of the longest path between any two nodes in a tree. This path may or may not pass through the `root`.
 
 The **length** of a path between two nodes is represented by the number of edges between them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ The **length** of a path between two nodes is represented by the number of edges
 
 - **Input:** `root = [1,2]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

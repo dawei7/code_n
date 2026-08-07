@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 We have an array of integers, `nums`, and an array of `requests` where $\text{requests}[i] = [\text{start}_{i}, \text{end}_{i}]$. The $$i^{\text{th}}$$ request asks for the sum of $nums[\text{start}_{i}] + nums[\text{start}_{i} + 1] + ... + nums[\text{end}_{i} - 1] + nums[\text{end}_{i}]$. Both $\text{start}_{i}$ and $\text{end}_{i}$ are *0-indexed*.
 
 Return *the maximum total sum of all requests **among all permutations** of* `nums`.
 
 Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Total sum: 11 + 8 = 19, which is the best that you can do.
 - **Input:** `nums = [1,2,3,4,5,10], requests = [[0,2],[1,3],[1,1]]`
 - **Output:** `47`
 - **Explanation:** A permutation with the max total sum is [4,10,5,3,2,1] with request sums [19,18,10].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

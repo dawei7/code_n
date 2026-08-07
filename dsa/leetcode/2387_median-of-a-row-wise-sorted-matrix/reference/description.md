@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an `m x n` matrix `grid` containing an **odd** number of integers where each row is sorted in **non-decreasing** order, return *the **median** of the matrix*.
 
 You must solve the problem in less than $O(m * n)$ time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ You must solve the problem in less than $O(m * n)$ time complexity.
 - **Input:** `grid = [[1,1,3,3,4]]`
 - **Output:** `3`
 - **Explanation:** The elements of the matrix in sorted order are 1,1,<u>3</u>,3,4. The median is 3.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

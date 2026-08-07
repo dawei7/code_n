@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given three integers `l`, `r`, and `k`.
 
 Consider all possible integers consisting of **exactly** `k` digits, where each digit is chosen independently from the integer range `[l, r]` (inclusive). If 0 is included in the range, leading zeros are allowed.
 
 Return an integer representing the **sum of all such numbers.**​​​​​​​ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Every one of the $(r-l+1)^k$ digit sequences contributes once, including sequenc
 
 Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ Return the sum of all represented integers reduced modulo $1{,}000{,}000{,}007$.
 - The total sum is $5555555555 \% (10^{9} + 7) = 555555520$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le l \le r \le 9$
 

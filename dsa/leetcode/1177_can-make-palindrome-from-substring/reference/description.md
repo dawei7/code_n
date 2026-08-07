@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and array `queries` where $\text{queries}[i] = [\text{left}_{i}, \text{right}_{i}, k_{i}]$. We may rearrange the substring $s[\text{left}_{i}...\text{right}_{i}]$ for each query and then choose up to $k_{i}$ of them to replace with any lowercase English letter.
 
@@ -22,12 +22,13 @@ queries[4]: substring = "abcda", could be changed to "abcba" which is palidrome.
 
 - **Input:** `s = "lyb", queries = [[0,1,0],[2,2,1]]`
 - **Output:** `[false,true]`
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le \text{s.length}, \text{queries.length} \le 10^{5}$
 

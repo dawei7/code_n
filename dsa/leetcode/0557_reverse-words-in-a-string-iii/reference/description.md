@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s`, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,7 +17,8 @@ Given a string `s`, reverse the order of characters in each word within a senten
 
 - **Input:** `s = "Mr Ding"`
 - **Output:** `"rM gniD"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{4}$
 

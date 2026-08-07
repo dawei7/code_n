@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 During the NBA playoffs, we always set the rather strong team to play with the rather weak team, like making the rank `1` team play with the rank $$n^{\text{th}}$$ team, which is a good strategy to make the contest more interesting.
 
@@ -7,7 +7,8 @@ Given `n` teams, return *their final contest matches in the form of a string*.
 The `n` teams are labeled from `1` to `n`, which represents their initial rank (i.e., Rank `1` is the strongest team and Rank `n` is the weakest team).
 
 We will use parentheses `'('`, and `')'` and commas `','` to represent the contest team pairing. We use the parentheses for pairing and the commas for partition. During the pairing process in each round, you always need to follow the strategy of making the rather strong one pair with the rather weak one.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -18,7 +19,7 @@ We will use parentheses `'('`, and `')'` and commas `','` to represent the conte
 - Return the fully nested contest string. Every match is formatted as `(left,right)`, and the stronger remaining
   group occupies the left side of its pair.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,6 +39,7 @@ First round: (1, 8),(2, 7),(3, 6),(4, 5)
 Second round: ((1, 8),(4, 5)),((2, 7),(3, 6))
 Third round: (((1, 8),(4, 5)),((2, 7),(3, 6)))
 Since the third round will generate the final winner, you need to output the answer (((1,8),(4,5)),((2,7),(3,6))).
-### Constraints
+
+### 4. Constraints
 
 - $n = 2^x$ where `x` in in the range `[1, 12]`.

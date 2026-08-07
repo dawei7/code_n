@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 An integer has **monotone increasing digits** if and only if each pair of adjacent digits `x` and `y` satisfy $x \le y$.
 
 Given an integer `n`, return *the largest number that is less than or equal to *`n`* with **monotone increasing digits***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Given an integer `n`, return *the largest number that is less than or equal to *
 
 - **Input:** $n = 332$
 - **Output:** `299`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{9}$

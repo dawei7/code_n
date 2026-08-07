@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an array of people, `people`, which are the attributes of some people in a queue (not necessarily in order). Each $\text{people}[i] = [h_{i}, k_{i}]$ represents the $$i^{\text{th}}$$ person of height $h_{i}$ with **exactly** $k_{i}$ other people in front who have a height greater than or equal to $h_{i}$.
 
 Reconstruct and return *the queue that is represented by the input array *`people`. The returned queue should be formatted as an array `queue`, where $\text{queue}[j] = [h_{j}, k_{j}]$ is the attributes of the $$j^{\text{th}}$$ person in the queue ($\text{queue}[0]$ is the person at the front of the queue).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Reconstruct and return *the queue that is represented by the input array *`peopl
 
 Return an ordering of the same person occurrences in which each person's preceding count of people at least as tall equals their `k` value.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Hence [[5,0],[7,0],[5,2],[6,1],[4,4],[7,1]] is the reconstructed queue.
 
 - **Input:** $people = [[6,0],[5,0],[4,0],[3,2],[2,2],[1,4]]$
 - **Output:** `[[4,0],[5,0],[2,2],[3,2],[1,4],[6,0]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{people.length} \le 2000$
 

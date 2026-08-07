@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the array `orders`, which represents the orders that customers have done in a restaurant. More specifically $\text{orders}[i]=[\text{customerName}_{i},\text{tableNumber}_{i},\text{foodItem}_{i}]$ where $\text{customerName}_{i}$ is the name of the customer, $\text{tableNumber}_{i}$ is the table customer sit at, and $\text{foodItem}_{i}$ is the item customer orders.
 
 *Return the restaurant's “**display table**”*. The “**display table**” is a table whose row entries denote how many of each food item each table ordered. The first column is the table number and the remaining columns correspond to each food item in alphabetical order. The first row should be a header whose first column is “Table”, followed by the names of the food items. Note that the customer names are not part of the table. Additionally, the rows should be sorted in numerically increasing order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ For the table 12: James, Ratesh and Amadeus order "Fried Chicken".
 
 - **Input:** $orders = [["Laura","2","Bean Burrito"],["Jhon","2","Beef Burrito"],["Melissa","2","Soda"]]$
 - **Output:** `[["Table","Bean Burrito","Beef Burrito","Soda"],["2","1","1","1"]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{orders.length} \le 5 * 10^{4}$
 

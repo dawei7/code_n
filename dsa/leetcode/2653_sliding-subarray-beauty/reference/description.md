@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` containing `n` integers, find the **beauty** of each subarray of size `k`.
 
@@ -7,12 +7,13 @@ The **beauty** of a subarray is the $$x^{\text{th}}$$** smallest integer **in th
 Return *an integer array containing *$n - k + 1$ *integers, which denote the ***beauty*** of the subarrays **in order** from the first index in the array.*
 
 - A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ For [1, 2], there is no negative integer so the beauty is 0.
 For [2, -3], the 1^st smallest negative integer is -3.
 For [-3, 0], the 1^st smallest negative integer is -3.
 For [0, -3], the 1^st smallest negative integer is -3.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Flights`
 
@@ -33,11 +33,12 @@ Write a solution to report the number of passengers who successfully booked a fl
 Return the result table ordered by* *$\text{flight}_{id}$ in **ascending***** order**.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

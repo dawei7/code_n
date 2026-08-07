@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of **positive** integers `nums` and a **positive** integer `limit`.
 
@@ -7,12 +7,13 @@ In one operation, you can choose any two indices `i` and `j` and swap $\text{num
 Return *the **lexicographically smallest array** that can be obtained by performing the operation any number of times*.
 
 An array `a` is lexicographically smaller than an array `b` if in the first position where `a` and `b` differ, array `a` has an element that is less than the corresponding element in `b`. For example, the array `[2,10,3]` is lexicographically smaller than the array `[10,2,3]` because they differ at index `0` and `2 < 10`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ We cannot obtain a lexicographically smaller array by applying any more operatio
 - **Input:** `nums = [1,7,28,19,10], limit = 3`
 - **Output:** `[1,7,28,19,10]`
 - **Explanation:** [1,7,28,19,10] is the lexicographically smallest array we can obtain because we cannot apply the operation on any two indices.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

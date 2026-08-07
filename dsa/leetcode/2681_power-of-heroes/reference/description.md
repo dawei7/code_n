@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` representing the strength of some heroes. The** power** of a group of heroes is defined as follows:
 
 - Let $i_{0}$, $i_{1}$, ... ,$i_{k}$ be the indices of the heroes in a group. Then, the power of this group is $max(nums[i_{0}], nums[i_{1}], ... ,nums[i_{k}])^2 * min(nums[i_{0}], nums[i_{1}], ... ,nums[i_{k}])$.
 
 Return *the sum of the **power** of all **non-empty** groups of heroes possible.* Since the sum could be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The sum of powers of all groups is 8 + 1 + 64 + 4 + 32 + 16 + 16 = 141.
 - **Input:** `nums = [1,1,1]`
 - **Output:** `7`
 - **Explanation:** A total of 7 groups are possible, and the power of each group will be 1. Therefore, the sum of the powers of all groups is 7.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

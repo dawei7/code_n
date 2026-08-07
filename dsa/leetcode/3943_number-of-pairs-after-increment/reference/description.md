@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2`, and a 2D integer array `queries`.
 
@@ -9,7 +9,8 @@ Each $\text{queries}[i]$ is one of the following types:
 - `[2, tot]` – **Compute** the number of pairs `(j, k)` such that $\text{nums1}[j] + \text{nums2}[k] = tot$.
 
 Return an integer array `answer`, where $\text{answer}[j]$ is the number of pairs for the $$j^{\text{th}}$$ query of type 2.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Queries are processed from left to right. A type-2 query observes every type-1 u
 
 Return one integer for every type-2 query, in query order. Each integer is the number of index pairs `(j, k)` for which the current sum $\text{nums1}[j] + \text{nums2}[k]$ equals that query's target.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ Return one integer for every type-2 query, in query order. Each integer is the n
 - Thus, the $answer = [1, 0]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} \le 5$
 

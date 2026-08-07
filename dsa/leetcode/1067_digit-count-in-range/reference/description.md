@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a single-digit integer `d` and two integers `low` and `high`, return *the number of times that *`d`* occurs as a digit in all integers in the inclusive range *`[low, high]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Every integer in the closed interval from `low` through `high` is interpreted us
 
 - The total number of written occurrences of `d` across all integers in the inclusive range.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Note that the digit d = 1 occurs twice in the number 11.
 - **Input:** $d = 3, low = 100, high = 250$
 - **Output:** `35`
 - **Explanation:** The digit d = 3 occurs 35 times in 103,113,123,130,131,...,238,239,243.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le d \le 9$
 

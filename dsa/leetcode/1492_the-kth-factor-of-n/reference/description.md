@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two positive integers `n` and `k`. A factor of an integer `n` is defined as an integer `i` where $n \% i = 0$.
 
 Consider a list of all factors of `n` sorted in **ascending order**, return *the *$$k^{\text{th}}$$* factor* in this list or return `-1` if `n` has less than `k` factors.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Consider a list of all factors of `n` sorted in **ascending order**, return *the
 - **Input:** $n = 4, k = 4$
 - **Output:** `-1`
 - **Explanation:** Factors list is [1, 2, 4], there is only 3 factors. We should return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 1000$
 

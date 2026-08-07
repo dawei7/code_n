@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and two distinct lowercase English letters `x` and `y`.
 
@@ -9,7 +9,8 @@ Rearrange the characters of `s` to construct a new string `t` such that:
 - Every occurrence of `y` appears before every occurrence of `x` in `t`.
 
 Return any valid string `t`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ The two distinguished letters are different. Let $n=\lvert\texttt{s}\rvert$.
 
 Return any permutation `t` of `s` for which the last occurrence of `y` is before the first occurrence of `x` whenever both letters occur. If either letter is absent, every permutation automatically satisfies the relative-order condition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ The string `"cabd"` is a permutation of `"dcab"`, and every occurrence of `'b'` 
 The string `"axe"` is already valid. Since `'o'` does not occur in the string, the required condition is automatically satisfied.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of positive integers.
 
@@ -9,12 +9,13 @@ There are two types of operations that you can apply on the array **any** number
 - Choose **three** elements with **equal** values and **delete** them from the array.
 
 Return *the **minimum** number of operations required to make the array empty, or *`-1`* if it is not possible*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,10 +32,13 @@ It can be shown that we cannot make the array empty in less than 4 operations.
 - **Input:** `nums = [2,1,2,2,3,3]`
 - **Output:** `-1`
 - **Explanation:** It is impossible to empty the array.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 
 - $1 \le \text{nums}[i] \le 10^{6}$
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/description/" target="_blank">2244: Minimum Rounds to Complete All Tasks.</a>
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/description/" target="_blank">2244: Minimum Rounds to Complete All Tasks.</a>

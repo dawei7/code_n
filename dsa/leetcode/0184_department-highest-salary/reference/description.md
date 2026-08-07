@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -34,7 +34,8 @@ Write a solution to find employees who have the highest salary in each of the de
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -44,7 +45,7 @@ The result format is in the following example.
 
 Return `Department`, `Employee`, and `Salary` for every employee tied at a department's highest salary.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given a deeply nested object or array `obj`, return the object `obj` with any `undefined` values replaced by `null`.
 
 `undefined` values are handled differently than `null` values when objects are converted to a JSON string using `JSON.stringify()`. This function helps ensure serialized data is free of unexpected errors.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Given a deeply nested object or array `obj`, return the object `obj` with any `u
 - **Input:** $obj = {"a": undefined, "b": ["a", undefined]}$
 - **Output:** `{"a": null,"b": ["a", null]}`
 - **Explanation:** The values for obj.a and obj.b[1] have been changed from undefined to null
-### Constraints
+
+### 4. Constraints
 
 - `obj` is a valid JSON object or array
 

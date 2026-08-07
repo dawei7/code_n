@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -10,16 +10,19 @@ Splitting of an integer array `nums` into **subarrays** is **valid** if:
 
 Return *the **minimum** number of subarrays in a **valid** subarray splitting of* `nums`. If a valid subarray splitting is not possible, return `-1`.
 
-**Note** that:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+that:
 
 - The **greatest common divisor** of two numbers is the largest positive integer that evenly divides both numbers.
 
 - A **subarray** is a contiguous non-empty part of an array.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ It can be proved that 2 is the minimum number of subarrays that we can obtain in
 - **Input:** `nums = [1,2,1]`
 - **Output:** `-1`
 - **Explanation:** It is impossible to create valid split.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

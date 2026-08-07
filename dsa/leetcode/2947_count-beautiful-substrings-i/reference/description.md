@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and a positive integer `k`.
 
@@ -17,12 +17,13 @@ A **substring** is a contiguous sequence of characters in a string.
 **Vowel letters** in English are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
 
 **Consonant letters** in English are every letter except vowels.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ It can be shown that there are only 3 beautiful substrings in the given string.
 - **Input:** `s = "bcdf", k = 1`
 - **Output:** `0`
 - **Explanation:** There are no beautiful substrings in the given string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

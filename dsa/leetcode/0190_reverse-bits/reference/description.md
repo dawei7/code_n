@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Reverse bits of a given 32 bits signed integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Reverse bits of a given 32 bits signed integer.
 
 Return the integer obtained by reversing all 32 binary positions of `n`, including leading zero positions.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Return the integer obtained by reversing all 32 binary positions of `n`, includi
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 2^{31} - 2$
 

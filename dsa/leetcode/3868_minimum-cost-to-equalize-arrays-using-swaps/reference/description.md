@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` of size `n`.
 
@@ -9,7 +9,8 @@ You can perform the following two operations any number of times on these two ar
 - **Swap between two arrays**: Choose an index `i`. Then, swap $\text{nums1}[i]$ and $\text{nums2}[i]$. This operation **incurs a cost of 1**.
 
 Return an integer denoting the **minimum cost** to make `nums1` and `nums2` **identical**. If this is not possible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Let $N=\lvert\texttt{nums1}\rvert=\lvert\texttt{nums2}\rvert$. A free operation 
 
 Return the minimum number of paid between-array swaps required to make the two arrays identical. Return `-1` if equality is impossible. Free swaps do not contribute to the returned cost.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -83,7 +84,8 @@ Return the minimum number of paid between-array swaps required to make the two a
 It is impossible to make the two arrays identical. Therefore, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums1.length} = \text{nums2.length} \le 8 * 10^{4}$
 

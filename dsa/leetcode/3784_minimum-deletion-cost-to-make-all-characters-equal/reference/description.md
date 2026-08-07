@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `n` and an integer array `cost` of the same length, where $\text{cost}[i]$ is the cost to **delete** the $$i^{\text{th}}$$ character of `s`.
 
 You may delete any number of characters from `s` (possibly none), such that the resulting string is **non-empty** and consists of **equal** characters.
 
 Return an integer denoting the **minimum** total deletion cost required.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Let $N=\lvert s\rvert=\lvert\texttt{cost}\rvert$. A deletion removes a character
 
 Return the minimum total cost of deletions that leaves a nonempty string containing only one distinct character.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Deleting the characters at indices 1 and 2 results in the string `"a"`, which co
 All characters in `s` are equal, so the deletion cost is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s.length} = \text{cost.length}$
 

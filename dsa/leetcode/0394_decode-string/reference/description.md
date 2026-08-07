@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an encoded string, return its decoded string.
 
@@ -7,7 +7,8 @@ The encoding rule is: $k[\text{encoded}_{string}]$, where the $\text{encoded}_{s
 You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, `k`. For example, there will not be input like `3a` or $2[4]$.
 
 The test cases are generated so that the length of the output will never exceed $10^{5}$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ The test cases are generated so that the length of the output will never exceed 
 
 Return the fully expanded string after decoding every nested repetition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the fully expanded string after decoding every nested repetition.
 
 - **Input:** `s = "2[abc]3[cd]ef"`
 - **Output:** `"abcabccdcdcdef"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 30$
 

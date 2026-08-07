@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 In a binary tree, a **lonely** node is a node that is the only child of its parent node. The root of the tree is not lonely because it does not have a parent node.
 
 Given the `root` of a binary tree, return *an array containing the values of all lonely nodes* in the tree. Return the list **in any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -18,7 +19,7 @@ $N$ be the number of nodes in the tree.
 Return the value of each non-root node whose parent has exactly one child.
 Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Please remember that order doesn't matter, [2,6] is also an acceptable answer.
 - **Output:** `[77,55,33,66,44,22]`
 - **Explanation:** Nodes 99 and 88 share the same parent. Node 11 is the root.
 All other nodes are lonely.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the `tree` is in the range $[1, 1000].$
 

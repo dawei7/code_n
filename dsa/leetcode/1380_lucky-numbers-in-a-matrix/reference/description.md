@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an `m x n` matrix of **distinct **numbers, return *all **lucky numbers** in the matrix in **any **order*.
 
 A **lucky number** is an element of the matrix such that it is the minimum element in its row and maximum in its column.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A **lucky number** is an element of the matrix such that it is the minimum eleme
 - **Input:** $matrix = [[7,8],[1,2]]$
 - **Output:** `[7]`
 - **Explanation:** 7 is the only lucky number since it is the minimum in its row and the maximum in its column.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

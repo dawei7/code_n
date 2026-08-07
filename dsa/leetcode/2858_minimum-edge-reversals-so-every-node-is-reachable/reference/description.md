@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **simple directed graph** with `n` nodes labeled from `0` to $n - 1$. The graph would form a **tree** if its edges were bi-directional.
 
@@ -9,12 +9,13 @@ An **edge reversal** changes the direction of an edge, i.e., a directed edge goi
 For every node `i` in the range `[0, n - 1]`, your task is to **independently** calculate the **minimum** number of **edge reversals** required so it is possible to reach any other node starting from node `i` through a **sequence** of **directed edges**.
 
 Return *an integer array *`answer`*, where *$\text{answer}[i]$* is the** * ***minimum** number of **edge reversals** required so it is possible to reach any other node starting from node *`i`* through a **sequence** of **directed edges**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ For node 1: it is already possible to reach any other node starting from node 1.
 So, answer[1] = 0.
 For node 2: after reversing the edge [1, 2], it is possible to reach any other node starting from node 2.
 So, answer[2] = 1.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `nums`. Initially, your score is `0`. Perform the following operations until the matrix becomes empty:
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** 2D integer array `nums`. Initially, your score is 
 - Identify the highest number amongst all those removed in step 1. Add that number to your **score**.
 
 Return *the final **score**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the final **score**.*
 - **Input:** `nums = [[1]]`
 - **Output:** `1`
 - **Explanation:** We remove 1 and add it to the answer. We return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 300$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that will be initialized with a string array, and then it should answer queries of the shortest distance between two different strings from the array.
 
@@ -7,7 +7,8 @@ Implement the `WordDistance` class:
 - `WordDistance(String[] wordsDict)` initializes the object with the strings array `wordsDict`.
 
 - `int shortest(String word1, String word2)` returns the shortest distance between `word1` and `word2` in the array `wordsDict`.
-### Function Contract
+
+### 2. Function Contract
 
 **Class Interface**
 
@@ -18,7 +19,7 @@ Implement the `WordDistance` class:
 - $__init__(wordsDict: \text{List}[str])$: Initializes object with words array.
 - `shortest(word1: str, word2: str) -> int`: Returns shortest distance between `word1` and `word2` in `wordsDict`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ WordDistance wordDistance = new WordDistance(["practice", "makes", "perfect", "c
 wordDistance.shortest("coding", "practice"); // return 3
 wordDistance.shortest("makes", "coding");    // return 1
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{wordsDict.length} \le 3 * 10^{4}$
 

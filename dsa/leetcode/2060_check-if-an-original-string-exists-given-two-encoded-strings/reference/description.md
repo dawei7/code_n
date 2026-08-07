@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An original string, consisting of lowercase English letters, can be encoded by the following steps:
 
@@ -18,13 +18,16 @@ For example, **one way** to encode an original string `"abcdefghijklmnop"` might
 
 Given two encoded strings `s1` and `s2`, consisting of lowercase English letters and digits `1-9` (inclusive), return `true`* if there exists an original string that could be encoded as **both** *`s1`* and *`s2`*. Otherwise, return *`false`.
 
-**Note**: The test cases are generated such that the number of consecutive digits in `s1` and `s2` does not exceed `3`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: The test cases are generated such that the number of consecutive digits in `s1` and `s2` does not exceed `3`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -59,7 +62,8 @@ Given two encoded strings `s1` and `s2`, consisting of lowercase English letters
 - **Explanation:** It is impossible.
 - The original string encoded as s1 must start with the letter 'a'.
 - The original string encoded as s2 must start with the letter 'c'.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length} \le 40$
 

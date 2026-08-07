@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string array `words`, and an array `groups`, both arrays having length `n`.
 
@@ -12,13 +12,16 @@ You need to select the **longest** subsequence from an array of indices `[0, 1, 
 
 Return *a string array containing the words corresponding to the indices **(in order)** in the selected subsequence*. If there are multiple answers, return *any of them*.
 
-**Note:** strings in `words` may be **unequal** in length.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+strings in `words` may be **unequal** in length.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +67,8 @@ It has the longest length among all subsequences of indices that satisfy the con
 Hence, it is the only answer.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{words.length} = \text{groups.length} \le 1000$
 

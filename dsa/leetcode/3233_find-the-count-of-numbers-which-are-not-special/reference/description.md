@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given 2 **positive** integers `l` and `r`. For any number `x`, all positive divisors of `x` *except* `x` are called the **proper divisors** of `x`.
 
@@ -9,12 +9,13 @@ A number is called **special** if it has exactly 2 **proper divisors**. For exam
 - The number 6 is *not special* because it has proper divisors 1, 2, and 3.
 
 Return the count of numbers in the range `[l, r]` that are **not** **special**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,6 +41,7 @@ There are no special numbers in the range `[5, 7]`.
 The special numbers in the range `[4, 16]` are 4 and 9.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le l \le r \le 10^{9}$

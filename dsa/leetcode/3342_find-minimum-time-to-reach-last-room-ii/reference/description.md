@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a dungeon with `n x m` rooms arranged as a grid.
 
@@ -7,12 +7,13 @@ You are given a 2D array `moveTime` of size `n x m`, where $\text{moveTime}[i][j
 Return the **minimum** time to reach the room $(n - 1, m - 1)$.
 
 Two rooms are **adjacent** if they share a common wall, either *horizontally* or *vertically*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ The minimum time required is 6 seconds.
 **Output:** 4
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{moveTime.length} \le 750$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and a pattern string `p`, where `p` contains **exactly two** `'*'` characters.
 
@@ -6,13 +6,16 @@ The `'*'` in `p` matches any sequence of zero or more characters.
 
 Return the length of the **shortest** substring in `s` that matches `p`. If there is no such substring, return -1.
 
-**Note:** The empty substring is considered valid.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The empty substring is considered valid.
+
+### 4. Examples
 
 #### Example 1
 
@@ -62,7 +65,8 @@ The empty substring is the shortest matching substring.
 The shortest matching substring of `p` in `s` is `"**<u>adlogi</u>**"`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

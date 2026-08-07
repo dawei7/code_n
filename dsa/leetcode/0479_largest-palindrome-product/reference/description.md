@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer n, return *the **largest palindromic integer** that can be represented as the product of two `n`-digits integers*. Since the answer can be very large, return it **modulo** `1337`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given an integer n, return *the **largest palindromic integer** that can be repr
 
 Determine the largest original palindrome before applying the modulo operation.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ Determine the largest original palindrome before applying the modulo operation.
 
 - **Input:** $n = 1$
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 8$

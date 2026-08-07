@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You start with an initial **power** of `power`, an initial **score** of `0`, and a bag of tokens given as an integer array `tokens`, where each $\text{tokens}[i]$ denotes the value of token*_i*.
 
@@ -9,12 +9,13 @@ Your goal is to **maximize** the total **score** by strategically playing these 
 - **Face-down**: If your current score is **at least** `1`, you may play token*_i*, gaining $\text{tokens}[i]$ power and losing `1` score.
 
 Return *the **maximum** possible score you can achieve after playing **any** number of tokens*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -85,7 +86,8 @@ There is no need to play token*_0*, since you cannot play it face-up to add to y
 The maximum score achievable is `2`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{tokens.length} \le 1000$
 

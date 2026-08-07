@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.
 
 Return *the fewest number of coins that you need to make up that amount*. If that amount of money cannot be made up by any combination of the coins, return `-1`.
 
 You may assume that you have an infinite number of each kind of coin.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ You may assume that you have an infinite number of each kind of coin.
 
 Return the minimum number of coins needed to total `amount`, or `-1` when the amount is unreachable.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the minimum number of coins needed to total `amount`, or `-1` when the am
 
 - **Input:** $coins = [1], amount = 0$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{coins.length} \le 12$
 

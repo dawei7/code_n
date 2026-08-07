@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and a 2D array `requirements`, where $\text{requirements}[i] = [\text{end}_{i}, \text{cnt}_{i}]$ represents the end index and the **inversion** count of each requirement.
 
@@ -9,12 +9,13 @@ A pair of indices `(i, j)` from an integer array `nums` is called an **inversion
 Return the number of permutations `perm` of `[0, 1, 2, ..., n - 1]` such that for **all** $\text{requirements}[i]$, $perm[0..\text{end}_{i}]$ has exactly $\text{cnt}_{i}$ inversions.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ The only satisfying permutation is `[0, 1]`:
 - Prefix `[0, 1]` has no inversions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 300$
 

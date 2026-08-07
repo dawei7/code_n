@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Emails`
 
@@ -18,11 +18,12 @@ Write a solution to find all **unique email domains** and count the number of **
 Return *the result table orderd by email domains in ***ascending*** order*.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

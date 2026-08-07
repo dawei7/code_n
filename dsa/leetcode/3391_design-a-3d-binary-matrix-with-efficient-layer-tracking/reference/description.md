@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `n x n x n` **binary** 3D array `matrix`.
 
@@ -11,11 +11,12 @@ Implement the `Matrix3D` class:
 - `void unsetCell(int x, int y, int z)` Sets the value at $\text{matrix}[x][y][z]$ to 0.
 
 - `int largestMatrix()` Returns the index `x` where $\text{matrix}[x]$ contains the most number of 1's. If there are multiple such indices, return the **largest** `x`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ matrix3D.largestMatrix(); // Returns 2. $\text{matrix}[2]$ has the most number o
 matrix3D.unsetCell(2, 1, 1); // Sets $\text{matrix}[2][1][1]$ to 0.
 
 matrix3D.largestMatrix(); // Returns 3. All indices from 0 to 3 tie with the same number of 1's, but index 3 is the biggest.</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

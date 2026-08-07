@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a string `s`. Return all the words vertically in the same order in which they appear in `s`.
 
 Words are returned as a list of strings, complete with spaces when is necessary. (Trailing spaces are not allowed).
 
 Each word would be put on only one column and that in one column there will be only one word.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Each word would be put on only one column and that in one column there will be o
 
 - **Input:** `s = "CONTEST IS COMING"`
 - **Output:** `["CIC","OSO","N M","T I","E N","S G","T"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 200$
 

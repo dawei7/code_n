@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **binary** string `s` and a positive integer `k`.
 
@@ -8,16 +8,19 @@ You can apply the following operation on the string **any** number of times:
 
 Return *the number of **distinct** strings you can obtain*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
-**Note** that:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+that:
 
 - A binary string is a string that consists **only** of the characters `0` and `1`.
 
 - A substring is a contiguous part of a string.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -37,7 +40,8 @@ It can be shown that we cannot obtain any other string, so the answer is 4.
 - Applying no operation on the string gives s = "10110".
 - Applying one operation on the whole string gives s = "01001".
 It can be shown that we cannot obtain any other string, so the answer is 2.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le k \le \text{s.length} \le 10^{5}$
 

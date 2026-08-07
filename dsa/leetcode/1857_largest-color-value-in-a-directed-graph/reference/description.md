@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **directed graph** of `n` colored nodes and `m` edges. The nodes are numbered from `0` to $n - 1$.
 
@@ -7,12 +7,13 @@ You are given a string `colors` where $\text{colors}[i]$ is a lowercase English 
 A valid **path** in the graph is a sequence of nodes $x_{1} -> x_{2} -> x_{3} -> ... -> x_{k}$ such that there is a directed edge from $x_{i}$ to $x_{i}+1$ for every $1 \le i < k$. The **color value** of the path is the number of nodes that are colored the **most frequently** occurring color along that path.
 
 Return *the **largest color value** of any valid path in the given graph, or *`-1`* if the graph contains a cycle*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the **largest color value** of any valid path in the given graph, or *`-
 - **Input:** $colors = "a", edges = [[0,0]]$
 - **Output:** `-1`
 - **Explanation:** There is a cycle from 0 to 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{colors.length}$
 

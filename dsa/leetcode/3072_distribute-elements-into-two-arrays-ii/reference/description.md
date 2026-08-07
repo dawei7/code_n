@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **1-indexed** array of integers `nums` of length `n`.
 
@@ -17,12 +17,13 @@ You need to distribute all the elements of `nums` between two arrays `arr1` and 
 The array `result` is formed by concatenating the arrays `arr1` and `arr2`. For example, if $arr1 = [1,2,3]$ and $arr2 = [4,5,6]$, then $result = [1,2,3,4,5,6]$.
 
 Return *the integer array* `result`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Hence, the array result formed by concatenation is [5,3,1,2,14].
 - **Output:** `[3,3,3,3]`
 - **Explanation:** At the end of 4 operations, arr1 = [3,3] and arr2 = [3,3].
 Hence, the array result formed by concatenation is [3,3,3,3].
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

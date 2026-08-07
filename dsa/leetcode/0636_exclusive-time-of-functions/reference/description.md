@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 On a **single-threaded** CPU, we execute a program containing `n` functions. Each function has a unique ID between 0 and $n - 1$.
 
@@ -9,12 +9,13 @@ You are given a list `logs`, where $\text{logs}[i]$ represents the $$i^{\text{th
 A function's **exclusive time** is the sum of execution times for all function calls in the program. For example, if a function is called twice, one call executing for 2 time units and another call executing for 1 time unit, the **exclusive time** is $2 + 1 = 3$.
 
 Return *the **exclusive time** of each function in an array, where the value at the *$$i^{\text{th}}$$* index represents the exclusive time for the function with ID *`i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Function 0 (initial call) resumes execution then immediately calls function 1.
 Function 1 starts at the beginning of time 6, executes 1 unit of time, and ends at the end of time 6.
 Function 0 resumes execution at the beginning of time 7 and executes for 1 unit of time.
 So function 0 spends 2 + 4 + 1 = 7 units of total time executing, and function 1 spends 1 unit of total time executing.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `n` and an integer array `order`, where `order` is a **permutation** of the numbers in the range `[0, n - 1]`.
 
@@ -9,12 +9,13 @@ A **substring** is **valid** if it contains **at least** one `'*'`.
 A string is **active** if the total number of **valid** substrings is greater than or equal to `k`.
 
 Return the **minimum** time `t` at which the string `s` becomes **active**. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -118,7 +119,8 @@ The string `s` becomes active at $t = 2$. Thus, the answer is 2.
 Even after all replacements, it is impossible to obtain $k = 4$ valid substrings. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

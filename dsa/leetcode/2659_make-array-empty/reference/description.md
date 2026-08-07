@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` containing **distinct** numbers, and you can perform the following operations **until the array is empty**:
 
@@ -7,12 +7,13 @@ You are given an integer array `nums` containing **distinct** numbers, and you c
 - Otherwise, put the first element at the **end** of the array.
 
 Return *an integer denoting the number of operations it takes to make *`nums`* empty.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -111,7 +112,8 @@ Return *an integer denoting the number of operations it takes to make *`nums`* e
 		</tr>
 	</tbody>
 </table>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

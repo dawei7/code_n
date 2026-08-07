@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of `n` strings `strs`, all of the same length.
 
@@ -15,12 +15,13 @@ cae
 You want to **delete** the columns that are **not sorted lexicographically**. In the above example (**0-indexed**), columns 0 (`'a'`, `'b'`, `'c'`) and 2 (`'c'`, `'e'`, `'e'`) are sorted, while column 1 (`'b'`, `'c'`, `'a'`) is not, so you would delete column 1.
 
 Return *the number of columns that you will delete*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ zyx
 wvu
 tsr
 All 3 columns are not sorted, so you will delete all 3.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{strs.length}$
 

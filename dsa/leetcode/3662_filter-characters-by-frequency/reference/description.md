@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters and an integer `k`.
 
@@ -7,11 +7,12 @@ Your task is to construct a new string that contains only those characters from 
 Return the resulting string. If no characters qualify, return an empty string.
 
 Note: **Every occurrence** of a character that occurs fewer than `k` times is kept.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Only `'d'` and `'b'` appear fewer than 3 times. Preserving their order, the resu
 All characters (`'x'`, `'y'`, `'z'`) appear exactly once, which is fewer than 2. Thus the whole string is returned.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

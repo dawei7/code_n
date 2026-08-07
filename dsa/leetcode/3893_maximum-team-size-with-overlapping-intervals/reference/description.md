@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `startTime` and `endTime` of length `n`.
 
@@ -11,7 +11,8 @@ Two employees `i` and `j` can interact if their time intervals **overlap**. Two 
 A team is **valid** if there exists **at least one** employee in the team who can interact with every other member of the team.
 
 Return an integer denoting the **maximum** possible size of such a team.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ The two values at the same index form one employee's closed interval. Every star
 
 Return the maximum team size for which some member's interval overlaps every other member's interval.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return the maximum team size for which some member's interval overlaps every oth
 - Thus, index 0 can interact with all other indices, so the team size is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{startTime.length} = \text{endTime.length} \le 10^{5}$
 

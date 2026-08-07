@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activity`
 
@@ -24,12 +24,13 @@ Return the result table in **any order**.
 The result format is in the following example.
 
 Note: **Any** activity from ($'\text{open}_{session}'$, $'\text{end}_{session}'$, $'\text{scroll}_{down}'$, $'\text{send}_{message}'$) will be considered valid activity for a user to be considered active on a day.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

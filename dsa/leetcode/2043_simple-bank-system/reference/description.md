@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have been tasked with writing a program for a popular bank that will automate all its incoming transactions (transfer, deposit, and withdraw). The bank has `n` accounts numbered from `1` to `n`. The initial balance of each account is stored in a **0-indexed** integer array `balance`, with the $(i + 1)^th$ account having an initial balance of $\text{balance}[i]$.
 
@@ -17,12 +17,13 @@ Implement the `Bank` class:
 - `boolean deposit(int account, long money)` Deposit `money` dollars into the account numbered `account`. Return `true` if the transaction was successful, `false` otherwise.
 
 - `boolean withdraw(int account, long money)` Withdraw `money` dollars from the account numbered `account`. Return `true` if the transaction was successful, `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ bank.transfer(3, 4, 15); // return false, the current balance of account 3 is $1
                          // so it is invalid to transfer $15 from it.
 bank.withdraw(10, 50);   // return false, it is invalid because account 10 does not exist.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{balance.length}$
 

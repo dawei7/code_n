@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an undirected and unrooted tree with `n` nodes indexed from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -11,12 +11,13 @@ Additionally, you are given a 2D integer array `trips`, where $\text{trips}[i] =
 Before performing your first trip, you can choose some **non-adjacent** nodes and halve the prices.
 
 Return *the minimum total price sum to perform all the given trips*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ It can be proven, that 23 is the minimum answer that we can achieve.
 - **Explanation:** The diagram above denotes the tree after rooting it at node 0. The first part shows the initial tree and the second part shows the tree after choosing node 0, and making its price half.
 For the 1^st trip, we choose path [0]. The price sum of that path is 1.
 The total price sum of all trips is 1. It can be proven, that 1 is the minimum answer that we can achieve.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$
 

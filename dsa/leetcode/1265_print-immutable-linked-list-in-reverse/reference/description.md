@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an immutable linked list, print out all values of each node in reverse with the help of the following interface:
 
@@ -11,7 +11,8 @@ You need to use the following functions to access the linked list (you **can't**
 - `ImmutableListNode.getNext()`: Return the next node.
 
 The input is only given to initialize the linked list internally. You must solve this problem without modifying the linked list. In other words, you must operate the linked list using only the mentioned APIs.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -25,7 +26,7 @@ Return `None`. Produce the answer as a side effect by calling `printValue()` on 
 
 The linked list must remain unchanged, and the implementation may operate only through `getNext()` and `printValue()`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The linked list must remain unchanged, and the implementation may operate only t
 
 - **Input:** $head = [-2,0,6,4,4,-6]$
 - **Output:** `[-6,4,4,6,0,-2]`
-### Constraints
+
+### 4. Constraints
 
 - The length of the linked list is between `[1, 1000]`.
 

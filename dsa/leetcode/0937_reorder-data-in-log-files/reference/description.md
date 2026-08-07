@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of `logs`. Each log is a space-delimited string of words, where the first word is the **identifier**.
 
@@ -17,12 +17,13 @@ Reorder these logs so that:
 - The **digit-logs** maintain their relative ordering.
 
 Return *the final order of the logs*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The digit-logs have a relative order of "dig1 8 1 5 1", "dig2 3 6".
 
 - **Input:** $logs = ["a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo"]$
 - **Output:** `["g1 act car","a8 act zoo","ab1 off key dog","a1 9 2 3 1","zo4 4 7"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{logs.length} \le 100$
 

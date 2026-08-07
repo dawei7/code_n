@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, split `nums` into `k` non-empty subarrays such that the largest sum of any subarray is **minimized**.
 
 Return *the minimized largest sum of the split*.
 
 A **subarray** is a contiguous part of the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ A **subarray** is a contiguous part of the array.
 
 Return the smallest achievable value of the largest subarray sum among all valid splits into `k` groups.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The best way is to split it into [7,2,5] and [10,8], where the largest sum among
 - **Output:** `9`
 - **Explanation:** There are four ways to split nums into two subarrays.
 The best way is to split it into [1,2,3] and [4,5], where the largest sum among the two subarrays is only 9.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

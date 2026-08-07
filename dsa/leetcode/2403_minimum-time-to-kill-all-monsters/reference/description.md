@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `power` where $\text{power}[i]$ is the power of the $$i^{\text{th}}$$ monster.
 
@@ -11,11 +11,12 @@ Each day, after gaining `gain` mana, you can defeat a monster if your mana point
 - the value of `gain` increases by `1`.
 
 Return *the **minimum** number of days needed to defeat all the monsters.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ It can be proven that 4 is the minimum number of days needed.
 - Day 5: Gain 3 mana points to get a total of 9 mana points. Spend all mana points to kill the 4th monster.
 - Day 6: Gain 4 mana points to get a total of 4 mana points. Spend all mana points to kill the 3rd monster.
 It can be proven that 6 is the minimum number of days needed.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{power.length} \le 17$
 

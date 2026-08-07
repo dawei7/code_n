@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A dieter consumes $\text{calories}[i]$ calories on the `i`-th day.
 
@@ -13,7 +13,8 @@ Given an integer `k`, for **every** consecutive sequence of `k` days ($\text{cal
 Initially, the dieter has zero points. Return the total number of points the dieter has after dieting for `calories.length` days.
 
 Note that the total points can be negative.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Let $n = \lvert\texttt{calories}\rvert$. The valid windows have start positions 
 
 - Return the integer score after all $n-k+1$ windows have been evaluated. Each total below `lower` contributes `-1`, each total above `upper` contributes `1`, and every other total contributes `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ calories[0] + calories[1] > upper so 1 point is gained.
 calories[0] + calories[1] > upper so 1 point is gained.
 lower <= calories[1] + calories[2] <= upper so no change in points.
 calories[2] + calories[3] < lower so 1 point is lost.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{calories.length} \le 10^{5}$
 

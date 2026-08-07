@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **bitonic** array `nums` of length `n`.
 
@@ -18,14 +18,7 @@ Return:
 
 - -1 if both sums are **equal**.
 
-**Notes**:
-
-- A **bitonic** array is an array that is **strictly increasing** up to a **single peak** element and then **strictly decreasing**.
-
-- An array is said to be **strictly increasing** if each element is **strictly greater** than its **previous** one (if exists).
-
-- An array is said to be **strictly decreasing** if each element is **strictly smaller** than its **previous** one (if exists).
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -45,7 +38,17 @@ The peak value $\text{nums}[p]$ appears once in each sum.
 
 Return `0` if $A>B$, return `1` if $B>A$, and return `-1` if $A=B$.
 
-### Examples
+### 3. Note
+
+:
+
+- A **bitonic** array is an array that is **strictly increasing** up to a **single peak** element and then **strictly decreasing**.
+
+- An array is said to be **strictly increasing** if each element is **strictly greater** than its **previous** one (if exists).
+
+- An array is said to be **strictly decreasing** if each element is **strictly smaller** than its **previous** one (if exists).
+
+### 4. Examples
 
 #### Example 1
 
@@ -101,7 +104,8 @@ Return `0` if $A>B$, return `1` if $B>A$, and return `-1` if $A=B$.
 - Since both parts have equal sums, return -1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le n = \text{nums.length} \le 10^{5}$
 

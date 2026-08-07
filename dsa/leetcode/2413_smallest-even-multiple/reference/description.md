@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a **positive** integer `n`, return *the smallest positive integer that is a multiple of **both** *`2`* and *`n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,6 +19,7 @@ Given a **positive** integer `n`, return *the smallest positive integer that is 
 - **Input:** $n = 6$
 - **Output:** `6`
 - **Explanation:** The smallest multiple of both 6 and 2 is 6. Note that a number is a multiple of itself.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 150$

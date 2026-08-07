@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `arr` of positive integers sorted in a **strictly increasing order**, and an integer `k`.
 
 Return *the* $$k^{\text{th}}$$ ***positive** integer that is **missing** from this array.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Return *the* $$k^{\text{th}}$$ ***positive** integer that is **missing** from th
 - **Input:** `arr = [1,2,3,4], k = 2`
 - **Output:** `6`
 - **Explanation:** The missing positive integers are [5,6,7,...]. The 2^nd missing positive integer is 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 1000$
 

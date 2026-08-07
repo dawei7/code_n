@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word` and an integer `k`.
 
@@ -11,12 +11,13 @@ A substring `s` of `word` is **complete** if:
 Return *the number of **complete **substrings of* `word`.
 
 A **substring** is a **non-empty** contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A **substring** is a **non-empty** contiguous sequence of characters in a string
 - **Input:** $word = "aaabbbccc", k = 3$
 - **Output:** `6`
 - **Explanation:** The complete substrings where each character appears exactly three times and the difference between adjacent characters is at most 2 are: **<u>aaa</u>**bbbccc, aaa<u>**bbb**</u>ccc, aaabbb<u>**ccc**</u>, **<u>aaabbb</u>**ccc, aaa<u>**bbbccc**</u>, <u>**aaabbbccc**</u>.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 10^{5}$
 

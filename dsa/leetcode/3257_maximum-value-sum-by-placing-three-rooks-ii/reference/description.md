@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a `m x n` 2D array `board` representing a chessboard, where $\text{board}[i][j]$ represents the **value** of the cell `(i, j)`.
 
 Rooks in the **same** row or column **attack** each other. You need to place *three* rooks on the chessboard such that the rooks **do not** **attack** each other.
 
 Return the **maximum** sum of the cell **values** on which the rooks are placed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ We can place the rooks in the cells `(0, 0)`, `(1, 1)`, and `(2, 2)` for a sum o
 We can place the rooks in the cells `(0, 2)`, `(1, 1)`, and `(2, 0)` for a sum of $1 + 1 + 1 = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le m = \text{board.length} \le 500$
 

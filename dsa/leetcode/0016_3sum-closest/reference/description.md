@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of length `n` and an integer `target`, find three integers at **distinct indices** in `nums` such that the sum is closest to `target`.
 
 Return *the sum of the three integers*.
 
 You may assume that each input would have exactly one solution.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return the unique three-value sum closest to `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return the unique three-value sum closest to `target`.
 - **Input:** `nums = [0,0,0], target = 1`
 - **Output:** `0`
 - **Explanation:** The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 500$
 

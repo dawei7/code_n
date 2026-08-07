@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Sometimes you have a long running task, and you may wish to cancel it before it completes. To help with this goal, write a function `cancellable` that accepts a generator object and returns an array of two values: a **cancel function** and a **promise**.
 
@@ -22,12 +22,13 @@ promise.catch(console.log); // logs "Cancelled" at t=50ms
 ```
 
 If instead `cancel()` was not called or was called after `t=100ms`, the promise would have resolved `5`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -115,7 +116,8 @@ cancelledAt = null
 - **Output:** `{"resolved": 4}`
 - **Explanation:**
 The first yielded promise immediately rejects. This error is caught. Because the generator hasn't been cancelled, execution continues as usual. It ends up resolving 2 + 2 = 4.
-### Constraints
+
+### 4. Constraints
 
 - $cancelledAt = null or 0 \le cancelledAt \le 1000$
 

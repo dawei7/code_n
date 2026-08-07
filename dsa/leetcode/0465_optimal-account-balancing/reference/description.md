@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an array of transactions `transactions` where $\text{transactions}[i] = [\text{from}_{i}, \text{to}_{i}, \text{amount}_{i}]$ indicates that the person with $ID = \text{from}_{i}$ gave $\text{amount}_{i}$$to the person with$ID = \text{to}_{i}$.
 
 Return *the minimum number of transactions required to settle the debt*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $n$ be the number of input transactions, $p$ the number of distinct person i
 
 Person identifiers label accounts; they need not form a contiguous range.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Person #1 gave person #0 $1.
 Person #1 gave person #2 $5.
 Person #2 gave person #0 $5.
 Therefore, person #1 only need to give person #0 $4, and all debt is settled.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{transactions.length} \le 8$
 

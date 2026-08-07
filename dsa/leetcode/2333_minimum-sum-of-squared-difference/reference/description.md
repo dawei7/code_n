@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two positive **0-indexed** integer arrays `nums1` and `nums2`, both of length `n`.
 
@@ -8,13 +8,16 @@ You are also given two positive integers `k1` and `k2`. You can modify any of th
 
 Return *the minimum **sum of squared difference** after modifying array *`nums1`* at most *`k1`* times and modifying array *`nums2`* at most *`k2`* times*.
 
-**Note**: You are allowed to modify the array elements to become **negative** integers.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: You are allowed to modify the array elements to become **negative** integers.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ The sum of square difference will be: (1 - 2)^2 + (2 - 10)^2 + (3 - 20)^2 + (4 -
 The minimum of the sum of square difference will be:
 (2 - 5)^2 + (4 - 8)^2 + (10 - 7)^2 + (12 - 9)^2 = 43.
 Note that, there are other ways to obtain the minimum of the sum of square difference, but there is no way to obtain a sum smaller than 43.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

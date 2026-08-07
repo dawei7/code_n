@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `k` and `numOperations`.
 
@@ -9,12 +9,13 @@ You must perform an **operation** `numOperations` times on `nums`, where in each
 - Add an integer in the range `[-k, k]` to $\text{nums}[i]$.
 
 Return the **maximum** possible frequency of any element in `nums` after performing the **operations**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ We can achieve a maximum frequency of two by:
 - Adding 0 to $\text{nums}[1]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

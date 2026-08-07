@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **binary** string `s` that contains at least one `'1'`.
 
@@ -6,13 +6,16 @@ You have to **rearrange** the bits in such a way that the resulting binary numbe
 
 Return *a string representing the maximum odd binary number that can be created from the given combination.*
 
-**Note **that the resulting string **can** have leading zeros.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the resulting string **can** have leading zeros.
+
+### 4. Examples
 
 #### Example 1
 
@@ -24,7 +27,8 @@ Return *a string representing the maximum odd binary number that can be created 
 - **Input:** `s = "0101"`
 - **Output:** `"1001"`
 - **Explanation:** One of the '1's must be in the last position. The maximum number that can be made with the remaining digits is "100". So the answer is "1001".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `limit` and `goal`. The array `nums` has an interesting property that $abs(\text{nums}[i]) \le limit$.
 
 Return *the minimum number of elements you need to add to make the sum of the array equal to *`goal`. The array must maintain its property that $abs(\text{nums}[i]) \le limit$.
 
 Note that `abs(x)` equals `x` if $x \ge 0$, and `-x` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Note that `abs(x)` equals `x` if $x \ge 0$, and `-x` otherwise.
 
 - **Input:** `nums = [1,-10,9,1], limit = 100, goal = 0`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

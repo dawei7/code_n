@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We call a string `s` of **even** length `n` an **anti-palindrome** if for each index $0 \le i < n$, $s[i] \neq s[n - i - 1]$.
 
@@ -7,11 +7,12 @@ Given a string `s`, your task is to make `s` an **anti-palindrome** by doing **a
 In one operation, you can select two characters from `s` and swap them.
 
 Return *the resulting string. If multiple strings meet the conditions, return the lexicographically smallest one. If it can't be made into an anti-palindrome, return *`"-1"`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return *the resulting string. If multiple strings meet the conditions, return th
 You can see that no matter how you rearrange the characters of `"cccd"`, either $s[0] = s[3]$ or $s[1] = s[2]$. So it can not form an anti-palindrome string.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 10^{5}$
 

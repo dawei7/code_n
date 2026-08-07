@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -16,13 +16,16 @@ A pair of indices `(i, j)` is called **perfect** if the following conditions are
 
 Return the number of **distinct** perfect pairs.
 
-**Note:** The absolute value `|x|` refers to the **non-negative** value of `x`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The absolute value `|x|` refers to the **non-negative** value of `x`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -136,7 +139,8 @@ There are 4 perfect pairs:
 There are no perfect pairs. Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

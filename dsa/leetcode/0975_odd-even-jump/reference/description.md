@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `arr`. From some starting index, you can make a series of jumps. The (1^st, 3^rd, 5^th, ...) jumps in the series are called **odd-numbered jumps**, and the (2^nd, 4^th, 6^th, ...) jumps in the series are called **even-numbered jumps**. Note that the **jumps** are numbered, not the indices.
 
@@ -13,12 +13,13 @@ You may jump forward from index `i` to index `j` (with `i < j`) in the following
 A starting index is **good** if, starting from that index, you can reach the end of the array (index $\text{arr.length} - 1$) by jumping some number of times (possibly 0 or more than once).
 
 Return *the number of **good** starting indices*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ number of jumps.
 - **Input:** `arr = [5,1,3,4,2]`
 - **Output:** `3`
 - **Explanation:** We can reach the end from starting indices 1, 2, and 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 2 * 10^{4}$
 

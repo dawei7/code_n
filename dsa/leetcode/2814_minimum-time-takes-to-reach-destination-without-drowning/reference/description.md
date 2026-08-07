@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an $n * m$ **0-indexed** grid of string `land`. Right now, you are standing at the cell that contains `"S"`, and you want to get to the cell containing `"D"`. There are three other types of cells in this land:
 
@@ -18,12 +18,15 @@ There are two problems ahead of your journey:
 
 Return* the **minimum** time it takes you to reach the destination in seconds, or *`-1`* if it is impossible.*
 
-**Note** that the destination will never be flooded.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that the destination will never be flooded.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ So the answer would be -1.
 - **Input:** $land = [["D",".",".",".","*","."],[".","X",".","X",".","."],[".",".",".",".","S","."]]$
 - **Output:** `6`
 - **Explanation:** It can be shown that we can reach destination in 6 seconds. Also it can be shown that 6 is the minimum seconds one need to reach from S to D.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n, m \le 100$
 

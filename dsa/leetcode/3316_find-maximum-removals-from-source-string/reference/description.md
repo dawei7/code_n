@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `source` of size `n`, a string `pattern` that is a subsequence of `source`, and a **sorted** integer array `targetIndices` that contains **distinct** numbers in the range `[0, n - 1]`.
 
@@ -11,12 +11,13 @@ We define an **operation** as removing a character at an index `idx` from `sourc
 Performing an operation **does not** change the indices of the other characters in `source`. For example, if you remove `'c'` from `"acb"`, the character at index 2 would still be `'b'`.
 
 Return the **maximum** number of *operations* that can be performed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ We can't remove any character from `source`.
 We can remove $\text{source}[2]$ and $\text{source}[3]$ in two operations.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{source.length} \le 3 * 10^{3}$
 

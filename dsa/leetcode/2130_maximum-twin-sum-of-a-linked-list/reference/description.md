@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a linked list of size `n`, where `n` is **even**, the $$i^{\text{th}}$$ node (**0-indexed**) of the linked list is known as the **twin** of the $(n-1-i)^th$ node, if $0 \le i \le (n / 2) - 1$.
 
@@ -7,12 +7,13 @@ In a linked list of size `n`, where `n` is **even**, the $$i^{\text{th}}$$ node 
 The **twin sum **is defined as the sum of a node and its twin.
 
 Given the `head` of a linked list with even length, return *the **maximum twin sum** of the linked list*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Thus, the maximum twin sum of the linked list is max(7, 4) = 7.
 - **Output:** `100001`
 - **Explanation:**
 There is only one node with a twin in the linked list having twin sum of 1 + 100000 = 100001.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is an **even** integer in the range $[2, 10^{5}]$.
 

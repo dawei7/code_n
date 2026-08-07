@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `edges` representing an **undirected** graph having `n` nodes, where $\text{edges}[i] = [u_{i}, v_{i}]$ denotes an edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -11,12 +11,13 @@ Construct a 2D grid that satisfies these conditions:
 It is guaranteed that `edges` can form a 2D grid that satisfies the conditions.
 
 Return a 2D integer array satisfying the conditions above. If there are multiple solutions, return *any* of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Return a 2D integer array satisfying the conditions above. If there are multiple
 ![](images/screenshot-from-2024-08-11-14-06-38.png)
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

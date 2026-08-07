@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a `pattern` and a string `s`, return `true`* if *`s`* **matches** the *`pattern`*.*
 
 A string `s` **matches** a `pattern` if there is some **bijective mapping** of single characters to **non-empty** strings such that if each character in `pattern` is replaced by the string it maps to, then the resulting string is `s`. A **bijective mapping** means that no two characters map to the same string, and no character maps to two different strings.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ A string `s` **matches** a `pattern` if there is some **bijective mapping** of s
 
 Return `True` if a bijective character-to-nonempty-substring assignment makes `pattern` expand to exactly `s`; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return `True` if a bijective character-to-nonempty-substring assignment makes `p
 
 - **Input:** $pattern = "aabb", s = "xyzabcxzyabc"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length}, \text{s.length} \le 20$
 

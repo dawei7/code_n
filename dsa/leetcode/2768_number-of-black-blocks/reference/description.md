@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n` representing the dimensions of a **0-indexed** `m x n` grid.
 
@@ -7,12 +7,13 @@ You are also given a **0-indexed** 2D integer matrix `coordinates`, where $\text
 A block is defined as a `2 x 2` submatrix of the grid. More formally, a block with cell `[x, y]` as its top-left corner where $0 \le x < m - 1$ and $0 \le y < n - 1$ contains the coordinates `[x, y]`, `[x + 1, y]`, `[x, y + 1]`, and `[x + 1, y + 1]`.
 
 Return *a **0-indexed** integer array* `arr` *of size* `5` *such that* $\text{arr}[i]$ *is the number of blocks that contains exactly* `i` ***black** cells*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Thus, we return [3,1,0,0,0].
 There are 2 blocks with two black cells (the ones starting with cell coordinates [0,0] and [0,1]).
 The other 2 blocks have starting cell coordinates of [1,0] and [1,1]. They both have 1 black cell.
 Therefore, we return [0,2,2,0,0].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le m \le 10^{5}$
 

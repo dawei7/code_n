@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are playing a game. Initially, Alice has a string $word = "a"$.
 
@@ -11,12 +11,13 @@ Now Bob will ask Alice to perform the following operation **forever**:
 For example, performing the operation on `"c"` generates `"cd"` and performing the operation on `"zb"` generates `"zbac"`.
 
 Return the value of the $$k^{\text{th}}$$ character in `word`, after enough operations have been done for `word` to have **at least** `k` characters.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,6 +45,7 @@ Initially, $word = "a"$. We need to do the operation three times:
 **Output:** "c"
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 500$

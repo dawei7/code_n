@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` of sizes `n` and `m`, respectively. Calculate the following values:
 
@@ -7,12 +7,13 @@ You are given two integer arrays `nums1` and `nums2` of sizes `n` and `m`, respe
 - `answer2` : the number of indices `i` such that $\text{nums2}[i]$ exists in `nums1`.
 
 Return `[answer1,answer2]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The elements at indices 0, 1, 3, and 4 in `nums2` exist in `nums1`. So `answer2`
 No numbers are common between `nums1` and `nums2`, so answer is [0,0].
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length}$
 

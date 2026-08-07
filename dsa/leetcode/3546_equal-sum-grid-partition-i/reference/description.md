@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `grid` of positive integers. Your task is to determine if it is possible to make **either one horizontal or one vertical cut** on the grid such that:
 
@@ -7,12 +7,13 @@ You are given an `m x n` matrix `grid` of positive integers. Your task is to det
 - The sum of the elements in both sections is **equal**.
 
 Return `true` if such a partition exists; otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ A horizontal cut between row 0 and row 1 results in two non-empty sections, each
 No horizontal or vertical cut results in two non-empty sections with equal sums. Thus, the answer is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 10^{5}$
 

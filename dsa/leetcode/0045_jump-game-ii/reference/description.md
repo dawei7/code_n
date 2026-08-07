@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of integers `nums` of length `n`. You are initially positioned at index 0.
 
@@ -9,7 +9,8 @@ Each element $\text{nums}[i]$ represents the maximum length of a forward jump fr
 - $i + j < n$
 
 Return *the minimum number of jumps to reach index *$n - 1$. The test cases are generated such that you can reach index $n - 1$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Return *the minimum number of jumps to reach index *$n - 1$. The test cases are 
 
 Return the fewest jumps needed to travel from index `0` to the final index.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return the fewest jumps needed to travel from index `0` to the final index.
 
 - **Input:** `nums = [2,3,0,1,4]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

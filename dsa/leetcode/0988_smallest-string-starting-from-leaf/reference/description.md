@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree where each node has a value in the range `[0, 25]` representing the letters `'a'` to `'z'`.
 
@@ -9,12 +9,13 @@ As a reminder, any shorter prefix of a string is **lexicographically smaller**.
 - For example, `"ab"` is lexicographically smaller than `"aba"`.
 
 A leaf of a node is a node that has no children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ A leaf of a node is a node that has no children.
 
 - **Input:** `root = [2,2,1,null,1,0,null,0]`
 - **Output:** `"abc"`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 8500]`.
 

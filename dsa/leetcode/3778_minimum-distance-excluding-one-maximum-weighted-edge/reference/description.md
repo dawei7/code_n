@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` and a 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$.
 
@@ -7,7 +7,8 @@ There is a **weighted** **connected** simple undirected graph with `n` nodes lab
 The **cost** of a path is the **sum** of weights of the edges in the path, **excluding** the edge with the **maximum** weight. If there are multiple edges in the path with the maximum weight, **only** the **first** such edge is excluded.
 
 Return an integer representing the **minimum** **cost** of a path going from node 0 to node $n - 1$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $N=n$ and $E=\lvert\texttt{edges}\rvert$. Each listed pair satisfies $u_i<v_
 
 Return the least path-weight sum from node `0` to node $n - 1$ after omitting exactly the first occurrence of that path's maximum edge weight.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Excluding the first edge with maximum weight, which is `0 -> 2`, the cost of thi
 The minimum cost is $min(1, 0) = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

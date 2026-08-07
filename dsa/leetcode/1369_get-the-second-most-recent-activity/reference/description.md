@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `UserActivity`
 
@@ -23,7 +23,8 @@ If the user only has one activity, return that one. A user cannot perform more t
 Return the result table in **any** order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -42,7 +43,7 @@ Return one row per user with these columns:
 
 For a user with at least two distinct activity periods, select the second period in descending chronological order. For a user with one distinct period, select that period. Identical stored rows describe one logical period, and the result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

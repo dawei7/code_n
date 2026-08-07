@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Project`
 
@@ -33,7 +33,8 @@ Write a solution to report all the **projects** that have the most employees.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -48,7 +49,7 @@ The output grain is one row per project tied for the greatest assignment count. 
 - Every project identifier whose number of assignments is the maximum over all represented projects.
 - Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

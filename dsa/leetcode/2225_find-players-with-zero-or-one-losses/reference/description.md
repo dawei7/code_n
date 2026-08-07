@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `matches` where $\text{matches}[i] = [\text{winner}_{i}, \text{loser}_{i}]$ indicates that the player $\text{winner}_{i}$ defeated player $\text{loser}_{i}$ in a match.
 
@@ -10,17 +10,18 @@ Return *a list *`answer`* of size *`2`* where:*
 
 The values in the two lists should be returned in **increasing** order.
 
-**Note:**
-
-- You should only consider the players that have played **at least one** match.
-
-- The testcases will be generated such that **no** two matches will have the **same** outcome.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- You should only consider the players that have played **at least one** match.
+
+- The testcases will be generated such that **no** two matches will have the **same** outcome.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Thus, answer[0] = [1,2,10] and answer[1] = [4,5,7,8].
 Players 1, 2, 5, and 6 have not lost any matches.
 Players 3 and 4 each have lost two matches.
 Thus, answer[0] = [1,2,5,6] and answer[1] = [].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{matches.length} \le 10^{5}$
 

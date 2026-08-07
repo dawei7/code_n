@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a stream of **records** about a particular stock. Each record contains a **timestamp** and the corresponding **price** of the stock at that timestamp.
 
@@ -25,12 +25,13 @@ Implement the `StockPrice` class:
 - `int maximum()` Returns the **maximum price** of the stock.
 
 - `int minimum()` Returns the **minimum price** of the stock.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ stockPrice.maximum();     // return 5, the maximum price is 5 after the correcti
 stockPrice.update(4, 2);  // Timestamps are [1,2,4] with corresponding prices [3,5,2].
 stockPrice.minimum();     // return 2, the minimum price is 2 at timestamp 4.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le timestamp, price \le 10^{9}$
 

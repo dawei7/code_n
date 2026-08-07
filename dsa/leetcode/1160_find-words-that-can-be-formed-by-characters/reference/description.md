@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words` and a string `chars`.
 
 A string is **good** if it can be formed by characters from `chars` (each character can only be used once for **each** word in `words`).
 
 Return *the sum of lengths of all good strings in words*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return *the sum of lengths of all good strings in words*.
 - **Input:** $words = ["hello","world","leetcode"], chars = "welldonehoneyr"$
 - **Output:** `10`
 - **Explanation:** The strings that can be formed are "hello" and "world" so the answer is 5 + 5 = 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

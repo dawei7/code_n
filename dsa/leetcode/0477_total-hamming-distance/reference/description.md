@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 The <a href="https://en.wikipedia.org/wiki/Hamming_distance" target="_blank">Hamming distance</a> between two integers is the number of positions at which the corresponding bits are different.
 
 Given an integer array `nums`, return *the sum of **Hamming distances** between all the pairs of the integers in* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Given an integer array `nums`, return *the sum of **Hamming distances** between 
 
 Equal values at different positions still form a pair, although their mutual contribution is zero.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 
 
 - **Input:** `nums = [4,14,4]`
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

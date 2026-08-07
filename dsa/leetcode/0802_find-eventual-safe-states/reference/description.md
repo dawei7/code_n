@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is a directed graph of `n` nodes with each node labeled from `0` to $n - 1$. The graph is represented by a **0-indexed** 2D integer array `graph` where $\text{graph}[i]$ is an integer array of nodes adjacent to node `i`, meaning there is an edge from node `i` to each node in $\text{graph}[i]$.
 
 A node is a **terminal node** if there are no outgoing edges. A node is a **safe node** if every possible path starting from that node leads to a **terminal node** (or another safe node).
 
 Return *an array containing all the **safe nodes** of the graph*. The answer should be sorted in **ascending** order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Every path starting at nodes 2, 4, 5, and 6 all lead to either node 5 or 6.
 - **Output:** `[4]`
 - **Explanation:**
 Only node 4 is a terminal node, and every path starting at node 4 leads to node 4.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{graph.length}$
 

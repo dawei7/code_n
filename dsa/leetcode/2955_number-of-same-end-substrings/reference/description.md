@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s`, and a 2D array of integers `queries`, where $\text{queries}[i] = [l_{i}, r_{i}]$ indicates a substring of `s` starting from the index $l_{i}$ and ending at the index $r_{i}$ (both **inclusive**), i.e. $s[l_{i}..r_{i}]$.
 
@@ -7,11 +7,12 @@ Return *an array *`ans`* where* $\text{ans}[i]$ *is the number of **same-end** s
 A **0-indexed** string `t` of length `n` is called **same-end** if it has the same character at both of its ends, i.e., $t[0] = t[n - 1]$.
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 - **Input:** `s = "abcd", queries = [[0,3]]`
 - **Output:** `[4]`
 - **Explanation:** The only query is s[0..3] which is "abcd". It has 4 same-end substrings: "**<u>a</u>**bcd", "a**<u>b</u>**cd", "ab**<u>c</u>**d", "abc**<u>d</u>**".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 3 * 10^{4}$
 

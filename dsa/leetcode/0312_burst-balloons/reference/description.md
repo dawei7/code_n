@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given `n` balloons, indexed from `0` to $n - 1$. Each balloon is painted with a number on it represented by an array `nums`. You are asked to burst all the balloons.
 
 If you burst the $$i^{\text{th}}$$ balloon, you will get $nums[i - 1] * \text{nums}[i] * nums[i + 1]$ coins. If $i - 1$ or $i + 1$ goes out of bounds of the array, then treat it as if there is a balloon with a `1` painted on it.
 
 Return *the maximum coins you can collect by bursting the balloons wisely*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return *the maximum coins you can collect by bursting the balloons wisely*.
 
 Return the maximum coins obtainable after every balloon has been burst, using virtual boundary values of `1` whenever a current neighbor is out of bounds.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ coins =  3*1*5    +   3*5*8   +  1*3*8  + 1*8*1 = 167
 
 - **Input:** `nums = [1,5]`
 - **Output:** `10`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

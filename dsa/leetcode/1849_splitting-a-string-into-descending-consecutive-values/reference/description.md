@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` that consists of only digits.
 
@@ -11,12 +11,13 @@ Check if we can split `s` into **two or more non-empty substrings** such that th
 Return `true` *if it is possible to split* `s`​​​​​​ *as described above**, or *`false`* otherwise.*
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The values are in descending order with adjacent values differing by 1.
 - **Input:** `s = "9080701"`
 - **Output:** `false`
 - **Explanation:** There is no valid way to split s.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 20$
 

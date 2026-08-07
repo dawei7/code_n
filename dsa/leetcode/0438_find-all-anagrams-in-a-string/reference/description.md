@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `p`, return an array of all the start indices of `p`'s anagrams in `s`. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given two strings `s` and `p`, return an array of all the start indices of `p`'s
 Return all zero-based start positions where the length-`len(p)` substring has exactly the same character
 multiplicities as `p`. Any order is valid; the reviewed implementation produces increasing positions.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The substring with start index = 6 is "bac", which is an anagram of "abc".
 The substring with start index = 0 is "ab", which is an anagram of "ab".
 The substring with start index = 1 is "ba", which is an anagram of "ab".
 The substring with start index = 2 is "ab", which is an anagram of "ab".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{p.length} \le 3 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed **integer array `nums`.
 
@@ -9,12 +9,13 @@ The **distinct count** of a subarray of `nums` is defined as:
 Return *the sum of the **squares** of **distinct counts** of all subarrays of *`nums`.
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The sum of the squares of the distinct counts in all subarrays is equal to $1^{2
 [1]: 1 distinct value
 [1,1]: 1 distinct value
 The sum of the squares of the distinct counts in all subarrays is equal to $1^{2}$ + $1^{2}$ + $1^{2}$ = 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

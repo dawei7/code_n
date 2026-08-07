@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `edges` representing a tree with `n` nodes, numbered from `0` to $n - 1$, rooted at node `0`, where $\text{edges}[i] = [u_{i}, v_{i}]$ means there is an edge between the nodes $v_{i}$ and $u_{i}$.
 
@@ -13,11 +13,12 @@ Return *the size of such subtree with the **maximum** number of nodes possible.*
 ![](images/20231216-134026.png)
 
 **
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return *the size of such subtree with the **maximum** number of nodes possible.*
 - **Input:** $edges = [[0,1],[0,2],[2,3],[2,4]], colors = [1,2,3,3,3]$
 - **Output:** `3`
 - **Explanation:** Each color is represented as: 1 -> Red, 2 -> Green, 3 -> Blue. We can see that the subtree rooted at node 0 has children with different colors. Any other subtree is of the same color, but the subtree rooted at node 2 has a size of 3 which is the maximum. Hence, we return 3.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length} + 1$
 

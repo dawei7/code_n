@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Drivers`
 
@@ -51,7 +51,8 @@ The `average_ride_distance` is calculated by summing up the total $\text{ride}_{
 Return the result table ordered by `month` in ascending order, where `month` is the starting month's number (January is `1`, February is `2`, etc.).
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -63,7 +64,7 @@ The result format is in the following example.
 
 Return a table with columns `month` (int from 1 to 10), `average_ride_distance` (decimal rounded to 2 decimal places), and `average_ride_duration` (decimal rounded to 2 decimal places) for each 3-month rolling window in 2020.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

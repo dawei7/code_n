@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree with unique values and the values of two different nodes of the tree `x` and `y`, return `true` *if the nodes corresponding to the values *`x`* and *`y`* in the tree are **cousins**, or *`false`* otherwise.*
 
 Two nodes of a binary tree are **cousins** if they have the same depth with different parents.
 
 Note that in a binary tree, the root node is at the depth `0`, and children of each depth `k` node are at the depth $k + 1$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Note that in a binary tree, the root node is at the depth `0`, and children of e
 
 - **Input:** `root = [1,2,3,null,4], x = 2, y = 3`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[2, 100]`.
 

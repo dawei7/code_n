@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array `points` of size `n x 2` representing integer coordinates of some points on a 2D plane, where $\text{points}[i] = [x_{i}, y_{i}]$.
 
@@ -9,12 +9,13 @@ Count the number of pairs of points `(A, B)`, where
 - there are no other points in the rectangle (or line) they make (**including the border**), except for the points `A` and `B`.
 
 Return the count.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ There is no way to choose `A` and `B` such that `A` is on the upper left side of
 - The right one is the pair $(\text{points}[1], \text{points}[0])$, it is not a valid pair as $\text{points}[2]$ is on the border of the rectangle.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 50$
 

@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return `true` *if *`nums`* is **consecutive**, otherwise return *`false`*.*
 
 An array is **consecutive **if it contains every number in the range `[x, x + n - 1]` (**inclusive**), where `x` is the minimum number in the array and `n` is the length of the array.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Therefore, nums is not consecutive.
 The minimum value is 3 and the length of nums is 3.
 All of the values in the range [x, x + n - 1] = [3, 3 + 3 - 1] = [3, 5] = (3, 4, 5) occur in nums.
 Therefore, nums is consecutive.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

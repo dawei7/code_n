@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` consisting only of 0, 1, and 2.
 
@@ -7,7 +7,8 @@ A pair of indices `(i, j)` is called **valid** if $\text{nums}[i] = 1$ and $\tex
 Return the **minimum** absolute difference between `i` and `j` among all valid pairs. If no valid pair exists, return -1.
 
 The absolute difference between indices `i` and `j` is defined as $abs(i - j)$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $n=\lvert\texttt{nums}\rvert$. Indices are zero-based. A valid pair is order
 
 Return $\min \lvert i-j\rvert$ over all indices satisfying $\text{nums}[i] = 1$ and $\text{nums}[j] = 2$. Return `-1` when that set of pairs is empty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Thus, the answer is 2.
 There are no valid pairs in the array, thus the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

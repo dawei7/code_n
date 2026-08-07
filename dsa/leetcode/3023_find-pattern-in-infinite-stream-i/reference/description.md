@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary array `pattern` and an object `stream` of class `InfiniteStream` representing a **0-indexed** infinite stream of bits.
 
@@ -7,11 +7,12 @@ The class `InfiniteStream` contains the following function:
 - `int next()`: Reads a **single** bit (which is either `0` or `1`) from the stream and returns it.
 
 Return *the **first starting** index where the pattern matches the bits read from the stream*. For example, if the pattern is `[1, 0]`, the first match is the highlighted part in the stream `[0, **<u>1, 0</u>**, 1, ...]`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the **first starting** index where the pattern matches the bits read fro
 - **Input:** $stream = [1,0,1,1,0,1,1,0,1,...], pattern = [1,1,0,1]$
 - **Output:** `2`
 - **Explanation:** The first occurrence of the pattern [1,1,0,1] is highlighted in the stream [1,0,**<u>1,1,0,1</u>**,...], which starts at index 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length} \le 100$
 

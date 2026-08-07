@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of the characters `'a'` and `'b'`.
 
 You are allowed to repeatedly remove **any substring** where the number of `'a'` characters is equal to the number of `'b'` characters. After each removal, the remaining parts of the string are concatenated together without gaps.
 
 Return an integer denoting the **minimum possible length** of the string after performing any number of such operations.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ A removable selection must be a contiguous substring of the current string and m
 
 Return the smallest possible length of the string after any number of valid removals.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ Every substring of `"aaaa"` contains only `'a'` characters. No substring can be 
 First, remove the substring `"ab"`, leaving `"aab"`. Next, remove the new substring `"ab"`, leaving `"a"`. No further removals are possible, so the minimum length is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `grid` of size `m × n`, and an integer `k`.
 
@@ -11,7 +11,8 @@ In one operation, you can:
 Return the **minimum** number of operations required to make all elements in the grid **equal**. If it is not possible, return -1.
 
 A submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells $\text{matrix}[x][y]$ where $x1 \le x \le x2$ and $y1 \le y \le y2$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $m=\lvert\texttt{grid}\rvert$ and $n=\lvert\texttt{\text{grid}[0]}\rvert$. O
 
 Return the minimum number of $k \times k$ increments needed to make all $mn$ entries equal, or `-1` if equality is impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Since $k = 1$, each operation increments a single cell $\text{grid}[i][j]$ by 1.
 Thus, the minimum number of operations is $2 + 1 + 1 + 0 = 4$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 1000$
 

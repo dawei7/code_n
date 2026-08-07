@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **sentence** is a list of words that are separated by a** single** space with no leading or trailing spaces.
 
@@ -15,12 +15,13 @@ A sentence is **circular **if:
 For example, `"leetcode exercises sound delightful"`, `"eetcode"`, `"leetcode eats soul" `are all circular sentences. However, `"Leetcode is cool"`, `"happy Leetcode"`, `"Leetcode"` and `"I like Leetcode"` are **not** circular sentences.
 
 Given a string `sentence`, return `true`* if it is circular*. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The sentence is circular.
 - **Explanation:** The words in sentence are ["Leetcode", "is", "cool"].
 - Leetcod<u>e</u>'s last character is **not** equal to <u>i</u>s's first character.
 The sentence is **not** circular.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 500$
 

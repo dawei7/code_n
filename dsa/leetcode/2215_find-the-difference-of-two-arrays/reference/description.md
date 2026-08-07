@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two **0-indexed** integer arrays `nums1` and `nums2`, return *a list* `answer` *of size* `2` *where:*
 
@@ -6,13 +6,16 @@ Given two **0-indexed** integer arrays `nums1` and `nums2`, return *a list* `ans
 
 - $\text{answer}[1]$ *is a list of all **distinct** integers in* `nums2` *which are **not** present in* `nums1`.
 
-**Note** that the integers in the lists may be returned in **any** order.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the integers in the lists may be returned in **any** order.
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,7 +31,8 @@ For nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and
 - **Explanation:**
 **For nums1, nums1[2] and nums1[3] are not present in nums2. Since nums1[2] == nums1[3], their value is only included once and answer[0] = [3].
 Every integer in nums2 is present in nums1. Therefore, answer[1] = [].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 As the ruler of a kingdom, you have an army of wizards at your command.
 
@@ -11,12 +11,13 @@ You are given a **0-indexed** integer array `strength`, where $\text{strength}[i
 Return *the **sum** of the total strengths of **all** contiguous groups of wizards*. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The sum of all the total strengths is 1 + 9 + 1 + 4 + 4 + 4 + 3 + 5 + 6 + 7 = 44
 - [4,6] from [5,<u>**4,6**</u>] has a total strength of min([4,6]) * sum([4,6]) = 4 * 10 = 40
 - [5,4,6] from [<u>**5,4,6**</u>] has a total strength of min([5,4,6]) * sum([5,4,6]) = 4 * 15 = 60
 The sum of all the total strengths is 25 + 16 + 36 + 36 + 40 + 60 = 213.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strength.length} \le 10^{5}$
 

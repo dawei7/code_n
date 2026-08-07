@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays, `nums1` and `nums2`, both of length `n`, along with a positive integer `k`.
 
@@ -9,12 +9,13 @@ For each index `i` from `0` to $n - 1$, perform the following:
 - Choose **at most** `k` values of $\text{nums2}[j]$ at these indices to **maximize** the total sum.
 
 Return an array `answer` of size `n`, where $\text{answer}[i]$ represents the result for the corresponding index `i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Return an array `answer` of size `n`, where $\text{answer}[i]$ represents the re
 Since all elements in `nums1` are equal, no indices satisfy the condition $\text{nums1}[j] < \text{nums1}[i]$ for any `i`, resulting in 0 for all positions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

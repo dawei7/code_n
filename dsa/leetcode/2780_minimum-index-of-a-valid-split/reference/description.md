@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An element `x` of an integer array `arr` of length `m` is **dominant** if **more than half** the elements of `arr` have a value of `x`.
 
@@ -13,12 +13,13 @@ You can split `nums` at an index `i` into two arrays `nums[0, ..., i]` and $nums
 Here, `nums[i, ..., j]` denotes the subarray of `nums` starting at index `i` and ending at index `j`, both ends being inclusive. Particularly, if `j < i` then `nums[i, ..., j]` denotes an empty subarray.
 
 Return *the **minimum** index of a **valid split***. If no valid split exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ It can be shown that index 4 is the minimum index of a valid split.
 - **Input:** `nums = [3,3,3,3,7,2,2]`
 - **Output:** `-1`
 - **Explanation:** It can be shown that there is no valid split.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a collection of numbers, `nums`, that might contain duplicates, return *all possible unique permutations **in any order**.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return every unique complete ordering of the input multiset, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return every unique complete ordering of the input multiset, in any order.
 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 8$
 

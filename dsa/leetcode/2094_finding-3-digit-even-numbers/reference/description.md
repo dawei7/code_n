@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `digits`, where each element is a digit. The array may contain duplicates.
 
@@ -13,12 +13,13 @@ You need to find **all** the **unique** integers that follow the given requireme
 For example, if the given `digits` were `[1, 2, 3]`, integers `132` and `312` follow the requirements.
 
 Return *a **sorted** array of the unique integers.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ In this example, the digit 8 is used twice each time in 288, 828, and 882.
 - **Input:** $digits = [3,7,5]$
 - **Output:** `[]`
 - **Explanation:** No **even** integers can be formed using the given digits.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{digits.length} \le 100$
 

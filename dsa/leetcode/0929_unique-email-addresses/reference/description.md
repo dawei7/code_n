@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Every **valid email** consists of a **local name** and a **domain name**, separated by the `'@'` sign. Besides lowercase letters, the email may contain one or more `'.'` or `'+'`.
 
@@ -15,12 +15,13 @@ If you add a plus `'+'` in the **local name**, everything after the first plus s
 It is possible to use both of these rules at the same time.
 
 Given an array of strings `emails` where we send one email to each $\text{emails}[i]$, return *the number of different addresses that actually receive mails*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Given an array of strings `emails` where we send one email to each $\text{emails
 
 - **Input:** $emails = ["a@\text{leetcode.com}","b@\text{leetcode.com}","c@\text{leetcode.com}"]$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{emails.length} \le 100$
 

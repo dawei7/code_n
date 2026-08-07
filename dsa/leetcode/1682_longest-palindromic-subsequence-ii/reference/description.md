@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A subsequence of a string `s` is considered a **good palindromic subsequence** if:
 
@@ -13,7 +13,8 @@ A subsequence of a string `s` is considered a **good palindromic subsequence** i
 For example, if `s = "abcabcabb"`, then `"abba"` is considered a **good palindromic subsequence**, while `"bcb"` (not even length) and `"bbbb"` (has equal consecutive characters) are not.
 
 Given a string `s`, return *the **length** of the **longest good palindromic subsequence** in *`s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Given a string `s`, return *the **length** of the **longest good palindromic sub
 
 Return an integer representing the maximum length of a good palindromic subsequence of `s`, or `0` if no such subsequence exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return an integer representing the maximum length of a good palindromic subseque
 - **Input:** `s = "dcbccacdb"`
 - **Output:** `4`
 - **Explanation:** The longest good palindromic subsequence of s is "dccd".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 250$
 

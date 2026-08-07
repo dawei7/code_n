@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a program to solve a Sudoku puzzle by filling the empty cells.
 
@@ -11,7 +11,8 @@ A sudoku solution must satisfy **all of the following rules**:
 - Each of the digits `1-9` must occur exactly once in each of the 9 `3x3` sub-boxes of the grid.
 
 The `'.'` character indicates empty cells.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ The `'.'` character indicates empty cells.
 
 Return `None`; modify `board` in place to contain the completed grid while preserving every original clue.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return `None`; modify `board` in place to contain the completed grid while prese
 - **Output:** `[["5","3","4","6","7","8","9","1","2"],["6","7","2","1","9","5","3","4","8"],["1","9","8","3","4","2","5","6","7"],["8","5","9","7","6","1","4","2","3"],["4","2","6","8","5","3","7","9","1"],["7","1","3","9","2","4","8","5","6"],["9","6","1","5","3","7","2","8","4"],["2","8","7","4","1","9","6","3","5"],["3","4","5","2","8","6","1","7","9"]]`
 - **Explanation:** The input board is shown above and the only valid solution is shown below:
 ![](images/250px-Sudoku-by-L2G-20050714_solution.svg.png)
-### Constraints
+
+### 4. Constraints
 
 - $\text{board.length} = 9$
 

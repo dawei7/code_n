@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ You want to maximize the **alternating sum** of `nums`, which is defined as the 
 You are also given a 2D integer array `swaps` where $\text{swaps}[i] = [p_{i}, q_{i}]$. For each pair $[p_{i}, q_{i}]$ in `swaps`, you are allowed to swap the elements at indices $p_{i}$ and $q_{i}$. These swaps can be performed any number of times and in any order.
 
 Return the maximum possible **alternating sum** of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ An index is positive in the alternating sum exactly when it is even. Values can 
 
 Return the greatest alternating sum obtainable after any valid sequence of swaps, including the empty sequence.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ The maximum alternating sum is achieved by not performing any swaps.
 Since we cannot perform any swaps, the maximum alternating sum is achieved by not performing any swaps.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

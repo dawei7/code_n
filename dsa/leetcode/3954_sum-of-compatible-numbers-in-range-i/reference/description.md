@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `k`.
 
@@ -10,12 +10,7 @@ A **positive** integer `x` is called **compatible** if it satisfies both of the 
 
 Return the sum of all **compatible** integers `x`.
 
-**Note**:
-
-- Here, `&` denotes the **bitwise AND** operator.
-
-- The **absolute** difference between integers `i` and `j` is defined as $abs(i - j)$.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +21,15 @@ Return the sum of all **compatible** integers `x`.
 
 Return the integer sum of all positive values `x` satisfying both $abs(n - x) \le k$ and $(n \& x) = 0$. Return `0` when no such value exists.
 
-### Examples
+### 3. Note
+
+:
+
+- Here, `&` denotes the **bitwise AND** operator.
+
+- The **absolute** difference between integers `i` and `j` is defined as $abs(i - j)$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -60,7 +63,8 @@ Thus, the answer is $1 + 4 + 5 = 10$.
 There are no compatible integers in the range `[4, 6]`. Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. You roll a fair 6-sided dice `n` times. Determine the total number of **distinct** sequences of rolls possible such that the following conditions are satisfied:
 
@@ -9,12 +9,13 @@ You are given an integer `n`. You roll a fair 6-sided dice `n` times. Determine 
 Return *the** total number** of distinct sequences possible*. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 Two sequences are considered distinct if at least one element is different.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,6 +33,7 @@ There are a total of 184 distinct sequences possible, so we return 184.
 - **Explanation:** Some of the possible sequences are (1, 2), (2, 1), (3, 2).
 Some invalid sequences are (3, 6), (2, 4) since the greatest common divisor is not equal to 1.
 There are a total of 22 distinct sequences possible, so we return 22.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums` of size `n` containing all numbers from `1` to `n`, return *the number of increasing quadruplets*.
 
@@ -7,12 +7,13 @@ A quadruplet `(i, j, k, l)` is increasing if:
 - $0 \le i < j < k < l < n$, and
 
 - $\text{nums}[i] < \text{nums}[k] < \text{nums}[j] < \text{nums}[l]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ There are no other quadruplets, so we return 2.
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `0`
 - **Explanation:** There exists only one quadruplet with i = 0, j = 1, k = 2, l = 3, but since nums[j] < nums[k], we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{nums.length} \le 4000$
 

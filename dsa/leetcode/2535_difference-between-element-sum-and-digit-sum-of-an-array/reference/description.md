@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer array `nums`.
 
@@ -8,13 +8,16 @@ You are given a positive integer array `nums`.
 
 Return *the **absolute** difference between the **element sum** and **digit sum** of *`nums`.
 
-**Note** that the absolute difference between two integers `x` and `y` is defined as $|x - y|$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the absolute difference between two integers `x` and `y` is defined as $|x - y|$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ The absolute difference between the element sum and digit sum is |25 - 16| = 9.
 The element sum of nums is 1 + 2 + 3 + 4 = 10.
 The digit sum of nums is 1 + 2 + 3 + 4 = 10.
 The absolute difference between the element sum and digit sum is |10 - 10| = 0.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 2000$
 

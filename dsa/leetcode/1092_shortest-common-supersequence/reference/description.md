@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two strings `str1` and `str2`, return *the shortest string that has both *`str1`* and *`str2`* as **subsequences***. If there are multiple valid strings, return **any** of them.
 
 A string `s` is a **subsequence** of string `t` if deleting some number of characters from `t` (possibly `0`) results in the string `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ The answer provided is the shortest such string that satisfies these properties.
 
 - **Input:** $str1 = "aaaaaaaa", str2 = "aaaaaaaa"$
 - **Output:** `"aaaaaaaa"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{str1.length}, \text{str2.length} \le 1000$
 

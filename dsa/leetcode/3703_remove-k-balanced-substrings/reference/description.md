@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of `'('` and `')'`, and an integer `k`.
 
@@ -127,7 +127,8 @@ k-balanced substring is `"((()))"`
 Thus, the final string is `"()()()"`.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -140,7 +141,7 @@ The removable substring has length $2 * k$ and is exactly $'(' * k + ')' * k$. R
 
 Return the unreduced characters, in their original relative order, after no k-balanced substring remains.
 
-### Constraints
+### 3. Constraints
 
 - $2 \le \text{s.length} \le 10^{5}$
 

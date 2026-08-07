@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` containing **positive** integers.
 
@@ -11,12 +11,13 @@ Your task is to **minimize** the length of `nums` by performing the following op
 - Delete the elements at indices `i` and `j` from `nums`.
 
 Return *an integer denoting the **minimum** **length** of *`nums`* after performing the operation any number of times.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ Operation 2: Select indices 1 and 0, insert nums[1] % nums[0] at the end and it 
 nums becomes [1].
 The length of nums cannot be reduced further. Hence, the answer is 1.
 It can be shown that 1 is the minimum achievable length.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **numeric value** of a **lowercase character** is defined as its position `(1-indexed)` in the alphabet, so the numeric value of `a` is `1`, the numeric value of `b` is `2`, the numeric value of `c` is `3`, and so on.
 
@@ -7,12 +7,13 @@ The **numeric value** of a **string** consisting of lowercase characters is defi
 You are given two integers `n` and `k`. Return *the **lexicographically smallest string** with **length** equal to `n` and **numeric value** equal to `k`.*
 
 Note that a string `x` is lexicographically smaller than string `y` if `x` comes before `y` in dictionary order, that is, either `x` is a prefix of `y`, or if `i` is the first position such that $x[i] \neq y[i]$, then $x[i]$ comes before $y[i]$ in alphabetic order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Note that a string `x` is lexicographically smaller than string `y` if `x` comes
 
 - **Input:** $n = 5, k = 73$
 - **Output:** `"aaszz"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

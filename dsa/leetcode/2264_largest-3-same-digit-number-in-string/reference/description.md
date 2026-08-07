@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `num` representing a large integer. An integer is **good** if it meets the following conditions:
 
@@ -13,12 +13,13 @@ Note:
 - A **substring** is a contiguous sequence of characters within a string.
 
 - There may be **leading zeroes** in `num` or a good integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Note:
 - **Input:** $num = "42352338"$
 - **Output:** `""`
 - **Explanation:** No substring of length 3 consists of only one unique digit. Therefore, there are no good integers.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{num.length} \le 1000$
 

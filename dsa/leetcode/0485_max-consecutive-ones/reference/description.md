@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s in the array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,7 +18,8 @@ Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s i
 
 - **Input:** `nums = [1,0,1,1,0,1]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

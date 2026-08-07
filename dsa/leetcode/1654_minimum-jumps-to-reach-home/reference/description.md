@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A certain bug's home is on the x-axis at position `x`. Help them get there from position `0`.
 
@@ -15,12 +15,13 @@ The bug jumps according to the following rules:
 The bug may jump forward **beyond** its home, but it **cannot jump** to positions numbered with **negative** integers.
 
 Given an array of integers `forbidden`, where $\text{forbidden}[i]$ means that the bug cannot jump to the position $\text{forbidden}[i]$, and integers `a`, `b`, and `x`, return *the minimum number of jumps needed for the bug to reach its home*. If there is no possible sequence of jumps that lands the bug on position `x`, return `-1.`
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Given an array of integers `forbidden`, where $\text{forbidden}[i]$ means that t
 - **Input:** $forbidden = [1,6,2,14,5,17,4], a = 16, b = 9, x = 7$
 - **Output:** `2`
 - **Explanation:** One jump forward (0 -> 16) then one jump backward (16 -> 7) will get the bug home.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{forbidden.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s`, reverse the string according to the following rules:
 
@@ -7,12 +7,13 @@ Given a string `s`, reverse the string according to the following rules:
 - All the English letters (lowercase or uppercase) should be reversed.
 
 Return `s`* after reversing it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return `s`* after reversing it*.
 
 - **Input:** `s = "Test1ng-Leet=code-Q!"`
 - **Output:** `"Qedo1ct-eeLg=ntse-T!"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

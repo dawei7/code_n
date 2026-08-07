@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` of equal length `n`.
 
 We define a pair of indices `(i, j)` as a **good pair** if $\text{nums1}[i] = \text{nums2}[j]$.
 
 Return the **minimum index sum** $i + j$ among all possible good pairs. If no such pairs exist, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ Return the **minimum index sum** $i + j$ among all possible good pairs. If no su
 - Since no common elements between `nums1` and `nums2`, the output is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} = \text{nums2.length} \le 10^{5}$
 

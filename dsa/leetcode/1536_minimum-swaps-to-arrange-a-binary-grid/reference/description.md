@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an `n x n` binary `grid`, in one step you can choose two **adjacent rows** of the grid and swap them.
 
@@ -7,12 +7,13 @@ A grid is said to be **valid** if all the cells above the main diagonal are **ze
 Return *the minimum number of steps* needed to make the grid valid, or **-1** if the grid cannot be valid.
 
 The main diagonal of a grid is the diagonal that starts at cell `(1, 1)` and ends at cell `(n, n)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The main diagonal of a grid is the diagonal that starts at cell `(1, 1)` and end
 
 - **Input:** `grid = [[1,0,0],[1,1,0],[1,1,1]]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length}$ $= \text{grid}[i].length$
 

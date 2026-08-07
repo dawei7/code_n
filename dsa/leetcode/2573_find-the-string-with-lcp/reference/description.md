@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We define the `lcp` matrix of any **0-indexed** string `word` of `n` lowercase English letters as an `n x n` grid such that:
 
@@ -7,12 +7,13 @@ We define the `lcp` matrix of any **0-indexed** string `word` of `n` lowercase E
 Given an `n x n` matrix `lcp`, return the alphabetically smallest string `word` that corresponds to `lcp`. If there is no such string, return an empty string.
 
 A string `a` is lexicographically smaller than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears earlier in the alphabet than the corresponding letter in `b`. For example, `"aabd"` is lexicographically smaller than `"aaca"` because the first position they differ is at the third letter, and `'b'` comes before `'c'`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A string `a` is lexicographically smaller than a string `b` (of the same length)
 - **Input:** $lcp = [[4,3,2,1],[3,3,2,1],[2,2,2,1],[1,1,1,3]]$
 - **Output:** `""`
 - **Explanation:** lcp[3][3] cannot be equal to 3 since word[3,...,3] consists of only a single letter; Thus, no answer exists.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n =$lcp.length == $\text{lcp}[i].length$ $\le 1000$
 

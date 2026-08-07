@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a tree (i.e., a connected, undirected graph that has no cycles) consisting of `n` nodes numbered from `0` to $n - 1$ and exactly $n - 1$ edges. Each node has a value associated with it, and the **root** of the tree is node `0`.
 
@@ -9,12 +9,13 @@ Two values `x` and `y` are **coprime** if $gcd(x, y) = 1$ where `gcd(x, y)` is t
 An ancestor of a node `i` is any other node on the shortest path from node `i` to the **root**. A node is **not **considered an ancestor of itself.
 
 Return *an array *`ans`* of size *`n`, *where *$\text{ans}[i]$* is the closest ancestor to node *`i`* such that *$\text{nums}[i]$ *and *$nums[\text{ans}[i]]$ are **coprime**, or `-1`* if there is no such ancestor*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ closest valid ancestor.
 
 - **Input:** `nums = [5,6,10,2,3,6,15], edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]]`
 - **Output:** `[-1,0,-1,0,0,0,-1]`
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = n$
 

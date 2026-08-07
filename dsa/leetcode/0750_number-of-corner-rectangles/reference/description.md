@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` integer matrix `grid` where each entry is only `0` or `1`, return *the number of **corner rectangles***.
 
 A **corner rectangle** is four distinct `1`'s on the grid that forms an axis-aligned rectangle. Note that only the corners need to have the value `1`. Also, all four `1`'s used must be distinct.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(grid: list[\text{list}[int]]) -> int$
 
@@ -17,7 +18,7 @@ Let $m$ be the number of rows and $n$ be the number of columns.
 
 Return the number of choices of row indices $r_1 < r_2$ and column indices $c_1 < c_2$ for which all four cells $\text{grid}[r1][c1]$, $\text{grid}[r1][c2]$, $\text{grid}[r2][c1]$, and $\text{grid}[r2][c2]$ equal `1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return the number of choices of row indices $r_1 < r_2$ and column indices $c_1 
 - **Input:** `grid = [[1,1,1,1]]`
 - **Output:** `0`
 - **Explanation:** Rectangles must have four distinct corners.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

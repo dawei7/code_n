@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s`, partition it into **unique segments** according to the following procedure:
 
@@ -11,12 +11,13 @@ Given a string `s`, partition it into **unique segments** according to the follo
 - Repeat until you reach the end of `s`.
 
 Return an array of strings `segments`, where $\text{segments}[i]$ is the $$i^{\text{th}}$$ segment created.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -164,7 +165,8 @@ Hence, the final output is `["a", "b", "bc", "c", "cc", "d"]`.
 Hence, the final output is `["a", "aa"]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob take turns playing a game with **Alice starting first**.
 
@@ -7,11 +7,12 @@ In this game, there are `n` piles of stones. On each player's turn, the player s
 Given an integer array `piles`, where $\text{piles}[i]$ is the number of stones in the $$i^{\text{th}}$$ pile, return `true`* if Alice wins, or *`false`* if Bob wins*.
 
 Both Alice and Bob play **optimally**.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,11 +39,15 @@ Both Alice and Bob play **optimally**.
 - On the third turn, Alice removes one stone from the first pile. piles = [0,1,0].
 - On the fourth turn, Bob removes one stone from the second pile. piles = [0,0,0].
 - On the fifth turn, there are no stones left for Alice to remove. Bob wins.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{piles.length}$
 
 - $1 \le n \le 7$
 
 - $1 \le \text{piles}[i] \le 7$
-### Follow-up Could you find a linear time solution? Although the linear time solution may be beyond the scope of an interview, it could be interesting to know.
+
+### 5. Follow-up
+
+Could you find a linear time solution? Although the linear time solution may be beyond the scope of an interview, it could be interesting to know.

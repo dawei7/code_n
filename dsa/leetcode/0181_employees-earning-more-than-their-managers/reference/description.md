@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -20,7 +20,8 @@ Write a solution to find the employees who earn more than their managers.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ The result format is in the following example.
 
 Return one column named `Employee` containing the names of employees who earn more than their managers.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `caption` representing the caption for a video.
 
@@ -11,12 +11,13 @@ The following actions must be performed **in order** to generate a **valid tag**
 - **Truncate** the result to a maximum of 100 characters.
 
 Return the **tag** after performing the actions on `caption`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The first letter for all words except `"can"` should be capitalized.
 Since the first word has length 101, we need to truncate the last two letters from the word.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{caption.length} \le 150$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -13,7 +13,8 @@ Your goal is to:
 - **Minimize** the total number of **operations** required to achieve that **maximum**.
 
 Return an integer denoting the **minimum** total number of operations required.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ An operation may increase any one element by exactly $1$. Elements cannot be dec
 
 Return the minimum total number of unit increases needed to attain the greatest possible number of special indices.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ Return the minimum total number of unit increases needed to attain the greatest 
 - The final array is `[5, 6, 1, 4, 3]` has 2 special indices, which is the maximum achievable. Thus, the answer is 4.​​​​​​​
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

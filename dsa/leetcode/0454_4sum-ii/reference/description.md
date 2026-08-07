@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given four integer arrays `nums1`, `nums2`, `nums3`, and `nums4` all of length `n`, return the number of tuples `(i, j, k, l)` such that:
 
 - $0 \le i, j, k, l < n$
 
 - $\text{nums1}[i] + \text{nums2}[j] + \text{nums3}[k] + \text{nums4}[l] = 0$
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Given four integer arrays `nums1`, `nums2`, `nums3`, and `nums4` all of length `
 
 All four arrays are nonempty and have the same length.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The two tuples are:
 
 - **Input:** $nums1 = [0], nums2 = [0], nums3 = [0], nums4 = [0]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length}$
 

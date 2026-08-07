@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.
 
@@ -7,12 +7,13 @@ Return *the number of combinations that make up that amount*. If that amount of 
 You may assume that you have an infinite number of each kind of coin.
 
 The **final** answer is **guaranteed** to fit into a signed **32-bit** integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The **final** answer is **guaranteed** to fit into a signed **32-bit** integer.
 
 - **Input:** $amount = 10, coins = [10]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{coins.length} \le 300$
 

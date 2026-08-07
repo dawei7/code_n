@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are a total of `numCourses` courses you have to take, labeled from `0` to $numCourses - 1$. You are given an array `prerequisites` where $\text{prerequisites}[i] = [a_{i}, b_{i}]$ indicates that you **must** take course $b_{i}$ first if you want to take course $a_{i}$.
 
 - For example, the pair `[0, 1]`, indicates that to take course `0` you have to first take course `1`.
 
 Return `true` if you can finish all courses. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Return `true` if you can finish all courses. Otherwise, return `false`.
 
 Return `true` if some ordering completes every course, or `false` if the dependencies make that impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ To take course 1 you should have finished course 0. So it is possible.
 - **Output:** `false`
 - **Explanation:** There are a total of 2 courses to take.
 To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le numCourses \le 2000$
 

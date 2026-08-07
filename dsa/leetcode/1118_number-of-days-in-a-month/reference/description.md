@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a year `year` and a month `month`, return *the number of days of that month*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ April, June, September, and November have 30 days. Every other non-February mont
 
 - The integer number of days in the specified month and year.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ April, June, September, and November have 30 days. Every other non-February mont
 
 - **Input:** $year = 1900, month = 2$
 - **Output:** `28`
-### Constraints
+
+### 4. Constraints
 
 - $1583 \le year \le 2100$
 

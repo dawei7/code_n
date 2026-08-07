@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
 An element in `nums` is said to be **qualified** if there exist **at least** `k` elements in the array that are **strictly greater** than it.
 
 Return an integer denoting the total number of qualified elements in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Let $n=\lvert\texttt{nums}\rvert$. Comparisons are against every element of the 
 
 Return the number of occurrences in `nums` for which at least `k` other array values are strictly greater.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The elements 1 and 2 each have at least $k = 1$ element greater than themselves.
 Since all elements are equal to 5, no element is greater than the other. Therefore, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

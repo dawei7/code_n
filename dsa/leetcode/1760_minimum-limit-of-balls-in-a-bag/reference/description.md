@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` where the $$i^{\text{th}}$$ bag contains $\text{nums}[i]$ balls. You are also given an integer `maxOperations`.
 
@@ -13,12 +13,13 @@ You can perform the following operation at most `maxOperations` times:
 Your penalty is the **maximum** number of balls in a bag. You want to **minimize** your penalty after the operations.
 
 Return *the minimum possible penalty after performing the operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The bag with the most number of balls has 3 balls, so your penalty is 3 and you 
 - Divide the bag with 4 balls into two bags of sizes 2 and 2. [2,2,2,**<u>4</u>**,4,2] -> [2,2,2,2,2,4,2].
 - Divide the bag with 4 balls into two bags of sizes 2 and 2. [2,2,2,2,2,**<u>4</u>**,2] -> [2,2,2,2,2,2,2,2].
 The bag with the most number of balls has 2 balls, so your penalty is 2, and you should return 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

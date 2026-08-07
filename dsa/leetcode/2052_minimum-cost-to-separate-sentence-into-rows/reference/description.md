@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `sentence` containing words separated by spaces, and an integer `k`. Your task is to separate `sentence` into **rows** where the number of characters in each row is **at most **`k`. You may assume that `sentence` does not begin or end with a space, and the words in `sentence` are separated by a single space.
 
@@ -17,11 +17,12 @@ The **cost** of a row with length `n` is $(k - n)^2$, and the **total cost** is 
 	</li>
 
 Return *the **minimum** possible total cost of separating** *`sentence`* into rows.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Separating sentence into "apples", "and", "bananas", "taste", and "great" has a 
 - **Output:** `0`
 - **Explanation:**
 The cost of the last row is not included in the total cost, and since there is only one row, return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 5000$
 

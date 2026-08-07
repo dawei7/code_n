@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given positive integers `low`, `high`, and `k`.
 
@@ -9,12 +9,13 @@ A number is **beautiful** if it meets both of the following conditions:
 - The number is divisible by `k`.
 
 Return *the number of beautiful integers in the range* `[low, high]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ It can be shown that there is only 1 beautiful integer in the given range.
 - **Output:** `0`
 - **Explanation:** There are 0 beautiful integers in the given range.
 - 5 is not beautiful because it is not divisible by k = 2 and it does not contain equal even and odd digits.
-### Constraints
+
+### 4. Constraints
 
 - $0 < low \le high \le 10^{9}$
 

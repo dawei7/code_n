@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`. You **must** repeatedly perform one of the following operations while the array has more than two elements:
 
@@ -11,11 +11,12 @@ You are given an array of integers `nums`. You **must** repeatedly perform one o
 For each operation, add the sum of the removed elements to your total score.
 
 Return the **maximum** possible score you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ The possible operations are:
 The maximum score is obtained by removing the first and last elements, resulting in a total score of 7.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

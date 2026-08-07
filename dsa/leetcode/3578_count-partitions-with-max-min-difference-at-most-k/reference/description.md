@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. Your task is to partition `nums` into one or more **non-empty** contiguous segments such that in each segment, the difference between its **maximum** and **minimum** elements is **at most** `k`.
 
 Return the total number of ways to partition `nums` under this condition.
 
 Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ There are 2 valid partitions that satisfy the given conditions:
 - `[[3, 3], [4]]`
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 5 * 10^{4}$
 

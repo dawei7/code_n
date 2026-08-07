@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` grid `grid` of values `0`, `1`, or `2`, where:
 
@@ -13,7 +13,8 @@ You want to build a house on an empty land that reaches all buildings in the **s
 Return *the **shortest travel distance** for such a house*. If it is not possible to build such a house according to the above rules, return `-1`.
 
 The **total travel distance** is the sum of the distances between the houses of the friends and the meeting point.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ The **total travel distance** is the sum of the distances between the houses of 
 
 Return the minimum sum of distances from one reachable empty cell to every building, or `-1` when no such cell exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ So return 7.
 
 - **Input:** `grid = [[1]]`
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

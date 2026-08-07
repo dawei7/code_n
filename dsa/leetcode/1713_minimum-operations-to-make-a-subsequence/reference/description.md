@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `target` that consists of **distinct** integers and another integer array `arr` that **can** have duplicates.
 
@@ -7,12 +7,13 @@ In one operation, you can insert any integer at any position in `arr`. For examp
 Return *the **minimum** number of operations needed to make *`target`* a **subsequence** of *`arr`*.*
 
 A **subsequence** of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order. For example, `[2,7,4]` is a subsequence of `[4,<u>2</u>,3,<u>7</u>,2,1,<u>4</u>]` (the underlined elements), while `[2,4,2]` is not.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ A **subsequence** of an array is a new array generated from the original array b
 
 - **Input:** $target = [6,4,8,1,3,2], arr = [4,7,6,2,3,8,6,1]$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{target.length}, \text{arr.length} \le 10^{5}$
 

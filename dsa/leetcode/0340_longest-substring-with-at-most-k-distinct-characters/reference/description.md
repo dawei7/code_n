@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, return *the length of the longest **substring** of* `s` *that contains at most* `k` ***distinct** characters*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given a string `s` and an integer `k`, return *the length of the longest **subst
 
 Return the maximum length of a contiguous substring with no more than `k` distinct characters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the maximum length of a contiguous substring with no more than `k` distin
 - **Input:** `s = "aa", k = 1`
 - **Output:** `2`
 - **Explanation:** The substring is "aa" with length 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{4}$
 

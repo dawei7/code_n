@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Mario drives on a two-lane freeway with coins every mile. You are given two integer arrays, `lane1` and `lane2`, where the value at the $$i^{\text{th}}$$ index represents the number of coins he *gains or loses* in the $$i^{\text{th}}$$ mile in that lane.
 
@@ -14,12 +14,15 @@ A **lane switch** is when Mario goes from lane 1 to lane 2 or vice versa.
 
 Return the **maximum** number of coins Mario can earn after performing **at most 2 lane switches**.
 
-**Note:** Mario can switch lanes immediately upon entering or just before exiting the freeway.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+Mario can switch lanes immediately upon entering or just before exiting the freeway.
+
+### 4. Examples
 
 #### Example 1
 
@@ -97,7 +100,8 @@ He collects a total of $9 + (-2) + 4 = 11$ coins.
 He collects a total of -2 coins.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{lane1.length} = \text{lane2.length} \le 10^{5}$
 

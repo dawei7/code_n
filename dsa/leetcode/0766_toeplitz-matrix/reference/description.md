@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an `m x n` `matrix`, return *`true` if the matrix is Toeplitz. Otherwise, return `false`.*
 
 A matrix is **Toeplitz** if every diagonal from top-left to bottom-right has the same elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ In each diagonal all elements are the same, so the answer is True.
 - **Output:** `false`
 - **Explanation:**
 The diagonal "[1, 2]" has different elements.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

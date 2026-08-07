@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list, return `true`* if it is a **palindrome** or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `head` of a singly linked list, return `true`* if it is a **palindrome
 
 Return `true` when the node values read identically forward and backward; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return `true` when the node values read identically forward and backward; otherw
 
 - **Input:** $head = [1,2]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{5}]$.
 

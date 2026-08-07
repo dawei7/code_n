@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of characters `chars`, compress it using the following algorithm:
 
@@ -14,8 +14,7 @@ After you are done **modifying the input array,** return *the new length of the 
 
 You must write an algorithm that uses only constant extra space.
 
-**Note: **The characters in the array beyond the returned length do not matter and should be ignored.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +27,11 @@ You must write an algorithm that uses only constant extra space.
 
 The in-place compression must use $O(1)$ auxiliary space.
 
-### Examples
+### 3. Note
+
+The characters in the array beyond the returned length do not matter and should be ignored.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ After modifying the input array in-place, the first character of chars should be
 - **Output:** `4`
 - **Explanation:** The groups are "a" and "bbbbbbbbbbbb". This compresses to "ab12".
 After modifying the input array in-place, the first 4 characters of chars should be ["a","b","1","2"].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{chars.length} \le 2000$
 

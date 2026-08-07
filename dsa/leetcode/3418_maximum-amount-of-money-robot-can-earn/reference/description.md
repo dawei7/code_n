@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` grid. A robot starts at the top-left corner of the grid `(0, 0)` and wants to reach the bottom-right corner $(m - 1, n - 1)$. The robot can move either right or down at any point in time.
 
@@ -10,15 +10,18 @@ The grid contains a value $\text{coins}[i][j]$ in each cell:
 
 The robot has a special ability to **neutralize robbers** in at most **2 cells** on its path, preventing them from stealing coins in those cells.
 
-**Note:** The robot's total coins can be negative.
-
-Return the **maximum** profit the robot can gain on the route.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The robot's total coins can be negative.
+
+Return the **maximum** profit the robot can gain on the route.
+
+### 4. Examples
 
 #### Example 1
 
@@ -62,7 +65,8 @@ An optimal path for maximum coins is:
 - Move to `(1, 2)`, gaining the final `10` coins (total coins = $30 + 10 = 40$).
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{coins.length}$
 

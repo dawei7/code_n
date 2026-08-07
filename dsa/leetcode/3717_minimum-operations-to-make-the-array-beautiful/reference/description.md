@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ An array is called **beautiful** if for every index `i > 0`, the value at $\text
 In one operation, you may **increment** any element $\text{nums}[i]$ (with `i > 0`) by `1`.
 
 Return the **minimum number of operations** required to make the array beautiful.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return the **minimum number of operations** required to make the array beautiful
 
 Return the minimum total number of single-unit increments that can make every element after the first divisible by its predecessor.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The given array is already beautiful.
 The array has only one element, so it's already beautiful.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

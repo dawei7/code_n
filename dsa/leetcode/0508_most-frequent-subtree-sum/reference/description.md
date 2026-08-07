@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return the most frequent **subtree sum**. If there is a tie, return all the values with the highest frequency in any order.
 
 The **subtree sum** of a node is defined as the sum of all the node values formed by the subtree rooted at that node (including the node itself).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ The **subtree sum** of a node is defined as the sum of all the node values forme
 
 - **Input:** `root = [5,2,-5]`
 - **Output:** `[2]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

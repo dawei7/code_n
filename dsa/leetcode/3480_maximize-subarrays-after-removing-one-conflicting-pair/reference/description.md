@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer `n` which represents an array `nums` containing the numbers from 1 to `n` in order. Additionally, you are given a 2D array `conflictingPairs`, where $\text{conflictingPairs}[i] = [a, b]$ indicates that `a` and `b` form a conflicting pair.
 
 Remove **exactly** one element from `conflictingPairs`. Afterward, count the number of non-empty subarrays of `nums` which do not contain both `a` and `b` for any remaining conflicting pair `[a, b]`.
 
 Return the **maximum** number of subarrays possible after removing **exactly** one conflicting pair.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return the **maximum** number of subarrays possible after removing **exactly** o
 - The maximum number of subarrays we can achieve after removing one element from `conflictingPairs` is 12.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

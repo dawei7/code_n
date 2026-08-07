@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Project`
 
@@ -33,12 +33,13 @@ Write an SQL query that reports the **average** experience years of all the empl
 Return the result table in **any order**.
 
 The query result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

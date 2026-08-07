@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a **palindromic** string `s` and an integer `k`.
 
 Return the **k-th** **lexicographically smallest** palindromic permutation of `s`. If there are fewer than `k` distinct palindromic permutations, return an empty string.
 
-**Note:** Different rearrangements that yield the same palindromic string are considered identical and are counted once.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Different rearrangements that yield the same palindromic string are considered identical and are counted once.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ Return the **k-th** **lexicographically smallest** palindromic permutation of `s
 - Lexicographically, `"abcba"` comes before `"bacab"`. Since $k = 1$, the output is `"abcba"`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `mountainHeight` denoting the height of a mountain.
 
@@ -17,12 +17,13 @@ Each worker may reduce the mountain's height by any **non-negative integer** amo
 The total time spent by worker `i` is the sum of the times required for all `x` units they reduce. As all workers operate simultaneously, the total time required is the **maximum** time spent by any worker.
 
 Return an integer representing the **minimum** number of seconds required for the workers to make the height of the mountain 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ The number of seconds needed is $max(9, 12, 12, 12) = 12$ seconds.
 There is only one worker in this example, so the answer is $\text{workerTimes}[0] + \text{workerTimes}[0] * 2 + \text{workerTimes}[0] * 3 + \text{workerTimes}[0] * 4 + \text{workerTimes}[0] * 5 = 15$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le mountainHeight \le 10^{5}$
 

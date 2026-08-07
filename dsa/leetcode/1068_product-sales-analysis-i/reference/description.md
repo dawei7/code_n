@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -36,12 +36,13 @@ Write a solution to report the $\text{product}_{name}$, `year`, and `price` for 
 Return the resulting table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In LeetCode Store, there are `n` items to sell. Each item has a price. However, there are some special offers, and a special offer consists of one or more different kinds of items with a sale price.
 
@@ -7,12 +7,13 @@ You are given an integer array `price` where $\text{price}[i]$ is the price of t
 You are also given an array `special` where $\text{special}[i]$ is of size $n + 1$ where $\text{special}[i][j]$ is the number of pieces of the $$j^{\text{th}}$$ item in the $$i^{\text{th}}$$ offer and $\text{special}[i][n]$ (i.e., the last integer in the array) is the price of the $$i^{\text{th}}$$ offer.
 
 Return *the lowest price you have to pay for exactly certain items as given, where you could make optimal use of the special offers*. You are not allowed to buy more items than you want, even if that would lower the overall price. You could use any of the special offers as many times as you want.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ You need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), 
 You may pay $4 for 1A and 1B, and$9 for 2A ,2B and 1C.
 You need to buy 1A ,2B and 1C, so you may pay $4 for 1A and 1B (special offer #1), and$3 for 1B, $4 for 1C.
 You cannot add more items, though only $9 for 2A ,2B and 1C.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{price.length} = \text{needs.length}$
 

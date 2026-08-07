@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, determine if it is a *complete binary tree*.
 
 In a **<a href="http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees" target="_blank">complete binary tree</a>**, every level, except possibly the last, is completely filled, and all nodes in the last level are as far left as possible. It can have between `1` and $2^h$ nodes inclusive at the last level `h`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ In a **<a href="http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees" 
 - **Input:** `root = [1,2,3,4,5,null,7]`
 - **Output:** `false`
 - **Explanation:** The node with value 7 isn't as far left as possible.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 100]`.
 

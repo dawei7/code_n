@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word` and an integer `k`.
 
@@ -7,12 +7,13 @@ We consider `word` to be **k-special** if $|freq(\text{word}[i]) - freq(\text{wo
 Here, `freq(x)` denotes the frequency of the character `x` in `word`, and `|y|` denotes the absolute value of `y`.
 
 Return *the **minimum** number of characters you need to delete to make* `word` ***k-special***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return *the **minimum** number of characters you need to delete to make* `word` 
 **Explanation:** We can make `word` `2`-special by deleting `1` occurrence of `"b"`. Therefore, `word` becomes equal to `"aaaaaa"` where each letter's frequency is now uniformly `6`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 10^{5}$
 

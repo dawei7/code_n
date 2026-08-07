@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is an undirected connected tree with `n` nodes labeled from `0` to $n - 1$ and $n - 1$ edges.
 
 You are given the integer `n` and the array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
 Return an array `answer` of length `n` where $\text{answer}[i]$ is the sum of the distances between the $$i^{\text{th}}$$ node in the tree and all other nodes.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Hence, answer[0] = 8, and so on.
 
 - **Input:** $n = 2, edges = [[1,0]]$
 - **Output:** `[1,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 3 * 10^{4}$
 

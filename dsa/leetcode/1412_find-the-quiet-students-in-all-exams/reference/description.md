@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Student`
 
@@ -34,7 +34,8 @@ Write a solution to report the students $(\text{student}_{id}, \text{student}_{n
 Return the result table **ordered** by $\text{student}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -47,7 +48,7 @@ Return exactly the columns $\text{student}_{id}$ and $\text{student}_{name}$. A 
 
 One extreme result in any exam disqualifies an otherwise quiet student. Exclude students who never participated and order qualifying rows by $\text{student}_{id}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

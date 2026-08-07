@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a binary string `s` and an integer `k`, return `true` *if every binary code of length* `k` *is a substring of* `s`. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given a binary string `s` and an integer `k`, return `true` *if every binary cod
 - **Input:** `s = "0110", k = 2`
 - **Output:** `false`
 - **Explanation:** The binary code "00" is of length 2 and does not exist in the array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{5}$
 

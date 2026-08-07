@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 In this problem, a tree is an **undirected graph** that is connected and has no cycles.
 
 You are given a graph that started as a tree with `n` nodes labeled from `1` to `n`, with one additional edge added. The added edge has two **different** vertices chosen from `1` to `n`, and was not an edge that already existed. The graph is represented as an array `edges` of length `n` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the graph.
 
 Return *an edge that can be removed so that the resulting graph is a tree of *`n`* nodes*. If there are multiple answers, return the answer that occurs last in the input.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *an edge that can be removed so that the resulting graph is a tree of *`n
 
 - **Input:** $edges = [[1,2],[2,3],[3,4],[1,4],[1,5]]$
 - **Output:** `[1,4]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length}$
 

@@ -1,11 +1,10 @@
-## Description
+### 1. Description
 
 Given a collection of candidate numbers (`candidates`) and a target number (`target`), find all unique combinations in `candidates` where the candidate numbers sum to `target`.
 
 Each number in `candidates` may only be used **once** in the combination.
 
-**Note:** The solution set must not contain duplicate combinations.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +17,11 @@ Let $n = \lvert\texttt{candidates}\rvert$.
 
 Return all unique combinations that sum to `target`. Each input position may be used at most once.
 
-### Examples
+### 3. Note
+
+The solution set must not contain duplicate combinations.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ Return all unique combinations that sum to `target`. Each input position may be 
 [1,2,2],
 [5]
 ]
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{candidates.length} \le 100$
 

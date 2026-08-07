@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a garden represented as an infinite 2D grid, there is an apple tree planted at **every** integer coordinate. The apple tree planted at an integer coordinate `(i, j)` has $|i| + |j|$ apples growing on it.
 
@@ -11,12 +11,13 @@ The value of `|x|` is defined as:
 - `x` if $x \ge 0$
 
 - `-x` if `x < 0`
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,6 +36,7 @@ The perimeter is 2 * 4 = 8.
 
 - **Input:** $neededApples = 1000000000$
 - **Output:** `5040`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le neededApples \le 10^{15}$

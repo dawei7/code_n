@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A school is trying to take an annual photo of all the students. The students are asked to stand in a single file line in **non-decreasing order** by height. Let this ordering be represented by the integer array `expected` where $\text{expected}[i]$ is the expected height of the $$i^{\text{th}}$$ student in line.
 
 You are given an integer array `heights` representing the **current order** that the students are standing in. Each $\text{heights}[i]$ is the height of the $$i^{\text{th}}$$ student in line (**0-indexed**).
 
 Return *the **number of indices** where *$\text{heights}[i] \neq \text{expected}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ All indices do not match.
 heights:  [1,2,3,4,5]
 expected: [1,2,3,4,5]
 All indices match.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{heights.length} \le 100$
 

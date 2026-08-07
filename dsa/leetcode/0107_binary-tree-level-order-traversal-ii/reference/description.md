@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the bottom-up level order traversal of its nodes' values*. (i.e., from left to right, level by level from leaf to root).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `root` of a binary tree, return *the bottom-up level order traversal o
 
 Return a list containing one left-to-right value list for each depth, ordered from the deepest level up to the root level.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return a list containing one left-to-right value list for each depth, ordered fr
 
 - **Input:** `root = []`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[0, 2000]`.
 

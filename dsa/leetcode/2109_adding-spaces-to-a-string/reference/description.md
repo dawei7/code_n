@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` and a **0-indexed** integer array `spaces` that describes the indices in the original string where spaces will be added. Each space should be inserted **before** the character at the given index.
 
 - For example, given `s = "EnjoyYourCoffee"` and $spaces = [5, 9]$, we place spaces before `'Y'` and `'C'`, which are at indices `5` and `9` respectively. Thus, we obtain `"Enjoy **<u>Y</u>**our <u>**C**</u>offee"`.
 
 Return** ***the modified string **after** the spaces have been added.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ We then place spaces before those characters.
 - **Output:** `" s p a c i n g"`
 - **Explanation:**
 We are also able to place spaces before the first character of the string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 3 * 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `w` and `m`, and an integer array `arrivals`, where $\text{arrivals}[i]$ is the type of item arriving on day `i` (days are **1-indexed**).
 
@@ -15,12 +15,13 @@ Items are managed according to the following rules:
 	</li>
 
 Return the **minimum** number of arrivals to be discarded so that every `w`-day window contains at most `m` occurrences of each type.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ There are no discarded items, so return 0.
 Item 3 on day 5 is discarded, and this is the minimum number of arrivals to discard, so return 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arrivals.length} \le 10^{5}$
 

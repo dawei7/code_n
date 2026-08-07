@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, an integer array `queries`, and an integer `x`.
 
 For each $\text{queries}[i]$, you need to find the index of the $\text{queries}[i]^th$ occurrence of `x` in the `nums` array. If there are fewer than $\text{queries}[i]$ occurrences of `x`, the answer should be -1 for that query.
 
 Return an integer array `answer` containing the answers to all queries.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return an integer array `answer` containing the answers to all queries.
 - For the 1^st query, 5 doesn't exist in `nums`, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, \text{queries.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary `grid`, where each `1` represents a brick and `0` represents an empty space. A brick is **stable** if:
 
@@ -10,13 +10,16 @@ You are also given an array `hits`, which is a sequence of erasures we want to a
 
 Return *an array *`result`*, where each *$\text{result}[i]$* is the number of bricks that will **fall** after the *$$i^{\text{th}}$$* erasure is applied.*
 
-**Note** that an erasure may refer to a location with no brick, and if it does, no bricks drop.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that an erasure may refer to a location with no brick, and if it does, no bricks drop.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ Next, we erase the underlined brick at (1,0), resulting in the grid:
 [0,0,0,0]]
 Once again, all remaining bricks are still stable, so no bricks fall.
 Hence the result is [0,0].
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{grid.length}$
 

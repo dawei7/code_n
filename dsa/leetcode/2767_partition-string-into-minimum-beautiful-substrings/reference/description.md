@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a binary string `s`, partition the string into one or more **substrings** such that each substring is **beautiful**.
 
@@ -11,12 +11,13 @@ A string is **beautiful** if:
 Return *the **minimum** number of substrings in such partition. *If it is impossible to partition the string `s` into beautiful substrings, return `-1`.
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It can be shown that 3 is the minimum number of beautiful substrings that s can 
 - **Input:** `s = "0"`
 - **Output:** `-1`
 - **Explanation:** We can not partition the given string into beautiful substrings.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 15$
 

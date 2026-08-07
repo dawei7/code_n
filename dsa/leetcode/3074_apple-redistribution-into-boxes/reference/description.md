@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `apple` of size `n` and an array `capacity` of size `m`.
 
@@ -6,13 +6,16 @@ There are `n` packs where the $$i^{\text{th}}$$ pack contains $\text{apple}[i]$ 
 
 Return *the **minimum** number of boxes you need to select to redistribute these *`n`* packs of apples into boxes*.
 
-**Note** that, apples from the same pack can be distributed into different boxes.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that, apples from the same pack can be distributed into different boxes.
+
+### 4. Examples
 
 #### Example 1
 
@@ -25,7 +28,8 @@ It is possible to distribute the apples as the total capacity is greater than or
 - **Input:** $apple = [5,5,5], capacity = [2,4,2,7]$
 - **Output:** `4`
 - **Explanation:** We will need to use all the boxes.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{apple.length} \le 50$
 

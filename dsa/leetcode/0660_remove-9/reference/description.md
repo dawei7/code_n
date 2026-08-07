@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Start from integer `1`, remove any integer that contains `9` such as `9`, `19`, `29`...
 
 Now, you will have a new integer sequence `[1, 2, 3, 4, 5, 6, 7, 8, 10, 11, ...]`.
 
 Given an integer `n`, return *the* $$n^{\text{th}}$$ (**1-indexed**) integer in the new sequence.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(n: int) -> int`
 
@@ -17,7 +18,7 @@ Given an integer `n`, return *the* $$n^{\text{th}}$$ (**1-indexed**) integer in 
 
 Return the positive integer at sequence position `n`. The returned integer must contain no decimal digit `9`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ Return the positive integer at sequence position `n`. The returned integer must 
 
 - **Input:** $n = 10$
 - **Output:** `11`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 8 * 10^{8}$

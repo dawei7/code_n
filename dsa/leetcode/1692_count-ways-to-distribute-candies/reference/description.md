@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` **unique** candies (labeled `1` through `n`) and `k` bags. You are asked to distribute **all** the candies into the bags such that every bag has **at least** one candy.
 
@@ -7,7 +7,8 @@ There can be multiple ways to distribute the candies. Two ways are considered **
 For example, `(1), (2,3)` and `(2), (1,3)` are considered different because candies `2` and `3` in the bag `(2,3)` in the first way are not in the same bag in the second way (they are split between the bags `(<u>2</u>)` and `(1,<u>3</u>)`). However, `(1), (2,3)` and `(3,2), (1)` are considered the same because the candies in each bag are all in the same bags in both ways.
 
 Given two integers, `n` and `k`, return *the **number** of different ways to distribute the candies*. As the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Given two integers, `n` and `k`, return *the **number** of different ways to dis
 
 Return an integer representing the number of ways to distribute `n` candies into `k` bags modulo $10^9 + 7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,6 +48,7 @@ Return an integer representing the number of ways to distribute `n` candies into
 - **Input:** $n = 20, k = 5$
 - **Output:** `206085257`
 - **Explanation:** You can distribute 20 candies into 5 bags in 1881780996 ways. 1881780996 modulo $10^{9}$ + 7 = 206085257.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 1000$

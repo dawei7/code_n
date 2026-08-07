@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **letter value** of a letter is its position in the alphabet **starting from 0** (i.e. `'a' -> 0`, `'b' -> 1`, `'c' -> 2`, etc.).
 
@@ -9,12 +9,13 @@ The **numerical value** of some string of lowercase English letters `s` is the *
 You are given three strings `firstWord`, `secondWord`, and `targetWord`, each consisting of lowercase English letters `'a'` through `'j'` **inclusive**.
 
 Return `true` *if the **summation** of the **numerical values** of *`firstWord`* and *`secondWord`* equals the **numerical value** of *`targetWord`*, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ The numerical value of firstWord is "aaa" -> "000" -> 0.
 The numerical value of secondWord is "a" -> "0" -> 0.
 The numerical value of targetWord is "aaaa" -> "0000" -> 0.
 We return true because 0 + 0 == 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{firstWord.length},$secondWord.length, $\text{targetWord.length} \le 8$
 

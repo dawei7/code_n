@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `k`, return *the number of **unique** k-diff pairs in the array*.
 
@@ -10,13 +10,16 @@ A **k-diff** pair is an integer pair $(\text{nums}[i], \text{nums}[j])$, where t
 
 - $|\text{nums}[i] - \text{nums}[j]| = k$
 
-**Notice** that `|val|` denotes the absolute value of `val`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Notice
+
+that `|val|` denotes the absolute value of `val`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Although we have two 1s in the input, we should only return the number of **uniq
 - **Input:** `nums = [1,3,1,5,4], k = 0`
 - **Output:** `1`
 - **Explanation:** There is one 0-diff pair in the array, (1, 1).
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

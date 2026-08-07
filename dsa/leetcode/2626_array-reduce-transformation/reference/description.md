@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, a reducer function `fn`, and an initial value `init`, return the final result obtained by executing the `fn` function on each element of the array, sequentially, passing in the return value from the calculation on the preceding element.
 
@@ -7,12 +7,13 @@ This result is achieved through the following operations: $val = fn(init, \text{
 If the length of the array is 0, the function should return `init`.
 
 Please solve it without using the built-in `Array.reduce` method.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ fn = function sum(accum, curr) { return 0; }
 init = 25
 - **Output:** `25`
 - **Explanation:** For empty arrays, the answer is always init.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums.length} \le 1000$
 

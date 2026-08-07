@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** permutation of `n` integers `nums`.
 
@@ -9,12 +9,13 @@ A permutation is called **semi-ordered** if the first number equals `1` and the 
 Return *the minimum number of operations to make *`nums`* a **semi-ordered permutation***.
 
 A **permutation** is a sequence of integers from `1` to `n` of length `n` containing each number exactly once.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It can be proved that there is no sequence of less than three operations that ma
 - **Input:** `nums = [1,3,4,2,5]`
 - **Output:** `0`
 - **Explanation:** The permutation is already a semi-ordered permutation.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} = n \le 50$
 

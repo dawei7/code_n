@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two 2D integer arrays `series1` and `series2`.
 
@@ -15,7 +15,8 @@ For any timestamp **not present** in a series, its value is taken from the **nex
 The **aggregated series** is formed by summing the corresponding values from both series at every timestamp that appears in either series.
 
 Return the **aggregated series** as a 2D integer array of `[timestamp, summedValue]` pairs, sorted in **strictly increasing** order of timestamp.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Let $n=\lvert\texttt{series1}\rvert$ and $m=\lvert\texttt{series2}\rvert$. For a
 
 Return one `[timestamp, summedValue]` pair for every distinct timestamp present in either series, sorted in strictly increasing timestamp order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -130,7 +131,8 @@ Thus, the aggregated series is `[[1, 7], [2, 3], [3, 1]]`.
 At timestamp 1, the next available value in `series2` is 2 at timestamp 1000000000. At timestamp 1000000000, there is no later timestamp in `series1`, so its value is 0. Only timestamps that appear in at least one of the two series are included.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{series1.length}, \text{series2.length} \le 10^{5}$
 

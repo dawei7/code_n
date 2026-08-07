@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice had a **0-indexed** array `arr` consisting of `n` **positive** integers. She chose an arbitrary **positive integer** `k` and created two new **0-indexed** integer arrays `lower` and `higher` in the following manner:
 
@@ -10,13 +10,16 @@ Unfortunately, Alice lost all three arrays. However, she remembers the integers 
 
 Given an array `nums` consisting of `2n` integers, where **exactly** `n` of the integers were present in `lower` and the remaining in `higher`, return *the **original** array* `arr`. In case the answer is not unique, return ***any** valid array*.
 
-**Note:** The test cases are generated such that there exists **at least one** valid array `arr`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The test cases are generated such that there exists **at least one** valid array `arr`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,7 +44,8 @@ This is invalid since k must be positive.
 - **Output:** `[220]`
 - **Explanation:**
 The only possible combination is arr = [220] and k = 215. Using them, we get lower = [5] and higher = [435].
-### Constraints
+
+### 5. Constraints
 
 - $2 * n = \text{nums.length}$
 

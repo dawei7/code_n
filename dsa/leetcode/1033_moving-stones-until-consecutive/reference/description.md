@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are three stones in different positions on the X-axis. You are given three integers `a`, `b`, and `c`, the positions of the stones.
 
@@ -11,12 +11,13 @@ Return *an integer array *`answer`* of length *`2`* where*:
 - $\text{answer}[0]$ *is the minimum number of moves you can play, and*
 
 - $\text{answer}[1]$ *is the maximum number of moves you can play*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *an integer array *`answer`* of length *`2`* where*:
 - **Input:** $a = 3, b = 5, c = 1$
 - **Output:** `[1,2]`
 - **Explanation:** Move the stone from 1 to 4; or move the stone from 1 to 2 to 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le a, b, c \le 100$
 

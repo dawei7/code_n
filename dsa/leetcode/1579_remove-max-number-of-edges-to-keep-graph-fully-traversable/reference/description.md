@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob have an undirected graph of `n` nodes and three types of edges:
 
@@ -11,12 +11,13 @@ Alice and Bob have an undirected graph of `n` nodes and three types of edges:
 Given an array `edges` where $\text{edges}[i] = [\text{type}_{i}, u_{i}, v_{i}]$ represents a bidirectional edge of type $\text{type}_{i}$ between nodes $u_{i}$ and $v_{i}$, find the maximum number of edges you can remove so that after removing the edges, the graph can still be fully traversed by both Alice and Bob. The graph is fully traversed by Alice and Bob if starting from any node, they can reach all other nodes.
 
 Return *the maximum number of edges you can remove, or return* `-1` *if Alice and Bob cannot fully traverse the graph.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return *the maximum number of edges you can remove, or return* `-1` *if Alice an
 - **Input:** $n = 4, edges = [[3,2,3],[1,1,2],[2,3,4]]$
 - **Output:** `-1`
 - **Explanation:** In the current graph, Alice cannot reach node 4 from the other nodes. Likewise, Bob cannot reach 1. Therefore it's impossible to make the graph fully traversable.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

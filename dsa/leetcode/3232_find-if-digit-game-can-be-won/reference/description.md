@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums`.
 
 Alice and Bob are playing a game. In the game, Alice can choose **either** all single-digit numbers or all double-digit numbers from `nums`, and the rest of the numbers are given to Bob. Alice wins if the sum of her numbers is **strictly greater** than the sum of Bob's numbers.
 
 Return `true` if Alice can win this game, otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Alice can win by choosing single-digit numbers which have a sum equal to 15.
 Alice can win by choosing double-digit numbers which have a sum equal to 25.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers, `m` and `k`, and an integer array `nums`.
 
@@ -17,12 +17,13 @@ Return the **sum** of the **array products** for all valid **magical** sequences
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 A **set bit** refers to a bit in the binary representation of a number that has a value of 1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ The magical sequences are `[0, 1]`, `[0, 2]`, `[0, 3]`, `[0, 4]`, `[1, 0]`, `[1,
 The only magical sequence is `[0]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le m \le 30$
 

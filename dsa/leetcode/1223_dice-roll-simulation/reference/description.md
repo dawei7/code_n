@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A die simulator generates a random number from `1` to `6` for each roll. You introduced a constraint to the generator such that it cannot roll the number `i` more than $\text{rollMax}[i]$ (**1-indexed**) consecutive times.
 
 Given an array of integers `rollMax` and an integer `n`, return *the number of distinct sequences that can be obtained with exact *`n`* rolls*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 Two sequences are considered different if at least one element differs from each other.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Two sequences are considered different if at least one element differs from each
 
 - **Input:** $n = 3, rollMax = [1,1,1,2,2,3]$
 - **Output:** `181`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5000$
 

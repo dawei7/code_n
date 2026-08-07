@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design an iterator to flatten a 2D vector. It should support the `next` and `hasNext` operations.
 
@@ -9,7 +9,8 @@ Implement the `Vector2D` class:
 - `next()` returns the next element from the 2D vector and moves the pointer one step forward. You may assume that all the calls to `next` are valid.
 
 - `hasNext()` returns `true` if there are still some elements in the vector, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 **Class Interface**
 
@@ -21,7 +22,7 @@ Implement the `Vector2D` class:
 - `next() -> int`: Returns next element from 2D vector and moves pointer forward.
 - `hasNext() -> bool`: Returns `true` if there are remaining elements, otherwise `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ vector2D.hasNext(); // return True
 vector2D.next();    // return 4
 vector2D.hasNext(); // return False
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{vec.length} \le 200$
 

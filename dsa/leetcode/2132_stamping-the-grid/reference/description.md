@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid` where each cell is either `0` (empty) or `1` (occupied).
 
@@ -17,12 +17,13 @@ You are then given stamps of size `stampHeight x stampWidth`. We want to fit the
 - Stamps must stay completely **inside** the grid.
 
 Return `true` *if it is possible to fit the stamps while following the given restrictions and requirements. Otherwise, return* `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return `true` *if it is possible to fit the stamps while following the given res
 - **Input:** `grid = [[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]], stampHeight = 2, stampWidth = 2`
 - **Output:** `false`
 - **Explanation:** There is no way to fit the stamps onto all the empty cells without the stamps going outside the grid.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

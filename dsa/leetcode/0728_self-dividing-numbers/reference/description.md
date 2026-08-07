@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **self-dividing number** is a number that is divisible by every digit it contains.
 
@@ -7,12 +7,13 @@ A **self-dividing number** is a number that is divisible by every digit it conta
 A **self-dividing number** is not allowed to contain the digit zero.
 
 Given two integers `left` and `right`, return *a list of all the **self-dividing numbers** in the range* `[left, right]` (both **inclusive**).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Given two integers `left` and `right`, return *a list of all the **self-dividing
 
 - **Input:** $left = 47, right = 85$
 - **Output:** `[48,55,66,77]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le left \le right \le 10^{4}$

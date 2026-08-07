@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the head of a linked list `head`, in which each node contains an integer value.
 
@@ -7,12 +7,13 @@ Between every pair of adjacent nodes, insert a new node with a value equal to th
 Return *the linked list after insertion*.
 
 The **greatest common divisor** of two numbers is the largest positive integer that evenly divides both numbers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ There are no more adjacent nodes, so we return the linked list.
 - **Output:** `[7]`
 - **Explanation:** The 1^st diagram denotes the initial linked list and the 2^nd diagram denotes the linked list after inserting the new nodes.
 There are no pairs of adjacent nodes, so we return the initial linked list.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[1, 5000]`.
 

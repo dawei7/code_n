@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `buckets` buckets of liquid, where **exactly one** of the buckets is poisonous. To figure out which one is poisonous, you feed some number of (poor) pigs the liquid to see whether they will die or not. Unfortunately, you only have `minutesToTest` minutes to determine which bucket is poisonous.
 
@@ -15,7 +15,8 @@ You can feed the pigs according to these steps:
 - Repeat this process until you run out of time.
 
 Given `buckets`, `minutesToDie`, and `minutesToTest`, return *the **minimum** number of pigs needed to figure out which bucket is poisonous within the allotted time*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Given `buckets`, `minutesToDie`, and `minutesToTest`, return *the **minimum** nu
 
 Only complete `minutesToDie` intervals create additional observable death outcomes.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ At time 15, there are 2 possible outcomes:
 - If either pig dies, then the poisonous bucket is the one it was fed.
 - If neither pig dies, then feed the first pig bucket 3, and feed the second pig bucket 4.
 At time 30, one of the two pigs must die, and the poisonous bucket is the one it was fed.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le buckets \le 1000$
 

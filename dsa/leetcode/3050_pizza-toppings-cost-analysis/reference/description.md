@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Toppings`
 
@@ -15,7 +15,11 @@ Each row of this table contains topping name and the cost of the topping.
 
 Write a solution to calculate the **total cost** of **all possible `3`-topping** pizza combinations from a given list of toppings. The total cost of toppings must be **rounded** to `2` **decimal** places.
 
-**Note:**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
 
 - **Do not** include the pizzas where a topping is **repeated**. For example, ‘Pepperoni, Pepperoni, Onion Pizza’.
 
@@ -24,11 +28,8 @@ Write a solution to calculate the **total cost** of **all possible `3`-topping**
 Return* the result table ordered by total cost in* ***descending*** *order and combination of toppings in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 

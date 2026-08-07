@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of `n` positive integers and an integer `k`.
 
@@ -17,12 +17,13 @@ The **prime score** of an integer `x` is equal to the number of distinct prime f
 Return *the **maximum possible score** after applying at most *`k`* operations*.
 
 Since the answer may be large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ It can be proven that 81 is the highest score one can obtain.
 - Choose subarray nums[5, ..., 5]. nums[5] is the only element in this subarray. Hence, we multiply the score by nums[5]. The score becomes 19 * 18 = 342.
 - Choose subarray nums[2, ..., 3]. Both nums[2] and nums[3] have a prime score of 2, but nums[2] has the smaller index. Hence, we multipy the score by nums[2]. The score becomes 342 * 14 = 4788.
 It can be proven that 4788 is the highest score one can obtain.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} = n \le 10^{5}$
 

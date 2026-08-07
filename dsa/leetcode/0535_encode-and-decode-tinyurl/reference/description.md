@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 <blockquote>Note: This is a companion problem to the <a href="https://leetcode.com/discuss/interview-question/system-design/" target="_blank">System Design</a> problem: <a href="https://leetcode.com/discuss/interview-question/124658/Design-a-URL-Shortener-(-TinyURL-)-System/" target="_blank">Design TinyURL</a>.</blockquote>
 
@@ -13,12 +13,13 @@ Implement the `Solution` class:
 - `String encode(String longUrl)` Returns a tiny URL for the given `longUrl`.
 
 - `String decode(String shortUrl)` Returns the original long URL for the given `shortUrl`. It is guaranteed that the given `shortUrl` was encoded by the same object.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Implement the `Solution` class:
 Solution obj = new Solution();
 string tiny = obj.encode(url); // returns the encoded tiny url.
 string ans = obj.decode(tiny); // returns the original url after decoding it.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{url.length} \le 10^{4}$
 

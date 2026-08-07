@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** strings `s` and `target`. You can take some letters from `s` and rearrange them to form new strings.
 
 Return* the **maximum** number of copies of *`target`* that can be formed by taking letters from *`s`* and rearranging them.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that while there is an extra 'a' and 'b' at indices 3 and 4, we cannot reus
 - **Explanation:**
 We can make one copy of "aaaaa" by taking the letters at indices 0, 3, 6, 9, and 12.
 We can make at most one copy of "aaaaa", so we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 
@@ -42,4 +44,6 @@ We can make at most one copy of "aaaaa", so we return 1.
 
 - `s` and `target` consist of lowercase English letters.
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/maximum-number-of-balloons/description/" target="_blank"> 1189: Maximum Number of Balloons.</a>
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/maximum-number-of-balloons/description/" target="_blank"> 1189: Maximum Number of Balloons.</a>

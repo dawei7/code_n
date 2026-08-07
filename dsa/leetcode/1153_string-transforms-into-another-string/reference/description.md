@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given two strings `str1` and `str2` of the same length, determine whether you can transform `str1` into `str2` by doing **zero or more** *conversions*.
 
 In one conversion you can convert **all** occurrences of one character in `str1` to **any** other lowercase English character.
 
 Return `true` if and only if you can transform `str1` into `str2`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Both strings have the same length $n$ and contain only lowercase English letters
 
 - `true` if zero or more global conversions can transform `str1` into `str2`; otherwise, `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Both strings have the same length $n$ and contain only lowercase English letters
 - **Input:** $str1 = "leetcode", str2 = "codeleet"$
 - **Output:** `false`
 - **Explanation:** There is no way to transform str1 to str2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{str1.length} = \text{str2.length} \le 10^{4}$
 

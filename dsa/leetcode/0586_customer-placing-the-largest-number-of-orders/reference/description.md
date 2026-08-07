@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Orders`
 
@@ -18,12 +18,13 @@ Write a solution to find the $\text{customer}_{number}$ for the customer who has
 The test cases are generated so that **exactly one customer** will have placed more orders than any other customer.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

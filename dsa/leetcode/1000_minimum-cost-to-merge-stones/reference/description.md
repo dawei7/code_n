@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` piles of `stones` arranged in a row. The $$i^{\text{th}}$$ pile has $\text{stones}[i]$ stones.
 
 A move consists of merging exactly `k` **consecutive** piles into one pile, and the cost of this move is equal to the total number of stones in these `k` piles.
 
 Return *the minimum cost to merge all piles of stones into one pile*. If it is impossible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The total cost was 20, and this is the minimum possible.
 We merge [5, 1, 2] for a cost of 8, and we are left with [3, 8, 6].
 We merge [3, 8, 6] for a cost of 17, and we are left with [17].
 The total cost was 25, and this is the minimum possible.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{stones.length}$
 

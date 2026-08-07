@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
 Return ***the maximum value over all triplets of indices*** `(i, j, k)` *such that* `i < j < k`. If all such triplets have a negative value, return `0`.
 
 The **value of a triplet of indices** `(i, j, k)` is equal to $(\text{nums}[i] - \text{nums}[j]) * \text{nums}[k]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ It can be shown that there are no ordered triplets of indices with a value great
 - **Input:** `nums = [1,2,3]`
 - **Output:** `0`
 - **Explanation:** The only ordered triplet of indices (0, 1, 2) has a negative value of (nums[0] - nums[1]) * nums[2] = -3. Hence, the answer would be 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 100$
 

@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays of the same length `present` and `future` where $\text{present}[i]$ is the current price of the $$i^{\text{th}}$$ stock and $\text{future}[i]$ is the price of the $$i^{\text{th}}$$ stock a year in the future. You may buy each stock at most **once**. You are also given an integer `budget` representing the amount of money you currently have.
 
 Return *the maximum amount of profit you can make.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be shown that the maximum profit you can make is 5.
 - **Explanation:** One possible way to maximize your profit is to:
 Buy the 1^st stock, and make a profit of 3 - 3 = 0.
 It can be shown that the maximum profit you can make is 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{present.length} = \text{future.length}$
 

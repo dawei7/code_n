@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary array `nums`.
 
@@ -9,12 +9,13 @@ You can do the following operation on the array **any** number of times (possibl
 **Flipping** an element means changing its value from 0 to 1, and from 1 to 0.
 
 Return the **minimum** number of operations required to make all elements in `nums` equal to 1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ We can do the following operation:
 - Choose the index $i = 1$. The resulting array will be `nums = [1,<u>**1**</u>,<u>**1**</u>,<u>**1**</u>]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

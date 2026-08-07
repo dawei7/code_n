@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, and an integer `target`, return the number of tuples `i, j, k` such that `i < j < k` and $\text{arr}[i] + \text{arr}[j] + \text{arr}[k] = target$.
 
 As the answer can be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ and two 2s from [2,2,2,2] in 6 ways.
 - **Input:** `arr = [2,1,3], target = 6`
 - **Output:** `1`
 - **Explanation:** (1, 2, 3) occured one time in the array so we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{arr.length} \le 3000$
 

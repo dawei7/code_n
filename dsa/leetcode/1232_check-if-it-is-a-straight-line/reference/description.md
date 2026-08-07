@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 You are given an integer array `coordinates`, $\text{coordinates}[i] = [x, y]$, where `[x, y]` represents the coordinate of a point. Check if these points make a straight line in the XY plane.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ You are given an integer array `coordinates`, $\text{coordinates}[i] = [x, y]$, 
 
 - **Input:** $coordinates = [[1,1],[2,2],[3,4],[4,5],[5,6],[7,7]]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{coordinates.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A permutation `perm` of `n` integers of all the integers in the range `[1, n]` can be represented as a string `s` of length $n - 1$ where:
 
@@ -7,7 +7,8 @@ A permutation `perm` of `n` integers of all the integers in the range `[1, n]` c
 - $s[i] = 'D'$ if $\text{perm}[i] > perm[i + 1]$.
 
 Given a string `s`, reconstruct the lexicographically smallest permutation `perm` and return it.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Given a string `s`, reconstruct the lexicographically smallest permutation `perm
 
 The result has length $\lvert \texttt{s} \rvert + 1$ and uses every integer in that range exactly once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The result has length $\lvert \texttt{s} \rvert + 1$ and uses every integer in t
 - **Input:** `s = "DI"`
 - **Output:** `[2,1,3]`
 - **Explanation:** Both [2,1,3] and [3,1,2] can be represented as "DI", but since we want to find the smallest lexicographical permutation, you should return [2,1,3]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s` which consists of lowercase or uppercase letters, return the length of the **longest palindrome** that can be built with those letters.
 
 Letters are **case sensitive**, for example, `"Aa"` is not considered a palindrome.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Letters are **case sensitive**, for example, `"Aa"` is not considered a palindro
 
 Return the maximum number of available characters that can be rearranged into a palindrome.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the maximum number of available characters that can be rearranged into a 
 - **Input:** `s = "a"`
 - **Output:** `1`
 - **Explanation:** The longest palindrome that can be built is "a", whose length is 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an **undirected** graph consisting of `n` nodes numbered from `1` to `n`. You are given the integer `n` and a **2D** array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$. The graph can be disconnected.
 
@@ -7,12 +7,13 @@ You can add **at most** two additional edges (possibly none) to this graph so th
 Return `true`* if it is possible to make the degree of each node in the graph even, otherwise return *`false`*.*
 
 The degree of a node is the number of edges connected to it.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Every node in the resulting graph is connected to an even number of edges.
 - **Input:** $n = 4, edges = [[1,2],[1,3],[1,4]]$
 - **Output:** `false`
 - **Explanation:** It is not possible to obtain a valid graph with adding at most 2 edges.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

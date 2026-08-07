@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, your goal is to convert `s` into `t` in `k`** **moves or less.
 
@@ -13,12 +13,13 @@ Shifting a character means replacing it by the next letter in the alphabet (wrap
 Remember that any index `j` can be picked at most once.
 
 Return `true` if it's possible to convert `s` into `t` in no more than `k` moves, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return `true` if it's possible to convert `s` into `t` in no more than `k` moves
 - **Input:** `s = "aab", t = "bbb", k = 27`
 - **Output:** `true`
 - **Explanation:** In the 1st move, we shift the first 'a' 1 time to get 'b'. In the 27th move, we shift the second 'a' 27 times to get 'b'.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 10^{5}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 A **subarray** is called **balanced** if the number of **distinct even** numbers in the subarray is equal to the number of **distinct odd** numbers.
 
 Return the length of the **longest** balanced subarray.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Repeated occurrences count only once within their parity group: balance compares
 
 Return the length of the longest balanced subarray. Return `0` if no non-empty subarray is balanced.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Return the length of the longest balanced subarray. Return `0` if no non-empty s
 - It has 1 distinct even number `[2]` and 1 distinct odd number `[3]`. Thus, the answer is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

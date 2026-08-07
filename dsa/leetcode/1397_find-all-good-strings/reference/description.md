@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the strings `s1` and `s2` of size `n` and the string `evil`, return *the number of **good** strings*.
 
 A **good** string has size `n`, it is alphabetically greater than or equal to `s1`, it is alphabetically smaller than or equal to `s2`, and it does not contain the string `evil` as a substring. Since the answer can be a huge number, return this **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ A **good** string has size `n`, it is alphabetically greater than or equal to `s
 
 - **Input:** $n = 2, s1 = "gx", s2 = "gz", evil = "x"$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $\text{s1.length} = n$
 

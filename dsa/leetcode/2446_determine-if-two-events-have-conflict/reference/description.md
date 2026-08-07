@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two arrays of strings that represent two inclusive events that happened **on the same day**, `event1` and `event2`, where:
 
@@ -11,12 +11,13 @@ Event times are valid 24 hours format in the form of `HH:MM`.
 A **conflict** happens when two events have some non-empty intersection (i.e., some moment is common to both events).
 
 Return `true`* if there is a conflict between two events. Otherwise, return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return `true`* if there is a conflict between two events. Otherwise, return *`fa
 - **Input:** $event1 = ["10:00","11:00"], event2 = ["14:00","15:00"]$
 - **Output:** `false`
 - **Explanation:** The two events do not intersect.
-### Constraints
+
+### 4. Constraints
 
 - $\text{event1.length} = \text{event2.length} = 2$
 

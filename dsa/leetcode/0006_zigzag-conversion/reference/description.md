@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The string `"PAYPALISHIRING"` is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)
 
@@ -15,7 +15,8 @@ Write the code that will take a string and make this conversion given a number o
 ```
 string convert(string s, int numRows);
 ```
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ string convert(string s, int numRows);
 
 Return the concatenation of the completed zigzag's rows from top to bottom.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ P     I
 
 - **Input:** `s = "A", numRows = 1`
 - **Output:** `"A"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

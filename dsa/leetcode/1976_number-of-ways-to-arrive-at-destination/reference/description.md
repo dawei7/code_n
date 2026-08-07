@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are in a city that consists of `n` intersections numbered from `0` to $n - 1$ with **bi-directional** roads between some intersections. The inputs are generated such that you can reach any intersection from any other intersection and that there is at most one road between any two intersections.
 
 You are given an integer `n` and a 2D integer array `roads` where $\text{roads}[i] = [u_{i}, v_{i}, \text{time}_{i}]$ means that there is a road between intersections $u_{i}$ and $v_{i}$ that takes $\text{time}_{i}$ minutes to travel. You want to know in how many ways you can travel from intersection `0` to intersection $n - 1$ in the **shortest amount of time**.
 
 Return *the **number of ways** you can arrive at your destination in the **shortest amount of time***. Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The four ways to get there in 7 minutes are:
 - **Input:** $n = 2, roads = [[1,0,10]]$
 - **Output:** `1`
 - **Explanation:** There is only one way to go from intersection 0 to intersection 1, and it takes 10 minutes.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 200$
 

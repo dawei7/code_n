@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -7,7 +7,8 @@ Form a new integer `x` by concatenating all the **non-zero digits** of `n` in th
 Let `sum` be the **sum of digits** in `x`.
 
 Return an integer representing the value of $x * sum$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $D$ be the number of decimal digits in `n`, treating `0` as a one-digit repr
 
 Return the concatenation of all nonzero digits multiplied by the sum of those same digits. If there are no retained digits, both the concatenated value and the result are `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,6 +52,7 @@ Return the concatenation of all nonzero digits multiplied by the sum of those sa
 - Therefore, the answer is $x * sum = 1 * 1 = 1$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{9}$

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` consisting of `n` elements, and an integer `k`.
 
 Find a contiguous subarray whose **length is greater than or equal to** `k` that has the maximum average value and return *this value*. Any answer with a calculation error less than $10^{-5}$ will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ $\frac{\text{sum of the selected contiguous subarray}}{\text{length of that suba
 
 over all contiguous subarrays of length at least `k`. The returned floating-point value must have calculation error less than $10^{-5}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that we do not consider the subarrays of length < 4.
 
 - **Input:** `nums = [5], k = 1`
 - **Output:** `5.00000`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

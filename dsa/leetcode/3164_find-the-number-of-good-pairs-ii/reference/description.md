@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given 2 integer arrays `nums1` and `nums2` of lengths `n` and `m` respectively. You are also given a **positive** integer `k`.
 
 A pair `(i, j)` is called **good** if $\text{nums1}[i]$ is divisible by $\text{nums2}[j] * k$ ($0 \le i \le n - 1$, $0 \le j \le m - 1$).
 
 Return the total number of **good** pairs.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The 5 good pairs are `(0, 0)`, `(1, 0)`, `(1, 1)`, `(2, 0)`, and `(2, 2)`.</div>
 The 2 good pairs are `(3, 0)` and `(3, 1)`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 10^{5}$
 

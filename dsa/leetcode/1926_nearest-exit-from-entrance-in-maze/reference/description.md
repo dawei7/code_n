@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `maze` (**0-indexed**) with empty cells (represented as `'.'`) and walls (represented as `'+'`). You are also given the `entrance` of the maze, where $entrance = [\text{entrance}_{row}, \text{entrance}_{col}]$ denotes the row and column of the cell you are initially standing at.
 
 In one step, you can move one cell **up**, **down**, **left**, or **right**. You cannot step into a cell with a wall, and you cannot step outside the maze. Your goal is to find the **nearest exit** from the `entrance`. An **exit** is defined as an **empty cell** that is at the **border** of the `maze`. The `entrance` **does not count** as an exit.
 
 Return *the **number of steps** in the shortest path from the *`entrance`* to the nearest exit, or *`-1`* if no such path exists*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Thus, the nearest exit is [1,2], which is 2 steps away.
 - **Input:** $maze = [[".","+"]], entrance = [0,0]$
 - **Output:** `-1`
 - **Explanation:** There are no exits in this maze.
-### Constraints
+
+### 4. Constraints
 
 - $\text{maze.length} = m$
 

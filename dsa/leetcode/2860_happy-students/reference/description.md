@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n` where `n` is the total number of students in the class. The class teacher tries to select a group of students so that all the students remain happy.
 
@@ -9,12 +9,13 @@ The $$i^{\text{th}}$$ student will become happy if one of these two conditions i
 - The student is not selected and the total number of selected students is **strictly** **less than** $\text{nums}[i]$.
 
 Return *the number of ways to select a group of students so that everyone remains happy.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The three possible ways are:
 The class teacher selects the student with index = 1 to form the group.
 The class teacher selects the students with index = 1, 2, 3, 6 to form the group.
 The class teacher selects all the students to form the group.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

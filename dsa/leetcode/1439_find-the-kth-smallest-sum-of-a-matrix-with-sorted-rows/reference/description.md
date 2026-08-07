@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `mat` that has its rows sorted in non-decreasing order and an integer `k`.
 
 You are allowed to choose **exactly one element** from each row to form an array.
 
 Return *the *$$k^{\text{th}}$$* smallest array sum among all possible arrays*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the *$$k^{\text{th}}$$* smallest array sum among all possible arrays*.
 - **Output:** `9`
 - **Explanation:** Choosing one element from each row, the first k smallest sum are:
 [1,1,2], [1,1,3], [1,4,2], [1,4,3], [1,1,6], [1,5,2], [1,5,3]. Where the 7th sum is 9.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

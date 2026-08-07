@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 On a **0-indexed** `8 x 8` chessboard, there can be multiple black queens and one white king.
 
 You are given a 2D integer array `queens` where $\text{queens}[i] = [\text{xQueen}_{i}, \text{yQueen}_{i}]$ represents the position of the $$i^{\text{th}}$$ black queen on the chessboard. You are also given an integer array `king` of length `2` where $king = [xKing, yKing]$ represents the position of the white king.
 
 Return *the coordinates of the black queens that can directly attack the king*. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the coordinates of the black queens that can directly attack the king*. 
 - **Input:** $queens = [[0,0],[1,1],[2,2],[3,4],[3,5],[4,4],[4,5]], king = [3,3]$
 - **Output:** `[[2,2],[3,4],[4,4]]`
 - **Explanation:** The diagram above shows the three queens that can directly attack the king and the three queens that cannot attack the king (i.e., marked with red dashes).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queens.length} < 64$
 

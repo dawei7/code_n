@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You may recall that an array `arr` is a **mountain array** if and only if:
 
@@ -13,12 +13,13 @@ You may recall that an array `arr` is a **mountain array** if and only if:
 	</li>
 
 Given an integer array `nums`​​​, return *the **minimum** number of elements to remove to make *`nums*​​​*`* **a **mountain array**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Given an integer array `nums`​​​, return *the **minimum** number of elemen
 - **Input:** `nums = [2,1,1,5,6,2,3,1]`
 - **Output:** `3`
 - **Explanation:** One solution is to remove the elements at indices 0, 1, and 5, making the array nums = [1,5,6,3,1].
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 1000$
 

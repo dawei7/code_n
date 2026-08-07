@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `energyDrinkA` and `energyDrinkB` of the same length `n` by a futuristic sports scientist. These arrays represent the energy boosts per hour provided by two different energy drinks, A and B, respectively.
 
@@ -6,13 +6,16 @@ You want to *maximize* your total energy boost by drinking one energy drink *per
 
 Return the **maximum** total energy boost you can gain in the next `n` hours.
 
-**Note** that you can start consuming *either* of the two energy drinks.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you can start consuming *either* of the two energy drinks.
+
+### 4. Examples
 
 #### Example 1
 
@@ -44,7 +47,8 @@ To gain an energy boost of 7:
 - Gain the energy boost of the drink B in the third hour.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{energyDrinkA.length} = \text{energyDrinkB.length}$
 

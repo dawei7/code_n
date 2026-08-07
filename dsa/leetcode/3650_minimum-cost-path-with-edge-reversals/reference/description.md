@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a directed, weighted graph with `n` nodes labeled from 0 to $n - 1$, and an array `edges` where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ represents a directed edge from node $u_{i}$ to node $v_{i}$ with cost $w_{i}$.
 
@@ -7,12 +7,13 @@ Each node $u_{i}$ has a switch that can be used **at most once**: when you arriv
 The reversal is only valid for that single move, and using a reversed edge costs $2 * w_{i}$.
 
 Return the **minimum** total cost to travel from node 0 to node $n - 1$. If it is not possible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Return the **minimum** total cost to travel from node 0 to node $n - 1$. If it i
 - Total cost is $1 + 1 + 1 = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

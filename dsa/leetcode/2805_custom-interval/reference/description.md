@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **Function **`customInterval`
 
@@ -14,12 +14,15 @@ Given the `id`. `id` is the returned value from the function `customInterval`.
 
 `customClearInterval` should stop executing provided function `fn` at intervals.
 
-**Note:** The `setTimeout` and `setInterval` functions in Node.js return an object, not a number.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+The `setTimeout` and `setInterval` functions in Node.js return an object, not a number.
+
+### 4. Examples
 
 #### Example 1
 
@@ -53,7 +56,8 @@ customClearInterval(id)
 - **Explanation:**
 100 + 200 * 0 = 100 // 100ms - 1st function call
 100 + 200 * 1 = 300 // 100ms + 300ms = 400ms - 2nd function call
-### Constraints
+
+### 5. Constraints
 
 - $20 \le delay, period \le 250$
 

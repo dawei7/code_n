@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement the class `SubrectangleQueries` which receives a `rows x cols` rectangle as a matrix of integers in the constructor and supports two methods:
 
@@ -9,12 +9,13 @@ Implement the class `SubrectangleQueries` which receives a `rows x cols` rectang
 2.` getValue(int row, int col)`
 
 - Returns the current value of the coordinate `(row,col)` from the rectangle.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ subrectangleQueries.getValue(2, 2); // return 100
 subrectangleQueries.updateSubrectangle(1, 1, 2, 2, 20);
 subrectangleQueries.getValue(2, 2); // return 20
 ```
-### Constraints
+
+### 4. Constraints
 
 - There will be at most `500` operations considering both methods: `updateSubrectangle` and `getValue`.
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, move all the even integers at the beginning of the array followed by all the odd integers.
 
 Return ***any array** that satisfies this condition*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Return ***any array** that satisfies this condition*.
 
 - **Input:** `nums = [0]`
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

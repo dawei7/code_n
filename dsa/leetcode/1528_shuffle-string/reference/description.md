@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer array `indices` of the **same length**. The string `s` will be shuffled such that the character at the $$i^{\text{th}}$$ position moves to $\text{indices}[i]$ in the shuffled string.
 
 Return *the shuffled string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return *the shuffled string*.
 - **Input:** `s = "abc", indices = [0,1,2]`
 - **Output:** `"abc"`
 - **Explanation:** After shuffling, each character remains in its position.
-### Constraints
+
+### 4. Constraints
 
 - $\text{s.length} = \text{indices.length} = n$
 

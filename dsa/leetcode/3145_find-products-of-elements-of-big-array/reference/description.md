@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **powerful array** of a non-negative integer `x` is defined as the shortest sorted array of powers of two that sum up to `x`. The table below illustrates examples of how the **powerful array** is determined. It can be proven that the powerful array of `x` is unique.
 
@@ -42,12 +42,13 @@ The array $\text{big}_{nums}$ is created by concatenating the **powerful arrays*
 You are given a 2D integer matrix `queries`, where for $\text{queries}[i] = [\text{from}_{i}, \text{to}_{i}, \text{mod}_{i}]$ you should calculate $(\text{big}_{nums}[\text{from}_{i}] * \text{big}_{nums}[\text{from}_{i} + 1] * ... * \text{big}_{nums}[\text{to}_{i}]) \% \text{mod}_{i}$<!-- notionvc: a71131cc-7b52-4786-9a4b-660d6d864f89 -->.
 
 Return an integer array `answer` such that $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ First query: $\text{big}_{nums}[2..5] = [1,2,4,1]$. The product of them is 8. Th
 Second query: $\text{big}_{nums}[7] = 2$. The result is $2 \% 4 = 2$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length} \le 500$
 

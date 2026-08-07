@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Patients`
 
@@ -20,12 +20,13 @@ Write a solution to find the patient_id, patient_name, and conditions of the pat
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

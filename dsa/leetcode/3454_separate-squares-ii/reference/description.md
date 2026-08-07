@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `squares`. Each $\text{squares}[i] = [x_{i}, y_{i}, l_{i}]$ represents the coordinates of the bottom-left point and the side length of a square parallel to the x-axis.
 
@@ -6,13 +6,16 @@ Find the **minimum** y-coordinate value of a horizontal line such that the total
 
 Answers within $10^{-5}$ of the actual answer will be accepted.
 
-**Note**: Squares **may** overlap. Overlapping areas should be counted **only once** in this version.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: Squares **may** overlap. Overlapping areas should be counted **only once** in this version.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ Any horizontal line between $y = 1$ and $y = 2$ results in an equal split, with 
 Since the blue square overlaps with the red square, it will not be counted again. Thus, the line $y = 1$ splits the squares into two equal parts.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{squares.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers.
 
@@ -11,7 +11,8 @@ You can perform the following operation on the array **any** number of times:
 	</li>
 
 Return *the **minimum** number of operations needed to turn the array into a **palindrome***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Return *the **minimum** number of operations needed to turn the array into a **p
 
 Return an integer representing the minimum number of adjacent pair merges required to transform `nums` into a palindrome.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ It can be shown that 2 is the minimum number of operations needed.
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `3`
 - **Explanation:** We do the operation 3 times in any position, we obtain the array [10] at the end which is a palindrome.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

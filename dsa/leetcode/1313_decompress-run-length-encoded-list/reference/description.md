@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 We are given a list `nums` of integers representing a list compressed with run-length encoding.
 
 Consider each adjacent pair of elements `[freq, val] = [nums[2*i], nums[2*i+1]]` (with $i \ge 0$).  For each such pair, there are `freq` elements with value `val` concatenated in a sublist. Concatenate all the sublists from left to right to generate the decompressed list.
 
 Return the decompressed list.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ At the end the concatenation [2] + [4,4,4] is [2,4,4,4].
 
 - **Input:** `nums = [1,1,2,3]`
 - **Output:** `[1,3,3]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

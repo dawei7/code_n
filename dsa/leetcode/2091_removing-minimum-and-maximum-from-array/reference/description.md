@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of **distinct** integers `nums`.
 
@@ -7,12 +7,13 @@ There is an element in `nums` that has the **lowest** value and an element that 
 A **deletion** is defined as either removing an element from the **front** of the array or removing an element from the **back** of the array.
 
 Return *the **minimum** number of deletions it would take to remove **both** the minimum and maximum element from the array.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ This results in only 3 deletions, which is the minimum number possible.
 - **Explanation:**
 There is only one element in the array, which makes it both the minimum and maximum element.
 We can remove it with 1 deletion.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

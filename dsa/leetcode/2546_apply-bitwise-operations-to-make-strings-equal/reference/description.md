@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed binary** strings `s` and `target` of the same length `n`. You can do the following operation on `s` **any** number of times:
 
@@ -9,12 +9,13 @@ You are given two **0-indexed binary** strings `s` and `target` of the same leng
 For example, if `s = "0110"`, you can choose $i = 0$ and $j = 2$, then simultaneously replace $s[0]$ with ($s[0]$ **OR** $s[2]$ = `0` **OR** `1` = `1`), and $s[2]$ with ($s[0]$ **XOR** $s[2]$ = `0` **XOR** `1` = `1`), so we will have `s = "1110"`.
 
 Return `true` *if you can make the string *`s`* equal to *`target`*, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Since we can make s equal to target, we return true.
 - **Input:** `s = "11", target = "00"`
 - **Output:** `false`
 - **Explanation:** It is not possible to make s equal to target with any number of operations.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s.length} = \text{target.length}$
 

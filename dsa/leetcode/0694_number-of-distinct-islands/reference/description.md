@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid`. An island is a group of `1`'s (representing land) connected **4-directionally** (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
 
 An island is considered to be the same as another if and only if one island can be translated (and not rotated or reflected) to equal the other.
 
 Return *the number of **distinct** islands*.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(grid: list[\text{list}[int]]) -> int$
 
@@ -17,7 +18,7 @@ $solve(grid: list[\text{list}[int]]) -> int$
 
 Return the number of island shape classes under translation alone. Horizontal and vertical contact joins land; rotation and reflection do not make two shapes equivalent.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the number of island shape classes under translation alone. Horizontal an
 
 - **Input:** `grid = [[1,1,0,1,1],[1,0,0,0,0],[0,0,0,0,1],[1,1,0,1,1]]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

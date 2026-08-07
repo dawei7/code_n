@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Winter is coming! During the contest, your first job is to design a standard heater with a fixed warm radius to warm all the houses.
 
@@ -6,8 +6,7 @@ Every house can be warmed, as long as the house is within the heater's warm radi
 
 Given the positions of `houses` and `heaters` on a horizontal line, return *the minimum radius standard of heaters so that those heaters could cover all houses.*
 
-**Notice** that all the `heaters` follow your radius standard, and the warm radius will be the same.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +20,11 @@ Given the positions of `houses` and `heaters` on a horizontal line, return *the 
 A heater covers positions whose distance from it is at most the shared radius. Different houses may be covered by
 different heaters.
 
-### Examples
+### 3. Notice
+
+that all the `heaters` follow your radius standard, and the warm radius will be the same.
+
+### 4. Examples
 
 #### Example 1
 
@@ -37,7 +40,8 @@ different heaters.
 
 - **Input:** $houses = [1,5], heaters = [2]$
 - **Output:** `3`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{houses.length}, \text{heaters.length} \le 3 * 10^{4}$
 

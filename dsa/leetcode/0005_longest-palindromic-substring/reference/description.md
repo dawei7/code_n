@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the longest* *palindromic* *substring* in `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, return *the longest* *palindromic* *substring* in `s`.
 
 Return one longest palindromic substring of `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return one longest palindromic substring of `s`.
 
 - **Input:** `s = "cbbd"`
 - **Output:** `"bb"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

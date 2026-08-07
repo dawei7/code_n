@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two positive integers `n` and `target`.
 
 An integer is considered **beautiful** if the sum of its digits is less than or equal to `target`.
 
 Return the *minimum **non-negative** integer *`x`* such that *$n + x$* is beautiful*. The input will be generated such that it is always possible to make `n` beautiful.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the *minimum **non-negative** integer *`x`* such that *$n + x$* is beauti
 - **Input:** $n = 1, target = 1$
 - **Output:** `0`
 - **Explanation:** Initially n is 1 and its digit sum is 1, which is already smaller than or equal to target.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{12}$
 

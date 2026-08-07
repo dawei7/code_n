@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -13,12 +13,13 @@ A **special triplet** is defined as a triplet of indices `(i, j, k)` such that:
 Return the total number of **special triplets** in the array.
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -87,7 +88,8 @@ There are exactly two special triplets:
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n = \text{nums.length} \le 10^{5}$
 

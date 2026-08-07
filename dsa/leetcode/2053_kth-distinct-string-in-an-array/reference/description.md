@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **distinct string** is a string that is present only **once** in an array.
 
 Given an array of strings `arr`, and an integer `k`, return *the *$$k^{\text{th}}$$* **distinct string** present in *`arr`. If there are **fewer** than `k` distinct strings, return *an **empty string ***`""`.
 
 Note that the strings are considered in the **order in which they appear** in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ All strings in arr are distinct, so the 1^st string "aaa" is returned.
 - **Output:** `""`
 - **Explanation:**
 The only distinct string is "b". Since there are fewer than 3 distinct strings, we return an empty string "".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{arr.length} \le 1000$
 

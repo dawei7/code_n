@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `m`, `k`. A **good array** `arr` of size `n` is defined as follows:
 
@@ -9,12 +9,13 @@ You are given three integers `n`, `m`, `k`. A **good array** `arr` of size `n` i
 Return the number of **good arrays** that can be formed.
 
 Since the answer may be very large, return it **modulo **$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Since the answer may be very large, return it **modulo **$10^{9} + 7$.
 - The good arrays are `[1, 2, 1, 2, 1]` and `[2, 1, 2, 1, 2]`. Hence, the answer is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

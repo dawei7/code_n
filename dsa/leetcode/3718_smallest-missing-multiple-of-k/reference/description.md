@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return the **smallest positive multiple** of `k` that is **missing** from `nums`.
 
 A **multiple** of `k` is any positive integer divisible by `k`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ A **multiple** of `k` is any positive integer divisible by `k`.
 
 Return the first value in the sequence $k, 2k, 3k, \ldots$ that is absent from `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The multiples of $k = 2$ are 2, 4, 6, 8, 10, 12... and the smallest multiple mis
 The multiples of $k = 5$ are 5, 10, 15, 20... and the smallest multiple missing from `nums` is 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer number `n`, return the difference between the product of its digits and the sum of its digits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ Result = 24 - 9 = 15
 **Product of digits = 4 * 4 * 2 * 1 = 32
 Sum of digits = 4 + 4 + 2 + 1 = 11
 Result = 32 - 11 = 21
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of nodes in a **perfect binary tree** consisting of nodes numbered from `1` to `n`. The root of the tree is node `1` and each node `i` in the tree has two children where the left child is the node $2 * i$ and the right child is $2 * i + 1$.
 
@@ -6,17 +6,20 @@ Each node in the tree also has a **cost** represented by a given **0-indexed** i
 
 Return *the **minimum** number of increments you need to make the cost of paths from the root to each **leaf** node equal*.
 
-**Note**:
-
-- A **perfect binary tree **is a tree where each node, except the leaf nodes, has exactly 2 children.
-
-- The **cost of a path** is the sum of costs of nodes in the path.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+:
+
+- A **perfect binary tree **is a tree where each node, except the leaf nodes, has exactly 2 children.
+
+- The **cost of a path** is the sum of costs of nodes in the path.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ It can be shown that this is the minimum answer we can achieve.
 - **Input:** $n = 3, cost = [5,3,3]$
 - **Output:** `0`
 - **Explanation:** The two paths already have equal total costs, so no increments are needed.
-### Constraints
+
+### 5. Constraints
 
 - $3 \le n \le 10^{5}$
 

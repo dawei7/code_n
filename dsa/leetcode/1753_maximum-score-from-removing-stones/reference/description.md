@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are playing a solitaire game with **three piles** of stones of sizes `a`​​​​​​, `b`,​​​​​​ and `c`​​​​​​ respectively. Each turn you choose two **different non-empty **piles, take one stone from each, and add `1` point to your score. The game stops when there are **fewer than two non-empty** piles (meaning there are no more available moves).
 
 Given three integers `a`​​​​​, `b`,​​​​​ and `c`​​​​​, return *the* ***maximum* *****score** you can get.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,6 +42,7 @@ There are fewer than two non-empty piles, so the game ends. Total: 7 points.
 - **Output:** `8`
 - **Explanation:** One optimal set of moves is to take from the 2nd and 3rd piles for 8 turns until they are empty.
 After that, there are fewer than two non-empty piles, so the game ends.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le a, b, c \le 10^{5}$

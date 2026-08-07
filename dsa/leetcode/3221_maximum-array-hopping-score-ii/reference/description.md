@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given an array `nums`, you have to get the **maximum** score starting from index 0 and **hopping** until you reach the last element of the array.
 
 In each **hop**, you can jump from index `i` to an index `j > i`, and you get a **score** of $(j - i) * \text{nums}[j]$.
 
 Return the *maximum score* you can get.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ There are two possible ways to reach the last element:
 We can do the hopping `0 -> 4 -> 6` with a score of $(4 - 0) * 9 + (6 - 4) * 3 = 42$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

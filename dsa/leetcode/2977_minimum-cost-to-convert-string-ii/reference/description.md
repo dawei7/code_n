@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** strings `source` and `target`, both of length `n` and consisting of **lowercase** English characters. You are also given two **0-indexed** string arrays `original` and `changed`, and an integer array `cost`, where $\text{cost}[i]$ represents the cost of converting the string $\text{original}[i]$ to the string $\text{changed}[i]$.
 
@@ -10,13 +10,16 @@ You start with the string `source`. In one operation, you can pick a **substring
 
 Return *the **minimum** cost to convert the string *`source`* to the string *`target`* using **any** number of operations*. *If it is impossible to convert* `source` *to* `target`,* return* `-1`.
 
-**Note** that there may exist indices `i`, `j` such that $\text{original}[j] = \text{original}[i]$ and $\text{changed}[j] = \text{changed}[i]$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that there may exist indices `i`, `j` such that $\text{original}[j] = \text{original}[i]$ and $\text{changed}[j] = \text{changed}[i]$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -46,7 +49,8 @@ It can be shown that this is the minimum possible cost.
 - **Explanation:** It is impossible to convert "abcdefgh" to "addddddd".
 If you select substring source[1..3] as the first operation to change "abcdefgh" to "adddefgh", you cannot select substring source[3..7] as the second operation because it has a common index, 3, with the first operation.
 If you select substring source[3..7] as the first operation to change "abcdefgh" to "abcddddd", you cannot select substring source[1..3] as the second operation because it has a common index, 3, with the first operation.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{source.length} = \text{target.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a date, return the corresponding day of the week for that date.
 
@@ -6,13 +6,16 @@ The input is given as three integers representing the `day`, `month` and `year` 
 
 Return the answer as one of the following values `{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}`.
 
-**Note:** January 1, 1971 was a Friday.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+January 1, 1971 was a Friday.
+
+### 4. Examples
 
 #### Example 1
 
@@ -26,6 +29,7 @@ Return the answer as one of the following values `{"Sunday", "Monday", "Tuesday"
 
 - **Input:** $day = 15, month = 8, year = 1993$
 - **Output:** `"Sunday"`
-### Constraints
+
+### 5. Constraints
 
 - The given dates are valid dates between the years `1971` and `2100`.

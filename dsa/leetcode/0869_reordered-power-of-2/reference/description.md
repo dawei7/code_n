@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. We reorder the digits in any order (including the original order) such that the leading digit is not zero.
 
 Return `true` *if and only if we can do this so that the resulting number is a power of two*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,6 +19,7 @@ Return `true` *if and only if we can do this so that the resulting number is a p
 
 - **Input:** $n = 10$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and a robot that currently holds an empty string `t`. Apply one of the following operations until `s` and `t` **are both empty**:
 
@@ -7,12 +7,13 @@ You are given a string `s` and a robot that currently holds an empty string `t`.
 - Remove the **last** character of a string `t` and give it to the robot. The robot will write this character on paper.
 
 Return *the lexicographically smallest string that can be written on the paper.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Perform second operation p="abc", s="", t="".
 Initially p="", s="bdda", t="".
 Perform first operation four times p="", s="", t="bdda".
 Perform second operation four times p="addb", s="", t="".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

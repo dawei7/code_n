@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`.
 
 Return the number of substrings with **dominant** ones.
 
 A string has **dominant** ones if the number of ones in the string is **greater than or equal to** the **square** of the number of zeros in the string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -136,7 +137,8 @@ Since there are 21 substrings total and 5 of them have non-dominant ones, it fol
 		</tr>
 	</tbody>
 </table>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 4 * 10^{4}$
 

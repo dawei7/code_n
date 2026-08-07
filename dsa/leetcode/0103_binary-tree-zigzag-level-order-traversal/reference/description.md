@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the zigzag level order traversal of its nodes' values*. (i.e., from left to right, then right to left for the next level and alternate between).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `root` of a binary tree, return *the zigzag level order traversal of i
 
 Return one value list per tree depth, ordered from top to bottom and with the reading direction alternating at each level.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return one value list per tree depth, ordered from top to bottom and with the re
 
 - **Input:** `root = []`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[0, 2000]`.
 

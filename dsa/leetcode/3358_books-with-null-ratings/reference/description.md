@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `books`
 
@@ -65,6 +65,6 @@ books table:
 
 The result is ordered by book_id in ascending order</div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

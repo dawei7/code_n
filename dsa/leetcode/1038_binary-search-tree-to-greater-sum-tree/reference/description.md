@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a Binary Search Tree (BST), convert it to a Greater Tree such that every key of the original BST is changed to the original key plus the sum of all keys greater than the original key in BST.
 
@@ -9,12 +9,13 @@ As a reminder, a *binary search tree* is a tree that satisfies these constraints
 - The right subtree of a node contains only nodes with keys **greater than** the node's key.
 
 - Both the left and right subtrees must also be binary search trees.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ As a reminder, a *binary search tree* is a tree that satisfies these constraints
 
 - **Input:** `root = [0,null,1]`
 - **Output:** `[1,null,1]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 100]`.
 
@@ -34,4 +36,6 @@ As a reminder, a *binary search tree* is a tree that satisfies these constraints
 
 - All the values in the tree are **unique**.
 
-**Note:** This question is the same as 538: <a href="https://leetcode.com/problems/convert-bst-to-greater-tree/" target="_blank">https://leetcode.com/problems/convert-bst-to-greater-tree/</a>
+### 5. Note
+
+This question is the same as 538: <a href="https://leetcode.com/problems/convert-bst-to-greater-tree/" target="_blank">https://leetcode.com/problems/convert-bst-to-greater-tree/</a>

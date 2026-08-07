@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a map that allows you to do the following:
 
@@ -13,12 +13,13 @@ Implement the `MapSum` class:
 - `void insert(String key, int val)` Inserts the `key-val` pair into the map. If the `key` already existed, the original `key-value` pair will be overridden to the new one.
 
 - `int sum(string prefix)` Returns the sum of all the pairs' value whose `key` starts with the `prefix`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ mapSum.sum("ap");           // return 3 (<u>ap</u>ple = 3)
 mapSum.insert("app", 2);
 mapSum.sum("ap");           // return 5 (<u>ap</u>ple + <u>ap</u>p = 3 + 2 = 5)
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{key.length}, \text{prefix.length} \le 50$
 

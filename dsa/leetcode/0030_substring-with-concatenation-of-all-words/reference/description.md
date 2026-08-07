@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an array of strings `words`. All the strings of `words` are of **the same length**.
 
@@ -7,7 +7,8 @@ A **concatenated string** is a string that exactly contains all the strings of a
 - For example, if $words = ["ab","cd","ef"]$, then `"abcdef"`, `"abefcd"`, `"cdabef"`, `"cdefab"`, `"efabcd"`, and `"efcdab"` are all concatenated strings. `"acdbef"` is not a concatenated string because it is not the concatenation of any permutation of `words`.
 
 Return an array of *the starting indices* of all the concatenated substrings in `s`. You can return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Return an array of *the starting indices* of all the concatenated substrings in 
 
 Return all zero-based starting indices whose substring is a permutation-concatenation of every entry in `words`, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ The substring starting at 9 is `"barthefoo"`. It is the concatenation of `["bar"
 The substring starting at 12 is `"thefoobar"`. It is the concatenation of `["the","foo","bar"]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

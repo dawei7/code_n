@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **0-indexed** integer array `prices` where $\text{prices}[i]$ denotes the number of coins needed to purchase the $(i + 1)^th$ fruit.
 
@@ -6,15 +6,18 @@ The fruit market has the following reward for each fruit:
 
 - If you purchase the $(i + 1)^th$ fruit at $\text{prices}[i]$ coins, you can get any number of the next `i` fruits for free.
 
-**Note** that even if you **can** take fruit `j` for free, you can still purchase it for $prices[j - 1]$ coins to receive its reward.
-
-Return the **minimum** number of coins needed to acquire all the fruits.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that even if you **can** take fruit `j` for free, you can still purchase it for $prices[j - 1]$ coins to receive its reward.
+
+Return the **minimum** number of coins needed to acquire all the fruits.
+
+### 4. Examples
 
 #### Example 1
 
@@ -80,7 +83,8 @@ Note that even though you could take the 2^nd fruit for free as a reward of buyi
 Note that even though you could take the 6^th fruit for free as a reward of buying 3^rd fruit, you purchase it to receive its reward, which is more optimal.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{prices.length} \le 1000$
 

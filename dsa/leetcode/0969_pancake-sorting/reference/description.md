@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, sort the array by performing a series of **pancake flips**.
 
@@ -11,12 +11,13 @@ In one pancake flip we do the following steps:
 For example, if `arr = [3,2,1,4]` and we performed a pancake flip choosing $k = 3$, we reverse the sub-array `[3,2,1]`, so `arr = [<u>1</u>,<u>2</u>,<u>3</u>,4]` after the pancake flip at $k = 3$.
 
 Return *an array of the *`k`*-values corresponding to a sequence of pancake flips that sort *`arr`. Any valid answer that sorts the array within $10 * \text{arr.length}$ flips will be judged as correct.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ After 4th flip (k = 3): arr = [<u>1</u>, <u>2</u>, <u>3</u>, 4], which is sorted
 - **Output:** `[]`
 - **Explanation:** The input is already sorted, so there is no need to flip anything.
 Note that other answers, such as [3, 3], would also be accepted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 100$
 

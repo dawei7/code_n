@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You wrote down many **positive** integers in a string called `num`. However, you realized that you forgot to add commas to seperate the different numbers. You remember that the list of integers was **non-decreasing** and that **no** integer had leading zeros.
 
 Return *the **number of possible lists of integers** that you could have written down to get the string *`num`. Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the **number of possible lists of integers** that you could have written
 - **Input:** $num = "0"$
 - **Output:** `0`
 - **Explanation:** No numbers can have leading zeros and all numbers must be positive.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 3500$
 

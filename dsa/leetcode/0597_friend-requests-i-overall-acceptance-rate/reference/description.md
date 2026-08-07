@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `FriendRequest`
 
@@ -39,7 +39,8 @@ Find the overall acceptance rate of requests, which is the number of acceptance 
 - If there are no requests at all, you should return 0.00 as the $\text{accept}_{rate}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -51,7 +52,7 @@ Let $R$ and $A$ be the respective event-row counts. Dates do not distinguish the
 
 Return a one-row table with $\text{accept}_{rate}$ equal to the distinct acceptance-pair count divided by the distinct request-pair count, rounded to two decimals. Return `0.00` when there are no requests.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

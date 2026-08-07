@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array representing a row of `seats` where $\text{seats}[i] = 1$ represents a person sitting in the $$i^{\text{th}}$$ seat, and $\text{seats}[i] = 0$ represents that the $$i^{\text{th}}$$ seat is empty **(0-indexed)**.
 
@@ -7,12 +7,13 @@ There is at least one empty seat, and at least one person sitting.
 Alex wants to sit in the seat such that the distance between him and the closest person to him is maximized.
 
 Return *that maximum distance to the closest person*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ This is the maximum distance possible, so the answer is 3.
 
 - **Input:** $seats = [0,1]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{seats.length} \le 2 * 10^{4}$
 

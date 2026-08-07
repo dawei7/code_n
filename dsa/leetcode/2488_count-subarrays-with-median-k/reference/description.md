@@ -1,10 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of size `n` consisting of **distinct **integers from `1` to `n` and a positive integer `k`.
 
 Return *the number of non-empty subarrays in *`nums`* that have a **median** equal to *`k`.
 
-**Note**:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+:
 
 - The median of an array is the **middle **element after sorting the array in **ascending **order. If the array is of even length, the median is the **left **middle element.
 
@@ -12,12 +19,8 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 
 	</li>
 - A subarray is a contiguous part of an array.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ Return *the number of non-empty subarrays in *`nums`* that have a **median** equ
 - **Input:** `nums = [2,3,1], k = 3`
 - **Output:** `1`
 - **Explanation:** [3] is the only subarray that has a median equal to 3.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{nums.length}$
 

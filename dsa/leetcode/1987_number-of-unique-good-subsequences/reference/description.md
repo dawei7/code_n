@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `binary`. A **subsequence** of `binary` is considered **good** if it is **not empty** and has **no leading zeros** (with the exception of `"0"`).
 
@@ -9,12 +9,13 @@ Find the number of **unique good subsequences** of `binary`.
 Return *the number of **unique good subsequences** of *`binary`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A **subsequence** is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The unique good subsequences are "1" and "11".
 - **Output:** `5`
 - **Explanation:** The good subsequences of binary are ["1", "0", "1", "10", "11", "101"].
 The unique good subsequences are "0", "1", "10", "11", and "101".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{binary.length} \le 10^{5}$
 

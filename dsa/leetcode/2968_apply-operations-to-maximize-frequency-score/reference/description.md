@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `k`.
 
@@ -11,12 +11,13 @@ The score of the final array is the **frequency** of the most frequent element i
 Return *the **maximum** score you can achieve*.
 
 The frequency of an element is the number of occurences of that element in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ It can be shown that we cannot achieve a better score.
 - **Input:** `nums = [1,4,4,2,4], k = 0`
 - **Output:** `3`
 - **Explanation:** We cannot apply any operations so our score will be the frequency of the most frequent element in the original array, which is 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

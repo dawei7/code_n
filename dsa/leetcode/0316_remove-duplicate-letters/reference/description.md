@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, remove duplicate letters so that every letter appears once and only once. You must make sure your result is **the smallest in lexicographical order** among all possible results.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, remove duplicate letters so that every letter appears once a
 
 Return the lexicographically smallest subsequence that contains each distinct letter from `s` exactly once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,10 +22,13 @@ Return the lexicographically smallest subsequence that contains each distinct le
 
 - **Input:** `s = "cbacdcbc"`
 - **Output:** `"acdb"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 
 - `s` consists of lowercase English letters.
 
-**Note:** This question is the same as 1081: <a href="https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/" target="_blank">https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/</a>
+### 5. Note
+
+This question is the same as 1081: <a href="https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/" target="_blank">https://leetcode.com/problems/smallest-subsequence-of-distinct-characters/</a>

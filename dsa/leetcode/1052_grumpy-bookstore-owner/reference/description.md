@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a bookstore owner that has a store open for `n` minutes. You are given an integer array `customers` of length `n` where $\text{customers}[i]$ is the number of the customers that enter the store at the start of the $$i^{\text{th}}$$ minute and all those customers leave after the end of that minute.
 
@@ -9,12 +9,13 @@ When the bookstore owner is grumpy, the customers entering during that minute ar
 The bookstore owner knows a secret technique to remain **not grumpy** for `minutes` consecutive minutes, but this technique can only be used **once**.
 
 Return the **maximum** number of customers that can be *satisfied* throughout the day.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The maximum number of customers that can be satisfied = 1 + 1 + 1 + 1 + 7 + 5 = 
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{customers.length} = \text{grumpy.length}$
 

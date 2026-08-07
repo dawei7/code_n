@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, return `true` *if they are equal when both are typed into empty text editors*. `'#'` means a backspace character.
 
 Note that after backspacing an empty text, the text will continue empty.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Note that after backspacing an empty text, the text will continue empty.
 - **Input:** `s = "a#c", t = "b"`
 - **Output:** `false`
 - **Explanation:** s becomes "c" while t becomes "b".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 200$
 

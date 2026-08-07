@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of tasks in a project, numbered from 0 to $n - 1$. These tasks are connected as an undirected** tree**. This is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an undirected connection between task $u_{i}$ and task $v_{i}$.
 
@@ -21,7 +21,8 @@ For any chosen task as the root, the **finish time** of each task is calculated 
 Choose **any** task as the root and compute the finish time of that root based on the rules above.
 
 Return the **minimum** possible finish time among all choices of root.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ Return the **minimum** possible finish time among all choices of root.
 
 Return the minimum possible finish time of the chosen root after orienting the tree away from that root and applying the leaf and non-leaf finish-time rules recursively.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -141,7 +142,8 @@ The optimal choice is to treat task 1 as the root.
 Thus, the minimum possible finish time among all choices of root is 16.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

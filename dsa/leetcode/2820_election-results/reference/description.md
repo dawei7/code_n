@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Votes`
 
@@ -20,11 +20,12 @@ Write a solution to find `candidate` who got the most votes and won the election
 Return* the result table ordered* *by* `candidate` *in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

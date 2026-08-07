@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Events`
 
@@ -23,7 +23,8 @@ Write a solution to find all **active businesses**.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -36,7 +37,7 @@ $Events(\text{business}_{id}, \text{event}_{type}, occurrences)$ contains $R$ ro
 - Exclude equality and businesses that qualify for only one event type.
 - Result row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

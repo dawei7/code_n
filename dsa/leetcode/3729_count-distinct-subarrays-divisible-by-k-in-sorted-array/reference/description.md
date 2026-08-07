@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` **sorted** in **non-descending** order and a positive integer `k`.
 
@@ -7,7 +7,8 @@ A **subarray** of `nums` is **good** if the sum of its elements is **divisible**
 Return an integer denoting the number of **distinct** **good** subarrays of `nums`.
 
 Subarrays are **distinct** if their sequences of values are. For example, there are 3 **distinct** subarrays in `[1, 1, 1]`, namely `[1]`, `[1, 1]`, and `[1, 1, 1]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ A subarray is a nonempty contiguous sequence. Two occurrences with identical val
 
 Return the integer number of different subarray value sequences whose element sum is congruent to $0$ modulo `k`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The good subarrays are `[2, 2, 2]` and `[2, 2, 2, 2, 2, 2]`. For example, `[2, 2
 Note that `[2, 2, 2]` is counted only once.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a text file `file.txt`, transpose its content.
 
@@ -21,7 +21,7 @@ name alice ryan
 age 21 30
 ```
 
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 

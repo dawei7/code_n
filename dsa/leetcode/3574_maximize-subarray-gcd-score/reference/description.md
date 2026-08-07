@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of positive integers `nums` and an integer `k`.
 
@@ -8,15 +8,16 @@ The **score** of a contiguous **subarray** is defined as the **product** of its 
 
 Your task is to return the **maximum** **score** that can be achieved by selecting a contiguous subarray from the modified array.
 
-**Note:**
-
-- The **greatest common divisor (GCD)** of an array is the largest integer that evenly divides all the array elements.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- The **greatest common divisor (GCD)** of an array is the largest integer that evenly divides all the array elements.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Your task is to return the **maximum** **score** that can be achieved by selecti
 - Since doubling any element doesn't improve the score, the maximum score is $3 × 5 = 15$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{nums.length} \le 1500$
 

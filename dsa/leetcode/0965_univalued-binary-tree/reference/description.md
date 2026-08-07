@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 A binary tree is **uni-valued** if every node in the tree has the same value.
 
 Given the `root` of a binary tree, return `true`* if the given tree is **uni-valued**, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Given the `root` of a binary tree, return `true`* if the given tree is **uni-val
 
 - **Input:** `root = [2,2,2,5,2]`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 100]`.
 

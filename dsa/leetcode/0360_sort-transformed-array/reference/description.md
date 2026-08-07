@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a **sorted** integer array `nums` and three integers `a`, `b` and `c`, apply a quadratic function of the form $f(x) = ax^2 + bx + c$ to each element $\text{nums}[i]$ in the array, and return *the array in a sorted order*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Given a **sorted** integer array `nums` and three integers `a`, `b` and `c`, app
 
 Return the ascending-order array containing $f(\text{nums}[i])$ for every input position, with duplicate values preserved.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the ascending-order array containing $f(\text{nums}[i])$ for every input 
 
 - **Input:** `nums = [-4,-2,2,4], a = -1, b = 3, c = 5`
 - **Output:** `[-23,-5,1,7]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

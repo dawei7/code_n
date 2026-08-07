@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` and a positive integer `k`.
 
@@ -11,12 +11,13 @@ Return *the lexicographically **smallest** beautiful substring of string *`s`* w
 A string `a` is lexicographically **larger** than a string `b` (of the same length) if in the first position where `a` and `b` differ, `a` has a character strictly larger than the corresponding character in `b`.
 
 - For example, `"abcd"` is lexicographically larger than `"abcc"` because the first position they differ is at the fourth character, and `d` is greater than `c`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The lexicographically smallest beautiful substring with length 2 is the substrin
 - **Input:** `s = "000", k = 1`
 - **Output:** `""`
 - **Explanation:** There are no beautiful substrings in this example.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

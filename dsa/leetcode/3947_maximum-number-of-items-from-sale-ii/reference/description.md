@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `items`, where $\text{items}[i] = [\text{factor}_{i}, \text{price}_{i}]$ represents the $$i^{\text{th}}$$ item. You are also given an integer `budget`.
 
@@ -15,7 +15,8 @@ After buying items, you may receive free copies according to the following rules
 - The same item `j` can be received multiple times for free if it is received from purchases of different item types.
 
 Return the **maximum total number of item copies** you can obtain, including both purchased copies and free copies, while spending at most `budget` on purchased items.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Let $n=\lvert\texttt{items}\rvert$.
 
 Return the maximum number of purchased plus awarded free copies achievable with total purchase cost at most `budget`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ Return the maximum number of purchased plus awarded free copies achievable with 
 - You leave with 4 purchased copies and 3 free copies, for a total of 7 item copies.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{items.length} \le 10^{5}$
 

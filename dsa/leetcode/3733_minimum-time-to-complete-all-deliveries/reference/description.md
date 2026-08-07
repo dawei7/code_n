@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays of size 2: $d = [d_{1}, d_{2}]$ and $r = [r_{1}, r_{2}]$.
 
@@ -9,7 +9,8 @@ Each delivery takes **exactly** one hour and **only one** drone can make a deliv
 Additionally, both drones require recharging at specific intervals during which they cannot make deliveries. Drone `i` must recharge every $r_{i}$ hours (i.e. at hours that are multiples of $r_{i}$).
 
 Return an integer denoting the **minimum** total time (in hours) required to complete all deliveries.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Hours are numbered from `1`. A drone is unavailable at hours divisible by its re
 
 Return the smallest final hour by which both delivery quotas can be assigned legally.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ Return the smallest final hour by which both delivery quotas can be assigned leg
 - The second drone delivers at hour 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $d = [d_{1}, d_{2}]$
 

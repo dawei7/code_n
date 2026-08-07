@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given two integers `left` and `right`, return *the **count** of numbers in the **inclusive** range *`[left, right]`* having a **prime number of set bits** in their binary representation*.
 
 Recall that the **number of set bits** an integer has is the number of `1`'s present when written in binary.
 
 - For example, `21` written in binary is `10101`, which has `3` set bits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Recall that the **number of set bits** an integer has is the number of `1`'s pre
 14 -> 1110 (3 set bits, 3 is prime)
 15 -> 1111 (4 set bits, 4 is not prime)
 5 numbers have a prime number of set bits.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le left \le right \le 10^{6}$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree and a node `p` in it, return *the in-order successor of that node in the BST*. If the given node has no in-order successor in the tree, return `null`.
 
 The successor of a node `p` is the node with the smallest key greater than `p.val`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ JSON cases encode `root` in level order and identify `p` by its unique value. Th
 
 Return the successor `TreeNode`, or `None` when `p` has no successor. The runner displays and validates the returned node's value.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return the successor `TreeNode`, or `None` when `p` has no successor. The runner
 - **Input:** `root = [5,3,6,2,4,null,null,1], p = 6`
 - **Output:** `null`
 - **Explanation:** There is no in-order successor of the current node, so the answer is null.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

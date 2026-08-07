@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return `true` if any value appears **at least twice** in the array, and return `false` if every element is distinct.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer array `nums`, return `true` if any value appears **at least twi
 
 Return `true` if any two positions contain the same value; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ All elements are distinct.
 **Output:** true
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

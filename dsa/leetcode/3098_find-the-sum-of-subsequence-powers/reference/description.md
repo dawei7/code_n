@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, and a **positive** integer `k`.
 
@@ -7,12 +7,13 @@ The **power** of a subsequence is defined as the **minimum** absolute difference
 Return *the **sum** of **powers** of **all** subsequences of *`nums`* which have length* ***equal to*** `k`.
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The only subsequence in `nums` which has length 2 is `[2,2]`. The sum of powers 
 There are 3 subsequences in `nums` which have length 2: `[4,3]`, `[4,-1]`, and `[3,-1]`. The sum of powers is $|4 - 3| + |4 - (-1)| + |3 - (-1)| = 10$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 50$
 

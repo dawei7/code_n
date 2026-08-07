@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -17,12 +17,13 @@ Since the answer may be large, return it **modulo **$10^{9} + 7$.
 A **substring** is a contiguous sequence of characters within a string.
 
 <div class="notranslate" style="all: initial;"> </div>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** $n = 10$
 - **Output:** `83943898`
 - **Explanation:** The number of strings with length 10 which can be rearranged to have "leet" as a substring is 526083947580. Hence the answer is 526083947580 % ($10^{9}$ + 7) = 83943898.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

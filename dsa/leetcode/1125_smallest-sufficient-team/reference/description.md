@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a project, you have a list of required skills $\text{req}_{skills}$, and a list of people. The $$i^{\text{th}}$$ person $\text{people}[i]$ contains a list of skills that the person has.
 
@@ -9,12 +9,13 @@ Consider a sufficient team: a set of people such that for every required skill i
 Return *any sufficient team of the smallest possible size, represented by the index of each person*. You may return the answer in **any order**.
 
 It is **guaranteed** an answer exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ It is **guaranteed** an answer exists.
 
 - **Input:** $\text{req}_{skills} = ["algorithms","math","java","reactjs","csharp","aws"], people = [["algorithms","math","java"],["algorithms","math","reactjs"],["java","csharp","aws"],["reactjs","csharp"],["csharp","math"],["aws","java"]]$
 - **Output:** `[1,2]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{req}_{skills}.length \le 16$
 

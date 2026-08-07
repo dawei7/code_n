@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters, and an integer `k`. Your task is to *convert* the string into an integer by a special process, and then *transform* it by summing its digits repeatedly `k` times. More specifically, perform the following steps:
 
@@ -17,12 +17,13 @@ For example, if `s = "zbax"` and $k = 2$, then the resulting integer would be `8
 - **Transform #2**: $17 ➝ 1 + 7 ➝ 8$
 
 Return the **resulting** **integer** after performing the **operations** described above.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ Thus the resulting integer is 6.
 **Output:** 8
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

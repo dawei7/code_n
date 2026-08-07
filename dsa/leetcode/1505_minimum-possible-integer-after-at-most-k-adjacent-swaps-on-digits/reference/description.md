@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `num` representing **the digits** of a very large integer and an integer `k`. You are allowed to swap any two adjacent digits of the integer **at most** `k` times.
 
 Return *the minimum integer you can obtain also as a string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the minimum integer you can obtain also as a string*.
 - **Input:** $num = "36789", k = 1000$
 - **Output:** `"36789"`
 - **Explanation:** We can keep the number without any swaps.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 3 * 10^{4}$
 

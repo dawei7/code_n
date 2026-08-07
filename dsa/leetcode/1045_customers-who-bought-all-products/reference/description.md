@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customer`
 
@@ -30,12 +30,13 @@ Write a solution to report the customer ids from the `Customer` table that bough
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

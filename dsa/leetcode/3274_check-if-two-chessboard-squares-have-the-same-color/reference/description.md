@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings, `coordinate1` and `coordinate2`, representing the coordinates of a square on an `8 x 8` chessboard.
 
@@ -9,12 +9,13 @@ Below is the chessboard for reference.
 Return `true` if these two squares have the same color and `false` otherwise.
 
 The coordinate will always represent a valid chessboard square. The coordinate will always have the letter first (indicating its column), and the number second (indicating its row).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Both squares are black.
 Square `"a1"` is black and `"h3"` is white.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{coordinate1.length} = \text{coordinate2.length} = 2$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Let's play the minesweeper game (<a href="https://en.wikipedia.org/wiki/Minesweeper_(video_game)" target="_blank">Wikipedia</a>, <a href="http://minesweeperonline.com" target="_blank">online game</a>)!
 
@@ -25,12 +25,13 @@ Return *the board after revealing this position according to the following rules
 - If an empty square `'E'` with at least one adjacent mine is revealed, then change it to a digit (`'1'` to `'8'`) representing the number of adjacent mines.
 
 - Return the board when no more squares will be revealed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return *the board after revealing this position according to the following rules
 
 - **Input:** $board = [["B","1","E","1","B"],["B","1","M","1","B"],["B","1","1","1","B"],["B","B","B","B","B"]], click = [1,2]$
 - **Output:** `[["B","1","E","1","B"],["B","1","X","1","B"],["B","1","1","1","B"],["B","B","B","B","B"]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{board.length}$
 

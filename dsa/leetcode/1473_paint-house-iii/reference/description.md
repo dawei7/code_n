@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a row of `m` houses in a small city, each house must be painted with one of the `n` colors (labeled from `1` to `n`), some houses that have been painted last summer should not be painted again.
 
@@ -13,12 +13,13 @@ Given an array `houses`, an `m x n` matrix `cost` and an integer `target` where:
 - $\text{cost}[i][j]$: is the cost of paint the house `i` with the color $j + 1$.
 
 Return *the minimum cost of painting all the remaining houses in such a way that there are exactly* `target` *neighborhoods*. If it is not possible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Cost of paint the first and last house (10 + 1) = 11.
 - **Input:** $houses = [3,1,2,3], cost = [[1,1,1],[1,1,1],[1,1,1],[1,1,1]], m = 4, n = 3, target = 3$
 - **Output:** `-1`
 - **Explanation:** Houses are already painted with a total of 4 neighborhoods [{3},{1},{2},{3}] different of target = 3.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{houses.length} = \text{cost.length}$
 

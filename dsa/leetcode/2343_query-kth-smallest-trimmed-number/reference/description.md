@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of strings `nums`, where each string is of **equal length** and consists of only digits.
 
@@ -12,17 +12,20 @@ You are also given a **0-indexed** 2D integer array `queries` where $\text{queri
 
 Return *an array *`answer`* of the same length as *`queries`,* where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query.*
 
-**Note**:
-
-- To trim to the rightmost `x` digits means to keep removing the leftmost digit, until only `x` digits remain.
-
-- Strings in `nums` may contain leading zeros.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+:
+
+- To trim to the rightmost `x` digits means to keep removing the leftmost digit, until only `x` digits remain.
+
+- Strings in `nums` may contain leading zeros.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ Note that the trimmed number "02" is evaluated as 2.
 1. Trimmed to the last digit, nums = ["4","7","6","4"]. The 2^nd smallest number is 4 at index 3.
 There are two occurrences of 4, but the one at index 0 is considered smaller than the one at index 3.
 2. Trimmed to the last 2 digits, nums is unchanged. The 2^nd smallest number is 24.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

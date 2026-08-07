@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 Given a string `word`, return *the **sum of the number of vowels** (*`'a'`, `'e'`*,* `'i'`*,* `'o'`*, and* `'u'`*)* *in every substring of *`word`.
 
 A **substring** is a contiguous (non-empty) sequence of characters within a string.
 
-**Note:** Due to the large constraints, the answer may not fit in a signed 32-bit integer. Please be careful during the calculations.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Due to the large constraints, the answer may not fit in a signed 32-bit integer. Please be careful during the calculations.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ Hence, the total sum of vowels = 1 + 1 + 1 + 0 + 0 + 0 = 3.
 - **Input:** $word = "ltcd"$
 - **Output:** `0`
 - **Explanation:** There are no vowels in any substring of "ltcd".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{word.length} \le 10^{5}$
 

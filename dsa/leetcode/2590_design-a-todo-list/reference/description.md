@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a Todo List Where users can add **tasks**, mark them as **complete**, or get a list of pending tasks. Users can also add **tags** to tasks and can filter the tasks by certain tags.
 
@@ -13,11 +13,12 @@ Implement the `TodoList` class:
 - `List<String> getTasksForTag(int userId, String tag)` Returns a list of all the tasks that are not marked as complete for the user with the ID `userId` and have `tag` as one of their tags, ordered by their due date. Return an empty list if no such task exists.
 
 - `void completeTask(int userId, int taskId)` Marks the task with the ID `taskId` as completed only if the task exists and the user with the ID `userId` has this task, and it is uncompleted.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ todoList.getTasksForTag(1, "P1"); // return ["Task3"]. This returns the uncomple
                                   // Notice that we did not include "Task2" because it is completed now.
 todoList.getAllTasks(1); // return ["Task3", "Task1"]. User 1 now has 2 uncompleted tasks.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le userId, taskId, dueDate \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given `2n` balls of `k` distinct colors. You will be given an integer array `balls` of size `k` where $\text{balls}[i]$ is the number of balls of color `i`.
 
@@ -7,12 +7,13 @@ All the balls will be **shuffled uniformly at random**, then we will distribute 
 Please note that the two boxes are considered different. For example, if we have two balls of colors `a` and `b`, and two boxes `[]` and `()`, then the distribution `[a] (b)` is considered different than the distribution `[b] (a) `(Please read the explanation of the first example carefully).
 
 Return* the probability* that the two boxes have the same number of distinct balls. Answers within $10^{-5}$ of the actual value will be accepted as correct.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Probability is 8/12 = 0.66667
 - **Output:** `0.60000`
 - **Explanation:** The set of balls is [1, 2, 2, 3, 4, 4]. It is hard to display all the 180 possible random shuffles of this set but it is easy to check that 108 of them will have the same number of distinct colors in each box.
 Probability = 108 / 180 = 0.6
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{balls.length} \le 8$
 

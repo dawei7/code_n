@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Products`
 
@@ -20,7 +20,8 @@ Find the price of each product in each store.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Table Schema**
 
@@ -30,7 +31,7 @@ The result format is in the following example.
 
 `Result` ($\text{product}_{id}$: `int`, `store1`: `int`, `store2`: `int`, `store3`: `int`)
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

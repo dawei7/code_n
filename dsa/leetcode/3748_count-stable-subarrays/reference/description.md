@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -8,10 +8,7 @@ You are also given a **2D integer array** `queries` of length `q`, where each $\
 
 Return an integer array `ans` of length `q`, where $\text{ans}[i]$ is the answer to the $$i^{\text{th}}$$ query.​​​​​​​​​​​​​​
 
-**Note**:
-
-- A single element subarray is considered stable.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +21,13 @@ Let $n=\texttt{nums.length}$ and $q=\texttt{queries.length}$. Each result counts
 
 Return $q$ integers, one per query, giving the number of nonempty, non-decreasing subarrays wholly contained in its requested segment.
 
-### Examples
+### 3. Note
+
+:
+
+- A single element subarray is considered stable.
+
+### 4. Examples
 
 #### Example 1
 
@@ -77,7 +80,8 @@ Thus, $ans = [2, 3, 4]$.
 Thus, $ans = [3, 1]$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 There is a long and thin painting that can be represented by a number line. You are given a **0-indexed** 2D integer array `paint` of length `n`, where $\text{paint}[i] = [\text{start}_{i}, \text{end}_{i}]$. This means that on the $$i^{\text{th}}$$ day you need to paint the area **between** $\text{start}_{i}$ and $\text{end}_{i}$.
 
 Painting the same area multiple times will create an uneven painting so you only want to paint each area of the painting at most **once**.
 
 Return *an integer array *`worklog`* of length *`n`*, where *$\text{worklog}[i]$* is the amount of **new** area that you painted on the *$$i^{\text{th}}$$* day.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ On day 0, paint everything between 1 and 5.
 The amount of new area painted on day 0 is 5 - 1 = 4.
 On day 1, paint nothing because everything between 2 and 4 was already painted on day 0.
 The amount of new area painted on day 1 is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{paint.length} \le 10^{5}$
 

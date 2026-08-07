@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. There are `n` rooms numbered from `0` to $n - 1$.
 
@@ -15,12 +15,13 @@ Meetings are allocated to rooms in the following manner:
 Return* the **number** of the room that held the most meetings. *If there are multiple rooms, return* the room with the **lowest** number.*
 
 A **half-closed interval** `[a, b)` is the interval between `a` and `b` **including** `a` and **not including** `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Both rooms 0 and 1 held 2 meetings, so we return 0.
 - At time 6, all three rooms are being used. The fifth meeting is delayed.
 - At time 10, the meetings in rooms 1 and 2 finish. The fifth meeting starts in room 1 for the time period [10,12).
 Room 0 held 1 meeting while rooms 1 and 2 each held 2 meetings, so we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

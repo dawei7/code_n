@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** arrays `nums` and `cost` consisting each of `n` **positive** integers.
 
@@ -9,12 +9,13 @@ You can do the following operation **any** number of times:
 The cost of doing one operation on the $$i^{\text{th}}$$ element is $\text{cost}[i]$.
 
 Return *the **minimum** total cost such that all the elements of the array *`nums`* become **equal***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that we cannot make the array equal with a smaller cost.
 - **Input:** `nums = [2,2,2,2,2], cost = [4,2,8,1,3]`
 - **Output:** `0`
 - **Explanation:** All the elements are already equal, so no operations are needed.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length} = \text{cost.length}$
 

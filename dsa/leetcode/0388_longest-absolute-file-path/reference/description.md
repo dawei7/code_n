@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Suppose we have a file system that stores both files and directories. An example of one system is represented in the following picture:
 
@@ -24,8 +24,7 @@ Every file and directory has a unique **absolute path** in the file system, whic
 
 Given a string `input` representing the file system in the explained format, return *the length of the **longest absolute path** to a **file** in the abstracted file system*. If there is no file in the system, return `0`.
 
-**Note** that the testcases are generated such that the file system is valid and no file or directory name has length 0.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -35,7 +34,11 @@ Given a string `input` representing the file system in the explained format, ret
 
 Return the greatest character length of an absolute path to a file, counting `/` separators but not serialization tabs or newlines; return `0` if there is no file.
 
-### Examples
+### 3. Note
+
+that the testcases are generated such that the file system is valid and no file or directory name has length 0.
+
+### 4. Examples
 
 #### Example 1
 
@@ -59,7 +62,8 @@ We return 32 since it is the longest absolute path to a file.
 - **Input:** $input = "a"$
 - **Output:** `0`
 - **Explanation:** We do not have any files, just a single directory named "a".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{input.length} \le 10^{4}$
 

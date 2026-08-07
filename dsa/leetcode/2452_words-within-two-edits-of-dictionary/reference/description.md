@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two string arrays, `queries` and `dictionary`. All words in each array comprise of lowercase English letters and have the same length.
 
 In one **edit** you can take a word from `queries`, and change any letter in it to any other letter. Find all words from `queries` that, after a **maximum** of two edits, equal some word from `dictionary`.
 
 Return* a list of all words from *`queries`*, **that match with some word from *`dictionary`* after a maximum of **two edits***. Return the words in the **same order** they appear in `queries`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Thus, we return ["word","note","wood"].
 - **Output:** `[]`
 - **Explanation:**
 Applying any two edits to "yes" cannot make it equal to "not". Thus, we return an empty array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length}, \text{dictionary.length} \le 100$
 

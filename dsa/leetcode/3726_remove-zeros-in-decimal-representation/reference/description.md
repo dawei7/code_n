@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `n`.
 
 Return the integer obtained by removing all zeros from the decimal representation of `n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ The relative order of every nonzero digit must remain unchanged. Because `n` is 
 
 Return the base-ten integer formed by concatenating all nonzero digits of `n` in their original order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,6 +42,7 @@ After removing all zeros from 1**<u>0</u>**2**<u>00</u>**3**<u>0</u>**, we get 1
 1 has no zero in its decimal representation. Therefore, the answer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{15}$

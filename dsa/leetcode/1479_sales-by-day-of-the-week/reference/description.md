@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Orders`
 
@@ -39,7 +39,8 @@ Write a solution to report how many units in each category have been ordered on 
 Return the result table **ordered** by `category`.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -57,7 +58,7 @@ Return columns `Category`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`,
 ordered for every item in that category on that weekday, using zero when no
 matching units were ordered. Sort the rows by `Category` ascending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

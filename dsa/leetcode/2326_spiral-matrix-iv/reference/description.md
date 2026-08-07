@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n`, which represent the dimensions of a matrix.
 
@@ -7,12 +7,13 @@ You are also given the `head` of a linked list of integers.
 Generate an `m x n` matrix that contains the integers in the linked list presented in **spiral** order **(clockwise)**, starting from the **top-left** of the matrix. If there are remaining empty spaces, fill them with `-1`.
 
 Return *the generated matrix*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Note that the remaining spaces in the matrix are filled with -1.
 - **Output:** `[[0,1,2,-1]]`
 - **Explanation:** The diagram above shows how the values are printed from left to right in the matrix.
 The last space in the matrix is set to -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{5}$
 

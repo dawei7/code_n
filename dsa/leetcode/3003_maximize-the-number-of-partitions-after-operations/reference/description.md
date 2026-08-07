@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`.
 
@@ -11,12 +11,13 @@ After that, do the following partitioning operation until `s` is **empty**:
 - **Delete** the prefix from `s` and increase the number of partitions by one. The remaining characters (if any) in `s` maintain their initial order.
 
 Return an integer denoting the **maximum** number of resulting partitions after the operations by optimally choosing at most one index to change.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ The optimal way is to change $s[0]$ or $s[1]$ to something other than characters
 Then `s` becomes `"wxyz"`, which consists of 4 distinct characters, so as `k` is 1, it will divide into 4 partitions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

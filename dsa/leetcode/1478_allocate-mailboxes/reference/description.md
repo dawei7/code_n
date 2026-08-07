@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the array `houses` where $\text{houses}[i]$ is the location of the $$i^{\text{th}}$$ house along a street and an integer `k`, allocate `k` mailboxes in the street.
 
 Return *the **minimum** total distance between each house and its nearest mailbox*.
 
 The test cases are generated so that the answer fits in a 32-bit integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Minimum total distance from each houses to nearest mailboxes is |3-1| + |4-3| + 
 - **Output:** `9`
 - **Explanation:** Allocate mailboxes in position 3 and 14.
 Minimum total distance from each houses to nearest mailboxes is |2-3| + |3-3| + |5-3| + |12-14| + |18-14| = 9.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{houses.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, and three integers `m`, `l`, and `r`.
 
@@ -9,7 +9,8 @@ Your task is to select **at least** one and **at most** `m` **non-overlapping su
 - The total sum of all selected **subarrays** is **maximized**.
 
 Return the **maximum** total sum you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Return the largest possible total sum of between one and `m` pairwise non-overla
 
 Let $n = \lvert\texttt{nums}\rvert$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ One optimal strategy is to:
 - The total sum of this subarray is -1, which is the maximum achievable sum with at most $m = 2$ subarrays.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 1000$
 

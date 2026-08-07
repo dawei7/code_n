@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`​​​ and an integer `k`. You are asked to distribute this array into `k` subsets of **equal size** such that there are no two equal elements in the same subset.
 
@@ -7,12 +7,13 @@ A subset's **incompatibility** is the difference between the maximum and minimum
 Return *the **minimum possible sum of incompatibilities** of the *`k` *subsets after distributing the array optimally, or return *`-1`* if it is not possible.*
 
 A subset is a group integers that appear in the array with no particular order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The incompatibility is (2-1) + (3-2) + (8-6) + (3-1) = 6.
 - **Input:** `nums = [5,3,3,6,3,3], k = 3`
 - **Output:** `-1`
 - **Explanation:** It is impossible to distribute nums into 3 subsets where no two elements are equal in the same subset.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 16$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a HashSet without using any built-in hash table libraries.
 
@@ -9,12 +9,13 @@ Implement `MyHashSet` class:
 - `bool contains(key)` Returns whether the value `key` exists in the HashSet or not.
 
 - `void remove(key)` Removes the value `key` in the HashSet. If `key` does not exist in the HashSet, do nothing.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ myHashSet.contains(2); // return True
 myHashSet.remove(2);   // set = [1]
 myHashSet.contains(2); // return False, (already removed)
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le key \le 10^{6}$
 

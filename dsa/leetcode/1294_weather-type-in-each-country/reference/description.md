@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Countries`
 
@@ -40,7 +40,8 @@ The type of weather is:
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -58,7 +59,7 @@ Return a table with these columns:
 
 Return exactly one row for each of the $K$ qualifying countries. A country without a November 2019 observation contributes no row. Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

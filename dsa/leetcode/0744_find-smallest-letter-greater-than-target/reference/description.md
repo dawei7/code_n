@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of characters `letters` that is sorted in **non-decreasing order**, and a character `target`. There are **at least two different** characters in `letters`.
 
 Return *the smallest character in *`letters`* that is lexicographically greater than *`target`. If such a character does not exist, return the first character in `letters`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the smallest character in *`letters`* that is lexicographically greater 
 - **Input:** $letters = ["x","x","y","y"], target = "z"$
 - **Output:** `"x"`
 - **Explanation:** There are no characters in letters that is lexicographically greater than 'z' so we return letters[0].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{letters.length} \le 10^{4}$
 

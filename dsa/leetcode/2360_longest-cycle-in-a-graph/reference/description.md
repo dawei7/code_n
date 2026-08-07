@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **directed** graph of `n` nodes numbered from `0` to $n - 1$, where each node has **at most one** outgoing edge.
 
@@ -7,12 +7,13 @@ The graph is represented with a given **0-indexed** array `edges` of size `n`, i
 Return *the length of the **longest** cycle in the graph*. If no cycle exists, return `-1`.
 
 A cycle is a path that starts and ends at the **same** node.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The length of this cycle is 3, so 3 is returned.
 - **Input:** $edges = [2,-1,3,1]$
 - **Output:** `-1`
 - **Explanation:** There are no cycles in this graph.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length}$
 

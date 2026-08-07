@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words` and a string `pref`.
 
 Return *the number of strings in *`words`* that contain *`pref`* as a **prefix***.
 
 A **prefix** of a string `s` is any leading contiguous substring of `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ A **prefix** of a string `s` is any leading contiguous substring of `s`.
 - **Input:** $words = ["leetcode","win","loops","success"], pref = "code"$
 - **Output:** `0`
 - **Explanation:** There are no strings that contain "code" as a prefix.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

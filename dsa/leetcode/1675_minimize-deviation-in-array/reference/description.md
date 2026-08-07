@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of `n` positive integers.
 
@@ -18,12 +18,13 @@ You can perform two types of operations on any element of the array any number o
 The **deviation** of the array is the **maximum difference** between any two elements in the array.
 
 Return *the **minimum deviation** the array can have after performing some number of operations.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return *the **minimum deviation** the array can have after performing some numbe
 
 - **Input:** `nums = [2,10,8]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

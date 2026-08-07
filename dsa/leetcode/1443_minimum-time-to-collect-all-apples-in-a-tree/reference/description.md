@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an undirected tree consisting of `n` vertices numbered from `0` to `n-1`, which has some apples in their vertices. You spend 1 second to walk over one edge of the tree. *Return the minimum time in seconds you have to spend to collect all apples in the tree, starting at **vertex 0** and coming back to this vertex.*
 
 The edges of the undirected tree are given in the array `edges`, where $\text{edges}[i] = [a_{i}, b_{i}]$ means that exists an edge connecting the vertices $a_{i}$ and $b_{i}$. Additionally, there is a boolean array `hasApple`, where $\text{hasApple}[i] = true$ means that vertex `i` has an apple; otherwise, it does not have any apple.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The edges of the undirected tree are given in the array `edges`, where $\text{ed
 
 - **Input:** $n = 7, edges = [[0,1],[0,2],[1,4],[1,5],[2,3],[2,6]], hasApple = [false,false,false,false,false,false,false]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

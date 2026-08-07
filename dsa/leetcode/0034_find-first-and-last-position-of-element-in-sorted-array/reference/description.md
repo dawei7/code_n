@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` sorted in non-decreasing order, find the starting and ending position of a given `target` value.
 
 If `target` is not found in the array, return `[-1, -1]`.
 
 You must write an algorithm with `O(log n)` runtime complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 
 Return `[first, last]`, where `first` and `last` are the target's earliest and latest indices. Return `[-1, -1]` when the target is absent.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return `[first, last]`, where `first` and `last` are the target's earliest and l
 
 - **Input:** `nums = [], target = 0`
 - **Output:** `[-1,-1]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums.length} \le 10^{5}$
 

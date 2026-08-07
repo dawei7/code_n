@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a stream of integers and a window size, calculate the moving average of all integers in the sliding window.
 
@@ -7,7 +7,8 @@ Implement the `MovingAverage` class:
 - `MovingAverage(int size)` Initializes the object with the size of the window `size`.
 
 - `double next(int val)` Returns the moving average of the last `size` values of the stream.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Implement the `MovingAverage` class:
 
 The app adapter returns the sequence of moving averages. Each native `next` call returns only the new average after its value is added.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ movingAverage.next(10); // return 5.5 = (1 + 10) / 2
 movingAverage.next(3); // return 4.66667 = (1 + 10 + 3) / 3
 movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le size \le 1000$
 

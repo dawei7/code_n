@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of integers.
 
@@ -9,12 +9,13 @@ A triplet of indices `(i, j, k)` is a **mountain** if:
 - $\text{nums}[i] < \text{nums}[j]$ and $\text{nums}[k] < \text{nums}[j]$
 
 Return *the **minimum possible sum** of a mountain triplet of* `nums`. *If no such triplet exists, return* `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ And the sum of this triplet is nums[1] + nums[3] + nums[5] = 13. It can be shown
 - **Input:** `nums = [6,5,4,3,4,5]`
 - **Output:** `-1`
 - **Explanation:** It can be shown that there are no mountain triplets in nums.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 50$
 

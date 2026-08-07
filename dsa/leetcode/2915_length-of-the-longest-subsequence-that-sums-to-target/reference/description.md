@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of integers `nums`, and an integer `target`.
 
 Return *the **length of the longest subsequence** of* `nums` *that sums up to* `target`. *If no such subsequence exists, return* `-1`.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ A **subsequence** is an array that can be derived from another array by deleting
 - **Input:** `nums = [1,1,5,4,5], target = 3`
 - **Output:** `-1`
 - **Explanation:** It can be shown that nums has no subsequence that sums up to 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

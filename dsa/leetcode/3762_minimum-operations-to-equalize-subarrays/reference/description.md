@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -9,7 +9,8 @@ You are also given a 2D integer array `queries`, where each $\text{queries}[i] =
 For each query, find the **minimum** number of operations required to make **all** elements in the **subarray** $nums[l_{i}..r_{i}]$ **equal**. If it is impossible, the answer for that query is `-1`.
 
 Return an array `ans`, where $\text{ans}[i]$ is the answer for the $$i^{\text{th}}$$ query.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Let $n=\lvert\texttt{nums}\rvert$ and $q=\lvert\texttt{queries}\rvert$. Each que
 
 Return an array of $q$ integers containing the minimum operation count for each query, or `-1` wherever equalization is impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -134,7 +135,8 @@ One optimal set of operations:
 Thus, $ans = [-1, 0, 1]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 4 × 10^{4}$
 

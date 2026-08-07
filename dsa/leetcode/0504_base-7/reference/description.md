@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `num`, return *a string of its **base 7** representation*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,6 +17,7 @@ Given an integer `num`, return *a string of its **base 7** representation*.
 
 - **Input:** $num = -7$
 - **Output:** `"-10"`
-### Constraints
+
+### 4. Constraints
 
 - $-10^{7} \le num \le 10^{7}$

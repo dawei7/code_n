@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a 2D array `queries` where $\text{queries}[i] = [l_{i}, r_{i}, \text{val}_{i}]$.
 
@@ -11,12 +11,13 @@ Each $\text{queries}[i]$ represents the following action on `nums`:
 A **Zero Array** is an array with all its elements equal to 0.
 
 Return the **minimum** possible **non-negative** value of `k`, such that after processing the first `k` queries in **sequence**, `nums` becomes a **Zero Array**. If no such `k` exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ Return the **minimum** possible **non-negative** value of `k`, such that after p
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 0-indexed integer array `nums`. You are allowed to permute `nums` into a new array `perm` of your choosing.
 
 We define the **greatness** of `nums` be the number of indices $0 \le i < \text{nums.length}$ for which $\text{perm}[i] > \text{nums}[i]$.
 
 Return *the **maximum** possible greatness you can achieve after permuting* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ At indices = 0, 1, 3, and 4, perm[i] > nums[i]. Hence, we return 4.
 - **Output:** `3`
 - **Explanation:** We can prove the optimal perm is [2,3,4,1].
 At indices = 0, 1, and 2, perm[i] > nums[i]. Hence, we return 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return the **smallest** index `i` such that the sum of the digits of $\text{nums}[i]$ is equal to `i`.
 
 If no such index exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ If no such index exists, return `-1`.
 - Since no index satisfies the condition, the output is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

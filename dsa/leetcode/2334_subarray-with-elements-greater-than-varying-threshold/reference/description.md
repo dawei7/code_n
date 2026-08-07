@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `threshold`.
 
@@ -7,12 +7,13 @@ Find any subarray of `nums` of length `k` such that **every** element in the sub
 Return* the **size** of **any** such subarray*. If there is no such subarray, return `-1`.
 
 A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Note that this is the only valid subarray.
 Note that the subarray [6,5] has a size of 2, and every element is greater than 7 / 2 = 3.5.
 Similarly, the subarrays [6,5,6], [6,5,6,5], [6,5,6,5,8] also satisfy the given conditions.
 Therefore, 2, 3, 4, or 5 may also be returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

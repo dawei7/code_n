@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the following details of a matrix with `n` columns and `2` rows :
 
@@ -17,12 +17,13 @@ Return it as a 2-D integer array.
 If there are more than one valid solution, any of them will be accepted.
 
 If no valid solution exists, return an empty 2-D array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ If no valid solution exists, return an empty 2-D array.
 
 - **Input:** $upper = 5, lower = 5, colsum = [2,1,2,0,1,0,1,2,0,1]$
 - **Output:** `[[1,1,1,0,1,0,0,1,0,0],[1,0,1,0,0,0,1,1,0,1]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{colsum.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `start` where $start = [startX, startY]$ represents your initial position `(startX, startY)` in a 2D space. You are also given the array `target` where $target = [targetX, targetY]$ represents your target position `(targetX, targetY)`.
 
@@ -7,12 +7,13 @@ The **cost** of going from a position `(x1, y1)` to any other position in the sp
 There are also some **special roads**. You are given a 2D array `specialRoads` where $\text{specialRoads}[i] = [\text{x1}_{i}, \text{y1}_{i}, \text{x2}_{i}, \text{y2}_{i}, \text{cost}_{i}]$ indicates that the $$i^{\text{th}}$$ special road goes in **one direction** from $(\text{x1}_{i}, \text{y1}_{i})$ to $(\text{x2}_{i}, \text{y2}_{i})$ with a cost equal to $\text{cost}_{i}$. You can use each special road any number of times.
 
 Return the **minimum** cost required to go from `(startX, startY)` to `(targetX, targetY)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Note that the $\text{specialRoads}[0]$ is directed from (5,7) to (3,2).
 - (7,4) to (10,4) with a cost of |10 - 7| + |4 - 4| = 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{start.length} = \text{target.length} = 2$
 

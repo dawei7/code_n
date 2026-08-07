@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of length `n`, consisting of non-negative integers. For each index `i` from `0` to $n - 1$, you must determine the size of the **minimum sized** non-empty subarray of `nums` starting at `i` (**inclusive**) that has the **maximum** possible **bitwise OR**.
 
@@ -9,12 +9,13 @@ The bitwise OR of an array is the bitwise OR of all the numbers in it.
 Return *an integer array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the length of the **minimum** sized subarray starting at *`i`* with **maximum** bitwise OR.*
 
 A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Therefore, we return [3,3,2,2,1].
 **Starting at index 0, the shortest subarray that yields the maximum bitwise OR is of length 2.
 Starting at index 1, the shortest subarray that yields the maximum bitwise OR is of length 1.
 Therefore, we return [2,1].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

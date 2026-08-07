@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Let's define a function `countUniqueChars(s)` that returns the number of unique characters in `s`.
 
@@ -7,12 +7,13 @@ Let's define a function `countUniqueChars(s)` that returns the number of unique 
 Given a string `s`, return the sum of `countUniqueChars(t)` where `t` is a substring of `s`. The test cases are generated such that the answer fits in a 32-bit integer.
 
 Notice that some substrings can be repeated so in this case you have to count the repeated ones too.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Sum of lengths of all substring is 1 + 1 + 1 + 2 + 2 + 3 = 10
 
 - **Input:** `s = "LEETCODE"`
 - **Output:** `92`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

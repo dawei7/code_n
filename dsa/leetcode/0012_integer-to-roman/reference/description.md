@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Seven different symbols represent Roman numerals with the following values:
 
@@ -50,7 +50,8 @@ Roman numerals are formed by appending the conversions of decimal place values f
 - Only powers of 10 (`I`, `X`, `C`, `M`) can be appended consecutively at most 3 times to represent multiples of 10. You cannot append 5 (`V`), 50 (`L`), or 500 (`D`) multiple times. If you need to append a symbol 4 times use the **subtractive form**.
 
 Given an integer, convert it to a Roman numeral.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -60,7 +61,7 @@ Given an integer, convert it to a Roman numeral.
 
 Return the canonical Roman-numeral representation of `num`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -112,6 +113,7 @@ Note: 49 is not 1 (I) less of 50 (L) because the conversion is based on decimal 
 ```
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 3999$

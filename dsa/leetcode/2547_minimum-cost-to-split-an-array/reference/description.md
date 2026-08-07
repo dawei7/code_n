@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -15,12 +15,13 @@ The **importance value** of a subarray is $k + trimmed(subarray).length$.
 Return *the minimum possible cost of a split of *`nums`.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The cost of the split is 2 + 4 = 6. It can be shown that this is the minimum pos
 - **Explanation:** We split nums to have one subarray: [1,2,1,2,1].
 The importance value of [1,2,1,2,1] is 5 + (3 + 2) = 10.
 The cost of the split is 10. It can be shown that this is the minimum possible cost among all the possible splits.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

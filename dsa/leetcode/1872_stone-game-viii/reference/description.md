@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob take turns playing a game, with **Alice starting first**.
 
@@ -15,12 +15,13 @@ The game stops when **only** **one** stone is left in the row.
 The **score difference** between Alice and Bob is $(Alice's score - Bob's score)$. Alice's goal is to **maximize** the score difference, and Bob's goal is the **minimize** the score difference.
 
 Given an integer array `stones` of length `n` where $\text{stones}[i]$ represents the value of the $$i^{\text{th}}$$ stone **from the left**, return *the **score difference** between Alice and Bob if they both play **optimally**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The difference between their scores is 13 - 0 = 13.
 - Alice can only make one move, which is to remove both stones. She adds (-10) + (-12) = -22 to her
 score and places a stone of value -22 on the left. stones = [-22].
 The difference between their scores is (-22) - 0 = -22.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{stones.length}$
 

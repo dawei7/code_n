@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sessions`
 
@@ -22,11 +22,12 @@ Write a solution to find the number of **streaming** sessions for users whose **
 Return *the result table ordered by count of streaming sessions, * $\text{user}_{id}$* in **descending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

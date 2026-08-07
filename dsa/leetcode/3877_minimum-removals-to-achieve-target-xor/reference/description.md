@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `target`.
 
@@ -7,7 +7,8 @@ You may remove **any** number of elements from `nums` (possibly zero).
 Return the **minimum** number of removals required so that the **bitwise XOR** of the remaining elements equals `target`. If it is impossible to achieve `target`, return -1.
 
 The bitwise XOR of an empty array is 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Let $n=\lvert\texttt{nums}\rvert$ and let $b=14$, the number of bits needed to r
 
 Return the smallest number of removed indices whose complementary retained subset has XOR `target`. Return `-1` when no retained subset—including the empty subset—has that XOR.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ It is impossible to remove elements to achieve `target`. Thus, the answer is -1.
 The XOR of all elements is $\text{nums}[0] = 7$, which equals `target`. Thus, no removal is needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 40$
 

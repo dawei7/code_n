@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `image` where `0` represents a white pixel and `1` represents a black pixel.
 
@@ -7,7 +7,8 @@ The black pixels are connected (i.e., there is only one black region). Pixels ar
 Given two integers `x` and `y` that represents the location of one of the black pixels, return *the area of the smallest (axis-aligned) rectangle that encloses all black pixels*.
 
 You must write an algorithm with less than `O(mn)` runtime complexity
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ You must write an algorithm with less than `O(mn)` runtime complexity
 
 Return the area of the tightest axis-aligned rectangle enclosing all black pixels.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the area of the tightest axis-aligned rectangle enclosing all black pixel
 
 - **Input:** $image = [["1"]], x = 0, y = 0$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{image.length}$
 

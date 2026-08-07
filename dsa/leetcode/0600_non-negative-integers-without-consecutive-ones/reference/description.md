@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, return the number of the integers in the range `[0, n]` whose binary representations **do not** contain consecutive ones.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Among them, only integer 3 disobeys the rule (two consecutive ones) and the othe
 
 - **Input:** $n = 2$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

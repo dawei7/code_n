@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given a string `str`, return parsed JSON `parsedStr`. You may assume the `str` is a valid JSON string hence it only includes strings, numbers, arrays, objects, booleans, and null. `str` will not include invisible characters and escape characters.
 
 Please solve it without using the built-in `JSON.parse` method.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Please solve it without using the built-in `JSON.parse` method.
 - **Input:** $str = '[1,5,"false",{"a":2}]'$
 - **Output:** `[1,5,"false",{"a":2}]`
 - **Explanation:** Returns the array represented by the JSON string.
-### Constraints
+
+### 4. Constraints
 
 - `str` is a valid JSON string
 

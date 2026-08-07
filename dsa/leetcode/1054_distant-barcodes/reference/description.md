@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 In a warehouse, there is a row of barcodes, where the $$i^{\text{th}}$$ barcode is $\text{barcodes}[i]$.
 
 Rearrange the barcodes so that no two adjacent barcodes are equal. You may return any answer, and it is guaranteed an answer exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Rearrange the barcodes so that no two adjacent barcodes are equal. You may retur
 
 - **Input:** $barcodes = [1,1,1,1,2,2,3,3]$
 - **Output:** `[1,3,1,3,1,2,1,2]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{barcodes.length} \le 10000$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer matrix `grid` of size $n * n$ with values in the range $[1, n^{2}]$. Each integer appears **exactly once** except `a` which appears **twice** and `b` which is **missing**. The task is to find the repeating and missing numbers `a` and `b`.
 
 Return *a **0-indexed **integer array *`ans`* of size *`2`* where *$\text{ans}[0]$* equals to *`a`* and *$\text{ans}[1]$* equals to *`b`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Return *a **0-indexed **integer array *`ans`* of size *`2`* where *$\text{ans}[0
 - **Input:** `grid = [[9,1,7],[8,9,2],[3,4,6]]`
 - **Output:** `[9,5]`
 - **Explanation:** Number 9 is repeated and number 5 is missing so the answer is [9,5].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{grid.length} = \text{grid}[i].length \le 50$
 

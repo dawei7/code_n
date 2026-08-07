@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `pizzas` of size `n`, where $\text{pizzas}[i]$ represents the weight of the $$i^{\text{th}}$$ pizza. Every day, you eat **exactly** 4 pizzas. Due to your incredible metabolism, when you eat pizzas of weights `W`, `X`, `Y`, and `Z`, where $W \le X \le Y \le Z$, you gain the weight of only 1 pizza!
 
@@ -8,13 +8,16 @@ You are given an integer array `pizzas` of size `n`, where $\text{pizzas}[i]$ re
 
 Find the **maximum** total weight you can gain by eating **all** pizzas optimally.
 
-**Note**: It is guaranteed that `n` is a multiple of 4, and each pizza can be eaten only once.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: It is guaranteed that `n` is a multiple of 4, and each pizza can be eaten only once.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ The total weight gained after eating all the pizzas is $8 + 6 = 14$.
 The total weight gained after eating all the pizzas is $2 + 1 = 3.$
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $4 \le n = \text{pizzas.length} \le 2 * 10^{5}$
 

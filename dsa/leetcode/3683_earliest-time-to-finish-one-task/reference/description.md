@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `tasks` where $\text{tasks}[i] = [s_{i}, t_{i}]$.
 
 Each $[s_{i}, t_{i}]$ in `tasks` represents a task with start time $s_{i}$ that takes $t_{i}$ units of time to finish.
 
 Return the earliest time at which at least one task is finished.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The first task starts at time $t = 1$ and finishes at time $1 + 6 = 7$. The seco
 All three tasks finish at time $100 + 100 = 200$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tasks.length} \le 100$
 

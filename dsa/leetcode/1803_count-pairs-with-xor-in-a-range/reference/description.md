@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **(0-indexed)** integer array `nums` and two integers `low` and `high`, return *the number of **nice pairs***.
 
 A **nice pair** is a pair `(i, j)` where $0 \le i < j < \text{nums.length}$ and $low \le (\text{nums}[i] XOR \text{nums}[j]) \le high$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ A **nice pair** is a pair `(i, j)` where $0 \le i < j < \text{nums.length}$ and 
 - (1, 4): nums[1] XOR nums[4] = 9
 - (2, 3): nums[2] XOR nums[3] = 6
 - (2, 4): nums[2] XOR nums[4] = 5
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

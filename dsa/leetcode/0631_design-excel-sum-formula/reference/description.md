@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design the basic function of **Excel** and implement the function of the sum formula.
 
@@ -25,10 +25,7 @@ Implement the `Excel` class:
 
 	</li>
 
-**Note:** You could assume that there will not be any circular sum reference.
-
-- For example, $\text{mat}[1]['A'] = sum(1, "B")$ and $\text{mat}[1]['B'] = sum(1, "A")$.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -49,7 +46,13 @@ Implement the `Excel` class:
 
 The app-local operation trace returns `null` for construction and `set`, and returns the requested integer for every `get` and `sum` call.
 
-### Examples
+### 3. Note
+
+You could assume that there will not be any circular sum reference.
+
+- For example, $\text{mat}[1]['A'] = sum(1, "B")$ and $\text{mat}[1]['B'] = sum(1, "A")$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -87,7 +90,8 @@ excel.set(2, "B", 2);
  // 3 0 0 6
 excel.get(3, "C"); // return 6
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le height \le 26$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a binary tree `root` and an integer `target`, delete all the **leaf nodes** with value `target`.
 
 Note that once you delete a leaf node with value `target`**, **if its parent node becomes a leaf node and has the value `target`, it should also be deleted (you need to continue doing that until you cannot).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ After removing, new nodes become leaf nodes with value (target = 2) (Picture in 
 - **Input:** `root = [1,2,null,2,null,2], target = 2`
 - **Output:** `[1]`
 - **Explanation:** Leaf nodes in green with value (target = 2) are removed at each step.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 3000]`.
 

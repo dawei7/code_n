@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` that consists of the digits `'1'` to `'9'` and two integers `k` and `minLength`.
 
@@ -13,12 +13,13 @@ A partition of `s` is called **beautiful** if:
 Return* the number of **beautiful** partitions of *`s`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** `s = "3312958", k = 3, minLength = 1`
 - **Output:** `1`
 - **Explanation:** There exists one way to create a beautiful partition: "331 | 29 | 58".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k, minLength \le \text{s.length} \le 1000$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` different online courses numbered from `1` to `n`. You are given an array `courses` where $\text{courses}[i] = [\text{duration}_{i}, \text{lastDay}_{i}]$ indicate that the $$i^{\text{th}}$$ course should be taken **continuously** for $\text{duration}_{i}$ days and must be finished before or on $\text{lastDay}_{i}$.
 
 You will start on the $1^st$ day and you cannot take two or more courses simultaneously.
 
 Return *the maximum number of courses that you can take*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The 4^th course cannot be taken now, since you will finish it on the 3300^th day
 
 - **Input:** $courses = [[3,2],[4,3]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{courses.length} \le 10^{4}$
 

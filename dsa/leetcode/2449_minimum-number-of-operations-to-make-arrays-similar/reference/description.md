@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two positive integer arrays `nums` and `target`, of the same length.
 
@@ -11,12 +11,13 @@ In one operation, you can choose any two **distinct** indices `i` and `j` where 
 Two arrays are considered to be **similar** if the frequency of each element is the same.
 
 Return *the minimum number of operations required to make *`nums`* similar to *`target`. The test cases are generated such that `nums` can always be similar to `target`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ It can be shown that 2 is the minimum number of operations needed.
 - **Input:** `nums = [1,1,1,1,1], target = [1,1,1,1,1]`
 - **Output:** `0`
 - **Explanation:** The array nums is already similiar to target.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length} = \text{target.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a function that takes an object `obj` and returns a new **immutable** version of this object.
 
@@ -15,11 +15,12 @@ There are three types of error messages that can be produced from this new objec
 `obj` is a valid JSON object or array, meaning it is the output of `JSON.parse()`.
 
 Note that a string literal should be thrown, not an `Error`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ return Object.keys(obj);
 }
 - **Output:** `{"value": ["x", "y"], "error": null}`
 - **Explanation:** No mutations were attempted so the function returns as normal.
-### Constraints
+
+### 4. Constraints
 
 - `obj` is a valid JSON object or array
 

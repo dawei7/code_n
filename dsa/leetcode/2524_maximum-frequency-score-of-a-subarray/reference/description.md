@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and a **positive** integer `k`.
 
@@ -9,11 +9,12 @@ The **frequency score** of an array is the sum of the **distinct** values in the
 Return *the **maximum** frequency score of a **subarray** of size *`k`* in *`nums`. You should maximize the value under the modulo and not the actual value.
 
 A **subarray** is a contiguous part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A **subarray** is a contiguous part of an array.
 - **Input:** `nums = [1,1,1,1,1,1], k = 4`
 - **Output:** `1`
 - **Explanation:** All the subarrays of length 4 have a frequency score equal to 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **wiggle sequence** is a sequence where the differences between successive numbers strictly alternate between positive and negative. The first difference (if one exists) may be either positive or negative. A sequence with one element and a sequence with two non-equal elements are trivially wiggle sequences.
 
@@ -9,7 +9,8 @@ A **wiggle sequence** is a sequence where the differences between successive num
 A **subsequence** is obtained by deleting some elements (possibly zero) from the original sequence, leaving the remaining elements in their original order.
 
 Given an integer array `nums`, return *the length of the longest **wiggle subsequence** of *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Given an integer array `nums`, return *the length of the longest **wiggle subseq
 
 Return the length of the longest subsequence whose nonzero adjacent differences alternate between positive and negative.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ One is [1, 17, 10, 13, 10, 16, 8] with differences (16, -7, 3, -3, 6, -8).
 
 - **Input:** `nums = [1,2,3,4,5,6,7,8,9]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

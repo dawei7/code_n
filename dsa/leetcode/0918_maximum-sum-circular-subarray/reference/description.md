@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a **circular integer array** `nums` of length `n`, return *the maximum possible sum of a non-empty **subarray** of *`nums`.
 
 A **circular array** means the end of the array connects to the beginning of the array. Formally, the next element of $\text{nums}[i]$ is $nums[(i + 1) \% n]$ and the previous element of $\text{nums}[i]$ is $nums[(i - 1 + n) \% n]$.
 
 A **subarray** may only include each element of the fixed buffer `nums` at most once. Formally, for a subarray $\text{nums}[i], nums[i + 1], ..., \text{nums}[j]$, there does not exist $i \le k1$, $k2 \le j$ with $k1 \% n = k2 \% n$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ A **subarray** may only include each element of the fixed buffer `nums` at most 
 - **Input:** `nums = [-3,-2,-3]`
 - **Output:** `-2`
 - **Explanation:** Subarray [-2] has maximum sum -2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

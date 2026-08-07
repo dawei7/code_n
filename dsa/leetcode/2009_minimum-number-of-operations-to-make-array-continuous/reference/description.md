@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. In one operation, you can replace **any** element in `nums` with **any** integer.
 
@@ -11,12 +11,13 @@ You are given an integer array `nums`. In one operation, you can replace **any**
 For example, `nums = [4, 2, 5, 3]` is **continuous**, but `nums = [1, 2, 3, 5, 6]` is **not continuous**.
 
 Return *the **minimum** number of operations to make *`nums`* ****continuous***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The resulting array is [1,2,3,5,4], which is continuous.
 - Change the third element to 3.
 - Change the fourth element to 4.
 The resulting array is [1,2,3,4], which is continuous.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

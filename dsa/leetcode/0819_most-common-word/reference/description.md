@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 Given a string `paragraph` and a string array of the banned words `banned`, return *the most frequent word that is not banned*. It is **guaranteed** there is **at least one word** that is not banned, and that the answer is **unique**.
 
 The words in `paragraph` are **case-insensitive** and the answer should be returned in **lowercase**.
 
-**Note** that words can not contain punctuation symbols.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that words can not contain punctuation symbols.
+
+### 4. Examples
 
 #### Example 1
 
@@ -26,7 +29,8 @@ and that "hit" isn't the answer even though it occurs more because it is banned.
 
 - **Input:** $paragraph = "a.", banned = []$
 - **Output:** `"a"`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{paragraph.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `bulbs` of integers between 1 and 100.
 
@@ -11,7 +11,8 @@ For each element $\text{bulbs}[i]$ in the array `bulbs`:
 - Otherwise, switch it off.
 
 Return the list of integers denoting the light bulbs that are on in the end, **sorted** in **ascending** order. If no bulb is on, return an empty list.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ All bulbs begin off, and each occurrence reverses exactly one bulb's state. Cons
 
 Return every $b$ with odd $C(b)$ in ascending numeric order. If no such bulb exists, return `[]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Return every $b$ with odd $C(b)$ in ascending numeric order. If no such bulb exi
 - In the end, no light bulb is on.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{bulbs.length} \le 100$
 

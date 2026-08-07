@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `HallEvents`
 
@@ -19,11 +19,12 @@ Write a solution to merge all the overlapping events that are held **in the same
 Return the result table **in any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

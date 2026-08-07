@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a **non-negative** integer `num`, return `true`* if *`num`* can be expressed as the sum of any **non-negative** integer and its reverse, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Given a **non-negative** integer `num`, return `true`* if *`num`* can be express
 - **Input:** $num = 181$
 - **Output:** `true`
 - **Explanation:** 140 + 041 = 181 so we return true. Note that when a number is reversed, there may be leading zeros.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 10^{5}$

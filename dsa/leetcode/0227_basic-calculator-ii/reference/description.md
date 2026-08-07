@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` which represents an expression, *evaluate this expression and return its value*.
 
@@ -6,8 +6,7 @@ The integer division should truncate toward zero.
 
 You may assume that the given expression is always valid. All intermediate results will be in the range of $[-2^{31}, 2^{31} - 1]$.
 
-**Note:** You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +16,11 @@ You may assume that the given expression is always valid. All intermediate resul
 
 Return the expression's integer result, with division truncated toward zero.
 
-### Examples
+### 3. Note
+
+You are not allowed to use any built-in function which evaluates strings as mathematical expressions, such as `eval()`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -31,7 +34,8 @@ Return the expression's integer result, with division truncated toward zero.
 
 - **Input:** `s = " 3+5 / 2 "`
 - **Output:** `5`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 3 * 10^{5}$
 

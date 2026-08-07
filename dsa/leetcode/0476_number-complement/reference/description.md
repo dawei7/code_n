@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 The **complement** of an integer is the integer you get when you flip all the `0`'s to `1`'s and all the `1`'s to `0`'s in its binary representation.
 
 - For example, The integer `5` is `"101"` in binary and its **complement** is `"010"` which is the integer `2`.
 
 Given an integer `num`, return *its complement*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Given an integer `num`, return *its complement*.
 
 Do not complement implicit leading zeroes or apply a fixed signed-integer width.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,8 +30,11 @@ Do not complement implicit leading zeroes or apply a fixed signed-integer width.
 - **Input:** $num = 1$
 - **Output:** `0`
 - **Explanation:** The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num < 2^{31}$
 
-**Note:** This question is the same as 1009: <a href="https://leetcode.com/problems/complement-of-base-10-integer/" target="_blank">https://leetcode.com/problems/complement-of-base-10-integer/</a>
+### 5. Note
+
+This question is the same as 1009: <a href="https://leetcode.com/problems/complement-of-base-10-integer/" target="_blank">https://leetcode.com/problems/complement-of-base-10-integer/</a>

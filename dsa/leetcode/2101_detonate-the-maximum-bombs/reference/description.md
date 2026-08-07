@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a list of bombs. The **range** of a bomb is defined as the area where its effect can be felt. This area is in the shape of a **circle** with the center as the location of the bomb.
 
@@ -7,12 +7,13 @@ The bombs are represented by a **0-indexed** 2D integer array `bombs` where $\te
 You may choose to detonate a **single** bomb. When a bomb is detonated, it will detonate **all bombs** that lie in its range. These bombs will further detonate the bombs that lie in their ranges.
 
 Given the list of `bombs`, return *the **maximum** number of bombs that can be detonated if you are allowed to detonate **only one** bomb*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The best bomb to detonate is bomb 0 because:
 - Bomb 2 detonates bomb 3. The blue circle denotes the range of bomb 2.
 - Bomb 3 detonates bomb 4. The green circle denotes the range of bomb 3.
 Thus all 5 bombs are detonated.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{bombs.length} \le 100$
 

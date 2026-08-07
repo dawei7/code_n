@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Suppose you have `n` integers labeled `1` through `n`. A permutation of those `n` integers `perm` (**1-indexed**) is considered a **beautiful arrangement** if for every `i` ($1 \le i \le n$), **either** of the following is true:
 
@@ -7,12 +7,13 @@ Suppose you have `n` integers labeled `1` through `n`. A permutation of those `n
 - `i` is divisible by $\text{perm}[i]$.
 
 Given an integer `n`, return *the **number** of the **beautiful arrangements** that you can construct*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ The second beautiful arrangement is [2,1]:
 
 - **Input:** $n = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 15$

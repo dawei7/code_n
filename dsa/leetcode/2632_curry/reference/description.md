@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a function `fn`, return a **curried** version of that function.
 
 A **curried** function is a function that accepts fewer or an equal number of parameters as the original function and returns either another **curried** function or the same value the original function would have returned.
 
 In practical terms, if you called the original function like `sum(1,2,3)`, you would call the **curried** version like `csum(1)(2)(3), `csum(1)(2,3)`, `csum(1,2)(3)`, or `csum(1,2,3)`. All these methods of calling the **curried** function should return the same value as the original.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ In practical terms, if you called the original function like `sum(1,2,3)`, you w
 
 Return a curried function that collects arguments over multiple calls and evaluates `fn` with all collected arguments once `fn.length` arguments have been accumulated.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ inputs = [[]]
 - **Explanation:**
 currying a function that accepts zero parameters should effectively do nothing.
 curriedLife() === 42
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{inputs.length} \le 1000$
 

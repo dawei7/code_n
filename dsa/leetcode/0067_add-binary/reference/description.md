@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two binary strings `a` and `b`, return *their sum as a binary string*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two binary strings `a` and `b`, return *their sum as a binary string*.
 
 Return the exact sum of `a` and `b` in binary string form.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return the exact sum of `a` and `b` in binary string form.
 
 - **Input:** $a = "1010", b = "1011"$
 - **Output:** `"10101"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{a.length}, \text{b.length} \le 10^{4}$
 

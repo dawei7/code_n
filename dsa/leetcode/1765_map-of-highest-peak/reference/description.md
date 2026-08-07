@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer matrix `isWater` of size `m x n` that represents a map of **land** and **water** cells.
 
@@ -17,12 +17,13 @@ You must assign each cell a height in a way that follows these rules:
 Find an assignment of heights such that the maximum height in the matrix is **maximized**.
 
 Return *an integer matrix *`height`* of size *`m x n`* where *$\text{height}[i][j]$* is cell *`(i, j)`*'s height. If there are multiple solutions, return **any** of them*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The blue cell is the water cell, and the green cells are the land cells.
 - **Output:** `[[1,1,0],[0,1,1],[1,2,2]]`
 - **Explanation:** A height of 2 is the maximum possible height of any assignment.
 Any height assignment that has a maximum height of 2 while still meeting the rules will also be accepted.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{isWater.length}$
 
@@ -60,4 +62,6 @@ Any height assignment that has a maximum height of 2 while still meeting the rul
 
 - There is at least **one** water cell.
 
-**Note:** This question is the same as 542: <a href="https://leetcode.com/problems/01-matrix/description/" target="_blank">https://leetcode.com/problems/01-matrix/</a>
+### 5. Note
+
+This question is the same as 542: <a href="https://leetcode.com/problems/01-matrix/description/" target="_blank">https://leetcode.com/problems/01-matrix/</a>

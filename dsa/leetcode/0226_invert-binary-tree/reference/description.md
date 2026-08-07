@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, invert the tree, and return *its root*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `root` of a binary tree, invert the tree, and return *its root*.
 
 Return the root after exchanging the left and right subtrees at every node.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the root after exchanging the left and right subtrees at every node.
 
 - **Input:** `root = []`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[0, 100]`.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -22,7 +22,8 @@ The indirect relation between managers **will not exceed three managers** as the
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -34,7 +35,7 @@ Manager relationships may form a hierarchy rooted at employee `1` or a separate 
 
 Return a one-column table named $\text{employee}_{id}$. It must contain each non-head employee whose direct-manager chain reaches employee `1`, whether immediately or indirectly. Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

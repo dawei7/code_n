@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `ranks` representing the **ranks** of some mechanics. ranks_i is the rank of the $i^{\text{th}}$ mechanic. A mechanic with a rank `r` can repair n cars in $r * n^{2}$ minutes.
 
@@ -6,13 +6,16 @@ You are also given an integer `cars` representing the total number of cars waiti
 
 Return *the **minimum** time taken to repair all the cars.*
 
-**Note:** All the mechanics can repair the cars simultaneously.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+All the mechanics can repair the cars simultaneously.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ It can be proved that the cars cannot be repaired in less than 16 minutes.​​
 - The second mechanic will repair four cars. The time required is 1 * 4 * 4 = 16 minutes.
 - The third mechanic will repair one car. The time required is 8 * 1 * 1 = 8 minutes.
 It can be proved that the cars cannot be repaired in less than 16 minutes.​​​​​
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{ranks.length} \le 10^{5}$
 

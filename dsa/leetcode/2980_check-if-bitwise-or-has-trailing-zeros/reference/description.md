@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums`.
 
@@ -7,12 +7,13 @@ You have to check if it is possible to select **two or more** elements in the ar
 For example, the binary representation of `5`, which is `"101"`, does not have any trailing zeros, whereas the binary representation of `4`, which is `"100"`, has two trailing zeros.
 
 Return `true` *if it is possible to select two or more elements whose bitwise* `OR` *has trailing zeros, return* `false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Other possible ways to select elements to have trailing zeroes in the binary rep
 - **Input:** `nums = [1,3,5,7,9]`
 - **Output:** `false`
 - **Explanation:** There is no possible way to select two or more elements to have trailing zeros in the binary representation of their bitwise OR.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

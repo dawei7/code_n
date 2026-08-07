@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and a digit `x`.
 
@@ -9,7 +9,8 @@ A number is considered **valid** if:
 - It **does not start** with digit `x`.
 
 Return `true` if `n` is **valid**, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ The decimal representation has no leading zeros. In particular, the representati
 
 Return `true` when the decimal representation of `n` contains `x` at least once and its first digit is not `x`. Return `false` in every other case.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ The number starts with 2, which violates the condition. Thus, the answer is `fal
 The number does not contain digit 1. Thus, the answer is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{5}​​​​​​​$
 

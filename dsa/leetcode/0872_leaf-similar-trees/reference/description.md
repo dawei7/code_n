@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a **leaf value sequence***.*
 
@@ -9,12 +9,13 @@ For example, in the given tree above, the leaf value sequence is `(6, 7, 4, 9, 8
 Two binary trees are considered *leaf-similar* if their leaf value sequence is the same.
 
 Return `true` if and only if the two given trees with head nodes `root1` and `root2` are leaf-similar.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return `true` if and only if the two given trees with head nodes `root1` and `ro
 
 - **Input:** $root1 = [1,2,3], root2 = [1,3,2]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in each tree will be in the range `[1, 200]`.
 

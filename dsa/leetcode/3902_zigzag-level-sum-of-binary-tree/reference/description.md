@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary tree**.
 
@@ -17,7 +17,8 @@ While traversing a level in the specified direction, process nodes in order and 
 Only the nodes processed before this stopping condition contribute to the level sum.
 
 Return an integer array `ans` where $\text{ans}[i]$ is the **sum** of the node values that are processed at level $i + 1$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ For each complete tree level, use left-to-right node order when its one-based le
 
 Return the level sums from the root level through the deepest level. A level contributes `0` when its first inspected node already lacks the required child.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the level sums from the root level through the deepest level. A level con
 - Thus, $ans = [1, 5, 0]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

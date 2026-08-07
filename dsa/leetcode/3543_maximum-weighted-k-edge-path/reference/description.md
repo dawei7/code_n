@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and a **Directed Acyclic Graph (DAG)** with `n` nodes labeled from 0 to $n - 1$. This is represented by a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates a directed edge from node $u_{i}$ to $v_{i}$ with weight $w_{i}$.
 
@@ -11,12 +11,13 @@ Your task is to determine the **maximum** possible sum of edge weights for any p
 - The total sum of edge weights in the path is **strictly** less than `t`.
 
 Return the **maximum** possible sum of weights for such a path. If no such path exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return the **maximum** possible sum of weights for such a path. If no such path 
 - Since there is no path with sum of weights strictly less than `t`, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 300$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return the $$n^{\text{th}}$$ digit of the infinite integer sequence `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ...]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `n`, return the $$n^{\text{th}}$$ digit of the infinite integer
 
 Return the decimal digit occupying position `n` as an integer from `0` through `9`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Return the decimal digit occupying position `n` as an integer from `0` through `
 - **Input:** $n = 11$
 - **Output:** `0`
 - **Explanation:** The 11^th digit of the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, ... is a 0, which is part of the number 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$

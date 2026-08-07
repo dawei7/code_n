@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected tree with `n` nodes labeled from `0` to $n - 1$, rooted at node `0`. You are given a 2D integer array `edges` of length $n - 1$ where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -24,12 +24,13 @@ The game goes on as follows:
 - If Alice reaches a leaf node, she stops moving. Similarly, if Bob reaches node `0`, he stops moving. Note that these events are **independent** of each other.
 
 Return* the **maximum** net income Alice can have if she travels towards the optimal leaf node.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ It is not possible for Alice to get a higher net income.
 - **Explanation:**
 Alice follows the path 0->1 whereas Bob follows the path 1->0.
 Thus, Alice opens the gate at node 0 only. Hence, her net income is -7280.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

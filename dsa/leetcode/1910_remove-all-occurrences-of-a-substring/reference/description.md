@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `part`, perform the following operation on `s` until **all** occurrences of the substring `part` are removed:
 
@@ -7,12 +7,13 @@ Given two strings `s` and `part`, perform the following operation on `s` until *
 Return `s`* after removing all occurrences of *`part`.
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Now s has no occurrences of "abc".
 - s = "ax**<u>xy</u>**yb", remove "xy" starting at index 2 so s = "axyb".
 - s = "a**<u>xy</u>**b", remove "xy" starting at index 1 so s = "ab".
 Now s has no occurrences of "xy".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

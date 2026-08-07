@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Each character of the English alphabet has been mapped to a digit as shown below.
 
@@ -9,11 +9,12 @@ A string is **divisible** if the sum of the mapped values of its characters is d
 Given a string `s`, return *the number of **divisible substrings** of* `s`.
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -114,7 +115,8 @@ It can be shown that there are no other substrings of word that are divisible.
 - **Output:** `6`
 - **Explanation:** The 6 divisible substrings are: "a", "b", "c", "d", "ab", "cd".
 It can be shown that there are no other substrings of word that are divisible.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 2000$
 

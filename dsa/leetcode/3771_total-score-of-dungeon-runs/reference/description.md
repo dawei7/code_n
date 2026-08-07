@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `hp` and two **positive** **1-indexed** integer arrays `damage` and `requirement`.
 
@@ -8,8 +8,7 @@ Let `score(j)` be the number of **points** you get if you start with `hp` health
 
 Return the integer $score(1) + score(2) + ... + score(n)$, the sum of scores over all starting rooms.
 
-**Note**: You cannot skip rooms. You can finish your journey even if your health points become non-positive.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +22,11 @@ The two arrays have the same nonzero length $N$. Each run resets health to `hp`,
 
 Return the sum of the points earned over all $N$ starting positions. A single room can contribute to several runs, and the total may require a 64-bit integer in fixed-width languages.
 
-### Examples
+### 3. Note
+
+: You cannot skip rooms. You can finish your journey even if your health points become non-positive.
+
+### 4. Examples
 
 #### Example 1
 
@@ -73,7 +76,8 @@ $score(2) = 1$ because you get 1 point if you start from room 2.
 - Enter room 2. Your health points are now $2 - 1 = 1$. You get 1 point because $1 \ge 1$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le hp \le 10^{9}$
 

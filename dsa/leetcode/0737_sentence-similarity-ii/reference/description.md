@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We can represent a sentence as an array of words, for example, the sentence `"I am happy with leetcode"` can be represented as `arr = ["I","am",happy","with","leetcode"]`.
 
@@ -13,7 +13,8 @@ Two sentences are similar if:
 - $\text{sentence1}[i]$ and $\text{sentence2}[i]$ are similar.
 
 Notice that a word is always similar to itself, also notice that the similarity relation is transitive. For example, if the words `a` and `b` are similar, and the words `b` and `c` are similar, then `a` and `c` are **similar**.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(sentence1: \text{list}[str], sentence2: \text{list}[str], similarPairs: list[\text{list}[str]]) -> bool$
 
@@ -29,7 +30,7 @@ Let $n$ be the common sentence length when the two lengths match, let $p = \lver
 
 Return `True` exactly when the sentences have the same length and every pair of words at a matching position is either identical or belongs to the same similarity group. Otherwise, return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Since "leetcode is similar to "onepiece" and the first two words are the same, t
 - **Input:** $sentence1 = ["I","love","leetcode"], sentence2 = ["I","love","onepiece"], similarPairs = [["manga","hunterXhunter"],["platform","anime"],["leetcode","platform"],["anime","manga"]]$
 - **Output:** `false`
 - **Explanation:** "leetcode" is not similar to "onepiece".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence1.length}, \text{sentence2.length} \le 1000$
 

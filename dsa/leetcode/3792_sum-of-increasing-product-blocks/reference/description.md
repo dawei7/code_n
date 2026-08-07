@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -13,7 +13,8 @@ A sequence is formed as follows:
 Let `F(n)` be the sum of the first `n` blocks.
 
 Return an integer denoting `F(n)` **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Block $i$ contains exactly $i$ values. Across the first `n` blocks, the integers
 
 Return the sum of the first `n` block products, reduced modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,6 +72,7 @@ $F(3) = 1 + 6 + 120 = 127$
 $F(7) = 6006997207 \% (10^{9} + 7) = 6997165$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

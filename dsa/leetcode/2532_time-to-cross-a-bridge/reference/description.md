@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `k` workers who want to move `n` boxes from the right (old) warehouse to the left (new) warehouse. You are given the two integers `n` and `k`, and a 2D integer array `time` of size `k x 4` where $\text{time}[i] = [\text{right}_{i}, \text{pick}_{i}, \text{left}_{i}, \text{put}_{i}]$.
 
@@ -27,12 +27,13 @@ The following rules regulate the movement of the workers through the bridge:
 - If enough workers have already been dispatched from the left side to pick up all the remaining boxes, **no more** workers will be sent from the left side.
 
 Return the **elapsed minutes** at which the last box reaches the **left side of the bridge**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ The whole process ends after 7 minutes. We return 6 because the problem asks for
 The last box reaches the left side at 37 seconds. Notice, how we **do not** put the last boxes down, as that would take more time, and they are already on the left with the workers.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, k \le 10^{4}$
 

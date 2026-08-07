@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. A pair of indices `(i, j)` is a **bad pair** if `i < j` and $j - i \neq \text{nums}[j] - \text{nums}[i]$.
 
 Return* the total number of **bad pairs** in *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ There are a total of 5 bad pairs, so we return 5.
 - **Input:** `nums = [1,2,3,4,5]`
 - **Output:** `0`
 - **Explanation:** There are no bad pairs.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

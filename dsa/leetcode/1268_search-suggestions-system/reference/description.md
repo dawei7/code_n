@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `products` and a string `searchWord`.
 
 Design a system that suggests at most three product names from `products` after each character of `searchWord` is typed. Suggested products should have common prefix with `searchWord`. If there are more than three products with a common prefix return the three lexicographically minimums products.
 
 Return *a list of lists of the suggested products after each character of *`searchWord`* is typed*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ After typing mou, mous and mouse the system suggests ["mouse","mousepad"].
 - **Input:** $products = ["havana"], searchWord = "havana"$
 - **Output:** `[["havana"],["havana"],["havana"],["havana"],["havana"],["havana"]]`
 - **Explanation:** The only word "havana" will be always suggested while typing the search word.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{products.length} \le 1000$
 

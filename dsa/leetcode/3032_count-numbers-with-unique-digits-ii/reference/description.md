@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given two **positive** integers `a` and `b`, return *the count of numbers having **unique** digits in the range* `[a, b]` *(**inclusive**).*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Given two **positive** integers `a` and `b`, return *the count of numbers having
 - **Input:** $a = 80, b = 120$
 - **Output:** `27`
 - **Explanation:** There are 41 numbers in the range [80, 120], 27 of which have unique digits.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le a \le b \le 1000$

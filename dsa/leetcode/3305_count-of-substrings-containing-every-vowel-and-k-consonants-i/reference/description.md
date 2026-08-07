@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `word` and a **non-negative** integer `k`.
 
 Return the total number of substrings of `word` that contain every vowel (`'a'`, `'e'`, `'i'`, `'o'`, and `'u'`) **at least** once and **exactly** `k` consonants.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The substrings with every vowel and one consonant are:
 - `word[7..12]`, which is `"ieaouq"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $5 \le \text{word.length} \le 250$
 

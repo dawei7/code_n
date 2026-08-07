@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Person`
 
@@ -34,7 +34,8 @@ Write a solution to report the first name, last name, city, and state of each pe
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -44,7 +45,7 @@ The result format is in the following example.
 
 Return a table with columns `firstName`, `lastName`, `city`, and `state`, preserving every person and using null location values when no address matches.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, you are allowed to perform the following operation any number of times:
 
 - Remove a **strictly increasing** subsequence from the array.
 
 Your task is to find the **minimum** number of operations required to make the array **empty**.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ We remove subsequences `[1, 2]`, `[3, 4]`, `[5]`.
 **Output:** 5
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

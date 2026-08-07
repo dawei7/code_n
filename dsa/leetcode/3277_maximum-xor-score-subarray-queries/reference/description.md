@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of `n` integers, and a 2D integer array `queries` of size `q`, where $\text{queries}[i] = [l_{i}, r_{i}]$.
 
@@ -11,12 +11,13 @@ The **XOR score** of an array `a` is found by repeatedly applying the following 
 - Remove the last element of `a`.
 
 Return an array `answer` of size `q` where $\text{answer}[i]$ is the answer to query `i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ In the third query, the subarray of `nums[0..5]` with the largest XOR score is `
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 2000$
 

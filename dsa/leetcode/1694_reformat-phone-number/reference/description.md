@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a phone number as a string `number`. `number` consists of digits, spaces `' '`, and/or dashes `'-'`.
 
@@ -13,12 +13,13 @@ You would like to reformat the phone number in a certain manner. Firstly, **remo
 The blocks are then joined by dashes. Notice that the reformatting process should **never** produce any blocks of length 1 and produce **at most** two blocks of length 2.
 
 Return *the phone number after formatting.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Step 1: The 1st block is "123".
 Step 2: The 2nd block is "456".
 Step 3: There are 2 digits left, so put them in a single block of length 2. The 3rd block is "78".
 Joining the blocks gives "123-456-78".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{number.length} \le 100$
 

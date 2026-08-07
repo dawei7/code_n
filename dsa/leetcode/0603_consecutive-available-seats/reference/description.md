@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Cinema`
 
@@ -20,7 +20,8 @@ Return the result table **ordered** by $\text{seat}_{id}$ **in ascending order**
 The test cases are generated so that more than two seats are consecutively available.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -30,7 +31,7 @@ $Cinema(\text{seat}_{id}, free)$ contains the seat availability rows. Let $n$ be
 
 Return a one-column table containing each free $\text{seat}_{id}$ that has a free seat at $\text{seat}_{id} - 1$ or $\text{seat}_{id} + 1$. Sort the result by $\text{seat}_{id}$ in ascending order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

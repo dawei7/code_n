@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `m` which represent the size of a **1-indexed **grid. You are also given an integer `k`, a **1-indexed** integer array `source` and a **1-indexed** integer array `dest`, where `source` and `dest` are in the form `[x, y]` representing a cell on the given grid.
 
@@ -11,11 +11,12 @@ You can move through the grid in the following way:
 Return *the number of ways you can reach* `dest` *from* `source` *by moving through the grid* **exactly** `k` *times.*
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 - [1,2] -> [2,2] -> [2,4] -> [2,3]
 - [1,2] -> [3,2] -> [2,2] -> [2,3]
 - [1,2] -> [3,2] -> [3,3] -> [2,3]
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n, m \le 10^{9}$
 

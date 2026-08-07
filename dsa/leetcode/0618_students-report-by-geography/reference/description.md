@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Student`
 
@@ -20,7 +20,8 @@ Write a solution to <a href="https://en.wikipedia.org/wiki/Pivot_table" target="
 The test cases are generated so that the student number from America is not less than either Asia or Europe.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 Execute one SQL query against the `Student` table.
 
@@ -32,7 +33,7 @@ Execute one SQL query against the `Student` table.
 
 Return exactly three columns named `America`, `Asia`, and `Europe`, in that order. Sort the names within each continent alphabetically and align equal one-based ranks on the same output row. Preserve duplicate rows as repeated names at successive ranks, and use `NULL` after a shorter continent list is exhausted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

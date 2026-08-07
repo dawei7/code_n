@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, representing `n` light bulbs arranged in a line and indexed from 0 to $n - 1$.
 
@@ -11,7 +11,8 @@ The **total illumination** at a time unit is the number of **illuminated** posit
 For every integer time unit covered by **at least** one interval in `intervals`, the **total illumination** must be **at least** `brightness`. At time units not covered by any interval, all bulbs may remain off. Each bulb that is on consumes 1 unit of energy for that time unit.
 
 Return an integer denoting the **minimum** total energy required.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $m$ be the number of intervals.
 
 Return the minimum sum of on-bulb time units needed over the union of all intervals.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ Return the minimum sum of on-bulb time units needed over the union of all interv
 - The total energy is $1 * 4 = 4$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{6}$
 

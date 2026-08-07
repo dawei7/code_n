@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are currently designing a dynamic array. You are given a **0-indexed** integer array `nums`, where $\text{nums}[i]$ is the number of elements that will be in the array at time `i`. In addition, you are given an integer `k`, the **maximum** number of times you can **resize** the array (to** any** size).
 
@@ -6,13 +6,16 @@ The size of the array at time `t`, $\text{size}_{t}$, must be at least $\text{nu
 
 Return *the **minimum** **total space wasted** if you can resize the array at most* `k` *times*.
 
-**Note:** The array can have **any size** at the start and does** not **count towards the number of resizing operations.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The array can have **any size** at the start and does** not **count towards the number of resizing operations.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ The total wasted space is (20 - 10) + (20 - 20) + (30 - 30) = 10.
 - **Explanation:** size = [10,20,20,30,30].
 We can set the initial size to 10, resize to 20 at time 1, and resize to 30 at time 3.
 The total wasted space is (10 - 10) + (20 - 20) + (20 - 15) + (30 - 30) + (30 - 20) = 15.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

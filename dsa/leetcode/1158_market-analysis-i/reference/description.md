@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -48,12 +48,13 @@ Write a solution to find for each user, the join date and the number of orders t
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

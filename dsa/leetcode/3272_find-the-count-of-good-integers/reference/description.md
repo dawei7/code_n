@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **positive** integers `n` and `k`.
 
@@ -12,13 +12,16 @@ An integer is called **good** if its digits can be *rearranged* to form a **k-pa
 
 Return the count of **good** integers containing `n` digits.
 
-**Note** that *any* integer must **not** have leading zeros, **neither** before **nor** after rearrangement. For example, 1010 *cannot* be rearranged to form 101.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that *any* integer must **not** have leading zeros, **neither** before **nor** after rearrangement. For example, 1010 *cannot* be rearranged to form 101.
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,7 +59,8 @@ The two good integers are 4 and 8.
 **Output:** 2468
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10$
 

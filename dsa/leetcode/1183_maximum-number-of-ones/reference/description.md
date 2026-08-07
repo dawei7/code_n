@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Consider a matrix `M` with dimensions $width * height$, such that every cell has value `0` or `1`, and any **square** sub-matrix of `M` of size $sideLength * sideLength$ has at most `maxOnes` ones.
 
 Return the maximum possible number of ones that the matrix `M` can have.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Let $s = \texttt{sideLength}$. A square submatrix is contiguous in both rows and
 
 - Return the maximum total number of ones achievable across all $width * height$ cells of `M`. Only the count is returned; no matrix construction is required.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The best solution that has 4 ones is:
 [1,0,1]
 [1,0,1]
 [1,0,1]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le width, height \le 100$
 

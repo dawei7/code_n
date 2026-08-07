@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return `true` *if there are two **distinct indices** *`i`* and *`j`* in the array such that *$\text{nums}[i] = \text{nums}[j]$* and *$abs(i - j) \le k$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given an integer array `nums` and an integer `k`, return `true` *if there are tw
 
 Return `true` if equal values occur at distinct indices at most `k` positions apart; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return `true` if equal values occur at distinct indices at most `k` positions ap
 
 - **Input:** `nums = [1,2,3,1,2,3], k = 2`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

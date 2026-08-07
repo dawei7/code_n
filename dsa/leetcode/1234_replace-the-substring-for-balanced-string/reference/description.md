@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string s of length `n` containing only four kinds of characters: `'Q'`, `'W'`, `'E'`, and `'R'`.
 
 A string is said to be **balanced*** *if each of its characters appears $n / 4$ times where `n` is the length of the string.
 
 Return *the minimum length of the substring that can be replaced with **any** other string of the same length to make *`s`* **balanced***. If s is already **balanced**, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the minimum length of the substring that can be replaced with **any** ot
 - **Input:** `s = "QQQW"`
 - **Output:** `2`
 - **Explanation:** We can replace the first "QQ" to "ER".
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s.length}$
 

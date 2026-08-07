@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, rearrange `s` such that the same characters are **at least** distance `k` from each other. If it is not possible to rearrange the string, return an empty string `""`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given a string `s` and an integer `k`, rearrange `s` such that the same characte
 
 Return a permutation of every character in `s` that satisfies the distance requirement, or `""` if constructing one is impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return a permutation of every character in `s` that satisfies the distance requi
 - **Input:** `s = "aaadbbcc", k = 2`
 - **Output:** `"abacabcd"`
 - **Explanation:** The same letters are at least a distance of 2 from each other.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 3 * 10^{5}$
 

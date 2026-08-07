@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of digits. A **valid pair** is defined as two **adjacent** digits in `s` such that:
 
@@ -7,12 +7,13 @@ You are given a string `s` consisting only of digits. A **valid pair** is define
 - Each digit in the pair appears in `s` **exactly** as many times as its numeric value.
 
 Return the first **valid pair** found in the string `s` when traversing from left to right. If no valid pair exists, return an empty string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Digit `'2'` appears 2 times and digit `'1'` appears 1 time. Hence, the output is
 There are no valid adjacent pairs.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.
 
@@ -9,7 +9,8 @@ An input string is valid if:
 - Open brackets must be closed in the correct order.
 
 - Every close bracket has a corresponding open bracket of the same type.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ An input string is valid if:
 
 Return `True` when every bracket is correctly matched and nested; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Return `True` when every bracket is correctly matched and nested; otherwise retu
 **Output:** false
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

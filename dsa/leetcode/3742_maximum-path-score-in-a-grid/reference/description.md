@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` grid where each cell contains one of the values 0, 1, or 2. You are also given an integer `k`.
 
@@ -14,8 +14,7 @@ Each cell contributes a specific score and incurs an associated cost, according 
 
 Return the **maximum** score achievable without exceeding a total cost of `k`, or -1 if no valid path exists.
 
-**Note:** If you reach the last cell but the total cost exceeds `k`, the path is invalid.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -34,7 +33,11 @@ the useful cost-state limit because a right/down path visits $m+n-1$ cells and i
 
 Return the maximum score among paths of cost at most `k`, or `-1` when every path exceeds the budget.
 
-### Examples
+### 3. Note
+
+If you reach the last cell but the total cost exceeds `k`, the path is invalid.
+
+### 4. Examples
 
 #### Example 1
 
@@ -105,7 +108,8 @@ Thus, the maximum possible score is 2.
 There is no path that reaches cell `(1, 1)`​​​​​​​ without exceeding cost k. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le m, n \le 200$
 

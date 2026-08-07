@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the length of the longest **substring** that contains at most **two distinct characters***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, return *the length of the longest **substring** that contain
 
 Return an integer representing the maximum length of a contiguous substring containing at most two distinct characters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return an integer representing the maximum length of a contiguous substring cont
 - **Input:** `s = "ccaabbb"`
 - **Output:** `5`
 - **Explanation:** The substring is "aabbb" which its length is 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

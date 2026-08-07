@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` formed by digits and `'#'`. We want to map `s` to English lowercase characters as follows:
 
@@ -9,12 +9,13 @@ You are given a string `s` formed by digits and `'#'`. We want to map `s` to Eng
 Return *the string formed after mapping*.
 
 The test cases are generated so that a unique mapping will always exist.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The test cases are generated so that a unique mapping will always exist.
 
 - **Input:** `s = "1326#"`
 - **Output:** `"acz"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Cinema`
 
@@ -21,12 +21,13 @@ Write a solution to report the movies with an odd-numbered ID and a description 
 Return the result table ordered by `rating` **in descending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

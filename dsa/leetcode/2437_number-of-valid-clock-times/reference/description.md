@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string of length `5` called `time`, representing the current time on a digital clock in the format `"hh:mm"`. The **earliest** possible time is `"00:00"` and the **latest** possible time is `"23:59"`.
 
 In the string `time`, the digits represented by the `?` symbol are **unknown**, and must be **replaced** with a digit from `0` to `9`.
 
 Return* an integer *`answer`*, the number of valid clock times that can be created by replacing every *`?`* with a digit from *`0`* to *`9`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return* an integer *`answer`*, the number of valid clock times that can be creat
 - **Input:** $time = "??:??"$
 - **Output:** `1440`
 - **Explanation:** There are 24 possible choices for the hours, and 60 possible choices for the minutes. In total, we have 24 * 60 = 1440 choices.
-### Constraints
+
+### 4. Constraints
 
 - `time` is a valid string of length `5` in the format `"hh:mm"`.
 

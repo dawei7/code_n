@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists.
 
@@ -7,7 +7,8 @@ The **depth** of an integer is the number of lists that it is inside of. For exa
 The **weight** of an integer is $maxDepth - (the depth of the integer) + 1$.
 
 Return *the sum of each integer in *`nestedList`* multiplied by its **weight***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ JSON cases use ordinary nested arrays and integers. The runner reconstructs the 
 
 Return the inverse-depth weighted sum.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return the inverse-depth weighted sum.
 - **Output:** `17`
 - **Explanation:** One 1 at depth 3, one 4 at depth 2, and one 6 at depth 1.
 1*3 + 4*2 + 6*1 = 17
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nestedList.length} \le 50$
 

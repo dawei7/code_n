@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s` and a string array `dictionary`, return *the longest string in the dictionary that can be formed by deleting some of the given string characters*. If there is more than one possible result, return the longest word with the smallest lexicographical order. If there is no possible result, return the empty string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,7 +17,8 @@ Given a string `s` and a string array `dictionary`, return *the longest string i
 
 - **Input:** `s = "abpcplea", dictionary = ["a","b","c"]`
 - **Output:** `"a"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

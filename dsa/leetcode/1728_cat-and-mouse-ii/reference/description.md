@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A game is played by a cat and a mouse named Cat and Mouse.
 
@@ -37,12 +37,13 @@ The game can end in 4 ways:
 - If Mouse cannot get to the food within 1000 turns, Cat wins.
 
 Given a `rows x cols` matrix `grid` and two integers `catJump` and `mouseJump`, return `true`* if Mouse can win the game if both Cat and Mouse play optimally, otherwise return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Given a `rows x cols` matrix `grid` and two integers `catJump` and `mouseJump`, 
 
 - **Input:** $grid = ["\text{M.C}...F"], catJump = 1, mouseJump = 3$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $rows = \text{grid.length}$
 

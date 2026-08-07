@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 International Morse Code defines a standard encoding where each letter is mapped to a series of dots and dashes, as follows:
 
@@ -19,12 +19,13 @@ Given an array of strings `words` where each word can be written as a concatenat
 - For example, `"cab"` can be written as `"-.-..--..."`, which is the concatenation of `"-.-."`, `".-"`, and `"-..."`. We will call such a concatenation the **transformation** of a word.
 
 Return *the number of different **transformations** among all words we have*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ There are 2 different transformations: "--...-." and "--...--.".
 
 - **Input:** $words = ["a"]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

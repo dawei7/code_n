@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` teams numbered from `0` to $n - 1$ in a tournament.
 
@@ -7,12 +7,13 @@ Given a **0-indexed** 2D boolean matrix `grid` of size $n * n$. For all `i, j` t
 Team `a` will be the **champion** of the tournament if there is no team `b` that is stronger than team `a`.
 
 Return *the team that will be the champion of the tournament.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ grid[0][1] == 1 means that team 0 is stronger than team 1. So team 0 will be the
 grid[1][0] == 1 means that team 1 is stronger than team 0.
 grid[1][2] == 1 means that team 1 is stronger than team 2.
 So team 1 will be the champion.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length}$
 

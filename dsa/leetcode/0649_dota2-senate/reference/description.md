@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In the world of Dota2, there are two parties: the Radiant and the Dire.
 
@@ -13,12 +13,13 @@ Given a string `senate` representing each senator's party belonging. The charact
 The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.
 
 Suppose every senator is smart enough and will play the best strategy for his own party. Predict which party will finally announce the victory and change the Dota2 game. The output should be `"Radiant"` or `"Dire"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The first senator comes from Radiant and he can just ban the next senator's righ
 And the second senator can't exercise any rights anymore since his right has been banned.
 And the third senator comes from Dire and he can ban the first senator's right in round 1.
 And in round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{senate.length}$
 

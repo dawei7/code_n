@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, replace each element with its rank.
 
@@ -9,12 +9,13 @@ The rank represents how large the element is. The rank has the following rules:
 - The larger the element, the larger the rank. If two elements are equal, their rank must be the same.
 
 - Rank should be as small as possible.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The rank represents how large the element is. The rank has the following rules:
 
 - **Input:** `arr = [37,12,28,9,100,56,80,5,12]`
 - **Output:** `[5,3,4,2,8,6,7,1,3]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{arr.length} \le 10^{5}$
 

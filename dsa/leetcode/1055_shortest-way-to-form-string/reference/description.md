@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 A **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `"ace"` is a subsequence of `"<u>a</u>b<u>c</u>d<u>e</u>"` while `"aec"` is not).
 
 Given two strings `source` and `target`, return *the minimum number of **subsequences** of *`source`* such that their concatenation equals *`target`. If the task is impossible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Each selected piece may delete different characters from a fresh use of `source`
 
 - The smallest number of subsequences of `source` whose concatenation is `target`, or `-1` when construction is impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Each selected piece may delete different characters from a fresh use of `source`
 - **Input:** $source = "xyz", target = "xzyxz"$
 - **Output:** `3`
 - **Explanation:** The target string can be constructed as follows "xz" + "y" + "xz".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{source.length}, \text{target.length} \le 1000$
 

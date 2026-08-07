@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, handle multiple queries of the following types:
 
@@ -13,7 +13,8 @@ Implement the `NumArray` class:
 - `void update(int index, int val)` **Updates** the value of $\text{nums}[index]$ to be `val`.
 
 - `int sumRange(int left, int right)` Returns the **sum** of the elements of `nums` between indices `left` and `right` **inclusive** (i.e. $\text{nums}[left] + nums[left + 1] + ... + \text{nums}[right]$).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Implement the `NumArray` class:
 
 Return the results of the executed `sum` operations in order. Updates change subsequent query results and produce no output.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ numArray.sumRange(0, 2); // return 1 + 3 + 5 = 9
 numArray.update(1, 2);   // nums = [1, 2, 5]
 numArray.sumRange(0, 2); // return 1 + 2 + 5 = 8
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{4}$
 

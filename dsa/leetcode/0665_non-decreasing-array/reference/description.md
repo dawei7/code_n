@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `nums` with `n` integers, your task is to check if it could become non-decreasing by modifying **at most one element**.
 
 We define an array is non-decreasing if $\text{nums}[i] \le nums[i + 1]$ holds for every `i` (**0-based**) such that ($0 \le i \le n - 2$).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ We define an array is non-decreasing if $\text{nums}[i] \le nums[i + 1]$ holds f
 - **Input:** `nums = [4,2,1]`
 - **Output:** `false`
 - **Explanation:** You cannot get a non-decreasing array by modifying at most one element.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

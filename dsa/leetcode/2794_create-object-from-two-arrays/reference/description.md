@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given two arrays `keysArr` and `valuesArr`, return a new object `obj`. Each key-value pair in `obj` should come from $\text{keysArr}[i]$ and $\text{valuesArr}[i]$.
 
 If a duplicate key exists at a previous index, that key-value should be excluded. In other words, only the first key should be added to the object.
 
 If the key is not a string, it should be converted into a string by calling `String()` on it.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ If the key is not a string, it should be converted into a string by calling `Str
 - **Input:** $keysArr = [], valuesArr = []$
 - **Output:** `{}`
 - **Explanation:** There are no keys so an empty object is returned.
-### Constraints
+
+### 4. Constraints
 
 - `keysArr` and `valuesArr` are valid JSON arrays
 

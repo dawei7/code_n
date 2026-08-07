@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A word is considered **valid** if:
 
@@ -14,17 +14,18 @@ You are given a string `word`.
 
 Return `true` if `word` is valid, otherwise, return `false`.
 
-**Notes:**
-
-- `'a'`, `'e'`, `'i'`, `'o'`, `'u'`, and their uppercases are **vowels**.
-
-- A **consonant** is an English letter that is not a vowel.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- `'a'`, `'e'`, `'i'`, `'o'`, `'u'`, and their uppercases are **vowels**.
+
+- A **consonant** is an English letter that is not a vowel.
+
+### 4. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ The length of this word is fewer than 3, and does not have a vowel.
 This word contains a `'$'` character and does not have a consonant.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{word.length} \le 20$
 

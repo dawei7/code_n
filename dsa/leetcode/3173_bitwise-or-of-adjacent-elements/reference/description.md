@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an array `nums` of length `n`, return an array `answer` of length $n - 1$ such that $\text{answer}[i] = \text{nums}[i] | nums[i + 1]$ where `|` is the bitwise `OR` operation.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Given an array `nums` of length `n`, return an array `answer` of length $n - 1$ 
 **Output:** [5,13,11]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

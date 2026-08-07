@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer grid `accounts` where $\text{accounts}[i][j]$ is the amount of money the $i​​​​​^​​​​​​th​​​​$ customer has in the $j​​​​​^​​​​​​th$​​​​ bank. Return* the **wealth** that the richest customer has.*
 
 A customer's **wealth** is the amount of money they have in all their bank accounts. The richest customer is the customer that has the maximum **wealth**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The 2nd customer is the richest with a wealth of 10.
 
 - **Input:** $accounts = [[2,8,7],[7,1,3],[1,9,5]]$
 - **Output:** `17`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{accounts.length}$
 

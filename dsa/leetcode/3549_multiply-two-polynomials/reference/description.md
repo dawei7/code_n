@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `poly1` and `poly2`, where the element at index `i` in each array represents the coefficient of $x^i$ in a polynomial.
 
 Let `A(x)` and `B(x)` be the polynomials represented by `poly1` and `poly2`, respectively.
 
 Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.length} - 1)$ representing the coefficients of the product polynomial $R(x) = A(x) * B(x)$, where $\text{result}[i]$ denotes the coefficient of $x^i$ in `R(x)`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ Return an integer array `result` of length $(\text{poly1.length} + \text{poly2.l
 - Thus, result = `[-4, -18, 22, -6, 0]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{poly1.length}, \text{poly2.length} \le 5 * 10^{4}$
 

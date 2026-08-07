@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Write a function that returns an **infinite-method**** object**.
 
 An **infinite-method**** object** is defined as an object that allows you to call any method and it will always return the name of the method.
 
 For example, if you execute `obj.abc123()`, it will return `"abc123"`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ The returned string should always match the method name.
 - **Input:** $method = ".-qw73n|^2It"$
 - **Output:** $".-qw73n|^2It"$
 - **Explanation:** The returned string should always match the method name.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{method.length} \le 1000$

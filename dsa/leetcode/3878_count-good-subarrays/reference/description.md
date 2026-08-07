@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ A **subarray** is called **good** if the **bitwise OR** of all its elements is e
 Return the number of good subarrays in `nums`.
 
 Here, the bitwise OR of two integers `a` and `b` is denoted by `a | b`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ For any subarray, each indexed occurrence is retained when testing whether its a
 
 Return the number of index intervals $[l,r]$ whose bitwise OR equals $\text{nums}[k]$ for at least one index $k$ with $l\le k\le r$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -91,7 +92,8 @@ Any subarray of `nums` containing 3 has bitwise OR equal to 3, and subarrays con
 In both cases, the result is present in the subarray, so all subarrays are good, and the answer is 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

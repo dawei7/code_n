@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 We define the string `base` to be the infinite wraparound string of `"abcdefghijklmnopqrstuvwxyz"`, so `base` will look like this:
 
 - `"...zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd...."`.
 
 Given a string `s`, return *the number of **unique non-empty substrings** of *`s`* are present in *`base`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Given a string `s`, return *the number of **unique non-empty substrings** of *`s
 
 Equal substring text is counted once even if it occurs at multiple positions in `p`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Equal substring text is counted once even if it occurs at multiple positions in 
 - **Input:** `s = "zab"`
 - **Output:** `6`
 - **Explanation:** There are six substrings ("z", "a", "b", "za", "ab", and "zab") of s in base.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

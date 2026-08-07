@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A password is said to be **strong** if it satisfies all the following criteria:
 
@@ -15,12 +15,13 @@ A password is said to be **strong** if it satisfies all the following criteria:
 - It does **not** contain `2` of the same character in adjacent positions (i.e., `"aab"` violates this condition, but `"aba"` does not).
 
 Given a string `password`, return `true`* if it is a **strong** password*. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Given a string `password`, return `true`* if it is a **strong** password*. Other
 - **Input:** $password = "1aB!"$
 - **Output:** `false`
 - **Explanation:** The password does not meet the length requirement. Therefore, we return false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{password.length} \le 100$
 

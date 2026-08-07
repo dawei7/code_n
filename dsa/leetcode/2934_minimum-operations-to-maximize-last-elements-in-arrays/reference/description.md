@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays, `nums1` and `nums2`, both having length `n`.
 
@@ -13,12 +13,13 @@ Your task is to find the **minimum** number of operations required to satisfy th
 - $nums2[n - 1]$ is equal to the **maximum** **value** among all elements of `nums2`, i.e., $nums2[n - 1] = max(\text{nums2}[0], \text{nums2}[1], ..., nums2[n - 1])$.
 
 Return *an integer denoting the **minimum** number of operations needed to meet **both** conditions*, *or *`-1`* if it is **impossible** to satisfy both conditions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ So, the answer is 2.
 - **Output:** `-1`
 - **Explanation:** In this example, it is not possible to satisfy both conditions.
 So, the answer is -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums1.length} = \text{nums2.length} \le 1000$
 

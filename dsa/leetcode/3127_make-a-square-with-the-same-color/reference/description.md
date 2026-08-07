@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D matrix `grid` of size `3 x 3` consisting only of characters `'B'` and `'W'`. Character `'W'` represents the white color<!-- notionvc: 06a49cc0-a296-4bd2-9bfe-c8818edeb53a -->, and character `'B'` represents the black color<!-- notionvc: 06a49cc0-a296-4bd2-9bfe-c8818edeb53a -->.
 
@@ -24,12 +24,13 @@ Return `true` if it is possible to create a `2 x 2` square of the same color, ot
 </style>
 <style class="darkreader darkreader--sync" media="screen" type="text/css">
 </style>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -127,7 +128,8 @@ It cannot be done by changing at most one cell.
 The `grid` already contains a `2 x 2` square of the same color.<!-- notionvc: 9a8b2d3d-1e73-457a-abe0-c16af51ad5c2 -->
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{grid.length} = 3$
 

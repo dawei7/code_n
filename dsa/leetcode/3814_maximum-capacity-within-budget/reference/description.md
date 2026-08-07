@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `costs` and `capacity`, both of length `n`, where $\text{costs}[i]$ represents the purchase cost of the $$i^{\text{th}}$$ machine and $\text{capacity}[i]$ represents its performance capacity.
 
@@ -7,7 +7,8 @@ You are also given an integer `budget`.
 You may select **at most two distinct** machines such that the **total cost** of the selected machines is **strictly less** than `budget`.
 
 Return the **maximum** achievable total capacity of the selected machines.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $N=\lvert\texttt{costs}\rvert=\lvert\texttt{capacity}\rvert$. A valid choice
 
 Return the maximum sum of capacities among all valid choices. Return `0` if no individual machine costs strictly less than `budget`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ Return the maximum sum of capacities among all valid choices. Return `0` if no i
 - The maximum total capacity is $\text{capacity}[1] + \text{capacity}[2] = 5 + 4 = 9$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{costs.length} = \text{capacity.length} \le 10^{5}$
 

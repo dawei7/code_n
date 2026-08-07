@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have `n` cities labeled from `1` to `n`. Two different cities with labels `x` and `y` are directly connected by a bidirectional road if and only if `x` and `y` share a common divisor **strictly greater** than some `threshold`. More formally, cities with labels `x` and `y` have a road between them if there exists an integer `z` such that all of the following are true:
 
@@ -11,12 +11,13 @@ We have `n` cities labeled from `1` to `n`. Two different cities with labels `x`
 Given the two integers, `n` and `threshold`, and an array of `queries`, you must determine for each $\text{queries}[i] = [a_{i}, b_{i}]$ if cities $a_{i}$ and $b_{i}$ are connected directly or indirectly. (i.e. there is some path between them).
 
 Return *an array *`answer`*, where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is *`true`* if for the *$$i^{\text{th}}$$* query, there is a path between *$a_{i}$* and *$b_{i}$*, or *$\text{answer}[i]$* is *`false`* if there is no path.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ all divisors can be used. Since all numbers share 1 as a divisor, all cities are
 - **Output:** `[false,false,false,false,false]`
 - **Explanation:** Only cities 2 and 4 share a common divisor 2 which is strictly greater than the threshold 1, so they are the only ones directly connected.
 Please notice that there can be multiple queries for the same pair of nodes [x, y], and that the query [x, y] is equivalent to the query [y, x].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{4}$
 

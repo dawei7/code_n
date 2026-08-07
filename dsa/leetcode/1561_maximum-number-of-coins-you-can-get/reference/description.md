@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `3n` piles of coins of varying size, you and your friends will take piles of coins as follows:
 
@@ -15,12 +15,13 @@ There are `3n` piles of coins of varying size, you and your friends will take pi
 Given an array of integers `piles` where $\text{piles}[i]$ is the number of coins in the $$i^{\text{th}}$$ pile.
 
 Return the maximum number of coins that you can have.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ On the other hand if we choose this arrangement (1, **2**, 8), (2, **4**, 7) you
 
 - **Input:** $piles = [9,8,7,6,5,1,2,3,4]$
 - **Output:** `18`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{piles.length} \le 10^{5}$
 

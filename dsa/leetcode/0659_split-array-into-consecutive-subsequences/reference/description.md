@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` that is **sorted in non-decreasing order**.
 
@@ -11,12 +11,13 @@ Determine if it is possible to split `nums` into **one or more subsequences** su
 Return `true`* if you can split *`nums`* according to the above conditions, or *`false`* otherwise*.
 
 A **subsequence** of an array is a new array that is formed from the original array by deleting some (can be none) of the elements without disturbing the relative positions of the remaining elements. (i.e., `[1,3,5]` is a subsequence of `[<u>1</u>,2,<u>3</u>,4,<u>5</u>]` while `[1,3,2]` is not).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ A **subsequence** of an array is a new array that is formed from the original ar
 - **Input:** `nums = [1,2,3,4,4,5]`
 - **Output:** `false`
 - **Explanation:** It is impossible to split nums into consecutive increasing subsequences of length 3 or more.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

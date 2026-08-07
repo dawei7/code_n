@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 0-indexed two-dimensional integer array `nums`.
 
@@ -13,12 +13,13 @@ Note that:
 ![](images/screenshot-2023-03-06-at-45648-pm.png)
 
 In the above diagram, one diagonal is **[1,5,9]** and another diagonal is** [3,5,7]**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ In the above diagram, one diagonal is **[1,5,9]** and another diagonal is** [3,5
 - **Input:** `nums = [[1,2,3],[5,17,7],[9,11,10]]`
 - **Output:** `17`
 - **Explanation:** The numbers 1, 3, 9, 10, and 17 are all present on at least one of the diagonals. 17 is the largest prime, so we return 17.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 300$
 

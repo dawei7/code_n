@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` that may contain duplicates, return *all possible* *subsets** (the power set)*.
 
 The solution set **must not** contain duplicate subsets. Return the solution in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ The solution set **must not** contain duplicate subsets. Return the solution in 
 
 Return every distinct subset of the input multiset, including the empty subset.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return every distinct subset of the input multiset, including the empty subset.
 
 - **Input:** `nums = [0]`
 - **Output:** `[[],[0]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10$
 

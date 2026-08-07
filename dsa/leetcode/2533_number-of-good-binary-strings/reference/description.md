@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given four integers `minLength`, `maxLength`, `oneGroup` and `zeroGroup`.
 
@@ -19,12 +19,15 @@ A binary string is **good** if it satisfies the following conditions:
 
 Return *the number of **good** binary strings*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
-**Note** that `0` is considered a multiple of all the numbers.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that `0` is considered a multiple of all the numbers.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ It can be proven that there are only 5 good strings satisfying all conditions.
 - **Output:** `1`
 - **Explanation:** There is only 1 good binary string in this example: "1111".
 It can be proven that there is only 1 good string satisfying all conditions.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le minLength \le maxLength \le 10^{5}$
 

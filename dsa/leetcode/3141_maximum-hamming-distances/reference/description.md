@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an array `nums` and an integer `m`, with each element $\text{nums}[i]$ satisfying $0 \le \text{nums}[i] < 2^m$, return an array `answer`. The `answer` array should be of the same length as `nums`, where each element $\text{answer}[i]$ represents the *maximum* **Hamming distance **between $\text{nums}[i]$ and any other element $\text{nums}[j]$ in the array.
 
 The **Hamming distance** between two binary integers is defined as the number of positions at which the corresponding bits differ (add leading zeroes if needed).
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ The maximum hamming distances for each index are:
 - $\text{nums}[3]$: 1010 and 0100 have a distance of 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m \le 17$
 

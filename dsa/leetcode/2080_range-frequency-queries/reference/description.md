@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure to find the **frequency** of a given value in a given subarray.
 
@@ -11,12 +11,13 @@ Implement the `RangeFreqQuery` class:
 - `int query(int left, int right, int value)` Returns the **frequency** of `value` in the subarray `arr[left...right]`.
 
 A **subarray** is a contiguous sequence of elements within an array. `arr[left...right]` denotes the subarray that contains the elements of `nums` between indices `left` and `right` (**inclusive**).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ RangeFreqQuery rangeFreqQuery = new RangeFreqQuery([12, 33, 4, 56, 22, 2, 34, 33
 rangeFreqQuery.query(1, 2, 4); // return 1. The value 4 occurs 1 time in the subarray [33, 4]
 rangeFreqQuery.query(0, 11, 33); // return 2. The value 33 occurs 2 times in the whole array.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

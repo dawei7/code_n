@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums` of size `n`, find the **maximum difference** between $\text{nums}[i]$ and $\text{nums}[j]$ (i.e., $\text{nums}[j] - \text{nums}[i]$), such that $0 \le i < j < n$ and $\text{nums}[i] < \text{nums}[j]$.
 
 Return *the **maximum difference**. *If no such `i` and `j` exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ There is no i and j such that i < j and nums[i] < nums[j].
 - **Output:** `9`
 - **Explanation:**
 The maximum difference occurs with i = 0 and j = 3, nums[j] - nums[i] = 10 - 1 = 9.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

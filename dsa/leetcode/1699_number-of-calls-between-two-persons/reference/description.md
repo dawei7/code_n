@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Calls`
 
@@ -20,7 +20,8 @@ Write a solution to report the number of calls and the total call duration betwe
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schema**
 
@@ -38,7 +39,7 @@ The result format is in the following example.
 
 Return a table with columns `person1`, `person2`, $\text{call}_{count}$, and $\text{total}_{duration}$. `person1 < person2` for every row. Include one row per distinct unordered pair of users who have called each other. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

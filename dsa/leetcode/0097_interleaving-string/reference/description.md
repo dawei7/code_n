@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given strings `s1`, `s2`, and `s3`, find whether `s3` is formed by an **interleaving** of `s1` and `s2`.
 
@@ -12,8 +12,7 @@ An **interleaving** of two strings `s` and `t` is a configuration where `s` and 
 
 - The **interleaving** is $s_{1} + t_{1} + s_{2} + t_{2} + s_{3} + t_{3} + ...$ or $t_{1} + s_{1} + t_{2} + s_{2} + t_{3} + s_{3} + ...$
 
-**Note:** $a + b$ is the concatenation of strings `a` and `b`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +24,11 @@ An **interleaving** of two strings `s` and `t` is a configuration where `s` and 
 
 Return `true` if `s3` preserves the character order of both source strings under a valid alternating chunk decomposition; otherwise return `false`.
 
-### Examples
+### 3. Note
+
+$a + b$ is the concatenation of strings `a` and `b`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -46,7 +49,8 @@ Since s3 can be obtained by interleaving s1 and s2, we return true.
 
 - **Input:** $s1 = "", s2 = "", s3 = ""$
 - **Output:** `true`
-### Constraints
+
+### 5. Constraints
 
 - $0 \le \text{s1.length}, \text{s2.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **circular** array `nums` and an array `queries`.
 
@@ -7,12 +7,13 @@ For each query `i`, you have to find the following:
 - The **minimum** distance between the element at index $\text{queries}[i]$ and **any** other index `j` in the **circular** array, where $\text{nums}[j] = nums[\text{queries}[i]]$. If no such index exists, the answer for that query should be -1.
 
 Return an array `answer` of the **same** size as `queries`, where $\text{answer}[i]$ represents the result for query `i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return an array `answer` of the **same** size as `queries`, where $\text{answer}
 Each value in `nums` is unique, so no index shares the same value as the queried element. This results in -1 for all queries.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length} \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, you can perform *any* number of operations on this array.
 
@@ -11,11 +11,12 @@ In each **operation**, you can:
 A **prefix** of an array is a subarray that starts from the beginning of the array and extends to any point within it.
 
 Return the **minimum** number of operations required to make all elements in `arr` equal.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Return the **minimum** number of operations required to make all elements in `ar
 - All elements are already equal, so no operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

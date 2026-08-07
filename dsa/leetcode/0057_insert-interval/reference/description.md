@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of non-overlapping intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represent the start and the end of the $$i^{\text{th}}$$ interval and `intervals` is sorted in ascending order by $\text{start}_{i}$. You are also given an interval $newInterval = [start, end]$ that represents the start and end of another interval.
 
@@ -8,8 +8,7 @@ Insert `newInterval` into `intervals` such that `intervals` is still sorted in a
 
 Return `intervals`* after the insertion*.
 
-**Note** that you don't need to modify `intervals` in-place. You can make a new array and return it.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +19,11 @@ Return `intervals`* after the insertion*.
 
 Return the sorted, non-overlapping intervals after insertion.
 
-### Examples
+### 3. Note
+
+that you don't need to modify `intervals` in-place. You can make a new array and return it.
+
+### 4. Examples
 
 #### Example 1
 
@@ -31,7 +34,8 @@ Return the sorted, non-overlapping intervals after insertion.
 - **Input:** $intervals = [[1,2],[3,5],[6,7],[8,10],[12,16]], newInterval = [4,8]$
 - **Output:** `[[1,2],[3,10],[12,16]]`
 - **Explanation:** Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
-### Constraints
+
+### 5. Constraints
 
 - $0 \le \text{intervals.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `columnTitle` that represents the column title as appears in an Excel sheet, return *its corresponding column number*.
 
@@ -14,7 +14,8 @@ AA -> 27
 AB -> 28
 ...
 ```
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ AB -> 28
 
 Return the corresponding positive column number.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return the corresponding positive column number.
 
 - **Input:** $columnTitle = "ZY"$
 - **Output:** `701`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{columnTitle.length} \le 7$
 

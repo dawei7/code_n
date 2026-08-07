@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{subscription}_{events}$
 
@@ -144,11 +144,7 @@ subscription_events table:
 
 Result table is ordered by days_as_subscriber DESC, then user_id ASC.
 
-**Note:** days_as_subscriber is calculated from the first event date to the last event date for each user.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -167,3 +163,9 @@ Return an ordered table with columns:
 - `days_as_subscriber`
 
 `days_as_subscriber` is the calendar-day difference between the user's last and first event dates.
+
+### 3. Note
+
+days_as_subscriber is calculated from the first event date to the last event date for each user.
+
+</div>

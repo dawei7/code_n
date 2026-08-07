@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` consisting of $3 * n$ elements.
 
@@ -15,12 +15,13 @@ The **difference in sums** of the two parts is denoted as $\text{sum}_{first} - 
 - Similarly, if $\text{sum}_{first} = 2$ and $\text{sum}_{second} = 3$, their difference is `-1`.
 
 Return *the **minimum difference** possible between the sums of the two parts after the removal of *`n`* elements*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The minimum difference between sums of the two parts is min(-1,1,2) = -1.
 If we remove nums[2] = 5 and nums[3] = 8, the resultant array will be [7,9,1,3]. The difference in sums will be (7+9) - (1+3) = 12.
 To obtain the minimum difference, we should remove nums[1] = 9 and nums[4] = 1. The resultant array becomes [7,5,8,3]. The difference in sums of the two parts is (7+5) - (8+3) = 1.
 It can be shown that it is not possible to obtain a difference smaller than 1.
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = 3 * n$
 

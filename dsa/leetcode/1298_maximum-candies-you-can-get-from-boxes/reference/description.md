@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` boxes labeled from `0` to $n - 1$. You are given four arrays: `status`, `candies`, `keys`, and `containedBoxes` where:
 
@@ -13,12 +13,13 @@ You have `n` boxes labeled from `0` to $n - 1$. You are given four arrays: `stat
 You are given an integer array `initialBoxes` that contains the labels of the boxes you initially have. You can take all the candies in **any open box** and you can use the keys in it to open new boxes and you also can use the boxes you find in it.
 
 Return *the maximum number of candies you can get following the rules above*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Total number of candies collected = 7 + 4 + 5 = 16 candy.
 - **Output:** `6`
 - **Explanation:** You have initially box 0. Opening it you can find boxes 1,2,3,4 and 5 and their keys.
 The total number of candies will be 6.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{status.length} = \text{candies.length} = \text{keys.length} = \text{containedBoxes.length}$
 

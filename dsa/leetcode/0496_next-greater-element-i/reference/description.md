@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **next greater element** of some element `x` in an array is the **first greater** element that is **to the right** of `x` in the same array.
 
@@ -7,12 +7,13 @@ You are given two **distinct 0-indexed** integer arrays `nums1` and `nums2`, whe
 For each $0 \le i < \text{nums1.length}$, find the index `j` such that $\text{nums1}[i] = \text{nums2}[j]$ and determine the **next greater element** of $\text{nums2}[j]$ in `nums2`. If there is no next greater element, then the answer for this query is `-1`.
 
 Return *an array *`ans`* of length *`nums1.length`* such that *$\text{ans}[i]$* is the **next greater element** as described above.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *an array *`ans`* of length *`nums1.length`* such that *$\text{ans}[i]$* 
 - **Explanation:** The next greater element for each value of nums1 is as follows:
 - 2 is underlined in nums2 = [1,<u>2</u>,3,4]. The next greater element is 3.
 - 4 is underlined in nums2 = [1,2,3,<u>4</u>]. There is no next greater element, so the answer is -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} \le \text{nums2.length} \le 1000$
 

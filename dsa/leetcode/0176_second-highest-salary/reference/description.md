@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -16,7 +16,8 @@ Each row of this table contains information about the salary of an employee.
 Write a solution to find the second highest **distinct** salary from the `Employee` table. If there is no second highest salary, return `null (return None in Pandas)`.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ The result format is in the following example.
 
 Return exactly one row and one column named `SecondHighestSalary`, containing the requested distinct salary or null.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected weighted graph of `n` nodes numbered from 0 to $n - 1$. The graph consists of `m` edges represented by a 2D array `edges`, where $\text{edges}[i] = [a_{i}, b_{i}, w_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ with weight $w_{i}$.
 
@@ -6,13 +6,16 @@ Consider all the shortest paths from node 0 to node $n - 1$ in the graph. You ne
 
 Return the array `answer`.
 
-**Note** that the graph may not be connected.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the graph may not be connected.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ The following are **all** the shortest paths between nodes 0 and 5:
 There is one shortest path between nodes 0 and 3, which is the path `0 -> 2 -> 3` with the sum of weights $1 + 2 = 3$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

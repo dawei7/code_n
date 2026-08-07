@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`. Some values in `nums` are **missing** and are denoted by -1.
 
@@ -7,12 +7,13 @@ You must choose a pair of **positive** integers `(x, y)` **exactly once** and re
 You need to **minimize**** **the** maximum** **absolute difference** between *adjacent* elements of `nums` after replacements.
 
 Return the **minimum** possible difference.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ By choosing the pair as `(4, 4)`, nums can be changed to `[4, 4, 4]`.
 By choosing the pair as `(11, 9)`, nums can be changed to `[11, 10, 9, 8]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

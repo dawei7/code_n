@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` tasks assigned to you. The task times are represented as an integer array `tasks` of length `n`, where the $$i^{\text{th}}$$ task takes $\text{tasks}[i]$ hours to finish. A **work session** is when you work for **at most** `sessionTime` consecutive hours and then take a break.
 
@@ -13,12 +13,13 @@ You should finish the given tasks in a way that satisfies the following conditio
 Given `tasks` and `sessionTime`, return *the **minimum** number of **work sessions** needed to finish all the tasks following the conditions above.*
 
 The tests are generated such that `sessionTime` is **greater** than or **equal** to the **maximum** element in $\text{tasks}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The tests are generated such that `sessionTime` is **greater** than or **equal**
 - **Input:** $tasks = [1,2,3,4,5], sessionTime = 15$
 - **Output:** `1`
 - **Explanation:** You can finish all the tasks in one work session.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{tasks.length}$
 

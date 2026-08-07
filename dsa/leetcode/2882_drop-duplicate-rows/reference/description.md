@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame customers
@@ -18,12 +18,13 @@ Write a solution to remove these duplicate rows and keep only the **first** occu
 The result format is in the following example.
 
 ```
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 **Input:**

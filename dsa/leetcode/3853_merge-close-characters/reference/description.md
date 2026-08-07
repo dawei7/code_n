@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters and an integer `k`.
 
@@ -8,8 +8,7 @@ When two characters are **close**, the right one merges into the left. Merges ha
 
 Return the resulting string after performing all possible merges.
 
-**Note**: If multiple merges are possible, always merge the pair with the **smallest left** index. If multiple pairs share the smallest left index, choose the pair with the **smallest right** index.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +25,11 @@ The chosen eligible pair minimizes $i$ first and $j$ second. Its right character
 
 Return the stable string in which no equal characters have current-index distance at most `k`.
 
-### Examples
+### 3. Note
+
+: If multiple merges are possible, always merge the pair with the **smallest left** index. If multiple pairs share the smallest left index, choose the pair with the **smallest right** index.
+
+### 4. Examples
 
 #### Example 1
 
@@ -80,7 +83,8 @@ Return the stable string in which no equal characters have current-index distanc
 - No other equal characters are close, so no further merges occur.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

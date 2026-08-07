@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a country of `n` cities numbered from `0` to $n - 1$. In this country, there is a road connecting **every pair** of cities.
 
@@ -7,12 +7,13 @@ There are `m` friends numbered from `0` to $m - 1$ who are traveling through the
 Given an integer `n` and a 2D integer array `paths` where $\text{paths}[i]$ is an integer array representing the path of the $$i^{\text{th}}$$ friend, return *the length of the **longest common subpath** that is shared by **every** friend's path, or *`0`* if there is no common subpath at all*.
 
 A **subpath** of a path is a contiguous sequence of cities within that path.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ A **subpath** of a path is a contiguous sequence of cities within that path.
 [4,3,2,1,<u>0</u>]]
 - **Output:** `1`
 - **Explanation:** The possible longest common subpaths are [0], [1], [2], [3], and [4]. All have a length of 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

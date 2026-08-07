@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Tree`
 
@@ -24,11 +24,12 @@ Write a solution to find the node type of the Binary Tree. Output one of the fol
 Return *the result table ordered by node value in **ascending order***.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,4 +65,6 @@ Tree table:
 - Nodes 2, and 8 are inner nodes as they serve as parents to some of the nodes in the structure.
 ```
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/tree-node/description/" target="_blank"> 608: Tree Node.</a>
+### 4. Note
+
+This question is the same as <a href="https://leetcode.com/problems/tree-node/description/" target="_blank"> 608: Tree Node.</a>

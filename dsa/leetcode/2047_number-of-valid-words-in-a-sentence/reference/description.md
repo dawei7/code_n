@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A sentence consists of lowercase letters (`'a'` to `'z'`), digits (`'0'` to `'9'`), hyphens (`'-'`), punctuation marks (`'!'`, `'.'`, and `','`), and spaces (`' '`) only. Each sentence can be broken down into **one or more tokens** separated by one or more spaces `' '`.
 
@@ -13,12 +13,13 @@ A token is a valid word if **all three** of the following are true:
 Examples of valid words include `"a-b."`, `"afad"`, `"ba-c"`, `"a!"`, and `"!"`.
 
 Given a string `sentence`, return *the **number** of valid words in *`sentence`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Given a string `sentence`, return *the **number** of valid words in *`sentence`.
 - **Output:** `5`
 - **Explanation:** The valid words in the sentence are "alice", "and", "bob", "are", and "playing".
 "stone-game10" is invalid because it contains digits.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are two mice and `n` different types of cheese, each type of cheese should be eaten by exactly one mouse.
 
@@ -11,12 +11,13 @@ A point of the cheese with index `i` (**0-indexed**) is:
 You are given a positive integer array `reward1`, a positive integer array `reward2`, and a non-negative integer `k`.
 
 Return ***the maximum** points the mice can achieve if the first mouse eats exactly *`k`* types of cheese.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be proven that 15 is the maximum total points that the mice can achieve.
 - **Explanation:** In this example, the first mouse eats the 0^th (0-indexed) and 1^st types of cheese, and the second mouse does not eat any cheese.
 The total points are 1 + 1 = 2.
 It can be proven that 2 is the maximum total points that the mice can achieve.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{reward1.length} = \text{reward2.length} \le 10^{5}$
 

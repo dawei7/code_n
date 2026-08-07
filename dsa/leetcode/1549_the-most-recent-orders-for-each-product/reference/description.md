@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -48,7 +48,8 @@ Write a solution to find the most recent order(s) of each product.
 Return the result table ordered by $\text{product}_{name}$ in ascending order and in case of a tie by the $\text{product}_{id}$ in **ascending order**. If there still a tie, order them by $\text{order}_{id}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -82,7 +83,7 @@ The result format is in the following example.
 
 Return columns $\text{product}_{name}$, $\text{product}_{id}$, $\text{order}_{id}$, and $\text{order}_{date}$. Include every order placed on the latest order date for each ordered product. Sort the output by $\text{product}_{name}$ ASC, $\text{product}_{id}$ ASC, and $\text{order}_{id}$ ASC.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

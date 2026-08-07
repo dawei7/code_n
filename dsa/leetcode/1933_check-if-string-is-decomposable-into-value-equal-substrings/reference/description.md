@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **value-equal** string is a string where **all** characters are the same.
 
@@ -11,11 +11,12 @@ Given a digit string `s`, decompose the string into some number of **consecutive
 Return `true`* if you can decompose *`s`* according to the above rules. Otherwise, return *`false`.
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Input:** `s = "011100022233"`
 - **Output:** `false`
 - **Explanation:** s cannot be decomposed according to the rules because of the first '0'.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of strings `strs`, return *the length of the **longest uncommon subsequence** between them*. If the longest uncommon subsequence does not exist, return `-1`.
 
@@ -7,12 +7,13 @@ An **uncommon subsequence** between an array of strings is a string that is a **
 A **subsequence** of a string `s` is a string that can be obtained after deleting any number of characters from `s`.
 
 - For example, `"abc"` is a subsequence of `"aebdc"` because you can delete the underlined characters in `"a<u>e</u>b<u>d</u>c"` to get `"abc"`. Other subsequences of `"aebdc"` include `"aebdc"`, `"aeb"`, and `""` (empty string).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ A **subsequence** of a string `s` is a string that can be obtained after deletin
 
 - **Input:** $strs = ["aaa","aaa","aa"]$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{strs.length} \le 50$
 

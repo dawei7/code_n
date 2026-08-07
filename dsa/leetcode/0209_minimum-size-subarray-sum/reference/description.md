@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `nums` and a positive integer `target`, return *the **minimal length** of a **subarray** whose sum is greater than or equal to* `target`. If there is no such subarray, return `0` instead.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given an array of positive integers `nums` and a positive integer `target`, retu
 
 Return the smallest length of a contiguous, nonempty subarray whose sum is at least `target`, or `0` if none exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the smallest length of a contiguous, nonempty subarray whose sum is at le
 
 - **Input:** $target = 11, nums = [1,1,1,1,1,1,1,1]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le target \le 10^{9}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have two arrays `arr1` and `arr2` which are initially empty. You need to add positive integers to them such that they satisfy all the following conditions:
 
@@ -9,12 +9,13 @@ We have two arrays `arr1` and `arr2` which are initially empty. You need to add 
 - **No** integer is present in both `arr1` and `arr2`.
 
 Given `divisor1`, `divisor2`, `uniqueCnt1`, and `uniqueCnt2`, return *the **minimum possible maximum** integer that can be present in either array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Since the maximum value is 3, we return it.
 - **Explanation:**
 Here, the final possible arrays can be arr1 = [1,3,5,7,9,11,13,15], and arr2 = [2,6].
 It can be shown that it is not possible to obtain a lower maximum satisfying all conditions.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le divisor1, divisor2 \le 10^{5}$
 

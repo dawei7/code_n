@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a school that has classes of students and each class will be having a final exam. You are given a 2D integer array `classes`, where $\text{classes}[i] = [\text{pass}_{i}, \text{total}_{i}]$. You know beforehand that in the $$i^{\text{th}}$$ class, there are $\text{total}_{i}$ total students, but only $\text{pass}_{i}$ number of students will pass the exam.
 
@@ -7,12 +7,13 @@ You are also given an integer `extraStudents`. There are another `extraStudents`
 The **pass ratio** of a class is equal to the number of students of the class that will pass the exam divided by the total number of students of the class. The **average pass ratio** is the sum of pass ratios of all the classes divided by the number of the classes.
 
 Return *the **maximum** possible average pass ratio after assigning the *`extraStudents`* students. *Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return *the **maximum** possible average pass ratio after assigning the *`extraS
 
 - **Input:** $classes = [[2,4],[3,9],[4,5],[2,10]], extraStudents = 4$
 - **Output:** `0.53485`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{classes.length} \le 10^{5}$
 

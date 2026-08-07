@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a ball in a `maze` with empty spaces (represented as `0`) and walls (represented as `1`). The ball can go through the empty spaces by rolling **up, down, left or right**, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
 
@@ -7,7 +7,8 @@ Given the `m x n` `maze`, the ball's `start` position and the `destination`, whe
 The **distance** is the number of **empty spaces** traveled by the ball from the start position (excluded) to the destination (included).
 
 You may assume that **the borders of the maze are all walls** (see examples).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ You may assume that **the borders of the maze are all walls** (see examples).
 Each chosen direction is committed until a wall stops the ball. Intermediate cells crossed during that roll are not
 decision points, and reaching `destination` while still rolling is not sufficient.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The length of the path is 1 + 1 + 3 + 1 + 2 + 2 + 2 = 12.
 
 - **Input:** $maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{maze.length}$
 

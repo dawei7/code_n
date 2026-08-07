@@ -1,10 +1,22 @@
-## Description
+### 1. Description
 
 You are given an array of strings `tokens` that represents an arithmetic expression in a <a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation" target="_blank">Reverse Polish Notation</a>.
 
 Evaluate the expression. Return *an integer that represents the value of the expression*.
 
-**Note** that:
+### 2. Function Contract
+
+**Inputs**
+
+- `tokens`: A valid Reverse Polish Notation expression whose tokens are integers or the binary operators `+`, `-`, `*`, and `/`.
+
+**Return value**
+
+Return the integer value of the complete expression.
+
+### 3. Note
+
+that:
 
 - The valid operators are `'+'`, `'-'`, `'*'`, and `'/'`.
 
@@ -17,17 +29,8 @@ Evaluate the expression. Return *an integer that represents the value of the exp
 - The input represents a valid arithmetic expression in a reverse polish notation.
 
 - The answer and all the intermediate calculations can be represented in a **32-bit** integer.
-### Function Contract
 
-**Inputs**
-
-- `tokens`: A valid Reverse Polish Notation expression whose tokens are integers or the binary operators `+`, `-`, `*`, and `/`.
-
-**Return value**
-
-Return the integer value of the complete expression.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ Return the integer value of the complete expression.
 = (0 + 17) + 5
 = 17 + 5
 = 22
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{tokens.length} \le 10^{4}$
 

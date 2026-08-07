@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -7,7 +7,8 @@ An **inversion** is a pair of indices `(i, j)` from `nums` such that `i < j` and
 The **inversion count** of a **subarray** is the number of inversions within it.
 
 Return the **minimum** inversion count among all **subarrays** of `nums` with length `k`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $N=\lvert\texttt{nums}\rvert$. A subarray is contiguous, and there are $N-K+
 
 Return the minimum number of pairs $(i,j)$ satisfying $i<j$ and $\text{window}[i] > \text{window}[j]$ among all length-`k` windows. The result is an integer and may exceed the range of a signed 32-bit value.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ All subarrays of length $k = 1$ contain only one element, so no inversions are p
 The minimum inversion count is therefore 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

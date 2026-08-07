@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -32,7 +32,8 @@ Write a solution to find all customers who never order anything.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -42,7 +43,7 @@ The result format is in the following example.
 
 Return one column named `Customers` containing the names of customers with no matching order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

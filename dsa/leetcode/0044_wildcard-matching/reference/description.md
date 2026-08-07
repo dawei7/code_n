@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an input string (`s`) and a pattern (`p`), implement wildcard pattern matching with support for `'?'` and `'*'` where:
 
@@ -7,7 +7,8 @@ Given an input string (`s`) and a pattern (`p`), implement wildcard pattern matc
 - `'*'` Matches any sequence of characters (including the empty sequence).
 
 The matching should cover the **entire** input string (not partial).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $n = \lvert s \rvert$ and $m = \lvert p \rvert$.
 
 Return `true` if `p` matches all of `s` under the wildcard rules; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return `true` if `p` matches all of `s` under the wildcard rules; otherwise retu
 - **Input:** `s = "cb", p = "?a"`
 - **Output:** `false`
 - **Explanation:** '?' matches 'c', but the second letter is 'a', which does not match 'b'.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length}, \text{p.length} \le 2000$
 

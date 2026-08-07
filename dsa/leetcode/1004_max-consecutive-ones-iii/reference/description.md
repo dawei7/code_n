@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a binary array `nums` and an integer `k`, return *the maximum number of consecutive *`1`*'s in the array if you can flip at most* `k` `0`'s.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 - **Output:** `10`
 - **Explanation:** [0,0,<u>1,1,**1**,**1**,1,1,1,**1**,1,1</u>,0,0,0,1,1,1,1]
 Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

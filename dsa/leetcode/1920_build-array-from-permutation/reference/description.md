@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **zero-based permutation** `nums` (**0-indexed**), build an array `ans` of the **same length** where $\text{ans}[i] = nums[\text{nums}[i]]$ for each $0 \le i < \text{nums.length}$ and return it.
 
 A **zero-based permutation** `nums` is an array of **distinct** integers from `0` to $\text{nums.length} - 1$ (**inclusive**).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,11 +27,15 @@ ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]]
 ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
 = [nums[5], nums[0], nums[1], nums[2], nums[3], nums[4]]
 = [4,5,0,1,2,3]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 
 - $0 \le \text{nums}[i] < \text{nums.length}$
 
 - The elements in `nums` are **distinct**.
-### Follow-up Can you solve it without using an extra space (i.e., `O(1)` memory)?
+
+### 5. Follow-up
+
+Can you solve it without using an extra space (i.e., `O(1)` memory)?

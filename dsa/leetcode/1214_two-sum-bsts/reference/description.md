@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the roots of two binary search trees, `root1` and `root2`, return `true` if and only if there is a node in the first tree and a node in the second tree whose values sum up to a given integer `target`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $n$ and $m$ be the respective numbers of nodes in the two trees. Each node h
 
 Return `true` when one node from `root1` and one node from `root2` have values summing to `target`. Return `false` when no cross-tree pair has that sum.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return `true` when one node from `root1` and one node from `root2` have values s
 
 - **Input:** $root1 = [0,-10,10], root2 = [5,1,7,0,2], target = 18$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in each tree is in the range `[1, 5000]`.
 

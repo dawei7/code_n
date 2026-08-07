@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of positive integers `nums`. A triplet of three **distinct** indices `(i, j, k)` is called a **single divisor triplet** of `nums` if $\text{nums}[i] + \text{nums}[j] + \text{nums}[k]$ is divisible by **exactly one** of $\text{nums}[i]$, $\text{nums}[j]$, or $\text{nums}[k]$.
 
 Return *the number of **single divisor triplets** of *`nums`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ There are 6 single divisor triplets in total.
 - **Explanation:**
 There are no single divisor triplets.
 Note that (0, 1, 2) is not a single divisor triplet because nums[0] + nums[1] + nums[2] = 3 and 3 is divisible by nums[0], nums[1], and nums[2].
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

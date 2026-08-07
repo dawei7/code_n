@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `order` of length `n` and an integer array `friends`.
 
@@ -7,12 +7,13 @@ You are given an integer array `order` of length `n` and an integer array `frien
 - `friends` contains the IDs of your friends in the race **sorted** in strictly increasing order. Each ID in friends is guaranteed to appear in the `order` array.
 
 Return an array containing your friends' IDs in their **finishing** order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The finishing order is `[<u>**3**</u>, <u>**1**</u>, 2, 5, <u>**4**</u>]`. There
 The finishing order is `[1, 4, <u>**5**</u>, 3, <u>**2**</u>]`. Therefore, the finishing order of your friends is `[5, 2]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{order.length} \le 100$
 

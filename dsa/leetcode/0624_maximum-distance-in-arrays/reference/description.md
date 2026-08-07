@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given `m` `arrays`, where each array is sorted in **ascending order**.
 
 You can pick up two integers from two different arrays (each array picks one) and calculate the distance. We define the distance between two integers `a` and `b` to be their absolute difference $|a - b|$.
 
 Return *the maximum distance*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return *the maximum distance*.
 
 - **Input:** $arrays = [[1],[1]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{arrays.length}$
 

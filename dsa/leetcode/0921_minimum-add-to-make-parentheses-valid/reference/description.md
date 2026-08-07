@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A parentheses string is valid if and only if:
 
@@ -13,12 +13,13 @@ You are given a parentheses string `s`. In one move, you can insert a parenthesi
 - For example, if `s = "()))"`, you can insert an opening parenthesis to be `"(**(**)))"` or a closing parenthesis to be `"())**)**)"`.
 
 Return *the minimum number of moves required to make *`s`* valid*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the minimum number of moves required to make *`s`* valid*.
 
 - **Input:** `s = "((("`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

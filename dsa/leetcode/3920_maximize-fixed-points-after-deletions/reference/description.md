@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ A position `i` is called a **fixed point** if $\text{nums}[i] = i$.
 You are allowed to delete **any** number of elements (including zero) from the array. After each deletion, the remaining elements **shift left**, and indices are reassigned starting from 0.
 
 Return an integer denoting the **maximum** number of fixed points that can be achieved after performing any number of deletions.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $n=\lvert\texttt{nums}\rvert$. An element originally at index $i$ can become
 
 Return the largest possible number of indices `i` satisfying $\text{nums}[i] = i$ in the array remaining after any number of deletions. Return `0` if no retained element can be made a fixed point.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ Return the largest possible number of indices `i` satisfying $\text{nums}[i] = i
 - Thus, the answer is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

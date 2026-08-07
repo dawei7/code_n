@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `employees`
 
@@ -132,7 +132,7 @@ The result table is ordered by meeting_heavy_weeks in descending order, then by 
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

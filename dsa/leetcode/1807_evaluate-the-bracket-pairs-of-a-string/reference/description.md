@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` that contains some bracket pairs, with each pair containing a **non-empty** key.
 
@@ -15,12 +15,13 @@ You are tasked to evaluate **all** of the bracket pairs. When you evaluate a bra
 Each key will appear at most once in your `knowledge`. There will not be any nested brackets in `s`.
 
 Return *the resulting string after evaluating **all** of the bracket pairs.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The key "age" has a value of "two", so replace "(age)" with "two".
 - **Explanation:** The same key can appear multiple times.
 The key "a" has a value of "yes", so replace all occurrences of "(a)" with "yes".
 Notice that the "a"s not in a bracket pair are not evaluated.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

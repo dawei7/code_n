@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are playing a game. Initially, Alice has a string $word = "a"$.
 
@@ -12,13 +12,16 @@ Now Bob will ask Alice to perform **all** operations in sequence:
 
 Return the value of the $$k^{\text{th}}$$ character in `word` after performing all the operations.
 
-**Note** that the character `'z'` can be changed to `'a'` in the second type of operation.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the character `'z'` can be changed to `'a'` in the second type of operation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -58,7 +61,8 @@ Initially, $word = "a"$. Alice performs the four operations as follows:
 - Appends `"bbccbbcc"` to `"aabbaabb"`, `word` becomes `"aabbaabbbbccbbcc"`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le k \le 10^{14}$
 

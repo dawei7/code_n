@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Product`
 
@@ -39,7 +39,8 @@ Write a solution to report the **buyers** who have bought *S8* but not *iPhone*.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -56,7 +57,7 @@ Repeated `Sales` rows are permitted but do not create repeated output buyers. If
 - One row for every buyer with at least one `S8` purchase and zero `iPhone` purchases.
 - Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

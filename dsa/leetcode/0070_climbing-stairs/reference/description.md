@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are climbing a staircase. It takes `n` steps to reach the top.
 
 Each time you can either climb `1` or `2` steps. In how many distinct ways can you climb to the top?
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Each time you can either climb `1` or `2` steps. In how many distinct ways can y
 
 Return the number of ordered sequences of one-step and two-step moves whose total is `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ Return the number of ordered sequences of one-step and two-step moves whose tota
 1. 1 step + 1 step + 1 step
 2. 1 step + 2 steps
 3. 2 steps + 1 step
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 45$

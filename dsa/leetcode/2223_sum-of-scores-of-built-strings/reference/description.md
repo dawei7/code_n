@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are **building** a string `s` of length `n` **one** character at a time, **prepending** each new character to the **front** of the string. The strings are labeled from `1` to `n`, where the string with length `i` is labeled $s_{i}$.
 
@@ -7,12 +7,13 @@ You are **building** a string `s` of length `n` **one** character at a time, **p
 The **score** of $s_{i}$ is the length of the **longest common prefix** between $s_{i}$ and $s_{n}$ (Note that $s = s_{n}$).
 
 Given the final string `s`, return* the **sum** of the **score** of every *$s_{i}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ For s_6 == "azbzaz", the longest common prefix is "azb" which has a score of 3.
 For s_9 == "azbazbzaz", the longest common prefix is "azbazbzaz" which has a score of 9.
 For all other s_i, the score is 0.
 The sum of the scores is 2 + 3 + 9 = 14, so we return 14.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `ProductPurchases`
 
@@ -155,7 +155,7 @@ The result is ordered by customer_count in descending order. Since all pairs hav
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

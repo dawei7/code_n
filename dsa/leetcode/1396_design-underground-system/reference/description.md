@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An underground railway system is keeping track of customer travel times between different stations. They are using this data to calculate the average time it takes to travel from one station to another.
 
@@ -29,12 +29,13 @@ Implement the `UndergroundSystem` class:
 	</li>
 
 You may assume all calls to the `checkIn` and `checkOut` methods are consistent. If a customer checks in at time $t_{1}$ then checks out at time $t_{2}$, then $t_{1} < t_{2}$. All events happen in chronological order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -83,7 +84,8 @@ undergroundSystem.checkIn(2, "Leyton", 21);
 undergroundSystem.checkOut(2, "Paradise", 30); // Customer 2 "Leyton" -> "Paradise" in 30-21 = 9
 undergroundSystem.getAverageTime("Leyton", "Paradise"); // return 6.66667, (5 + 6 + 9) / 3 = 6.66667
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le id, t \le 10^{6}$
 

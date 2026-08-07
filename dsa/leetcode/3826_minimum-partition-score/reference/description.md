@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -7,7 +7,8 @@ Your task is to partition `nums` into **exactly** `k` subarrays and return an in
 The **score** of a partition is the **sum** of the **values** of all its subarrays.
 
 The **value** of a subarray is defined as $sumArr * (sumArr + 1) / 2$, where `sumArr` is the sum of its elements.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $N = \lvert\texttt{nums}\rvert$ and $K = \texttt{k}$. A partition places $K-
 
 Return the minimum integer score over all partitions of `nums` into exactly $K$ subarrays. Each subarray contributes the triangular number determined by the sum of its elements.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ Return the minimum integer score over all partitions of `nums` into exactly $K$ 
 - The score of this partition is $1 + 1 + 1 = 3$, which is the minimum possible score.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

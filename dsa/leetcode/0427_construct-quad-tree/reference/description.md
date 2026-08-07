@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a $n * n$ matrix `grid` of `0's` and `1's` only. We want to represent `grid` with a Quad-Tree.
 
@@ -33,14 +33,7 @@ We can construct a Quad-Tree from a two-dimensional area using the following ste
 
 If you want to know more about the Quad-Tree, you can refer to the <a href="https://en.wikipedia.org/wiki/Quadtree">wiki</a>.
 
-**Quad-Tree format:**
-
-You don't need to read this section for solving the problem. This is only if you want to understand the output format here. The output represents the serialized format of a Quad-Tree using level order traversal, where `null` signifies a path terminator where no node exists below.
-
-It is very similar to the serialization of the binary tree. The only difference is that the node is represented as a list `[isLeaf, val]`.
-
-If the value of `isLeaf` or `val` is True we represent it as **1** in the list `[isLeaf, val]` and if the value of `isLeaf` or `val` is False we represent it as **0**.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -51,7 +44,15 @@ If the value of `isLeaf` or `val` is True we represent it as **1** in the list `
 Return the constructed `Node` representing the complete grid. Leaves store the uniform region value; internal nodes
 store four children in top-left, top-right, bottom-left, bottom-right order.
 
-### Examples
+### 3. Quad-Tree Format
+
+You don't need to read this section for solving the problem. This is only if you want to understand the output format here. The output represents the serialized format of a Quad-Tree using level order traversal, where `null` signifies a path terminator where no node exists below.
+
+It is very similar to the serialization of the binary tree. The only difference is that the node is represented as a list `[isLeaf, val]`.
+
+If the value of `isLeaf` or `val` is True we represent it as **1** in the list `[isLeaf, val]` and if the value of `isLeaf` or `val` is False we represent it as **0**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ The topLeft, bottomLeft and bottomRight each has the same value.
 The topRight have different values so we divide it into 4 sub-grids where each has the same value.
 Explanation is shown in the photo below:
 ![](images/e2tree.png)
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

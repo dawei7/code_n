@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `grid` of size `m x n`, where each cell contains a positive integer.
 
@@ -13,12 +13,13 @@ Note:
 - **Horizontal** movement means moving in either the left or right direction.
 
 - **Vertical** movement means moving in either the up or down direction.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The grid on the right is not a cornered path as it requires a return to a previo
 - **Output:** `0`
 - **Explanation:** The grid is shown in the figure above.
 There are no cornered paths in the grid that result in a product with a trailing zero.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

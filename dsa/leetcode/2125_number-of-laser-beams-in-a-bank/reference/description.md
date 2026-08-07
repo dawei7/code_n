@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Anti-theft security devices are activated inside a bank. You are given a **0-indexed** binary string array `bank` representing the floor plan of the bank, which is an `m x n` 2D matrix. $\text{bank}[i]$ represents the $$i^{\text{th}}$$ row, consisting of `'0'`s and `'1'`s. `'0'` means the cell is empty, while`'1'` means the cell has a security device.
 
@@ -11,12 +11,13 @@ There is **one** laser beam between any **two** security devices **if both** con
 Laser beams are independent, i.e., one beam does not interfere nor join with another.
 
 Return *the total number of laser beams in the bank*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ This is because the 2^nd row contains security devices, which breaks the second 
 - **Input:** $bank = ["000","111","000"]$
 - **Output:** `0`
 - **Explanation:** There does not exist two devices located on two different rows.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{bank.length}$
 

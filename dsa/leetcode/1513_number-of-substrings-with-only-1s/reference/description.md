@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a binary string `s`, return *the number of substrings with all characters* `1`*'s*. Since the answer may be too large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Given a binary string `s`, return *the number of substrings with all characters*
 - **Input:** `s = "111111"`
 - **Output:** `21`
 - **Explanation:** Each substring contains only 1's characters.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

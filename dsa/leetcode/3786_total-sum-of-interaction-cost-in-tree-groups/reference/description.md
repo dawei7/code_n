@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an undirected tree with `n` nodes numbered from 0 to $n - 1$. This is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an undirected edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -9,7 +9,8 @@ You are also given an integer array `group` of length `n`, where $\text{group}[i
 - The **interaction cost** between `u` and `v` is defined as the number of edges on the unique path connecting them in the tree.
 
 Return an integer denoting the **sum** of interaction costs over all **unordered** pairs `(u, v)` with $u \neq v$ such that $\text{group}[u] = \text{group}[v]$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Every two nodes have exactly one path because `edges` forms a valid tree. Each u
 
 Return the sum of path lengths over all unordered pairs `(u, v)` with $u \neq v$ and $\text{group}[u] = \text{group}[v]$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -97,7 +98,8 @@ Thus, the total interaction cost is $1 + 2 = 3$.
 All nodes belong to different groups and there are no valid pairs. Therefore, the total interaction cost is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

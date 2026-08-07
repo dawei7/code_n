@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You have an integer array `arr` of the same length with all values set to `0` initially. You also have the following `modify` function:
 
@@ -9,12 +9,13 @@ You want to use the modify function to convert `arr` to `nums` using the minimum
 Return *the minimum number of function calls to make *`nums`* from *`arr`.
 
 The test cases are generated so that the answer fits in a **32-bit** signed integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Total of operations: 2 + 1 = 3.
 - **Input:** `nums = [4,2,5]`
 - **Output:** `6`
 - **Explanation:** (initial)[0,0,0] -> [1,0,0] -> [1,0,1] -> [2,0,2] -> [2,1,2] -> [4,2,4] -> **[4,2,5]**(nums).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

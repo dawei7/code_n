@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ A subarray is **arithmetic** if the difference between consecutive elements in t
 You can replace **at most one** element in `nums` with any **integer**. Then, you select an arithmetic subarray from `nums`.
 
 Return an integer denoting the **maximum** length of the arithmetic subarray you can select.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 Return the maximum attainable length of an arithmetic subarray. The result counts elements, not adjacent differences.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return the maximum attainable length of an arithmetic subarray. The result count
 - Select the subarray `[<u>**-2, 2, 6**</u>, 7]`, which is arithmetic because consecutive elements have a common difference of 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{nums.length} \le 10^{5}$
 

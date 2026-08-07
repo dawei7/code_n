@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s`, and an array of pairs of indices in the string `pairs` where $\text{pairs}[i] = [a, b]$ indicates 2 indices(0-indexed) of the string.
 
 You can swap the characters at any pair of indices in the given `pairs` **any number of times**.
 
 Return the lexicographically smallest string that `s` can be changed to after using the swaps.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Swap s[1] and s[2], s = "abcd"
 Swap s[0] and s[1], s = "bca"
 Swap s[1] and s[2], s = "bac"
 Swap s[0] and s[1], s = "abc"
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

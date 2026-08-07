@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -13,12 +13,13 @@ You are allowed to perform the following operation on `nums`:
 - For each index `i` where $\text{nums}[i] > h$, set $\text{nums}[i]$ to `h`.
 
 Return the **minimum** number of operations required to make every element in `nums` **equal** to `k`. If it is impossible to make all elements equal to `k`, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ It is impossible to make all the values equal to 2.
 The operations can be performed using valid integers in the order 7, 5, 3, and 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

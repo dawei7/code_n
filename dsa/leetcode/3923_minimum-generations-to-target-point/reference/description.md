@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `points` where $\text{points}[i] = [x_{i}, y_{i}, z_{i}]$ represents a point in 3D space, and an integer array `target` representing a target point.
 
@@ -19,7 +19,8 @@ Notes:
 - **floor** denotes rounding **down** to the nearest integer.
 
 - "Two **distinct** points" means the two chosen points must have **different** `(x, y, z)` coordinates. A point cannot be paired with itself, and pairing two points with **identical** coordinates is not possible.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ Let $n=\lvert\texttt{points}\rvert$. Let $U$ be the number of distinct coordinat
 
 Return the smallest generation number in which `target` is available. Return `-1` if the closure stabilizes without the target.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -119,7 +120,8 @@ Return the smallest generation number in which `target` is available. Return `-1
 - Therefore, the target cannot be obtained, and the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 20$
 

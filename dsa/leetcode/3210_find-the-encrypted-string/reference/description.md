@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`. Encrypt the string using the following algorithm:
 
 - For each character `c` in `s`, replace `c` with the $$k^{\text{th}}$$ character after `c` in the string (in a cyclic manner).
 
 Return the *encrypted string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return the *encrypted string*.
 As all the characters are the same, the encrypted string will also be the same.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

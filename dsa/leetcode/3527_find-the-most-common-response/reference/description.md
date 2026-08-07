@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a 2D string array `responses` where each $\text{responses}[i]$ is an array of strings representing survey responses from the $$i^{\text{th}}$$ day.
 
 Return the **most common** response across all days after removing **duplicate** responses within each $\text{responses}[i]$. If there is a tie, return the *lexicographically smallest* response.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return the **most common** response across all days after removing **duplicate**
 - The output is `"bad"` because it is the lexicographically smallest amongst the words with the highest frequency.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{responses.length} \le 1000$
 

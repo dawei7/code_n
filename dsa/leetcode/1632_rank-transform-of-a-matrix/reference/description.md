@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an `m x n` `matrix`, return *a new matrix *`answer`* where *$\text{answer}[row][col]$* is the ****rank** of *$\text{matrix}[row][col]$.
 
@@ -18,12 +18,13 @@ The **rank** is an **integer** that represents how large an element is compared 
 - The **rank** should be as **small** as possible.
 
 The test cases are generated so that `answer` is unique under the given rules.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The rank of matrix[1][1] is 3 because matrix[1][1] > matrix[0][1], matrix[1][1] 
 
 - **Input:** $matrix = [[20,-21,14],[-19,4,19],[22,-47,24],[-19,4,19]]$
 - **Output:** `[[4,2,3],[1,3,4],[5,1,6],[1,3,4]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

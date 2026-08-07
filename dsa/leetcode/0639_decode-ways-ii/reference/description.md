@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A message containing letters from `A-Z` can be **encoded** into numbers using the following mapping:
 
@@ -22,12 +22,13 @@ Note that the grouping `(1 11 06)` is invalid because `"06"` cannot be mapped in
 Given a string `s` consisting of digits and `'*'` characters, return *the **number** of ways to **decode** it*.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Hence, there are a total of 9 * 2 = 18 ways to decode "1*".
 - **Explanation:** The encoded message can represent any of the encoded messages "21", "22", "23", "24", "25", "26", "27", "28", or "29".
 "21", "22", "23", "24", "25", and "26" have 2 ways of being decoded, but "27", "28", and "29" only have 1 way.
 Hence, there are a total of (6 * 2) + (3 * 1) = 12 + 3 = 15 ways to decode "2*".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

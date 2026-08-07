@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -22,11 +22,12 @@ For example, if the ending date is May 31, 2023. So any date between May 31, 202
 Return a list of $\text{user}_{id}$ which denotes the list of active users in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

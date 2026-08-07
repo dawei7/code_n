@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Write a function to find the longest common prefix string amongst an array of strings.
 
 If there is no common prefix, return an empty string `""`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ If there is no common prefix, return an empty string `""`.
 
 Return the longest common prefix, or `""` when no non-empty prefix is shared.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the longest common prefix, or `""` when no non-empty prefix is shared.
 - **Input:** $strs = ["dog","racecar","car"]$
 - **Output:** `""`
 - **Explanation:** There is no common prefix among the input strings.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strs.length} \le 200$
 

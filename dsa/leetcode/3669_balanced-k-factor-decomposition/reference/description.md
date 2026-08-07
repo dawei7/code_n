@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two integers `n` and `k`, split the number `n` into exactly `k` positive integers such that the **product** of these integers is equal to `n`.
 
 Return *any* *one* split in which the **maximum** difference between any two numbers is **minimized**. You may return the result in *any order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ The split `[10, 10]` yields $10 * 10 = 100$ and a max-min difference of 0, which
 Therefore, `[2, 2, 11]` is the optimal split with the smallest difference 9.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $4 \le n \le 10^{5}$
 

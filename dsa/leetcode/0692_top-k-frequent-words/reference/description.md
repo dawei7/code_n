@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of strings `words` and an integer `k`, return *the *`k`* most frequent strings*.
 
 Return the answer **sorted** by **the frequency** from highest to lowest. Sort the words with the same frequency by their **lexicographical order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Note that "i" comes before "love" due to a lower alphabetical order.
 - **Input:** $words = ["the","day","is","sunny","the","the","the","sunny","is","is"], k = 4$
 - **Output:** `["the","is","sunny","day"]`
 - **Explanation:** "the", "is", "sunny" and "day" are the four most frequent words, with the number of occurrence being 4, 3, 2 and 1 respectively.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 500$
 
@@ -30,4 +32,7 @@ Note that "i" comes before "love" due to a lower alphabetical order.
 - $\text{words}[i]$ consists of lowercase English letters.
 
 - `k` is in the range `[1, The number of **unique** words[i]]`
-### Follow-up Could you solve it in `O(n log(k))` time and `O(n)` extra space?
+
+### 5. Follow-up
+
+Could you solve it in `O(n log(k))` time and `O(n)` extra space?

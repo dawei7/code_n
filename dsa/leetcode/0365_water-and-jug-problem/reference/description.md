@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two jugs with capacities `x` liters and `y` liters. You have an infinite water supply. Return whether the total amount of water in both jugs may reach `target` using the following operations:
 
@@ -56,7 +56,8 @@ Reference: The <a href="https://www.youtube.com/watch?v=BVtQNK_ZUJg&ab_channel=n
 **Explanation:** Fill both jugs. The total amount of water in both jugs is equal to 3 now.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -68,6 +69,6 @@ Reference: The <a href="https://www.youtube.com/watch?v=BVtQNK_ZUJg&ab_channel=n
 
 Return `true` if the permitted operations can produce exactly `target` total liters; otherwise return `false`.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le x, y, target \le 10^{3}$

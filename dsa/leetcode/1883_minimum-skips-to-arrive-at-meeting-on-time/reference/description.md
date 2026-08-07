@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `hoursBefore`, the number of hours you have to travel to your meeting. To arrive at your meeting, you have to travel through `n` roads. The road lengths are given as an integer array `dist` of length `n`, where $\text{dist}[i]$ describes the length of the $$i^{\text{th}}$$ road in **kilometers**. In addition, you are given an integer `speed`, which is the speed (in **km/h**) you will travel at.
 
@@ -11,12 +11,13 @@ However, you are allowed to **skip** some rests to be able to arrive on time, me
 - For example, suppose traveling the first road takes `1.4` hours and traveling the second road takes `0.6` hours. Skipping the rest after the first road will mean you finish traveling the second road right at the `2` hour mark, letting you start traveling the third road immediately.
 
 Return *the **minimum number of skips required** to arrive at the meeting on time, or* `-1`* if it is** impossible***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ You can skip the first and third rest to arrive in ((7/2 + <u>0</u>) + (3/2 + 0)
 - **Input:** $dist = [7,3,5,5], speed = 1, hoursBefore = 10$
 - **Output:** `-1`
 - **Explanation:** It is impossible to arrive at the meeting on time even if you skip all the rests.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{dist.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **binary** string `s` and an integer `k`.
 
@@ -11,12 +11,13 @@ A **binary string** satisfies the **k-constraint** if **either** of the followin
 - The number of `1`'s in the string is at most `k`.
 
 Return an integer array `answer`, where $\text{answer}[i]$ is the number of substrings of $s[l_{i}..r_{i}]$ that satisfy the **k-constraint**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ For the query `[0, 6]`, all substrings of $s[0..6] = "0001111"$ satisfy the k-co
 The substrings of `s` with a length greater than 3 do not satisfy the k-constraint.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,11 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
 Return an integer denoting the **sum** of all elements in `nums` whose **frequency** is divisible by `k`, or 0 if there are no such elements.
 
-**Note:** An element is included in the sum **exactly** as many times as it appears in the array if its total frequency is divisible by `k`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +17,11 @@ Frequency is computed over the complete array and independently for each distinc
 
 Return the sum of every occurrence whose value's total frequency is divisible by `k`, or `0` when no frequency passes that test.
 
-### Examples
+### 3. Note
+
+An element is included in the sum **exactly** as many times as it appears in the array if its total frequency is divisible by `k`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -72,7 +75,8 @@ There are no elements that appear an even number of times, so the total sum is 0
 So, the total sum is $4 + 4 + 4 = 12$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

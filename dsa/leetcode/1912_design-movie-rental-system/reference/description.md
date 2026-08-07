@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a movie renting company consisting of `n` shops. You want to implement a renting system that supports searching for, booking, and returning movies. The system should also support generating a report of the currently rented movies.
 
@@ -26,13 +26,16 @@ Implement the `MovieRentingSystem` class:
 
 - `List<List<Integer>> report()` Returns a list of cheapest **rented** movies as described above.
 
-**Note:** The test cases will be generated such that `rent` will only be called if the shop has an **unrented** copy of the movie, and `drop` will only be called if the shop had **previously rented** out the movie.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The test cases will be generated such that `rent` will only be called if the shop has an **unrented** copy of the movie, and `drop` will only be called if the shop had **previously rented** out the movie.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +55,8 @@ movieRentingSystem.report();   // return [[0, 1], [1, 2]]. Movie 1 from shop 0 i
 movieRentingSystem.drop(1, 2); // Drop off movie 2 at shop 1. Unrented movies at shop 1 are now [1,2].
 movieRentingSystem.search(2);  // return [0, 1]. Movies of ID 2 are unrented at shops 0 and 1. Shop 0 is cheapest, followed by shop 1.
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 3 * 10^{5}$
 

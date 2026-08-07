@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We are given `n` different types of `stickers`. Each sticker has a lowercase English word on it.
 
@@ -6,13 +6,16 @@ You would like to spell out the given string `target` by cutting individual lett
 
 Return *the minimum number of stickers that you need to spell out *`target`. If the task is impossible, return `-1`.
 
-**Note:** In all test cases, all words were chosen randomly from the `1000` most common US English words, and `target` was chosen as a concatenation of two random words.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+In all test cases, all words were chosen randomly from the `1000` most common US English words, and `target` was chosen as a concatenation of two random words.
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,7 +31,8 @@ Also, this is the minimum number of stickers necessary to form the target string
 - **Output:** `-1`
 - **Explanation:**
 We cannot form the target "basicbasic" from cutting letters from the given stickers.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{stickers.length}$
 

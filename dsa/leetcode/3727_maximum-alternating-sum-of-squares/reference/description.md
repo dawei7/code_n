@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You may **rearrange the elements** in any order.
 
@@ -7,7 +7,8 @@ The **alternating score** of an array `arr` is defined as:
 - $score = \text{arr}[0]^2 - \text{arr}[1]^2 + \text{arr}[2]^2 - \text{arr}[3]^2 + ...$
 
 Return an integer denoting the **maximum possible alternating score** of `nums` after rearranging its elements.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $n$ be the length of `nums`. An arrangement has $\lceil n/2 \rceil$ even-ind
 
 Return the greatest integer score among all permutations of `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ The alternating score is calculated as:
 $score = (-3)^2 - (-1)^2 + (-2)^2 - (1)^2 + (3)^2 - (2)^2 = 9 - 1 + 4 - 1 + 9 - 4 = 16$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

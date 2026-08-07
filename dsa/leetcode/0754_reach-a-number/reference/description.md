@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are standing at position `0` on an infinite number line. There is a destination at position `target`.
 
@@ -9,12 +9,13 @@ You can make some number of moves `numMoves` so that:
 - During the $$i^{\text{th}}$$ move (starting from $i = 1$ to $i = numMoves$), you take `i` steps in the chosen direction.
 
 Given the integer `target`, return *the **minimum** number of moves required (i.e., the minimum *`numMoves`*) to reach the destination*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ On the 3^rd move, we step from -1 to 2 (3 steps).
 - **Explanation:**
 On the 1^st move, we step from 0 to 1 (1 step).
 On the 2^nd move, we step from 1 to 3 (2 steps).
-### Constraints
+
+### 4. Constraints
 
 - $-10^{9} \le target \le 10^{9}$
 

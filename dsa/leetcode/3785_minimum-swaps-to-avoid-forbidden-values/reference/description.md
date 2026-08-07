@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays, `nums` and `forbidden`, each of length `n`.
 
@@ -7,7 +7,8 @@ You may perform the following operation any number of times (including zero):
 - Choose two **distinct** indices `i` and `j`, and swap $\text{nums}[i]$ with $\text{nums}[j]$.
 
 Return the **minimum** number of swaps required such that, for every index `i`, the value of $\text{nums}[i]$ is **not equal** to $\text{forbidden}[i]$. If no amount of swaps can ensure that every index avoids its forbidden value, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $N=\lvert\texttt{nums}\rvert=\lvert\texttt{forbidden}\rvert$. A swap must us
 
 Return the fewest swaps that produce $\text{nums}[i] \neq \text{forbidden}[i]$ for every $0 \le i < N$. Return `-1` when no permutation of the available `nums` values can meet that condition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -78,7 +79,8 @@ It is not possible to make $\text{nums}[i]$ different from $\text{forbidden}[i]$
 No swaps are required because $\text{nums}[i]$ is already different from $\text{forbidden}[i]$ for all indices, so the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} = \text{forbidden.length} \le 10^{5}$
 

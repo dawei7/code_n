@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a function `fn`, return a new function that is identical to the original function except that it ensures `fn` is called at most once.
 
 - The first time the returned function is called, it should return the same result as `fn`.
 
 - Every subsequent time it is called, it should return `undefined`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ const onceFn = once(fn);
 onceFn(5, 7, 4); // 140
 onceFn(2, 3, 6); // undefined, fn was not called
 onceFn(4, 6, 8); // undefined, fn was not called
-### Constraints
+
+### 4. Constraints
 
 - `calls` is a valid JSON array
 

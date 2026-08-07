@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `word`, compress it using the following algorithm:
 
@@ -11,12 +11,13 @@ Given a string `word`, compress it using the following algorithm:
 	</li>
 
 Return the string `comp`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Initially, $comp = ""$. Apply the operation 3 times, choosing `"aaaaaaaaa"`, `"a
 - For prefix `"bb"`, append `"2"` followed by `"b"` to `comp`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 2 * 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A web developer needs to know how to design a web page's size. So, given a specific rectangular web page’s area, your job by now is to design a rectangular web page, whose length L and width W satisfy the following requirements:
 
@@ -9,12 +9,13 @@ A web developer needs to know how to design a web page's size. So, given a speci
 - The difference between length `L` and width `W` should be as small as possible.
 
 Return *an array `[L, W]` where `L` and `W` are the length and width of the web page you designed in sequence.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ But according to requirement 2, [1,4] is illegal; according to requirement 3,  [
 
 - **Input:** $area = 122122$
 - **Output:** `[427,286]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le area \le 10^{7}$

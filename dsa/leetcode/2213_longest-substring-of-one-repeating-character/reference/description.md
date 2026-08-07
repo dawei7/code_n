@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s`. You are also given a **0-indexed** string `queryCharacters` of length `k` and a **0-indexed** array of integer **indices** `queryIndices` of length `k`, both of which are used to describe `k` queries.
 
 The $$i^{\text{th}}$$ query updates the character in `s` at index $\text{queryIndices}[i]$ to the character $\text{queryCharacters}[i]$.
 
 Return *an array* `lengths` *of length *`k`* where* $\text{lengths}[i]$ *is the **length** of the **longest substring** of *`s`* consisting of **only one repeating** character **after** the* $$i^{\text{th}}$$ *query** is performed.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Thus, we return [3,3,4].
 - 1^st query updates s = "ab**a**<u>zz</u>". The longest substring consisting of one repeating character is "zz" with length 2.
 - 2^nd query updates s = "<u>a**a**a</u>zz". The longest substring consisting of one repeating character is "aaa" with length 3.
 Thus, we return [2,3].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

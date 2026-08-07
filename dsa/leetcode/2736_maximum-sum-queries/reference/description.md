@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2`, each of length `n`, and a **1-indexed 2D array** `queries` where $\text{queries}[i] = [x_{i}, y_{i}]$.
 
 For the $$i^{\text{th}}$$ query, find the **maximum value** of $\text{nums1}[j] + \text{nums2}[j]$ among all indices `j` $(0 \le j < n)$, where $\text{nums1}[j] \ge x_{i}$ and $\text{nums2}[j] \ge y_{i}$, or **-1** if there is no `j` satisfying the constraints.
 
 Return *an array *`answer`* where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Therefore, we return [6,10,7].
 - **Input:** $nums1 = [2,1], nums2 = [2,3], queries = [[3,3]]$
 - **Output:** `[-1]`
 - **Explanation:** There is one query in this example with x_i = 3 and y_i = 3. For every index, j, either nums1[j] < x_i or nums2[j] < y_i. Hence, there is no solution.
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums1.length} = \text{nums2.length}$
 

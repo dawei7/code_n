@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `target`.
 
 Return the number of **subarrays** of `nums` in which `target` is the **majority element**.
 
 The **majority element** of a subarray is the element that appears **strictly more than half** of the times in that subarray.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ For a subarray of length $L$, let $f$ be the number of positions whose value equ
 
 Return the total number of subarrays for which `target` satisfies that strict-majority condition. The count can be as large as $n(n+1)/2$, which exceeds a 32-bit signed integer when $n$ is near its upper bound.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ So there are 5 such subarrays.
 $target = 4$ does not appear in `nums` at all. Therefore, there cannot be any subarray where 4 is the majority element. Hence the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^​​​​​​​5$
 

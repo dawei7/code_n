@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `functions`, return a promise `promise`. `functions` is an array of functions that return promises `fnPromise.` Each `fnPromise` can be resolved or rejected.
 
@@ -13,11 +13,12 @@ If `fnPromise` is rejected:
 The `promise` should resolve with an array of these objects `obj`. Each `obj` in the array should correspond to the promises in the original array function, **maintaining the same order**.
 
 Try to implement it without using the built-in method `Promise.allSettled()`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,6 +64,7 @@ The returned promise resolves within 100 milliseconds. Since promise from the ar
 ]
 }
 - **Explanation:** The returned promise resolves within 200 milliseconds, as its resolution time is determined by the promise that takes the longest time to fulfill. Since one promise from the array function is fulfilled and another is rejected, the resolved value of the returned promise is set to an array containing objects in the following order: [{"status":"fulfilled","value":30}, {"status":"rejected","reason":"Error"}]. Each object in the array corresponds to the promises in the original array function, maintaining the same order.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{functions.length} \le 10$

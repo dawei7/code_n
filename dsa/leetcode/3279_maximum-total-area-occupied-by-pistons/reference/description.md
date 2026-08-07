@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are several pistons in an old car engine, and we want to calculate the **maximum** possible area **under** the pistons.
 
@@ -17,11 +17,12 @@ Each second:
 - If a piston has reached one of the ends, i.e., $\text{positions}[i] = 0$ or $\text{positions}[i] = height$, its direction will change.
 
 Return the *maximum possible area* under all the pistons.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The current position of the pistons has the maximum possible area under it.
 After 3 seconds, the pistons will be in positions `[3, 3, 3, 6]`, which has the maximum possible area under it.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le height \le 10^{6}$
 

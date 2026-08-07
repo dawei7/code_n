@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -7,7 +7,8 @@ Define its **mirror distance** as: $abs(n - reverse(n))$​​​​​​​ wh
 Return an integer denoting the mirror distance of `n`​​​​​​​.
 
 `abs(x)` denotes the absolute value of `x`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Reversing uses the usual decimal representation. Any zeros that become leading d
 
 Return the absolute difference between `n` and the integer represented by its reversed decimal digits.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,6 +64,7 @@ Return the absolute difference between `n` and the integer represented by its re
 - Thus, the answer is $abs(7 - 7) = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

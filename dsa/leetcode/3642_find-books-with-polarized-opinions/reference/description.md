@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `books`
 
@@ -159,7 +159,7 @@ The result table is ordered by polarization score in descending order, then by b
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

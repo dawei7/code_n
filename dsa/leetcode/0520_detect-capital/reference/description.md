@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We define the usage of capitals in a word to be right when one of the following cases holds:
 
@@ -9,12 +9,13 @@ We define the usage of capitals in a word to be right when one of the following 
 - Only the first letter in this word is capital, like `"Google"`.
 
 Given a string `word`, return `true` if the usage of capitals in it is right.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given a string `word`, return `true` if the usage of capitals in it is right.
 
 - **Input:** $word = "FlaG"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 100$
 

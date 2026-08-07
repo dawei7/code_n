@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer `num`, return *the number of steps to reduce it to zero*.
 
 In one step, if the current number is even, you have to divide it by `2`, otherwise, you have to subtract `1` from it.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ Step 4) 1 is odd; subtract 1 and obtain 0.
 
 - **Input:** $num = 123$
 - **Output:** `12`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 10^{6}$

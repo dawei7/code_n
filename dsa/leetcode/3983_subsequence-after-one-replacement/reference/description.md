@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t` consisting of lowercase English letters.
 
 You may choose **at most** one index in `s` and replace the character at that index with any lowercase English letter.
 
 Return `true` if it is possible to make `s` a subsequence of `t`; otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(s, t) -> bool`
 
@@ -22,7 +23,7 @@ A replacement changes one chosen position of `s` to any lowercase English letter
 
 Return `true` if an allowed version of `s` is a subsequence of `t`; otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Return `true` if an allowed version of `s` is a subsequence of `t`; otherwise, r
 - Even after replacing any one character in `s`, it is impossible to make `s` a subsequence of `t`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, and an integer `k`.
 
@@ -7,7 +7,8 @@ For any subarray `nums[l..r]`, define its **cost** as:
 $cost = (max(nums[l..r]) - min(nums[l..r])) * (r - l + 1)$.
 
 Return an integer denoting the number of subarrays of `nums` whose cost is **less than or equal** to `k`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ $$
 
 Return the number of index pairs $(l,r)$ for which $\operatorname{cost}(l,r)\le\texttt{k}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ For an array of length 4, the total number of subarrays is $(4 * 5) / 2 = 10$.
 The only subarrays of `nums` with cost 0 are the single-element subarrays, and there are 3 of them.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `temperatures` represents the daily temperatures, return *an array* `answer` *such that* $\text{answer}[i]$ *is the number of days you have to wait after the* $$i^{\text{th}}$$ *day to get a warmer temperature*. If there is no future day for which this is possible, keep $\text{answer}[i] = 0$ instead.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given an array of integers `temperatures` represents the daily temperatures, ret
 
 - **Input:** $temperatures = [30,60,90]$
 - **Output:** `[1,1,0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{temperatures.length} \le 10^{5}$
 

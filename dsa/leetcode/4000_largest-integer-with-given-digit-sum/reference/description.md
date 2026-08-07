@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given two non-negative integers `n` and `s`.
 
 Return the **largest** integer that has **at most** `n` digits and whose sum of digits is `s`. If no such integer exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ A returned positive integer has no leading zero. The integer `0` is a valid non-
 
 Return the largest non-negative integer with at most `n` digits and digit sum `s`. Return `-1` when no such integer exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ There is no integer with at most 2 digits that has a sum of digits of 19, so the
 The only non-negative integer whose digits sum to 0 is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5$
 

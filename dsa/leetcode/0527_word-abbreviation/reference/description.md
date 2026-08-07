@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of **distinct** strings `words`, return *the minimal possible **abbreviations** for every word*.
 
@@ -17,7 +17,8 @@ The following are the rules for a string abbreviation:
 
 	</li>
 - At the end, if an abbreviation did not make a word shorter, then keep it as the original word.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -28,7 +29,7 @@ The following are the rules for a string abbreviation:
 - Return one abbreviation per input word in the same order. The abbreviations must be unique and follow the source
   rules, with each word retaining the shortest prefix that resolves its collisions.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The following are the rules for a string abbreviation:
 
 - **Input:** $words = ["aa","aaa"]$
 - **Output:** `["aa","aaa"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 400$
 

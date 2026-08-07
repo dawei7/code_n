@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **XOR sum** of a list is the bitwise `XOR` of all its elements. If the list only contains one element, then its **XOR sum** will be equal to this element.
 
@@ -9,12 +9,13 @@ You are given two **0-indexed** arrays `arr1` and `arr2` that consist only of no
 Consider the list containing the result of $\text{arr1}[i] AND \text{arr2}[j]$ (bitwise `AND`) for every `(i, j)` pair where $0 \le i < \text{arr1.length}$ and $0 \le j < \text{arr2.length}$.
 
 Return *the **XOR sum** of the aforementioned list*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ The XOR sum = 0 XOR 1 XOR 2 XOR 0 XOR 2 XOR 1 = 0.
 - **Input:** $arr1 = [12], arr2 = [4]$
 - **Output:** `4`
 - **Explanation:** The list = [12 AND 4] = [4]. The XOR sum = 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr1.length}, \text{arr2.length} \le 10^{5}$
 

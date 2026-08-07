@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `stations` that represents the positions of the gas stations on the **x-axis**. You are also given an integer `k`.
 
@@ -7,7 +7,8 @@ You should add `k` new gas stations. You can add the stations anywhere on the **
 Let `penalty()` be the maximum distance between **adjacent** gas stations after adding the `k` new stations.
 
 Return *the smallest possible value of* `penalty()`. Answers within $10^{-6}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ New stations may be placed at arbitrary real-valued positions. Once the existing
 
 - The smallest possible maximum adjacent-station distance after all `k` additions, returned as a floating-point value accurate within $10^{-6}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ New stations may be placed at arbitrary real-valued positions. Once the existing
 
 - **Input:** $stations = [23,24,36,39,46,56,57,65,84,98], k = 1$
 - **Output:** `14.00000`
-### Constraints
+
+### 4. Constraints
 
 - $10 \le \text{stations.length} \le 2000$
 

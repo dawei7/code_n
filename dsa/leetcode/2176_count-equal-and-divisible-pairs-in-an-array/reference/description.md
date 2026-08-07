@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums` of length `n` and an integer `k`, return *the **number of pairs*** `(i, j)` *where* $0 \le i < j < n$, *such that* $\text{nums}[i] = \text{nums}[j]$ *and* $(i * j)$ *is divisible by* `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ There are 4 pairs that meet all the requirements:
 - **Input:** `nums = [1,2,3,4], k = 1`
 - **Output:** `0`
 - **Explanation:** Since no value in nums is repeated, there are no pairs (i,j) that meet all the requirements.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

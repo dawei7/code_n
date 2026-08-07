@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** binary arrays `nums1` and `nums2`. Find the **widest** pair of indices `(i, j)` such that $i \le j$ and $\text{nums1}[i] + nums1[i+1] + ... + \text{nums1}[j] = \text{nums2}[i] + nums2[i+1] + ... + \text{nums2}[j]$.
 
 The **widest** pair of indices is the pair with the **largest** **distance** between `i` and `j`. The **distance** between a pair of indices is defined as $j - i + 1$.
 
 Return *the **distance** of the **widest** pair of indices. If no pair of indices meets the conditions, return *`0`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The distance between i and j is j - i + 1 = 1 - 1 + 1 = 1.
 - **Output:** `0`
 - **Explanation:**
 There are no pairs of indices that meet the requirements.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

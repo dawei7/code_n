@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Alice has `n` balloons arranged on a rope. You are given a **0-indexed** string `colors` where $\text{colors}[i]$ is the color of the $$i^{\text{th}}$$ balloon.
 
 Alice wants the rope to be **colorful**. She does not want **two consecutive balloons** to be of the same color, so she asks Bob for help. Bob can remove some balloons from the rope to make it **colorful**. You are given a **0-indexed** integer array `neededTime` where $\text{neededTime}[i]$ is the time (in seconds) that Bob needs to remove the $$i^{\text{th}}$$ balloon from the rope.
 
 Return *the **minimum time** Bob needs to make the rope **colorful***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ There are no longer two consecutive balloons of the same color. Total time = 3.
 - **Output:** `2`
 - **Explanation:** Bob will remove the balloons at indices 0 and 4. Each balloons takes 1 second to remove.
 There are no longer two consecutive balloons of the same color. Total time = 1 + 1 = 2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{colors.length} = \text{neededTime.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 With respect to a given `puzzle` string, a `word` is *valid* if both the following conditions are satisfied:
 
@@ -13,12 +13,13 @@ With respect to a given `puzzle` string, a `word` is *valid* if both the followi
 	</li>
 
 Return *an array *`answer`*, where *$\text{answer}[i]$* is the number of words in the given word list *`words`* that is valid with respect to the puzzle *$\text{puzzles}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ There are no valid words for "gaswxyz" cause none of the words in the list conta
 
 - **Input:** $words = ["apple","pleas","please"], puzzles = ["aelwxyz","aelpxyz","aelpsxy","saelpxy","xaelpsy"]$
 - **Output:** `[0,1,3,2,0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `c` representing `c` power stations, each with a unique identifier `id` from 1 to `c` (1‑based indexing).
 
@@ -14,13 +14,16 @@ You are also given a 2D array `queries`, where each query is one of the followin
 
 Return an array of integers representing the results of each query of type `[1, x]` in the **order** they appear.
 
-**Note:** The power grid preserves its structure; an offline (non‑operational) node remains part of its grid and taking it offline does not alter connectivity.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The power grid preserves its structure; an offline (non‑operational) node remains part of its grid and taking it offline does not alter connectivity.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +67,8 @@ Return an array of integers representing the results of each query of type `[1, 
 - Query `[1,1]`: Station 1 is offline and there are no other stations in its grid, so the result is -1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le c \le 10^{5}$
 

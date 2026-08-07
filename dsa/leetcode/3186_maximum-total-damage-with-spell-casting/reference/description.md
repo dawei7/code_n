@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A magician has various spells.
 
@@ -9,12 +9,13 @@ It is a known fact that if a magician decides to cast a spell with a damage of $
 Each spell can be cast **only once**.
 
 Return the **maximum** possible *total damage* that a magician can cast.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The maximum possible damage of 6 is produced by casting spells 0, 1, 3 with dama
 The maximum possible damage of 13 is produced by casting spells 1, 2, 3 with damage 1, 6, 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{power.length} \le 10^{5}$
 

@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an integer `n`, an **alternating permutation** is a permutation of the first `n` positive integers such that no **two** adjacent elements are **both** odd or **both** even.
 
 Return *all such ***alternating permutations** sorted in lexicographical order.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,6 +34,7 @@ Return *all such ***alternating permutations** sorted in lexicographical order.
 **Output:** [[1,2,3],[3,2,1]]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10$

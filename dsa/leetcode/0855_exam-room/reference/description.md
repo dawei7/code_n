@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an exam room with `n` seats in a single row labeled from `0` to $n - 1$.
 
@@ -13,12 +13,13 @@ Implement the `ExamRoom` class:
 - `int seat()` Returns the label of the seat at which the next student will set.
 
 - `void leave(int p)` Indicates that the student sitting at seat `p` will leave the room. It is guaranteed that there will be a student sitting at seat `p`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ examRoom.seat(); // return 2, the student sits at the last seat number 2.
 examRoom.leave(4);
 examRoom.seat(); // return 5, the student sits at the last seat number 5.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` indicating there are `n` people numbered from `0` to $n - 1$. You are also given a **0-indexed** 2D integer array `meetings` where $\text{meetings}[i] = [x_{i}, y_{i}, \text{time}_{i}]$ indicates that person $x_{i}$ and person $y_{i}$ have a meeting at $\text{time}_{i}$. A person may attend **multiple meetings** at the same time. Finally, you are given an integer `firstPerson`.
 
@@ -7,12 +7,13 @@ Person `0` has a **secret** and initially shares the secret with a person `first
 The secrets are shared **instantaneously**. That is, a person may receive the secret and share it with people in other meetings within the same time frame.
 
 Return *a list of all the people that have the secret after all the meetings have taken place. *You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ At time 1, person 1 shares the secret with person 2, and person 2 shares the sec
 Note that person 2 can share the secret at the same time as receiving it.
 At time 2, person 3 shares the secret with person 4.
 Thus, people 0, 1, 2, 3, and 4 know the secret after all the meetings.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

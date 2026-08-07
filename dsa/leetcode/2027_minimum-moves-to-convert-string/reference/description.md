@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of `n` characters which are either `'X'` or `'O'`.
 
 A **move** is defined as selecting **three** **consecutive characters** of `s` and converting them to `'O'`. Note that if a move is applied to the character `'O'`, it will stay the **same**.
 
 Return *the **minimum** number of moves required so that all the characters of *`s`* are converted to *`'O'`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Then we select the last 3 characters and convert them so that the final string c
 - **Input:** `s = "OOOO"`
 - **Output:** `0`
 - **Explanation:** There are no 'X's in s to convert.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 1000$
 

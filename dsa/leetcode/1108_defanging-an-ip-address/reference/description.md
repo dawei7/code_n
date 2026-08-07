@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a valid (IPv4) IP `address`, return a defanged version of that IP address.
 
 A *defanged IP address* replaces every period `"."` with `"[.]"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,6 +19,7 @@ A *defanged IP address* replaces every period `"."` with `"[.]"`.
 
 - **Input:** $address = "255.100.50.0"$
 - **Output:** `"255[.]100[.]50[.]0"`
-### Constraints
+
+### 4. Constraints
 
 - The given `address` is a valid IPv4 address.

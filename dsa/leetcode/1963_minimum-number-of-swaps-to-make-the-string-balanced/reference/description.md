@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` of **even** length `n`. The string consists of **exactly** $n / 2$ opening brackets `'['` and $n / 2$ closing brackets `']'`.
 
@@ -13,12 +13,13 @@ A string is called **balanced** if and only if:
 You may swap the brackets at **any** two indices **any** number of times.
 
 Return *the **minimum** number of swaps to make *`s` ***balanced***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The resulting string is "[[][]]".
 - **Input:** `s = "[]"`
 - **Output:** `0`
 - **Explanation:** The string is already balanced.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s.length}$
 

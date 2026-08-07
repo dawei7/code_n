@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an array `perm` of length `n` which is a permutation of `[1, 2, ..., n]`, return the index of `perm` in the lexicographically sorted array of all of the permutations of `[1, 2, ..., n]`.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ There are only six permutations in the following order:
 And `[3,1,2]` is at index 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{perm.length} \le 10^{5}$
 

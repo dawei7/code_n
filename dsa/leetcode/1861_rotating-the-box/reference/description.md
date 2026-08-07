@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix of characters `boxGrid` representing a side-view of a box. Each cell of the box is one of the following:
 
@@ -13,12 +13,13 @@ The box is rotated **90 degrees clockwise**, causing some of the stones to fall 
 It is **guaranteed** that each stone in `boxGrid` rests on an obstacle, another stone, or the bottom of the box.
 
 Return *an *`n x m`* matrix representing the box after the rotation described above*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return *an *`n x m`* matrix representing the box after the rotation described ab
 ["#","*","."],
 ["#",".","*"],
 ["#",".","."]]
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{boxGrid.length}$
 

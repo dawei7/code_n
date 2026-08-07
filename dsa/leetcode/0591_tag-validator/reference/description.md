@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string representing a code snippet, implement a tag validator to parse the code and return whether it is valid.
 
@@ -19,12 +19,13 @@ A code snippet is valid if all the following rules hold:
 - The cdata has the following format : $<![CDATA[\text{CDATA}_{CONTENT}]]>$. The range of $\text{CDATA}_{CONTENT}$ is defined as the characters between `<![CDATA[` and the **first subsequent** `]]>`.
 
 - $\text{CDATA}_{CONTENT}$ may contain **any characters**. The function of cdata is to forbid the validator to parse $\text{CDATA}_{CONTENT}$, so even it has some characters that can be parsed as tag (no matter valid or invalid), you should treat it as **regular characters**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

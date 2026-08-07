@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the binary representation of an integer as a string `s`, return *the number of steps to reduce it to *`1`* under the following rules*:
 
@@ -7,12 +7,13 @@ Given the binary representation of an integer as a string `s`, return *the numbe
 - If the current number is odd, you have to add `1` to it.
 
 It is guaranteed that you can always reach one for all test cases.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Step 1) 2 is even, divide by 2 and obtain 1.
 
 - **Input:** `s = "1"`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

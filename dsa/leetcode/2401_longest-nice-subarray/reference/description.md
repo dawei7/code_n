@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers.
 
@@ -8,13 +8,16 @@ Return *the length of the **longest** nice subarray*.
 
 A **subarray** is a **contiguous** part of an array.
 
-**Note** that subarrays of length `1` are always considered nice.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that subarrays of length `1` are always considered nice.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ It can be proven that no longer nice subarray can be obtained, so we return 3.
 - **Input:** `nums = [3,1,5,11,13]`
 - **Output:** `1`
 - **Explanation:** The length of the longest nice subarray is 1. Any subarray of length 1 can be chosen.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

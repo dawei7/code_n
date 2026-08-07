@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. In one step, **remove** all elements $\text{nums}[i]$ where $nums[i - 1] > \text{nums}[i]$ for all `0 < i < nums.length`.
 
 Return *the number of steps performed until *`nums`* becomes a **non-decreasing** array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the number of steps performed until *`nums`* becomes a **non-decreasing*
 - **Input:** `nums = [4,5,7,7,13]`
 - **Output:** `0`
 - **Explanation:** nums is already a non-decreasing array. Therefore, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,18 +1,21 @@
-## Description
+### 1. Description
 
 There is an undirected graph of `n` nodes. You are given a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, \text{length}_{i}]$ describes an edge between node $u_{i}$ and node $v_{i}$ with a traversal time of $\text{length}_{i}$ units.
 
 Additionally, you are given an array `disappear`, where $\text{disappear}[i]$ denotes the time when the node `i` disappears from the graph and you won't be able to visit it.
 
-**Note** that the graph might be *disconnected* and might contain *multiple edges*.
-
-Return the array `answer`, with $\text{answer}[i]$ denoting the **minimum** units of time required to reach node `i` from node 0. If node `i` is **unreachable** from node 0 then $\text{answer}[i]$ is `-1`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the graph might be *disconnected* and might contain *multiple edges*.
+
+Return the array `answer`, with $\text{answer}[i]$ denoting the **minimum** units of time required to reach node `i` from node 0. If node `i` is **unreachable** from node 0 then $\text{answer}[i]$ is `-1`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -66,7 +69,8 @@ We are starting our journey from node 0, and our goal is to find the minimum tim
 Exactly when we reach node 1, it disappears.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob take turns playing a game, with Alice starting first.
 
@@ -15,12 +15,13 @@ Determine the result of the game, and:
 - If Bob wins, return `-1`.
 
 - If the game results in a draw, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Draw.
 Regardless of how Alice plays, Bob will be able to have more points than Alice.
 For example, if Alice takes stone 1, Bob can take stone 2, and Alice takes stone 0, Alice will have 6 points to Bob's 7.
 Bob wins.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{aliceValues.length} = \text{bobValues.length}$
 

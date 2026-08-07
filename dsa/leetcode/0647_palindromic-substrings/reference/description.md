@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the number of **palindromic substrings** in it*.
 
 A string is a **palindrome** when it reads the same backward as forward.
 
 A **substring** is a contiguous sequence of characters within the string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ A **substring** is a contiguous sequence of characters within the string.
 - **Input:** `s = "aaa"`
 - **Output:** `6`
 - **Explanation:** Six palindromic strings: "a", "a", "a", "aa", "aa", "aaa".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

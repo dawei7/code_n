@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a ball in a `maze` with empty spaces (represented as `0`) and walls (represented as `1`). The ball can go through the empty spaces by rolling **up, down, left or right**, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction (must be different from last chosen direction). There is also a hole in this maze. The ball will drop into the hole if it rolls onto the hole.
 
@@ -9,7 +9,8 @@ If there is a way for the ball to drop in the hole, the answer `instructions` sh
 The **distance** is the number of **empty spaces** traveled by the ball from the start position (excluded) to the destination (included).
 
 You may assume that **the borders of the maze are all walls** (see examples).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Each instruction character commits the ball to a complete roll. A wall normally 
 the hole ends the entire route immediately. The instruction alphabet is `u` for up, `d` for down, `l` for left, and
 `r` for right.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Both ways have shortest distance 6, but the first way is lexicographically small
 
 - **Input:** $maze = [[0,0,0,0,0,0,0],[0,0,1,0,0,1,0],[0,0,0,0,1,0,0],[0,0,0,0,0,0,1]], ball = [0,4], hole = [3,5]$
 - **Output:** `"dldr"`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{maze.length}$
 

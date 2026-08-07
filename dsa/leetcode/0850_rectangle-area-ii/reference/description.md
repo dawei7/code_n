@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D array of axis-aligned `rectangles`. Each $\text{rectangle}[i] = [x_{i1}, y_{i1}, x_{i2}, y_{i2}]$ denotes the $$i^{\text{th}}$$ rectangle where $(x_{i1}, y_{i1})$ are the coordinates of the **bottom-left corner**, and $(x_{i2}, y_{i2})$ are the coordinates of the **top-right corner**.
 
 Calculate the **total area** covered by all `rectangles` in the plane. Any area covered by two or more rectangles should only be counted **once**.
 
 Return *the **total area***. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ From (1,0) to (2,3), all three rectangles overlap.
 - **Input:** $rectangles = [[0,0,1000000000,1000000000]]$
 - **Output:** `49`
 - **Explanation:** The answer is $10^{18}$ modulo ($10^{9}$ + 7), which is 49.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rectangles.length} \le 200$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` **binary** matrix `grid`. You can move from a cell `(row, col)` to any of the cells $(row + 1, col)$ or $(row, col + 1)$.
 
 Return `true`* if there is a path from *`(0, 0)`* to *$(m - 1, n - 1)$* that visits an **equal** number of *`0`*'s and *`1`*'s*. Otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return `true`* if there is a path from *`(0, 0)`* to *$(m - 1, n - 1)$* that vis
 
 Return `True` if there exists at least one path from `(0, 0)` to $(r - 1, c - 1)$ with equal numbers of `0`s and `1`s; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return `True` if there exists at least one path from `(0, 0)` to $(r - 1, c - 1)
 - **Input:** `grid = [[1,1,0],[0,0,1],[1,0,0]]`
 - **Output:** `false`
 - **Explanation:** There is no path in this grid with an equal number of 0's and 1's.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

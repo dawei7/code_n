@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,12 +7,13 @@ A **subsequence** is **stable** if it does not contain **three consecutive** ele
 Return the number of stable subsequences.
 
 Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 - All other subsequences are stable. Thus, the answer is 14.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

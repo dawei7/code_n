@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer matrix `grid` of size `n x m`, where each element is either `0`, `1`, or `2`.
 
@@ -19,12 +19,13 @@ A **V-shaped diagonal segment** is defined as:
 	</li>
 
 Return the **length** of the **longest** **V-shaped diagonal segment**. If no valid segment *exists*, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -88,7 +89,8 @@ The longest V-shaped diagonal segment has a length of 5 and follows these coordi
 The longest V-shaped diagonal segment has a length of 1 and follows these coordinates: `(0,0)`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length}$
 

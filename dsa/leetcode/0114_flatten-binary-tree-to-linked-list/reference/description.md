@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, flatten the tree into a "linked list":
 
 - The "linked list" should use the same `TreeNode` class where the `right` child pointer points to the next node in the list and the `left` child pointer is always `null`.
 
 - The "linked list" should be in the same order as a <a href="https://en.wikipedia.org/wiki/Tree_traversal#Pre-order,_NLR" target="_blank">**pre-order**** traversal**</a> of the binary tree.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Given the `root` of a binary tree, flatten the tree into a "linked list":
 
 Return `None`; modify the tree rooted at `root` so its nodes form the required right-child chain. The app runner serializes the mutated root in level order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return `None`; modify the tree rooted at `root` so its nodes form the required r
 
 - **Input:** `root = [0]`
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[0, 2000]`.
 

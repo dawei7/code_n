@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
 A **semi‑repeating** subarray is a contiguous subarray in which at most `k` elements repeat (i.e., appear more than once).
 
 Return the length of the longest **semi‑repeating** subarray in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The longest semi-repeating subarray is `[1, 1, 1, 1, 1]`, which has only one rep
 The longest semi-repeating subarray is `[1]`, which has no repeating elements.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

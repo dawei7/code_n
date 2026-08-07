@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an infinite 2D plane.
 
@@ -10,15 +10,18 @@ After each query, you need to find the **distance** of the $$k^{\text{th}}$$ **n
 
 Return an integer array `results` where $\text{results}[i]$ denotes the $$k^{\text{th}}$$ nearest obstacle after query `i`, or $\text{results}[i] = -1$ if there are less than `k` obstacles.
 
-**Note** that initially there are **no** obstacles anywhere.
-
-The **distance** of an obstacle at coordinate `(x, y)` from the origin is given by $|x| + |y|$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that initially there are **no** obstacles anywhere.
+
+The **distance** of an obstacle at coordinate `(x, y)` from the origin is given by $|x| + |y|$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,7 +59,8 @@ The **distance** of an obstacle at coordinate `(x, y)` from the origin is given 
 - After $\text{queries}[2]$, there are obstacles at distances 6, 8, and 10.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{queries.length} \le 2 * 10^{5}$
 

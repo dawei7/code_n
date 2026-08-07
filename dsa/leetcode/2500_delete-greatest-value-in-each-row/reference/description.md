@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `grid` consisting of positive integers.
 
@@ -8,15 +8,18 @@ Perform the following operation until `grid` becomes empty:
 
 - Add the maximum of deleted elements to the answer.
 
-**Note** that the number of columns decreases by one after each operation.
-
-Return *the answer after performing the operations described above*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the number of columns decreases by one after each operation.
+
+Return *the answer after performing the operations described above*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ The final answer = 4 + 3 + 1 = 8.
 - **Explanation:** The diagram above shows the removed values in each step.
 - In the first operation, we remove 10 from the first row. We add 10 to the answer.
 The final answer = 10.
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{grid.length}$
 

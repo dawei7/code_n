@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` that consists of positive integers.
 
@@ -11,12 +11,13 @@ A **subsequence** of an array is a sequence that can be formed by removing some 
 - For example, `[2,5,10]` is a subsequence of `[1,2,1,**<u>2</u>**,4,1,<u>**5**</u>,<u>**10**</u>]`.
 
 Return *the **number** of **different** GCDs among all **non-empty** subsequences of* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The different GCDs are 6, 10, 3, 2, and 1.
 
 - **Input:** `nums = [5,15,40,5,6]`
 - **Output:** `7`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

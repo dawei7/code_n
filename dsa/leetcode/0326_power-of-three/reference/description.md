@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *`true` if it is a power of three. Otherwise, return `false`*.
 
 An integer `n` is a power of three, if there exists an integer `x` such that $n = 3^x$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ An integer `n` is a power of three, if there exists an integer `x` such that $n 
 
 Return `True` exactly when `n` is an integral power of three; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return `True` exactly when `n` is an integral power of three; otherwise return `
 - **Input:** $n = -1$
 - **Output:** `false`
 - **Explanation:** There is no x where 3^x = (-1).
-### Constraints
+
+### 4. Constraints
 
 - $-2^{31} \le n \le 2^{31} - 1$
 

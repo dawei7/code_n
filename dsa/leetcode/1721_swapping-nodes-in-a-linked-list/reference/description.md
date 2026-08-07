@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given the `head` of a linked list, and an integer `k`.
 
 Return *the head of the linked list after **swapping** the values of the *$$k^{\text{th}}$$ *node from the beginning and the *$$k^{\text{th}}$$ *node from the end (the list is **1-indexed**).*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Return *the head of the linked list after **swapping** the values of the *$$k^{\
 
 - **Input:** $head = [7,9,6,6,7,8,3,0,9,5], k = 5$
 - **Output:** `[7,9,6,6,8,7,3,0,9,5]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is `n`.
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` grid of characters `board` and a string `word`, return `true` *if* `word` *exists in the grid*.
 
 The word can be constructed from letters of sequentially adjacent cells, where adjacent cells are horizontally or vertically neighboring. The same letter cell may not be used more than once.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ The word can be constructed from letters of sequentially adjacent cells, where a
 
 Return `true` if one non-reusing, horizontally or vertically adjacent cell path spells `word`; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true` if one non-reusing, horizontally or vertically adjacent cell path 
 
 - **Input:** $board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{board.length}$
 

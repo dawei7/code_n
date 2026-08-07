@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an **undirected** graph with `n` nodes, where each node is numbered between `0` and $n - 1$. You are given a 2D array `graph`, where $\text{graph}[u]$ is an array of nodes that node `u` is adjacent to. More formally, for each `v` in $\text{graph}[u]$, there is an undirected edge between node `u` and node `v`. The graph has the following properties:
 
@@ -13,12 +13,13 @@ There is an **undirected** graph with `n` nodes, where each node is numbered bet
 A graph is **bipartite** if the nodes can be partitioned into two independent sets `A` and `B` such that **every** edge in the graph connects a node in set `A` and a node in set `B`.
 
 Return `true`* if and only if it is **bipartite***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true`* if and only if it is **bipartite***.
 - **Input:** $graph = [[1,3],[0,2],[1,3],[0,2]]$
 - **Output:** `true`
 - **Explanation:** We can partition the nodes into two sets: {0, 2} and {1, 3}.
-### Constraints
+
+### 4. Constraints
 
 - $\text{graph.length} = n$
 

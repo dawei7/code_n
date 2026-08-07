@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array `arr` of 4 digits, find the latest 24-hour time that can be made using each digit **exactly once**.
 
 24-hour times are formatted as `"HH:MM"`, where `HH` is between `00` and `23`, and `MM` is between `00` and `59`. The earliest 24-hour time is `00:00`, and the latest is `23:59`.
 
 Return *the latest 24-hour time in `"HH:MM"` format*. If no valid time can be made, return an empty string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return *the latest 24-hour time in `"HH:MM"` format*. If no valid time can be ma
 - **Input:** `arr = [5,5,5,5]`
 - **Output:** `""`
 - **Explanation:** There are no valid 24-hour times as "55:55" is not valid.
-### Constraints
+
+### 4. Constraints
 
 - $\text{arr.length} = 4$
 

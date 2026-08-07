@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. In one operation, select **any** non-negative integer `x` and an index `i`, then **update** $\text{nums}[i]$ to be equal to $\text{nums}[i] AND (\text{nums}[i] XOR x)$.
 
 Note that `AND` is the bitwise AND operation and `XOR` is the bitwise XOR operation.
 
 Return *the **maximum** possible bitwise XOR of all elements of *`nums`* after applying the operation **any number** of times*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Note that other operations may be used to achieve a bitwise XOR of 7.
 - **Explanation:** Apply the operation zero times.
 The bitwise XOR of all the elements = 1 XOR 2 XOR 3 XOR 9 XOR 2 = 11.
 It can be shown that 11 is the maximum possible bitwise XOR.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

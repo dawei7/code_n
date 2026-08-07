@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, where `nums` is a permutation of the integers in the range `[0, n - 1]`.
 
@@ -9,7 +9,8 @@ In one operation, you may choose any length `x` from `pre` and reverse the first
 For example, applying a prefix reversal of length `3` on `[4, 1, 2, 3]` results in `[2, 1, 4, 3]`.
 
 Return the minimum number of operations required to sort `nums` in ascending order. If it is impossible to sort `nums`, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Each operation chooses one value `x` from `pre` and replaces the prefix `nums[:x
 
 Return the fewest operations that transform `nums` into `[0, 1, ..., n - 1]`. Return `-1` if the target is unreachable.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ It is impossible to sort the array using the given prefix lengths, so the answer
 Since `nums` is already sorted, no prefix reversals are needed. Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 8$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string s, return *all the palindromic permutations (without duplicates) of it*.
 
 You may return the answer in **any order**. If `s` has no palindromic permutation, return an empty list.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $n = \texttt{s.length}$, and let $p$ be the number of palindromes in the ret
 
 Return all distinct palindromic permutations of `s` in any order, or an empty list if none exist.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return all distinct palindromic permutations of `s` in any order, or an empty li
 
 - **Input:** `s = "abc"`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 16$
 

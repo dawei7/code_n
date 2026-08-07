@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a binary array `data`, return the minimum number of swaps required to group all `1`’s present in the array together in **any place** in the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -13,7 +14,7 @@ Let $k$ be the number of `1` values in `data`. One swap exchanges the values sto
 
 - The minimum number of swaps needed to make all $k$ ones occupy one contiguous block. Return `0` when no swap is necessary, including when $k \le 1$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The minimum is 1.
 - **Input:** $data = [1,0,1,0,1,0,0,1,1,0,1]$
 - **Output:** `3`
 - **Explanation:** One possible solution that uses 3 swaps is [0,0,0,0,0,1,1,1,1,1,1].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{data.length} \le 10^{5}$
 

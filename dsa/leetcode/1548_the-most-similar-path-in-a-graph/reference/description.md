@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have `n` cities and `m` bi-directional `roads` where $\text{roads}[i] = [a_{i}, b_{i}]$ connects city $a_{i}$ with city $b_{i}$. Each city has a name consisting of exactly three upper-case English letters given in the string array `names`. Starting at any city `x`, you can reach any city `y` where $y \neq x$ (i.e., the cities and the roads are forming an undirected connected graph).
 
@@ -9,7 +9,8 @@ You need to return *the order of the nodes in the path with the minimum edit dis
 The **edit distance** is defined as follows:
 
 ![](images/edit.jpg)
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ The **edit distance** is defined as follows:
 
 Return a list of $m$ city indices forming a valid walk on the graph with minimum edit distance against `targetPath`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ Return a list of $m$ city indices forming a valid walk on the graph with minimum
 - **Output:** `[3,4,5,4,3,2,1]`
 - **Explanation:** [3,4,5,4,3,2,1] is the only path with edit distance = 0 with targetPath.
 It's equivalent to ["ATL","DXB","HND","DXB","ATL","LAX","PEK"]
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 

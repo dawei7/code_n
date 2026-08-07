@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `prices` where $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day.
 
@@ -6,8 +6,7 @@ Find the maximum profit you can achieve. You may complete as many transactions a
 
 - After you sell your stock, you cannot buy stock on the next day (i.e., cooldown one day).
 
-**Note:** You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +16,11 @@ Find the maximum profit you can achieve. You may complete as many transactions a
 
 Return the maximum total profit achievable while respecting the cooldown and single-position rules.
 
-### Examples
+### 3. Note
+
+You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,7 +31,8 @@ Return the maximum total profit achievable while respecting the cooldown and sin
 
 - **Input:** $prices = [1]$
 - **Output:** `0`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{prices.length} \le 5000$
 

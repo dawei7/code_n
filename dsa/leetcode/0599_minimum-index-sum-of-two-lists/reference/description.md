@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two arrays of strings `list1` and `list2`, find the **common strings with the least index sum**.
 
@@ -7,12 +7,13 @@ A **common string** is a string that appeared in both `list1` and `list2`.
 A **common string with the least index sum** is a common string such that if it appeared at $\text{list1}[i]$ and $\text{list2}[j]$ then $i + j$ should be the minimum value among all the other **common strings**.
 
 Return *all the **common strings with the least index sum***. Return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *all the **common strings with the least index sum***. Return the answer 
 "sad" with index sum = (1 + 0) = 1.
 "good" with index sum = (2 + 2) = 4.
 The strings with the least index sum are "sad" and "happy".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{list1.length}, \text{list2.length} \le 1000$
 

@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 The **product sum **of two equal-length arrays `a` and `b` is equal to the sum of $a[i] * b[i]$ for all $0 \le i < \text{a.length}$ (**0-indexed**).
 
 - For example, if $a = [1,2,3,4]$ and $b = [5,2,3,1]$, the **product sum** would be $1*5 + 2*2 + 3*3 + 4*1 = 22$.
 
 Given two arrays `nums1` and `nums2` of length `n`, return *the **minimum product sum** if you are allowed to **rearrange** the **order** of the elements in *`nums1`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given two arrays `nums1` and `nums2` of length `n`, return *the **minimum produc
 - **Input:** $nums1 = [2,1,4,5,7], nums2 = [3,2,4,8,6]$
 - **Output:** `65`
 - **Explanation:** We can rearrange nums1 to become [5,7,4,1,2]. The product sum of [5,7,4,1,2] and [3,2,4,8,6] is 5*3 + 7*2 + 4*4 + 1*8 + 2*6 = 65.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

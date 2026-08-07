@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are implementing a program to use as your calendar. We can add a new event if adding the event will not cause a **double booking**.
 
@@ -11,12 +11,13 @@ Implement the `MyCalendar` class:
 - `MyCalendar()` Initializes the calendar object.
 
 - `boolean book(int startTime, int endTime)` Returns `true` if the event can be added to the calendar successfully without causing a **double booking**. Otherwise, return `false` and do not add the event to the calendar.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ myCalendar.book(10, 20); // return True
 myCalendar.book(15, 25); // return False, It can not be booked because time 15 is already booked by another event.
 myCalendar.book(20, 30); // return True, The event can be booked, as the first event takes every time less than 20, but not including 20.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le start < end \le 10^{9}$
 

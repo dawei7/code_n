@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t`.
 
@@ -15,12 +15,13 @@ Then the score of the string is $right - left + 1$.
 Return *the minimum possible score to make *`t`* a subsequence of *`s`*.*
 
 A **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `"ace"` is a subsequence of `"<u>a</u>b<u>c</u>d<u>e</u>"` while `"aec"` is not).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ It can be proven that 1 is the minimum score that we can achieve.
 - **Explanation:** In this example, we remove characters "x", "y" and "z" at indices 0, 1, and 2 (0-indexed).
 The string t becomes "" which is a subsequence of the string "cde" and the score is 2 - 0 + 1 = 3.
 It can be proven that 3 is the minimum score that we can achieve.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 10^{5}$
 

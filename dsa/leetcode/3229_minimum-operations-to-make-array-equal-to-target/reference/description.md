@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two positive integer arrays `nums` and `target`, of the same length.
 
 In a single operation, you can select any subarray of `nums` and increment each element within that subarray by 1 or decrement each element within that subarray by 1.
 
 Return the **minimum** number of operations required to make `nums` equal to the array `target`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ We will perform the following operations to make `nums` equal to `target`:
 - Increment `nums[2..2]` by 1, `nums = [2,1,4]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} = \text{target.length} \le 10^{5}$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given two strings low and high that represent two integers `low` and `high` where $low \le high$, return *the number of **strobogrammatic numbers** in the range* `[low, high]`.
 
 A **strobogrammatic number** is a number that looks the same when rotated `180` degrees (looked at upside down).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ A **strobogrammatic number** is a number that looks the same when rotated `180` 
 
 Return integer count of strobogrammatic numbers in `[low, high]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return integer count of strobogrammatic numbers in `[low, high]`.
 
 - **Input:** $low = "0", high = "0"$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{low.length}, \text{high.length} \le 15$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** binary strings `s1` and `s2`, both of length `n`, and a positive integer `x`.
 
@@ -10,13 +10,16 @@ You can perform any of the following operations on the string `s1` **any** numbe
 
 Return *the **minimum** cost needed to make the strings *`s1`* and *`s2`* equal, or return *`-1`* if it is impossible.*
 
-**Note** that flipping a character means changing it from `0` to `1` or vice-versa.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that flipping a character means changing it from `0` to `1` or vice-versa.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ The total cost is 1 + 1 + 2 = 4. It can be shown that it is the minimum cost pos
 - **Input:** $s1 = "10110", s2 = "00011", x = 4$
 - **Output:** `-1`
 - **Explanation:** It is not possible to make the two strings equal.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{s1.length} = \text{s2.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of positive integers `arr`. Perform some operations (possibly none) on `arr` so that it satisfies these conditions:
 
@@ -13,12 +13,13 @@ There are 2 types of operations that you can perform any number of times:
 - **Rearrange** the elements of `arr` to be in any order.
 
 Return *the **maximum** possible value of an element in *`arr`* after performing the operations to satisfy the conditions*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ The largest element in arr is 3.
 - **Input:** `arr = [1,2,3,4,5]`
 - **Output:** `5`
 - **Explanation:** The array already satisfies the conditions, and the largest element is 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

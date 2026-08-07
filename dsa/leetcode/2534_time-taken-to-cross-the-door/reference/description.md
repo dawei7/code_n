@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` persons numbered from `0` to $n - 1$ and a door. Each person can enter or exit through the door once, taking one second.
 
@@ -16,12 +16,7 @@ If two or more persons want to use the door at the **same** time, they follow th
 
 Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the second at which the *$$i^{\text{th}}$$* person crosses the door*.
 
-**Note** that:
-
-- Only one person can cross the door at each second.
-
-- A person may arrive at the door and wait without entering or exiting to follow the mentioned rules.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +27,15 @@ Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the seco
 
 Return an array `answer` of length $n$ where $\text{answer}[i]$ is the exact second person $i$ crosses the door.
 
-### Examples
+### 3. Note
+
+that:
+
+- Only one person can cross the door at each second.
+
+- A person may arrive at the door and wait without entering or exiting to follow the mentioned rules.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +55,8 @@ Return an array `answer` of length $n$ where $\text{answer}[i]$ is the exact sec
 - At t = 0: Person 1 wants to enter while persons 0 and 2 want to exit. Since the door was not used in the previous second, the persons who want to exit get to go first. Since person 0 has a smaller index, they exit first.
 - At t = 1: Person 1 wants to enter, and person 2 wants to exit. Since the door was used in the previous second for exiting, person 2 exits.
 - At t = 2: Person 1 is the only one who wants to enter, so they just enter through the door.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{arrival.length} = \text{state.length}$
 

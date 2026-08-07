@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `num` representing a non-negative integer.
 
@@ -7,12 +7,13 @@ In one operation, you can pick any digit of `num` and delete it. Note that if yo
 Return *the **minimum number of operations** required to make* `num` *special*.
 
 An integer `x` is considered **special** if it is divisible by `25`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be shown that 3 is the minimum number of operations required to get a spe
 - **Output:** `1`
 - **Explanation:** Delete digit num[0]. The resulting number is "0" which is special since it is divisible by 25.
 It can be shown that 1 is the minimum number of operations required to get a special number.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 100$
 

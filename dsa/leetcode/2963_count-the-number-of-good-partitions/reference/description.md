@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of **positive** integers.
 
@@ -7,12 +7,13 @@ A partition of an array into one or more **contiguous** subarrays is called **go
 Return *the **total number** of good partitions of *`nums`.
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 - **Input:** `nums = [1,2,1,3]`
 - **Output:** `2`
 - **Explanation:** The 2 possible good partitions are: ([1,2,1], [3]) and ([1,2,1,3]).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an undirected weighted graph of `n` nodes (0-indexed), represented by an edge list where $\text{edges}[i] = [a, b]$ is an undirected edge connecting the nodes `a` and `b` with a probability of success of traversing that edge $\text{succProb}[i]$.
 
 Given two nodes `start` and `end`, find the path with the maximum probability of success to go from `start` to `end` and return its success probability.
 
 If there is no path from `start` to `end`, **return 0**. Your answer will be accepted if it differs from the correct answer by at most **1e-5**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ If there is no path from `start` to `end`, **return 0**. Your answer will be acc
 - **Input:** $n = 3, edges = [[0,1]], succProb = [0.5], start = 0, end = 2$
 - **Output:** `0.00000`
 - **Explanation:** There is no path between 0 and 2.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{4}$
 

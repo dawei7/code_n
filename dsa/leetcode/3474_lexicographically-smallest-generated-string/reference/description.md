@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings, `str1` and `str2`, of lengths `n` and `m`, respectively.
 
@@ -9,12 +9,13 @@ A string `word` of length $n + m - 1$ is defined to be **generated** by `str1` a
 - If $\text{str1}[i] = 'F'$, the **substring** of `word` with size `m` starting at index `i` is **not equal** to `str2`, i.e., $word[i..(i + m - 1)] \neq str2$.
 
 Return the **lexicographically smallest** possible string that can be **generated** by `str1` and `str2`. If no string can be generated, return an empty string `""`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -82,7 +83,8 @@ No string that satisfies the conditions can be generated.
 **Output:** "a"
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{str1.length} \le 10^{4}$
 

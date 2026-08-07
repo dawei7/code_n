@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of network towers `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ denotes the $$i^{\text{th}}$$ network tower with location $(x_{i}, y_{i})$ and quality factor $q_{i}$. All the coordinates are **integral coordinates** on the X-Y plane, and the distance between the two coordinates is the **Euclidean distance**.
 
@@ -8,7 +8,12 @@ The signal quality of the $$i^{\text{th}}$$ tower at a coordinate `(x, y)` is ca
 
 Return *the array *`[c_x, c_y]`* representing the **integral** coordinate *$(c_{x}, c_{y})$* where the **network quality** is maximum. If there are multiple coordinates with the same **network quality**, return the lexicographically minimum **non-negative** coordinate.*
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - A coordinate `(x1, y1)` is lexicographically smaller than `(x2, y2)` if either:
 
@@ -18,12 +23,8 @@ Return *the array *`[c_x, c_y]`* representing the **integral** coordinate *$(c_{
 
 	</li>
 - `⌊val⌋` is the greatest integer less than or equal to `val` (the floor function).
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ No other coordinate has a higher network quality.
 - **Input:** $towers = [[1,2,13],[2,1,7],[0,1,9]], radius = 2$
 - **Output:** `[1,2]`
 - **Explanation:** Coordinate (1, 2) has the highest network quality.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{towers.length} \le 50$
 

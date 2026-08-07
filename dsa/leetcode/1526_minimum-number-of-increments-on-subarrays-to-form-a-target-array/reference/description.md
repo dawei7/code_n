@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `target`. You have an integer array `initial` of the same size as `target` with all elements initially zeros.
 
@@ -7,12 +7,13 @@ In one operation you can choose **any** subarray from `initial` and increment ea
 Return *the minimum number of operations to form a *`target`* array from *`initial`.
 
 The test cases are generated so that the answer fits in a 32-bit integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 - **Input:** $target = [3,1,5,4,2]$
 - **Output:** `7`
 - **Explanation:** [**<u>0,0,0,0,0</u>**] -> [**<u>1</u>**,1,1,1,1] -> [**<u>2</u>**,1,1,1,1] -> [3,1,**<u>1,1,1</u>**] -> [3,1,**<u>2,2</u>**,2] -> [3,1,**<u>3,3</u>**,2] -> [3,1,**<u>4</u>**,4,2] -> [3,1,5,4,2].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{target.length} \le 10^{5}$
 

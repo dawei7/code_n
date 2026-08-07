@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two arrays with **positive** integers `arr1` and `arr2`.
 
@@ -9,12 +9,13 @@ A **common prefix** of two integers `a` and `b` is an integer `c`, such that `c`
 You need to find the length of the **longest common prefix** between all pairs of integers `(x, y)` such that `x` belongs to `arr1` and `y` belongs to `arr2`.
 
 Return *the length of the **longest** common prefix among all pairs*.* If no common prefix exists among them*, *return* `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The longest common prefix is 100 with a length of 3.
 - **Output:** `0`
 - **Explanation:** There exists no common prefix for any pair (arr1[i], arr2[j]), hence we return 0.
 Note that common prefixes between elements of the same array do not count.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr1.length}, \text{arr2.length} \le 5 * 10^{4}$
 

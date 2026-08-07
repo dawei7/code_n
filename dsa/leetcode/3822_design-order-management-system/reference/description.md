@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are asked to design a simple order management system for a trading platform.
 
@@ -18,8 +18,7 @@ Implement the `OrderManagementSystem` class:
 
 - `vector<int> getOrdersAtPrice(string orderType, int price)`: Returns the `orderId`s of all **active** orders that match the given `orderType` and `price`. If no such orders exist, return an empty list.
 
-**Note:** The order of returned `orderId`s does not matter.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -34,7 +33,11 @@ Let $Q$ be the number of method calls after construction, $A$ the maximum number
 
 Return one result for every entry in `operations`: `null` for construction and every mutating operation, and a list of matching active IDs for each `getOrdersAtPrice` call. A lookup with no matches contributes an empty list.
 
-### Examples
+### 3. Note
+
+The order of returned `orderId`s does not matter.
+
+### 4. Examples
 
 #### Example 1
 
@@ -72,7 +75,8 @@ orderManagementSystem.cancelOrder(3); // The sell order with ID 3 is canceled an
 orderManagementSystem.cancelOrder(2); // The buy order with ID 2 is canceled and removed from active orders.
 
 orderManagementSystem.getOrdersAtPrice("buy", 1); // There are no active buy orders left at price 1, so the result is `[]`.</div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le orderId \le 2000$
 

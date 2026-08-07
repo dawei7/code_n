@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a strange printer with the following two special properties:
 
@@ -7,12 +7,13 @@ There is a strange printer with the following two special properties:
 - At each turn, the printer can print new characters starting from and ending at any place and will cover the original existing characters.
 
 Given a string `s`, return *the minimum number of turns the printer needed to print it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given a string `s`, return *the minimum number of turns the printer needed to pr
 - **Input:** `s = "aba"`
 - **Output:** `2`
 - **Explanation:** Print "aaa" first and then print "b" from the second place of the string, which will cover the existing character 'a'.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

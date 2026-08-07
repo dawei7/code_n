@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 A decimal number is called **deci-binary** if each of its digits is either `0` or `1` without any leading zeros. For example, `101` and `1100` are **deci-binary**, while `112` and `3001` are not.
 
 Given a string `n` that represents a positive decimal integer, return *the **minimum** number of positive **deci-binary** numbers needed so that they sum up to *`n`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given a string `n` that represents a positive decimal integer, return *the **min
 
 - **Input:** $n = "27346209830709182346"$
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{n.length} \le 10^{5}$
 

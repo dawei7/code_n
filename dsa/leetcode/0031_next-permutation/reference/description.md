@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **permutation** of an array of integers is an arrangement of its members into a sequence or linear order.
 
@@ -15,7 +15,8 @@ The **next permutation** of an array of integers is the next lexicographically g
 Given an array of integers `nums`, *find the next permutation of* `nums`.
 
 The replacement must be **<a href="http://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in place</a>** and use only constant extra memory.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ The replacement must be **<a href="http://en.wikipedia.org/wiki/In-place_algorit
 
 No value is returned. Mutate `nums` in place to its next lexicographic permutation.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ No value is returned. Mutate `nums` in place to its next lexicographic permutati
 
 - **Input:** `nums = [1,1,5]`
 - **Output:** `[1,5,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

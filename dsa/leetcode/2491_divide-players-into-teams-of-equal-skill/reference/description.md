@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a positive integer array `skill` of **even** length `n` where $\text{skill}[i]$ denotes the skill of the $$i^{\text{th}}$$ player. Divide the players into $n / 2$ teams of size `2` such that the total skill of each team is **equal**.
 
 The **chemistry** of a team is equal to the **product** of the skills of the players on that team.
 
 Return *the sum of the **chemistry** of all the teams, or return *`-1`* if there is no way to divide the players into teams such that the total skill of each team is equal.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The chemistry of the team is 3 * 4 = 12.
 - **Output:** `-1`
 - **Explanation:**
 There is no way to divide the players into teams such that the total skill of each team is equal.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{skill.length} \le 10^{5}$
 

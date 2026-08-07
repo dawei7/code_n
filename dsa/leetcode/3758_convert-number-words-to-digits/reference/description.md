@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters. `s` may contain **valid concatenated** English words representing the digits 0 to 9, without spaces.
 
@@ -11,7 +11,8 @@ Parse `s` from left to right. At each position:
 - Otherwise, skip **exactly** one character and continue parsing.
 
 Return the resulting digit string. If no number words are found, return an empty string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ The valid words are `zero`, `one`, `two`, `three`, `four`, `five`, `six`, `seven
 
 Return the string formed by the corresponding digits of all matched number words, in discovery order, or `""` if there are no matches.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -83,7 +84,8 @@ Return the string formed by the corresponding digits of all matched number words
 - All characters are skipped and incomplete fragments are ignored, so the result is an empty string.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

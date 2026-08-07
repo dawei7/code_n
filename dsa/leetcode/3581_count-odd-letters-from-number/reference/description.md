@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` perform the following steps:
 
@@ -7,11 +7,12 @@ You are given an integer `n` perform the following steps:
 - **Concatenate** those words in the **original digit order** to form a string `s`.
 
 Return the number of **distinct** characters in `s` that appear an **odd** number of times.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,6 +42,7 @@ Characters with odd frequencies: `'f'`, `'u'`, `'r'`, `'n'`, `'e'`. Thus, the an
 Characters with odd frequencies: `'t'`, `'w'`, `'z'`, `'e'`, `'r'`. Thus, the answer is 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

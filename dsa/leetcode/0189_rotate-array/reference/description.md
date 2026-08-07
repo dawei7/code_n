@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, rotate the array to the right by `k` steps, where `k` is non-negative.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given an integer array `nums`, rotate the array to the right by `k` steps, where
 
 Return nothing; modify `nums` in place to contain the rotated sequence.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ rotate 3 steps to the right: [5,6,7,1,2,3,4]
 - **Explanation:**
 rotate 1 steps to the right: [99,-1,-100,3]
 rotate 2 steps to the right: [3,99,-1,-100]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

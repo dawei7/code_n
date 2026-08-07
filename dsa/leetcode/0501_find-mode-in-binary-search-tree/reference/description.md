@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree (BST) with duplicates, return *all the <a href="https://en.wikipedia.org/wiki/Mode_(statistics)" target="_blank">mode(s)</a> (i.e., the most frequently occurred element) in it*.
 
@@ -11,12 +11,13 @@ Assume a BST is defined as follows:
 - The right subtree of a node contains only nodes with keys **greater than or equal to** the node's key.
 
 - Both the left and right subtrees must also be binary search trees.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Assume a BST is defined as follows:
 
 - **Input:** `root = [0]`
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

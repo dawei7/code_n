@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer `num`. You can swap two digits at most once to get the maximum valued number.
 
 Return *the maximum valued number you can get*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,6 +21,7 @@ Return *the maximum valued number you can get*.
 - **Input:** $num = 9973$
 - **Output:** `9973`
 - **Explanation:** No swap.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 10^{8}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `m` that consist of the **same** number of digits.
 
@@ -13,12 +13,13 @@ The integer `n` must not be a prime number at any point, including its original 
 The cost of a transformation is the sum of **all** values that `n` takes throughout the operations performed.
 
 Return the **minimum** cost to transform `n` into `m`. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ It is impossible to make `n` equal to `m`.
 Since 2 is already a prime, we can't make `n` equal to `m`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m < 10^{4}$
 

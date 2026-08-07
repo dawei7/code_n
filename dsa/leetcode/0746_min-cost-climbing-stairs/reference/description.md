@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `cost` where $\text{cost}[i]$ is the cost of $$i^{\text{th}}$$ step on a staircase. Once you pay the cost, you can either climb one or two steps.
 
 You can either start from the step with index `0`, or the step with index `1`.
 
 Return *the minimum cost to reach the top of the floor*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The total cost is 15.
 - Pay 1 and climb two steps to reach index 9.
 - Pay 1 and climb one step to reach the top.
 The total cost is 6.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{cost.length} \le 1000$
 

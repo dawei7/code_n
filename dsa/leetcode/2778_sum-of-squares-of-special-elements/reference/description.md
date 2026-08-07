@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **1-indexed** integer array `nums` of length `n`.
 
 An element $\text{nums}[i]$ of `nums` is called **special** if `i` divides `n`, i.e. $n \% i = 0$.
 
 Return *the **sum of the squares** of all **special** elements of *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Hence, the sum of the squares of all special elements of nums is nums[1] * nums[
 - **Output:** `63`
 - **Explanation:** There are exactly 4 special elements in nums: nums[1] since 1 divides 6, nums[2] since 2 divides 6, nums[3] since 3 divides 6, and nums[6] since 6 divides 6.
 Hence, the sum of the squares of all special elements of nums is nums[1] * nums[1] + nums[2] * nums[2] + nums[3] * nums[3] + nums[6] * nums[6] = 2 * 2 + 7 * 7 + 1 * 1 + 3 * 3 = 63.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} = n \le 50$
 

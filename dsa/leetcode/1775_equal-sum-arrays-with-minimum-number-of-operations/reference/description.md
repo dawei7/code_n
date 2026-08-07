@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two arrays of integers `nums1` and `nums2`, possibly of different lengths. The values in the arrays are between `1` and `6`, inclusive.
 
 In one operation, you can change any integer's value in **any **of the arrays to **any** value between `1` and `6`, inclusive.
 
 Return *the minimum number of operations required to make the sum of values in *`nums1`* equal to the sum of values in *`nums2`*.* Return `-1`​​​​​ if it is not possible to make the sum of the two arrays equal.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *the minimum number of operations required to make the sum of values in *
 - Change nums1[0] to 2. nums1 = [**<u>2</u>**,6], nums2 = [1].
 - Change nums1[1] to 2. nums1 = [2,**<u>2</u>**], nums2 = [1].
 - Change nums2[0] to 4. nums1 = [2,2], nums2 = [**<u>4</u>**].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 

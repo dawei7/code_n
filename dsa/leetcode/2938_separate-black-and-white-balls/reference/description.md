@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` balls on a table, each ball has a color black or white.
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** binary string `s` of length `n`, where `1` and `0`
 In each step, you can choose two adjacent balls and swap them.
 
 Return *the **minimum** number of steps to group all the black balls to the right and all the white balls to the left*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It can be proven that the minimum number of steps needed is 2.
 - **Input:** `s = "0111"`
 - **Output:** `0`
 - **Explanation:** All the black balls are already grouped to the right.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

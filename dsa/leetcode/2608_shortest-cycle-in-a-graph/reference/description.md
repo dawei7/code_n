@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is a **bi-directional **graph with `n` vertices, where each vertex is labeled from `0` to $n - 1$. The edges in the graph are represented by a given 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}]$ denotes an edge between vertex $u_{i}$ and vertex $v_{i}$. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself.
 
 Return *the length of the **shortest **cycle in the graph*. If no cycle exists, return `-1`.
 
 A cycle is a path that starts and ends at the same node, and each edge in the path is used only once.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ A cycle is a path that starts and ends at the same node, and each edge in the pa
 - **Input:** $n = 4, edges = [[0,1],[0,2]]$
 - **Output:** `-1`
 - **Explanation:** There are no cycles in this graph.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 1000$
 

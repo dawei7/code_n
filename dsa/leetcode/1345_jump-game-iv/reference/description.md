@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, you are initially positioned at the first index of the array.
 
@@ -13,12 +13,13 @@ In one step you can jump from index `i` to index:
 Return *the minimum number of steps* to reach the **last index** of the array.
 
 Notice that you can not jump outside of the array at any time.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Notice that you can not jump outside of the array at any time.
 - **Input:** `arr = [7,6,9,6,9,6,9,7]`
 - **Output:** `1`
 - **Explanation:** You can jump directly from index 0 to index 7 which is last index of the array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 5 * 10^{4}$
 

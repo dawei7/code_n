@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -125,10 +125,12 @@ The query result format is in the following example.
 
 	</li>
 
-**Note:** The output is ordered by loyalty_score in descending order, then by customer_id in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
+
+### 3. Note
+
+The output is ordered by loyalty_score in descending order, then by customer_id in ascending order.
+
+</div>

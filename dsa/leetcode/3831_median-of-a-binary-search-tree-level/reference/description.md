@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **Binary Search Tree (BST)** and an integer `level`.
 
@@ -7,7 +7,8 @@ The root node is at level 0. Each level represents the distance from the root.
 Return the **median value** of all node values present at the given `level`. If the level does not exist or contains no nodes, return -1.
 
 The **median** is defined as the middle element after sorting the values at that level in **non-decreasing** order. If the number of values at that level is even, return the **upper** median (the larger of the two middle elements after sorting).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ The tree obeys the BST ordering property. Values at the requested level are inte
 
 Return the requested level's median value, using the upper median when $K$ is even. Return `-1` when $K=0$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ The nodes at $level = 1$ are `[3, 8]`. There are two possible median values, so 
 There is no node present at $level = 2$​​​​​​​, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 2 * 10^{5}]$.
 

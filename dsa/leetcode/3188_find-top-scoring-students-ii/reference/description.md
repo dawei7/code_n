@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `students`
 
@@ -134,10 +134,12 @@ enrollments table:
 
 - David (student_id 4) is a Mathematics major but did not receive an A in all required courses.
 
-**Note:** Output table is ordered by student_id in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
+
+### 3. Note
+
+Output table is ordered by student_id in ascending order.
+
+</div>

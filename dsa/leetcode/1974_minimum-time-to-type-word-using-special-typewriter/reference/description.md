@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a special typewriter with lowercase English letters `'a'` to `'z'` arranged in a **circle** with a **pointer**. A character can **only** be typed if the pointer is pointing to that character. The pointer is **initially** pointing to the character `'a'`.
 
@@ -11,12 +11,13 @@ Each second, you may perform one of the following operations:
 - Type the character the pointer is **currently** on.
 
 Given a string `word`, return the** minimum** number of seconds to type out the characters in `word`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The characters are printed as follows:
 - Type the character 'p' in 1 second.
 - Move the pointer counterclockwise to 'c' in 13 seconds.
 - Type the character 'c' in 1 second.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 100$
 

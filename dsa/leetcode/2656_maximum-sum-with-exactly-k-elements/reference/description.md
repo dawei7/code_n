@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `k`. Your task is to perform the following operation **exactly** `k` times in order to maximize your score:
 
@@ -11,12 +11,13 @@ You are given a **0-indexed** integer array `nums` and an integer `k`. Your task
 - Increase your score by `m`.
 
 Return *the maximum score you can achieve after performing the operation exactly* `k` *times.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ For the first iteration, we choose 5. Then sum is 5 and nums = [5,5,6]
 For the second iteration, we choose 6. Then sum is 5 + 6 = 11 and nums = [5,5,7]
 So, we will return 11.
 It can be proven, that 11 is the maximum answer that we can achieve.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

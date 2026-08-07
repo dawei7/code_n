@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Products`
 
@@ -87,6 +87,6 @@ The result format is in the following example.
 
 Result table is ordered by product_id in ascending order.</div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

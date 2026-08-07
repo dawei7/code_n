@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is a computer that can run an unlimited number of tasks **at the same time**. You are given a 2D integer array `tasks` where $\text{tasks}[i] = [\text{start}_{i}, \text{end}_{i}, \text{duration}_{i}]$ indicates that the $$i^{\text{th}}$$ task should run for a total of $\text{duration}_{i}$ seconds (not necessarily continuous) within the **inclusive** time range $[\text{start}_{i}, \text{end}_{i}]$.
 
 You may turn on the computer only when it needs to run a task. You can also turn it off if it is idle.
 
 Return *the minimum time during which the computer should be turned on to complete all tasks*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The computer will be on for a total of 2 seconds.
 - The second task can be run in the inclusive time ranges [2, 3] and [5, 5].
 - The third task can be run in the two inclusive time range [5, 6].
 The computer will be on for a total of 4 seconds.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tasks.length} \le 2000$
 

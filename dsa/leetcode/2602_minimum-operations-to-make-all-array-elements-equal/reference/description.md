@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of positive integers.
 
@@ -8,13 +8,16 @@ You are also given an integer array `queries` of size `m`. For the $$i^{\text{th
 
 Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the **minimum** number of operations to make all elements of *`nums`* equal to *$\text{queries}[i]$.
 
-**Note** that after each query the array is reset to its original state.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that after each query the array is reset to its original state.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ So the total number of operations for the second query is 2 + 4 + 1 + 3 = 10.
 - **Input:** `nums = [2,9,6,3], queries = [10]`
 - **Output:** `[20]`
 - **Explanation:** We can increase each value in the array to 10. The total number of operations will be 8 + 1 + 4 + 7 = 20.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{nums.length}$
 

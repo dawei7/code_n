@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of strings `wordsDict` and two different strings that already exist in the array `word1` and `word2`, return *the shortest distance between these two words in the list*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given an array of strings `wordsDict` and two different strings that already exi
 
 Integer representing the shortest distance between `word1` and `word2` in `wordsDict`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Integer representing the shortest distance between `word1` and `word2` in `words
 
 - **Input:** $wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "coding"$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{wordsDict.length} \le 3 * 10^{4}$
 

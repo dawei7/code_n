@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Fraud`
 
@@ -21,11 +21,12 @@ Write a solution to find the top `5` **percentile** of claims from **each state*
 Return *the result table ordered by *`state`* in **ascending** order, *$\text{fraud}_{score}$* in **descending** order, and *$\text{policy}_{id}$* in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

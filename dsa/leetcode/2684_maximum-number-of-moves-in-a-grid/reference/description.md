@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` matrix `grid` consisting of **positive** integers.
 
@@ -7,12 +7,13 @@ You can start at **any** cell in the first column of the matrix, and traverse th
 - From a cell `(row, col)`, you can move to any of the cells: $(row - 1, col + 1)$, $(row, col + 1)$ and $(row + 1, col + 1)$ such that the value of the cell you move to, should be **strictly** bigger than the value of the current cell.
 
 Return *the **maximum** number of **moves** that you can perform.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that it is the maximum number of moves that can be made.
 - **Input:** `grid = [[3,2,4],[2,1,9],[1,1,7]]`
 - **Output:** `0`
 - **Explanation:** Starting from any cell in the first column we cannot perform any moves.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

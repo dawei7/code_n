@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `MyNumbers`
 
@@ -19,12 +19,13 @@ Find the largest **single number**. If there is no **single number**, report `nu
 The result format is in the following example.
 
 <ptable> </ptable>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

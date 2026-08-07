@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`, where $\text{nums}[i]$ is a digit between `0` and `9` (**inclusive**).
 
@@ -13,12 +13,13 @@ The **triangular sum** of `nums` is the value of the only element present in `nu
 - **Repeat** the entire process starting from step 1.
 
 Return *the triangular sum of* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The above diagram depicts the process from which we obtain the triangular sum of
 - **Output:** `5`
 - **Explanation:**
 Since there is only one element in nums, the triangular sum is the value of that element itself.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

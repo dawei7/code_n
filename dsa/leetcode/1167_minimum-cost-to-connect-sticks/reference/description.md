@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You have some number of sticks with positive integer lengths. These lengths are given as an array `sticks`, where $\text{sticks}[i]$ is the length of the $$i^{\text{th}}$$ stick.
 
 You can connect any two sticks of lengths `x` and `y` into one stick by paying a cost of $x + y$. You must connect all the sticks until there is only one stick remaining.
 
 Return *the minimum cost of connecting all the given sticks into one stick in this way*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Each connection removes two current lengths, adds their sum to the cost, and ins
 
 - The minimum possible integer sum of all connection costs. A one-stick input requires no connection and therefore returns `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ There is only one stick left, so you are done. The total cost is 4 + 9 + 17 = 30
 - **Input:** $sticks = [5]$
 - **Output:** `0`
 - **Explanation:** There is only one stick, so you don't need to do anything. The total cost is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sticks.length} \le 10^{4}$
 

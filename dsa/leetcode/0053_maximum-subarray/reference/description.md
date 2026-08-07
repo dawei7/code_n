@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, find the subarray with the largest sum, and return *its sum*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return the maximum sum among all non-empty contiguous subarrays of `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return the maximum sum among all non-empty contiguous subarrays of `nums`.
 - **Input:** `nums = [5,4,-1,7,8]`
 - **Output:** `23`
 - **Explanation:** The subarray [5,4,-1,7,8] has the largest sum 23.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

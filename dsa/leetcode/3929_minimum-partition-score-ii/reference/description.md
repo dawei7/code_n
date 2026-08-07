@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -7,7 +7,8 @@ Your task is to partition `nums` into **exactly** `k` subarrays and return an in
 The **score** of a partition is the **sum** of the **values** of all its subarrays.
 
 The **value** of a subarray is defined as $sumArr * (sumArr + 1) / 2$, where `sumArr` is the sum of its elements.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Each element is used exactly once. Cuts may be placed only between elements, and
 
 Return an integer equal to the minimum possible sum of $T(s)=s(s+1)/2$ over the `k` subarray sums.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return an integer equal to the minimum possible sum of $T(s)=s(s+1)/2$ over the 
 - The score of this partition is $1 + 1 + 1 = 3$, which is the minimum possible score.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

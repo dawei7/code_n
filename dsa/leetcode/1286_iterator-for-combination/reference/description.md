@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design the `CombinationIterator` class:
 
@@ -7,12 +7,13 @@ Design the `CombinationIterator` class:
 - `next()` Returns the next combination of length `combinationLength` in **lexicographical order**.
 
 - `hasNext()` Returns `true` if and only if there exists a next combination.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ itr.hasNext(); // return True
 itr.next();    // return "bc"
 itr.hasNext(); // return False
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le combinationLength \le \text{characters.length} \le 15$
 

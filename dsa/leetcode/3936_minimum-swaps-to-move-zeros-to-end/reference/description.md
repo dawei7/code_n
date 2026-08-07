@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 In one operation, you can choose any two **distinct** indices `i` and `j` and swap $\text{nums}[i]$ and $\text{nums}[j]$.
 
 Return an integer denoting the **minimum** number of operations required to move all 0s to the end of the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $N=\lvert\texttt{nums}\rvert$ and let $Z$ be the number of zeroes in `nums`.
 
 Return the minimum number of allowed swaps needed to make the last $Z$ positions zero and the first $N-Z$ positions nonzero.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Thus, the answer is 1.
 The array already satisfies the condition. Therefore, no swap operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

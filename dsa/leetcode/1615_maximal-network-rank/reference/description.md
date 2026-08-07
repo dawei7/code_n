@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an infrastructure of `n` cities with some number of `roads` connecting these cities. Each $\text{roads}[i] = [a_{i}, b_{i}]$ indicates that there is a bidirectional road between cities $a_{i}$ and $b_{i}$.
 
@@ -7,12 +7,13 @@ The **network rank*** *of **two different cities** is defined as the total numbe
 The **maximal network rank **of the infrastructure is the **maximum network rank** of all pairs of different cities.
 
 Given the integer `n` and the array `roads`, return *the **maximal network rank** of the entire infrastructure*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Given the integer `n` and the array `roads`, return *the **maximal network rank*
 - **Input:** $n = 8, roads = [[0,1],[1,2],[2,3],[2,4],[5,6],[5,7]]$
 - **Output:** `5`
 - **Explanation:** The network rank of 2 and 5 is 5. Notice that all the cities do not have to be connected.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 

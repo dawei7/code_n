@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` that consists of lower case English letters and brackets.
 
 Reverse the strings in each pair of matching parentheses, starting from the innermost one.
 
 Your result should **not** contain any brackets.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Your result should **not** contain any brackets.
 - **Input:** `s = "(ed(et(oc))el)"`
 - **Output:** `"leetcode"`
 - **Explanation:** First, we reverse the substring "oc", then "etco", and finally, the whole string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2000$
 

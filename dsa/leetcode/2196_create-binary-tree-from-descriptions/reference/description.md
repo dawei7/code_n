@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `descriptions` where $\text{descriptions}[i] = [\text{parent}_{i}, \text{child}_{i}, \text{isLeft}_{i}]$ indicates that $\text{parent}_{i}$ is the **parent** of $\text{child}_{i}$ in a **binary** tree of **unique** values. Furthermore,
 
@@ -9,12 +9,13 @@ You are given a 2D integer array `descriptions` where $\text{descriptions}[i] = 
 Construct the binary tree described by `descriptions` and return *its **root***.
 
 The test cases will be generated such that the binary tree is **valid**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The resulting binary tree is shown in the diagram.
 - **Output:** `[1,2,null,null,3,4]`
 - **Explanation:** The root node is the node with value 1 since it has no parent.
 The resulting binary tree is shown in the diagram.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{descriptions.length} \le 10^{4}$
 

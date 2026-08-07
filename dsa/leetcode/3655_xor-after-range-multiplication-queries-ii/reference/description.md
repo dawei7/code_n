@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a 2D integer array `queries` of size `q`, where $\text{queries}[i] = [l_{i}, r_{i}, k_{i}, v_{i}]$.
 
@@ -17,12 +17,13 @@ For each query, you must apply the following operations in order:
 	</li>
 
 Return the **bitwise XOR** of all elements in `nums` after processing all queries.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Return the **bitwise XOR** of all elements in `nums` after processing all querie
 - Finally, the XOR of all elements is $4 ^ 18 ^ 2 ^ 15 ^ 4 = 31$.​​​​​​​**​​​​​​​**
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

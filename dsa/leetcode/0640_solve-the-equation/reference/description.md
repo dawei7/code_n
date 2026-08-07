@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Solve a given equation and return the value of `'x'` in the form of a string `"x=#value"`. The equation contains only `'+'`, `'-'` operation, the variable `'x'` and its coefficient. You should return `"No solution"` if there is no solution for the equation, or `"Infinite solutions"` if there are infinite solutions for the equation.
 
 If there is exactly one solution for the equation, we ensure that the value of `'x'` is an integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ If there is exactly one solution for the equation, we ensure that the value of `
 
 - **Input:** $equation = "2x=x"$
 - **Output:** `"x=0"`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{equation.length} \le 1000$
 

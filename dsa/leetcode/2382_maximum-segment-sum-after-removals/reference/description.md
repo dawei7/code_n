@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums` and `removeQueries`, both of length `n`. For the $$i^{\text{th}}$$ query, the element in `nums` at the index $\text{removeQueries}[i]$ is removed, splitting `nums` into different segments.
 
@@ -6,13 +6,16 @@ A **segment** is a contiguous sequence of **positive** integers in `nums`. A **s
 
 Return* an integer array *`answer`*, of length *`n`*, where *$\text{answer}[i]$* is the **maximum** segment sum after applying the *$$i^{\text{th}}$$ *removal.*
 
-**Note:** The same index will **not** be removed more than once.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The same index will **not** be removed more than once.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ Query 2: Remove the 2nd element, nums becomes [3,2,0,0] and the maximum segment 
 Query 3: Remove the 1st element, nums becomes [3,0,0,0] and the maximum segment sum is 3 for segment [3].
 Query 4: Remove the 0th element, nums becomes [0,0,0,0] and the maximum segment sum is 0, since there are no segments.
 Finally, we return [16,5,3,0].
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{nums.length} = \text{removeQueries.length}$
 

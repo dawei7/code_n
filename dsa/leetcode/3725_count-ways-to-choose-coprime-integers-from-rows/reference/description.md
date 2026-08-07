@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a `m x n` matrix `mat` of positive integers.
 
 Return an integer denoting the number of ways to choose **exactly one** integer from each row of `mat` such that the **greatest common divisor** of all chosen integers is 1.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Choices are based on cell positions. If the same value occurs more than once in 
 
 Return the number of row-by-row selections whose overall greatest common divisor equals `1`, reduced modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the number of row-by-row selections whose overall greatest common divisor
 Every combination has a greatest common divisor of 2. Therefore, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{mat.length} \le 150$
 

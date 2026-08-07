@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There is a malfunctioning keyboard where some letter keys do not work. All other keys on the keyboard work properly.
 
 Given a string `text` of words separated by a single space (no leading or trailing spaces) and a string `brokenLetters` of all **distinct** letter keys that are broken, return *the **number of words** in* `text` *you can fully type using this keyboard*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Given a string `text` of words separated by a single space (no leading or traili
 - **Input:** $text = "leet code", brokenLetters = "e"$
 - **Output:** `0`
 - **Explanation:** We cannot type either word because the 'e' key is broken.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 10^{4}$
 

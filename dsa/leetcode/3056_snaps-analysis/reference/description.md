@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activities`
 
@@ -35,11 +35,12 @@ Write a solution to calculate the **percentage** of the total time spent on **se
 Return *the result table **in **any** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

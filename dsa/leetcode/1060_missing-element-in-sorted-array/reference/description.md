@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` which is sorted in **ascending order** and all of its elements are **unique** and given also an integer `k`, return the $$k^{\text{th}}$$ missing number starting from the leftmost number of the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Let $N = \lvert\texttt{nums}\rvert$. Missing values are counted strictly after $
 
 - The $k$th missing integer in that increasing sequence.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Let $N = \lvert\texttt{nums}\rvert$. Missing values are counted strictly after $
 - **Input:** `nums = [1,2,4], k = 3`
 - **Output:** `6`
 - **Explanation:** The missing numbers are [3,5,6,7,...], hence the third missing number is 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

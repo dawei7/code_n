@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return `0`* if the sum of the digits of the minimum integer in *`nums`* is odd, or *`1`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -16,7 +17,7 @@ Let $n$ be the length of `nums`, and let $D$ be the number of decimal digits in 
 
 Repeated occurrences of the minimum do not change the answer because the contract uses the minimum value, not its frequency.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Repeated occurrences of the minimum do not change the answer because the contrac
 - **Input:** `nums = [99,77,33,66,55]`
 - **Output:** `1`
 - **Explanation:** The minimal element is 33, and the sum of those digits is 3 + 3 = 6 which is even, so the answer is 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

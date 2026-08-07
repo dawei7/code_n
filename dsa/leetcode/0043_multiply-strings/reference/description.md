@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given two non-negative integers `num1` and `num2` represented as strings, return the product of `num1` and `num2`, also represented as a string.
 
-**Note:** You must not use any built-in BigInteger library or convert the inputs to integer directly.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +13,11 @@ Given two non-negative integers `num1` and `num2` represented as strings, return
 
 Return the exact product of `num1` and `num2` as a decimal string.
 
-### Examples
+### 3. Note
+
+You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+### 4. Examples
 
 #### Example 1
 
@@ -24,7 +27,8 @@ Return the exact product of `num1` and `num2` as a decimal string.
 
 - **Input:** $num1 = "123", num2 = "456"$
 - **Output:** `"56088"`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{num1.length}, \text{num2.length} \le 200$
 

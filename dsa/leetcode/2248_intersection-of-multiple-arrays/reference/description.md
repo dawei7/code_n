@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a 2D integer array `nums` where $\text{nums}[i]$ is a non-empty array of **distinct** positive integers, return *the list of integers that are present in **each array** of* `nums`* sorted in **ascending order***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ The only integers present in each of nums[0] = [<u>**3**</u>,1,2,<u>**4**</u>,5]
 - **Output:** `[]`
 - **Explanation:**
 There does not exist any integer present both in nums[0] and nums[1], so we return an empty list [].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

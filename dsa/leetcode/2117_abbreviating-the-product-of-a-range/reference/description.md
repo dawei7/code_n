@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two positive integers `left` and `right` with $left \le right$. Calculate the **product** of all integers in the **inclusive** range `[left, right]`.
 
@@ -21,12 +21,13 @@ Since the product may be very large, you will **abbreviate** it following these 
 	</li>
 
 Return *a string denoting the **abbreviated product** of all integers in the **inclusive** range* `[left, right]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,6 +50,7 @@ Hence, the abbreviated product is "399168e2".
 - **Input:** $left = 371, right = 375$
 - **Output:** `"7219856259e3"`
 - **Explanation:** The product is 7219856259000.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le left \le right \le 10^{4}$

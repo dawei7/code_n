@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, return *the number of **good pairs***.
 
 A pair `(i, j)` is called *good* if $\text{nums}[i] = \text{nums}[j]$ and `i` < `j`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ A pair `(i, j)` is called *good* if $\text{nums}[i] = \text{nums}[j]$ and `i` < 
 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

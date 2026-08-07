@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the **API** `rand7()` that generates a uniform random integer in the range `[1, 7]`, write a function `rand10()` that generates a uniform random integer in the range `[1, 10]`. You can only call the API `rand7()`, and you shouldn't call any other API. Please **do not** use a language's built-in random API.
 
 Each test case will have one **internal** argument `n`, the number of times that your implemented function `rand10()` will be called while testing. Note that this is **not an argument** passed to `rand10()`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Each test case will have one **internal** argument `n`, the number of times that
 
 The immutable native form instead exposes `Solution.rand10()` with no arguments and calls LeetCode's independently uniform `rand7()` API. The app stream exists only to make the same control flow reproducible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The immutable native form instead exposes `Solution.rand10()` with no arguments 
 
 - **Input:** $n = 3$
 - **Output:** `[3,8,10]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

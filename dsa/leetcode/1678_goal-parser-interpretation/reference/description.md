@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You own a **Goal Parser** that can interpret a string `command`. The `command` consists of an alphabet of `"G"`, `"()"` and/or `"(al)"` in some order. The Goal Parser will interpret `"G"` as the string `"G"`, `"()"` as the string `"o"`, and `"(al)"` as the string `"al"`. The interpreted strings are then concatenated in the original order.
 
 Given the string `command`, return *the **Goal Parser**'s interpretation of *`command`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ The final concatenated result is "Goal".
 
 - **Input:** $command = "(al)G(al)()()G"$
 - **Output:** `"alGalooG"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{command.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are starving and you want to eat food as quickly as possible. You want to find the shortest path to arrive at any food cell.
 
@@ -15,11 +15,12 @@ You are given an `m x n` character matrix, `grid`, of these different types of c
 You can travel to any adjacent cell north, east, south, or west of your current location if there is not an obstacle.
 
 Return *the **length** of the shortest path for you to reach **any** food cell*. If there is no path for you to reach food, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return *the **length** of the shortest path for you to reach **any** food cell*.
 
 - **Input:** `grid = [["X","X","X","X","X","X","X","X"],["X","*","O","X","O","#","O","X"],["X","O","O","X","O","O","X","X"],["X","O","O","O","O","#","O","X"],["O","O","O","O","O","O","O","O"]]`
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

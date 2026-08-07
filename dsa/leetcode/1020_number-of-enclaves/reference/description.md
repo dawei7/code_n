@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid`, where `0` represents a sea cell and `1` represents a land cell.
 
 A **move** consists of walking from one land cell to another adjacent (**4-directionally**) land cell or walking off the boundary of the `grid`.
 
 Return *the number of land cells in* `grid` *for which we cannot walk off the boundary of the grid in any number of **moves***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the number of land cells in* `grid` *for which we cannot walk off the bo
 - **Input:** `grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]`
 - **Output:** `0`
 - **Explanation:** All 1s are either on the boundary or can reach the boundary.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

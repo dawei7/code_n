@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a data structure of employee information, including the employee's unique ID, importance value, and direct subordinates' IDs.
 
@@ -11,12 +11,13 @@ You are given an array of employees `employees` where:
 - $\text{employees}[i].subordinates$ is a list of the IDs of the direct subordinates of the $$i^{\text{th}}$$ employee.
 
 Given an integer `id` that represents an employee's ID, return *the **total** importance value of this employee and all their direct and indirect subordinates*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Thus, the total importance value of employee 1 is 5 + 3 + 3 = 11.
 - **Output:** `-3`
 - **Explanation:** Employee 5 has an importance value of -3 and has no direct subordinates.
 Thus, the total importance value of employee 5 is -3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{employees.length} \le 2000$
 

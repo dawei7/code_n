@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 An integer has *sequential digits* if and only if each digit in the number is one more than the previous digit.
 
 Return a **sorted** list of all the integers in the range `[low, high]` inclusive that have sequential digits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,6 +19,7 @@ Return a **sorted** list of all the integers in the range `[low, high]` inclusiv
 
 - **Input:** $low = 1000, high = 13000$
 - **Output:** `[1234,2345,3456,4567,5678,6789,12345]`
-### Constraints
+
+### 4. Constraints
 
 - $10 \le low \le high \le 10^{9}$

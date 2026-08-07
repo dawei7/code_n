@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -11,12 +11,13 @@ From any index `i`, you may perform one of the following operations:
 - **Prime Teleportation**: If $\text{nums}[i]$ is a prime number `p`, you may instantly jump to any index $j \neq i$ such that $\text{nums}[j] \% p = 0$.
 
 Return the **minimum** number of jumps required to reach index $n - 1$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ Thus, the answer is 2.
 - Since no teleportation is possible, we move through `0 → 1 → 2 → 3`. Thus, the answer is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

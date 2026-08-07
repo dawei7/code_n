@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of CPU `tasks`, each labeled with a letter from A to Z, and a number `n`. Each CPU interval can be idle or allow the completion of one task. Tasks can be completed in any order, but there's a constraint: there has to be a gap of **at least** `n` intervals between two tasks with the same label.
 
 Return the **minimum** number of CPU intervals required to complete all tasks.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ With a cooling interval of 1, you can repeat a task after just one other task.
 There are only two types of tasks, A and B, which need to be separated by 3 intervals. This leads to idling twice between repetitions of these tasks.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tasks.length} \le 10^{4}$
 

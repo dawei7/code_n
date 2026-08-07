@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An undirected graph of `n` nodes is defined by `edgeList`, where $\text{edgeList}[i] = [u_{i}, v_{i}, \text{dis}_{i}]$ denotes an edge between nodes $u_{i}$ and $v_{i}$ with distance $\text{dis}_{i}$. Note that there may be **multiple** edges between two nodes, and the graph may not be connected.
 
@@ -7,11 +7,12 @@ Implement the `DistanceLimitedPathsExist` class:
 - `DistanceLimitedPathsExist(int n, int[][] edgeList)` Initializes the class with an undirected graph.
 
 - `boolean query(int p, int q, int limit)` Returns `true` if there exists a path from `p` to `q` such that each edge on the path has a distance **strictly less than** `limit`, and otherwise `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

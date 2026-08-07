@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `word1` and `word2`, return *the minimum number of operations required to convert `word1` to `word2`*.
 
@@ -9,7 +9,8 @@ You have the following three operations permitted on a word:
 - Delete a character
 
 - Replace a character
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ You have the following three operations permitted on a word:
 
 Return the smallest number of permitted character operations that converts `word1` exactly into `word2`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ inention -> enention (replace 'i' with 'e')
 enention -> exention (replace 'n' with 'x')
 exention -> exection (replace 'n' with 'c')
 exection -> execution (insert 'u')
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{word1.length}, \text{word2.length} \le 500$
 

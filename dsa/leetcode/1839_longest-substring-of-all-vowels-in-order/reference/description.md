@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A string is considered **beautiful** if it satisfies the following conditions:
 
@@ -11,12 +11,13 @@ For example, strings `"aeiou"` and `"aaaaaaeiiiioou"` are considered **beautiful
 Given a string `word` consisting of English vowels, return *the **length of the longest beautiful substring** of *`word`*. If no such substring exists, return *`0`.
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Input:** $word = "a"$
 - **Output:** `0`
 - **Explanation:** There is no beautiful substring, so return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 5 * 10^{5}$
 

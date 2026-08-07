@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of **digit** strings `nums` and a **digit** string `target`, return *the number of pairs of indices *`(i, j)`* (where *$i \neq j$*) such that the **concatenation** of *$\text{nums}[i] + \text{nums}[j]$* equals *`target`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Given an array of **digit** strings `nums` and a **digit** string `target`, retu
 - (2, 0): "1" + "1"
 - (1, 2): "1" + "1"
 - (2, 1): "1" + "1"
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

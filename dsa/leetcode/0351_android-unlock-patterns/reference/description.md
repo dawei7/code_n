@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Android devices have a special lock screen with a `3 x 3` grid of dots. Users can set an "unlock pattern" by connecting the dots in a specific sequence, forming a series of joined line segments where each segment's endpoints are two consecutive dots in the sequence. A sequence of `k` dots is a **valid** unlock pattern if both of the following are true:
 
@@ -27,7 +27,8 @@ Here are some example valid and invalid unlock patterns:
 Given two integers `m` and `n`, return *the **number of unique and valid unlock patterns** of the Android grid lock screen that consist of **at least** *`m`* keys and **at most** *`n`* keys.*
 
 Two unlock patterns are considered **unique** if there is a dot in one sequence that is not in the other, or the order of the dots is different.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -38,7 +39,7 @@ Two unlock patterns are considered **unique** if there is a dot in one sequence 
 
 Return the number of unique valid dot sequences whose lengths lie in the inclusive range `[m,n]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,6 +49,7 @@ Return the number of unique valid dot sequences whose lengths lie in the inclusi
 
 - **Input:** $m = 1, n = 2$
 - **Output:** `65`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 9$

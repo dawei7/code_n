@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return the **length** of the **longest subarray** that has a bitwise XOR of zero and contains an **equal** number of **even** and **odd** numbers. If no such subarray exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ The parity count treats zero as even. Both the zero-XOR and equal-parity-count r
 
 Return the maximum valid subarray length, or `0` when no nonempty subarray satisfies both requirements.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ The whole array has bitwise XOR `0` and contains 4 even and 4 odd numbers.
 No non-empty subarray satisfies both conditions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

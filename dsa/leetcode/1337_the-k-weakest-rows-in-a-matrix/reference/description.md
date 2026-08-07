@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `mat` of `1`'s (representing soldiers) and `0`'s (representing civilians). The soldiers are positioned **in front** of the civilians. That is, all the `1`'s will appear to the **left** of all the `0`'s in each row.
 
@@ -9,12 +9,13 @@ A row `i` is **weaker** than a row `j` if one of the following is true:
 - Both rows have the same number of soldiers and `i < j`.
 
 Return *the indices of the *`k`* **weakest** rows in the matrix ordered from weakest to strongest*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The number of soldiers in each row is:
 - Row 2: 1
 - Row 3: 1
 The rows ordered from weakest to strongest are [0,2,3,1].
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

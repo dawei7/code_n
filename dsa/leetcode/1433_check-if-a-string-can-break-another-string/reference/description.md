@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two strings: `s1` and `s2` with the same size, check if some permutation of string `s1` can break some permutation of string `s2` or vice-versa. In other words `s2` can break `s1` or vice-versa.
 
 A string `x` can break string `y` (both of size `n`) if $x[i] \ge y[i]$ (in alphabetical order) for all `i` between `0` and `n-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ A string `x` can break string `y` (both of size `n`) if $x[i] \ge y[i]$ (in alph
 
 - **Input:** $s1 = "leetcodee", s2 = "interview"$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $\text{s1.length} = n$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the largest integer that only occurs once*. If no integer occurs once, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given an integer array `nums`, return *the largest integer that only occurs once
 
 The sentinel `-1` lies outside the legal value domain, so it cannot be confused with an input value. In particular, `0` is a valid answer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The sentinel `-1` lies outside the legal value domain, so it cannot be confused 
 - **Input:** `nums = [9,9,8,8]`
 - **Output:** `-1`
 - **Explanation:** There is no number that occurs only once.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2000$
 

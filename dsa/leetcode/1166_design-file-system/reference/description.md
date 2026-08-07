@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are asked to design a file system that allows you to create new paths and associate them with different values.
 
@@ -9,7 +9,8 @@ Implement the `FileSystem` class:
 - `bool createPath(string path, int value)` Creates a new `path` and associates a `value` to it if possible and returns `true`. Returns `false` if the path **already exists** or its parent path **doesn't exist**.
 
 - `int get(string path)` Returns the value associated with `path` or returns `-1` if the path doesn't exist.
-### Function Contract
+
+### 2. Function Contract
 
 **Source-native class**
 
@@ -31,7 +32,7 @@ be the total number of path characters processed across all calls.
 
 - A list containing each operation's boolean or integer result in execution order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ fileSystem.createPath("/leet/code", 2); // return true
 fileSystem.get("/leet/code"); // return 2
 fileSystem.createPath("/c/d", 1); // return false because the parent path "/c" doesn't exist.
 fileSystem.get("/c"); // return -1 because this path doesn't exist.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{path.length} \le 100$
 

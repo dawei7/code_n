@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A string is a *valid parentheses string* (denoted VPS) if and only if it consists of `"("` and `")"` characters only, and:
 
@@ -31,12 +31,13 @@ This corresponds to the output `[0, 1, 0, 1, 0, 1, 0, 1, 0]`  where 0 indicates 
 Now choose **any** such `A` and `B` such that `max(depth(A), depth(B))` is the minimum possible value.
 
 Return an `answer` array (of length `seq.length`) that encodes such a choice of `A` and `B`:  $\text{answer}[i] = 0$ if $\text{seq}[i]$ is part of `A`, else $\text{answer}[i] = 1$.  Note that even though multiple answers may exist, you may return any of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,6 +47,7 @@ Return an `answer` array (of length `seq.length`) that encodes such a choice of 
 
 - **Input:** $seq = "()(())()"$
 - **Output:** `[0,0,0,1,1,0,1,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{seq.size} \le 10000$

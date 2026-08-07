@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` sorted in non-decreasing order and an integer `target`, return `true` *if* `target` *is a **majority** element, or *`false`* otherwise*.
 
 A **majority** element in an array `nums` is an element that appears more than $\text{nums.length} / 2$ times in the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ A **majority** element in an array `nums` is an element that appears more than $
 
 - `true` if the number of occurrences of `target` is strictly greater than $n/2$; otherwise `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Thus, 5 is a majority element because 5 > 9/2 is true.
 - **Output:** `false`
 - **Explanation:** The value 101 appears 2 times and the length of the array is 4.
 Thus, 101 is not a majority element because 2 > 4/2 is false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `text1` and `text2`, return *the length of their longest **common subsequence**. *If there is no **common subsequence**, return `0`.
 
@@ -7,12 +7,13 @@ A **subsequence** of a string is a new string generated from the original string
 - For example, `"ace"` is a subsequence of `"abcde"`.
 
 A **common subsequence** of two strings is a subsequence that is common to both strings.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A **common subsequence** of two strings is a subsequence that is common to both 
 - **Input:** $text1 = "abc", text2 = "def"$
 - **Output:** `0`
 - **Explanation:** There is no such common subsequence, so the result is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text1.length}, \text{text2.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an ATM machine that stores banknotes of `5` denominations: `20`, `50`, `100`, `200`, and `500` dollars. Initially the ATM is empty. The user can use the machine to deposit or withdraw any amount of money.
 
@@ -15,12 +15,13 @@ Implement the ATM class:
 - `void deposit(int[] banknotesCount)` Deposits new banknotes in the order `$20`, `$50`, `$100`, `$200`, and `$500`.
 
 - `int[] withdraw(int amount)` Returns an array of length `5` of the number of banknotes that will be handed to the user in the order `$20`, `$50`, `$100`, `$200`, and `$500`, and update the number of banknotes in the ATM after withdrawing. Returns `[-1]` if it is not possible (do **not** withdraw any banknotes in this case).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ atm.withdraw(600);        // Returns [-1]. The machine will try to use a $500 ba
 atm.withdraw(550);        // Returns [0,1,0,0,1]. The machine uses 1 $50 banknote
                           // and 1 $500 banknote.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $\text{banknotesCount.length} = 5$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** binary string `s` which represents a sequence of train cars. $s[i] = '0'$ denotes that the $$i^{\text{th}}$$ car does **not** contain illegal goods and $s[i] = '1'$ denotes that the $$i^{\text{th}}$$ car does contain illegal goods.
 
@@ -13,12 +13,13 @@ As the train conductor, you would like to get rid of all the cars containing ill
 Return *the **minimum** time to remove all the cars containing illegal goods*.
 
 Note that an empty sequence of cars is considered to have no cars containing illegal goods.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Another way to remove all the cars containing illegal goods from the sequence is
 This obtains a total time of 2.
 2 is the minimum time taken to remove all the cars containing illegal goods.
 There are no other ways to remove them with less time.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2 * 10^{5}$
 

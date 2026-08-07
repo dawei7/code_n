@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the maximum length of a **subarray** that sums to* `k`. If there is not one, return `0` instead.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given an integer array `nums` and an integer `k`, return *the maximum length of 
 
 Return the maximum number of elements in a contiguous subarray summing to `k`, or `0` when there is none.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the maximum number of elements in a contiguous subarray summing to `k`, o
 - **Input:** `nums = [-2,-1,2,1], k = 1`
 - **Output:** `2`
 - **Explanation:** The subarray [-1, 2] sums to 1 and is the longest.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Scores`
 
@@ -22,7 +22,8 @@ Write a solution to find the total score for each gender on each day.
 Return the result table ordered by `gender` and `day` in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -40,7 +41,7 @@ Return a table with these columns:
 
 Return one output row for every input row. Sort first by `gender` in ascending order and then by `day` in ascending order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

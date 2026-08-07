@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of positive integers `nums` and a positive integer `k`.
 
 A permutation of `nums` is said to form a **divisible concatenation** if, when you *concatenate* *the decimal representations* of the numbers in the order specified by the permutation, the resulting number is **divisible by** `k`.
 
 Return the **lexicographically smallest** permutation (when considered as a list of integers) that forms a **divisible concatenation**. If no such permutation exists, return an empty list.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -112,7 +113,8 @@ The lexicographically smallest permutation that forms a divisible concatenation 
 Since no permutation of `nums` forms a valid divisible concatenation, return an empty list.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 13$
 

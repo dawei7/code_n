@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given two **distinct** **prime** numbers `primeOne` and `primeTwo`.
 
 Alice and Bob are visiting a market. The market has an **infinite** number of items, for **any** positive integer `x` there exists an item whose price is `x`. Alice wants to buy some items from the market to gift to Bob. She has an **infinite** number of coins in the denomination `primeOne` and `primeTwo`. She wants to know the **most expensive** item she can **not** buy to gift to Bob.
 
 Return *the price of the **most expensive** item which Alice can not gift to Bob*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return *the price of the **most expensive** item which Alice can not gift to Bob
 - **Input:** $primeOne = 5, primeTwo = 7$
 - **Output:** `23`
 - **Explanation:** The prices of items which cannot be bought are [1,2,3,4,6,8,9,11,13,16,18,23]. It can be shown that all items with a price greater than 23 can be bought.
-### Constraints
+
+### 4. Constraints
 
 - $1 < primeOne, primeTwo < 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` employees in a company, numbered from `0` to $n - 1$. Each employee `i` has worked for $\text{hours}[i]$ hours in the company.
 
@@ -7,12 +7,13 @@ The company requires each employee to work for **at least** `target` hours.
 You are given a **0-indexed** array of non-negative integers `hours` of length `n` and a non-negative integer `target`.
 
 Return *the integer denoting the number of employees who worked at least* `target` *hours*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ There are 3 employees who met the target.
 - **Output:** `0`
 - **Explanation:** The company wants each employee to work for at least 6 hours.
 There are 0 employees who met the target.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{hours.length} \le 50$
 

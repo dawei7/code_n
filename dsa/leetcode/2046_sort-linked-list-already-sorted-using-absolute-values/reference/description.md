@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list that is sorted in **non-decreasing** order using the **absolute values** of its nodes, return *the list sorted in **non-decreasing** order using the **actual values** of its nodes*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ class ListNode:
 
 Return the `ListNode` head of the relinked list sorted in non-decreasing order by signed values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The linked list is already sorted in non-decreasing order.
 - **Output:** `[1]`
 - **Explanation:**
 The linked list is already sorted in non-decreasing order.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is the range $[1, 10^{5}]$.
 

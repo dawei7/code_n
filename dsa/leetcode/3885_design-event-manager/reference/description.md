@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an initial list of events, where each event has a unique `eventId` and a `priority`.
 
@@ -11,7 +11,8 @@ Implement the `EventManager` class:
 - `int pollHighest()` Removes and returns the `eventId` of the **active** event with the **highest** priority. If multiple active events have the same priority, return the **smallest** `eventId` among them. If there are no active events, return -1.
 
 An event is called **active** if it has not been removed by `pollHighest()`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Let $E$ be the number of initial events and let $Q$ be the number of subsequent 
 
 Return one result for every operation: `null` for construction and priority updates, the removed `eventId` for a nonempty `pollHighest`, and `-1` for a poll on an empty manager.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,7 +75,8 @@ eventManager.pollHighest(); // return 7
 eventManager.pollHighest(); // return 4
 
 eventManager.pollHighest(); // no events remain, return -1</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{events.length} \le 10^{5}$
 

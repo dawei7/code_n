@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a series of video clips from a sporting event that lasted `time` seconds. These video clips can be overlapping with each other and have varying lengths.
 
@@ -9,12 +9,13 @@ We can cut these clips into segments freely.
 - For example, a clip `[0, 7]` can be cut into segments `[0, 1] + [1, 3] + [3, 7]`.
 
 Return *the minimum number of clips needed so that we can cut the clips into segments that cover the entire sporting event* `[0, time]`. If the task is impossible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Now we have segments [0,2] + [2,8] + [8,10] which cover the sporting event [0, 1
 - **Input:** $clips = [[0,1],[6,8],[0,2],[5,6],[0,4],[0,3],[6,7],[1,3],[4,7],[1,4],[2,5],[2,6],[3,4],[4,5],[5,7],[6,9]], time = 9$
 - **Output:** `3`
 - **Explanation:** We can take clips [0,4], [4,7], and [6,9].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{clips.length} \le 100$
 

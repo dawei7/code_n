@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -19,11 +19,12 @@ Write a solution to find the **third transaction **(if they have at least three 
 Return *the result table by *$\text{user}_{id}$* in **ascending** order**.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

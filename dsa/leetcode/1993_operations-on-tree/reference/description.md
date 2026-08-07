@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a tree with `n` nodes numbered from `0` to $n - 1$ in the form of a parent array `parent` where $\text{parent}[i]$ is the parent of the $$i^{\text{th}}$$ node. The root of the tree is node `0`, so $\text{parent}[0] = -1$ since it has no parent. You want to design a data structure that allows users to lock, unlock, and upgrade nodes in the tree.
 
@@ -27,12 +27,13 @@ Implement the `LockingTree` class:
 - `unlock(int num, int user)` returns `true` if it is possible for the user with id `user` to unlock the node `num`, or `false` otherwise. If it is possible, the node `num` will become **unlocked**.
 
 - `upgrade(int num, int user)` returns `true` if it is possible for the user with id `user` to upgrade the node `num`, or `false` otherwise. If it is possible, the node `num` will be **upgraded**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ lockingTree.upgrade(0, 1); // return true because node 0 is unlocked and has at 
                            // Node 0 will now be locked by user 1 and node 4 will now be unlocked.
 lockingTree.lock(0, 1);    // return false because node 0 is already locked.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{parent.length}$
 

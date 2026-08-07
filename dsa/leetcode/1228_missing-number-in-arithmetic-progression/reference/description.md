@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 In some array `arr`, the values were in arithmetic progression: the values $arr[i + 1] - \text{arr}[i]$ are all equal for every $0 \le i < \text{arr.length} - 1$.
 
 A value from `arr` was removed that **was not the first or last value in the array**.
 
 Given `arr`, return *the removed value*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $n = \lvert\texttt{arr}\rvert$. The original progression contained $n+1$ val
 
 Return the removed integer value. Because neither original endpoint was removed, $\text{arr}[0]$ and `arr[-1]` are the original first and last values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the removed integer value. Because neither original endpoint was removed,
 - **Input:** `arr = [15,13,12]`
 - **Output:** `14`
 - **Explanation:** The previous array was [15,**14**,13,12].
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{arr.length} \le 1000$
 

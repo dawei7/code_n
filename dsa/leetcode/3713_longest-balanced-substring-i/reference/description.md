@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
 A **substring** of `s` is called **balanced** if all **distinct** characters in the **substring** appear the **same** number of times.
 
 Return the **length** of the **longest balanced substring** of `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ A substring must occupy one contiguous interval of `s`. Only characters present 
 
 Return the maximum length among all balanced substrings. Any non-empty one-character substring is balanced, so the result is always at least `1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The longest balanced substring is `"zabc"` because the distinct characters `'z'`
 **​​​​​​​**One of the longest balanced substrings is `"ab"` because both distinct characters `'a'` and `'b'` each appear exactly 1 time. Another longest balanced substring is `"ba"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`.
 
@@ -15,12 +15,13 @@ For example, let initially `s = "aabcbbca"`. We do the following operations:
 - Remove the underlined characters `s = "<u>**ba**</u>"`. The resulting string is `s = ""`.
 
 Return *the value of the string *`s`* right **before** applying the **last** operation*. In the example above, answer is `"ba"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return *the value of the string *`s`* right **before** applying the **last** ope
 - **Explanation:** We do the following operation:
 - Remove the underlined characters s = "<u>**abcd**</u>". The resulting string is s = "".
 The string just before the last operation is "abcd".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{5}$
 

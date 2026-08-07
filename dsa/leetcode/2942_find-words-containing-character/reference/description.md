@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of strings `words` and a character `x`.
 
 Return *an **array of indices** representing the words that contain the character *`x`.
 
-**Note** that the returned array may be in **any** order.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the returned array may be in **any** order.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +30,8 @@ Return *an **array of indices** representing the words that contain the characte
 - **Input:** $words = ["abc","bcd","aaaa","cbc"], x = "z"$
 - **Output:** `[]`
 - **Explanation:** "z" does not occur in any of the words. Hence, we return an empty array.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 50$
 

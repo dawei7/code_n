@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given the `head` of a linked list. **Delete** the **middle node**, and return *the* `head` *of the modified linked list*.
 
 The **middle node** of a linked list of size `n` is the $⌊n / 2⌋^th$ node from the **start** using **0-based indexing**, where `⌊x⌋` denotes the largest integer less than or equal to `x`.
 
 - For `n` = `1`, `2`, `3`, `4`, and `5`, the middle nodes are `0`, `1`, `1`, `2`, and `2`, respectively.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ For n = 4, node 2 with value 3 is the middle node, which is marked in red.
 The above figure represents the given linked list.
 For n = 2, node 1 with value 1 is the middle node, which is marked in red.
 Node 0 with value 2 is the only node remaining after removing node 1.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{5}]$.
 

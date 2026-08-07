@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -11,7 +11,8 @@ Two players, Alice and Bob, play a game in turns, with Alice playing first.
 - The game continues until **only one** element remains.
 
 Alice aims to **maximize** the final element, while Bob aims to **minimize** it. Assuming both play optimally, return the value of the final remaining element.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Every move acts on the current array: it removes one nonempty, proper, contiguou
 
 Return the value of the sole remaining element when Alice maximizes the outcome and Bob minimizes it.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ One valid optimal strategy:
 Alice removes `[3]`, leaving the array `[7]`. Since Bob cannot play a turn now, the answer is 7.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

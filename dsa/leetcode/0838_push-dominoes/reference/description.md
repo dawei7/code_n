@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` dominoes in a line, and we place each domino vertically upright. In the beginning, we simultaneously push some of the dominoes either to the left or to the right.
 
@@ -17,12 +17,13 @@ You are given a string `dominoes` representing the initial state where:
 - $\text{dominoes}[i] = '.'$, if the $$i^{\text{th}}$$ domino has not been pushed.
 
 Return *a string representing the final state*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return *a string representing the final state*.
 
 - **Input:** $dominoes = ".\text{L.R}...LR..L.."$
 - **Output:** `"LL.RR.LLRRLL.."`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{dominoes.length}$
 

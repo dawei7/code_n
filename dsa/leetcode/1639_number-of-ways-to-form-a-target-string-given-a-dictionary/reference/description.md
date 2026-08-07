@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a list of strings of the **same length** `words` and a string `target`.
 
@@ -12,15 +12,18 @@ Your task is to form `target` using the given `words` under the following rules:
 
 - Repeat the process until you form the string `target`.
 
-**Notice** that you can use **multiple characters** from the **same string** in `words` provided the conditions above are met.
-
-Return *the number of ways to form `target` from `words`*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Notice
+
+that you can use **multiple characters** from the **same string** in `words` provided the conditions above are met.
+
+Return *the number of ways to form `target` from `words`*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ Return *the number of ways to form `target` from `words`*. Since the answer may 
 "bab" -> index 0 ("<u>b</u>aab"), index 1 ("b<u>a</u>ab"), index 3 ("baa<u>b</u>")
 "bab" -> index 0 ("<u>b</u>aab"), index 2 ("ba<u>a</u>b"), index 3 ("baa<u>b</u>")
 "bab" -> index 1 ("a<u>b</u>ba"), index 2 ("ba<u>a</u>b"), index 3 ("baa<u>b</u>")
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

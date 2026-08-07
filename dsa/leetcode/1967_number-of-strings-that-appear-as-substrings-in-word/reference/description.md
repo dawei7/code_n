@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of strings `patterns` and a string `word`, return *the **number** of strings in *`patterns`* that exist as a **substring** in *`word`.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** $patterns = ["a","a","a"], word = "ab"$
 - **Output:** `3`
 - **Explanation:** Each of the patterns appears as a substring in word "<u>a</u>b".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{patterns.length} \le 100$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, find the **first** non-repeating character in it and return its index. If it **does not** exist, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, find the **first** non-repeating character in it and return 
 
 Return the smallest index whose character has total frequency one, or `-1` if every character repeats.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The character `'l'` at index 0 is the first character that does not occur at any
 **Output:** -1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

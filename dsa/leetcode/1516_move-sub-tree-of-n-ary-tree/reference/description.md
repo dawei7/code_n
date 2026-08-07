@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of an N-ary tree of unique values, and two nodes of the tree `p` and `q`.
 
@@ -21,7 +21,8 @@ In cases 2 and 3, you just need to move `p` (with its sub-tree) to be a child of
 ![](images/sample_4_964.png)
 
 For example, the above tree is serialized as `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ For example, the above tree is serialized as `[1,null,2,3,4,5,null,null,6,7,null
 
 Return the root `Node` of the adjusted N-ary tree after detaching `p` and appending it as `q`'s last child (handling ancestor/descendant relationships and root replacement as required).
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Notice that node 4 is the last child of node 1.
 - **Input:** `root = [1,null,2,3,null,4], p = 1, q = 4`
 - **Output:** `[4,null,1,null,2,3]`
 - **Explanation:** This example follows case 1 because node q is in the sub-tree of node p. Disconnect 4 with its parent and move node 1 with its sub-tree and make it as node 4's child.
-### Constraints
+
+### 4. Constraints
 
 - The total number of nodes is between `[2, 1000]`.
 

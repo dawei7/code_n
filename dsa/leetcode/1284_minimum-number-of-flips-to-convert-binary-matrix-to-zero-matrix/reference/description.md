@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `m x n` binary matrix `mat`. In one step, you can choose one cell and flip it and all the four neighbors of it if they exist (Flip is changing `1` to `0` and `0` to `1`). A pair of cells are called neighbors if they share one edge.
 
@@ -7,12 +7,13 @@ Return the *minimum number of steps* required to convert `mat` to a zero matrix 
 A **binary matrix** is a matrix with all cells equal to `0` or `1` only.
 
 A **zero matrix** is a matrix with all cells equal to `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ A **zero matrix** is a matrix with all cells equal to `0`.
 - **Input:** $mat = [[1,0,0],[1,0,0]]$
 - **Output:** `-1`
 - **Explanation:** Given matrix cannot be a zero matrix.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

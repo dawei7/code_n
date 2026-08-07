@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of strings `nums` containing `n` **unique** binary strings each of length `n`, return *a binary string of length *`n`* that **does not appear** in *`nums`*. If there are multiple answers, you may return **any** of them*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given an array of strings `nums` containing `n` **unique** binary strings each o
 - **Input:** `nums = ["111","011","001"]`
 - **Output:** `"101"`
 - **Explanation:** "101" does not appear in nums. "000", "010", "100", and "110" would also be correct.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

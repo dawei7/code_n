@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` having an **even** length `n`.
 
@@ -19,12 +19,13 @@ Return *a **0-indexed** array *`answer`*, where *$\text{answer}[i] = true$* if i
 - A **substring** is a contiguous sequence of characters within a string.
 
 - `s[x:y]` represents the substring consisting of characters from the index `x` to index `y` in `s`, **both inclusive**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ So, you are allowed to rearrange s[1:2] => a<u>cb</u>cab and s[4:5] => acbc<u>ab
 To make s a palindrome s[1:2] can be rearranged to become a<u>bc</u>cab.
 Then, s[4:5] can be rearranged to become abcc<u>ba</u>.
 Now, s is a palindrome. So, answer[0] = true.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{s.length} \le 10^{5}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must be **unique** and you may return the result in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two integer arrays `nums1` and `nums2`, return *an array of their intersec
 
 Return each distinct integer that appears in both arrays exactly once, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return each distinct integer that appears in both arrays exactly once, in any or
 - **Input:** $nums1 = [4,9,5], nums2 = [9,4,9,8,4]$
 - **Output:** `[9,4]`
 - **Explanation:** [4,9] is also accepted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 1000$
 

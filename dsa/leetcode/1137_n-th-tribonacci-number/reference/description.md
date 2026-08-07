@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 The Tribonacci sequence T_n is defined as follows:
 
 T_0 = 0, T_1 = 1, T_2 = 1, and T_n+3 = T_n + T_n+1 + T_n+2 for n >= 0.
 
 Given `n`, return the value of T_n.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ T_4 = 1 + 1 + 2 = 4
 
 - **Input:** $n = 25$
 - **Output:** `1389537`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 37$
 

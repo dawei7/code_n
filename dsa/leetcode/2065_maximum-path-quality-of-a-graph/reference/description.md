@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an **undirected** graph with `n` nodes numbered from `0` to $n - 1$ (**inclusive**). You are given a **0-indexed** integer array `values` where $\text{values}[i]$ is the **value **of the $$i^{\text{th}}$$ node. You are also given a **0-indexed** 2D integer array `edges`, where each $\text{edges}[j] = [u_{j}, v_{j}, \text{time}_{j}]$ indicates that there is an undirected edge between the nodes $u_{j}$ and $v_{j}$,_ and it takes $\text{time}_{j}$ seconds to travel between the two nodes. Finally, you are given an integer `maxTime`.
 
@@ -6,13 +6,16 @@ A **valid** **path** in the graph is any path that starts at node `0`, ends at n
 
 Return *the **maximum** quality of a valid path*.
 
-**Note:** There are **at most four** edges connected to each node.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+There are **at most four** edges connected to each node.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,7 +44,8 @@ The nodes visited are 0 and 3, giving a maximal path quality of 5 + 20 = 25.
 - **Explanation:**
 One possible path is 0 -> 1 -> 3 -> 1 -> 0. The total time taken is 10 + 13 + 13 + 10 = 46 <= 50.
 The nodes visited are 0, 1, and 3, giving a maximal path quality of 1 + 2 + 4 = 7.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{values.length}$
 

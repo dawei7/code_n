@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums1` of `n` **distinct** integers.
 
@@ -11,7 +11,8 @@ For each index `i`, you must choose **exactly one** of the following (in any ord
 - $\text{nums2}[i] = \text{nums1}[i] - \text{nums1}[j]$, for an index $j \neq i$
 
 Return `true` if it is possible to construct such an array, otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $n=\lvert\texttt{nums1}\rvert$.
 
 Return `true` if one legal choice per index can make every constructed value odd or every constructed value even. Otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ Return `true` if one legal choice per index can make every constructed value odd
 - $nums2 = [4, 6]$, and all elements are even. Thus, the answer is `true`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums1.length} \le 100$
 

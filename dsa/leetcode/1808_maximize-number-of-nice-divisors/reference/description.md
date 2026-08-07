@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `primeFactors`. You are asked to construct a positive integer `n` that satisfies the following conditions:
 
@@ -9,12 +9,13 @@ You are given a positive integer `primeFactors`. You are asked to construct a po
 Return *the number of nice divisors of* `n`. Since that number can be too large, return it **modulo** $10^{9} + 7$.
 
 Note that a prime number is a natural number greater than `1` that is not a product of two smaller natural numbers. The prime factors of a number `n` is a list of prime numbers such that their product equals `n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ There is not other value of n that has at most 5 prime factors and more nice div
 
 - **Input:** $primeFactors = 8$
 - **Output:** `18`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le primeFactors \le 10^{9}$

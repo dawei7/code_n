@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a linked list, swap every two adjacent nodes and return its head. You must
 
 Return the head after swapping the first node with the second, the third with the fourth, and so on. Leave an unpaired final node in place.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return the head after swapping the first node with the second, the third with th
 **Output:** [2,1,3]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[0, 100]`.
 

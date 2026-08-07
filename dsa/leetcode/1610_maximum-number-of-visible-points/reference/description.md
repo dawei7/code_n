@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `points`, an integer `angle`, and your `location`, where $location = [\text{pos}_{x}, \text{pos}_{y}]$ and $\text{points}[i] = [x_{i}, y_{i}]$ both denote **integral coordinates** on the X-Y plane.
 
@@ -11,12 +11,13 @@ You can **see** some set of points if, for each point, the **angle** formed by t
 There can be multiple points at one coordinate. There may be points at your location, and you can always see these points regardless of your rotation. Points do not obstruct your vision to other points.
 
 Return *the maximum number of points you can see*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return *the maximum number of points you can see*.
 - **Input:** $points = [[1,0],[2,1]], angle = 13, location = [1,1]$
 - **Output:** `1`
 - **Explanation:** You can only see one of the two points, as shown above.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 10^{5}$
 

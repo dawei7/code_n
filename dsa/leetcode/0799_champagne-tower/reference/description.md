@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We stack glasses in a pyramid, where the **first** row has `1` glass, the **second** row has `2` glasses, and so on until the 100^th row.  Each glass holds one cup of champagne.
 
@@ -9,12 +9,13 @@ For example, after one cup of champagne is poured, the top most glass is full.  
 ![](images/tower.png)
 
 Now after pouring some non-negative integer cups of champagne, return how full the $$j^{\text{th}}$$ glass in the $$i^{\text{th}}$$ row is (both `i` and `j` are 0-indexed.)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Now after pouring some non-negative integer cups of champagne, return how full t
 
 - **Input:** $poured = 100000009, \text{query}_{row} = 33, \text{query}_{glass} = 17$
 - **Output:** `1.00000`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le poured \le 10^{9}$
 

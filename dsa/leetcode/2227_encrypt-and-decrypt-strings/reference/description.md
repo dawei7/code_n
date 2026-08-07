@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a character array `keys` containing **unique** characters and a string array `values` containing strings of length 2. You are also given another string array `dictionary` that contains all permitted original strings after decryption. You should implement a data structure that can encrypt or decrypt a **0-indexed** string.
 
@@ -23,12 +23,13 @@ Implement the `Encrypter` class:
 - `String encrypt(String word1)` Encrypts `word1` with the encryption process described above and returns the encrypted string.
 
 - `int decrypt(String word2)` Returns the number of possible strings `word2` could decrypt to that also appear in `dictionary`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ encrypter.decrypt("eizfeiam"); // return 2.
                               // Thus, the possible strings after decryption are "abad", "cbad", "abcd", and "cbcd".
                               // 2 of those strings, "abad" and "abcd", appear in dictionary, so the answer is 2.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{keys.length} = \text{values.length} \le 26$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An **additive number** is a string whose digits can form an **additive sequence**.
 
@@ -6,8 +6,7 @@ A valid **additive sequence** should contain **at least** three numbers. Except 
 
 Given a string containing only digits, return `true` if it is an **additive number** or `false` otherwise.
 
-**Note:** Numbers in the additive sequence **cannot** have leading zeros, so sequence `1, 2, 03` or `1, 02, 3` is invalid.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +16,11 @@ Given a string containing only digits, return `true` if it is an **additive numb
 
 Return `True` when `num` admits a valid additive partition that consumes every digit; otherwise return `False`.
 
-### Examples
+### 3. Note
+
+Numbers in the additive sequence **cannot** have leading zeros, so sequence `1, 2, 03` or `1, 02, 3` is invalid.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ The digits can form an additive sequence: 1, 1, 2, 3, 5, 8.
 - **Explanation:**
 The additive sequence is: 1, 99, 100, 199.
 1 + 99 = 100, 99 + 100 = 199
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{num.length} \le 35$
 

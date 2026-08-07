@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and two integers `firstLen` and `secondLen`, return *the maximum sum of elements in two non-overlapping **subarrays** with lengths *`firstLen`* and *`secondLen`.
 
 The array with length `firstLen` could occur before or after the array with length `secondLen`, but they have to be non-overlapping.
 
 A **subarray** is a **contiguous** part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ A **subarray** is a **contiguous** part of an array.
 - **Input:** `nums = [2,1,5,6,0,9,5,0,3,8], firstLen = 4, secondLen = 3`
 - **Output:** `31`
 - **Explanation:** One choice of subarrays is [5,6,0,9] with length 4, and [0,3,8] with length 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le firstLen, secondLen \le 1000$
 

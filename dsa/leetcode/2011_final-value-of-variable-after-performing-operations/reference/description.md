@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a programming language with only **four** operations and **one** variable `X`:
 
@@ -9,12 +9,13 @@ There is a programming language with only **four** operations and **one** variab
 Initially, the value of `X` is `0`.
 
 Given an array of strings `operations` containing a list of operations, return *the **final **value of *`X` *after performing all the operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ X++: X is incremented by 1, X = 0 + 1 = 1.
 ++X: X is incremented by 1, X = 1 + 1 = 2.
 --X: X is decremented by 1, X = 2 - 1 = 1.
 X--: X is decremented by 1, X = 1 - 1 = 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{operations.length} \le 100$
 

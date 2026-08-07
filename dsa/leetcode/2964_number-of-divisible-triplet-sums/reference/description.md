@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums` and an integer `d`, return *the number of triplets* `(i, j, k)` *such that* `i < j < k` *and* $(\text{nums}[i] + \text{nums}[j] + \text{nums}[k]) \% d = 0$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ It can be shown that no other triplet is divisible by 5. Hence, the answer is 3.
 - **Input:** `nums = [3,3,3,3], d = 6`
 - **Output:** `0`
 - **Explanation:** Any triplet chosen here has a sum of 9, which is not divisible by 6. Hence, the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

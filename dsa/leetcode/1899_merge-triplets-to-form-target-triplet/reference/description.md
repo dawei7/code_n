@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **triplet** is an array of three integers. You are given a 2D integer array `triplets`, where $\text{triplets}[i] = [a_{i}, b_{i}, c_{i}]$ describes the $$i^{\text{th}}$$ **triplet**. You are also given an integer array $target = [x, y, z]$ that describes the **triplet** you want to obtain.
 
@@ -11,12 +11,13 @@ To obtain `target`, you may apply the following operation on `triplets` **any nu
 	</li>
 
 Return `true` *if it is possible to obtain the *`target`* **triplet** *`[x, y, z]`* as an** element** of *`triplets`*, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The target triplet [2,7,5] is now an element of triplets.
 - Choose the first and third triplets [<u>[2,5,3]</u>,[2,3,4],<u>[1,2,5]</u>,[5,2,3]]. Update the third triplet to be [max(2,1), max(5,2), max(3,5)] = [2,5,5]. triplets = [[2,5,3],[2,3,4],<u>[2,5,5]</u>,[5,2,3]].
 - Choose the third and fourth triplets [[2,5,3],[2,3,4],<u>[2,5,5]</u>,<u>[5,2,3]</u>]. Update the fourth triplet to be [max(2,5), max(5,2), max(5,3)] = [5,5,5]. triplets = [[2,5,3],[2,3,4],[2,5,5],<u>[5,5,5]</u>].
 The target triplet [5,5,5] is now an element of triplets.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{triplets.length} \le 10^{5}$
 

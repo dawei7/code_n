@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two `n x n` binary matrices `mat` and `target`, return `true`* if it is possible to make *`mat`* equal to *`target`* by **rotating** *`mat`* in **90-degree increments**, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Given two `n x n` binary matrices `mat` and `target`, return `true`* if it is po
 - **Input:** $mat = [[0,0,0],[0,1,0],[1,1,1]], target = [[1,1,1],[0,1,0],[0,0,0]]$
 - **Output:** `true`
 - **Explanation:** We can rotate mat 90 degrees clockwise two times to make mat equal target.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{mat.length} = \text{target.length}$
 

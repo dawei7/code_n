@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a `Calculator` class. The class should provide the mathematical operations of addition, subtraction, multiplication, division, and exponentiation. It should also allow consecutive operations to be performed using method chaining. The `Calculator` class constructor should accept a number which serves as the initial value of `result`.
 
@@ -17,12 +17,13 @@ Your `Calculator` class should have the following methods:
 - `getResult` - This method returns the `result`.
 
 Solutions within $10^{-5}$ of the actual result are considered correct.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ values = [20, 0]
 - **Explanation:**
 new Calculator(20).divide(0).getResult() // 20 / 0
 The error should be thrown because we cannot divide by zero.
-### Constraints
+
+### 4. Constraints
 
 - `actions` is a valid JSON array of strings
 

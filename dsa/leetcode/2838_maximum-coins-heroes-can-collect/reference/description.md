@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a battle and `n` heroes are trying to defeat `m` monsters. You are given two **1-indexed** arrays of **positive** integers `heroes` and `monsters` of length `n` and `m`, respectively. $\text{heroes}[i]$ is the power of $$i^{\text{th}}$$ hero, and $\text{monsters}[i]$ is the power of $$i^{\text{th}}$$ monster.
 
@@ -8,16 +8,17 @@ You are also given a **1-indexed** array `coins` of length `m` consisting of **p
 
 Return* an array *`ans`* of length *`n`* where *$\text{ans}[i]$* is the **maximum** number of coins that the *$$i^{\text{th}}$$* hero can collect from this battle*.
 
-**Notes**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
 
 - The health of a hero doesn't get reduced after defeating a monster.
 
 - Multiple heroes can defeat a monster, but each monster can be defeated by a given hero only once.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ So the answer would be [5,16,10].
 - **Input:** $heroes = [4,4], monsters = [5,7,8], coins = [1,1,1]$
 - **Output:** `[0,0]`
 - **Explanation:** In this example, no hero can defeat a monster. So the answer would be [0,0],
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{heroes.length} \le 10^{5}$
 

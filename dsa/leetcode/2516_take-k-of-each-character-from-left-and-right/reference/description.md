@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of the characters `'a'`, `'b'`, and `'c'` and a non-negative integer `k`. Each minute, you may take either the **leftmost** character of `s`, or the **rightmost** character of `s`.
 
 Return* the **minimum** number of minutes needed for you to take **at least** *`k`* of each character, or return *`-1`* if it is not possible to take *`k`* of each character.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ It can be proven that 8 is the minimum number of minutes needed.
 - **Input:** `s = "a", k = 1`
 - **Output:** `-1`
 - **Explanation:** It is not possible to take one 'b' or 'c' so return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

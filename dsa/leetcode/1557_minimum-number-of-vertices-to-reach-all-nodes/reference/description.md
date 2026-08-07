@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a** directed acyclic graph**, with `n` vertices numbered from `0` to `n-1`, and an array `edges` where $\text{edges}[i] = [\text{from}_{i}, \text{to}_{i}]$ represents a directed edge from node $\text{from}_{i}$ to node $\text{to}_{i}$.
 
 Find *the smallest set of vertices from which all nodes in the graph are reachable*. It's guaranteed that a unique solution exists.
 
 Notice that you can return the vertices in any order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Notice that you can return the vertices in any order.
 - **Input:** $n = 5, edges = [[0,1],[2,1],[3,1],[1,4],[2,4]]$
 - **Output:** `[0,2,3]`
 - **Explanation:** Notice that vertices 0, 3 and 2 are not reachable from any other node, so we must include them. Also any of these vertices can reach nodes 1 and 4.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

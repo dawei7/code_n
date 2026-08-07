@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a list of folders `folder`, return *the folders after removing all **sub-folders** in those folders*. You may return the answer in **any order**.
 
@@ -7,12 +7,13 @@ If a $\text{folder}[i]$ is located within another $\text{folder}[j]$, it is call
 The format of a path is one or more concatenated strings of the form: `'/'` followed by one or more lowercase English letters.
 
 - For example, `"/leetcode"` and `"/leetcode/problems"` are valid paths while an empty string and `"/"` are not.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The format of a path is one or more concatenated strings of the form: `'/'` foll
 
 - **Input:** $folder = ["/a/b/c","/a/b/ca","/a/b/d"]$
 - **Output:** `["/a/b/c","/a/b/ca","/a/b/d"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{folder.length} \le 4 * 10^{4}$
 

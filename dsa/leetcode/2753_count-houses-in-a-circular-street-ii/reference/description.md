@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an object `street` of class `Street` that represents a **circular** street and a positive integer `k` which represents a maximum bound for the number of houses in that street (in other words, the number of houses is less than or equal to `k`). Houses' doors could be open or closed initially (at least one is open).
 
@@ -12,14 +12,17 @@ The class `Street` contains the following functions which may help you:
 
 - `void moveRight()`: Move to the right house.
 
-**Note** that by **circular** street, we mean if you number the houses from `1` to `n`, then the right house of $\text{house}_{i}$ is $\text{house}_{i}+1$ for `i < n`, and the right house of $\text{house}_{n}$ is $\text{house}_{1}$.
-
-Return `ans` *which represents the number of houses on this street.*
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that by **circular** street, we mean if you number the houses from `1` to `n`, then the right house of $\text{house}_{i}$ is $\text{house}_{i}+1$ for `i < n`, and the right house of $\text{house}_{n}$ is $\text{house}_{1}$.
+
+Return `ans` *which represents the number of houses on this street.*
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ The number of houses is less than k, which is 10.
 - **Output:** `5`
 - **Explanation:** There are 5 houses, and the doors of the 1st, 3rd, and 4th house (moving in the right direction) are open, and the rest are closed.
 The number of houses is equal to k, which is 5.
-### Constraints
+
+### 5. Constraints
 
 - $n = number of houses$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `grid` of positive integers. Your task is to determine if it is possible to make **either one horizontal or one vertical cut** on the grid such that:
 
@@ -10,13 +10,16 @@ You are given an `m x n` matrix `grid` of positive integers. Your task is to det
 
 Return `true` if such a partition exists; otherwise, return `false`.
 
-**Note:** A section is **connected** if every cell in it can be reached from any other cell by moving up, down, left, or right through other cells in the section.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A section is **connected** if every cell in it can be reached from any other cell by moving up, down, left, or right through other cells in the section.
+
+### 4. Examples
 
 #### Example 1
 
@@ -80,7 +83,8 @@ Return `true` if such a partition exists; otherwise, return `false`.
 No valid cut exists, so the answer is `false`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le m = \text{grid.length} \le 10^{5}$
 

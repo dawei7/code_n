@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `heights` representing the heights of buildings, some `bricks`, and some `ladders`.
 
@@ -11,12 +11,13 @@ While moving from building `i` to building `i+1` (**0-indexed**),
 - If the current building's height is **less than** the next building's height, you can either use **one ladder** or $(h[i+1] - h[i])$ **bricks**.
 
 *Return the furthest building index (0-indexed) you can reach if you use the given ladders and bricks optimally.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It is impossible to go beyond building 4 because you do not have any more bricks
 
 - **Input:** $heights = [14,3,19,3], bricks = 17, ladders = 0$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{heights.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Logins`
 
@@ -18,12 +18,13 @@ Write a solution to report the **latest** login for all users in the year `2020`
 Return the result table **in any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

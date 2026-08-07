@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`, that is initially placed on a board. Every day, for $10^{9}$ days, you perform the following procedure:
 
@@ -8,17 +8,18 @@ You are given a positive integer `n`, that is initially placed on a board. Every
 
 Return* the number of **distinct** integers present on the board after* $10^{9}$ *days have elapsed*.
 
-**Note:**
-
-- Once a number is placed on the board, it will remain on it until the end.
-
-- `%` stands for the modulo operation. For example, `14 % 3` is `2`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- Once a number is placed on the board, it will remain on it until the end.
+
+- `%` stands for the modulo operation. For example, `14 % 3` is `2`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,6 +36,7 @@ At the end of a billion days, the distinct numbers on the board will be 2, 3, 4,
 - **Explanation:**
 Since 3 % 2 == 1, 2 will be added to the board.
 After a billion days, the only two distinct numbers on the board are 2 and 3.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 100$

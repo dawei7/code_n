@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`. Consider the following operation:
 
@@ -7,12 +7,13 @@ You are given an array of integers `nums`. Consider the following operation:
 You can perform this operation until `nums` contains fewer than two elements. Additionally, the **same** *score* must be achieved in **all** operations.
 
 Return the **maximum** number of operations you can perform.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Return the **maximum** number of operations you can perform.
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

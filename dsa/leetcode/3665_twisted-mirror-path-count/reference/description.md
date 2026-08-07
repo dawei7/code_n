@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an `m x n` binary grid `grid` where:
 
@@ -18,13 +18,16 @@ Return the number of unique valid paths from `(0, 0)` to $(m - 1, n - 1)$.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
-**Note**: If a reflection moves the robot into a mirror cell, the robot is immediately reflected again based on the direction it used to enter that mirror: if it entered while moving right, it will be turned down; if it entered while moving down, it will be turned right. This process will continue until either the last cell is reached, the robot moves out of bounds or the robot moves to a non-mirror cell.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: If a reflection moves the robot into a mirror cell, the robot is immediately reflected again based on the direction it used to enter that mirror: if it entered while moving right, it will be turned down; if it entered while moving down, it will be turned right. This process will continue until either the last cell is reached, the robot moves out of bounds or the robot moves to a non-mirror cell.
+
+### 4. Examples
 
 #### Example 1
 
@@ -121,7 +124,8 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 	</tbody>
 </table>
 `(0, 0) → (1, 0) [M] → (1, 1) [M] → (2, 1)` goes out of bounds, so it is invalid.</div>
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{grid.length}$
 

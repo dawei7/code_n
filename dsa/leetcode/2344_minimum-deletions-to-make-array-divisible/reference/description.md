@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two positive integer arrays `nums` and `numsDivide`. You can delete any number of elements from `nums`.
 
 Return *the **minimum** number of deletions such that the **smallest** element in *`nums`* **divides** all the elements of *`numsDivide`. If this is not possible, return `-1`.
 
 Note that an integer `x` divides `y` if $y \% x = 0$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ It can be shown that 2 is the minimum number of deletions needed.
 - **Explanation:**
 We want the smallest element in nums to divide all the elements of numsDivide.
 There is no way to delete elements from nums to allow this.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, \text{numsDivide.length} \le 10^{5}$
 

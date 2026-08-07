@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are playing a game where they take turns removing stones from a pile, with *Alice going first*.
 
@@ -9,12 +9,13 @@ Alice and Bob are playing a game where they take turns removing stones from a pi
 The player who cannot make a move loses the game.
 
 Given a positive integer `n`, return `true` if Alice wins the game and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,6 +43,7 @@ Given a positive integer `n`, return `true` if Alice wins the game and `false` o
 - Alice cannot remove 10 stones, so Alice loses.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$

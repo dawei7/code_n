@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the number of all the **arithmetic subsequences** of* `nums`.
 
@@ -13,7 +13,8 @@ A **subsequence** of an array is a sequence that can be formed by removing some 
 - For example, `[2,5,10]` is a subsequence of `[1,2,1,**<u>2</u>**,4,1,<u>**5**</u>,<u>**10**</u>]`.
 
 The test cases are generated so that the answer fits in **32-bit** integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ The test cases are generated so that the answer fits in **32-bit** integer.
 
 Different selections of indices count as different subsequences, even if they produce the same values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Different selections of indices count as different subsequences, even if they pr
 - **Input:** `nums = [7,7,7,7,7]`
 - **Output:** `16`
 - **Explanation:** Any subsequence of this array is arithmetic.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

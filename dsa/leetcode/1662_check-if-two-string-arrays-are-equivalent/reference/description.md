@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two string arrays `word1` and `word2`, return* *`true`* if the two arrays **represent** the same string, and *`false`* otherwise.*
 
 A string is **represented** by an array if the array elements concatenated **in order** forms the string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ The strings are the same, so return true.
 
 - **Input:** $word1 = ["abc", "d", "defg"], word2 = ["abcddefg"]$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 10^{3}$
 

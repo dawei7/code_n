@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree where each node has a value `0` or `1`. Each root-to-leaf path represents a binary number starting with the most significant bit.
 
@@ -7,12 +7,13 @@ You are given the `root` of a binary tree where each node has a value `0` or `1`
 For all leaves in the tree, consider the numbers represented by the path from the root to that leaf. Return *the sum of these numbers*.
 
 The test cases are generated so that the answer fits in a **32-bits** integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The test cases are generated so that the answer fits in a **32-bits** integer.
 
 - **Input:** `root = [0]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

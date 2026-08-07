@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two strings `word1` and `word2`, return *the minimum number of **steps** required to make* `word1` *and* `word2` *the same*.
 
 In one **step**, you can delete exactly one character in either string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ In one **step**, you can delete exactly one character in either string.
 
 - **Input:** $word1 = "leetcode", word2 = "etco"$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 500$
 

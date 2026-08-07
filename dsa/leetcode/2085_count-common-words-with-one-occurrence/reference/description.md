@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two string arrays `words1` and `words2`, return *the number of strings that appear **exactly once** in **each** of the two arrays.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Thus, there are 2 strings that appear exactly once in each of the two arrays.
 - **Input:** $words1 = ["a","ab"], words2 = ["a","a","a","ab"]$
 - **Output:** `1`
 - **Explanation:** The only string that appears exactly once in each of the two arrays is "ab".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words1.length}, \text{words2.length} \le 1000$
 

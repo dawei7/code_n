@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums` of length `n`.
 
@@ -9,12 +9,13 @@ Conversely, if you have `k` ($k \ge 3$) **positive** real numbers $a_{1}$, $a_{2
 The **perimeter** of a polygon is the sum of lengths of its sides.
 
 Return *the **largest** possible **perimeter** of a **polygon** whose sides can be formed from* `nums`, *or* `-1` *if it is not possible to create a polygon*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ It can be shown that the largest possible perimeter is 12.
 - **Input:** `nums = [5,5,50]`
 - **Output:** `-1`
 - **Explanation:** There is no possible way to form a polygon from nums, as a polygon has at least 3 sides and 50 > 5 + 5.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

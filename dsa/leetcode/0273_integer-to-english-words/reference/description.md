@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Convert a non-negative integer `num` to its English words representation.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Convert a non-negative integer `num` to its English words representation.
 
 Return the English words that represent `num`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Return the English words that represent `num`.
 
 - **Input:** $num = 1234567$
 - **Output:** `"One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 2^{31} - 1$

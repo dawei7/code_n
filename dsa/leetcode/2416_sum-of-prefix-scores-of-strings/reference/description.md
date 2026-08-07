@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `words` of size `n` consisting of **non-empty** strings.
 
@@ -8,13 +8,16 @@ We define the **score** of a string `term` as the **number** of strings $\text{w
 
 Return *an array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the **sum** of scores of every **non-empty** prefix of *$\text{words}[i]$.
 
-**Note** that a string is considered as a prefix of itself.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that a string is considered as a prefix of itself.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ The total is answer[3] = 2.
 - **Explanation:**
 "abcd" has 4 prefixes: "a", "ab", "abc", and "abcd".
 Each prefix has a score of one, so the total is answer[0] = 1 + 1 + 1 + 1 = 4.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

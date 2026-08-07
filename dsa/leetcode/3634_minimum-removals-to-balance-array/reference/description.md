@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -8,13 +8,16 @@ You may remove **any** number of elements from `nums`​​​​​​​ witho
 
 Return the **minimum** number of elements to remove so that the remaining array is balanced.
 
-**Note:** An array of size 1 is considered balanced as its maximum and minimum are equal, and the condition always holds true.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+An array of size 1 is considered balanced as its maximum and minimum are equal, and the condition always holds true.
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,7 +59,8 @@ Return the **minimum** number of elements to remove so that the remaining array 
 - Since `nums` is already balanced as $6 \le 4 * 2$, no elements need to be removed.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

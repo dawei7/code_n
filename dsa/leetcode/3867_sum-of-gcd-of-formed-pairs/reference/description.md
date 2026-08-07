@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -23,7 +23,8 @@ After constructing `prefixGcd`:
 Return an integer denoting the **sum of the GCD** values of all formed pairs.
 
 The term `gcd(a, b)` denotes the **greatest common divisor** of `a` and `b`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -43,7 +44,7 @@ The pairing rule applies to the non-decreasing ordering of all $P_i$ values, not
 
 Return an integer equal to the sum of the GCD of every formed pair. A singleton input forms no pair and therefore returns `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -145,7 +146,8 @@ $prefixGcd = [3, 6, 2, 8]$. After sorting, it forms `[2, 3, 6, 8]`.
 Form pairs: $gcd(2, 8) = 2$ and $gcd(3, 6) = 3$. Thus, the sum is $2 + 3 = 5$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

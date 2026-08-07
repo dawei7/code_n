@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 An array is **squareful** if the sum of every pair of adjacent elements is a **perfect square**.
 
 Given an integer array nums, return *the number of permutations of *`nums`* that are **squareful***.
 
 Two permutations `perm1` and `perm2` are different if there is some index `i` such that $\text{perm1}[i] \neq \text{perm2}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Two permutations `perm1` and `perm2` are different if there is some index `i` su
 
 - **Input:** `nums = [2,2,2]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 12$
 

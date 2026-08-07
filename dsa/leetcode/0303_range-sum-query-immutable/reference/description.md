@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, handle multiple queries of the following type:
 
@@ -9,7 +9,8 @@ Implement the `NumArray` class:
 - `NumArray(int[] nums)` Initializes the object with the integer array `nums`.
 
 - `int sumRange(int left, int right)` Returns the **sum** of the elements of `nums` between indices `left` and `right` **inclusive** (i.e. $\text{nums}[left] + nums[left + 1] + ... + \text{nums}[right]$).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Implement the `NumArray` class:
 
 Return one range sum per entry in `queries`, in the same order. The native interface returns each value from a separate `sumRange` call.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ numArray.sumRange(0, 2); // return (-2) + 0 + 3 = 1
 numArray.sumRange(2, 5); // return 3 + (-5) + 2 + (-1) = -1
 numArray.sumRange(0, 5); // return (-2) + 0 + 3 + (-5) + 2 + (-1) = -3
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

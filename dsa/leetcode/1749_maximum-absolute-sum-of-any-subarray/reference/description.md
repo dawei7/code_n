@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. The **absolute sum** of a subarray `[nums_l, nums_l+1, ..., nums_r-1, nums_r]` is $abs(\text{nums}_{l} + \text{nums}_{l}+1 + ... + \text{nums}_{r}-1 + \text{nums}_{r})$.
 
@@ -9,12 +9,13 @@ Note that `abs(x)` is defined as follows:
 - If `x` is a negative integer, then $abs(x) = -x$.
 
 - If `x` is a non-negative integer, then $abs(x) = x$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that `abs(x)` is defined as follows:
 - **Input:** `nums = [2,-5,1,-4,3,-2]`
 - **Output:** `8`
 - **Explanation:** The subarray [-5,1,-4] has absolute sum = abs(-5+1-4) = abs(-8) = 8.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

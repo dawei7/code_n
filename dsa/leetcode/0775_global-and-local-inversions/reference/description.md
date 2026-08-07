@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` which represents a permutation of all the integers in the range `[0, n - 1]`.
 
@@ -15,12 +15,13 @@ The number of **local inversions** is the number of indices `i` where:
 - $\text{nums}[i] > nums[i + 1]$
 
 Return `true` *if the number of **global inversions** is equal to the number of **local inversions***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return `true` *if the number of **global inversions** is equal to the number of 
 - **Input:** `nums = [1,2,0]`
 - **Output:** `false`
 - **Explanation:** There are 2 global inversions and 1 local inversion.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

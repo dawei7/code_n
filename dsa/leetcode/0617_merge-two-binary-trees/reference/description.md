@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two binary trees `root1` and `root2`.
 
@@ -6,13 +6,16 @@ Imagine that when you put one of them to cover the other, some nodes of the two 
 
 Return *the merged tree*.
 
-**Note:** The merging process must start from the root nodes of both trees.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The merging process must start from the root nodes of both trees.
+
+### 4. Examples
 
 #### Example 1
 
@@ -24,7 +27,8 @@ Return *the merged tree*.
 
 - **Input:** $root1 = [1], root2 = [1,2]$
 - **Output:** `[2,2]`
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in both trees is in the range `[0, 2000]`.
 

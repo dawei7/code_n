@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of string `words`, return all strings in* *`words`* *that are a substring of another word. You can return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given an array of string `words`, return all strings in* *`words`* *that are a s
 - **Input:** $words = ["blue","green","bu"]$
 - **Output:** `[]`
 - **Explanation:** No string of words is substring of another string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

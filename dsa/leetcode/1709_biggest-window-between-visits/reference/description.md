@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `UserVisits`
 
@@ -20,7 +20,8 @@ Write a solution that will, for each $\text{user}_{id}$, find out the largest `w
 Return the result table ordered by $\text{user}_{id}$.
 
 The query result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schema**
 
@@ -37,7 +38,7 @@ The query result format is in the following example.
 
 Return a table with columns $\text{user}_{id}$ and $\text{biggest}_{window}$. For each user, $\text{biggest}_{window}$ is the maximum number of days between consecutive visits, using `2021-01-01` as the default next visit date for the last visit. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return `true` *if you can partition the array into two subsets such that the sum of the elements in both subsets is equal or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer array `nums`, return `true` *if you can partition the array int
 
 Return `true` when `nums` can be partitioned into two subsets with equal sums; otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return `true` when `nums` can be partitioned into two subsets with equal sums; o
 - **Input:** `nums = [1,2,3,5]`
 - **Output:** `false`
 - **Explanation:** The array cannot be partitioned into equal sum subsets.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

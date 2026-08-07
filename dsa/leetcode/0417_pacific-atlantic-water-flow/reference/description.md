@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `m x n` rectangular island that borders both the **Pacific Ocean** and **Atlantic Ocean**. The **Pacific Ocean** touches the island's left and top edges, and the **Atlantic Ocean** touches the island's right and bottom edges.
 
@@ -7,7 +7,8 @@ The island is partitioned into a grid of square cells. You are given an `m x n` 
 The island receives a lot of rain, and the rain water can flow to neighboring cells directly north, south, east, and west if the neighboring cell's height is **less than or equal to** the current cell's height. Water can flow from any cell adjacent to an ocean into the ocean.
 
 Return *a **2D list** of grid coordinates *`result`* where *$\text{result}[i] = [r_{i}, c_{i}]$* denotes that rain water can flow from cell *$(r_{i}, c_{i})$* to **both** the Pacific and Atlantic oceans*.
-### Function Contract
+
+### 2. Function Contract
 
 Let $m$ and $n$ denote the matrix row and column counts.
 
@@ -20,7 +21,7 @@ Let $m$ and $n$ denote the matrix row and column counts.
 Return a two-dimensional list of coordinates `[r, c]` whose cells have a valid rain-water path to each ocean. The
 coordinates may be returned in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Note that there are other possible paths for these cells to flow to the Pacific 
 - **Input:** $heights = [[1]]$
 - **Output:** `[[0,0]]`
 - **Explanation:** The water can flow from the only cell to the Pacific and Atlantic oceans.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{heights.length}$
 

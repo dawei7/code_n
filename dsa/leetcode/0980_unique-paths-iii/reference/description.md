@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer array `grid` where $\text{grid}[i][j]$ could be:
 
@@ -11,12 +11,13 @@ You are given an `m x n` integer array `grid` where $\text{grid}[i][j]$ could be
 - `-1` representing obstacles that we cannot walk over.
 
 Return *the number of 4-directional walks from the starting square to the ending square, that walk over every non-obstacle square exactly once*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return *the number of 4-directional walks from the starting square to the ending
 - **Output:** `0`
 - **Explanation:** There is no path that walks over every empty square exactly once.
 Note that the starting and ending square can be anywhere in the grid.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

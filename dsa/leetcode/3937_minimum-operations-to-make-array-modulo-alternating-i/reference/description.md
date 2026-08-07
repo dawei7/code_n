@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -11,7 +11,8 @@ An array is called **modulo alternating** if there exist two **distinct** intege
 - For every **odd** index `i`, $\text{nums}[i] \% k = y$
 
 Return the **minimum** number of operations required to make `nums` **modulo alternating**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $N=\lvert\texttt{nums}\rvert$ and $K=k$. A feasible result chooses residues 
 
 Return the minimum number of single-element increments and decrements required over all feasible distinct residue pairs.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ Return the minimum number of single-element increments and decrements required o
 - Thus, the total number of operations required is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

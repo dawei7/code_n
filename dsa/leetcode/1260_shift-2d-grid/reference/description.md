@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a 2D `grid` of size `m x n` and an integer `k`. You need to shift the `grid` `k` times.
 
@@ -11,12 +11,13 @@ In one shift operation:
 - Element at $grid[m - 1][n - 1]$ moves to $\text{grid}[0][0]$.
 
 Return the *2D grid* after applying shift operation `k` times.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return the *2D grid* after applying shift operation `k` times.
 
 - **Input:** `grid = [[1,2,3],[4,5,6],[7,8,9]], k = 9`
 - **Output:** `[[1,2,3],[4,5,6],[7,8,9]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `arr` that represents a permutation of numbers from `1` to `n`.
 
@@ -7,12 +7,13 @@ You have a binary string of size `n` that initially has all its bits set to zero
 You are also given an integer `m`. Find the latest step at which there exists a group of ones of length `m`. A group of ones is a contiguous substring of `1`'s such that it cannot be extended in either direction.
 
 Return *the latest step at which there exists a group of ones of length **exactly*** `m`. *If no such group exists, return* `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Step 3: "1010<u>1</u>", groups: ["1", "1", "1"]
 Step 4: "101<u>1</u>1", groups: ["1", "111"]
 Step 5: "1<u>1</u>111", groups: ["11111"]
 No group of size 2 exists during any step.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{arr.length}$
 

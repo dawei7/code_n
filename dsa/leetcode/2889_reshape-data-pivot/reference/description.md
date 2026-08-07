@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame weather
@@ -16,12 +16,13 @@ Write a solution to **pivot** the data so that each row represents temperatures 
 The result format is in the following example.
 
 ```
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 **Input:**

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`, and two integers `num1` and `num2`. `num1` and `num2` are coprime numbers.
 
@@ -8,16 +8,19 @@ A **ratio substring** is a substring of s where the ratio between the number of 
 
 Return *the number of **non-empty** ratio substrings of *`s`.
 
-**Note** that:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+that:
 
 - A **substring** is a contiguous sequence of characters within a string.
 
 - Two values `x` and `y` are **coprime** if $gcd(x, y) = 1$ where `gcd(x, y)` is the greatest common divisor of `x` and `y`.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ It can be shown that there are no more ratio substrings.
 - **Input:** `s = "10101", num1 = 3, num2 = 1`
 - **Output:** `0`
 - **Explanation:** There is no ratio substrings of s. We return 0.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

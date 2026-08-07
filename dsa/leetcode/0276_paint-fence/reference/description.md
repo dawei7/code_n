@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are painting a fence of `n` posts with `k` different colors. You must paint the posts following these rules:
 
@@ -7,7 +7,8 @@ You are painting a fence of `n` posts with `k` different colors. You must paint 
 - There **cannot** be three or more **consecutive** posts with the same color.
 
 Given the two integers `n` and `k`, return *the **number of ways** you can paint the fence*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Given the two integers `n` and `k`, return *the **number of ways** you can paint
 
 Return the number of color assignments in which no three consecutive posts have the same color.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Note that painting all the posts red or all the posts green is invalid because t
 
 - **Input:** $n = 7, k = 2$
 - **Output:** `42`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$
 

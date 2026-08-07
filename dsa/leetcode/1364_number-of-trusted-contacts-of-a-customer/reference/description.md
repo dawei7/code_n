@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -56,7 +56,8 @@ Write a solution to find the following for each $\text{invoice}_{id}$:
 Return the result table **ordered** by $\text{invoice}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -78,7 +79,7 @@ Return one row for every invoice with these columns:
 
 Sort the result by $\text{invoice}_{id}$ in ascending order. An email's existence determines trust; neither a matching name nor the number of customer rows carrying that email changes the number of contact rows.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

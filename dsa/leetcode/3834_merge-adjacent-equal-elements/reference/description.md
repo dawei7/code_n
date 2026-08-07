@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,7 +9,8 @@ You must **repeatedly** apply the following merge operation until no more change
 After each merge operation, the array size **decreases** by 1. Repeat the process on the updated array until no more changes can be made.
 
 Return the final array after all possible merge operations.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Each operation is evaluated on the current ar
 
 Return the remaining values in their current order after every possible leftmost adjacent-equal merge has been applied.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Return the remaining values in their current order after every possible leftmost
 There are no adjacent equal elements in the array, so no operations are performed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` and a pattern string `p`, where `p` contains **exactly one** `'*'` character.
 
 The `'*'` in `p` can be replaced with any sequence of zero or more characters.
 
 Return `true` if `p` can be made a substring of `s`, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ There is no substring matching the pattern.
 The substrings `"u"`, `"uc"`, and `"uck"` match the pattern.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 50$
 

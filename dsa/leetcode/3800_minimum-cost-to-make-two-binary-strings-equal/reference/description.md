@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two binary strings `s` and `t`, both of length `n`, and three **positive** integers `flipCost`, `swapCost`, and `crossCost`.
 
@@ -11,7 +11,8 @@ You are allowed to apply the following operations any number of times (in any or
 - Choose an index `i` and swap $s[i]$ with $t[i]$. The cost of this operation is `crossCost`.
 
 Return an integer denoting the **minimum** total cost needed to make the strings `s` and `t` equal.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ Both strings may be changed, and the permitted operations may be repeated and in
 
 Return an integer equal to the smallest possible sum of operation costs that leaves `s` and `t` identical at every index.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Flipping all the bits of `s` makes the strings equal, and the total cost is $3 *
 The strings are already equal, so no operations are required.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s.length} = \text{t.length}$
 

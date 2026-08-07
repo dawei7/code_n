@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a max stack data structure that supports the stack operations and supports finding the stack's maximum element.
 
@@ -17,7 +17,8 @@ Implement the `MaxStack` class:
 - `int popMax()` Retrieves the maximum element in the stack and removes it. If there is more than one maximum element, only remove the **top-most** one.
 
 You must come up with a solution that supports `O(1)` for each `top` call and `O(logn)` for each other call.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(operations: \text{list}[list]) -> \text{list}[int]$
 
@@ -38,7 +39,7 @@ $solve(operations: \text{list}[list]) -> \text{list}[int]$
 
 The app adapter constructs one `MaxStack`, executes the rows in order, and returns the result of every call other than `push`. Source-style constructor and `push` results are `null`; the app omits those entries from its returned list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ stk.peekMax(); // return 5, [<u>5</u>, **1**] the stack did not change.
 stk.pop();     // return 1, [**<u>5</u>**] the top of the stack and the max element is now 5.
 stk.top();     // return 5, [**<u>5</u>**] the stack did not change.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $-10^{7} \le x \le 10^{7}$
 

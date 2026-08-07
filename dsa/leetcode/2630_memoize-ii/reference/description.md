@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a function `fn`, return a **memoized** version of that function.
 
 A **memoized **function is a function that will never be called twice with the same inputs. Instead it will return a cached value.
 
 `fn` can be any function and there are no constraints on what type of values it accepts. Inputs are considered identical if they are `===` to each other.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ fn = function (a, b) { return ({...a, ...b}); }
 - **Output:** `[{"val":{},"calls":1},{"val":{},"calls":1},{"val":{},"calls":1}]`
 - **Explanation:**
 Merging two empty objects will always result in an empty object. The 2nd and 3rd third function calls result in a cache-hit. This is because every object passed in is identical.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{inputs.length} \le 10^{5}$
 

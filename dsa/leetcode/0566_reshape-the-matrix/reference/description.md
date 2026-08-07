@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In MATLAB, there is a handy function called `reshape` which can reshape an `m x n` matrix into a new one with a different size `r x c` keeping its original data.
 
@@ -7,12 +7,13 @@ You are given an `m x n` matrix `mat` and two integers `r` and `c` representing 
 The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order as they were.
 
 If the `reshape` operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ If the `reshape` operation with given parameters is possible and legal, output t
 
 - **Input:** $mat = [[1,2],[3,4]], r = 2, c = 4$
 - **Output:** `[[1,2],[3,4]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

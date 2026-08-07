@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an array of integers `distance`.
 
 You start at the point `(0, 0)` on an **X-Y plane,** and you move $\text{distance}[0]$ meters to the north, then $\text{distance}[1]$ meters to the west, $\text{distance}[2]$ meters to the south, $\text{distance}[3]$ meters to the east, and so on. In other words, after each move, your direction changes counter-clockwise.
 
 Return `true` *if your path crosses itself or *`false`* if it does not*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return `true` *if your path crosses itself or *`false`* if it does not*.
 
 Return `true` if any part of the path crosses an earlier part; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return `true` if any part of the path crosses an earlier part; otherwise return 
 - **Input:** $distance = [1,1,1,2,1]$
 - **Output:** `true`
 - **Explanation:** The path crosses itself at the point (0, 0).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{distance.length} \le 10^{5}$
 

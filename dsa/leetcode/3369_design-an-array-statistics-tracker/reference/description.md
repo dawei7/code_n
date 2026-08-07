@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that keeps track of the values in it and answers some queries regarding their mean, median, and mode.
 
@@ -16,18 +16,21 @@ Implement the `StatisticsTracker` class.
 
 - `int getMode()`: Return the **mode** of the numbers in the data structure. If there are multiple modes, return the smallest one.
 
-**Note**:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+:
 
 - The **mean** of an array is the sum of all the values divided by the number of values in the array.
 
 - The **median** of an array is the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken.
 
 - The **mode** of an array is the element that appears most often in the array.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -99,7 +102,8 @@ statisticsTracker.getMedian(); // return 6
 statisticsTracker.addNumber(8); // The data structure now contains [5, 6, 8]
 
 statisticsTracker.getMode(); // return 5</div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le number \le 10^{9}$
 

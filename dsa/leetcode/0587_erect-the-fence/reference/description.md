@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of a tree in the garden.
 
 Fence the entire garden using the minimum length of rope, as it is expensive. The garden is well-fenced only if **all the trees are enclosed**.
 
 Return *the coordinates of trees that are exactly located on the fence perimeter*. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the coordinates of trees that are exactly located on the fence perimeter
 - **Input:** $trees = [[1,2],[2,2],[4,2]]$
 - **Output:** `[[4,2],[2,2],[1,2]]`
 - **Explanation:** The fence forms a line that passes through all the trees.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{trees.length} \le 3000$
 

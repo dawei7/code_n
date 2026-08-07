@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the array `queries` of positive integers between `1` and `m`, you have to process all $\text{queries}[i]$ (from `i=0` to `i=queries.length-1`) according to the following rules:
 
@@ -7,12 +7,13 @@ Given the array `queries` of positive integers between `1` and `m`, you have to 
 - For the current `i`, find the position of $\text{queries}[i]$ in the permutation `P` (**indexing from 0**) and then move this at the beginning of the permutation `P`. Notice that the position of $\text{queries}[i]$ in `P` is the result for $\text{queries}[i]$.
 
 Return an array containing the result for the given `queries`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Therefore, the array containing the result is [2,1,2,1].
 
 - **Input:** $queries = [7,5,5,8,3], m = 8$
 - **Output:** `[6,5,0,7,5]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m \le 10^{3}$
 

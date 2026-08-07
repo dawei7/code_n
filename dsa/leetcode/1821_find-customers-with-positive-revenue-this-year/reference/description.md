@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -20,7 +20,8 @@ Write a solution to report the customers with **postive revenue** in the year 20
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schema**
 
@@ -38,7 +39,7 @@ The result format is in the following example.
 
 Return a table with the single column $\text{customer}_{id}$. Include each $\text{customer}_{id}$ whose row in `Customers` has $year = 2021$ and `revenue > 0`. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design an algorithm to encode **a list of strings** to **a string**. The encoded string is then sent over the network and is decoded back to the original list of strings.
 
@@ -37,7 +37,8 @@ vector<string> strs2 = decode(encoded_string);
 Implement the `encode` and `decode` methods.
 
 You are not allowed to solve the problem using any serialize methods (such as `eval`).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -51,7 +52,7 @@ the encoded string's length.
 
 For `"encode"`, return the codec's transport string. For `"decode"`, return the represented list of strings. The native interface exposes `Codec.encode(strs)` and `Codec.decode(s)` directly.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ String[] strs = decoder.decode(msg);
 
 - **Input:** $\text{dummy}_{input} = [""]$
 - **Output:** `[""]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strs.length} \le 200$
 

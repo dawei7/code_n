@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of points in the **X-Y** plane `points` where $\text{points}[i] = [x_{i}, y_{i}]$.
 
 Return *the minimum area of any rectangle formed from these points, with sides **not necessarily parallel** to the X and Y axes*. If there is not any such rectangle, return `0`.
 
 Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Answers within $10^{-5}$ of the actual answer will be accepted.
 - **Input:** $points = [[0,3],[1,2],[3,1],[1,3],[2,1]]$
 - **Output:** `0`
 - **Explanation:** There is no possible rectangle to form from these points.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 50$
 

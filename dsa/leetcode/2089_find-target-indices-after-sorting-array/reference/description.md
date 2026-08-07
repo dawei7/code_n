@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and a target element `target`.
 
 A **target index** is an index `i` such that $\text{nums}[i] = target$.
 
 Return *a list of the target indices of* `nums` after* sorting *`nums`* in **non-decreasing** order*. If there are no target indices, return *an **empty** list*. The returned list must be sorted in **increasing** order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The index where nums[i] == 3 is 3.
 - **Output:** `[4]`
 - **Explanation:** After sorting, nums is [1,2,2,3,<u>**5**</u>].
 The index where nums[i] == 5 is 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

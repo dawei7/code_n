@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `points` of size `n` and an integer `m`. There is another array `gameScore` of size `n`, where $\text{gameScore}[i]$ represents the score achieved at the $$i^{\text{th}}$$ game. Initially, $\text{gameScore}[i] = 0$ for all `i`.
 
@@ -8,15 +8,18 @@ You start at index -1, which is outside the array (before the first position at 
 
 - Decrease the index by 1 and add $\text{points}[i]$ to $\text{gameScore}[i]$.
 
-**Note** that the index must always remain within the bounds of the array after the first move.
-
-Return the **maximum possible minimum** value in `gameScore` after **at most** `m` moves.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the index must always remain within the bounds of the array after the first move.
+
+Return the **maximum possible minimum** value in `gameScore` after **at most** `m` moves.
+
+### 4. Examples
 
 #### Example 1
 
@@ -110,7 +113,8 @@ Initially, index $i = -1$ and $gameScore = [0, 0, 0]$.
 The minimum value in `gameScore` is 2, and this is the maximum possible minimum among all configurations. Hence, 2 is the output.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n = \text{points.length} \le 5 * 10^{4}$
 

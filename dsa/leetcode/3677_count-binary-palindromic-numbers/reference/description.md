@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **non-negative** integer `n`.
 
@@ -6,13 +6,16 @@ A **non-negative** integer is called **binary-palindromic** if its binary repres
 
 Return the number of integers `k` such that $0 \le k \le n$ and the binary representation of `k` is a palindrome.
 
-**Note:** The number 0 is considered binary-palindromic, and its representation is `"0"`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The number 0 is considered binary-palindromic, and its representation is `"0"`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,6 +55,7 @@ All other values in `[0, 9]` have non-palindromic binary forms. Therefore, the c
 Since `"0"` is a palindrome, the count is 1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $0 \le n \le 10^{15}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two positive integers `n` and `k`, the binary string $S_{n}$ is formed as follows:
 
@@ -19,12 +19,13 @@ For example, the first four strings in the above sequence are:
 - $S_{4} = "0111001**1**0110001"$
 
 Return *the* $$k^{\text{th}}$$ *bit* *in* $S_{n}$. It is guaranteed that `k` is valid for the given `n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The 1^st bit is "0".
 - **Output:** `"1"`
 - **Explanation:** S_4 is "0111001101**<u>1</u>**0001".
 The 11^th bit is "1".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 20$
 

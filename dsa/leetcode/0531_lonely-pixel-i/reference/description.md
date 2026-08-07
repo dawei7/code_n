@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` `picture` consisting of black `'B'` and white `'W'` pixels, return *the number of **black** lonely pixels*.
 
 A black lonely pixel is a character `'B'` that located at a specific position where the same row and same column don't have **any other** black pixels.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -14,7 +15,7 @@ A black lonely pixel is a character `'B'` that located at a specific position wh
 - Return the number of coordinates `(row, column)` whose cell is black and whose row and column each contain exactly
   one black pixel.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A black lonely pixel is a character `'B'` that located at a specific position wh
 
 - **Input:** $picture = [["B","B","B"],["B","B","W"],["B","B","B"]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{picture.length}$
 

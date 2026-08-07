@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of the $$i^{\text{th}}$$ tree in the garden.
 
@@ -7,11 +7,12 @@ You are asked to fence the entire garden using the minimum length of rope possib
 More formally, you must form a circle using the rope with a center `(x, y)` and radius `r` where all trees lie inside or on the circle and `r` is **minimum**.
 
 Return *the center and radius of the circle as a length 3 array *`[x, y, r]`*.* Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return *the center and radius of the circle as a length 3 array *`[x, y, r]`*.* 
 - **Input:** $trees = [[1,2],[2,2],[4,2]]$
 - **Output:** `[2.50000,2.00000,1.50000]`
 - **Explanation:** The fence will have center = (2.5, 2) and radius = 1.5
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{trees.length} \le 3000$
 

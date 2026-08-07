@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s`.
 
 A split is called **good** if you can split `s` into two non-empty strings $s_{left}$ and $s_{right}$ where their concatenation is equal to `s` (i.e., $s_{left} + s_{right} = s$) and the number of distinct letters in $s_{left}$ and $s_{right}$ is the same.
 
 Return *the number of **good splits** you can make in `s`*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the number of **good splits** you can make in `s`*.
 - **Input:** `s = "abcd"`
 - **Output:** `1`
 - **Explanation:** Split the string as follows ("ab", "cd").
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

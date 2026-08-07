@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `tasks` where $\text{tasks}[i] = [\text{actual}_{i}, \text{minimum}_{i}]$:
 
@@ -11,12 +11,13 @@ For example, if the task is `[10, 12]` and your current energy is `11`, you cann
 You can finish the tasks in **any order** you like.
 
 Return *the **minimum** initial amount of energy you will need* *to finish all the tasks*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Starting with 27 energy, we finish the tasks in the following order:
 - 1st task. Now energy = 17 - 1 = 16.
 - 4th task. Now energy = 16 - 4 = 12.
 - 6th task. Now energy = 12 - 6 = 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tasks.length} \le 10^{5}$
 

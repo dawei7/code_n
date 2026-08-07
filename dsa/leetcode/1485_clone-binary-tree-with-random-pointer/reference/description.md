@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A binary tree is given such that each node contains an additional random pointer which could point to any node in the tree or null.
 
@@ -11,7 +11,8 @@ The tree is represented in the same input/output way as normal binary trees wher
 - $\text{random}_{index}$: the index of the node (in the input) where the random pointer points to, or `null` if it does not point to any node.
 
 You will be given the tree in class `Node` and you should return the cloned tree in class `NodeCopy`. `NodeCopy` class is just a clone of `Node` class with the same attributes and constructors.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -29,7 +30,7 @@ relationships as its corresponding original node, with every non-null copied
 pointer targeting another copied node rather than an original object. Return
 `null` when `root` is `null`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The random pointer of node 7 is node 1, so it is represented as [7, 0] where 0 i
 
 - **Input:** `root = [[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]`
 - **Output:** `[[1,6],[2,5],[3,4],[4,3],[5,2],[6,1],[7,0]]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the `tree` is in the range $[0, 1000].$
 

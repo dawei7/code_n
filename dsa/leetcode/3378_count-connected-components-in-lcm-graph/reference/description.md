@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` of size `n` and a **positive** integer `threshold`.
 
@@ -9,12 +9,13 @@ Return the number of **connected components** in this graph.
 A **connected component** is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph.
 
 The term `lcm(a, b)` denotes the **least common multiple** of `a` and `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The four connected components are `(2, 4)`, `(3)`, `(8)`, `(9)`.
 The two connected components are `(2, 3, 4, 8, 9)`, and `(12)`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

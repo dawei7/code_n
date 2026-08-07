@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings, `word1` and `word2`, of equal length. You need to transform `word1` into `word2`.
 
@@ -13,12 +13,13 @@ For this, divide `word1` into one or more **contiguous substrings**. For each su
 Each of these counts as **one** operation and each character of each substring can be used in each type of operation at most once (i.e. no single index may be involved in more than one replace, one swap, or one reverse).
 
 Return the **minimum number of operations** required to transform `word1` into `word2`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -99,7 +100,8 @@ Divide `word1` into `"abcdef"`. The operations are:
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length} = \text{word2.length} \le 100$
 

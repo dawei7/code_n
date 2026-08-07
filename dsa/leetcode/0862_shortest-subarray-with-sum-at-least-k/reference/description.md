@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the length of the shortest non-empty **subarray** of *`nums`* with a sum of at least *`k`. If there is no such **subarray**, return `-1`.
 
 A **subarray** is a **contiguous** part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ A **subarray** is a **contiguous** part of an array.
 
 - **Input:** `nums = [2,-1,2], k = 3`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s` consisting of **only** the characters `'a'` and `'b'`, return `true` *if **every** *`'a'` *appears before **every** *`'b'`* in the string*. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Hence, not every 'a' appears before every 'b' and we return false.
 - **Output:** `true`
 - **Explanation:**
 There are no 'a's, hence, every 'a' appears before every 'b' and we return true.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

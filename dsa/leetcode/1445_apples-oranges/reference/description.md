@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -19,7 +19,8 @@ Write a solution to report the difference between the number of **apples** and *
 Return the result table **ordered** by $\text{sale}_{date}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -36,7 +37,7 @@ $\texttt{diff}=\text{apples sold}-\text{oranges sold}.$
 
 Order the $D$ result rows by $\text{sale}_{date}$ ascending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

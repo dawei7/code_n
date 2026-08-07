@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -15,7 +15,8 @@ The **score** of a split at index `i` is defined as:
 $score(i) = prefixSum(i) - suffixMin(i)$
 
 Return an integer denoting the **maximum** score over all valid split indices.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ A valid split includes index `i` in the prefix and starts the suffix at $i + 1$.
 
 Return the maximum of $sum(nums[0:i+1]) - min(nums[i+1:n])$ over every $0 \le i < n - 1$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ The optimal split is at $i = 0$, $score(0) = prefixSum(0) - suffixMin(0) = (-7) 
 The only valid split is at $i = 0$, $score(0) = prefixSum(0) - suffixMin(0) = 1 - 1 = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

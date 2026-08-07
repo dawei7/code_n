@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a non-negative floating point number rounded to two decimal places `celsius`, that denotes the **temperature in Celsius**.
 
@@ -11,12 +11,13 @@ Return *the array `ans`. *Answers within $10^{-5}$ of the actual answer will be 
 - $Kelvin = Celsius + 273.15$
 
 - $Fahrenheit = Celsius * 1.80 + 32.00$
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,6 +29,7 @@ Return *the array `ans`. *Answers within $10^{-5}$ of the actual answer will be 
 - **Input:** $celsius = 122.11$
 - **Output:** `[395.26000,251.79800]`
 - **Explanation:** Temperature at 122.11 Celsius converted in Kelvin is 395.26 and converted in Fahrenheit is 251.798.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le celsius \le 1000$

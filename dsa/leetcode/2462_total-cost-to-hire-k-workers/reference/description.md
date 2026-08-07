@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `costs` where $\text{costs}[i]$ is the cost of hiring the $$i^{\text{th}}$$ worker.
 
@@ -18,12 +18,13 @@ You are also given two integers `k` and `candidates`. We want to hire exactly `k
 - A worker can only be chosen once.
 
 Return *the total cost to hire exactly *`k`* workers.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ The total hiring cost is 11.
 - In the second hiring round we choose the worker from [<u>2,4,1</u>]. The lowest cost is 1 (index 2). The total cost = 1 + 1 = 2.
 - In the third hiring round there are less than three candidates. We choose the worker from the remaining workers [<u>2,4</u>]. The lowest cost is 2 (index 0). The total cost = 2 + 2 = 4.
 The total hiring cost is 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{costs.length} \le 10^{5}$
 

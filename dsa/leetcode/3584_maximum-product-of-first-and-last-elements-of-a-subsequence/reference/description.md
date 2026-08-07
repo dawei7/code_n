@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `m`.
 
 Return the **maximum** product of the first and last elements of any **subsequence** of `nums` of size `m`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The subsequence `[-5, 6, -4]` has the largest product of the first and last elem
 The subsequence `[5, 7]` has the largest product of the first and last elements.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write an API that generates fancy sequences using the `append`, `addAll`, and `multAll` operations.
 
@@ -13,12 +13,13 @@ Implement the `Fancy` class:
 - `void multAll(m)` Multiplies all existing values in the sequence by an integer `m`.
 
 - `int getIndex(idx)` Gets the current value at index `idx` (0-indexed) of the sequence **modulo** $10^{9} + 7$. If the index is greater or equal than the length of the sequence, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ fancy.getIndex(0); // return 26
 fancy.getIndex(1); // return 34
 fancy.getIndex(2); // return 20
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le val, inc, m \le 100$
 

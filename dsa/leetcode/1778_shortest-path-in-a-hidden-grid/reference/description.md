@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 This is an **interactive problem**.
 
@@ -18,7 +18,11 @@ Note that `direction` in the above functions should be a character from `{'U','D
 
 Return *the **minimum distance** between the robot's initial starting cell and the target cell. If there is no valid path between the cells, return *`-1`.
 
-**Custom testing:**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Custom Testing
 
 The test input is read as a 2D matrix `grid` of size `m x n` where:
 
@@ -31,11 +35,8 @@ The test input is read as a 2D matrix `grid` of size `m x n` where:
 - $\text{grid}[i][j] = 2$ indicates that the cell `(i, j)` is the target cell.
 
 There is exactly one `-1` and `2` in `grid`. Remember that you will **not** have this information in your code.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ We now know that the target is the cell (0, 1), and the shortest path to the tar
 - **Input:** `grid = [[-1,0],[0,2]]`
 - **Output:** `-1`
 - **Explanation:** There is no path from the robot to the target cell.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n, m \le 500$
 

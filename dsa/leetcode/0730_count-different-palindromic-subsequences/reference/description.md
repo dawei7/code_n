@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string s, return *the number of different non-empty palindromic subsequences in* `s`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
@@ -7,12 +7,13 @@ A subsequence of a string is obtained by deleting zero or more characters from t
 A sequence is palindromic if it is equal to the sequence reversed.
 
 Two sequences $a_{1}, a_{2}, ...$ and $b_{1}, b_{2}, ...$ are different if there is some `i` for which $a_{i} \neq b_{i}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Note that 'bcb' is counted only once, even though it occurs twice.
 - **Input:** `s = "abcdabcdabcdabcdabcdabcdabcdabcddcbadcbadcbadcbadcbadcbadcbadcba"`
 - **Output:** `104860361`
 - **Explanation:** There are 3104860382 different non-empty palindromic subsequences, which is 104860361 modulo $10^{9}$ + 7.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Tasks`
 
@@ -23,11 +23,12 @@ Write a solution to report:
 Return the result table in **any order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

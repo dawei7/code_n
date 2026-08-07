@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, construct a **0-indexed** `m x n` string matrix `res` that represents a **formatted layout** of the tree. The formatted layout matrix should be constructed using the following rules:
 
@@ -15,12 +15,13 @@ Given the `root` of a binary tree, construct a **0-indexed** `m x n` string matr
 - Any empty cells should contain the empty string `""`.
 
 Return *the constructed matrix *`res`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return *the constructed matrix *`res`.
 [["","","","1","","",""],
 ["","2","","","","3",""],
 ["","","4","","","",""]]
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 2^{10}]$.
 

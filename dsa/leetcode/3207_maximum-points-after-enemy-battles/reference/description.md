@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `enemyEnergies` denoting the energy values of various enemies.
 
@@ -24,12 +24,13 @@ You can perform **either** of the following operations **zero **or multiple time
 	</li>
 
 Return an integer denoting the **maximum** points you can get in the end by optimally performing operations.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ The following operations can be performed to get 3 points, which is the maximum:
 Performing the first operation 5 times on enemy 0 results in the maximum number of points.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{enemyEnergies.length} \le 10^{5}$
 

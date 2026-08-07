@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` of length `n` and an integer `numOps`.
 
@@ -9,12 +9,13 @@ You are allowed to perform the following operation on `s` **at most** `numOps` t
 You need to **minimize** the length of the **longest** substring of `s` such that all the characters in the substring are **identical**.
 
 Return the **minimum** length after the operations.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ By changing $s[0]$ and $s[2]$ to `'1'`, `s` becomes `"1010"`.
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s`, return the **maximum** length of a substring such that it contains *at most two occurrences* of each character.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The following substring has a length of 4 and contains at most two occurrences o
 **Explanation:**
 
 The following substring has a length of 2 and contains at most two occurrences of each character: `"<u>aa</u>aa"`.</div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

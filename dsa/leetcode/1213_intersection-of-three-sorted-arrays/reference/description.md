@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given three integer arrays `arr1`, `arr2` and `arr3` **sorted** in **strictly increasing** order, return a sorted array of **only** the integers that appeared in **all** three arrays.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $n_1$, $n_2$, and $n_3$ be the respective array lengths.
 
 Return every value present in `arr1`, `arr2`, and `arr3`, in increasing order. If no integer belongs to all three arrays, return `[]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return every value present in `arr1`, `arr2`, and `arr3`, in increasing order. I
 
 - **Input:** $arr1 = [197,418,523,876,1356], arr2 = [501,880,1593,1710,1870], arr3 = [521,682,1337,1395,1764]$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr1.length}, \text{arr2.length}, \text{arr3.length} \le 1000$
 

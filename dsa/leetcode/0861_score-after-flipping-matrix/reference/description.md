@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid`.
 
@@ -7,12 +7,13 @@ A **move** consists of choosing any row or column and toggling each value in tha
 Every row of the matrix is interpreted as a binary number, and the **score** of the matrix is the sum of these numbers.
 
 Return *the highest possible **score** after making any number of **moves** (including zero moves)*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the highest possible **score** after making any number of **moves** (inc
 
 - **Input:** `grid = [[0]]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

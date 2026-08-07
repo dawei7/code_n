@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An array `A` is larger than some array `B` if for the first index `i` where $A[i] \neq B[i]$, $A[i] > B[i]$.
 
@@ -11,7 +11,8 @@ For example, consider `0`-indexing:
 A subarray is a contiguous subsequence of the array.
 
 Given an integer array `nums` of **distinct** integers, return the **largest** subarray of `nums` of length `k`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Given an integer array `nums` of **distinct** integers, return the **largest** s
 
 Return an integer array representing the lexicographically largest contiguous subarray of `nums` of length `k`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Of these, [4,5,2,3] is the largest.
 
 - **Input:** `nums = [1,4,5,2,3], k = 1`
 - **Output:** `[5]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

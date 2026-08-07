@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` integer matrix `matrix`, if an element is `0`, set its entire row and column to `0`'s.
 
 You must do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in place</a>.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must do it <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target
 
 Return `None`; mutate `matrix` in place so every row and column containing an original zero is filled with zeroes.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `None`; mutate `matrix` in place so every row and column containing an or
 
 - **Input:** $matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]$
 - **Output:** `[[0,0,0,0],[0,4,5,0],[0,3,1,0]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

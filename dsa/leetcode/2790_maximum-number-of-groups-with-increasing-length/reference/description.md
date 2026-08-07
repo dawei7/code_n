@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `usageLimits` of length `n`.
 
@@ -9,12 +9,13 @@ Your task is to create **groups** using numbers from `0` to $n - 1$, ensuring th
 - Each group (except the first one) must have a length **strictly greater** than the previous group.
 
 Return *an integer denoting the **maximum** number of groups you can create while satisfying these conditions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ One way of creating the maximum number of groups while satisfying the conditions
 Group 1 contains the number [0].
 It can be shown that the maximum number of groups is 1.
 So, the output is 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{usageLimits.length} \le 10^{5}$
 

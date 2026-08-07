@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` that consists of exactly `3` digits.
 
@@ -9,12 +9,13 @@ We call the number `n` **fascinating** if, after the following modification, the
 Return `true`* if *`n`* is fascinating, or *`false`* otherwise*.
 
 **Concatenating** two numbers means joining them together. For example, the concatenation of `121` and `371` is `121371`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ Return `true`* if *`n`* is fascinating, or *`false`* otherwise*.
 - **Input:** $n = 100$
 - **Output:** `false`
 - **Explanation:** We concatenate the numbers n = 100 and 2 * n = 200 and 3 * n = 300. The resulting number is 100200300. This number does not satisfy any of the conditions.
-### Constraints
+
+### 4. Constraints
 
 - $100 \le n \le 999$

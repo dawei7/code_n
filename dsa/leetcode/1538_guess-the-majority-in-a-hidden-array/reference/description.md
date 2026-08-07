@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have an integer array `nums`, where all the integers in `nums` are **0** or **1**. You will not be given direct access to the array, instead, you will have an **API** `ArrayReader` which have the following functions:
 
@@ -16,7 +16,8 @@ We have an integer array `nums`, where all the integers in `nums` are **0** or *
 You are allowed to call `query()` **2 * n times** at most where n is equal to `ArrayReader.length()`.
 
 Return **any** index of the most frequent value in `nums`, in case of tie, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Return **any** index of the most frequent value in `nums`, in case of tie, retur
 
 Return any valid index of the majority bit in `nums`, or `-1` when the counts of zeros and ones are equal. The solution may make at most $2N$ calls to `query`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Index 2, 4, 6, 7 is also a correct answer.
 
 - **Input:** `nums = [1,0,1,0,1,0,1,0]`
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $5 \le \text{nums.length} \le 10^{5}$
 

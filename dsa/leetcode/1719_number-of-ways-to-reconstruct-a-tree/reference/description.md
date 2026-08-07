@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `pairs`, where $\text{pairs}[i] = [x_{i}, y_{i}]$, and:
 
@@ -27,12 +27,13 @@ Return:
 A **rooted tree** is a tree that has a single root node, and all edges are oriented to be outgoing from the root.
 
 An **ancestor** of a node is any node on the path from the root to that node (excluding the node itself). The root has no ancestors.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ An **ancestor** of a node is any node on the path from the root to that node (ex
 - **Input:** $pairs = [[1,2],[2,3],[2,4],[1,5]]$
 - **Output:** `0`
 - **Explanation:** There are no valid rooted trees.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pairs.length} \le 10^{5}$
 

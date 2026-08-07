@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `M` initialized with all `0`'s and an array of operations `ops`, where $\text{ops}[i] = [a_{i}, b_{i}]$ means $M[x][y]$ should be incremented by one for all $0 \le x < a_{i}$ and $0 \le y < b_{i}$.
 
 Count and return *the number of maximum integers in the matrix after performing all the operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Count and return *the number of maximum integers in the matrix after performing 
 
 - **Input:** $m = 3, n = 3, ops = []$
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 4 * 10^{4}$
 

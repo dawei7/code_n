@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A binary string is monotone increasing if it consists of some number of `0`'s (possibly none), followed by some number of `1`'s (also possibly none).
 
 You are given a binary string `s`. You can flip $s[i]$ changing it from `0` to `1` or from `1` to `0`.
 
 Return *the minimum number of flips to make *`s`* monotone increasing*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the minimum number of flips to make *`s`* monotone increasing*.
 - **Input:** `s = "00011000"`
 - **Output:** `2`
 - **Explanation:** We flip to get 00000000.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

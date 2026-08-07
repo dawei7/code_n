@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **integer** array `pref` of size `n`. Find and return *the array *`arr`* of size *`n`* that satisfies*:
 
@@ -7,12 +7,13 @@ You are given an **integer** array `pref` of size `n`. Find and return *the arra
 Note that $^$ denotes the **bitwise-xor** operation.
 
 It can be proven that the answer is **unique**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ It can be proven that the answer is **unique**.
 - **Input:** $pref = [13]$
 - **Output:** `[13]`
 - **Explanation:** We have pref[0] = arr[0] = 13.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pref.length} \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You have `n`  `tiles`, where each tile has one letter $\text{tiles}[i]$ printed on it.
 
 Return *the number of possible non-empty sequences of letters* you can make using the letters printed on those `tiles`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return *the number of possible non-empty sequences of letters* you can make usin
 
 - **Input:** $tiles = "V"$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tiles.length} \le 7$
 

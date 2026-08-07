@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` grid `rooms` initialized with these three possible values.
 
@@ -9,7 +9,8 @@ You are given an `m x n` grid `rooms` initialized with these three possible valu
 - `INF` Infinity means an empty room. We use the value $2^{31} - 1 = 2147483647$ to represent `INF` as you may assume that the distance to a gate is less than `2147483647`.
 
 Fill each empty room with the distance to *its nearest gate*. If it is impossible to reach a gate, it should be filled with `INF`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Fill each empty room with the distance to *its nearest gate*. If it is impossibl
 
 Return `None`. Update `rooms` in place so each reachable empty room stores the minimum number of horizontal or vertical steps to a gate.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return `None`. Update `rooms` in place so each reachable empty room stores the m
 
 - **Input:** $rooms = [[-1]]$
 - **Output:** `[[-1]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{rooms.length}$
 

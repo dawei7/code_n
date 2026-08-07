@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array, `queries`. For each $\text{queries}[i]$, where $\text{queries}[i] = [n_{i}, k_{i}]$, find the number of different ways you can place positive integers into an array of size $n_{i}$ such that the product of the integers is $k_{i}$. As the number of ways may be too large, the answer to the $$i^{\text{th}}$$ query is the number of ways **modulo** $10^{9} + 7$.
 
 Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries.length}$*, and *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return *an integer array *`answer`* where *$\text{answer.length} = \text{queries
 
 - **Input:** $queries = [[1,1],[2,2],[3,3],[4,4],[5,5]]$
 - **Output:** `[1,2,3,10,5]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length} \le 10^{4}$
 

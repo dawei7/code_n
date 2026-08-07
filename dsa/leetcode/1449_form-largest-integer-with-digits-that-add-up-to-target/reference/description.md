@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `cost` and an integer `target`, return *the **maximum** integer you can paint under the following rules*:
 
@@ -9,12 +9,13 @@ Given an array of integers `cost` and an integer `target`, return *the **maximum
 - The integer does not have `0` digits.
 
 Since the answer may be very large, return it as a string. If there is no way to paint any integer given the condition, return `"0"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Since the answer may be very large, return it as a string. If there is no way to
 - **Input:** $cost = [2,4,6,2,4,6,4,4,4], target = 5$
 - **Output:** `"0"`
 - **Explanation:** It is impossible to paint any integer with total cost equal to target.
-### Constraints
+
+### 4. Constraints
 
 - $\text{cost.length} = 9$
 

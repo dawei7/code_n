@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two strings of the same length `s` and `t`. In one step you can choose **any character** of `t` and replace it with **another character**.
 
 Return *the minimum number of steps* to make `t` an anagram of `s`.
 
 An **Anagram** of a string is a string that contains the same characters with a different (or the same) ordering.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ An **Anagram** of a string is a string that contains the same characters with a 
 - **Input:** `s = "anagram", t = "mangaar"`
 - **Output:** `0`
 - **Explanation:** "anagram" and "mangaar" are anagrams.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{4}$
 

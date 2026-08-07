@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 In combinatorial mathematics, a **derangement** is a permutation of the elements of a set, such that no element appears in its original position.
 
 You are given an integer `n`. There is originally an array consisting of `n` integers from `1` to `n` in ascending order, return *the number of **derangements** it can generate*. Since the answer may be huge, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You are given an integer `n`. There is originally an array consisting of `n` int
 
 Return the number of permutations in which every integer occupies a position different from its original one, reduced modulo $10^9 + 7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ Return the number of permutations in which every integer occupies a position dif
 
 - **Input:** $n = 2$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{6}$

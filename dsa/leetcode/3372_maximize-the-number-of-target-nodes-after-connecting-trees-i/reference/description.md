@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exist two **undirected **trees with `n` and `m` nodes, with **distinct** labels in ranges `[0, n - 1]` and `[0, m - 1]`, respectively.
 
@@ -8,13 +8,16 @@ Node `u` is **target** to node `v` if the number of edges on the path from `u` t
 
 Return an array of `n` integers `answer`, where $\text{answer}[i]$ is the **maximum** possible number of nodes **target** to node `i` of the first tree if you have to connect one node from the first tree to another node in the second tree.
 
-**Note** that queries are independent from each other. That is, for every query you will remove the added edge before proceeding to the next query.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that queries are independent from each other. That is, for every query you will remove the added edge before proceeding to the next query.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +55,8 @@ For every `i`, connect node `i` of the first tree with any node of the second tr
 ![](images/3928-2.png)
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n, m \le 1000$
 

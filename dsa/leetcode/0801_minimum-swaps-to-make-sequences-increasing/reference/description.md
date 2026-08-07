@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays of the same length `nums1` and `nums2`. In one operation, you are allowed to swap $\text{nums1}[i]$ with $\text{nums2}[i]$.
 
@@ -7,12 +7,13 @@ You are given two integer arrays of the same length `nums1` and `nums2`. In one 
 Return *the minimum number of needed operations to make *`nums1`* and *`nums2`* **strictly increasing***. The test cases are generated so that the given input always makes it possible.
 
 An array `arr` is **strictly increasing** if and only if $\text{arr}[0] < \text{arr}[1] < \text{arr}[2] < ... < arr[\text{arr.length} - 1]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ which are both strictly increasing.
 
 - **Input:** $nums1 = [0,3,5,8,9], nums2 = [2,1,4,6,9]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums1.length} \le 10^{5}$
 

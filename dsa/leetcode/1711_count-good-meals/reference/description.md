@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **good meal** is a meal that contains **exactly two different food items** with a sum of deliciousness equal to a power of two.
 
@@ -7,12 +7,13 @@ You can pick **any** two different foods to make a good meal.
 Given an array of integers `deliciousness` where $\text{deliciousness}[i]$ is the deliciousness of the $i^​​​​​​th​​​​$​​​​ item of food, return *the number of different **good meals** you can make from this list modulo* $10^{9} + 7$.
 
 Note that items with different indices are considered different even if they have the same deliciousness value.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Their respective sums are 4, 8, 8, and 16, all of which are powers of 2.
 - **Input:** $deliciousness = [1,1,1,3,3,3,7]$
 - **Output:** `15`
 - **Explanation:** The good meals are (1,1) with 3 ways, (1,3) with 9 ways, and (1,7) with 3 ways.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{deliciousness.length} \le 10^{5}$
 

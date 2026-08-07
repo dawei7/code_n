@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing the number of nodes of a **Directed Acyclic Graph** (DAG). The nodes are numbered from `0` to $n - 1$ (**inclusive**).
 
@@ -7,12 +7,13 @@ You are also given a 2D integer array `edges`, where $\text{edges}[i] = [\text{f
 Return *a list* `answer`*, where *$\text{answer}[i]$* is the **list of ancestors** of the* $$i^{\text{th}}$$ *node, sorted in **ascending order***.
 
 A node `u` is an **ancestor** of another node `v` if `u` can reach `v` via a set of edges.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The above diagram represents the input graph.
 - Node 2 has two ancestors 0 and 1.
 - Node 3 has three ancestors 0, 1, and 2.
 - Node 4 has four ancestors 0, 1, 2, and 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

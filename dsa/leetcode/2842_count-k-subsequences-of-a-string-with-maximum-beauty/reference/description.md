@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`.
 
@@ -26,17 +26,18 @@ Return *an integer denoting the number of k-subsequences **whose **beauty** is t
 
 A subsequence of a string is a new string formed from the original string by deleting some (possibly none) of the characters without disturbing the relative positions of the remaining characters.
 
-**Notes**
-
-- `f(c)` is the number of times a character `c` occurs in `s`, not a k-subsequence.
-
-- Two k-subsequences are considered different if one is formed by an index that is not present in the other. So, two k-subsequences may form the same string.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- `f(c)` is the number of times a character `c` occurs in `s`, not a k-subsequence.
+
+- Two k-subsequences are considered different if one is formed by an index that is not present in the other. So, two k-subsequences may form the same string.
+
+### 4. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ The k-subsequences of s are:
 <u style="white-space: normal;">**a**</u>b<u>**bcd**</u> having a beauty of f('a') + f('b') + f('c') + f('d') = 5
 There are 2 k-subsequences that have the maximum beauty, 5.
 Hence, the answer is 2.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 2 * 10^{5}$
 

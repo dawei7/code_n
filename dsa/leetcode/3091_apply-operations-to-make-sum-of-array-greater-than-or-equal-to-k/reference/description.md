@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `k`. Initially, you have an array `nums = [1]`.
 
@@ -9,12 +9,13 @@ You can perform **any** of the following operations on the array **any** number 
 - Duplicate any element in the array and add it to the end of the array.
 
 Return *the **minimum** number of operations required to make the **sum** of elements of the final array greater than or equal to *`k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,6 +49,7 @@ The total number of operations performed is $3 + 2 = 5$.
 The sum of the original array is already greater than or equal to `1`, so no operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 10^{5}$

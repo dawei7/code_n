@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of strings `details`. Each element of `details` provides information about a given passenger compressed into a string of length `15`. The system is such that:
 
@@ -11,12 +11,13 @@ You are given a **0-indexed** array of strings `details`. Each element of `detai
 - The last two characters determine the seat allotted to that person.
 
 Return *the number of passengers who are **strictly ****more than 60 years old**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the number of passengers who are **strictly ****more than 60 years old**
 - **Input:** $details = ["1313579440F2036","2921522980M5644"]$
 - **Output:** `0`
 - **Explanation:** None of the passengers are older than 60.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{details.length} \le 100$
 

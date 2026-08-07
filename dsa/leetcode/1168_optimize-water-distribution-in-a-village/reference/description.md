@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are `n` houses in a village. We want to supply water for all the houses by building wells and laying pipes.
 
 For each house `i`, we can either build a well inside it directly with cost $wells[i - 1]$ (note the `-1` due to **0-indexing**), or pipe in water from another well to it. The costs to lay pipes between houses are given by the array `pipes` where each $\text{pipes}[j] = [\text{house1}_{j}, \text{house2}_{j}, \text{cost}_{j}]$ represents the cost to connect $\text{house1}_{j}$ and $\text{house2}_{j}$ together using a pipe. Connections are bidirectional, and there could be multiple valid connections between the same two houses with different costs.
 
 Return *the minimum total cost to supply water to all houses*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Parallel offers between the same two houses are allowed. Water may travel throug
 
 - The minimum integer sum of selected well-building and pipe-laying costs that supplies all $n$ houses.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Option 3:
 - Connect house 1 with house 2 with cost 1.
 The total cost will be 2.
 Note that we can connect houses 1 and 2 with cost 1 or with cost 2 but we will always choose **the cheapest option**.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{4}$
 

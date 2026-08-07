@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `grid` with size `m x n`. You are also given an integer `k`.
 
@@ -11,12 +11,13 @@ Your task is to calculate the number of paths you can take from the top-left cel
 Return the total number of such paths.
 
 Since the answer can be very large, return the result **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ The 5 paths are:
 **Output:** 0
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 300$
 

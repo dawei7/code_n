@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given several logs, where each log contains a unique ID and timestamp. Timestamp is a string that has the following format: `Year:Month:Day:Hour:Minute:Second`, for example, `2017:01:01:23:59:59`. All domains are zero-padded decimal numbers.
 
@@ -9,7 +9,8 @@ Implement the `LogSystem` class:
 - `void put(int id, string timestamp)` Stores the given log `(id, timestamp)` in your storage system.
 
 - `int[] retrieve(string start, string end, string granularity)` Returns the IDs of the logs whose timestamps are within the range from `start` to `end` inclusive. `start` and `end` all have the same format as `timestamp`, and `granularity` means how precise the range should be (i.e. to the exact `Day`, `Minute`, etc.). For example, $start = "2017:01:01:23:59:59"$, $end = "2017:01:02:23:59:59"$, and $granularity = "Day"$ means that we need to find the logs within the inclusive range from **Jan. 1st 2017** to **Jan. 2nd 2017**, and the `Hour`, `Minute`, and `Second` for each log entry can be ignored.
-### Function Contract
+
+### 2. Function Contract
 
 **Class operations**
 
@@ -21,7 +22,7 @@ Both query boundaries use the same `Year:Month:Day:Hour:Minute:Second` format as
 
 The result of each retrieval is a collection of every matching ID; no ordering among those IDs is required. In the app-local operation trace, construction and `put` produce `null`, while each `retrieve` produces its ID list in the corresponding result position.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ logSystem.retrieve("2016:01:01:01:01:01", "2017:01:01:23:00:00", "Year");
 // Log 3 is not returned because Jan. 1, 2016 00:00:00 comes before the start of the range.
 logSystem.retrieve("2016:01:01:01:01:01", "2017:01:01:23:00:00", "Hour");
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le id \le 500$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A kingdom consists of a king, his children, his grandchildren, and so on. Every once in a while, someone in the family dies or a child is born.
 
@@ -35,12 +35,13 @@ Implement the `ThroneInheritance` class:
 - `void death(string name)` Indicates the death of `name`. The death of the person doesn't affect the `Successor` function nor the current inheritance order. You can treat it as just marking the person as dead.
 
 - `string[] getInheritanceOrder()` Returns a list representing the current order of inheritance **excluding** dead people.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ t.getInheritanceOrder(); // return ["king", "andy", "matthew", "bob", "alex", "a
 t.death("bob"); // order: king > andy > matthew > **<s>bob</s>** > alex > asha > catherine
 t.getInheritanceOrder(); // return ["king", "andy", "matthew", "alex", "asha", "catherine"]
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{kingName.length}, \text{parentName.length}, \text{childName.length}, \text{name.length} \le 15$
 

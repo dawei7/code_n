@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two non-negative integers `low` and `high`. Return the *count of odd numbers between *`low`* and *`high`* (inclusive)*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,6 +19,7 @@ Given two non-negative integers `low` and `high`. Return the *count of odd numbe
 - **Input:** $low = 8, high = 10$
 - **Output:** `1`
 - **Explanation:** The odd numbers between 8 and 10 are [9].
-### Constraints
+
+### 4. Constraints
 
 - $0 \le low \le high \le 10^{9}$

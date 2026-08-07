@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a binary array `nums`, return *the maximum length of a contiguous subarray with an equal number of *`0`* and *`1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given a binary array `nums`, return *the maximum length of a contiguous subarray
 - **Input:** `nums = [0,1,1,1,1,1,0,0,0]`
 - **Output:** `6`
 - **Explanation:** [1,1,1,0,0,0] is the longest contiguous subarray with equal number of 0 and 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

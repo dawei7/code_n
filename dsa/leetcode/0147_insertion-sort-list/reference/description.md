@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list, sort the list using **insertion sort**, and return *the sorted list's head*.
 
@@ -13,7 +13,8 @@ The steps of the **insertion sort** algorithm:
 The following is a graphical example of the insertion sort algorithm. The partially sorted list (black) initially contains only the first element in the list. One element (red) is removed from the input data and inserted in-place into the sorted list with each iteration.
 
 ![](images/Insertion-sort-example-300px.gif)
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ The following is a graphical example of the insertion sort algorithm. The partia
 
 Return the head of the list after its nodes have been rearranged into non-decreasing order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return the head of the list after its nodes have been rearranged into non-decrea
 
 - **Input:** $head = [-1,5,3,4,0]$
 - **Output:** `[-1,0,3,4,5]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[1, 5000]`.
 

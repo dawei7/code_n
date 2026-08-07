@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer `num`, return *the number of digits in `num` that divide *`num`.
 
 An integer `val` divides `nums` if $nums \% val = 0$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ An integer `val` divides `nums` if $nums \% val = 0$.
 - **Input:** $num = 1248$
 - **Output:** `4`
 - **Explanation:** 1248 is divisible by all of its digits, hence the answer is 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 10^{9}$
 

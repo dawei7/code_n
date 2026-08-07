@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words` (**0-indexed**).
 
 In one operation, pick two **distinct** indices `i` and `j`, where $\text{words}[i]$ is a non-empty string, and move **any** character from $\text{words}[i]$ to **any** position in $\text{words}[j]$.
 
 Return `true` *if you can make** every** string in *`words`* **equal **using **any** number of operations*,* and *`false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ All the strings are now equal to "abc", so return true.
 - **Input:** $words = ["ab","a"]$
 - **Output:** `false`
 - **Explanation:** It is impossible to make all the strings equal using the operation.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

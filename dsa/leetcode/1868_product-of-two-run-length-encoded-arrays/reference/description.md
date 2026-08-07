@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **Run-length encoding** is a compression algorithm that allows for an integer array `nums` with many segments of **consecutive repeated** numbers to be represented by a (generally smaller) 2D array `encoded`. Each $\text{encoded}[i] = [\text{val}_{i}, \text{freq}_{i}]$ describes the $$i^{\text{th}}$$ segment of repeated numbers in `nums` where $\text{val}_{i}$ is the value that is repeated $\text{freq}_{i}$ times.
 
@@ -16,12 +16,15 @@ You are given two **run-length encoded** arrays `encoded1` and `encoded2` repres
 
 Return *the **product** of *`encoded1`* and *`encoded2`.
 
-**Note:** Compression should be done such that the run-length encoded array has the **minimum** possible length.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+Compression should be done such that the run-length encoded array has the **minimum** possible length.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ prodNums = [6,6,6,6,6,6], which is compressed into the run-length encoded array 
 - **Output:** `[[2,3],[6,1],[9,2]]`
 - **Explanation:** encoded1 expands to [1,1,1,2,3,3] and encoded2 expands to [2,2,2,3,3,3].
 prodNums = [2,2,2,6,9,9], which is compressed into the run-length encoded array [[2,3],[6,1],[9,2]].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{encoded1.length}, \text{encoded2.length} \le 10^{5}$
 

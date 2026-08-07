@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 This question is about implementing a basic elimination algorithm for Candy Crush.
 
@@ -15,7 +15,8 @@ The given board represents the state of the game following the player's move. No
 - If there does not exist more candies that can be crushed (i.e., the board is stable), then return the current board.
 
 You need to perform the above rules until the board becomes stable, then return *the stable board*.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(board: list[\text{list}[int]]) -> list[\text{list}[int]]$
 
@@ -29,7 +30,7 @@ Let $m$ be the number of rows and $n$ the number of columns.
 
 Return the stable matrix after every required simultaneous crush and gravity round. A returned `0` denotes an empty cell; empty cells remain above all surviving candies in their column because no new candies enter the board.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Return the stable matrix after every required simultaneous crush and gravity rou
 
 - **Input:** $board = [[1,3,5,5,2],[3,4,3,3,1],[3,2,4,5,2],[2,4,4,5,5],[1,4,4,1,1]]$
 - **Output:** `[[1,3,0,0,0],[3,4,0,5,2],[3,2,0,3,1],[2,4,0,5,2],[1,4,3,1,1]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{board.length}$
 

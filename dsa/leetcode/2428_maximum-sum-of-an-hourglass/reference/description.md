@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`.
 
@@ -8,13 +8,16 @@ We define an **hourglass** as a part of the matrix with the following form:
 
 Return *the **maximum** sum of the elements of an hourglass*.
 
-**Note** that an hourglass cannot be rotated and must be entirely contained within the matrix.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that an hourglass cannot be rotated and must be entirely contained within the matrix.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ Return *the **maximum** sum of the elements of an hourglass*.
 - **Input:** `grid = [[1,2,3],[4,5,6],[7,8,9]]`
 - **Output:** `35`
 - **Explanation:** There is only one hourglass in the matrix, with the sum: 1 + 2 + 3 + 5 + 7 + 8 + 9 = 35.
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` that consists of `n` **distinct** positive integers. Apply `m` operations to this array, where in the $$i^{\text{th}}$$ operation you replace the number $\text{operations}[i][0]$ with $\text{operations}[i][1]$.
 
@@ -9,12 +9,13 @@ It is guaranteed that in the $$i^{\text{th}}$$ operation:
 - $\text{operations}[i][1]$ does **not** exist in `nums`.
 
 Return *the array obtained after applying all the operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ We return the final array [3,2,7,1].
 - Replace the number 2 with 1. nums becomes [3,<u>**1**</u>].
 - Replace the number 3 with 2. nums becomes [<u>**2**</u>,1].
 We return the array [2,1].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

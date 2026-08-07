@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `receiver` of length `n` and an integer `k`. `n` players are playing a ball-passing game.
 
@@ -6,17 +6,18 @@ You choose the starting player, `i`. The game proceeds as follows: player `i` pa
 
 Return the **maximum** possible score.
 
-**Notes:**
-
-- `receiver` may contain duplicates.
-
-- $\text{receiver}[i]$ may be equal to `i`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- `receiver` may contain duplicates.
+
+- $\text{receiver}[i]$ may be equal to `i`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -104,7 +105,8 @@ Starting with player $i = 4$ the initial score is 4:
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{receiver.length} = n \le 10^{5}$
 

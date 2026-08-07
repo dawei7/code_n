@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing `n` cities numbered from `1` to `n`. You are also given a **2D** array `roads`, where $\text{roads}[i] = [a_{i}, b_{i}, \text{cost}_{i}]$ indicates that there is a **bidirectional **road between cities $a_{i}$ and $b_{i}$ with a cost of traveling equal to $\text{cost}_{i}$.
 
@@ -7,11 +7,12 @@ You can buy apples in **any** city you want, but some cities have different cost
 You start at some city, traverse through various roads, and eventually buy **exactly** one apple from **any** city. After you buy that apple, you have to return back to the city you **started** at, but now the cost of all the roads will be **multiplied** by a given factor `k`.
 
 Given the integer `k`, return *a 1-based array *`answer`* of size *`n`* where *$\text{answer}[i]$* is the **minimum** total cost to buy an apple if you start at city *`i`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Given the integer `k`, return *a 1-based array *`answer`* of size *`n`* where *$
 - **Input:** $n = 3, roads = [[1,2,5],[2,3,1],[3,1,2]], appleCost = [2,3,1], k = 3$
 - **Output:** `[2,3,1]`
 - **Explanation:** It is always optimal to buy the apple in the starting city.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `questions` where $\text{questions}[i] = [\text{points}_{i}, \text{brainpower}_{i}]$.
 
@@ -13,12 +13,13 @@ The array describes the questions of an exam, where you have to process the ques
 	</li>
 
 Return *the **maximum** points you can earn for the exam*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Total points earned: 3 + 2 = 5. There is no other way to earn 5 or more points.
 - Unable to solve questions 2 and 3
 - Solve question 4: Earn 5 points
 Total points earned: 2 + 5 = 7. There is no other way to earn 7 or more points.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{questions.length} \le 10^{5}$
 

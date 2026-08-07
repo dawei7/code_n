@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame: employees
@@ -13,12 +13,13 @@ DataFrame: employees
 ```
 
 Write a solution to display the **first `3` **rows** **of this DataFrame.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

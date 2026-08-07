@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You have to find the **maximum** sum of a pair of numbers from `nums` such that the **largest digit **in both numbers is equal.
 
 For example, 2373 is made up of three distinct digits: 2, 3, and 7, where 7 is the largest among them.
 
 Return the **maximum** sum or -1 if no such pair exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Each number's largest digit in order is [5,7,7,4,4].
 So we have only two possible pairs, 71 + 17 = 88 and 24 + 42 = 66.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

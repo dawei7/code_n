@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` soldiers standing in a line. Each soldier is assigned a **unique** `rating` value.
 
@@ -9,12 +9,13 @@ You have to form a team of 3 soldiers amongst them under the following rules:
 - A team is valid if: ($\text{rating}[i] < \text{rating}[j] < \text{rating}[k]$) or ($\text{rating}[i] > \text{rating}[j] > \text{rating}[k]$) where ($0 \le i < j < k < n$).
 
 Return the number of teams you can form given the conditions. (soldiers can be part of multiple teams).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return the number of teams you can form given the conditions. (soldiers can be p
 
 - **Input:** $rating = [1,2,3,4]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{rating.length}$
 

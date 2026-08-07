@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `forts` of length `n` representing the positions of several forts. $\text{forts}[i]$ can be `-1`, `0`, or `1` where:
 
@@ -17,12 +17,13 @@ Now you have decided to move your army from one of your forts at position `i` to
 While moving the army, all the enemy forts that come in the way are **captured**.
 
 Return* the **maximum** number of enemy forts that can be captured*. In case it is **impossible** to move your army, or you do not have any fort under your command, return `0`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Since 4 is the maximum number of enemy forts that can be captured, we return 4.
 - **Input:** $forts = [0,0,1,-1]$
 - **Output:** `0`
 - **Explanation:** Since no enemy fort can be captured, 0 is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{forts.length} \le 1000$
 

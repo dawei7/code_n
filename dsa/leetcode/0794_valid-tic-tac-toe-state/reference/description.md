@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a Tic-Tac-Toe board as a string array `board`, return `true` if and only if it is possible to reach this board position during the course of a valid tic-tac-toe game.
 
@@ -17,12 +17,13 @@ Here are the rules of Tic-Tac-Toe:
 - The game also ends if all squares are non-empty.
 
 - No more moves can be played if the game is over.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Here are the rules of Tic-Tac-Toe:
 
 - **Input:** $board = ["XOX","O O","XOX"]$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $\text{board.length} = 3$
 

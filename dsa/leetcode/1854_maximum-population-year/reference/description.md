@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `logs` where each $\text{logs}[i] = [\text{birth}_{i}, \text{death}_{i}]$ indicates the birth and death years of the $$i^{\text{th}}$$ person.
 
 The **population** of some year `x` is the number of people alive during that year. The $$i^{\text{th}}$$ person is counted in year `x`'s population if `x` is in the **inclusive** range $[\text{birth}_{i}, \text{death}_{i} - 1]$. Note that the person is **not** counted in the year that they die.
 
 Return *the **earliest** year with the **maximum population***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the **earliest** year with the **maximum population***.
 - **Explanation:**
 The maximum population is 2, and it had happened in years 1960 and 1970.
 The earlier year between them is 1960.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{logs.length} \le 100$
 

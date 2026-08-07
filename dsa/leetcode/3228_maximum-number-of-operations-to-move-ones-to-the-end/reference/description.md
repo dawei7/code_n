@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`.
 
@@ -9,12 +9,13 @@ You can perform the following operation on the string **any** number of times:
 - Move the character $s[i]$ to the **right** until it reaches the end of the string or another `'1'`. For example, for `s = "010010"`, if we choose $i = 1$, the resulting string will be `s = "0**<u>001</u>**10"`.
 
 Return the **maximum** number of operations that you can perform.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ We can perform the following operations:
 **Output:** 0
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

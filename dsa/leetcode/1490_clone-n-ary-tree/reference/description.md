@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `root` of an N-ary tree, return a <a href="https://en.wikipedia.org/wiki/Object_copying#Deep_copy" target="_blank">**deep copy**</a> (clone) of the tree.
 
@@ -12,7 +12,8 @@ class Node {
 ```
 
 *Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $N$ be the total number of nodes in the tree and $H$ the tree height.
 
 Return the root of a newly allocated N-ary tree with the same values, shape, and child ordering as the input tree. For the app-local representation, return an equal but independently allocated `Node` structure. Return `None` for an empty tree.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return the root of a newly allocated N-ary tree with the same values, shape, and
 
 - **Input:** `root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
 - **Output:** `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
-### Constraints
+
+### 4. Constraints
 
 - The depth of the n-ary tree is less than or equal to `1000`.
 

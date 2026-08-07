@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{user}_{content}$
 
@@ -21,7 +21,13 @@ Write a solution to transform the text in the $\text{content}_{text}$ column by 
 
 - Preserve all existing spaces
 
-**Note**: There will be no special character in $\text{content}_{text}$.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+: There will be no special character in $\text{content}_{text}$.
 
 Return *the result table that includes both the original $\text{content}_{text}$ and the modified text where each word starts with a capital letter*.
 
@@ -84,7 +90,3 @@ user_content table:
 	</li>
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

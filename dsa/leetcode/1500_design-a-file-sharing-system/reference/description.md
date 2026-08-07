@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We will use a file-sharing system to share a very large file which consists of `m` small **chunks** with IDs from `1` to `m`.
 
@@ -34,7 +34,8 @@ fileSharing.leave(1);        // The user with id = 1 left the system, all the fi
 fileSharing.request(2, 1);   // The user with id = 2 requested the first file chunk, no one in the system has this chunk, we return empty list [].
 fileSharing.leave(2);        // The user with id = 2 left the system.
 fileSharing.join([]);        // A user who doesn't have any chunks joined the system, assign id = 1 to them and return 1. Notice that ids 1 and 2 are free and we can reuse them.
-### Function Contract
+
+### 2. Function Contract
 
 **Platform interface**
 
@@ -49,7 +50,7 @@ fileSharing.join([]);        // A user who doesn't have any chunks joined the sy
 - `leave`: None (`null`).
 - `request`: list of integer user IDs sorted in ascending order.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le m \le 10^{5}$
 
@@ -66,7 +67,8 @@ fileSharing.join([]);        // A user who doesn't have any chunks joined the sy
 - At most $10^{4}$ calls will be made to `join`, `leave` and `request`.
 
 - Each call to `leave` will have a matching call for `join`.
-### Follow-up
+
+### 4. Follow-up
 
 - What happens if the system identifies the user by their IP address instead of their unique ID and users disconnect and connect from the system with the same IP?
 

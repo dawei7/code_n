@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 For a stream of integers, implement a data structure that checks if the last `k` integers parsed in the stream are **equal** to `value`.
 
@@ -7,12 +7,13 @@ Implement the **DataStream** class:
 - `DataStream(int value, int k)` Initializes the object with an empty integer stream and the two integers `value` and `k`.
 
 - `boolean consec(int num)` Adds `num` to the stream of integers. Returns `true` if the last `k` integers are equal to `value`, and `false` otherwise. If there are less than `k` integers, the condition does not hold true, so returns `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ dataStream.consec(4); // The 3 integers parsed are all equal to value, so return
 dataStream.consec(3); // The last k integers parsed in the stream are [4,4,3].
                       // Since 3 is not equal to value, it returns False.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le value, num \le 10^{9}$
 

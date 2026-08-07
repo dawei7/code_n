@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activity`
 
@@ -21,7 +21,8 @@ Write a solution to report for each player and date, how many games played **so 
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -33,7 +34,7 @@ The result format is in the following example.
   `games_played_so_far` is the sum of that player's $\text{games}_{played}$ values on dates no later than the row's
   $\text{event}_{date}$. Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

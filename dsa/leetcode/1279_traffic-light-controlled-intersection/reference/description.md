@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an intersection of two roads. First road is road A where cars travel from North to South in direction 1 and from South to North in direction 2. Second road is road B where cars travel from West to East in direction 3 and from East to West in direction 4.
 
@@ -29,7 +29,8 @@ Implement the function `void carArrived(carId, roadId, direction, turnGreen, cro
 - `crossCar` is a function you can call to let the current car cross the intersection.
 
 Your answer is considered correct if it avoids cars deadlock in the intersection. Turning the light green on a road when it was already green is considered a wrong answer.
-### Function Contract
+
+### 2. Function Contract
 
 Construct one `TrafficLight` instance for an intersection whose initial green road is Road A. The judge may invoke its method concurrently:
 
@@ -47,7 +48,7 @@ Construct one `TrafficLight` instance for an intersection whose initial green ro
 
 - `carArrived` returns no value. Across concurrent calls, every car must cross, different roads must never cross simultaneously, redundant green changes are forbidden, and all calls must finish without deadlock.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,7 +75,8 @@ Construct one `TrafficLight` instance for an intersection whose initial green ro
 "Car 4 Has Passed Road B In Direction 3"     // Car 4 crosses as the light is green on road B now.
 ]
 - **Explanation:** This is a dead-lock free scenario. Note that the scenario when car 4 crosses before turning light into green on road A and allowing car 5 to pass is also **correct** and **Accepted** scenario.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{cars.length} \le 20$
 

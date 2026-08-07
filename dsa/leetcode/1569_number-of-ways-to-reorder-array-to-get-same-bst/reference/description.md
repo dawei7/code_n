@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `nums` that represents a permutation of integers from `1` to `n`. We are going to construct a binary search tree (BST) by inserting the elements of `nums` in order into an initially empty BST. Find the number of different ways to reorder `nums` so that the constructed BST is identical to that formed from the original array `nums`.
 
@@ -7,12 +7,13 @@ Given an array `nums` that represents a permutation of integers from `1` to `n`.
 Return *the number of ways to reorder* `nums` *such that the BST formed is identical to the original BST formed from* `nums`.
 
 Since the answer may be very large, **return it modulo **$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Since the answer may be very large, **return it modulo **$10^{9} + 7$.
 - **Input:** `nums = [1,2,3]`
 - **Output:** `0`
 - **Explanation:** There are no other orderings of nums that will yield the same BST.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

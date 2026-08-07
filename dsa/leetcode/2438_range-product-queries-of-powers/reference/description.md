@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, there exists a **0-indexed** array called `powers`, composed of the **minimum** number of powers of `2` that sum to `n`. The array is sorted in **non-decreasing** order, and there is **only one** way to form the array.
 
 You are also given a **0-indexed** 2D integer array `queries`, where $\text{queries}[i] = [\text{left}_{i}, \text{right}_{i}]$. Each $\text{queries}[i]$ represents a query where you have to find the product of all $\text{powers}[j]$ with $\text{left}_{i} \le j \le \text{right}_{i}$.
 
 Return* an array *`answers`*, equal in length to *`queries`*, where *$\text{answers}[i]$* is the answer to the *$$i^{\text{th}}$$* query*. Since the answer to the $$i^{\text{th}}$$ query may be too large, each $\text{answers}[i]$ should be returned **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Each answer modulo $10^{9}$ + 7 yields the same answer, so [2,4,64] is returned.
 - **Explanation:**
 For n = 2, powers = [2].
 The answer to the only query is powers[0] = 2. The answer modulo $10^{9}$ + 7 is the same, so [2] is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

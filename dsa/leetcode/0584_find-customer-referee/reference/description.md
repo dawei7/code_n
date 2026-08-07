@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customer`
 
@@ -23,12 +23,13 @@ Find the names of the customer that are either:
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

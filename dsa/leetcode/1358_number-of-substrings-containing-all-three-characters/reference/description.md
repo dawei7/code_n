@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s` consisting only of characters *a*, *b* and *c*.
 
 Return the number of substrings containing **at least** one occurrence of all these characters *a*, *b* and *c*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the number of substrings containing **at least** one occurrence of all th
 
 - **Input:** `s = "abc"`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 5 x 10^{4}$
 

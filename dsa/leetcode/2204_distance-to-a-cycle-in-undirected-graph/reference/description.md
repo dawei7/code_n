@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing the number of nodes in a **connected undirected graph** containing **exactly one** cycle. The nodes are numbered from `0` to $n - 1$ (**inclusive**).
 
@@ -7,11 +7,12 @@ You are also given a 2D integer array `edges`, where $\text{edges}[i] = [\text{n
 The distance between two nodes `a` and `b` is defined to be the **minimum** number of edges that are needed to go from `a` to `b`.
 
 Return *an integer array `answer`** of size *`n`*, where *$\text{answer}[i]$* is the **minimum** distance between the *$$i^{\text{th}}$$* node and **any** node in the cycle.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The distance from 5 to 1 is 2.
 The distance from 6 to 2 is 1.
 The distance from 7 to 2 is 2.
 The distance from 8 to 2 is 2.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

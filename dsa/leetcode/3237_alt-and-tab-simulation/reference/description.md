@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` windows open numbered from `1` to `n`, we want to simulate using alt + tab to navigate between the windows.
 
@@ -7,11 +7,12 @@ You are given an array `windows` which contains the initial order of the windows
 You are also given an array `queries` where for each query, the window $\text{queries}[i]$ is brought to the top.
 
 Return the final state of the array `windows`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ Here is the window array after each query:
 - After the last query: `[<u>**3**</u>,1,4,2]`
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{windows.length} \le 10^{5}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given the `root` of a complete binary tree.
 
 A node `x` is called **dominant** if its value is equal to the maximum value among all nodes in the subtree rooted at `x`.
 
 Return the number of dominant nodes in the tree.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ The level-order arrays shown in the examples serialize the tree from top to bott
 
 Return the number of nodes whose value is equal to the maximum value in the subtree rooted at that same node.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Return the number of nodes whose value is equal to the maximum value in the subt
 - Thus, the answer is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, representing the number of employees in a company. Each employee is assigned a unique ID from 1 to `n`, and employee 1 is the CEO, is the direct or indirect boss of every employee. You are given two **1-based **integer arrays, `present` and `future`, each of length `n`, where:
 
@@ -14,17 +14,18 @@ However, the company has a discount policy: if an employee's direct boss purchas
 
 Return the **maximum** profit that can be achieved without exceeding the given budget.
 
-**Note:**
-
-- You may buy each stock at most **once**.
-
-- You **cannot** use any profit earned from future stock prices to fund additional investments and must buy only from `budget`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- You may buy each stock at most **once**.
+
+- You **cannot** use any profit earned from future stock prices to fund additional investments and must buy only from `budget`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -100,7 +101,8 @@ Return the **maximum** profit that can be achieved without exceeding the given b
 - The total cost becomes $5 + 1 + 1 = 7 \le budget$. Thus, the maximum total profit achieved is $3 + 4 + 5 = 12$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 160$
 

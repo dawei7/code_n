@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a number `n` that you have to find.
 
@@ -27,11 +27,12 @@ Return *the number* `n`.
 **Explanation: ** It can be proven that it's possible to find `33` using the provided API.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le n \le 2^{30} - 1$
 

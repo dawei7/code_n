@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`. You are allowed to perform two types of operations on the string in any sequence:
 
@@ -11,12 +11,13 @@ Return *the **minimum** number of **type-2** operations you need to perform* *su
 The string is called **alternating** if no two adjacent characters are equal.
 
 - For example, the strings `"010"` and `"1010"` are alternating, while the string `"0100"` is not.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Then, use the second operation on the third and sixth elements to make s = "10<u
 - **Input:** `s = "1110"`
 - **Output:** `1`
 **Explanation**: Use the second operation on the second element to make s = "1<u>0</u>10".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

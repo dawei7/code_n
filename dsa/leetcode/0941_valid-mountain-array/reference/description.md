@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, return *`true` if and only if it is a valid mountain array*.
 
@@ -15,12 +15,13 @@ Recall that arr is a mountain array if and only if:
 	</li>
 
 ![](images/hint_valid_mountain_array.png)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Recall that arr is a mountain array if and only if:
 
 - **Input:** `arr = [0,3,2,1]`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

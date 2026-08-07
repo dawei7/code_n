@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`. $s[i]$ is either a lowercase English letter or `'?'`.
 
@@ -19,12 +19,13 @@ For example, for the string $t = "aab"$:
 Your task is to **replace all** occurrences of `'?'` in `s` with any lowercase English letter so that the **value** of `s` is **minimized**.
 
 Return *a string denoting the modified string with replaced occurrences of *`'?'`*. If there are multiple strings resulting in the **minimum value**, return the lexicographically smallest one.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ For `"abac"`, $cost(0) = 0$, $cost(1) = 0$, $cost(2) = 1$, and $cost(3) = 0$.
 The value of `"abac"` is `1`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

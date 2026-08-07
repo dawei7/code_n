@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the array `nums`, for each $\text{nums}[i]$ find out how many numbers in the array are smaller than it. That is, for each $\text{nums}[i]$ you have to count the number of valid `j's` such that $j \neq i$ **and** $\text{nums}[j] < \text{nums}[i]$.
 
 Return the answer in an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ For nums[4]=3 there exist three smaller numbers than it (1, 2 and 2).
 
 - **Input:** `nums = [7,7,7,7]`
 - **Output:** `[0,0,0,0]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 500$
 

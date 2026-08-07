@@ -1,15 +1,10 @@
-## Description
+### 1. Description
 
 You are given a 2D array of strings `equations` and an array of real numbers `values`, where $\text{equations}[i] = [A_{i}, B_{i}]$ and $\text{values}[i]$ means that $A_{i} / B_{i} = \text{values}[i]$.
 
 Determine if there exists a contradiction in the equations. Return `true`* if there is a contradiction, or *`false`* otherwise*.
 
-**Note**:
-
-- When checking if two numbers are equal, check that their **absolute difference** is less than $10^{-5}$.
-
-- The testcases are generated such that there are no cases targeting precision, i.e. using `double` is enough to solve the problem.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +15,15 @@ Determine if there exists a contradiction in the equations. Return `true`* if th
 
 Return `True` if there is a contradiction in the given equations; otherwise return `False`.
 
-### Examples
+### 3. Note
+
+:
+
+- When checking if two numbers are equal, check that their **absolute difference** is less than $10^{-5}$.
+
+- The testcases are generated such that there are no cases targeting precision, i.e. using `double` is enough to solve the problem.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ a = 3, b = 1 and c = 2.
 The given equations are: le / et = 2, le / code = 5, code / et = 0.5
 Based on the first two equations, we get code / et = 0.4.
 Since the third equation is code / et = 0.5, we get a contradiction.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{equations.length} \le 100$
 

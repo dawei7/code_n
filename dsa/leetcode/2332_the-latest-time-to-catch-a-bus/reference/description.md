@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `buses` of length `n`, where $\text{buses}[i]$ represents the departure time of the $$i^{\text{th}}$$ bus. You are also given a **0-indexed** integer array `passengers` of length `m`, where $\text{passengers}[j]$ represents the arrival time of the $$j^{\text{th}}$$ passenger. All bus departure times are unique. All passenger arrival times are unique.
 
@@ -14,13 +14,16 @@ More formally when a bus arrives, either:
 
 Return *the latest time you may arrive at the bus station to catch a bus*. You **cannot** arrive at the same time as another passenger.
 
-**Note: **The arrays `buses` and `passengers` are not necessarily sorted.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The arrays `buses` and `passengers` are not necessarily sorted.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ At time 10, the first bus departs with the 3^rd passenger.
 At time 20, the second bus departs with the 5^th and 1^st passengers.
 At time 30, the third bus departs with the 0^th passenger and you.
 Notice if you had arrived any later, then the 6^th passenger would have taken your seat on the third bus.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{buses.length}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `n`, count *the total number of digit *`1`* appearing in all non-negative integers less than or equal to* `n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `n`, count *the total number of digit *`1`* appearing in all no
 
 Return the number of digit-`1` occurrences in the ordinary decimal representations of all integers in `[0,n]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,6 +22,7 @@ Return the number of digit-`1` occurrences in the ordinary decimal representatio
 
 - **Input:** $n = 0$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{9}$

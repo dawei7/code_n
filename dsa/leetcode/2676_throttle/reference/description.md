@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a function `fn` and a time in milliseconds `t`, return a **throttled** version of that function.
 
@@ -15,7 +15,8 @@ At `60ms`, arguments should overwrite currently stored arguments from the second
 ![Throttle Diagram](images/screen-shot-2023-04-08-at-120313-pm.png)
 
 The above diagram shows how throttle will transform events. Each rectangle represents 100ms and the throttle time is 400ms. Each color represents a different set of inputs.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ The above diagram shows how throttle will transform events. Each rectangle repre
 
 Return a throttled function that executes `fn` immediately on leading calls and coalesces intermediate calls into a single trailing execution per interval `t`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ The 2nd is called at 75ms within the delay period because 50ms + 70ms = 120ms, s
 The 3rd is also called within the delay period, and because we need just the latest function arguments, we overwrite previous ones. After the delay period, we do a callback at 120ms with saved arguments. That callback makes another delay period of 120ms + 70ms = 190ms so that the next function can be called at 190ms.
 The 4th is called at 140ms in the delay period, so it should be called as a callback at 190ms. That will create another delay period of 190ms + 70ms = 260ms.
 The 5th is called at 300ms, but it is after 260ms, so it should be called immediately and should create another delay period of 300ms + 70ms = 370ms.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le t \le 1000$
 

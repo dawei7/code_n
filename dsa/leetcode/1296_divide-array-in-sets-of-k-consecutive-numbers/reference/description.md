@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and a positive integer `k`, check whether it is possible to divide this array into sets of `k` consecutive numbers.
 
 Return `true` *if it is possible*.** **Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,10 +26,13 @@ Return `true` *if it is possible*.** **Otherwise, return `false`.
 - **Input:** `nums = [1,2,3,4], k = 3`
 - **Output:** `false`
 - **Explanation:** Each array should be divided in subarrays of size 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 
 - $1 \le \text{nums}[i] \le 10^{9}$
 
-**Note:** This question is the same as 846: <a href="https://leetcode.com/problems/hand-of-straights/" target="_blank">https://leetcode.com/problems/hand-of-straights/</a>
+### 5. Note
+
+This question is the same as 846: <a href="https://leetcode.com/problems/hand-of-straights/" target="_blank">https://leetcode.com/problems/hand-of-straights/</a>

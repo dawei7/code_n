@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are controlling a robot that is located somewhere in a room. The room is modeled as an `m x n` binary grid where `0` represents a wall and `1` represents an empty slot.
 
@@ -26,12 +26,7 @@ interface Robot {
 }
 ```
 
-**Note** that the initial direction of the robot will be facing up. You can assume all four edges of the grid are all surrounded by a wall.
-
-**Custom testing:**
-
-The input is only given to initialize the room and the robot's position internally. You must solve this problem "blindfolded". In other words, you must control the robot using only the four mentioned APIs without knowing the room layout and the initial robot's position.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -51,7 +46,15 @@ The interface provides four operations:
 
 The solution must operate only through this interface and must not inspect the hidden grid.
 
-### Examples
+### 3. Note
+
+that the initial direction of the robot will be facing up. You can assume all four edges of the grid are all surrounded by a wall.
+
+### 4. Custom Testing
+
+The input is only given to initialize the room and the robot's position internally. You must solve this problem "blindfolded". In other words, you must control the robot using only the four mentioned APIs without knowing the room layout and the initial robot's position.
+
+### 5. Examples
 
 #### Example 1
 
@@ -67,7 +70,8 @@ From the top left corner, its position is one row below and three columns right.
 
 - **Input:** $room = [[1]], row = 0, col = 0$
 - **Output:** `Robot cleaned all rooms.`
-### Constraints
+
+### 6. Constraints
 
 - $m = \text{room.length}$
 

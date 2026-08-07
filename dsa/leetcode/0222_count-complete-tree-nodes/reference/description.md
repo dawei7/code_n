@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given the `root` of a **complete** binary tree, return the number of the nodes in the tree.
 
 According to **<a href="http://en.wikipedia.org/wiki/Binary_tree#Types_of_binary_trees" target="_blank">Wikipedia</a>**, every level, except possibly the last, is completely filled in a complete binary tree, and all nodes in the last level are as far left as possible. It can have between `1` and $2^h$ nodes inclusive at the last level `h`.
 
 Design an algorithm that runs in less than `O(n)` time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Design an algorithm that runs in less than `O(n)` time complexity.
 
 Return the number of existing nodes in the tree.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the number of existing nodes in the tree.
 
 - **Input:** `root = [1]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 5 * 10^{4}]$.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, where $\text{nums}[i]$ represents the points scored in the $$i^{\text{th}}$$ game.
 
@@ -13,7 +13,8 @@ The following rules apply **sequentially** for each game `i`:
 - The active player plays the $$i^{\text{th}}$$ game and gains $\text{nums}[i]$ points.
 
 Return the **score difference**, defined as the first player's **total** score **minus** the second player's **total** score.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ $S_1-S_2.$
 
 The result may be negative when the second player finishes with more points.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -85,7 +86,8 @@ The result may be negative when the second player finishes with more points.
 - The score difference is $0 - 1 = -1$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

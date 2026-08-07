@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of the characters `'N'`, `'S'`, `'E'`, and `'W'`, where $s[i]$ indicates movements in an infinite grid:
 
@@ -15,12 +15,13 @@ Initially, you are at the origin `(0, 0)`. You can change **at most** `k` charac
 Find the **maximum** **Manhattan distance** from the origin that can be achieved **at any time** while performing the movements **in order**.
 
 The **Manhattan Distance** between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j})$ is $|x_{i} - x_{j}| + |y_{i} - y_{j}|$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -87,7 +88,8 @@ Change $s[1]$ from `'S'` to `'N'`, and $s[4]$ from `'E'` to `'W'`. The string `s
 The maximum Manhattan distance from the origin that can be achieved is 6. Hence, 6 is the output.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

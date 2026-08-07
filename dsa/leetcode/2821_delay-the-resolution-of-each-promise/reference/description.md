@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `functions` and a number `ms`, return a new array of functions.
 
@@ -9,11 +9,12 @@ Given an array `functions` and a number `ms`, return a new array of functions.
 Each function in the new array should return a promise that resolves or rejects after an additional delay of `ms` milliseconds, preserving the order of the original `functions` array.
 
 The `delayAll` function should ensure that each promise from `functions` is executed with a delay, forming the new array of functions returning delayed promises.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ functions = [
 ],
 ms = 30
 - **Output:** `[50,130]`
-### Constraints
+
+### 4. Constraints
 
 - `functions` is an array of functions that return promises
 

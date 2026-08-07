@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of strings `garbage` where $\text{garbage}[i]$ represents the assortment of garbage at the $$i^{\text{th}}$$ house. $\text{garbage}[i]$ consists only of the characters `'M'`, `'P'` and `'G'` representing one unit of metal, paper and glass garbage respectively. Picking up **one** unit of any type of garbage takes `1` minute.
 
@@ -9,12 +9,13 @@ There are three garbage trucks in the city, each responsible for picking up one 
 Only **one** garbage truck may be used at any given moment. While one truck is driving or picking up garbage, the other two trucks **cannot** do anything.
 
 Return* the **minimum** number of minutes needed to pick up all the garbage.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The metal garbage truck takes 7 minutes to pick up all the metal garbage.
 The paper garbage truck takes 15 minutes to pick up all the paper garbage.
 The glass garbage truck takes 15 minutes to pick up all the glass garbage.
 It takes a total of 7 + 15 + 15 = 37 minutes to collect all the garbage.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{garbage.length} \le 10^{5}$
 

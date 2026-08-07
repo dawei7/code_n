@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of strings `strs`, group the anagrams together. You can return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $m = \lvert\texttt{strs}\rvert$ and let $C$ be the total number of character
 
 Return groups in which every pair of strings are anagrams. The group order and the order within each group are unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Return groups in which every pair of strings are anagrams. The group order and t
 **Output:** [["a"]]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strs.length} \le 10^{4}$
 

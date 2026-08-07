@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `m`, `n`, and `k`.
 
@@ -23,7 +23,8 @@ A **valid path** is a sequence of free cells that:
 	</li>
 
 Return any grid such that there are **exactly** `k` **valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(m, n, k) -> \text{list}[str]$
 
@@ -39,7 +40,7 @@ Rows and columns use zero-based indices. A valid path begins at `(0, 0)`, ends a
 
 Return a list of exactly `m` strings of length `n`, using only `.` for free cells and `#` for obstacles, such that the grid contains exactly `k` valid paths. More than one construction may be correct. Return `[]` precisely when no valid construction exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -93,7 +94,8 @@ There are exactly $k = 4$ valid paths from `(0, 0)` to `(2, 2)`:
 No grid exists with exactly $k = 2$ valid paths for a `1 x 4` grid, so the answer is an empty array.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10$
 

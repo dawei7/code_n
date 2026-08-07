@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a 2D `grid` consists of `0s` (land) and `1s` (water).  An *island* is a maximal 4-directionally connected group of `0s` and a *closed island* is an island **totally** (all left, top, right, bottom) surrounded by `1s.`
 
 Return the number of *closed islands*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Islands in gray are closed because they are completely surrounded by water (grou
 [1,0,0,0,0,0,1],
 [1,1,1,1,1,1,1]]
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grid.length}, \text{grid}[0].length \le 100$
 

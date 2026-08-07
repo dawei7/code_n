@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t` of equal length `n`. You can perform the following operation on the string `s`:
 
@@ -9,12 +9,13 @@ You are given two strings `s` and `t` of equal length `n`. You can perform the f
 You are also given an integer `k`. Return *the number of ways in which *`s` *can be transformed into *`t`* in **exactly** *`k`* operations.*
 
 Since the answer can be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ First way:
 Choose suffix from index = 2, so resulting s = "ababab".
 Second way:
 Choose suffix from index = 4, so resulting s = "ababab".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 5 * 10^{5}$
 

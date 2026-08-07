@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `p`. Consider an array `nums` (**1-indexed**) that consists of the integers in the **inclusive** range $[1, 2^p - 1]$ in their binary representations. You are allowed to do the following operation **any** number of times:
 
@@ -10,13 +10,16 @@ For example, if $x = 11<u>0</u>1$ and $y = 00<u>1</u>1$, after swapping the $2^n
 
 Find the **minimum non-zero** product of `nums` after performing the above operation **any** number of times. Return *this product** **modulo** *$10^{9} + 7$.
 
-**Note:** The answer should be the minimum product **before** the modulo operation is done.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The answer should be the minimum product **before** the modulo operation is done.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,6 +44,7 @@ Thus, the array product of 1 * 2 * 3 = 6 is already minimized.
 - In the second operation we can swap the middle bit of the third and fourth elements.
 - The resulting array is [001, 110, 0<u>0</u>1, 1<u>1</u>0, 001, 110, 111].
 The array product is 1 * 6 * 1 * 6 * 1 * 6 * 7 = 1512, which is the minimum possible product.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le p \le 60$

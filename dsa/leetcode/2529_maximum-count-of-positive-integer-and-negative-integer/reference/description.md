@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 Given an array `nums` sorted in **non-decreasing** order, return *the maximum between the number of positive integers and the number of negative integers.*
 
 - In other words, if the number of positive integers in `nums` is `pos` and the number of negative integers is `neg`, then return the maximum of `pos` and `neg`.
 
-**Note** that `0` is neither positive nor negative.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that `0` is neither positive nor negative.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +30,8 @@ Given an array `nums` sorted in **non-decreasing** order, return *the maximum be
 - **Input:** `nums = [5,20,66,1314]`
 - **Output:** `4`
 - **Explanation:** There are 4 positive integers and 0 negative integers. The maximum count among them is 4.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 2000$
 

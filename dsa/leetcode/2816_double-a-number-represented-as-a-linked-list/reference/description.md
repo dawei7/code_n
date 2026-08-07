@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given the `head` of a **non-empty** linked list representing a non-negative integer without leading zeroes.
 
 Return *the *`head`* of the linked list after **doubling** it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the *`head`* of the linked list after **doubling** it*.
 - **Input:** $head = [9,9,9]$
 - **Output:** `[1,9,9,8]`
 - **Explanation:** The figure above corresponds to the given linked list which represents the number 999. Hence, the returned linked list reprersents the number 999 * 2 = 1998.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{4}]$
 

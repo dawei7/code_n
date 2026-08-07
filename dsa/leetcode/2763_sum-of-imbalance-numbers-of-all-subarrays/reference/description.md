@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **imbalance number** of a **0-indexed** integer array `arr` of length `n` is defined as the number of indices in $sarr = sorted(arr)$ such that:
 
@@ -11,12 +11,13 @@ Here, `sorted(arr)` is the function that returns the sorted version of `arr`.
 Given a **0-indexed** integer array `nums`, return *the **sum of imbalance numbers** of all its **subarrays***.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The imbalance number of all other subarrays is 0. Hence, the sum of imbalance nu
 - Subarray [3, 3, 5] with an imbalance number of 1.
 - Subarray [3, 5] with an imbalance number of 1.
 The imbalance number of all other subarrays is 0. Hence, the sum of imbalance numbers of all the subarrays of nums is 8.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

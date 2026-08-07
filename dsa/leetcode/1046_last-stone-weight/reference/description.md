@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `stones` where $\text{stones}[i]$ is the weight of the $$i^{\text{th}}$$ stone.
 
@@ -11,12 +11,13 @@ We are playing a game with the stones. On each turn, we choose the **heaviest tw
 At the end of the game, there is **at most one** stone left.
 
 Return *the weight of the last remaining stone*. If there are no stones left, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ we combine 1 and 1 to get 0 so the array converts to [1] then that's the value o
 
 - **Input:** $stones = [1]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stones.length} \le 30$
 

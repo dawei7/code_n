@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 On a campus represented on the X-Y plane, there are `n` workers and `m` bikes, with $n \le m$.
 
@@ -11,7 +11,8 @@ If there are multiple $(\text{worker}_{i}, \text{bike}_{j})$ pairs with the same
 Return *an array *`answer`* of length *`n`*, where *$\text{answer}[i]$* is the index (**0-indexed**) of the bike that the *$$i^{\text{th}}$$* worker is assigned to*.
 
 The **Manhattan distance** between two points `p1` and `p2` is $Manhattan(p1, p2) = |\text{p1.x} - \text{p2.x}| + |\text{p1.y} - \text{p2.y}|$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Let $D$ denote the largest possible Manhattan distance between two legal coordin
 
 - An integer array `answer` of length $W$, where $\text{answer}[i]$ is the 0-indexed bike assigned to worker `i`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Let $D$ denote the largest possible Manhattan distance between two legal coordin
 - **Input:** $workers = [[0,0],[1,1],[2,0]], bikes = [[1,0],[2,2],[2,1]]$
 - **Output:** `[0,2,1]`
 - **Explanation:** Worker 0 grabs Bike 0 at first. Worker 1 and Worker 2 share the same distance to Bike 2, thus Worker 1 is assigned to Bike 2, and Worker 2 will take Bike 1. So the output is [0,2,1].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{workers.length}$
 

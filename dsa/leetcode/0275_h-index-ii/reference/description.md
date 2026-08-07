@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an array of integers `citations` where $\text{citations}[i]$ is the number of citations a researcher received for their $$i^{\text{th}}$$ paper and `citations` is sorted in **non-descending order**, return *the researcher's h-index*.
 
 According to the <a href="https://en.wikipedia.org/wiki/H-index" target="_blank">definition of h-index on Wikipedia</a>: The h-index is defined as the maximum value of `h` such that the given researcher has published at least `h` papers that have each been cited at least `h` times.
 
 You must write an algorithm that runs in logarithmic time.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $n = \texttt{citations.length}$.
 
 Return the greatest $h$ such that at least $h$ entries in `citations` are at least $h$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Since the researcher has 3 papers with at least 3 citations each and the remaini
 
 - **Input:** $citations = [1,2,100]$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{citations.length}$
 

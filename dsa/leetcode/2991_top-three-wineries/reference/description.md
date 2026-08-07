@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Wineries`
 
@@ -20,11 +20,12 @@ Write a solution to find the **top three wineries** in **each** **country** base
 Return *the result table ordered by *`country`* in **ascending** order**.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

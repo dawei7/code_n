@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr` and an integer `k`. Find the *least number of unique integers* after removing **exactly** `k` elements**.**
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given an array of integers `arr` and an integer `k`. Find the *least number of u
 - **Input:** `arr = [4,3,1,1,3,3,2], k = 3`
 - **Output:** `2`
 **Explanation**: Remove 4, 2 and either one of the two 1s or three 3s. 1 and 3 will be left.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

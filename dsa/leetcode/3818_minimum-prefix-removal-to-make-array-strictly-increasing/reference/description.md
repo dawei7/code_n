@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 You need to remove **exactly** one prefix (possibly empty) from nums.
 
 Return an integer denoting the **minimum** length of the removed prefix such that the remaining array is **strictly increasing**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ A solution always exists: removing the first $N-1$ elements leaves one element, 
 
 Return the smallest prefix length whose removal leaves a strictly increasing array.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Removing the $prefix = [4, 3, -2]$ leaves the remaining array `[-5]` which is st
 The array `nums = [1, 2, 3, 4]` is already strictly increasing so removing an empty prefix is sufficient.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

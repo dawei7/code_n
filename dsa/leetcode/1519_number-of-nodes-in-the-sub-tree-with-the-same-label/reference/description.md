@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a tree (i.e. a connected, undirected graph that has no cycles) consisting of `n` nodes numbered from `0` to $n - 1$ and exactly $n - 1$ `edges`. The **root** of the tree is the node `0`, and each node of the tree has **a label** which is a lower-case character given in the string `labels` (i.e. The node with the number `i` has the label $\text{labels}[i]$).
 
@@ -7,12 +7,13 @@ The `edges` array is given on the form $\text{edges}[i] = [a_{i}, b_{i}]$, which
 Return *an array of size `n`* where $\text{ans}[i]$ is the number of nodes in the subtree of the $$i^{\text{th}}$$ node which have the same label as node `i`.
 
 A subtree of a tree `T` is the tree consisting of a node in `T` and all of its descendant nodes.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The sub-tree of node 0 contains nodes 0, 1, 2 and 3, all with label 'b', thus th
 
 - **Input:** $n = 5, edges = [[0,1],[0,2],[1,3],[0,4]], labels = "aabab"$
 - **Output:** `[3,2,1,1,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

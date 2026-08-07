@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `arr` and a mapping function `fn`, return a new array with a transformation applied to each element.
 
 The returned array should be created such that $\text{returnedArray}[i] = fn(\text{arr}[i], i)$.
 
 Please solve it without the built-in `Array.map` method.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The function increases each value in the array by one.
 - **Input:** `arr = [10,20,30], fn = function constant() { return 42; }`
 - **Output:** `[42,42,42]`
 - **Explanation:** The function always returns 42.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{arr.length} \le 1000$
 

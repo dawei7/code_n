@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Write a function that reverses a string. The input string is given as an array of characters `s`.
 
 You must do this by modifying the input array <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a> with `O(1)` extra memory.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must do this by modifying the input array <a href="https://en.wikipedia.org/
 
 Return nothing; after the call, `s` itself must contain the characters in reverse order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return nothing; after the call, `s` itself must contain the characters in revers
 
 - **Input:** $s = ["H","a","n","n","a","h"]$
 - **Output:** `["h","a","n","n","a","H"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

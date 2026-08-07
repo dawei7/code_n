@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed binary** string `floor`, which represents the colors of tiles on a floor:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed binary** string `floor`, which represents the colors
 You are also given `numCarpets` and `carpetLen`. You have `numCarpets` **black** carpets, each of length `carpetLen` tiles. Cover the tiles with the given carpets such that the number of **white** tiles still visible is **minimum**. Carpets may overlap one another.
 
 Return *the **minimum** number of white tiles still visible.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ No other way of covering the tiles with the carpets can leave less than 2 white 
 - **Explanation:**
 The figure above shows one way of covering the tiles with the carpets such that no white tiles are visible.
 Note that the carpets are able to overlap one another.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le carpetLen \le \text{floor.length} \le 1000$
 

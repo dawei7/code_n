@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A maze consists of `n` rooms numbered from `1` to `n`, and some rooms are connected by corridors. You are given a 2D integer array `corridors` where $\text{corridors}[i] = [\text{room1}_{i}, \text{room2}_{i}]$ indicates that there is a corridor connecting $\text{room1}_{i}$ and $\text{room2}_{i}$, allowing a person in the maze to go from $\text{room1}_{i}$ to $\text{room2}_{i}$ **and vice versa**.
 
@@ -9,11 +9,12 @@ The designer of the maze wants to know how confusing the maze is. The **confusio
 Two cycles are considered to be **different** if one or more of the rooms visited in the first cycle is **not** in the second cycle.
 
 Return *the* ***confusion**** score** of the maze.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Thus, there are two different cycles of length 3.
 - **Output:** `0`
 - **Explanation:**
 There are no cycles of length 3.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 1000$
 

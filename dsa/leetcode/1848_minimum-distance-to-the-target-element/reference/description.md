@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` **(0-indexed)** and two integers `target` and `start`, find an index `i` such that $\text{nums}[i] = target$ and $abs(i - start)$ is **minimized**. Note that `abs(x)` is the absolute value of `x`.
 
 Return $abs(i - start)$.
 
 It is **guaranteed** that `target` exists in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ It is **guaranteed** that `target` exists in `nums`.
 - **Input:** `nums = [1,1,1,1,1,1,1,1,1,1], target = 1, start = 0`
 - **Output:** `0`
 - **Explanation:** Every value of nums is 1, but nums[0] minimizes abs(i - start), which is abs(0 - 0) = 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

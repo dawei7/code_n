@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `num`.
 
@@ -6,14 +6,7 @@ A number `num` is called a **Complete Prime Number** if every **prefix** and eve
 
 Return `true` if `num` is a Complete Prime Number, otherwise return `false`.
 
-**Note**:
-
-- A **prefix** of a number is formed by the **first** `k` digits of the number.
-
-- A **suffix** of a number is formed by the **last** `k` digits of the number.
-
-- Single-digit numbers are considered Complete Prime Numbers only if they are **prime**.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +18,17 @@ For every length $k$ from 1 through the number of decimal digits, take both the 
 
 Return `true` if every required prefix and suffix is prime. Return `false` as soon as any one of them is nonprime.
 
-### Examples
+### 3. Note
+
+:
+
+- A **prefix** of a number is formed by the **first** `k` digits of the number.
+
+- A **suffix** of a number is formed by the **last** `k` digits of the number.
+
+- Single-digit numbers are considered Complete Prime Numbers only if they are **prime**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -71,6 +74,7 @@ Return `true` if every required prefix and suffix is prime. Return `false` as so
 - 7 is prime, so all its prefixes and suffixes are prime and the answer is `true`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le num \le 10^{9}$

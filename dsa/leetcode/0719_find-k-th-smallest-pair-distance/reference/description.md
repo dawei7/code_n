@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 The **distance of a pair** of integers `a` and `b` is defined as the absolute difference between `a` and `b`.
 
 Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$ *smallest **distance among all the pairs*** $\text{nums}[i]$ *and* $\text{nums}[j]$ *where* $0 \le i < j < \text{nums.length}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Then the 1^st smallest distance pair is (1,1), and its distance is 0.
 
 - **Input:** `nums = [1,6,1], k = 3`
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

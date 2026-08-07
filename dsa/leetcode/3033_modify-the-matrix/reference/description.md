@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** `m x n` integer matrix `matrix`, create a new **0-indexed** matrix called `answer`. Make `answer` equal to `matrix`, then replace each element with the value `-1` with the **maximum** element in its respective column.
 
 Return *the matrix* `answer`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the matrix* `answer`.
 - **Input:** $matrix = [[3,-1],[5,2]]$
 - **Output:** `[[3,2],[5,2]]`
 - **Explanation:** The diagram above shows the elements that are changed (in blue).
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

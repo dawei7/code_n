@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have an **infinite** number of coins with values 1, 2, and 6, and **only** 2 coins with value 4.
 
@@ -6,12 +6,15 @@ Given an integer `n`, return the number of ways to make the sum of `n` with the 
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
-**Note** that the order of the coins doesn't matter and `[2, 2, 3]` is the same as `[2, 3, 2]`.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that the order of the coins doesn't matter and `[2, 2, 3]` is the same as `[2, 3, 2]`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -49,6 +52,7 @@ Note that `[4, 4, 4]` is **not** a valid combination since we cannot use 4 three
 Here are the four combinations: `[1, 1, 1, 1, 1]`, `[1, 1, 1, 2]`, `[1, 2, 2]`, `[1, 4]`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{5}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `deck` where $\text{deck}[i]$ represents the number written on the $$i^{\text{th}}$$ card.
 
@@ -9,12 +9,13 @@ Partition the cards into **one or more groups** such that:
 - All the cards in one group have the same integer written on them.
 
 Return `true`* if such partition is possible, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return `true`* if such partition is possible, or *`false`* otherwise*.
 - **Input:** $deck = [1,1,1,2,2,2,3,3]$
 - **Output:** `false`
 **Explanation**: No possible partition.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{deck.length} \le 10^{4}$
 

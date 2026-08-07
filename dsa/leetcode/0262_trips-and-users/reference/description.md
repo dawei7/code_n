@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Trips`
 
@@ -40,7 +40,8 @@ Write a solution to find the **cancellation rate** of requests with unbanned use
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -53,7 +54,7 @@ Let $t$ be the number of rows in `Trips`, and let $u$ be the number of rows in `
 
 Return columns `Day` and `Cancellation Rate` for every qualifying date, with the rate rounded to two decimal places. Row order does not matter.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

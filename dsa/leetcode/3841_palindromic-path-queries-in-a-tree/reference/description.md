@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected tree with `n` nodes labeled 0 to $n - 1$. This is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an undirected edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -11,7 +11,8 @@ You are also given a string array `queries`, where each $\text{queries}[i]$ is e
 - $"query u_{i} v_{i}"$: Determine whether the string formed by the characters on the **unique** path from $u_{i}$ to $v_{i}$ (inclusive) can be **rearranged** into a **palindrome**.
 
 Return a boolean array `answer`, where $\text{answer}[j]$ is `true` if the $$j^{\text{th}}$$ query of type $"query u_{i} v_{i}"​​​​​​​$ can be rearranged into a **palindrome**, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -35,7 +36,7 @@ $$
 
 Return the query results in chronological order. The returned array has one boolean for each command beginning with `"query"` and no entry for an `"update"` command.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ Thus, $answer = [true, false]$.
 Thus, $answer = [false, false, true]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have an integer array `arr`, where all the integers in `arr` are equal except for one integer which is **larger** than the rest of the integers. You will not be given direct access to the array, instead, you will have an **API** `ArrayReader` which have the following functions:
 
@@ -16,7 +16,8 @@ We have an integer array `arr`, where all the integers in `arr` are equal except
 You are allowed to call `compareSub()` **20 times** at most. You can assume both functions work in `O(1)` time.
 
 Return *the index of the array `arr` which has the largest integer*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Return *the index of the array `arr` which has the largest integer*.
 
 Return the zero-based index of the unique larger value while making at most 20 calls to `compareSub`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Notice that we made only 3 calls, so the answer is valid.
 
 - **Input:** `nums = [6,6,12]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 5 * 10^{5}$
 

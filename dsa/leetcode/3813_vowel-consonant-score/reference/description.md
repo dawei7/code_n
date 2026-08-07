@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters, spaces, and digits.
 
@@ -13,7 +13,8 @@ The **score** of the string `s` is defined as follows:
 - Otherwise, the $score = 0$.
 
 Return an integer denoting the score of the string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $N=\lvert\texttt{s}\rvert$. A character contributes to the consonant count o
 
 Return $\lfloor v/c\rfloor$ when the consonant count $c$ is positive. Return `0` when $c=0$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ The score is $floor(v / c) = floor(5 / 3) = 1$.
 The string `s = "au 123"` contains no consonants $(c = 0)$, so the score is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of strings `words`, return *the first **palindromic** string in the array*. If there is no such string, return *an **empty string** *`""`.
 
 A string is **palindromic** if it reads the same forward and backward.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that "racecar" is also palindromic, but it is not the first.
 - **Input:** $words = ["def","ghi"]$
 - **Output:** `""`
 - **Explanation:** There are no palindromic strings, so the empty string is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

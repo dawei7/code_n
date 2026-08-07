@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of digits.
 
 Return `true` if the **absolute difference** between every pair of **adjacent** digits is at most 2, otherwise return `false`.
 
 The absolute difference between `a` and `b` is defined as $abs(a - b)$.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -24,7 +25,7 @@ $$
 
 for every integer $i$ satisfying $0\le i<N-1$. Equality with $2$ is allowed.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ for every integer $i$ satisfying $0\le i<N-1$. Equality with $2$ is allowed.
 - Therefore, the answer is false.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a `rows x cols` screen and a `sentence` represented as a list of strings, return *the number of times the given sentence can be fitted on the screen*.
 
 The order of words in the sentence must remain unchanged, and a word cannot be split into two lines. A single space must separate two consecutive words in a line.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ The order of words in the sentence must remain unchanged, and a word cannot be s
 Return the number of complete repetitions of `sentence` that fit while filling the screen from left to right and
 top to bottom under the word and spacing rules.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ apple
 pie-i
 had--
 The character '-' signifies an empty space on the screen.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 100$
 

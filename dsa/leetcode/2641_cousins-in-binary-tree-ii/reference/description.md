@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, replace the value of each node in the tree with the **sum of all its cousins' values**.
 
@@ -6,13 +6,16 @@ Two nodes of a binary tree are **cousins** if they have the same depth with diff
 
 Return *the *`root`* of the modified tree*.
 
-**Note** that the depth of a node is the number of edges in the path from the root node to it.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the depth of a node is the number of edges in the path from the root node to it.
+
+### 4. Examples
 
 #### Example 1
 
@@ -37,7 +40,8 @@ Return *the *`root`* of the modified tree*.
 - Node with value 3 does not have any cousins so its sum is 0.
 - Node with value 1 does not have any cousins so its sum is 0.
 - Node with value 2 does not have any cousins so its sum is 0.
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

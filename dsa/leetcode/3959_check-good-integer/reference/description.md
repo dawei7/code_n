@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`.
 
@@ -7,7 +7,8 @@ Let `digitSum` be the sum of the digits of `n`, and let `squareSum` be the sum o
 An integer is called **good** if $squareSum - digitSum \ge 50$.
 
 Return `true` if `n` is good. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Leading zeroes are not part of the integer's decimal representation. Zeroes that
 
 Return `true` when $squareSum - digitSum \ge 50$; otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,6 +58,7 @@ Return `true` when $squareSum - digitSum \ge 50$; otherwise, return `false`.
 - The $squareSum - digitSum$ is $82 - 10 = 72$. As 72 is greater than or equal to 50, the output is `true`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

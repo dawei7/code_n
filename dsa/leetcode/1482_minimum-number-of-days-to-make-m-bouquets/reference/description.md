@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `bloomDay`, an integer `m` and an integer `k`.
 
@@ -7,12 +7,13 @@ You want to make `m` bouquets. To make a bouquet, you need to use `k` **adjacent
 The garden consists of `n` flowers, the $$i^{\text{th}}$$ flower will bloom in the $\text{bloomDay}[i]$ and then can be used in **exactly one** bouquet.
 
 Return *the minimum number of days you need to wait to be able to make *`m`* bouquets from the garden*. If it is impossible to make m bouquets return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ After day 7: [x, x, x, x, _, x, x]
 We can make one bouquet of the first three flowers that bloomed. We cannot make another bouquet from the last three flowers that bloomed because they are not adjacent.
 After day 12: [x, x, x, x, x, x, x]
 It is obvious that we can make two bouquets in different ways.
-### Constraints
+
+### 4. Constraints
 
 - $\text{bloomDay.length} = n$
 

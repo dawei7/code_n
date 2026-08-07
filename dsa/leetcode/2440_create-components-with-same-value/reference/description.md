@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected tree with `n` nodes labeled from `0` to $n - 1$.
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** integer array `nums` of length `n` where $\text{nu
 You are allowed to **delete** some edges, splitting the tree into multiple connected components. Let the **value** of a component be the sum of **all** $\text{nums}[i]$ for which node `i` is in the component.
 
 Return* the **maximum** number of edges you can delete, such that every connected component in the tree has the same value.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return* the **maximum** number of edges you can delete, such that every connecte
 - **Input:** `nums = [2], edges = []`
 - **Output:** `0`
 - **Explanation:** There are no edges to be deleted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{4}$
 

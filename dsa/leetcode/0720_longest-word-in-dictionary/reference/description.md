@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of strings `words` representing an English Dictionary, return *the longest word in* `words` *that can be built one character at a time by other words in* `words`.
 
 If there is more than one possible answer, return the longest word with the smallest lexicographical order. If there is no answer, return the empty string.
 
 Note that the word should be built from left to right with each additional character being added to the end of a previous word.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Note that the word should be built from left to right with each additional chara
 - **Input:** $words = ["a","banana","app","appl","ap","apply","apple"]$
 - **Output:** `"apple"`
 - **Explanation:** Both "apply" and "apple" can be built from other words in the dictionary. However, "apple" is lexicographically smaller than "apply".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

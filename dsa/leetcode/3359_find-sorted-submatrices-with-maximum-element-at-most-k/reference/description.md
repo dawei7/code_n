@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D matrix `grid` of size `m x n`. You are also given a **non-negative** integer `k`.
 
@@ -9,11 +9,12 @@ Return the number of **submatrices** of `grid` that satisfy the following condit
 - Each row in the submatrix is sorted in **non-increasing** order.
 
 A submatrix `(x1, y1, x2, y2)` is a matrix that forms by choosing all cells $\text{grid}[x][y]$ where $x1 \le x \le x2$ and $y1 \le y \le y2$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ There are 36 submatrices of grid. All submatrices have their maximum element equ
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 10^{3}$
 

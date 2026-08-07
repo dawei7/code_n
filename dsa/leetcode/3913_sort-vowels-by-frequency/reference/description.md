@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English characters.
 
@@ -11,7 +11,8 @@ Return the modified string.
 Vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
 
 The **frequency** of a letter is the number of times it occurs in the string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Let $n = \lvert\texttt{s}\rvert$.
 
 Return a string of length $n$ in which every consonant remains at its original index and the vowels occupy the original vowel indices in non-increasing order of frequency. Break an equal-frequency tie by the tied vowel types' first-occurrence positions in `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ Return a string of length $n$ in which every consonant remains at its original i
 - Thus, they retain their relative order based on first occurrence, and the string remains unchanged.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

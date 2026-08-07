@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`.
 
@@ -11,12 +11,13 @@ You can perform the following process on `s` **any** number of times:
 - Delete the **closest** occurrence of $s[i]$ located to the **right** of `i`.
 
 Return the **minimum** length of the final string `s` that you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ We do the following operations:
 We cannot perform any operations, so we return the length of the original string.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2 * 10^{5}$
 

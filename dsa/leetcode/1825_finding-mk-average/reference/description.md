@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers, `m` and `k`, and a stream of integers. You are tasked to implement a data structure that calculates the **MKAverage** for the stream.
 
@@ -17,12 +17,13 @@ Implement the `MKAverage` class:
 - `void addElement(int num)` Inserts a new element `num` into the stream.
 
 - `int calculateMKAverage()` Calculates and returns the **MKAverage** for the current stream **rounded down to the nearest integer**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ obj.calculateMKAverage(); // The last 3 elements are [5,5,5].
                           // After removing smallest and largest 1 element the container will be [5].
                           // The average of [5] equals 5/1 = 5, return 5
 ```
-### Constraints
+
+### 4. Constraints
 
 - $3 \le m \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 A string is called a **happy prefix** if it is a **non-empty** prefix which is also a suffix (excluding itself).
 
 Given a string `s`, return *the **longest happy prefix** of* `s`. Return an empty string `""` if no such prefix exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given a string `s`, return *the **longest happy prefix** of* `s`. Return an empt
 - **Input:** `s = "ababab"`
 - **Output:** `"abab"`
 - **Explanation:** "abab" is the largest prefix which is also suffix. They can overlap in the original string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

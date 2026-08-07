@@ -1,14 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `arr` (not necessarily distinct), return *the **lexicographically** largest permutation that is smaller than* `arr`, that can be **made with exactly one swap**. If it cannot be done, then return the same array.
 
-**Note** that a *swap* exchanges the positions of two numbers $\text{arr}[i]$ and $\text{arr}[j]$
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that a *swap* exchanges the positions of two numbers $\text{arr}[i]$ and $\text{arr}[j]$
+
+### 4. Examples
 
 #### Example 1
 
@@ -25,7 +28,8 @@ Given an array of positive integers `arr` (not necessarily distinct), return *th
 - **Input:** `arr = [1,9,4,6,7]`
 - **Output:** `[1,7,4,6,9]`
 - **Explanation:** Swapping 9 and 7.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

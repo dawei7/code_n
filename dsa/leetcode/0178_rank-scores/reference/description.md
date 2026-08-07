@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Scores`
 
@@ -24,7 +24,8 @@ Write a solution to find the rank of the scores. The ranking should be calculate
 Return the result table ordered by `score` in descending order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -34,7 +35,7 @@ The result format is in the following example.
 
 Return a table with columns `score` and `rank`, retaining every input row and ordering the rows by score descending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

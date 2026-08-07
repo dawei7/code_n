@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `requests`, where $\text{requests}[i] = [\text{user}_{i}, \text{time}_{i}]$ indicates that $\text{user}_{i}$ made a request at $\text{time}_{i}$.
 
@@ -9,7 +9,8 @@ A user violates the limit if there exists an integer `t` such that the user make
 You may drop any number of requests.
 
 Return an integer denoting the **maximum**​​​​​​​ number of requests that can **remain** such that no user violates the limit.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ whenever both indexed times exist. Equality does not suffice because both interv
 
 Return the maximum possible total number of retained request records across all users.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -81,7 +82,8 @@ Return the maximum possible total number of retained request records across all 
 - Users 2 and 3 each have only one request and do not violate the limit. Therefore, the maximum number of requests that can remain is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{requests.length} \le 10^{5}$
 

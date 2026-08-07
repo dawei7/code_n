@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` having length `n`.
 
@@ -15,12 +15,13 @@ A **palindromic number** is a positive integer that remains the same when its di
 An array is considered **equalindromic** if all the elements in the array are equal to an integer `y`, where `y` is a **palindromic number** less than $10^{9}$.
 
 Return *an integer denoting the **minimum** possible total cost to make *`nums`* **equalindromic** by performing any number of special moves.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ It can be shown that changing all elements to any palindromic number other than 
 - **Output:** `22`
 - **Explanation:** We can make the array equalindromic by changing all elements to 22 which is a palindromic number. The cost of changing the array to [22,22,22,22,22] using 2 special moves is given by |33 - 22| + |33 - 22| = 22.
 It can be shown that changing all elements to any palindromic number other than 22 cannot be achieved at a lower cost.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

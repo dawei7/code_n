@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, return `true` *if a permutation of the string could form a ****palindrome**** and *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $n = \texttt{s.length}$, and let $k$ be the number of distinct characters in
 
 Return `true` exactly when some permutation of `s` reads the same from left to right and right to left.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` exactly when some permutation of `s` reads the same from left to r
 
 - **Input:** `s = "carerac"`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5000$
 

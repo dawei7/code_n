@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a circular array `balance` of length `n`, where $\text{balance}[i]$ is the net balance of person `i`.
 
 In one move, a person can transfer **exactly** 1 unit of balance to either their left or right neighbor.
 
 Return the **minimum** number of moves required so that every person has a **non-negative** balance. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Each move transfers exactly one unit across one edge of the circle. Indices are 
 
 Return the minimum number of unit transfers needed to make every entry non-negative. Return `-1` when no sequence of moves can do so.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ Thus, the minimum number of moves required is 3.
 It is impossible to make all balances non-negative for $balance = [-3, -3, 5]$, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{balance.length} \le 1000$
 

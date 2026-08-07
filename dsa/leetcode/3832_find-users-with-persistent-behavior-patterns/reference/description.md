@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `activity`
 
@@ -107,7 +107,7 @@ The Results table is ordered by streak_length in descending order, then by user_
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 

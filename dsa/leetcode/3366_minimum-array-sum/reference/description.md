@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and three integers `k`, `op1`, and `op2`.
 
@@ -8,15 +8,18 @@ You can perform the following operations on `nums`:
 
 - **Operation 2**: Choose an index `i` and subtract `k` from $\text{nums}[i]$, but only if $\text{nums}[i]$ is greater than or equal to `k`. You can perform this operation at most `op2` times, and not more than **once** per index.
 
-**Note:** Both operations can be applied to the same index, but at most once each.
-
-Return the **minimum** possible **sum** of all elements in `nums` after performing any number of operations.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Both operations can be applied to the same index, but at most once each.
+
+Return the **minimum** possible **sum** of all elements in `nums` after performing any number of operations.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +55,8 @@ Return the **minimum** possible **sum** of all elements in `nums` after performi
 - The resulting array becomes `[1, 2, 0]`, which has the minimum possible sum of 3 after applying the operations.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

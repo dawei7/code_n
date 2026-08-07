@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The Leetcode file system keeps a log each time some user performs a *change folder* operation.
 
@@ -15,12 +15,13 @@ You are given a list of strings `logs` where $\text{logs}[i]$ is the operation p
 The file system starts in the main folder, then the operations in `logs` are performed.
 
 Return *the minimum number of operations needed to go back to the main folder after the change folder operations.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return *the minimum number of operations needed to go back to the main folder af
 
 - **Input:** $logs = ["d1/","../","../","../"]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{logs.length} \le 10^{3}$
 

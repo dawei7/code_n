@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s` and a character `letter`, return* the **percentage** of characters in *`s`* that equal *`letter`* **rounded down** to the nearest whole percent.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ The percentage of characters in s that equal the letter 'o' is 2 / 6 * 100% = 33
 - **Output:** `0`
 - **Explanation:**
 The percentage of characters in s that equal the letter 'k' is 0%, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

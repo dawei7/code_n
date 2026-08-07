@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two sparse vectors, compute their dot product.
 
@@ -11,7 +11,8 @@ Implement class `SparseVector`:
 A **sparse vector** is a vector that has mostly zero values, you should store the sparse vector **efficiently **and compute the dot product between two *SparseVector*.
 
 **Follow up: **What if only one of the vectors is sparse?
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Return the dot product integer sum:
 
 $\sum_{i=0}^{N-1} \text{nums1}[i] \times \text{nums2}[i].$
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ v1.dotProduct(v2) = 0*0 + 1*0 + 0*0 + 0*0 + 0*2 = 0
 
 - **Input:** $nums1 = [0,1,0,0,2,0,0], nums2 = [1,0,0,0,3,0,4]$
 - **Output:** `6`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

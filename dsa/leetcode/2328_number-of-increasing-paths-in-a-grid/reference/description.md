@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`, where you can move from a cell to any adjacent cell in all `4` directions.
 
 Return *the number of **strictly** **increasing** paths in the grid such that you can start from **any** cell and end at **any** cell. *Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 Two paths are considered different if they do not have exactly the same sequence of visited cells.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The total number of paths is 4 + 3 + 1 = 8.
 - Paths with length 1: [1], [2].
 - Paths with length 2: [1 -> 2].
 The total number of paths is 2 + 1 = 3.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

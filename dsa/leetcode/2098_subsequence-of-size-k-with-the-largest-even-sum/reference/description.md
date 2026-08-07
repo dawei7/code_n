@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. Find the **largest even sum** of any subsequence of `nums` that has a length of `k`.
 
 Return *this sum, or *`-1`* if such a sum does not exist*.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The subsequence with the largest possible even sum is [4,6,2]. It has a sum of 4
 - **Output:** `-1`
 - **Explanation:**
 No subsequence of nums with length 1 has an even sum.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s`, consider all *duplicated substrings*: (contiguous) substrings of s that occur 2 or more times. The occurrences may overlap.
 
 Return **any** duplicated substring that has the longest possible length. If `s` does not have a duplicated substring, the answer is `""`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Return **any** duplicated substring that has the longest possible length. If `s`
 
 - **Input:** `s = "abcd"`
 - **Output:** `""`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 3 * 10^{4}$
 

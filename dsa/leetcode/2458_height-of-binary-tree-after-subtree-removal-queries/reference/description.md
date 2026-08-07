@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary tree** with `n` nodes. Each node is assigned a unique value from `1` to `n`. You are also given an array `queries` of size `m`.
 
@@ -8,17 +8,20 @@ You have to perform `m` **independent** queries on the tree where in the $$i^{\t
 
 Return *an array *`answer`* of size *`m`* where *$\text{answer}[i]$* is the height of the tree after performing the *$$i^{\text{th}}$$* query*.
 
-**Note**:
-
-- The queries are independent, so the tree returns to its **initial** state after each query.
-
-- The height of a tree is the **number of edges in the longest simple path** from the root to some node in the tree.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+:
+
+- The queries are independent, so the tree returns to its **initial** state after each query.
+
+- The height of a tree is the **number of edges in the longest simple path** from the root to some node in the tree.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ The height of the tree is 2 (The path 1 -> 3 -> 2).
 - Removing the subtree rooted at node with value 2. The height of the tree becomes 2 (The path 5 -> 8 -> 1).
 - Removing the subtree rooted at node with value 4. The height of the tree becomes 3 (The path 5 -> 8 -> 2 -> 6).
 - Removing the subtree rooted at node with value 8. The height of the tree becomes 2 (The path 5 -> 9 -> 3).
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is `n`.
 

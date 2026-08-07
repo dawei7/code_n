@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing an `n x n` cargo deck on a ship. Each cell on the deck can hold one container with a weight of **exactly** `w`.
 
 However, the total weight of all containers, if loaded onto the deck, must not exceed the ship's maximum weight capacity, `maxWeight`.
 
 Return the **maximum** number of containers that can be loaded onto the ship.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The deck has 4 cells, and each container weighs 3. The total weight of loading a
 The deck has 9 cells, and each container weighs 5. The maximum number of containers that can be loaded without exceeding `maxWeight` is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

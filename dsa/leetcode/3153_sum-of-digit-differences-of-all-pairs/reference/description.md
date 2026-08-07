@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers where all integers have the **same** number of digits.
 
 The **digit difference** between two integers is the *count* of different digits that are in the **same** position in the two integers.
 
 Return the **sum** of the **digit differences** between **all** pairs of integers in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ So the total sum of digit differences between all pairs of integers is $1 + 1 + 
 All the integers in the array are the same. So the total sum of digit differences between all pairs of integers will be 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

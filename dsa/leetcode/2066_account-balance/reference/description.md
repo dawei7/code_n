@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -21,11 +21,12 @@ Write a solution to report the balance of each user after each transaction. You 
 Return the result table **in ascending order** by $\text{account}_{id}$, then by `day` in case of a tie.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

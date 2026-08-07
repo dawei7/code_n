@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a 2D `grid` of `0`s and `1`s, return the number of elements in the largest **square** subgrid that has all `1`s on its **border**, or `0` if such a subgrid doesn't exist in the `grid`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,7 +17,8 @@ Given a 2D `grid` of `0`s and `1`s, return the number of elements in the largest
 
 - **Input:** `grid = [[1,1,0,0]]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grid.length} \le 100$
 

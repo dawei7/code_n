@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings, `source` and `target`.
 
@@ -19,7 +19,8 @@ You may apply **any** rule **any** number of times. Each rule application works 
 Since every $\text{pattern}_{i}$ and $\text{replacement}_{i}$ have the same length, character positions are preserved after every rule application.
 
 Return the **minimum** total cost required to transform `source` into `target`. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -36,7 +37,7 @@ Let $n=\lvert\texttt{source}\rvert$, $R=\lvert\texttt{rules}\rvert$, and let $L$
 
 Return the minimum sum of application costs that transforms `source` into `target` using pairwise disjoint ranges. Each application's charge is its base cost plus its pattern's wildcard count. Return `-1` if the transformation is impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -94,7 +95,8 @@ Return the minimum sum of application costs that transforms `source` into `targe
 No sequence of rule applications can transform `source` into `target`, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{source.length} = \text{target.length} \le 5000$
 

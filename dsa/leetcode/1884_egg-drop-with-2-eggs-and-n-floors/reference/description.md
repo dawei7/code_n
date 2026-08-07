@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given **two identical** eggs and you have access to a building with `n` floors labeled from `1` to `n`.
 
@@ -7,12 +7,13 @@ You know that there exists a floor `f` where $0 \le f \le n$ such that any egg d
 In each move, you may take an **unbroken** egg and drop it from any floor `x` (where $1 \le x \le n$). If the egg breaks, you can no longer use it. However, if the egg does not break, you may **reuse** it in future moves.
 
 Return *the **minimum number of moves** that you need to determine **with certainty** what the value of *`f` is.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,6 +32,7 @@ Otherwise, if both eggs survive, we know that f = 2.
 - If the 1st egg does not break, drop the 1st egg again at floor 22. If it breaks, we know f is between 9 and 21. Drop the 2nd egg starting from floor 10 and going up one at a time to find f within 12 more drops. Total drops is 2 + 12 = 14.
 - If the 1st egg does not break again, follow a similar process dropping the 1st egg from floors 34, 45, 55, 64, 72, 79, 85, 90, 94, 97, 99, and 100.
 Regardless of the outcome, it takes at most 14 drops to determine f.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

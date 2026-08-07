@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`.
 
 Your task is to find the length of the **longest** subsequence `seq` of `nums`, such that the **absolute differences** between* consecutive* elements form a **non-increasing sequence** of integers. In other words, for a subsequence $\text{seq}_{0}$, $\text{seq}_{1}$, $\text{seq}_{2}$, ..., $\text{seq}_{m}$ of `nums`, $|\text{seq}_{1} - \text{seq}_{0}| \ge |\text{seq}_{2} - \text{seq}_{1}| \ge ... \ge |\text{seq}_{m} - \text{seq}_{m} - 1|$.
 
 Return the length of such a subsequence.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The longest subsequence is `[6, 4, 2, 1]` with the absolute adjacent differences
 The longest subsequence is `[10, 20, 10, 19, 10]` with the absolute adjacent differences `[10, 10, 9, 9]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{4}$
 

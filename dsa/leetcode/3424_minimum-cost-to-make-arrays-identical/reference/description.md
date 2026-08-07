@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `arr` and `brr` of length `n`, and an integer `k`. You can perform the following operations on `arr` *any* number of times:
 
@@ -7,12 +7,13 @@ You are given two integer arrays `arr` and `brr` of length `n`, and an integer `
 - Choose any element in `arr` and add or subtract a positive integer `x` to it. The cost of this operation is `x`.
 
 Return the **minimum **total cost to make `arr` **equal** to `brr`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The total cost to make the arrays equal is $2 + 2 + 7 + 2 = 13$.
 Since the arrays are already equal, no operations are needed, and the total cost is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} = \text{brr.length} \le 10^{5}$
 

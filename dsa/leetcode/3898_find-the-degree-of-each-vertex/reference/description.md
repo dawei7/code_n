@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `matrix` of size `n x n` representing the adjacency matrix of an undirected graph with `n` vertices labeled from 0 to $n - 1$.
 
@@ -9,7 +9,8 @@ You are given a 2D integer array `matrix` of size `n x n` representing the adjac
 The **degree** of a vertex is the number of edges connected to it.
 
 Return an integer array `ans` of size `n` where $\text{ans}[i]$ represents the degree of vertex `i`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $N=\texttt{matrix.length}$. Vertex labels and both matrix indices range from
 
 Return an array of length $N$ whose entry at index $i$ is the number of edges connected to vertex $i$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Thus, the answer is `[1, 1, 0]`.
 There is only one vertex and it has no edges connected to it. Thus, the answer is `[0]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{matrix.length} = \text{matrix}[i].length \le 100$​​​​​​​
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums0`, each of size `n`.
 
@@ -17,7 +17,8 @@ You may **rearrange** the order of these **segments** in any way. After rearrang
 Return the **maximum** possible integer value of the concatenated binary string.
 
 Since the result can be very large, return the answer **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -34,7 +35,7 @@ be the total number of bits across all segments.
 
 Return the maximum integer value obtainable by reordering and concatenating all segments, reduced modulo $10^9+7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ Return the maximum integer value obtainable by reordering and concatenating all 
 - The binary number `"1111000"` has value 120 which is the maximum possible value.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums1.length} = \text{nums0.length} \le 10^{5}$
 

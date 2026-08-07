@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree. We install cameras on the tree nodes where each camera at a node can monitor its parent, itself, and its immediate children.
 
 Return *the minimum number of cameras needed to monitor all nodes of the tree*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the minimum number of cameras needed to monitor all nodes of the tree*.
 - **Input:** `root = [0,0,null,0,null,0,null,null,0]`
 - **Output:** `2`
 - **Explanation:** At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

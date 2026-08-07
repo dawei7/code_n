@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `text` and another **0-indexed** string `pattern` of length `2`, both of which consist of only lowercase English letters.
 
@@ -7,12 +7,13 @@ You can add **either** $\text{pattern}[0]$ **or** $\text{pattern}[1]$ anywhere i
 Return *the **maximum** number of times* `pattern` *can occur as a **subsequence** of the modified *`text`.
 
 A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ It can be shown that it is not possible to get more than 4 subsequences "ac" by 
 - **Output:** `6`
 - **Explanation:**
 Some of the strings which can be obtained from text and have 6 subsequences "ab" are "<u>**a**</u>aabb", "aa<u>**a**</u>bb", and "aab<u>**b**</u>b".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 10^{5}$
 

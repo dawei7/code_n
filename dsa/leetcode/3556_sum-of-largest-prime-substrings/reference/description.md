@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 Given a string `s`, find the sum of the **3 largest unique prime numbers** that can be formed using any of its** substrings**.
 
 Return the **sum** of the three largest unique prime numbers that can be formed. If fewer than three exist, return the sum of **all** available primes. If no prime numbers can be formed, return 0.
 
-**Note:** Each prime number should be counted only **once**, even if it appears in **multiple** substrings. Additionally, when converting a substring to an integer, any leading zeros are ignored.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Each prime number should be counted only **once**, even if it appears in **multiple** substrings. Additionally, when converting a substring to an integer, any leading zeros are ignored.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Return the **sum** of the three largest unique prime numbers that can be formed.
 - Since there is only one prime number, the sum is 11.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10$
 

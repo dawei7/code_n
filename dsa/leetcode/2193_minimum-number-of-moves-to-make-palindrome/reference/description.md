@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of lowercase English letters.
 
@@ -6,13 +6,16 @@ In one **move**, you can select any two **adjacent** characters of `s` and swap 
 
 Return *the **minimum number of moves** needed to make* `s` *a palindrome*.
 
-**Note** that the input will be generated such that `s` can always be converted to a palindrome.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the input will be generated such that `s` can always be converted to a palindrome.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ One of the palindromes we can obtain from s in 2 moves is "lettel".
 One of the ways we can obtain it is "lete<u>**lt**</u>" -> "let<u>**et**</u>l" -> "lettel".
 Other palindromes such as "tleelt" can also be obtained in 2 moves.
 It can be shown that it is not possible to obtain a palindrome in less than 2 moves.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 2000$
 

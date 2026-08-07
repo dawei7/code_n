@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. In one operation, you can add or subtract 1 from **any** element of `nums`.
 
 Return the **minimum** number of operations to make all elements of `nums` divisible by 3.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ All array elements can be made divisible by 3 using 3 operations:
 **Output:** 0
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Matches`
 
@@ -22,11 +22,12 @@ Write a solution to count the longest winning streak for each player.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

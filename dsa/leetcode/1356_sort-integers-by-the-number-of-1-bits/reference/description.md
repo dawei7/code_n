@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `arr`. Sort the integers in the array in ascending order by the number of `1`'s in their binary representation and in case of two or more integers have the same number of `1`'s you have to sort them in ascending order.
 
 Return *the array after sorting it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ The sorted array by bits is [0,1,2,4,8,3,5,6,7]
 - **Input:** `arr = [1024,512,256,128,64,32,16,8,4,2,1]`
 - **Output:** `[1,2,4,8,16,32,64,128,256,512,1024]`
 **Explantion:** All integers have 1 bit in the binary representation, you should just sort them in ascending order.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 500$
 

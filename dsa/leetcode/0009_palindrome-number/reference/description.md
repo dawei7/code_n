@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `x`, return `true` if `x` is a **palindrome**, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `x`, return `true` if `x` is a **palindrome**, and `false` othe
 
 Return `True` if `x` is palindromic; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return `True` if `x` is palindromic; otherwise return `False`.
 - **Input:** $x = 10$
 - **Output:** `false`
 - **Explanation:** Reads 01 from right to left. Therefore it is not a palindrome.
-### Constraints
+
+### 4. Constraints
 
 - $-2^{31} \le x \le 2^{31} - 1$
 

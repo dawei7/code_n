@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` consisting of only lowercase English letters, where each letter in `s` appears **exactly** **twice**. You are also given a **0-indexed** integer array `distance` of length `26`.
 
@@ -7,12 +7,13 @@ Each letter in the alphabet is numbered from `0` to `25` (i.e. `'a' -> 0`, `'b' 
 In a **well-spaced** string, the number of letters between the two occurrences of the $$i^{\text{th}}$$ letter is $\text{distance}[i]$. If the $$i^{\text{th}}$$ letter does not appear in `s`, then $\text{distance}[i]$ can be **ignored**.
 
 Return `true`* if *`s`* is a **well-spaced** string, otherwise return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return true because s is a well-spaced string.
 - **Explanation:**
 - 'a' appears at indices 0 and 1 so there are zero letters between them.
 Because distance[0] = 1, s is not a well-spaced string.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 52$
 

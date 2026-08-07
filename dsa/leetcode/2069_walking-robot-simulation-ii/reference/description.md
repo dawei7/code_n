@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A `width x height` grid is on an XY-plane with the **bottom-left** cell at `(0, 0)` and the **top-right** cell at $(width - 1, height - 1)$. The grid is aligned with the four cardinal directions (`"North"`, `"East"`, `"South"`, and `"West"`). A robot is **initially** at cell `(0, 0)` facing direction `"East"`.
 
@@ -19,12 +19,13 @@ Implement the `Robot` class:
 - `int[] getPos()` Returns the current cell the robot is at, as an array of length 2, `[x, y]`.
 
 - `String getDir()` Returns the current direction of the robot, `"North"`, `"East"`, `"South"`, or `"West"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ robot.step(4);  // Moving the next step North would be out of bounds, so it turn
 robot.getPos(); // return [1, 2]
 robot.getDir(); // return "West"
 ```
-### Constraints
+
+### 4. Constraints
 
 - $2 \le width, height \le 100$
 

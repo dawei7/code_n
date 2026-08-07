@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and two integers `key` and `k`. A **k-distant index** is an index `i` of `nums` for which there exists at least one index `j` such that $|i - j| \le k$ and $\text{nums}[j] = key$.
 
 Return *a list of all k-distant indices sorted in **increasing order***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Thus, we return [1,2,3,4,5,6] which is sorted in increasing order.
 - **Output:** `[0,1,2,3,4]`
 - **Explanation:** For all indices i in nums, there exists some index j such that |i - j| <= k and nums[j] == key, so every index is a k-distant index.
 Hence, we return [0,1,2,3,4].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

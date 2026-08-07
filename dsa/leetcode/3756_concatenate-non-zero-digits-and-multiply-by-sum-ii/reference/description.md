@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `m` consisting of digits. You are also given a 2D integer array `queries`, where $\text{queries}[i] = [l_{i}, r_{i}]$.
 
@@ -11,7 +11,8 @@ For each $\text{queries}[i]$, extract the **substring** $s[l_{i}..r_{i}]$. Then,
 Return an array of integers `answer` where $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
 
 Since the answers may be very large, return them **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $m = \lvert\texttt{s}\rvert$ and $q = \lvert\texttt{queries}\rvert$. Each qu
 
 Return an array of $q$ integers. For each query, concatenate its nonzero digits in order, multiply that value by their digit sum, and return the product modulo $10^9+7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -115,7 +116,8 @@ Return an array of $q$ integers. For each query, concatenate its nonzero digits 
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{s.length} \le 10^{5}$
 

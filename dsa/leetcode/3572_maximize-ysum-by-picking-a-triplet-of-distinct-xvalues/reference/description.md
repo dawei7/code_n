@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `x` and `y`, each of length `n`. You must choose three **distinct** indices `i`, `j`, and `k` such that:
 
@@ -11,12 +11,13 @@ You are given two integer arrays `x` and `y`, each of length `n`. You must choos
 Your goal is to **maximize** the value of $y[i] + y[j] + y[k]$ under these conditions. Return the **maximum** possible sum that can be obtained by choosing such a triplet of indices.
 
 If no such triplet exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ If no such triplet exists, return -1.
 - There are only two distinct values in `x`. Hence, the output is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{x.length} = \text{y.length}$
 

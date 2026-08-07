@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer `length` and an array `updates` where $\text{updates}[i] = [\text{startIdx}_{i}, \text{endIdx}_{i}, \text{inc}_{i}]$.
 
 You have an array `arr` of length `length` with all zeros, and you have some operation to apply on `arr`. In the $$i^{\text{th}}$$ operation, you should increment all the elements $arr[\text{startIdx}_{i}], arr[\text{startIdx}_{i} + 1], ..., arr[\text{endIdx}_{i}]$ by $\text{inc}_{i}$.
 
 Return `arr` *after applying all the* `updates`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Return `arr` *after applying all the* `updates`.
 
 Return the length-`length` array after accumulating all additions, including overlaps and negative increments.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the length-`length` array after accumulating all additions, including ove
 
 - **Input:** $length = 10, updates = [[2,4,6],[5,6,8],[1,9,-4]]$
 - **Output:** `[0,-4,2,2,2,4,4,-4,-4,-4]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le length \le 10^{5}$
 

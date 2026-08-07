@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Your task is to calculate $a^b$ mod `1337` where `a` is a positive integer and `b` is an extremely large positive integer given in the form of an array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Your task is to calculate $a^b$ mod `1337` where `a` is a positive integer and `
 
 Return the remainder of $a^b$ after division by `1337`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the remainder of $a^b$ after division by `1337`.
 
 - **Input:** $a = 1, b = [4,3,3,8,5,2]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le a \le 2^{31} - 1$
 

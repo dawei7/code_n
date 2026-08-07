@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An integer `x` is a **good** if after rotating each digit individually by 180 degrees, we get a valid number that is different from `x`. Each digit must be rotated - we cannot choose to leave it alone.
 
@@ -13,12 +13,13 @@ A number is valid if each digit remains a digit after rotation. For example:
 - the rest of the numbers do not rotate to any other number and become invalid.
 
 Given an integer `n`, return *the number of **good** integers in the range *`[1, n]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ Note that 1 and 10 are not good numbers, since they remain unchanged after rotat
 
 - **Input:** $n = 2$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$

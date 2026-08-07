@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`, and three integers `row`, `col`, and `color`. Each value in the grid represents the color of the grid square at that location.
 
@@ -11,12 +11,13 @@ The **border of a connected component** is all the squares in the connected comp
 You should color the **border** of the **connected component** that contains the square $\text{grid}[row][col]$ with `color`.
 
 Return *the final grid*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return *the final grid*.
 
 - **Input:** `grid = [[1,1,1],[1,1,1],[1,1,1]], row = 1, col = 1, color = 2`
 - **Output:** `[[2,2,2],[2,1,2],[2,2,2]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

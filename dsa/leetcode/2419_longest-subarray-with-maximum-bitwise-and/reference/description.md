@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n`.
 
@@ -11,12 +11,13 @@ Return *the length of the **longest** such subarray*.
 The bitwise AND of an array is the bitwise AND of all the numbers in it.
 
 A **subarray** is a contiguous sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The longest subarray with that value is [3,3], so we return 2.
 - **Explanation:**
 The maximum possible bitwise AND of a subarray is 4.
 The longest subarray with that value is [4], so we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

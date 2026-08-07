@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `nums` of `n` integers, your task is to find the **maximum** value of `k` for which there exist **two** adjacent subarrays of length `k` each, such that both subarrays are **strictly** **increasing**. Specifically, check if there are **two** subarrays of length `k` starting at indices `a` and `b` (`a < b`), where:
 
@@ -9,12 +9,13 @@ Given an array `nums` of `n` integers, your task is to find the **maximum** valu
 Return the **maximum** *possible* value of `k`.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - These two subarrays are adjacent, and 2 is the **maximum** possible value of `k` for which two such adjacent strictly increasing subarrays exist.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 2 * 10^{5}$
 

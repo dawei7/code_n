@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a sorted linked list, *delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list*. Return *the linked list **sorted** as well*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `head` of a sorted linked list, *delete all nodes that have duplicate 
 
 Return the head of the sorted list containing exactly those original values that occurred once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the head of the sorted list containing exactly those original values that
 
 - **Input:** $head = [1,1,1,2,3]$
 - **Output:** `[2,3]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[0, 300]`.
 

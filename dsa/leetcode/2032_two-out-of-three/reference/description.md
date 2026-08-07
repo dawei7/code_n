@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given three integer arrays `nums1`, `nums2`, and `nums3`, return *a **distinct** array containing all the values that are present in **at least two** out of the three arrays. You may return the values in **any** order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Given three integer arrays `nums1`, `nums2`, and `nums3`, return *a **distinct**
 - **Input:** $nums1 = [1,2,2], nums2 = [4,3,3], nums3 = [5]$
 - **Output:** `[]`
 - **Explanation:** No value is present in at least two arrays.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length}, \text{nums3.length} \le 100$
 

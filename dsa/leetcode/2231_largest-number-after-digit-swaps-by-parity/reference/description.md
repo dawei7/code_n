@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a positive integer `num`. You may swap any two digits of `num` that have the same **parity** (i.e. both odd digits or both even digits).
 
 Return* the **largest** possible value of *`num`* after **any** number of swaps.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Also note that we may not swap the digit 4 with the digit 1 since they are of di
 - **Explanation:** Swap the digit 8 with the digit 6, this results in the number 85675.
 Swap the first digit 5 with the digit 7, this results in the number 87655.
 Note that there may be other sequences of swaps but it can be shown that 87655 is the largest possible number.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 10^{9}$

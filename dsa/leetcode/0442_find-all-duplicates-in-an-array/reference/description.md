@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of length `n` where all the integers of `nums` are in the range `[1, n]` and each integer appears **at most** **twice**, return *an array of all the integers that appears **twice***.
 
 You must write an algorithm that runs in `O(n)` time and uses only *constant* auxiliary space, excluding the space needed to store the output
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ You must write an algorithm that runs in `O(n)` time and uses only *constant* au
 
 The required complexity is $O(n)$ time and $O(1)$ auxiliary space, not counting the output array.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The required complexity is $O(n)$ time and $O(1)$ auxiliary space, not counting 
 
 - **Input:** `nums = [1]`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

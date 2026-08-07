@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `grid` of size `m x n` which represents a field. Each cell has one of three values:
 
@@ -15,12 +15,13 @@ Return *the **maximum** number of minutes that you can stay in your initial posi
 Note that even if the fire spreads to the safehouse immediately after you have reached it, it will be counted as safely reaching the safehouse.
 
 A cell is **adjacent** to another cell if the former is directly north, east, south, or west of the latter (i.e., their sides are touching).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Thus, -1 is returned.
 - **Explanation:** The figure above shows the initial grid.
 Notice that the fire is contained by walls and you will always be able to safely reach the safehouse.
 Thus, $10^{9}$ is returned.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

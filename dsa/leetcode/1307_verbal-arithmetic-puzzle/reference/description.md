@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an equation, represented by `words` on the left side and the `result` on the right side.
 
@@ -13,12 +13,13 @@ You need to check if the equation is solvable under the following rules:
 - Sum of numbers on the left side (`words`) will equal to the number on the right side (`result`).
 
 Return `true` *if the equation is solvable, otherwise return* `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Such that: "SIX" + "SEVEN" + "SEVEN" = "TWENTY" ,  650 + 68782 + 68782 = 138214
 - **Output:** `false`
 - **Explanation:** There is no possible mapping to satisfy the equation, so we return false.
 Note that two different characters cannot map to the same digit.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{words.length} \le 5$
 

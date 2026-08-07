@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** string `s`, **permute** `s` to get a new string `t` such that:
 
@@ -9,12 +9,13 @@ Given a **0-indexed** string `s`, **permute** `s` to get a new string `t` such t
 Return *the resulting string*.
 
 The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in lowercase or uppercase. Consonants comprise all letters that are not vowels.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in low
 - **Input:** `s = "lYmpH"`
 - **Output:** `"lYmpH"`
 - **Explanation:** There are no vowels in s (all characters in s are consonants), so we return "lYmpH".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

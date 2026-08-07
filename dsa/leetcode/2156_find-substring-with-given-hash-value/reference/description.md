@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The hash of a **0-indexed** string `s` of length `k`, given integers `p` and `m`, is computed using the following function:
 
@@ -11,12 +11,13 @@ You are given a string `s` and the integers `power`, `modulo`, `k`, and `hashVal
 The test cases will be generated such that an answer always **exists**.
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ A **substring** is a contiguous non-empty sequence of characters within a string
 The hash of "bxz" can be computed to be hash("bxz", 31, 100) = (2 * 1 + 24 * 31 + 26 * $31^{2}$) mod 100 = 25732 mod 100 = 32.
 "fbx" is the first substring of length 3 with hashValue 32. Hence, we return "fbx".
 Note that "bxz" also has a hash of 32 but it appears later than "fbx".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{s.length} \le 2 * 10^{4}$
 

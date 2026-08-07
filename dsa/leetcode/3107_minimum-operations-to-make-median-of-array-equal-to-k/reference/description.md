@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and a **non-negative** integer `k`. In one operation, you can increase or decrease any element by 1.
 
 Return the **minimum** number of operations needed to make the **median** of `nums` *equal* to `k`.
 
 The median of an array is defined as the middle element of the array when it is sorted in non-decreasing order. If there are two choices for a median, the larger of the two values is taken.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ We can add one to $\text{nums}[1]$ twice and add one to $\text{nums}[2]$ once to
 The median of the array is already equal to `k`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{5}$
 

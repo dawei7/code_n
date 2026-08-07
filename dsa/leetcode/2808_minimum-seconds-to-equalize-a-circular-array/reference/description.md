@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` containing `n` integers.
 
@@ -6,15 +6,18 @@ At each second, you perform the following operation on the array:
 
 - For every index `i` in the range `[0, n - 1]`, replace $\text{nums}[i]$ with either $\text{nums}[i]$, $nums[(i - 1 + n) \% n]$, or $nums[(i + 1) \% n]$.
 
-**Note** that all the elements get replaced simultaneously.
-
-Return *the **minimum** number of seconds needed to make all elements in the array* `nums` *equal*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that all the elements get replaced simultaneously.
+
+Return *the **minimum** number of seconds needed to make all elements in the array* `nums` *equal*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ It can be proven that 2 seconds is the minimum amount of seconds needed for equa
 - **Input:** `nums = [5,5,5,5]`
 - **Output:** `0`
 - **Explanation:** We don't need to perform any operations as all elements in the initial array are the same.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

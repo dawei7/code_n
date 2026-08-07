@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Due to a bug, there are many duplicate folders in a file system. You are given a 2D array `paths`, where $\text{paths}[i]$ is an array representing an absolute path to the $$i^{\text{th}}$$ folder in the file system.
 
@@ -30,12 +30,13 @@ Two folders (not necessarily on the same level) are **identical** if they contai
 Once all the identical folders and their subfolders have been marked, the file system will **delete** all of them. The file system only runs the deletion once, so any folders that become identical after the initial deletion are not deleted.
 
 Return *the 2D array *`ans` *containing the paths of the **remaining** folders after deleting all the marked folders. The paths may be returned in **any** order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ Note that folders "/a" and "/c" are identical after the deletion, but they are n
 - **Output:** `[["c"],["c","d"],["a"],["a","b"]]`
 - **Explanation:** All folders are unique in the file system.
 Note that the returned array can be in a different order as the order does not matter.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{paths.length} \le 2 * 10^{4}$
 

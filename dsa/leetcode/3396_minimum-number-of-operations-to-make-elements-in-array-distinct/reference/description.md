@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You need to ensure that the elements in the array are **distinct**. To achieve this, you can perform the following operation any number of times:
 
 - Remove 3 elements from the beginning of the array. If the array has fewer than 3 elements, remove all remaining elements.
 
-**Note** that an empty array is considered to have distinct elements. Return the **minimum** number of operations needed to make the elements in the array distinct.<!-- notionvc: 210ee4f2-90af-4cdf-8dbc-96d1fa8f67c7 -->
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that an empty array is considered to have distinct elements. Return the **minimum** number of operations needed to make the elements in the array distinct.<!-- notionvc: 210ee4f2-90af-4cdf-8dbc-96d1fa8f67c7 -->
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,7 +59,8 @@ Therefore, the answer is 2.
 The array already contains distinct elements. Therefore, the answer is 0.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

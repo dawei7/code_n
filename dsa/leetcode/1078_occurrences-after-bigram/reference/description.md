@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two strings `first` and `second`, consider occurrences in some text of the form `"first second third"`, where `second` comes immediately after `first`, and `third` comes immediately after `second`.
 
 Return *an array of all the words* `third` *for each occurrence of* `"first second third"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Return *an array of all the words* `third` *for each occurrence of* `"first seco
 
 - **Input:** $text = "we will we will rock you", first = "we", second = "will"$
 - **Output:** `["we","rock"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 1000$
 

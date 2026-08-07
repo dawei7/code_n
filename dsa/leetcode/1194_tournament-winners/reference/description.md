@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Players`
 
@@ -38,7 +38,8 @@ Write a solution to find the winner in each group.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -53,7 +54,7 @@ Let $p$ be the number of players, $m$ the number of matches, and $g$ the number 
 
 Return exactly one row per group with columns $\text{group}_{id}$ and $\text{player}_{id}$. Select the maximum-total player independently within each group and break a maximum-total tie by the lowest $\text{player}_{id}$. The result rows may appear in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

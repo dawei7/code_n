@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 In the universe Earth C-137, Rick discovered a special form of magnetic force between two balls if they are put in his new invented basket. Rick has `n` empty baskets, the $$i^{\text{th}}$$ basket is at $\text{position}[i]$, Morty has `m` balls and needs to distribute the balls into the baskets such that the **minimum magnetic force** between any two balls is **maximum**.
 
 Rick stated that magnetic force between two different balls at positions `x` and `y` is $|x - y|$.
 
 Given the integer array `position` and the integer `m`. Return *the required force*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given the integer array `position` and the integer `m`. Return *the required for
 - **Input:** $position = [5,4,3,2,1,1000000000], m = 2$
 - **Output:** `999999999`
 - **Explanation:** We can use baskets 1 and 1000000000.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{position.length}$
 

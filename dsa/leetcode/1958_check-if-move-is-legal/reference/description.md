@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `8 x 8` grid `board`, where $\text{board}[r][c]$ represents the cell `(r, c)` on a game board. On the board, free cells are represented by `'.'`, white cells are represented by `'W'`, and black cells are represented by `'B'`.
 
@@ -9,12 +9,13 @@ A **good line** is a line of **three or more cells (including the endpoints)** w
 ![](images/goodlines5.png)
 
 Given two integers `rMove` and `cMove` and a character `color` representing the color you are playing as (white or black), return `true` *if changing cell *`(rMove, cMove)` *to color* `color` *is a **legal** move, or *`false`* if it is not legal*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The two good lines with the chosen cell as an endpoint are annotated above with 
 - **Input:** $board = [[".",".",".",".",".",".",".","."],[".","B",".",".","W",".",".","."],[".",".","W",".",".",".",".","."],[".",".",".","W","B",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".","B","W",".","."],[".",".",".",".",".",".","W","."],[".",".",".",".",".",".",".","B"]], rMove = 4, cMove = 4, color = "W"$
 - **Output:** `false`
 - **Explanation:** While there are good lines with the chosen cell as a middle cell, there are no good lines with the chosen cell as an endpoint.
-### Constraints
+
+### 4. Constraints
 
 - $\text{board.length} = \text{board}[r].length = 8$
 

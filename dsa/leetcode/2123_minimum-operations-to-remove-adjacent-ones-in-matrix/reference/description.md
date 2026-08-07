@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** binary matrix `grid`. In one operation, you can flip any `1` in `grid` to be `0`.
 
 A binary matrix is **well-isolated** if there is no `1` in the matrix that is **4-directionally connected** (i.e., horizontal and vertical) to another `1`.
 
 Return *the minimum number of operations to make *`grid`* **well-isolated***.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ No operations were done so return 0.
 - **Output:** `0`
 - **Explanation:** None of the 1's are 4-directionally connected and grid is well-isolated.
 No operations were done so return 0.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

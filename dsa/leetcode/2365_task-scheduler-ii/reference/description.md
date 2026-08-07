@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of positive integers `tasks`, representing tasks that need to be completed **in order**, where $\text{tasks}[i]$ represents the **type** of the $$i^{\text{th}}$$ task.
 
@@ -11,12 +11,13 @@ Each day, until all tasks have been completed, you must either:
 - Take a break.
 
 Return* the **minimum** number of days needed to complete all tasks*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Day 4: Take a break.
 Day 5: Complete the 2nd task.
 Day 6: Complete the 3rd task.
 It can be shown that the tasks cannot be completed in less than 6 days.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tasks.length} \le 10^{5}$
 

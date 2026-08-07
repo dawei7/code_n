@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s` that contains parentheses and letters, remove the minimum number of invalid parentheses to make the input string valid.
 
 Return *a list of **unique strings** that are valid with the minimum number of removals*. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return *a list of **unique strings** that are valid with the minimum number of r
 
 Return all distinct valid strings that use the minimum possible number of parenthesis deletions, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return all distinct valid strings that use the minimum possible number of parent
 
 - **Input:** `s = ")("`
 - **Output:** `[""]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 25$
 

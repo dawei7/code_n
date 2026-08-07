@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given the root of a binary tree and two integers `p` and `q`, return *the **distance** between the nodes of value *`p`* and value *`q`* in the tree*.
 
 The **distance** between two nodes is the number of edges on the path from one to the other.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The **distance** between two nodes is the number of edges on the path from one t
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 5`
 - **Output:** `0`
 - **Explanation:** The distance between a node and itself is 0.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

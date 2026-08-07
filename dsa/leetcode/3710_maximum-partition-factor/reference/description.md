@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
 
@@ -9,7 +9,8 @@ Split the `n` points into **exactly two non-empty** groups. The **partition fact
 Return the **maximum** possible **partition factor** over all valid splits.
 
 Note: A group of size 1 contributes no intra-group pairs. When $n = 2$ (both groups size 1), there are no intra-group pairs, so define the partition factor as 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Every point must be assigned to one of exactly two non-empty groups. Pair order 
 
 Return the maximum, over all valid two-group assignments, of the minimum intra-group Manhattan distance. Apply the special value from the Note when neither group contains a pair.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ We split the points into two groups: ${[0, 1], [10, 0]}$ and ${[0, 0]}$.
 The partition factor of this split is `11`, which is maximal.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{points.length} \le 500$
 

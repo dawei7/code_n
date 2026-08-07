@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an **undirected, weighted** tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. This is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates an edge from node $u_{i}$ to $v_{i}$ with weight $w_{i}$.
 
@@ -7,12 +7,13 @@ The **weighted median node** is defined as the **first** node `x` on the path fr
 You are given a 2D integer array `queries`. For each $\text{queries}[j] = [u_{j}, v_{j}]$, determine the weighted median node along the path from $u_{j}$ to $v_{j}$.
 
 Return an array `ans`, where $\text{ans}[j]$ is the node index of the weighted median for $\text{queries}[j]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -187,7 +188,8 @@ Return an array `ans`, where $\text{ans}[j]$ is the node index of the weighted m
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

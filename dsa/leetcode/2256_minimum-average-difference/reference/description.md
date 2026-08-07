@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n`.
 
@@ -6,19 +6,20 @@ The **average difference** of the index `i` is the **absolute** **difference** b
 
 Return* the index with the **minimum average difference***. If there are multiple such indices, return the **smallest** one.
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - The **absolute difference** of two numbers is the absolute value of their difference.
 
 - The **average** of `n` elements is the **sum** of the `n` elements divided (**integer division**) by `n`.
 
 - The average of `0` elements is considered to be `0`.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The average difference of index 3 is the minimum average difference so return 3.
 - **Explanation:**
 The only index is 0 so return 0.
 The average difference of index 0 is: |0 / 1 - 0| = |0 - 0| = 0.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

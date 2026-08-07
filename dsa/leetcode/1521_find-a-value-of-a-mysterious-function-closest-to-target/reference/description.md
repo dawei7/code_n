@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ![](images/change.png)
 
@@ -7,12 +7,13 @@ Winston was given the above mysterious function `func`. He has an integer array 
 Return *the minimum possible value* of $|func(arr, l, r) - target|$.
 
 Notice that `func` should be called with the values `l` and `r` where $0 \le l, r < \text{arr.length}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Notice that `func` should be called with the values `l` and `r` where $0 \le l, 
 
 - **Input:** `arr = [1,2,4,8,16], target = 0`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

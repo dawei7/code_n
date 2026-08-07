@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two integer arrays `nums1` and `nums2`, return *the maximum length of a subarray that appears in **both** arrays*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given two integer arrays `nums1` and `nums2`, return *the maximum length of a su
 - **Input:** $nums1 = [0,0,0,0,0], nums2 = [0,0,0,0,0]$
 - **Output:** `5`
 - **Explanation:** The repeated subarray with maximum length is [0,0,0,0,0].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 1000$
 

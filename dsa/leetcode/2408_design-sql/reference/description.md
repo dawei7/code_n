@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two string arrays, `names` and `columns`, both of size `n`. The $$i^{\text{th}}$$ table is represented by the name $\text{names}[i]$ and contains $\text{columns}[i]$ number of columns.
 
@@ -47,7 +47,8 @@ Implement the `SQL` class:
 - If name is **not** a valid table, returns an empty array. Each row is represented as a string, with each cell value (**including** the row's id) separated by a `","`.
 
 	</li>
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -61,7 +62,7 @@ Implement the `SQL` class:
 
 Each operation returns its specified type (`None`, `bool`, `str`, or $\text{List}[str]$).
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -157,7 +158,8 @@ sQL.ins("two", ["fourth", "fifth", "sixth"]);
 ```
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{names.length} = \text{columns.length}$
 
@@ -178,4 +180,7 @@ sQL.ins("two", ["fourth", "fifth", "sixth"]);
 - At most $10^{4}$ calls will be made to `sel`.
 
 - At most `500` calls will be made to `exp`.
-### Follow-up Which approach would you choose if the table might become sparse due to many deletions, and why? Consider the impact on memory usage and performance.
+
+### 5. Follow-up
+
+Which approach would you choose if the table might become sparse due to many deletions, and why? Consider the impact on memory usage and performance.

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2`.
 
@@ -7,12 +7,13 @@ From `nums1` two elements have been removed, and all other elements have been in
 As a result, `nums1` becomes **equal** to `nums2`. Two arrays are considered **equal** when they contain the same integers with the same frequencies.
 
 Return the **minimum** possible integer* *`x`* *that achieves this equivalence.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ After removing elements at indices `[0,4]` and adding -2, `nums1` becomes `[18,1
 After removing elements at indices `[0,3]` and adding 2, `nums1` becomes `[7,7]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums1.length} \le 200$
 

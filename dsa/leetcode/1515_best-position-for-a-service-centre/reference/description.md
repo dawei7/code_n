@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A delivery company wants to build a new service center in a new city. The company knows the positions of all the customers in this city on a 2D-Map and wants to build the new center in a position such that **the sum of the euclidean distances to all customers is minimum**.
 
@@ -9,12 +9,13 @@ In other words, you need to choose the position of the service center `[x_centre
 ![](images/q4_edited.jpg)
 
 Answers within $10^{-5}$ of the actual value will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Answers within $10^{-5}$ of the actual value will be accepted.
 - **Input:** $positions = [[1,1],[3,3]]$
 - **Output:** `2.82843`
 - **Explanation:** The minimum possible sum of distances = sqrt(2) + sqrt(2) = 2.82843
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{positions.length} \le 50$
 

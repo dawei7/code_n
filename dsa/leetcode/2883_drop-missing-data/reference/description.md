@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame students
@@ -16,12 +16,13 @@ There are some rows having missing values in the `name` column.
 Write a solution to remove the rows with missing values.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

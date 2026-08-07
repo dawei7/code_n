@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer `k`, *return the minimum number of Fibonacci numbers whose sum is equal to *`k`. The same Fibonacci number can be used multiple times.
 
@@ -11,12 +11,13 @@ The Fibonacci numbers are defined as:
 - $F_{n} = F_{n}-1 + F_{n}-2$ for `n > 2.`
 
 It is guaranteed that for the given constraints we can always find such Fibonacci numbers that sum up to `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ For k = 7 we can use 2 + 5 = 7.
 - **Input:** $k = 19$
 - **Output:** `3`
 - **Explanation:** For k = 19 we can use 1 + 5 + 13 = 19.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 10^{9}$

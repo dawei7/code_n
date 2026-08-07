@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n` representing the number of rows and columns of a grid. Your goal is to reach cell $(m - 1, n - 1)$. You are also given a 2D integer array `penalty`.
 
@@ -23,7 +23,8 @@ The cost of an action is determined as follows:
 After every move or wait, the action number increases by 1. Therefore, the required parity alternates after every action, regardless of whether a penalty was paid.
 
 Return the **minimum** total cost required to reach $(m - 1, n - 1)$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ Let $N=mn$ denote the number of cells in the grid. The initial state is cell `(0
 
 Return the minimum total cost of reaching cell $(m - 1, n - 1)$. Arrival ends the journey immediately; no action or penalty is required at the destination.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -103,7 +104,8 @@ The optimal path is:
 Thus, the total cost is $1 + 2 + 3 + 0 + 6 = 12$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{5}$
 

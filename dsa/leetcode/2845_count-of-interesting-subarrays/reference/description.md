@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`, an integer `modulo`, and an integer `k`.
 
@@ -10,13 +10,16 @@ A **subarray** `nums[l..r]` is **interesting** if the following condition holds:
 
 Return *an integer denoting the count of interesting subarrays. *
 
-**Note:** A subarray is *a contiguous non-empty sequence of elements within an array*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A subarray is *a contiguous non-empty sequence of elements within an array*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -45,7 +48,8 @@ The subarray nums[1..1] which is [1].
 - There is no index, i, in the range [1, 1] that satisfies nums[i] % modulo == k.
 - Hence, cnt = 0 and cnt % modulo == k.
 It can be shown that there are no other interesting subarrays. So, the answer is 2.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a garden of `n` flowers, and each flower has an integer beauty value. The flowers are arranged in a line. You are given an integer array `flowers` of size `n` and each $\text{flowers}[i]$ represents the beauty of the $$i^{\text{th}}$$ flower.
 
@@ -11,11 +11,12 @@ A garden is **valid** if it meets these conditions:
 As the appointed gardener, you have the ability to **remove** any (possibly none) flowers from the garden. You want to remove flowers in a way that makes the remaining garden **valid**. The beauty of the garden is the sum of the beauty of all the remaining flowers.
 
 Return the maximum possible beauty of some **valid** garden after you have removed any (possibly none) flowers.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return the maximum possible beauty of some **valid** garden after you have remov
 - **Input:** $flowers = [-1,-2,0,-1]$
 - **Output:** `-2`
 - **Explanation:** You can produce the valid garden [-1,-1] to have a total beauty of -1 + -1 = -2.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{flowers.length} \le 10^{5}$
 

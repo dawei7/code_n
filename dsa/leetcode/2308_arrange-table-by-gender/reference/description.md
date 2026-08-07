@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Genders`
 
@@ -20,11 +20,12 @@ Write a solution to rearrange the `Genders` table such that the rows alternate b
 Return the result table in **the mentioned order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

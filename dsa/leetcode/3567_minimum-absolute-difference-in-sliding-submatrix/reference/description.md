@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid` and an integer `k`.
 
@@ -6,15 +6,18 @@ For every contiguous `k x k` **submatrix** of `grid`, compute the **minimum abso
 
 Return a 2D array `ans` of size $(m - k + 1) x (n - k + 1)$, where $\text{ans}[i][j]$ is the minimum absolute difference in the submatrix whose top-left corner is `(i, j)` in `grid`.
 
-**Note**: If all elements in the submatrix have the same value, the answer will be 0.
-
-A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells $\text{matrix}[x][y]$ where $x1 \le x \le x2$ and $y1 \le y \le y2$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: If all elements in the submatrix have the same value, the answer will be 0.
+
+A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells $\text{matrix}[x][y]$ where $x1 \le x \le x2$ and $y1 \le y \le y2$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -76,7 +79,8 @@ A submatrix `(x1, y1, x2, y2)` is a matrix that is formed by choosing all cells 
 - Thus, the answer is `[[1, 2]]`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le m = \text{grid.length} \le 30$
 

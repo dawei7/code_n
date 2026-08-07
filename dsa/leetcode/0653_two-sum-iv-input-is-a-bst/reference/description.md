@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree and an integer `k`, return `true` *if there exist two elements in the BST such that their sum is equal to* `k`, *or* `false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given the `root` of a binary search tree and an integer `k`, return `true` *if t
 
 - **Input:** `root = [5,3,6,2,4,null,7], k = 28`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

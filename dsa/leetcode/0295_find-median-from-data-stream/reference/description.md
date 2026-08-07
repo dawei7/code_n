@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **median** is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.
 
@@ -13,7 +13,8 @@ Implement the MedianFinder class:
 - `void addNum(int num)` adds the integer `num` from the data stream to the data structure.
 
 - `double findMedian()` returns the median of all elements so far. Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Implement the MedianFinder class:
 
 The app adapter returns the median after each successive insertion. The native `MedianFinder` exposes its constructor, `addNum`, and `findMedian` as separate operations.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
 medianFinder.addNum(3);    // arr[1, 2, 3]
 medianFinder.findMedian(); // return 2.0
 ```
-### Constraints
+
+### 4. Constraints
 
 - $-10^{5} \le num \le 10^{5}$
 

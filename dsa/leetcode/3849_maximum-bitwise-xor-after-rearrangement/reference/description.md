@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given two binary strings `s` and `t`​​​​​​​, each of length `n`.
 
 You may **rearrange** the characters of `t` in any order, but `s` **must remain unchanged**.
 
 Return a **binary string** of length `n` representing the **maximum** integer value obtainable by taking the bitwise **XOR** of `s` and rearranged `t`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Because every candidate result has the same length, comparing the represented in
 
 Return the length-$N$ binary string representing the maximum possible XOR value.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Return the length-$N$ binary string representing the maximum possible XOR value.
 - The bitwise XOR of `s` and rearranged `t` is $"0101" XOR "1010" = "1111"$, which is the maximum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} = \text{t.length} \le 2 * 10^{5}$
 

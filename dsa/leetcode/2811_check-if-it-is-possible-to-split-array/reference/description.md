@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of length `n` and an integer `m`. You need to determine if it is possible to split the array into `n` arrays of size 1 by performing a series of steps.
 
@@ -11,12 +11,13 @@ An array is called **good** if:
 In each step, you can select an existing array (which may be the result of previous steps) with a length of **at least two** and split it into **two **arrays, if both resulting arrays are good.
 
 Return true if you can split the given array into `n` arrays, otherwise return false.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ So as both moves are invalid (they do not divide the array into two good arrays)
 - Split `[3, 3]` to `[3]` and `[3]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 100$
 

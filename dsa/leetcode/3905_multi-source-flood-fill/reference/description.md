@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `m` representing the number of rows and columns of a grid, respectively.
 
@@ -11,7 +11,8 @@ If **multiple** colors reach the same uncolored cell at the same time step, the 
 The process continues until no more cells can be colored.
 
 Return a 2D integer array representing the final state of the grid, where each cell contains its final color.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Rows are indexed from `0` through $n - 1$, and columns from `0` through $m - 1$.
 
 Return an $n$-by-$m$ integer matrix containing the final color of every cell after the simultaneous four-directional spreading process stops.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ The grid at each time step is as follows:
 Since there is only one source, all cells are assigned the same color.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 10^{5}$
 

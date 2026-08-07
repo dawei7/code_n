@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an `m x n` binary `matrix` filled with `0`'s and `1`'s, *find the largest square containing only* `1`'s *and return its area*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an `m x n` binary `matrix` filled with `0`'s and `1`'s, *find the largest 
 
 Return the area of the largest axis-aligned square consisting entirely of `"1"` cells.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the area of the largest axis-aligned square consisting entirely of `"1"` 
 
 - **Input:** $matrix = [["0"]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

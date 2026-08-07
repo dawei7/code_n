@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `k` identical eggs and you have access to a building with `n` floors labeled from `1` to `n`.
 
@@ -7,12 +7,13 @@ You know that there exists a floor `f` where $0 \le f \le n$ such that any egg d
 Each move, you may take an unbroken egg and drop it from any floor `x` (where $1 \le x \le n$). If the egg breaks, you can no longer use it. However, if the egg does not break, you may **reuse** it in future moves.
 
 Return *the **minimum number of moves** that you need to determine **with certainty** what the value of *`f` is.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Hence, we need at minimum 2 moves to determine with certainty what the value of 
 
 - **Input:** $k = 3, n = 14$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 100$
 

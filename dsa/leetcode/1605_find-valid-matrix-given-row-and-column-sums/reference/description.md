@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two arrays `rowSum` and `colSum` of non-negative integers where $\text{rowSum}[i]$ is the sum of the elements in the $$i^{\text{th}}$$ row and $\text{colSum}[j]$ is the sum of the elements of the $$j^{\text{th}}$$ column of a 2D matrix. In other words, you do not know the elements of the matrix, but you do know the sums of each row and column.
 
 Find any matrix of **non-negative** integers of size `rowSum.length x colSum.length` that satisfies the `rowSum` and `colSum` requirements.
 
 Return *a 2D array representing **any** matrix that fulfills the requirements*. It's guaranteed that **at least one **matrix that fulfills the requirements exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Another possible matrix is: [[1,2],
 - **Output:** $[[0,5,0],$
 [6,1,0],
 [2,0,8]]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rowSum.length}, \text{colSum.length} \le 500$
 

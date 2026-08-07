@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `num`, repeatedly add all its digits until the result has only one digit, and return it.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `num`, repeatedly add all its digits until the result has only 
 
 Return the one-digit value obtained by repeatedly summing decimal digits.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Since 2 has only one digit, return it.
 
 - **Input:** $num = 0$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 2^{31} - 1$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `k` servers numbered from `0` to `k-1` that are being used to handle multiple requests simultaneously. Each server has infinite computational capacity but **cannot handle more than one request at a time**. The requests are assigned to servers according to a specific algorithm:
 
@@ -13,12 +13,13 @@ You have `k` servers numbered from `0` to `k-1` that are being used to handle mu
 You are given a **strictly increasing** array `arrival` of positive integers, where $\text{arrival}[i]$ represents the arrival time of the $$i^{\text{th}}$$ request, and another array `load`, where $\text{load}[i]$ represents the load of the $$i^{\text{th}}$$ request (the time it takes to complete). Your goal is to find the **busiest server(s)**. A server is considered **busiest** if it handled the most number of requests successfully among all the servers.
 
 Return *a list containing the IDs (0-indexed) of the **busiest server(s)***. You may return the IDs in any order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Server 0 handled two requests, while servers 1 and 2 handled one request each. H
 - **Input:** $k = 3, arrival = [1,2,3], load = [10,12,11]$
 - **Output:** `[0,1,2]`
 - **Explanation:** Each server handles a single request, so they are all considered the busiest.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 10^{5}$
 

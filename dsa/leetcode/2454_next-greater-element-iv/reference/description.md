@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of non-negative integers `nums`. For each integer in `nums`, you must find its respective **second greater** integer.
 
@@ -15,12 +15,13 @@ If there is no such $\text{nums}[j]$, the second greater integer is considered t
 - For example, in the array `[1, 2, 4, 3]`, the second greater integer of `1` is `4`, `2` is `3`, and that of `3` and `4` is `-1`.
 
 Return* an integer array *`answer`*, where *$\text{answer}[i]$* is the second greater integer of *$\text{nums}[i]$*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Thus, we return [9,6,6,-1,-1].
 - **Output:** `[-1,-1]`
 - **Explanation:**
 We return [-1,-1] since neither integer has any integer greater than it.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

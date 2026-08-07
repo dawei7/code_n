@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an binary array `nums` and an integer `k`, return `true`* if all *`1`*'s are at least *`k`* places away from each other, otherwise return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Given an binary array `nums` and an integer `k`, return `true`* if all *`1`*'s a
 - **Input:** `nums = [1,0,0,1,0,1], k = 2`
 - **Output:** `false`
 - **Explanation:** The second 1 and third 1 are only one apart from each other.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

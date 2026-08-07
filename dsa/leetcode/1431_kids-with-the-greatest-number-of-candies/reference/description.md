@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` kids with candies. You are given an integer array `candies`, where each $\text{candies}[i]$ represents the number of candies the $$i^{\text{th}}$$ kid has, and an integer `extraCandies`, denoting the number of extra candies that you have.
 
 Return *a boolean array *`result`* of length *`n`*, where *$\text{result}[i]$* is *`true`* if, after giving the *$$i^{\text{th}}$$* kid all the *`extraCandies`*, they will have the **greatest** number of candies among all the kids**, or *`false`* otherwise*.
 
 Note that **multiple** kids can have the **greatest** number of candies.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Kid 1 will always have the greatest number of candies, even if a different kid i
 
 - **Input:** $candies = [12,1,12], extraCandies = 10$
 - **Output:** `[true,false,true]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{candies.length}$
 

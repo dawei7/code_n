@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a network of `n` nodes, labeled from `1` to `n`. You are also given `times`, a list of travel times as directed edges $\text{times}[i] = (u_{i}, v_{i}, w_{i})$, where $u_{i}$ is the source node, $v_{i}$ is the target node, and $w_{i}$ is the time it takes for a signal to travel from source to target.
 
 We will send a signal from a given node `k`. Return *the **minimum** time it takes for all the* `n` *nodes to receive the signal*. If it is impossible for all the `n` nodes to receive the signal, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ We will send a signal from a given node `k`. Return *the **minimum** time it tak
 
 - **Input:** $times = [[1,2,1]], n = 2, k = 2$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 100$
 

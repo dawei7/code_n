@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a string `s`. In one step you can insert any character at any index of the string.
 
 Return *the minimum number of steps* to make `s` palindrome.
 
 A **Palindrome String** is one that reads the same backward as well as forward.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ A **Palindrome String** is one that reads the same backward as well as forward.
 - **Input:** `s = "leetcode"`
 - **Output:** `5`
 - **Explanation:** Inserting 5 characters the string becomes "leetcodocteel".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

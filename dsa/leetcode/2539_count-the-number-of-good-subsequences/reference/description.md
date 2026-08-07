@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 A **subsequence** of a string is good if it is not empty and the frequency of each one of its characters is the same.
 
 Given a string `s`, return *the number of good subsequences of* `s`. Since the answer may be too large, return it modulo $10^{9} + 7$.
 
 A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ A **subsequence** is a string that can be derived from another string by deletin
 - **Input:** `s = "abcd"`
 - **Output:** `15`
 - **Explanation:** All of the non-empty subsequences are good subsequences. Hence, the number of good subsequences is $2^{4}$-1 = 15.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

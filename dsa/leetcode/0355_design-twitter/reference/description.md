@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a simplified version of Twitter where users can post tweets, follow/unfollow another user, and is able to see the `10` most recent tweets in the user's news feed.
 
@@ -13,7 +13,8 @@ Implement the `Twitter` class:
 - `void follow(int followerId, int followeeId)` The user with ID `followerId` started following the user with ID `followeeId`.
 
 - `void unfollow(int followerId, int followeeId)` The user with ID `followerId` started unfollowing the user with ID `followeeId`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Implement the `Twitter` class:
 
 The app adapter returns the feed produced by each `getNewsFeed` operation, in query order. Each native call returns at most ten eligible tweet IDs from newest to oldest.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ twitter.getNewsFeed(1);  // User 1's news feed should return a list with 2 tweet
 twitter.unfollow(1, 2);  // User 1 unfollows user 2.
 twitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet id -> [5], since user 1 is no longer following user 2.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le userId, followerId, followeeId \le 500$
 

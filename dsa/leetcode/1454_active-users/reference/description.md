@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Accounts`
 
@@ -33,7 +33,8 @@ Write a solution to find the id and the name of **active users**.
 Return the result table **ordered** by `id`.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -50,7 +51,7 @@ Return a relation with columns `id` and `name`. Include an account exactly once
 when at least five of its distinct login dates form an unbroken sequence of
 calendar days. Sort the rows by `id` ascending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

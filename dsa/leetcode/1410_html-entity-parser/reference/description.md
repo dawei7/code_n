@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **HTML entity parser** is the parser that takes HTML code as input and replace all the entities of the special characters by the characters itself.
 
@@ -19,12 +19,13 @@ The special characters and their entities for HTML are:
 Given the input `text` string to the HTML parser, you have to implement the entity parser.
 
 Return *the text after replacing the entities by the special characters*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return *the text after replacing the entities by the special characters*.
 
 - **Input:** $text = "and I quote: "...""$
 - **Output:** `"and I quote: \"...\""`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. A **0-indexed** integer array `nums` of length $n + 1$ is generated in the following way:
 
@@ -11,12 +11,13 @@ You are given an integer `n`. A **0-indexed** integer array `nums` of length $n 
 - $nums[2 * i + 1] = \text{nums}[i] + nums[i + 1]$ when $2 \le 2 * i + 1 \le n$
 
 Return** ***the **maximum** integer in the array *`nums`​​​.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,6 +43,7 @@ Hence, nums = [0,1,1,2,1,3,2,3], and the maximum is max(0,1,1,2,1,3,2,3) = 3.
 - **Input:** $n = 3$
 - **Output:** `2`
 - **Explanation:** According to the given rules, nums = [0,1,1,2]. The maximum is max(0,1,1,2) = 2.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 100$

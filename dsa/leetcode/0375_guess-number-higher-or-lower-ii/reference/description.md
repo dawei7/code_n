@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We are playing the Guessing Game. The game will work as follows:
 
@@ -13,7 +13,8 @@ We are playing the Guessing Game. The game will work as follows:
 - Every time you guess a wrong number `x`, you will pay `x` dollars. If you run out of money, **you lose the game**.
 
 Given a particular `n`, return *the minimum amount of money you need to **guarantee a win regardless of what number I pick***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Given a particular `n`, return *the minimum amount of money you need to **guaran
 
 Return the smallest initial budget sufficient to guarantee finding any hidden number in `[1,n]` under the stated payment rule.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,6 +63,7 @@ The worst case in all these scenarios is that you pay $16. Hence, you only need$
 - If this is my number, your total is $0. Otherwise, you pay$1.
 - If my number is higher, it must be 2. Guess 2. Your total is $1.
 The worst case is that you pay $1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 200$

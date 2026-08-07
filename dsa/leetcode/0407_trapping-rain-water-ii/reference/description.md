@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an `m x n` integer matrix `heightMap` representing the height of each unit cell in a 2D elevation map, return *the volume of water it can trap after raining*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an `m x n` integer matrix `heightMap` representing the height of each unit
 
 Return the number of unit cubes of water trapped above the terrain after levels stabilize.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The total volume of water trapped is 4.
 
 - **Input:** $heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]$
 - **Output:** `10`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{heightMap.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` rings and each ring is either red, green, or blue. The rings are distributed **across ten rods** labeled from `0` to `9`.
 
@@ -11,12 +11,13 @@ You are given a string `rings` of length `2n` that describes the `n` rings that 
 For example, `"R3G2B1"` describes $n = 3$ rings: a red ring placed onto the rod labeled 3, a green ring placed onto the rod labeled 2, and a blue ring placed onto the rod labeled 1.
 
 Return *the number of rods that have **all three colors** of rings on them.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Thus, the number of rods with all three colors is 1.
 - **Output:** `0`
 - **Explanation:**
 Only one ring is given. Thus, no rods have all three colors.
-### Constraints
+
+### 4. Constraints
 
 - $\text{rings.length} = 2 * n$
 

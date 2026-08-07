@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **k-beauty** of an integer `num` is defined as the number of **substrings** of `num` when it is read as a string that meet the following conditions:
 
@@ -15,12 +15,13 @@ Note:
 - `0` is not a divisor of any value.
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Therefore, the k-beauty is 2.
 - "04" from "430<u>**04**</u>3": 4 is not a divisor of 430043.
 - "43" from "4300<u>**43**</u>": 43 is a divisor of 430043.
 Therefore, the k-beauty is 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 10^{9}$
 

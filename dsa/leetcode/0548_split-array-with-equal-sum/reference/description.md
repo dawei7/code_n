@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of length `n`, return `true` if there is a triplet `(i, j, k)` which satisfies the following conditions:
 
@@ -7,7 +7,8 @@ Given an integer array `nums` of length `n`, return `true` if there is a triplet
 - The sum of subarrays $(0, i - 1)$, $(i + 1, j - 1)$, $(j + 1, k - 1)$ and $(k + 1, n - 1)$ is equal.
 
 A subarray `(l, r)` represents a slice of the original array starting from the element indexed `l` to the element indexed `r`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ such a split. Values may be positive, zero, or negative, and the separator value
 Return `True` if some valid `(i, j, k)` makes the four retained subarray sums equal; otherwise return `False`. Only
 feasibility is returned, not the indices or shared sum.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ sum(k + 1, n - 1) = sum(6, 6) = 1
 
 - **Input:** `nums = [1,2,1,2,1,2,1,2]`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

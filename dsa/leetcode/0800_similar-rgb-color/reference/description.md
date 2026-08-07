@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The red-green-blue color `"#AABBCC"` can be written as `"#ABC"` in shorthand.
 
@@ -9,7 +9,8 @@ The similarity between the two colors `"#ABCDEF"` and `"#UVWXYZ"` is $-(AB - UV)
 Given a string `color` that follows the format `"#ABCDEF"`, return a string represents the color that is most similar to the given color and has a shorthand (i.e., it can be represented as some `"#XYZ"`).
 
 **Any answer** which has the same highest similarity as the best answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ The leading character is `#`; the remaining six characters encode the red, green
 
 - A six-digit shorthand-expressible color with maximum similarity to `color`. Any co-optimal answer is valid.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ This is the highest among any shorthand color.
 
 - **Input:** $color = "#4e3fe1"$
 - **Output:** `"#5544dd"`
-### Constraints
+
+### 4. Constraints
 
 - $\text{color.length} = 7$
 

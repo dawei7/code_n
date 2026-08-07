@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Books`
 
@@ -33,7 +33,8 @@ Write a solution to report the **books** that have sold **less than **`10` copie
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -49,7 +50,7 @@ Let $B$ and $O$ be the numbers of rows in `Books` and `Orders`. A book is old en
 
 Return each qualifying book once, in any order. A qualifying book without an order in the interval has total zero. If no book qualifies, the result is empty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

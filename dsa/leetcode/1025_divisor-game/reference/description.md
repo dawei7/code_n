@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob take turns playing a game, with Alice starting first.
 
@@ -11,12 +11,13 @@ Initially, there is a number `n` on the chalkboard. On each player's turn, that 
 Also, if a player cannot make a move, they lose the game.
 
 Return `true` *if and only if Alice wins the game, assuming both players play optimally*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,6 +29,7 @@ Return `true` *if and only if Alice wins the game, assuming both players play op
 - **Input:** $n = 3$
 - **Output:** `false`
 - **Explanation:** Alice chooses 1, Bob chooses 1, and Alice has no more moves.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

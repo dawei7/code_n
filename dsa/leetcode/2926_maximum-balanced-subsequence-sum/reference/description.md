@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
@@ -11,12 +11,13 @@ A **subsequence** of `nums` having length `1` is considered balanced.
 Return *an integer denoting the **maximum** possible **sum of elements** in a **balanced** subsequence of *`nums`.
 
 A **subsequence** of an array is a new **non-empty** array that is formed from the original array by deleting some (**possibly none**) of the elements without disturbing the relative positions of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ It can be shown that it is not possible to get a balanced subsequence with a sum
 - **Output:** `-1`
 - **Explanation:** In this example, the subsequence [-1] can be selected.
 It is a balanced subsequence, and its sum is the maximum among the balanced subsequences of nums.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

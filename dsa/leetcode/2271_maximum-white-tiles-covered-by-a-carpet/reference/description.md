@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `tiles` where $\text{tiles}[i] = [l_{i}, r_{i}]$ represents that every tile `j` in the range $l_{i} \le j \le r_{i}$ is colored white.
 
 You are also given an integer `carpetLen`, the length of a single carpet that can be placed **anywhere**.
 
 Return *the **maximum** number of white tiles that can be covered by the carpet*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ It can be shown that the carpet cannot cover more than 9 white tiles.
 - **Output:** `2`
 - **Explanation:** Place the carpet starting on tile 10.
 It covers 2 white tiles, so we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tiles.length} \le 5 * 10^{4}$
 

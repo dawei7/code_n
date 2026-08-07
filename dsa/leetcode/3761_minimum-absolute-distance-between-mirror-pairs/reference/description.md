@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -11,7 +11,8 @@ A **mirror pair** is a pair of indices `(i, j)` such that:
 Return the **minimum** absolute distance between the indices of any mirror pair. The absolute distance between indices `i` and `j` is $abs(i - j)$.
 
 If no mirror pair exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Only the earlier value $\text{nums}[i]$ is reversed. The condition is therefore 
 
 Return the minimum value of $\lvert i-j\rvert$ over all mirror pairs `(i,j)` with $i<j$, or `-1` if there is no such pair.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -69,7 +70,8 @@ The minimum absolute distance is 1.
 There are no mirror pairs in the array.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

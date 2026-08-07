@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `n x n` grid, with the top-left cell at `(0, 0)` and the bottom-right cell at $(n - 1, n - 1)$. You are given the integer `n` and an integer array `startPos` where $startPos = [\text{start}_{row}, \text{start}_{col}]$ indicates that a robot is initially at cell $(\text{start}_{row}, \text{start}_{col})$.
 
@@ -11,12 +11,13 @@ The robot can begin executing from any $$i^{\text{th}}$$ instruction in `s`. It 
 - There are no more instructions left to execute.
 
 Return *an array* `answer` *of length* `m` *where* $\text{answer}[i]$ *is **the number of instructions** the robot can execute if the robot **begins executing from** the* $$i^{\text{th}}$$ *instruction in* `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return *an array* `answer` *of length* `m` *where* $\text{answer}[i]$ *is **the 
 - **Input:** $n = 1, startPos = [0,0], s = "LRUD"$
 - **Output:** `[0,0,0,0]`
 - **Explanation:** No matter which instruction the robot begins execution from, it would move off the grid.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{s.length}$
 

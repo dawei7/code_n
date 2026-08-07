@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` **binary** matrix `grid`.
 
@@ -13,11 +13,12 @@ In one operation, you can choose any `i` and `j` that meet the following conditi
 and change the values of **all** cells in row `i` and column `j` to zero.
 
 Return *the **minimum** number of operations needed to remove all *`1`*'s from *`grid`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Note that we cannot perform an operation using row 1 and column 1 because grid[1
 - **Output:** `0`
 - **Explanation:**
 There are no 1's to remove so return 0.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

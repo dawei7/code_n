@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an integer array `nums` sorted in non-decreasing order (not necessarily with **distinct** values).
 
@@ -7,7 +7,8 @@ Before being passed to your function, `nums` is **rotated** at an unknown pivot 
 Given the array `nums` **after** the rotation and an integer `target`, return `true`* if *`target`* is in *`nums`*, or *`false`* if it is not in *`nums`*.*
 
 You must decrease the overall operation steps as much as possible.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ You must decrease the overall operation steps as much as possible.
 
 Return `true` if `target` appears in `nums`; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return `true` if `target` appears in `nums`; otherwise return `false`.
 
 - **Input:** `nums = [2,5,6,0,0,1,2], target = 3`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

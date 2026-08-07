@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and two integers `lower` and `upper`, return *the number of range sums that lie in* `[lower, upper]` *inclusive*.
 
 Range sum `S(i, j)` is defined as the sum of the elements in `nums` between indices `i` and `j` inclusive, where $i \le j$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Range sum `S(i, j)` is defined as the sum of the elements in `nums` between indi
 
 Return the number of pairs $(i,j)$ with $i \le j$ whose inclusive range sum is between `lower` and `upper`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the number of pairs $(i,j)$ with $i \le j$ whose inclusive range sum is b
 
 - **Input:** `nums = [0], lower = 0, upper = 0`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

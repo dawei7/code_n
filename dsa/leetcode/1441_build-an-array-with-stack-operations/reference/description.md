@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `target` and an integer `n`.
 
@@ -19,12 +19,13 @@ Use the two stack operations to make the numbers in the stack (from the bottom t
 - If, at any moment, the elements in the stack (from the bottom to the top) are equal to `target`, do not read new integers from the stream and do not do more operations on the stack.
 
 Return *the stack operations needed to build *`target` following the mentioned rules. If there are multiple valid answers, return **any of them**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Read 1 from the stream and push it to the stack. s = [1].
 Read 2 from the stream and push it to the stack. s = [1,2].
 Since the stack (from the bottom to the top) is equal to target, we stop the stack operations.
 The answers that read integer 3 from the stream are not accepted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{target.length} \le 100$
 

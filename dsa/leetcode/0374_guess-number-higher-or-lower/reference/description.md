@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We are playing the Guess Game. The game is as follows:
 
@@ -15,7 +15,8 @@ You call a pre-defined API `int guess(int num)`, which returns three possible re
 - `0`: your guess is equal to the number I picked (i.e. $num = pick$).
 
 Return *the number that I picked*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Return *the number that I picked*.
 
 Return the fixed hidden number identified through the `guess(num)` responses.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return the fixed hidden number identified through the `guess(num)` responses.
 
 - **Input:** $n = 2, pick = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$
 

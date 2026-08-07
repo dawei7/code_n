@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **happy string** is a string that:
 
@@ -11,12 +11,13 @@ For example, strings **"abc", "ac", "b"** and **"abcbabcbcb"** are all happy str
 Given two integers `n` and `k`, consider a list of all happy strings of length `n` sorted in lexicographical order.
 
 Return *the kth string* of this list or return an **empty string** if there are less than `k` happy strings of length `n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *the kth string* of this list or return an **empty string** if there are 
 - **Input:** $n = 3, k = 9$
 - **Output:** `"cab"`
 - **Explanation:** There are 12 different happy string of length 3 ["aba", "abc", "aca", "acb", "bab", "bac", "bca", "bcb", "cab", "cac", "cba", "cbc"]. You will find the 9^th string = "cab"
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10$
 

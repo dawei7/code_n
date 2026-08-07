@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums` of length `n`.
 
@@ -15,12 +15,13 @@ We call a pair of **non-negative** integer arrays `(arr1, arr2)` **monotonic** i
 Return the count of **monotonic** pairs.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The good pairs are:
 **Output:** 126
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 2000$
 

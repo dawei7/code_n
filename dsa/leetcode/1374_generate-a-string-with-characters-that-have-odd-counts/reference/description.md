@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer `n`, *return a string with `n` characters such that each character in such string occurs **an odd number of times***.
 
 The returned string must contain only lowercase English letters. If there are multiples valid strings, return **any** of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ The returned string must contain only lowercase English letters. If there are mu
 
 - **Input:** $n = 7$
 - **Output:** `"holasss"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 500$

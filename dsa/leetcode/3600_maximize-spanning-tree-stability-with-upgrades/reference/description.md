@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, representing `n` nodes numbered from 0 to $n - 1$ and a list of `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, s_{i}, \text{must}_{i}]$:
 
@@ -14,13 +14,16 @@ The **stability** of a spanning tree is defined as the **minimum** strength scor
 
 Return the **maximum** possible stability of any valid spanning tree. If it is impossible to connect all nodes, return `-1`.
 
-**Note**: A **spanning tree** of a graph with `n` nodes is a subset of the edges that connects all nodes together (i.e. the graph is **connected**) *without* forming any cycles, and uses **exactly** $n - 1$ edges.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: A **spanning tree** of a graph with `n` nodes is a subset of the edges that connects all nodes together (i.e. the graph is **connected**) *without* forming any cycles, and uses **exactly** $n - 1$ edges.
+
+### 4. Examples
 
 #### Example 1
 
@@ -70,7 +73,8 @@ Return the **maximum** possible stability of any valid spanning tree. If it is i
 - All edges are mandatory and form a cycle, which violates the spanning tree property of acyclicity. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{5}$
 

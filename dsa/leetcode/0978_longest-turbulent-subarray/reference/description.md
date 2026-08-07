@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, return *the length of a maximum size turbulent subarray of* `arr`.
 
@@ -20,12 +20,13 @@ More formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said t
 - $\text{arr}[k] < arr[k + 1]$ when `k` is odd.
 
 	</li>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ More formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said t
 
 - **Input:** `arr = [100]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 4 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **valid** boolean expression as a string `expression` consisting of the characters `'1'`,`'0'`,`'&'` (bitwise **AND** operator),`'|'` (bitwise **OR** operator),`'('`, and `')'`.
 
@@ -18,13 +18,16 @@ The **cost** of changing the final value of an expression is the **number of ope
 
 - Turn a `'|'` into a `'&'`.
 
-**Note:** `'&'` does **not** take precedence over `'|'` in the **order of calculation**. Evaluate parentheses **first**, then in **left-to-right** order.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+`'&'` does **not** take precedence over `'|'` in the **order of calculation**. Evaluate parentheses **first**, then in **left-to-right** order.
+
+### 4. Examples
 
 #### Example 1
 
@@ -44,7 +47,8 @@ The new expression evaluates to 1.
 - **Output:** `1`
 - **Explanation:** We can turn "(0|(<u>**1**</u>|0&1))" into "(0|(<u>**0**</u>|0&1))" using 1 operation.
 The new expression evaluates to 0.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{expression.length} \le 10^{5}$
 

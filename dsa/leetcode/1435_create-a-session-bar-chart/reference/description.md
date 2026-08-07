@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sessions`
 
@@ -20,7 +20,8 @@ Write a solution to report the `(bin, total)`.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -40,7 +41,7 @@ Return exactly the columns `bin` and `total`, with exactly these four bins:
 
 `total` is the number of sessions in the corresponding interval, including zero for an empty interval. Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

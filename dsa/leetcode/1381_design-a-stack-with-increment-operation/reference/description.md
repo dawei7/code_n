@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a stack that supports increment operations on its elements.
 
@@ -11,12 +11,13 @@ Implement the `CustomStack` class:
 - `int pop()` Pops and returns the top of the stack or `-1` if the stack is empty.
 
 - `void inc(int k, int val)` Increments the bottom `k` elements of the stack by `val`. If there are less than `k` elements in the stack, increment all the elements in the stack.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ stk.pop();                            // return 202 --> Return top of the stack 
 stk.pop();                            // return 201 --> Return top of the stack 201, stack becomes []
 stk.pop();                            // return -1 --> Stack is empty return -1.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le maxSize, x, k \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary tree** with the following properties:
 
@@ -21,7 +21,8 @@ Return* the minimum number of operations that need to be performed such that the
 A **leaf node** is a node that has zero children.
 
 Note: `NOT` nodes have either a left child or a right child, but other non-leaf nodes have both a left child and a right child.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -47,7 +48,7 @@ class TreeNode:
 
 Return an integer representing the minimum number of leaf flips required so that the root evaluates to `result`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ evaluate to true. One way to achieve this is shown in the diagram above.
 - **Output:** `0`
 - **Explanation:**
 The root of the tree already evaluates to false, so 0 nodes have to be flipped.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

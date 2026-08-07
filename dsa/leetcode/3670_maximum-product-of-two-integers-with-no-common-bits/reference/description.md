@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Your task is to find two **distinct** indices `i` and `j` such that the product $\text{nums}[i] * \text{nums}[j]$ is **maximized,** and the binary representations of $\text{nums}[i]$ and $\text{nums}[j]$ do not share any common set bits.
 
 Return the **maximum** possible product of such a pair. If no such pair exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Every pair of numbers has at least one common set bit. Hence, the answer is 0.
 No pair of numbers share a common bit, so the answer is the product of the two maximum elements, 64 and 32 ($64 * 32 = 2048$).
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

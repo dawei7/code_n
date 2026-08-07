@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Tweets`
 
@@ -21,11 +21,12 @@ Write a solution to find the **top** `3` trending **hashtags** in **February** `
 Return *the result table ordered by count of hashtag, hashtag in ***descending*** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,6 +69,8 @@ Tweets table:
 
 - **#WorkLife:** Appeared in tweet ID 15, with a total count of 1 mention.
 
-**Note:** Output table is sorted in descending order by count and hashtag respectively.
+### 4. Note
+
+Output table is sorted in descending order by count and hashtag respectively.
 
 </div>

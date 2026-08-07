@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a **sorted** integer array `nums` and an integer `k`.
 
 Return an array such that each **distinct** element appears **at most** `k` times, while preserving the relative order of the elements in `nums`.
 
 Note: If a distinct element appears **at least** `k` times, then it must appear **exactly** `k` times in the resulting array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Return a list containing the elements of `nums` in their original relative order
 
 The app-local function may resize and return `nums` itself. The returned list is judged by its values; internal capacity and discarded elements beyond its new logical length are irrelevant.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Thus, the resulting array is `[1, 1, 2, 2, 3]`.
 All elements are distinct and already appear at most once, so the array remains unchanged.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 
@@ -61,7 +63,8 @@ All elements are distinct and already appear at most once, so the array remains 
 - `nums` is sorted in non-decreasing order.
 
 - $1 \le k \le \text{nums.length}$
-### Follow-up
+
+### 5. Follow-up
 
 - Can you solve this in-place using $\mathcal{O}(1)$ extra space?
 

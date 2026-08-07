@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design your implementation of the circular double-ended queue (deque).
 
@@ -21,12 +21,13 @@ Implement the `MyCircularDeque` class:
 - `boolean isEmpty()` Returns `true` if the deque is empty, or `false` otherwise.
 
 - `boolean isFull()` Returns `true` if the deque is full, or `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ myCircularDeque.deleteLast();   // return True
 myCircularDeque.insertFront(4); // return True
 myCircularDeque.getFront();     // return 4
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 1000$
 

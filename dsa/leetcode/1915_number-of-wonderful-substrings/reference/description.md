@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **wonderful** string is a string where **at most one** letter appears an **odd** number of times.
 
@@ -7,12 +7,13 @@ A **wonderful** string is a string where **at most one** letter appears an **odd
 Given a string `word` that consists of the first ten lowercase English letters (`'a'` through `'j'`), return *the **number of wonderful non-empty substrings** in *`word`*. If the same substring appears multiple times in *`word`*, then count **each occurrence** separately.*
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Explanation:** The two wonderful substrings are underlined below:
 - "**<u>h</u>**e" -> "h"
 - "h**<u>e</u>**" -> "e"
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 10^{5}$
 

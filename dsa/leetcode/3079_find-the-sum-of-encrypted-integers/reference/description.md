@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` containing **positive** integers. We define a function `encrypt` such that `encrypt(x)` replaces **every** digit in `x` with the **largest** digit in `x`. For example, $encrypt(523) = 555$ and $encrypt(213) = 333$.
 
 Return *the **sum **of encrypted elements*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return *the **sum **of encrypted elements*.
 **Explanation:** The encrypted elements are `[11,22,33]`. The sum of encrypted elements is $11 + 22 + 33 = 66$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of lowercase English letters.
 
@@ -7,7 +7,8 @@ A **prefix** of `s` is called a **residue** if the number of **distinct characte
 Return the count of **residue** prefixes in `s`.
 
 A **prefix** of a string is a **non-empty substring** that starts from the beginning of the string and extends to any point within it.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ For every prefix length $k$ from $1$ through $\lvert\texttt{s}\rvert$, compare t
 
 Return an integer equal to the number of prefix lengths for which those two values are equal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Return an integer equal to the number of prefix lengths for which those two valu
 - Prefix `"bo"` has 2 distinct characters and length mod 3 is 2, so it is a residue. Thus, the answer is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an authentication system that works with authentication tokens. For each session, the user will receive a new authentication token that will expire `timeToLive` seconds after the `currentTime`. If the token is renewed, the expiry time will be **extended** to expire `timeToLive` seconds after the (potentially different) `currentTime`.
 
@@ -13,12 +13,13 @@ Implement the `AuthenticationManager` class:
 - `countUnexpiredTokens(int currentTime)` returns the number of **unexpired** tokens at the given currentTime.
 
 Note that if a token expires at time `t`, and another action happens on time `t` (`renew` or `countUnexpiredTokens`), the expiration takes place **before** the other actions.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ authenticationManager.renew("aaa", 8); // The token with tokenId "aaa" expired a
 authenticationManager.renew("bbb", 10); // The token with tokenId "bbb" is unexpired at time 10, so the renew request is fulfilled and now the token will expire at time 15.
 authenticationManager.countUnexpiredTokens(15); // The token with tokenId "bbb" expires at time 15, and the token with tokenId "aaa" expired at time 7, so currently no token is unexpired, so return 0.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le timeToLive \le 10^{8}$
 

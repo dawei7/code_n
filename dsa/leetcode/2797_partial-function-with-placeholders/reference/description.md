@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given a function `fn` and an array `args`, return a function `partialFn`.
 
 Placeholders `"_"` in the `args` should be replaced with values from `restArgs` starting from index `0`. Any remaining values in the `restArgs` should be added at the end of the `args`.
 
 `partialFn` should return a result of `fn`. `fn` should be called with the elements of the modified `args` passed as separate arguments.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ const partialFn = partial(fn, args)
 const result = partialFn(...restArgs)
 console.log(result) // -10
 Placeholder "_" is replaced with 5 and 20 is added at the end of args. Then the elements of the args are passed as separate arguments to fn, which returns -10 (5 + 5 - 20).
-### Constraints
+
+### 4. Constraints
 
 - `fn` is a function
 

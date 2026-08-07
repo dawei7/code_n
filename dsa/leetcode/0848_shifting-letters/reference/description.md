@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of lowercase English letters and an integer array `shifts` of the same length.
 
@@ -9,12 +9,13 @@ Call the `shift()` of a letter, the next letter in the alphabet, (wrapping aroun
 Now for each $\text{shifts}[i] = x$, we want to shift the first $i + 1$ letters of `s`, `x` times.
 
 Return *the final string after all such shifts to s are applied*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ After shifting the first 3 letters of s by 9, we have "rpl", the answer.
 
 - **Input:** `s = "aaa", shifts = [1,2,3]`
 - **Output:** `"gfd"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

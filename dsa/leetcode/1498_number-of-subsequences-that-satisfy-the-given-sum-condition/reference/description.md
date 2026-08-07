@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` and an integer `target`.
 
 Return *the number of **non-empty** subsequences of *`nums`* such that the sum of the minimum and maximum element on it is less or equal to *`target`. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return *the number of **non-empty** subsequences of *`nums`* such that the sum o
 - **Output:** `61`
 - **Explanation:** There are 63 non-empty subsequences, two of them do not satisfy the condition ([6,7], [7]).
 Number of valid subsequences (63 - 2 = 61).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

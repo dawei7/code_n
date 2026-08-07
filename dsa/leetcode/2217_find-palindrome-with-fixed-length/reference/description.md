@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `queries` and a **positive** integer `intLength`, return *an array* `answer` *where* $\text{answer}[i]$ *is either the *$\text{queries}[i]^th$ *smallest **positive palindrome** of length* `intLength` *or* `-1`* if no such palindrome exists*.
 
 A **palindrome** is a number that reads the same backwards and forwards. Palindromes cannot have leading zeros.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The 90^th palindrome of length 3 is 999.
 - **Explanation:**
 The first six palindromes of length 4 are:
 1001, 1111, 1221, 1331, 1441, and 1551.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length} \le 5 * 10^{4}$
 

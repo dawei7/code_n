@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **bit flip** of a number `x` is choosing a bit in the binary representation of `x` and **flipping** it from either `0` to `1` or `1` to `0`.
 
 - For example, for $x = 7$, the binary representation is `111` and we may choose any bit (including any leading zeros not shown) and flip it. We can flip the first bit from the right to get `110`, flip the second bit from the right to get `101`, flip the fifth bit from the right (a leading zero) to get `10111`, etc.
 
 Given two integers `start` and `goal`, return* the **minimum** number of **bit flips** to convert *`start`* to *`goal`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,8 +31,11 @@ It can be shown we cannot convert 10 to 7 in less than 3 steps. Hence, we return
 - Flip the second bit from the right: 0<u>1</u>0 -> 0<u>0</u>0.
 - Flip the third bit from the right: <u>0</u>00 -> <u>1</u>00.
 It can be shown we cannot convert 3 to 4 in less than 3 steps. Hence, we return 3.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le start, goal \le 10^{9}$
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank">461: Hamming Distance.</a>
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank">461: Hamming Distance.</a>

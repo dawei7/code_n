@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,7 +9,8 @@ A **subsequence** is considered **effective** if removing that subsequence **str
 Return the number of **effective subsequences** in `nums`. Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
 The bitwise OR of an empty array is 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $n = \lvert\texttt{nums}\rvert$, and let $b$ be the number of set-bit positi
 
 Return the number of nonempty subsequences whose removal strictly lowers the bitwise OR of the remaining elements, reduced modulo $10^9+7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -114,7 +115,8 @@ Return the number of nonempty subsequences whose removal strictly lowers the bit
 - Thus, the total number of effective subsequences is 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of size `n` consisting of positive integers.
 
@@ -13,12 +13,13 @@ You need to apply `m` queries on the array in order, where on the $$i^{\text{th}
 - Then mark $k_{i}$ unmarked elements in the array with the **smallest** values. If multiple such elements exist, mark the ones with the smallest indices. And if less than $k_{i}$ unmarked elements exist, then mark all of them.
 
 Return *an array answer of size *`m`* where *$\text{answer}[i]$* is the **sum** of unmarked elements in the array after the *$$i^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ We do the following queries on the array:
 **Explanation: ** We do one query which is mark the element at index `0` and mark the smallest element among unmarked elements. The marked elements will be `nums = [**<u>1</u>**,4,<u>**2**</u>,3]`, and the sum of unmarked elements is $4 + 3 = 7$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

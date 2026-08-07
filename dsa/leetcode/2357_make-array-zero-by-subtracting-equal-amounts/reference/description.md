@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a non-negative integer array `nums`. In one operation, you must:
 
@@ -7,12 +7,13 @@ You are given a non-negative integer array `nums`. In one operation, you must:
 - Subtract `x` from every **positive** element in `nums`.
 
 Return *the **minimum** number of operations to make every element in *`nums`* equal to *`0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ In the third operation, choose x = 2. Now, nums = [0,0,0,0,0].
 - **Input:** `nums = [0]`
 - **Output:** `0`
 - **Explanation:** Each element in nums is already 0 so no operations are needed.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

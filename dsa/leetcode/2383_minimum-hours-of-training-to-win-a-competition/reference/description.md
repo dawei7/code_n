@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are entering a competition, and are given two **positive** integers `initialEnergy` and `initialExperience` denoting your initial energy and initial experience respectively.
 
@@ -11,12 +11,13 @@ Defeating the $$i^{\text{th}}$$ opponent **increases** your experience by $\text
 Before starting the competition, you can train for some number of hours. After each hour of training, you can **either** choose to increase your initial experience by one, or increase your initial energy by one.
 
 Return *the **minimum** number of training hours required to defeat all *`n`* opponents*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ It can be proven that no smaller answer exists.
 - **Input:** $initialEnergy = 2, initialExperience = 4, energy = [1], experience = [3]$
 - **Output:** `0`
 - **Explanation:** You do not need any additional energy or experience to win the competition, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{energy.length} = \text{experience.length}$
 

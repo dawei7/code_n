@@ -123,7 +123,7 @@ def convert_prose_to_refined_latex(text: str) -> str:
 
 def build_clean_description(raw_md: str, contract_text: str = None) -> str:
     if not raw_md or "An official LeetCode description is not available for this problem" in raw_md:
-        return "## Description\n\nAn official LeetCode description is not available for this problem.\n"
+        return "### 1. Description\n\nAn official LeetCode description is not available for this problem.\n"
 
     text = raw_md
     text = html.unescape(text)
@@ -180,38 +180,68 @@ def build_clean_description(raw_md: str, contract_text: str = None) -> str:
 
     text = re.sub(r'`+([^`\n]+)`+', r'`\1`', text)
 
-    # Standardize section headings: Example 1, Constraints, Follow-up
-    text = re.sub(r'^\s*(?:\*\*|#+)\s*Constraints:?\*\*', r'### Constraints', text, flags=re.MULTILINE | re.IGNORECASE)
-    text = re.sub(r'^\s*(?:\*\*|#+)\s*Follow-up:?\*\*', r'### Follow-up', text, flags=re.MULTILINE | re.IGNORECASE)
-
     # Standardize individual sub-examples to #### Example N
     text = re.sub(r'^\s*(?:\*\*|#+)\s*Example\s*(\d+):?\*\*', r'#### Example \1', text, flags=re.MULTILINE | re.IGNORECASE)
 
-    # Extract contract content if contract_text is available
-    contract_snippet = ""
+    # Clean off any leading "# Description" or "## Description"
+    text_clean = re.sub(r'^\s*#+\s*(?:\d+\.\s*)?Description\s*', '', text, flags=re.IGNORECASE).strip()
+
+    # Dynamic section header matcher
+    section_pattern = re.compile(
+        r'^\s*(?:'
+        r'####\s*Example\s*1\b|'
+        r'(?:\*\*|#+)\s*(?:\d+\.\s*)?(Constraints|Follow-?up|Notes?|Notice|Custom Judge|Custom testing|Important Note|Table Schema|Schema|Input Format|Output Format|Quad-Tree format|Definition of [a-zA-Z0-9_]+|Method [a-zA-Z0-9_]+|Partition):?\s*(?:\*\*|$)'
+        r')',
+        flags=re.MULTILINE | re.IGNORECASE
+    )
+
+    matches = list(section_pattern.finditer(text_clean))
+    sections = []
+
+    if matches:
+        narrative = text_clean[:matches[0].start()].strip()
+        sections.append(("Description", narrative))
+    else:
+        sections.append(("Description", text_clean.strip()))
+
     if contract_text and contract_text.strip():
         c_body = contract_text.strip()
-        c_body = re.sub(r'^#+\s*Function Contract\s*', '', c_body).strip()
+        c_body = re.sub(r'^#+\s*(?:\d+\.\s*)?Function Contract\s*', '', c_body).strip()
         if c_body:
-            contract_snippet = f"### Function Contract\n\n{c_body}\n\n"
+            sections.append(("Function Contract", c_body))
 
-    # Ensure ### Examples parent header exists before Example 1
-    has_examples_parent = bool(re.search(r'^\s*#+\s*Examples\s*$', text, flags=re.MULTILINE | re.IGNORECASE))
-    if not has_examples_parent and re.search(r'^\s*####\s*Example\s*1\b', text, flags=re.MULTILINE | re.IGNORECASE):
-        text = re.sub(r'^(\s*####\s*Example\s*1\b)', r'### Examples\n\n\1', text, count=1, flags=re.MULTILINE | re.IGNORECASE)
+    for i, match in enumerate(matches):
+        start_idx = match.start()
+        end_idx = matches[i + 1].start() if i + 1 < len(matches) else len(text_clean)
+        chunk = text_clean[start_idx:end_idx].strip()
 
-    # Position contract_snippet in front of ### Examples (or #### Example 1 or ### Constraints)
-    if contract_snippet:
-        text = re.sub(r'### Function Contract\n.*?(?=### |#### |\Z)', '', text, flags=re.DOTALL)
-        if re.search(r'^\s*### Examples\b', text, flags=re.MULTILINE):
-            text = re.sub(r'^(\s*### Examples\b)', lambda m: f"{contract_snippet}{m.group(1)}", text, count=1, flags=re.MULTILINE)
-        elif re.search(r'^\s*#### Example\s*1\b', text, flags=re.MULTILINE):
-            text = re.sub(r'^(\s*#### Example\s*1\b)', lambda m: f"{contract_snippet}### Examples\n\n{m.group(1)}", text, count=1, flags=re.MULTILINE)
-        elif re.search(r'^\s*### Constraints\b', text, flags=re.MULTILINE):
-            text = re.sub(r'^(\s*### Constraints\b)', lambda m: f"{contract_snippet}{m.group(1)}", text, count=1, flags=re.MULTILINE)
+        m_str = match.group(0).strip()
+        if "Example 1" in m_str:
+            title_name = "Examples"
+            body = chunk
         else:
-            text = f"{text}\n\n{contract_snippet}"
+            title_match = match.group(1) if match.group(1) else "Note"
+            clean_title = title_match.strip().title()
+            if clean_title in ["Follow Up", "Follow-Up"]:
+                clean_title = "Follow-up"
+            elif clean_title == "Notes":
+                clean_title = "Note"
+            title_name = clean_title
+            body = re.sub(r'^\s*(?:\*\*|#+)\s*(?:\d+\.\s*)?' + re.escape(title_match) + r':?\s*(?:\*\*|$)', '', chunk, flags=re.IGNORECASE).strip()
 
+        sections.append((title_name, body))
+
+    final_output = []
+    sec_num = 1
+    for t_name, body in sections:
+        if not body:
+            continue
+        final_output.append(f"### {sec_num}. {t_name}\n\n{body}\n")
+        sec_num += 1
+
+    text = "\n".join(final_output)
+
+    # Apply LaTeX math formatting to prose (preserving code blocks)
     parts = re.split(r'(```[a-zA-Z]*\n.*?```)', text, flags=re.DOTALL)
     for i in range(len(parts)):
         if not parts[i].startswith('```'):
@@ -221,10 +251,6 @@ def build_clean_description(raw_md: str, contract_text: str = None) -> str:
     lines = [line.rstrip() for line in text.splitlines()]
     result = "\n".join(lines)
     result = re.sub(r'\n{3,}', '\n\n', result).strip()
-
-    if not result.startswith("## Description"):
-        result = re.sub(r'^#+\s*Description\s*', '', result).strip()
-        result = f"## Description\n\n{result}"
 
     return result
 
@@ -299,7 +325,7 @@ def main():
         questions = json.load(f)["questions"]
 
     total = len(questions)
-    print(f"Rebuilding robust clean description.md and editorial.md for {total} problems...")
+    print(f"Rebuilding robust clean description.md and editorial.md with dynamic numbered titles for {total} problems...")
     start_time = time.time()
 
     desc_count = 0

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` containing $n + 1$ integers where each integer is in the range `[1, n]` inclusive.
 
 There is only **one repeated number** in `nums`, return *this repeated number*.
 
 You must solve the problem **without** modifying the array `nums` and using only constant extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ You must solve the problem **without** modifying the array `nums` and using only
 
 Return the value that occurs more than once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the value that occurs more than once.
 
 - **Input:** `nums = [3,3,3,3,3]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

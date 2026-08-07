@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `allowed` consisting of **distinct** characters and an array of strings `words`. A string is **consistent **if all characters in the string appear in the string `allowed`.
 
 Return* the number of **consistent** strings in the array *`words`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return* the number of **consistent** strings in the array *`words`.
 - **Input:** $allowed = "cad", words = ["cc","acd","b","ba","bac","bad","ac","d"]$
 - **Output:** `4`
 - **Explanation:** Strings "cc", "acd", "ac", and "d" are consistent.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 10^{4}$
 

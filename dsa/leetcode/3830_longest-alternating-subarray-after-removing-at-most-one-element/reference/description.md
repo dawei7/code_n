@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -15,7 +15,8 @@ You can remove **at most one** element from `nums`. Then, you select an alternat
 Return an integer denoting the **maximum** **length** of the alternating subarray you can select.
 
 A subarray of length 1 is considered alternating.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ The selected elements must form one contiguous subarray after the optional remov
 
 Return the maximum length of an alternating subarray obtainable after removing zero or one element from `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the maximum length of an alternating subarray obtainable after removing z
 - Select the subarray `[100000, <u>**100000**</u>]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `num`, representing a large integer, and an integer `k`.
 
@@ -19,12 +19,13 @@ We call some integer **wonderful** if it is a **permutation** of the digits in `
 Return *the **minimum number of adjacent digit swaps** that needs to be applied to *`num`* to reach the *$$k^{\text{th}}$$*** smallest wonderful** integer*.
 
 The tests are generated in such a way that $$k^{\text{th}}$$ smallest wonderful integer exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The tests are generated in such a way that $$k^{\text{th}}$$ smallest wonderful 
 - **Output:** `1`
 - **Explanation:** The 1^st smallest wonderful number is "00132". To get this number:
 - Swap index 3 with index 4: "001<u>23</u>" -> "001<u>32</u>"
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{num.length} \le 1000$
 

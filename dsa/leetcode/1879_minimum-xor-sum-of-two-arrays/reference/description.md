@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` of length `n`.
 
@@ -9,12 +9,13 @@ The **XOR sum** of the two integer arrays is $(\text{nums1}[0] XOR \text{nums2}[
 Rearrange the elements of `nums2` such that the resulting **XOR sum** is **minimized**.
 
 Return *the **XOR sum** after the rearrangement*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The XOR sum is (1 XOR 3) + (2 XOR 2) = 2 + 0 = 2.
 - **Output:** `8`
 - **Explanation:** Rearrange nums2 so that it becomes [5,4,3].
 The XOR sum is (1 XOR 5) + (0 XOR 4) + (3 XOR 3) = 4 + 4 + 0 = 8.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length}$
 

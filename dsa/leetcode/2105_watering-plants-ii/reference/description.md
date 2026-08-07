@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$ plant is located at $x = i$.
 
@@ -13,12 +13,13 @@ Each plant needs a specific amount of water. Alice and Bob have a watering can e
 - In case both Alice and Bob reach the same plant, the one with **more** water currently in his/her watering can should water this plant. If they have the same amount of water, then Alice should water this plant.
 
 Given a **0-indexed** integer array `plants` of `n` integers, where $\text{plants}[i]$ is the amount of water the $$i^{\text{th}}$$ plant needs, and two integers `capacityA` and `capacityB` representing the capacities of Alice's and Bob's watering cans respectively, return *the **number of times** they have to refill to water all the plants*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ So, the total number of times they have to refill to water all the plants is 0 +
 - There is only one plant.
 - Alice's watering can has 10 units of water, whereas Bob's can has 8 units. Since Alice has more water in her can, she waters this plant.
 So, the total number of times they have to refill is 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{plants.length}$
 

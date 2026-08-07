@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given an array of strings `nums` and an integer `k`. Each string in `nums` represents an integer without leading zeros.
 
 Return *the string that represents the *$$k^{\text{th}}$$*** largest integer** in *`nums`.
 
-**Note**: Duplicate numbers should be counted distinctly. For example, if `nums` is `["1","2","2"]`, `"2"` is the first largest integer, `"2"` is the second-largest integer, and `"1"` is the third-largest integer.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: Duplicate numbers should be counted distinctly. For example, if `nums` is `["1","2","2"]`, `"2"` is the first largest integer, `"2"` is the second-largest integer, and `"1"` is the third-largest integer.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ The 3^rd largest integer in nums is "2".
 - **Explanation:**
 The numbers in nums sorted in non-decreasing order are ["0","0"].
 The 2^nd largest integer in nums is "0".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{4}$
 

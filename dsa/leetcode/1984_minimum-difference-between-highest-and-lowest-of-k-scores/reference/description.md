@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`, where $\text{nums}[i]$ represents the score of the $$i^{\text{th}}$$ student. You are also given an integer `k`.
 
 Pick the scores of any `k` students from the array so that the **difference** between the **highest** and the **lowest** of the `k` scores is **minimized**.
 
 Return *the **minimum** possible difference*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The minimum possible difference is 0.
 - [9,**<u>4</u>**,1,**<u>7</u>**]. The difference between the highest and lowest score is 7 - 4 = 3.
 - [9,4,**<u>1</u>**,**<u>7</u>**]. The difference between the highest and lowest score is 7 - 1 = 6.
 The minimum possible difference is 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 1000$
 

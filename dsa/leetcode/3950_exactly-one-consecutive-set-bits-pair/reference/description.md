@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
 Return `true` if its binary representation contains **exactly one adjacent pair** of set bits, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ The representation of zero is `0`; positive values use their usual binary repres
 
 Return `true` if exactly one neighboring pair of binary digits is `11`; otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,6 +46,7 @@ Return `true` if exactly one neighboring pair of binary digits is `11`; otherwis
 - There is no adjacent pair of set bits. Thus, the answer is `false`​​​​​​​.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{5}$

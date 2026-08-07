@@ -1,20 +1,21 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `word`, consisting of lowercase English letters. You need to select **one** index and **remove** the letter at that index from `word` so that the **frequency** of every letter present in `word` is equal.
 
 Return* *`true`* if it is possible to remove one letter so that the frequency of all letters in *`word`* are equal, and *`false`* otherwise*.
 
-**Note:**
-
-- The **frequency** of a letter `x` is the number of times it occurs in the string.
-
-- You **must** remove exactly one letter and cannot choose to do nothing.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- The **frequency** of a letter `x` is the number of times it occurs in the string.
+
+- You **must** remove exactly one letter and cannot choose to do nothing.
+
+### 4. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return* *`true`* if it is possible to remove one letter so that the frequency of
 - **Input:** $word = "aazz"$
 - **Output:** `false`
 - **Explanation:** We must delete a character, so either the frequency of "a" is 1 and the frequency of "z" is 2, or vice versa. It is impossible to make all present letters have equal frequency.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{word.length} \le 100$
 

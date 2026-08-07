@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of size `n` and a positive integer `k`.
 
@@ -9,12 +9,13 @@ We call an index `i` in the range $k \le i < n - k$ **good** if the following co
 - The `k` elements that are just **after** the index `i` are in **non-decreasing** order.
 
 Return *an array of all good indices sorted in **increasing** order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Note that the index 4 is not good because [4,1] is not non-decreasing.
 - **Input:** `nums = [2,1,1,2], k = 2`
 - **Output:** `[]`
 - **Explanation:** There are no good indices in this array.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
 A substring is **almost-palindromic** if it becomes a palindrome after removing **exactly** one character from it.
 
 Return an integer denoting the length of the **longest** **almost-palindromic** substring in `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ is a palindrome. This expression deletes one character, $s[k]$, while preserving
 
 Return the maximum value of $r-l+1$ over all almost-palindromic substrings. Since $\lvert\texttt{s}\rvert\ge2$, an answer of at least `2` always exists: deleting either character from any length-two substring leaves a one-character palindrome.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ Choose the substring `"z<u>**zabba**</u>"`.
 - Therefore, `"zabba"` is almost-palindromic.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 2500$
 

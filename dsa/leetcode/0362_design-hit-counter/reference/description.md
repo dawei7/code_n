@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a hit counter which counts the number of hits received in the past `5` minutes (i.e., the past `300` seconds).
 
@@ -11,7 +11,8 @@ Implement the `HitCounter` class:
 - `void hit(int timestamp)` Records a hit that happened at `timestamp` (**in seconds**). Several hits may happen at the same `timestamp`.
 
 - `int getHits(int timestamp)` Returns the number of hits in the past 5 minutes from `timestamp` (i.e., the past `300` seconds).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Implement the `HitCounter` class:
 
 The app adapter returns the result of each `getHits` call, in query order. On LeetCode, construct `HitCounter` and invoke its two methods directly. At time `t`, the counted interval is $(t-300,t]$, so a hit exactly `300` seconds old is excluded.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ hitCounter.hit(300);     // hit at timestamp 300.
 hitCounter.getHits(300); // get hits at timestamp 300, return 4.
 hitCounter.getHits(301); // get hits at timestamp 301, return 3.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le timestamp \le 2 * 10^{9}$
 

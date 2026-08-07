@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` containing only three types of characters: `'('`, `')'` and `'*'`, return `true` *if* `s` *is **valid***.
 
@@ -11,12 +11,13 @@ The following rules define a **valid** string:
 - Left parenthesis `'('` must go before the corresponding right parenthesis `')'`.
 
 - `'*'` could be treated as a single right parenthesis `')'` or a single left parenthesis `'('` or an empty string `""`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The following rules define a **valid** string:
 
 - **Input:** `s = "(*))"`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

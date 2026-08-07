@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s`, partition `s` such that every substring of the partition is a palindrome.
 
 Return *the **minimum** cuts needed for a palindrome partitioning of* `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return *the **minimum** cuts needed for a palindrome partitioning of* `s`.
 
 Return the fewest boundaries that must be inserted so every resulting substring is a palindrome.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the fewest boundaries that must be inserted so every resulting substring 
 
 - **Input:** `s = "ab"`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2000$
 

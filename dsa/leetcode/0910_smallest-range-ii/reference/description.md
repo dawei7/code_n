@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -7,12 +7,13 @@ For each index `i` where $0 \le i < \text{nums.length}$, change $\text{nums}[i]$
 The **score** of `nums` is the difference between the maximum and minimum elements in `nums`.
 
 Return *the minimum **score** of *`nums`* after changing the values at each index*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *the minimum **score** of *`nums`* after changing the values at each inde
 - **Input:** `nums = [1,3,6], k = 3`
 - **Output:** `3`
 - **Explanation:** Change nums to be [4, 6, 3]. The score is max(nums) - min(nums) = 6 - 3 = 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of `n` integers, `nums`, where there are at most `50` unique values in the array. You are also given an array of `m` customer order quantities, `quantity`, where $\text{quantity}[i]$ is the amount of integers the $$i^{\text{th}}$$ customer ordered. Determine if it is possible to distribute `nums` such that:
 
@@ -9,12 +9,13 @@ You are given an array of `n` integers, `nums`, where there are at most `50` uni
 - Every customer is satisfied.
 
 Return `true`* if it is possible to distribute *`nums`* according to the above conditions*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return `true`* if it is possible to distribute *`nums`* according to the above c
 - **Input:** `nums = [1,1,2,2], quantity = [2,2]`
 - **Output:** `true`
 - **Explanation:** The 0^th customer is given [1,1], and the 1st customer is given [2,2].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an `m x n` `picture` consisting of black `'B'` and white `'W'` pixels and an integer target, return *the number of **black** lonely pixels*.
 
@@ -7,7 +7,8 @@ A black lonely pixel is a character `'B'` that located at a specific position `(
 - Row `r` and column `c` both contain exactly `target` black pixels.
 
 - For all rows that have a black pixel at column `c`, they should be exactly the same as row `r`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ A black lonely pixel is a character `'B'` that located at a specific position `(
 - Return the number of black coordinates whose row and column counts equal `target` and whose column's black pixels
   all occur in rows identical to that coordinate's row.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Take 'B' at row r = 0 and column c = 1 as an example:
 
 - **Input:** $picture = [["W","W","B"],["W","W","B"],["W","W","B"]], target = 1$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{picture.length}$
 

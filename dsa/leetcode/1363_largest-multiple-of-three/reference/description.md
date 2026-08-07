@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of digits `digits`, return *the largest multiple of **three** that can be formed by concatenating some of the given digits in **any order***. If there is no answer return an empty string.
 
 Since the answer may not fit in an integer data type, return the answer as a string. Note that the returning answer must not contain unnecessary leading zeros.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Since the answer may not fit in an integer data type, return the answer as a str
 
 - **Input:** $digits = [1]$
 - **Output:** `""`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{digits.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n`.
 
@@ -9,12 +9,13 @@ You can perform the following operation as many times as you want:
 Return *true if you can make `nums` a strictly increasing array using the above operation and false otherwise.*
 
 A **strictly increasing array** is an array whose each element is strictly greater than its preceding element.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ After the second operation, nums is sorted in strictly increasing order, so the 
 - **Input:** `nums = [5,8,3]`
 - **Output:** `false`
 - **Explanation:** It can be proven that there is no way to perform operations to make nums sorted in strictly increasing order, so the answer is false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

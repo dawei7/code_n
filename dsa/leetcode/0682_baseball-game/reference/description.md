@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.
 
@@ -28,12 +28,13 @@ You are given a list of strings `operations`, where $\text{operations}[i]$ is th
 Return *the sum of all the scores on the record after applying all the operations*.
 
 The test cases are generated such that the answer and all intermediate calculations fit in a **32-bit** integer and that all operations are valid.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ The total sum is 5 + -2 + -4 + 9 + 5 + 14 = 27.
 "1" - Add 1 to the record, record is now [1].
 "C" - Invalidate and remove the previous score, record is now [].
 Since the record is empty, the total sum is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{operations.length} \le 1000$
 

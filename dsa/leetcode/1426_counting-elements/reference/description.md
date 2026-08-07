@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, count how many elements `x` there are, such that $x + 1$ is also in `arr`. If there are duplicates in `arr`, count them separately.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -13,7 +14,7 @@ Return the number of positions whose value `x` has $x + 1$ present anywhere in `
 
 The test is based on presence, not one-to-one pairing. A single occurrence of $x + 1$ can make every occurrence of `x` qualify, while extra copies of $x + 1$ do not increase the contribution of one `x`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The test is based on presence, not one-to-one pairing. A single occurrence of $x
 - **Input:** `arr = [1,1,3,3,5,5,7,7]`
 - **Output:** `0`
 - **Explanation:** No numbers are counted, cause there is no 2, 4, 6, or 8 in arr.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 1000$
 

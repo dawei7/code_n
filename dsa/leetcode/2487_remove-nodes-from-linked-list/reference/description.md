@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given the `head` of a linked list.
 
 Remove every node which has a node with a greater value anywhere to the right side of it.
 
 Return *the *`head`* of the modified linked list.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the *`head`* of the modified linked list.*
 - **Input:** $head = [1,1,1,1]$
 - **Output:** `[1,1,1,1]`
 - **Explanation:** Every node has value 1, so no nodes are removed.
-### Constraints
+
+### 4. Constraints
 
 - The number of the nodes in the given list is in the range $[1, 10^{5}]$.
 

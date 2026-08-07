@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are some red and blue tiles arranged circularly. You are given an array of integers `colors` and a 2D integers array `queries`.
 
@@ -18,13 +18,16 @@ You have to process queries of two types:
 
 Return an array `answer` containing the results of the queries of the first type *in order*.
 
-**Note** that since `colors` represents a **circle**, the **first** and the **last** tiles are considered to be next to each other.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that since `colors` represents a **circle**, the **first** and the **last** tiles are considered to be next to each other.
+
+### 4. Examples
 
 #### Example 1
 
@@ -80,7 +83,8 @@ Second query: `colors` will not change.
 Third query: There is no alternating group with size 5.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $4 \le \text{colors.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **Directed Acyclic Graph (DAG)** with `n` nodes labeled from `0` to $n - 1$, represented by a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates a directed edge from node $u_{i}$ to $v_{i}$. Each node has an associated **score** given in an array `score`, where $\text{score}[i]$ represents the score of node `i`.
 
@@ -9,12 +9,13 @@ The **profit** is calculated by summing up the product of each node's score and 
 Return the **maximum **possible profit achievable with an optimal topological order.
 
 A **topological order** of a DAG is a linear ordering of its nodes such that for every directed edge `u → v`, node `u` comes before `v` in the ordering.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -111,7 +112,8 @@ Nodes 1 and 2 depend on node 0, so the most optimal valid order is `[0, 2, 1]`.
 The maximum total profit achievable over all valid topological orders is $1 + 6 + 18 = 25$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{score.length} \le 22$
 

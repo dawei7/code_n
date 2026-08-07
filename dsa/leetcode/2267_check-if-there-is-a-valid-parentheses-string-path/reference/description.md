@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A parentheses string is a **non-empty** string consisting only of `'('` and `')'`. It is **valid** if **any** of the following conditions is **true**:
 
@@ -19,12 +19,13 @@ You are given an `m x n` matrix of parentheses `grid`. A **valid parentheses str
 - The resulting parentheses string formed by the path is **valid**.
 
 Return `true` *if there exists a **valid parentheses string path** in the grid.* Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Note that there may be other valid parentheses string paths.
 - **Input:** `grid = [[")",")"],["(","("]]`
 - **Output:** `false`
 - **Explanation:** The two possible paths form the parentheses strings "))(" and ")((". Since neither of them are valid parentheses strings, we return false.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, and you can perform the following operation **any** number of times on `nums`:
 
 - Swap the positions of two elements $\text{nums}[i]$ and $\text{nums}[j]$ if $gcd(\text{nums}[i], \text{nums}[j]) > 1$ where $gcd(\text{nums}[i], \text{nums}[j])$ is the **greatest common divisor** of $\text{nums}[i]$ and $\text{nums}[j]$.
 
 Return `true` *if it is possible to sort *`nums`* in **non-decreasing** order using the above swap method, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ We can sort [10,5,9,3,15] by performing the following operations:
 - Swap 10 and 15 because gcd(10,15) = 5. nums = [<u>**15**</u>,5,9,3,<u>**10**</u>]
 - Swap 15 and 3 because gcd(15,3) = 3. nums = [<u>**3**</u>,5,9,<u>**15**</u>,10]
 - Swap 10 and 15 because gcd(10,15) = 5. nums = [3,5,9,<u>**10**</u>,<u>**15**</u>]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{4}$
 

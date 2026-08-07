@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the number of **good** subarrays of* `nums`.
 
 A subarray `arr` is **good** if there are **at least **`k` pairs of indices `(i, j)` such that `i < j` and $\text{arr}[i] = \text{arr}[j]$.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ A **subarray** is a contiguous **non-empty** sequence of elements within an arra
 - [3,1,4,3,2,2,4] that has 3 pairs.
 - [1,4,3,2,2,4] that has 2 pairs.
 - [4,3,2,2,4] that has 2 pairs.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

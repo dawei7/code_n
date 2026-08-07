@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **1-indexed** `m x n` integer matrix `mat`, you can select any cell in the matrix as your **starting cell**.
 
@@ -7,12 +7,13 @@ From the starting cell, you can move to any other cell **in the** **same row or 
 Your task is to find the **maximum number of cells** that you can visit in the matrix by starting from some cell.
 
 Return *an integer denoting the maximum number of cells that can be visited.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Return *an integer denoting the maximum number of cells that can be visited.*
 - **Input:** $mat = [[3,1,6],[-9,5,7]]$
 - **Output:** `4`
 - **Explanation:** The image above shows how we can visit 4 cells starting from row 2, column 1. It can be shown that we cannot visit more than 4 cells no matter where we start from, so the answer is 4.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

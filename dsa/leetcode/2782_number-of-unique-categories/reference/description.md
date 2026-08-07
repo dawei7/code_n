@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an object `categoryHandler` of class `CategoryHandler`.
 
@@ -9,11 +9,12 @@ The class `CategoryHandler` contains the following function, which may help you:
 - `boolean haveSameCategory(integer a, integer b)`: Returns `true` if `a` and `b` are in the same category and `false` otherwise. Also, if either `a` or `b` is not a valid number (i.e. it's greater than or equal to `n`or less than `0`), it returns `false`.
 
 Return *the number of unique categories.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ Return *the number of unique categories.*
 - **Input:** $n = 3, categoryHandler = [1,1,1]$
 - **Output:** `1`
 - **Explanation:** There are 3 elements in this example. All of them belong to one category. So there is only 1 unique category.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$

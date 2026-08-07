@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array of even length `arr`, return `true`* if it is possible to reorder *`arr`* such that *$arr[2 * i + 1] = 2 * arr[2 * i]$* for every *$0 \le i < len(arr) / 2$*, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given an integer array of even length `arr`, return `true`* if it is possible to
 - **Input:** `arr = [4,-2,2,-4]`
 - **Output:** `true`
 - **Explanation:** We can take two groups, [-2,-4] and [2,4] to form [-2,-4,2,4] or [2,4,-2,-4].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 3 * 10^{4}$
 

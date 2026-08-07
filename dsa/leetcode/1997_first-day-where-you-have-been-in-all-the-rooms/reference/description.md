@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` rooms you need to visit, labeled from `0` to $n - 1$. Each day is labeled, starting from `0`. You will go in and visit one room a day.
 
@@ -11,12 +11,13 @@ Initially on day `0`, you visit room `0`. The **order** you visit the rooms for 
 - if you have been in room `i` an **even** number of times (**including** the current visit), on the **next** day you will visit room $(i + 1) mod n$.
 
 Return *the label of the **first** day where you have been in **all** the rooms*. It can be shown that such a day exists. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Day 6 is the first day where you have been in all the rooms.
 - **Explanation:**
 Your room visiting order for each day is: [0,0,1,1,2,2,3,...].
 Day 6 is the first day where you have been in all the rooms.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nextVisit.length}$
 

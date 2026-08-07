@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **Balanced** strings are those that have an equal quantity of `'L'` and `'R'` characters.
 
@@ -7,12 +7,13 @@ Given a **balanced** string `s`, split it into some number of substrings such th
 - Each substring is balanced.
 
 Return *the **maximum** number of balanced strings you can obtain.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Note that s cannot be split into "RL", "RR", "RL", "LR", "LL", because the 2^nd 
 - **Input:** `s = "LLLLRRRR"`
 - **Output:** `1`
 - **Explanation:** s can be split into "LLLLRRRR".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 1000$
 

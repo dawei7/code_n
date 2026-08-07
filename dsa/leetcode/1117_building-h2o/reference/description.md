@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are two kinds of threads: `oxygen` and `hydrogen`. Your goal is to group these threads to form water molecules.
 
@@ -13,12 +13,13 @@ In other words:
 We do not have to worry about matching the threads up explicitly; the threads do not necessarily know which other threads they are paired up with. The key is that threads pass the barriers in complete sets; thus, if we examine the sequence of threads that bind and divide them into groups of three, each group should contain one oxygen and two hydrogen threads.
 
 Write synchronization code for oxygen and hydrogen molecules that enforces these constraints.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Write synchronization code for oxygen and hydrogen molecules that enforces these
 - **Input:** $water = "OOHHHH"$
 - **Output:** `"HHOHHO"`
 - **Explanation:** "HOHHHO", "OHHHHO", "HHOHOH", "HOHHOH", "OHHHOH", "HHOOHH", "HOHOHH" and "OHHOHH" are also valid answers.
-### Constraints
+
+### 4. Constraints
 
 - $3 * n = \text{water.length}$
 

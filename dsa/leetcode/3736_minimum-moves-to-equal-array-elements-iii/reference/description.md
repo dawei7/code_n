@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 In one move, you may **increase** the value of any single element $\text{nums}[i]$ by 1.
 
 Return the **minimum total** number of **moves** required so that all elements in `nums` become **equal**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Only increases are allowed: a move changes one selected value from $\text{nums}[
 
 Return the minimum total number of single-element increments after which all array values are equal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ To make all elements equal:
 Now, all elements of `nums` are equal to 5. The minimum total moves is `2`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

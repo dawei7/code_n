@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` and an integer `target`.
 
@@ -11,7 +11,8 @@ Return the **lexicographically smallest** array of integers of size `n` such tha
 If no such array exists, return an empty array.
 
 A **permutation** of size `n` is a rearrangement of integers `1, 2, ..., n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Every magnitude in the inclusive range $1$ through $n$ must occur once. Lexicogr
 
 Return the lexicographically smallest valid signed permutation, or `[]` if no assignment of signs can produce `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ The lexicographically smallest one is `[-3, 1, 2]`.
 There are no arrays that sum to 10000000000 and whose absolute values form a permutation of size 1. Therefore, the answer is `[]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

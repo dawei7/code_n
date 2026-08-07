@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. There is an **undirected** graph with `n` vertices, numbered from `0` to $n - 1$. You are given a 2D integer array `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ denotes that there exists an **undirected** edge connecting vertices $a_{i}$ and $b_{i}$.
 
@@ -7,12 +7,13 @@ Return *the number of **complete connected components** of the graph*.
 A **connected component** is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph.
 
 A connected component is said to be **complete** if there exists an edge between every pair of its vertices.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ A connected component is said to be **complete** if there exists an edge between
 - **Input:** $n = 6, edges = [[0,1],[0,2],[1,2],[3,4],[3,5]]$
 - **Output:** `1`
 - **Explanation:** The component containing vertices 0, 1, and 2 is complete since there is an edge between every pair of two vertices. On the other hand, the component containing vertices 3, 4, and 5 is not complete since there is no edge between vertices 4 and 5. Thus, the number of complete components in this graph is 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$
 

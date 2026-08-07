@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree and a `target` value, return *the value in the BST that is closest to the* `target`. If there are multiple answers, print the smallest.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Let $n$ be the number of nodes in the tree, and let $h$ be its height.
 
 Return the node value with minimum absolute distance from `target`, choosing the smaller value if there is a tie.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the node value with minimum absolute distance from `target`, choosing the
 
 - **Input:** `root = [1], target = 4.428571`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

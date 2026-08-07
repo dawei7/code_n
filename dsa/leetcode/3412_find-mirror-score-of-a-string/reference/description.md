@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`.
 
@@ -15,12 +15,13 @@ You start with a score of 0, and you perform the following process on the string
 - If no such index `j` exists for the index `i`, move on to the next index without making any changes.
 
 Return the total score at the end of the process.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Return the total score at the end of the process.
 For each index `i`, there is no index `j` that satisfies the conditions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

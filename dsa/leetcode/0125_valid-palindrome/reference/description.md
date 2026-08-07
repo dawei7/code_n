@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 A phrase is a **palindrome** if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
 Given a string `s`, return `true`* if it is a **palindrome**, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given a string `s`, return `true`* if it is a **palindrome**, or *`false`* other
 
 Return `true` when the lowercase alphanumeric characters read the same in both directions; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return `true` when the lowercase alphanumeric characters read the same in both d
 - **Output:** `true`
 - **Explanation:** s is an empty string "" after removing non-alphanumeric characters.
 Since an empty string reads the same forward and backward, it is a palindrome.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2 * 10^{5}$
 

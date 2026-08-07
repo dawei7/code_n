@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, your goal is to make all elements in `nums` equal. To complete one operation, follow these steps:
 
@@ -9,12 +9,13 @@ Given an integer array `nums`, your goal is to make all elements in `nums` equal
 - Reduce $\text{nums}[i]$ to `nextLargest`.
 
 Return *the number of operations to make all elements in *`nums`* equal*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return *the number of operations to make all elements in *`nums`* equal*.
 2. largest = 2 at index 2. nextLargest = 1. Reduce nums[2] to 1. nums = [1,1,<u>1</u>,2,2].
 3. largest = 2 at index 3. nextLargest = 1. Reduce nums[3] to 1. nums = [1,1,1,<u>1</u>,2].
 4. largest = 2 at index 4. nextLargest = 1. Reduce nums[4] to 1. nums = [1,1,1,1,<u>1</u>].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

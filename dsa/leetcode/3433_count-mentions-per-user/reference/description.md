@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `numberOfUsers` representing the total number of users and an array `events` of size `n x 3`.
 
@@ -29,13 +29,16 @@ Return an array `mentions` where $\text{mentions}[i]$ represents the number of m
 
 All users are initially online, and if a user goes offline or comes back online, their status change is processed *before* handling any message event that occurs at the same timestamp.
 
-**Note **that a user can be mentioned **multiple** times in a **single** message event, and each mention should be counted **separately**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that a user can be mentioned **multiple** times in a **single** message event, and each mention should be counted **separately**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -89,7 +92,8 @@ At timestamp 10, `id0` goes **offline.**
 At timestamp 12, `"HERE"` is mentioned. Because `id0` is still offline, they will not be mentioned. $mentions = [0,1]$
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le numberOfUsers \le 100$
 

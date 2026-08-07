@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -7,12 +7,13 @@ An integer `x` is **almost missing** from `nums` if `x` appears in *exactly* one
 Return the **largest** **almost missing** integer from `nums`. If no such integer exists, return `-1`.
 
 A **subarray** is a contiguous sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ We return 3 since it is the largest and only integer that appears in exactly one
 There is no integer that appears in only one subarray of size 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

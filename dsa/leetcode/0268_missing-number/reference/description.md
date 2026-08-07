@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, return *the only number in the range that is missing from the array.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array `nums` containing `n` distinct numbers in the range `[0, n]`, ret
 
 Return the one value in `[0,n]` that does not occur in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ $n = 9$ since there are 9 numbers, so all numbers are in the range `[0,9]`. 8 is
 </div>
 </div>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, you can perform the following operation on the array any number of times:
 
 - Select two **adjacent** elements of the array like `x` and `y`, such that $x * y \le k$, and replace both of them with a **single element** with value $x * y$ (e.g. in one operation the array `[1, 2, 2, 3]` with $k = 5$ can become `[1, 4, 3]` or `[2, 2, 3]`, but can't become `[1, 2, 6]`).
 
 Return *the **minimum** possible length of *`nums`* after any number of operations*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ It can be shown that 3 is the minimum length possible to achieve with the given 
 - **Output:** `4`
 - **Explanation:** We can't perform any operations since the product of every two adjacent elements is greater than 6.
 Hence, the answer is 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

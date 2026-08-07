@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` cars traveling at different speeds in the same direction along a one-lane road. You are given an array `cars` of length `n`, where $\text{cars}[i] = [\text{position}_{i}, \text{speed}_{i}]$ represents:
 
@@ -9,12 +9,13 @@ There are `n` cars traveling at different speeds in the same direction along a o
 For simplicity, cars can be considered as points moving along the number line. Two cars collide when they occupy the same position. Once a car collides with another car, they unite and form a single car fleet. The cars in the formed fleet will have the same position and the same speed, which is the initial speed of the **slowest** car in the fleet.
 
 Return an array `answer`, where $\text{answer}[i]$ is the time, in seconds, at which the $$i^{\text{th}}$$ car collides with the next car, or `-1` if the car does not collide with the next car. Answers within $10^{-5}$ of the actual answers are accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return an array `answer`, where $\text{answer}[i]$ is the time, in seconds, at w
 
 - **Input:** $cars = [[3,4],[5,4],[6,3],[9,1]]$
 - **Output:** `[2.00000,1.00000,1.50000,-1.00000]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{cars.length} \le 10^{5}$
 

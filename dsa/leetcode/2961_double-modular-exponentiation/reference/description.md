@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D array `variables` where $\text{variables}[i] = [a_{i}, b_{i}, c_{i}, m_{i}]$, and an integer `target`.
 
@@ -9,12 +9,13 @@ An index `i` is **good** if the following formula holds:
 - $((a_{i}^b_{i} \% 10)^c_{i}) \% m_{i} = target$
 
 Return *an array consisting of **good** indices in **any order***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Therefore we return [0,2] as the answer.
 - **Explanation:** For each index i in the variables array:
 1) For the index 0, variables[0] = [39,3,1000,1000], ($39^{3}$ % 10)^1000 % 1000 = 1.
 Therefore we return [] as the answer.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{variables.length} \le 100$
 

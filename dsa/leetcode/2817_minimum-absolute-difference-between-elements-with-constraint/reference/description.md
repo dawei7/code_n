@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `x`.
 
@@ -7,12 +7,13 @@ Find the **minimum absolute difference** between two elements in the array that 
 In other words, find two indices `i` and `j` such that $abs(i - j) \ge x$ and $abs(\text{nums}[i] - \text{nums}[j])$ is minimized.
 
 Return* an integer denoting the **minimum** absolute difference between two elements that are at least* `x` *indices apart*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ It can be shown that 1 is the optimal answer.
 - **Explanation:** We can select nums[0] = 1 and nums[3] = 4.
 They are at least 3 indices apart, and their absolute difference is the minimum, 3.
 It can be shown that 3 is the optimal answer.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

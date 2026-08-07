@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We define $str = [s, n]$ as the string `str` which consists of the string `s` concatenated `n` times.
 
@@ -11,7 +11,8 @@ We define that string `s1` can be obtained from string `s2` if we can remove som
 You are given two strings `s1` and `s2` and two integers `n1` and `n2`. You have the two strings $str1 = [s1, n1]$ and $str2 = [s2, n2]$.
 
 Return *the maximum integer *`m`* such that *$str = [str2, m]$* can be obtained from *`str1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Return *the maximum integer *`m`* such that *$str = [str2, m]$* can be obtained 
 
 Characters selected for the subsequence must keep their order, but matches may cross the boundary between consecutive copies of `s1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Characters selected for the subsequence must keep their order, but matches may c
 
 - **Input:** $s1 = "acb", n1 = 1, s2 = "acb", n2 = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `m`, `n`, and `k`.
 
@@ -9,12 +9,13 @@ A **valid arrangement** is a placement of all `k` pieces on the grid with **at m
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 The Manhattan Distance between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j})$ is $|x_{i} - x_{j}| + |y_{i} - y_{j}|$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ The valid arrangements of pieces on the board are:
 The total Manhattan distance between all pairs of pieces across all arrangements is $4 + 6 + 6 + 4 = 20$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{5}$
 

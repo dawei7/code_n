@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Product`
 
@@ -37,7 +37,8 @@ Write a solution that reports the best **seller** by total sales price, If there
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -54,7 +55,7 @@ Repeated `Sales` rows are permitted and each stored row contributes separately. 
 - Every represented seller whose sum of `price` is the maximum seller total.
 - Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

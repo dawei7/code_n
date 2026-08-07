@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A scenic location is represented by its `name` and attractiveness `score`, where `name` is a **unique** string among all locations and `score` is an integer. Locations can be ranked from the best to the worst. The **higher** the score, the better the location. If the scores of two locations are equal, then the location with the **lexicographically smaller** name is better.
 
@@ -21,12 +21,13 @@ Implement the `SORTracker` class:
 - `void add(string name, int score)` Adds a scenic location with `name` and `score` to the system.
 
 - `string get()` Queries and returns the $$i^{\text{th}}$$ best location, where `i` is the number of times this method has been invoked (including this invocation).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ tracker.get();              // Sorted locations: branford, orlando, alpine, alps
 tracker.get();              // Sorted locations: branford, orlando, alpine, alps, bradford, orland.
                             // Return "orland".
 ```
-### Constraints
+
+### 4. Constraints
 
 - `name` consists of lowercase English letters, and is unique among all locations.
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array `nums` of integers, return how many of them contain an **even number** of digits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Therefore only 12 and 7896 contain an even number of digits.
 - **Output:** `1`
 - **Explanation:**
 Only 1771 contains an even number of digits.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 500$
 

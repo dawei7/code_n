@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two string arrays `username` and `website` and an integer array `timestamp`. All the given arrays are of the same length and the tuple `[username[i], website[i], timestamp[i]]` indicates that the user $\text{username}[i]$ visited the website $\text{website}[i]$ at time $\text{timestamp}[i]$.
 
@@ -17,7 +17,8 @@ The **score** of a **pattern** is the number of users that visited all the websi
 Return the **pattern** with the largest **score**. If there is more than one pattern with the same largest score, return the lexicographically smallest such pattern.
 
 Note that the websites in a pattern **do not** need to be visited *contiguously*, they only need to be visited in the order they appeared in the pattern.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ The input guarantees that at least one user has visited at least three websites.
 
 - A list containing the three website names of the maximum-score pattern, with lexicographic order resolving a score tie.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The pattern ("home", "home", "home") has score 0 (no user visited home 3 times).
 
 - **Input:** $username = ["ua","ua","ua","ub","ub","ub"], timestamp = [1,2,3,4,5,6], website = ["a","b","a","a","b","c"]$
 - **Output:** `["a","b","a"]`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{username.length} \le 50$
 

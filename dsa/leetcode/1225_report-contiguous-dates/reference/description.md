@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Failed`
 
@@ -33,7 +33,8 @@ $\text{period}_{state}$ is *'*`failed'`* *if tasks in this interval failed or `'
 Return the result table ordered by $\text{start}_{date}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -48,7 +49,7 @@ $Failed(\text{fail}_{date})$ and $Succeeded(\text{success}_{date})$ contain uniq
 - Ignore dates outside 2019 when forming the reported intervals.
 - Order the rows by $\text{start}_{date}$ in ascending order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

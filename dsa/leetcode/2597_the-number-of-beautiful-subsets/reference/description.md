@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of positive integers and a **positive** integer `k`.
 
@@ -7,12 +7,13 @@ A subset of `nums` is **beautiful** if it does not contain two integers with an 
 Return *the number of **non-empty beautiful **subsets of the array* `nums`.
 
 A **subset** of `nums` is an array that can be obtained by deleting some (possibly none) elements from `nums`. Two subsets are different if and only if the chosen indices to delete are different.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ It can be proved that there are only 4 beautiful subsets in the array [2,4,6].
 - **Output:** `1`
 - **Explanation:** The beautiful subset of the array nums is [1].
 It can be proved that there is only 1 beautiful subset in the array [1].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 18$
 

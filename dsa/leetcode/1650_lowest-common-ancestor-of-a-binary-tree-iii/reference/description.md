@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two nodes of a binary tree `p` and `q`, return *their lowest common ancestor (LCA)*.
 
@@ -14,7 +14,8 @@ class Node {
 ```
 
 According to the **<a href="https://en.wikipedia.org/wiki/Lowest_common_ancestor" target="_blank">definition of LCA on Wikipedia</a>**: "The lowest common ancestor of two nodes p and q in a tree T is the lowest node that has both p and q as descendants (where we allow **a node to be a descendant of itself**)."
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -41,7 +42,7 @@ class Node:
 
 Return the `Node` object that is the lowest common ancestor of `p` and `q`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Return the `Node` object that is the lowest common ancestor of `p` and `q`.
 
 - **Input:** `root = [1,2], p = 1, q = 2`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[2, 10^{5}]$.
 

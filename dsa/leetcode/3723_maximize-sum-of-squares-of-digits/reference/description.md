@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **positive** integers `num` and `sum`.
 
@@ -11,7 +11,8 @@ A positive integer `n` is **good** if it satisfies both of the following:
 The **score** of a **good** integer `n` is the sum of the squares of digits in `n`.
 
 Return a **string** denoting the **good** integer `n` that achieves the **maximum** **score**. If there are multiple possible integers, return the **maximum **​​​​​​​one. If no such integer exists, return an empty string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ The first digit cannot be zero because the result represents a positive integer 
 
 Return the maximum good integer among those attaining the maximum digit-square score, encoded as a string. Return the empty string when `sum` cannot be distributed among `num` decimal digits.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ The maximum score is 145. The maximum good integer that achieves this score is 9
 There are no integers that have exactly 1 digit and whose digits sum to 10. Therefore, the answer is `""`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 2 * 10^{5}$
 

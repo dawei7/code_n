@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string containing just the characters `'('` and `')'`, return *the length of the longest valid (well-formed) parentheses **substring*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string containing just the characters `'('` and `')'`, return *the lengt
 
 Return the maximum length of a well-formed parenthesis substring.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the maximum length of a well-formed parenthesis substring.
 
 - **Input:** `s = ""`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length} \le 3 * 10^{4}$
 

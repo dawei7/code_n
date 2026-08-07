@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array `arr` and a chunk size `size`, return a **chunked** array.
 
 A **chunked** array contains the original elements in `arr`, but consists of subarrays each of length `size`. The length of the last subarray may be less than `size` if `arr.length` is not evenly divisible by `size`.
 
 Please solve it without using lodash's `_.chunk` function.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Please solve it without using lodash's `_.chunk` function.
 - **Input:** `arr = [], size = 1`
 - **Output:** `[]`
 - **Explanation:** There are no elements to be chunked so an empty array is returned.
-### Constraints
+
+### 4. Constraints
 
 - `arr` is a string representing the array.
 

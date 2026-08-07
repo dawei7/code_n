@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We can represent a sentence as an array of words, for example, the sentence `"I am happy with leetcode"` can be represented as `arr = ["I","am",happy","with","leetcode"]`.
 
@@ -13,7 +13,8 @@ Two sentences are similar if:
 - $\text{sentence1}[i]$ and $\text{sentence2}[i]$ are similar.
 
 Notice that a word is always similar to itself, also notice that the similarity relation is not transitive. For example, if the words `a` and `b` are similar, and the words `b` and `c` are similar, `a` and `c` are **not necessarily similar**.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(sentence1: \text{list}[str], sentence2: \text{list}[str], similarPairs: list[\text{list}[str]]) -> bool$
 
@@ -29,7 +30,7 @@ Let $n$ be the common sentence length when the two lengths match, and let $p = \
 
 Return `True` exactly when the sentences have the same length and every pair of words at a matching position is either identical or directly similar in either listed orientation. Otherwise, return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return `True` exactly when the sentences have the same length and every pair of 
 - **Input:** $sentence1 = ["great"], sentence2 = ["doubleplus","good"], similarPairs = [["great","doubleplus"]]$
 - **Output:** `false`
 - **Explanation:** As they don't have the same length, we return false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence1.length}, \text{sentence2.length} \le 1000$
 

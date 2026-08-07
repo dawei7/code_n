@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree and a positive integer `k`.
 
@@ -6,13 +6,16 @@ The **level sum** in the tree is the sum of the values of the nodes that are on 
 
 Return* the *$$k^{\text{th}}$$* **largest** level sum in the tree (not necessarily distinct)*. If there are fewer than `k` levels in the tree, return `-1`.
 
-**Note** that two nodes are on the same level if they have the same distance from the root.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that two nodes are on the same level if they have the same distance from the root.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ The 2^nd largest level sum is 13.
 - **Input:** `root = [1,2,null,3], k = 1`
 - **Output:** `3`
 - **Explanation:** The largest level sum is 3.
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is `n`.
 

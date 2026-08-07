@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two categories of theme park attractions: **land rides** and **water rides**.
 
@@ -26,12 +26,13 @@ A tourist must experience **exactly one** ride from **each** category, in **eith
 - Immediately after finishing one ride the tourist may board the other (if it is already open) or wait until it opens.
 
 Return the **earliest possible time** at which the tourist can finish both rides.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -101,7 +102,8 @@ Plan A gives the earliest finish time of 9.
 Plan A provides the earliest finish time of 14.**​​​​​​​**
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 100$
 

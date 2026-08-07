@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n`. Consider an `m x n` grid where each cell is initially white. You can paint each cell **red**, **green**, or **blue**. All cells **must** be painted.
 
 Return* the number of ways to color the grid with **no two adjacent cells having the same color***. Since the answer can be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return* the number of ways to color the grid with **no two adjacent cells having
 
 - **Input:** $m = 5, n = 5$
 - **Output:** `580986`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m \le 5$
 

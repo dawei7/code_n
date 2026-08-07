@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 <div data-docx-has-block-data="false" data-lark-html-role="root" data-page-id="Rax8d6clvoFeVtx7bzXcvkVynwf">
 <div class="old-record-id-Y5dGdSKIMoNTttxGhHLccrpEnaf">There is an endless straight line populated with some robots and walls. You are given integer arrays `robots`, `distance`, and `walls`:</div>
@@ -21,12 +21,13 @@ Notes:
 - A wall and a robot may share the same position; the wall can be destroyed by the robot at that position.
 
 - Robots are not destroyed by bullets.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ Notes:
 In this example, only $\text{robots}[0]$ can reach the wall, but its shot to the **right** is blocked by $\text{robots}[1]$; thus the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{robots.length} = \text{distance.length} \le 10^{5}$
 

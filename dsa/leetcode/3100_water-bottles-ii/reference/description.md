@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `numBottles` and `numExchange`.
 
@@ -11,12 +11,13 @@ You are given two integers `numBottles` and `numExchange`.
 Note that you cannot exchange multiple batches of empty bottles for the same value of `numExchange`. For example, if $numBottles = 3$ and $numExchange = 1$, you cannot exchange `3` empty water bottles for `3` full bottles.
 
 Return *the **maximum** number of water bottles you can drink*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *the **maximum** number of water bottles you can drink*.
 - **Input:** $numBottles = 10, numExchange = 3$
 - **Output:** `13`
 - **Explanation:** The table above shows the number of full water bottles, empty water bottles, the value of numExchange, and the number of bottles drunk.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le numBottles \le 100$
 

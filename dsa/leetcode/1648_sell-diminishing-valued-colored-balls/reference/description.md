@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have an `inventory` of different colored balls, and there is a customer that wants `orders` balls of **any** color.
 
@@ -7,12 +7,13 @@ The customer weirdly values the colored balls. Each colored ball's value is the 
 You are given an integer array, `inventory`, where $\text{inventory}[i]$ represents the number of balls of the $$i^{\text{th}}$$ color that you initially own. You are also given an integer `orders`, which represents the total number of balls that the customer wants. You can sell the balls **in any order**.
 
 Return *the **maximum** total value that you can attain after selling *`orders`* colored balls*. As the answer may be too large, return it **modulo **$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The maximum total value is 2 + 5 + 4 + 3 = 14.
 - **Output:** `19`
 - **Explanation:** Sell the 1st color 2 times (3 + 2) and the 2nd color 4 times (5 + 4 + 3 + 2).
 The maximum total value is 3 + 2 + 5 + 4 + 3 + 2 = 19.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{inventory.length} \le 10^{5}$
 

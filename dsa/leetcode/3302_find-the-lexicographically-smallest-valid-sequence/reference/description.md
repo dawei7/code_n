@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `word1` and `word2`.
 
@@ -12,13 +12,16 @@ A sequence of indices `seq` is called **valid** if:
 
 Return an array of size `word2.length` representing the lexicographically smallest **valid** sequence of indices. If no such sequence of indices exists, return an **empty** array.
 
-**Note** that the answer must represent the *lexicographically smallest array*, **not** the corresponding string formed by those indices.<!-- notionvc: 2ff8e782-bd6f-4813-a421-ec25f7e84c1e -->
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the answer must represent the *lexicographically smallest array*, **not** the corresponding string formed by those indices.<!-- notionvc: 2ff8e782-bd6f-4813-a421-ec25f7e84c1e -->
+
+### 4. Examples
 
 #### Example 1
 
@@ -76,7 +79,8 @@ There is no valid sequence of indices.
 **Output:** [0,1]
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{word2.length} < \text{word1.length} \le 3 * 10^{5}$
 

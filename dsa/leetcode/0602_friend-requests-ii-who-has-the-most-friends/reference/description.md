@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `RequestAccepted`
 
@@ -19,12 +19,13 @@ Write a solution to find the people who have the most friends and the most frien
 The test cases are generated so that only one person has the most friends.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

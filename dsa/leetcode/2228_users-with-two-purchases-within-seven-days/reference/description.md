@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Purchases`
 
@@ -19,11 +19,12 @@ Write a solution to report the IDs of the users that made any two purchases **at
 Return the result table ordered by $\text{user}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

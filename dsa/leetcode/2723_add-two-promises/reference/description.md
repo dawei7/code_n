@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two promises `promise1` and `promise2`, return a new promise. `promise1` and `promise2` will both resolve with a number. The returned promise should resolve with the sum of the two numbers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ promise1 = new Promise(resolve => setTimeout(() => resolve(10), 50)),
 promise2 = new Promise(resolve => setTimeout(() => resolve(-12), 30))
 - **Output:** `-2`
 - **Explanation:** The two input promises resolve with the values of 10 and -12 respectively. The returned promise should resolve with a value of 10 + -12 = -2.
-### Constraints
+
+### 4. Constraints
 
 - `promise1` and `promise2` are promises that resolve with a number

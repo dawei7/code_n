@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n`. For **each** index `i` where $0 \le i < n$, define a subarray `nums[start ... i]` where $start = max(0, i - \text{nums}[i])$.
 
 Return the total sum of all elements from the subarray defined for each index in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -99,7 +100,8 @@ The total sum is 11. Hence, 11 is the output.
 The total sum is 13. Hence, 13 is the output.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 100$
 

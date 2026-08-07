@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of integers. You are also given a 2D array `queries`, where $\text{queries}[i] = [\text{pos}_{i}, x_{i}]$.
 
@@ -9,12 +9,13 @@ Return the *sum* of the answers to all queries.
 Since the final answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ After the 2^nd query, `nums = [-3,-2,9]` and the maximum sum of a subsequence wi
 After the 1^st query, `nums = [-5,-1]` and the maximum sum of a subsequence with non-adjacent elements is 0 (choosing an empty subsequence).
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

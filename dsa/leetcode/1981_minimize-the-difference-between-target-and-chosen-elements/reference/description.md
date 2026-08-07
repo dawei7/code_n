@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `mat` and an integer `target`.
 
@@ -7,12 +7,13 @@ Choose one integer from **each row** in the matrix such that the **absolute diff
 Return *the **minimum absolute difference***.
 
 The **absolute difference** between two numbers `a` and `b` is the absolute value of $a - b$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The sum of the chosen elements is 6, and the absolute difference is 94.
 - **Output:** `1`
 - **Explanation:** The best choice is to choose 7 from the first row.
 The absolute difference is 1.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

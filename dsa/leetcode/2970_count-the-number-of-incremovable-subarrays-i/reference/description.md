@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of **positive** integers `nums`.
 
@@ -6,15 +6,18 @@ A subarray of `nums` is called **incremovable** if `nums` becomes **strictly inc
 
 Return *the total number of **incremovable** subarrays of* `nums`.
 
-**Note** that an empty array is considered strictly increasing.
-
-A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that an empty array is considered strictly increasing.
+
+A **subarray** is a contiguous non-empty sequence of elements within an array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ It can be shown that there are only 7 incremovable subarrays in nums.
 - **Input:** `nums = [8,7,6,6]`
 - **Output:** `3`
 - **Explanation:** The 3 incremovable subarrays are: [8,7,6], [7,6,6], and [8,7,6,6]. Note that [8,7] is not an incremovable subarray because after removing [8,7] nums becomes [6,6], which is sorted in ascending order but not strictly increasing.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

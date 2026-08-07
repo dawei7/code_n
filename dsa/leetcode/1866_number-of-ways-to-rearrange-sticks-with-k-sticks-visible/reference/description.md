@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` uniquely-sized sticks whose lengths are integers from `1` to `n`. You want to arrange the sticks such that **exactly** `k` sticks are **visible** from the left. A stick is **visible** from the left if there are no **longer** sticks to the **left** of it.
 
 - For example, if the sticks are arranged `[<u>1</u>,<u>3</u>,2,<u>5</u>,4]`, then the sticks with lengths `1`, `3`, and `5` are visible from the left.
 
 Given `n` and `k`, return *the **number** of such arrangements*. Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The visible sticks are underlined.
 - **Input:** $n = 20, k = 11$
 - **Output:** `647427950`
 - **Explanation:** There are 647427950 (mod $10^{9}$ + 7) ways to rearrange the sticks such that exactly 11 sticks are visible.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

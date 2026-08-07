@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, transform string `s` into string `t` using the following operation any number of times:
 
@@ -11,12 +11,13 @@ Given two strings `s` and `t`, transform string `s` into string `t` using the fo
 Return `true` if *it is possible to transform `s` into `t`*. Otherwise, return `false`.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ A **substring** is a contiguous sequence of characters within a string.
 
 - **Input:** `s = "12345", t = "12435"`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $\text{s.length} = \text{t.length}$
 

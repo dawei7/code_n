@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` which is a permutation of `[0, 1, 2, ..., n - 1]`. The **score** of any permutation of `[0, 1, 2, ..., n - 1]` named `perm` is defined as:
 
 $score(perm) = |\text{perm}[0] - nums[\text{perm}[1]]| + |\text{perm}[1] - nums[\text{perm}[2]]| + ... + |perm[n - 1] - nums[\text{perm}[0]]|$
 
 Return the permutation `perm` which has the **minimum** possible score. If *multiple* permutations exist with this score, return the one that is lexicographically smallest among them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ The lexicographically smallest permutation with minimum cost is `[0,1,2]`. The c
 The lexicographically smallest permutation with minimum cost is `[0,2,1]`. The cost of this permutation is $|0 - 1| + |2 - 2| + |1 - 0| = 2$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 14$
 

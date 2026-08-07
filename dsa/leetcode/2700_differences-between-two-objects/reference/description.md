@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a function that accepts two deeply nested objects or arrays `obj1` and `obj2` and returns a new object representing their differences.
 
@@ -9,11 +9,12 @@ For each changed key, the value should be represented as an array `[obj1 value, 
 When comparing two arrays, the indices of the arrays are considered to be their keys.
 
 You may assume that both objects are the output of `JSON.parse`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -105,7 +106,8 @@ obj2 = {
 - **Output:** ``
 {}
 - **Explanation:** Apart from a different ordering of keys, the two objects are identical so an empty object is returned.
-### Constraints
+
+### 4. Constraints
 
 - `obj1` and `obj2` are valid JSON objects or arrays
 

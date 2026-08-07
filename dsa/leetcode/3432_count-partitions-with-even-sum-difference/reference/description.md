@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -9,12 +9,13 @@ A **partition** is defined as an index `i` where $0 \le i < n - 1$, splitting th
 - Right subarray contains indices `[i + 1, n - 1]`.
 
 Return the number of **partitions** where the **difference** between the **sum** of the left and right subarrays is **even**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ No partition results in an even sum difference.
 All partitions result in an even sum difference.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 100$
 

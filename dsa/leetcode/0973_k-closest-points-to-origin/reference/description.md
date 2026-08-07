@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents a point on the **X-Y** plane and an integer `k`, return the `k` closest points to the origin `(0, 0)`.
 
 The distance between two points on the **X-Y** plane is the Euclidean distance (i.e., $√(x_{1} - x_{2})^2 + (y_{1} - y_{2})^2$).
 
 You may return the answer in **any order**. The answer is **guaranteed** to be **unique** (except for the order that it is in).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ We only want the closest k = 1 points from the origin, so the answer is just [[-
 - **Input:** $points = [[3,3],[5,-1],[-2,4]], k = 2$
 - **Output:** `[[3,3],[-2,4]]`
 - **Explanation:** The answer [[-2,4],[3,3]] would also be accepted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{points.length} \le 10^{4}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the **decimal value** of the binary string formed by concatenating the binary representations of *`1`* to *`n`* in order, **modulo ***$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ After concatenating them, we have "11011", which corresponds to the decimal valu
 **Explanation**: The concatenation results in "1101110010111011110001001101010111100".
 The decimal value of that is 118505380540.
 After modulo $10^{9}$ + 7, the result is 505379714.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

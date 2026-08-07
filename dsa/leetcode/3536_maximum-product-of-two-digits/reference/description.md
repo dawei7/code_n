@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`.
 
 Return the **maximum** product of any two digits in `n`.
 
-**Note:** You may use the **same** digit twice if it appears more than once in `n`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+You may use the **same** digit twice if it appears more than once in `n`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -60,6 +63,7 @@ Return the **maximum** product of any two digits in `n`.
 - The maximum product is 8.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $10 \le n \le 10^{9}$

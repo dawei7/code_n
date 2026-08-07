@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **Fibonacci** tree is a binary tree created using the order function `order(n)`:
 
@@ -13,11 +13,12 @@ Alice and Bob are playing a game with a **Fibonacci** tree with Alice staring fi
 Given the integer `n`, return `true` if Alice wins the game or `false` if Bob wins, assuming both players play optimally.
 
 A subtree of a binary tree `tree` is a tree that consists of a node in `tree` and all of this node's descendants. The tree `tree` could also be considered as a subtree of itself.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,6 +51,7 @@ Return false because Alice loses.
 Alice takes the node 1.
 Bob is forced to take the root node 2, so Bob will lose.
 Return true because Alice wins.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$

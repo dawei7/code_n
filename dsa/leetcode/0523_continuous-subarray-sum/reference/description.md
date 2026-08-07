@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array nums and an integer k, return `true` *if *`nums`* has a **good subarray** or *`false`* otherwise*.
 
@@ -8,17 +8,20 @@ A **good subarray** is a subarray where:
 
 - the sum of the elements of the subarray is a multiple of `k`.
 
-**Note** that:
-
-- A **subarray** is a contiguous part of the array.
-
-- An integer `x` is a multiple of `k` if there exists an integer `n` such that $x = n * k$. `0` is **always** a multiple of `k`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that:
+
+- A **subarray** is a contiguous part of the array.
+
+- An integer `x` is a multiple of `k` if there exists an integer `n` such that $x = n * k$. `0` is **always** a multiple of `k`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ A **good subarray** is a subarray where:
 
 - **Input:** `nums = [23,2,6,4,7], k = 13`
 - **Output:** `false`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

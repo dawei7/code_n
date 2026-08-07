@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a binary string `s` **​​​​​without leading zeros**, return `true`​​​ *if *`s`* contains **at most one contiguous segment of ones***. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,7 +18,8 @@ Given a binary string `s` **​​​​​without leading zeros**, return `true
 
 - **Input:** `s = "110"`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

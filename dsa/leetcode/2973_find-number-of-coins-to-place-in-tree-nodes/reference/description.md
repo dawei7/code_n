@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected** tree with `n` nodes labeled from `0` to $n - 1$, and rooted at node `0`. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -11,12 +11,13 @@ You need to place some coins on every node of the tree. The number of coins to b
 - Otherwise, place an amount of coins equal to the **maximum** product of cost values assigned to `3` distinct nodes in the subtree of node `i`. If this product is **negative**, place `0` coins.
 
 Return *an array *`coin`* of size *`n`* such that *$\text{coin}[i]$* is the number of coins placed at node *`i`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Return *an array *`coin`* of size *`n`* such that *$\text{coin}[i]$* is the numb
 - **Input:** $edges = [[0,1],[0,2]], cost = [1,2,-2]$
 - **Output:** `[0,1,1]`
 - **Explanation:** Node 1 and 2 are leaves with subtree of size 1, place 1 coin on each of them. For node 0 the only possible product of cost is 2 * 1 * -2 = -4. Hence place 0 coins on node 0.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 2 * 10^{4}$
 

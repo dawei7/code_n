@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table `Person`:
 
@@ -49,7 +49,8 @@ Write a solution to find the countries where this company can invest.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -82,7 +83,7 @@ The result format is in the following example.
 
 Return one column named `country`. Include exactly the country names whose average over all incident call endpoints is strictly greater than `AVG(Calls.duration)`. Countries with no call endpoint are absent. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

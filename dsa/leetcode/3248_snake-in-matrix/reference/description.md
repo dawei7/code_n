@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a snake in an `n x n` matrix `grid` and can move in **four possible directions**. Each cell in the `grid` is identified by the position: $\text{grid}[i][j] = (i * n) + j$.
 
@@ -7,12 +7,13 @@ The snake starts at cell 0 and follows a sequence of commands.
 You are given an integer `n` representing the size of the `grid` and an array of strings `commands` where each $\text{command}[i]$ is either `"UP"`, `"RIGHT"`, `"DOWN"`, and `"LEFT"`. It's guaranteed that the snake will remain within the `grid` boundaries throughout its movement.
 
 Return the position of the final cell where the snake ends up after executing `commands`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -155,7 +156,8 @@ Return the position of the final cell where the snake ends up after executing `c
 </table>
 </div>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10$
 

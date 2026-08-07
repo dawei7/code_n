@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -11,7 +11,8 @@ An integer `x` is considered **good** if there exist **at least** two **distinct
 - $x = a^{3} + b^{3}$
 
 Return an array containing all good integers **less than or equal to** `n`, sorted in ascending order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Only positive cube bases are permitted. Each representation must use its non-dec
 
 Return all integers at most `n` that have at least two distinct canonical cube-sum representations, sorted in strictly increasing order. Return an empty array if none exist.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,6 +58,7 @@ Thus, the answer is `[1729, 4104]`.
 There are no good integers less than or equal to 578, so the answer is an empty array.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

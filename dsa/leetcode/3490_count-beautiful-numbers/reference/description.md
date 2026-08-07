@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two positive integers, `l` and `r`. A positive integer is called **beautiful** if the product of its digits is divisible by the sum of its digits.
 
 Return the count of **beautiful** numbers between `l` and `r`, inclusive.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ The beautiful numbers in the range are 10 and 20.
 The beautiful numbers in the range are 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le l \le r < 10^{9}$

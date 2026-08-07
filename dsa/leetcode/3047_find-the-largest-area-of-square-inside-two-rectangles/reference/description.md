@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There exist `n` rectangles in a 2D plane with edges parallel to the x and y axis. You are given two 2D integer arrays `bottomLeft` and `topRight` where $\text{bottomLeft}[i] = [a_{i}, b_{i}]$ and $\text{topRight}[i] = [c_{i}, d_{i}]$ represent the **bottom-left** and **top-right** coordinates of the $$i^{\text{th}}$$ rectangle, respectively.
 
 You need to find the **maximum** area of a **square** that can fit inside the intersecting region of at least two rectangles. Return `0` if such a square does not exist.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ A square with side length 1 can fit inside the intersecting region of any two re
 **Explanation:**
 
 No pair of rectangles intersect, hence, the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{bottomLeft.length} = \text{topRight.length}$
 

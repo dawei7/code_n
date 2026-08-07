@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an integer `numRows`, return the first numRows of **Pascal's triangle**.
 
 In **Pascal's triangle**, each number is the sum of the two numbers directly above it as shown:
 
 ![](images/PascalTriangleAnimated2.gif)
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ In **Pascal's triangle**, each number is the sum of the two numbers directly abo
 
 Return the requested rows as a top-to-bottom list of integer lists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Return the requested rows as a top-to-bottom list of integer lists.
 
 - **Input:** $numRows = 1$
 - **Output:** `[[1]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le numRows \le 30$

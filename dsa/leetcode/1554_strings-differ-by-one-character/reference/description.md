@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a list of strings `dict` where all the strings are of the same length.
 
 Return `true` if there are 2 strings that only differ by 1 character in the same index, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return `true` if there are 2 strings that only differ by 1 character in the same
 
 Return `true` if there exist two strings in `dict` with Hamming distance exactly 1; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return `true` if there exist two strings in `dict` with Hamming distance exactly
 
 - **Input:** $dict = ["abcd","cccc","abyd","abab"]$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - The number of characters in $dict \le 10^{5}$
 

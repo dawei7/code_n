@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of non-negative integers, and two integers `l` and `r`.
 
@@ -8,17 +8,20 @@ Since the answer may be large, return it modulo $10^{9} + 7$.
 
 A **sub-multiset** is an **unordered** collection of elements of the array in which a given value `x` can occur $0, 1, ..., \text{occ}[x]$ times, where $\text{occ}[x]$ is the number of occurrences of `x` in the array.
 
-**Note** that:
-
-- Two **sub-multisets** are the same if sorting both sub-multisets results in identical multisets.
-
-- The sum of an **empty** multiset is `0`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that:
+
+- Two **sub-multisets** are the same if sorting both sub-multisets results in identical multisets.
+
+- The sum of an **empty** multiset is `0`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ A **sub-multiset** is an **unordered** collection of elements of the array in wh
 - **Input:** `nums = [1,2,1,3,5,2], l = 3, r = 5`
 - **Output:** `9`
 - **Explanation:** The subsets of nums that have a sum within the range [3, 5] are {3}, {5}, {1, 2}, {1, 3}, {2, 2}, {2, 3}, {1, 1, 2}, {1, 1, 3}, and {1, 2, 2}.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

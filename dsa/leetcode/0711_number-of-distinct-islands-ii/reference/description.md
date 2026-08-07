@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid`. An island is a group of `1`'s (representing land) connected **4-directionally** (horizontal or vertical.) You may assume all four edges of the grid are surrounded by water.
 
 An island is considered to be the same as another if they have the same shape, or have the same shape after **rotation** (90, 180, or 270 degrees only) or **reflection** (left/right direction or up/down direction).
 
 Return *the number of **distinct** islands*.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(grid: list[\text{list}[int]]) -> int$
 
@@ -19,7 +20,7 @@ Let $m$ be the number of rows and $n$ the number of columns.
 
 Return the number of island equivalence classes when absolute position, the permitted quarter-turn rotations, and horizontal or vertical reflection do not distinguish shapes. Only horizontal and vertical adjacency connects land cells.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return the number of island equivalence classes when absolute position, the perm
 
 - **Input:** `grid = [[1,1,0,0,0],[1,1,0,0,0],[0,0,0,1,1],[0,0,0,1,1]]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

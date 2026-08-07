@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected weighted graph with `n` nodes labeled from 0 to $n - 1$.
 
@@ -15,7 +15,8 @@ A `threshold` value determines whether an edge is considered **light** or **heav
 A path from `source` to `target` is **valid** if it contains **at most** `k` heavy edges.
 
 Return the **minimum integer **`threshold` such that **at least** one **valid** path exists from `source` to `target`. If no such path exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Let $m$ be `edges.length`. For a chosen integer threshold $T$, an edge of weight
 
 Return the minimum integer $T$ for which some `source`-to-`target` path contains at most `k` heavy edges. Return `-1` if no such path exists. When $source = target$, the empty path is valid and the minimum threshold is `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1​​​​​​​​​​​​​​
 
@@ -89,7 +90,8 @@ There is no path from node 0 to node 4. Since the target cannot be reached, the 
 The source and target are the same node. No edges need to be traversed, so the minimum `threshold` is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{3}​​​​​​​$
 

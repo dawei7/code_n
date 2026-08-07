@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` with the following properties:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums` with the following properties:
 - Exactly one element of `nums` is repeated `n` times.
 
 Return *the element that is repeated *`n`* times*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the element that is repeated *`n`* times*.
 
 - **Input:** `nums = [5,1,5,2,5,3,5,4]`
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5000$
 

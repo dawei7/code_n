@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree and a node `u` in the tree, return *the **nearest** node on the **same level** that is to the **right** of* `u`*, or return* `null` *if *`u` *is the rightmost node in its level*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given the `root` of a binary tree and a node `u` in the tree, return *the **near
 
 Return the nearest `TreeNode` to the right of `u` at the same depth level, or `null` if `u` is the rightmost node on its level.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the nearest `TreeNode` to the right of `u` at the same depth level, or `n
 - **Input:** `root = [3,null,4,2], u = 2`
 - **Output:** `null`
 - **Explanation:** There are no nodes to the right of 2.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

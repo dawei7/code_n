@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` containing an out-of-order English representation of digits `0-9`, return *the digits in **ascending** order*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s` containing an out-of-order English representation of digits `
 
 Return a string containing every reconstructed digit in ascending order, preserving multiplicity.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return a string containing every reconstructed digit in ascending order, preserv
 
 - **Input:** `s = "fviefuro"`
 - **Output:** `"45"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

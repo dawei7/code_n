@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 `RandomizedCollection` is a data structure that contains a collection of numbers, possibly duplicates (i.e., a multiset). It should support inserting and removing specific elements and also reporting a random element.
 
@@ -14,8 +14,7 @@ Implement the `RandomizedCollection` class:
 
 You must implement the functions of the class such that each function works on **average** `O(1)` time complexity.
 
-**Note:** The test cases are generated such that `getRandom` will only be called if there is **at least one** item in the `RandomizedCollection`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +24,11 @@ You must implement the functions of the class such that each function works on *
 
 The app adapter returns one result per call. On LeetCode, construct `RandomizedCollection` and call its methods directly. Removal affects only one matching occurrence.
 
-### Examples
+### 3. Note
+
+The test cases are generated such that `getRandom` will only be called if there is **at least one** item in the `RandomizedCollection`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -51,7 +54,8 @@ randomizedCollection.remove(1);   // return true since the collection contains 1
                                   // Removes 1 from the collection. Collection now contains [1,2].
 randomizedCollection.getRandom(); // getRandom should return 1 or 2, both equally likely.
 ```
-### Constraints
+
+### 5. Constraints
 
 - $-2^{31} \le val \le 2^{31} - 1$
 

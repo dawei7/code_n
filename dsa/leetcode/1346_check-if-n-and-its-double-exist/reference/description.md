@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `arr` of integers, check if there exist two indices `i` and `j` such that :
 
@@ -7,12 +7,13 @@ Given an array `arr` of integers, check if there exist two indices `i` and `j` s
 - $0 \le i, j < \text{arr.length}$
 
 - $\text{arr}[i] = 2 * \text{arr}[j]$
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given an array `arr` of integers, check if there exist two indices `i` and `j` s
 - **Input:** `arr = [3,1,7,11]`
 - **Output:** `false`
 - **Explanation:** There is no i and j that satisfy the conditions.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 500$
 

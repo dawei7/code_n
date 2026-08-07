@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a square `board` of characters. You can move on the board starting at the bottom right square marked with the character `'S'`.
 
@@ -7,12 +7,13 @@ You need to reach the top left square marked with the character `'E'`. The rest 
 Return a list of two integers: the first integer is the maximum sum of numeric characters you can collect, and the second is the number of such paths that you can take to get that maximum sum, **taken modulo $10^{9} + 7$**.
 
 In case there is no path, return `[0, 0]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ In case there is no path, return `[0, 0]`.
 
 - **Input:** $board = ["E11","XXX","11S"]$
 - **Output:** `[0,0]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{board.length} = \text{board}[i].length \le 100$

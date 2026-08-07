@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `stones` sorted in **strictly increasing order** representing the positions of stones in a river.
 
@@ -11,12 +11,13 @@ The **length** of a jump is the absolute difference between the position of the 
 The **cost** of a path is the **maximum length of a jump** among all jumps in the path.
 
 Return *the **minimum** cost of a path for the frog*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Since it is not possible to achieve a cost of less than 5, we return it.
 The frog can jump directly to the last stone and come back to the first stone.
 In this case, the length of each jump will be 9. The cost for the path will be max(9, 9) = 9.
 It can be shown that this is the minimum achievable cost.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{stones.length} \le 10^{5}$
 

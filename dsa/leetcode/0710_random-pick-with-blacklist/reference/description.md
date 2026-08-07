@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an array of **unique** integers `blacklist`. Design an algorithm to pick a random integer in the range `[0, n - 1]` that is **not** in `blacklist`. Any integer that is in the mentioned range and not in `blacklist` should be **equally likely** to be returned.
 
@@ -9,12 +9,13 @@ Implement the `Solution` class:
 - `Solution(int n, int[] blacklist)` Initializes the object with the integer `n` and the blacklisted integers `blacklist`.
 
 - `int pick()` Returns a random integer in the range `[0, n - 1]` and not in `blacklist`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ solution.pick(); // return 1
 solution.pick(); // return 0
 solution.pick(); // return 4
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

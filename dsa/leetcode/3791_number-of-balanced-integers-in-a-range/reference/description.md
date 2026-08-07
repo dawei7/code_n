@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `low` and `high`.
 
@@ -9,7 +9,8 @@ An integer is called **balanced** if it satisfies **both** of the following cond
 - The **sum of digits at even positions** is equal to the **sum of digits at odd positions** (the leftmost digit has position 1).
 
 Return an integer representing the number of balanced integers in the range `[low, high]` (both inclusive).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Position parity is determined from the actual leftmost digit of each integer; le
 
 Return the count of integers `x` satisfying $low \le x \le high$, having at least two digits, and having equal odd-position and even-position digit sums.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,6 +61,7 @@ Only 121 is balanced because the sum of digits at even and odd positions are bot
 1234 is not balanced because the sum of digits at odd positions $(1 + 3 = 4)$ does not equal the sum at even positions $(2 + 4 = 6)$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le low \le high \le 10^{15}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -6,16 +6,19 @@ Rearrange elements of `nums` in **non-decreasing** order of their absolute value
 
 Return **any** rearranged array that satisfies this condition.
 
-**Note**: The absolute value of an integer x is defined as:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+: The absolute value of an integer x is defined as:
 
 - `x` if $x \ge 0$
 
 - `-x` if `x < 0`
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -49,7 +52,8 @@ Return **any** rearranged array that satisfies this condition.
 - This corresponds to `[-100, 100]`. Another possible rearrangement is `[100, -100]`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

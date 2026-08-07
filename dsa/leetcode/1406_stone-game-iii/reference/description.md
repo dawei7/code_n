@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob continue their games with piles of stones. There are several stones **arranged in a row**, and each stone has an associated value which is an integer given in the array `stoneValue`.
 
@@ -11,12 +11,13 @@ The objective of the game is to end with the highest score, and the winner is th
 Assume Alice and Bob **play optimally**.
 
 Return `"Alice"`* if Alice will win, *`"Bob"`* if Bob will win, or *`"Tie"`* if they will end the game with the same score*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Remember that both play optimally so here Alice will choose the scenario that ma
 - **Input:** $stoneValue = [1,2,3,6]$
 - **Output:** `"Tie"`
 - **Explanation:** Alice cannot win this game. She can end the game in a draw if she decided to choose all the first three piles, otherwise she will lose.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stoneValue.length} \le 5 * 10^{4}$
 

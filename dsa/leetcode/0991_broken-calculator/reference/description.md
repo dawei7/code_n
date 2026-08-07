@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a broken calculator that has the integer `startValue` on its display initially. In one operation, you can:
 
@@ -7,12 +7,13 @@ There is a broken calculator that has the integer `startValue` on its display in
 - subtract `1` from the number on display.
 
 Given two integers `startValue` and `target`, return *the minimum number of operations needed to display *`target`* on the calculator*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Given two integers `startValue` and `target`, return *the minimum number of oper
 - **Input:** $startValue = 3, target = 10$
 - **Output:** `3`
 - **Explanation:** Use double, decrement and double {3 -> 6 -> 5 -> 10}.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le startValue, target \le 10^{9}$

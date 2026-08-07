@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `items` where $\text{items}[i] = [\text{price}_{i}, \text{weight}_{i}]$ denotes the price and weight of the $$i^{\text{th}}$$ item, respectively.
 
@@ -11,11 +11,12 @@ Each item can be divided into two items with ratios `part1` and `part2`, where $
 - Similarly, the weight of the second item is $\text{weight}_{i} * part2$ and the price of the second item is $\text{price}_{i} * part2$.
 
 Return ***the maximum total price** to fill a bag of capacity* `capacity` *with given items*. If it is impossible to fill a bag return `-1`. Answers within $10^{-5}$ of the **actual answer** will be considered accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be proved that 55.0 is the maximum total price that we can achieve.
 - **Input:** $items = [[100,30]], capacity = 50$
 - **Output:** `-1.00000`
 - **Explanation:** It is impossible to fill a bag with the given item.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{items.length} \le 10^{5}$
 

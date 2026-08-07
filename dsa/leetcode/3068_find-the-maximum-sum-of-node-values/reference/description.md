@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an **undirected** tree with `n` nodes numbered `0` to $n - 1$. You are given a **0-indexed** 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ in the tree. You are also given a **positive** integer `k`, and a **0-indexed** array of **non-negative** integers `nums` of length `n`, where $\text{nums}[i]$ represents the **value** of the node numbered `i`.
 
@@ -13,12 +13,13 @@ Alice wants the sum of values of tree nodes to be **maximum**, for which Alice c
 	</li>
 
 Return *the **maximum** possible **sum** of the **values** Alice can achieve by performing the operation **any** number of times*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ It can be shown that 9 is the maximum achievable sum of values.
 - **Input:** `nums = [7,7,7,7,7,7], k = 3, edges = [[0,1],[0,2],[0,3],[0,4],[0,5]]`
 - **Output:** `42`
 - **Explanation:** The maximum achievable sum is 42 which can be achieved by Alice performing no operations.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 2 * 10^{4}$
 

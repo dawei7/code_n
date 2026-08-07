@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a non-negative integer `n` representing a $2^n x 2^n$ grid. You must fill the grid with integers from 0 to $2^2n - 1$ to make it **special**. A grid is **special** if it satisfies **all** the following conditions:
 
@@ -12,13 +12,16 @@ You are given a non-negative integer `n` representing a $2^n x 2^n$ grid. You mu
 
 Return the **special** $2^n x 2^n$ grid.
 
-**Note**: Any 1x1 grid is special.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: Any 1x1 grid is special.
+
+### 4. Examples
 
 #### Example 1
 
@@ -84,6 +87,7 @@ The numbers in each quadrant are:
 This satisfies the first three requirements. Additionally, each quadrant is also a special grid. Thus, this is a special grid.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $0 \le n \le 10$

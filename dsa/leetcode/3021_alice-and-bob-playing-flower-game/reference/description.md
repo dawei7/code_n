@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are playing a turn-based game on a field, with two lanes of flowers between them. There are `x` flowers in the first lane between Alice and Bob, and `y` flowers in the second lane between them.
 
@@ -21,12 +21,13 @@ Given two integers, `n` and `m`, the task is to compute the number of possible p
 - The number of flowers `y` in the second lane must be in the range `[1,m]`.
 
 Return *the number of possible pairs* `(x, y)` *that satisfy the conditions mentioned in the statement*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,6 +39,7 @@ Return *the number of possible pairs* `(x, y)` *that satisfy the conditions ment
 - **Input:** $n = 1, m = 1$
 - **Output:** `0`
 - **Explanation:** No pairs satisfy the conditions described in the statement.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 10^{5}$

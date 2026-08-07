@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Salary`
 
@@ -21,12 +21,13 @@ Write a solution to swap all `'f'` and `'m'` values (i.e., change all `'f'` valu
 Note that you must write a single update statement, **do not** write any select statement for this problem.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

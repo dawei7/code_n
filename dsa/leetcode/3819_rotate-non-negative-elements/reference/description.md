@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -9,7 +9,8 @@ All **negative** elements must stay in their original positions and must not mov
 After rotation, place the **non-negative** elements back into the array in the new order, filling only the positions that originally contained **non-negative** values and **skipping all negative** positions.
 
 Return the resulting array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ For every index holding a negative value in the input, the output must contain t
 
 Return the array produced by rotating and reinserting only the non-negative values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ Return the array produced by rotating and reinserting only the non-negative valu
 - Placing them back into the non-negative indices results in `[6, 5, -9, 4]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

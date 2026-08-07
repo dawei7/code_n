@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `words` consisting of **distinct** strings.
 
@@ -11,12 +11,13 @@ The string $\text{words}[i]$ can be paired with the string $\text{words}[j]$ if:
 Return *the **maximum** number of pairs that can be formed from the array *`words`*.*
 
 Note that each string can belong in **at most one** pair.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It can be proven that 1 is the maximum number of pairs that can be formed.
 - **Input:** $words = ["aa","ab"]$
 - **Output:** `0`
 - **Explanation:** In this example, we are unable to form any pair of strings.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 50$
 

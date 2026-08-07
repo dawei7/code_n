@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words`. For each index `i` in the range `[0, words.length - 1]`, perform the following steps:
 
@@ -7,12 +7,13 @@ You are given an array of strings `words`. For each index `i` in the range `[0, 
 - Compute the **length** of the **longest common prefix** among all **adjacent** pairs in the modified array.
 
 Return an array `answer`, where $\text{answer}[i]$ is the length of the longest common prefix between the adjacent pairs after removing the element at index `i`. If **no** adjacent pairs remain or if **none** share a common prefix, then $\text{answer}[i]$ should be 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ Return an array `answer`, where $\text{answer}[i]$ is the length of the longest 
 - Removing any index results in an answer of 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 10^{5}$
 

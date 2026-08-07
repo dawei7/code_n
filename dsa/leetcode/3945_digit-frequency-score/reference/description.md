@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
 The **score** of `n` is defined as the **sum** of $d * freq(d)$ over all **distinct** digits `d`, where `freq(d)` denotes the number of times the digit `d` appears in `n`.
 
 Return an integer denoting the score of `n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $D=\lfloor\log_{10} n\rfloor+1$ be the number of decimal digits in `n`.
 
 Return the sum of $d * freq(d)$ over every distinct decimal digit `d` present in `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,6 +52,7 @@ Return the sum of $d * freq(d)$ over every distinct decimal digit `d` present in
 - Thus, the score of `n` is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `arr` of positive integers, consider all binary trees such that:
 
@@ -11,12 +11,13 @@ Given an array `arr` of positive integers, consider all binary trees such that:
 Among all possible binary trees considered, return *the smallest possible sum of the values of each non-leaf node*. It is guaranteed this sum fits into a **32-bit** integer.
 
 A node is a **leaf** if and only if it has zero children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The first has a non-leaf node sum 36, and the second has non-leaf node sum 32.
 
 - **Input:** `arr = [4,11]`
 - **Output:** `44`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 40$
 

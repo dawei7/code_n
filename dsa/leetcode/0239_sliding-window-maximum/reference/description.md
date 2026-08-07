@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`, there is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position.
 
 Return *the max sliding window*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Return *the max sliding window*.
 
 Return the maximum of each of the $\text{nums.length} - k + 1$ windows from left to right.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Window position                Max
 
 - **Input:** `nums = [1], k = 1`
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

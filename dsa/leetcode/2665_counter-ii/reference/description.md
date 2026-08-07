@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a function `createCounter`. It should accept an initial integer `init`. It should return an object with three functions.
 
@@ -9,12 +9,13 @@ The three functions are:
 - `decrement()` reduces the current value by 1 and then returns it.
 
 - `reset()` sets the current value to `init` and then returns it.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ counter.increment(); // 2
 counter.decrement(); // 1
 counter.reset(); // 0
 counter.reset(); // 0
-### Constraints
+
+### 4. Constraints
 
 - $-1000 \le init \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Product`
 
@@ -35,7 +35,8 @@ Write a solution to report the total sales amount of each item for each year, wi
 Return the result table **ordered** by $\text{product}_{id}$ and $\text{report}_{year}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -55,7 +56,7 @@ Return a table with these columns:
 
 Emit one row for each product-year overlap and no row for a product without a sales interval. Order rows by $\text{product}_{id}$ and then by $\text{report}_{year}$. Let $R$ be the number of returned rows.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

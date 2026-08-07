@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `mat` and an integer `k`. The matrix rows are 0-indexed.
 
@@ -13,12 +13,13 @@ The following proccess happens `k` times:
 ![](images/rshift-stlone.jpg)
 
 Return `true` if the final modified matrix after `k` steps is identical to the original matrix, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ In each step left shift is applied to rows 0 and 2 (even indices), and right shi
 As all the values are equal in the matrix, even after performing cyclic shifts the matrix will remain the same.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{mat.length} \le 25$
 

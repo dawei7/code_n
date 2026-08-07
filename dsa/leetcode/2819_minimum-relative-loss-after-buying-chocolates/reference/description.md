@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `prices`, which shows the chocolate prices and a 2D integer array `queries`, where $\text{queries}[i] = [k_{i}, m_{i}]$.
 
@@ -13,11 +13,12 @@ The terms for each query are as follows:
 Bob wants to select **exactly** $m_{i}$ chocolates such that his **relative loss** is **minimized**, more formally, if, in total, Alice has paid $a_{i}$ and Bob has paid $b_{i}$, Bob wants to minimize $b_{i} - a_{i}$.
 
 Return *an integer array* `ans` *where* $\text{ans}[i]$ *is Bob's **minimum relative loss **possible for* $\text{queries}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ It can be shown that these are the minimum possible relative losses.
 For the 2^nd query Bob has to select all the chocolates. He pays 5 + 5 + 5 = 15 and Alice pays 0 + 1 + 2 = 3. So Bob's relative loss is 15 - 3 = 12.
 For the 3^rd query Bob has to select all the chocolates. He pays 3 + 3 + 3 = 9 and Alice pays 2 + 3 + 4 = 9. So Bob's relative loss is 9 - 9 = 0.
 It can be shown that these are the minimum possible relative losses.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prices.length} = n \le 10^{5}$
 

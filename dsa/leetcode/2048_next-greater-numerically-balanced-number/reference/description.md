@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 An integer `x` is **numerically balanced** if for every digit `d` in the number `x`, there are **exactly** `d` occurrences of that digit in `x`.
 
 Given an integer `n`, return *the **smallest numerically balanced** number **strictly greater** than *`n`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,6 +38,7 @@ Note that 1022 cannot be the answer because 0 appeared more than 0 times.
 - The digit 1 occurs 1 time.
 - The digit 3 occurs 3 times.
 It is also the smallest numerically balanced number strictly greater than 3000.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{6}$

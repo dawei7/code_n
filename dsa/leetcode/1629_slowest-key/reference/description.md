@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A newly designed keypad was tested, where a tester pressed a sequence of `n` keys, one at a time.
 
@@ -9,12 +9,13 @@ The tester wants to know the key of the keypress that had the **longest duration
 Note that the same key could have been pressed multiple times during the test, and these multiple presses of the same key **may not** have had the same **duration**.
 
 *Return the key of the keypress that had the **longest duration**. If there are multiple such keypresses, return the lexicographically largest key of the keypresses.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Keypress for 'u' had a duration of 36 - 23 = 13.
 Keypress for 'd' had a duration of 46 - 36 = 10.
 Keypress for 'a' had a duration of 62 - 46 = 16.
 The longest of these was the keypress for 'a' with duration 16.
-### Constraints
+
+### 4. Constraints
 
 - $\text{releaseTimes.length} = n$
 

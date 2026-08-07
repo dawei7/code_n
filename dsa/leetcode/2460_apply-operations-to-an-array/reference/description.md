@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of size `n` consisting of **non-negative** integers.
 
@@ -12,13 +12,16 @@ After performing **all** the operations, **shift** all the `0`'s to the **end** 
 
 Return *the resulting array*.
 
-**Note** that the operations are applied **sequentially**, not all at once.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the operations are applied **sequentially**, not all at once.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ After that, we shift the 0's to the end, which gives the array [1,4,2,0,0,0].
 - **Input:** `nums = [0,1]`
 - **Output:** `[1,0]`
 - **Explanation:** No operation can be applied, we just shift the 0 to the end.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 2000$
 

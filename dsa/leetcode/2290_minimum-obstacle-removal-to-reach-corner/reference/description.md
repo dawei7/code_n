@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `grid` of size `m x n`. Each cell has one of two values:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** 2D integer array `grid` of size `m x n`. Each cell
 You can move up, down, left, or right from and to an empty cell.
 
 Return *the **minimum** number of **obstacles** to **remove** so you can move from the upper left corner *`(0, 0)`* to the lower right corner *$(m - 1, n - 1)$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Note that there may be other ways to remove 2 obstacles to create a path.
 - **Input:** `grid = [[0,1,0,0,0],[0,1,0,1,0],[0,0,0,1,0]]`
 - **Output:** `0`
 - **Explanation:** We can move from (0, 0) to (2, 4) without removing any obstacles, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

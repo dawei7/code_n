@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Suppose an array of length `n` sorted in ascending order is **rotated** between `1` and `n` times. For example, the array `nums = [0,1,2,4,5,6,7]` might become:
 
@@ -11,7 +11,8 @@ Notice that **rotating** an array `[a[0], a[1], a[2], ..., a[n-1]]` 1 time resul
 Given the sorted rotated array `nums` of **unique** elements, return *the minimum element of this array*.
 
 You must write an algorithm that runs in `O(log n) time`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ You must write an algorithm that runs in `O(log n) time`.
 
 Return the minimum value in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return the minimum value in `nums`.
 - **Input:** `nums = [11,13,15,17]`
 - **Output:** `11`
 - **Explanation:** The original array was [11,13,15,17] and it was rotated 4 times.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

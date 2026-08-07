@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -9,7 +9,8 @@ A pair of indices `(i, j)` is called **valid** if:
 - $j - i \ge k$
 
 Return the **maximum** value of $\text{nums}[i] + \text{nums}[j]$ among all valid pairs.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums, k) -> int`
 
@@ -24,7 +25,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return the maximum $\text{nums}[i] + \text{nums}[j]$ over all indices satisfying $0 \le i < j < n$ and $j - i \ge k$. Indices, rather than value differences, determine validity.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ Thus, the answer is 13.​​​​​​​
 - Thus, the answer is 14.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 10^{5}$
 

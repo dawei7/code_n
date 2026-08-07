@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of ways you can write *`n`* as the sum of consecutive positive integers.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Given an integer `n`, return *the number of ways you can write *`n`* as the sum 
 - **Input:** $n = 15$
 - **Output:** `4`
 - **Explanation:** 15 = 8 + 7 = 4 + 5 + 6 = 1 + 2 + 3 + 4 + 5
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -9,7 +9,8 @@ Assume $\text{arr}_{k}$ to be an array obtained by rotating `nums` by `k` positi
 Return *the maximum value of* `F(0), F(1), ..., F(n-1)`.
 
 The test cases are generated so that the answer fits in a **32-bit** integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ The test cases are generated so that the answer fits in a **32-bit** integer.
 
 Return the greatest rotation-function value over all `n` possible clockwise rotations.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ So the maximum value of F(0), F(1), F(2), F(3) is F(3) = 26.
 
 - **Input:** `nums = [100]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

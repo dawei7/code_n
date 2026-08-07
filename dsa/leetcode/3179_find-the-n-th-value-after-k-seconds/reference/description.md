@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `k`.
 
@@ -7,12 +7,13 @@ Initially, you start with an array `a` of `n` integers where $a[i] = 1$ for all 
 Return the **value** of $a[n - 1]$ after `k` seconds.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -90,6 +91,7 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, k \le 1000$

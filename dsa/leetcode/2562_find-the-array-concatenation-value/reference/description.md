@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
@@ -13,12 +13,13 @@ The **concatenation value** of `nums` is initially equal to `0`. Perform this op
 - If only one element exists in `nums`, add its value to the **concatenation value** of `nums`, then remove it.
 
 Return* the concatenation value of `nums`*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Then we delete them from the nums, so nums becomes equal to [13].
 nums has only one element, so we pick 13 and add it to the concatenation value, so it becomes equal to 673.
 Then we delete it from nums, so nums become empty.
 Since the concatenation value is 673 so the answer is 673.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activity`
 
@@ -21,7 +21,8 @@ Write a solution to report the **device** that is first logged in for each playe
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -32,7 +33,7 @@ The result format is in the following example.
 - Return one row per player with columns $\text{player}_{id}$ and $\text{device}_{id}$, where $\text{device}_{id}$ comes from that player's
   minimum $\text{event}_{date}$ row. Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

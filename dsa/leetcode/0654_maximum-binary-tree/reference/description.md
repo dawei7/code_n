@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` with no duplicates. A **maximum binary tree** can be built recursively from `nums` using the following algorithm:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums` with no duplicates. A **maximum binary tre
 - Recursively build the right subtree on the **subarray suffix** to the **right** of the maximum value.
 
 Return *the **maximum binary tree** built from *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return *the **maximum binary tree** built from *`nums`.
 
 - **Input:** `nums = [3,2,1]`
 - **Output:** `[3,null,2,null,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

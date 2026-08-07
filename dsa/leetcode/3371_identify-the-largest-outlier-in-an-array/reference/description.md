@@ -1,18 +1,21 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. This array contains `n` elements, where **exactly** $n - 2$ elements are **special**** numbers**. One of the remaining **two** elements is the *sum* of these **special numbers**, and the other is an **outlier**.
 
 An **outlier** is defined as a number that is *neither* one of the original special numbers *nor* the element representing the sum of those numbers.
 
-**Note** that special numbers, the sum element, and the outlier must have **distinct** indices, but *may *share the **same** value.
-
-Return the **largest**** **potential** outlier** in `nums`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that special numbers, the sum element, and the outlier must have **distinct** indices, but *may *share the **same** value.
+
+Return the **largest**** **potential** outlier** in `nums`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ The special numbers could be -2, -1, and -3, thus making their sum -6 and the ou
 The special numbers could be 1, 1, 1, 1, and 1, thus making their sum 5 and the other 5 as the outlier.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

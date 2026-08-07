@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Assume the following rules are for the tic-tac-toe game on an `n x n` board between two players:
 
@@ -21,7 +21,8 @@ Implement the `TicTacToe` class:
 - `2` if **player 2** is the winner after the move.
 
 	</li>
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ Implement the `TicTacToe` class:
 
 The app adapter returns the status from every move. Each native call returns `0` without a winner or the ID of the player who has just won.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -81,7 +82,8 @@ ticTacToe.move(2, 1, 1); // return 1 (player 1 wins)
 |O|O| |    // Player 1 makes a move at (2, 1).
 |X|X|X|
 ```
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 
@@ -92,4 +94,7 @@ ticTacToe.move(2, 1, 1); // return 1 (player 1 wins)
 - `(row, col)` are **unique** for each different call to `move`.
 
 - At most $n^{2}$ calls will be made to `move`.
-### Follow-up Could you do better than $O(n^{2})$ per `move()` operation?
+
+### 5. Follow-up
+
+Could you do better than $O(n^{2})$ per `move()` operation?

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **2D** integer arrays `nums1` and `nums2.`
 
@@ -15,12 +15,13 @@ Merge the two arrays into one array that is sorted in ascending order by id, res
 - Each id should be included **only once** and its value should be the sum of the values of this id in the two arrays. If the id does not exist in one of the two arrays, then assume its value in that array to be `0`.
 
 Return *the resulting array*. The returned array must be sorted in ascending order by id.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return *the resulting array*. The returned array must be sorted in ascending ord
 - **Input:** $nums1 = [[2,4],[3,6],[5,5]], nums2 = [[1,3],[4,3]]$
 - **Output:** `[[1,3],[2,4],[3,6],[4,3],[5,5]]`
 - **Explanation:** There are no common ids, so we just include each id with its value in the resulting list.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 200$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `n x n` binary grid `board`. In each move, you can swap any two rows with each other, or any two columns with each other.
 
 Return *the minimum number of moves to transform the board into a **chessboard board***. If the task is impossible, return `-1`.
 
 A **chessboard board** is a board where no `0`'s and no `1`'s are 4-directionally adjacent.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The second move swaps the second and third row.
 - **Input:** $board = [[1,0],[1,0]]$
 - **Output:** `-1`
 - **Explanation:** No matter what sequence of moves you make, you cannot end with a valid chessboard.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{board.length}$
 

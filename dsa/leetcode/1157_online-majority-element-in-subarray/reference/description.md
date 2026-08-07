@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that efficiently finds the **majority element** of a given subarray.
 
@@ -9,12 +9,13 @@ Implementing the `MajorityChecker` class:
 - `MajorityChecker(int[] arr)` Initializes the instance of the class with the given array `arr`.
 
 - `int query(int left, int right, int threshold)` returns the element in the subarray `arr[left...right]` that occurs at least `threshold` times, or `-1` if no such element exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ majorityChecker.query(0, 5, 4); // return 1
 majorityChecker.query(0, 3, 3); // return -1
 majorityChecker.query(2, 3, 2); // return 2
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 2 * 10^{4}$
 

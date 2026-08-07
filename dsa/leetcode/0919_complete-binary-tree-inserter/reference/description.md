@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **complete binary tree** is a binary tree in which every level, except possibly the last, is completely filled, and all nodes are as far left as possible.
 
@@ -11,12 +11,13 @@ Implement the `CBTInserter` class:
 - `int insert(int v)` Inserts a `TreeNode` into the tree with value $\text{Node.val} = val$ so that the tree remains complete, and returns the value of the parent of the inserted `TreeNode`.
 
 - $TreeNode \text{get}_{root}()$ Returns the root node of the tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ cBTInserter.insert(3);  // return 1
 cBTInserter.insert(4);  // return 2
 cBTInserter.get_root(); // return [1, 2, 3, 4]
 ```
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree will be in the range `[1, 1000]`.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -33,12 +33,7 @@ Each chargeback corresponds to a transaction made previously even if they were n
 
 Write a solution to find for each month and country: the number of approved transactions and their total amount, the number of chargebacks, and their total amount.
 
-**Note**: In your solution, given the month and country, ignore rows with all zeros.
-
-Return the result table in **any order**.
-
-The result format is in the following example.
-### Function Contract
+### 2. Function Contract
 
 **Input tables**
 
@@ -60,7 +55,15 @@ Return one row for every relevant `(month, country)` pair with these columns:
 
 Use $Transactions.\text{trans}_{date}$ for approved metrics and $Chargebacks.\text{trans}_{date}$ for chargeback metrics.
 
-### Examples
+### 3. Note
+
+: In your solution, given the month and country, ignore rows with all zeros.
+
+Return the result table in **any order**.
+
+The result format is in the following example.
+
+### 4. Examples
 
 #### Example 1
 

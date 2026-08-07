@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have the four functions:
 
@@ -41,12 +41,13 @@ Implement the `FizzBuzz` class:
 - `void fizzbuzz(printFizzBuzz)` Calls `printFizzBuzz` to output `"fizzbuzz"`.
 
 - `void number(printNumber)` Calls `printnumber` to output the numbers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,6 +57,7 @@ Implement the `FizzBuzz` class:
 
 - **Input:** $n = 5$
 - **Output:** `[1,2,"fizz",4,"buzz"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$

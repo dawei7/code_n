@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Roman numerals are represented by seven different symbols: `I`, `V`, `X`, `L`, `C`, `D` and `M`.
 
@@ -24,7 +24,8 @@ Roman numerals are usually written largest to smallest from left to right. Howev
 - `C` can be placed before `D` (500) and `M` (1000) to make 400 and 900.
 
 Given a roman numeral, convert it to an integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -34,7 +35,7 @@ Given a roman numeral, convert it to an integer.
 
 Return the integer represented by `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return the integer represented by `s`.
 - **Input:** `s = "MCMXCIV"`
 - **Output:** `1994`
 - **Explanation:** M = 1000, CM = 900, XC = 90 and IV = 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 15$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `digit`.
 
 Return the total number of times `digit` appears in the decimal representation of all elements in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $S$ denote the total number of decimal digit positions across every value in
 
 Return the number of positions among those $S$ positions whose value equals `digit`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ The digit 2 appears once in 12 and 32, and twice in 22. Thus, the total number o
 The digit 9 does not appear in the decimal representation of any element in `nums`, so the total number of times digit 9 appears is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

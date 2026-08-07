@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **sorted unique** integer array `nums`.
 
@@ -11,7 +11,8 @@ Each range `[a,b]` in the list should be output as:
 - `"a->b"` if $a \neq b$
 
 - `"a"` if $a = b$
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Each range `[a,b]` in the list should be output as:
 
 Return the minimal sorted list of strings that represents every maximal consecutive range in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return the minimal sorted list of strings that represents every maximal consecut
 [2,4] --> "2->4"
 [6,6] --> "6"
 [8,9] --> "8->9"
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums.length} \le 20$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Prices`
 
@@ -35,12 +35,13 @@ Write a solution to find the average selling price for each product. $\text{aver
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

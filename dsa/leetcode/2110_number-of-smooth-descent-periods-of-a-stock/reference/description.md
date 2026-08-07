@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `prices` representing the daily price history of a stock, where $\text{prices}[i]$ is the stock price on the $$i^{\text{th}}$$ day.
 
 A **smooth descent period** of a stock consists of **one or more contiguous** days such that the price on each day is **lower** than the price on the **preceding day** by **exactly** `1`. The first day of the period is exempted from this rule.
 
 Return *the number of **smooth descent periods***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Note that [8,6] is not a smooth descent period as 8 - 6 ≠ 1.
 - **Input:** $prices = [1]$
 - **Output:** `1`
 - **Explanation:** There is 1 smooth descent period: [1]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prices.length} \le 10^{5}$
 

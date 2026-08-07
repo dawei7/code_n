@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `gifts` denoting the number of gifts in various piles. Every second, you do the following:
 
@@ -9,12 +9,13 @@ You are given an integer array `gifts` denoting the number of gifts in various p
 - Reduce the number of gifts in the pile to the floor of the square root of the original number of gifts in the pile.
 
 Return *the number of gifts remaining after *`k`* seconds.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The final remaining gifts are [5,8,9,4,3], so the total number of gifts remainin
 In this case, regardless which pile you choose, you have to leave behind 1 gift in each pile.
 That is, you can't take any pile with you.
 So, the total gifts remaining are 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{gifts.length} \le 10^{3}$
 

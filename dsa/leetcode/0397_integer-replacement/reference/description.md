@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, you can apply one of the following operations:
 
@@ -7,7 +7,8 @@ Given a positive integer `n`, you can apply one of the following operations:
 - If `n` is odd, replace `n` with either $n + 1$ or $n - 1$.
 
 Return *the minimum number of operations needed for* `n` *to become* `1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return *the minimum number of operations needed for* `n` *to become* `1`.
 
 Return the fewest legal replacements required to transform `n` into `1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ or 7 -> 6 -> 3 -> 2 -> 1
 
 - **Input:** $n = 4$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$

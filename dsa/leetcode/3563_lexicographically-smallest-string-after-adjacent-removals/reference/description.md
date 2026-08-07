@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
@@ -10,13 +10,16 @@ You can perform the following operation any number of times (including zero):
 
 Return the **lexicographically smallest** string that can be obtained after performing the operations optimally.
 
-**Note:** Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +67,8 @@ Return the **lexicographically smallest** string that can be obtained after perf
 - However, since `"zdce"` is lexicographically smaller than `"ze"`, the smallest string after all possible removals is `"zdce"`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 250$
 

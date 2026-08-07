@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `compressed` representing a compressed version of a string. The format is a character followed by its frequency. For example, `"a3b1a1c2"` is a compressed version of the string `"aaabacc"`.
 
@@ -10,12 +10,15 @@ We seek a **better compression** with the following conditions:
 
 Return the *better compression* of `compressed`.
 
-**Note:** In the better version of compression, the order of letters may change, which is acceptable.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+In the better version of compression, the order of letters may change, which is acceptable.
+
+### 4. Examples
 
 #### Example 1
 
@@ -47,7 +50,8 @@ Hence, in the resulting string, it should have a size of 10.
 **Output:** "a2b4c1"
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{compressed.length} \le 6 * 10^{4}$
 

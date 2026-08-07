@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` types of units indexed from `0` to $n - 1$.
 
@@ -7,11 +7,12 @@ You are given a 2D integer array `conversions` of length $n - 1$, where $\text{c
 You are also given a 2D integer array `queries` of length `q`, where $\text{queries}[i] = [\text{unitA}_{i}, \text{unitB}_{i}]$.
 
 Return an array `answer` of length `q` where $\text{answer}[i]$ is the number of units of type $\text{unitB}_{i}$ equivalent to 1 unit of type $\text{unitA}_{i}$, and can be represented as `p/q` where `p` and `q` are coprime. Return each $\text{answer}[i]$ as $pq^-1$ **modulo** $10^{9} + 7$, where $q^{-1}$ represents the multiplicative inverse of `q` modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return an array `answer` of length `q` where $\text{answer}[i]$ is the number of
 ![](images/example2.png)
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

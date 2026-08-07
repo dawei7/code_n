@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Under the grammar given below, strings can represent a set of lowercase words. Let `R(expr)` denote the set of words the expression represents.
 
@@ -35,12 +35,13 @@ Formally, the three rules for our grammar:
 - For expressions $e_{1}$ and $e_{2}$, we have $R(e_{1} + e_{2}) = {a + b for (a, b) in R(e_{1}) × R(e_{2})}$, where `+` denotes concatenation, and `×` denotes the cartesian product.
 
 Given an expression representing a set of words under the given grammar, return *the sorted list of words that the expression represents*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Given an expression representing a set of words under the given grammar, return 
 - **Input:** $expression = "{{a,z},a{b,c},{ab,z}}"$
 - **Output:** `["a","ab","ac","z"]`
 - **Explanation:** Each distinct word is written only once in the final answer.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{expression.length} \le 60$
 

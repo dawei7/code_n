@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of only lowercase English letters. In one operation, you can:
 
@@ -9,12 +9,13 @@ You are given a string `s` consisting of only lowercase English letters. In one 
 For example, if `s = "ababc"`, then in one operation, you could delete the first two letters of `s` to get `"abc"`, since the first two letters of `s` and the following two letters of `s` are both equal to `"ab"`.
 
 Return *the **maximum** number of operations needed to delete all of *`s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ We used 4 operations so return 4. It can be proven that 4 is the maximum number 
 - **Input:** `s = "aaaaa"`
 - **Output:** `5`
 - **Explanation:** In each operation, we can delete the first letter of s.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 4000$
 

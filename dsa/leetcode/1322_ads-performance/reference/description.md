@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Ads`
 
@@ -26,7 +26,8 @@ Write a solution to find the `ctr` of each Ad. **Round** `ctr` to **two decimal 
 Return the result table ordered by `ctr` in **descending order** and by $\text{ad}_{id}$ in **ascending order** in case of a tie.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -43,7 +44,7 @@ Return one row for each distinct $\text{ad}_{id}$, with these columns:
 
 An advertisement represented only by `Ignored` rows still appears, with `ctr` equal to `0`. Sort by `ctr` descending and then by $\text{ad}_{id}$ ascending when rates tie.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

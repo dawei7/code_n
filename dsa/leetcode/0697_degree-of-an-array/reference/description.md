@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a non-empty array of non-negative integers `nums`, the **degree** of this array is defined as the maximum frequency of any one of its elements.
 
 Your task is to find the smallest possible length of a (contiguous) subarray of `nums`, that has the same degree as `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ The shortest length is 2. So return 2.
 - **Explanation:**
 The degree is 3 because the element 2 is repeated 3 times.
 So [2,2,3,1,4,2] is the shortest subarray, therefore returning 6.
-### Constraints
+
+### 4. Constraints
 
 - `nums.length` will be between 1 and 50,000.
 

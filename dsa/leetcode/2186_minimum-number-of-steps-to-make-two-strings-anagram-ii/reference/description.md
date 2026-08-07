@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t`. In one step, you can append **any character** to either `s` or `t`.
 
 Return *the minimum number of steps to make *`s`* and *`t`* **anagrams** of each other.*
 
 An **anagram** of a string is a string that contains the same characters with a different (or the same) ordering.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ It can be shown that there is no way to make them anagrams of each other with le
 - **Input:** `s = "night", t = "thing"`
 - **Output:** `0`
 - **Explanation:** The given strings are already anagrams of each other. Thus, we do not need any further steps.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 2 * 10^{5}$
 

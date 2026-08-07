@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` having length `n`, an integer `indexDifference`, and an integer `valueDifference`.
 
@@ -10,13 +10,16 @@ Your task is to find **two** indices `i` and `j`, both in the range `[0, n - 1]`
 
 Return *an integer array* `answer`, *where* $answer = [i, j]$ *if there are two such indices*, *and* $answer = [-1, -1]$ *otherwise*. If there are multiple choices for the two indices, return *any of them*.
 
-**Note:** `i` and `j` may be **equal**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+`i` and `j` may be **equal**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Other valid answers are [0,1], [1,0], and [1,1].
 - **Output:** `[-1,-1]`
 - **Explanation:** In this example, it can be shown that it is impossible to find two indices that satisfy both conditions.
 Hence, [-1,-1] is returned.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A word's **generalized abbreviation** can be constructed by taking any number of **non-overlapping** and **non-adjacent** substrings and replacing them with their respective lengths.
 
@@ -22,7 +22,8 @@ A word's **generalized abbreviation** can be constructed by taking any number of
 	</li>
 
 Given a string `word`, return *a list of all the possible **generalized abbreviations** of* `word`. Return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ Given a string `word`, return *a list of all the possible **generalized abbrevia
 
 Return all generalized abbreviations of `word` in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return all generalized abbreviations of `word` in any order.
 
 - **Input:** $word = "a"$
 - **Output:** `["1","a"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 15$
 

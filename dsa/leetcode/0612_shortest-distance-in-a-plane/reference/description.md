@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Point2D`
 
@@ -18,7 +18,8 @@ The distance between two points $p_{1}(x_{1}, y_{1})$ and $p_{2}(x_{2}, y_{2})$ 
 Write a solution to report the shortest distance between any two points from the `Point2D` table. Round the distance to **two decimal points**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -28,7 +29,7 @@ The result format is in the following example.
 
 Return one row with one column named `shortest`. Its value is the minimum Euclidean distance over all unordered pairs of distinct rows, rounded to two digits after the decimal point.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

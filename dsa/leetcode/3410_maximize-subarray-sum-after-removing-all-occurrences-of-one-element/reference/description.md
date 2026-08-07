@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,12 +9,13 @@ You can do the following operation on the array **at most** once:
 - Remove **all** occurrences of `x` from the array.
 
 Return the **maximum** subarray sum across **all** possible resulting arrays.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The output is $max(4, 4, 7, 4, 2) = 7$.
 It is optimal to not perform any operations.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

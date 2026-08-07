@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and a **positive** integer `k`.
 
@@ -11,12 +11,13 @@ Select a set of **non-overlapping** substrings from the string `s` that satisfy 
 Return *the **maximum** number of substrings in an optimal selection*.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ It can be shown that we cannot find a selection with more than two valid substri
 - **Input:** `s = "adbcda", k = 2`
 - **Output:** `0`
 - **Explanation:** There is no palindrome substring of length at least 2 in the string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{s.length} \le 2000$
 

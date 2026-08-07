@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of size `n`.
 
@@ -9,12 +9,13 @@ Define two arrays `leftSum` and `rightSum` where:
 - $\text{rightSum}[i]$ is the sum of elements to the right of the index `i` in the array `nums`. If there is no such element, $\text{rightSum}[i] = 0$.
 
 Return an integer array `answer` of size `n` where $\text{answer}[i] = |\text{leftSum}[i] - \text{rightSum}[i]|$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The array answer is [|0 - 15|,|10 - 11|,|14 - 3|,|22 - 0|] = [15,1,11,22].
 - **Output:** `[0]`
 - **Explanation:** The array leftSum is [0] and the array rightSum is [0].
 The array answer is [|0 - 0|] = [0].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

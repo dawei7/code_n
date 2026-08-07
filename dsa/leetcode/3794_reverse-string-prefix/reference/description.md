@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`.
 
 Reverse the first `k` characters of `s` and return the resulting string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Only the prefix `s[0:k]` changes order. The suffix beginning at index `k` is cop
 
 Return `s[0:k]` in reverse order followed by `s[k:]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The first $k = 3$ characters `"xyz"` are reversed to `"zyx"`. The final resultin
 The first $k = 1$ character `"h"` remains unchanged on reversal. The final resulting string is `"hey"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

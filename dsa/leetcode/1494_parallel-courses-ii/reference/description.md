@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, which indicates that there are `n` courses labeled from `1` to `n`. You are also given an array `relations` where $\text{relations}[i] = [\text{prevCourse}_{i}, \text{nextCourse}_{i}]$, representing a prerequisite relationship between course $\text{prevCourse}_{i}$ and course $\text{nextCourse}_{i}$: course $\text{prevCourse}_{i}$ has to be taken before course $\text{nextCourse}_{i}$. Also, you are given the integer `k`.
 
 In one semester, you can take **at most** `k` courses as long as you have taken all the prerequisites in the **previous** semesters for the courses you are taking.
 
 Return *the **minimum** number of semesters needed to take all courses*. The testcases will be generated such that it is possible to take every course.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ In the first semester, you can only take courses 2 and 3 since you cannot take m
 In the second semester, you can take course 4.
 In the third semester, you can take course 1.
 In the fourth semester, you can take course 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 15$
 

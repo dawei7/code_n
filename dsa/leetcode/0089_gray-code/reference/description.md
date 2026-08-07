@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An **n-bit gray code sequence** is a sequence of $2^n$ integers where:
 
@@ -13,7 +13,8 @@ An **n-bit gray code sequence** is a sequence of $2^n$ integers where:
 - The binary representation of the **first** and **last** integers differs by **exactly one bit**.
 
 Given an integer `n`, return *any valid **n-bit gray code sequence***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Given an integer `n`, return *any valid **n-bit gray code sequence***.
 
 Return any sequence containing every value from `0` through $2^n-1$ exactly once and satisfying the one-bit adjacency and wraparound rules.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,6 +45,7 @@ The binary representation of [0,1,3,2] is [00,01,11,10].
 
 - **Input:** $n = 1$
 - **Output:** `[0,1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 16$

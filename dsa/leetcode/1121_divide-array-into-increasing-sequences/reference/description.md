@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` sorted in non-decreasing order and an integer `k`, return `true`* if this array can be divided into one or more disjoint increasing subsequences of length at least *`k`*, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ A valid division assigns every array occurrence to exactly one subsequence. Each
 
 - `true` exactly when a valid division exists; otherwise, `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ A valid division assigns every array occurrence to exactly one subsequence. Each
 - **Input:** `nums = [5,6,6,7,8], k = 3`
 - **Output:** `false`
 - **Explanation:** There is no way to divide the array using the conditions required.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

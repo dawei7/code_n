@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice has just graduated from wizard school, and wishes to cast a magic spell to celebrate. The magic spell contains certain **focus points** where magic needs to be concentrated, and some of these focus points contain **magic crystals** which serve as the spell's energy source. Focus points can be linked through **directed runes**, which channel magic flow from one focus point to another.
 
@@ -11,11 +11,12 @@ You need to find the number of directed runes Alice must add to her spell, such 
 - **Receives** magic flow *from* another focus point.
 
 Return the **minimum** number of directed runes that she should add.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Add two directed runes:
 Add a directed rune from focus point 4 to focus point 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

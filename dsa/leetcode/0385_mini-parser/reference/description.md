@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string s represents the serialization of a nested list, implement a parser to deserialize it and return *the deserialized* `NestedInteger`.
 
 Each element is either an integer or a list whose elements may also be integers or other lists.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Each element is either an integer or a list whose elements may also be integers 
 
 Return one `NestedInteger` containing the parsed integer or list hierarchy. The runner serializes that object to ordinary integers and arrays for display and validation.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return one `NestedInteger` containing the parsed integer or list hierarchy. The 
 i.  An integer containing value 456.
 ii. A nested list with one element:
 a. An integer containing value 789
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{4}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of length `n` containing **distinct** positive integers. Return *the **minimum** number of **right shifts** required to sort *`nums`* and *`-1`* if this is not possible.*
 
 A **right shift** is defined as shifting the element at index `i` to index $(i + 1) \% n$, for all indices.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Now nums is sorted; therefore the answer is 2.
 - **Input:** `nums = [2,1,4]`
 - **Output:** `-1`
 - **Explanation:** It's impossible to sort the array using right shifts.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

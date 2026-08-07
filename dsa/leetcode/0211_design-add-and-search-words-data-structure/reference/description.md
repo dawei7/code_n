@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that supports adding new words and finding if a string matches any previously added string.
 
@@ -29,7 +29,8 @@ wordDictionary.search("bad"); // return True
 wordDictionary.search(".ad"); // return True
 wordDictionary.search("b.."); // return True
 ```
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -39,7 +40,7 @@ wordDictionary.search("b.."); // return True
 
 Return the boolean result of each `search` command in command order; additions produce no result.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le \text{word.length} \le 25$
 

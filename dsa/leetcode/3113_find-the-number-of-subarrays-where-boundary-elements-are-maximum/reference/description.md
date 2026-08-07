@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums`.
 
 Return the number of subarrays of `nums`, where the **first** and the **last** elements of the subarray are *equal* to the **largest** element in the subarray.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ There is a single subarray of `nums` which is `[**<u>1</u>**]`, with its largest
 Hence, we return 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

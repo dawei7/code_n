@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **No-Zero integer** is a positive integer that **does not contain any `0`** in its decimal representation.
 
@@ -9,12 +9,13 @@ Given an integer `n`, return *a list of two integers* `[a, b]` *where*:
 - $a + b = n$
 
 The test cases are generated so that there is at least one valid solution. If there are many valid solutions, you can return any of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Both a and b are no-zero integers, and a + b = 2 = n.
 - **Explanation:** Let a = 2 and b = 9.
 Both a and b are no-zero integers, and a + b = 11 = n.
 Note that there are other valid answers as [8, 3] that can be accepted.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{4}$

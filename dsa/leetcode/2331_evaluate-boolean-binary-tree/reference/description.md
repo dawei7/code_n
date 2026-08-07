@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **full binary tree** with the following properties:
 
@@ -17,12 +17,13 @@ Return* the boolean result of **evaluating** the *`root`* node.*
 A **full binary tree** is a binary tree where each node has either `0` or `2` children.
 
 A **leaf node** is a node that has zero children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The root node evaluates to True, so we return true.
 - **Input:** `root = [0]`
 - **Output:** `false`
 - **Explanation:** The root node is a leaf node and it evaluates to false, so we return false.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

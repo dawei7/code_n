@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `NPV`
 
@@ -32,7 +32,8 @@ Write a solution to find the `npv` of each query of the `Queries` table.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -48,7 +49,7 @@ Return exactly the columns `id`, `year`, and `npv`, with one row for every `Quer
 
 Both key columns participate in the lookup, so equal IDs in different years remain independent. Unrequested `NPV` rows must not appear. A stored value of zero is returned as zero just like the missing-row fallback, and result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

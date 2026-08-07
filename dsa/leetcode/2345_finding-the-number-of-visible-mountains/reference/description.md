@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `peaks` where $\text{peaks}[i] = [x_{i}, y_{i}]$ states that mountain `i` has a peak at coordinates $(x_{i}, y_{i})$. A mountain can be described as a right-angled isosceles triangle, with its base along the `x`-axis and a right angle at its peak. More formally, the **gradients** of ascending and descending the mountain are `1` and `-1` respectively.
 
 A mountain is considered **visible** if its peak does not lie within another mountain (including the border of other mountains).
 
 Return *the number of visible mountains*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return *the number of visible mountains*.
 
 Return an integer representing the number of mountains whose peaks are not contained inside or on the border of any other mountain.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ There are 2 mountains that are visible.
 - **Output:** `0`
 - **Explanation:** The diagram above shows the mountains (they completely overlap).
 Both mountains are not visible since their peaks lie within each other.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{peaks.length} \le 10^{5}$
 

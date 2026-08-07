@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, where `nums` is a **permutation** of the numbers in the range `[1, n]`.
 
 A **XOR triplet** is defined as the XOR of three elements $\text{nums}[i] XOR \text{nums}[j] XOR \text{nums}[k]$ where $i \le j \le k$.
 
 Return the number of **unique** XOR triplet values from all possible triplets `(i, j, k)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ The possible XOR triplet values include:
 The unique XOR values are `{0, 1, 2, 3}`, so the output is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

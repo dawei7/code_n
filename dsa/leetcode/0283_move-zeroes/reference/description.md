@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, move all `0`'s to the end of it while maintaining the relative order of the non-zero elements.
 
-**Note** that you must do this in-place without making a copy of the array.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +12,11 @@ Given an integer array `nums`, move all `0`'s to the end of it while maintaining
 
 Return `None`. After mutation, the nonzero values retain their original relative order and all zeroes occupy the final positions.
 
-### Examples
+### 3. Note
+
+that you must do this in-place without making a copy of the array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -23,7 +26,8 @@ Return `None`. After mutation, the nonzero values retain their original relative
 
 - **Input:** `nums = [0]`
 - **Output:** `[0]`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

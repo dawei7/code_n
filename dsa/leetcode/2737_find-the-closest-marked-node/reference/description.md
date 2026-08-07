@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` which is the number of nodes of a **0-indexed directed weighted** graph and a **0-indexed** **2D array** `edges` where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge from node $u_{i}$ to node $v_{i}$ with weight $w_{i}$.
 
 You are also given a node `s` and a node array `marked`; your task is to find the **minimum** distance from `s` to **any** of the nodes in `marked`.
 
 Return *an integer denoting the minimum distance from *`s`* to any node in *`marked`* or *`-1`* if there are no paths from s to any of the marked nodes*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ So the answer is 3.
 - **Explanation:** There are no paths from node 3 (the green node) to any of the marked nodes (the red nodes), so the answer is -1.
 
 ![](images/image_2023-06-13_16-35-47.png)
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 500$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `title` consisting of one or more words separated by a single space, where each word consists of English letters. **Capitalize** the string by changing the capitalization of each word such that:
 
@@ -7,12 +7,13 @@ You are given a string `title` consisting of one or more words separated by a si
 - Otherwise, change the first letter to uppercase and the remaining letters to lowercase.
 
 Return *the **capitalized** *`title`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The remaining words have a length of at least 3, so the first letter of each rem
 - **Explanation:**
 The word "i" has length 1, so it is lowercase.
 The remaining words have a length of at least 3, so the first letter of each remaining word is uppercase, and the remaining letters are lowercase.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{title.length} \le 100$
 

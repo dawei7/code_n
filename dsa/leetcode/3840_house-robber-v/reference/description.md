@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed and is protected by a security system with a color code.
 
@@ -7,7 +7,8 @@ You are given two integer arrays `nums` and `colors`, both of length `n`, where 
 You **cannot rob two adjacent** houses if they share the **same color** code.
 
 Return the **maximum** amount of money you can rob.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Thus, equality of color codes matters only for two consecutive selected indices 
 
 Return the maximum possible value of $\sum_{i\in S}\texttt{nums}[i]$ over all valid choices $S$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return the maximum possible value of $\sum_{i\in S}\texttt{nums}[i]$ over all va
 - Thus, the total amount robbed is $10 + 3 + 9 = 22$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} = \text{colors.length} \le 10^{5}$
 

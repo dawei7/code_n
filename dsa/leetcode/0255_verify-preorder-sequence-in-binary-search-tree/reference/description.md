@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of **unique** integers `preorder`, return `true` *if it is the correct preorder traversal sequence of a binary search tree*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array of **unique** integers `preorder`, return `true` *if it is the co
 
 Return `true` if `preorder` is a valid preorder traversal of a BST, otherwise `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return `true` if `preorder` is a valid preorder traversal of a BST, otherwise `f
 
 - **Input:** $preorder = [5,2,6,1,3]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{preorder.length} \le 10^{4}$
 

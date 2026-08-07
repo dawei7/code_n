@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of **uppercase** English letters.
 
@@ -6,13 +6,16 @@ You can apply some operations to this string where, in one operation, you can re
 
 Return *the **minimum** possible length of the resulting string that you can obtain*.
 
-**Note** that the string concatenates after removing the substring and could produce new `"AB"` or `"CD"` substrings.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the string concatenates after removing the substring and could produce new `"AB"` or `"CD"` substrings.
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ It can be shown that it is the minimum length that we can obtain.
 - **Input:** `s = "ACBBD"`
 - **Output:** `5`
 - **Explanation:** We cannot do any operations on the string so the length remains the same.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -15,12 +15,7 @@ Each row of this table contains the name and the id customer.
 
 Write a solution to find the missing customer IDs. The missing IDs are ones that are not in the `Customers` table but are in the range between `1` and the **maximum** $\text{customer}_{id}$ present in the table.
 
-**Notice** that the maximum $\text{customer}_{id}$ will not exceed `100`.
-
-Return the result table ordered by `ids` in **ascending order**.
-
-The result format is in the following example.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +25,15 @@ The result format is in the following example.
 
 Return a table with single column `ids` (int) containing all missing integers in $[1, \max(\text{customer\\_id})]$ sorted ascending.
 
-### Examples
+### 3. Notice
+
+that the maximum $\text{customer}_{id}$ will not exceed `100`.
+
+Return the result table ordered by `ids` in **ascending order**.
+
+The result format is in the following example.
+
+### 4. Examples
 
 #### Example 1
 

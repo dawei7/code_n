@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums`. An array is considered **positive** if the sum of all numbers in each **subarray** with **more than two** elements is positive.
 
@@ -7,11 +7,12 @@ You can perform the following operation any number of times:
 - Replace **one** element in `nums` with any integer between -$10^{18}$ and $10^{18}$.
 
 Find the **minimum** number of operations needed to make `nums` **positive**.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -84,7 +85,8 @@ Thus, `nums` is positive after one operation.
 The array is already positive, so no operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

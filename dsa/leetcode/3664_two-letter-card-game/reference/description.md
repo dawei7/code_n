@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a deck of cards represented by a string array `cards`, and each card displays two lowercase letters.
 
@@ -15,12 +15,13 @@ You are also given a letter `x`. You play a game with the following rules:
 Return the **maximum** number of points you can gain with optimal play.
 
 Two cards are **compatible** if the strings differ in **exactly** 1 position.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Because there are no more compatible pairs, the total score is 1.
 The only cards that contain the character `'b'` are `"ab"` and `"ba"`. However, they differ in both indices, so they are not compatible. Thus, the output is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{cards.length} \le 10^{5}$
 

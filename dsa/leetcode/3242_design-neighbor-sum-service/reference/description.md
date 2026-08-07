@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `n x n` 2D array `grid` containing **distinct** elements in the range $[0, n^{2} - 1]$.
 
@@ -11,12 +11,13 @@ Implement the `NeighborSum` class:
 - `int diagonalSum(int value)` returns the **sum** of elements which are diagonal neighbors of `value`, that is either to the top-left, top-right, bottom-left, or bottom-right of `value` in `grid`.
 
 ![](images/design.png)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ Implement the `NeighborSum` class:
 - The diagonal neighbors of 9 are 4, 12, 14, and 15.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n = \text{grid.length} = \text{grid}[0].length \le 10$
 

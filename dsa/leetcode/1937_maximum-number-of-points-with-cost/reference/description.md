@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `points` (**0-indexed**). Starting with `0` points, you want to **maximize** the number of points you can get from the matrix.
 
@@ -13,12 +13,13 @@ Return *the **maximum** number of points you can achieve*.
 - `x` for $x \ge 0$.
 
 - `-x` for `x < 0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1** **
 
@@ -42,7 +43,8 @@ The blue cells denote the optimal cells to pick, which have coordinates (0, 1), 
 You add 5 + 3 + 4 = 12 to your score.
 However, you must subtract abs(1 - 1) + abs(1 - 0) = 1 from your score.
 Your final score is 12 - 1 = 11.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{points.length}$
 

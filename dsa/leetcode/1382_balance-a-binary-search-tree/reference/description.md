@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree, return *a **balanced** binary search tree with the same node values*. If there is more than one answer, return **any of them**.
 
 A binary search tree is **balanced** if the depth of the two subtrees of every node never differs by more than `1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ A binary search tree is **balanced** if the depth of the two subtrees of every n
 
 - **Input:** `root = [2,1,3]`
 - **Output:** `[2,1,3]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

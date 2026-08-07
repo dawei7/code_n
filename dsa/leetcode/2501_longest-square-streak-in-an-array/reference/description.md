@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. A subsequence of `nums` is called a **square streak** if:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums`. A subsequence of `nums` is called a **squ
 Return* the length of the **longest square streak** in *`nums`*, or return *`-1`* if there is no **square streak**.*
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ It can be shown that every subsequence of length 4 is not a square streak.
 - **Input:** `nums = [2,3,5,6,7]`
 - **Output:** `-1`
 - **Explanation:** There is no square streak in nums so return -1.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

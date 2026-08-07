@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`. You can choose one of the first `k` letters of `s` and append it at the end of the string.
 
 Return *the lexicographically smallest string you could have after applying the mentioned step any number of moves*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ In the second move, we move the 1^st character 'b' to the end, obtaining the fin
 - **Explanation:**
 In the first move, we move the 1^st character 'b' to the end, obtaining the string "aacab".
 In the second move, we move the 3^rd character 'c' to the end, obtaining the final result "aaabc".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{s.length} \le 1000$
 

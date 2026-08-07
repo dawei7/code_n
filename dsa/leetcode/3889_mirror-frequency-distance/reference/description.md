@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters and digits.
 
@@ -26,7 +26,8 @@ For each **unique** character `c` in the string:
 The mirror pairs `(c, m)` and `(m, c)` are the same and must be counted **only once**.
 
 Return an integer denoting the total sum of these values over all such **distinct mirror pairs**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -38,7 +39,7 @@ Letters are mirrored only within `a` through `z`, while digits are mirrored only
 
 Return the sum of the absolute frequency differences for all distinct mirror pairs. Each unordered pair is included at most once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -176,7 +177,8 @@ Thus, the answer is $1 + 0 + 1 = 2$.​​​​​​​
 Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{5}$
 

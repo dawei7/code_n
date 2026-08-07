@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s`, you can transform every letter individually to be lowercase or uppercase to create another string.
 
 Return *a list of all possible strings we could create*. Return the output in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Return *a list of all possible strings we could create*. Return the output in **
 
 - **Input:** `s = "3z4"`
 - **Output:** `["3z4","3Z4"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 12$
 

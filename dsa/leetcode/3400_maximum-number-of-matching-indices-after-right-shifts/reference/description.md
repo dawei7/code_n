@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays, `nums1` and `nums2`, of the same length.
 
@@ -7,11 +7,12 @@ An index `i` is considered **matching** if $\text{nums1}[i] = \text{nums2}[i]$.
 Return the **maximum** number of **matching** indices after performing any number of **right shifts** on `nums1`.
 
 A **right shift** is defined as shifting the element at index `i` to index $(i + 1) \% n$, for all indices.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ If we right shift `nums1` 2 times, it becomes `[1, 2, 3, 1, 2, 3]`. Every index 
 If we right shift `nums1` 3 times, it becomes `[5, 3, 1, 1, 4, 2]`. Indices 1, 2, and 4 match, so the output is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums1.length} = \text{nums2.length}$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a sorted array of distinct integers and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
 
 You must write an algorithm with `O(log n)` runtime complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ You must write an algorithm with `O(log n)` runtime complexity.
 
 Return the existing index of `target`, or its order-preserving insertion index if it is absent.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the existing index of `target`, or its order-preserving insertion index i
 
 - **Input:** `nums = [1,3,5,6], target = 7`
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

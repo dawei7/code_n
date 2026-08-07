@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are playing a game that contains multiple characters, and each of the characters has **two** main properties: **attack** and **defense**. You are given a 2D integer array `properties` where $\text{properties}[i] = [\text{attack}_{i}, \text{defense}_{i}]$ represents the properties of the $$i^{\text{th}}$$ character in the game.
 
 A character is said to be **weak** if any other character has **both** attack and defense levels **strictly greater** than this character's attack and defense levels. More formally, a character `i` is said to be **weak** if there exists another character `j` where $\text{attack}_{j} > \text{attack}_{i}$ and $\text{defense}_{j} > \text{defense}_{i}$.
 
 Return *the number of **weak** characters*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the number of **weak** characters*.
 - **Input:** $properties = [[1,5],[10,4],[4,3]]$
 - **Output:** `1`
 - **Explanation:** The third character is weak because the second character has a strictly greater attack and defense.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{properties.length} \le 10^{5}$
 

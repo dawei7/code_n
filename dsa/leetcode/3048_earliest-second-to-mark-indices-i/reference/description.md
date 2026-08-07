@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **1-indexed** integer arrays, `nums` and, `changeIndices`, having lengths `n` and `m`, respectively.
 
@@ -13,12 +13,13 @@ In each second, `s`, in order from `1` to `m` (**inclusive**), you can perform *
 - Do nothing.
 
 Return *an integer denoting the **earliest second** in the range *`[1, m]`* when **all** indices in *`nums`* can be marked by choosing operations optimally, or *`-1`* if it is impossible.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Hence, the answer is 6.
 - **Output:** `-1`
 - **Explanation:** In this example, it is impossible to mark all indices because index 1 isn't in changeIndices.
 Hence, the answer is -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 2000$
 

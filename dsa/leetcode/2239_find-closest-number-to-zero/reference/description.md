@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of size `n`, return *the number with the value **closest** to *`0`* in *`nums`. If there are multiple answers, return *the number with the **largest** value*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Thus, the closest number to 0 in the array is 1.
 - **Input:** `nums = [2,-1,1]`
 - **Output:** `1`
 - **Explanation:** 1 and -1 are both the closest numbers to 0, so 1 being larger is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

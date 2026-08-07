@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `wordlist`, we want to implement a spellchecker that converts a query word into a correct word.
 
@@ -34,12 +34,13 @@ In addition, the spell checker operates under the following precedence rules:
 - If the query has no matches in the wordlist, you should return the empty string.
 
 Given some `queries`, return a list of words `answer`, where $\text{answer}[i]$ is the correct word for $query = \text{queries}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Given some `queries`, return a list of words `answer`, where $\text{answer}[i]$ 
 
 - **Input:** $wordlist = ["yellow"], queries = ["YellOw"]$
 - **Output:** `["yellow"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{wordlist.length}, \text{queries.length} \le 5000$
 

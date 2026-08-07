@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Friendship`
 
@@ -31,7 +31,8 @@ Write a solution to recommend pages to the user with $\text{user}_{id} = 1$ usin
 Return result table in **any order** without duplicates.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 ### Inputs
 
@@ -41,7 +42,7 @@ $Friendship(\text{user1}_{id}, \text{user2}_{id})$ contains $F$ unique friendshi
 
 Return one column named $\text{recommended}_{page}$. Include a page exactly when at least one friend of user `1` likes it and user `1` does not. Do not return duplicate page identifiers; result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

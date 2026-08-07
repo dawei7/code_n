@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given the array `paths`, where $\text{paths}[i] = [\text{cityA}_{i}, \text{cityB}_{i}]$ means there exists a direct path going from $\text{cityA}_{i}$ to $\text{cityB}_{i}$. *Return the destination city, that is, the city without any path outgoing to another city.*
 
 It is guaranteed that the graph of paths forms a line without any loop, therefore, there will be exactly one destination city.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Clearly the destination city is "A".
 
 - **Input:** $paths = [["A","Z"]]$
 - **Output:** `"Z"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{paths.length} \le 100$
 

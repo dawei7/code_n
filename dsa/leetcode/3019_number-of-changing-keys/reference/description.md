@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed **string `s` typed by a user. Changing a key is defined as using a key different from the last used key. For example, `s = "ab"` has a change of a key while `s = "bBBb"` does not have any.
 
 Return *the number of times the user had to change the key. *
 
-**Note: **Modifiers like `shift` or `caps lock` won't be counted in changing the key that is if a user typed the letter `'a'` and then the letter `'A'` then it will not be considered as a changing of key.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Modifiers like `shift` or `caps lock` won't be counted in changing the key that is if a user typed the letter `'a'` and then the letter `'A'` then it will not be considered as a changing of key.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +30,8 @@ From s[4] = 'c' to s[5] = 'C', there is no change of key as caps lock or shift i
 - **Input:** `s = "AaAaAaaA"`
 - **Output:** `0`
 - **Explanation:** There is no change of key since only the letters 'a' and 'A' are<!-- notionvc: 8849fe75-f31e-41dc-a2e0-b7d33d8427d2 --> pressed which does not require change of key.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` of length `n`, where:
 
@@ -18,17 +18,18 @@ For each query, determine the **maximum** possible number of active sections in 
 
 Return an array `answer`, where $\text{answer}[i]$ is the result for $\text{queries}[i]$.
 
-**Note**
-
-- For each query, treat $s[l_{i}...r_{i}]$ as if it is **augmented** with a `'1'` at both ends, forming $t = '1' + s[l_{i}...r_{i}] + '1'$. The augmented `'1'`s **do not** contribute to the final count.
-
-- The queries are independent of each other.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- For each query, treat $s[l_{i}...r_{i}]$ as if it is **augmented** with a `'1'` at both ends, forming $t = '1' + s[l_{i}...r_{i}] + '1'$. The augmented `'1'`s **do not** contribute to the final count.
+
+- The queries are independent of each other.
+
+### 4. Examples
 
 #### Example 1
 
@@ -121,7 +122,8 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 	Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is possible. The maximum number of active sections is 2.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

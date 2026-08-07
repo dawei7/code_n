@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, a **lucky integer** is an integer that has a frequency in the array equal to its value.
 
 Return *the largest **lucky integer** in the array*. If there is no **lucky integer** return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the largest **lucky integer** in the array*. If there is no **lucky inte
 - **Input:** `arr = [2,2,2,3,3]`
 - **Output:** `-1`
 - **Explanation:** There are no lucky numbers in the array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 500$
 

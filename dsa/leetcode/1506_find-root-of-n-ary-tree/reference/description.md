@@ -1,10 +1,22 @@
-## Description
+### 1. Description
 
 You are given all the nodes of an **<a href="https://leetcode.com/explore/learn/card/n-ary-tree/">N-ary tree</a>** as an array of `Node` objects, where each node has a **unique value**.
 
 Return *the **root** of the N-ary tree*.
 
-**Custom testing:**
+### 2. Function Contract
+
+**Inputs**
+
+- `tree`: A list of all $N$ N-ary `Node` objects in arbitrary order. Each node exposes a unique integer `val` and a `children` list containing references to its children.
+
+Let $N$ be the total number of nodes in the tree.
+
+**Return value**
+
+Return the root `Node` object. The root is the unique node in `tree` that does not appear in any other node's `children` list.
+
+### 3. Custom Testing
 
 An N-ary tree can be serialized as represented in its level order traversal where each group of children is separated by the `null` value (see examples).
 
@@ -21,19 +33,8 @@ The testing will be done in the following way:
 - The driver code will pass the array to `findRoot`, and your function should find and return the root `Node` object in the array.
 
 - The driver code will take the returned `Node` object and serialize it. If the serialized value and the input data are the **same**, the test **passes**.
-### Function Contract
 
-**Inputs**
-
-- `tree`: A list of all $N$ N-ary `Node` objects in arbitrary order. Each node exposes a unique integer `val` and a `children` list containing references to its children.
-
-Let $N$ be the total number of nodes in the tree.
-
-**Return value**
-
-Return the root `Node` object. The root is the unique node in `tree` that does not appear in any other node's `children` list.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The input data and serialized Node(1) are the same, so the test passes.
 
 - **Input:** $tree = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]$
 - **Output:** `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
-### Constraints
+
+### 5. Constraints
 
 - The total number of nodes is between $[1, 5 * 10^{4}]$.
 

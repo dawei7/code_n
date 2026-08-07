@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `limit`, return the size of the longest **non-empty** subarray such that the absolute difference between any two elements of this subarray is less than or equal to `limit`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Therefore, the size of the longest subarray is 2.
 
 - **Input:** `nums = [4,2,2,2,4,4,2,2], limit = 0`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

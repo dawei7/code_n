@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string of digits `num`, such as `"123456579"`. We can split it into a Fibonacci-like sequence `[123, 456, 579]`.
 
@@ -13,12 +13,13 @@ Formally, a **Fibonacci-like** sequence is a list `f` of non-negative integers s
 Note that when splitting the string into pieces, each piece must not have extra leading zeroes, except if the piece is the number `0` itself.
 
 Return any Fibonacci-like sequence split from `num`, or return `[]` if it cannot be done.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return any Fibonacci-like sequence split from `num`, or return `[]` if it cannot
 - **Input:** $num = "0123"$
 - **Output:** `[]`
 - **Explanation:** Leading zeroes are not allowed, so "01", "2", "3" is not valid.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 200$
 

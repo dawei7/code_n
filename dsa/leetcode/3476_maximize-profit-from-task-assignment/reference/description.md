@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `workers`, where $\text{workers}[i]$ represents the skill level of the $$i^{\text{th}}$$ worker. You are also given a 2D integer array `tasks`, where:
 
@@ -9,11 +9,12 @@ You are given an integer array `workers`, where $\text{workers}[i]$ represents t
 Each worker can complete **at most** one task, and they can only take a task if their skill level is **equal** to the task's skill requirement. An **additional** worker joins today who can take up *any* task, **regardless** of the skill requirement.
 
 Return the **maximum** total profit that can be earned by optimally assigning the tasks to the workers.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Since no worker matches the skill requirement, only the additional worker can co
 The additional worker completes task 1. Worker 0 cannot work since no task has a skill requirement of 7.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{workers.length} \le 10^{5}$
 

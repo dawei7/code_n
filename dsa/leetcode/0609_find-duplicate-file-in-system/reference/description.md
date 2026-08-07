@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a list `paths` of directory info, including the directory path, and all the files with contents in this directory, return *all the duplicate files in the file system in terms of their paths*. You may return the answer in **any order**.
 
@@ -13,12 +13,13 @@ It means there are `n` files `(f1.txt, f2.txt ... fn.txt)` with content $(\text{
 The output is a list of groups of duplicate file paths. For each group, it contains all the file paths of the files that have the same content. A file path is a string that has the following format:
 
 - $"\text{directory}_{path}/\text{file}_{name}.txt"$
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The output is a list of groups of duplicate file paths. For each group, it conta
 
 - **Input:** $paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)"]$
 - **Output:** `[["root/a/2.txt","root/c/d/4.txt"],["root/a/1.txt","root/c/3.txt"]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{paths.length} \le 2 * 10^{4}$
 

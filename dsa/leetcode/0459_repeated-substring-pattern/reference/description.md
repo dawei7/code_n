@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, check if it can be constructed by taking a substring of it a
 
 - Return `True` if one proper nonempty substring repeated at least twice equals all of `s`; otherwise, return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Given a string `s`, check if it can be constructed by taking a substring of it a
 - **Input:** `s = "abcabcabcabc"`
 - **Output:** `true`
 - **Explanation:** It is the substring "abc" four times or the substring "abcabc" twice.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We call an array `arr` of length `n` **consecutive** if one of the following holds:
 
@@ -14,12 +14,15 @@ Given an array of integers `nums`, return the *sum* of the **values** of all **c
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7.$
 
-**Note** that an array of length 1 is also considered consecutive.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that an array of length 1 is also considered consecutive.
+
+### 4. Examples
 
 #### Example 1
 
@@ -63,7 +66,8 @@ The consecutive subarrays are: `[7]`, `[6]`, `[1]`, `[2]`, `[7, 6]`, `[1, 2]`.
 Sum of their values would be: $7 + 6 + 1 + 2 + 13 + 3 = 32$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

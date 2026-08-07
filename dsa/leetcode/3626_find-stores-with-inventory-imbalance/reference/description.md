@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `stores`
 
@@ -156,7 +156,7 @@ The Results table is ordered by imbalance ratio in descending order, then by sto
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

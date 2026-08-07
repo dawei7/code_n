@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You have `n` robots. You are given two **0-indexed** integer arrays, `chargeTimes` and `runningCosts`, both of length `n`. The $$i^{\text{th}}$$ robot costs $\text{chargeTimes}[i]$ units to charge and costs $\text{runningCosts}[i]$ units to run. You are also given an integer `budget`.
 
 The **total cost** of running `k` chosen robots is equal to $max(chargeTimes) + k * sum(runningCosts)$, where `max(chargeTimes)` is the largest charge cost among the `k` robots and `sum(runningCosts)` is the sum of running costs among the `k` robots.
 
 Return* the **maximum** number of **consecutive** robots you can run such that the total cost **does not** exceed *`budget`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ It can be shown that it is not possible to run more than 3 consecutive robots wi
 - **Input:** $chargeTimes = [11,12,19], runningCosts = [10,8,7], budget = 19$
 - **Output:** `0`
 - **Explanation:** No robot can be run that does not exceed the budget, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $\text{chargeTimes.length} = \text{runningCosts.length} = n$
 

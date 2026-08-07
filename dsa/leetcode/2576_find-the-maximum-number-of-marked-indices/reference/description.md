@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
@@ -7,12 +7,13 @@ Initially, all of the indices are unmarked. You are allowed to make this operati
 - Pick two **different unmarked** indices `i` and `j` such that $2 * \text{nums}[i] \le \text{nums}[j]$, then mark `i` and `j`.
 
 Return *the maximum possible number of marked indices in `nums` using the above operation any number of times*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Since there is no other operation, the answer is 4.
 - **Input:** `nums = [7,6,8]`
 - **Output:** `0`
 - **Explanation:** There is no valid operation to do, so the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

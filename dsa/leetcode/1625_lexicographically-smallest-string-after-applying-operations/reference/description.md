@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of **even length** consisting of digits from `0` to `9`, and two integers `a` and `b`.
 
@@ -11,12 +11,13 @@ You can apply either of the following two operations any number of times and in 
 Return *the **lexicographically smallest** string you can obtain by applying the above operations any number of times on* `s`.
 
 A string `a` is lexicographically smaller than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears earlier in the alphabet than the corresponding letter in `b`. For example, `"0158"` is lexicographically smaller than `"0190"` because the first position they differ is at the third letter, and `'5'` comes before `'9'`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ There is no way to obtain a string that is lexicographically smaller than "24".
 - **Input:** `s = "0011", a = 4, b = 2`
 - **Output:** `"0011"`
 - **Explanation:** There are no sequence of operations that will give us a lexicographically smaller string than "0011".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

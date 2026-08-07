@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a very large integer `n`, represented as a string,​​​​​​ and an integer digit `x`. The digits in `n` and the digit `x` are in the **inclusive** range `[1, 9]`, and `n` may represent a **negative** number.
 
@@ -9,12 +9,13 @@ You want to **maximize **`n`**'s numerical value** by inserting `x` anywhere in 
 - If $n = -55$ and $x = 2$, it would be best to insert it before the first `5`, making $n = -255$.
 
 Return *a string representing the **maximum** value of *`n`*​​​​​​ after the insertion*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *a string representing the **maximum** value of *`n`*​​​​​​ a
 - **Input:** $n = "-13", x = 2$
 - **Output:** `"-123"`
 - **Explanation:** You can make n one of {-213, -123, -132}, and the largest of those three is -123.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{n.length} \le 10^{5}$
 

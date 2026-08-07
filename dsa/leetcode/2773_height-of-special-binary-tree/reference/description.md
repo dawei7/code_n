@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `root`, which is the root of a **special** binary tree with `n` nodes. The nodes of the special binary tree are numbered from `1` to `n`. Suppose the tree has `k` leaves in the following order: $b_{1} <_ b_{2} < ... < b_{k}$.
 
@@ -10,12 +10,15 @@ The leaves of this tree have a **special** property! That is, for every leaf $b_
 
 Return* the height of the given tree.*
 
-**Note:** The height of a binary tree is the length of the **longest path** from the root to any other node.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+The height of a binary tree is the length of the **longest path** from the root to any other node.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ Return* the height of the given tree.*
 - **Explanation:** The given tree is shown in the following picture. Each leaf's left child is the leaf to its left (shown with the blue edges). Each leaf's right child is the leaf to its right (shown with the red edges). We can see that the graph has a height of 3.
 
 ![](images/3.png)
-### Constraints
+
+### 5. Constraints
 
 - $n = number of nodes in the tree$
 

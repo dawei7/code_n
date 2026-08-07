@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` people and `40` types of hats labeled from `1` to `40`.
 
@@ -7,12 +7,13 @@ Given a 2D integer array `hats`, where $\text{hats}[i]$ is a list of all hats pr
 Return the number of ways that `n` people can wear **different** hats from each other.
 
 Since the answer may be too large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ First person chooses hat 3, Second person chooses hat 4 and last one hat 5.
 - **Output:** `24`
 - **Explanation:** Each person can choose hats labeled from 1 to 4.
 Number of Permutations of (1,2,3,4) = 24.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{hats.length}$
 

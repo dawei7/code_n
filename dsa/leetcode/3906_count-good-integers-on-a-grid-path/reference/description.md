@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `l` and `r`, and a string `directions` consisting of **exactly** three `'D'` characters and three `'R'` characters.
 
@@ -20,7 +20,8 @@ For each integer `x` in the range `[l, r]` (inclusive), perform the following st
 The integer `x` is considered **good** if the recorded sequence is **non-decreasing**.
 
 Return an integer representing the number of good integers in the range `[l, r]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -38,7 +39,7 @@ $d_0\le d_1\le\cdots\le d_6.$
 
 Leading zeros are actual grid digits and participate in this comparison.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -292,7 +293,8 @@ The grid for $x = 1288561398769758$:
 - No numbers are good, giving a total of 0 good integers in the range.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le l \le r \le 9 × 10^{15}$
 

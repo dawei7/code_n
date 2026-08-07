@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array of unique positive integers `nums`. Consider the following graph:
 
@@ -7,12 +7,13 @@ You are given an integer array of unique positive integers `nums`. Consider the 
 - There is an undirected edge between $\text{nums}[i]$ and $\text{nums}[j]$ if $\text{nums}[i]$ and $\text{nums}[j]$ share a common factor greater than `1`.
 
 Return *the size of the largest connected component in the graph*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *the size of the largest connected component in the graph*.
 
 - **Input:** `nums = [2,3,6,7,4,12,21,39]`
 - **Output:** `8`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

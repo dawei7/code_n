@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents a point on an **X-Y **plane.
 
 **Straight lines** are going to be added to the **X-Y** plane, such that every point is covered by at **least **one line.
 
 Return *the **minimum **number of **straight lines** needed to cover all the points*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the **minimum **number of **straight lines** needed to cover all the poi
 - **Output:** `1`
 - **Explanation:** The minimum number of straight lines needed is one. The only solution is to add:
 - One line connecting the point at (-2, -2) to the point at (1, 4).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 10$
 

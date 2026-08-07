@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing the number of nodes in an **undirected** graph. The nodes are labeled from `1` to `n`.
 
@@ -11,12 +11,13 @@ Divide the nodes of the graph into `m` groups (**1-indexed**) such that:
 - For every pair of nodes in the graph that are connected by an edge $[a_{i}, b_{i}]$, if $a_{i}$ belongs to the group with index `x`, and $b_{i}$ belongs to the group with index `y`, then $|y - x| = 1$.
 
 Return *the maximum number of groups (i.e., maximum *`m`*) into which you can divide the nodes*. Return `-1` *if it is impossible to group the nodes with the given conditions*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ It can be shown that that if we create a fifth group and move any node from the 
 - **Output:** `-1`
 - **Explanation:** If we add node 1 to the first group, node 2 to the second group, and node 3 to the third group to satisfy the first two edges, we can see that the third edge will not be satisfied.
 It can be shown that no grouping is possible.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 500$
 

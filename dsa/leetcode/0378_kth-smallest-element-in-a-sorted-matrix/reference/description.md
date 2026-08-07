@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an `n x n` `matrix` where each of the rows and columns is sorted in ascending order, return *the* $$k^{\text{th}}$$ *smallest element in the matrix*.
 
 Note that it is the $$k^{\text{th}}$$ smallest element **in the sorted order**, not the $$k^{\text{th}}$$ **distinct** element.
 
 You must find a solution with a memory complexity better than $O(n^{2})$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ You must find a solution with a memory complexity better than $O(n^{2})$.
 
 Return the value at rank `k` in the sorted multiset of all entries.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the value at rank `k` in the sorted multiset of all entries.
 
 - **Input:** $matrix = [[-5]], k = 1$
 - **Output:** `-5`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{matrix.length} = \text{matrix}[i].length$
 

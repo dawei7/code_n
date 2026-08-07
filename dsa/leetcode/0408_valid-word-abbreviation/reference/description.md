@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A string can be **abbreviated** by replacing any number of **non-adjacent**, **non-empty** substrings with their lengths. The lengths **should not** have leading zeros.
 
@@ -25,7 +25,8 @@ The following are **not valid** abbreviations:
 Given a string `word` and an abbreviation `abbr`, return *whether the string **matches** the given abbreviation*.
 
 A **substring** is a contiguous **non-empty** sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 Return `true` exactly when every literal and replacement length in `abbr` consumes all of `word` under the valid
 abbreviation rules; otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ abbreviation rules; otherwise, return `false`.
 - **Input:** $word = "apple", abbr = "a2e"$
 - **Output:** `false`
 - **Explanation:** The word "apple" cannot be abbreviated as "a2e".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 20$
 

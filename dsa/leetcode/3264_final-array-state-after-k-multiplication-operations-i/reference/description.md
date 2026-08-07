@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, an integer `k`, and an integer `multiplier`.
 
@@ -9,12 +9,13 @@ You need to perform `k` operations on `nums`. In each operation:
 - Replace the selected minimum value `x` with $x * multiplier$.
 
 Return an integer array denoting the *final state* of `nums` after performing all `k` operations.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -84,7 +85,8 @@ Return an integer array denoting the *final state* of `nums` after performing al
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

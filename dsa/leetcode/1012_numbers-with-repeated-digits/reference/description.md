@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of positive integers in the range *`[1, n]`* that have **at least one** repeated digit*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Given an integer `n`, return *the number of positive integers in the range *`[1,
 
 - **Input:** $n = 1000$
 - **Output:** `262`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

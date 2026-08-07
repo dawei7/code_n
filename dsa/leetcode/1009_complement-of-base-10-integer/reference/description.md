@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 The **complement** of an integer is the integer you get when you flip all the `0`'s to `1`'s and all the `1`'s to `0`'s in its binary representation.
 
 - For example, The integer `5` is `"101"` in binary and its **complement** is `"010"` which is the integer `2`.
 
 Given an integer `n`, return *its complement*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,8 +28,11 @@ Given an integer `n`, return *its complement*.
 - **Input:** $n = 10$
 - **Output:** `5`
 - **Explanation:** 10 is "1010" in binary, with complement "0101" in binary, which is 5 in base-10.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n < 10^{9}$
 
-**Note:** This question is the same as 476: <a href="https://leetcode.com/problems/number-complement/" target="_blank">https://leetcode.com/problems/number-complement/</a>
+### 5. Note
+
+This question is the same as 476: <a href="https://leetcode.com/problems/number-complement/" target="_blank">https://leetcode.com/problems/number-complement/</a>

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `LogInfo`
 
@@ -21,7 +21,8 @@ Write a solution to find the $\text{account}_{id}$ of the accounts that should b
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schema**
 
@@ -40,7 +41,7 @@ The result format is in the following example.
 
 Return a table with the single column $\text{account}_{id}$. Include each $\text{account}_{id}$ at most once for which at least two sessions from different IP addresses have overlapping time intervals ($login1 \le logout2 AND login2 \le logout1$).
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

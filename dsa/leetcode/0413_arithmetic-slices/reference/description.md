@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An integer array is called arithmetic if it consists of **at least three elements** and if the difference between any two consecutive elements is the same.
 
@@ -7,7 +7,8 @@ An integer array is called arithmetic if it consists of **at least three element
 Given an integer array `nums`, return *the number of arithmetic **subarrays** of* `nums`.
 
 A **subarray** is a contiguous subsequence of the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ A **subarray** is a contiguous subsequence of the array.
 Return the number of contiguous subarrays of `nums` that contain at least three elements with one common adjacent
 difference.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ difference.
 
 - **Input:** `nums = [1]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

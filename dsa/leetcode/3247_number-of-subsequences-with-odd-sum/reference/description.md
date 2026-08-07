@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an array `nums`, return the number of subsequences with an odd sum of elements.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The odd-sum subsequences are: `[<u>**1**</u>, 1, 1]`, `[1, <u>**1**</u>, 1],` `[
 The odd-sum subsequences are: `[<u>**1**</u>, 2, 2]`, `[<u>**1, 2**</u>, 2],` `[<u>**1**</u>, 2, **<u>2</u>**]`, `[<u>**1, 2, 2**</u>]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Friends`
 
@@ -35,7 +35,8 @@ Each activity in the `Activities` table is performed by any person in the table 
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -52,7 +53,7 @@ Return one column:
 
 If several activities share either extreme, exclude all of them. The result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

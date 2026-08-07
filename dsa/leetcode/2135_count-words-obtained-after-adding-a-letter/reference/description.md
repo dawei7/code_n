@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** arrays of strings `startWords` and `targetWords`. Each string consists of **lowercase English letters** only.
 
@@ -19,13 +19,16 @@ The **conversion operation** is described in the following two steps:
 
 Return *the **number of strings** in *`targetWords`* that can be obtained by performing the operations on **any** string of *`startWords`.
 
-**Note** that you will only be verifying if the string in `targetWords` can be obtained from a string in `startWords` by performing the operations. The strings in `startWords` **do not** actually change during this process.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you will only be verifying if the string in `targetWords` can be obtained from a string in `startWords` by performing the operations. The strings in `startWords` **do not** actually change during this process.
+
+### 4. Examples
 
 #### Example 1
 
@@ -43,7 +46,8 @@ Note that "act" does exist in startWords, but we **must** append one letter to t
 - **Explanation:**
 - In order to form targetWords[0] = "abc", we use startWords[0] = "ab", add 'c' to it, and rearrange it to "abc".
 - There is no string in startWords that can be used to obtain targetWords[1] = "abcd".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{startWords.length}, \text{targetWords.length} \le 5 * 10^{4}$
 

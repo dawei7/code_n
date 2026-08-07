@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Weather`
 
@@ -20,11 +20,12 @@ Write a solution to report the day that has the maximum recorded degree in each 
 Return the result table ordered by $\text{city}_{id}$ in **ascending order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

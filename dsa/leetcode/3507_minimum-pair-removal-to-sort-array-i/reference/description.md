@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `nums`, you can perform the following operation any number of times:
 
@@ -9,12 +9,13 @@ Given an array `nums`, you can perform the following operation any number of tim
 Return the **minimum number of operations** needed to make the array **non-decreasing**.
 
 An array is said to be **non-decreasing** if each element is greater than or equal to its previous element (if it exists).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The array `nums` became non-decreasing in two operations.
 The array `nums` is already sorted.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

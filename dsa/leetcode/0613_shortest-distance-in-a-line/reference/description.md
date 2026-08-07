@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Point`
 
@@ -17,7 +17,8 @@ Find the shortest distance between any two points from the `Point` table.
 It is guaranteed that the `Point` table contains **at least **two rows.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -27,7 +28,7 @@ The result format is in the following example.
 
 Return one row with one column named `shortest`, containing the minimum absolute difference between two distinct stored positions.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

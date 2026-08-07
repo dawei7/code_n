@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two integer arrays, `source` and `target`, both of length `n`. You are also given an array `allowedSwaps` where each $\text{allowedSwaps}[i] = [a_{i}, b_{i}]$ indicates that you are allowed to swap the elements at index $a_{i}$ and index $b_{i}$ **(0-indexed)** of array `source`. Note that you can swap elements at a specific pair of indices **multiple** times and in **any** order.
 
 The **Hamming distance** of two arrays of the same length, `source` and `target`, is the number of positions where the elements are different. Formally, it is the number of indices `i` for $0 \le i \le n-1$ where $\text{source}[i] \neq \text{target}[i]$ **(0-indexed)**.
 
 Return *the **minimum Hamming distance** of *`source`* and *`target`* after performing **any** amount of swap operations on array *`source`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The Hamming distance of source and target is 2 as they differ in 2 positions: in
 
 - **Input:** $source = [5,1,2,4,3], target = [1,5,4,2,3], allowedSwaps = [[0,4],[4,2],[1,3],[1,4]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{source.length} = \text{target.length}$
 

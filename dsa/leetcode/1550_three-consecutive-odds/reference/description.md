@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, return `true` if there are three consecutive odd numbers in the array. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given an integer array `arr`, return `true` if there are three consecutive odd n
 - **Input:** `arr = [1,2,34,3,4,5,7,23,12]`
 - **Output:** `true`
 - **Explanation:** [5,7,23] are three consecutive odds.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 1000$
 

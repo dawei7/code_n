@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `num`. A string of digits is called **balanced **if the sum of the digits at even indices is equal to the sum of the digits at odd indices.
 
@@ -9,12 +9,13 @@ Return the number of **distinct** **permutations** of `num` that are **balanced*
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A **permutation** is a rearrangement of all the characters of a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ A **permutation** is a rearrangement of all the characters of a string.
 - None of the permutations of `num` are balanced, so the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{num.length} \le 80$
 

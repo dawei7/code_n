@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary search tree **and an array `queries` of size `n` consisting of positive integers.
 
@@ -9,12 +9,13 @@ Find a **2D** array `answer` of size `n` where $\text{answer}[i] = [\text{min}_{
 - $\text{max}_{i}$ is the **smallest** value in the tree that is greater than or equal to $\text{queries}[i]$. If a such value does not exist, add `-1` instead.
 
 Return *the array* `answer`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *the array* `answer`.
 - **Input:** `root = [4,null,9], queries = [3]`
 - **Output:** `[[-1,4]]`
 - **Explanation:** The largest number that is smaller or equal to 3 in the tree does not exist, and the smallest number that is greater or equal to 3 is 4. So the answer for the query is [-1,4].
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[2, 10^{5}]$.
 

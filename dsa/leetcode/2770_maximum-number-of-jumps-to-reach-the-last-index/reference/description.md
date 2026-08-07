@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of `n` integers and an integer `target`.
 
@@ -11,12 +11,13 @@ You are initially positioned at index `0`. In one step, you can jump from index 
 Return *the **maximum number of jumps** you can make to reach index* $n - 1$.
 
 If there is no way to reach index $n - 1$, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ It can be proven that there is no other jumping sequence that goes from 0 to n -
 - **Input:** `nums = [1,3,6,4,1,2], target = 0`
 - **Output:** `-1`
 - **Explanation:** It can be proven that there is no jumping sequence that goes from 0 to n - 1. Hence, the answer is -1.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} = n \le 1000$
 

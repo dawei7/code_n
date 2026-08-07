@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Traffic`
 
@@ -19,7 +19,8 @@ Write a solution to reports for every date within at most `90` days from today, 
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -34,7 +35,7 @@ For each user who has at least one login, first determine the minimum $\text{act
 
 Return one row for each qualifying date that has at least one new user. Dates with a zero count are omitted, and result order is unrestricted. If no user's first login qualifies, return an empty result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

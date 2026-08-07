@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `repeatLimit`. Construct a new string `repeatLimitedString` using the characters of `s` such that no letter appears **more than** `repeatLimit` times **in a row**. You do **not** have to use all characters from `s`.
 
 Return *the **lexicographically largest** *`repeatLimitedString` *possible*.
 
 A string `a` is **lexicographically larger** than a string `b` if in the first position where `a` and `b` differ, string `a` has a letter that appears later in the alphabet than the corresponding letter in `b`. If the first `min(a.length, b.length)` characters do not differ, then the longer string is the lexicographically larger one.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The letter 'b' appears at most 2 times in a row.
 Hence, no letter appears more than repeatLimit times in a row and the string is a valid repeatLimitedString.
 The string is the lexicographically largest repeatLimitedString possible so we return "bbabaa".
 Note that the string "bbabaaa" is lexicographically larger but the letter 'a' appears more than 2 times in a row, so it is not a valid repeatLimitedString.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le repeatLimit \le \text{s.length} \le 10^{5}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two integers `n` and `k`, return *the* $$k^{\text{th}}$$ *lexicographically smallest integer in the range* `[1, n]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given two integers `n` and `k`, return *the* $$k^{\text{th}}$$ *lexicographicall
 Return the integer occupying position `k` when the decimal representations of $1$ through `n` are ordered
 lexicographically.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ lexicographically.
 
 - **Input:** $n = 1, k = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 10^{9}$

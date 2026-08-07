@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` binary matrix `mat`, return *the length of the longest line of consecutive one in the matrix*.
 
 The line could be horizontal, vertical, diagonal, or anti-diagonal.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ one unchanged direction.
 Return the maximum length among all horizontal, vertical, diagonal, and anti-diagonal runs of ones. Return `0` when
 the matrix contains no `1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ the matrix contains no `1`.
 
 - **Input:** $mat = [[1,1,1,1],[0,1,1,0],[0,0,0,1]]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

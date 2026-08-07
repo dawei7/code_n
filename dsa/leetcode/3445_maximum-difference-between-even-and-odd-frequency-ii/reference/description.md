@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`. Your task is to find the **maximum** difference between the frequency of **two** characters, $\text{freq}[a] - \text{freq}[b]$, in a substring `subs` of `s`, such that:
 
@@ -10,13 +10,16 @@ You are given a string `s` and an integer `k`. Your task is to find the **maximu
 
 Return the **maximum** difference.
 
-**Note** that `subs` can contain more than 2 **distinct** characters.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that `subs` can contain more than 2 **distinct** characters.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ For the substring `"11222"`, the frequency of `'2'` is 3 and the frequency of `'
 **Output:** -1
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{s.length} \le 3 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice frequently takes exams and wants to track her scores and calculate the total scores over specific time periods.
 
@@ -15,7 +15,8 @@ It is guaranteed that the function calls are made in chronological order. That i
 - Calls to `record()` will be made with **strictly increasing** `time`.
 
 - Alice will never ask for total scores that require information from the future. That is, if the latest `record()` is called with $time = t$, then `totalScore()` will always be called with $startTime \le endTime \le t$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The canonical class API constructs one `ExamTracker` object and applies the list
 
 Return one result per operation: `null` for construction and `record`, and the inclusive interval sum for `totalScore`. A query with no recorded time in its interval contributes `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ examTracker.totalScore(1, 5); // Between time 1 and time 5, Alice took 2 exams a
 examTracker.totalScore(3, 4); // Alice did not take any exam between time 3 and time 4. Therefore, the answer is 0.
 
 examTracker.totalScore(2, 5); // Between time 2 and time 5, Alice took 1 exam at time 5, scoring 99. The total score is 99.</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le time \le 10^{9}$
 

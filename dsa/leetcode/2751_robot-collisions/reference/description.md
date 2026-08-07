@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` **1-indexed** robots, each having a position on a line, health, and movement direction.
 
@@ -12,15 +12,18 @@ Your task is to determine the **health** of the robots that survive the collisio
 
 Return *an array containing the health of the remaining robots (in the order they were given in the input), after no further collisions can occur.*
 
-**Note:** The positions may be unsorted.
-
-<div class="notranslate" style="all: initial;"> </div>
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The positions may be unsorted.
+
+<div class="notranslate" style="all: initial;"> </div>
+
+### 4. Examples
 
 #### Example 1
 
@@ -43,7 +46,8 @@ Return *an array containing the health of the remaining robots (in the order the
 - **Input:** $positions = [1,2,5,6], healths = [10,10,11,11], directions = "RLRL"$
 - **Output:** `[]`
 - **Explanation:** Robot 1 and robot 2 will collide and since both have the same health, they are both removed. Robot 3 and 4 will collide and since both have the same health, they are both removed. So, we return an empty array, [].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{positions.length} = \text{healths.length} = \text{directions.length} = n \le 10^{5}$
 

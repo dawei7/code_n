@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **non-negative** integers.
 
@@ -13,12 +13,13 @@ Consider splitting the array into one or more subarrays such that the following 
 Return *the **maximum** number of subarrays in a split that satisfies the conditions above.*
 
 A **subarray** is a contiguous part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ It can be shown that we cannot split the array into more than 3 subarrays with a
 - **Output:** `1`
 - **Explanation:** We can split the array into one subarray: [5,7,1,3] with a score of 1, which is the minimum possible score that we can obtain.
 It can be shown that we cannot split the array into more than 1 subarray with a total score of 1. So we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

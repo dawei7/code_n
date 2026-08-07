@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `points` containing the coordinates of points on a 2D plane, sorted by the x-values, where $\text{points}[i] = [x_{i}, y_{i}]$ such that $x_{i} < x_{j}$ for all $1 \le i < j \le \text{points.length}$. You are also given an integer `k`.
 
 Return *the maximum value of the equation *$y_{i} + y_{j} + |x_{i} - x_{j}|$ where $|x_{i} - x_{j}| \le k$ and $1 \le i < j \le \text{points.length}$.
 
 It is guaranteed that there exists at least one pair of points that satisfy the constraint $|x_{i} - x_{j}| \le k$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ No other pairs satisfy the condition, so we return the max of 4 and 1.
 - **Input:** $points = [[0,0],[3,0],[9,2]], k = 3$
 - **Output:** `3`
 - **Explanation:** Only the first two points have an absolute difference of 3 or less in the x-values, and give the value of 0 + 0 + |0 - 3| = 3.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{points.length} \le 10^{5}$
 

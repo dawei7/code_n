@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `strs`. You could concatenate these strings together into a loop, where for each string, you could choose to reverse it or not. Among all the possible loops
 
@@ -11,7 +11,8 @@ Specifically, to find the lexicographically largest string, you need to experien
 - Cut and make one breakpoint in any place of the loop, which will make the looped string into a regular one starting from the character at the cutpoint.
 
 And your job is to find the lexicographically largest one among all the possible regular strings.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ order of the $m$ blocks.
 Return the lexicographically largest length-$L$ string obtainable after choosing all block orientations and opening
 the resulting loop at one character boundary.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The answer string came from the fourth looped one, where you could cut from the 
 
 - **Input:** $strs = ["abc"]$
 - **Output:** `"cba"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strs.length} \le 1000$
 

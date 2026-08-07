@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two strings `s1` and `s2` of equal length. A **string swap** is an operation where you choose two indices in a string (not necessarily different) and swap the characters at these indices.
 
 Return `true` *if it is possible to make both strings equal by performing **at most one string swap **on **exactly one** of the strings. *Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return `true` *if it is possible to make both strings equal by performing **at m
 - **Input:** $s1 = "kelb", s2 = "kelb"$
 - **Output:** `true`
 - **Explanation:** The two strings are already equal, so no string swap operation is required.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length} \le 100$
 

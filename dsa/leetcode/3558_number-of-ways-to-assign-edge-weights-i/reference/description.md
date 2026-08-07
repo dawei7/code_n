@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected tree with `n` nodes labeled from 1 to `n`, rooted at node 1. The tree is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -10,13 +10,16 @@ Select any one node `x` at the **maximum** depth. Return the number of ways to a
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
-**Note:** Ignore all edges **not** in the path from node 1 to `x`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Ignore all edges **not** in the path from node 1 to `x`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -52,7 +55,8 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 - Assigning weights (1,2) or (2,1) results in an odd cost. Thus, the number of valid assignments is 2.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{5}$
 

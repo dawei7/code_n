@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, return `true` if they are both one edit distance apart, otherwise return `false`.
 
@@ -9,7 +9,8 @@ A string `s` is said to be one distance apart from a string `t` if you can:
 - Delete **exactly one** character from `s` to get `t`.
 
 - Replace **exactly one** character of `s` with **a different character** to get `t`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ A string `s` is said to be one distance apart from a string `t` if you can:
 
 Return `true` if `s` and `t` are exactly one edit distance apart (insert 1 char, delete 1 char, or replace 1 char with a different character), otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return `true` if `s` and `t` are exactly one edit distance apart (insert 1 char,
 - **Input:** `s = "", t = ""`
 - **Output:** `false`
 - **Explanation:** We cannot get t from s by only one step.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length}, \text{t.length} \le 10^{4}$
 

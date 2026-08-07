@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree and two integers `val` and `depth`, add a row of nodes with value `val` at the given depth `depth`.
 
@@ -13,12 +13,13 @@ The adding rule is:
 - `cur`'s original right subtree should be the right subtree of the new right subtree root.
 
 - If $depth = 1$ that means there is no depth $depth - 1$ at all, then create a tree node with value `val` as the new root of the whole original tree, and the original tree is the new root's left subtree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The adding rule is:
 
 - **Input:** `root = [4,2,null,3,1], val = 1, depth = 3`
 - **Output:** `[4,2,null,1,1,3,null,null,1]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

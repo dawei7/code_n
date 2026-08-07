@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return an integer denoting the **first** element (scanning from left to right) in `nums` whose **frequency** is **unique**. That is, no other integer appears the same number of times in `nums`. If there is no such element, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Also let $M(f)$ be the number of distinct values whose frequency equals $f$. Thu
 
 Return $\text{nums}[i]$ for the smallest index $i$ satisfying $M(F(\texttt{nums}[i]))=1$. Return `-1` if no index satisfies that condition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return $\text{nums}[i]$ for the smallest index $i$ satisfying $M(F(\texttt{nums}
 - No element has a unique frequency.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

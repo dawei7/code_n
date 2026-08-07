@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two arrays of integers, `fruits` and `baskets`, each of length `n`, where $\text{fruits}[i]$ represents the **quantity** of the $$i^{\text{th}}$$ type of fruit, and $\text{baskets}[j]$ represents the **capacity** of the $$j^{\text{th}}$$ basket.
 
@@ -11,12 +11,13 @@ From left to right, place the fruits according to these rules:
 - If a fruit type **cannot be placed** in any basket, it remains **unplaced**.
 
 Return the number of fruit types that remain unplaced after all possible allocations are made.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Since one fruit type remains unplaced, we return 1.
 Since all fruits are successfully placed, we return 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{fruits.length} = \text{baskets.length}$
 

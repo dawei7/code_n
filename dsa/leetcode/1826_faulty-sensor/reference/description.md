@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An experiment is being conducted in a lab. To ensure accuracy, there are** two **sensors collecting data simultaneously. You are given two arrays `sensor1` and `sensor2`, where $\text{sensor1}[i]$ and $\text{sensor2}[i]$ are the $$i^{\text{th}}$$ data points collected by the two sensors.
 
@@ -7,11 +7,12 @@ However, this type of sensor has a chance of being defective, which causes **exa
 - For example, if the correct data is `[1,2,<u>**3**</u>,4,5]` and `3` is dropped, the sensor could return `[1,2,4,5,<u>**7**</u>]` (the last position can be **any** value, not just `7`).
 
 We know that there is a defect in **at most one** of the sensors. Return *the sensor number (*`1`* or *`2`*) with the defect. If there is **no defect** in either sensor or if it is** impossible** to determine the defective sensor, return *`-1`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Dropping the last value for either sensor could produce the output for the other
 - **Output:** `2`
 - **Explanation:** Sensor 1 has the correct values.
 The fourth data point from sensor 1 is dropped, and the last value of sensor 1 is replaced by a 7.
-### Constraints
+
+### 4. Constraints
 
 - $\text{sensor1.length} = \text{sensor2.length}$
 

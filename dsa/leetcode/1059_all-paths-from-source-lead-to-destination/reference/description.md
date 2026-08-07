@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `edges` of a directed graph where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates there is an edge between nodes $a_{i}$ and $b_{i}$, and two nodes `source` and `destination` of this graph, determine whether or not all paths starting from `source` eventually, end at `destination`, that is:
 
@@ -9,7 +9,8 @@ Given the `edges` of a directed graph where $\text{edges}[i] = [a_{i}, b_{i}]$ i
 - The number of possible paths from `source` to `destination` is a finite number.
 
 Return `true` if and only if all roads from `source` lead to `destination`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Let $V = n$ and let $E = \lvert\texttt{edges}\rvert$.
 
 - `true` exactly when at least one path runs from `source` to `destination`, every reachable terminal is `destination`, and the source-reachable subgraph contains no directed cycle; otherwise, `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Let $V = n$ and let $E = \lvert\texttt{edges}\rvert$.
 
 - **Input:** $n = 4, edges = [[0,1],[0,2],[1,3],[2,3]], source = 0, destination = 3$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

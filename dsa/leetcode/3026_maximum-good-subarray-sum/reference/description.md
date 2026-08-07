@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of length `n` and a **positive** integer `k`.
 
 A subarray of `nums` is called **good** if the **absolute difference** between its first and last element is **exactly** `k`, in other words, the subarray `nums[i..j]` is good if $|\text{nums}[i] - \text{nums}[j]| = k$.
 
 Return *the **maximum** sum of a **good** subarray of *`nums`. *If there are no good subarrays**, return *`0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the **maximum** sum of a **good** subarray of *`nums`. *If there are no 
 - **Input:** `nums = [-1,-2,-3,-4], k = 2`
 - **Output:** `-6`
 - **Explanation:** The absolute difference between the first and last element<!-- notionvc: 2a6d66c9-0149-4294-b267-8be9fe252de9 --> must be 2 for a good subarray. All the good subarrays are: [-1,-2,-3], and [-2,-3,-4]. The maximum subarray sum is -6 for the subarray [-1,-2,-3].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

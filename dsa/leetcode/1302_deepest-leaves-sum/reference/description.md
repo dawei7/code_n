@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the sum of values of its deepest leaves*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given the `root` of a binary tree, return *the sum of values of its deepest leav
 
 - **Input:** `root = [6,7,8,2,7,1,3,9,null,1,4,null,null,null,5]`
 - **Output:** `19`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

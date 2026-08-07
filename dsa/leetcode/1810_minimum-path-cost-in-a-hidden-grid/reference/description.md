@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 This is an **interactive problem**.
 
@@ -20,7 +20,11 @@ Note that `direction` in the above functions should be a character from `{'U','D
 
 Return *the **minimum total cost** to get the robot from its initial starting cell to the target cell. If there is no valid path between the cells, return *`-1`.
 
-**Custom testing:**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Custom Testing
 
 The test input is read as a 2D matrix `grid` of size `m x n` and four integers `r1`, `c1`, `r2`, and `c2` where:
 
@@ -33,11 +37,8 @@ The test input is read as a 2D matrix `grid` of size `m x n` and four integers `
 - `(r2, c2)` is the target cell of the robot.
 
 Remember that you will **not** have this information in your code.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ We now know that the target is the cell (1, 0), and the minimum total cost to re
 - **Input:** `grid = [[1,0],[0,1]], r1 = 0, c1 = 0, r2 = 1, c2 = 1`
 - **Output:** `-1`
 - **Explanation:** There is no path from the robot to the target cell.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n, m \le 100$
 

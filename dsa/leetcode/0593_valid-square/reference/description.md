@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the coordinates of four points in 2D space `p1`, `p2`, `p3` and `p4`, return `true` *if the four points construct a square*.
 
 The coordinate of a point $p_{i}$ is represented as $[x_{i}, y_{i}]$. The input is **not** given in any order.
 
 A **valid square** has four equal sides with positive length and four equal angles (90-degree angles).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ A **valid square** has four equal sides with positive length and four equal angl
 
 - **Input:** $p1 = [1,0], p2 = [-1,0], p3 = [0,1], p4 = [0,-1]$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $\text{p1.length} = \text{p2.length} = \text{p3.length} = \text{p4.length} = 2$
 

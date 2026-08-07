@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `head` of a linked list of **even** length containing integers.
 
@@ -66,11 +66,12 @@ Both teams earned `1` point.
 Hence, the answer would be `"Tie"`.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Constraints
+### 3. Constraints
 
 - The number of nodes in the list is in the range `[2, 100]`.
 

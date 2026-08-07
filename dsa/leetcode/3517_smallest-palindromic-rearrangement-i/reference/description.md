@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **palindromic** string `s`.
 
 Return the **lexicographically smallest** palindromic permutation of `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Rearranging `"babab"` → `"abbba"` gives the smallest lexicographic palindrome.
 Rearranging `"daccad"` → `"acddca"` gives the smallest lexicographic palindrome.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ![](images/image.png)
 
@@ -10,13 +10,16 @@ Given the string `word`, return *the minimum total **distance** to type such str
 
 The **distance** between coordinates $(x_{1}, y_{1})$ and $(x_{2}, y_{2})$ is $|x_{1} - x_{2}| + |y_{1} - y_{2}|$.
 
-**Note** that the initial positions of your two fingers are considered free so do not count towards your total distance, also your two fingers do not have to start at the first letter or the first two letters.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the initial positions of your two fingers are considered free so do not count towards your total distance, also your two fingers do not have to start at the first letter or the first two letters.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ Finger 2 on letter 'P' -> cost = 0
 Finger 2 on letter 'P' -> cost = Distance from letter 'P' to letter 'P' = 0
 Finger 1 on letter 'Y' -> cost = Distance from letter 'A' to letter 'Y' = 4
 Total distance = 6
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{word.length} \le 300$
 

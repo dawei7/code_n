@@ -1,14 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of digits called `digits`. Your task is to determine the number of **distinct** three-digit even numbers that can be formed using these digits.
 
-**Note**: Each *copy* of a digit can only be used **once per number**, and there may **not** be leading zeros.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: Each *copy* of a digit can only be used **once per number**, and there may **not** be leading zeros.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ You are given an array of digits called `digits`. Your task is to determine the 
 **Explanation:** No even 3-digit numbers can be formed.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{digits.length} \le 10$
 

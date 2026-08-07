@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{app}_{events}$
 
@@ -140,7 +140,7 @@ The result table is ordered by scroll_count in descending order, then by session
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

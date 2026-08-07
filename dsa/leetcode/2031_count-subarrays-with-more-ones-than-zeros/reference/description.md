@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given a binary array `nums` containing only the integers `0` and `1`. Return* the number of **subarrays** in nums that have **more** *`1`'*s than *`0`*'s. Since the answer may be very large, return it **modulo** *$10^{9} + 7$.
 
 A **subarray** is a contiguous sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ No subarrays have more ones than zeros.
 - **Output:** `1`
 - **Explanation:**
 The subarrays of size 1 that have more ones than zeros are: [1]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

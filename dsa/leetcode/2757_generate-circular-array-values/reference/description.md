@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **circular** array `arr` and an integer `startIndex`, return a generator object `gen` that yields values from `arr`.
 
@@ -9,11 +9,12 @@ Each subsequent time `gen.next()` is called, an integer `jump` will be passed in
 - If `jump` is positive, the index should increase by that value, however if the current index is the last index, it should instead jump to the first index.
 
 - If `jump` is negative, the index should decrease by the magnitude of that value, however if the current index is the first index, it should instead jump to the last index.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ gen.next(-4).value // 10, index = 5
 gen.next(5).value  // 8,  index = 4
 gen.next(-3).value // 4,  index = 1
 gen.next(10).value // 10, index = 5
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

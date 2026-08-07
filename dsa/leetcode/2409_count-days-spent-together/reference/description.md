@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are traveling to Rome for separate business meetings.
 
@@ -7,12 +7,13 @@ You are given 4 strings `arriveAlice`, `leaveAlice`, `arriveBob`, and `leaveBob`
 Return* the total number of days that Alice and Bob are in Rome together.*
 
 You can assume that all dates occur in the **same** calendar year, which is **not** a leap year. Note that the number of days per month can be represented as: `[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ You can assume that all dates occur in the **same** calendar year, which is **no
 - **Input:** $arriveAlice = "10-01", leaveAlice = "10-31", arriveBob = "11-01", leaveBob = "12-31"$
 - **Output:** `0`
 - **Explanation:** There is no day when Alice and Bob are in Rome together, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - All dates are provided in the format `"MM-DD"`.
 

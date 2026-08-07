@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **tree** (i.e. a connected, undirected graph that has no cycles) **rooted** at node `0` consisting of `n` nodes numbered from `0` to $n - 1$. The tree is represented by a **0-indexed** array `parent` of size `n`, where $\text{parent}[i]$ is the parent of node `i`. Since node `0` is the root, $\text{parent}[0] = -1$.
 
@@ -7,12 +7,13 @@ You are also given a string `s` of length `n`, where $s[i]$ is the character ass
 Return *the number of pairs of nodes *`(u, v)`* such that *`u < v`* and the characters assigned to edges on the path from *`u`* to *`v`* can be **rearranged** to form a **palindrome***.
 
 A string is a **palindrome** when it reads the same backwards as forwards.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ A string is a **palindrome** when it reads the same backwards as forwards.
 - **Input:** $parent = [-1,0,0,0,0], s = "aaaaa"$
 - **Output:** `10`
 - **Explanation:** Any pair of nodes (u,v) where u < v is valid.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{parent.length} = \text{s.length}$
 

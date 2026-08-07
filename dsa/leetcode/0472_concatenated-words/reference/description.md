@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array of strings `words` (**without duplicates**), return *all the **concatenated words** in the given list of* `words`.
 
 A **concatenated word** is defined as a string that is comprised entirely of at least two shorter words (not necessarily distinct) in the given array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ A **concatenated word** is defined as a string that is comprised entirely of at 
 Each component must consume one or more characters, components may be reused, and their joined text must equal the
 candidate without gaps or leftover characters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ candidate without gaps or leftover characters.
 
 - **Input:** $words = ["cat","dog","catdog"]$
 - **Output:** `["catdog"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 10^{4}$
 

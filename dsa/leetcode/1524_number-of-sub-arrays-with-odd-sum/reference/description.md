@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, return *the number of subarrays with an **odd** sum*.
 
 Since the answer can be very large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ All sub-arrays have even sum and the answer is 0.
 
 - **Input:** `arr = [1,2,3,4,5,6,7]`
 - **Output:** `16`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

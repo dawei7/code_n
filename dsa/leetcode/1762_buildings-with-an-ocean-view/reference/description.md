@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 There are `n` buildings in a line. You are given an integer array `heights` of size `n` that represents the heights of the buildings in the line.
 
 The ocean is to the right of the buildings. A building has an ocean view if the building can see the ocean without obstructions. Formally, a building has an ocean view if all the buildings to its right have a **smaller** height.
 
 Return a list of indices **(0-indexed)** of buildings that have an ocean view, sorted in increasing order.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return a list of indices **(0-indexed)** of buildings that have an ocean view, s
 - **Input:** $heights = [1,3,2,4]$
 - **Output:** `[3]`
 - **Explanation:** Only building 3 has an ocean view.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{heights.length} \le 10^{5}$
 

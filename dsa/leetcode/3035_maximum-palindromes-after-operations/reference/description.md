@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string array `words` having length `n` and containing **0-indexed** strings.
 
@@ -8,13 +8,16 @@ You are allowed to perform the following operation **any** number of times (**in
 
 Return *an integer denoting the **maximum** number of palindromes *`words`* can contain, after performing some operations.*
 
-**Note:** `i` and `j` may be equal during an operation.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+`i` and `j` may be equal during an operation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,7 +44,8 @@ Hence, the maximum number of palindromes achievable is 2.
 There is one palindrome in words "a".
 It can be shown that it is not possible to get more than one palindrome after any number of operations.
 Hence, the answer is 1.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

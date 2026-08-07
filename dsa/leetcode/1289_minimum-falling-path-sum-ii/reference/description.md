@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an `n x n` integer matrix `grid`, return *the minimum sum of a **falling path with non-zero shifts***.
 
 A **falling path with non-zero shifts** is a choice of exactly one element from each row of `grid` such that no two elements chosen in adjacent rows are in the same column.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ The falling path with the smallest sum is [1,5,7], so the answer is 13.
 
 - **Input:** `grid = [[7]]`
 - **Output:** `7`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

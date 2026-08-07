@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. The *value* of this array is defined as the sum of $|\text{nums}[i] - nums[i + 1]|$ for all $0 \le i < \text{nums.length} - 1$.
 
 You are allowed to select any subarray of the given array and reverse it. You can perform this operation **only once**.
 
 Find maximum possible value of the final array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Find maximum possible value of the final array.
 
 - **Input:** `nums = [2,4,9,24,2,1,10]`
 - **Output:** `68`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 3 * 10^{4}$
 

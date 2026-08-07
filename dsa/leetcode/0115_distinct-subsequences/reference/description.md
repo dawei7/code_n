@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given two strings s and t, return *the number of distinct* ***subsequences**** of *s* which equals *t.
 
 The test cases are generated so that the answer fits on a 32-bit signed integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ The test cases are generated so that the answer fits on a 32-bit signed integer.
 
 Return the number of distinct index selections in `s` whose characters, in order, form `t`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ As shown below, there are 5 ways you can generate "bag" from s.
 <u>**b**</u>abgb**<u>ag</u>**
 ba<u>**b**</u>gb<u>**ag**</u>
 babg**<u>bag</u>**
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 1000$
 

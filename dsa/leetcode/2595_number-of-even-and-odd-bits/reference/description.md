@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `n`.
 
@@ -9,12 +9,13 @@ Let `odd` denote the number of odd indices in the binary representation of `n` w
 Note that bits are indexed from **right to left** in the binary representation of a number.
 
 Return the array `[even, odd]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,6 +45,7 @@ The binary representation of 2 is `10`.
 It contains 1 only on index 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Data`
 
@@ -19,11 +19,12 @@ Write a solution to independently:
 - order $\text{second}_{col}$ in **descending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

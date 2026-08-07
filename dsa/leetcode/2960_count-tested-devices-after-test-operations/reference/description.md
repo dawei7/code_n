@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `batteryPercentages` having length `n`, denoting the battery percentages of `n` **0-indexed** devices.
 
@@ -16,12 +16,13 @@ Your task is to test each device `i` **in order** from `0` to $n - 1$, by perfor
 - Otherwise, move to the next device without performing any test.
 
 Return *an integer denoting the number of devices that will be tested after performing the test operations in order.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ At device 0, batteryPercentages[0] == 0, so we move to the next device without t
 At device 1, batteryPercentages[1] > 0, so there is now 1 tested device, and batteryPercentages becomes [0,1,1].
 At device 2, batteryPercentages[2] > 0, so there are now 2 tested devices, and batteryPercentages stays the same.
 So, the answer is 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{batteryPercentages.length} \le 100$
 

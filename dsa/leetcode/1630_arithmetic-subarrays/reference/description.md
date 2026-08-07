@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A sequence of numbers is called **arithmetic** if it consists of at least two elements, and the difference between every two consecutive elements is the same. More formally, a sequence `s` is arithmetic if and only if $s[i+1] - s[i] = s[1] - s[0]$for all valid `i`.
 
@@ -19,12 +19,13 @@ The following sequence is not **arithmetic**:
 You are given an array of `n` integers, `nums`, and two arrays of `m` integers each, `l` and `r`, representing the `m` range queries, where the $$i^{\text{th}}$$ query is the range `[l[i], r[i]]`. All the arrays are **0-indexed**.
 
 Return *a list of *`boolean` *elements* `answer`*, where* $\text{answer}[i]$ *is* `true` *if the subarray* $nums[l[i]], nums[l[i]+1], ... , nums[r[i]]$* can be **rearranged** to form an **arithmetic** sequence, and* `false` *otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ In the 2^nd query, the subarray is [5,9,3,7]. This can be rearranged as [3,5,7,9
 
 - **Input:** `nums = [-12,-9,-3,-12,-6,15,20,-25,-20,-15,-10], l = [0,1,6,4,8,7], r = [4,4,9,7,9,10]`
 - **Output:** `[false,true,false,false,true,true]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

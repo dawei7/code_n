@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -32,11 +32,12 @@ Write a solution to calculate the `distance` traveled by **each user**. If there
 Return* the result table ordered by *$\text{user}_{id}$* in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`.
 
@@ -11,12 +11,13 @@ For example, $distance("ab", "cd") = 4$, and $distance("a", "z") = 1$.
 You can **change** any letter of `s` to **any** other lowercase English letter, **any** number of times.
 
 Return a string denoting the **lexicographically smallest** string `t` you can get after some changes, such that $distance(s, t) \le k$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The distance between "xaxcd" and "aawcd" is equal to k = 4.
 It's impossible to change any character as $k = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

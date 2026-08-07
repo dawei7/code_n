@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Warehouse`
 
@@ -35,7 +35,8 @@ Write a solution to report the number of cubic feet of **volume **the inventory 
 Return the result table in **any order**.
 
 The query result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -61,7 +62,7 @@ The query result format is in the following example.
 
 Return columns $\text{warehouse}_{name}$ and `volume`. For each warehouse, `volume` is the sum of $units * Width * Length * Height$ over all its inventory rows. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a set of **distinct** positive integers `nums`, return the largest subset `answer` such that every pair $(\text{answer}[i], \text{answer}[j])$ of elements in this subset satisfies:
 
@@ -7,7 +7,8 @@ Given a set of **distinct** positive integers `nums`, return the largest subset 
 - $\text{answer}[j] \% \text{answer}[i] = 0$
 
 If there are multiple solutions, return any of them.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ If there are multiple solutions, return any of them.
 
 Return any maximum-size subset in which every pair is divisible in at least one direction.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return any maximum-size subset in which every pair is divisible in at least one 
 
 - **Input:** `nums = [1,2,4,8]`
 - **Output:** `[1,2,4,8]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `p` where `p` is a **subsequence **of `s`. You are also given a **distinct 0-indexed **integer array `removable` containing a subset of indices of `s` (`s` is also **0-indexed**).
 
@@ -7,12 +7,13 @@ You want to choose an integer `k` ($0 \le k \le \text{removable.length}$) such t
 Return *the **maximum** *`k`* you can choose such that *`p`* is still a **subsequence** of *`s`* after the removals*.
 
 A **subsequence** of a string is a new string generated from the original string with some characters (can be none) deleted without changing the relative order of the remaining characters.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Hence, the maximum k is 2.
 - **Input:** `s = "abcab", p = "abc", removable = [0,1,2,3,4]`
 - **Output:** `0`
 **Explanation**: If you remove the first index in the array removable, "abc" is no longer a subsequence.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{p.length} \le \text{s.length} \le 10^{5}$
 

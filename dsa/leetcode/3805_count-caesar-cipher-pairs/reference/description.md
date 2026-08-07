@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `words` of `n` strings. Each string has length `m` and contains only lowercase English letters.
 
@@ -15,7 +15,8 @@ Count the number of pairs of indices `(i, j)` such that:
 - $\text{words}[i]$ and $\text{words}[j]$ are **similar**.
 
 Return an integer denoting the number of such pairs.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Each pair is determined by two distinct indices with the smaller index first. Eq
 
 Return an integer equal to the number of index pairs whose two strings can be made equal by uniform cyclic shifts.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ $\text{words}[0] = "fusion"$ and $\text{words}[1] = "layout"$ are similar becaus
 $\text{words}[0] = "ab"$ and $\text{words}[2] = "za"$ are similar. $\text{words}[1] = "aa"$ and $\text{words}[3] = "aa"$ are similar.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{words.length} \le 10^{5}$
 

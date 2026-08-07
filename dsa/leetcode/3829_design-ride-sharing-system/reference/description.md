@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A ride sharing system manages ride requests from riders and availability from drivers. Riders request rides, and drivers become available over time. The system should match riders and drivers in the order they arrive.
 
@@ -13,7 +13,8 @@ Implement the `RideSharingSystem` class:
 - `int[] matchDriverWithRider()` Matches the **earliest** available driver with the **earliest** waiting rider and removes both of them from the system. Returns an integer array of size 2 where $result = [driverId, riderId]$ if a match is made. If no match is available, returns `[-1, -1]`.
 
 - `void cancelRider(int riderId)` Cancels the ride request of the rider with the given `riderId` **if the rider exists** and has **not** yet been matched.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The constructor takes no arguments. `addRider` and `cancelRider` each receive on
 
 Return one result for every operation. The constructor and methods without a return value contribute `null`. Each matching call contributes `[driverId, riderId]` for the FIFO pair it removes, or `[-1, -1]` if a pair cannot be formed.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -92,7 +93,8 @@ rideSharingSystem.addRider(2); // rider 2 joins the queue
 rideSharingSystem.cancelRider(2); // rider 2 cancels
 
 rideSharingSystem.matchDriverWithRider(); // returns [-1, -1]</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le riderId, driverId \le 1000$
 

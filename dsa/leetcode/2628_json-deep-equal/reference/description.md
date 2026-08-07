@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two values `o1` and `o2`, return a boolean value indicating whether two values, `o1` and `o2`, are **deeply equal**.
 
@@ -13,7 +13,8 @@ For two values to be **deeply equal**, the following conditions must be met:
 You may assume both values are the output of `JSON.parse`. In other words, they are valid JSON.
 
 Please solve it without using lodash's `_.isEqual()` function
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Please solve it without using lodash's `_.isEqual()` function
 
 Return `true` if `o1` and `o2` are deeply equal according to JSON semantics; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return `true` if `o1` and `o2` are deeply equal according to JSON semantics; oth
 - **Input:** $o1 = true, o2 = false$
 - **Output:** `false`
 - **Explanation:** true !== false
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{JSON.stringify}(o1).length \le 10^{5}$
 

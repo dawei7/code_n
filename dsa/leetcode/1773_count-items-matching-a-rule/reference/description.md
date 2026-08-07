@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `items`, where each $\text{items}[i] = [\text{type}_{i}, \text{color}_{i}, \text{name}_{i}]$ describes the type, color, and name of the $$i^{\text{th}}$$ item. You are also given a rule represented by two strings, `ruleKey` and `ruleValue`.
 
@@ -11,12 +11,13 @@ The $$i^{\text{th}}$$ item is said to match the rule if **one** of the following
 - $ruleKey = "name"$ and $ruleValue = \text{name}_{i}$.
 
 Return *the number of items that match the given rule*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the number of items that match the given rule*.
 - **Input:** $items = [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]], ruleKey = "type", ruleValue = "phone"$
 - **Output:** `2`
 - **Explanation:** There are only two items matching the given rule, which are ["phone","blue","pixel"] and ["phone","gold","iphone"]. Note that the item ["computer","silver","phone"] does not match.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{items.length} \le 10^{4}$
 

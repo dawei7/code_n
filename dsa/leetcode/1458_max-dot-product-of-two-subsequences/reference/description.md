@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given two arrays `nums1` and `nums2`.
 
 Return the maximum dot product between **non-empty** subsequences of nums1 and nums2 with the same length.
 
 A subsequence of an array is a new array which is formed from the original array by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (ie, `[2,3,5]` is a subsequence of `[1,2,3,4,5]` while `[1,5,3]` is not).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Their dot product is (3*7) = 21.
 - **Output:** `-1`
 - **Explanation:** Take subsequence [-1] from nums1 and subsequence [1] from nums2.
 Their dot product is -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 500$
 

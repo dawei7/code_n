@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `SeasonStats`
 
@@ -116,6 +116,6 @@ The query result format is in the following example.
 
 - The output is ordered by season_id ascending, then by rank ascending, and finally by team_name ascending.
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

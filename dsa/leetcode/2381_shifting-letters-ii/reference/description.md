@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` of lowercase English letters and a 2D integer array `shifts` where $\text{shifts}[i] = [\text{start}_{i}, \text{end}_{i}, \text{direction}_{i}]$. For every `i`, **shift** the characters in `s` from the index $\text{start}_{i}$ to the index $\text{end}_{i}$ (**inclusive**) forward if $\text{direction}_{i} = 1$, or shift the characters backward if $\text{direction}_{i} = 0$.
 
 Shifting a character **forward** means replacing it with the **next** letter in the alphabet (wrapping around so that `'z'` becomes `'a'`). Similarly, shifting a character **backward** means replacing it with the **previous** letter in the alphabet (wrapping around so that `'a'` becomes `'z'`).
 
 Return *the final string after all such shifts to *`s`* are applied*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Finally, shift the characters from index 0 to index 2 forward. Now s = "ace".
 - **Output:** `"catz"`
 - **Explanation:** Firstly, shift the characters from index 0 to index 0 backward. Now s = "cztz".
 Finally, shift the characters from index 1 to index 1 forward. Now s = "catz".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{shifts.length} \le 5 * 10^{4}$
 

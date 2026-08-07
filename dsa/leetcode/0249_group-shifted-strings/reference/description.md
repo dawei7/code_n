@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Perform the following shift operations on a string:
 
@@ -11,7 +11,8 @@ We can keep shifting the string in both directions to form an **endless** **shif
 - For example, shift `"abc"` to form the sequence: `... <-> "abc" <-> "bcd" <-> ... <-> "xyz" <-> "yza" <-> ...`.` <-> "zab" <-> "abc" <-> ...`
 
 You are given an array of strings `strings`, group together all $\text{strings}[i]$ that belong to the same shifting sequence. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ You are given an array of strings `strings`, group together all $\text{strings}[
 
 Return $List[\text{List}[str]]$ containing grouped strings belonging to the same shifting sequence.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return $List[\text{List}[str]]$ containing grouped strings belonging to the same
 **Output:** [["a"]]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strings.length} \le 200$
 

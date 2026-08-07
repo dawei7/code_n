@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** binary array `nums` of length `n`. `nums` can be divided at index `i` (where $0 \le i \le n)$ into two arrays (possibly empty) $\text{nums}_{left}$ and $\text{nums}_{right}$:
 
@@ -11,12 +11,13 @@ You are given a **0-indexed** binary array `nums` of length `n`. `nums` can be d
 The **division score** of an index `i` is the **sum** of the number of `0`'s in $\text{nums}_{left}$ and the number of `1`'s in $\text{nums}_{right}$.
 
 Return ***all distinct indices** that have the **highest** possible **division score***. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Only index 3 has the highest possible division score 3.
 - 1: nums_left is [1]. nums_right is [<u>**1**</u>]. The score is 0 + 1 = 1.
 - 2: nums_left is [1,1]. nums_right is []. The score is 0 + 0 = 0.
 Only index 0 has the highest possible division score 2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

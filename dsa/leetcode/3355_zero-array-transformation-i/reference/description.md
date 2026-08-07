@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a 2D array `queries`, where $\text{queries}[i] = [l_{i}, r_{i}]$.
 
@@ -11,12 +11,13 @@ For each $\text{queries}[i]$:
 A **Zero Array** is an array where all elements are equal to 0.
 
 Return `true` if it is *possible* to transform `nums` into a **Zero Array **after processing all the queries sequentially, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Return `true` if it is *possible* to transform `nums` into a **Zero Array **afte
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

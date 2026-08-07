@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A competition consists of `n` players numbered from `0` to $n - 1$.
 
@@ -15,12 +15,13 @@ The competition process is as follows:
 The winner of the competition is the **first** player who wins `k` games **in a row**.
 
 Return the initial index of the *winning* player.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ Initially, the queue of players is `[0,1,2]`. The following process happens:
 Player 1 won $k = 3$ games in a row, so the winner is player 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{skills.length}$
 

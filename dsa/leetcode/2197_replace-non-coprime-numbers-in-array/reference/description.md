@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums`. Perform the following steps:
 
@@ -15,12 +15,13 @@ Return *the **final** modified array.* It can be shown that replacing adjacent n
 The test cases are generated such that the values in the final array are **less than or equal** to $10^{8}$.
 
 Two values `x` and `y` are **non-coprime** if `GCD(x, y) > 1` where `GCD(x, y)` is the **Greatest Common Divisor** of `x` and `y`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Note that there are other ways to obtain the same resultant array.
 There are no more adjacent non-coprime numbers in nums.
 Thus, the final modified array is [2,1,1,3].
 Note that there are other ways to obtain the same resultant array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

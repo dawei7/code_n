@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,11 +7,12 @@ Return *the length of the **longest semi-decreasing** subarray of *`nums`*, and 
 - A **subarray** is a contiguous non-empty sequence of elements within an array.
 
 - A non-empty array is **semi-decreasing** if its first element is **strictly greater** than its last element.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It can be shown that there aren't any subarrays with the given condition with a 
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `0`
 - **Explanation:** Since there are no semi-decreasing subarrays in the given array, the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

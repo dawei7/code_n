@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a binary string `s` of length `n`, where $s[i] = '1'$ means index `i` initially contains a **token** and $s[i] = '0'$ means it does not.
 
@@ -11,7 +11,8 @@ You may perform the following operation any number of times:
 An index is considered **covered** if it contains a token after all moves.
 
 Return an integer denoting the **maximum total value** of `nums` at the covered indices after optimally performing the operations.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $n=\texttt{nums.length}=\texttt{s.length}$.
 
 Return the largest sum of values at distinct covered indices obtainable when every token moves left at most once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return the largest sum of values at distinct covered indices obtainable when eve
 - The covered indices are `[0, 2]`, so the total value is $\text{nums}[0] + \text{nums}[2] = 9 + 5 = 14$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} = \text{s.length} \le 10^{5}$
 

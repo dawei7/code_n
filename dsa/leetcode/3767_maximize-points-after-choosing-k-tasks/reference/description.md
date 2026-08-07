@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays, `technique1` and `technique2`, each of length `n`, where `n` represents the number of tasks to complete.
 
@@ -13,7 +13,8 @@ You **must** complete **at least** `k` tasks using technique 1 (they do not need
 The remaining tasks may be completed using **either** technique.
 
 Return an integer denoting the **maximum total points** you can earn.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ The arrays have the same nonzero length. Choices are independent across indices 
 
 Return the greatest possible sum of the selected point values. More than `k` tasks may—and should—use technique 1 whenever doing so increases the total.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ Since $k = 0$, we are not required to choose any task using `technique1`.
 Choosing all tasks using technique 2 yields the maximum points: $4 + 5 + 6 = 15$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{technique1.length} = \text{technique2.length} \le 10^{5}$
 

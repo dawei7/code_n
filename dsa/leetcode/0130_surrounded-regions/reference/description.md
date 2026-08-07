@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `board` containing **letters** `'X'` and `'O'`, **capture regions** that are **surrounded**:
 
@@ -9,7 +9,8 @@ You are given an `m x n` matrix `board` containing **letters** `'X'` and `'O'`, 
 - **Surround**: A region is surrounded if none of the `'O'` cells in that region are on the edge of the board. Such regions are **completely enclosed **by `'X'` cells.
 
 To capture a **surrounded region**, replace all `'O'`s with `'X'`s **in-place** within the original board. You do not need to return anything.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ To capture a **surrounded region**, replace all `'O'`s with `'X'`s **in-place** 
 
 Return nothing; mutate `board` in place so that all and only surrounded `'O'` regions are captured.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ In the above diagram, the bottom region is not captured because it is on the edg
 **Output:** [["X"]]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{board.length}$
 

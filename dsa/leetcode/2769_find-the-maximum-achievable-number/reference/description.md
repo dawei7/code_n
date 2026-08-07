@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given two integers, `num` and `t`. A **number **`x`** **is** achievable** if it can become equal to `num` after applying the following operation **at most** `t` times:
 
 - Increase or decrease `x` by `1`, and *simultaneously* increase or decrease `num` by `1`.
 
 Return the **maximum **possible value of `x`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,6 +41,7 @@ Apply the following operation twice to make the maximum achievable number equal 
 - Decrease the maximum achievable number by 1, and increase `num` by 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num, t \le 50$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. You can apply the following operation any number of times:
 
@@ -7,11 +7,12 @@ You are given a **0-indexed** integer array `nums`. You can apply the following 
 The prefix sum array of `nums` is an array `prefix` of the same length as `nums` such that $\text{prefix}[i]$ is the sum of all the integers $\text{nums}[j]$ where `j` is in the inclusive range `[0, i]`.
 
 Return *the minimum number of operations such that the prefix sum array does not contain negative integers*. The test cases are generated such that it is always possible to make the prefix sum array non-negative.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The array is [2,3,-5,4]. The prefix sum array is [2, 5, 0, 4].
 - **Output:** `1`
 - **Explanation:** we can do one operation on index 1.
 The array after the operation is [3,-2,6,-5]. The prefix sum array is [3, 1, 7, 2].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

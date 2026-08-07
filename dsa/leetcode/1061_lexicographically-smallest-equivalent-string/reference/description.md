@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings of the same length `s1` and `s2` and a string `baseStr`.
 
@@ -17,12 +17,13 @@ Equivalent characters follow the usual rules of any equivalence relation:
 For example, given the equivalency information from $s1 = "abc"$ and $s2 = "cde"$, `"acd"` and `"aab"` are equivalent strings of $baseStr = "eed"$, and `"aab"` is the lexicographically smallest equivalent string of `baseStr`.
 
 Return *the lexicographically smallest equivalent string of *`baseStr`* by using the equivalency information from *`s1`* and *`s2`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ So only the second letter 'o' in baseStr is changed to 'd', the answer is "hdld"
 - **Input:** $s1 = "leetcode", s2 = "programs", baseStr = "sourcecode"$
 - **Output:** `"aauaaaaada"`
 - **Explanation:** We group the equivalent characters in s1 and s2 as [a,o,e,r,s,c], [l,p], [g,t] and [d,m], thus all letters in baseStr except 'u' and 'd' are transformed to 'a', the answer is "aauaaaaada".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length}, baseStr \le 1000$
 

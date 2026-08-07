@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `nums` of positive integers, return the longest possible length of an array prefix of `nums`, such that it is possible to remove **exactly one** element from this prefix so that every number that has appeared in it will have the same number of occurrences.
 
 If after removing one element there are no remaining elements, it's still considered that every appeared number has the same number of ocurrences (0).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ If after removing one element there are no remaining elements, it's still consid
 
 - **Input:** `nums = [1,1,1,2,2,2,3,3,3,4,4,4,5]`
 - **Output:** `13`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

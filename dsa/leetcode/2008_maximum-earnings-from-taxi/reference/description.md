@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` points on a road you are driving your taxi on. The `n` points on the road are labeled from `1` to `n` in the direction you are going, and you want to drive from point `1` to point `n` to make money by picking up passengers. You cannot change the direction of the taxi.
 
@@ -8,13 +8,16 @@ For** each **passenger `i` you pick up, you **earn** $\text{end}_{i} - \text{sta
 
 Given `n` and `rides`, return *the **maximum** number of dollars you can earn by picking up the passengers optimally.*
 
-**Note:** You may drop off a passenger and pick up a different passenger at the same point.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+You may drop off a passenger and pick up a different passenger at the same point.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ Given `n` and `rides`, return *the **maximum** number of dollars you can earn by
 - Drive passenger 2 from point 10 to point 12 for a profit of 12 - 10 + 3 = 5 dollars.
 - Drive passenger 5 from point 13 to point 18 for a profit of 18 - 13 + 1 = 6 dollars.
 We earn 9 + 5 + 6 = 20 dollars in total.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{5}$
 

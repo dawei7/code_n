@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -7,7 +7,8 @@ You must **partition** the array into `k` contiguous subarrays of **equal** leng
 It is guaranteed that `n` is divisible by `k`.
 
 Return the resulting array after performing the above operation.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $N=\lvert\texttt{nums}\rvert$ and $B=N/k$. The divisibility guarantee makes 
 
 Return the length-$N$ array formed by reversing each of the `k` blocks and concatenating the blocks from left to right.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Return the length-$N$ array formed by reversing each of the `k` blocks and conca
 - Reversing it produces `[2, 4, 4, 5]`, which is the final array.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 1000$
 

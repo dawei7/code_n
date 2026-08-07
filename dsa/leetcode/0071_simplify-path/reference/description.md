@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an *absolute* path for a Unix-style file system, which always begins with a slash `'/'`. Your task is to transform this absolute path into its **simplified canonical path**.
 
@@ -23,7 +23,8 @@ The simplified canonical path should follow these *rules*:
 - The path must not have any single or double periods (`'.'` and `'..'`) used to denote current or parent directories.
 
 Return the **simplified canonical path**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ Return the **simplified canonical path**.
 
 Return the equivalent simplified canonical path.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -95,7 +96,8 @@ Going one level up from the root directory is not possible.
 `"..."` is a valid name for a directory in this problem.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{path.length} \le 3000$
 

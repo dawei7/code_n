@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, partition `s` into `k` **substrings** such that the letter changes needed to make each substring a **semi-palindrome** are minimized.
 
@@ -71,12 +71,13 @@ Consider the string `"abcabc"`:
 **Explanation: ** Divide `s` into substrings `"aa"`, `"bb"` and `"aa"`. All are already semi-palindromes.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $2 \le \text{s.length} \le 200$
 

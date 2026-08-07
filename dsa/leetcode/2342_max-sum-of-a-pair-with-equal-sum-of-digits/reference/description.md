@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of **positive** integers. You can choose two indices `i` and `j`, such that $i \neq j$, and the sum of digits of the number $\text{nums}[i]$ is equal to that of $\text{nums}[j]$.
 
 Return the **maximum** value of* *$\text{nums}[i] + \text{nums}[j]$* *that you can obtain over all possible indices `i` and `j` that satisfy the conditions. If no such pair of indices exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ So the maximum sum that we can obtain is 54.
 - **Input:** `nums = [10,12,19,14]`
 - **Output:** `-1`
 - **Explanation:** There are no two numbers that satisfy the conditions, so we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

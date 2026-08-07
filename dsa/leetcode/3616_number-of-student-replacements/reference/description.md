@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `ranks` where $\text{ranks}[i]$ represents the rank of the $$i^{\text{th}}$$ student arriving **in order**. A lower number indicates a **better** rank.
 
@@ -7,11 +7,12 @@ Initially, the first student is **selected** by default.
 A **replacement** occurs when a student with a **strictly** better rank arrives and **replaces** the current selection.
 
 Return the total number of replacements made.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Return the total number of replacements made.
 - Thus, the number of replacements is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{ranks.length} \le 10^{5}​​​​​​​$
 

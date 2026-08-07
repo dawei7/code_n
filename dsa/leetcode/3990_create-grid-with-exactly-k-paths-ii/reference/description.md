@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `k`.
 
@@ -25,7 +25,8 @@ A **valid path** is a sequence of free cells that:
 	</li>
 
 Return any grid such that there are **exactly `k` valid paths** from the top-left cell to the bottom-right cell. If no such grid exists, return an empty array.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(k) -> \text{list}[str]$
 
@@ -39,7 +40,7 @@ Rows and columns use zero-based indices. The dimensions $m$ and $n$ are selected
 
 Return a non-empty list of at most 25 strings, each having the same positive length of at most 25. Every character must be `.` or `#`, both corner cells must be usable by the required paths, and the grid must contain exactly `k` paths from `(0, 0)` to $(m - 1, n - 1)$ using only right and down moves. Different valid constructions are equivalent answers. Return `[]` only when no permitted grid exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -81,6 +82,9 @@ The grid contains exactly 3 valid paths from `(0, 0)` to `(2, 2)`:
 - `(0, 0) → (0, 1) → (1, 1) → (2, 1) → (2, 2)`
 
 </div>
-### Constraints​​​​​​​
+
+### 4. Constraints
+
+​​​​​​​
 
 - $1 \le k \le 1000$

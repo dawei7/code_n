@@ -1,22 +1,23 @@
-## Description
+### 1. Description
 
 Given an array of strings `words` and a character `separator`, **split** each string in `words` by `separator`.
 
 Return *an array of strings containing the new strings formed after the splits, **excluding empty strings**.*
 
-**Notes**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - `separator` is used to determine where the split should occur, but it is not included as part of the resulting strings.
 
 - A split may result in more than two strings.
 
 - The resulting strings must maintain the same order as they were initially given.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Hence, the resulting array is ["easy","problem"].
 - **Input:** $words = ["|||"], separator = "|"$
 - **Output:** `[]`
 - **Explanation:** In this example the resulting split of "|||" will contain only empty strings, so we return an empty array [].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

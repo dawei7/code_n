@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary array `nums` (**0-indexed**).
 
@@ -7,12 +7,13 @@ We define $x_{i}$ as the number whose binary representation is the subarray `num
 - For example, if `nums = [1,0,1]`, then $x_{0} = 1$, $x_{1} = 2$, and $x_{2} = 5$.
 
 Return *an array of booleans *`answer`* where *$\text{answer}[i]$* is *`true`* if *$x_{i}$* is divisible by *`5`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Only the first number is divisible by 5, so answer[0] is true.
 
 - **Input:** `nums = [1,1,1]`
 - **Output:** `[false,false,false]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

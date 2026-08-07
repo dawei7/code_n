@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `head` of a linked list and two integers `m` and `n`.
 
@@ -13,7 +13,8 @@ Traverse the linked list and remove some nodes in the following way:
 - Keep repeating steps 2 and 3 until you reach the end of the list.
 
 Return *the head of the modified list after removing the mentioned nodes*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Return `head` after modifying the list in place so each cycle keeps up to `m`
 available nodes and then removes up to `n` available nodes. Retained nodes keep
 their original relative order and identity.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Head of the linked list after removing nodes is returned.
 - **Input:** $head = [1,2,3,4,5,6,7,8,9,10,11], m = 1, n = 3$
 - **Output:** `[1,5,9]`
 - **Explanation:** Head of linked list after removing nodes is returned.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{4}]$.
 

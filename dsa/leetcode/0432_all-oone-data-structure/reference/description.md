@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure to store the strings' count with the ability to return the strings with minimum and maximum counts.
 
@@ -14,8 +14,7 @@ Implement the `AllOne` class:
 
 - `getMinKey()` Returns one of the keys with the minimum count. If no element exists, return an empty string `""`.
 
-**Note** that each function must run in `O(1)` average time complexity.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +27,11 @@ The app adapter constructs one `AllOne` instance, applies the operations in orde
 by each retrieval call. Update calls do not add entries to this returned list. The immutable native artifact exposes
 the source-required `AllOne` constructor and four methods directly.
 
-### Examples
+### 3. Note
+
+that each function must run in `O(1)` average time complexity.
+
+### 4. Examples
 
 #### Example 1
 
@@ -49,7 +52,8 @@ allOne.inc("leet");
 allOne.getMaxKey(); // return "hello"
 allOne.getMinKey(); // return "leet"
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{key.length} \le 10$
 

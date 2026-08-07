@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **binary tree** `root`, return *the maximum sum of all keys of **any** sub-tree which is also a Binary Search Tree (BST)*.
 
@@ -9,12 +9,13 @@ Assume a BST is defined as follows:
 - The right subtree of a node contains only nodes with keys **greater than** the node's key.
 
 - Both the left and right subtrees must also be binary search trees.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Assume a BST is defined as follows:
 - **Input:** `root = [-4,-2,-5]`
 - **Output:** `0`
 - **Explanation:** All values are negatives. Return an empty BST.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 4 * 10^{4}]$.
 

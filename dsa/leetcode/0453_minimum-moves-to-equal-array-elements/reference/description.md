@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of size `n`, return *the minimum number of moves required to make all array elements equal*.
 
 In one move, you can increment $n - 1$ elements of the array by `1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ In one move, you can increment $n - 1$ elements of the array by `1`.
 
 The result is guaranteed to fit in a 32-bit integer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ The result is guaranteed to fit in a 32-bit integer.
 
 - **Input:** `nums = [1,1,1]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

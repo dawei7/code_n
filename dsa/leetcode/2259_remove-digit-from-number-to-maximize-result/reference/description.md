@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `number` representing a **positive integer** and a character `digit`.
 
 Return *the resulting string after removing **exactly one occurrence** of *`digit`* from *`number`* such that the value of the resulting string in **decimal** form is **maximized***. The test cases are generated such that `digit` occurs at least once in `number`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Since 231 > 123, we return "231".
 - **Output:** `"51"`
 - **Explanation:** We can remove either the first or second '5' from "551".
 Both result in the string "51".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{number.length} \le 100$
 

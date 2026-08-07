@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, return *the number of distinct bitwise ORs of all the non-empty subarrays of* `arr`.
 
 The bitwise OR of a subarray is the bitwise OR of each integer in the subarray. The bitwise OR of a subarray of one integer is that integer.
 
 A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ There are 3 unique values, so the answer is 3.
 - **Input:** `arr = [1,2,4]`
 - **Output:** `6`
 - **Explanation:** The possible results are 1, 2, 3, 4, 6, and 7.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -14,13 +14,16 @@ where:
 
 Return the **maximum** value achievable.
 
-**Note:** If multiple partitions result in the same **maximum** sum, you can consider any one of them.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+If multiple partitions result in the same **maximum** sum, you can consider any one of them.
+
+### 4. Examples
 
 #### Example 1
 
@@ -82,7 +85,8 @@ One optimal partition is:
 The maximum value of: $XOR(A) + AND(B) + XOR(C) = 7 + 2 + 6 = 15$. Thus, the answer is 15.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 19$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `n`​​​​​​ tasks labeled from `0` to $n - 1$ represented by a 2D integer array `tasks`, where $\text{tasks}[i] = [\text{enqueueTime}_{i}, \text{processingTime}_{i}]$ means that the $i^​​​​​​th$​​​​ task will be available to process at $\text{enqueueTime}_{i}$ and will take $\text{processingTime}_{i}$_ to finish processing.
 
@@ -13,12 +13,13 @@ You have a single-threaded CPU that can process **at most one** task at a time a
 - The CPU can finish a task then start a new one instantly.
 
 Return the order in which the CPU will process the tasks.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,10 @@ Return the order in which the CPU will process the tasks.
 - At time = 18, the CPU finishes task 2 and starts processing task 0. Available tasks = {1}.
 - At time = 28, the CPU finishes task 0 and starts processing task 1. Available tasks = {}.
 - At time = 40, the CPU finishes task 1 and becomes idle.
-### Constraints​​​​​​​
+
+### 4. Constraints
+
+​​​​​​​
 
 - $1 \le \text{tasks.length} \le 10^{5}$
 

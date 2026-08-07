@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A gene string can be represented by an 8-character long string, with choices from `'A'`, `'C'`, `'G'`, and `'T'`.
 
@@ -11,7 +11,8 @@ There is also a gene bank `bank` that records all the valid gene mutations. A ge
 Given the two gene strings `startGene` and `endGene` and the gene bank `bank`, return *the minimum number of mutations needed to mutate from *`startGene`* to *`endGene`. If there is no such a mutation, return `-1`.
 
 Note that the starting point is assumed to be valid, so it might not be included in the bank.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Note that the starting point is assumed to be valid, so it might not be included
 Return the minimum number of one-character mutations from `startGene` to `endGene`, or `-1` when the target is
 unreachable through valid bank genes.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ unreachable through valid bank genes.
 
 - **Input:** $startGene = "AACCGGTT", endGene = "AAACGGTA", bank = ["AACCGGTA","AACCGCTA","AAACGGTA"]$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{bank.length} \le 10$
 

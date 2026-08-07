@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of players in a game and a 2D array `pick` where $\text{pick}[i] = [x_{i}, y_{i}]$ represents that the player $x_{i}$ picked a ball of color $y_{i}$.
 
@@ -14,13 +14,16 @@ Player `i` **wins** the game if they pick **strictly more** than `i` balls of th
 
 Return the number of players who **win** the game.
 
-**Note** that *multiple* players can win the game.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that *multiple* players can win the game.
+
+### 4. Examples
 
 #### Example 1
 
@@ -58,7 +61,8 @@ No player wins the game.
 Player 2 wins the game by picking 3 balls with color 4.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. In this array:
 
@@ -11,11 +11,12 @@ You are given an integer array `nums`. In this array:
 Return an integer array of length 2, where the first element is the one that appears **once**, and the second is the one that appears **twice**.
 
 Your solution must run in **$\mathcal{O}(n)$** time and **$\mathcal{O}(1)$** space.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The element 3 appears **once**, and the element 7 appears **twice**. The remaini
 The element 8 appears **once**, and the element 6 appears **twice**. The remaining elements each appear **three times**.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

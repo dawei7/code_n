@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Tree`
 
@@ -27,12 +27,13 @@ Write a solution to report the type of each node in the tree.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,4 +87,6 @@ Tree table:
 **Explanation:** If there is only one node on the tree, you only need to output its root attributes.
 ```
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/binary-tree-nodes/description/" target="_blank"> 3054: Binary Tree Nodes.</a>
+### 4. Note
+
+This question is the same as <a href="https://leetcode.com/problems/binary-tree-nodes/description/" target="_blank"> 3054: Binary Tree Nodes.</a>

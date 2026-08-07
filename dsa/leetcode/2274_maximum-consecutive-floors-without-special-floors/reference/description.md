@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Alice manages a company and has rented some floors of a building as office space. Alice has decided some of these floors should be **special floors**, used for relaxation only.
 
 You are given two integers `bottom` and `top`, which denote that Alice has rented all the floors from `bottom` to `top` (**inclusive**). You are also given the integer array `special`, where $\text{special}[i]$ denotes a special floor that Alice has designated for relaxation.
 
 Return *the **maximum** number of consecutive floors without a special floor*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Therefore, we return the maximum number which is 3 floors.
 - **Input:** $bottom = 6, top = 8, special = [7,6,8]$
 - **Output:** `0`
 - **Explanation:** Every floor rented is a special floor, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{special.length} \le 10^{5}$
 

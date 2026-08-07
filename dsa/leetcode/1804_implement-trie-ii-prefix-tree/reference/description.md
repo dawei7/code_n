@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A <a href="https://en.wikipedia.org/wiki/Trie" target="_blank">**trie**</a> (pronounced as "try") or **prefix tree** is a tree data structure used to efficiently store and retrieve keys in a dataset of strings. There are various applications of this data structure, such as autocomplete and spellchecker.
 
@@ -13,11 +13,12 @@ Implement the Trie class:
 - `int countWordsStartingWith(String prefix)` Returns the number of strings in the trie that have the string `prefix` as a prefix.
 
 - `void erase(String word)` Erases the string `word` from the trie.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ trie.countWordsStartingWith("app"); // return 1
 trie.erase("apple");                // Erases "apple". Now the trie is empty.
 trie.countWordsStartingWith("app"); // return 0
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length}, \text{prefix.length} \le 2000$
 

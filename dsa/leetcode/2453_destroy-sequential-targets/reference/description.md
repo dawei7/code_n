@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of positive integers, representing targets on a number line. You are also given an integer `space`.
 
 You have a machine which can destroy targets. **Seeding** the machine with some $\text{nums}[i]$ allows it to destroy all targets with values that can be represented as $\text{nums}[i] + c * space$, where `c` is any non-negative integer. You want to destroy the **maximum** number of targets in `nums`.
 
 Return* the **minimum value** of *$\text{nums}[i]$* you can seed the machine with to destroy the maximum number of targets.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Since nums[0] is the minimal integer that can destroy 3 targets, we return 1.
 - **Input:** `nums = [6,2,5], space = 100`
 - **Output:** `2`
 - **Explanation:** Whatever initial seed we select, we can only destroy 1 target. The minimal seed is nums[1].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

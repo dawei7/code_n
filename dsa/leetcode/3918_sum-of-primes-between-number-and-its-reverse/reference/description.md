@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
 Let `r` be the integer formed by reversing the digits of `n`.
 
 Return the **sum** of all prime numbers between `min(n, r)` and `max(n, r)`, inclusive.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let `r` be the integer obtained by reversing the digits of `n`, $L=\min(\texttt{
 
 Return the sum of all primes $p$ satisfying $L\le p\le U$. Return `0` when the interval contains no prime.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,6 +66,7 @@ Return the sum of all primes $p$ satisfying $L\le p\le U$. Return `0` when the i
 - There are no prime numbers in this range, so the sum is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

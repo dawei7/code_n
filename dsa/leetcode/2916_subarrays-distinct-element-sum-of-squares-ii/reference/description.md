@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed **integer array `nums`.
 
@@ -11,12 +11,13 @@ Return *the sum of the **squares** of **distinct counts** of all subarrays of *`
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The sum of the squares of the distinct counts in all subarrays is equal to $1^{2
 [2]: 1 distinct value
 [2,2]: 1 distinct value
 The sum of the squares of the distinct counts in all subarrays is equal to $1^{2}$ + $1^{2}$ + $1^{2}$ = 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

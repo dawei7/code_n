@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list containing `k` **distinct** elements, return *the head to a linked list of length *`k`* containing the frequency of each **distinct** element in the given linked list in **any order**.*
 
@@ -36,11 +36,12 @@ Note that `1 -> 2 -> 3`, `1 -> 3 -> 2`, `2 -> 1 -> 3`, `2 -> 3 -> 1`, and `3 -> 
 **Explanation: ** There are `6` distinct elements in the list. The frequency of each of them is `1`. Hence, we return `1 -> 1 -> 1 -> 1 -> 1 -> 1`.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Constraints
+### 3. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{5}]$.
 

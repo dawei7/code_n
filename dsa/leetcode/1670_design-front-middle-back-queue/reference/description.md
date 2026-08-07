@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a queue that supports `push` and `pop` operations in the front, middle, and back.
 
@@ -18,17 +18,20 @@ Implement the `FrontMiddleBack` class:
 
 - `int popBack()` Removes the **back** element of the queue and returns it. If the queue is empty, return `-1`.
 
-**Notice** that when there are **two** middle position choices, the operation is performed on the **frontmost** middle position choice. For example:
-
-- Pushing `6` into the middle of `[1, 2, 3, 4, 5]` results in `[1, 2, <u>6</u>, 3, 4, 5]`.
-
-- Popping the middle from `[1, 2, <u>3</u>, 4, 5, 6]` returns `3` and results in `[1, 2, 4, 5, 6]`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Notice
+
+that when there are **two** middle position choices, the operation is performed on the **frontmost** middle position choice. For example:
+
+- Pushing `6` into the middle of `[1, 2, 3, 4, 5]` results in `[1, 2, <u>6</u>, 3, 4, 5]`.
+
+- Popping the middle from `[1, 2, <u>3</u>, 4, 5, 6]` returns `3` and results in `[1, 2, 4, 5, 6]`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ q.popMiddle();    // return 3 -> [4, 2]
 q.popMiddle();    // return 4 -> [2]
 q.popBack();      // return 2 -> []
 q.popFront();     // return -1 -> [] (The queue is empty)
-### Constraints
+
+### 5. Constraints
 
 - $1 \le val \le 10^{9}$
 

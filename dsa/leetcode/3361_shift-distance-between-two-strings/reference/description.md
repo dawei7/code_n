@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t` of the same length, and two integer arrays `nextCost` and `previousCost`.
 
@@ -11,12 +11,13 @@ In one operation, you can pick any index `i` of `s`, and perform **either one** 
 The **shift distance** is the **minimum** total cost of operations required to transform `s` into `t`.
 
 Return the **shift distance** from `s` to `t`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Return the **shift distance** from `s` to `t`.
 - We choose index $i = 3$ and shift $s[3]$ 11 times to the next character for a total cost of 11.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} = \text{t.length} \le 10^{5}$
 

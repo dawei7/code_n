@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `cost1` and `cost2`. You are allowed to perform **either** of the following operations **any** number of times:
 
@@ -9,12 +9,13 @@ You are given an integer array `nums` and two integers `cost1` and `cost2`. You 
 Return the **minimum** **cost** required to make all elements in the array **equal***. *
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -82,7 +83,8 @@ The following operations can be performed to make the values equal:
 The total cost is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

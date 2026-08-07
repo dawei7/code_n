@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `properties` having dimensions `n x m` and an integer `k`.
 
@@ -7,12 +7,13 @@ Define a function `intersect(a, b)` that returns the **number of distinct intege
 Construct an **undirected** graph where each index `i` corresponds to $\text{properties}[i]$. There is an edge between node `i` and node `j` if and only if $intersect(\text{properties}[i], \text{properties}[j]) \ge k$, where `i` and `j` are in the range `[0, n - 1]` and $i \neq j$.
 
 Return the number of **connected components** in the resulting graph.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The graph formed has 1 connected component:
 $intersect(\text{properties}[0], \text{properties}[1]) = 1$, which is less than `k`. This means there is no edge between $\text{properties}[0]$ and $\text{properties}[1]$ in the graph.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{properties.length} \le 100$
 

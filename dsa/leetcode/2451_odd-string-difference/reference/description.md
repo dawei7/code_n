@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of equal-length strings `words`. Assume that the length of each string is `n`.
 
@@ -9,12 +9,13 @@ Each string $\text{words}[i]$ can be converted into a **difference integer array
 All the strings in words have the same difference integer array, **except one**. You should find that string.
 
 Return* the string in *`words`* that has different **difference integer array**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The odd array out is [1, 1], so we return the corresponding string, "abc".
 - **Input:** $words = ["aaa","bob","ccc","ddd"]$
 - **Output:** `"bob"`
 - **Explanation:** All the integer arrays are [0, 0] except for "bob", which corresponds to [13, -13].
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{words.length} \le 100$
 

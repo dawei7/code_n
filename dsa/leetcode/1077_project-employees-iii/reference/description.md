@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Project`
 
@@ -33,7 +33,8 @@ Write a solution to report the **most experienced** employees in each project. I
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -47,7 +48,7 @@ $Project(\text{project}_{id}, \text{employee}_{id})$ contains $R$ distinct proje
 - Do not use `name` to select or break ties.
 - Result order is unrestricted; the local reference orders both output columns only to make validation deterministic.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

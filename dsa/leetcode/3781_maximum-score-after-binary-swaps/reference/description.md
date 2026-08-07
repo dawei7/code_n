@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a binary string `s` of the same length.
 
@@ -7,7 +7,8 @@ Initially, your score is 0. Each index `i` where $s[i] = '1'$ contributes $\text
 You may perform **any** number of operations (including zero). In one operation, you may choose an index `i` such that $0 \le i < n - 1$, where $s[i] = '0'$, and $s[i + 1] = '1'$, and swap these two characters.
 
 Return an integer denoting the **maximum possible score** you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $N=\lvert\texttt{nums}\rvert=\lvert s\rvert$. Swaps change only the position
 
 Return the maximum sum of $\text{nums}[i]$ over positions that can contain `'1'` after any number of legal `"01" -> "10"` swaps, including no swaps.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Positions 0 and 2 contain `'1'`, contributing $\text{nums}[0] + \text{nums}[2] =
 There are no `'1'` characters in `s`, so no swaps can be performed. The score remains 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length} = \text{s.length}$
 

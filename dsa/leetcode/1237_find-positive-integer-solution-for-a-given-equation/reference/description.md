@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a callable function `f(x, y)` **with a hidden formula** and a value `z`, reverse engineer the formula and return *all positive integer pairs *`x`* and *`y`* where *$f(x,y) = z$. You may return the pairs in any order.
 
@@ -27,12 +27,13 @@ We will judge your solution as follows:
 - The judge will call your `findSolution` and compare your results with the **answer key**.
 
 - If your results match the **answer key**, your solution will be `Accepted`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ x=4, y=1 -> f(4, 1) = 4 + 1 = 5.
 The following positive integer values of x and y make f(x, y) equal to 5:
 x=1, y=5 -> f(1, 5) = 1 * 5 = 5.
 x=5, y=1 -> f(5, 1) = 5 * 1 = 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{function}_{id} \le 9$
 

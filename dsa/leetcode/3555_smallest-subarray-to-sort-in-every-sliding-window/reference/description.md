@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
 For each contiguous subarray of length `k`, determine the **minimum** length of a continuous segment that must be sorted so that the entire window becomes **non‑decreasing**; if the window is already sorted, its required length is zero.
 
 Return an array of length $n − k + 1$ where each element corresponds to the answer for its window.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Return an array of length $n − k + 1$ where each element corresponds to the an
 - $nums[1...4] = [4, 3, 2, 1]$. The whole subarray must be sorted, so the answer is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Friends`
 
@@ -18,11 +18,12 @@ Write a solution to find the popularity percentage for each user on Meta/Faceboo
 Return *the result table ordered by* `user1` *in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

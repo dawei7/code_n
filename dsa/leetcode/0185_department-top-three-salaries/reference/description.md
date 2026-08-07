@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -36,7 +36,8 @@ Write a solution to find the employees who are **high earners** in each of the d
 Return the result table **in any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -46,7 +47,7 @@ The result format is in the following example.
 
 Return `Department`, `Employee`, and `Salary` for every employee whose salary is among the department's three highest distinct values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -93,6 +94,7 @@ In the Sales department:
 - Sam earns the second-highest salary
 - There is no third-highest salary as there are only two employees
 ```
-### Constraints
+
+### 4. Constraints
 
 - There are no employees with the **exact** same name, salary *and* department.

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 In a string composed of `'L'`, `'R'`, and `'X'` characters, like `"RXXLRXRXL"`, a move consists of either replacing one occurrence of `"XL"` with `"LX"`, or replacing one occurrence of `"RX"` with `"XR"`. Given the starting string `start` and the ending string `result`, return `True` if and only if there exists a sequence of moves to transform `start` to `result`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ XRLXXRRLX
 
 - **Input:** $start = "X", result = "L"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{start.length} \le 10^{4}$
 

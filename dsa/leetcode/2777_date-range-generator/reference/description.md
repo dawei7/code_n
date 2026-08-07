@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given a start date `start`, an end date `end`, and a positive integer `step`, return a generator object that yields dates in the range from `start` to `end` inclusive.
 
 The value of `step` indicates the number of days between consecutive yielded values.
 
 All yielded dates must be in the string format `YYYY-MM-DD`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ g.next().value // '2023-04-19'
 - **Explanation:**
 const g = dateRangeGenerator(start, end, step);
 g.next().value // '2023-04-10'
-### Constraints
+
+### 4. Constraints
 
 - $new Date(start) \le new Date(end)$
 

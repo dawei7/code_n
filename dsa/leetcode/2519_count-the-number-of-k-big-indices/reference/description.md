@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and a positive integer `k`.
 
@@ -9,7 +9,8 @@ We call an index `i` **k-big** if the following conditions are satisfied:
 - There exist at least `k` different indices `idx2` such that `idx2 > i` and $\text{nums}[idx2] < \text{nums}[i]$.
 
 Return *the number of k-big indices*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Return *the number of k-big indices*.
 
 Return an integer representing the number of `k`-big indices in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return an integer representing the number of `k`-big indices in `nums`.
 - **Input:** `nums = [1,1,1], k = 3`
 - **Output:** `0`
 - **Explanation:** There are no 3-big indices in nums.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

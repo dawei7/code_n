@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` matrix `grid` consisting of characters and a string `pattern`.
 
@@ -11,12 +11,13 @@ Count the number of cells in the matrix that satisfy the following condition:
 - The cell must be part of **at least** one horizontal substring and **at least** one vertical substring, where **both** substrings are equal to the given `pattern`.
 
 Return the count of these cells.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The cells colored above are all part of at least one horizontal and one vertical
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

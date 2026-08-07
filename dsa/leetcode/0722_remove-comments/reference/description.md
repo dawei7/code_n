@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a C++ program, remove comments from it. The program source is an array of strings `source` where $\text{source}[i]$ is the $$i^{\text{th}}$$ line of the source code. This represents the result of splitting the original source code string by the newline character `'\n'`.
 
@@ -27,12 +27,13 @@ It is guaranteed that every open block comment will eventually be closed, so `"/
 Finally, implicit newline characters can be deleted by block comments. Please see the examples below for details.
 
 After removing the comments from the source code, return *the source code in the same format*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ a = b + c;
 - **Input:** $source = ["a/*comment", "line", "\text{more}_{comment}*/b"]$
 - **Output:** `["ab"]`
 - **Explanation:** The original source string is "a/*comment\nline\nmore_comment*/b", where we have bolded the newline characters.  After deletion, the implicit newline characters are deleted, leaving the string "ab", which when delimited by newline characters becomes ["ab"].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{source.length} \le 100$
 

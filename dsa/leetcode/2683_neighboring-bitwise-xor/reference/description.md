@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **0-indexed** array `derived` with length `n` is derived by computing the **bitwise XOR** (⊕) of adjacent values in a **binary array** `original` of length `n`.
 
@@ -13,12 +13,13 @@ Given an array `derived`, your task is to determine whether there exists a **val
 Return ***true** if such an array exists or **false** otherwise.*
 
 - A binary array is an array containing only **0's** and **1's**
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ derived[1] = original[1] ⊕ original[0] = 1
 - **Input:** $derived = [1,0]$
 - **Output:** `false`
 - **Explanation:** There is no valid original array that gives derived.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{derived.length}$
 

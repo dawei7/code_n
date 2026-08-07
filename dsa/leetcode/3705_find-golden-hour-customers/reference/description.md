@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{restaurant}_{orders}$
 
@@ -153,7 +153,7 @@ The results table is ordered by average_rating DESC, then customer_id DESC.
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 **Input table**
 

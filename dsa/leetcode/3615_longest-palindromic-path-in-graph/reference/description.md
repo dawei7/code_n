@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an **undirected** graph with `n` nodes labeled from 0 to $n - 1$ and a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -7,12 +7,13 @@ You are also given a string `label` of length `n`, where $\text{label}[i]$ is th
 You may start at any node and move to any adjacent node, visiting each node **at most** once.
 
 Return the **maximum** possible length of a **palindrome** that can be formed by visiting a set of **unique** nodes along a valid path.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ Return the **maximum** possible length of a **palindrome** that can be formed by
 - This is a valid palindrome of length 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 14$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters, and an integer `k`.
 
 Your task is to delete some (possibly none) of the characters in the string so that the number of **distinct** characters in the resulting string is **at most** `k`.
 
 Return the **minimum** number of deletions required to achieve this.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ Return the **minimum** number of deletions required to achieve this.
 - Removing all `'z'` results in at most `k` distinct characters. Thus, the answer is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 16$
 

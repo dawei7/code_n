@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree and an array of `TreeNode` objects `nodes`, return *the lowest common ancestor (LCA) of **all the nodes** in *`nodes`. All the nodes will exist in the tree, and all values of the tree's nodes are **unique**.
 
 Extending the **<a href="https://en.wikipedia.org/wiki/Lowest_common_ancestor" target="_blank">definition of LCA on Wikipedia</a>**: "The lowest common ancestor of `n` nodes $p_{1}$, $p_{2}$, ..., $p_{n}$ in a binary tree `T` is the lowest node that has every $p_{i}$ as a **descendant** (where we allow **a node to be a descendant of itself**) for every valid `i`". A **descendant** of a node `x` is a node `y` that is on the path from node `x` to some leaf node.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ class TreeNode:
 
 Return the `TreeNode` object that is the lowest common ancestor shared by every supplied target node in `nodes`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return the `TreeNode` object that is the lowest common ancestor shared by every 
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], nodes = [7,6,2,4]`
 - **Output:** `5`
 - **Explanation:** The lowest common ancestor of the nodes 7, 6, 2, and 4 is node 5.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

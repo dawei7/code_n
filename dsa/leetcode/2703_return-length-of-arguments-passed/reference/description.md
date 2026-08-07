@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Write a function `argumentsLength` that returns the count of arguments passed to it.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ One value was passed to the function so it should return 1.
 - **Explanation:**
 argumentsLength({}, null, "3"); // 3
 Three values were passed to the function so it should return 3.
-### Constraints
+
+### 4. Constraints
 
 - `args` is a valid JSON array
 

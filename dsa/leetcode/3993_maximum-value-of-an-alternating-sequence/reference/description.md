@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `s`, and `m`.
 
@@ -18,7 +18,8 @@ A sequence `seq` of integers of length `n` is considered **valid** if:
 A sequence of length 1 is considered alternating.
 
 Return the **maximum** possible element that can appear in any valid sequence.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ All sequence elements are integers. Alternation is strict, so adjacent values ca
 
 Return the maximum integer that can appear in any valid length-`n` alternating sequence beginning with `s` and respecting the adjacent-difference limit.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ Return the maximum integer that can appear in any valid length-`n` alternating s
 - The maximum element in the sequence is 7.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, s \le 10^{9}$
 

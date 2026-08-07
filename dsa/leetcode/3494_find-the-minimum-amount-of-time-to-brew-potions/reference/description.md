@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays, `skill` and `mana`, of length `n` and `m`, respectively.
 
@@ -7,12 +7,13 @@ In a laboratory, `n` wizards must brew `m` potions *in order*. Each potion has a
 Since the brewing process is delicate, a potion **must** be passed to the next wizard immediately after the current wizard completes their work. This means the timing must be *synchronized* so that each wizard begins working on a potion **exactly** when it arrives. ​
 
 Return the **minimum** amount of time required for the potions to be brewed properly.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -95,7 +96,8 @@ As an example for why wizard 0 cannot start working on the 1^st potion before ti
 **Output:** 21
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{skill.length}$
 

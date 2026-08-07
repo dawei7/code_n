@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `patients`
 
@@ -138,7 +138,7 @@ Output table is ordered by recovery_time in ascending order, and then by patient
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given two arrays of integers with equal lengths, return the maximum value of:
 
 $|\text{arr1}[i] - \text{arr1}[j]| + |\text{arr2}[i] - \text{arr2}[j]| + |i - j|$
 
 where the maximum is taken over all $0 \le i, j < \text{arr1.length}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ where the maximum is taken over all $0 \le i, j < \text{arr1.length}$.
 
 - **Input:** $arr1 = [1,-2,-5,0,10], arr2 = [0,-2,-1,-7,-4]$
 - **Output:** `20`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr1.length} = \text{arr2.length} \le 40000$
 

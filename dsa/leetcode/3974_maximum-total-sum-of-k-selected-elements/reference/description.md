@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `k` and `mul`.
 
@@ -13,7 +13,8 @@ For each selected element, **independently** choose one of the following:
 After processing each selected element, `mul` **decreases** by 1, regardless of which option was chosen. The current value of `mul` may become 0 or negative.
 
 Return an integer denoting the **maximum** possible total sum.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums, k, mul) -> int`
 
@@ -29,7 +30,7 @@ Return the maximum possible integer total after exactly `k` selected elements ha
 
 At each step, adding the original value and adding its product with the current multiplier are both permitted. No modulus is applied to the result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -91,7 +92,8 @@ One optimal way:
 - The total sum is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

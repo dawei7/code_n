@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customer`
 
@@ -48,7 +48,8 @@ Write a solution to report the names of all sellers who did not make any sales i
 Return the result table ordered by $\text{seller}_{name}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -80,7 +81,7 @@ The result format is in the following example.
 
 Return a table with the single column $\text{seller}_{name}$. Include sellers for whom no matching order has $\text{sale}_{date}$ between `2020-01-01` and `2020-12-31`, ordered by $\text{seller}_{name}$ ASC.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

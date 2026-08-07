@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Drivers`
 
@@ -121,6 +121,6 @@ The output table is ordered by $\text{fuel}_{type}$ in ascending order.
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

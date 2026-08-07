@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string of English letters `s`, return *the **greatest **English letter which occurs as **both** a lowercase and uppercase letter in* `s`. The returned letter should be in **uppercase**. If no such letter exists, return *an empty string*.
 
 An English letter `b` is **greater** than another letter `a` if `b` appears **after** `a` in the English alphabet.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Note that 'A' and 'F' also appear in both lower and upper case, but 'R' is great
 - **Output:** `""`
 - **Explanation:**
 There is no letter that appears in both lower and upper case.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

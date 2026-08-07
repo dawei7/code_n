@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a `m x n` matrix `grid` which is sorted in non-increasing order both row-wise and column-wise, return *the number of **negative** numbers in* `grid`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,7 +18,8 @@ Given a `m x n` matrix `grid` which is sorted in non-increasing order both row-w
 
 - **Input:** `grid = [[3,2],[1,0]]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 A frog is crossing a river. The river is divided into some number of units, and at each unit, there may or may not exist a stone. The frog can jump on a stone, but it must not jump into the water.
 
 Given a list of `stones` positions (in units) in sorted **ascending order**, determine if the frog can cross the river by landing on the last stone. Initially, the frog is on the first stone and assumes the first jump must be `1` unit.
 
 If the frog's last jump was `k` units, its next jump must be either $k - 1$, `k`, or $k + 1$ units. The frog can only jump in the forward direction.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ If the frog's last jump was `k` units, its next jump must be either $k - 1$, `k`
 
 Return `true` if the frog can land on the last stone under the initial- and subsequent-jump rules; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` if the frog can land on the last stone under the initial- and subs
 - **Input:** $stones = [0,1,2,3,4,8,9,11]$
 - **Output:** `false`
 - **Explanation:** There is no way to jump to the last stone as the gap between the 5th and 6th stone is too large.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{stones.length} \le 2000$
 

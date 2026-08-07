@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string array `events`.
 
@@ -23,7 +23,8 @@ Return an integer array `[score, counter]`, where:
 - `score` is the final total score.
 
 - `counter` is the final counter value.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -35,7 +36,7 @@ Let $n=\lvert\texttt{events}\rvert$. Only the prefix ending at the tenth `"W"`, 
 
 Return `[score, counter]`, where `score` is the sum contributed by processed numeric, `"WD"`, and `"NB"` events, and `counter` is the number of processed `"W"` events. The counter never exceeds `10`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -143,7 +144,8 @@ Final result: `[10, 0]`.
 After 10 occurrences of `"W"`, the counter reaches 10, so processing stops. The remaining events are ignored.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{events.length} \le 1000$
 

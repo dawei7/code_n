@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an undirected tree with `n` nodes numbered from 0 to $n - 1$. The tree is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an undirected edge between $u_{i}$ and $v_{i}$.
 
@@ -19,7 +19,8 @@ Return an integer denoting the number of special nodes in the tree.
 A **Pythagorean triplet** consists of three integers `a`, `b`, and `c` which, when sorted in **ascending** order, satisfy $a^{2} + b^{2} = c^{2}$.
 
 The **distance** between two nodes in a tree is the number of edges on the unique path between them.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ For any node, compute its three edge-count distances to the targets. After arran
 
 Return the number of nodes whose three target distances satisfy the Pythagorean equation.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -105,7 +106,8 @@ For each node, we compute its distances to nodes $x = 1$, $y = 3$, and $z = 0$.
 Therefore, the answer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $4 \le n \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s`, rearrange the characters of `s` so that any two adjacent characters are not the same.
 
 Return *any possible rearrangement of* `s` *or return* `""` *if not possible*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Return *any possible rearrangement of* `s` *or return* `""` *if not possible*.
 
 - **Input:** `s = "aaab"`
 - **Output:** `""`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

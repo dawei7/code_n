@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters. A **duplicate removal** consists of choosing two **adjacent** and **equal** letters and removing them.
 
 We repeatedly make **duplicate removals** on `s` until we no longer can.
 
 Return *the final string after all such duplicate removals have been made*. It can be proven that the answer is **unique**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ For example, in "abbaca" we could remove "bb" since the letters are adjacent and
 
 - **Input:** `s = "azxxzy"`
 - **Output:** `"ay"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

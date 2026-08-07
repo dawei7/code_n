@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return the **maximum** integer `x` such that $x \le n$, and the bitwise `AND` of all the numbers in the range `[x, n]` is 0.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,6 +50,7 @@ The bitwise `AND` of `[7, 8, 9]` is 0.
 The bitwise `AND` of `[15, 16, 17]` is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{15}$

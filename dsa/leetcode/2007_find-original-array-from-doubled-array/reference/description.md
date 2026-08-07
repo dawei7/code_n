@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 An integer array `original` is transformed into a **doubled** array `changed` by appending **twice the value** of every element in `original`, and then randomly **shuffling** the resulting array.
 
 Given an array `changed`, return `original`* if *`changed`* is a **doubled** array. If *`changed`* is not a **doubled** array, return an empty array. The elements in* `original` *may be returned in **any** order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Other original arrays could be [4,3,1] or [3,1,4].
 - **Input:** $changed = [1]$
 - **Output:** `[]`
 - **Explanation:** changed is not a doubled array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{changed.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of digits from `1` to `9` and an integer `k`.
 
@@ -10,17 +10,20 @@ A partition of a string `s` is called **good** if:
 
 Return *the **minimum** number of substrings in a **good** partition of* `s`. If no **good** partition of `s` exists, return `-1`.
 
-**Note** that:
-
-- The **value** of a string is its result when interpreted as an integer. For example, the value of `"123"` is `123` and the value of `"1"` is `1`.
-
-- A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that:
+
+- The **value** of a string is its result when interpreted as an integer. For example, the value of `"123"` is `123` and the value of `"1"` is `1`.
+
+- A **substring** is a contiguous sequence of characters within a string.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ It can be shown that we cannot partition the string into less than 4 substrings.
 - **Input:** `s = "238182", k = 5`
 - **Output:** `-1`
 - **Explanation:** There is no good partition for this string.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

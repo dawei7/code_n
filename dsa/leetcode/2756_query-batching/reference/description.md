@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Batching multiple small queries into a single large query can be a useful optimization. Write a class `QueryBatcher` that implements this functionality.
 
@@ -15,11 +15,12 @@ The class has a single method.
 The following diagram illustrates how the throttling algorithm works. Each rectangle represents 100ms. The throttle time is 400ms.
 
 ![Throttle info](images/throttle.png)
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -97,7 +98,8 @@ calls = [
 queryMultiple(['b', 'c', 'd']) is called at t=110ms, it is resolved at 410ms
 queryMultiple(['e']) is called at t=250ms, it is resolved at 350ms
 queryMultiple(['f']) is called at t=350ms, it is resolved at 450ms
-### Constraints
+
+### 4. Constraints
 
 - $0 \le t \le 1000$
 

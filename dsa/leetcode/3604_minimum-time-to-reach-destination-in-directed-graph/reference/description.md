@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and a **directed** graph with `n` nodes labeled from 0 to $n - 1$. This is represented by a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, \text{start}_{i}, \text{end}_{i}]$ indicates an edge from node $u_{i}$ to $v_{i}$ that can **only** be used at any integer time `t` such that $\text{start}_{i} \le t \le \text{end}_{i}$.
 
@@ -11,12 +11,13 @@ In one unit of time, you can either:
 - Travel along an outgoing edge from your current node if the current time `t` satisfies $\text{start}_{i} \le t \le \text{end}_{i}$.
 
 Return the **minimum** time required to reach node $n - 1$. If it is impossible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ Hence, the minimum time to reach node 3 is 5.
 - Since there is no outgoing edge from node 0, it is impossible to reach node 2. Hence, the output is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

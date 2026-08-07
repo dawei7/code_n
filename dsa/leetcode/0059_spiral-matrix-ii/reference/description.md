@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, generate an `n x n` `matrix` filled with elements from `1` to $n^{2}$ in spiral order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a positive integer `n`, generate an `n x n` `matrix` filled with elements 
 
 Return the $n \times n$ matrix filled from `1` to $n^2$ along a clockwise inward spiral.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Return the $n \times n$ matrix filled from `1` to $n^2$ along a clockwise inward
 
 - **Input:** $n = 1$
 - **Output:** `[[1]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 20$

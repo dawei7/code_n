@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `matrix` with the following two properties:
 
@@ -9,7 +9,8 @@ You are given an `m x n` integer matrix `matrix` with the following two properti
 Given an integer `target`, return `true` *if* `target` *is in* `matrix` *or* `false` *otherwise*.
 
 You must write a solution in $O(log(m * n))$ time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ You must write a solution in $O(log(m * n))$ time complexity.
 
 Return `true` if any matrix cell equals `target`; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true` if any matrix cell equals `target`; otherwise return `false`.
 
 - **Input:** $matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

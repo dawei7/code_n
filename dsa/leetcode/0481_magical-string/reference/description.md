@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A magical string `s` consists of only `'1'` and `'2'` and obeys the following rule:
 
@@ -9,12 +9,13 @@ The first few elements of `s` is `s = "1221121221221121122……"`. If we group 
 You can see that concatenating the occurrence sequence gives us `s` itself.
 
 Given an integer `n`, return the number of `1`'s in the first `n` number in the magical string `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Given an integer `n`, return the number of `1`'s in the first `n` number in the 
 
 - **Input:** $n = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

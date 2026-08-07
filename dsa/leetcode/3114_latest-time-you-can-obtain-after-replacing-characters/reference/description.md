@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` representing a 12-hour format time where some of the digits (possibly none) are replaced with a `"?"`.
 
@@ -7,12 +7,13 @@ You are given a string `s` representing a 12-hour format time where some of the 
 You have to replace **all** the `"?"` characters in `s` with digits such that the time we obtain by the resulting string is a **valid** 12-hour format time and is the **latest** possible.
 
 Return *the resulting string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return *the resulting string*.
 **Explanation:** The latest 12-hour format time we can achieve by replacing `"?"` characters is `"09:59"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{s.length} = 5$
 

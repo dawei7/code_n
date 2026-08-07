@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Listens`
 
@@ -37,11 +37,12 @@ Write a solution to report the similar friends of Leetcodify users. A user `x` a
 Return the result table in **any order**. Note that you must return the similar pairs of friends the same way they were represented in the input (i.e., always $\text{user1}_{id} < \text{user2}_{id}$).
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You have some coins.  The `i`-th coin has a probability $\text{prob}[i]$ of facing heads when tossed.
 
 Return the probability that the number of coins facing heads equals `target` if you toss every coin exactly once.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $n = \lvert\texttt{prob}\rvert$ and $t = \texttt{target}$. Every coin is tos
 
 Return the probability that exactly $t$ of the $n$ coins land heads. Floating-point answers within $10^{-5}$ of the correct probability are accepted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the probability that exactly $t$ of the $n$ coins land heads. Floating-po
 
 - **Input:** $prob = [0.5,0.5,0.5,0.5,0.5], target = 0$
 - **Output:** `0.03125`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prob.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected tree** with `n` nodes, numbered from 0 to $n - 1$. It is represented by a 2D integer array `edges`​​​​​​​ of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -9,7 +9,8 @@ Return a binary string `s` of length `n`, where $s[i] = '1'$ if node `i` is spec
 A **diameter path** of a tree is the **longest** simple path between any two nodes. A tree may have multiple diameter paths.
 
 An **endpoint** of a path is the **first** or **last** node on that path.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ The first and last nodes of a path are its endpoints. A node qualifies if it is 
 
 Return an `n`-character binary string whose index `i` is `'1'` exactly when node `i` is an endpoint of at least one diameter path.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -96,7 +97,8 @@ The special nodes are nodes `0, 4, 5, 6`, as they are endpoints in at least one 
 - The endpoints of this path are nodes 0 and 1, so they are special.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

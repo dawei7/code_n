@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A linked list of length `n` is given such that each node contains an additional random pointer, which could point to any node in the list, or `null`.
 
@@ -15,7 +15,8 @@ The linked list is represented in the input/output as a list of `n` nodes. Each 
 - $\text{random}_{index}$: the index of the node (range from `0` to `n-1`) that the `random` pointer points to, or `null` if it does not point to any node.
 
 Your code will **only** be given the `head` of the original linked list.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Your code will **only** be given the `head` of the original linked list.
 
 Return an independently allocated copy with the same values and pointer relationships. The native LeetCode interface returns the copied `Node` head.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return an independently allocated copy with the same values and pointer relation
 
 - **Input:** $head = [[3,null],[3,0],[3,null]]$
 - **Output:** `[[3,null],[3,0],[3,null]]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 1000$
 

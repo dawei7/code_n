@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of **unique** strings `words`.
 
@@ -13,7 +13,8 @@ A **palindrome pair** is a pair of integers `(i, j)` such that:
 Return *an array of all the **palindrome pairs** of *`words`.
 
 You must write an algorithm with $O(sum of \text{words}[i].length)$ runtime complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ You must write an algorithm with $O(sum of \text{words}[i].length)$ runtime comp
 
 Return all ordered index pairs `[i,j]` with distinct indices whose corresponding concatenation is a palindrome.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return all ordered index pairs `[i,j]` with distinct indices whose corresponding
 - **Input:** $words = ["a",""]$
 - **Output:** `[[0,1],[1,0]]`
 - **Explanation:** The palindromes are ["a","a"]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 5000$
 

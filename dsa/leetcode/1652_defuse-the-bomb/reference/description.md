@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a bomb to defuse, and your time is running out! Your informer will provide you with a **circular** array `code` of length of `n` and a key `k`.
 
@@ -13,12 +13,13 @@ To decrypt the code, you must replace every number. All the numbers are replaced
 As `code` is circular, the next element of `code[n-1]` is $\text{code}[0]$, and the previous element of $\text{code}[0]$ is `code[n-1]`.
 
 Given the **circular** array `code` and an integer key `k`, return *the decrypted code to defuse the bomb*!
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Given the **circular** array `code` and an integer key `k`, return *the decrypte
 - **Input:** $code = [2,4,9,3], k = -2$
 - **Output:** `[12,5,6,13]`
 - **Explanation:** The decrypted code is [3+9, 2+3, 4+2, 9+4]. Notice that the numbers wrap around again. If k is negative, the sum is of the **previous** numbers.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{code.length}$
 

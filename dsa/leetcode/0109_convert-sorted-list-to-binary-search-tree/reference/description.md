@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list where elements are sorted in **ascending order**, convert *it to a ****height-balanced*** *binary search tree*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `head` of a singly linked list where elements are sorted in **ascendin
 
 Return the root of any height-balanced binary search tree representing the list. App results display a returned tree in level order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the root of any height-balanced binary search tree representing the list.
 
 - **Input:** $head = []$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in `head` is in the range $[0, 2 * 10^{4}]$.
 

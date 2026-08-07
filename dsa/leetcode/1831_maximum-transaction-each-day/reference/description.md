@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Transactions`
 
@@ -19,7 +19,8 @@ Write a solution to report the IDs of the transactions with the **maximum** `amo
 Return the result table **ordered by** $\text{transaction}_{id}$ ** in ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schema**
 
@@ -35,7 +36,7 @@ The result format is in the following example.
 
 Return a table with the single column $\text{transaction}_{id}$. Include every transaction whose `amount` is equal to the maximum amount among all transactions on the same calendar date (`DATE(day)`). Sort the output by $\text{transaction}_{id}$ ASC.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

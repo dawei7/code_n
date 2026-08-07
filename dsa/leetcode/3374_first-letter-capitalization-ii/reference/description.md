@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{user}_{content}$
 
@@ -89,11 +89,12 @@ user_content table:
 	</li>
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $\text{context}_{text}$ contains only English letters, and the characters in the list $['\', ' ', '@', '-', '/', '^', ',']$

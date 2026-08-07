@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `chunks`. Concatenate all strings in `chunks` in order to form a string `s`.
 
@@ -11,7 +11,8 @@ A **word** is a **maximal** substring of `s` consisting only of lowercase Englis
 All other characters, including spaces and hyphens that are not **joiner hyphens**, are treated as separators.
 
 Return an integer array `ans`, where $\text{ans}[i]$ is the number of times $\text{queries}[i]$ appears as a word in `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ Hyphen classification uses neighboring characters in the fully concatenated `s`,
 
 Return an integer array `ans` with $\text{ans}[i]$ equal to the number of maximal words in `s` that exactly equal $\text{queries}[i]$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -84,7 +85,8 @@ Return an integer array `ans` with $\text{ans}[i]$ equal to the number of maxima
 - The words are `"cat"`, `"dog"`, and `"mouse"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{chunks.length} \le 10^{5}$
 

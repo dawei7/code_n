@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 On day `1`, one person discovers a secret.
 
 You are given an integer `delay`, which means that each person will **share** the secret with a new person **every day**, starting from `delay` days after discovering the secret. You are also given an integer `forget`, which means that each person will **forget** the secret `forget` days after discovering it. A person **cannot** share the secret on the same day they forgot it, or on any day afterwards.
 
 Given an integer `n`, return* the number of people who know the secret at the end of day *`n`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Day 1: The first person is named A. (1 person)
 Day 2: A shares the secret with B. (2 people)
 Day 3: A and B share the secret with 2 new people, C and D. (4 people)
 Day 4: A forgets the secret. B, C, and D share the secret with 3 new people. (6 people)
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 1000$
 

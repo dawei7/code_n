@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the number of **subarrays** of *`nums`* where the least common multiple of the subarray's elements is *`k`.
 
 A **subarray** is a contiguous non-empty sequence of elements within an array.
 
 The **least common multiple of an array** is the smallest positive integer that is divisible by all the array elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ The **least common multiple of an array** is the smallest positive integer that 
 - **Input:** `nums = [3], k = 2`
 - **Output:** `0`
 - **Explanation:** There are no subarrays of nums where 2 is the least common multiple of all the subarray's elements.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

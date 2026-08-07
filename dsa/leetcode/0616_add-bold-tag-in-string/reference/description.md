@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an array of strings `words`.
 
@@ -9,7 +9,8 @@ You should add a closed pair of bold tag `<b>` and `</b>` to wrap the substrings
 - If two substrings wrapped by bold tags are consecutive, you should combine them.
 
 Return `s` *after adding the bold tags*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ $D = \sum_{w \in \texttt{words}} \lvert w \rvert.$
 - Merge overlapping or consecutive covered spans into one tagged region.
 - If no dictionary word occurs, return `s` unchanged.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ We add ** before each substring and ** after each substring.
 We add ** before each substring and ** after each substring: "**a<b>a**a</b>**b****b****b**".
 Since the first two **'s overlap, we merge them: "<b>aaa****b****b****b**".
 Since now the four **'s are consecutive, we merge them: "<b>aaabbb**".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 
@@ -57,4 +59,6 @@ Since now the four **'s are consecutive, we merge them: "<b>aaabbb**".
 
 - All the values of `words` are **unique**.
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/bold-words-in-string/description/" target="_blank">758. Bold Words in String</a>.
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/bold-words-in-string/description/" target="_blank">758. Bold Words in String</a>.

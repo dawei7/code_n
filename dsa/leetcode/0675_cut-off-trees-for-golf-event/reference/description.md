@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are asked to cut off all the trees in a forest for a golf event. The forest is represented as an `m x n` matrix. In this matrix:
 
@@ -14,13 +14,16 @@ You must cut off the trees in order from shortest to tallest. When you cut off a
 
 Starting from the point `(0, 0)`, return *the minimum steps you need to walk to cut off all the trees*. If you cannot cut off all the trees, return `-1`.
 
-**Note:** The input is generated such that no two trees have the same height, and there is at least one tree needs to be cut off.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The input is generated such that no two trees have the same height, and there is at least one tree needs to be cut off.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ Starting from the point `(0, 0)`, return *the minimum steps you need to walk to 
 - **Output:** `6`
 - **Explanation:** You can follow the same path as Example 1 to cut off all the trees.
 Note that you can cut off the first tree at (0, 0) before making any steps.
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{forest.length}$
 

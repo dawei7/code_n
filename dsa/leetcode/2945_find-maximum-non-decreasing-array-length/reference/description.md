@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
@@ -7,12 +7,13 @@ You can perform any number of operations, where each operation involves selectin
 Return *the ****maximum**** length of a ****non-decreasing**** array that can be made after applying operations.*
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ So the answer is 1.
 - **Output:** `3`
 - **Explanation:** Replacing [3,2] with [5] converts the given array to [4,5,6] that is non-decreasing.
 Because the given array is not non-decreasing, the maximum<!-- notionvc: 3447a505-d1ee-4411-8cae-e52162f53a55 --> possible answer is 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

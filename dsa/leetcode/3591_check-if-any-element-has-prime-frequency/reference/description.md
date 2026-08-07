@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,12 +7,13 @@ Return `true` if the frequency of any element of the array is **prime**, otherwi
 The **frequency** of an element `x` is the number of times it occurs in the array.
 
 A prime number is a natural number greater than 1 with only two factors, 1 and itself.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ All elements have a frequency of one.
 Both 2 and 4 have a prime frequency.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

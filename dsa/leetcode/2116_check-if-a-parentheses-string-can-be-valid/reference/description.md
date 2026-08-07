@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A parentheses string is a **non-empty** string consisting only of `'('` and `')'`. It is valid if **any** of the following conditions is **true**:
 
@@ -15,12 +15,13 @@ You are given a parentheses string `s` and a string `locked`, both of length `n`
 - But if $\text{locked}[i]$ is `'0'`, you **can** change $s[i]$ to either `'('` or `')'`.
 
 Return `true` *if you can make `s` a valid parentheses string*. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Changing s[0] to either '(' or ')' will not make s valid.
 - **Output:** `true`
 - **Explanation:** locked permits us to change s[6] and s[8].
 We change s[6] and s[8] to ')' to make s valid.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{s.length} = \text{locked.length}$
 

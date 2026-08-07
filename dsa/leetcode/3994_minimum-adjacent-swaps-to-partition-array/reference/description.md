@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `a` and `b` such that `a < b`.
 
@@ -15,7 +15,8 @@ Any of the three parts **may be** empty.
 In one **adjacent swap**, you may swap two **neighboring** elements of `nums`.
 
 Return the **minimum number** of adjacent swaps required to make `nums` good. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ The boundaries satisfy `a < b`. Let $n=\lvert\texttt{nums}\rvert$.
 
 Return the minimum number of neighboring-element swaps that can arrange all values less than `a` first, all values in `[a, b]` next, and all values greater than `b` last. Return the count modulo $10^9+7$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -81,7 +82,8 @@ One sequence of optimal swaps is as follows:
 The array is already good. No swaps are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

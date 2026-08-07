@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters and the special characters: `'*'`, `'#'`, and `'%'`.
 
@@ -15,12 +15,13 @@ Build a new string `result` by processing `s` according to the following rules f
 - A `'%'` **reverses** the current `result`.
 
 Return the $$k^{\text{th}}$$ character of the final string `result`. If `k` is out of the bounds of `result`, return `'.'`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -181,7 +182,8 @@ The final `result` is `"dcddcd"`. The character at index $k = 3$ is `'d'`.
 The final `result` is `""`. Since index $k = 0$ is out of bounds, the output is `'.'`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

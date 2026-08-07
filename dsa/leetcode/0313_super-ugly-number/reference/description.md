@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 A **super ugly number** is a positive integer whose prime factors are in the array `primes`.
 
 Given an integer `n` and an array of integers `primes`, return *the* $$n^{\text{th}}$$ ***super ugly number***.
 
 The $$n^{\text{th}}$$ **super ugly number** is **guaranteed** to fit in a **32-bit** signed integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ The $$n^{\text{th}}$$ **super ugly number** is **guaranteed** to fit in a **32-b
 
 Return the $n$th positive integer whose prime factors all occur in `primes`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the $n$th positive integer whose prime factors all occur in `primes`.
 - **Input:** $n = 1, primes = [2,3,5]$
 - **Output:** `1`
 - **Explanation:** 1 has no prime factors, therefore all of its prime factors are in the array primes = [2,3,5].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums` of length `n` and an integer `target`, return *the number of pairs* `(i, j)` *where* $0 \le i < j < n$ *and* $\text{nums}[i] + \text{nums}[j] < target$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Note that (0, 3) is not counted since nums[0] + nums[3] is not strictly less tha
 - (3, 5) since 3 < 5 and nums[3] + nums[5] = -3 < target
 - (4, 5) since 4 < 5 and nums[4] + nums[5] = -8 < target
 - (4, 6) since 4 < 6 and nums[4] + nums[6] = -4 < target
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} = n \le 50$
 

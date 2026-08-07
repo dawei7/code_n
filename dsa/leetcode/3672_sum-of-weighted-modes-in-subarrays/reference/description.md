@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -10,16 +10,17 @@ For every **subarray** of length `k`:
 
 Return the **sum** of the weights of all **subarrays** of length `k`.
 
-**Note:**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
 
 - A **subarray** is a contiguous **non-empty** sequence of elements within an array.
 
 - The **frequency** of an element `x` is the number of times it occurs in the array.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -160,7 +161,8 @@ Subarrays of length $k = 3$ are:
 Thus, the sum of weights is $8 + 6 = 14$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

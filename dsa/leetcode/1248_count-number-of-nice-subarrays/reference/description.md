@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `k`. A continuous subarray is called **nice** if there are `k` odd numbers on it.
 
 Return *the number of **nice** sub-arrays*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the number of **nice** sub-arrays*.
 
 - **Input:** `nums = [2,2,2,1,2,2,1,2,2,2], k = 2`
 - **Output:** `16`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50000$
 

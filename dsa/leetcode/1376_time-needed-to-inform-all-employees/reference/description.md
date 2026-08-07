@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A company has `n` employees with a unique ID for each employee from `0` to $n - 1$. The head of the company is the one with `headID`.
 
@@ -9,12 +9,13 @@ The head of the company wants to inform all the company employees of an urgent p
 The `i-th` employee needs $\text{informTime}[i]$ minutes to inform all of his direct subordinates (i.e., After informTime[i] minutes, all his direct subordinates can start spreading the news).
 
 Return *the number of minutes* needed to inform all the employees about the urgent news.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *the number of minutes* needed to inform all the employees about the urge
 - **Output:** `1`
 - **Explanation:** The head of the company with id = 2 is the direct manager of all the employees in the company and needs 1 minute to inform them all.
 The tree structure of the employees in the company is shown.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

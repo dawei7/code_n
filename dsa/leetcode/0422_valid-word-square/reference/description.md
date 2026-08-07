@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array of strings `words`, return `true` *if it forms a valid **word square***.
 
 A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$ row and column read the same string, where $0 \le k < max(numRows, numColumns)$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ A sequence of strings forms a valid **word square** if the $$k^{\text{th}}$$ row
 Return `True` exactly when every row is identical to the column at the same zero-based position; otherwise, return
 `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Therefore, it is a valid word square.
 - **Explanation:**
 The 3^rd row reads "read" while the 3^rd column reads "lead".
 Therefore, it is NOT a valid word square.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 500$
 

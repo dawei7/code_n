@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return the length of the **longest strictly increasing subsequence** in `nums` whose bitwise **AND** is **non-zero**. If no such **subsequence** exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $N = \lvert\texttt{nums}\rvert$ and let $B = 30$, the number of bit position
 
 Return the maximum number of elements in a subsequence that is strictly increasing and whose cumulative bitwise AND is non-zero. A nonzero single element is a valid length-one subsequence. A zero by itself is not valid because its AND is zero.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ The longest strictly increasing subsequence is `[2, 3, 6]`. The bitwise AND is $
 One longest strictly increasing subsequence is `[1]`. The bitwise AND is 1, which is non-zero.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

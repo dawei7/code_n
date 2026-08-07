@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `queryIP`, return `"IPv4"` if IP is a valid IPv4 address, `"IPv6"` if IP is a valid IPv6 address or `"Neither"` if IP is not a correct IP of any type.
 
@@ -13,7 +13,8 @@ Given a string `queryIP`, return `"IPv4"` if IP is a valid IPv4 address, `"IPv6"
 - Leading zeros are allowed in $x_{i}$.
 
 For example, "`2001:0db8:85a3:0000:0000:8a2e:0370:7334"` and "`2001:db8:85a3:0:0:8A2E:0370:7334"` are valid IPv6 addresses, while "`2001:0db8:85a3::8A2E:037j:7334"` and "`02001:0db8:85a3:0000:0000:8a2e:0370:7334"` are invalid IPv6 addresses.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ For example, "`2001:0db8:85a3:0000:0000:8a2e:0370:7334"` and "`2001:db8:85a3:0:0
 
 IPv6 compression such as `::` is not part of the accepted grammar because all eight fields must be present and nonempty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,6 +43,7 @@ IPv6 compression such as `::` is not part of the accepted grammar because all ei
 - **Input:** $queryIP = "256.256.256.256"$
 - **Output:** `"Neither"`
 - **Explanation:** This is neither a IPv4 address nor a IPv6 address.
-### Constraints
+
+### 4. Constraints
 
 - `queryIP` consists only of English letters, digits and the characters `'.'` and `':'`.

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` of lowercase letters, you need to find the maximum number of **non-empty** substrings of `s` that meet the following conditions:
 
@@ -9,12 +9,13 @@ Given a string `s` of lowercase letters, you need to find the maximum number of 
 Find *the maximum number of substrings that meet the above conditions*. If there are multiple solutions with the same number of substrings, *return the one with minimum total length. *It can be shown that there exists a unique solution of minimum total length.
 
 Notice that you can return the substrings in **any** order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ If we choose the first string, we cannot choose anything else and we'd get only 
 - **Input:** `s = "abbaccd"`
 - **Output:** `["d","bb","cc"]`
 - **Explanation:** Notice that while the set of substrings ["d","abba","cc"] also has length 3, it's considered incorrect since it has larger total length.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

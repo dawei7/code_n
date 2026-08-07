@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `money` denoting the amount of money (in dollars) that you have and another integer `children` denoting the number of children that you must distribute the money to.
 
@@ -11,12 +11,13 @@ You have to distribute the money according to the following rules:
 - Nobody receives `4` dollars.
 
 Return *the **maximum** number of children who may receive **exactly** *`8` *dollars if you distribute the money according to the aforementioned rules*. If there is no way to distribute the money, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ It can be proven that no distribution exists such that number of children gettin
 - **Input:** $money = 16, children = 2$
 - **Output:** `2`
 - **Explanation:** Each child can be given 8 dollars.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le money \le 200$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Visits`
 
@@ -32,12 +32,13 @@ Write a solution to find the IDs of the users who visited without making any tra
 Return the result table sorted in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

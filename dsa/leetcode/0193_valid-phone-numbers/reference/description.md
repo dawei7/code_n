@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a text file `file.txt` that contains a list of phone numbers (one per line), write a one-liner bash script to print all valid phone numbers.
 
@@ -23,7 +23,7 @@ Your script should output the following valid phone numbers:
 (123) 456-7890
 ```
 
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 

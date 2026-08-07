@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` and an integer `target`, return *indices of the two numbers such that they add up to `target`*.
 
 You may assume that each input would have ***exactly* one solution**, and you may not use the *same* element twice.
 
 You can return the answer in any order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ You can return the answer in any order.
 
 Return a two-element list containing distinct indices whose values sum to `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return a two-element list containing distinct indices whose values sum to `targe
 
 - **Input:** `nums = [3,3], target = 6`
 - **Output:** `[0,1]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{4}$
 
@@ -41,4 +43,6 @@ Return a two-element list containing distinct indices whose values sum to `targe
 
 - **Only one valid answer exists.**
 
-**Follow-up: **Can you come up with an algorithm that is less than $O(n^{2})$ time complexity?
+### 5. Follow-up
+
+Can you come up with an algorithm that is less than $O(n^{2})$ time complexity?

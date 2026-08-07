@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n`.
 
@@ -9,11 +9,12 @@ The **sum ****score** of `nums` at an index `i` where $0 \le i < n$ is the **max
 - The sum of the **last** $n - i$ elements of `nums`.
 
 Return *the **maximum** **sum ****score** of *`nums`* at any index.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The maximum sum score of nums is 10.
 The sum score at index 0 is max(-3, -3 + -5) = max(-3, -8) = -3.
 The sum score at index 1 is max(-3 + -5, -5) = max(-8, -5) = -5.
 The maximum sum score of nums is -3.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

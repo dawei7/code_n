@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected tree rooted at node 0, with `n` nodes numbered from 0 to $n - 1$. The tree is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -22,7 +22,8 @@ You may perform **inversion operations** on a subset of nodes subject to the fol
 	</li>
 
 Return the **maximum** possible **sum** of the tree’s node values after applying **inversion operations**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -36,7 +37,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 Return the maximum total of the final node values over every inversion-node subset whose distinct members are pairwise at distance at least `k`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -106,7 +107,8 @@ After inverting the subtree rooted at node 1, the maximum sum becomes $5 + 10 + 
 - Note that we cannot invert nodes 1 and 2 because their distance is $2 < k = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = n$
 

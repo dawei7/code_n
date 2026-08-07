@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `expression` of numbers and operators, return *all possible results from computing all the different possible ways to group numbers and operators*. You may return the answer in **any order**.
 
 The test cases are generated such that the output values fit in a 32-bit integer and the number of different results does not exceed $10^{4}$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ The test cases are generated such that the output values fit in a 32-bit integer
 
 Return one integer for each possible full grouping, in any order and with duplicate results preserved.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return one integer for each possible full grouping, in any order and with duplic
 ((2*(3-4))*5) = -10
 (2*((3-4)*5)) = -10
 (((2*3)-4)*5) = 10
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{expression.length} \le 20$
 

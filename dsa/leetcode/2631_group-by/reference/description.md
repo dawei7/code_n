@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write code that enhances all arrays such that you can call the `array.groupBy(fn)` method on any array and it will return a **grouped** version of the array.
 
@@ -9,12 +9,13 @@ The provided callback `fn` will accept an item in the array and return a string 
 The order of each value list should be the order the items appear in the array. Any order of keys is acceptable.
 
 Please solve it without lodash's `_.groupBy` function.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ return String(n > 5);
 }
 - **Explanation:**
 The selector function splits the array by whether each number is greater than 5.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{array.length} \le 10^{5}$
 

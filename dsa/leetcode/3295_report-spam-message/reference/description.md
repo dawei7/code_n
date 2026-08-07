@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `message` and an array of strings `bannedWords`.
 
 An array of words is considered **spam** if there are **at least** two words in it that **exactly** match any word in `bannedWords`.
 
 Return `true` if the array `message` is spam, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The words `"hello"` and `"world"` from the `message` array both appear in the `b
 Only one word from the `message` array (`"programming"`) appears in the `bannedWords` array.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{message.length}, \text{bannedWords.length} \le 10^{5}$
 

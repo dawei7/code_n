@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `sub`. You are also given a 2D character array `mappings` where $\text{mappings}[i] = [\text{old}_{i}, \text{new}_{i}]$ indicates that you may perform the following operation **any** number of times:
 
@@ -9,12 +9,13 @@ Each character in `sub` **cannot** be replaced more than once.
 Return `true`* if it is possible to make *`sub`* a substring of *`s`* by replacing zero or more characters according to *`mappings`. Otherwise, return `false`.
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that we cannot replace '0' with 'o'.
 - **Output:** `true`
 - **Explanation:** Replace the first and second 'e' in sub with '3' and 'd' in sub with 'b'.
 Now sub = "l33tb" is a substring of s, so we return true.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sub.length} \le \text{s.length} \le 5000$
 

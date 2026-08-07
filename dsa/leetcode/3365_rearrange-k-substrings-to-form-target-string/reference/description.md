@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t`, both of which are anagrams of each other, and an integer `k`.
 
@@ -9,12 +9,13 @@ Return `true` if this is possible, otherwise, return `false`.
 An **anagram** is a word or phrase formed by rearranging the letters of a different word or phrase, using all the original letters exactly once.
 
 A **substring** is a contiguous **non-empty** sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ A **substring** is a contiguous **non-empty** sequence of characters within a st
 - These substrings cannot be rearranged to form $t = "bbaacc"$, so the output is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} = \text{t.length} \le 2 * 10^{5}$
 

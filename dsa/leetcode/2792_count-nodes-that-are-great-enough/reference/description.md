@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `root` to a binary tree and an integer `k`. A node of this tree is called **great enough** if the followings hold:
 
@@ -9,11 +9,12 @@ You are given a `root` to a binary tree and an integer `k`. A node of this tree 
 Return* the number of nodes in this tree that are great enough.*
 
 The node `u` is in the **subtree** of the node `v`, if $u = v$ or `v` is an ancestor of `u`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ The values in the subtree of node 3: {2}. Since node.val == 2, there are no node
 See the picture below for a better understanding.
 
 ![](images/3.png)
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

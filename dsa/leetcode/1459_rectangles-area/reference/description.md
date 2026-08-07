@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Points`
 
@@ -25,7 +25,8 @@ Each row in the result should contain three columns `(p1, p2, area)` where:
 Return the result table **ordered** by `area` **in descending order**. If there is a tie, order them by `p1` **in ascending order**. If there is still a tie, order them by `p2` **in ascending order**.
 
 The result format is in the following table.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -45,7 +46,7 @@ $\lvert x_1-x_2\rvert\,\lvert y_1-y_2\rvert.$
 
 Order the rows by `area DESC, p1 ASC, p2 ASC`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string array `words`.
 
@@ -9,12 +9,13 @@ Two strings are **similar** if they consist of the same characters.
 - However, `"abacba"` and `"bcfd"` are not similar since they do not consist of the same characters.
 
 Return *the number of pairs *`(i, j)`* such that *$0 \le i < j \le \text{word.length} - 1$* and the two strings *$\text{words}[i]$* and *$\text{words}[j]$* are similar*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return *the number of pairs *`(i, j)`* such that *$0 \le i < j \le \text{word.le
 - **Input:** $words = ["nba","cba","dba"]$
 - **Output:** `0`
 - **Explanation:** Since there does not exist any pair that satisfies the conditions, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

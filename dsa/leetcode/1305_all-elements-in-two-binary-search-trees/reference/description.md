@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two binary search trees `root1` and `root2`, return *a list containing all the integers from both trees sorted in **ascending** order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given two binary search trees `root1` and `root2`, return *a list containing all
 
 - **Input:** $root1 = [1,null,8], root2 = [8,1]$
 - **Output:** `[1,1,8,8]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in each tree is in the range `[0, 5000]`.
 

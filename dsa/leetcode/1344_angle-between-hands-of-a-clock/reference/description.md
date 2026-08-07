@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two numbers, `hour` and `minutes`, return *the smaller angle (in degrees) formed between the *`hour`* and the *`minute`* hand*.
 
 Answers within $10^{-5}$ of the actual value will be accepted as correct.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Answers within $10^{-5}$ of the actual value will be accepted as correct.
 
 - **Input:** $hour = 3, minutes = 15$
 - **Output:** `7.5`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le hour \le 12$
 

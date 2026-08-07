@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `UserActivity`
 
@@ -126,7 +126,7 @@ The result table only includes users who converted from free trial to paid subsc
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

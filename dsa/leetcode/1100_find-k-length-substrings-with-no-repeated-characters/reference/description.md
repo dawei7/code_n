@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, return *the number of substrings in *`s`* of length *`k`* with no repeated characters*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ For every start position where $s[start:start + k]$ has length `k`, test whether
 
 Return the number of length-`k` substrings with no repeated character. Return zero if no complete window exists or if every complete window contains a repetition.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the number of length-`k` substrings with no repeated character. Return ze
 - **Input:** `s = "home", k = 5`
 - **Output:** `0`
 - **Explanation:** Notice k can be larger than the length of s. In this case, it is not possible to find any substring.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `side`, representing the edge length of a square with corners at `(0, 0)`, `(0, side)`, `(side, 0)`, and `(side, side)` on a Cartesian plane.
 
@@ -9,12 +9,13 @@ You need to select `k` elements among `points` such that the **minimum** Manhatt
 Return the **maximum** possible **minimum** Manhattan distance between the selected `k` points.
 
 The Manhattan Distance between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j})$ is $|x_{i} - x_{j}| + |y_{i} - y_{j}|$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ Select the points `(0, 0)`, `(2, 0)`, `(2, 2)`, and `(2, 1)`.
 Select the points `(0, 0)`, `(0, 1)`, `(0, 2)`, `(1, 2)`, and `(2, 2)`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le side \le 10^{9}$
 

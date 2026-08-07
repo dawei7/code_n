@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of **non-negative** integers and an integer `k`.
 
 An array is called **special** if the bitwise `OR` of all of its elements is **at least** `k`.
 
 Return *the length of the **shortest** **special** **non-empty** subarray of* `nums`, *or return* `-1` *if no special subarray exists*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The subarray `[2,1,8]` has `OR` value of `11`. Hence, we return `3`.
 The subarray `[1]` has `OR` value of `1`. Hence, we return `1`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

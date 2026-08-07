@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Write a solution to **create** a DataFrame from a 2D list called $\text{student}_{data}$. This 2D list contains the IDs and ages of some students.
 
 The DataFrame should have two columns, $\text{student}_{id}$ and `age`, and be in the same order as the original 2D list.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

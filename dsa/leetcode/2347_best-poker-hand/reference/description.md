@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `ranks` and a character array `suits`. You have `5` cards where the $$i^{\text{th}}$$ card has a rank of $\text{ranks}[i]$ and a suit of $\text{suits}[i]$.
 
@@ -14,13 +14,16 @@ The following are the types of **poker hands** you can make from best to worst:
 
 Return *a string representing the **best** type of **poker hand** you can make with the given cards.*
 
-**Note** that the return values are **case-sensitive**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the return values are **case-sensitive**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Also note that other cards could be used to make the "Three of a Kind" hand.
 - **Output:** `"Pair"`
 - **Explanation:** The hand with the first and second card consists of 2 cards with the same rank, so we have a "Pair".
 Note that we cannot make a "Flush" or a "Three of a Kind".
-### Constraints
+
+### 5. Constraints
 
 - $\text{ranks.length} = \text{suits.length} = 5$
 

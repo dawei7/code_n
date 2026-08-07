@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Two strings are considered **close** if you can attain one from the other using the following operations:
 
@@ -16,12 +16,13 @@ Two strings are considered **close** if you can attain one from the other using 
 You can use the operations on either string as many times as necessary.
 
 Given two strings, `word1` and `word2`, return `true`* if *`word1`* and *`word2`* are **close**, and *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Apply Operation 1: "<u>a</u>c<u>b</u>" -> "<u>b</u>c<u>a</u>"
 Apply Operation 1: "ca<u>b</u>bb<u>a</u>" -> "ca<u>a</u>bb<u>b</u>"
 Apply Operation 2: "<u>c</u>aa<u>bbb</u>" -> "<u>b</u>aa<u>ccc</u>"
 Apply Operation 2: "<u>baa</u>ccc" -> "<u>abb</u>ccc"
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 10^{5}$
 

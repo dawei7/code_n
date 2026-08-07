@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. The adjacent integers in `nums` will perform the float division.
 
@@ -8,13 +8,16 @@ However, you can add any number of parenthesis at any position to change the pri
 
 Return *the corresponding expression that has the maximum value in string format*.
 
-**Note:** your expression should not contain redundant parenthesis.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+your expression should not contain redundant parenthesis.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Other cases:
 - **Output:** `"2/(3/4)"`
 - **Explanation:** (2/(3/4)) = 8/3 = 2.667
 It can be shown that after trying all possibilities, we cannot get an expression with evaluation greater than 2.667
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10$
 

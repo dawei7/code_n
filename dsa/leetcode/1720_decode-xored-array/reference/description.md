@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **hidden** integer array `arr` that consists of `n` non-negative integers.
 
@@ -7,12 +7,13 @@ It was encoded into another integer array `encoded` of length $n - 1$, such that
 You are given the `encoded` array. You are also given an integer `first`, that is the first element of `arr`, i.e. $\text{arr}[0]$.
 
 Return *the original array* `arr`. It can be proved that the answer exists and is unique.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return *the original array* `arr`. It can be proved that the answer exists and i
 
 - **Input:** $encoded = [6,2,7,3], first = 4$
 - **Output:** `[4,2,0,7,4]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{4}$
 

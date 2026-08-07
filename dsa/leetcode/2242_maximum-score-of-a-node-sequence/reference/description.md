@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an **undirected** graph with `n` nodes, numbered from `0` to $n - 1$.
 
@@ -13,12 +13,13 @@ A node sequence is **valid** if it meets the following conditions:
 The score of a node sequence is defined as the **sum** of the scores of the nodes in the sequence.
 
 Return *the **maximum score** of a valid node sequence with a length of *`4`*. *If no such sequence exists, return* *`-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The sequence [0,3,2,4] is not valid since no edge connects nodes 0 and 3.
 - **Output:** `-1`
 - **Explanation:** The figure above shows the graph.
 There are no valid node sequences of length 4, so we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{scores.length}$
 

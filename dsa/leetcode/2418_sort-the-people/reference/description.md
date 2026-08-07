@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `names`, and an array `heights` that consists of **distinct** positive integers. Both arrays are of length `n`.
 
 For each index `i`, $\text{names}[i]$ and $\text{heights}[i]$ denote the name and height of the $$i^{\text{th}}$$ person.
 
 Return `names`* sorted in **descending** order by the people's heights*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return `names`* sorted in **descending** order by the people's heights*.
 - **Input:** $names = ["Alice","Bob","Bob"], heights = [155,185,150]$
 - **Output:** `["Bob","Alice","Bob"]`
 - **Explanation:** The first Bob is the tallest, followed by Alice and the second Bob.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{names.length} = \text{heights.length}$
 

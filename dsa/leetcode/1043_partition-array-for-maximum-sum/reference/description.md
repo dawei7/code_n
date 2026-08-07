@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, partition the array into (contiguous) subarrays of length **at most** `k`. After partitioning, each subarray has their values changed to become the maximum value of that subarray.
 
 Return *the largest sum of the given array after partitioning. Test cases are generated so that the answer fits in a **32-bit** integer.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return *the largest sum of the given array after partitioning. Test cases are ge
 
 - **Input:** `arr = [1], k = 1`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 500$
 

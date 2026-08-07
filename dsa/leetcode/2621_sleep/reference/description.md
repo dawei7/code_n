@@ -1,14 +1,17 @@
-## Description
+### 1. Description
 
 Given a positive integer `millis`, write an asynchronous function that sleeps for `millis` milliseconds. It can resolve any value.
 
-**Note** that *minor* deviation from `millis` in the actual sleep duration is acceptable.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that *minor* deviation from `millis` in the actual sleep duration is acceptable.
+
+### 4. Examples
 
 #### Example 1
 
@@ -24,6 +27,7 @@ console.log(Date.now() - t); // 100
 - **Input:** $millis = 200$
 - **Output:** `200`
 - **Explanation:** It should return a promise that resolves after 200ms.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le millis \le 1000$

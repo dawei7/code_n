@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an undirected graph with `n` nodes labeled from 0 to $n - 1$. This is represented by a 2D array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, \text{time}_{i}]$ indicates an undirected edge between nodes $u_{i}$ and $v_{i}$ that can be removed at $\text{time}_{i}$.
 
@@ -9,12 +9,13 @@ Initially, the graph may be connected or disconnected. Your task is to find the 
 Return the **minimum** time `t`.
 
 A **connected component** is a subgraph of a graph in which there exists a path between any two vertices, and no vertex of the subgraph shares an edge with a vertex outside of the subgraph.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ A **connected component** is a subgraph of a graph in which there exists a path 
 - Since there are already $k = 2$ disconnected components `{1}`, `{0, 2}`, no edge removal is needed. Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

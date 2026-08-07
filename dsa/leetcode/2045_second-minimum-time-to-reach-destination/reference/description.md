@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A city is represented as a **bi-directional connected** graph with `n` vertices where each vertex is labeled from `1` to `n` (**inclusive**). The edges in the graph are represented as a 2D integer array `edges`, where each $\text{edges}[i] = [u_{i}, v_{i}]$ denotes a bi-directional edge between vertex $u_{i}$ and vertex $v_{i}$. Every vertex pair is connected by **at most one** edge, and no vertex has an edge to itself. The time taken to traverse any edge is `time` minutes.
 
@@ -10,17 +10,18 @@ The **second minimum value** is defined as the smallest value** strictly larger 
 
 Given `n`, `edges`, `time`, and `change`, return *the **second minimum time** it will take to go from vertex *`1`* to vertex *`n`.
 
-**Notes:**
-
-- You can go through any vertex **any** number of times, **including** `1` and `n`.
-
-- You can assume that when the journey **starts**, all signals have just turned **green**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- You can go through any vertex **any** number of times, **including** `1` and `n`.
+
+- You can assume that when the journey **starts**, all signals have just turned **green**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ Hence the second minimum time is 13 minutes.
 - **Explanation:**
 The minimum time path is 1 -> 2 with time = 3 minutes.
 The second minimum time path is 1 -> 2 -> 1 -> 2 with time = 11 minutes.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{4}$
 

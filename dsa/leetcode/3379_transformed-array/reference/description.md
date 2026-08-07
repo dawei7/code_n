@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` that represents a circular array. Your task is to create a new array `result` of the **same** size, following these rules:
 
@@ -12,13 +12,16 @@ For each index `i` (where $0 \le i < \text{nums.length}$), perform the following
 
 Return the new array `result`.
 
-**Note:** Since `nums` is circular, moving past the last element wraps around to the beginning, and moving before the first element wraps back to the end.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Since `nums` is circular, moving past the last element wraps around to the beginning, and moving before the first element wraps back to the end.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ Return the new array `result`.
 - For $\text{nums}[2]$ that is equal to -1, If we move 1 step to left, we reach $\text{nums}[1]$. So $\text{result}[2]$ should be 4.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

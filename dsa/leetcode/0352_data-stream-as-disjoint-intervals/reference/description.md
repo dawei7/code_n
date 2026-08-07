@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a data stream input of non-negative integers $a_{1}, a_{2}, ..., a_{n}$, summarize the numbers seen so far as a list of disjoint intervals.
 
@@ -9,7 +9,8 @@ Implement the `SummaryRanges` class:
 - `void addNum(int value)` Adds the integer `value` to the stream.
 
 - `int[][] getIntervals()` Returns a summary of the integers in the stream currently as a list of disjoint intervals $[\text{start}_{i}, \text{end}_{i}]$. The answer should be sorted by $\text{start}_{i}$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Implement the `SummaryRanges` class:
 
 The app adapter returns the current interval summary after each addition. In the native class, `getIntervals()` returns one such summary whenever queried.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ summaryRanges.getIntervals(); // return [[1, 3], [7, 7]]
 summaryRanges.addNum(6);      // arr = [1, 2, 3, 6, 7]
 summaryRanges.getIntervals(); // return [[1, 3], [6, 7]]
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le value \le 10^{4}$
 

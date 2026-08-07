@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 Given an array `nums`, return `true`* if the array was originally sorted in non-decreasing order, then rotated **some** number of positions (including zero)*. Otherwise, return `false`.
 
 There may be **duplicates** in the original array.
 
-**Note:** An array `A` rotated by `x` positions results in an array `B` of the same length such that $B[i] = A[(i+x) \% \text{A.length}]$ for every valid index `i`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+An array `A` rotated by `x` positions results in an array `B` of the same length such that $B[i] = A[(i+x) \% \text{A.length}]$ for every valid index `i`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ You can rotate the array by x = 2 positions to begin on the element of value 3: 
 - **Output:** `true`
 - **Explanation:** [1,2,3] is the original sorted array.
 You can rotate the array by x = 0 positions (i.e. no rotation) to make nums.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

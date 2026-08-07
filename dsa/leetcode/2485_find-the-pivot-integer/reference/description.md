@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, find the **pivot integer** `x` such that:
 
 - The sum of all elements between `1` and `x` inclusively equals the sum of all elements between `x` and `n` inclusively.
 
 Return *the pivot integer *`x`. If no such integer exists, return `-1`. It is guaranteed that there will be at most one pivot index for the given input.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ Return *the pivot integer *`x`. If no such integer exists, return `-1`. It is gu
 - **Input:** $n = 4$
 - **Output:** `-1`
 - **Explanation:** It can be proved that no such integer exist.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

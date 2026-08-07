@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A tree is an undirected graph in which any two vertices are connected by *exactly* one path. In other words, any connected graph without simple cycles is a tree.
 
@@ -7,7 +7,8 @@ Given a tree of `n` nodes labelled from `0` to $n - 1$, and an array of $n - 1$ 
 Return *a list of all **MHTs'** root labels*. You can return the answer in **any order**.
 
 The **height** of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ The **height** of a rooted tree is the number of edges on the longest downward p
 
 Return every node label that produces minimum height when chosen as the root, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return every node label that produces minimum height when chosen as the root, in
 
 - **Input:** $n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]$
 - **Output:** `[3,4]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{4}$
 

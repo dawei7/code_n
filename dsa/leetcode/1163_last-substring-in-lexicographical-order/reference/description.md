@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the last substring of* `s` *in lexicographical order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,7 +18,8 @@ Given a string `s`, return *the last substring of* `s` *in lexicographical order
 
 - **Input:** `s = "leetcode"`
 - **Output:** `"tcode"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 4 * 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of positive integers `price` where $\text{price}[i]$ denotes the price of the $$i^{\text{th}}$$ candy and a positive integer `k`.
 
 The store sells baskets of `k` **distinct** candies. The **tastiness** of a candy basket is the smallest absolute difference of the **prices** of any two candies in the basket.
 
 Return *the **maximum** tastiness of a candy basket.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be proven that 2 is the maximum tastiness that can be achieved.
 - **Input:** $price = [7,7,7,7], k = 2$
 - **Output:** `0`
 - **Explanation:** Choosing any two distinct candies from the candies we have will result in a tastiness of 0.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le k \le \text{price.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `power` and two integer arrays `damage` and `health`, both having length `n`.
 
@@ -7,12 +7,13 @@ Bob has `n` enemies, where enemy `i` will deal Bob $\text{damage}[i]$ **points**
 Every second, **after** the enemies deal damage to Bob, he chooses **one** of the enemies that is still *alive* and deals `power` points of damage to them.
 
 Determine the **minimum** total amount of damage points that will be dealt to Bob before **all** `n` enemies are *dead*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ Determine the **minimum** total amount of damage points that will be dealt to Bo
 **Output:** 320
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le power \le 10^{4}$
 

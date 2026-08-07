@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `cards` where $\text{cards}[i]$ represents the **value** of the $$i^{\text{th}}$$ card. A pair of cards are **matching** if the cards have the **same** value.
 
 Return* the **minimum** number of **consecutive** cards you have to pick up to have a pair of **matching** cards among the picked cards.* If it is impossible to have matching cards, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Return* the **minimum** number of **consecutive** cards you have to pick up to h
 - **Input:** $cards = [1,0,5,3]$
 - **Output:** `-1`
 - **Explanation:** There is no way to pick up a set of consecutive cards that contain a pair of matching cards.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{cards.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a list of `phrases`, generate a list of Before and After puzzles.
 
@@ -9,7 +9,8 @@ A *phrase* is a string that consists of lowercase English letters and spaces onl
 Return the Before and After puzzles that can be formed by every two phrases $\text{phrases}[i]$ and $\text{phrases}[j]$ where $i \neq j$. Note that the order of matching two phrases matters, we want to consider both orders.
 
 You should return a list of **distinct** strings **sorted lexicographically**, after removing all *duplicate* phrases in the generated Before and After puzzles.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $G$ be the total number of characters across all compatible merged candidate
 
 - Return the distinct valid merges as a lexicographically sorted list of strings. A phrase may not be paired with itself at the same index, even when its first and last words match.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ Let $G$ be the total number of characters across all compatible merged candidate
 **Output:** ["ab ba ab","ba ab ba"]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{phrases.length} \le 100$
 

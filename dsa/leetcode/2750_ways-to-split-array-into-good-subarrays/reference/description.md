@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary array `nums`.
 
@@ -7,12 +7,13 @@ A subarray of an array is **good** if it contains **exactly** **one** element wi
 Return *an integer denoting the number of ways to split the array *`nums`* into **good** subarrays*. As the number may be too large, return it **modulo** $10^{9} + 7$.
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 - **Output:** `1`
 - **Explanation:** There is 1 way to split nums into good subarrays:
 - [0,1,0]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

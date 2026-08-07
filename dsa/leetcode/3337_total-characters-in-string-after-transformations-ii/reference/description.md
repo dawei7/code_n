@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters, an integer `t` representing the number of **transformations** to perform, and an array `nums` of size 26. In one **transformation**, every character in `s` is replaced according to the following rules:
 
@@ -9,12 +9,13 @@ You are given a string `s` consisting of lowercase English letters, an integer `
 Return the length of the resulting string after **exactly** `t` transformations.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -83,7 +84,8 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 - **Final Length of the string:** The string is `"bcabcdlm"`, which has 8 characters.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

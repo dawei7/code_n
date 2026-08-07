@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` and an integer `k`.
 
 Return the **maximum** sum of a subarray of `nums`, such that the size of the subarray is **divisible** by `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The maximum sum subarray is `[-1, -2, -3, -4]` which has length equal to 4 which
 The maximum sum subarray is `[1, 2, -3, 4]` which has length equal to 4 which is divisible by 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 2 * 10^{5}$
 

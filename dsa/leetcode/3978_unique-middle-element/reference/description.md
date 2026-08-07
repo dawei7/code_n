@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of odd length `n`.
 
 Return `true` if the middle element of `nums` appears **exactly** once in the array. Otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums) -> bool`
 
@@ -17,7 +18,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return `true` if `nums[n // 2]` has total frequency exactly one in `nums`; otherwise return `false`. The odd-length guarantee means the middle position always exists and is unique, including when $n = 1$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The middle element of `nums` is 2, which appears twice.
 Thus, the answer is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 100$
 

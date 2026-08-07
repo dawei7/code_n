@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D matrix `grid` of size `n x n`, where `(r, c)` represents:
 
@@ -15,12 +15,13 @@ Return *the **maximum safeness factor** of all paths leading to cell *$(n - 1, n
 An **adjacent** cell of cell `(r, c)`, is one of the cells $(r, c + 1)$, $(r, c - 1)$, $(r + 1, c)$ and $(r - 1, c)$ if it exists.
 
 The **Manhattan distance** between two cells `(a, b)` and `(x, y)` is equal to $|a - x| + |b - y|$, where `|val|` denotes the absolute value of val.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ It can be shown that there are no other paths with a higher safeness factor.
 - The closest cell of the path to the thief at cell (0, 3) is cell (1, 2). The distance between them is | 0 - 1 | + | 3 - 2 | = 2.
 - The closest cell of the path to the thief at cell (3, 0) is cell (3, 2). The distance between them is | 3 - 3 | + | 0 - 2 | = 2.
 It can be shown that there are no other paths with a higher safeness factor.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grid.length} = n \le 400$
 

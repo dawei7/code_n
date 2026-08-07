@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Calls`
 
@@ -20,11 +20,12 @@ Write a solution to find the **peak** calling **hour** for each `city`. If **mul
 Return *the result table ordered by **peak calling hour** and *`city`* in **descending****** **order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

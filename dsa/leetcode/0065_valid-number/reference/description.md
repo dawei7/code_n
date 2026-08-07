@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s`, return whether `s` is a **valid number**.
 
@@ -23,7 +23,8 @@ A **decimal number** is defined with an **optional sign** `'-'` or `'+'` followe
 An **exponent** is defined with an **exponent notation** `'e'` or `'E'` followed by an **integer number**.
 
 The **digits** are defined as one or more digits.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ The **digits** are defined as one or more digits.
 
 Return `true` exactly when the complete string conforms to one of the accepted integer-or-decimal forms with an optional exponent.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ Return `true` exactly when the complete string conforms to one of the accepted i
 **Output:** false
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 20$
 

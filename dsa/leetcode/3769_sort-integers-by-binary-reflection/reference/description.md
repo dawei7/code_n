@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ The **binary reflection** of a **positive** integer is defined as the number obt
 Sort the array in **ascending** order based on the binary reflection of each element. If two different numbers have the same binary reflection, the **smaller** original number should appear first.
 
 Return the resulting sorted array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $N=\lvert\texttt{nums}\rvert$. For each value $x$, let $R(x)$ denote the dec
 
 Return an array containing every input occurrence, ordered by the key $(R(x),x)$ in ascending lexicographic order. Repeated equal values remain repeated in the result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Binary reflections are:
 Sorting by the reflected values gives `[8, 3, 6, 5]`.
 
 Note that 3 and 6 have the same reflection, so we arrange them in increasing order of original value.</div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

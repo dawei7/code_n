@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -9,7 +9,8 @@ Find the absolute difference between:
 - the **sum** of the `k` **smallest** elements in the array.
 
 Return an integer denoting this difference.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Let $N=\lvert\texttt{nums}\rvert$ and let $V=100$ be the size of the permitted v
 
 Return $abs(\text{largest}_{sum} - \text{smallest}_{sum})$. When $k = n$, both groups contain the whole array and the result is zero.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Return $abs(\text{largest}_{sum} - \text{smallest}_{sum})$. When $k = n$, both g
 - The absolute difference is $abs(100 - 100) = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 100$
 

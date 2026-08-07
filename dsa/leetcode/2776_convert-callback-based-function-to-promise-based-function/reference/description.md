@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a function that accepts another function `fn` and converts the callback-based function into a promise-based function.
 
@@ -30,11 +30,12 @@ async function sum(a, b) {
   }
 }
 ```
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ args = [4, 5, 6]
 const asyncFunc = promisify(fn);
 asyncFunc(4, 5, 6).catch(console.log); // "Promise Rejected"
 fn is called with a callback as the first argument and args as the rest. As the second argument, the callback accepts an error message, so when fn is called, the promise is rejected with a error message provided in the callback. Note that it did not matter what was passed as the first argument into the callback.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{args.length} \le 100$
 

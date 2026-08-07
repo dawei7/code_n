@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` cars at given miles away from the starting mile 0, traveling to reach the mile `target`.
 
@@ -11,12 +11,13 @@ A **car fleet** is a single car or a group of cars driving next to each other. T
 If a car catches up to a car fleet at the mile `target`, it will still be considered as part of the car fleet.
 
 Return the number of car fleets that will arrive at the destination.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ There is only one car, hence there is only one fleet.</div>
 - Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fleet, meeting each other at 6. The fleet moves at speed 1 until it reaches `target`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{position.length} = \text{speed.length}$
 

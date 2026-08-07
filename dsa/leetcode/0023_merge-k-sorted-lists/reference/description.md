@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an array of `k` linked-lists `lists`, each linked-list is sorted in ascending order.
 
 *Merge all the linked-lists into one sorted linked-list and return it.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $k = \lvert\texttt{lists}\rvert$.
 
 Return the head of one ascending-sorted list containing every input node.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ merging them into one sorted linked list:
 
 - **Input:** $lists = [[]]$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $k = \text{lists.length}$
 

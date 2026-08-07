@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** 2D integer matrix `grid` of size $n * m$, we define a **0-indexed** 2D matrix `p` of size $n * m$ as the **product** matrix of `grid` if the following condition is met:
 
 - Each element $p[i][j]$ is calculated as the product of all elements in `grid` except for the element $\text{grid}[i][j]$. This product is then taken modulo `12345`.
 
 Return *the product matrix of* `grid`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ So the answer is [[24,12],[8,6]].
 p[0][1] = grid[0][0] * grid[0][2] = 12345 * 1 = 12345. 12345 % 12345 = 0. So p[0][1] = 0.
 p[0][2] = grid[0][0] * grid[0][1] = 12345 * 2 = 24690. 24690 % 12345 = 0. So p[0][2] = 0.
 So the answer is [[2],[0],[0]].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{grid.length} \le 10^{5}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` that consists of lowercase English letters.
 
 Return the string obtained by removing **all** trailing **vowels** from `s`.
 
 The **vowels** consist of the characters `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Only the contiguous vowel suffix after $j$ is removed. A vowel at or before a la
 
 Return $s[:j + 1]$ when a non-vowel exists, or the empty string when all characters are vowels.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ There are no trailing vowels in the string `"day"`.
 Removing `"<u>**aeiou**</u>"`, we obtain the string `""`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of **positive** integers. You can do the following operation on the array **any** number of times:
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** array `nums` consisting of **positive** integers. 
 Return *the **minimum** number of operations to make all elements of *`nums`* equal to *`1`. If it is impossible, return `-1`.
 
 The gcd of two integers is the greatest common divisor of the two integers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The gcd of two integers is the greatest common divisor of the two integers.
 - **Input:** `nums = [2,10,6,14]`
 - **Output:** `-1`
 - **Explanation:** It can be shown that it is impossible to make all the elements equal to 1.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 50$
 

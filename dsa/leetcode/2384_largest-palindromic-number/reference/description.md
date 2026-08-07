@@ -1,20 +1,21 @@
-## Description
+### 1. Description
 
 You are given a string `num` consisting of digits only.
 
 Return *the **largest palindromic** integer (in the form of a string) that can be formed using digits taken from *`num`. It should not contain **leading zeroes**.
 
-**Notes:**
-
-- You do **not** need to use all the digits of `num`, but you must use **at least** one digit.
-
-- The digits can be reordered.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- You do **not** need to use all the digits of `num`, but you must use **at least** one digit.
+
+- The digits can be reordered.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ It can be shown that "7449447" is the largest palindromic integer that can be fo
 - **Explanation:**
 It can be shown that "9" is the largest palindromic integer that can be formed.
 Note that the integer returned should not contain leading zeroes.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{num.length} \le 10^{5}$
 

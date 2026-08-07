@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a gold mine `grid` of size `m x n`, each cell in this mine has an integer representing the amount of gold in that cell, `0` if it is empty.
 
@@ -13,12 +13,13 @@ Return the maximum amount of gold you can collect under the conditions:
 - Never visit a cell with `0` gold.
 
 - You can start and stop collecting gold from **any **position in the grid that has some gold.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Path to get the maximum gold, 9 -> 8 -> 7.
 [0,3,0],
 [9,0,20]]
 Path to get the maximum gold, 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

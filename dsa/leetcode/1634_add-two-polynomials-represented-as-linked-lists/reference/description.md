@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A polynomial linked list is a special type of linked list where every node represents a term in a polynomial expression.
 
@@ -21,7 +21,8 @@ Given two polynomial linked list heads, `poly1` and `poly2`, add the polynomials
 **`PolyNode` format:**
 
 The input/output format is as a list of `n` nodes, where each node is represented as its `[coefficient, power]`. For example, the polynomial $5x^3 + 4x - 7$ would be represented as: `[[5,3],[4,1],[-7,0]]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ The input/output format is as a list of `n` nodes, where each node is represente
 
 Return the head `PolyNode` of the summed polynomial linked list in strictly decreasing order of powers with all zero-coefficient terms removed.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return the head `PolyNode` of the summed polynomial linked list in strictly decr
 - **Input:** $poly1 = [[1,2]], poly2 = [[-1,2]]$
 - **Output:** `[]`
 - **Explanation:** The sum is 0. We return an empty list.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{4}$
 

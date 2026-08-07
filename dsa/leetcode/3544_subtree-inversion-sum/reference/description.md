@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected tree rooted at node `0`, with `n` nodes numbered from 0 to $n - 1$. The tree is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -22,12 +22,13 @@ You may perform **inversion operations** on a subset of nodes subject to the fol
 	</li>
 
 Return the **maximum** possible **sum** of the tree's node values after applying **inversion operations**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the **maximum** possible **sum** of the tree's node values after applying
 Apply inversion operations at nodes 1 and 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

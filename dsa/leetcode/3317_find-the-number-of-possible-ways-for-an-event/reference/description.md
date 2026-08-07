@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `x`, and `y`.
 
@@ -10,17 +10,20 @@ Return the **total** number of possible ways the event can take place.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
-**Note** that two events are considered to have been held **differently** if **either** of the following conditions is satisfied:
-
-- **Any** performer is *assigned* a different stage.
-
-- **Any** band is *awarded* a different score.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that two events are considered to have been held **differently** if **either** of the following conditions is satisfied:
+
+- **Any** performer is *assigned* a different stage.
+
+- **Any** band is *awarded* a different score.
+
+### 4. Examples
 
 #### Example 1
 
@@ -58,6 +61,7 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 **Output:** 684
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n, x, y \le 1000$

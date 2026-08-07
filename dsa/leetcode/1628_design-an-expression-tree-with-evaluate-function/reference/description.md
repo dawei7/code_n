@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `postfix` tokens of an arithmetic expression, build and return *the binary expression tree that represents this expression.*
 
@@ -11,7 +11,8 @@ A **<a href="https://en.wikipedia.org/wiki/Binary_expression_tree" target="_blan
 It's guaranteed that no subtree will yield a value that exceeds $10^{9}$ in absolute value, and all the operations are valid (i.e., no division by zero).
 
 **Follow up:** Could you design the expression tree such that it is more modular? For example, is your design able to support additional operators without making changes to your existing `evaluate` implementation?
-### Function Contract
+
+### 2. Function Contract
 
 **Platform interface**
 
@@ -22,7 +23,7 @@ It's guaranteed that no subtree will yield a value that exceeds $10^{9}$ in abso
 
 `evaluate()` returns an integer value representing the evaluated result of the expression.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It's guaranteed that no subtree will yield a value that exceeds $10^{9}$ in abso
 - **Input:** $s = ["4","5","2","7","+","-","*"]$
 - **Output:** `-16`
 - **Explanation:** this expression evaluates to the above binary tree with expression 4*(5-(2+7)) = 4*(-4) = -16.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} < 100$
 

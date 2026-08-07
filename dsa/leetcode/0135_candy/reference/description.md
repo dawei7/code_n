@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` children standing in a line. Each child is assigned a rating value given in the integer array `ratings`.
 
@@ -9,7 +9,8 @@ You are giving candies to these children subjected to the following requirements
 - Children with a higher rating get more candies than their neighbors.
 
 Return *the minimum number of candies you need to have to distribute the candies to the children*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Return *the minimum number of candies you need to have to distribute the candies
 
 Return the minimum sum of candies over all assignments satisfying both neighbor directions.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return the minimum sum of candies over all assignments satisfying both neighbor 
 - **Output:** `4`
 - **Explanation:** You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
 The third child gets 1 candy because it satisfies the above two conditions.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{ratings.length}$
 

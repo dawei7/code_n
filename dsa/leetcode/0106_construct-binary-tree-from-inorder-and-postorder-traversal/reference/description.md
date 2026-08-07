@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two integer arrays `inorder` and `postorder` where `inorder` is the inorder traversal of a binary tree and `postorder` is the postorder traversal of the same tree, construct and return *the binary tree*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two integer arrays `inorder` and `postorder` where `inorder` is the inorde
 
 Return the root of the binary tree represented by both traversals. App results display the returned tree in level order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the root of the binary tree represented by both traversals. App results d
 
 - **Input:** $inorder = [-1], postorder = [-1]$
 - **Output:** `[-1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{inorder.length} \le 3000$
 

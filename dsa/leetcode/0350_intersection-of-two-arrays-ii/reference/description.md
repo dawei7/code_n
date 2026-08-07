@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two integer arrays `nums1` and `nums2`, return *an array of their intersection*. Each element in the result must appear as many times as it shows in both arrays and you may return the result in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two integer arrays `nums1` and `nums2`, return *an array of their intersec
 
 For each integer, return as many copies as are present in both input arrays; output order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ For each integer, return as many copies as are present in both input arrays; out
 - **Input:** $nums1 = [4,9,5], nums2 = [9,4,9,8,4]$
 - **Output:** `[4,9]`
 - **Explanation:** [9,4] is also accepted.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 1000$
 

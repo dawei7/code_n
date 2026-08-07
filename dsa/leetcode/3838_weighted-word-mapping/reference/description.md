@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words`, where each string represents a word containing lowercase English letters.
 
@@ -9,7 +9,8 @@ The **weight** of a word is defined as the **sum** of the weights of its charact
 For each word, take its weight modulo 26 and map the result to a lowercase English letter using reverse alphabetical order (`0 -> 'z', 1 -> 'y', ..., 25 -> 'a'`).
 
 Return a string formed by concatenating the mapped characters for all words in order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ where $\operatorname{index}(\texttt{'a'})=0$ and $\operatorname{index}(\texttt{'
 
 Return a length-$W$ string containing one mapped character per word, preserving the input order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -78,7 +79,8 @@ The weight of `"abcd"` is $7 + 5 + 3 + 4 = 19$. The result modulo 26 is $19 \% 2
 Thus, the string formed by concatenating the mapped characters is `"g"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

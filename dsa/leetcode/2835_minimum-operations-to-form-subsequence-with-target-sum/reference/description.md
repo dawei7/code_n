@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of **non-negative** powers of `2`, and an integer `target`.
 
@@ -13,12 +13,13 @@ In one operation, you must apply the following changes to the array:
 Return the ***minimum number of operations** you need to perform so that *`nums`* contains a **subsequence** whose elements sum to* `target`. If it is impossible to obtain such a subsequence, return `-1`.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ It can be shown that there is no shorter sequence of operations that results in 
 - **Input:** `nums = [1,32,1], target = 35`
 - **Output:** `-1`
 - **Explanation:** It can be shown that no sequence of operations results in a subsequence that sums up to 35.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

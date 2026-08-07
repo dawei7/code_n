@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Inventory`
 
@@ -19,7 +19,11 @@ Leetcode warehouse wants to maximize the number of items it can stock in a `500,
 
 Write a solution to find the number of **prime** and **non-prime** items that can be **stored** in the `500,000` square feet warehouse. Output the item type with $\text{prime}_{eligible}$ followed by $\text{not}_{prime}$ and the maximum number of items that can be stocked.
 
-**Note:**
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
 
 - Item **count** must be a whole number (integer).
 
@@ -28,11 +32,8 @@ Write a solution to find the number of **prime** and **non-prime** items that ca
 Return *the result table ordered by item count in **descending order***.
 
 The result format is in the following example.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 

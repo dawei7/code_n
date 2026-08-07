@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string array `grid` of size `n`, where each string $\text{grid}[i]$ has length `m`. The character $\text{grid}[i][j]$ is one of the following symbols:
 
@@ -19,7 +19,8 @@ However, there are some constraints on the route.
 - You cannot stay on the same row for two consecutive turns. If you stay on the same row in a move (and this move is not the last move), your next move must go to the row above.
 
 Return an integer denoting the number of such routes. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ The bottom and top rows coincide when `grid` has one row. In that case, selectin
 
 Return the number of cell sequences satisfying the start, finish, availability, distance, row-direction, and consecutive-same-row rules, reduced modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -124,7 +125,8 @@ The possible routes are:
 ```
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{grid.length} \le 750$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer n, return *the smallest **prime palindrome** greater than or equal to *`n`.
 
@@ -11,12 +11,13 @@ An integer is a **palindrome** if it reads the same from left to right as it doe
 - For example, `101` and `12321` are palindromes.
 
 The test cases are generated so that the answer always exists and is in the range $[2, 2 * 10^{8}]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ The test cases are generated so that the answer always exists and is in the rang
 
 - **Input:** $n = 13$
 - **Output:** `101`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{8}$

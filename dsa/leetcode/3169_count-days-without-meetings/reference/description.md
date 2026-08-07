@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a positive integer `days` representing the total number of days an employee is available for work (starting from day 1). You are also given a 2D array `meetings` of size `n` where, $\text{meetings}[i] = [\text{start}_{i}, \text{end}_{i}]$ represents the starting and ending days of meeting `i` (inclusive).
 
 Return the count of days when the employee is available for work but no meetings are scheduled.
 
-**Note: **The meetings may overlap.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The meetings may overlap.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ There is no meeting scheduled on the 5^th day.
 Meetings are scheduled for all working days.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le days \le 10^{9}$
 

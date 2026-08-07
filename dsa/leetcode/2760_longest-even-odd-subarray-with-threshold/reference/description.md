@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `threshold`.
 
@@ -12,13 +12,16 @@ Find the length of the **longest subarray** of `nums` starting at index `l` and 
 
 Return *an integer denoting the length of the longest such subarray.*
 
-**Note:** A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A **subarray** is a contiguous non-empty sequence of elements within an array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ It satisfies all the conditions and we can show that 1 is the maximum possible a
 - **Explanation:** In this example, we can select the subarray that starts at l = 0 and ends at r = 2 => [2,3,4].
 It satisfies all the conditions.
 Hence, the answer is the length of the subarray, 3. We can show that 3 is the maximum possible achievable length.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

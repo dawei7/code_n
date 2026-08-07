@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have a wooden plank of the length `n` **units**. Some ants are walking on the plank, each ant moves with a speed of **1 unit per second**. Some of the ants move to the **left**, the other move to the **right**.
 
@@ -7,12 +7,13 @@ When two ants moving in two **different** directions meet at some point, they ch
 When an ant reaches **one end** of the plank at a time `t`, it falls out of the plank immediately.
 
 Given an integer `n` and two integer arrays `left` and `right`, the positions of the ants moving to the left and the right, return *the moment when the last ant(s) fall out of the plank*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The last moment when an ant was on the plank is t = 4 seconds. After that, it fa
 - **Input:** $n = 7, left = [0,1,2,3,4,5,6,7], right = []$
 - **Output:** `7`
 - **Explanation:** All ants are going to the left, the ant at index 7 needs 7 seconds to fall.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

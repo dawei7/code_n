@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a 2D `grid` of size `m x n`, you should find the matrix `answer` of size `m x n`.
 
@@ -23,12 +23,13 @@ A **matrix diagonal** is a diagonal line of cells starting from some cell in eit
 ![](images/diagonal.png)
 
 Return the matrix `answer`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -136,7 +137,8 @@ To calculate the `answer` cells:
 **Output:** Output: [[0]]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

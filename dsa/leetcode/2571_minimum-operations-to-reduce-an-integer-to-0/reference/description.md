@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`, you can do the following operation **any** number of times:
 
@@ -7,12 +7,13 @@ You are given a positive integer `n`, you can do the following operation **any**
 Return *the **minimum** number of operations to make *`n`* equal to *`0`.
 
 A number `x` is power of `2` if $x = 2^i$ where $i \ge 0$*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,6 +33,7 @@ It can be shown that 3 is the minimum number of operations we need to make n equ
 - Add $2^{3}$ = 8 to n, so now n = 64.
 - Subtract $2^{6}$ = 64 from n, so now n = 0.
 So the minimum number of operations is 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

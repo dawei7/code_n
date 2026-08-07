@@ -1,18 +1,21 @@
-## Description
+### 1. Description
 
 Given a string `s` consisting of lowercase English letters, return *the first letter to appear **twice***.
 
-**Note**:
-
-- A letter `a` appears twice before another letter `b` if the **second** occurrence of `a` is before the **second** occurrence of `b`.
-
-- `s` will contain at least one letter that appears twice.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+:
+
+- A letter `a` appears twice before another letter `b` if the **second** occurrence of `a` is before the **second** occurrence of `b`.
+
+- `s` will contain at least one letter that appears twice.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ The letter 'c' is the first letter to appear twice, because out of all the lette
 - **Output:** `"d"`
 - **Explanation:**
 The only letter that appears twice is 'd' so we return 'd'.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

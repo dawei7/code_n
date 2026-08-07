@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return* an integer array *`counts`* where *$\text{counts}[i]$* is the number of smaller elements to the right of *$\text{nums}[i]$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer array `nums`, return* an integer array *`counts`* where *$\text
 
 Return an equally long integer array whose position `i` counts indices $j>i$ for which $\text{nums}[j] < \text{nums}[i]$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ To the right of 1 there is **0** smaller element.
 
 - **Input:** `nums = [-1,-1]`
 - **Output:** `[0,0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

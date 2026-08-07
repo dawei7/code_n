@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `l`, and `r`.
 
@@ -13,7 +13,8 @@ A **ZigZag** array of length `n` is defined as follows:
 Return the total number of valid **ZigZag** arrays.
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ Let $m=	exttt{r}-	exttt{l}+1$ be the number of available values.
 
 Return, modulo $10^9+7$, the number of length-`n` arrays over `[l, r]` in which adjacent entries differ and every pair of consecutive comparison directions is opposite.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ There are 10 valid ZigZag arrays of length $n = 3$ using values in the range `[1
 All arrays meet the ZigZag conditions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 200$
 

@@ -1,8 +1,19 @@
-## Description
+### 1. Description
 
 Given a `file` and assume that you can only read the file using a given method `read4`, implement a method `read` to read `n` characters. Your method `read` may be **called multiple times**.
 
-**Method read4: **
+### 2. Function Contract
+
+**Inputs**
+
+- `buf`: Destination buffer array ($\text{List}[str]$).
+- `n`: Target number of characters to read for the current call ($1 \le n \le 1000$).
+
+**Return value**
+
+Return an integer representing the number of actual characters read into `buf` during the current call.
+
+### 3. Method Read4
 
 The API `read4` reads **four consecutive characters** from `file`, then writes those characters into the buffer array `buf4`.
 
@@ -10,7 +21,7 @@ The return value is the number of actual characters read.
 
 Note that `read4()` has its own file pointer, much like `FILE *fp` in C.
 
-**Definition of read4:**
+### 4. Definition Of Read4
 
 ```
 Parameter:  char[] buf4
@@ -31,13 +42,13 @@ read4(buf4); // read4 returns 1. Now buf4 = "e", fp points to end of file
 read4(buf4); // read4 returns 0. Now buf4 = "", fp points to end of file
 ```
 
-**Method read:**
+### 5. Method Read
 
 By using the `read4` method, implement the method read that reads `n` characters from `file` and store it in the buffer array `buf`. Consider that you cannot manipulate `file` directly.
 
 The return value is the number of actual characters read.
 
-**Definition of read: **
+### 6. Definition Of Read
 
 ```
 Parameters:	char[] buf, int n
@@ -46,7 +57,7 @@ Parameters:	char[] buf, int n
 buf[] is a destination, not a source. You will need to write the results to buf[].
 ```
 
-**Note:**
+### 7. Note
 
 - Consider that you cannot manipulate the file directly. The file is only accessible for `read4` but not for `read`.
 
@@ -57,18 +68,8 @@ buf[] is a destination, not a source. You will need to write the results to buf[
 - You may assume the destination buffer array, `buf`, is guaranteed to have enough space for storing `n` characters.
 
 - It is guaranteed that in a given test case the same buffer `buf` is called by `read`.
-### Function Contract
 
-**Inputs**
-
-- `buf`: Destination buffer array ($\text{List}[str]$).
-- `n`: Target number of characters to read for the current call ($1 \le n \le 1000$).
-
-**Return value**
-
-Return an integer representing the number of actual characters read into `buf` during the current call.
-
-### Examples
+### 8. Examples
 
 #### Example 1
 
@@ -90,7 +91,8 @@ File file("abc");
 Solution sol;
 sol.read(buf, 4); // After calling your read method, buf should contain "abc". We read a total of 3 characters from the file, so return 3.
 sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
-### Constraints
+
+### 9. Constraints
 
 - $1 \le \text{file.length} \le 500$
 

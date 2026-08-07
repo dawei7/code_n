@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ You are allowed to replace **at most** one element in the array with any other i
 Return the length of the **longest non-decreasing subarray** that can be obtained after performing at most one replacement.
 
 An array is said to be **non-decreasing** if each element is greater than or equal to its previous one (if it exists).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ The replacement value may be any integer; it is not restricted to values already
 
 Return the maximum length of a non-decreasing subarray achievable with zero or one replacement.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The longest non-decreasing subarray is [1, 2, 3, 3], which has a length of 4.
 All elements in `nums` are equal, so it is already non-decreasing and the entire `nums` forms a subarray of length 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

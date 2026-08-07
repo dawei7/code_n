@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given **two** strings, `s1` and `s2`. Return the **shortest** *possible* string that contains both `s1` and `s2` as substrings. If there are multiple valid answers, return *any *one of them.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ A **substring** is a contiguous sequence of characters within a string.
 `"aa"` is already contained within `"aaa"`, so the shortest superstring is `"aaa"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length} \le 100$
 

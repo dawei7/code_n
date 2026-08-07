@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
 Return an integer denoting the **maximum** number of substrings you can split `s` into such that each **substring** starts with a **distinct** character (i.e., no two substrings start with the same character).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ The pieces must concatenate back to exactly `s`. Only their starting characters 
 
 Return the greatest possible number of substrings in a valid complete partition of `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ Return the greatest possible number of substrings in a valid complete partition 
 - Only one substring can start with `'a'`. Thus, the answer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

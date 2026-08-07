@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **strictly increasing** integer array `rungs` that represents the **height** of rungs on a ladder. You are currently on the **floor** at height `0`, and you want to reach the last rung.
 
 You are also given an integer `dist`. You can only climb to the next highest rung if the distance between where you are currently at (the floor or on a rung) and the next rung is **at most** `dist`. You are able to insert rungs at any positive **integer** height if a rung is not already there.
 
 Return *the **minimum** number of rungs that must be added to the ladder in order for you to climb to the last rung.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ This ladder can be climbed without adding additional rungs.
 You currently cannot reach the first rung from the ground.
 Add a rung at height 1 to climb this ladder.
 The ladder will now have rungs at [<u>1</u>,3,4,6,7].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rungs.length} \le 10^{5}$
 

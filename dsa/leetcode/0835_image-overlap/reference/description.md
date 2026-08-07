@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two images, `img1` and `img2`, represented as binary, square matrices of size `n x n`. A binary matrix has only `0`s and `1`s as values.
 
@@ -7,12 +7,13 @@ We **translate** one image however we choose by sliding all the `1` bits left, r
 Note also that a translation does **not** include any kind of rotation. Any `1` bits that are translated outside of the matrix borders are erased.
 
 Return *the largest possible overlap*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The number of positions that have a 1 in both images is 3 (shown in red).
 
 - **Input:** $img1 = [[0]], img2 = [[0]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{img1.length} = \text{img1}[i].length$
 

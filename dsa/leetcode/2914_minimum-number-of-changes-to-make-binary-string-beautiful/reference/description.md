@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** binary string `s` having an even length.
 
@@ -11,12 +11,13 @@ A string is **beautiful** if it's possible to partition it into one or more subs
 You can change any character in `s` to `0` or `1`.
 
 Return *the **minimum** number of changes required to make the string *`s` *beautiful*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ It can be proven that 1 is the minimum number of changes needed to make the stri
 - **Input:** `s = "0000"`
 - **Output:** `0`
 - **Explanation:** We don't need to make any changes as the string "0000" is beautiful already.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 10^{5}$
 

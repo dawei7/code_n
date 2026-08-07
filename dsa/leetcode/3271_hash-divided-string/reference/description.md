@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `n` and an integer `k`, where `n` is a **multiple** of `k`. Your task is to hash the string `s` into a new string called `result`, which has a length of $n / k$.
 
@@ -17,12 +17,13 @@ For each **substring** in order from the beginning:
 - Append that character to the end of `result`.
 
 Return `result`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Second substring: `"cd"`, $2 + 3 = 5$, $5 \% 26 = 5$, $\text{result}[1] = 'f'$.
 The only substring: `"mxz"`, $12 + 23 + 25 = 60$, $60 \% 26 = 8$, $\text{result}[0] = 'i'$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 100$
 

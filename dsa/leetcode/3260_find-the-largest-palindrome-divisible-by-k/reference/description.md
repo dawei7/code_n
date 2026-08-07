@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **positive** integers `n` and `k`.
 
@@ -10,13 +10,16 @@ An integer `x` is called **k-palindromic** if:
 
 Return the** largest** integer having `n` digits (as a string) that is **k-palindromic**.
 
-**Note** that the integer must **not** have leading zeros.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the integer must **not** have leading zeros.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ Return the** largest** integer having `n` digits (as a string) that is **k-palin
 **Output:** "89898"
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{5}$
 

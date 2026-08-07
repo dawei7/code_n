@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` containing lowercase English letters, and a matrix `shift`, where $\text{shift}[i] = [\text{direction}_{i}, \text{amount}_{i}]$:
 
@@ -11,7 +11,8 @@ You are given a string `s` containing lowercase English letters, and a matrix `s
 - Similarly, a right shift by 1 means remove the last character of `s` and add it to the beginning.
 
 Return the final string after all operations.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ For each operation, $\text{direction}_{i} = 0$ means left and $\text{direction}_
 
 Return the string obtained after applying all rows of `shift`. Every operation acts on the result of the preceding operation, and every shift preserves the string's length and character multiplicities.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return the string obtained after applying all rows of `shift`. Every operation a
 [1,1] means shift to right by 1. "gabcdef" -> "fgabcde"
 [0,2] means shift to left by 2. "fgabcde" -> "abcdefg"
 [1,3] means shift to right by 3. "abcdefg" -> "efgabcd"
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

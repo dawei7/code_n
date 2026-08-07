@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There is an `m x n` grid with a ball. The ball is initially at the position `[startRow, startColumn]`. You are allowed to move the ball to one of the four adjacent cells in the grid (possibly out of the grid crossing the grid boundary). You can apply **at most** `maxMove` moves to the ball.
 
 Given the five integers `m`, `n`, `maxMove`, `startRow`, `startColumn`, return the number of paths to move the ball out of the grid boundary. Since the answer can be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Given the five integers `m`, `n`, `maxMove`, `startRow`, `startColumn`, return t
 
 - **Input:** $m = 1, n = 3, maxMove = 3, startRow = 0, startColumn = 1$
 - **Output:** `12`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 50$
 

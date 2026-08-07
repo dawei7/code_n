@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `ranges` and two integers `left` and `right`. Each $\text{ranges}[i] = [\text{start}_{i}, \text{end}_{i}]$ represents an **inclusive** interval between $\text{start}_{i}$ and $\text{end}_{i}$.
 
 Return `true` *if each integer in the inclusive range* `[left, right]` *is covered by **at least one** interval in* `ranges`. Return `false` *otherwise*.
 
 An integer `x` is covered by an interval $\text{ranges}[i] = [\text{start}_{i}, \text{end}_{i}]$ if $\text{start}_{i} \le x \le \text{end}_{i}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ An integer `x` is covered by an interval $\text{ranges}[i] = [\text{start}_{i}, 
 - **Input:** $ranges = [[1,10],[10,20]], left = 21, right = 21$
 - **Output:** `false`
 - **Explanation:** 21 is not covered by any range.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{ranges.length} \le 50$
 

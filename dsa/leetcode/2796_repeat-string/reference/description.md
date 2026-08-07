@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Write code that enhances all strings such that you can call the `string.replicate(x)` method on any string and it will return repeated string `x` times.
 
 Try to implement it without using the built-in method `string.repeat`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Try to implement it without using the built-in method `string.repeat`.
 - **Input:** $str = "js", times = 1$
 - **Output:** `"js"`
 - **Explanation:** "js" is repeated 1 time
-### Constraints
+
+### 4. Constraints
 
 - $1 \le times \le 10^{5}$
 

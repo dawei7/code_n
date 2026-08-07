@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There is a forest with an unknown number of rabbits. We asked n rabbits **"How many other rabbits have the same color as you?"** and collected the answers in an integer array `answers` where $\text{answers}[i]$ is the answer of the $$i^{\text{th}}$$ rabbit.
 
 Given the array `answers`, return *the minimum number of rabbits that could be in the forest*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ The smallest possible number of rabbits in the forest is therefore 5: 3 that ans
 
 - **Input:** $answers = [10,10,10]$
 - **Output:** `11`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{answers.length} \le 1000$
 

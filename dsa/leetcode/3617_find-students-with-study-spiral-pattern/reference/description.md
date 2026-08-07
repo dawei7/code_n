@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `students`
 
@@ -149,7 +149,7 @@ The result table is ordered by cycle_length in descending order, then by total_s
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

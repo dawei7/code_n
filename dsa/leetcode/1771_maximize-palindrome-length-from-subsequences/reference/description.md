@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings, `word1` and `word2`. You want to construct a string in the following manner:
 
@@ -13,12 +13,13 @@ Return *the **length** of the longest **palindrome** that can be constructed in 
 A **subsequence** of a string `s` is a string that can be made by deleting some (possibly none) characters from `s` without changing the order of the remaining characters.
 
 A **palindrome** is a string that reads the same forward as well as backward.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ A **palindrome** is a string that reads the same forward as well as backward.
 - **Input:** $word1 = "aa", word2 = "bb"$
 - **Output:** `0`
 - **Explanation:** You cannot construct a palindrome from the described method, so return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums` and `threshold`, both of length `n`.
 
@@ -14,7 +14,8 @@ Starting at $step = 1$, you perform the following repeatedly:
 - Mark index `i` as used and increment `step` by 1.
 
 Return the **maximum** **total sum** you can obtain by choosing indices optimally.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ The arrays have the same length $n$. Each index can be chosen at most once, and 
 
 Return the greatest running total achievable when the required process terminates.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ At $step = 1$ there is no index `i` with $\text{threshold}[i] \le 1$, so the pro
 - After $step = 4$ all indices have been chosen, so the process ends.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length} = \text{threshold.length}$
 

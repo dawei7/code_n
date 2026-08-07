@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return the length of the **longest subsequence** in `nums` whose bitwise **XOR** is **non-zero**. If no such **subsequence** exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ A subsequence retains the relative order of its selected elements and may omit a
 
 Return the greatest attainable subsequence length, or `0` when no qualifying subsequence exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ One longest subsequence is `[2, 3]`. The bitwise XOR is computed as $2 XOR 3 = 1
 The longest subsequence is `[2, 3, 4]`. The bitwise XOR is computed as $2 XOR 3 XOR 4 = 5$, which is non-zero.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

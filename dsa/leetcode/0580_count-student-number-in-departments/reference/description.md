@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Student`
 
@@ -34,7 +34,8 @@ Write a solution to report the respective department name and number of students
 Return the result table **ordered** by $\text{student}_{number}$ **in descending order**. In case of a tie, order them by $\text{dept}_{name}$ **alphabetically**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -44,7 +45,7 @@ $Student(\text{student}_{id}, \text{student}_{name}, gender, \text{dept}_{id})$ 
 
 Return one row per department with columns $\text{dept}_{name}$ and $\text{student}_{number}$. Sort by the count from greatest to least, then by $\text{dept}_{name}$ in ascending alphabetical order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

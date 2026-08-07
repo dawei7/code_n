@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` and an integer `k`.
 
@@ -11,11 +11,12 @@ The **gcd-sum** of an array `a` is calculated as follows:
 - The gcd-sum of `a` is equal to $s * g$.
 
 Return *the **maximum gcd-sum** of a subarray of* `nums` *with at least* `k` *elements.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ It can be shown that we can not select any other subarray with a gcd-sum greater
 - **Output:** `81`
 - **Explanation:** We take the subarray [9], the gcd-sum of this array is 9 * 9 = 81.
 It can be shown that we can not select any other subarray with a gcd-sum greater than 81.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

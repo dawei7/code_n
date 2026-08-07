@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a binary array `nums`, you should delete one element from it.
 
 Return *the size of the longest non-empty subarray containing only *`1`*'s in the resulting array*. Return `0` if there is no such subarray.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the size of the longest non-empty subarray containing only *`1`*'s in th
 - **Input:** `nums = [1,1,1]`
 - **Output:** `2`
 - **Explanation:** You must delete one element.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

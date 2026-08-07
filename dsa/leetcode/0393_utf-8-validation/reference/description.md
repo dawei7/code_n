@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `data` representing the data, return whether it is a valid **UTF-8** encoding (i.e. it translates to a sequence of valid UTF-8 encoded characters).
 
@@ -22,8 +22,7 @@ Number of Bytes   |        UTF-8 Octet Sequence
 
 `x` denotes a bit in the binary form of a byte that may be either `0` or `1`.
 
-**Note: **The input is an array of integers. Only the **least significant 8 bits** of each integer is used to store the data. This means each integer represents only 1 byte of data.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +32,11 @@ Number of Bytes   |        UTF-8 Octet Sequence
 
 Return `true` if the complete byte sequence can be partitioned into valid one- through four-byte UTF-8 patterns; otherwise return `false`.
 
-### Examples
+### 3. Note
+
+The input is an array of integers. Only the **least significant 8 bits** of each integer is used to store the data. This means each integer represents only 1 byte of data.
+
+### 4. Examples
 
 #### Example 1
 
@@ -49,7 +52,8 @@ It is a valid utf-8 encoding for a 2-bytes character followed by a 1-byte charac
 The first 3 bits are all one's and the 4th bit is 0 means it is a 3-bytes character.
 The next byte is a continuation byte which starts with 10 and that's correct.
 But the second continuation byte does not start with 10, so it is invalid.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{data.length} \le 2 * 10^{4}$
 

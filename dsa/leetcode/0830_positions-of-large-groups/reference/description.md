@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a string `s` of lowercase letters, these letters form consecutive groups of the same character.
 
@@ -9,12 +9,13 @@ A group is identified by an interval `[start, end]`, where `start` and `end` den
 A group is considered **large** if it has 3 or more characters.
 
 Return *the intervals of every **large** group sorted in **increasing order by start index***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return *the intervals of every **large** group sorted in **increasing order by s
 - **Input:** `s = "abcdddeeeeaabbbcd"`
 - **Output:** `[[3,5],[6,9],[12,14]]`
 - **Explanation:** The large groups are "ddd", "eeee", and "bbb".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

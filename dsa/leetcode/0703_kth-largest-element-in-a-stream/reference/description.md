@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are part of a university admissions office and need to keep track of the `kth` highest test score from applicants in real-time. This helps to determine cut-off marks for interviews and admissions dynamically as new applicants submit their scores.
 
@@ -9,12 +9,13 @@ Implement the `KthLargest` class:
 - `KthLargest(int k, int[] nums)` Initializes the object with the integer `k` and the stream of test scores `nums`.
 
 - `int add(int val)` Adds a new test score `val` to the stream and returns the element representing the $$k^{\text{th}}$$ largest element in the pool of test scores so far.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ kthLargest.add(10); // return 7
 kthLargest.add(9); // return 7
 
 kthLargest.add(9); // return 8</div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums.length} \le 10^{4}$
 

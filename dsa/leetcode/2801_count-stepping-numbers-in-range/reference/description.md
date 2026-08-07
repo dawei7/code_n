@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two positive integers `low` and `high` represented as strings, find the count of **stepping numbers** in the inclusive range `[low, high]`.
 
@@ -8,13 +8,16 @@ Return *an integer denoting the count of stepping numbers in the inclusive range
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
-**Note:** A stepping number should not have a leading zero.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A stepping number should not have a leading zero.
+
+### 4. Examples
 
 #### Example 1
 
@@ -26,7 +29,8 @@ Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 - **Input:** $low = "90", high = "101"$
 - **Output:** `2`
 - **Explanation:** The stepping numbers in the range [90,101] are 98 and 101. There are a total of 2 stepping numbers in the range. Hence, the output is 2.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le int(low) \le int(high) < 10^{100}$
 

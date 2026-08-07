@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You have `n` dice, and each dice has `k` faces numbered from `1` to `k`.
 
 Given three integers `n`, `k`, and `target`, return *the number of possible ways (out of the *$k^n$* total ways) **to roll the dice, so the sum of the face-up numbers equals *`target`. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ There are 6 ways to get a sum of 7: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1.
 - **Input:** $n = 30, k = 30, target = 500$
 - **Output:** `222616187`
 - **Explanation:** The answer must be returned modulo $10^{9}$ + 7.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, k \le 30$
 

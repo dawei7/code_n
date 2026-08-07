@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `grid` of size $m * n$.
 
@@ -9,7 +9,8 @@ At each step, you **may** move either **right or down**.
 The **cost** of a path is defined as the **bitwise XOR** of all the values in the cells along that path, **including** the start and end cells.
 
 Return the **minimum** possible XOR value among all valid paths from `(0, 0)` to $(m - 1, n - 1)$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Every path contains exactly $m+n-1$ cells and may use only right and down moves.
 
 Return the minimum integer among the XOR costs of all valid paths from `(0, 0)` to $(m - 1, n - 1)$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ There is only one valid path:
 The XOR value of this path is 0, which is the minimum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 **Special binary strings** are binary strings with the following two properties:
 
@@ -11,12 +11,13 @@ You are given a **special binary** string `s`.
 A move consists of choosing two consecutive, non-empty, special substrings of `s`, and swapping them. Two strings are consecutive if the last character of the first string is exactly one index before the first character of the second string.
 
 Return *the lexicographically largest resulting string possible after applying the mentioned operations on the string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ This is the lexicographically largest string possible after some number of swaps
 
 - **Input:** `s = "10"`
 - **Output:** `"10"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 50$
 

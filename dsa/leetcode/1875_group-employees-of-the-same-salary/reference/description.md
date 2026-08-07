@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -31,11 +31,12 @@ Write a solution to get the $\text{team}_{id}$ of each employee that is in a tea
 Return the result table ordered by $\text{team}_{id}$ **in ascending order**. In case of a tie, order it by $\text{employee}_{id}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design an iterator that supports the `peek` operation on an existing iterator in addition to the `hasNext` and the `next` operations.
 
@@ -12,8 +12,7 @@ Implement the `PeekingIterator` class:
 
 - `int peek()` Returns the next element in the array **without** moving the pointer.
 
-**Note:** Each language may have a different implementation of the constructor and `Iterator`, but they all support the `int next()` and `boolean hasNext()` functions.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +23,11 @@ Implement the `PeekingIterator` class:
 
 The offline adapter returns one result for each requested operation. The native `PeekingIterator` exposes the constructor and three methods described above.
 
-### Examples
+### 3. Note
+
+Each language may have a different implementation of the constructor and `Iterator`, but they all support the `int next()` and `boolean hasNext()` functions.
+
+### 4. Examples
 
 #### Example 1
 
@@ -43,7 +46,8 @@ peekingIterator.next();    // return 2, the pointer moves to the next element [1
 peekingIterator.next();    // return 3, the pointer moves to the next element [1,2,3]
 peekingIterator.hasNext(); // return False
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

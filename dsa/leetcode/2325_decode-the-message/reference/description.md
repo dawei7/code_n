@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the strings `key` and `message`, which represent a cipher key and a secret message, respectively. The steps to decode `message` are as follows:
 
@@ -13,12 +13,13 @@ You are given the strings `key` and `message`, which represent a cipher key and 
 - For example, given $key = "<u>**hap**</u>p<u>**y**</u> <u>**bo**</u>y"$ (actual key would have **at least one** instance of each letter in the alphabet), we have the partial substitution table of (`'h' -> 'a'`, `'a' -> 'b'`, `'p' -> 'c'`, `'y' -> 'd'`, `'b' -> 'e'`, `'o' -> 'f'`).
 
 Return *the decoded message*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ It is obtained by taking the first appearance of each letter in "<u>**the**</u> 
 - **Output:** `"the five boxing wizards jump quickly"`
 - **Explanation:** The diagram above shows the substitution table.
 It is obtained by taking the first appearance of each letter in "<u>**eljuxhpwnyrdgtqkviszcfmabo**</u>".
-### Constraints
+
+### 4. Constraints
 
 - $26 \le \text{key.length} \le 2000$
 

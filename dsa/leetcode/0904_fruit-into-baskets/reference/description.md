@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array `fruits` where $\text{fruits}[i]$ is the **type** of fruit the $$i^{\text{th}}$$ tree produces.
 
@@ -11,12 +11,13 @@ You want to collect as much fruit as possible. However, the owner has some stric
 - Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
 
 Given the integer array `fruits`, return *the **maximum** number of fruits you can pick*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ If we had started at the first tree, we would only pick from trees [0,1].
 - **Output:** `4`
 - **Explanation:** We can pick from trees [2,3,2,2].
 If we had started at the first tree, we would only pick from trees [1,2].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{fruits.length} \le 10^{5}$
 

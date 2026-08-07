@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the logs for users' actions on LeetCode, and an integer `k`. The logs are represented by a 2D integer array `logs` where each $\text{logs}[i] = [\text{ID}_{i}, \text{time}_{i}]$ indicates that the user with $\text{ID}_{i}$ performed an action at the minute $\text{time}_{i}$.
 
@@ -9,12 +9,13 @@ The **user active minutes (UAM)** for a given user is defined as the **number of
 You are to calculate a **1-indexed** array `answer` of size `k` such that, for each `j` ($1 \le j \le k$), $\text{answer}[j]$ is the **number of users** whose **UAM** equals `j`.
 
 Return *the array *`answer`* as described above*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The user with ID=1 performed a single action at minute 1. Hence, they have a UAM
 The user with ID=2 performed actions at minutes 2 and 3. Hence, they have a UAM of 2.
 There is one user with a UAM of 1 and one with a UAM of 2.
 Hence, answer[1] = 1, answer[2] = 1, and the remaining values are 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{logs.length} \le 10^{4}$
 

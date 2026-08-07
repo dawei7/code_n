@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are playing a variation of the game Zuma.
 
@@ -18,12 +18,13 @@ Your goal is to **clear all** of the balls from the board. On each turn:
 - Repeat this process until you either win or do not have any more balls in your hand.
 
 Given a string `board`, representing the row of balls on the board, and a string `hand`, representing the balls in your hand, return *the **minimum** number of balls you have to insert to clear all the balls from the board. If you cannot clear all the balls from the board using the balls in your hand, return *`-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ There are still balls remaining on the board, and you are out of balls to insert
 - Insert 'G' so the board becomes G<u>G</u>.
 - Insert 'G' so the board becomes GG<u>G</u>. <u>GGG</u> -> empty.
 2 balls from your hand were needed to clear the board.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{board.length} \le 16$
 

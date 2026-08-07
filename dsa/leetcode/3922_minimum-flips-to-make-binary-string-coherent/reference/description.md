@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`.
 
@@ -7,7 +7,8 @@ A string is considered **coherent** if it does **not** contain `"011"` or `"110"
 In one operation, you can **flip** any character in `s` (`'0'` to `'1'` or `'1'` to `'0'`).
 
 Return an integer denoting the **minimum** number of operations required to make `s` coherent.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $n=\lvert\texttt{s}\rvert$.
 
 Return the minimum number of character flips that transform `s` into a string containing neither `"011"` nor `"110"` as a subsequence.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Flip $s[1]$ to get `"0010"`, removing all forbidden subsequences `"011"` and `"1
 The string already has no `"011"` or `"110"` subsequences, so no flips are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

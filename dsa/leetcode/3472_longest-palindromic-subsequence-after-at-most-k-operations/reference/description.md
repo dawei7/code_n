@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`.
 
 In one operation, you can replace the character at any position with the next or previous letter in the alphabet (wrapping around so that `'a'` is after `'z'`). For example, replacing `'a'` with the next letter results in `'b'`, and replacing `'a'` with the previous letter results in `'z'`. Similarly, replacing `'z'` with the next letter results in `'a'`, and replacing `'z'` with the previous letter results in `'y'`.
 
 Return the length of the **longest palindromic subsequence** of `s` that can be obtained after performing **at most** `k` operations.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The subsequence `"ccc"` forms a palindrome of length 3, which is the maximum.
 The entire string forms a palindrome of length 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 200$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `n`.
 
@@ -9,7 +9,8 @@ The **reverse** of a binary string `s` is obtained by writing the characters of 
 You may flip any bit in `s` (change `0 → 1` or `1 → 0`). Each flip affects **exactly** one bit.
 
 Return the **minimum** number of flips required to make `s` equal to the reverse of its original form.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $B$ be the number of bits in the representation of `n`. The representation h
 
 Return the fewest single-position flips that make the original $B$-character binary string equal to its $B$-character reversal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,6 +48,7 @@ The binary representation of 7 is `"111"`. Its reverse is also `"111"`, which is
 The binary representation of 10 is `"1010"`. Its reverse is `"0101"`. All four bits must be flipped to make them equal. Thus, the minimum number of flips required is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

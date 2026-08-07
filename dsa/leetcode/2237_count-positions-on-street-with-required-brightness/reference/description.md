@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. A perfectly straight street is represented by a number line ranging from `0` to $n - 1$. You are given a 2D integer array `lights` representing the street lamp(s) on the street. Each $\text{lights}[i] = [\text{position}_{i}, \text{range}_{i}]$ indicates that there is a street lamp at position $\text{position}_{i}$ that lights up the area from $[max(0, \text{position}_{i} - \text{range}_{i}), min(n - 1, \text{position}_{i} + \text{range}_{i})]$ (**inclusive**).
 
 The **brightness** of a position `p` is defined as the number of street lamps that light up the position `p`. You are given a **0-indexed** integer array `requirement` of size `n` where $\text{requirement}[i]$ is the minimum **brightness** of the $$i^{\text{th}}$$ position on the street.
 
 Return *the number of positions *`i`* on the street between *`0`* and *$n - 1$* that have a **brightness** **of **at least** *$\text{requirement}[i]$*.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Positions 0, 1, 2, and 4 meet the requirement so we return 4.
 - The first street lamp lights up the area from [max(0, 0 - 1), min(n - 1, 0 + 1)] = [0, 0] (inclusive).
 - Position 0 is covered by the first street lamp. It is covered by 1 street lamp which is less than requirement[0].
 - We return 0 because no position meets their brightness requirement.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

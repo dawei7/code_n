@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, break it into the sum of `k` **positive integers**, where $k \ge 2$, and maximize the product of those integers.
 
 Return *the maximum product you can get*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return *the maximum product you can get*.
 
 Return the maximum product of the positive integers in a valid sum decomposition of `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Return the maximum product of the positive integers in a valid sum decomposition
 - **Input:** $n = 10$
 - **Output:** `36`
 - **Explanation:** 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 58$

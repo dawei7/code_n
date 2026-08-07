@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer array `sides` of length 3.
 
@@ -7,7 +7,8 @@ Determine if there exists a triangle with **positive** area whose three side len
 If such a triangle exists, return an array of three floating-point numbers representing its internal angles (in **degrees**), **sorted** in **non-decreasing** order. Otherwise, return an empty array.
 
 Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ The order of the three values carries no geometric meaning. A triangle has posit
 
 Return the three internal angles in degrees, sorted in non-decreasing order, when the side lengths form a positive-area triangle. Otherwise return `[]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ You can form a right-angled triangle with side lengths 3, 4, and 5. The internal
 You cannot form a triangle with positive area using side lengths 2, 4, and 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{sides.length} = 3$
 

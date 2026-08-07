@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a non-negative integer `c`, decide whether there're two integers `a` and `b` such that $a^{2} + b^{2} = c$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,6 +18,7 @@ Given a non-negative integer `c`, decide whether there're two integers `a` and `
 
 - **Input:** $c = 3$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le c \le 2^{31} - 1$

@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`. Your task is to find the number of **distinct** elements in **every** subarray of size `k` within `nums`.
 
 Return an array `ans` such that $\text{ans}[i]$ is the count of distinct elements in $nums[i..(i + k - 1)]$ for each index $0 \le i < n - k$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return an array `ans` such that $\text{ans}[i]$ is the count of distinct element
 - nums[1..4] = [1,1,1,2] so ans[1] = 2
 - nums[2..5] = [1,1,2,3] so ans[2] = 3
 - nums[3..6] = [1,2,3,4] so ans[3] = 4
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

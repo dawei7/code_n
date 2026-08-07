@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Your music player contains `n` different songs. You want to listen to `goal` songs (not necessarily different) during your trip. To avoid boredom, you will create a playlist so that:
 
@@ -7,12 +7,13 @@ Your music player contains `n` different songs. You want to listen to `goal` son
 - A song can only be played again only if `k` other songs have been played.
 
 Given `n`, `goal`, and `k`, return *the number of possible playlists that you can create*. Since the answer can be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Given `n`, `goal`, and `k`, return *the number of possible playlists that you ca
 - **Input:** $n = 2, goal = 3, k = 1$
 - **Output:** `2`
 - **Explanation:** There are 2 possible playlists: [1, 2, 1] and [2, 1, 2].
-### Constraints
+
+### 4. Constraints
 
 - $0 \le k < n \le goal \le 100$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a singly linked list, return a random node's value from the linked list. Each node must have the **same probability** of being chosen.
 
@@ -7,7 +7,8 @@ Implement the `Solution` class:
 - `Solution(ListNode head)` Initializes the object with the head of the singly-linked list `head`.
 
 - `int getRandom()` Chooses a node randomly from the list and returns its value. All the nodes of the list should be equally likely to be chosen.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Implement the `Solution` class:
 
 The app adapter returns `draws` selected values. On LeetCode, construct `Solution(head)` and call `getRandom()` once for each desired selection.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ solution.getRandom(); // return 2
 solution.getRandom(); // return 3
 // getRandom() should return either 1, 2, or 3 randomly. Each element should have equal probability of returning.
 ```
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the linked list will be in the range $[1, 10^{4}]$.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A truck has two fuel tanks. You are given two integers, `mainTank` representing the fuel present in the main tank in liters and `additionalTank` representing the fuel present in the additional tank in liters.
 
@@ -6,13 +6,16 @@ The truck has a mileage of `10` km per liter. Whenever `5` liters of fuel get us
 
 Return *the maximum distance which can be traveled.*
 
-**Note: **Injection from the additional tank is not continuous. It happens suddenly and immediately for every 5 liters consumed.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Injection from the additional tank is not continuous. It happens suddenly and immediately for every 5 liters consumed.
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,6 +32,7 @@ Total distance traveled is 60km.
 - **Explanation:**
 After spending 1 litre of fuel, the main tank becomes empty.
 Total distance traveled is 10km.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le mainTank, additionalTank \le 100$

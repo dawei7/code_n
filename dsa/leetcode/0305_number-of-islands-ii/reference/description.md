@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an empty 2D binary grid `grid` of size `m x n`. The grid represents a map where `0`'s represent water and `1`'s represent land. Initially, all the cells of `grid` are water cells (i.e., all the cells are `0`'s).
 
@@ -7,7 +7,8 @@ We may perform an add land operation which turns the water at position into a la
 Return *an array of integers* `answer` *where* $\text{answer}[i]$ *is the number of islands after turning the cell* $(r_{i}, c_{i})$ *into a land*.
 
 An **island** is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are all surrounded by water.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ An **island** is surrounded by water and is formed by connecting adjacent lands 
 
 Return the number of four-directionally connected land components after each operation, in operation order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Initially, the 2d grid is filled with water.
 
 - **Input:** $m = 1, n = 1, positions = [[0,0]]$
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n, \text{positions.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **bitwise AND** of an array `nums` is the bitwise AND of all integers in `nums`.
 
@@ -9,12 +9,13 @@ The **bitwise AND** of an array `nums` is the bitwise AND of all integers in `nu
 You are given an array of positive integers `candidates`. Compute the **bitwise AND** for all possible **combinations** of elements in the `candidates` array.
 
 Return *the size of the **largest** combination of *`candidates`* with a bitwise AND **greater** than *`0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ For example, the combination [62,12,24,14] has a bitwise AND of 62 & 12 & 24 & 1
 - **Output:** `2`
 - **Explanation:** The largest combination [8,8] has a bitwise AND of 8 & 8 = 8 > 0.
 The size of the combination is 2, so we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{candidates.length} \le 10^{5}$
 

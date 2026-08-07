@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Nearly everyone has used the <a href="https://en.wikipedia.org/wiki/Multiplication_table" target="_blank">Multiplication Table</a>. The multiplication table of size `m x n` is an integer matrix `mat` where $\text{mat}[i][j] = i * j$ (**1-indexed**).
 
 Given three integers `m`, `n`, and `k`, return *the *$$k^{\text{th}}$$* smallest element in the *`m x n`* multiplication table*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given three integers `m`, `n`, and `k`, return *the *$$k^{\text{th}}$$* smallest
 - **Input:** $m = 2, n = 3, k = 6$
 - **Output:** `6`
 - **Explanation:** The 6^th smallest number is 6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 3 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` that consists of lowercase English letters.
 
@@ -7,7 +7,8 @@ You can perform the following operation any number of times (possibly zero times
 - Choose any letter that appears **at least twice** in the current string `s` and delete any **one** occurrence.
 
 Return the **lexicographically smallest** resulting string that can be formed this way.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $N=\lvert\texttt{s}\rvert$. Every result is a subsequence of `s`. An occurre
 
 Return the lexicographically smallest subsequence reachable under the deletion rule.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ For example, we can obtain `"aacb"` by choosing `'c'` and deleting its first occ
 We cannot perform any operations. The only string we can form is `"z"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

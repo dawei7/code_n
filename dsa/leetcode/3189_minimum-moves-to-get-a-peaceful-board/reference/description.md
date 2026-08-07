@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a 2D array `rooks` of length `n`, where $\text{rooks}[i] = [x_{i}, y_{i}]$ indicates the position of a rook on an `n x n` chess board. Your task is to move the rooks **1 cell **at a time vertically or horizontally (to an *adjacent* cell) such that the board becomes **peaceful**.
 
@@ -6,12 +6,15 @@ A board is **peaceful** if there is **exactly** one rook in each row and each co
 
 Return the **minimum** number of moves required to get a *peaceful board*.
 
-**Note** that **at no point** can there be two rooks in the same cell.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that **at no point** can there be two rooks in the same cell.
+
+### 4. Examples
 
 #### Example 1
 
@@ -37,7 +40,8 @@ Return the **minimum** number of moves required to get a *peaceful board*.
 ![](images/ex2-edited.gif)
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{rooks.length} \le 500$
 

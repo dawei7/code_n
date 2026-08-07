@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an initial array `arr`, every day you produce a new array using the array of the previous day.
 
@@ -11,7 +11,8 @@ On the `i`-th day, you do the following operations on the array of day `i-1` to 
 - The first and last elements never change.
 
 After some days, the array does not change. Return that final array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $C$ be the total number of individual increments and decrements performed be
 
 Return the stable array reached when a complete simultaneous day produces no changes. Positions `0` and $n - 1$ must equal their original values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ No more operations can be done to this array.
 On the first day, the array is changed from [1,6,3,4,3,5] to [1,5,4,3,4,5].
 On the second day, the array is changed from [1,5,4,3,4,5] to [1,4,4,4,4,5].
 No more operations can be done to this array.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{arr.length} \le 100$
 

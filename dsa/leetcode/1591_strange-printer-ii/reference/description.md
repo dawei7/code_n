@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a strange printer with the following two special requirements:
 
@@ -9,12 +9,13 @@ There is a strange printer with the following two special requirements:
 You are given a `m x n` matrix `targetGrid`, where $\text{targetGrid}[row][col]$ is the color in the position `(row, col)` of the grid.
 
 Return `true`* if it is possible to print the matrix *`targetGrid`*,** otherwise, return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return `true`* if it is possible to print the matrix *`targetGrid`*,** otherwise
 - **Input:** $targetGrid = [[1,2,1],[2,1,2],[1,2,1]]$
 - **Output:** `false`
 - **Explanation:** It is impossible to form targetGrid because it is not allowed to print the same color in different turns.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{targetGrid.length}$
 

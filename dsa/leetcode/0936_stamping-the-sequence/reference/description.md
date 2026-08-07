@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `stamp` and `target`. Initially, there is a string `s` of length `target.length` with all $s[i] = '?'$.
 
@@ -17,12 +17,13 @@ In one turn, you can place `stamp` over `s` and replace every letter in the `s` 
 We want to convert `s` to `target` using **at most** $10 * \text{target.length}$ turns.
 
 Return *an array of the index of the left-most letter being stamped at each turn*. If we cannot obtain `target` from `s` within $10 * \text{target.length}$ turns, return an empty array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return *an array of the index of the left-most letter being stamped at each turn
 - Place stamp at index 3 to get "???abca".
 - Place stamp at index 0 to get "abcabca".
 - Place stamp at index 1 to get "aabcaca".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stamp.length} \le \text{target.length} \le 1000$
 

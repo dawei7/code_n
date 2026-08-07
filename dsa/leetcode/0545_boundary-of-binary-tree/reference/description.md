@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **boundary** of a binary tree is the concatenation of the **root**, the **left boundary**, the **leaves** ordered from left-to-right, and the **reverse order** of the **right boundary**.
 
@@ -17,7 +17,8 @@ The **right boundary** is similar to the **left boundary**, except it is the rig
 The **leaves** are nodes that do not have any children. For this problem, the root is **not** a leaf.
 
 Given the `root` of a binary tree, return *the values of its **boundary***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ entries.
 Return a list of node values ordered as root, non-leaf left boundary from top to bottom, all leaves from left to
 right, and non-leaf right boundary from bottom to top. No physical node is included in more than one portion.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ Concatenating everything results in [1] + [] + [3,4] + [2] = [1,3,4,2].
 10 is a leaf, so the right boundary is [3,6], and in reverse order is [6,3].
 - The leaves from left to right are [4,7,8,9,10].
 Concatenating everything results in [1] + [2] + [4,7,8,9,10] + [6,3] = [1,2,4,7,8,9,10,6,3].
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

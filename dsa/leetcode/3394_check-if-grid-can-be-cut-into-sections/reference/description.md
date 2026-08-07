@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the dimensions of an `n x n`<!-- notionvc: fa9fe4ed-dff8-4410-8196-346f2d430795 --> grid, with the origin at the bottom-left corner of the grid. You are also given a 2D array of coordinates `rectangles`, where $\text{rectangles}[i]$ is in the form `[start_x, start_y, end_x, end_y]`, representing a rectangle on the grid. Each rectangle is defined as follows:
 
@@ -6,19 +6,22 @@ You are given an integer `n` representing the dimensions of an `n x n`<!-- notio
 
 - $(\text{end}_{x}, \text{end}_{y})$: The top-right corner of the rectangle.
 
-**Note **that the rectangles do not overlap. Your task is to determine if it is possible to make **either two horizontal or two vertical cuts** on the grid such that:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that the rectangles do not overlap. Your task is to determine if it is possible to make **either two horizontal or two vertical cuts** on the grid such that:
 
 - Each of the three resulting sections formed by the cuts contains **at least** one rectangle.
 
 - Every rectangle belongs to **exactly** one section.
 
 Return `true` if such cuts can be made; otherwise, return `false`.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -60,7 +63,8 @@ We can make vertical cuts at $x = 2$ and $x = 3$. Hence, output is true.
 We cannot make two horizontal or two vertical cuts that satisfy the conditions. Hence, output is false.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le n \le 10^{9}$
 

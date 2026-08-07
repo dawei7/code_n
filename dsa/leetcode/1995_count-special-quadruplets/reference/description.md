@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums`, return *the number of **distinct** quadruplets* `(a, b, c, d)` *such that:*
 
 - $\text{nums}[a] + \text{nums}[b] + \text{nums}[c] = \text{nums}[d]$, and
 
 - `a < b < c < d`
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Given a **0-indexed** integer array `nums`, return *the number of **distinct** q
 - (0, 1, 3, 4): 1 + 1 + 3 == 5
 - (0, 2, 3, 4): 1 + 1 + 3 == 5
 - (1, 2, 3, 4): 1 + 1 + 3 == 5
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{nums.length} \le 50$
 

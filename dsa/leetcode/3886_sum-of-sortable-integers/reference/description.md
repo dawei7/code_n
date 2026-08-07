@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -9,7 +9,8 @@ An integer `k` is called **sortable** if `k` **divides** `n` and you can sort `n
 - **Cyclically rotate each subarray independently** any number of times to the left or to the right.
 
 Return an integer denoting the sum of all possible sortable integers `k`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ For a candidate $k$, the partition consists of `nums[0:k]`, `nums[k:2*k]`, and s
 
 Return the sum of all positive divisors $k$ of $n$ for which the permitted block rotations can make `nums` non-decreasing.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Return the sum of all positive divisors $k$ of $n$ for which the permitted block
 - Since `[5, 8]` is already sorted, every divisor is sortable. Hence, the answer is $1 + 2 = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -27,7 +27,8 @@ The **cumulative salary summary** for an employee can be calculated as follows:
 Return the result table ordered by `id` in **ascending order**. In case of a tie, order it by `month` in **descending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -37,7 +38,7 @@ The result format is in the following example.
 
 Return `Id`, `Month`, and `Salary`, where `Salary` is the sum of the current recorded month and the two immediately preceding calendar months for that employee. Exclude each employee's greatest recorded month, then order by `Id` ascending and `Month` descending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

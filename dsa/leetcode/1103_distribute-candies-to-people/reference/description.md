@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We distribute some number of `candies`, to a row of **$n = \text{num}_{people}$** people in the following way:
 
@@ -9,12 +9,13 @@ Then, we go back to the start of the row, giving $n + 1$ candies to the first pe
 This process repeats (with us giving one more candy each time, and moving to the start of the row after we reach the end) until we run out of candies.  The last person will receive all of our remaining candies (not necessarily one more than the previous gift).
 
 Return an array (of length $\text{num}_{people}$ and sum `candies`) that represents the final distribution of candies.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ On the first turn, ans[0] += 1, and the array is [1,0,0].
 On the second turn, ans[1] += 2, and the array is [1,2,0].
 On the third turn, ans[2] += 3, and the array is [1,2,3].
 On the fourth turn, ans[0] += 4, and the final array is [5,2,3].
-### Constraints
+
+### 4. Constraints
 
 - 1 <= candies <= $10^{9}$
 

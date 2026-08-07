@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return all the numbers in the range `[1, n]` sorted in lexicographical order.
 
 You must write an algorithm that runs in `O(n)` time and uses `O(1)` extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must write an algorithm that runs in `O(n)` time and uses `O(1)` extra space
 
 Return each integer from `1` through `n` exactly once in lexicographical order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Return each integer from `1` through `n` exactly once in lexicographical order.
 
 - **Input:** $n = 2$
 - **Output:** `[1,2]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{4}$

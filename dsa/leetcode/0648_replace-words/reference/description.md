@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 In English, we have a concept called **root**, which can be followed by some other word to form another longer word - let's call this word **derivative**. For example, when the **root** `"help"` is followed by the word `"ful"`, we can form a derivative `"helpful"`.
 
 Given a `dictionary` consisting of many **roots** and a `sentence` consisting of words separated by spaces, replace all the derivatives in the sentence with the **root** forming it. If a derivative can be replaced by more than one **root**, replace it with the **root** that has **the shortest length**.
 
 Return *the `sentence`* after the replacement.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Return *the `sentence`* after the replacement.
 
 - **Input:** $dictionary = ["a","b","c"], sentence = "aadsfasf absbs bbab cadsfafs"$
 - **Output:** `"a a b c"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{dictionary.length} \le 1000$
 

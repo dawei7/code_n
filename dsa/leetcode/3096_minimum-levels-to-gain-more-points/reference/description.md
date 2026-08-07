@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary array `possible` of length `n`.
 
@@ -10,13 +10,16 @@ Alice wants to know the **minimum** number of levels she should play to gain mor
 
 Return *the **minimum** number of levels Alice should play to gain more points*. *If this is **not** possible, return* `-1`.
 
-**Note** that each player must play at least `1` level.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that each player must play at least `1` level.
+
+### 4. Examples
 
 #### Example 1
 
@@ -72,7 +75,8 @@ Alice must play a minimum of 3 levels to gain more points.
 The only possible way is for both players to play 1 level each. Alice plays level 0 and loses 1 point. Bob plays level 1 and loses 1 point. As both players have equal points, Alice can't gain more points than Bob.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n = \text{possible.length} \le 10^{5}$
 

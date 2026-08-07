@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a long and thin painting that can be represented by a number line. The painting was painted with multiple overlapping segments where each segment was painted with a **unique** color. You are given a 2D integer array `segments`, where $\text{segments}[i] = [\text{start}_{i}, \text{end}_{i}, \text{color}_{i}]$ represents the **half-closed segment** $[\text{start}_{i}, \text{end}_{i})$ with $\text{color}_{i}$ as the color.
 
@@ -21,12 +21,13 @@ You want to **describe** the painting with the **minimum** number of non-overlap
 Return *the 2D array *`painting`* describing the finished painting (excluding any parts that are **not **painted). You may return the segments in **any order***.
 
 A **half-closed segment** `[a, b)` is the section of the number line between points `a` and `b` **including** point `a` and **not including** point `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ A **half-closed segment** `[a, b)` is the section of the number line between poi
 - [1,4) is colored {5,7} (with a sum of 12) from the first and second segments.
 - [4,7) is colored {1,11} (with a sum of 12) from the third and fourth segments.
 Note that returning a single segment [1,7) is incorrect because the mixed color sets are different.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{segments.length} \le 2 * 10^{4}$
 

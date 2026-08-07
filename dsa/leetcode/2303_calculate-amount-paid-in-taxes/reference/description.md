@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `brackets` where $\text{brackets}[i] = [\text{upper}_{i}, \text{percent}_{i}]$ means that the $$i^{\text{th}}$$ tax bracket has an upper bound of $\text{upper}_{i}$ and is taxed at a rate of $\text{percent}_{i}$. The brackets are **sorted** by upper bound (i.e. $\text{upper}_{i}-1 < \text{upper}_{i}$ for `0 < i < brackets.length`).
 
@@ -13,12 +13,13 @@ Tax is calculated as follows:
 - And so on.
 
 You are given an integer `income` representing the amount of money you earned. Return *the amount of money that you have to pay in taxes.* Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ In total, you pay $1 * 0\% +$1 * 25% = $0.25 in taxes.
 - **Output:** `0.00000`
 - **Explanation:**
 You have no income to tax, so you have to pay a total of $0 in taxes.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{brackets.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word` containing lowercase English letters.
 
@@ -11,12 +11,13 @@ Return *the **minimum** number of pushes needed to type *`word` *after remapping
 An example mapping of letters to keys on a telephone keypad is given below. Note that `1`, `*`, `#`, and `0` do **not** map to any letters.
 
 ![](images/keypaddesc.png)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ Note that the key 9 is not mapped to any letter: it is not necessary to map lett
 "i" -> one push on key 9
 Total cost is 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 1 * 2 + 2 * 2 + 6 * 1 = 24.
 It can be shown that no other mapping can provide a lower cost.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 10^{5}$
 

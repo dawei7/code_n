@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `players`, where $\text{players}[i]$ represents the **ability** of the $$i^{\text{th}}$$ player. You are also given a **0-indexed** integer array `trainers`, where $\text{trainers}[j]$ represents the **training capacity **of the $$j^{\text{th}}$$ trainer.
 
 The $$i^{\text{th}}$$ player can **match** with the $$j^{\text{th}}$$ trainer if the player's ability is **less than or equal to** the trainer's training capacity. Additionally, the $$i^{\text{th}}$$ player can be matched with at most one trainer, and the $$j^{\text{th}}$$ trainer can be matched with at most one player.
 
 Return *the **maximum** number of matchings between *`players`* and *`trainers`* that satisfy these conditions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,10 +29,13 @@ It can be proven that 2 is the maximum number of matchings that can be formed.
 - **Explanation:**
 The trainer can be matched with any of the 3 players.
 Each player can only be matched with one trainer, so the maximum answer is 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{players.length}, \text{trainers.length} \le 10^{5}$
 
 - $1 \le \text{players}[i], \text{trainers}[j] \le 10^{9}$
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/assign-cookies/description/" target="_blank"> 445: Assign Cookies.</a>
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/assign-cookies/description/" target="_blank"> 445: Assign Cookies.</a>

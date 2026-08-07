@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two binary strings `s1` and `s2` of the same length `n`.
 
@@ -9,7 +9,8 @@ You can perform the following operations on `s1` any number of times, in any ord
 - Choose an index `i` such that $0 \le i < n - 1$, and both $\text{s1}[i]$ and $s1[i + 1]$ are `'1'`. Change both characters to `'0'`.
 
 Return the **minimum** number of operations required to make `s1` equal to `s2`. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(s1, s2) -> int`
 
@@ -26,7 +27,7 @@ The input strings contain only `'0'` and `'1'`. The function need not mutate eit
 
 Return the minimum number of legal operations needed to transform `s1` into `s2`. Return `-1` if no sequence of the permitted operations reaches the target.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ Change indices 0 and 1 from `'1'` to `'0'` in one operation, so `"11"` becomes `
 The first operation cannot change `'1'` to `'0'`, and the second operation requires two adjacent characters. Therefore, it is impossible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s1.length} = \text{s2.length} \le 10^{5}$
 

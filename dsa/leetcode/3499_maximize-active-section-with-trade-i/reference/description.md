@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` of length `n`, where:
 
@@ -14,13 +14,16 @@ You can perform **at most one trade** to maximize the number of active sections 
 
 Return the **maximum** number of active sections in `s` after making the optimal trade.
 
-**Note:** Treat `s` as if it is **augmented** with a `'1'` at both ends, forming $t = '1' + s + '1'$. The augmented `'1'`s **do not** contribute to the final count.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Treat `s` as if it is **augmented** with a `'1'` at both ends, forming $t = '1' + s + '1'$. The augmented `'1'`s **do not** contribute to the final count.
+
+### 4. Examples
 
 #### Example 1
 
@@ -82,7 +85,8 @@ Because there is no block of `'1'`s surrounded by `'0'`s, no valid trade is poss
 - The final string without augmentation is `"11110"`. The maximum number of active sections is 4.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

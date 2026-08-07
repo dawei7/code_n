@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two non-negative integer arrays `price` and `tastiness`, both arrays have the same length `n`. You are also given two non-negative integers `maxAmount` and `maxCoupons`.
 
@@ -19,11 +19,12 @@ Return *the maximum total tastiness that can be purchased*.
 - You can purchase each fruit at most once.
 
 - You can use coupons on some fruit at most once.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ It can be proven that 13 is the maximum total tastiness that can be obtained.
 - Buy second fruit with coupon, so that total price = 0 + 7 and total tastiness = 0 + 8.
 - Buy third fruit with coupon, so that total price = 7 + 3 and total tastiness = 8 + 20.
 It can be proven that 28 is the maximum total tastiness that can be obtained.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{price.length} = \text{tastiness.length}$
 

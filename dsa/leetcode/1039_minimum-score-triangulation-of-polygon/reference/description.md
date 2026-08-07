@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a convex `n`-sided polygon where each vertex has an integer value. You are given an integer array `values` where $\text{values}[i]$ is the value of the $$i^{\text{th}}$$ vertex in **clockwise order**.
 
@@ -7,12 +7,13 @@ You have a convex `n`-sided polygon where each vertex has an integer value. You 
 You will **triangulate** the polygon. For each triangle, the *weight* of that triangle is the product of the values at its vertices. The total score of the triangulation is the sum of these *weights* over all $n - 2$ triangles.
 
 Return the* minimum possible score *that you can achieve with some* ***triangulation*** *of the polygon.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ The minimum score is 144.
 **Explanation:** The minimum score triangulation is 1*1*3 + 1*1*4 + 1*1*5 + 1*1*1 = 13.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{values.length}$
 

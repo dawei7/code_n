@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` where $\text{nums}[i]$ is either a positive integer or `-1`. We need to find for each `-1` the respective positive integer, which we call the last visited integer.
 
@@ -17,12 +17,13 @@ Start iterating from the beginning of the array `nums`.
 	</li>
 
 Return the array* *`ans`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ Start with $seen = []$ and $ans = []$.
 - Process $\text{nums}[4]$: Another `-1`. This is consecutive to the previous `-1`, so $k = 2$. The second element in `seen` is `1`, append `1` to `ans`. Finally, $ans = [1, 2, 1]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr` and two integers `k` and `threshold`, return *the number of sub-arrays of size *`k`* and average greater than or equal to *`threshold`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given an array of integers `arr` and two integers `k` and `threshold`, return *t
 - **Input:** `arr = [11,13,17,23,29,31,7,5,2,3], k = 3, threshold = 5`
 - **Output:** `6`
 - **Explanation:** The first 6 sub-arrays of size 3 have averages greater than 5. Note that averages are not integers.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

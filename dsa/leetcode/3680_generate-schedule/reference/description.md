@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing `n` teams. You are asked to generate a schedule such that:
 
@@ -11,12 +11,13 @@ You are given an integer `n` representing `n` teams. You are asked to generate a
 Return a 2D integer array `schedule`, where $\text{schedule}[i][0]$ represents the home team and $\text{schedule}[i][1]$ represents the away team. If multiple schedules meet the conditions, return **any** one of them.
 
 If no schedule exists that meets the conditions, return an empty array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,6 +47,7 @@ Since each team plays every other team exactly twice, a total of 20 matches need
 The output shows one of the schedules that meet the conditions. No team plays on consecutive days.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 50$​​​​​​​

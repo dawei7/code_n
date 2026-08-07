@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customer`
 
@@ -24,12 +24,13 @@ Compute the moving average of how much the customer paid in a seven days window 
 Return the result table ordered by $\text{visited}_{on}$ **in ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

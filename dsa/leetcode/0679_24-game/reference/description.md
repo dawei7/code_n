@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `cards` of length `4`. You have four cards, each containing a number in the range `[1, 9]`. You should arrange the numbers on these cards in a mathematical expression using the operators `['+', '-', '*', '/']` and the parentheses `'('` and `')'` to get the value 24.
 
@@ -21,12 +21,13 @@ You are restricted with the following rules:
 	</li>
 
 Return `true` if you can get such expression that evaluates to `24`, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return `true` if you can get such expression that evaluates to `24`, and `false`
 
 - **Input:** $cards = [1,2,1,2]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $\text{cards.length} = 4$
 

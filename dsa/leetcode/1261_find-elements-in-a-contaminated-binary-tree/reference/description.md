@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a binary tree with the following rules:
 
@@ -19,12 +19,13 @@ Implement the `FindElements` class:
 - `FindElements(TreeNode* root)` Initializes the object with a contaminated binary tree and recovers it.
 
 - `bool find(int target)` Returns `true` if the `target` value exists in the recovered binary tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,7 +75,8 @@ findElements.find(3); // return False
 findElements.find(4); // return False
 findElements.find(5); // return True
 ```
-### Constraints
+
+### 4. Constraints
 
 - $\text{TreeNode.val} = -1$
 

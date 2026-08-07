@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` binary matrix `grid`.
 
@@ -15,12 +15,13 @@ A **0-indexed** `m x n` difference matrix `diff` is created with the following p
 - $\text{diff}[i][j] = \text{onesRow}_{i} + \text{onesCol}_{j} - \text{zerosRow}_{i} - \text{zerosCol}_{j}$
 
 Return *the difference matrix *`diff`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return *the difference matrix *`diff`.
 - diff[1][0] = onesRow_1 + onesCol_0 - zerosRow_1 - zerosCol_0 = 3 + 2 - 0 - 0 = 5
 - diff[1][1] = onesRow_1 + onesCol_1 - zerosRow_1 - zerosCol_1 = 3 + 2 - 0 - 0 = 5
 - diff[1][2] = onesRow_1 + onesCol_2 - zerosRow_1 - zerosCol_2 = 3 + 2 - 0 - 0 = 5
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

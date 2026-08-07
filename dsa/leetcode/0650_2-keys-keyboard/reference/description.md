@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is only one character `'A'` on the screen of a notepad. You can perform one of two operations on this notepad for each step:
 
@@ -7,12 +7,13 @@ There is only one character `'A'` on the screen of a notepad. You can perform on
 - Paste: You can paste the characters which are copied last time.
 
 Given an integer `n`, return *the minimum number of operations to get the character* `'A'` *exactly* `n` *times on the screen*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ In step 3, we use Paste operation to get 'AAA'.
 
 - **Input:** $n = 1$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

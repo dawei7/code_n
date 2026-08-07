@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `TVProgram`
 
@@ -37,7 +37,8 @@ Write a solution to report the distinct titles of the kid-friendly movies stream
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -64,7 +65,7 @@ The result format is in the following example.
 
 Return one column named `title`, containing each distinct title of a $\text{Kids}_{content} = 'Y'$, $\text{content}_{type} = 'Movies'$ item with at least one matching stream timestamp from June 1, 2020 inclusive through July 1, 2020 exclusive. Output order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

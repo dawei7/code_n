@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` containing **distinct** numbers, an integer `start`, and an integer `goal`. There is an integer `x` that is initially set to `start`, and you want to perform operations on `x` such that it is converted to `goal`. You can perform the following operation repeatedly on the number `x`:
 
@@ -13,12 +13,13 @@ If $0 \le x \le 1000$, then for any index `i` in the array ($0 \le i < \text{num
 Note that you can use each $\text{nums}[i]$ any number of times in any order. Operations that set `x` to be out of the range $0 \le x \le 1000$ are valid, but no more operations can be done afterward.
 
 Return *the **minimum** number of operations needed to convert *$x = start$* into *`goal`*, and *`-1`* if it is not possible*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Note that the last operation sets x out of the range 0 <= x <= 1000, which is va
 - **Input:** `nums = [2,8,16], start = 0, goal = 1`
 - **Output:** `-1`
 - **Explanation:** There is no way to convert 0 into 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

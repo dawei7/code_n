@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `n` item's value and label as two integer arrays `values` and `labels`. You are also given two integers `numWanted` and `useLimit`.
 
@@ -9,12 +9,13 @@ Your task is to find a subset of items with the **maximum sum** of their values 
 - The number of items with the same label is **at most** `useLimit`.
 
 Return the maximum sum.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The subset chosen is the first, second, and third items with the sum of values 5
 The subset chosen is the first and fourth items with the sum of values 9 + 7.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{values.length} = \text{labels.length}$
 

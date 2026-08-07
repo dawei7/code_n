@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have one chocolate bar that consists of some chunks. Each chunk has its own sweetness given by the array `sweetness`.
 
@@ -7,7 +7,8 @@ You want to share the chocolate with your `k` friends so you start cutting the c
 Being generous, you will eat the piece with the **minimum total sweetness** and give the other pieces to your friends.
 
 Find the **maximum total sweetness** of the piece you can get by cutting the chocolate bar optimally.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ After the division, your piece is the one with minimum total sweetness among all
 
 Return the greatest minimum piece sweetness achievable over every valid placement of the `k` cuts.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Return the greatest minimum piece sweetness achievable over every valid placemen
 - **Input:** $sweetness = [1,2,2,1,2,2,1,2,2], k = 2$
 - **Output:** `5`
 - **Explanation:** You can divide the chocolate to [1,2,2], [1,2,2], [1,2,2]
-### Constraints
+
+### 4. Constraints
 
 - $0 \le k < \text{sweetness.length} \le 10^{4}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary search tree (BST), where the values of **exactly** two nodes of the tree were swapped by mistake. *Recover the tree without changing its structure*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ You are given the `root` of a binary search tree (BST), where the values of **ex
 
 Return `None`; repair the supplied tree rooted at `root` in place. The app runner serializes the mutated root for validation.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `None`; repair the supplied tree rooted at `root` in place. The app runne
 - **Input:** `root = [3,1,4,null,null,2]`
 - **Output:** `[2,1,4,null,null,3]`
 - **Explanation:** 2 cannot be in the right subtree of 3 because 2 < 3. Swapping 2 and 3 makes the BST valid.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[2, 1000]`.
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an array `queries`, where $\text{queries}[i] = [l_{i}, r_{i}, \text{threshold}_{i}]$.
 
 Return an array of integers `ans` where $\text{ans}[i]$ is equal to the element in the subarray $nums[l_{i}...r_{i}]$ that appears **at least** $\text{threshold}_{i}$ times, selecting the element with the **highest** frequency (choosing the **smallest** in case of a tie), or -1 if no such element *exists*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -105,7 +106,8 @@ Return an array of integers `ans` where $\text{ans}[i]$ is equal to the element 
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} = n \le 10^{4}$
 

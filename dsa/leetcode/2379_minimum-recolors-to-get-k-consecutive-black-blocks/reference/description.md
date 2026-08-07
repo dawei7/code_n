@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `blocks` of length `n`, where $\text{blocks}[i]$ is either `'W'` or `'B'`, representing the color of the $$i^{\text{th}}$$ block. The characters `'W'` and `'B'` denote the colors white and black, respectively.
 
@@ -7,12 +7,13 @@ You are also given an integer `k`, which is the desired number of **consecutive*
 In one operation, you can **recolor** a white block such that it becomes a black block.
 
 Return* the **minimum** number of operations needed such that there is at least **one** occurrence of *`k`* consecutive black blocks.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Therefore, we return 3.
 - **Explanation:**
 No changes need to be made, since 2 consecutive black blocks already exist.
 Therefore, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{blocks.length}$
 

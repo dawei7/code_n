@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 This is an ***interactive problem***.
 
@@ -13,7 +13,8 @@ You are also given an integer `target`.
 Return the index `k` of the hidden array where $\text{secret}[k] = target$ or return `-1` otherwise.
 
 You must write an algorithm with `O(log n)` runtime complexity.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(reader: \text{list}[int], target: int) -> int$
 
@@ -28,7 +29,7 @@ The source-native method is `Solution.search(reader: ArrayReader, target: int) -
 
 Return the target's unique zero-based index, or `-1` if it does not occur. An out-of-bound reader access yields $2^{31} - 1$, which is greater than every legal value and target.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return the target's unique zero-based index, or `-1` if it does not occur. An ou
 - **Input:** $secret = [-1,0,3,5,9,12], target = 2$
 - **Output:** `-1`
 - **Explanation:** 2 does not exist in secret so return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{secret.length} \le 10^{4}$
 

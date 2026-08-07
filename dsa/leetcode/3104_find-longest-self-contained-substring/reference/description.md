@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given a string `s`, your task is to find the length of the **longest self-contained** substring of `s`.
 
 A substring `t` of a string `s` is called **self-contained **if $t \neq s$ and for every character in `t`, it doesn't exist in the *rest* of `s`.
 
 Return the length of the *longest** **self-contained *substring of `s` if it exists, otherwise, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Every substring we choose does not satisfy the described property (there is some
 Let's check the substring `"abac"`. There is only one character outside of this substring and that is `"d"`. There is no `"d"` inside the chosen substring, so it satisfies the condition and the answer is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 5 * 10^{4}$
 

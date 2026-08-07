@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. A subarray `s` of length `m` is called **alternating** if:
 
@@ -11,12 +11,13 @@ You are given a **0-indexed** integer array `nums`. A subarray `s` of length `m`
 Return *the maximum length of all **alternating** subarrays present in *`nums` *or *`-1`* if no such subarray exists**.*
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ The alternating subarrays are `[2, 3]`, `[3,4]`, `[3,4,3]`, and `[3,4,3,4]`. The
 `[4,5]` and `[5,6]` are the only two alternating subarrays. They are both of length 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

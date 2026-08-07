@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Store`
 
@@ -17,7 +17,8 @@ Each row contains information about the amount of one bill and the customer asso
 Write a solution to report the number of customers who had **at least one** bill with an amount **strictly greater** than `500`.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schema**
 
@@ -33,7 +34,7 @@ The result format is in the following example.
 
 Return a single-row table with column $\text{rich}_{count}$. $\text{rich}_{count}$ is the count of distinct $\text{customer}_{id}$ values having at least one bill with `amount > 500`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

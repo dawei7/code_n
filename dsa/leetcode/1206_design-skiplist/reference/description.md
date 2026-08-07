@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a **Skiplist** without using any built-in libraries.
 
@@ -25,12 +25,13 @@ Implement the `Skiplist` class:
 - `bool erase(int num)` Removes the value `num` from the Skiplist and returns `true`. If `num` does not exist in the Skiplist, do nothing and return `false`. If there exist multiple `num` values, removing any one of them is fine.
 
 Note that duplicates may exist in the Skiplist, your code needs to handle this situation.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ skiplist.erase(0);  // return False, 0 is not in skiplist.
 skiplist.erase(1);  // return True
 skiplist.search(1); // return False, 1 has already been erased.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num, target \le 2 * 10^{4}$
 

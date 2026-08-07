@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Scores`
 
@@ -76,7 +76,7 @@ Result table is ordered by student_id, subject.
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

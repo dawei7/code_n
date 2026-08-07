@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 There are `m` boys and `n` girls in a class attending an upcoming party.
 
 You are given an `m x n` integer matrix `grid`, where $\text{grid}[i][j]$ equals `0` or `1`. If $\text{grid}[i][j] = 1$, then that means the $$i^{\text{th}}$$ boy can invite the $$j^{\text{th}}$$ girl to the party. A boy can invite at most** one girl**, and a girl can accept at most **one invitation** from a boy.
 
 Return *the **maximum** possible number of accepted invitations.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *the **maximum** possible number of accepted invitations.*
 -The 2^nd boy invites the 1^st girl.
 -The 3^rd boy invites no one.
 -The 4^th boy invites the 2^nd girl.
-### Constraints
+
+### 4. Constraints
 
 - $\text{grid.length} = m$
 

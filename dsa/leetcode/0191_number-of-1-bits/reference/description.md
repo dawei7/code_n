@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, write a function that returns the number of set bits in its binary representation (also known as the <a href="http://en.wikipedia.org/wiki/Hamming_weight" target="_blank">Hamming weight</a>).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a positive integer `n`, write a function that returns the number of set bi
 
 Return the count of binary positions whose value is `1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ The input binary string **10000000** has a total of one set bit.
 The input binary string **1111111111111111111111111111101** has a total of thirty set bits.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$
 

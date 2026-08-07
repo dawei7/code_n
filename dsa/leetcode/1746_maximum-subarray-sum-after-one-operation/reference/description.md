@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You must perform **exactly one** operation where you can **replace** one element $\text{nums}[i]$ with $\text{nums}[i] * \text{nums}[i]$.
 
 Return *the **maximum** possible subarray sum after **exactly one** operation*. The subarray must be non-empty.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Return *the **maximum** possible subarray sum after **exactly one** operation*. 
 - **Input:** `nums = [1,-1,1,1,-1,-1,1]`
 - **Output:** `4`
 - **Explanation:** You can perform the operation on index 1 (0-indexed) to make nums = [1,**1**,1,1,-1,-1,1]. Now, the maximum subarray sum is 1 + 1 + 1 + 1 = 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string array `words`.
 
@@ -9,12 +9,13 @@ Let's define a **boolean** function `isPrefixAndSuffix` that takes two strings, 
 For example, `isPrefixAndSuffix("aba", "ababa")` is `true` because `"aba"` is a prefix of `"ababa"` and also a suffix, but `isPrefixAndSuffix("abc", "abcd")` is `false`.
 
 Return *an integer denoting the **number** of index pairs *`(i, j)`* such that *`i < j`*, and *$isPrefixAndSuffix(\text{words}[i], \text{words}[j])$* is *`true`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Therefore, the answer is 2.
 - **Output:** `0`
 - **Explanation:** In this example, the only valid index pair is i = 0 and j = 1, and isPrefixAndSuffix("abab", "ab") is false.
 Therefore, the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 50$
 

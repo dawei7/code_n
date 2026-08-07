@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame students
@@ -19,12 +19,13 @@ The `grade` column is stored as floats, convert it to integers.
 The result format is in the following example.
 
 ```
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 **Input:

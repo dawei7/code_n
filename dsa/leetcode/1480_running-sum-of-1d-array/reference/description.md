@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `nums`. We define a running sum of an array as $\text{runningSum}[i] = sum(\text{nums}[0]…\text{nums}[i])$.
 
 Return the running sum of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the running sum of `nums`.
 
 - **Input:** `nums = [3,1,2,10,1]`
 - **Output:** `[3,4,6,16,17]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

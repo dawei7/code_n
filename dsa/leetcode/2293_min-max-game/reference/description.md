@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` whose length is a power of `2`.
 
@@ -15,12 +15,13 @@ Apply the following algorithm on `nums`:
 - **Repeat** the entire process starting from step 1.
 
 Return *the last number that remains in *`nums`* after applying the algorithm.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Third: nums = [1]
 - **Input:** `nums = [3]`
 - **Output:** `3`
 - **Explanation:** 3 is already the last remaining number, so we return 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1024$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a 2D integer array `queries` of length `q`, where each query is one of the following three types:
 
@@ -12,11 +12,12 @@ You are given an integer array `nums` of length `n` and a 2D integer array `quer
 	Reverse the subarray `nums[left...right]` in place.
 
 Return *an array of the results of all range XOR queries* in the order they were encountered.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Return *an array of the results of all range XOR queries* in the order they were
 - **Query 3:** `[3, 1, 2]` – Reverse the subarray `[8, 9]` to get `[9, 8]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of `digits` which is sorted in **non-decreasing** order. You can write numbers using each $\text{digits}[i]$ as many times as we want. For example, if $digits = ['1','3','5']$, we may write numbers such as `'13'`, `'551'`, and `'1351315'`.
 
 Return *the number of positive integers that can be generated *that are less than or equal to a given integer `n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ In total, this is 29523 integers that can be written using the digits array.
 
 - **Input:** $digits = ["7"], n = 8$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{digits.length} \le 9$
 

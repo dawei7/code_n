@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two integers `a` and `b`, return **any** string `s` such that:
 
@@ -7,12 +7,13 @@ Given two integers `a` and `b`, return **any** string `s` such that:
 - The substring `'aaa'` does not occur in `s`, and
 
 - The substring `'bbb'` does not occur in `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given two integers `a` and `b`, return **any** string `s` such that:
 
 - **Input:** $a = 4, b = 1$
 - **Output:** `"aabaa"`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le a, b \le 100$
 

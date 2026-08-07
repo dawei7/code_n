@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `emails`, where each string is a valid email address.
 
@@ -22,7 +22,8 @@ The normalization rules are as follows:
 	</li>
 
 Return an integer denoting the number of **unique** email groups after normalization.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -41,7 +42,7 @@ plus-suffix rules apply only to the local name.
 Return the number of distinct normalized addresses, which is the number of
 unique email groups.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -204,7 +205,8 @@ Unique emails are [`"a@b.com"`, `"ab@b.com"`]. Thus, the answer is 2.
 All emails normalize to `"ab@domain.com"`. Thus, the answer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{emails.length} \le 1000$
 

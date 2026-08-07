@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree, and an integer `k`, return *the* $$k^{\text{th}}$$ *smallest value (**1-indexed**) of all the values of the nodes in the tree*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given the `root` of a binary search tree, and an integer `k`, return *the* $$k^{
 
 Return the value occupying rank `k` in ascending order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the value occupying rank `k` in ascending order.
 
 - **Input:** `root = [5,3,6,2,4,null,null,1], k = 3`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is `n`.
 

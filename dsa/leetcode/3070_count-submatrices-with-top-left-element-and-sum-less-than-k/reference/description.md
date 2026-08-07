@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer matrix `grid` and an integer `k`.
 
 Return *the **number** of submatrices that contain the top-left element of the* `grid`, *and have a sum less than or equal to *`k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the **number** of submatrices that contain the top-left element of the* 
 - **Input:** `grid = [[7,2,9],[1,5,0],[2,6,6]], k = 20`
 - **Output:** `6`
 - **Explanation:** There are only 6 submatrices, shown in the image above, that contain the top-left element of grid, and have a sum less than or equal to 20.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

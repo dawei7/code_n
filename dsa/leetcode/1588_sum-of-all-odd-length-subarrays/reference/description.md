@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `arr`, return *the sum of all possible **odd-length subarrays** of *`arr`.
 
 A **subarray** is a contiguous subsequence of the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ If we add all these together we get 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58
 
 - **Input:** `arr = [10,11,12]`
 - **Output:** `66`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 100$
 

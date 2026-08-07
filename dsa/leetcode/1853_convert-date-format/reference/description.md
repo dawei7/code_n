@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Days`
 
@@ -16,11 +16,12 @@ Write a solution to convert each date in `Days` into a string formatted as $"\te
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

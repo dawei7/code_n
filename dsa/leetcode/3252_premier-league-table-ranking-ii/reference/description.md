@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `TeamStats`
 
@@ -25,7 +25,13 @@ Write a solution to calculate the **points**, **position**, and **tier** for eac
 
 - `0` points for a **loss**
 
-**Note:** Teams with the same points must be assigned the same position.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+Teams with the same points must be assigned the same position.
 
 **Tier ranking:**
 
@@ -115,7 +121,3 @@ The query result format is in the following example.
 - **Tier 3:** The bottom 34% of teams. Liverpool and Aston Villa fall into Tier 3.
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

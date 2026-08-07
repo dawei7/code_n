@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English words, each separated by a single space.
 
@@ -7,7 +7,8 @@ Determine how many vowels appear in the **first** word. Then, reverse each follo
 Return the resulting string.
 
 Vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ The string has no leading or trailing spaces. A word's vowel count includes ever
 
 Return a string with the same words and spacing structure, except that each word after the first is character-reversed exactly when its vowel count matches the first word's count.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return a string with the same words and spacing structure, except that each word
 - Thus, the resulting string is `"banana healthy"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

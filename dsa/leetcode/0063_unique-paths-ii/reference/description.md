@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer array `grid`. There is a robot initially located at the **top-left corner** (i.e., $\text{grid}[0][0]$). The robot tries to move to the **bottom-right corner** (i.e., $grid[m - 1][n - 1]$). The robot can only move either down or right at any point in time.
 
@@ -7,7 +7,8 @@ An obstacle and space are marked as `1` or `0` respectively in `grid`. A path th
 Return *the number of possible unique paths that the robot can take to reach the bottom-right corner*.
 
 The testcases are generated so that the answer will be less than or equal to $2 * 10^{9}$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ The testcases are generated so that the answer will be less than or equal to $2 
 
 Return the number of right-and-down paths from the top-left to the bottom-right that avoid every obstacle.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ There are two ways to reach the bottom-right corner:
 
 - **Input:** $obstacleGrid = [[0,1],[0,0]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{obstacleGrid.length}$
 

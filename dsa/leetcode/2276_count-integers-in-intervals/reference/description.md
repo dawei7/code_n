@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an **empty** set of intervals, implement a data structure that can:
 
@@ -14,13 +14,16 @@ Implement the `CountIntervals` class:
 
 - `int count()` Returns the number of integers that are present in **at least one** interval.
 
-**Note** that an interval `[left, right]` denotes all the integers `x` where $left \le x \le right$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that an interval `[left, right]` denotes all the integers `x` where $left \le x \le right$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -45,7 +48,8 @@ countIntervals.count();    // return 8
                            // the integers 7 and 8 are present in the intervals [5, 8] and [7, 10].
                            // the integers 9 and 10 are present in the interval [7, 10].
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le left \le right \le 10^{9}$
 

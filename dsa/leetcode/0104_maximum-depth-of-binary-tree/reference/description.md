@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *its maximum depth*.
 
 A binary tree's **maximum depth** is the number of nodes along the longest path from the root node down to the farthest leaf node.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A binary tree's **maximum depth** is the number of nodes along the longest path 
 
 Return the number of nodes on the longest root-to-leaf path. An empty tree has depth `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the number of nodes on the longest root-to-leaf path. An empty tree has d
 
 - **Input:** `root = [1,null,2]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{4}]$.
 

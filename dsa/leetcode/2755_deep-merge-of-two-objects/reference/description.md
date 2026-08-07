@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two values `obj1` and `obj2`, return a **deepmerged** value.
 
@@ -11,11 +11,12 @@ Values should be **deepmerged** according to these rules:
 - Otherwise the resulting value is `obj2`.
 
 You can assume `obj1` and `obj2` are the output of `JSON.parse()`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ obj2["b"]["c"] has key "e" that obj1 doesn't have so it's added to obj1.
 
 - **Input:** $obj1 = true, obj2 = null$
 - **Output:** `null`
-### Constraints
+
+### 4. Constraints
 
 - `obj1` and `obj2` are valid JSON values
 

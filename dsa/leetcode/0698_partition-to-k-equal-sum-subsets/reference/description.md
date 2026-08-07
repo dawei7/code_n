@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return `true` if it is possible to divide this array into `k` non-empty subsets whose sums are all equal.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,7 +18,8 @@ Given an integer array `nums` and an integer `k`, return `true` if it is possibl
 
 - **Input:** `nums = [1,2,3,4], k = 3`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 16$
 

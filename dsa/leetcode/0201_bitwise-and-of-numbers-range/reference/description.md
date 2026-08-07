@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two integers `left` and `right` that represent the range `[left, right]`, return *the bitwise AND of all numbers in this range, inclusive*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two integers `left` and `right` that represent the range `[left, right]`, 
 
 Return $left \& (left + 1) \& ... \& right$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ Return $left \& (left + 1) \& ... \& right$.
 
 - **Input:** $left = 1, right = 2147483647$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le left \le right \le 2^{31} - 1$

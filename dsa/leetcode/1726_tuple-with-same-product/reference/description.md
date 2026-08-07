@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array `nums` of **distinct** positive integers, return *the number of tuples *`(a, b, c, d)`* such that *$a * b = c * d$* where *`a`*, *`b`*, *`c`*, and *`d`* are elements of *`nums`*, and *$a \neq b \neq c \neq d$*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Given an array `nums` of **distinct** positive integers, return *the number of t
 (2,5,1,10) , (2,5,10,1) , (5,2,1,10) , (5,2,10,1)
 (2,10,4,5) , (2,10,5,4) , (10,2,4,5) , (10,2,5,4)
 (4,5,2,10) , (4,5,10,2) , (5,4,2,10) , (5,4,10,2)
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

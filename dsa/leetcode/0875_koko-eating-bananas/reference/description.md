@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Koko loves to eat bananas. There are `n` piles of bananas, the $$i^{\text{th}}$$ pile has $\text{piles}[i]$ bananas. The guards have gone and will come back in `h` hours.
 
@@ -7,12 +7,13 @@ Koko can decide her bananas-per-hour eating speed of `k`. Each hour, she chooses
 Koko likes to eat slowly but still wants to finish eating all the bananas before the guards return.
 
 Return *the minimum integer* `k` *such that she can eat all the bananas within* `h` *hours*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the minimum integer* `k` *such that she can eat all the bananas within* 
 
 - **Input:** $piles = [30,11,23,4,20], h = 6$
 - **Output:** `23`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{piles.length} \le 10^{4}$
 

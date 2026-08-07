@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `indexDiff` and `valueDiff`.
 
@@ -11,7 +11,8 @@ Find a pair of indices `(i, j)` such that:
 - $abs(\text{nums}[i] - \text{nums}[j]) \le valueDiff$, and
 
 Return `true`* if such pair exists or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Return `true`* if such pair exists or *`false`* otherwise*.
 
 Return `true` when a distinct pair satisfies both distance bounds; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ abs(nums[i] - nums[j]) <= valueDiff --> abs(1 - 1) <= 0
 - **Input:** `nums = [1,5,9,1,5,9], indexDiff = 2, valueDiff = 3`
 - **Output:** `false`
 - **Explanation:** After trying all the possible pairs (i, j), we cannot satisfy the three conditions, so we return false.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

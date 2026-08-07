@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `limit` and a 2D array `queries` of size `n x 2`.
 
@@ -6,13 +6,16 @@ There are $limit + 1$ balls with **distinct** labels in the range `[0, limit]`. 
 
 Return an array `result` of length `n`, where $\text{result}[i]$ denotes the number of colors *after* $$i^{\text{th}}$$ query.
 
-**Note** that when answering a query, lack of a color *will not* be considered as a color.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that when answering a query, lack of a color *will not* be considered as a color.
+
+### 4. Examples
 
 #### Example 1
 
@@ -60,7 +63,8 @@ Return an array `result` of length `n`, where $\text{result}[i]$ denotes the num
 - After query 4, ball 0 has color 1, balls 1 and 2 have color 2, ball 3 has color 4, and ball 4 has color 5.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le limit \le 10^{9}$
 

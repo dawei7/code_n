@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$, return *the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping*.
 
-**Note** that intervals which only touch at a point are **non-overlapping**. For example, `[1, 2]` and `[2, 3]` are non-overlapping.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +12,11 @@ Given an array of intervals `intervals` where $\text{intervals}[i] = [\text{star
 
 Return the minimum number of intervals that must be removed to leave a non-overlapping collection.
 
-### Examples
+### 3. Note
+
+that intervals which only touch at a point are **non-overlapping**. For example, `[1, 2]` and `[2, 3]` are non-overlapping.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ Return the minimum number of intervals that must be removed to leave a non-overl
 - **Input:** $intervals = [[1,2],[2,3]]$
 - **Output:** `0`
 - **Explanation:** You don't need to remove any of the intervals since they're already non-overlapping.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{intervals.length} \le 10^{5}$
 

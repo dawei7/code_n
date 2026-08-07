@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` consisting only of characters `'a'`, `'b'`, and `'c'`. You are asked to apply the following algorithm on the string any number of times:
 
@@ -13,12 +13,13 @@ Given a string `s` consisting only of characters `'a'`, `'b'`, and `'c'`. You ar
 - Delete both the prefix and the suffix.
 
 Return *the **minimum length** of *`s` *after performing the above operation any number of times (possibly zero times)*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Return *the **minimum length** of *`s` *after performing the above operation any
 - **Explanation:** An optimal sequence of operations is:
 - Take prefix = "aa" and suffix = "a" and remove them, s = "bccabb".
 - Take prefix = "b" and suffix = "bb" and remove them, s = "cca".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

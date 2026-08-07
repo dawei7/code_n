@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given 2 integers `n` and `start`. Your task is return **any** permutation `p` of $(0,1,2.....,2^n -1)$such that :
 
@@ -7,12 +7,13 @@ Given 2 integers `n` and `start`. Your task is return **any** permutation `p` of
 - $p[i]$ and `p[i+1]` differ by only one bit in their binary representation.
 
 - $p[0]$ and $p[2^n -1]$ must also differ by only one bit in their binary representation.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ All the adjacent element differ by one bit. Another valid permutation is [3,1,0,
 - **Input:** $n = 3, start = 2$
 - **Output:** `[2,6,7,5,4,0,1,3]`
 - **Explanation:** The binary representation of the permutation is (010,110,111,101,100,000,001,011).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 16$
 

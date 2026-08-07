@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` consisting of `n` non-negative integers.
 
 You are also given an array `queries`, where $\text{queries}[i] = [x_{i}, y_{i}]$. The answer to the $$i^{\text{th}}$$ query is the sum of all $\text{nums}[j]$ where $x_{i} \le j < n$ and $(j - x_{i})$ is divisible by $y_{i}$.
 
 Return *an array *`answer`* where *$\text{answer.length} = \text{queries.length}$* and *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query **modulo** *$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return *an array *`answer`* where *$\text{answer.length} = \text{queries.length}
 
 - **Input:** `nums = [100,200,101,201,102,202,103,203], queries = [[0,7]]`
 - **Output:** `[303]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ is the coordinates of the $$i^{\text{th}}$$ point on a 2D plane. Multiple points can have the **same** coordinates.
 
@@ -7,12 +7,13 @@ You are also given an array `queries` where $\text{queries}[j] = [x_{j}, y_{j}, 
 For each query $\text{queries}[j]$, compute the number of points **inside** the $$j^{\text{th}}$$ circle. Points **on the border** of the circle are considered **inside**.
 
 Return *an array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$$j^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ queries[0] is the green circle, queries[1] is the red circle, and queries[2] is 
 - **Output:** `[2,3,2,4]`
 - **Explanation:** The points and circles are shown above.
 queries[0] is green, queries[1] is red, queries[2] is blue, and queries[3] is purple.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 500$
 

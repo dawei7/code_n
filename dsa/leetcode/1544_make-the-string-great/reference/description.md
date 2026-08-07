@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` of lower and upper case English letters.
 
@@ -12,13 +12,16 @@ To make the string good, you can choose **two adjacent** characters that make th
 
 Return *the string* after making it good. The answer is guaranteed to be unique under the given constraints.
 
-**Notice** that an empty string is also good.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Notice
+
+that an empty string is also good.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ Return *the string* after making it good. The answer is guaranteed to be unique 
 
 - **Input:** `s = "s"`
 - **Output:** `"s"`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

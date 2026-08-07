@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** strings `str1` and `str2`.
 
@@ -6,13 +6,16 @@ In an operation, you select a **set** of indices in `str1`, and for each index `
 
 Return `true` *if it is possible to make *`str2` *a subsequence of *`str1` *by performing the operation **at most once***, *and* `false` *otherwise*.
 
-**Note:** A subsequence of a string is a new string that is formed from the original string by deleting some (possibly none) of the characters without disturbing the relative positions of the remaining characters.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A subsequence of a string is a new string that is formed from the original string by deleting some (possibly none) of the characters without disturbing the relative positions of the remaining characters.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ Hence, str1 becomes "ad" and str2 is now a subsequence. Therefore, true is retur
 - **Output:** `false`
 - **Explanation:** In this example, it can be shown that it is impossible to make str2 a subsequence of str1 using the operation at most once.
 Therefore, false is returned.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{str1.length} \le 10^{5}$
 

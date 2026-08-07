@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return an integer that is the **maximum** distance between the **indices** of two (not necessarily different) prime numbers in `nums`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return an integer that is the **maximum** distance between the **indices** of tw
 **Explanation:** $\text{nums}[2]$ is prime. Because there is just one prime number, the answer is $|2 - 2| = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{5}$
 

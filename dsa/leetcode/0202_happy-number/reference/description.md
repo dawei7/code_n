@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write an algorithm to determine if a number `n` is happy.
 
@@ -11,7 +11,8 @@ A **happy number** is a number defined by the following process:
 - Those numbers for which this process **ends in 1** are happy.
 
 Return `true` *if* `n` *is a happy number, and* `false` *if not*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Return `true` *if* `n` *is a happy number, and* `false` *if not*.
 
 Return `true` if repeated digit-square sums reach `1`; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,6 +37,7 @@ $1^{2}$ + $0^{2}$ + $0^{2}$ = 1
 
 - **Input:** $n = 2$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$

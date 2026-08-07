@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a numeric string `num`, representing a very large **palindrome**.
 
 Return* the **smallest palindrome larger than ***`num`* that can be created by rearranging its digits. If no such palindrome exists, return an empty string *`""`.
 
 A **palindrome** is a number that reads the same backward as forward.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ A **palindrome** is a number that reads the same backward as forward.
 - **Input:** $num = "45544554"$
 - **Output:** `"54455445"`
 - **Explanation:** The next palindrome larger than "45544554" is "54455445".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **value** of an alphanumeric string can be defined as:
 
@@ -7,12 +7,13 @@ The **value** of an alphanumeric string can be defined as:
 - The **length** of the string, otherwise.
 
 Given an array `strs` of alphanumeric strings, return *the **maximum value** of any string in *`strs`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Hence, the maximum value is 5, of "alic3".
 - **Output:** `1`
 - **Explanation:**
 Each string in the array has value 1. Hence, we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strs.length} \le 100$
 

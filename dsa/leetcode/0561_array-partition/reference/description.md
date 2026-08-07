@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of `2n` integers, group these integers into `n` pairs $(a_{1}, b_{1}), (a_{2}, b_{2}), ..., (a_{n}, b_{n})$ such that the sum of $min(a_{i}, b_{i})$ for all `i` is **maximized**. Return* the maximized sum*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ So the maximum possible sum is 4.
 - **Input:** `nums = [6,2,6,5,1,2]`
 - **Output:** `9`
 - **Explanation:** The optimal pairing is (2, 1), (2, 5), (6, 6). min(2, 1) + min(2, 5) + min(6, 6) = 1 + 2 + 6 = 9.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

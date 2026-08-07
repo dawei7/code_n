@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `word`.
 
 Return the **maximum** number of non-intersecting **substrings** of word that are at **least** four characters long and start and end with the same letter.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The two substrings are `"abcdea"` and `"fdef"`.
 The only substring is `"aaaa"`. Note that we cannot **also** choose `"bcdaaaab"` since it intersects with the other substring.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 2 * 10^{5}$
 

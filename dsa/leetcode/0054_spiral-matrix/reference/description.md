@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an `m x n` `matrix`, return *all elements of the* `matrix` *in spiral order*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $m$ be the row count and $n$ be the column count.
 
 Return every matrix element once, beginning at the top-left and following a clockwise inward spiral.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return every matrix element once, beginning at the top-left and following a cloc
 
 - **Input:** $matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]$
 - **Output:** `[1,2,3,4,8,12,11,10,9,5,6,7]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

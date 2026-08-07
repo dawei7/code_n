@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` integer matrix `grid`. The width of a column is the maximum **length **of its integers.
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** `m x n` integer matrix `grid`. The width of a colu
 Return *an integer array* `ans` *of size* `n` *where* $\text{ans}[i]$ *is the width of the* $$i^{\text{th}}$$ *column*.
 
 The **length** of an integer `x` with `len` digits is equal to `len` if `x` is non-negative, and $len + 1$ otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ The **length** of an integer `x` with `len` digits is equal to `len` if `x` is n
 In the 0^th column, only -15 is of length 3.
 In the 1^st column, all integers are of length 1.
 In the 2^nd column, both 12 and -2 are of length 2.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

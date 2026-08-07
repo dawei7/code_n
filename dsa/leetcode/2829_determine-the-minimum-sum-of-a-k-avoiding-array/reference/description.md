@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two integers, `n` and `k`.
 
 An array of **distinct** positive integers is called a **k-avoiding** array if there does not exist any pair of distinct elements that sum to `k`.
 
 Return *the **minimum** possible sum of a k-avoiding array of length *`n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ It can be proven that there is no k-avoiding array with a sum less than 18.
 - **Output:** `3`
 - **Explanation:** We can construct the array [1,2], which has a sum of 3.
 It can be proven that there is no k-avoiding array with a sum less than 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, k \le 50$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **sorted** arrays of distinct integers `nums1` and `nums2`.
 
@@ -13,12 +13,13 @@ A **valid<strong>* ***path</strong> is defined as follows:
 The **score** is defined as the sum of unique values in a valid path.
 
 Return *the maximum score you can obtain of all possible **valid paths***. Since the answer may be too large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The maximum is obtained with the path in green **[2,4,6,8,10]**.
 - **Output:** `40`
 - **Explanation:** There are no common elements between nums1 and nums2.
 Maximum sum is obtained with the path [6,7,8,9,10].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 

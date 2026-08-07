@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the length of the longest **strictly increasing ******subsequence***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer array `nums`, return *the length of the longest **strictly incr
 
 Return the maximum number of elements in any strictly increasing subsequence of `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the maximum number of elements in any strictly increasing subsequence of 
 
 - **Input:** `nums = [7,7,7,7,7,7,7]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2500$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a `m x n` matrix `grid` consisting of **non-negative** integers.
 
 In one operation, you can increment the value of any $\text{grid}[i][j]$ by 1.
 
 Return the **minimum** number of operations needed to make all columns of `grid` **strictly increasing**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return the **minimum** number of operations needed to make all columns of `grid`
 ![](images/secondexample.png)
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

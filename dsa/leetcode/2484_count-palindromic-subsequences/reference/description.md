@@ -1,18 +1,19 @@
-## Description
+### 1. Description
 
 Given a string of digits `s`, return *the number of **palindromic subsequences** of* `s`* having length *`5`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
-**Note:**
-
-- A string is **palindromic** if it reads the same forward and backward.
-
-- A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- A string is **palindromic** if it reads the same forward and backward.
+
+- A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
+
+### 4. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Two of them (both equal to "10301") are palindromic.
 - **Input:** `s = "9999900000"`
 - **Output:** `2`
 - **Explanation:** The only two palindromic subsequences are "99999" and "00000".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `arr`, remove a subarray (can be empty) from `arr` such that the remaining elements in `arr` are **non-decreasing**.
 
 Return *the length of the shortest subarray to remove*.
 
 A **subarray** is a contiguous subsequence of the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Another correct solution is to remove the subarray [3,10,4].
 - **Input:** `arr = [1,2,3]`
 - **Output:** `0`
 - **Explanation:** The array is already non-decreasing. We do not need to remove any elements.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

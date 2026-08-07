@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -34,11 +34,12 @@ Write a solution that reports for each user the product id on which the user spe
 Return the resulting table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

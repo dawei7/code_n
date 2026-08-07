@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array `grid` of size `m x n`, and an integer `k`. There are `k` cells in `grid` containing the values from 1 to `k` **exactly once**, and the rest of the cells have a value 0.
 
@@ -11,11 +11,12 @@ You can start at any cell, and move from a cell to its neighbors (up, down, left
 Return a 2D array `result` of size $(m * n) x 2$, where $\text{result}[i] = [x_{i}, y_{i}]$ represents the $$i^{\text{th}}$$ cell visited in the path. If there are multiple such paths, you may return **any** one.
 
 If no such path exists, return an **empty** array.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ If no such path exists, return an **empty** array.
 There is no possible path that satisfies the conditions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 5$
 

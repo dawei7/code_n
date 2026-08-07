@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of non-negative integers `nums` and an integer `k`. In one operation, you may choose **any** element from `nums` and **increment** it by `1`.
 
 Return* the **maximum** **product** of *`nums`* after **at most** *`k`* operations. *Since the answer may be very large, return it **modulo** $10^{9} + 7$. Note that you should maximize the product before taking the modulo.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that there may be other ways to increment nums to have the maximum product.
 Now nums = [6, 4, 3, 3], with a product of 6 * 4 * 3 * 3 = 216.
 It can be shown that 216 is maximum product possible, so we return 216.
 Note that there may be other ways to increment nums to have the maximum product.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, k \le 10^{5}$
 

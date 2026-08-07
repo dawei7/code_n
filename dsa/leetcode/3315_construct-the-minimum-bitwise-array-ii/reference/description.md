@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of `n` prime integers.
 
@@ -7,12 +7,13 @@ You need to construct an array `ans` of length `n`, such that, for each index `i
 Additionally, you must **minimize** each value of $\text{ans}[i]$ in the resulting array.
 
 If it is *not possible* to find such a value for $\text{ans}[i]$ that satisfies the **condition**, then set $\text{ans}[i] = -1$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ If it is *not possible* to find such a value for $\text{ans}[i]$ that satisfies 
 - For $i = 2$, the smallest $\text{ans}[2]$ that satisfies $\text{ans}[2] OR (\text{ans}[2] + 1) = 31$ is `15`, because $15 OR (15 + 1) = 31$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,12 +9,13 @@ You are allowed to perform an **operation** any number of times on `nums`, where
 Return the **minimum** number of **operations** required to make the array **non-decreasing**.
 
 If it is **not** possible to make the array *non-decreasing* using any number of operations, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Using a single operation, 25 gets divided by 5 and `nums` becomes `[5, 7]`.
 **Output:** 0
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

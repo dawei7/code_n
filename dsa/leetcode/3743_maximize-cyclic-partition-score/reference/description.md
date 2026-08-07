@@ -1,13 +1,8 @@
-## Description
+### 1. Description
 
 You are given a **cyclic** array `nums` and an integer `k`.
 
-**Partition** `nums` into **at most** `k`** **subarrays. As `nums` is cyclic, these subarrays may wrap around from the end of the array back to the beginning.
-
-The **range** of a subarray is the difference between its **maximum** and **minimum** values. The **score** of a partition is the sum of subarray **ranges**.
-
-Return the **maximum** possible **score** among all cyclic partitions.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +21,15 @@ Only $q$ positive-range parts can matter because each such part needs at least t
 
 Return the maximum sum of subarray ranges over all cyclic partitions containing at most `k` parts.
 
-### Examples
+### 3. Partition
+
+`nums` into **at most** `k`** **subarrays. As `nums` is cyclic, these subarrays may wrap around from the end of the array back to the beginning.
+
+The **range** of a subarray is the difference between its **maximum** and **minimum** values. The **score** of a partition is the sum of subarray **ranges**.
+
+Return the **maximum** possible **score** among all cyclic partitions.
+
+### 4. Examples
 
 #### Example 1
 
@@ -74,7 +77,8 @@ Return the maximum sum of subarray ranges over all cyclic partitions containing 
 Identical to Example 1, we partition `nums` into `[2, 3]` and `[3, 1]`. Note that `nums` may be partitioned into fewer than `k` subarrays.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

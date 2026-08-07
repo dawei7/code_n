@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 A subsequence `sub` of `nums` with length `x` is called **valid** if it satisfies:
@@ -8,12 +8,13 @@ A subsequence `sub` of `nums` with length `x` is called **valid** if it satisfie
 Return the length of the **longest** **valid** subsequence of `nums`.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ The longest valid subsequence is `[1, 2, 1, 2, 1, 2]`.
 The longest valid subsequence is `[1, 3]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 2 * 10^{5}$
 

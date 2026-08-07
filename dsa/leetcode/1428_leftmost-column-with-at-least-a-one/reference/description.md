@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **row-sorted binary matrix** means that all elements are `0` or `1` and each row of the matrix is sorted in non-decreasing order.
 
@@ -13,7 +13,8 @@ Given a **row-sorted binary matrix** `binaryMatrix`, return *the index (0-indexe
 Submissions making more than `1000` calls to `BinaryMatrix.get` will be judged *Wrong Answer*. Also, any solutions that attempt to circumvent the judge will result in disqualification.
 
 For custom testing purposes, the input will be the entire binary matrix `mat`. You will not have access to the binary matrix directly.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -30,7 +31,7 @@ The solution may call `get` at most 1,000 times and may not inspect the hidden m
 
 Return the smallest column index containing a `1` in any row. Return `-1` if every cell is `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Return the smallest column index containing a `1` in any row. Return `-1` if eve
 
 - **Input:** $mat = [[0,0],[0,0]]$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $rows = \text{mat.length}$
 

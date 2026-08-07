@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are some spherical balloons taped onto a flat wall that represents the XY-plane. The balloons are represented as a 2D integer array `points` where $\text{points}[i] = [x_{start}, x_{end}]$ denotes a balloon whose **horizontal diameter** stretches between $x_{start}$ and $x_{end}$. You do not know the exact y-coordinates of the balloons.
 
 Arrows can be shot up **directly vertically** (in the positive y-direction) from different points along the x-axis. A balloon with $x_{start}$ and $x_{end}$ is **burst** by an arrow shot at `x` if $x_{start} \le x \le x_{end}$. There is **no limit** to the number of arrows that can be shot. A shot arrow keeps traveling up infinitely, bursting any balloons in its path.
 
 Given the array `points`, return *the **minimum** number of arrows that must be shot to burst all balloons*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Given the array `points`, return *the **minimum** number of arrows that must be 
 
 Each interval is closed: an arrow fired at either endpoint bursts that balloon.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Each interval is closed: an arrow fired at either endpoint bursts that balloon.
 - **Explanation:** The balloons can be burst by 2 arrows:
 - Shoot an arrow at x = 2, bursting the balloons [1,2] and [2,3].
 - Shoot an arrow at x = 4, bursting the balloons [3,4] and [4,5].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 10^{5}$
 

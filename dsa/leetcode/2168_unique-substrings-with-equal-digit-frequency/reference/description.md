@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a digit string `s`, return *the number of **unique substrings **of *`s`* where every digit appears the same number of times.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Note that although the substring "12" appears twice, it is only counted once.
 - **Input:** `s = "12321"`
 - **Output:** `9`
 - **Explanation:** The substrings that meet the requirements are "1", "2", "3", "12", "23", "32", "21", "123", "321".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

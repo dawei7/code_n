@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `arr` and an integer `k`, modify the array by repeating it `k` times.
 
@@ -7,12 +7,13 @@ For example, if `arr = [1, 2]` and $k = 3$then the modified array will be `[1, 2
 Return the maximum sub-array sum in the modified array. Note that the length of the sub-array can be `0` and its sum in that case is `0`.
 
 As the answer can be very large, return the answer **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ As the answer can be very large, return the answer **modulo** $10^{9} + 7$.
 
 - **Input:** `arr = [-1,-2], k = 7`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

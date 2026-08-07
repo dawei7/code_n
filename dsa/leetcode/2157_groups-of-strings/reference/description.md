@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of strings `words`. Each string consists of **lowercase English letters** only. No letter occurs more than once in any string of `words`.
 
@@ -23,12 +23,13 @@ Return *an array* `ans` *of size* `2` *where:*
 - $\text{ans}[0]$ *is the **maximum number** of groups* `words` *can be divided into, and*
 
 - $\text{ans}[1]$ *is the **size of the largest** group*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Thus, words can be divided into 2 groups ["a","b","ab"] and ["cde"]. The size of
 - words[2] is connected to words[1].
 Since all strings are connected to each other, they should be grouped together.
 Thus, the size of the largest group is 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 2 * 10^{4}$
 

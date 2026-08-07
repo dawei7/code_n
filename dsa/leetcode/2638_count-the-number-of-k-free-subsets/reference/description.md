@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, which contains **distinct** elements and an integer `k`.
 
@@ -7,7 +7,8 @@ A subset is called a **k-Free** subset if it contains **no** two elements with a
 Return *the number of **k-Free** subsets of *`nums`.
 
 A **subset** of an array is a selection of elements (possibly none) of the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ A **subset** of an array is a selection of elements (possibly none) of the array
 
 Return an integer representing the number of k-Free subsets of `nums`, including the empty subset.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return an integer representing the number of k-Free subsets of `nums`, including
 - **Input:** `nums = [10,5,9,11], k = 20`
 - **Output:** `16`
 - **Explanation:** All subsets are valid. Since the total count of subsets is $2^{4}$ = 16, so the answer is 16.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

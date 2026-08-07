@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a 2D array of characters `grid` of size `m x n`, you need to find if there exists any cycle consisting of the **same value** in `grid`.
 
@@ -7,12 +7,13 @@ A cycle is a path of **length 4 or more** in the grid that starts and ends at th
 Also, you cannot move to the cell that you visited in your last move. For example, the cycle `(1, 1) -> (1, 2) -> (1, 1)` is invalid because from `(1, 2)` we visited `(1, 1)` which was the last visited cell.
 
 Return `true` if any cycle of the same value exists in `grid`, otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Return `true` if any cycle of the same value exists in `grid`, otherwise, return
 
 - **Input:** `grid = [["a","b","b"],["b","z","b"],["b","b","a"]]`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

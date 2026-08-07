@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers, `k` and `m`.
 
 Return the **maximum** sum of `k` non-overlapping subarrays of `nums`, where each subarray has a length of **at least** `m`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The total sum is $10 + 3 = 13$.
 The optimal choice is choosing each element as a subarray. The output is $(-10) + 3 + (-1) + (-2) = -10$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2000$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums`, return *the **smallest** index *`i`* of *`nums`* such that *$i mod 10 = \text{nums}[i]$*, or *`-1`* if such index does not exist*.
 
 `x mod y` denotes the **remainder** when `x` is divided by `y`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ i=3: 3 mod 10 = 3 != nums[3].
 - **Input:** `nums = [1,2,3,4,5,6,7,8,9,0]`
 - **Output:** `-1`
 - **Explanation:** No index satisfies i mod 10 == nums[i].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

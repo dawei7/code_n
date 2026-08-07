@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the number of segments in the string*.
 
 A **segment** is defined to be a contiguous sequence of **non-space characters**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **segment** is defined to be a contiguous sequence of **non-space characters**
 
 Return the number of contiguous non-space segments in `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the number of contiguous non-space segments in `s`.
 
 - **Input:** `s = "Hello"`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length} \le 300$
 

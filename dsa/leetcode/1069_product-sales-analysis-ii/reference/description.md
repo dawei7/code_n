@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -36,7 +36,8 @@ Write a solution that reports the total quantity sold for every product id.
 Return the resulting table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -50,7 +51,7 @@ The output grain is one row for each distinct $\text{product}_{id}$ occurring in
 - Columns $\text{product}_{id}$ and $\text{total}_{quantity}$, where $\text{total}_{quantity}$ is the sum of `quantity` over all `Sales` rows for that $\text{product}_{id}$.
 - Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

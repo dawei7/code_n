@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree with `n` nodes, where each node is uniquely assigned a value from `1` to `n`. You are also given a sequence of `n` values `voyage`, which is the **desired** <a href="https://en.wikipedia.org/wiki/Tree_traversal#Pre-order" target="_blank">**pre-order traversal**</a> of the binary tree.
 
@@ -9,12 +9,13 @@ Any node in the binary tree can be **flipped** by swapping its left and right su
 Flip the **smallest** number of nodes so that the **pre-order traversal** of the tree **matches** `voyage`.
 
 Return *a list of the values of all **flipped** nodes. You may return the answer in **any order**. If it is **impossible** to flip the nodes in the tree to make the pre-order traversal match *`voyage`*, return the list *`[-1]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return *a list of the values of all **flipped** nodes. You may return the answer
 - **Input:** `root = [1,2,3], voyage = [1,2,3]`
 - **Output:** `[]`
 - **Explanation:** The tree's pre-order traversal already matches voyage, so no nodes need to be flipped.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is `n`.
 

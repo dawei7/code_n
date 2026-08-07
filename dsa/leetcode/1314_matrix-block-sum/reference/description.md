@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `m x n` matrix `mat` and an integer `k`, return *a matrix* `answer` *where each* $\text{answer}[i][j]$ *is the sum of all elements* $\text{mat}[r][c]$ *for*:
 
@@ -7,12 +7,13 @@ Given a `m x n` matrix `mat` and an integer `k`, return *a matrix* `answer` *whe
 - $j - k \le c \le j + k$, and
 
 - `(r, c)` is a valid position in the matrix.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Given a `m x n` matrix `mat` and an integer `k`, return *a matrix* `answer` *whe
 
 - **Input:** $mat = [[1,2,3],[4,5,6],[7,8,9]], k = 2$
 - **Output:** `[[45,45,45],[45,45,45],[45,45,45]]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

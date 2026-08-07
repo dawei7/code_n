@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of length `n` and an integer `k`, return *the *$$k^{\text{th}}$$ ***smallest subarray sum**.*
 
 A **subarray** is defined as a **non-empty** contiguous sequence of elements in an array. A **subarray sum** is the sum of all elements in the subarray.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Ordering the sums from smallest to largest gives 1, 2, 3, <u>3</u>, 4, 6. The 4t
 - [3,5,5] with sum 13
 - [3,3,5,5] with sum 16
 Ordering the sums from smallest to largest gives 3, 3, 5, 5, 6, 8, <u>10</u>, 11, 13, 16. The 7th smallest is 10.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

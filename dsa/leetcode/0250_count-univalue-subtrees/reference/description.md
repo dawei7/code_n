@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the number of **uni-value** **subtrees*.
 
 A **uni-value subtree** means all nodes of the subtree have the same value.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **uni-value subtree** means all nodes of the subtree have the same value.
 
 Integer count of uni-value subtrees in the given binary tree.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Integer count of uni-value subtrees in the given binary tree.
 
 - **Input:** `root = [5,5,5,5,5,null,5]`
 - **Output:** `6`
-### Constraints
+
+### 4. Constraints
 
 - The number of the node in the tree will be in the range `[0, 1000]`.
 

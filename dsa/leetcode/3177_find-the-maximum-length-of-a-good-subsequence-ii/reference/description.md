@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and a **non-negative** integer `k`. A sequence of integers `seq` is called **good** if there are **at most** `k` indices `i` in the range `[0, seq.length - 2]` such that $\text{seq}[i] \neq seq[i + 1]$.
 
 Return the **maximum** possible length of a **good** subsequence of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The maximum length subsequence is `[<u>1</u>,<u>2</u>,<u>1</u>,<u>1</u>,3]`.
 The maximum length subsequence is `[<u>1</u>,2,3,4,5,<u>1</u>]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{3}$
 

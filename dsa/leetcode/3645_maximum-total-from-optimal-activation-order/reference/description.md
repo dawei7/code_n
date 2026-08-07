@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `value` and `limit`, both of length `n`.
 
@@ -11,12 +11,13 @@ Initially, all elements are **inactive**. You may activate them in any order.
 - After each activation, if the number of **currently** active elements becomes `x`, then **all** elements `j` with $\text{limit}[j] \le x$ become **permanently** inactive, even if they are already active.
 
 Return the **maximum** **total** you can obtain by choosing the activation order optimally.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -191,7 +192,8 @@ One optimal activation order is:​​​​​​​**​​​​​​​**
 Thus, the maximum possible total is 12.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{value.length} = \text{limit.length} \le 10^{5}$
 

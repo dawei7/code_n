@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given three integers `x`, `y`, and `bound`, return *a list of all the **powerful integers** that have a value less than or equal to* `bound`.
 
 An integer is **powerful** if it can be represented as $x^i + y^j$ for some integers $i \ge 0$ and $j \ge 0$.
 
 You may return the answer in **any order**. In your answer, each value should occur **at most once**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ You may return the answer in **any order**. In your answer, each value should oc
 
 - **Input:** $x = 3, y = 5, bound = 15$
 - **Output:** `[2,4,6,8,10,14]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le x, y \le 100$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `target`, each of length `n`, consisting of lowercase English letters.
 
 Return the **lexicographically smallest string** that is **both** a **palindromic permutation** of `s` and **strictly** greater than `target`. If no such permutation exists, return an empty string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ A palindromic permutation uses every character occurrence from `s` and reads ide
 
 Return the smallest qualifying palindrome in lexicographic order, or `""` when no qualifying palindromic permutation exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ Return the smallest qualifying palindrome in lexicographic order, or `""` when n
 - `"aca"` is strictly greater than `target`. Therefore, the answer is `"aca"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} = \text{target.length} \le 300$
 

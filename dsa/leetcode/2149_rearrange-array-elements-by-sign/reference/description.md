@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of **even** length consisting of an **equal** number of positive and negative integers.
 
@@ -11,12 +11,13 @@ You should return the array of nums such that the array follows the given condit
 - The rearranged array begins with a positive integer.
 
 Return *the modified array after rearranging the elements to satisfy the aforementioned conditions*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Other ways such as [1,-2,2,-5,3,-4], [3,1,2,-2,-5,-4], [-2,3,-5,1,-4,2] are inco
 - **Explanation:**
 1 is the only positive integer and -1 the only negative integer in nums.
 So nums is rearranged to [1,-1].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 2 * 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a stream of `n` videos, each represented by a **distinct** number from `1` to `n` that you need to "upload" to a server. You need to implement a data structure that calculates the length of the **longest uploaded prefix** at various points in the upload process.
 
@@ -11,12 +11,13 @@ Implement the `LUPrefix `class:
 - `void upload(int video)` Uploads `video` to the server.
 
 - `int longest()` Returns the length of the **longest uploaded prefix** defined above.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ server.longest();                    // The prefix [1] is the longest uploaded p
 server.upload(2);                    // Upload video 2.
 server.longest();                    // The prefix [1,2,3] is the longest uploaded prefix, so we return 3.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

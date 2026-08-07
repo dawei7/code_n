@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given four integers `length`, `width`, `height`, and `mass`, representing the dimensions and mass of a box, respectively, return *a string representing the **category** of the box*.
 
@@ -19,13 +19,16 @@ Given four integers `length`, `width`, `height`, and `mass`, representing the di
 
 - If the box is `"Heavy"` but not `"Bulky"`, then its category is `"Heavy"`.
 
-**Note** that the volume of the box is the product of its length, width and height.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the volume of the box is the product of its length, width and height.
+
+### 4. Examples
 
 #### Example 1
 
@@ -45,7 +48,8 @@ None of the dimensions of the box is greater or equal to $10^{4}$.
 Its volume = 8 * $10^{6}$ <= $10^{9}$. So it cannot be categorized as "Bulky".
 Its mass is also less than 100, so it cannot be categorized as "Heavy" either.
 Since its neither of the two above categories, we return "Neither".
-### Constraints
+
+### 5. Constraints
 
 - $1 \le length, width, height \le 10^{5}$
 

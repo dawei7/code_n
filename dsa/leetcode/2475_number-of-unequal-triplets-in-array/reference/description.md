@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of positive integers `nums`. Find the number of triplets `(i, j, k)` that meet the following conditions:
 
@@ -11,12 +11,13 @@ You are given a **0-indexed** array of positive integers `nums`. Find the number
 	</li>
 
 Return *the number of triplets that meet the conditions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Note that (2, 0, 4) is not a valid triplet because 2 > 0.
 - **Input:** `nums = [1,1,1,1,1]`
 - **Output:** `0`
 - **Explanation:** No triplets meet the conditions so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 100$
 

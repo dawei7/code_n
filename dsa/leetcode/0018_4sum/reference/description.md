@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `nums` of `n` integers, return *an array of all the **unique** quadruplets* `[nums[a], nums[b], nums[c], nums[d]]` such that:
 
@@ -9,7 +9,8 @@ Given an array `nums` of `n` integers, return *an array of all the **unique** qu
 - $\text{nums}[a] + \text{nums}[b] + \text{nums}[c] + \text{nums}[d] = target$
 
 You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return every unique value quadruplet whose distinct source indices sum to `target`, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return every unique value quadruplet whose distinct source indices sum to `targe
 
 - **Input:** `nums = [2,2,2,2,2], target = 8`
 - **Output:** `[[2,2,2,2]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -21,12 +21,13 @@ You are also given a 2D integer array `queries`, where each $\text{queries}[i]$ 
 - `[2, idx, val]` - **Update** $\text{nums}[idx]$ to `val`.
 
 Return an integer array `answer`, where $\text{answer}[i]$ is the number of indices for the $$i^{\text{th}}$$ query of type `[1, l, r, k]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -271,7 +272,8 @@ Thus, the final `answer` is `[3, 1, 0]`.
 Thus, the final `answer` is `[1, 0, 1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` (**0-indexed**)​​​​​​. You are asked to perform the following operation on `s`​​​​​​ until you get a sorted string:
 
@@ -11,12 +11,13 @@ You are given a string `s` (**0-indexed**)​​​​​​. You are asked to p
 - Reverse the suffix starting at index `i`​​​​​​.
 
 Return *the number of operations needed to make the string sorted.* Since the answer can be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Operation 5: i=2, j=2. Swap s[1] and s[2] to get s="abc", then reverse the suffi
 - **Explanation:** The simulation goes as follows:
 Operation 1: i=3, j=4. Swap s[2] and s[4] to get s="aaaab", then reverse the substring starting at 3. Now, s="aaaba".
 Operation 2: i=4, j=4. Swap s[3] and s[4] to get s="aaaab", then reverse the substring starting at 4. Now, s="aaaab".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 3000$
 

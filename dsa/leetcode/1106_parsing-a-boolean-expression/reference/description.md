@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **boolean expression** is an expression that evaluates to either `true` or `false`. It can be in one of the following shapes:
 
@@ -15,12 +15,13 @@ A **boolean expression** is an expression that evaluates to either `true` or `fa
 Given a string `expression` that represents a **boolean expression**, return *the evaluation of that expression*.
 
 It is **guaranteed** that the given expression is valid and follows the given rules.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Finally, return false.
 - **Explanation:**
 First, evaluate &(f,t) --> (false AND true) --> false --> f. The expression is now "!(f)".
 Then, evaluate !(f) --> NOT false --> true. We return true.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{expression.length} \le 2 * 10^{4}$
 

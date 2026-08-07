@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Your country has $10^{9}$ lakes. Initially, all the lakes are empty, but when it rains over the $$n^{\text{th}}$$ lake, the $$n^{\text{th}}$$ lake becomes full of water. If it rains over a lake that is **full of water**, there will be a **flood**. Your goal is to avoid floods in any lake.
 
@@ -19,12 +19,13 @@ Return *an array `ans`* where:
 If there are multiple valid answers return **any** of them. If it is impossible to avoid flood return **an empty array**.
 
 Notice that if you chose to dry a full lake, it becomes empty, but if you chose to dry an empty lake, nothing changes.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ It is easy that this scenario is flood-free. [-1,-1,1,2,-1,-1] is another accept
 - **Output:** `[]`
 - **Explanation:** After the second day, full lakes are  [1,2]. We have to dry one lake in the third day.
 After that, it will rain over lakes [1,2]. It's easy to prove that no matter which lake you choose to dry in the 3rd day, the other one will flood.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rains.length} \le 10^{5}$
 

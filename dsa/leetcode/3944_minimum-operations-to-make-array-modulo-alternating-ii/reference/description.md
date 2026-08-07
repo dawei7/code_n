@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -11,7 +11,8 @@ An array is called **modulo alternating** if there exist two **distinct** intege
 - For every **odd** index `i`, $\text{nums}[i] \% k = y$
 
 Return the **minimum** number of operations required to make `nums` **modulo alternating**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $n = \lvert\texttt{nums}\rvert$. Increasing or decreasing one element by `1`
 
 Return the minimum total number of unit increment or decrement operations needed to make all even-index elements share one residue and all odd-index elements share a different residue.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Return the minimum total number of unit increment or decrement operations needed
 The array already satisfies the condition with $x = 0$ and $y = 1$. Thus, no operations are required.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `books` where $\text{books}[i] = [\text{thickness}_{i}, \text{height}_{i}]$ indicates the thickness and height of the $$i^{\text{th}}$$ book. You are also given an integer `shelfWidth`.
 
@@ -11,12 +11,13 @@ Note that at each step of the above process, the order of the books we place is 
 - For example, if we have an ordered list of `5` books, we might place the first and second book onto the first shelf, the third book on the second shelf, and the fourth and fifth book on the last shelf.
 
 Return *the minimum possible height that the total bookshelf can be after placing shelves in this manner*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Notice that book number 2 does not have to be on the first shelf.
 
 - **Input:** $books = [[1,3],[2,4],[3,2]], shelfWidth = 6$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{books.length} \le 1000$
 

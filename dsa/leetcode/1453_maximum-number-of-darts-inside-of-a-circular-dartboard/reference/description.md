@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Alice is throwing `n` darts on a very large wall. You are given an array `darts` where $\text{darts}[i] = [x_{i}, y_{i}]$ is the position of the $$i^{\text{th}}$$ dart that Alice threw on the wall.
 
 Bob knows the positions of the `n` darts on the wall. He wants to place a dartboard of radius `r` on the wall so that the maximum number of darts that Alice throws lie on the dartboard.
 
 Given the integer `r`, return *the maximum number of darts that can lie on the dartboard*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Given the integer `r`, return *the maximum number of darts that can lie on the d
 - **Input:** $darts = [[-3,0],[3,0],[2,6],[5,4],[0,9],[7,8]], r = 5$
 - **Output:** `5`
 - **Explanation:** Circle dartboard with center in (0,4) and radius = 5 contain all points except the point (7,8).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{darts.length} \le 100$
 

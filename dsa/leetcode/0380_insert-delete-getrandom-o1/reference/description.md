@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement the `RandomizedSet` class:
 
@@ -11,7 +11,8 @@ Implement the `RandomizedSet` class:
 - `int getRandom()` Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the **same probability** of being returned.
 
 You must implement the functions of the class such that each function works in **average** `O(1)` time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ You must implement the functions of the class such that each function works in *
 
 The app adapter returns one result per call. On LeetCode, construct `RandomizedSet` and invoke its methods directly. Each successful `getRandom` outcome must give every stored value equal probability.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ randomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contai
 randomizedSet.insert(2); // 2 was already in the set, so return false.
 randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $-2^{31} \le val \le 2^{31} - 1$
 

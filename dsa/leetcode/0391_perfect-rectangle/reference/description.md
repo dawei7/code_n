@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array `rectangles` where $\text{rectangles}[i] = [x_{i}, y_{i}, a_{i}, b_{i}]$ represents an axis-aligned rectangle. The bottom-left point of the rectangle is $(x_{i}, y_{i})$ and the top-right point of it is $(a_{i}, b_{i})$.
 
 Return `true` *if all the rectangles together form an exact cover of a rectangular region*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return `true` *if all the rectangles together form an exact cover of a rectangul
 
 Return `true` when the rectangles collectively cover one larger rectangle exactly once at every interior point; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return `true` when the rectangles collectively cover one larger rectangle exactl
 - **Input:** $rectangles = [[1,1,3,3],[3,1,4,2],[1,3,2,4],[2,2,4,4]]$
 - **Output:** `false`
 - **Explanation:** Because two of the rectangles overlap with each other.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rectangles.length} \le 2 * 10^{4}$
 

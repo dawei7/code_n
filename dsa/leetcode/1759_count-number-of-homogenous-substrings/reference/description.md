@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the number of **homogenous** substrings of *`s`*.* Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 A string is **homogenous** if all the characters of the string are the same.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ A **substring** is a contiguous sequence of characters within a string.
 
 - **Input:** `s = "zzzzz"`
 - **Output:** `15`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

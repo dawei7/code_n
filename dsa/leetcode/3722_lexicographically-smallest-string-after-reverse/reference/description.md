@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `n` consisting of lowercase English letters.
 
@@ -9,7 +9,8 @@ You must perform **exactly** one operation by choosing any integer `k` such that
 - reverse the **last** `k` characters of `s`.
 
 Return the **lexicographically smallest** string that can be obtained after **exactly** one such operation.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ The chosen segment must touch the first or last character and may have any lengt
 
 Return the smallest string in lexicographic order among every legal prefix reversal and suffix reversal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Return the smallest string in lexicographic order among every legal prefix rever
 - Reverse `"zx"` to `"xz"`, so the resulting string is `"xzy"`, which is the lexicographically smallest string achievable.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 1000$
 

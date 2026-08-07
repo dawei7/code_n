@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the **maximum possible sum **of elements of the array such that it is divisible by three*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given an integer array `nums`, return *the **maximum possible sum **of elements 
 - **Input:** `nums = [1,2,3,4,4]`
 - **Output:** `12`
 - **Explanation:** Pick numbers 1, 3, 4 and 4 their sum is 12 (maximum sum divisible by 3).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 4 * 10^{4}$
 

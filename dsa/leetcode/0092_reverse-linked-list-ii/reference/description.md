@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list and two integers `left` and `right` where $left \le right$, reverse the nodes of the list from position `left` to position `right`, and return *the reversed list*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given the `head` of a singly linked list and two integers `left` and `right` whe
 
 Return the head after reversing the inclusive segment `[left, right]` and leaving all other nodes in place.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the head after reversing the inclusive segment `[left, right]` and leavin
 
 - **Input:** $head = [5], left = 1, right = 1$
 - **Output:** `[5]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is `n`.
 

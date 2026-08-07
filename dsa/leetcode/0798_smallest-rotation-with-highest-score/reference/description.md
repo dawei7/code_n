@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums`. You can rotate it by a non-negative integer `k` so that the array becomes `[nums[k], nums[k + 1], ... nums[nums.length - 1], nums[0], nums[1], ..., nums[k-1]]`. Afterward, any entries that are less than or equal to their index are worth one point.
 
 - For example, if we have `nums = [2,4,1,3,0]`, and we rotate by $k = 2$, it becomes `[1,3,0,2,4]`. This is worth `3` points because `1 > 0` [no points], `3 > 1` [no points], $0 \le 2$ [one point], $2 \le 3$ [one point], $4 \le 4$ [one point].
 
 Return *the rotation index *`k`* that corresponds to the highest score we can achieve if we rotated *`nums`* by it*. If there are multiple answers, return the smallest such index `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ So we should choose k = 3, which has the highest score.
 - **Output:** `0`
 - **Explanation:** nums will always have 3 points no matter how it shifts.
 So we will choose the smallest k, which is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You have some apples and a basket that can carry up to `5000` units of weight.
 
 Given an integer array `weight` where $\text{weight}[i]$ is the weight of the $$i^{\text{th}}$$ apple, return *the maximum number of apples you can put in the basket*.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -17,7 +18,7 @@ Let $n$ be the number of elements in `weight`.
 
 Return the greatest possible number of selected apples whose combined weight is at most `5000`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the greatest possible number of selected apples whose combined weight is 
 - **Input:** $weight = [900,950,800,1000,700,800]$
 - **Output:** `5`
 - **Explanation:** The sum of weights of the 6 apples exceeds 5000 so we choose any 5 of them.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{weight.length} \le 10^{3}$
 

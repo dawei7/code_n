@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Salary`
 
@@ -34,7 +34,8 @@ Find the comparison result **(higher/lower/same)** of the average salary of empl
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -50,7 +51,7 @@ Return one row for each department-month present in `Salary`:
 
 Result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

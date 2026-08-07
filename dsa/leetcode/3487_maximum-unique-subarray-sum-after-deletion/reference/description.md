@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,12 +9,13 @@ You are allowed to delete any number of elements from `nums` without making it *
 - The sum of the elements in the subarray is **maximized**.
 
 Return the **maximum sum** of such a subarray.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Delete the element $\text{nums}[0] = 1$, $\text{nums}[1] = 1$, $\text{nums}[2] =
 Delete the elements $\text{nums}[2] = -1$ and $\text{nums}[3] = -2$, and select the subarray `[2, 1]` from `[1, 2, 1, 0, -1]` to obtain the maximum sum.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

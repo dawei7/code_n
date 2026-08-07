@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **directed** graph consisting of `n` nodes numbered from `0` to $n - 1$ and `n` directed edges.
 
@@ -9,12 +9,13 @@ Consider the following process on the graph:
 - You start from a node `x` and keep visiting other nodes through edges until you reach a node that you have already visited before on this **same** process.
 
 Return *an array *`answer`* where *$\text{answer}[i]$* is the number of **different** nodes that you will visit if you perform the process starting from node *`i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return *an array *`answer`* where *$\text{answer}[i]$* is the number of **differ
 - **Input:** $edges = [1,2,3,4,0]$
 - **Output:** `[5,5,5,5,5]`
 - **Explanation:** Starting from any node we can visit every node in the graph in the process.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length}$
 

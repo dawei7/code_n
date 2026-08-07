@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return all the **strobogrammatic numbers** that are of length `n`. You may return the answer in **any order**.
 
 A **strobogrammatic number** is a number that looks the same when rotated `180` degrees (looked at upside down).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **strobogrammatic number** is a number that looks the same when rotated `180` 
 
 Return $\text{List}[str]$ containing all strobogrammatic numbers of length `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Return $\text{List}[str]$ containing all strobogrammatic numbers of length `n`.
 
 - **Input:** $n = 1$
 - **Output:** `["0","1","8"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 14$

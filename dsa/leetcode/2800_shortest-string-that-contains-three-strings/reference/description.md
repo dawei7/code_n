@@ -1,21 +1,22 @@
-## Description
+### 1. Description
 
 Given three strings `a`, `b`, and `c`, your task is to find a string that has the** minimum** length and contains all three strings as **substrings**.
 If there are multiple such strings, return the* ***lexicographically* *smallest **one.
 
 Return *a string denoting the answer to the problem.*
 
-**Notes**
-
-- A string `a` is **lexicographically smaller** than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears **earlier **in the alphabet than the corresponding letter in `b`.
-
-- A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- A string `a` is **lexicographically smaller** than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears **earlier **in the alphabet than the corresponding letter in `b`.
+
+- A **substring** is a contiguous sequence of characters within a string.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *a string denoting the answer to the problem.*
 - **Input:** $a = "ab", b = "ba", c = "aba"$
 - **Output:** `"aba"`
 - **Explanation:** We show that the string "aba" contains all the given strings: a = ans[0..1], b = ans[1..2], c = ans[0..2]. Since the length of c is 3, the length of the resulting string would be at least 3. It can be shown that "aba" is the lexicographically smallest one.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{a.length}, \text{b.length}, \text{c.length} \le 100$
 

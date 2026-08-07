@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -48,7 +48,8 @@ Write a solution to find for each user whether the brand of the second item (by 
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -67,7 +68,7 @@ Return a relation with one row per user and these columns:
 
 Output row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

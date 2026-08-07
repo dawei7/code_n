@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `candies`. Each element in the array denotes a pile of candies of size $\text{candies}[i]$. You can divide each pile into any number of **sub piles**, but you **cannot** merge two piles together.
 
 You are also given an integer `k`. You should allocate piles of candies to `k` children such that each child gets the **same** number of candies. Each child can be allocated candies from **only one** pile of candies and some piles of candies may go unused.
 
 Return *the **maximum number of candies** each child can get.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Return *the **maximum number of candies** each child can get.*
 - **Input:** $candies = [2,5], k = 11$
 - **Output:** `0`
 - **Explanation:** There are 11 children but only 7 candies in total, so it is impossible to ensure each child receives at least one candy. Thus, each child gets no candy and the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{candies.length} \le 10^{5}$
 

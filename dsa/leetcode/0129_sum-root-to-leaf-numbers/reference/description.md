@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree containing digits from `0` to `9` only.
 
@@ -9,7 +9,8 @@ Each root-to-leaf path in the tree represents a number.
 Return *the total sum of all root-to-leaf numbers*. Test cases are generated so that the answer will fit in a **32-bit** integer.
 
 A **leaf** node is a node with no children.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ A **leaf** node is a node with no children.
 
 Return the sum of all decimal numbers formed by complete root-to-leaf paths.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ The root-to-leaf path 4->9->5 represents the number 495.
 The root-to-leaf path 4->9->1 represents the number 491.
 The root-to-leaf path 4->0 represents the number 40.
 Therefore, sum = 495 + 491 + 40 = 1026.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

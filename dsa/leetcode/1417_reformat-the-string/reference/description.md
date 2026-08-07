@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an alphanumeric string `s`. (**Alphanumeric string** is a string consisting of lowercase English letters and digits).
 
 You have to find a permutation of the string where no letter is followed by another letter and no digit is followed by another digit. That is, no two adjacent characters have the same type.
 
 Return *the reformatted string* or return **an empty string** if it is impossible to reformat the string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the reformatted string* or return **an empty string** if it is impossibl
 - **Input:** `s = "1229857369"`
 - **Output:** `""`
 - **Explanation:** "1229857369" has only digits so we cannot separate them by characters.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

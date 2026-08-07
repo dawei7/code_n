@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `order` of length `n`, a **permutation** of integers from `1` to `n` representing the **order** of insertion into a **binary search tree**.
 
@@ -19,11 +19,12 @@ The binary search tree is constructed as follows:
 Return *the **depth** of the binary search tree*.
 
 A binary tree's **depth** is the number of **nodes** along the **longest path** from the root node down to the farthest leaf node.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ A binary tree's **depth** is the number of **nodes** along the **longest path** 
 - **Input:** $order = [1,2,3,4]$
 - **Output:** `4`
 - **Explanation:** The binary search tree has a depth of 4 with path 1->2->3->4.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{order.length}$
 

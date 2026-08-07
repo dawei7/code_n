@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** **circular** string array `words` and a string `target`. A **circular array** means that the array's end connects to the array's beginning.
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** **circular** string array `words` and a string `ta
 Starting from `startIndex`, you can move to either the next word or the previous word with `1` step at a time.
 
 Return *the **shortest** distance needed to reach the string* `target`. If the string `target` does not exist in `words`, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The shortest distance to reach "leetcode" is 1.
 - **Input:** $words = ["i","eat","leetcode"], target = "ate", startIndex = 0$
 - **Output:** `-1`
 - **Explanation:** Since "ate" does not exist in words, we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

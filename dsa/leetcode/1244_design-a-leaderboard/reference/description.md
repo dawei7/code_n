@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a Leaderboard class, which has 3 functions:
 
@@ -9,7 +9,8 @@ Design a Leaderboard class, which has 3 functions:
 - `reset(playerId)`: Reset the score of the player with the given id to 0 (in other words erase it from the leaderboard). It is guaranteed that the player was added to the leaderboard before calling this function.
 
 Initially, the leaderboard is empty.
-### Function Contract
+
+### 2. Function Contract
 
 **Native interface**
 
@@ -26,7 +27,7 @@ Let $p$ be the number of active players when `top(K)` is called. Tied scores bel
 
 For the app trace, return results in call order: `null` for each mutating operation and the requested score sum for each `top` call.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ leaderboard.reset(1);         // leaderboard = [[2,56],[3,39],[4,51],[5,4]];
 leaderboard.reset(2);         // leaderboard = [[3,39],[4,51],[5,4]];
 leaderboard.addScore(2,51);   // leaderboard = [[2,51],[3,39],[4,51],[5,4]];
 leaderboard.top(3);           // returns 141 = 51 + 51 + 39;
-### Constraints
+
+### 4. Constraints
 
 - $1 \le playerId, K \le 10000$
 

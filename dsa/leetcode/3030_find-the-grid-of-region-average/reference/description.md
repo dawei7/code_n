@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `m x n` grid `image` which represents a grayscale image, where $\text{image}[i][j]$ represents a pixel with intensity in the range `[0..255]`. You are also given a **non-negative** integer `threshold`.
 
@@ -11,12 +11,13 @@ All pixels in a region belong to that region, note that a pixel can belong to **
 You need to calculate a `m x n` grid `result`, where $\text{result}[i][j]$ is the **average** intensity of the regions to which $\text{image}[i][j]$ belongs, **rounded down** to the nearest integer. If $\text{image}[i][j]$ belongs to multiple regions, $\text{result}[i][j]$ is the **average **of the** rounded-down average **intensities of these regions, **rounded down** to the nearest integer. If $\text{image}[i][j]$ does** not** belong to any region, $\text{result}[i][j]$ is **equal to** $\text{image}[i][j]$.
 
 Return the grid `result`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ All the pixels in row 0 of the image belong to region 1, hence all the pixels in
 There is only one `3 x 3` subgrid, while it does not have the condition on difference of adjacent pixels, for example, the difference between $\text{image}[0][0]$ and $\text{image}[1][0]$ is $|5 - 8| = 3 > threshold = 1$. None of them belong to any valid regions, so the `result` should be the same as `image`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n, m \le 500$
 

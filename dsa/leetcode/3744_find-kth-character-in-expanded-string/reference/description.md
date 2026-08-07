@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of one or more words separated by single spaces. Each word in `s` consists of lowercase English letters.
 
@@ -11,7 +11,8 @@ For example, if `s = "hello world"`, then $t = "heelllllllooooo woorrrllllddddd"
 You are also given an integer `k`, representing a **valid** index of the string `t`.
 
 Return the $$k^{\text{th}}$$ character of the string `t`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Let $n=\lvert\texttt{s}\rvert$ for the complexity bounds.
 
 Return the one-character string $t[k]$ without requiring `t` to be materialized.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ $t = "heelllllllooooo woorrrllllddddd"$. Therefore, the answer is $t[0] = "h"$.
 $t = "heelllllllooooo woorrrllllddddd"$. Therefore, the answer is $t[15] = " "$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

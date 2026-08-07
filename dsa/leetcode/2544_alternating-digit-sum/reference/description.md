@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`. Each digit of `n` has a sign according to the following rules:
 
@@ -7,12 +7,13 @@ You are given a positive integer `n`. Each digit of `n` has a sign according to 
 - Each other digit has an opposite sign to its adjacent digits.
 
 Return *the sum of all digits with their corresponding sign*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *the sum of all digits with their corresponding sign*.
 - **Input:** $n = 886996$
 - **Output:** `0`
 - **Explanation:** (+8) + (-8) + (+6) + (-9) + (+9) + (-6) = 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

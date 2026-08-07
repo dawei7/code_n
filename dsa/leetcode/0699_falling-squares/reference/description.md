@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are several squares being dropped onto the X-axis of a 2D plane.
 
@@ -9,12 +9,13 @@ Each square is dropped one at a time from a height above any landed squares. It 
 After each square is dropped, you must record the **height of the current tallest stack of squares**.
 
 Return *an integer array *`ans`* where *$\text{ans}[i]$* represents the height described above after dropping the *$$i^{\text{th}}$$* square*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ After the first drop, the tallest stack is square 1 with a height of 100.
 After the second drop, the tallest stack is either square 1 or square 2, both with heights of 100.
 Thus, we return an answer of [100, 100].
 Note that square 2 only brushes the right side of square 1, which does not count as landing on it.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{positions.length} \le 1000$
 

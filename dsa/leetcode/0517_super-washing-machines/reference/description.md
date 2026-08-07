@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You have `n` super washing machines on a line. Initially, each washing machine has some dresses or is empty.
 
 For each move, you could choose any `m` ($1 \le m \le n$) washing machines, and pass one dress of each washing machine to one of its adjacent washing machines at the same time.
 
 Given an integer array `machines` representing the number of dresses in each washing machine from left to right on the line, return *the minimum number of moves to make all the washing machines have the same number of dresses*. If it is not possible to do it, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Given an integer array `machines` representing the number of dresses in each was
 - **Output:** `-1`
 - **Explanation:**
 It's impossible to make all three washing machines have the same number of dresses.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{machines.length}$
 

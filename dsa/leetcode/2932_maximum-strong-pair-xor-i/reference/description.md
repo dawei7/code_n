@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. A pair of integers `x` and `y` is called a **strong** pair if it satisfies the condition:
 
@@ -8,13 +8,16 @@ You need to select two integers from `nums` such that they form a strong pair an
 
 Return *the **maximum** *`XOR`* value out of all possible strong pairs in the array* `nums`.
 
-**Note** that you can pick the same integer twice to form a pair.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you can pick the same integer twice to form a pair.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ The maximum XOR possible from these pairs is 10 XOR 10 = 0 since the pair (100, 
 - **Output:** `7`
 - **Explanation:** There are 6 strong pairs in the array nums: (5, 5), (5, 6), (6, 6), (25, 25), (25, 30) and (30, 30).
 The maximum XOR possible from these pairs is 25 XOR 30 = 7 since the only other non-zero XOR value is 5 XOR 6 = 3.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

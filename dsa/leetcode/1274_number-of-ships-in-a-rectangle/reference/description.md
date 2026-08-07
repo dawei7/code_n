@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 *(This problem is an **interactive problem**.)*
 
@@ -22,7 +22,8 @@ ships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]
 
 - **Input:** $ans = [[1,1],[2,2],[3,3]], topRight = [1000,1000], bottomLeft = [0,0]$
 - **Output:** `3`
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -42,7 +43,7 @@ be the larger inclusive side length.
 
 - Return the number $s$ of hidden ship points in the inclusive target rectangle while using at most $400$ calls to `hasShips`.
 
-### Constraints
+### 3. Constraints
 
 - On the input `ships` is only given to initialize the map internally. You must solve this problem "blindfolded". In other words, you must find the answer using the given `hasShips` API, without knowing the `ships` position.
 

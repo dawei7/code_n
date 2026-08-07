@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. You may partition `nums` into one or more **subsequences** such that each element in `nums` appears in **exactly** one of the subsequences.
 
 Return *the **minimum **number of subsequences needed such that the difference between the maximum and minimum values in each subsequence is **at most** *`k`*.*
 
 A **subsequence** is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The difference between the maximum and minimum value in the first subsequences i
 The difference between the maximum and minimum value in the second subsequences is 4 - 4 = 0.
 The difference between the maximum and minimum value in the third subsequences is 5 - 5 = 0.
 Since three subsequences were created, we return 3. It can be shown that 3 is the minimum number of subsequences needed.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

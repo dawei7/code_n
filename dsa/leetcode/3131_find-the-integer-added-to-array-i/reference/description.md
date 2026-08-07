@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two arrays of equal length, `nums1` and `nums2`.
 
@@ -7,12 +7,13 @@ Each element in `nums1` has been increased (or decreased in the case of negative
 As a result, `nums1` becomes **equal** to `nums2`. Two arrays are considered **equal** when they contain the same integers with the same frequencies.
 
 Return the integer `x`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The integer added to each element of `nums1` is -5.
 The integer added to each element of `nums1` is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} = \text{nums2.length} \le 100$
 

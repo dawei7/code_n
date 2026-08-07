@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ represents all the integers from $\text{start}_{i}$ to $\text{end}_{i}$ inclusively.
 
@@ -7,12 +7,13 @@ A **containing set** is an array `nums` where each interval from `intervals` has
 - For example, if $intervals = [[1,3], [3,7], [8,9]]$, then `[1,2,4,7,8,9]` and `[2,3,4,8,9]` are **containing sets**.
 
 Return *the minimum possible size of a containing set*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be shown that there cannot be any containing array of size 2.
 - **Output:** `5`
 - **Explanation:** let nums = [1, 2, 3, 4, 5].
 It can be shown that there cannot be any containing array of size 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{intervals.length} \le 3000$
 

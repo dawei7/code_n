@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. In one operation, you can select a subarray and replace it with a single element equal to its **maximum** value.
 
 Return the **maximum possible size** of the array after performing zero or more operations such that the resulting array is **non-decreasing**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The final array `[4, 5, 5]` is non-decreasing with size 3.
 No operation is needed as the array `[1,2,3]` is already non-decreasing.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{5}$
 

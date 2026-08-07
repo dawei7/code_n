@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of playing cards you have. A **house of cards** meets the following conditions:
 
@@ -13,11 +13,12 @@ You are given an integer `n` representing the number of playing cards you have. 
 - Each triangle is placed in the **leftmost** available spot in the row.
 
 Return *the number of **distinct** **house of cards** you can build using **all*** `n`* cards.* Two houses of cards are considered distinct if there exists a row where the two houses contain a different number of cards.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,6 +45,7 @@ The third house of cards in the diagram is not valid because the rightmost trian
 The first house of cards needs a horizontal card placed between the two triangles.
 The second house of cards uses 5 cards.
 The third house of cards uses 2 cards.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 500$

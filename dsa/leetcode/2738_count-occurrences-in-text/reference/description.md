@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Files`
 
@@ -18,7 +18,8 @@ Write a solution to find the number of files that have at least one occurrence o
 Return *the word 'bull' and 'bear' along with the corresponding number of occurrences in **any order.***
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The result format is in the following example.
 
 Return a table with columns `word` (varchar) and `count` (int) containing two rows for `'bull'` and `'bear'` indicating the number of files containing at least one space-enclosed occurrence. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

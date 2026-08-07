@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters and the special characters: `*`, `#`, and `%`.
 
@@ -13,12 +13,13 @@ Build a new string `result` by processing `s` according to the following rules f
 - A `'%'` **reverses** the current `result`.
 
 Return the final string `result` after processing all characters in `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -118,7 +119,8 @@ Thus, the final `result` is `"ba"`.
 Thus, the final `result` is `""`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 20$
 

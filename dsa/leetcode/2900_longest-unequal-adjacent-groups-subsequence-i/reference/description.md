@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string array `words` and a **binary** array `groups` both of length `n`.
 
@@ -8,13 +8,16 @@ Your task is to select the **longest alternating** subsequence from `words`.
 
 Return *the selected subsequence. If there are multiple answers, return **any** of them.*
 
-**Note:** The elements in `words` are distinct.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The elements in `words` are distinct.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ Return *the selected subsequence. If there are multiple answers, return **any** 
 **Explanation:** A subsequence that can be selected is `["a","b","c"]` because $\text{groups}[0] \neq \text{groups}[1]$ and $\text{groups}[1] \neq \text{groups}[2]$. Another subsequence that can be selected is `["a","b","d"]` because $\text{groups}[0] \neq \text{groups}[1]$ and $\text{groups}[1] \neq \text{groups}[3]$. It can be shown that the length of the longest subsequence of indices that satisfies the condition is `3`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{words.length} = \text{groups.length} \le 100$
 

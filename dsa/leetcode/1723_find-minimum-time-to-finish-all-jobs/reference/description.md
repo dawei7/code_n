@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `jobs`, where $\text{jobs}[i]$ is the amount of time it takes to complete the $$i^{\text{th}}$$ job.
 
 There are `k` workers that you can assign jobs to. Each job should be assigned to **exactly** one worker. The **working time** of a worker is the sum of the time it takes to complete all jobs assigned to them. Your goal is to devise an optimal assignment such that the **maximum working time** of any worker is **minimized**.
 
 *Return the **minimum** possible **maximum working time** of any assignment. *
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ There are `k` workers that you can assign jobs to. Each job should be assigned t
 Worker 1: 1, 2, 8 (working time = 1 + 2 + 8 = 11)
 Worker 2: 4, 7 (working time = 4 + 7 = 11)
 The maximum working time is 11.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{jobs.length} \le 12$
 

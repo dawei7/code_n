@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are several stones **arranged in a row**, and each stone has an associated value which is an integer given in the array `stoneValue`.
 
@@ -7,12 +7,13 @@ In each round of the game, Alice divides the row into **two non-empty rows** (i.
 The game ends when there is only **one stone remaining**. Alice's score is initially **zero**.
 
 Return *the maximum score that Alice can obtain*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The last round Alice has only one choice to divide the row which is [2], [3]. Bo
 
 - **Input:** $stoneValue = [4]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stoneValue.length} \le 500$
 

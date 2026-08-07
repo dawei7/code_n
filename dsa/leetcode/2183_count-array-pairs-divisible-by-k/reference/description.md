@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums` of length `n` and an integer `k`, return *the **number of pairs*** `(i, j)` *such that:*
 
 - $0 \le i < j \le n - 1$ *and*
 
 - $\text{nums}[i] * \text{nums}[j]$ *is divisible by* `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Other pairs such as (0, 2) and (2, 4) have products 3 and 15 respectively, which
 - **Input:** `nums = [1,2,3,4], k = 5`
 - **Output:** `0`
 - **Explanation:** There does not exist any pair of indices whose corresponding product is divisible by 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

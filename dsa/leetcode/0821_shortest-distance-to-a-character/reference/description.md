@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s` and a character `c` that occurs in `s`, return *an array of integers *`answer`* where *$\text{answer.length} = \text{s.length}$* and *$\text{answer}[i]$* is the **distance** from index *`i`* to the **closest** occurrence of character *`c`* in *`s`.
 
 The **distance** between two indices `i` and `j` is $abs(i - j)$, where `abs` is the absolute value function.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ The closest occurrence of 'e' for index 8 is at index 6, so the distance is abs(
 
 - **Input:** `s = "aaab", c = "b"`
 - **Output:** `[3,2,1,0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

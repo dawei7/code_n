@@ -1,8 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of strings `words`, return *the words that can be typed using letters of the alphabet on only one row of American keyboard like the image below*.
 
-**Note** that the strings are **case-insensitive**, both lowercased and uppercased of the same letter are treated as if they are at the same row.
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that the strings are **case-insensitive**, both lowercased and uppercased of the same letter are treated as if they are at the same row.
 
 In the **American keyboard**:
 
@@ -13,12 +20,8 @@ In the **American keyboard**:
 - the third row consists of the characters `"zxcvbnm"`.
 
 ![](images/keyboard.png)
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ Both `"a"` and `"A"` are in the 2nd row of the American keyboard due to case ins
 **Output:** ["adsdf","sfd"]
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 20$
 

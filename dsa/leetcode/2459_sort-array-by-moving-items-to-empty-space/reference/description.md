@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n` containing **each** element from `0` to $n - 1$ (**inclusive**). Each of the elements from `1` to $n - 1$ represents an item, and the element `0` represents an empty space.
 
@@ -13,7 +13,8 @@ For example, if $n = 4$, `nums` is sorted if:
 ...and considered to be unsorted otherwise.
 
 Return *the **minimum** number of operations needed to sort *`nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Return *the **minimum** number of operations needed to sort *`nums`.
 
 Return an integer representing the minimum number of operations into the empty space needed to obtain either `[0, 1, ..., n - 1]` or `[1, 2, ..., n - 1, 0]`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ It can be proven that 3 is the minimum number of operations needed.
 - Move item 2 to the empty space. Now, nums = [1,2,0,4,3].
 - Move item 3 to the empty space. Now, nums = [1,2,3,4,0].
 It can be proven that 2 is the minimum number of operations needed.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

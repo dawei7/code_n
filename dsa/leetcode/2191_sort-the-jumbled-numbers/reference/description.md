@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `mapping` which represents the mapping rule of a shuffled decimal system. $\text{mapping}[i] = j$ means digit `i` should be mapped to digit `j` in this system.
 
@@ -6,17 +6,18 @@ The **mapped value** of an integer is the new integer obtained by replacing each
 
 You are also given another integer array `nums`. Return *the array *`nums`* sorted in **non-decreasing** order based on the **mapped values** of its elements.*
 
-**Notes:**
-
-- Elements with the same mapped values should appear in the **same relative order** as in the input.
-
-- The elements of `nums` should only be sorted based on their mapped values and **not be replaced** by them.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- Elements with the same mapped values should appear in the **same relative order** as in the input.
+
+- The elements of `nums` should only be sorted based on their mapped values and **not be replaced** by them.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Thus, the sorted array is [338,38,991].
 - **Input:** $mapping = [0,1,2,3,4,5,6,7,8,9], nums = [789,456,123]$
 - **Output:** `[123,456,789]`
 - **Explanation:** 789 maps to 789, 456 maps to 456, and 123 maps to 123. Thus, the sorted array is [123,456,789].
-### Constraints
+
+### 5. Constraints
 
 - $\text{mapping.length} = 10$
 

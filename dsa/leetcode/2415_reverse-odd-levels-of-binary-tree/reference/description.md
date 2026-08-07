@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a **perfect** binary tree, reverse the node values at each **odd** level of the tree.
 
@@ -9,12 +9,13 @@ Return *the root of the reversed tree*.
 A binary tree is **perfect** if all parent nodes have two children and all leaves are on the same level.
 
 The **level** of a node is the number of edges along the path between it and the root node.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The nodes at level 1 are 13, 11, which are reversed and become 11, 13.
 The odd levels have non-zero values.
 The nodes at level 1 were 1, 2, and are 2, 1 after the reversal.
 The nodes at level 3 were 1, 1, 1, 1, 2, 2, 2, 2, and are 2, 2, 2, 2, 1, 1, 1, 1 after the reversal.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 2^{14}]$.
 

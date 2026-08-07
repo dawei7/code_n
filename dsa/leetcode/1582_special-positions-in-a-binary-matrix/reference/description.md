@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an `m x n` binary matrix `mat`, return *the number of special positions in *`mat`*.*
 
 A position `(i, j)` is called **special** if $\text{mat}[i][j] = 1$ and all other elements in row `i` and column `j` are `0` (rows and columns are **0-indexed**).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ A position `(i, j)` is called **special** if $\text{mat}[i][j] = 1$ and all othe
 - **Input:** $mat = [[1,0,0],[0,1,0],[0,0,1]]$
 - **Output:** `3`
 - **Explanation:** (0, 0), (1, 1) and (2, 2) are special positions.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

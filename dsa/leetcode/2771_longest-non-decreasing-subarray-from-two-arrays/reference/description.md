@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2` of length `n`.
 
@@ -8,13 +8,16 @@ Your task is to maximize the length of the **longest non-decreasing subarray** i
 
 Return *an integer representing the length of the **longest non-decreasing** subarray in* `nums3`.
 
-**Note: **A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A **subarray** is a contiguous **non-empty** sequence of elements within an array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ The entire array forms a non-decreasing subarray of length 4, making it the maxi
 - **Explanation:** One way to construct nums3 is:
 nums3 = [nums1[0], nums1[1]] => [1,1].
 The entire array forms a non-decreasing subarray of length 2, making it the maximum achievable length.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums1.length} = \text{nums2.length} = n \le 10^{5}$
 

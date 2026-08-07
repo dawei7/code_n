@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` processes forming a rooted tree structure. You are given two integer arrays `pid` and `ppid`, where $\text{pid}[i]$ is the ID of the $$i^{\text{th}}$$ process and $\text{ppid}[i]$ is the ID of the $$i^{\text{th}}$$ process's parent process.
 
@@ -7,7 +7,8 @@ Each process has only **one parent process** but may have multiple children proc
 When a process is **killed**, all of its children processes will also be killed.
 
 Given an integer `kill` representing the ID of a process you want to kill, return *a list of the IDs of the processes that will be killed. You may return the answer in **any order**.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $n = \lvert\texttt{pid}\rvert = \lvert\texttt{ppid}\rvert$.
 
 Return a list containing `kill` and every direct or indirect descendant of that process. List order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return a list containing `kill` and every direct or indirect descendant of that 
 
 - **Input:** $pid = [1], ppid = [0], kill = 1$
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{pid.length}$
 

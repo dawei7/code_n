@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.
 
@@ -11,7 +11,8 @@ A **valid** array meets the following conditions:
 - The smallest element (any of the smallest elements if there are multiple) is at the leftmost position in the array.
 
 Return *the **minimum** swaps required to make *`nums`* a valid array*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Return *the **minimum** swaps required to make *`nums`* a valid array*.
 
 Return an integer representing the minimum number of adjacent swaps required to move a smallest element to the first index and a largest element to the last index.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ It can be shown that 6 swaps is the minimum swaps required to make a valid array
 - **Input:** `nums = [9]`
 - **Output:** `0`
 - **Explanation:** The array is already valid, so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

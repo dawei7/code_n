@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array **sorted** in non-decreasing order, there is exactly one integer in the array that occurs more than 25% of the time, return that integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,7 +17,8 @@ Given an integer array **sorted** in non-decreasing order, there is exactly one 
 
 - **Input:** `arr = [1,1]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

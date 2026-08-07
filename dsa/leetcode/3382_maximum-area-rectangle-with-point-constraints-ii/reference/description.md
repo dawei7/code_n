@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are n points on an infinite plane. You are given two integer arrays `xCoord` and `yCoord` where $(\text{xCoord}[i], \text{yCoord}[i])$ represents the coordinates of the $$i^{\text{th}}$$ point.
 
@@ -11,12 +11,13 @@ Your task is to find the **maximum **area of a rectangle that:
 - Has its edges **parallel** to the axes.
 
 Return the **maximum area** that you can obtain or -1 if no such rectangle is possible.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ There is only one rectangle possible is with points `[1,1], [1,3], [3,1]` and `[
 The maximum area rectangle is formed by the points `[1,3], [1,2], [3,2], [3,3]`, which has an area of 2. Additionally, the points `[1,1], [1,2], [3,1], [3,2]` also form a valid rectangle with the same area.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{xCoord.length} = \text{yCoord.length} \le 2 * 10^{5}$
 

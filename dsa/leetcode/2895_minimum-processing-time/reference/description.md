@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You have a certain number of processors, each having 4 cores. The number of tasks to be executed is four times the number of processors. Each task must be assigned to a unique core, and each core can only be used once.
 
 You are given an array `processorTime` representing the time each processor becomes available and an array `tasks` representing how long each task takes to complete. Return the *minimum* time needed to complete all tasks.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ The time taken by the first processor to finish the execution of all tasks is $m
 The time taken by the second processor to finish the execution of all tasks is $max(20 + 2, 20 + 1, 20 + 2, 20 + 3) = 23$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{processorTime.length} \le 25000$
 

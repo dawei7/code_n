@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *a list of all possible **full binary trees** with* `n` *nodes*. Each node of each tree in the answer must have $\text{Node.val} = 0$.
 
 Each element of the answer is the root node of one possible tree. You may return the final list of trees in **any order**.
 
 A **full binary tree** is a binary tree where each node has exactly `0` or `2` children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ A **full binary tree** is a binary tree where each node has exactly `0` or `2` c
 
 - **Input:** $n = 3$
 - **Output:** `[[0,0,0]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 20$

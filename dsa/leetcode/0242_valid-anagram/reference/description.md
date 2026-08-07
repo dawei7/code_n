@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `f
 
 Return `true` exactly when both strings have identical character counts; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return `true` exactly when both strings have identical character counts; otherwi
 **Output:** false
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 5 * 10^{4}$
 

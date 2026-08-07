@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `start` and `target`, both of length `n`. Each string consists **only** of the characters `'L'`, `'R'`, and `'_'` where:
 
@@ -7,12 +7,13 @@ You are given two strings `start` and `target`, both of length `n`. Each string 
 - The character `'_'` represents a blank space that can be occupied by **any** of the `'L'` or `'R'` pieces.
 
 Return `true` *if it is possible to obtain the string* `target`* by moving the pieces of the string *`start`* **any** number of times*. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ After that, no pieces can move anymore, so it is impossible to obtain the string
 - **Input:** $start = "_R", target = "R_"$
 - **Output:** `false`
 - **Explanation:** The piece in the string start can move only to the right, so it is impossible to obtain the string target from start.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{start.length} = \text{target.length}$
 

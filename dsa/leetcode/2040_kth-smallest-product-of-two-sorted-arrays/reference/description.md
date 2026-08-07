@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two **sorted 0-indexed** integer arrays `nums1` and `nums2` as well as an integer `k`, return *the *$$k^{\text{th}}$$* (**1-based**) smallest product of *$\text{nums1}[i] * \text{nums2}[j]$* where *$0 \le i < \text{nums1.length}$* and *$0 \le j < \text{nums2.length}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The 6^th smallest product is 0.
 - nums1[0] * nums2[3] = (-2) * 4 = -8
 - nums1[4] * nums2[0] = 2 * (-3) = -6
 The 3^rd smallest product is -6.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 5 * 10^{4}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the **lexicographically smallest* *subsequence** of* `s` *that contains all the distinct characters of* `s` *exactly once*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,10 +17,13 @@ Given a string `s`, return *the **lexicographically smallest* *subsequence** of*
 
 - **Input:** `s = "cbacdcbc"`
 - **Output:** `"acdb"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 
 - `s` consists of lowercase English letters.
 
-**Note:** This question is the same as 316: <a href="https://leetcode.com/problems/remove-duplicate-letters/" target="_blank">https://leetcode.com/problems/remove-duplicate-letters/</a>
+### 5. Note
+
+This question is the same as 316: <a href="https://leetcode.com/problems/remove-duplicate-letters/" target="_blank">https://leetcode.com/problems/remove-duplicate-letters/</a>

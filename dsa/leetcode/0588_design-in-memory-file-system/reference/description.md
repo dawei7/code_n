@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that simulates an in-memory file system.
 
@@ -23,7 +23,8 @@ Implement the FileSystem class:
 
 	</li>
 - `String readContentFromFile(String filePath)` Returns the content in the file at `filePath`.
-### Function Contract
+
+### 2. Function Contract
 
 **LeetCode interface**
 
@@ -37,7 +38,7 @@ Construct one `FileSystem` object and invoke `ls`, `mkdir`, `addContentToFile`, 
 
 For complexity notation, let $P$ be the number of path components traversed, $k$ the number of immediate names returned by a directory listing, $C$ the content length processed by an operation, and $S$ the total stored filesystem state.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ fileSystem.addContentToFile("/a/b/c/d", "hello");
 fileSystem.ls("/");                         // return ["a"]
 fileSystem.readContentFromFile("/a/b/c/d"); // return "hello"
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{path.length}, \text{filePath.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two **version strings**, `version1` and `version2`, compare them. A version string consists of **revisions** separated by dots `'.'`. The **value of the revision** is its **integer conversion** ignoring leading zeros.
 
@@ -11,7 +11,8 @@ Return the following:
 - If `version1 > version2`, return 1.
 
 - Otherwise, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ Return the following:
 
 Return `-1` when the first version is smaller, `1` when it is larger, and `0` when their revision values are equal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ Ignoring leading zeroes, both "01" and "001" represent the same integer "1".
 version1 has less revisions, which means every missing revision are treated as "0".
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{version1.length}, \text{version2.length} \le 500$
 

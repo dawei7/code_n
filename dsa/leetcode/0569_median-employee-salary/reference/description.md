@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -19,7 +19,8 @@ Write a solution to find the rows that contain the median salary of each company
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -29,7 +30,7 @@ The result format is in the following example.
 
 Return a table with columns `id`, `company`, and `salary`. For each company, include the single central row when its employee count is odd and the two central rows when its employee count is even, using ascending `(salary, id)` order to determine position.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

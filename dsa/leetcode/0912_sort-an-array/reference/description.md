@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, sort the array in ascending order and return it.
 
 You must solve the problem **without using any built-in** functions in `O(nlog(n))` time complexity and with the smallest space complexity possible.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ You must solve the problem **without using any built-in** functions in `O(nlog(n
 - **Input:** `nums = [5,1,1,2,0,0]`
 - **Output:** `[0,0,1,1,2,5]`
 - **Explanation:** Note that the values of nums are not necessarily unique.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

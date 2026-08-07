@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a directed graph with `n` nodes labeled from `0` to $n - 1$, where each node has **exactly one** outgoing edge.
 
@@ -7,12 +7,13 @@ The graph is represented by a given **0-indexed** integer array `edges` of lengt
 The **edge score** of a node `i` is defined as the sum of the **labels** of all the nodes that have an edge pointing to `i`.
 
 Return *the node with the highest **edge score***. If multiple nodes have the same **edge score**, return the node with the **smallest** index.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Node 7 has the highest edge score so return 7.
 - The nodes 1 and 2 have an edge pointing to node 0. The edge score of node 0 is 1 + 2 = 3.
 - The nodes 0 and 3 have an edge pointing to node 2. The edge score of node 2 is 0 + 3 = 3.
 Nodes 0 and 2 both have an edge score of 3. Since node 0 has a smaller index, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{edges.length}$
 

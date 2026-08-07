@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `cost` of size `n`. You are currently at position `n` (at the end of the line) in a line of $n + 1$ people (numbered from 0 to `n`).
 
@@ -11,12 +11,13 @@ You are allowed to swap places with people as follows:
 - If they are behind you, they can swap with you for free.
 
 Return an array `answer` of size `n`, where $\text{answer}[i]$ is the **minimum** total cost to reach each position `i` in the line.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ We can get to each position in the following way:
 We can swap with person 0 for a cost of 1, then we will be able to reach any position `i` for free.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{cost.length} \le 100$
 

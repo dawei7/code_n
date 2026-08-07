@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `deck`. There is a deck of cards where every card has a unique integer. The integer on the $$i^{\text{th}}$$ card is $\text{deck}[i]$.
 
@@ -14,13 +14,16 @@ You will do the following steps repeatedly until all cards are revealed:
 
 Return *an ordering of the deck that would reveal the cards in increasing order*.
 
-**Note** that the first entry in the answer is considered to be the top of the deck.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the first entry in the answer is considered to be the top of the deck.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,7 +44,8 @@ Since all the cards revealed are in increasing order, the answer is correct.
 
 - **Input:** $deck = [1,1000]$
 - **Output:** `[1,1000]`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{deck.length} \le 1000$
 

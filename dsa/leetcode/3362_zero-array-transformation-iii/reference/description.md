@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a 2D array `queries` where $\text{queries}[i] = [l_{i}, r_{i}]$.
 
@@ -11,12 +11,13 @@ Each $\text{queries}[i]$ represents the following action on `nums`:
 A **Zero Array** is an array with all its elements equal to 0.
 
 Return the **maximum **number of elements that can be removed from `queries`, such that `nums` can still be converted to a **zero array** using the *remaining* queries. If it is not possible to convert `nums` to a **zero array**, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ We can remove $\text{queries}[2]$ and $\text{queries}[3]$.
 `nums` cannot be converted to a zero array even after using all the queries.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of integers `nums` of length `n`, and two **positive** integers `k` and `dist`.
 
@@ -7,12 +7,13 @@ The **cost** of an array is the value of its **first** element. For example, the
 You need to divide `nums` into `k` **disjoint contiguous **subarrays, such that the difference between the starting index of the **second** subarray and the starting index of the `kth` subarray should be **less than or equal to** `dist`. In other words, if you divide `nums` into the subarrays $nums[0..(i_{1} - 1)], nums[i_{1}..(i_{2} - 1)], ..., nums[i_{k}-1..(n - 1)]$, then $i_{k}-1 - i_{1} \le dist$.
 
 Return *the **minimum** possible sum of the cost of these* *subarrays*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It can be shown that there is no possible way to divide nums into 4 subarrays at
 - **Explanation:** The best possible way to divide nums into 3 subarrays is: [10], [8], and [18,9]. This choice is valid because i_k-1 - i_1 is 2 - 1 = 1 which is equal to dist.The total cost is nums[0] + nums[1] + nums[2] which is 10 + 8 + 18 = 36.
 The division [10], [8,18], and [9] is not valid, because the difference between i_k-1 and i_1 is 3 - 1 = 2, which is greater than dist.
 It can be shown that there is no possible way to divide nums into 3 subarrays at a cost lower than 36.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

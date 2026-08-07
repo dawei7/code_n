@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob each have a **lexicographically sorted** array of strings named `a` and `b` respectively.
 
@@ -21,11 +21,12 @@ A word `w` is **closely greater** than a word `z` if the following conditions ar
 - For example, the word `"care"` is closely greater than `"book"` and `"car"`, but is not closely greater than `"ant"` or `"cook"`.
 
 A string `s` is **lexicographically ****greater** than a string `t` if in the first position where `s` and `t` differ, string `s` has a letter that appears later in the alphabet than the corresponding letter in `t`. If the first `min(s.length, t.length)` characters do not differ, then the longer string is the lexicographically greater one.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ So Alice wins, and the game ends.
 - **Explanation:** Alice must start the game by playing the word "hrvatska".
 Bob can't play a word since the first letter of both of his words are smaller than the first letter of Alice's word, 'h'.
 So Alice wins, and the game ends.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{a.length}, \text{b.length} \le 10^{5}$
 

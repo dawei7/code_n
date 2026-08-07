@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `num` of length `n` consisting of digits.
 
 Return `true` *if for **every** index *`i`* in the range *$0 \le i < n$*, the digit *`i`* occurs *$\text{num}[i]$* times in *`num`*, otherwise return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ num[0] = '0'. The digit 0 should occur zero times, but actually occurs twice in 
 num[1] = '3'. The digit 1 should occur three times, but actually occurs zero times in num.
 num[2] = '0'. The digit 2 occurs zero times in num.
 The indices 0 and 1 both violate the condition, so return false.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{num.length}$
 

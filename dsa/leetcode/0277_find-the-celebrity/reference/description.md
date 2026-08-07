@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Suppose you are at a party with `n` people labeled from `0` to $n - 1$ and among them, there may exist one celebrity. The definition of a celebrity is that all the other $n - 1$ people know the celebrity, but the celebrity does not know any of them.
 
@@ -8,8 +8,7 @@ You are given an integer `n` and a helper function `bool knows(a, b)` that tells
 
 Return *the celebrity's label if there is a celebrity at the party*. If there is no celebrity, return `-1`.
 
-**Note** that the `n x n` 2D array `graph` given as input is **not** directly available to you, and instead **only** accessible through the helper function `knows`. $\text{graph}[i][j] = 1$ represents person `i` knows person `j`, wherease $\text{graph}[i][j] = 0$ represents person `j` does not know person `i`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +19,11 @@ Return *the celebrity's label if there is a celebrity at the party*. If there is
 
 Return the celebrity's label, or `-1` if no celebrity exists. The native interface receives only `n` and queries the supplied `knows(a, b)` API.
 
-### Examples
+### 3. Note
+
+that the `n x n` 2D array `graph` given as input is **not** directly available to you, and instead **only** accessible through the helper function `knows`. $\text{graph}[i][j] = 1$ represents person `i` knows person `j`, wherease $\text{graph}[i][j] = 0$ represents person `j` does not know person `i`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ Return the celebrity's label, or `-1` if no celebrity exists. The native interfa
 - **Input:** $graph = [[1,0,1],[1,1,0],[0,1,1]]$
 - **Output:** `-1`
 - **Explanation:** There is no celebrity.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{graph.length} = \text{graph}[i].length$
 

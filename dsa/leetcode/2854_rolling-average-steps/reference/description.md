@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Steps`
 
@@ -25,11 +25,12 @@ Output the $\text{user}_{id}$, $\text{steps}_{date}$, and rolling average. Round
 Return* the result table ordered by *$\text{user}_{id}$*, *$\text{steps}_{date}$* in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

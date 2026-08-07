@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, remove the vowels `'a'`, `'e'`, `'i'`, `'o'`, and `'u'` from it, and return the new string.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -13,7 +14,7 @@ Process every character from left to right. Discard a character exactly when it 
 
 - The new string formed by concatenating all retained characters. Its length may be zero when every input character is a vowel.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Process every character from left to right. Discard a character exactly when it 
 
 - **Input:** `s = "aeiou"`
 - **Output:** `""`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

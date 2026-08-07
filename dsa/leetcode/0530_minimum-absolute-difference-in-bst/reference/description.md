@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given the `root` of a Binary Search Tree (BST), return *the minimum absolute difference between the values of any two different nodes in the tree*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,10 +21,13 @@ Given the `root` of a Binary Search Tree (BST), return *the minimum absolute dif
 
 - **Input:** `root = [1,0,48,null,null,12,49]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[2, 10^{4}]$.
 
 - $0 \le \text{Node.val} \le 10^{5}$
 
-**Note:** This question is the same as 783: <a href="https://leetcode.com/problems/minimum-distance-between-bst-nodes/" target="_blank">https://leetcode.com/problems/minimum-distance-between-bst-nodes/</a>
+### 5. Note
+
+This question is the same as 783: <a href="https://leetcode.com/problems/minimum-distance-between-bst-nodes/" target="_blank">https://leetcode.com/problems/minimum-distance-between-bst-nodes/</a>

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a function that converts an array of objects `arr` into a matrix `m`.
 
@@ -9,11 +9,12 @@ The first row `m` should be the column names. If there is no nesting, the column
 Each of the remaining rows corresponds to an object in `arr`. Each value in the matrix corresponds to a value in an object. If a given object doesn't contain a value for a given column, the cell should contain an empty string `""`.
 
 The columns in the matrix should be in **lexographically ascending** order.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -103,7 +104,8 @@ arr = [
 ]
 - **Explanation:**
 There are no keys so every row is an empty array.
-### Constraints
+
+### 4. Constraints
 
 - `arr` is a valid JSON array
 

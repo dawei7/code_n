@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -27,7 +27,8 @@ Write a solution to report
 Return the result table ordered by $\text{product}_{name}$ in **ascending order**. In case of a tie, order it by $\text{sale}_{date}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ The result format is in the following example.
 
 Return a table with columns $\text{product}_{name}$ (varchar), $\text{sale}_{date}$ (varchar `YYYY-MM`), and `total` (int). Results must be grouped by normalized $\text{product}_{name}$ and $\text{sale}_{date}$ month, and ordered ascending by $\text{product}_{name}$ then $\text{sale}_{date}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is a **bi-directional** graph with `n` vertices, where each vertex is labeled from `0` to $n - 1$ (**inclusive**). The edges in the graph are represented as a 2D integer array `edges`, where each $\text{edges}[i] = [u_{i}, v_{i}]$ denotes a bi-directional edge between vertex $u_{i}$ and vertex $v_{i}$. Every vertex pair is connected by **at most one** edge, and no vertex has an edge to itself.
 
 You want to determine if there is a **valid path** that exists from vertex `source` to vertex `destination`.
 
 Given `edges` and the integers `n`, `source`, and `destination`, return `true`* if there is a **valid path** from *`source`* to *`destination`*, or *`false`* otherwise**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Given `edges` and the integers `n`, `source`, and `destination`, return `true`* 
 - **Input:** $n = 6, edges = [[0,1],[0,2],[3,5],[5,4],[4,3]], source = 0, destination = 5$
 - **Output:** `false`
 - **Explanation:** There is no path from vertex 0 to vertex 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{5}$
 

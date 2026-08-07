@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, return `true` if `s` is a `k`**-palindrome**.
 
 A string is `k`**-palindrome** if it can be transformed into a palindrome by removing at most `k` characters from it.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $n = \lvert\texttt{s}\rvert$. Removing characters retains a subsequence of `
 
 Return `true` if some palindromic subsequence of `s` has length at least $n-k$. Otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` if some palindromic subsequence of `s` has length at least $n-k$. 
 
 - **Input:** `s = "abbababa", k = 1`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

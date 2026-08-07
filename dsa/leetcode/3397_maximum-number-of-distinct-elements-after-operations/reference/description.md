@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -7,12 +7,13 @@ You are allowed to perform the following **operation** on each element of the ar
 - Add an integer in the range `[-k, k]` to the element.
 
 Return the **maximum** possible number of **distinct** elements in `nums` after performing the **operations**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return the **maximum** possible number of **distinct** elements in `nums` after 
 By adding -1 to $\text{nums}[0]$ and 1 to $\text{nums}[1]$, `nums` changes to `[3, 5, 4, 4]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

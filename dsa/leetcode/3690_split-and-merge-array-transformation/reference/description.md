@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2`, each of length `n`. You may perform the following **split-and-merge operation** on `nums1` any number of times:
 
@@ -9,12 +9,13 @@ You are given two integer arrays `nums1` and `nums2`, each of length `n`. You ma
 - Re-insert the removed subarray (in its original order) at **any** position in the remaining array (i.e., between any two elements, at the very start, or at the very end).
 
 Return the **minimum** number of **split-and-merge operations** needed to transform `nums1` into `nums2`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return the **minimum** number of **split-and-merge operations** needed to transf
 - Remove `[3,2]` at indices $0 - 1$; remaining is `[5,4,1,1]`; insert `[3,2]` at position `2`, resulting in `[5,4,3,2,1,1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums1.length} = \text{nums2.length} \le 6$
 

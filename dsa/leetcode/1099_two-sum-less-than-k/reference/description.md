@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array `nums` of integers and integer `k`, return the maximum `sum` such that there exists `i < j` with $\text{nums}[i] + \text{nums}[j] = sum$ and `sum < k`. If no `i`, `j` exist satisfying this equation, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ The two chosen values must occupy distinct positions ordered as $i < j$. Equal n
 
 Return the maximum $\text{nums}[i] + \text{nums}[j]$ that is strictly less than `k`. Return `-1` if no eligible pair exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the maximum $\text{nums}[i] + \text{nums}[j]$ that is strictly less than 
 - **Input:** `nums = [10,20,30], k = 15`
 - **Output:** `-1`
 - **Explanation:** In this case it is not possible to get a pair sum less that 15.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

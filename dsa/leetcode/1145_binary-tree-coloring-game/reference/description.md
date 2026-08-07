@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Two players play a turn based game on a binary tree. We are given the `root` of this binary tree, and the number of nodes `n` in the tree. `n` is odd, and each node has a distinct value from `1` to `n`.
 
@@ -9,12 +9,13 @@ Then, the players take turns starting with the first player. In each turn, that 
 If (and only if) a player cannot choose such a node in this way, they must pass their turn. If both players pass their turn, the game ends, and the winner is the player that colored more nodes.
 
 You are the second player. If it is possible to choose such a `y` to ensure you win the game, return `true`. If it is not possible, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ You are the second player. If it is possible to choose such a `y` to ensure you 
 
 - **Input:** `root = [1,2,3], n = 3, x = 1`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is `n`.
 

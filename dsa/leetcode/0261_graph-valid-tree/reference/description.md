@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You have a graph of `n` nodes labeled from `0` to $n - 1$. You are given an integer n and a list of `edges` where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an undirected edge between nodes $a_{i}$ and $b_{i}$ in the graph.
 
 Return `true` *if the edges of the given graph make up a valid tree, and* `false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $e = \texttt{edges.length}$.
 
 Return whether the graph defined by all nodes and edges is a tree.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return whether the graph defined by all nodes and edges is a tree.
 
 - **Input:** $n = 5, edges = [[0,1],[1,2],[2,3],[1,3],[1,4]]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2000$
 

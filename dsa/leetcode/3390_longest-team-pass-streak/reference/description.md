@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Teams`
 
@@ -119,6 +119,6 @@ Passes table:
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

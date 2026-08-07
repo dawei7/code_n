@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string array `words`, return *the maximum value of* $length(\text{word}[i]) * length(\text{word}[j])$ *where the two words do not share common letters*. If no such two words exist, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string array `words`, return *the maximum value of* $length(\text{word}[
 
 Return the largest product of lengths over two words with disjoint letter sets, or `0` if every pair shares a letter.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the largest product of lengths over two words with disjoint letter sets, 
 - **Input:** $words = ["a","aa","aaa","aaaa"]$
 - **Output:** `0`
 - **Explanation:** No such pair of words.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{words.length} \le 1000$
 

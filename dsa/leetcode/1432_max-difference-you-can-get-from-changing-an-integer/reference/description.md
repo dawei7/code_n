@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `num`. You will apply the following steps to `num` **two** separate times:
 
@@ -13,12 +13,13 @@ Let `a` and `b` be the two results from applying the operation to `num` *indepen
 Return *the max difference* between `a` and `b`.
 
 Note that neither `a` nor `b` may have any leading zeros, and **must not** be 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ We have now a = 999 and b = 111 and max difference = 888
 - **Explanation:** The first time pick x = 9 and y = 9 and store the new integer in a.
 The second time pick x = 9 and y = 1 and store the new integer in b.
 We have now a = 9 and b = 1 and max difference = 8
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 10^{8}$

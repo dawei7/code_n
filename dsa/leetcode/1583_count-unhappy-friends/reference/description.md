@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a list of `preferences` for `n` friends, where `n` is always **even**.
 
@@ -13,12 +13,13 @@ However, this pairing may cause some of the friends to be unhappy. A friend `x` 
 - `u` prefers `x` over `v`.
 
 Return *the number of unhappy friends*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Friends 0 and 2 are happy.
 
 - **Input:** $n = 4, preferences = [[1, 3, 2], [2, 3, 0], [1, 3, 0], [0, 2, 1]], pairs = [[1, 3], [0, 2]]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 500$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a reference of a node in a **<a href="https://en.wikipedia.org/wiki/Connectivity_(graph_theory)#Connected_graph" target="_blank">connected</a>** undirected graph.
 
@@ -20,7 +20,8 @@ For simplicity, each node's value is the same as the node's index (1-indexed). F
 **An adjacency list** is a collection of unordered **lists** used to represent a finite graph. Each list describes the set of neighbors of a node in the graph.
 
 The given node will always be the first node with $val = 1$. You must return the **copy of the given node** as a reference to the cloned graph.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ The given node will always be the first node with $val = 1$. You must return the
 
 Return independent adjacency data for a deep copy. The native LeetCode interface returns the cloned `Node` corresponding to the supplied node.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ Return independent adjacency data for a deep copy. The native LeetCode interface
 - **Input:** $adjList = []$
 - **Output:** `[]`
 - **Explanation:** This an empty graph, it does not have any nodes.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the graph is in the range `[0, 100]`.
 

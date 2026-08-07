@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a straight road of length `l` km, an integer `n`, an integer `k`**, **and **two** integer arrays, `position` and `time`, each of length `n`.
 
@@ -13,12 +13,13 @@ You **must** perform **exactly** `k` merge operations. In one merge, you can cho
 - Remove the sign at index `i`.
 
 Return the **minimum** **total** **travel time** (in minutes) to travel from 0 to `l` after **exactly** `k` merges.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -122,7 +123,8 @@ Return the **minimum** **total** **travel time** (in minutes) to travel from 0 t
 - Total Travel Time: $16 + 12 + 6 = 34$**, **which is the minimum possible time after exactly 1 merge.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le l \le 10^{5}$
 

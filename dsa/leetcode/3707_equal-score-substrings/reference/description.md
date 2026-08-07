@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
@@ -7,7 +7,8 @@ The **score** of a string is the sum of the positions of its characters in the a
 Determine whether there exists an index `i` such that the string can be split into two **non-empty** **<strong>substrings**</strong> `s[0..i]` and $s[(i + 1)..(n - 1)]$ that have **equal** scores.
 
 Return `true` if such a split exists, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Each candidate split index satisfies $0\le i<n-1$, ensuring that both the prefix
 
 Return `true` if the score of `s[0..i]` equals the score of $s[(i + 1)..(n - 1)]$ for at least one legal `i`; return `false` if no legal split balances the scores.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Both substrings have equal scores, so the output is `true`.
 **​​​​​​​**No split produces equal scores, so the output is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

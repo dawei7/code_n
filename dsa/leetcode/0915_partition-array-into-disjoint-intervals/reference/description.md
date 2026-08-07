@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, partition it into two (contiguous) subarrays `left` and `right` so that:
 
@@ -11,12 +11,13 @@ Given an integer array `nums`, partition it into two (contiguous) subarrays `lef
 Return *the length of *`left`* after such a partitioning*.
 
 Test cases are generated such that partitioning exists.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Test cases are generated such that partitioning exists.
 - **Input:** `nums = [1,1,1,0,6,12]`
 - **Output:** `4`
 - **Explanation:** left = [1,1,1,0], right = [6,12]
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

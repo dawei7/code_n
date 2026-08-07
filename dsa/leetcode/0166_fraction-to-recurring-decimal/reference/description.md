@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two integers representing the `numerator` and `denominator` of a fraction, return *the fraction in string format*.
 
@@ -8,8 +8,7 @@ If multiple answers are possible, return **any of them**.
 
 It is **guaranteed** that the length of the answer string is less than $10^{4}$ for all the given inputs.
 
-**Note** that if the fraction can be represented as a *finite length string*, you **must** return it.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +19,11 @@ It is **guaranteed** that the length of the answer string is less than $10^{4}$ 
 
 Return the exact finite or recurring decimal representation of the fraction.
 
-### Examples
+### 3. Note
+
+that if the fraction can be represented as a *finite length string*, you **must** return it.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Return the exact finite or recurring decimal representation of the fraction.
 
 - **Input:** $numerator = 4, denominator = 333$
 - **Output:** `"0.(012)"`
-### Constraints
+
+### 5. Constraints
 
 - $-2^{31} \le numerator, denominator \le 2^{31} - 1$
 

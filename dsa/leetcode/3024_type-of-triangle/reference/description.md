@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of size `3` which can form the sides of a triangle.
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** integer array `nums` of size `3` which can form th
 - A triangle is called **scalene** if all its sides are of different lengths.
 
 Return *a string representing* *the type of triangle that can be formed **or *`"none"`* if it **cannot** form a triangle.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ nums[0] + nums[2] = 3 + 5 = 8, which is greater than nums[1] = 4.
 nums[1] + nums[2] = 4 + 5 = 9, which is greater than nums[0] = 3.
 Since the sum of the two sides is greater than the third side for all three cases, therefore, it can form a triangle.
 As all the sides are of different lengths, it will form a scalene triangle.
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = 3$
 

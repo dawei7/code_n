@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **family tree** rooted at `0` consisting of `n` nodes numbered `0` to $n - 1$. You are given a **0-indexed** integer array `parents`, where $\text{parents}[i]$ is the parent for node `i`. Since node `0` is the **root**, $\text{parents}[0] = -1$.
 
@@ -7,12 +7,13 @@ There are $10^{5}$ genetic values, each represented by an integer in the **inclu
 Return *an array *`ans`* of length *`n`* where *$\text{ans}[i]$* is* *the **smallest** genetic value that is **missing** from the subtree rooted at node* `i`.
 
 The **subtree** rooted at a node `x` contains node `x` and all of its **descendant** nodes.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ The **subtree** rooted at a node `x` contains node `x` and all of its **descenda
 - **Input:** $parents = [-1,2,3,0,2,4,1], nums = [2,3,4,5,6,7,8]$
 - **Output:** `[1,1,1,1,1,1,1]`
 - **Explanation:** The value 1 is missing from all the subtrees.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{parents.length} = \text{nums.length}$
 

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a list of the scores of different students, `items`, where $\text{items}[i] = [\text{ID}_{i}, \text{score}_{i}]$ represents one score from a student with $\text{ID}_{i}$, calculate each student's **top five average**.
 
 Return *the answer as an array of pairs *`result`*, where *$\text{result}[j] = [\text{ID}_{j}, \text{topFiveAverage}_{j}]$* represents the student with *$\text{ID}_{j}$* and their **top five average**. Sort *`result`* by *$\text{ID}_{j}$* in **increasing order**.*
 
 A student's **top five average** is calculated by taking the sum of their top five scores and dividing it by `5` using **integer division**.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -19,7 +20,7 @@ Let $N$ be the number of score records and $S$ the number of distinct student id
 - `average` is the integer quotient obtained by summing that student's five highest scores and dividing by `5`.
 - Rows are ordered by $\text{student}_{id}$ in increasing order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The student with ID = 2 got scores 93, 97, 77, 100, and 76. Their top five avera
 
 - **Input:** $items = [[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100],[1,100],[7,100]]$
 - **Output:** `[[1,100],[7,100]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{items.length} \le 1000$
 

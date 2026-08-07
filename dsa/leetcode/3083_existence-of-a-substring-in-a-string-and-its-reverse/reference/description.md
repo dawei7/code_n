@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a** **string `s`, find any substring of length `2` which is also present in the reverse of `s`.
 
 Return `true`* if such a substring exists, and *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return `true`* if such a substring exists, and *`false`* otherwise.*
 **Explanation:** There is no substring of length `2` in `s`, which is also present in the reverse of `s`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

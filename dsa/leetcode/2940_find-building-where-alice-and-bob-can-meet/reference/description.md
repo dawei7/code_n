@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `heights` of positive integers, where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ building.
 
@@ -7,12 +7,13 @@ If a person is in building `i`, they can move to any other building `j` if and o
 You are also given another array `queries` where $\text{queries}[i] = [a_{i}, b_{i}]$. On the $$i^{\text{th}}$$ query, Alice is in building $a_{i}$ while Bob is in building $b_{i}$.
 
 Return *an array* `ans` *where* $\text{ans}[i]$ *is **the index of the leftmost building** where Alice and Bob can meet on the* $$i^{\text{th}}$$ *query*. *If Alice and Bob cannot move to a common building on query* `i`, *set* $\text{ans}[i]$ *to* `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ In the fourth query, Alice and Bob can move to building 4 since heights[3] < hei
 In the fifth query, Alice can directly move to Bob's building since heights[1] < heights[6].
 For ans[i] != -1, It can be shown that ans[i] is the leftmost building where Alice and Bob can meet.
 For ans[i] == -1, It can be shown that there is no building where Alice and Bob can meet.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{heights.length} \le 5 * 10^{4}$
 

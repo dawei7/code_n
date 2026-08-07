@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `employees`
 
@@ -146,7 +146,7 @@ The output table is ordered by improvement_score in descending order, then by na
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

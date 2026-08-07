@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a `m x n` matrix `mat` and an integer `threshold`, return *the maximum side-length of a square with a sum less than or equal to *`threshold`* or return *`0`* if there is no such square*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Given a `m x n` matrix `mat` and an integer `threshold`, return *the maximum sid
 
 - **Input:** $mat = [[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2],[2,2,2,2,2]], threshold = 1$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

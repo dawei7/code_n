@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are playing a game of tag with your friends. In tag, people are divided into two teams: people who are "it", and people who are not "it". The people who are "it" want to catch as many people as possible who are not "it".
 
 You are given a **0-indexed** integer array `team` containing only zeros (denoting people who are **not** "it") and ones (denoting people who are "it"), and an integer `dist`. A person who is "it" at index `i` can catch any **one** person whose index is in the range `[i - dist, i + dist]` (**inclusive**) and is **not** "it".
 
 Return *the **maximum** number of people that the people who are "it" can catch*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ There are no people who are not "it" to catch.
 - **Output:** `0`
 - **Explanation:**
 **There are no people who are "it" to catch people.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{team.length} \le 10^{5}$
 

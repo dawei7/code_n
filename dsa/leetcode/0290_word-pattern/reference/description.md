@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `pattern` and a string `s`, find if `s` follows the same pattern.
 
@@ -9,7 +9,8 @@ Here **follow** means a full match, such that there is a bijection between a let
 - Each unique word in `s` maps to **exactly** one letter in `pattern`.
 
 - No two letters map to the same word, and no two words map to the same letter.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Here **follow** means a full match, such that there is a bijection between a let
 
 Return `true` exactly when the pattern letters and words form the required position-by-position bijection.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The bijection can be established as:
 **Output:** false
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length} \le 300$
 

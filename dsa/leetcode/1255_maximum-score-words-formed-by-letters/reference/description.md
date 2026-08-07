@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a list of `words`, list of  single `letters` (might be repeating) and `score` of every character.
 
 Return the maximum score of **any** valid set of words formed by using the given letters ($\text{words}[i]$ cannot be used two or more times).
 
 It is not necessary to use all characters in `letters` and each letter can only be used once. Score of letters `'a'`, `'b'`, `'c'`, ... ,`'z'` is given by $\text{score}[0]$, $\text{score}[1]$, ... , $\text{score}[25]$ respectively.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Word "xxxz" only get a score of 25.
 - **Output:** `0`
 - **Explanation:**
 Letter "e" can only be used once.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 14$
 

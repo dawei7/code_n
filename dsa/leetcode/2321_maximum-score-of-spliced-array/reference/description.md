@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2`, both of length `n`.
 
@@ -13,12 +13,13 @@ The **score** of the arrays is the **maximum** of `sum(nums1)` and `sum(nums2)`,
 Return *the **maximum possible score***.
 
 A **subarray** is a contiguous sequence of elements within an array. `arr[left...right]` denotes the subarray that contains the elements of `nums` between indices `left` and `right` (**inclusive**).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The score is max(sum(nums1), sum(nums2)) = max(140, 220) = 220.
 - **Output:** `31`
 - **Explanation:** We choose not to swap any subarray.
 The score is max(sum(nums1), sum(nums2)) = max(31, 3) = 31.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

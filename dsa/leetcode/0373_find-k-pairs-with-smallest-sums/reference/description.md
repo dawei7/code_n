@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` sorted in **non-decreasing order** and an integer `k`.
 
 Define a pair `(u, v)` which consists of one element from the first array and one element from the second array.
 
 Return *the* `k` *pairs* $(u_{1}, v_{1}), (u_{2}, v_{2}), ..., (u_{k}, v_{k})$ *with the smallest sums*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return *the* `k` *pairs* $(u_{1}, v_{1}), (u_{2}, v_{2}), ..., (u_{k}, v_{k})$ *
 
 Return `k` value pairs formed by one occurrence from each array whose sums are the `k` smallest available sums.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return `k` value pairs formed by one occurrence from each array whose sums are t
 - **Input:** $nums1 = [1,1,2], nums2 = [1,2,3], k = 2$
 - **Output:** `[[1,1],[1,1]]`
 - **Explanation:** The first 2 pairs are returned from the sequence: [1,1],[1,1],[1,2],[2,1],[1,2],[2,2],[1,3],[1,3],[2,3]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 

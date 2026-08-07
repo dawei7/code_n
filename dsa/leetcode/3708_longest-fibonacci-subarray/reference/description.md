@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums`.
 
@@ -6,8 +6,7 @@ A **Fibonacci** array is a contiguous sequence whose third and subsequent terms 
 
 Return the length of the longest **Fibonacci** **subarray** in `nums`.
 
-**Note:** Subarrays of length 1 or 2 are always **Fibonacci**.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +18,11 @@ A subarray `nums[left..right]` is contiguous. When it contains at least three va
 
 Return the greatest length of any Fibonacci subarray in `nums`.
 
-### Examples
+### 3. Note
+
+Subarrays of length 1 or 2 are always **Fibonacci**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -63,7 +66,8 @@ The longest Fibonacci subarray is $nums[1..2] = [1000000000, 1000000000]$.
 `[1000000000, 1000000000]` is Fibonacci because its length is 2.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

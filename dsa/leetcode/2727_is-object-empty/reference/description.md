@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an object or an array, return if it is empty.
 
@@ -7,12 +7,13 @@ Given an object or an array, return if it is empty.
 - An empty array contains no elements.
 
 You may assume the object or array is the output of `JSON.parse`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ You may assume the object or array is the output of `JSON.parse`.
 - **Input:** $obj = [null, false, 0]$
 - **Output:** `false`
 - **Explanation:** The array has 3 elements so it is not empty.
-### Constraints
+
+### 4. Constraints
 
 - `obj` is a valid JSON object or array
 

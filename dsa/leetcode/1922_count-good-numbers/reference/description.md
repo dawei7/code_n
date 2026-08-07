@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A digit string is **good** if the digits **(0-indexed)** at **even** indices are **even** and the digits at **odd** indices are **prime** (`2`, `3`, `5`, or `7`).
 
@@ -7,12 +7,13 @@ A digit string is **good** if the digits **(0-indexed)** at **even** indices are
 Given an integer `n`, return *the **total** number of good digit strings of length *`n`. Since the answer may be large, **return it modulo **$10^{9} + 7$.
 
 A **digit string** is a string consisting of digits `0` through `9` that may contain leading zeros.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ A **digit string** is a string consisting of digits `0` through `9` that may con
 
 - **Input:** $n = 50$
 - **Output:** `564908303`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{15}$

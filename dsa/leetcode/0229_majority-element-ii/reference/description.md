@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array of size `n`, find all elements that appear more than $⌊n / 3⌋$ times.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer array of size `n`, find all elements that appear more than $⌊
 
 Return all values occurring more than $\lfloor \texttt{nums.length}/3 \rfloor$ times, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return all values occurring more than $\lfloor \texttt{nums.length}/3 \rfloor$ t
 
 - **Input:** `nums = [1,2]`
 - **Output:** `[1,2]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

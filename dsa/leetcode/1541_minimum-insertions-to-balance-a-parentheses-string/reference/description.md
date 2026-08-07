@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a parentheses string `s` containing only the characters `'('` and `')'`. A parentheses string is **balanced** if:
 
@@ -13,12 +13,13 @@ In other words, we treat `'('` as an opening parenthesis and `'))'` as a closing
 You can insert the characters `'('` and `')'` at any position of the string to balance it if needed.
 
 Return *the minimum number of insertions* needed to make `s` balanced.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return *the minimum number of insertions* needed to make `s` balanced.
 - **Input:** `s = "))())("`
 - **Output:** `3`
 - **Explanation:** Add '(' to match the first '))', Add '))' to match the last '('.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a number container system that can do the following:
 
@@ -13,12 +13,13 @@ Implement the `NumberContainers` class:
 - `void change(int index, int number)` Fills the container at `index` with the `number`. If there is already a number at that `index`, replace it.
 
 - `int find(int number)` Returns the smallest index for the given `number`, or `-1` if there is no index that is filled by `number` in the system.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ nc.find(10); // Number 10 is at the indices 1, 2, 3, and 5. Since the smallest i
 nc.change(1, 20); // Your container at index 1 will be filled with number 20. Note that index 1 was filled with 10 and then replaced with 20.
 nc.find(10); // Number 10 is at the indices 2, 3, and 5. The smallest index that is filled with 10 is 2. Therefore, we return 2.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le index, number \le 10^{9}$
 

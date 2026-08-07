@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of **even** length.
 
@@ -16,13 +16,16 @@ The **average** of two numbers `a` and `b` is $(a + b) / 2$.
 
 Return* the number of **distinct** averages calculated using the above process*.
 
-**Note** that when there is a tie for a minimum or maximum number, any can be removed.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that when there is a tie for a minimum or maximum number, any can be removed.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ Since there are 2 distinct numbers among 2.5, 2.5, and 3.5, we return 2.
 - **Output:** `1`
 - **Explanation:**
 There is only one average to be calculated after removing 1 and 100, so we return 1.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

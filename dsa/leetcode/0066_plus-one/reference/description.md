@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a **large integer** represented as an integer array `digits`, where each $\text{digits}[i]$ is the $$i^{\text{th}}$$ digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading `0`'s.
 
 Increment the large integer by one and return *the resulting array of digits*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Increment the large integer by one and return *the resulting array of digits*.
 
 Return the most-significant-first digit array representing the input value plus one.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Thus, the result should be [4,3,2,2].
 - **Explanation:** The array represents the integer 9.
 Incrementing by one gives 9 + 1 = 10.
 Thus, the result should be [1,0].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{digits.length} \le 100$
 

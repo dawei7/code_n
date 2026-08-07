@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A car travels from a starting position to a destination which is `target` miles east of the starting position.
 
@@ -9,12 +9,13 @@ The car starts with an infinite tank of gas, which initially has `startFuel` lit
 Return *the minimum number of refueling stops the car must make in order to reach its destination*. If it cannot reach the destination, return `-1`.
 
 Note that if the car reaches a gas station with `0` fuel left, the car can still refuel there. If the car reaches the destination with `0` fuel left, it is still considered to have arrived.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ We drive to position 10, expending 10 liters of fuel.  We refuel from 0 liters t
 Then, we drive from position 10 to position 60 (expending 50 liters of fuel),
 and refuel from 10 liters to 50 liters of gas.  We then drive to and reach the target.
 We made 2 refueling stops along the way, so we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le target, startFuel \le 10^{9}$
 

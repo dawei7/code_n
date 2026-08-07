@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -9,7 +9,8 @@ The **score** of an index `i` is defined as the number of indices `j` such that:
 - $\text{nums}[i]$ and $\text{nums}[j]$ have different parity (one is even and the other is odd).
 
 Return an integer array `answer` of length `n`, where $\text{answer}[i]$ is the score of index `i`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 Return a length-$n$ integer array. At each index `i`, store the number of indices strictly to its right whose values have parity different from $\text{nums}[i]$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ Thus, the $answer = [2, 1, 1, 0]$.
 There is only one element in `nums`. Thus, the score of index 0 is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

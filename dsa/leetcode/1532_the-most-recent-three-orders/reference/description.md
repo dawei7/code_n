@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -34,7 +34,8 @@ Write a solution to find the most recent three orders of each user. If a user or
 Return the result table ordered by $\text{customer}_{name}$ in **ascending order** and in case of a tie by the $\text{customer}_{id}$ in **ascending order**. If there is still a tie, order them by $\text{order}_{date}$ in **descending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -58,7 +59,7 @@ The result format is in the following example.
 
 Return columns $\text{customer}_{name}$, $\text{customer}_{id}$, $\text{order}_{id}$, and $\text{order}_{date}$. For each customer with orders, return at most their 3 newest orders by date. Order the output by $\text{customer}_{name}$ ASC, $\text{customer}_{id}$ ASC, and $\text{order}_{date}$ DESC.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

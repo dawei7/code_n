@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The school cafeteria offers circular and square sandwiches at lunch break, referred to by numbers `0` and `1` respectively. All students stand in a queue. Each student either prefers square or circular sandwiches.
 
@@ -11,12 +11,13 @@ The number of sandwiches in the cafeteria is equal to the number of students. Th
 This continues until none of the queue students want to take the top sandwich and are thus unable to eat.
 
 You are given two integer arrays `students` and `sandwiches` where $\text{sandwiches}[i]$ is the type of the $i^​​​​​​th$ sandwich in the stack ($i = 0$ is the top of the stack) and $\text{students}[j]$ is the preference of the $j^​​​​​​th$ student in the initial queue ($j = 0$ is the front of the queue). Return *the number of students that are unable to eat.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Hence all students are able to eat.
 
 - **Input:** $students = [1,1,1,0,0,1], sandwiches = [1,0,0,0,1,1]$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{students.length}, \text{sandwiches.length} \le 100$
 

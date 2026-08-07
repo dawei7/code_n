@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice is a caretaker of `n` gardens and she wants to plant flowers to maximize the total beauty of all her gardens.
 
@@ -11,12 +11,13 @@ A garden is considered **complete** if it has **at least** `target` flowers. The
 - The **minimum** number of flowers in any of the **incomplete** gardens multiplied by `partial`. If there are no incomplete gardens, then this value will be `0`.
 
 Return *the **maximum** total beauty that Alice can obtain after planting at most *`newFlowers`* flowers.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ The minimum number of flowers in the incomplete gardens is 4.
 Thus, the total beauty is 3 * 2 + 4 * 6 = 6 + 24 = 30.
 No other way of planting flowers can obtain a total beauty higher than 30.
 Note that Alice could make all the gardens complete but in this case, she would obtain a lower total beauty.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{flowers.length} \le 10^{5}$
 

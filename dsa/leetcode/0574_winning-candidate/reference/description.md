@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Candidate`
 
@@ -32,7 +32,8 @@ Write a solution to report the name of the winning candidate (i.e., the candidat
 The test cases are generated so that **exactly one candidate wins** the elections.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -44,7 +45,7 @@ Let $V$ be the number of rows in `Vote` and $C$ the number of rows in `Candidate
 
 Return a one-row table with a `name` column containing the unique candidate with the greatest vote count.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

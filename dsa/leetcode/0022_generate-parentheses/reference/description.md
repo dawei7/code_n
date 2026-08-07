@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given `n` pairs of parentheses, write a function to *generate all combinations of well-formed parentheses*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given `n` pairs of parentheses, write a function to *generate all combinations o
 
 Return all well-formed strings containing exactly $n$ opening and $n$ closing parentheses.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,6 +22,7 @@ Return all well-formed strings containing exactly $n$ opening and $n$ closing pa
 
 - **Input:** $n = 1$
 - **Output:** `["()"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 8$

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the largest perimeter of a triangle with a non-zero area, formed from three of these lengths*. If it is impossible to form any triangle of a non-zero area, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ You cannot use the side lengths 1, 1, and 2 to form a triangle.
 You cannot use the side lengths 1, 1, and 10 to form a triangle.
 You cannot use the side lengths 1, 2, and 10 to form a triangle.
 As we cannot use any three side lengths to form a triangle of non-zero area, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{4}$
 

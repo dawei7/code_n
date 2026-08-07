@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a circle of red and blue tiles. You are given an array of integers `colors` and an integer `k`. The color of tile `i` is represented by $\text{colors}[i]$:
 
@@ -10,13 +10,16 @@ An **alternating** group is every `k` contiguous tiles in the circle with **alte
 
 Return the number of **alternating** groups.
 
-**Note** that since `colors` represents a **circle**, the **first** and the **last** tiles are considered to be next to each other.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that since `colors` represents a **circle**, the **first** and the **last** tiles are considered to be next to each other.
+
+### 4. Examples
 
 #### Example 1
 
@@ -76,7 +79,8 @@ Alternating groups:
 ![](images/screenshot-2024-05-28-184516.png)
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{colors.length} \le 10^{5}$
 

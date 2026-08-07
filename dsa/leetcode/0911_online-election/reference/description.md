@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `persons` and `times`. In an election, the $$i^{\text{th}}$$ vote was cast for $\text{persons}[i]$ at time $\text{times}[i]$.
 
@@ -9,12 +9,13 @@ Implement the `TopVotedCandidate` class:
 - `TopVotedCandidate(int[] persons, int[] times)` Initializes the object with the `persons` and `times` arrays.
 
 - `int q(int t)` Returns the number of the person that was leading the election at time `t` according to the mentioned rules.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ topVotedCandidate.q(15); // return 0
 topVotedCandidate.q(24); // return 0
 topVotedCandidate.q(8); // return 1
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{persons.length} \le 5000$
 

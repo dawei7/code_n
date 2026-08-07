@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n` where `n` is **even**, and an integer `k`.
 
@@ -9,12 +9,13 @@ You need to perform some changes (possibly none) such that the final array satis
 - There exists an integer `X` such that $abs(a[i] - a[n - i - 1]) = X$ for all $(0 \le i < n)$.
 
 Return the **minimum** number of changes required to satisfy the above condition.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ We can perform the following operations:
 The integer `X` will be 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 10^{5}$
 

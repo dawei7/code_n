@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `arr` of size `n` consisting of **non-empty** strings.
 
@@ -7,12 +7,13 @@ Find a string array `answer` of size `n` such that:
 - $\text{answer}[i]$ is the **shortest** substring of $\text{arr}[i]$ that does **not** occur as a substring in any other string in `arr`. If multiple such substrings exist, $\text{answer}[i]$ should be the lexicographically smallest. And if no such substring exists, $\text{answer}[i]$ should be an empty string.
 
 Return *the array *`answer`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return *the array *`answer`.
 - For the string "abc", there is no substring that does not occur in any other string.
 - For the string "bcd", there is no substring that does not occur in any other string.
 - For the string "abcd", the shortest substring that does not occur in any other string is "abcd".
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{arr.length}$
 

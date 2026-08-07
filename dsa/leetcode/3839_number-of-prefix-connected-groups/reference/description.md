@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words` and an integer `k`.
 
@@ -8,12 +8,7 @@ A **connected group** is a set of words such that each pair of words is prefix-c
 
 Return the **number of connected groups** that contain **at least** two words, formed from the given words.
 
-**Note:**
-
-- Words with length less than `k` cannot join any group and are ignored.
-
-- Duplicate strings are treated as separate words.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +28,13 @@ All indices with the same prefix form one maximal connected group. The requested
 
 Return the number of distinct valid length-$K$ prefixes that occur at two or more indices.
 
-### Examples
+### 3. Note
+
+- Words with length less than `k` cannot join any group and are ignored.
+
+- Duplicate strings are treated as separate words.
+
+### 4. Examples
 
 #### Example 1
 
@@ -89,7 +90,8 @@ Words are evaluated for a prefix of length $k = 3$:
 Thus, there are 2 connected groups, each containing at least two words.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 5000$
 

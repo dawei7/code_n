@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given two integers `n` and `k`, return *all possible combinations of* `k` *numbers chosen from the range* `[1, n]`.
 
 You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ You may return the answer in **any order**.
 
 Return every size-`k` subset of the integers from `1` through `n`, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Note that combinations are unordered, i.e., [1,2] and [2,1] are considered to be
 - **Input:** $n = 1, k = 1$
 - **Output:** `[[1]]`
 - **Explanation:** There is 1 choose 1 = 1 total combination.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 20$
 

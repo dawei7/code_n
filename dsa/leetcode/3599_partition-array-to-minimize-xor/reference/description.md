@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
 Your task is to partition `nums` into `k`** **non-empty **subarrays**. For each subarray, compute the bitwise **XOR** of all its elements.
 
 Return the **minimum** possible value of the **maximum XOR** among these `k` subarrays.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ The optimal partition is `[1, 1]` and `[2, 3, 1]`.
 The maximum XOR among the subarrays is 0, which is the minimum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 250$
 

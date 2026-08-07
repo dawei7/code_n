@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`.
 
@@ -13,12 +13,13 @@ Let's define `a` and `b` as follows:
 Note that **^** denotes the **bitwise-xor** operation.
 
 Return *the number of triplets* (`i`, `j` and `k`) Where $a = b$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *the number of triplets* (`i`, `j` and `k`) Where $a = b$.
 
 - **Input:** `arr = [1,1,1,1,1]`
 - **Output:** `10`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 300$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, and an integer `k`. Let's introduce **K-or** operation by extending the standard bitwise OR. In K-or, a bit position in the result is set to `1` if at least `k` numbers in `nums` have a `1` in that position.
 
@@ -103,12 +103,13 @@ Only bits 0 and 3 qualify. The result is $(1001)_2 = 9$.
 **Explanation: ** Since $k = 1$, the 1-or of the array is equal to the bitwise OR of all its elements. Hence, the answer is $10 OR 8 OR 5 OR 9 OR 11 OR 6 OR 8 = 15$.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `k`.
 
@@ -7,12 +7,13 @@ Return *an integer that denotes the **sum** of elements in *`nums`* whose corres
 The **set bits** in an integer are the `1`'s present when it is written in binary.
 
 - For example, the binary representation of `21` is `10101`, which has `3` set bits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Hence, the answer is nums[1] + nums[2] + nums[4] = 13.
 3 = 11_2
 Only index 3 has k = 2 set bits in its binary representation.
 Hence, the answer is nums[3] = 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

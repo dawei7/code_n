@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Numbers can be regarded as the product of their factors.
 
@@ -6,8 +6,7 @@ Numbers can be regarded as the product of their factors.
 
 Given an integer `n`, return *all possible combinations of its factors*. You may return the answer in **any order**.
 
-**Note** that the factors should be in the range `[2, n - 1]`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +16,11 @@ Given an integer `n`, return *all possible combinations of its factors*. You may
 
 Return $List[\text{List}[int]]$ containing all possible factor combinations of `n` (factors in range $[2, n-1]$).
 
-### Examples
+### 3. Note
+
+that the factors should be in the range `[2, n - 1]`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -31,6 +34,7 @@ Return $List[\text{List}[int]]$ containing all possible factor combinations of `
 
 - **Input:** $n = 37$
 - **Output:** `[]`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{7}$

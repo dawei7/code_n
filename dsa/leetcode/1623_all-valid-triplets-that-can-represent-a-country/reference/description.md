@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `SchoolA`
 
@@ -57,7 +57,8 @@ Write a solution to find all the possible triplets representing the country unde
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -69,7 +70,7 @@ The result format is in the following example.
 
 Return a table with columns $\text{member}_{A}$, $\text{member}_{B}$, and $\text{member}_{C}$ representing all valid combinations of one student from each school where all 3 $\text{student}_{id}$s are pairwise distinct and all 3 $\text{student}_{name}$s are pairwise distinct.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

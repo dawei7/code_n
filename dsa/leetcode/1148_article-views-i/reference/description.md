@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Views`
 
@@ -21,12 +21,13 @@ Write a solution to find all the authors that viewed at least one of their own a
 Return the result table sorted by `id` in ascending order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

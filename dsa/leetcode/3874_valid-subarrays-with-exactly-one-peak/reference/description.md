@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -17,7 +17,8 @@ A subarray `[l, r]` is **valid** if:
 Return an integer denoting the number of **valid subarrays** in `nums`.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 Return the total number of index intervals `[l, r]` that contain exactly one original-array peak `i` and satisfy both distance bounds.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -80,7 +81,8 @@ Return the total number of index intervals `[l, r]` that contain exactly one ori
 - The valid subarrays are `[5]`, `[3, 5]`, `[5, 1]`, `[3, 5, 1]`, `[4, 3, 5]`, and `[4, 3, 5, 1]`, so the answer is 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

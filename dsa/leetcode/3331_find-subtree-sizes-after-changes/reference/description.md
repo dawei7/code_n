@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a tree rooted at node 0 that consists of `n` nodes numbered from `0` to $n - 1$. The tree is represented by an array `parent` of size `n`, where $\text{parent}[i]$ is the parent of node `i`. Since node 0 is the root, $\text{parent}[0] = -1$.
 
@@ -13,12 +13,13 @@ We make the following changes on the tree **one** time **simultaneously** for al
 - Otherwise, **remove** the edge between `x` and its current parent and make node `y` the new parent of `x` by adding an edge between them.
 
 Return an array `answer` of size `n` where $\text{answer}[i]$ is the **size** of the subtree rooted at node `i` in the **final** tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The following changes will happen at the same time:
 - The parent of node 2 will change from node 4 to node 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{parent.length} = \text{s.length}$
 

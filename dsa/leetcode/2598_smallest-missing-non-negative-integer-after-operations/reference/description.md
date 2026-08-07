@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `value`.
 
@@ -11,12 +11,13 @@ The MEX (minimum excluded) of an array is the smallest missing **non-negative** 
 - For example, the MEX of `[-1,2,3]` is `0` while the MEX of `[1,0,3]` is `2`.
 
 Return *the maximum MEX of *`nums`* after applying the mentioned operation **any number of times***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The MEX of nums is 4. It can be shown that 4 is the maximum MEX we can achieve.
 - **Explanation:** One can achieve this result by applying the following operation:
 - subtract value from nums[2] once to make nums = [1,-10,<u>**0**</u>,13,6,8]
 The MEX of nums is 2. It can be shown that 2 is the maximum MEX we can achieve.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, value \le 10^{5}$
 

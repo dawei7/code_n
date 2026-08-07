@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a mystic dungeon, `n` magicians are standing in a line. Each magician has an attribute that gives you energy. Some magicians can give you negative energy, which means taking energy from you.
 
@@ -8,13 +8,16 @@ In other words, you will choose a starting point and then teleport with `k` jump
 
 You are given an array `energy` and an integer `k`. Return the **maximum** possible energy you can gain.
 
-**Note** that when you reach a magician, you *must* take energy from them, whether it is negative or positive energy.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that when you reach a magician, you *must* take energy from them, whether it is negative or positive energy.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ You are given an array `energy` and an integer `k`. Return the **maximum** possi
 **Explanation:** We can gain a total energy of -1 by starting from magician 2.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{energy.length} \le 10^{5}$
 

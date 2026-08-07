@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `coins` of length `n` which represents the `n` coins that you own. The value of the $$i^{\text{th}}$$ coin is $\text{coins}[i]$. You can **make** some value `x` if you can choose some of your `n` coins such that their values sum up to `x`.
 
 Return the *maximum number of consecutive integer values that you **can** **make** with your coins **starting** from and **including** *`0`.
 
 Note that you may have multiple coins of the same value.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ You can make 8 consecutive integer values starting from 0.
 
 - **Input:** $coins = [1,4,10,3,1]$
 - **Output:** `20`
-### Constraints
+
+### 4. Constraints
 
 - $\text{coins.length} = n$
 

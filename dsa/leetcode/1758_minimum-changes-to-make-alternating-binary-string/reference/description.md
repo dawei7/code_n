@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of the characters `'0'` and `'1'`. In one operation, you can change any `'0'` to `'1'` or vice versa.
 
 The string is called alternating if no two adjacent characters are equal. For example, the string `"010"` is alternating, while the string `"0100"` is not.
 
 Return *the **minimum** number of operations needed to make* `s` *alternating*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the **minimum** number of operations needed to make* `s` *alternating*.
 - **Input:** `s = "1111"`
 - **Output:** `2`
 - **Explanation:** You need two operations to reach "0101" or "1010".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

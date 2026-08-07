@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer `n` represented as a string, return *the smallest **good base** of* `n`.
 
 We call $k \ge 2$ a **good base** of `n`, if all digits of `n` base `k` are `1`'s.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ We call $k \ge 2$ a **good base** of `n`, if all digits of `n` base `k` are `1`'
 - **Input:** $n = "1000000000000000000"$
 - **Output:** `"999999999999999999"`
 - **Explanation:** 1000000000000000000 base 999999999999999999 is 11.
-### Constraints
+
+### 4. Constraints
 
 - `n` is an integer in the range $[3, 10^{18}]$.
 

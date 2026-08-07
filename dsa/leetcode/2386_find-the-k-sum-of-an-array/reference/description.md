@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and a **positive** integer `k`. You can choose any **subsequence** of the array and sum all of its elements together.
 
@@ -8,13 +8,16 @@ Return *the K-Sum of the array*.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
 
-**Note** that the empty subsequence is considered to have a sum of `0`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the empty subsequence is considered to have a sum of `0`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,7 +31,8 @@ The 5-Sum of the array is 2.
 - **Input:** `nums = [1,-2,3,4,-10,12], k = 16`
 - **Output:** `10`
 - **Explanation:** The 16-Sum of the array is 10.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{nums.length}$
 

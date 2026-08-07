@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` integers `matrix`, return *the length of the longest increasing path in *`matrix`.
 
 From each cell, you can either move in four directions: left, right, up, or down. You **may not** move **diagonally** or move **outside the boundary** (i.e., wrap-around is not allowed).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ From each cell, you can either move in four directions: left, right, up, or down
 
 Return the number of cells in the longest path whose orthogonally adjacent values are strictly increasing.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return the number of cells in the longest path whose orthogonally adjacent value
 
 - **Input:** $matrix = [[1]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activity`
 
@@ -19,12 +19,13 @@ Each row is a record of a player who logged in and played a number of games (pos
 Write a solution to report the **fraction** of players that logged in again on the day after the day they first logged in, **rounded to 2 decimal places**. In other words, you need to determine the number of players who logged in on the day immediately following their initial login, and divide it by the number of total players.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

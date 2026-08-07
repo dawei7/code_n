@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers called `nums`, you can perform **any** of the following operation while `nums` contains **at least** `2` elements:
 
@@ -13,12 +13,13 @@ The** score** of the operation is the sum of the deleted elements.
 Your task is to find the **maximum** number of operations that can be performed, such that **all operations have the same score**.
 
 Return *the **maximum** number of operations possible that satisfy the condition mentioned above*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ We are unable to perform any more operations as nums is empty.
 - Delete the first two elements, with score 3 + 2 = 5, nums = [6,1,4].
 - Delete the last two elements, with score 1 + 4 = 5, nums = [6].
 It can be proven that we can perform at most 2 operations.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 2000$
 

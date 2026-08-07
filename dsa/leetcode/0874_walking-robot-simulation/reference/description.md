@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A robot on an infinite XY-plane starts at point `(0, 0)` facing north. The robot receives an array of integers `commands`, which represents a sequence of moves that it needs to execute. There are only three possible types of instructions the robot can receive:
 
@@ -12,7 +12,12 @@ Some of the grid squares are `obstacles`. The $$i^{\text{th}}$$ obstacle is at g
 
 Return the **maximum squared Euclidean distance** that the robot reaches at any point in its path (i.e. if the distance is `5`, return `25`).
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - There can be an obstacle at `(0, 0)`. If this happens, the robot will ignore the obstacle until it has moved off the origin. However, it will be unable to return to `(0, 0)` due to the obstacle.
 
@@ -23,12 +28,8 @@ Return the **maximum squared Euclidean distance** that the robot reaches at any 
 - South means -Y direction.
 
 - West means -X direction.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -96,7 +97,8 @@ The robot starts at `(0, 0)`:
 The furthest point the robot ever gets from the origin is `(0, 6)`, which squared is $6^{2} = 36$ units away.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{commands.length} \le 10^{4}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the most frequent even element*.
 
 If there is a tie, return the **smallest** one. If there is no such element, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ We return the smallest one, which is 2.
 - **Input:** `nums = [29,47,21,41,13,37,25,7]`
 - **Output:** `-1`
 - **Explanation:** There is no even element.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2000$
 

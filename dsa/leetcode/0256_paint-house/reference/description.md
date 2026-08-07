@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a row of `n` houses, where each house can be painted one of three colors: red, blue, or green. The cost of painting each house with a certain color is different. You have to paint all the houses such that no two adjacent houses have the same color.
 
@@ -7,7 +7,8 @@ The cost of painting each house with a certain color is represented by an `n x 3
 - For example, $\text{costs}[0][0]$ is the cost of painting house `0` with the color red; $\text{costs}[1][2]$ is the cost of painting house 1 with color green, and so on...
 
 Return *the minimum cost to paint all houses*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return *the minimum cost to paint all houses*.
 
 Return the minimum total cost among valid color assignments.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Minimum cost: 2 + 5 + 3 = 10.
 
 - **Input:** $costs = [[7,6,2]]$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $\text{costs.length} = n$
 

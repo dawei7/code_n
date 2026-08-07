@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two integers n and k, return *an array of all the integers of length *`n`* where the difference between every two consecutive digits is *`k`. You may return the answer in **any order**.
 
 Note that the integers should not have leading zeros. Integers as `02` and `043` are not allowed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Note that the integers should not have leading zeros. Integers as `02` and `043`
 
 - **Input:** $n = 2, k = 1$
 - **Output:** `[10,12,21,23,32,34,43,45,54,56,65,67,76,78,87,89,98]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 9$
 

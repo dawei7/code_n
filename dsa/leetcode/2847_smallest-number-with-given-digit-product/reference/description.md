@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a **positive** integer `n`, return *a string representing the **smallest positive** integer such that the product of its digits is equal to* `n`*, or *`"-1"`* if no such number exists*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Given a **positive** integer `n`, return *a string representing the **smallest p
 - **Input:** $n = 44$
 - **Output:** `"-1"`
 - **Explanation:** It can be shown that there is no number such that its product of digits is equal to 44. So the answer would be "-1".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{18}$

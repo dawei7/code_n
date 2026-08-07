@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three strings `word1`, `word2`, and `target`.
 
@@ -15,7 +15,8 @@ Your task is to count the number of ways to form `target` by choosing characters
 Two ways are considered different if, for **at least** one position in `target`, the chosen character comes from a different string or a different index.
 
 Return the number of ways. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(word1, word2, target) -> int`
 
@@ -35,7 +36,7 @@ The selected indices must increase separately within each source. There is no or
 
 Return, modulo $10^9+7$, the number of distinct constructions that use at least one character from each source word.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -113,7 +114,8 @@ Each `"xy"` part in `target` comes entirely from one string.
 The only way is to choose $\text{word1}[0] = 'a'$, $\text{word2}[0] = 'c'$, and $\text{word2}[2] = 'e'$. Thus, the answer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length}, \text{target.length} \le 100$
 

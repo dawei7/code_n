@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 The **n-queens** puzzle is the problem of placing `n` queens on an `n x n` chessboard such that no two queens attack each other.
 
 Given an integer `n`, return *all distinct solutions to the **n-queens puzzle***. You may return the answer in **any order**.
 
 Each solution contains a distinct board configuration of the n-queens' placement, where `'Q'` and `'.'` both indicate a queen and an empty space, respectively.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Each solution contains a distinct board configuration of the n-queens' placement
 
 Return all distinct non-attacking board configurations, in any order, using `Q` and `.` characters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,6 +29,7 @@ Return all distinct non-attacking board configurations, in any order, using `Q` 
 
 - **Input:** $n = 1$
 - **Output:** `[["Q"]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 9$

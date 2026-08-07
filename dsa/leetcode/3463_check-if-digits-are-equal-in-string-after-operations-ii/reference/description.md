@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of digits. Perform the following operation repeatedly until the string has **exactly** two digits:
 
@@ -7,12 +7,13 @@ You are given a string `s` consisting of digits. Perform the following operation
 - Replace `s` with the sequence of newly calculated digits, *maintaining the order* in which they are computed.
 
 Return `true` if the final two digits in `s` are the **same**; otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ Return `true` if the final two digits in `s` are the **same**; otherwise, return
 - Since $'4' \neq '8'$, the output is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 10^{5}$
 

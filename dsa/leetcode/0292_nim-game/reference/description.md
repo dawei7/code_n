@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are playing the following Nim Game with your friend:
 
@@ -11,7 +11,8 @@ You are playing the following Nim Game with your friend:
 - The one who removes the last stone is the winner.
 
 Given `n`, the number of stones in the heap, return `true`* if you can win the game assuming both you and your friend play optimally, otherwise return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Given `n`, the number of stones in the heap, return `true`* if you can win the g
 
 Return `true` when the first player can force a win under optimal play; otherwise, return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,6 +41,7 @@ In all outcomes, your friend wins.
 
 - **Input:** $n = 2$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$

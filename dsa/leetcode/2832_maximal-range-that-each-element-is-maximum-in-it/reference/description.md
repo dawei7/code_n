@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of **distinct **integers.
 
@@ -8,12 +8,15 @@ Let us define a **0-indexed **array `ans` of the same length as `nums` in the fo
 
 Return* the array *`ans`.
 
-**Note** that a **subarray** is a contiguous part of the array.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that a **subarray** is a contiguous part of the array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ For nums[4] the longest subarray in which 6 is the maximum is nums[0..4] so ans[
 - **Input:** `nums = [1,2,3,4,5]`
 - **Output:** `[1,2,3,4,5]`
 - **Explanation:** For nums[i] the longest subarray in which it's the maximum is nums[0..i] so ans[i] = i + 1.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `happiness` of length `n`, and a **positive** integer `k`.
 
@@ -7,12 +7,13 @@ There are `n` children standing in a queue, where the $$i^{\text{th}}$$ child ha
 In each turn, when you select a child, the **happiness value** of all the children that have **not** been selected till now decreases by `1`. Note that the happiness value **cannot** become negative and gets decremented **only** if it is positive.
 
 Return *the **maximum** sum of the happiness values of the selected children you can achieve by selecting *`k` *children*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The sum of the happiness values of the selected children is 1 + 0 = 1.
 - **Explanation:** We can pick 1 child in the following way:
 - Pick the child with the happiness value == 5. The happiness value of the remaining children becomes [1,2,3].
 The sum of the happiness values of the selected children is 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{happiness.length} \le 2 * 10^{5}$
 

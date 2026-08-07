@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` persons on a social media website. You are given an integer array `ages` where $\text{ages}[i]$ is the age of the $$i^{\text{th}}$$ person.
 
@@ -15,12 +15,13 @@ Otherwise, `x` will send a friend request to `y`.
 Note that if `x` sends a request to `y`, `y` will not necessarily send a request to `x`. Also, a person will not send a friend request to themself.
 
 Return *the total number of friend requests made*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return *the total number of friend requests made*.
 - **Input:** $ages = [20,30,100,110,120]$
 - **Output:** `3`
 - **Explanation:** Friend requests are made 110 -> 100, 120 -> 110, 120 -> 100.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{ages.length}$
 

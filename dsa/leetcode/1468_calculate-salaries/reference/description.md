@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table `Salaries`:
 
@@ -28,7 +28,8 @@ The tax rate is calculated for each company based on the following criteria:
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -46,7 +47,7 @@ within the employee's company, apply that company-wide percentage to the
 employee's original salary, and round the final after-tax amount to the nearest
 integer. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

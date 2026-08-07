@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a `time` represented in the format `"HH:MM"`, form the next closest time by reusing the current digits. There is no limit on how many times a digit can be reused.
 
 You may assume the given input string is always valid. For example, `"01:34"`, `"12:09"` are all valid. `"1:34"`, `"12:9"` are all invalid.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(time: str) -> str`
 
@@ -15,7 +16,7 @@ You may assume the given input string is always valid. For example, `"01:34"`, `
 
 Return the first valid `"HH:MM"` display reached by moving forward in time whose four digits all come from the input display. Digits may be reused any number of times.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ It is not **19:33**, because this occurs 23 hours and 59 minutes later.
 - **Output:** `"22:22"`
 - **Explanation:** The next closest time choosing from digits **2**, **3**, **5**, **9**, is **22:22**.
 It may be assumed that the returned time is next day's time since it is smaller than the input time numerically.
-### Constraints
+
+### 4. Constraints
 
 - $\text{time.length} = 5$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n`.
 
@@ -9,12 +9,13 @@ A **split** at an index `i` where $0 \le i \le n - 2$ is called **valid** if the
 Return *the smallest index *`i`* at which the array can be split validly or *`-1`* if there is no such split*.
 
 Two values `val1` and `val2` are coprime if $gcd(val1, val2) = 1$ where `gcd(val1, val2)` is the greatest common divisor of `val1` and `val2`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The only valid split is at index 2.
 - **Output:** `-1`
 - **Explanation:** The table above shows the values of the product of the first i + 1 elements, the remaining elements, and their gcd at each index i.
 There is no valid split.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

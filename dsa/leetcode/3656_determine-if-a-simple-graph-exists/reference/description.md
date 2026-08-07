@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `degrees`, where $\text{degrees}[i]$ represents the desired degree of the $$i^{\text{th}}$$ vertex.
 
@@ -7,11 +7,12 @@ Your task is to determine if there exists an **undirected simple** graph with **
 A **simple** graph has no self-loops or parallel edges between the same pair of vertices.
 
 Return `true` if such a graph exists, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ One possible undirected simple graph is:
 - Thus, the answer is `false`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{degrees.length} \le 10^​​​​​​​5$
 

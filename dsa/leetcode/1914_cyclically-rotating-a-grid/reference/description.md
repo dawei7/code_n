@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`​​​, where `m` and `n` are both **even** integers, and an integer `k`.
 
@@ -11,12 +11,13 @@ A cyclic rotation of the matrix is done by cyclically rotating **each layer** in
 ![](images/explanation_grid.jpg)
 
 Return *the matrix after applying *`k` *cyclic rotations to it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return *the matrix after applying *`k` *cyclic rotations to it*.
 - **Input:** `grid = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], k = 2`
 - **Output:** `[[3,4,8,12],[2,11,10,16],[1,7,6,15],[5,9,13,14]]`
 - **Explanation:** The figures above represent the grid at every state.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

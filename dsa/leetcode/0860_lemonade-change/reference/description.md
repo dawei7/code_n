@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 At a lemonade stand, each lemonade costs `$5`. Customers are standing in a queue to buy from you and order one at a time (in the order specified by bills). Each customer will only buy one lemonade and pay with either a `$5`, `$10`, or `$20` bill. You must provide the correct change to each customer so that the net transaction is that the customer pays `$5`.
 
 Note that you do not have any change in hand at first.
 
 Given an integer array `bills` where $\text{bills}[i]$ is the bill the $$i^{\text{th}}$$ customer pays, return `true` *if you can provide every customer with the correct change, or* `false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ From the first two customers in order, we collect two $5 bills.
 For the next two customers in order, we collect a $10 bill and give back a$5 bill.
 For the last customer, we can not give the change of $15 back because we only have two$10 bills.
 Since not every customer received the correct change, the answer is false.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{bills.length} \le 10^{5}$
 

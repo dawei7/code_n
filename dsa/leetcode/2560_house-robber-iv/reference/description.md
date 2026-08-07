@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are several consecutive houses along a street, each of which has some money inside. There is also a robber, who wants to steal money from the homes, but he **refuses to steal from adjacent homes**.
 
@@ -9,12 +9,13 @@ You are given an integer array `nums` representing how much money is stashed in 
 You are also given an integer `k`, representing the **minimum** number of houses the robber will steal from. It is always possible to steal at least `k` houses.
 
 Return *the **minimum** capability of the robber out of all the possible ways to steal at least *`k`* houses*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Therefore, we return min(5, 9, 9) = 5.
 - **Input:** `nums = [2,7,9,3,1], k = 2`
 - **Output:** `2`
 - **Explanation:** There are 7 ways to rob the houses. The way which leads to minimum capability is to rob the house at index 0 and 4. Return max(nums[0], nums[4]) = 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

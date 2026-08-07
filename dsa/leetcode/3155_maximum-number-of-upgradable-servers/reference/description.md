@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` data centers and need to upgrade their servers.
 
@@ -17,11 +17,12 @@ for each data center respectively.
 Return an array `answer`, where for each data center, the corresponding element in `answer` represents the **maximum** number of servers that can be upgraded.
 
 Note that the money from one data center **cannot** be used for another data center.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ For the second data center, if we sell one server, we'll have $9 + 2 = 11$ units
 **Output:** [0]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{count.length} = \text{upgrade.length} = \text{sell.length} = \text{money.length} \le 10^{5}$
 

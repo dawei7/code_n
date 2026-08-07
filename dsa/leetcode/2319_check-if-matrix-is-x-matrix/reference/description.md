@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A square matrix is said to be an **X-Matrix** if **both** of the following conditions hold:
 
@@ -7,12 +7,13 @@ A square matrix is said to be an **X-Matrix** if **both** of the following condi
 - All other elements are 0.
 
 Given a 2D integer array `grid` of size `n x n` representing a square matrix, return `true`* if *`grid`* is an X-Matrix*. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Thus, grid is an X-Matrix.
 - **Explanation:** Refer to the diagram above.
 An X-Matrix should have the green elements (diagonals) be non-zero and the red elements be 0.
 Thus, grid is not an X-Matrix.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

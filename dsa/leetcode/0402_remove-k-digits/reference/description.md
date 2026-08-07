@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given string num representing a non-negative integer `num`, and an integer `k`, return *the smallest possible integer after removing* `k` *digits from* `num`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given string num representing a non-negative integer `num`, and an integer `k`, 
 
 Return the smallest attainable value as a normalized decimal string, using `"0"` for an empty or all-zero remainder.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the smallest attainable value as a normalized decimal string, using `"0"`
 - **Input:** $num = "10", k = 2$
 - **Output:** `"0"`
 - **Explanation:** Remove all the digits from the number and it is left with nothing which is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{num.length} \le 10^{5}$
 

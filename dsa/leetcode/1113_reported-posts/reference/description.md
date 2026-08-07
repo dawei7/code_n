@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Actions`
 
@@ -22,7 +22,8 @@ Write a solution to report the number of posts reported yesterday for each repor
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -37,7 +38,7 @@ Filter to report actions dated `2019-07-04`. Within each `extra` value represent
 
 Return one row for every represented report reason with a nonzero post count, in any order. If yesterday has no report rows, return an empty result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

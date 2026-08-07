@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n` representing the number of rows and columns of a grid, respectively.
 
@@ -15,12 +15,13 @@ At each step, you follow an alternating pattern:
 - On **even-numbered** seconds, you must **wait** in place for **exactly** one second and pay $\text{waitCost}[i][j]$ during that second.
 
 Return the **minimum** total cost required to reach $(m - 1, n - 1)$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -88,7 +89,8 @@ The optimal path is:
 Thus, the total cost is $1 + 2 + 1 + 4 + 2 + 6 = 16$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{5}$
 

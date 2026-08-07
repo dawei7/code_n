@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given three integers `l`, `r`, and `k`.
 
 An integer `y` is said to be a **perfect $k^{\text{th}}$ power** if there exists an integer `x` such that $y = x^k$.
 
 Return the number of integers `y` in the range `[l, r]` (inclusive) that are **perfect $k^{\text{th}}$ powers**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ For the complexity bounds, define $R=\max(2,\texttt{r}+1)$ and $K=\max(2,\texttt
 
 Return the number of distinct integers `y` in `[l, r]` for which some integer `x` satisfies $y=x^k$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The perfect squares in the range `[8, 30]` are:
 - $25 = 5^{2}$
 
 Hence, the answer is 3.</div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le l \le r \le 10^{9}$
 

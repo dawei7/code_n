@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `k` and an integer `x`. The price of a number `num` is calculated by the count of set bits at positions `x`, `2x`, `3x`, etc., in its binary representation, starting from the least significant bit. The following table contains examples of how price is calculated.
 
@@ -46,12 +46,13 @@ You are given an integer `k` and an integer `x`. The price of a number `num` is 
 The **accumulated price** of `num` is the **total** price of numbers from `1` to `num`. `num` is considered **cheap** if its accumulated price is less than or equal to `k`.
 
 Return the **greatest** cheap number.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -218,7 +219,8 @@ As shown in the table below, `9` is the greatest cheap number.
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 10^{15}$
 

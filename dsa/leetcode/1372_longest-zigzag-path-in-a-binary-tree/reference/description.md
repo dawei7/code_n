@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree.
 
@@ -15,12 +15,13 @@ A ZigZag path for a binary tree is defined as follow:
 Zigzag length is defined as the number of nodes visited - 1. (A single node has a length of 0).
 
 Return *the longest **ZigZag** path contained in that tree*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return *the longest **ZigZag** path contained in that tree*.
 
 - **Input:** `root = [1]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 5 * 10^{4}]$.
 

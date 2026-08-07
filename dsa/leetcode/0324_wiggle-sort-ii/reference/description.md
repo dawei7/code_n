@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, reorder it such that $\text{nums}[0] < \text{nums}[1] > \text{nums}[2] < \text{nums}[3]...$.
 
 You may assume the input array always has a valid answer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You may assume the input array always has a valid answer.
 
 Return `None`. Mutate `nums` in place into any permutation satisfying the strict wiggle inequalities.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return `None`. Mutate `nums` in place into any permutation satisfying the strict
 
 - **Input:** `nums = [1,3,2,2,3,1]`
 - **Output:** `[2,3,1,3,1,2]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

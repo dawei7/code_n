@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 A **pangram** is a sentence where every letter of the English alphabet appears at least once.
 
 Given a string `sentence` containing only lowercase English letters, return* *`true`* if *`sentence`* is a **pangram**, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Given a string `sentence` containing only lowercase English letters, return* *`t
 
 - **Input:** $sentence = "leetcode"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 1000$
 

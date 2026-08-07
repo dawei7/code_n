@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, partition `s` such that every substring of the partition is a **palindrome**. Return *all possible palindrome partitioning of *`s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, partition `s` such that every substring of the partition is 
 
 Return all partitions whose contiguous pieces are palindromes. Outer result order is not significant; substring order within a partition is.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return all partitions whose contiguous pieces are palindromes. Outer result orde
 
 - **Input:** `s = "a"`
 - **Output:** `[["a"]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 16$
 

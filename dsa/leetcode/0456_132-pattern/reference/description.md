@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array of `n` integers `nums`, a **132 pattern** is a subsequence of three integers $\text{nums}[i]$, $\text{nums}[j]$ and $\text{nums}[k]$ such that `i < j < k` and $\text{nums}[i] < \text{nums}[k] < \text{nums}[j]$.
 
 Return `true`* if there is a **132 pattern** in *`nums`*, otherwise, return *`false`*.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return `true`* if there is a **132 pattern** in *`nums`*, otherwise, return *`fa
 
 Equal values cannot satisfy either strict inequality.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Equal values cannot satisfy either strict inequality.
 - **Input:** `nums = [-1,3,2,0]`
 - **Output:** `true`
 - **Explanation:** There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0] and [-1, 2, 0].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

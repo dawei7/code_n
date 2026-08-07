@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `text`. You can swap two of the characters in the `text`.
 
 Return *the length of the longest substring with repeated characters*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the length of the longest substring with repeated characters*.
 - **Input:** $text = "aaaaa"$
 - **Output:** `5`
 - **Explanation:** No need to swap, longest repeated character substring is "aaaaa" with length is 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 2 * 10^{4}$
 

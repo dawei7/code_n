@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Five silent philosophers sit at a round table with bowls of spaghetti. Forks are placed between each pair of adjacent philosophers.
 
@@ -25,12 +25,13 @@ The philosophers' ids are numbered from **0** to **4** in a **clockwise** order.
 - The philosophers are assumed to be thinking as long as they are not asking to eat (the function is not being called with their number).
 
 Five threads, each representing a philosopher, will simultaneously use one object of your class to simulate the process. The function may be called for the same philosopher more than once, even before the last call ends.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,6 +44,7 @@ output[i] = [a, b, c] (three integers)
 - a is the id of a philosopher.
 - b specifies the fork: {1 : left, 2 : right}.
 - c specifies the operation: {1 : pick, 2 : put, 3 : eat}.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 60$

@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are `n` cities labeled from `1` to `n`. You are given the integer `n` and an array `connections` where $\text{connections}[i] = [x_{i}, y_{i}, \text{cost}_{i}]$ indicates that the cost of connecting city $x_{i}$ and city $y_{i}$ (bidirectional connection) is $\text{cost}_{i}$.
 
 Return *the minimum **cost** to connect all the *`n`* cities such that there is at least one path between each pair of cities*. If it is impossible to connect all the `n` cities, return `-1`,
 
 The **cost** is the sum of the connections' costs used.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ The input can include redundant connections, including more than one entry with 
 
 - The least possible sum of selected costs that leaves a path between every pair of cities, or `-1` when no such selection exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The input can include redundant connections, including more than one entry with 
 - **Input:** $n = 4, connections = [[1,2,3],[3,4,4]]$
 - **Output:** `-1`
 - **Explanation:** There is no way to connect all cities even if all edges are used.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

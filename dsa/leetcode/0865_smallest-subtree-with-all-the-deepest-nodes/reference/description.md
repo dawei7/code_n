@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, the depth of each node is **the shortest distance to the root**.
 
@@ -7,12 +7,13 @@ Return *the smallest subtree* such that it contains **all the deepest nodes** in
 A node is called **the deepest** if it has the largest depth possible among any node in the entire tree.
 
 The **subtree** of a node is a tree consisting of that node, plus the set of all descendants of that node.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Notice that nodes 5, 3 and 2 contain the deepest nodes in the tree but node 2 is
 - **Input:** `root = [0,1,3,null,2]`
 - **Output:** `[2]`
 - **Explanation:** The deepest node in the tree is 2, the valid subtrees are the subtrees of nodes 2, 1 and 0 but the subtree of node 2 is the smallest.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree will be in the range `[1, 500]`.
 
@@ -41,4 +43,6 @@ Notice that nodes 5, 3 and 2 contain the deepest nodes in the tree but node 2 is
 
 - The values of the nodes in the tree are **unique**.
 
-**Note:** This question is the same as 1123: <a href="https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/" target="_blank">https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/</a>
+### 5. Note
+
+This question is the same as 1123: <a href="https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/" target="_blank">https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/</a>

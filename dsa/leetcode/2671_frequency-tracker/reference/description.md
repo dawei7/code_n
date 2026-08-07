@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that keeps track of the values in it and answers some queries regarding their frequencies.
 
@@ -11,12 +11,13 @@ Implement the `FrequencyTracker` class.
 - `void deleteOne(int number)`: Deletes **one** occurrence of `number` from the data structure. The data structure **may not contain** `number`, and in this case nothing is deleted.
 
 - `bool hasFrequency(int frequency)`: Returns `true` if there is a number in the data structure that occurs `frequency` number of times, otherwise, it returns `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ frequencyTracker.hasFrequency(2); // Returns false, because the data structure i
 frequencyTracker.add(3); // The data structure now contains [3]
 frequencyTracker.hasFrequency(1); // Returns true, because 3 occurs once
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le number \le 10^{5}$
 

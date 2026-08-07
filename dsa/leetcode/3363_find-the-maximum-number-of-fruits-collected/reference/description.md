@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a game dungeon comprised of `n x n` rooms arranged in a grid.
 
@@ -15,12 +15,13 @@ The children will make **exactly** $n - 1$ moves according to the following rule
 When a child enters a room, they will collect all the fruits there. If two or more children enter the same room, only one child will collect the fruits, and the room will be emptied after they leave.
 
 Return the **maximum** number of fruits the children can collect from the dungeon.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ In this example:
 In total they collect $1 + 1 + 1 + 1 = 4$ fruits.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{fruits.length} = \text{fruits}[i].length \le 1000$
 

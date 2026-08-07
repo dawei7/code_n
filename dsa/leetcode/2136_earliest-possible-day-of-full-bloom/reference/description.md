@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` flower seeds. Every seed must be planted first before it can begin to grow, then bloom. Planting a seed takes time and so does the growth of a seed. You are given two **0-indexed** integer arrays `plantTime` and `growTime`, of length `n` each:
 
@@ -9,12 +9,13 @@ You have `n` flower seeds. Every seed must be planted first before it can begin 
 From the beginning of day `0`, you can plant the seeds in **any** order.
 
 Return *the **earliest** possible day where **all** seeds are blooming*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ Thus, on day 9, all the seeds are blooming.
 - **Output:** `2`
 - **Explanation:** On day 0, plant the 0^th seed. The seed grows for 1 full day and blooms on day 2.
 Thus, on day 2, all the seeds are blooming.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{plantTime.length} = \text{growTime.length}$
 

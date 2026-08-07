@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a sorted array consisting of only integers where every element appears exactly twice, except for one element which appears exactly once.
 
 Return *the single element that appears only once*.
 
 Your solution must run in `O(log n)` time and `O(1)` space.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Your solution must run in `O(log n)` time and `O(1)` space.
 
 - **Input:** `nums = [3,3,7,7,10,11,11]`
 - **Output:** `10`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

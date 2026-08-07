@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
@@ -7,7 +7,8 @@ A **run** in `s` is a **substring** of **equal** letters that cannot be extended
 You can **select** runs that have the **same** length in `s`.
 
 Return an integer denoting the **maximum** number of runs you can select in `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Every position belongs to exactly one run. Run identity depends on maximal bound
 
 Return the highest frequency of any run length in `s`. Runs may contain different letters; they need only have the same number of characters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The runs in `s` are `"h"`, `"e"`, `"ll"`, and `"o"`. You can select `"h"`, `"e"`
 The runs in `s` are `"aaa"`, `"b"`, and `"aaa"`. You can select `"aaa"` and `"aaa"` because they have the same length 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

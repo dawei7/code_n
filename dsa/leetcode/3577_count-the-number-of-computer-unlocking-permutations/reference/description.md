@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `complexity` of length `n`.
 
@@ -14,13 +14,16 @@ Find the number of permutations of `[0, 1, 2, ..., (n - 1)]` that represent a va
 
 Since the answer may be large, return it **modulo** $10^{9}$ + 7.
 
-**Note** that the password for the computer **with label** 0 is decrypted, and *not* the computer with the first position in the permutation.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the password for the computer **with label** 0 is decrypted, and *not* the computer with the first position in the permutation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -65,7 +68,8 @@ The valid permutations are:
 There are no possible permutations which can unlock all computers.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{complexity.length} \le 10^{5}$
 

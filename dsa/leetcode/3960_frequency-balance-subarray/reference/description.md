@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array ​​​​​​​`nums`.
 
@@ -9,7 +9,8 @@ Define a **frequency balance subarray** as follows:
 - Otherwise, there must exist a positive integer `f` such that every distinct value in the subarray occurs either `f` or $2 * f$ times, and both frequencies occur among the distinct values.
 
 Return an integer denoting the length of the **longest** frequency balance subarray.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Values are compared by equality, and their magnitudes do not affect the balance 
 
 Return the maximum length of a frequency balanced subarray. At least one single-element subarray exists, so the result is always positive.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ Return the maximum length of a frequency balanced subarray. At least one single-
 Since all elements appear only once, the length of the longest frequency balance subarray is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^​​​​​​​3$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` cars on an infinitely long road. The cars are numbered from `0` to $n - 1$ from left to right and each car is present at a **unique** point.
 
@@ -13,12 +13,13 @@ The number of collisions can be calculated as follows:
 After a collision, the cars involved can no longer move and will stay at the point where they collided. Other than that, cars cannot change their state or direction of motion.
 
 Return *the **total number of collisions** that will happen on the road*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Thus, the total number of collisions that will happen on the road is 5.
 - **Output:** `0`
 - **Explanation:**
 No cars will collide with each other. Thus, the total number of collisions that will happen on the road is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{directions.length} \le 10^{5}$
 

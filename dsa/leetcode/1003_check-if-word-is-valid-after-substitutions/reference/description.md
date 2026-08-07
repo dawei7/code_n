@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s`, determine if it is **valid**.
 
@@ -7,12 +7,13 @@ A string `s` is **valid** if, starting with an empty string $t = ""$, you can **
 - Insert string `"abc"` into any position in `t`. More formally, `t` becomes $t_{left} + "abc" + t_{right}$, where $t = t_{left} + t_{right}$. Note that $t_{left}$ and $t_{right}$ may be **empty**.
 
 Return `true` *if *`s`* is a **valid** string, otherwise, return* `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Thus, "abcabcababcc" is valid.
 - **Input:** `s = "abccba"`
 - **Output:** `false`
 - **Explanation:** It is impossible to get "abccba" using the operation.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2 * 10^{4}$
 

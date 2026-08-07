@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` containing lowercase letters and an integer `k`. You need to :
 
@@ -7,12 +7,13 @@ You are given a string `s` containing lowercase letters and an integer `k`. You 
 - Then divide `s` into `k` non-empty disjoint substrings such that each substring is a palindrome.
 
 Return *the minimal number of characters that you need to change to divide the string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the minimal number of characters that you need to change to divide the s
 
 - **Input:** `s = "leetcode", k = 8`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{s.length} \le 100$.
 

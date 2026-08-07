@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. Each node `i` has an integer value $\text{vals}[i]$, and its parent is given by $\text{par}[i]$.
 
@@ -11,12 +11,13 @@ You are given a 2D integer array `queries`, where $\text{queries}[j] = [u_{j}, k
 Return an integer array where the $$j^{\text{th}}$$ element is the answer to the $$j^{\text{th}}$$ query.
 
 In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose path to the root passes through `v`, that is, `v` and its descendants.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -90,7 +91,8 @@ In a rooted tree, the subtree of a node `v` includes `v` and all nodes whose pat
 **Output:** `[0, 7, -1, 0]`
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{vals.length} \le 5 * 10^{4}$
 

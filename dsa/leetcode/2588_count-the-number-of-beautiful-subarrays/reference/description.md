@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. In one operation, you can:
 
@@ -14,13 +14,16 @@ Return *the number of **beautiful subarrays** in the array* `nums`.
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
 
-**Note**: Subarrays where all elements are initially 0 are considered beautiful, as no operation is needed.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: Subarrays where all elements are initially 0 are considered beautiful, as no operation is needed.
+
+### 4. Examples
 
 #### Example 1
 
@@ -39,7 +42,8 @@ A subarray is a contiguous **non-empty** sequence of elements within an array.
 - **Input:** `nums = [1,10,4]`
 - **Output:** `0`
 - **Explanation:** There are no beautiful subarrays in nums.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

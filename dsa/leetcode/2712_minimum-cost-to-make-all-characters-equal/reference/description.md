@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** binary string `s` of length `n` on which you can apply two types of operations:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** binary string `s` of length `n` on which you can a
 Return *the **minimum cost **to make all characters of the string **equal***.
 
 **Invert** a character means if its value is '0' it becomes '1' and vice-versa.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Apply the first operation with i = 0 to obtain s = "111101" for a cost of 1.
 Apply the second operation with i = 4 to obtain s = "111110" for a cost of 2.
 Apply the second operation with i = 5 to obtain s = "111111" for a cost of 1.
 The total cost to make all characters equal is 9. It can be shown that 9 is the minimum cost to make all characters equal.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} = n \le 10^{5}$
 

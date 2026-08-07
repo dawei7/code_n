@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are playing a Flip Game with your friend.
 
 You are given a string `currentState` that contains only `'+'` and `'-'`. You and your friend take turns to flip **two consecutive** `"++"` into `"--"`. The game ends when a person can no longer make a move, and therefore the other person will be the winner.
 
 Return all possible states of the string `currentState` after **one valid move**. You may return the answer in **any order**. If there is no valid move, return an empty list `[]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return all possible states of the string `currentState` after **one valid move**
 
 Return one next-state string for each adjacent `"++"` pair. The app implementation emits these states in left-to-right pair order, although any order satisfies the problem contract.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return one next-state string for each adjacent `"++"` pair. The app implementati
 
 - **Input:** $currentState = "+"$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{currentState.length} \le 500$
 

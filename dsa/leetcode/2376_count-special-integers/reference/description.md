@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 We call a positive integer **special** if all of its digits are **distinct**.
 
 Given a **positive** integer `n`, return *the number of special integers that belong to the interval *`[1, n]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,6 +27,7 @@ Given a **positive** integer `n`, return *the number of special integers that be
 - **Output:** `110`
 - **Explanation:** There are 110 integers from 1 to 135 that are special.
 Some of the integers that are not special are: 22, 114, and 131.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{9}$

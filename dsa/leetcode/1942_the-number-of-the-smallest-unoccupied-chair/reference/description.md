@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a party where `n` friends numbered from `0` to $n - 1$ are attending. There is an **infinite** number of chairs in this party that are numbered from `0` to `infinity`. When a friend arrives at the party, they sit on the unoccupied chair with the **smallest number**.
 
@@ -9,12 +9,13 @@ When a friend leaves the party, their chair becomes unoccupied at the moment the
 You are given a **0-indexed** 2D integer array `times` where $\text{times}[i] = [\text{arrival}_{i}, \text{leaving}_{i}]$, indicating the arrival and leaving times of the $$i^{\text{th}}$$ friend respectively, and an integer `targetFriend`. All arrival times are **distinct**.
 
 Return* the **chair number** that the friend numbered *`targetFriend`* will sit on*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Since friend 1 sat on chair 1, we return 1.
 - Friend 2 leaves at time 6 and chair 1 becomes empty.
 - Friend 0 leaves at time 10 and chair 2 becomes empty.
 Since friend 0 sat on chair 2, we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{times.length}$
 

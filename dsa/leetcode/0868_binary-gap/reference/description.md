@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a positive integer `n`, find and return *the **longest distance** between any two **adjacent** *`1`*'s in the binary representation of *`n`*. If there are no two adjacent *`1`*'s, return *`0`*.*
 
 Two `1`'s are **adjacent** if there are only `0`'s separating them (possibly no `0`'s). The **distance** between two `1`'s is the absolute difference between their bit positions. For example, the two `1`'s in `"1001"` have a distance of 3.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,6 +31,7 @@ There are not any adjacent pairs of 1's in the binary representation of 8, so we
 - **Input:** $n = 5$
 - **Output:** `2`
 - **Explanation:** 5 in binary is "101".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

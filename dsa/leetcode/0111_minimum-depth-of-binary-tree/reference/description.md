@@ -1,11 +1,10 @@
-## Description
+### 1. Description
 
 Given a binary tree, find its minimum depth.
 
 The minimum depth is the number of nodes along the shortest path from the root node down to the nearest leaf node.
 
-**Note:** A leaf is a node with no children.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +14,11 @@ The minimum depth is the number of nodes along the shortest path from the root n
 
 Return the number of nodes on the shortest root-to-leaf path. Return `0` for an empty tree.
 
-### Examples
+### 3. Note
+
+A leaf is a node with no children.
+
+### 4. Examples
 
 #### Example 1
 
@@ -27,7 +30,8 @@ Return the number of nodes on the shortest root-to-leaf path. Return `0` for an 
 
 - **Input:** `root = [2,null,3,null,4,null,5,null,6]`
 - **Output:** `5`
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{5}]$.
 

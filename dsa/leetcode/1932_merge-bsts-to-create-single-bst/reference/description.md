@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `n` **BST (binary search tree) root nodes** for `n` separate BSTs stored in an array `trees` (**0-indexed**). Each BST in `trees` has **at most 3 nodes**, and no two roots have the same value. In one operation, you can:
 
@@ -17,12 +17,13 @@ A BST (binary search tree) is a binary tree where each node satisfies the follow
 - Every node in the node's right subtree has a value **strictly greater** than the node's value.
 
 A leaf is a node that has no children.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ The resulting tree is shown above. This is the only valid operation that can be 
 - **Input:** $trees = [[5,4],[3]]$
 - **Output:** `[]`
 - **Explanation:** It is impossible to perform any operations.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{trees.length}$
 

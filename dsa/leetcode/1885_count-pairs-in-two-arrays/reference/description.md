@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given two integer arrays `nums1` and `nums2` of length `n`, count the pairs of indices `(i, j)` such that `i < j` and $\text{nums1}[i] + \text{nums1}[j] > \text{nums2}[i] + \text{nums2}[j]$.
 
 Return *the **number of pairs** satisfying the condition.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the **number of pairs** satisfying the condition.*
 - (1, 2) where 10 + 6 > 4 + 1.
 - (1, 3) where 10 + 2 > 4 + 5.
 - (2, 3) where 6 + 2 > 1 + 5.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

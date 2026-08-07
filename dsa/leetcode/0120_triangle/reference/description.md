@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a `triangle` array, return *the minimum path sum from top to bottom*.
 
 For each step, you may move to an adjacent number of the row below. More formally, if you are on index `i` on the current row, you may move to either index `i` or index $i + 1$ on the next row.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ For each step, you may move to an adjacent number of the row below. More formall
 
 Return the smallest sum obtainable by a valid adjacent path from the top entry to the bottom row.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above)
 
 - **Input:** $triangle = [[-10]]$
 - **Output:** `-10`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{triangle.length} \le 200$
 

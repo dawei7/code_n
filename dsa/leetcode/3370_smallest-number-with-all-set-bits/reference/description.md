@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a *positive* number `n`.
 
 Return the **smallest** number `x` **greater than** or **equal to** `n`, such that the binary representation of `x` contains only set bits
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,6 +47,7 @@ The binary representation of 15 is `"1111"`.
 The binary representation of 3 is `"11"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

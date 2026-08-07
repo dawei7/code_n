@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `lights` of length `n`, representing positions 0 through $n - 1$ on a road.
 
@@ -13,7 +13,8 @@ A position is **visible** if it is illuminated by **at least** one working bulb.
 You may install **additional** bulbs at **any** positions. Each additional bulb installed at position `j` **illuminates** positions from $max(0, j - 1)$ to $min(n - 1, j + 1)$, inclusive.
 
 Return the minimum number of additional bulbs required to make **every** position on the road visible.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $n$ be the number of road positions.
 
 Return the smallest number of additional radius-one bulbs whose combined coverage, together with the existing working bulbs, makes all `n` positions visible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ Therefore, the minimum number of additional bulbs required is 2.
 - Therefore, the minimum number of additional bulbs required is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{lights.length} \le 10^{5}$
 

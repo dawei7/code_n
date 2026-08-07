@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` **piles** of coins on a table. Each pile consists of a **positive number** of coins of assorted denominations.
 
 In one move, you can choose any coin on **top** of any pile, remove it, and add it to your wallet.
 
 Given a list `piles`, where $\text{piles}[i]$ is a list of integers denoting the composition of the $$i^{\text{th}}$$ pile from **top to bottom**, and a positive integer `k`, return *the **maximum total value** of coins you can have in your wallet if you choose **exactly*** `k` *coins optimally*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ The maximum total we can obtain is 101.
 - **Output:** `706`
 - **Explanation:**
 **The maximum total can be obtained if we choose all coins from the last pile.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{piles.length}$
 

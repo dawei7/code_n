@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a 2D `grid` of size `n x n` where each cell of this grid has a lamp that is initially **turned off**.
 
@@ -9,12 +9,13 @@ When a lamp is turned on, it **illuminates its cell** and **all other cells** in
 You are also given another 2D array `queries`, where $\text{queries}[j] = [\text{row}_{j}, \text{col}_{j}]$. For the $$j^{\text{th}}$$ query, determine whether $grid[\text{row}_{j}][\text{col}_{j}]$ is illuminated or not. After answering the $$j^{\text{th}}$$ query, **turn off** the lamp at $grid[\text{row}_{j}][\text{col}_{j}]$ and its **8 adjacent lamps** if they exist. A lamp is adjacent if its cell shares either a side or corner with $grid[\text{row}_{j}][\text{col}_{j}]$.
 
 Return *an array of integers *`ans`*,** where *$\text{ans}[j]$* should be *`1`* if the cell in the *$$j^{\text{th}}$$* query was illuminated, or *`0`* if the lamp was not.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The 1^st query asks if the lamp at grid[1][0] is illuminated or not (the blue sq
 
 - **Input:** $n = 5, lamps = [[0,0],[0,4]], queries = [[0,4],[0,1],[1,4]]$
 - **Output:** `[1,1,0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `m x n` 2D integer array `grid` and an integer `k`. You start at the top-left cell `(0, 0)` and your goal is to reach the bottom‐right cell $(m - 1, n - 1)$.
 
@@ -9,12 +9,13 @@ There are two types of moves available:
 - **Teleportation**: You can teleport from any cell `(i, j)`, to any cell `(x, y)` such that $\text{grid}[x][y] \le \text{grid}[i][j]$; the cost of this move is 0. You may teleport at most `k` times.
 
 Return the **minimum** total cost to reach cell $(m - 1, n - 1)$ from `(0, 0)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -102,7 +103,8 @@ Initially we are at (0, 0) and cost is 0.
 The minimum cost to reach bottom-right cell is 9.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le m, n \le 80$
 

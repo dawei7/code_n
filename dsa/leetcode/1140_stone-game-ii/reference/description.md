@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob continue their games with piles of stones. There are a number of piles **arranged in a row**, and each pile has a positive integer number of stones $\text{piles}[i]$. The objective of the game is to end with the most stones.
 
@@ -9,12 +9,13 @@ On each player's turn, that player can take **all the stones** in the **first** 
 The game continues until all the stones have been taken.
 
 Assuming Alice and Bob play optimally, return the maximum number of stones Alice can get.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ So we return 10 since it's larger.
 **Output:** 104
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{piles.length} \le 100$
 

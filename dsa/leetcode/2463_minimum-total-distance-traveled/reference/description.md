@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are some robots and factories on the X-axis. You are given an integer array `robot` where $\text{robot}[i]$ is the position of the $$i^{\text{th}}$$ robot. You are also given a 2D integer array `factory` where $\text{factory}[j] = [\text{position}_{j}, \text{limit}_{j}]$ indicates that $\text{position}_{j}$ is the position of the $$j^{\text{th}}$$ factory and that the $$j^{\text{th}}$$ factory can repair at most $\text{limit}_{j}$ robots.
 
@@ -21,12 +21,13 @@ Return *the minimum total distance traveled by all the robots*. The test cases a
 - If a robot passes by a factory that reached its limits, it crosses it as if it does not exist.
 
 - If the robot moved from a position `x` to a position `y`, the distance it moved is $|y - x|$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ The total distance is |2 - 0| + |2 - 4| + |6 - 6| = 4. It can be shown that we c
 The limit of the first factory is 1, and it fixed 1 robot.
 The limit of the second factory is 1, and it fixed 1 robot.
 The total distance is |2 - 1| + |(-2) - (-1)| = 2. It can be shown that we cannot achieve a better total distance than 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{robot.length}, \text{factory.length} \le 100$
 

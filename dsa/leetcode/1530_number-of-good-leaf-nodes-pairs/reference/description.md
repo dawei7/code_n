@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree and an integer `distance`. A pair of two different **leaf** nodes of a binary tree is said to be good if the length of **the shortest path** between them is less than or equal to `distance`.
 
 Return *the number of good leaf node pairs* in the tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *the number of good leaf node pairs* in the tree.
 - **Input:** `root = [7,1,4,6,null,5,3,null,null,null,null,null,2], distance = 3`
 - **Output:** `1`
 - **Explanation:** The only good pair is [2,5].
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the `tree` is in the range $[1, 2^{10}].$
 

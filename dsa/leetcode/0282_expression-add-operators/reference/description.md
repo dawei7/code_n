@@ -1,11 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `num` that contains only digits and an integer `target`, return ***all possibilities** to insert the binary operators *`'+'`*, *`'-'`*, and/or *`'*'`* between the digits of *`num`* so that the resultant expression evaluates to the *`target`* value*.
 
 Note that operands in the returned expressions **should not** contain leading zeros.
 
-**Note** that a number can contain multiple digits.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +15,11 @@ Note that operands in the returned expressions **should not** contain leading ze
 
 Return all expressions formed from the digits of `num` and the operators `+`, `-`, and `*` that evaluate to `target` without using leading-zero operands.
 
-### Examples
+### 3. Note
+
+that a number can contain multiple digits.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ Return all expressions formed from the digits of `num` and the operators `+`, `-
 - **Input:** $num = "3456237490", target = 9191$
 - **Output:** `[]`
 - **Explanation:** There are no expressions that can be created from "3456237490" to evaluate to 9191.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{num.length} \le 10$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `password`.
 
@@ -15,7 +15,8 @@ The **strength** of the password is calculated based on the following rules:
 Each character contributes **at most** once, even if it appears multiple times.
 
 Return an integer denoting the strength of the password.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Return an integer denoting the strength of the password.
 
 Return the integer sum of the category weight for every distinct character present in `password`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ Return the integer sum of the category weight for every distinct character prese
 - Thus, the $strength = 1 + 2 + 3 + 5 = 11$.​​​​​​​
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{password.length} \le 10^{5}$
 

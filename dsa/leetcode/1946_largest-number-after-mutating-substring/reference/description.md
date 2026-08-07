@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `num`, which represents a large integer. You are also given a **0-indexed** integer array `change` of length `10` that maps each digit `0-9` to another digit. More formally, digit `d` maps to digit $\text{change}[d]$.
 
@@ -7,12 +7,13 @@ You may **choose** to **mutate a single substring** of `num`. To mutate a substr
 Return *a string representing the **largest** possible integer after **mutating** (or choosing not to) a **single substring** of *`num`.
 
 A **substring** is a contiguous sequence of characters within the string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Thus, "<u>021</u>" becomes "<u>934</u>".
 - **Input:** $num = "5", change = [1,4,7,5,3,2,5,6,9,4]$
 - **Output:** `"5"`
 - **Explanation:** "5" is already the largest number that can be created, so return it.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 10^{5}$
 

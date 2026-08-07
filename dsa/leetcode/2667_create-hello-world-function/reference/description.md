@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Write a function `createHelloWorld`. It should return a new function that always returns `"Hello World"`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ The function returned by createHelloWorld should always return "Hello World".
 const f = createHelloWorld();
 f({}, null, 42); // "Hello World"
 Any arguments could be passed to the function but it should still always return "Hello World".
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{args.length} \le 10$

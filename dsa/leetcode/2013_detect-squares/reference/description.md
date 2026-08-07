@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a stream of points on the X-Y plane. Design an algorithm that:
 
@@ -15,12 +15,13 @@ Implement the `DetectSquares` class:
 - `void add(int[] point)` Adds a new point $point = [x, y]$ to the data structure.
 
 - `int count(int[] point)` Counts the number of ways to form **axis-aligned squares** with point $point = [x, y]$ as described above.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ detectSquares.count([11, 10]); // return 2. You can choose:
                                //   - The first, second, and third points
                                //   - The first, third, and fourth points
 ```
-### Constraints
+
+### 4. Constraints
 
 - $\text{point.length} = 2$
 

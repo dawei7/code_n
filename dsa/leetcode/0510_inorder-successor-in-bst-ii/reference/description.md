@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `node` in a binary search tree, return *the in-order successor of that node in the BST*. If that node has no in-order successor, return `null`.
 
@@ -14,7 +14,8 @@ class Node {
     public Node parent;
 }
 ```
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -33,7 +34,7 @@ Each `Node` contains these fields:
 
 The caller supplies `node`, not the tree root. Returning only the successor's value does not satisfy the contract.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ The caller supplies `node`, not the tree root. Returning only the successor's va
 - **Input:** $tree = [5,3,6,2,4,null,null,1], node = 6$
 - **Output:** `null`
 - **Explanation:** There is no in-order successor of the current node, so the answer is null.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

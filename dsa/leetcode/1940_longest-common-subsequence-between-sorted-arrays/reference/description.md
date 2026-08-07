@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an array of integer arrays `arrays` where each $\text{arrays}[i]$ is sorted in **strictly increasing** order, return *an integer array representing the **longest common subsequence** among **all** the arrays*.
 
 A **subsequence** is a sequence that can be derived from another sequence by deleting some elements (possibly none) without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A **subsequence** is a sequence that can be derived from another sequence by del
 [6,7,8]]
 - **Output:** `[]`
 - **Explanation:** There is no common subsequence between the two arrays.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arrays.length} \le 100$
 

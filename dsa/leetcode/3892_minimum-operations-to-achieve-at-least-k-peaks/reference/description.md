@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a ​​​​​​​circular integer array​​​​​​​ `nums` of length `n`.
 
@@ -13,7 +13,8 @@ You are allowed to perform the following operation **any** number of times:
 - Choose any index `i` and **increase** $\text{nums}[i]$ by 1.
 
 Return an integer denoting the **minimum** number of operations required to make the array contain **at least** `k` peaks. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Each operation increases one chosen array element by $1$. Values may become larg
 
 Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if the requested count is impossible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,7 +75,8 @@ Return the fewest unit increases that can produce at least `k` peaks, or $-1$ if
 It is impossible to have at least $k = 2$ peaks in this array. Therefore, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 5000$
 

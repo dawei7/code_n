@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an image represented by an `m x n` grid of integers `image`, where $\text{image}[i][j]$ represents the pixel value of the image. You are also given three integers `sr`, `sc`, and `color`. Your task is to perform a **flood fill** on the image starting from the pixel $\text{image}[sr][sc]$.
 
@@ -13,12 +13,13 @@ To perform a **flood fill**:
 - The process **stops** when there are **no more** adjacent pixels of the original color to update.
 
 Return the **modified** image after performing the flood fill.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Note the bottom corner is **not** colored 2, because it is not horizontally or v
 The starting pixel is already colored with 0, which is the same as the target color. Therefore, no changes are made to the image.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{image.length}$
 

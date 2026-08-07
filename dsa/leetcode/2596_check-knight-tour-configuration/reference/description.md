@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a knight on an `n x n` chessboard. In a valid configuration, the knight starts **at the top-left cell** of the board and visits every cell on the board **exactly once**.
 
@@ -6,15 +6,18 @@ You are given an `n x n` integer matrix `grid` consisting of distinct integers f
 
 Return `true` *if* `grid` *represents a valid configuration of the knight's movements or* `false` *otherwise*.
 
-**Note** that a valid knight move consists of moving two squares vertically and one square horizontally, or two squares horizontally and one square vertically. The figure below illustrates all the possible eight moves of a knight from some cell.
-
-![](images/knight.png)
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that a valid knight move consists of moving two squares vertically and one square horizontally, or two squares horizontally and one square vertically. The figure below illustrates all the possible eight moves of a knight from some cell.
+
+![](images/knight.png)
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ Return `true` *if* `grid` *represents a valid configuration of the knight's move
 - **Input:** `grid = [[0,3,6],[5,8,1],[2,7,4]]`
 - **Output:** `false`
 - **Explanation:** The above diagram represents the grid. The 8^th move of the knight is not valid considering its position after the 7^th move.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

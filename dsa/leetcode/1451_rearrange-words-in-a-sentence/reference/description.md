@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a sentence `text` (A *sentence* is a string of space-separated words) in the following format:
 
@@ -9,12 +9,13 @@ Given a sentence `text` (A *sentence* is a string of space-separated words) in t
 Your task is to rearrange the words in text such that all words are rearranged in an increasing order of their lengths. If two words have the same length, arrange them in their original order.
 
 Return the new text following the format shown above.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Output is ordered by length and the new first word starts with capital letter.
 
 - **Input:** $text = "To be or not to be"$
 - **Output:** `"To be or to be not"`
-### Constraints
+
+### 4. Constraints
 
 - `text` begins with a capital letter and then contains lowercase letters and single space between words.
 

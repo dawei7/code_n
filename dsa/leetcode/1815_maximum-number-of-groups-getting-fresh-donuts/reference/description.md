@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is a donuts shop that bakes donuts in batches of `batchSize`. They have a rule where they must serve **all** of the donuts of a batch before serving any donuts of the next batch. You are given an integer `batchSize` and an integer array `groups`, where $\text{groups}[i]$ denotes that there is a group of $\text{groups}[i]$ customers that will visit the shop. Each customer will get exactly one donut.
 
 When a group visits the shop, all customers of the group must be served before serving any of the following groups. A group will be happy if they all get fresh donuts. That is, the first customer of the group does not receive a donut that was left over from the previous group.
 
 You can freely rearrange the ordering of the groups. Return *the **maximum** possible number of happy groups after rearranging the groups.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ You can freely rearrange the ordering of the groups. Return *the **maximum** pos
 
 - **Input:** $batchSize = 4, groups = [1,3,2,5,2,2,1,6]$
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le batchSize \le 9$
 

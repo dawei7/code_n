@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of nodes in a **directed weighted** graph, numbered from 0 to $n - 1$. This is represented by a 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ represents a directed edge from node $u_{i}$ to node $v_{i}$ with weight $w_{i}$.
 
 You are also given a string `labels` of length `n`, where $\text{labels}[i]$ is the character assigned to node `i`, and an integer `k`.
 
 Return the **minimum** **total** edge weight of a path from node 0 to node $n - 1$ such that the concatenation of the labels of the nodes along the path contains **at most** `k` **consecutive** **identical** characters. If no valid path exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $m = \lvert\texttt{edges}\rvert$. The cost of a route is the sum of the weig
 
 Return the minimum cost of a valid route from node `0` to node $n - 1$. Return `-1` if no such route exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ The corresponding concatenation of labels is `"aab"`, which satisfies at most $k
 There is no valid path from node 0 to node 2 that satisfies at most $k = 2$ consecutive identical characters. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{labels.length} \le 5 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` binary matrix `grid`.
 
@@ -11,12 +11,13 @@ Return *an integer array that contains row indices of a good subset sorted in **
 If there are multiple good subsets, you can return any of them. If there are no good subsets, return an empty array.
 
 A **subset** of rows of the matrix `grid` is any matrix that can be obtained by deleting some (possibly none or all) rows from `grid`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ The length of the chosen subset is 1.
 - **Input:** `grid = [[1,1,1],[1,1,1]]`
 - **Output:** `[]`
 - **Explanation:** It is impossible to choose any subset of rows to create a good subset.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

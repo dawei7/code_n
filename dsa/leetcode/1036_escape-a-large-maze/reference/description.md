@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a 1 million by 1 million grid on an XY-plane, and the coordinates of each grid square are `(x, y)`.
 
@@ -7,12 +7,13 @@ We start at the $source = [s_{x}, s_{y}]$ square and want to reach the $target =
 Each move, we can walk one square north, east, south, or west if the square is **not** in the array of `blocked` squares. We are also not allowed to walk outside of the grid.
 
 Return `true`* if and only if it is possible to reach the *`target`* square from the *`source`* square through a sequence of valid moves*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ We cannot move south or west because we cannot go outside of the grid.
 - **Input:** $blocked = [], source = [0,0], target = [999999,999999]$
 - **Output:** `true`
 - **Explanation:** Because there are no blocked cells, it is possible to reach the target square.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{blocked.length} \le 200$
 

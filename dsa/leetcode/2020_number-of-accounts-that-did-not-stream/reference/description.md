@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Subscriptions`
 
@@ -33,11 +33,12 @@ Each row of this table contains information about the account and the date assoc
 Write an SQL query to report the number of accounts that bought a subscription in `2021` but did not have any stream session.
 
 The query result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

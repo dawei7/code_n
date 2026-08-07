@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We define the **conversion array** `conver` of an array `arr` as follows:
 
@@ -7,12 +7,13 @@ We define the **conversion array** `conver` of an array `arr` as follows:
 We also define the **score** of an array `arr` as the sum of the values of the conversion array of `arr`.
 
 Given a **0-indexed** integer array `nums` of length `n`, return *an array *`ans`* of length *`n`* where *$\text{ans}[i]$* is the score of the prefix* `nums[0..i]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ For the prefix [1, 1, 2], the conversion array is [2, 2, 4] hence the score is 8
 For the prefix [1, 1, 2, 4], the conversion array is [2, 2, 4, 8] hence the score is 16
 For the prefix [1, 1, 2, 4, 8], the conversion array is [2, 2, 4, 8, 16] hence the score is 32
 For the prefix [1, 1, 2, 4, 8, 16], the conversion array is [2, 2, 4, 8, 16, 32] hence the score is 64
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

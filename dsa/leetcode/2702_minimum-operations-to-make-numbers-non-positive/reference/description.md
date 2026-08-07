@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and two integers `x` and `y`. In one operation, you must choose an index `i` such that $0 \le i < \text{nums.length}$ and perform the following:
 
@@ -7,11 +7,12 @@ You are given a **0-indexed** integer array `nums` and two integers `x` and `y`.
 - Decrement values by `y` at all indices except the $$i^{\text{th}}$$ one.
 
 Return *the minimum number of operations to make all the integers in *`nums` ***less than or equal to zero.***
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Now, all the numbers in nums are non-positive. Therefore, we return 3.
 - **Input:** `nums = [1,2,1], x = 2, y = 1`
 - **Output:** `1`
 - **Explanation:** We can perform the operation once on i = 1. Then, nums becomes [0,0,0]. All the positive numbers are removed, and therefore, we return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Students`
 
@@ -44,12 +44,13 @@ Write a solution to find the number of times each student attended each exam.
 Return the result table ordered by $\text{student}_{id}$ and $\text{subject}_{name}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

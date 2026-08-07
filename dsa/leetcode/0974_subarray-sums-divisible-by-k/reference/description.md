@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the number of non-empty **subarrays** that have a sum divisible by *`k`.
 
 A **subarray** is a **contiguous** part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ A **subarray** is a **contiguous** part of an array.
 
 - **Input:** `nums = [5], k = 9`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{4}$
 

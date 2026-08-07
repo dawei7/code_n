@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `items` of length `n` and an integer `k`.
 
@@ -10,13 +10,16 @@ Your task is to find the **maximum elegance** from all subsequences of size `k` 
 
 Return *an integer denoting the maximum elegance of a subsequence of *`items`* with size exactly *`k`.
 
-**Note:** A subsequence of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+A subsequence of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ Hence, the elegance is 10 + $3^{2}$ = 19, and we can show that it is the maximum
 We should select all the items.
 The total profit will be 1 + 2 + 3 = 6, and the subsequence contains 1 distinct category [1].
 Hence, the maximum elegance is 6 + $1^{2}$ = 7.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{items.length} = n \le 10^{5}$
 

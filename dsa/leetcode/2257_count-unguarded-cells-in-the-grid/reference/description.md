@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n` representing a **0-indexed** `m x n` grid. You are also given two 2D integer arrays `guards` and `walls` where $\text{guards}[i] = [\text{row}_{i}, \text{col}_{i}]$ and $\text{walls}[j] = [\text{row}_{j}, \text{col}_{j}]$ represent the positions of the $$i^{\text{th}}$$ guard and $$j^{\text{th}}$$ wall respectively.
 
 A guard can see **every** cell in the four cardinal directions (north, east, south, or west) starting from their position unless **obstructed** by a wall or another guard. A cell is **guarded** if there is **at least** one guard that can see it.
 
 Return* the number of unoccupied cells that are **not** **guarded**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ There are a total of 7 unguarded cells, so we return 7.
 - **Output:** `4`
 - **Explanation:** The unguarded cells are shown in green in the above diagram.
 There are a total of 4 unguarded cells, so we return 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{5}$
 

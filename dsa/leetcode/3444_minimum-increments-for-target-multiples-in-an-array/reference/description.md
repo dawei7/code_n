@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two arrays, `nums` and `target`.
 
 In a single operation, you may increment any element of `nums` by 1.
 
 Return **the minimum number** of operations required so that each element in `target` has **at least** one multiple in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ The minimum number of operations required to satisfy the condition is 2.
 Target 7 already has a multiple in nums, so no additional operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

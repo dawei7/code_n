@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, collect a tree's nodes as if you were doing this:
 
@@ -7,7 +7,8 @@ Given the `root` of a binary tree, collect a tree's nodes as if you were doing t
 - Remove all the leaf nodes.
 
 - Repeat until the tree is empty.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Given the `root` of a binary tree, collect a tree's nodes as if you were doing t
 
 Return one list of node values for each simultaneous leaf-removal round, beginning with the original leaves and ending with the original root. Values within the same round may appear in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return one list of node values for each simultaneous leaf-removal round, beginni
 
 - **Input:** `root = [1]`
 - **Output:** `[[1]]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 100]`.
 

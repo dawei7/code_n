@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, and three integers `a`, `b` and `c`. You need to find the number of good triplets.
 
@@ -15,12 +15,13 @@ A triplet $(\text{arr}[i], \text{arr}[j], \text{arr}[k])$ is **good** if the fol
 Where `|x|` denotes the absolute value of `x`.
 
 Return* the number of good triplets*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return* the number of good triplets*.
 - **Input:** `arr = [1,1,2,2,3], a = 0, b = 0, c = 1`
 - **Output:** `0`
 - **Explanation:** No triplet satisfies all conditions.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{arr.length} \le 100$
 

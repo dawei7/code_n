@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `x`, `y`, and `z`, representing the positions of three people on a number line:
 
@@ -19,12 +19,13 @@ Determine which person reaches Person 3 **first**:
 - Return 0 if both arrive at the **same** time.
 
 Return the result accordingly.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,6 +75,7 @@ Since Person 2 reaches Person 3 first, the output is 2.
 Since both Person 1 and Person 2 reach Person 3 at the same time, the output is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le x, y, z \le 100$

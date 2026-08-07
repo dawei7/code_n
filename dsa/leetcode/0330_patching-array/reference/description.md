@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a sorted integer array `nums` and an integer `n`, add/patch elements to the array such that any number in the range `[1, n]` inclusive can be formed by the sum of some elements in the array.
 
 Return *the minimum number of patches required*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Return *the minimum number of patches required*.
 
 Return the minimum number of elements that must be added so every value from `1` through `n` can be formed as a sum of selected array elements.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ So we only need 1 patch.
 
 - **Input:** `nums = [1,2,2], n = 5`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

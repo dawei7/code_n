@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` cities numbered from `0` to $n - 1$ and $n - 1$ roads such that there is only one way to travel between two different cities (this network form a tree). Last year, The ministry of transport decided to orient the roads in one direction because they are too narrow.
 
@@ -9,12 +9,13 @@ This year, there will be a big event in the capital (city `0`), and many people 
 Your task consists of reorienting some roads such that each city can visit the city `0`. Return the **minimum** number of edges changed.
 
 It's **guaranteed** that each city can reach city `0` after reorder.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It's **guaranteed** that each city can reach city `0` after reorder.
 
 - **Input:** $n = 3, connections = [[1,0],[2,0]]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

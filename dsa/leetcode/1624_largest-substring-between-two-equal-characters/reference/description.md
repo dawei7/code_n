@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the length of the longest substring between two equal characters, excluding the two characters.* If there is no such substring return `-1`.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** `s = "cbzxy"`
 - **Output:** `-1`
 - **Explanation:** There are no characters that appear twice in s.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 300$
 

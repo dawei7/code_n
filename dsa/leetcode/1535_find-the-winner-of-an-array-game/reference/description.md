@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `arr` of **distinct** integers and an integer `k`.
 
@@ -7,12 +7,13 @@ A game will be played between the first two elements of the array (i.e. $\text{a
 Return *the integer which will win the game*.
 
 It is **guaranteed** that there will be a winner of the game.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ So we can see that 4 rounds will be played and 5 is the winner because it wins 2
 - **Input:** `arr = [3,2,1], k = 10`
 - **Output:** `3`
 - **Explanation:** 3 will win the first 10 rounds consecutively.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 10^{5}$
 

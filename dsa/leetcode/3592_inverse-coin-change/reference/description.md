@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **1-indexed** integer array `numWays`, where $\text{numWays}[i]$ represents the number of ways to select a total amount `i` using an **infinite** supply of some *fixed* coin denominations. Each denomination is a **positive** integer with value **at most** `numWays.length`.
 
@@ -7,12 +7,13 @@ However, the exact coin denominations have been *lost*. Your task is to recover 
 Return a **sorted** array containing **unique** integers which represents this set of denominations.
 
 If no such set exists, return an **empty** array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -142,7 +143,8 @@ No set of denomination satisfies this array.
 <table style="border: 1px solid black;">
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{numWays.length} \le 100$
 

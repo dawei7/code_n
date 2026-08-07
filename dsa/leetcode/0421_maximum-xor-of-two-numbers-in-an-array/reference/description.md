@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the maximum result of *$\text{nums}[i] XOR \text{nums}[j]$, where $0 \le i \le j < n$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return the maximum value of $\text{nums}[i] ^ \text{nums}[j]$ among all valid po
 
 Here, $n = \lvert\texttt{nums}\rvert$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Here, $n = \lvert\texttt{nums}\rvert$.
 
 - **Input:** `nums = [14,70,53,83,49,91,36,80,92,51,66,70]`
 - **Output:** `127`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{5}$
 

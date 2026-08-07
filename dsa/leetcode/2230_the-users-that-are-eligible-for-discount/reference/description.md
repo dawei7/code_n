@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Purchases`
 
@@ -21,11 +21,12 @@ Write a solution to report the IDs of the users that are eligible for a discount
 Return the result table ordered by $\text{user}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,4 +55,6 @@ Out of the three users, only User 3 is eligible for a discount.
  - User 3 is the only user who had a purchase that satisfies both conditions.
 ```
 
-**Important Note:** This problem is basically the same as <a href="https://leetcode.com/problems/the-number-of-users-that-are-eligible-for-discount/">The Number of Users That Are Eligible for Discount</a>.
+### 4. Important Note
+
+This problem is basically the same as <a href="https://leetcode.com/problems/the-number-of-users-that-are-eligible-for-discount/">The Number of Users That Are Eligible for Discount</a>.

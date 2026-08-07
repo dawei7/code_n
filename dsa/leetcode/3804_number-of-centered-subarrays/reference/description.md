@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 A **subarray** of `nums` is called **centered** if the sum of its elements is **equal to at least one** element within that **same subarray**.
 
 Return the number of **centered subarrays** of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ A subarray is contiguous and nonempty. Equal values at different positions do no
 
 Return an integer equal to the number of contiguous intervals whose element sum occurs as a value somewhere inside that interval.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Return an integer equal to the number of contiguous intervals whose element sum 
 Only single-element subarrays (`[2]`, `[-3]`) are centered.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 500$
 

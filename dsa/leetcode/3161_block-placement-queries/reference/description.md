@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an infinite number line, with its origin at 0 and extending towards the **positive** x-axis.
 
@@ -9,12 +9,13 @@ You are given a 2D array `queries`, which contains two types of queries:
 - For a query of type 2, $\text{queries}[i] = [2, x, sz]$. Check if it is possible to place a block of size `sz` *anywhere* in the range `[0, x]` on the line, such that the block **entirely** lies in the range `[0, x]`. A block **cannot **be placed if it intersects with any obstacle, but it may touch it. Note that you do** not** actually place the block. Queries are separate.
 
 Return a boolean array `results`, where $\text{results}[i]$ is `true` if you can place the block specified in the $$i^{\text{th}}$$ query of type 2, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ For query 0, place an obstacle at $x = 2$. A block of size at most 2 can be plac
 - Place an obstacle at $x = 2$ for query 2. Now, a block of size at most 5 can be placed before $x = 7$, and a block of size at most 2 before $x = 2$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length} \le 15 * 10^{4}$
 

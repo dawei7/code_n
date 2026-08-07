@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 The **power** of the string is the maximum length of a non-empty substring that contains only one unique character.
 
 Given a string `s`, return *the **power** of* `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given a string `s`, return *the **power** of* `s`.
 - **Input:** `s = "abbcccddddeeeeedcba"`
 - **Output:** `5`
 - **Explanation:** The substring "eeeee" is of length 5 with the character 'e' only.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a text editor with a cursor that can do the following:
 
@@ -21,12 +21,13 @@ Implement the `TextEditor` class:
 - `string cursorLeft(int k)` Moves the cursor to the left `k` times. Returns the last `min(10, len)` characters to the left of the cursor, where `len` is the number of characters to the left of the cursor.
 
 - `string cursorRight(int k)` Moves the cursor to the right `k` times. Returns the last `min(10, len)` characters to the left of the cursor, where `len` is the number of characters to the left of the cursor.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,11 +63,15 @@ textEditor.cursorRight(6); // return "practi"
                            // The current text is "practi|ce".
                            // "practi" is the last min(10, 6) = 6 characters to the left of the cursor.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length}, k \le 40$
 
 - `text` consists of lowercase English letters.
 
 - At most $2 * 10^{4}$ calls **in total** will be made to `addText`, `deleteText`, `cursorLeft` and `cursorRight`.
-### Follow-up Could you find a solution with time complexity of `O(k)` per call?
+
+### 5. Follow-up
+
+Could you find a solution with time complexity of `O(k)` per call?

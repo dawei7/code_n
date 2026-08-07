@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the array `favoriteCompanies` where $\text{favoriteCompanies}[i]$ is the list of favorites companies for the `ith` person (**indexed from 0**).
 
 *Return the indices of people whose list of favorite companies is not a **subset** of any other list of favorites companies*. You must return the indices in increasing order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Other lists of favorite companies are not a subset of another list, therefore, t
 
 - **Input:** $favoriteCompanies = [["leetcode"],["google"],["facebook"],["amazon"]]$
 - **Output:** `[0,1,2,3]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{favoriteCompanies.length} \le 100$
 

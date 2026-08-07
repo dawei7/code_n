@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` 2D array `grid` of **positive** integers.
 
@@ -14,15 +14,18 @@ Zigzag pattern traversal is defined as following the below actions:
 
 - Continue **alternating** between right and left traversal until every row has been traversed.
 
-**Note **that you **must skip** every *alternate* cell during the traversal.
-
-Return an array of integers `result` containing, **in order**, the value of the cells visited during the zigzag traversal with skips.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you **must skip** every *alternate* cell during the traversal.
+
+Return an array of integers `result` containing, **in order**, the value of the cells visited during the zigzag traversal with skips.
+
+### 4. Examples
 
 #### Example 1
 
@@ -64,7 +67,8 @@ Return an array of integers `result` containing, **in order**, the value of the 
 ![](images/4012_example2.png)
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n = \text{grid.length} \le 50$
 

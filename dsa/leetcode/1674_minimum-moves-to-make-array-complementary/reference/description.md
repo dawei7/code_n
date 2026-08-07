@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of **even** length `n` and an integer `limit`. In one move, you can replace any integer from `nums` with another integer between `1` and `limit`, inclusive.
 
 The array `nums` is **complementary** if for all indices `i` (**0-indexed**), $\text{nums}[i] + nums[n - 1 - i]$ equals the same number. For example, the array `[1,2,3,4]` is complementary because for all indices `i`, $\text{nums}[i] + nums[n - 1 - i] = 5$.
 
 Return the ***minimum** number of moves required to make *`nums`* **complementary***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Therefore, nums[i] + nums[n-1-i] = 4 for every i, so nums is complementary.
 - **Input:** `nums = [1,2,1,2], limit = 2`
 - **Output:** `0`
 - **Explanation:** nums is already complementary.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

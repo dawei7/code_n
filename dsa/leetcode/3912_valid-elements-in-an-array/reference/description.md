@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -11,7 +11,8 @@ An element $\text{nums}[i]$ is considered **valid** if it satisfies **at least**
 The first and last elements are always valid.
 
 Return an array of all valid elements in the same order as they appear in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return all values whose positions satisfy at least one strict side-maximum condition, in their original order. If $n=1$, return the single input value once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ Return all values whose positions satisfy at least one strict side-maximum condi
 Since there is only one element, it is always valid. Thus, the answer is `[1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

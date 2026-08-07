@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `pos`, and `k`.
 
@@ -17,7 +17,8 @@ A person at index `pos` sees others as follows:
 Return the number of possible direction assignments such that the person at index `pos` sees **exactly** `k` people.
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ Let $m=n-1$ be the number of people other than the observer, and let $P=$10^{9}$
 
 Return the number of complete `L`/`R` assignments that make exactly `k` of those $m$ people visible, reduced modulo $P$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -85,7 +86,8 @@ Return the number of complete `L`/`R` assignments that make exactly `k` of those
 - The person at index 0 can choose `'L'` or `'R'`. Thus, the answer is 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

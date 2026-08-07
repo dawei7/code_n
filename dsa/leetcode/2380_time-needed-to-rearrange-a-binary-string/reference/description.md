@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`. In one second, **all** occurrences of `"01"` are **simultaneously** replaced with `"10"`. This process **repeats** until no occurrences of `"01"` exist.
 
 Return* the number of seconds needed to complete this process.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ so we return 4.
 - **Explanation:**
 No occurrence of "01" exists in s, and the processes needed 0 seconds to complete,
 so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

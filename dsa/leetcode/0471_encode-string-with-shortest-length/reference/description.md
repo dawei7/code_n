@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a string `s`, encode the string such that its encoded length is the shortest.
 
 The encoding rule is: $k[\text{encoded}_{string}]$, where the $\text{encoded}_{string}$ inside the square brackets is being repeated exactly `k` times. `k` should be a positive integer.
 
 If an encoding process does not make the string shorter, then do not encode it. If there are several solutions, return **any of them**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ An encoded region has the form $k[\text{encoded}_{string}]$, where positive inte
 of the decoded bracketed string. Do not use that form for a region unless it is strictly shorter than leaving the
 same region literal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ same region literal.
 - **Input:** `s = "aaaaaaaaaa"`
 - **Output:** $"\text{10}[a]"$
 - **Explanation:** "a9[a]" or "9[a]a" are also valid solutions, both of them have the same length = 5, which is the same as "10[a]".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 150$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a special keyboard where keys are arranged in a rectangular grid as follows.
 <table style="border: 1px solid black;">
@@ -45,7 +45,8 @@ There is a special keyboard where keys are arranged in a rectangular grid as fol
 You are given a string `s` that consists of lowercase English letters only. Return an integer denoting the total **distance** to type `s` using only one finger. Your finger starts on the key `'a'`.
 
 The **distance** between two keys at `(r1, c1)` and `(r2, c2)` is $|r1 - r2| + |c1 - c2|$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -65,7 +66,7 @@ $\sum_{i=1}^{N}d_i.$
 
 Typing a character already under the finger contributes zero distance.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -107,7 +108,8 @@ Typing a character already under the finger contributes zero distance.
 - Total distance is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{4}$
 

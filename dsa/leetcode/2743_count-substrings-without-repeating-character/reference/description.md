@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of lowercase English letters. We call a substring **special** if it contains no character which has occurred at least twice (in other words, it does not contain a repeating character). Your task is to count the number of **special** substrings. For example, in the string `"pop"`, the substring `"po"` is a **special** substring, however, `"pop"` is not **special** (since `'p'` has occurred twice).
 
 Return *the number of **special** substrings.*
 
 A **substring** is a contiguous sequence of characters within a string. For example, `"abc"` is a substring of `"abcd"`, but `"acd"` is not.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A **substring** is a contiguous sequence of characters within a string. For exam
 Special substrings of length 1: "a", "b", "a", "b"
 Special substrings of length 2: "ab", "ba", "ab"
 And it can be shown that there are no special substrings with a length of at least three. So the answer would be 4 + 3 = 7.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

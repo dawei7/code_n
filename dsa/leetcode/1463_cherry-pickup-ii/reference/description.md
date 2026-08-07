@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `rows x cols` matrix `grid` representing a field of cherries where $\text{grid}[i][j]$ represents the number of cherries that you can collect from the `(i, j)` cell.
 
@@ -19,12 +19,13 @@ Return *the maximum number of cherries collection using both robots by following
 - Both robots cannot move outside of the grid at any moment.
 
 - Both robots should reach the bottom row in `grid`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Total of cherries: 12 + 12 = 24.
 Cherries taken by Robot #1, (1 + 9 + 5 + 2) = 17.
 Cherries taken by Robot #2, (1 + 3 + 4 + 3) = 11.
 Total of cherries: 17 + 11 = 28.
-### Constraints
+
+### 4. Constraints
 
 - $rows = \text{grid.length}$
 

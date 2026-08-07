@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `rolls` of length `n` and an integer `k`. You roll a `k` sided dice numbered from `1` to `k`, `n` times, where the result of the $$i^{\text{th}}$$ roll is $\text{rolls}[i]$.
 
 Return* the length of the **shortest** sequence of rolls so that there's no such subsequence in *`rolls`.
 
 A **sequence of rolls** of length `len` is the result of rolling a `k` sided dice `len` times.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Note that there are other sequences that cannot be taken from rolls but [2, 1] i
 - **Output:** `1`
 - **Explanation:** The sequence [4] cannot be taken from rolls, so we return 1.
 Note that there are other sequences that cannot be taken from rolls but [4] is the shortest.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{rolls.length}$
 

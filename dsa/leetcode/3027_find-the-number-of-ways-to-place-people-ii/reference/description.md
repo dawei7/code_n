@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array `points` of size `n x 2` representing integer coordinates of some points on a 2D-plane, where $\text{points}[i] = [x_{i}, y_{i}]$.
 
@@ -8,19 +8,22 @@ You have to place `n` people, including Alice and Bob, at these points such that
 
 Return *the number of **pairs of points** where you can place Alice and Bob, such that Alice **does not** become sad on building the fence*.
 
-**Note** that Alice can only build a fence with Alice's position as the upper left corner, and Bob's position as the lower right corner. For example, Alice cannot build either of the fences in the picture below with four corners `(1, 1)`, `(1, 3)`, `(3, 1)`, and `(3, 3)`, because:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that Alice can only build a fence with Alice's position as the upper left corner, and Bob's position as the lower right corner. For example, Alice cannot build either of the fences in the picture below with four corners `(1, 1)`, `(1, 3)`, `(3, 1)`, and `(3, 3)`, because:
 
 - With Alice at `(3, 3)` and Bob at `(1, 1)`, Alice's position is not the upper left corner and Bob's position is not the lower right corner of the fence.
 
 - With Alice at `(1, 3)` and Bob at `(1, 1)` (as the rectangle shown in the image instead of a line), Bob's position is not the lower right corner of the fence.
 
 ![](images/example0alicebob-1.png)
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ You cannot place Alice at (2, 6) and Bob at (6, 2) because the person at (4, 4) 
 - Place Alice at (1, 3) and Bob at (1, 1).
 You cannot place Alice at (1, 3) and Bob at (3, 1) because the person at (1, 1) will be on the fence.
 Note that it does not matter if the fence encloses any area, the first and second fences in the image are valid.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 1000$
 

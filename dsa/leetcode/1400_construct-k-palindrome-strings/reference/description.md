@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, return `true` if you can use all the characters in `s` to construct **non-empty** `k` palindrome strings or `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Some possible constructions "anna" + "elble", "anbna" + "elle", "anellena" + "b"
 - **Input:** `s = "true", k = 4`
 - **Output:** `true`
 - **Explanation:** The only possible solution is to put each character in a separate string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

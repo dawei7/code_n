@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Serialization is converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
 Design an algorithm to serialize and deserialize a **binary search tree**. There is no restriction on how your serialization/deserialization algorithm should work. You need to ensure that a binary search tree can be serialized to a string, and this string can be deserialized to the original tree structure.
 
 **The encoded string should be as compact as possible.**
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Design an algorithm to serialize and deserialize a **binary search tree**. There
 
 The standalone app defines a minimal local equivalent of LeetCode's injected `TreeNode` model.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The standalone app defines a minimal local equivalent of LeetCode's injected `Tr
 
 - **Input:** `root = []`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{4}]$.
 

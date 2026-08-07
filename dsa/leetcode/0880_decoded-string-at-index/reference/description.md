@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an encoded string `s`. To decode the string to a tape, the encoded string is read one character at a time and the following steps are taken:
 
@@ -7,12 +7,13 @@ You are given an encoded string `s`. To decode the string to a tape, the encoded
 - If the character read is a digit `d`, the entire current tape is repeatedly written $d - 1$ more times in total.
 
 Given an integer `k`, return *the *$$k^{\text{th}}$$* letter (**1-indexed)** in the decoded string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The 5^th letter is "h".
 - **Output:** `"a"`
 - **Explanation:** The decoded string is "a" repeated 8301530446056247680 times.
 The 1^st letter is "a".
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 100$
 

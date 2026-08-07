@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, modify the array in the following way:
 
@@ -7,12 +7,13 @@ Given an integer array `nums` and an integer `k`, modify the array in the follow
 You should apply this process exactly `k` times. You may choose the same index `i` multiple times.
 
 Return *the largest possible sum of the array after modifying it in this way*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return *the largest possible sum of the array after modifying it in this way*.
 - **Input:** `nums = [2,-3,-1,5,-4], k = 2`
 - **Output:** `13`
 - **Explanation:** Choose indices (1, 4) and nums becomes [2,3,-1,5,4].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

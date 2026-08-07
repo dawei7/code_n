@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the number of **distinct** substrings of* `s`.
 
 A **substring** of a string is obtained by deleting any number of characters (possibly zero) from the front of the string and any number (possibly zero) from the back of the string.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **substring** of a string is obtained by deleting any number of characters (po
 
 Return an integer representing the number of distinct nonempty substrings in `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return an integer representing the number of distinct nonempty substrings in `s`
 
 - **Input:** `s = "abcdefg"`
 - **Output:** `28`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

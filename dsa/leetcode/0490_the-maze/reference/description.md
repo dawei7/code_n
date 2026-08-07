@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There is a ball in a `maze` with empty spaces (represented as `0`) and walls (represented as `1`). The ball can go through the empty spaces by rolling **up, down, left or right**, but it won't stop rolling until hitting a wall. When the ball stops, it could choose the next direction.
 
 Given the `m x n` `maze`, the ball's `start` position and the `destination`, where $start = [\text{start}_{row}, \text{start}_{col}]$ and $destination = [\text{destination}_{row}, \text{destination}_{col}]$, return `true` if the ball can stop at the destination, otherwise return `false`.
 
 You may assume that **the borders of the maze are all walls** (see examples).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ You may assume that **the borders of the maze are all walls** (see examples).
 Each chosen direction is committed until a wall stops the ball. Intermediate cells crossed during that roll are not
 decision points.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ decision points.
 
 - **Input:** $maze = [[0,0,0,0,0],[1,1,0,0,1],[0,0,0,0,0],[0,1,0,0,1],[0,1,0,0,0]], start = [4,3], destination = [0,1]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{maze.length}$
 

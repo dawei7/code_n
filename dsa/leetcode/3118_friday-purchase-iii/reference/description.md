@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Purchases`
 
@@ -101,10 +101,12 @@ Users table:
 
 - In the fourth week of November 2023, transactions occurred on Friday, 2023-11-24, involving one Premium member purchase of $5,117 and VIP member purchases totaling$14,933 ($9,692 from one and$5,241 from another).
 
-**Note:** The output table is ordered by week_of_month and membership in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
+
+### 3. Note
+
+The output table is ordered by week_of_month and membership in ascending order.
+
+</div>

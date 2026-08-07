@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Candidates`
 
@@ -34,7 +34,8 @@ Write a solution to report the IDs of the candidates who have **at least two** y
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -59,7 +60,7 @@ The result format is in the following example.
 
 Return a table with the single column $\text{candidate}_{id}$. Include candidates for whom $years_of_exp \ge 2$ and the sum of all matching `score` values across all rounds of their $\text{interview}_{id}$ is strictly greater than 15. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

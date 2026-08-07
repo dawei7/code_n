@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the heads of two singly linked-lists `headA` and `headB`, return *the node at which the two lists intersect*. If the two linked lists have no intersection at all, return `null`.
 
@@ -8,9 +8,22 @@ For example, the following two linked lists begin to intersect at node `c1`:
 
 The test cases are generated such that there are no cycles anywhere in the entire linked structure.
 
-**Note** that the linked lists must **retain their original structure** after the function returns.
+### 2. Function Contract
 
-**Custom Judge:**
+**Inputs**
+
+- `headA`: The first `ListNode` head, encoded in app cases with its private prefix and the shared tail.
+- `headB`: The second `ListNode` head, encoded with its own prefix and the same shared tail. The runner constructs one shared set of node objects for that tail.
+
+**Return value**
+
+Return the first shared `ListNode`. The app displays that node as its suffix values; a `null` result is displayed as `[]`.
+
+### 3. Note
+
+that the linked lists must **retain their original structure** after the function returns.
+
+### 4. Custom Judge
 
 The inputs to the **judge** are given as follows (your program is **not** given these inputs):
 
@@ -25,18 +38,8 @@ The inputs to the **judge** are given as follows (your program is **not** given 
 - `skipB` - The number of nodes to skip ahead in `listB` (starting from the head) to get to the intersected node.
 
 The judge will then create the linked structure based on these inputs and pass the two heads, `headA` and `headB` to your program. If you correctly return the intersected node, then your solution will be **accepted**.
-### Function Contract
 
-**Inputs**
-
-- `headA`: The first `ListNode` head, encoded in app cases with its private prefix and the shared tail.
-- `headB`: The second `ListNode` head, encoded with its own prefix and the same shared tail. The runner constructs one shared set of node objects for that tail.
-
-**Return value**
-
-Return the first shared `ListNode`. The app displays that node as its suffix values; a `null` result is displayed as `[]`.
-
-### Examples
+### 5. Examples
 
 #### Example 1
 
@@ -63,7 +66,8 @@ From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,
 - **Output:** `No intersection`
 - **Explanation:** From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
 - **Explanation:** The two lists do not intersect, so return null.
-### Constraints
+
+### 6. Constraints
 
 - The number of nodes of `listA` is in the `m`.
 

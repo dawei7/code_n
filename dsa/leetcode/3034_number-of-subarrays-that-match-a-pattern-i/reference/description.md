@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of size `n`, and a **0-indexed** integer array `pattern` of size `m` consisting of integers `-1`, `0`, and `1`.
 
@@ -11,12 +11,13 @@ A subarray `nums[i..j]` of size $m + 1$ is said to match the `pattern` if the fo
 - $nums[i + k + 1] < nums[i + k]$ if $\text{pattern}[k] = -1$.
 
 Return *the** count** of subarrays in* `nums` *that match the* `pattern`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Hence, there are 4 subarrays in nums that match the pattern.
 - **Output:** `2`
 - **Explanation:** Here, the pattern [1,0,-1] indicates that we are looking for a sequence where the first number is smaller than the second, the second is equal to the third, and the third is greater than the fourth. In the array nums, the subarrays [1,4,4,1], and [3,5,5,3] match this pattern.
 Hence, there are 2 subarrays in nums that match the pattern.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{nums.length} \le 100$
 

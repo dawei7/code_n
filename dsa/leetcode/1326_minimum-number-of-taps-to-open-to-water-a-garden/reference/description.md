@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a one-dimensional garden on the x-axis. The garden starts at the point `0` and ends at the point `n`. (i.e., the length of the garden is `n`).
 
@@ -7,12 +7,13 @@ There are $n + 1$ taps located at points `[0, 1, ..., n]` in the garden.
 Given an integer `n` and an integer array `ranges` of length $n + 1$ where $\text{ranges}[i]$ (0-indexed) means the `i-th` tap can water the area `[i - ranges[i], i + ranges[i]]` if it was open.
 
 Return *the minimum number of taps* that should be open to water the whole garden, If the garden cannot be watered return **-1**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Opening Only the second tap will water the whole garden [0,5]
 - **Input:** $n = 3, ranges = [0,0,0,0]$
 - **Output:** `-1`
 - **Explanation:** Even if you activate all the four taps you cannot water the whole garden.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary tree**, where each node contains an integer value.
 
@@ -11,7 +11,8 @@ A **valid path** in the tree is a sequence of **connected** nodes such that:
 - All node values along the path are **distinct**.
 
 Return an integer denoting the **maximum** possible sum of node values among all valid paths.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Let $n$ be the number of non-null nodes. A path follows tree edges and may move 
 
 Return the maximum sum over every non-empty connected path whose node values are pairwise distinct. A one-node path is valid, so the result remains well-defined when every value is negative.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -77,7 +78,8 @@ Return the maximum sum over every non-empty connected path whose node values are
 - The maximum-sum valid path is `4 → 6 → 9`, with a sum = $4 + 6 + 9 = 19$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

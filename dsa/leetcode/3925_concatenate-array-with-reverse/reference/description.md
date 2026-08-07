@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -11,7 +11,8 @@ Formally, for $0 \le i \le n - 1$:
 - $ans[i + n] = nums[n - i - 1]$
 
 Return an integer array `ans`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ $$
 
 for every $0 \le i < n$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ Thus, $ans = [1, 2, 3, 3, 2, 1]$.
 The array remains the same when reversed. Thus, $ans = [1, 1]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

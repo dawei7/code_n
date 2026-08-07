@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `binary` consisting of only `0`'s or `1`'s. You can apply each of the following operations any number of times:
 
@@ -14,12 +14,13 @@ You are given a binary string `binary` consisting of only `0`'s or `1`'s. You ca
 	</li>
 
 *Return the **maximum binary string** you can obtain after any number of operations. Binary string `x` is greater than binary string `y` if `x`'s decimal representation is greater than `y`'s decimal representation.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ You are given a binary string `binary` consisting of only `0`'s or `1`'s. You ca
 - **Input:** $binary = "01"$
 - **Output:** `"01"`
 - **Explanation:** "01" cannot be transformed any further.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{binary.length} \le 10^{5}$
 

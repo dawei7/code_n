@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Products`
 
@@ -20,7 +20,13 @@ If the product is not available in a store, the price will be null in that store
 The names of the stores may change from one testcase to another. There will be at least 1 store and at most 30 stores.
 ```
 
-**Important note:** This problem targets those who have a good experience with SQL. If you are a beginner, we recommend that you skip it for now.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Important Note
+
+This problem targets those who have a good experience with SQL. If you are a beginner, we recommend that you skip it for now.
 
 Implement the procedure `UnpivotProducts` to reorganize the `Products` table so that each row has the id of one product, the name of a store where it is sold, and its price in that store. If a product is not available in a store, do **not** include a row with that $\text{product}_{id}$ and `store` combination in the result table. There should be three columns: $\text{product}_{id}$, `store`, and `price`.
 
@@ -29,11 +35,8 @@ The procedure should return the table after reorganizing it.
 Return the result table in **any order**.
 
 The query result format is in the following example.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 

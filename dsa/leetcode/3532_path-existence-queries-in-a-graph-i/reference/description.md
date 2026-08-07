@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of nodes in a graph, labeled from 0 to $n - 1$.
 
@@ -9,12 +9,13 @@ An **undirected **edge exists between nodes `i` and `j` if the **absolute** diff
 You are also given a 2D integer array `queries`. For each $\text{queries}[i] = [u_{i}, v_{i}]$, determine whether there exists a path between nodes $u_{i}$ and $v_{i}$.
 
 Return a boolean array `answer`, where $\text{answer}[i]$ is `true` if there exists a path between $u_{i}$ and $v_{i}$ in the $$i^{\text{th}}$$ query and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ The resulting graph is:
 - Thus, the final answer after processing all the queries is `[false, false, true, true]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

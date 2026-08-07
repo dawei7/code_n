@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of integers `start` and an integer `d`, representing `n` intervals `[start[i], start[i] + d]`.
 
 You are asked to choose `n` integers where the $$i^{\text{th}}$$ integer must belong to the $$i^{\text{th}}$$ interval. The **score** of the chosen integers is defined as the **minimum** absolute difference between any two integers that have been chosen.
 
 Return the **maximum** *possible score* of the chosen integers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The maximum possible score can be obtained by choosing integers: 8, 0, and 4. Th
 The maximum possible score can be obtained by choosing integers: 2, 7, 13, and 18. The score of these chosen integers is $min(|2 - 7|, |2 - 13|, |2 - 18|, |7 - 13|, |7 - 18|, |13 - 18|)$ which equals 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{start.length} \le 10^{5}$
 

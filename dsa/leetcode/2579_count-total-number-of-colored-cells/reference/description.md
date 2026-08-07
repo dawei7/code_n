@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an infinitely large two-dimensional grid of uncolored unit cells. You are given a positive integer `n`, indicating that you must do the following routine for `n` minutes:
 
@@ -11,12 +11,13 @@ Below is a pictorial representation of the state of the grid after minutes 1, 2,
 ![](images/example-copy-2.png)
 
 Return *the number of **colored cells** at the end of *`n` *minutes*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,6 +29,7 @@ Return *the number of **colored cells** at the end of *`n` *minutes*.
 - **Input:** $n = 2$
 - **Output:** `5`
 - **Explanation:** After 2 minutes, there are 4 colored cells on the boundary and 1 in the center, so we return 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

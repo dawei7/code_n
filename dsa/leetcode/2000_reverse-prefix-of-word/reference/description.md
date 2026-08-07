@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** string `word` and a character `ch`, **reverse** the segment of `word` that starts at index `0` and ends at the index of the **first occurrence** of `ch` (**inclusive**). If the character `ch` does not exist in `word`, do nothing.
 
 - For example, if $word = "abcdefd"$ and $ch = "d"$, then you should **reverse** the segment that starts at `0` and ends at `3` (**inclusive**). The resulting string will be `"<u>dcba</u>efd"`.
 
 Return *the resulting string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Reverse the part of word from 0 to 3 (inclusive), the resulting string is "zxyxx
 - **Output:** `"abcd"`
 - **Explanation:** "z" does not exist in word.
 You should not do any reverse operation, the resulting string is "abcd".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 250$
 

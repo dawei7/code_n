@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Logs`
 
@@ -17,7 +17,8 @@ Write a solution to find the start and end number of continuous ranges in the ta
 Return the result table ordered by $\text{start}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -34,7 +35,7 @@ Return a table with these columns:
 
 Return exactly one row for each of the $r$ ranges, ordered by $\text{start}_{id}$ in ascending order. A range containing one identifier has equal start and end values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

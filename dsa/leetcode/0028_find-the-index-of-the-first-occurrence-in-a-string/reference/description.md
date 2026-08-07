@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given two strings `needle` and `haystack`, return the index of the first occurrence of `needle` in `haystack`, or `-1` if `needle` is not part of `haystack`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given two strings `needle` and `haystack`, return the index of the first occurre
 
 Return the zero-based index of the first match, or `-1` if no match exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The first occurrence is at index 0, so we return 0.
 - **Input:** $haystack = "leetcode", needle = "leeto"$
 - **Output:** `-1`
 - **Explanation:** "leeto" did not occur in "leetcode", so we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{haystack.length}, \text{needle.length} \le 10^{4}$
 

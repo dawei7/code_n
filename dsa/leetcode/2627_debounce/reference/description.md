@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a function `fn` and a time in milliseconds `t`, return a **debounced** version of that function.
 
@@ -15,12 +15,13 @@ If instead $t = 35ms$, The 1st call would be cancelled, the 2nd would be execute
 The above diagram shows how debounce will transform events. Each rectangle represents 100ms and the debounce time is 400ms. Each color represents a different set of inputs.
 
 Please solve it without using lodash's `_.debounce()` function.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ calls = [
 The 1st call is delayed by 150ms and ran at 200ms. The inputs were (1, 2).
 The 2nd call is cancelled by the 3rd call
 The 3rd call is delayed by 150ms and ran at 450ms. The inputs were (5, 6).
-### Constraints
+
+### 4. Constraints
 
 - $0 \le t \le 1000$
 

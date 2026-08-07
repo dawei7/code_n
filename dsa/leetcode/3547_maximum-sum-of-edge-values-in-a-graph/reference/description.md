@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected connected** graph of `n` nodes, numbered from `0` to $n - 1$. Each node is connected to **at most** 2 other nodes.
 
@@ -9,12 +9,13 @@ You have to assign a **unique** value from `1` to `n` to each node. The value of
 Your score is the sum of the values of all edges in the graph.
 
 Return the **maximum** score you can achieve.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The diagram above illustrates an optimal assignment of values to nodes. The sum 
 The diagram above illustrates an optimal assignment of values to nodes. The sum of the values of the edges is: $(1 * 2) + (2 * 4) + (4 * 6) + (6 * 5) + (5 * 3) + (3 * 1) = 82$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{4}$
 

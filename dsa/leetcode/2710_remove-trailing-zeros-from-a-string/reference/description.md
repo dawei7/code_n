@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a **positive** integer `num` represented as a string, return *the integer *`num`* without trailing zeros as a string*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given a **positive** integer `num` represented as a string, return *the integer 
 - **Input:** $num = "123"$
 - **Output:** `"123"`
 - **Explanation:** Integer "123" has no trailing zeros, we return integer "123".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 1000$
 

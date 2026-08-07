@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that follows the constraints of a **<a href="https://en.wikipedia.org/wiki/Cache_replacement_policies#LRU" target="_blank">Least Recently Used (LRU) cache</a>**.
 
@@ -11,7 +11,8 @@ Implement the `LRUCache` class:
 - `void put(int key, int value)` Update the value of the `key` if the `key` exists. Otherwise, add the `key-value` pair to the cache. If the number of keys exceeds the `capacity` from this operation, **evict** the least recently used key.
 
 The functions `get` and `put` must each run in `O(1)` average time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +23,7 @@ The functions `get` and `put` must each run in `O(1)` average time complexity.
 
 Return one result per operation: `null` for construction and `put`, and the stored value or `-1` for each `get`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ lRUCache.get(1);    // return -1 (not found)
 lRUCache.get(3);    // return 3
 lRUCache.get(4);    // return 4
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le capacity \le 3000$
 

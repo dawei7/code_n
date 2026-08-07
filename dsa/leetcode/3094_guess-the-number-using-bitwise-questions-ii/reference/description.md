@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a number `n` between `0` and $2^{30} - 1$ (both inclusive) that you have to find.
 
@@ -14,12 +14,15 @@ There is a pre-defined API `int commonBits(int num)` that helps you with your mi
 
 Return *the number* `n`.
 
-**Note:** In this world, all numbers are between `0` and $2^{30} - 1$ (both inclusive), thus for counting common bits, we see only the first 30 bits of those numbers.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Constraints
+### 3. Note
+
+In this world, all numbers are between `0` and $2^{30} - 1$ (both inclusive), thus for counting common bits, we see only the first 30 bits of those numbers.
+
+### 4. Constraints
 
 - $0 \le n \le 2^{30} - 1$
 

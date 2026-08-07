@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid`.
 
 In one operation, you can choose **any** row or column and flip each value in that row or column (i.e., changing all `0`'s to `1`'s, and all `1`'s to `0`'s).
 
 Return `true`* if it is possible to remove all *`1`*'s from *`grid` using **any** number of operations or `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true`* if it is possible to remove all *`1`*'s from *`grid` using **any*
 - **Input:** `grid = [[0]]`
 - **Output:** `true`
 - **Explanation:** There are no 1's in grid.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

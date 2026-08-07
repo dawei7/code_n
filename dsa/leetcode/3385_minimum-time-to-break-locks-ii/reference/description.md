@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Bob is stuck in a dungeon and must break `n` locks, each requiring some amount of **energy** to break. The required energy for each lock is stored in an array called `strength` where $\text{strength}[i]$ indicates the energy needed to break the $$i^{\text{th}}$$ lock.
 
@@ -17,11 +17,12 @@ To break a lock, Bob uses a sword with the following characteristics:
 Your task is to determine the **minimum** time in minutes required for Bob to break all `n` locks and escape the dungeon.
 
 Return the **minimum **time required for Bob to break all `n` locks.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -155,7 +156,8 @@ The locks cannot be broken in less than 4 minutes; thus, the answer is 4.
 The locks cannot be broken in less than 6 minutes; thus, the answer is 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{strength.length}$
 

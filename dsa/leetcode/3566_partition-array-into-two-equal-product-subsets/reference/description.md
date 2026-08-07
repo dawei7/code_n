@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` containing **distinct** positive integers and an integer `target`.
 
@@ -7,12 +7,13 @@ Determine if you can partition `nums` into two **non-empty** **disjoint** **subs
 Return `true` if such a partition exists and `false` otherwise.
 
 A **subset** of an array is a selection of elements of the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ A **subset** of an array is a selection of elements of the array.
 **Explanation:** There is no way to partition `nums` into two non-empty disjoint subsets such that both subsets have a product of 15. Hence, the output is false.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 12$
 

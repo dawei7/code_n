@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `n x n` `grid` where you have placed some `1 x 1 x 1` cubes. Each value $v = \text{grid}[i][j]$ represents a tower of `v` cubes placed on top of cell `(i, j)`.
 
@@ -6,13 +6,16 @@ After placing these cubes, you have decided to glue any directly adjacent cubes 
 
 Return *the total surface area of the resulting shapes*.
 
-**Note:** The bottom face of each shape counts toward its surface area.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The bottom face of each shape counts toward its surface area.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ Return *the total surface area of the resulting shapes*.
 
 - **Input:** `grid = [[2,2,2],[2,1,2],[2,2,2]]`
 - **Output:** `46`
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

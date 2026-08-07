@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `drivers`
 
@@ -138,7 +138,7 @@ The output table is ordered by efficiency improvement in descending order then b
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

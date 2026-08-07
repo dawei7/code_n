@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array `nums`, return *the **maximum value** of a triplet* `(i, j, k)` *such that* `i < j < k` *and* $\text{nums}[i] < \text{nums}[j] < \text{nums}[k]$.
 
@@ -35,11 +35,12 @@ The **value** of a triplet `(i, j, k)` is $\text{nums}[i] - \text{nums}[j] + \te
 Thus the answer would be `4`.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Constraints
+### 3. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

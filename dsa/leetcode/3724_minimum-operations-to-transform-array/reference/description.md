@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` of length `n` and `nums2` of length $n + 1$.
 
@@ -13,7 +13,8 @@ You may perform the following operations **any** number of times, each time choo
 - **Append** $\text{nums1}[i]$ to the **end** of the array.
 
 Return the **minimum** number of operations required to transform `nums1` into `nums2`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Incrementing or decrementing changes one selected value by exactly one. Appendin
 
 Return the minimum number of increments, decrements, and append operations required to transform `nums1` exactly into `nums2`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -183,7 +184,8 @@ Thus, after 4 operations `nums1` is transformed into `nums2`.
 Thus, after 3 operations `nums1` is transformed into `nums2`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums1.length} \le 10^{5}$
 

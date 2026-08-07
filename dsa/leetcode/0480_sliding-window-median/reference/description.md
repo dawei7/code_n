@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **median** is the middle value in an ordered integer list. If the size of the list is even, there is no middle value. So the median is the mean of the two middle values.
 
@@ -9,7 +9,8 @@ The **median** is the middle value in an ordered integer list. If the size of th
 You are given an integer array `nums` and an integer `k`. There is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position.
 
 Return *the median array for each window in the original array*. Answers within $10^{-5}$ of the actual value will be accepted.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ window is nonempty and there are exactly $n-k+1$ window positions.
 Return a floating-point list of length $n-k+1$. Entry $i$ is the median of $nums[i:i + k]$: the central ordered value
 when `k` is odd, or the mean of the two central ordered values when `k` is even.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Window position                Median
 
 - **Input:** `nums = [1,2,3,4,2,3,1,4,2], k = 3`
 - **Output:** `[2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

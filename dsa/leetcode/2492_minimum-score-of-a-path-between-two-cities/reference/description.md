@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing `n` cities numbered from `1` to `n`. You are also given a **2D** array `roads` where $\text{roads}[i] = [a_{i}, b_{i}, \text{distance}_{i}]$ indicates that there is a **bidirectional **road between cities $a_{i}$ and $b_{i}$ with a distance equal to $\text{distance}_{i}$. The cities graph is not necessarily connected.
 
@@ -6,19 +6,22 @@ The **score** of a path between two cities is defined as the **minimum **distanc
 
 Return the **minimum **possible score of a path between cities 1 and `n`.
 
-**Note**:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+:
 
 - A path is a sequence of roads between two cities.
 
 - It is allowed for a path to contain the same road **multiple** times, and you can visit cities 1 and `n` multiple times along the path.
 
 - The test cases are generated such that there is **at least** one path between 1 and `n`.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ It can be shown that no other path has less score.
 - **Input:** $n = 4, roads = [[1,2,2],[1,3,4],[3,4,7]]$
 - **Output:** `2`
 - **Explanation:** The path from city 1 to 4 with the minimum score is: 1 -> 2 -> 1 -> 3 -> 4. The score of this path is min(2,2,4,7) = 2.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{5}$
 

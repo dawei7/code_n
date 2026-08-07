@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame animals
@@ -17,12 +17,13 @@ Write a solution to list the names of animals that weigh **strictly more than** 
 Return the animals sorted by weight in **descending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

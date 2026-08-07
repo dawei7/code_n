@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a non-negative integer `num`, Return its *encoding* string.
 
 The encoding is done by converting the integer to a string using a secret function that you should deduce from the following table:
 
 ![](images/encode_number.png)
-### Function Contract
+
+### 2. Function Contract
 
 ### Inputs
 
@@ -17,7 +18,7 @@ For the complexity discussion, let $q = \texttt{num} + 1$.
 
 Return the binary-character string assigned to `num` by the deduced function. Leading zeros are part of an encoding, and the encoding of `0` is the empty string.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,6 +28,7 @@ Return the binary-character string assigned to `num` by the deduced function. Le
 
 - **Input:** $num = 107$
 - **Output:** `"101100"`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 10^{9}$

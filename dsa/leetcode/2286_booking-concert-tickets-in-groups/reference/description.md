@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A concert hall has `n` rows numbered from `0` to $n - 1$, each with `m` seats, numbered from `0` to $m - 1$. You need to design a ticketing system that can allocate seats in the following cases:
 
@@ -19,12 +19,13 @@ Implement the `BookMyShow` class:
 - `int[] gather(int k, int maxRow)` Returns an array of length `2` denoting the row and seat number (respectively) of the **first seat** being allocated to the `k` members of the group, who must sit **together**. In other words, it returns the smallest possible `r` and `c` such that all `[c, c + k - 1]` seats are valid and empty in row `r`, and $r \le maxRow$. Returns `[]` in case it is **not possible** to allocate seats to the group.
 
 - `boolean scatter(int k, int maxRow)` Returns `true` if all `k` members of the group can be allocated seats in rows `0` to `maxRow`, who may or **may not** sit together. If the seats can be allocated, it allocates `k` seats to the group with the **smallest** row numbers, and the smallest possible seat numbers in each row. Otherwise, returns `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ bms.scatter(5, 1); // return True
 bms.scatter(5, 1); // return False
                    // There is only one seat left in the hall.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{4}$
 

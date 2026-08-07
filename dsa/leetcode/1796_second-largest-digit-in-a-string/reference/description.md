@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an alphanumeric string `s`, return *the **second largest** numerical digit that appears in *`s`*, or *`-1`* if it does not exist*.
 
 An **alphanumeric**** **string is a string consisting of lowercase English letters and digits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ An **alphanumeric**** **string is a string consisting of lowercase English lette
 - **Input:** `s = "abc1111"`
 - **Output:** `-1`
 - **Explanation:** The digits that appear in s are [1]. There is no second largest digit.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 500$
 

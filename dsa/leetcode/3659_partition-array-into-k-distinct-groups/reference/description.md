@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`.
 
@@ -11,12 +11,13 @@ Your task is to determine whether it is possible to partition all elements of `n
 - Each element in `nums` must be assigned to **exactly** one group.
 
 Return `true` if such a partition is possible, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ Each group contains $k = 2$ distinct elements, and all elements are used exactly
 We cannot form groups of $k = 3$ distinct elements using all values exactly once.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

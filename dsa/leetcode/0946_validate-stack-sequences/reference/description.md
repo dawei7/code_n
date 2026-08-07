@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two integer arrays `pushed` and `popped` each with distinct values, return `true`* if this could have been the result of a sequence of push and pop operations on an initially empty stack, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
 - **Input:** $pushed = [1,2,3,4,5], popped = [4,3,5,1,2]$
 - **Output:** `false`
 - **Explanation:** 1 cannot be popped before 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pushed.length} \le 1000$
 

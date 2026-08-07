@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` and a positive integer `k`.
 
@@ -11,12 +11,13 @@ Note:
 - The empty string is considered to be equal to `0`.
 
 - A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The length of this subsequence is 5, so 5 is returned.
 - **Output:** `6`
 - **Explanation:** "000001" is the longest subsequence of s that makes up a binary number less than or equal to 1, as this number is equal to 1 in decimal.
 The length of this subsequence is 6, so 6 is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` where `nums` is a permutation of the integers in the range `[1, n]`. You are also given a 2D integer array `sequences` where $\text{sequences}[i]$ is a subsequence of `nums`.
 
@@ -11,7 +11,8 @@ Check if `nums` is the shortest possible and the only **supersequence**. The sho
 Return `true`* if *`nums`* is the only shortest **supersequence** for *`sequences`*, or *`false`* otherwise*.
 
 A **subsequence** is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(nums: \text{list}[int], sequences: list[\text{list}[int]]) -> bool$
 
@@ -28,7 +29,7 @@ $S = \sum_i \lvert\texttt{sequences}[i]\rvert.$
 
 Return `true` if `nums` is the only shortest sequence that contains every row of `sequences` as a subsequence. Return `false` if `nums` is not shortest or if another shortest supersequence exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The sequence [1,2] is a subsequence of it: [**<u>1</u>**,**<u>2</u>**,3].
 The sequence [1,3] is a subsequence of it: [**<u>1</u>**,2,**<u>3</u>**].
 The sequence [2,3] is a subsequence of it: [1,**<u>2</u>**,**<u>3</u>**].
 Since nums is the only shortest supersequence, we return true.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two strings `order` and `s`. All the characters of `order` are **unique** and were sorted in some custom order previously.
 
 Permute the characters of `s` so that they match the order that `order` was sorted. More specifically, if a character `x` occurs before a character `y` in `order`, then `x` should occur before `y` in the permuted string.
 
 Return *any permutation of *`s`* that satisfies this property*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Since `"d"` does not appear in `order`, it can be at any position in the returne
 Following the order of appearance in `order`, `"b"`, `"c"`, and `"a"` from `s` should be arranged as `"b"`, `"c"`, `"a"`. `"d"` can be placed at any position since it's not in order. The output `"bcad"` correctly follows this rule. Other arrangements like `"dbca"` or `"bcda"` would also be valid, as long as `"b"`, `"c"`, `"a"` maintain their order.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{order.length} \le 26$
 

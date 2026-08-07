@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of `n` integers and two integers `k` and `x`.
 
@@ -10,15 +10,18 @@ The **x-sum** of an array is calculated by the following procedure:
 
 - Calculate the sum of the resulting array.
 
-**Note** that if an array has less than `x` distinct elements, its **x-sum** is the sum of the array.
-
-Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ is the **x-sum** of the subarray $nums[i..i + k - 1]$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that if an array has less than `x` distinct elements, its **x-sum** is the sum of the array.
+
+Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ is the **x-sum** of the subarray $nums[i..i + k - 1]$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ Return an integer array `answer` of length $n - k + 1$ where $\text{answer}[i]$ 
 Since $k = x$, $\text{answer}[i]$ is equal to the sum of the subarray $nums[i..i + k - 1]$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{nums.length} \le 50$
 

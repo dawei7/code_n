@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of strings `words`, return *the smallest string that contains each string in* `words` *as a substring*. If there are multiple valid strings of the smallest length, return **any of them**.
 
 You may assume that no string in `words` is a substring of another string in `words`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ You may assume that no string in `words` is a substring of another string in `wo
 
 - **Input:** $words = ["catg","ctaagt","gcta","ttca","atgcatc"]$
 - **Output:** `"gctaagttcatgcatc"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 12$
 

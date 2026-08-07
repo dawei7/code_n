@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. This is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an undirected edge between nodes $u_{i}$ and $v_{i}$.
 
@@ -8,10 +8,7 @@ Define a value $t_{i}$ as the number of **ancestors** of node `i` such that the 
 
 Return the sum of all $t_{i}$ values for all nodes `i` in range `[1, n - 1]`.
 
-**Note**:
-
-- In a rooted tree, the **ancestors** of node `i` are all nodes on the path from node `i` to the root node 0, **excluding** `i` itself.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +22,13 @@ The undirected edges are interpreted after rooting the tree at node `0`. For nod
 
 Return the total number of qualifying ordered descendant-ancestor pairs. Node `0` contributes no $t_i$ term because it has no ancestor.
 
-### Examples
+### 3. Note
+
+:
+
+- In a rooted tree, the **ancestors** of node `i` are all nodes on the path from node `i` to the root node 0, **excluding** `i` itself.
+
+### 4. Examples
 
 #### Example 1
 
@@ -158,7 +161,8 @@ Thus, the total number of valid ancestor pairs across all non-root nodes is 1.
 Thus, the total number of valid ancestor pairs across all non-root nodes is $0 + 1 + 1 = 2$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{5}$
 

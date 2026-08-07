@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 There exists an **undirected** tree with `n` nodes numbered `0` to $n - 1$. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ in the tree.
 
 Initially, **all** nodes are **unmarked**. After every second, you mark all unmarked nodes which have **at least** one marked node *adjacent* to them.
 
 Return an array `nodes` where $\text{nodes}[i]$ is the last node to get marked in the tree, if you mark node `i` at time $t = 0$. If $\text{nodes}[i]$ has *multiple* answers for any node `i`, you can choose** any** one answer.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ Return an array `nodes` where $\text{nodes}[i]$ is the last node to get marked i
 - For $i = 4$, the nodes are marked in the sequence: `[4] -> [2,4] -> [0,2,3,4] -> [0,1,2,3,4]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

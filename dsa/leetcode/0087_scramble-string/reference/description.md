@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We can scramble a string s to get a string t using the following algorithm:
 
@@ -15,7 +15,8 @@ We can scramble a string s to get a string t using the following algorithm:
 	</li>
 
 Given two strings `s1` and `s2` of **the same length**, return `true` if `s2` is a scrambled string of `s1`, otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Given two strings `s1` and `s2` of **the same length**, return `true` if `s2` is
 
 Return `true` if some valid recursive split-and-optional-swap process transforms `s1` into `s2`; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ As one possible scenario led s1 to be scrambled to s2, we return true.
 
 - **Input:** $s1 = "a", s2 = "a"$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $\text{s1.length} = \text{s2.length}$
 

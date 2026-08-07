@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a list of strings `words` and a string `pattern`, return *a list of* $\text{words}[i]$ *that match* `pattern`. You may return the answer in **any order**.
 
 A word matches the pattern if there exists a permutation of letters `p` so that after replacing every letter `x` in the pattern with `p(x)`, we get the desired word.
 
 Recall that a permutation of letters is a bijection from letters to letters: every letter maps to another letter, and no two letters map to the same letter.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,7 +23,8 @@ Recall that a permutation of letters is a bijection from letters to letters: eve
 
 - **Input:** $words = ["a","b","c"], pattern = "a"$
 - **Output:** `["a","b","c"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length} \le 20$
 

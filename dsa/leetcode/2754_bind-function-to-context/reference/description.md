@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Enhance all functions to have the `bindPolyfill` method. When `bindPolyfill` is called with a passed object `obj`, that object becomes the `this` context for the function.
 
@@ -26,11 +26,12 @@ The output should be `"My context is My Object"`.
 You may assume that a single non-null object will be passed to the `bindPolyfill` method.
 
 Please solve it without the built-in `Function.bind` method.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ inputs = []
 - **Explanation:**
 const boundFunc = f.bindPolyfill({"name": "Kathy"});
 boundFunc(); // "My name is Kathy"
-### Constraints
+
+### 4. Constraints
 
 - `obj` is a non-null object
 

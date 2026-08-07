@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Enrollments`
 
@@ -19,7 +19,8 @@ Write a solution to find the highest grade with its corresponding course for eac
 Return the result table ordered by $\text{student}_{id}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -35,7 +36,7 @@ For each distinct $\text{student}_{id}$, compare all of that student's rows by `
 
 Return exactly one row per represented student, ordered by $\text{student}_{id}$ in ascending order. If `Enrollments` is empty, return an empty result with the same three output columns.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `m`, and `k`.
 
@@ -9,11 +9,12 @@ An array `arr` is called **k-even** if there are **exactly** `k` indices such th
 Return the number of possible **k-even** arrays of size `n` where all elements are in the range `[1, m]`.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ The only 0-even array is `[1, 1, 1, 1, 1]`.
 **Output:** 5832
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 750$
 

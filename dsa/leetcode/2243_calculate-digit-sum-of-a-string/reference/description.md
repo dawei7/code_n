@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of digits and an integer `k`.
 
@@ -11,12 +11,13 @@ A **round** can be completed if the length of `s` is greater than `k`. In one ro
 - **Merge** consecutive groups together to form a new string. If the length of the string is greater than `k`, repeat from step `1`.
 
 Return `s` *after all rounds have been completed*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Now, s.length <= k, so we return "135" as the answer.
 We divide s into "000", "000", and "00".
 Then we calculate the digit sum of each group: 0 + 0 + 0 = 0, 0 + 0 + 0 = 0, and 0 + 0 = 0.
 s becomes "0" + "0" + "0" = "000", whose length is equal to k, so we return "000".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `n x n` **0-indexed** grid with some artifacts buried in it. You are given the integer `n` and a **0-indexed **2D integer array `artifacts` describing the positions of the rectangular artifacts where $\text{artifacts}[i] = [\text{r1}_{i}, \text{c1}_{i}, \text{r2}_{i}, \text{c2}_{i}]$ denotes that the $$i^{\text{th}}$$ artifact is buried in the subgrid where:
 
@@ -17,12 +17,13 @@ The test cases are generated such that:
 - Each artifact only covers at most `4` cells.
 
 - The entries of `dig` are unique.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Thus, we return 1.
 - **Input:** $n = 2, artifacts = [[0,0,0,0],[0,1,1,1]], dig = [[0,0],[0,1],[1,1]]$
 - **Output:** `2`
 - **Explanation:** Both the red and blue artifacts have all parts uncovered (labeled with a 'D') and can be extracted, so we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

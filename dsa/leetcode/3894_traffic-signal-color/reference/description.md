@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `timer` representing the remaining time (in seconds) on a traffic signal.
 
@@ -11,7 +11,8 @@ The signal follows these rules:
 - If $30 < timer \le 90$, the signal is `"Red"`
 
 Return the current state of the signal. If none of the above conditions are met, return `"Invalid"`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Return the current state of the signal. If none of the above conditions are met,
 
 Return `"Green"`, `"Orange"`, or `"Red"` when the corresponding timer rule applies. Return `"Invalid"` for every other legal timer value. The returned strings are case-sensitive.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,6 +48,7 @@ Since $timer = 60$, and $30 < timer \le 90$, the answer is `"Red"`.
 Since $timer = 5$, it does not satisfy any of the given conditions, the answer is `"Invalid"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le timer \le 1000$

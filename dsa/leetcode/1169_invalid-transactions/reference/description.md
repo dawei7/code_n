@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A transaction is possibly invalid if:
 
@@ -9,12 +9,13 @@ A transaction is possibly invalid if:
 You are given an array of strings `transaction` where $\text{transactions}[i]$ consists of comma-separated values representing the name, time (in minutes), amount, and city of the transaction.
 
 Return a list of `transactions` that are possibly invalid. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return a list of `transactions` that are possibly invalid. You may return the an
 
 - **Input:** $transactions = ["alice,20,800,mtv","bob,50,1200,mtv"]$
 - **Output:** `["bob,50,1200,mtv"]`
-### Constraints
+
+### 4. Constraints
 
 - $\text{transactions.length} \le 1000$
 

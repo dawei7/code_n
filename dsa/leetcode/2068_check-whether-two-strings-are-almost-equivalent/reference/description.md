@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Two strings `word1` and `word2` are considered **almost equivalent** if the differences between the frequencies of each letter from `'a'` to `'z'` between `word1` and `word2` is **at most** `3`.
 
 Given two strings `word1` and `word2`, each of length `n`, return `true` *if *`word1` *and* `word2` *are **almost equivalent**, or* `false` *otherwise*.
 
 The **frequency** of a letter `x` is the number of times it occurs in the string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The difference is 4, which is more than the allowed 3.
 - 'b' appears 2 times in word1 and 5 times in word2. The difference is 3.
 - 'c' appears 3 times in word1 and 0 times in word2. The difference is 3.
 - 'd' appears 2 times in word1 and 0 times in word2. The difference is 2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{word1.length} = \text{word2.length}$
 

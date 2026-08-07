@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array nums, return all the triplets `[nums[i], nums[j], nums[k]]` such that $i \neq j$, $i \neq k$, and $j \neq k$, and $\text{nums}[i] + \text{nums}[j] + \text{nums}[k] = 0$.
 
 Notice that the solution set must not contain duplicate triplets.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Notice that the solution set must not contain duplicate triplets.
 
 Return all distinct zero-sum value triplets, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Notice that the order of the output and the order of the triplets does not matte
 - **Input:** `nums = [0,0,0]`
 - **Output:** `[[0,0,0]]`
 - **Explanation:** The only possible triplet sums up to 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 3000$
 

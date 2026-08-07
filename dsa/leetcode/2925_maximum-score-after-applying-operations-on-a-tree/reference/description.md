@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected tree with `n` nodes labeled from `0` to $n - 1$, and rooted at node `0`. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -15,12 +15,13 @@ You start with a score of `0`. In one operation, you can:
 A tree is **healthy** if the sum of values on the path from the root to any leaf node is different than zero.
 
 Return *the **maximum score** you can obtain after performing these operations on the tree any number of times so that it remains **healthy**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ It can be shown that 11 is the maximum score obtainable after any number of oper
 - The sum of values on the path from 0 to 6 is equal to 5.
 Therefore, the tree is healthy and the score is values[0] + values[2] + values[3] + values[4] = 40.
 It can be shown that 40 is the maximum score obtainable after any number of operations on the tree.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 2 * 10^{4}$
 

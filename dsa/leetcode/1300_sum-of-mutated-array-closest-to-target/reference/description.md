@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `arr` and a target value `target`, return the integer `value` such that when we change all the integers larger than `value` in the given array to be equal to `value`, the sum of the array gets as close as possible (in absolute difference) to `target`.
 
 In case of a tie, return the minimum such integer.
 
 Notice that the answer is not neccesarilly a number from `arr`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Notice that the answer is not neccesarilly a number from `arr`.
 
 - **Input:** `arr = [60864,25176,27249,21296,20204], target = 56803`
 - **Output:** `11361`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

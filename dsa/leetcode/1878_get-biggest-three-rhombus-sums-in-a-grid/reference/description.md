@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`​​​.
 
@@ -9,12 +9,13 @@ A **rhombus sum** is the sum of the elements that form **the** **border** of a r
 Note that the rhombus can have an area of 0, which is depicted by the purple rhombus in the bottom right corner.
 
 Return *the biggest three **distinct rhombus sums** in the *`grid`* in **descending order****. If there are less than three distinct values, return all of them*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Return *the biggest three **distinct rhombus sums** in the *`grid`* in **descend
 - **Input:** `grid = [[7,7,7]]`
 - **Output:** `[7]`
 - **Explanation:** All three possible rhombus sums are the same, so return [7].
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **sentence** is a string of single-space separated words where each word consists only of lowercase letters.
 
 A word is **uncommon** if it appears exactly once in one of the sentences, and **does not appear** in the other sentence.
 
 Given two **sentences** `s1` and `s2`, return *a list of all the **uncommon words***. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The word `"sweet"` appears only in `s1`, while the word `"sour"` appears only in
 **Output:** ["banana"]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length}, \text{s2.length} \le 200$
 

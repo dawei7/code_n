@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` of length `n`.
 
@@ -7,12 +7,13 @@ The **cost** of an array is the value of its **first** element. For example, the
 You need to divide `nums` into `3` **disjoint contiguous **subarrays.
 
 Return *the **minimum** possible **sum** of the cost of these subarrays*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It can be shown that 12 is the minimum cost achievable.
 - **Output:** `12`
 - **Explanation:** The best possible way to form 3 subarrays is: [10,3], [1], and [1] at a total cost of 10 + 1 + 1 = 12.
 It can be shown that 12 is the minimum cost achievable.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 50$
 

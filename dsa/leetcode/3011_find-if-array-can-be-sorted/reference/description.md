@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of **positive** integers `nums`.
 
 In one **operation**, you can swap any two **adjacent** elements if they have the **same** number of set bits. You are allowed to do this operation **any** number of times (**including zero**).
 
 Return `true` *if you can sort the array in ascending order, else return *`false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that there may be other sequences of operations which also sort the array.
 - **Input:** `nums = [3,16,8,4,2]`
 - **Output:** `false`
 - **Explanation:** It can be shown that it is not possible to sort the input array using any number of operations.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a bag that consists of items, each item has a number `1`, `0`, or `-1` written on it.
 
@@ -13,12 +13,13 @@ The bag initially contains:
 - `numNegOnes` items with `-1`s written on them.
 
 We want to pick exactly `k` items among the available items. Return *the **maximum** possible sum of numbers written on the items*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be proven that 2 is the maximum possible sum.
 - **Output:** `3`
 - **Explanation:** We have a bag of items with numbers written on them {1, 1, 1, 0, 0}. We take 3 items with 1 written on them, and 1 item with 0 written on it, and get a sum in a total of 3.
 It can be proven that 3 is the maximum possible sum.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le numOnes, numZeros, numNegOnes \le 50$
 

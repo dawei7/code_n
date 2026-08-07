@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, find the maximum length of a subarray where the product of all its elements is positive.
 
 A subarray of an array is a consecutive sequence of zero or more values taken out of that array.
 
 Return *the maximum length of a subarray with positive product*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Notice that we cannot include 0 in the subarray since that'll make the product 0
 - **Input:** `nums = [-1,-2,-3,0,1]`
 - **Output:** `2`
 - **Explanation:** The longest subarray with positive product is [-1,-2] or [-2,-3].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

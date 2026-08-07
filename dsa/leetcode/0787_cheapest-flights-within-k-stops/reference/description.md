@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There are `n` cities connected by some number of flights. You are given an array `flights` where $\text{flights}[i] = [\text{from}_{i}, \text{to}_{i}, \text{price}_{i}]$ indicates that there is a flight from city $\text{from}_{i}$ to city $\text{to}_{i}$ with cost $\text{price}_{i}$.
 
 You are also given three integers `src`, `dst`, and `k`, return ***the cheapest price** from *`src`* to *`dst`* with at most *`k`* stops. *If there is no such route, return* *`-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The optimal path with at most 1 stop from city 0 to 2 is marked in red and has c
 - **Explanation:**
 The graph is shown above.
 The optimal path with no stops from city 0 to 2 is marked in red and has cost 500.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 

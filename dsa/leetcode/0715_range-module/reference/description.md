@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A Range Module is a module that tracks ranges of numbers. Design a data structure to track the ranges represented as **half-open intervals** and query about them.
 
@@ -13,12 +13,13 @@ Implement the `RangeModule` class:
 - `boolean queryRange(int left, int right)` Returns `true` if every real number in the interval `[left, right)` is currently being tracked, and `false` otherwise.
 
 - `void removeRange(int left, int right)` Stops tracking every real number currently being tracked in the **half-open interval** `[left, right)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ rangeModule.queryRange(10, 14); // return True,(Every number in [10, 14) is bein
 rangeModule.queryRange(13, 15); // return False,(Numbers like 14, 14.03, 14.17 in [13, 15) are not being tracked)
 rangeModule.queryRange(16, 17); // return True, (The number 16 in [16, 17) is still being tracked, despite the remove operation)
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le left < right \le 10^{9}$
 

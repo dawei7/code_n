@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an array of binary strings `strs` and two integers `m` and `n`.
 
 Return *the size of the largest subset of `strs` such that there are **at most** *`m`* *`0`*'s and *`n`* *`1`*'s in the subset*.
 
 A set `x` is a **subset** of a set `y` if all elements of `x` are also elements of `y`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ A set `x` is a **subset** of a set `y` if all elements of `x` are also elements 
 Unused capacity is allowed. The objective counts selected strings, not their characters, and duplicate strings at
 different array positions remain separate selectable elements.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Other valid but smaller subsets include {"0001", "1"} and {"10", "1", "0"}.
 - **Input:** $strs = ["10","0","1"], m = 1, n = 1$
 - **Output:** `2`
 - **Explanation:** The largest subset is {"0", "1"}, so the answer is 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{strs.length} \le 600$
 

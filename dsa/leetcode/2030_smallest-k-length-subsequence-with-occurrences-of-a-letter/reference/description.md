@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`, an integer `k`, a letter `letter`, and an integer `repetition`.
 
@@ -7,12 +7,13 @@ Return *the **lexicographically smallest** subsequence of* `s`* of length* `k` *
 A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
 
 A string `a` is **lexicographically smaller** than a string `b` if in the first position where `a` and `b` differ, string `a` has a letter that appears earlier in the alphabet than the corresponding letter in `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The lexicographically smallest subsequence among them is "eet".
 - **Input:** `s = "bb", k = 2, letter = "b", repetition = 2`
 - **Output:** `"bb"`
 - **Explanation:** "bb" is the only subsequence of length 2 that has the letter "b" appear at least 2 times.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le repetition \le k \le \text{s.length} \le 5 * 10^{4}$
 

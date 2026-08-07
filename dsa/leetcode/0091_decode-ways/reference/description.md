@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have intercepted a secret message encoded as a string of numbers. The message is **decoded** via the following mapping:
 
@@ -27,7 +27,8 @@ Note: there may be strings that are impossible to decode.
 Given a string s containing only digits, return the **number of ways** to **decode** it. If the entire string cannot be decoded in any valid way, return `0`.
 
 The test cases are generated so that the answer fits in a **32-bit** integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -37,7 +38,7 @@ The test cases are generated so that the answer fits in a **32-bit** integer.
 
 Return the number of complete valid segmentations of `s` into codes from `1` through `26`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Return the number of complete valid segmentations of `s` into codes from `1` thr
 "06" cannot be mapped to "F" because of the leading zero ("6" is different from "06"). In this case, the string is not a valid encoding, so return 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

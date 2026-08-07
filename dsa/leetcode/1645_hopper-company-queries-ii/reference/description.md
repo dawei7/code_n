@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Drivers`
 
@@ -48,12 +48,7 @@ Write a solution to report the **percentage** of working drivers ($\text{working
 
 ![](images/codecogseqn.png)
 
-**Note** that if the number of available drivers during a month is zero, we consider the $\text{working}_{percentage}$ to be `0`.
-
-Return the result table ordered by `month` in **ascending** order, where `month` is the month's number (January is `1`, February is `2`, etc.). Round $\text{working}_{percentage}$ to the nearest **2 decimal places**.
-
-The result format is in the following example.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -65,7 +60,15 @@ The result format is in the following example.
 
 Return a table with columns `month` (int from 1 to 12) and $\text{working}_{percentage}$ (decimal rounded to 2 decimal places) for each month in 2020.
 
-### Examples
+### 3. Note
+
+that if the number of available drivers during a month is zero, we consider the $\text{working}_{percentage}$ to be `0`.
+
+Return the result table ordered by `month` in **ascending** order, where `month` is the month's number (January is `1`, February is `2`, etc.). Round $\text{working}_{percentage}$ to the nearest **2 decimal places**.
+
+The result format is in the following example.
+
+### 4. Examples
 
 #### Example 1
 

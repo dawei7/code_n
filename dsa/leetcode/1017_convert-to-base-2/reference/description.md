@@ -1,14 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *a binary string representing its representation in base* `-2`.
 
-**Note** that the returned string should not have leading zeros unless the string is `"0"`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the returned string should not have leading zeros unless the string is `"0"`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -25,6 +28,7 @@ Given an integer `n`, return *a binary string representing its representation in
 - **Input:** $n = 4$
 - **Output:** `"100"`
 **Explantion:** (-2)^2 = 4
-### Constraints
+
+### 5. Constraints
 
 - $0 \le n \le 10^{9}$

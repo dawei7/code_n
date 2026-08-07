@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the number of pairs* `(i, j)` *where* `i < j` *such that* $|\text{nums}[i] - \text{nums}[j]| = k$.
 
@@ -7,12 +7,13 @@ The value of `|x|` is defined as:
 - `x` if $x \ge 0$.
 
 - `-x` if `x < 0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The value of `|x|` is defined as:
 - [**<u>3</u>**,2,**<u>1</u>**,5,4]
 - [**<u>3</u>**,2,1,**<u>5</u>**,4]
 - [3,**<u>2</u>**,1,5,**<u>4</u>**]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `coins` (**1-indexed**) of length `n` and an integer `maxJump`. You can jump to any index `i` of the array `coins` if $\text{coins}[i] \neq -1$ and you have to pay $\text{coins}[i]$ when you visit index `i`. In addition to that, if you are currently at index `i`, you can only jump to any index $i + k$ where $i + k \le n$ and `k` is a value in the range `[1, maxJump]`.
 
@@ -7,7 +7,8 @@ You are initially positioned at index `1` ($\text{coins}[1]$ is not `-1`). You w
 Return an integer array of the indices that you will visit in order so that you can reach index n with the minimum cost. If there are multiple paths with the same cost, return the **lexicographically smallest** such path. If it is not possible to reach index n, return an empty array.
 
 A path $p1 = [\text{Pa}_{1}, \text{Pa}_{2}, ..., \text{Pa}_{x}]$ of length `x` is **lexicographically smaller** than $p2 = [\text{Pb}_{1}, \text{Pb}_{2}, ..., \text{Pb}_{x}]$ of length `y`, if and only if at the first `j` where $\text{Pa}_{j}$ and $\text{Pb}_{j}$ differ, $\text{Pa}_{j} < \text{Pb}_{j}$; when no such `j` exists, then `x < y`.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(coins: \text{list}[int], maxJump: int) -> \text{list}[int]$
 
@@ -22,7 +23,7 @@ The path starts at source index `1` and must end at source index `n`. Each jump 
 
 Return the one-based indices of the lexicographically smallest minimum-cost path. Return `[]` when no valid path reaches index `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return the one-based indices of the lexicographically smallest minimum-cost path
 
 - **Input:** $coins = [1,2,4,-1,2], maxJump = 1$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{coins.length} \le 1000$
 

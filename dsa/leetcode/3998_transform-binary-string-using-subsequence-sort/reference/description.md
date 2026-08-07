@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`.
 
@@ -13,7 +13,8 @@ You may perform the following operation any number of times (including zero):
 - Replace the chosen **subsequence** in `s` with the sorted `sub`, keeping all other characters unchanged.
 
 Return a boolean array `ans`, where $\text{ans}[i]$ is `true` if it's possible to replace all `'?'` in $\text{strs}[i]$ with `'0'` or `'1'` and transform `s` into the resulting string using the allowed operation above, otherwise return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ A subsequence keeps the selected indices in their original order; the operation 
 
 Return a length-$m$ boolean array. Its element at index `i` is `true` exactly when at least one complete binary replacement of $\text{strs}[i]$ is reachable from `s`; otherwise it is `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -169,7 +170,8 @@ Thus, $ans = [true, false, true]$.
 Thus, $ans = [true]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 2000$
 

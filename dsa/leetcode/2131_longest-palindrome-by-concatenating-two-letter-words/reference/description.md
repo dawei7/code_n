@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words`. Each element of `words` consists of **two** lowercase English letters.
 
@@ -7,12 +7,13 @@ Create the **longest possible palindrome** by selecting some elements from `word
 Return *the **length** of the longest palindrome that you can create*. If it is impossible to create any palindrome, return `0`.
 
 A **palindrome** is a string that reads the same forward and backward.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Note that "lcyttycl" is another longest palindrome that can be created.
 - **Output:** `2`
 - **Explanation:** One longest palindrome is "cc", of length 2.
 Note that "ll" is another longest palindrome that can be created, and so is "xx".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 10^{5}$
 

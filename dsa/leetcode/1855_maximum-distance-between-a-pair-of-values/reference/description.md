@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **non-increasing 0-indexed **integer arrays `nums1`​​​​​​ and `nums2`​​​​​​.
 
@@ -7,12 +7,13 @@ A pair of indices `(i, j)`, where $0 \le i < \text{nums1.length}$ and $0 \le j <
 Return *the **maximum distance** of any **valid** pair *`(i, j)`*. If there are no valid pairs, return *`0`.
 
 An array `arr` is **non-increasing** if $arr[i-1] \ge \text{arr}[i]$ for every $1 \le i < \text{arr.length}$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The maximum distance is 1 with pair (0,1).
 - **Output:** `2`
 - **Explanation:** The valid pairs are (2,2), (2,3), (2,4), (3,3), and (3,4).
 The maximum distance is 2 with pair (2,4).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
 

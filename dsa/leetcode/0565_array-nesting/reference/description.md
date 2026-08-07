@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` where `nums` is a permutation of the numbers in the range `[0, n - 1]`.
 
@@ -11,12 +11,13 @@ You should build a set $s[k] = {\text{nums}[k], nums[\text{nums}[k]], nums[nums[
 - We stop adding right before a duplicate element occurs in $s[k]$.
 
 Return *the longest length of a set* $s[k]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ s[0] = {nums[0], nums[5], nums[6], nums[2]} = {5, 6, 2, 0}
 
 - **Input:** `nums = [0,1,2]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

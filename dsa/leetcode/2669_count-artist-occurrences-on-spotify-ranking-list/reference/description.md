@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Spotify`
 
@@ -19,11 +19,12 @@ Write a solution to find how many times each artist appeared on the Spotify rank
 Return the result table having the artist's name along with the corresponding number of occurrences ordered by occurrence count in **descending **order. If the occurrences are equal, then it’s ordered by the artist’s name in **ascending** order.
 
 The result format is in the following example​​​​​.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

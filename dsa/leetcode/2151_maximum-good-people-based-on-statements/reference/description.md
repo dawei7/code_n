@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are two types of persons:
 
@@ -17,12 +17,13 @@ You are given a **0-indexed** 2D integer array `statements` of size `n x n` that
 Additionally, no person ever makes a statement about themselves. Formally, we have that $\text{statements}[i][i] = 2$ for all $0 \le i < n$.
 
 Return *the **maximum** number of people who can be **good** based on the statements made by the *`n`* people*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ Let's take person 0 as the key.
 - **Following that person 0 is bad and lied, there will be only one good person in the group**.
 We can see that at most, one person is good in the best case, so we return 1.
 Note that there is more than one way to arrive at this conclusion.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{statements.length} = \text{statements}[i].length$
 

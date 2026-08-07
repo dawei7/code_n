@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an **undirected** connected tree with `n` nodes labeled from `1` to `n` and $n - 1$ edges. You are given the integer `n`. The parent node of a node with a label `v` is the node with the label $floor (v / 2)$. The root of the tree is the node with the label `1`.
 
@@ -8,16 +8,19 @@ You are also given an integer array `queries`. Initially, every node has a value
 
 Return *the total number of nodes with the value *`1`* **after processing all the queries***.
 
-**Note** that:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+that:
 
 - Flipping the value of a node means that the node with the value `0` becomes `1` and vice versa.
 
 - `floor(x)` is equivalent to rounding `x` down to the nearest integer.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +38,8 @@ After processing the queries, there are three red nodes (nodes with value 1): 1,
 - **Output:** `1`
 - **Explanation:** The diagram above shows the tree structure and its status after performing the queries. The blue node represents the value 0, and the red node represents the value 1.
 After processing the queries, there are one red node (node with value 1): 2.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{5}$
 

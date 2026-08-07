@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums`, return `true` *if it can be made **strictly increasing** after removing **exactly one** element, or *`false`* otherwise. If the array is already strictly increasing, return *`true`.
 
 The array `nums` is **strictly increasing** if $nums[i - 1] < \text{nums}[i]$ for each index $(1 \le i < \text{nums.length}).$
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ No resulting array is strictly increasing, so return false.
 - **Output:** `false`
 - **Explanation:** The result of removing any element is [1,1].
 [1,1] is not strictly increasing, so return false.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 1000$
 

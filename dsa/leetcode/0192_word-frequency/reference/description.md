@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a bash script to calculate the frequency of each word in a text file `words.txt`.
 
@@ -28,13 +28,7 @@ sunny 2
 day 1
 ```
 
-**Note:**
-
-- Don't worry about handling ties, it is guaranteed that each word's frequency count is unique.
-
-- Could you write it in one-line using <a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-4.html">Unix pipes</a>?
-
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -43,3 +37,9 @@ The script reads `words.txt` from its working directory; it does not receive fun
 **Return value**
 
 Write one `word count` pair per line to standard output, ordered by descending frequency.
+
+### 3. Note
+
+- Don't worry about handling ties, it is guaranteed that each word's frequency count is unique.
+
+- Could you write it in one-line using <a href="http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO-4.html">Unix pipes</a>?

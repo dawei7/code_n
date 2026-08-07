@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We are given `hours`, a list of the number of hours worked per day for a given employee.
 
@@ -7,12 +7,13 @@ A day is considered to be a *tiring day* if and only if the number of hours work
 A *well-performing interval* is an interval of days for which the number of tiring days is strictly larger than the number of non-tiring days.
 
 Return the length of the longest well-performing interval.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return the length of the longest well-performing interval.
 
 - **Input:** $hours = [6,6,6]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{hours.length} \le 10^{4}$
 

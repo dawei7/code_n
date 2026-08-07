@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The set `[1, 2, 3, ..., n]` contains a total of `n!` unique permutations.
 
@@ -17,7 +17,8 @@ By listing and labeling all of the permutations in order, we get the following s
 - `"321"`
 
 Given `n` and `k`, return the $$k^{\text{th}}$$ permutation sequence.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Given `n` and `k`, return the $$k^{\text{th}}$$ permutation sequence.
 
 Return the $k$th lexicographically ordered permutation as a string.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Return the $k$th lexicographically ordered permutation as a string.
 
 - **Input:** $n = 3, k = 1$
 - **Output:** `"123"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 9$
 

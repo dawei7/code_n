@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given an object or an array `obj` and a function `fn`, return a filtered object or array `filteredObject`.
 
 Function `deepFilter` should perform a deep filter operation on the `obj`. The deep filter operation should remove properties for which the output of the filter function `fn` is `false`, as well as any empty objects or arrays that remain after the keys have been removed.
 
 If the deep filter operation results in an empty object or array, with no remaining properties, `deepFilter` should return `undefined` to indicate that there is no valid data left in the `filteredObject`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ fn = (x) => x > 0
 obj = [[[[5]]]],
 fn = (x) => Array.isArray(x)
 - **Output:** `undefined`
-### Constraints
+
+### 4. Constraints
 
 - `fn` is a function that returns a boolean value
 

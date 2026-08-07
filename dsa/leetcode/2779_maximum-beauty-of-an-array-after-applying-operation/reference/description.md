@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` and a **non-negative** integer `k`.
 
@@ -12,15 +12,18 @@ The **beauty** of the array is the length of the longest subsequence consisting 
 
 Return *the **maximum** possible beauty of the array *`nums`* after applying the operation any number of times.*
 
-**Note** that you can apply the operation to each index **only once**.
-
-A **subsequence** of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the order of the remaining elements.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you can apply the operation to each index **only once**.
+
+A **subsequence** of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the order of the remaining elements.
+
+### 4. Examples
 
 #### Example 1
 
@@ -37,7 +40,8 @@ It can be proven that 3 is the maximum possible length we can achieve.
 - **Output:** `4`
 - **Explanation:** In this example we don't have to apply any operations.
 The beauty of the array nums is 4 (whole array).
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

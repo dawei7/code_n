@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given `head` which is a reference node to a singly-linked list. The value of each node in the linked list is either `0` or `1`. The linked list holds the binary representation of a number.
 
 Return the *decimal value* of the number in the linked list.
 
 The **most significant bit** is at the head of the linked list.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ The **most significant bit** is at the head of the linked list.
 
 - **Input:** $head = [0]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - The Linked List is not empty.
 

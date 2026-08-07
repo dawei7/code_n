@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are opponents in an archery competition. The competition has set the following rules:
 
@@ -21,12 +21,13 @@ You are given the integer `numArrows` and an integer array `aliceArrows` of size
 Return *the array *`bobArrows`* which represents the number of arrows Bob shot on **each** scoring section from *`0`* to *`11`. The sum of the values in `bobArrows` should equal `numArrows`.
 
 If there are multiple ways for Bob to earn the maximum total points, return **any** one of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ It can be shown that Bob cannot obtain a score higher than 47 points.
 - **Explanation:** The table above shows how the competition is scored.
 Bob earns a total point of 8 + 9 + 10 = 27.
 It can be shown that Bob cannot obtain a score higher than 27 points.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le numArrows \le 10^{5}$
 

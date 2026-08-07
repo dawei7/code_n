@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two numeric strings `num1` and `num2` and two integers $\text{max}_{sum}$ and $\text{min}_{sum}$. We denote an integer `x` to be *good* if:
 
@@ -9,12 +9,13 @@ You are given two numeric strings `num1` and `num2` and two integers $\text{max}
 Return *the number of good integers*. Since the answer may be large, return it modulo $10^{9} + 7$.
 
 Note that $\text{digit}_{sum}(x)$ denotes the sum of the digits of `x`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that $\text{digit}_{sum}(x)$ denotes the sum of the digits of `x`.
 - **Input:** $num1 = "1", num2 = "5", \text{min}_{sum} = 1, \text{max}_{sum} = 5$
 - **Output:** `5`
 - **Explanation:** The 5 integers whose sum of digits lies between 1 and 5 are 1,2,3,4, and 5. Thus, we return 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num1 \le num2 \le 10^{22}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **confusing number** is a number that when rotated `180` degrees becomes a different number with **each digit valid**.
 
@@ -13,7 +13,8 @@ Note that after rotating a number, we can ignore leading zeros.
 - For example, after rotating `8000`, we have `0008` which is considered as just `8`.
 
 Given an integer `n`, return *the number of **confusing numbers** in the inclusive range *`[1, n]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -35,7 +36,7 @@ Let $D$ be the number of decimal digits in `n`.
 
 - The number of integers in `[1, n]` whose rotated value is valid and different from the original integer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,6 +54,7 @@ Let $D$ be the number of decimal digits in `n`.
 - **Input:** $n = 100$
 - **Output:** `19`
 - **Explanation:** The confusing numbers are [6,9,10,16,18,19,60,61,66,68,80,81,86,89,90,91,98,99,100].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

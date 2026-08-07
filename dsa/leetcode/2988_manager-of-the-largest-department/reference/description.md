@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -20,11 +20,12 @@ Write a solution to find the **name** of the **manager** from the **largest depa
 Return *the result table sorted by *$\text{dep}_{id}$* in **ascending** order**.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

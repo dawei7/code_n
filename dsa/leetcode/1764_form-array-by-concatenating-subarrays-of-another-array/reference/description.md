@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `groups` of length `n`. You are also given an integer array `nums`.
 
@@ -7,12 +7,13 @@ You are asked if you can choose `n` **disjoint **subarrays from the array `nums`
 Return `true` *if you can do this task, and* `false` *otherwise*.
 
 Note that the subarrays are **disjoint** if and only if there is no index `k` such that $\text{nums}[k]$ belongs to more than one subarray. A subarray is a contiguous sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ These subarrays are disjoint as they share no common nums[k] element.
 - **Output:** `false`
 - **Explanation:** Note that choosing the subarrays [7,7,<u>**1,2,3**</u>,4,7,7] and [7,7,1,2,<u>**3,4**</u>,7,7] is invalid because they are not disjoint.
 They share a common elements nums[4] (0-indexed).
-### Constraints
+
+### 4. Constraints
 
 - $\text{groups.length} = n$
 

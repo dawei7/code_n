@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected graph. You are given an integer `n` which is the number of nodes in the graph and an array `edges`, where each $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an undirected edge between $u_{i}$ and $v_{i}$.
 
@@ -7,12 +7,13 @@ A **connected trio** is a set of **three** nodes where there is an edge between 
 The **degree of a connected trio** is the number of edges where one endpoint is in the trio, and the other is not.
 
 Return *the **minimum** degree of a connected trio in the graph, or* `-1` *if the graph has no connected trios.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return *the **minimum** degree of a connected trio in the graph, or* `-1` *if th
 1) [1,4,3] with degree 0.
 2) [2,5,6] with degree 2.
 3) [5,6,7] with degree 2.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 400$
 

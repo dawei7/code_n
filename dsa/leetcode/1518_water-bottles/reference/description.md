@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `numBottles` water bottles that are initially full of water. You can exchange `numExchange` empty water bottles from the market with one full water bottle.
 
 The operation of drinking a full water bottle turns it into an empty bottle.
 
 Given the two integers `numBottles` and `numExchange`, return *the **maximum** number of water bottles you can drink*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Number of water bottles you can drink: 9 + 3 + 1 = 13.
 - **Output:** `19`
 - **Explanation:** You can exchange 4 empty bottles to get 1 full water bottle.
 Number of water bottles you can drink: 15 + 3 + 1 = 19.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le numBottles \le 100$
 

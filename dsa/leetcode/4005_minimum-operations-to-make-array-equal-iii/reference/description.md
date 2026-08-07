@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,7 +9,8 @@ In one operation, you may choose **any** element $\text{nums}[i]$ and perform on
 - **Divide** $\text{nums}[i]$ by an integer `k`, where $2 \le k < \text{nums}[i]$, provided that $\text{nums}[i]$ is divisible by `k`.
 
 Return the **minimum** number of operations required to make all elements of `nums` **equal**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ For the Required Complexity bound, let $U$ be the number of distinct entries, le
 
 Return the minimum number of permitted multiplication and division operations required to make all entries equal.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -71,7 +72,8 @@ We can perform following operates to make all numbers to 5:
 All elements are already equal, so no operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

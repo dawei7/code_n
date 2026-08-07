@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` with length `n`, and a positive **odd** integer `k`.
 
@@ -12,13 +12,16 @@ where **$sum(\text{sub}_{i})$** is the sum of the elements in the `i`-th subarra
 
 Return the **maximum** possible strength that can be obtained from selecting exactly **`k`** disjoint subarrays from `nums`.
 
-**Note** that the chosen subarrays **don't** need to cover the entire array.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the chosen subarrays **don't** need to cover the entire array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -51,7 +54,8 @@ $strength = 5 * 12 - 4 * (-2) + 3 * (-2) - 2 * (-2) + (-2) = 64$
 **Explanation:**
 
 The best possible way to select 1 subarray is: nums[0..0]. The strength is -1.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 10^{4}$
 

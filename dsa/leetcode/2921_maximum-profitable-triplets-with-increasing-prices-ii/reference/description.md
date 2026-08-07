@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the **0-indexed** arrays `prices` and `profits` of length `n`. There are `n` items in an store where the $$i^{\text{th}}$$ item has a price of $\text{prices}[i]$ and a profit of $\text{profits}[i]$.
 
@@ -9,11 +9,12 @@ We have to pick three items with the following condition:
 If we pick items with indices `i`, `j` and `k` satisfying the above condition, the profit would be $\text{profits}[i] + \text{profits}[j] + \text{profits}[k]$.
 
 Return* the **maximum profit** we can get, and *`-1`* if it's not possible to pick three items with the given condition.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The answer would be sum of their profits which is 5 + 4 + 6 = 15.
 - **Input:** $prices = [4,3,2,1], profits = [33,20,19,87]$
 - **Output:** `-1`
 - **Explanation:** We can't select any triplet of indices such that the condition holds, so we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{prices.length} = \text{profits.length} \le 50000$
 

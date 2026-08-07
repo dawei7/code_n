@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 An **ugly number** is a positive integer whose prime factors are limited to `2`, `3`, and `5`.
 
 Given an integer `n`, return *the* $$n^{\text{th}}$$ ***ugly number***.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given an integer `n`, return *the* $$n^{\text{th}}$$ ***ugly number***.
 
 Return the ugly number at position `n`, counting `1` as the first value.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,6 +26,7 @@ Return the ugly number at position `n`, counting `1` as the first value.
 - **Input:** $n = 1$
 - **Output:** `1`
 - **Explanation:** 1 has no prime factors, therefore all of its prime factors are limited to 2, 3, and 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1690$

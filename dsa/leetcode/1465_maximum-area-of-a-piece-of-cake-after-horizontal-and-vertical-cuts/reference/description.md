@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a rectangular cake of size `h x w` and two arrays of integers `horizontalCuts` and `verticalCuts` where:
 
@@ -7,12 +7,13 @@ You are given a rectangular cake of size `h x w` and two arrays of integers `hor
 - $\text{verticalCuts}[j]$ is the distance from the left of the rectangular cake to the $$j^{\text{th}}$$ vertical cut.
 
 Return *the maximum area of a piece of cake after you cut at each horizontal and vertical position provided in the arrays* `horizontalCuts` *and* `verticalCuts`. Since the answer can be a large number, return this **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *the maximum area of a piece of cake after you cut at each horizontal and
 
 - **Input:** $h = 5, w = 4, horizontalCuts = [3], verticalCuts = [3]$
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le h, w \le 10^{9}$
 

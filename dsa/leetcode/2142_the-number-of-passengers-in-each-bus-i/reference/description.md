@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Buses`
 
@@ -34,11 +34,12 @@ Write a solution to report the number of users that used each bus.
 Return the result table ordered by $\text{bus}_{id}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

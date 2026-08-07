@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of positive integers.
 
@@ -8,13 +8,16 @@ We call two integers `x` and `y` in this problem **almost equal** if both intege
 
 Return the number of indices `i` and `j` in `nums` where `i < j` such that $\text{nums}[i]$ and $\text{nums}[j]$ are **almost equal**.
 
-**Note** that it is allowed for an integer to have leading zeros after performing an operation.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that it is allowed for an integer to have leading zeros after performing an operation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -56,7 +59,8 @@ Every two elements in the array are almost equal.
 We cannot swap any two digits of 123 or 231 to reach the other.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 100$
 

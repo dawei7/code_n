@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 On an alphabet board, we start at position `(0, 0)`, corresponding to character $\text{board}[0][0]$.
 
@@ -21,12 +21,13 @@ We may make the following moves:
 (Here, the only positions that exist on the board are positions with letters on them.)
 
 Return a sequence of moves that makes our answer equal to `target` in the minimum number of moves.  You may return any path that does so.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return a sequence of moves that makes our answer equal to `target` in the minimu
 
 - **Input:** $target = "code"$
 - **Output:** `"RR!DDRR!UUL!R!"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{target.length} \le 100$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer matrix `grid` of size $3 * 3$, representing the number of stones in each cell. The grid contains exactly `9` stones, and there can be **multiple** stones in a single cell.
 
 In one move, you can move a single stone from its current cell to any other cell if the two cells share a side.
 
 Return *the **minimum number of moves** required to place one stone in each cell*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ It can be shown that 3 is the minimum number of moves required to place one ston
 4- Move one stone from cell (2,2) to cell (2,1).
 In total, it takes 4 moves to place one stone in each cell of the grid.
 It can be shown that 4 is the minimum number of moves required to place one stone in each cell.
-### Constraints
+
+### 4. Constraints
 
 - $\text{grid.length} = \text{grid}[i].length = 3$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **1-indexed** `8 x 8` chessboard containing `3` pieces.
 
@@ -12,7 +12,14 @@ You are given `6` integers `a`, `b`, `c`, `d`, `e`, and `f` where:
 
 Given that you can only move the white pieces, return *the **minimum** number of moves required to capture the black queen*.
 
-**Note** that:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that:
 
 - Rooks can move any number of squares either vertically or horizontally, but cannot jump over other pieces.
 
@@ -21,12 +28,8 @@ Given that you can only move the white pieces, return *the **minimum** number of
 - A rook or a bishop can capture the queen if it is located in a square that they can move to.
 
 - The queen does not move.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -45,7 +48,8 @@ It is impossible to capture the black queen in less than two moves since it is n
 - **Explanation:** We can capture the black queen in a single move by doing one of the following:
 - Move the white rook to (5, 2).
 - Move the white bishop to (5, 2).
-### Constraints
+
+### 5. Constraints
 
 - $1 \le a, b, c, d, e, f \le 8$
 

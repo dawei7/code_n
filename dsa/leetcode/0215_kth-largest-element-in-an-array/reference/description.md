@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return *the* $$k^{\text{th}}$$ *largest element in the array*.
 
 Note that it is the $$k^{\text{th}}$$ largest element in the sorted order, not the $$k^{\text{th}}$$ distinct element.
 
 Can you solve it without sorting?
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Can you solve it without sorting?
 
 Return the value at rank `k` in descending sorted order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the value at rank `k` in descending sorted order.
 
 - **Input:** `nums = [3,2,3,1,2,4,5,5,6], k = 4`
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

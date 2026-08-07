@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers, `n` and `k`, along with two 2D integer arrays, `stayScore` and `travelScore`.
 
@@ -11,12 +11,13 @@ Each day, the tourist has two choices:
 - **Move to another city**: If the tourist moves from their current city `curr` to city `dest`, they will earn $\text{travelScore}[curr][dest]$ points.
 
 Return the **maximum** possible points the tourist can earn.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ The tourist earns the maximum number of points by starting in city 1 and staying
 The tourist earns the maximum number of points by starting in city 1, staying in that city on day 0, and traveling to city 2 on day 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 200$
 

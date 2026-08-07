@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Cinema`
 
@@ -60,6 +60,6 @@ Cinema table:
 
 Output table is ordered by first_seat_id in ascending order.</div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

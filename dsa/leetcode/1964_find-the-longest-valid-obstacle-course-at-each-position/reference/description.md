@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You want to build some obstacle courses. You are given a **0-indexed** integer array `obstacles` of length `n`, where $\text{obstacles}[i]$ describes the height of the $$i^{\text{th}}$$ obstacle.
 
@@ -13,12 +13,13 @@ For every index `i` between `0` and $n - 1$ (**inclusive**), find the length of 
 - Every obstacle (except the first) is **taller** than or the **same height** as the obstacle immediately before it.
 
 Return *an array* `ans` *of length* `n`, *where* $\text{ans}[i]$ *is the length of the **longest obstacle course** for index* `i`* as described above*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Return *an array* `ans` *of length* `n`, *where* $\text{ans}[i]$ *is the length 
 - i = 3: [<u>3</u>,1,<u>5</u>,<u>6</u>], [3,5,6] has length 3. [1,5,6] is also valid.
 - i = 4: [<u>3</u>,1,5,6,<u>4</u>], [3,4] has length 2. [1,4] is also valid.
 - i = 5: [3,<u>1</u>,5,6,4,<u>2</u>], [1,2] has length 2.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{obstacles.length}$
 

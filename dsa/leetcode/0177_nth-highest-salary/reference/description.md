@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -16,7 +16,8 @@ Each row of this table contains information about the salary of an employee.
 Write a solution to find the $$n^{\text{th}}$$ highest **distinct** salary from the `Employee` table. If there are less than `n` distinct salaries, return `null`.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The result format is in the following example.
 
 Return the $N$th-highest distinct salary under the column `getNthHighestSalary`, or null when that rank does not exist.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

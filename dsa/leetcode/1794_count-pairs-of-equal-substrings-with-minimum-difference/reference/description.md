@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `firstString` and `secondString` that are **0-indexed** and consist only of lowercase English letters. Count the number of index quadruples `(i,j,a,b)` that satisfy the following conditions:
 
@@ -11,11 +11,12 @@ You are given two strings `firstString` and `secondString` that are **0-indexed*
 - $j - a$ is the **minimum** possible value among all quadruples that satisfy the previous conditions.
 
 Return *the **number** of such quadruples*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return *the **number** of such quadruples*.
 - **Input:** $firstString = "ab", secondString = "cd"$
 - **Output:** `0`
 - **Explanation:** There are no quadruples satisfying all the conditions.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{firstString.length}, \text{secondString.length} \le 2 * 10^{5}$
 

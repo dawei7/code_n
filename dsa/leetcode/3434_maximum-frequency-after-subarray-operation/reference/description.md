@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of length `n`. You are also given an integer `k`.
 
@@ -9,12 +9,13 @@ You perform the following operation on `nums` **once**:
 - Select an integer `x` and add `x` to **all** the elements in `nums[i..j]`.
 
 Find the **maximum** frequency of the value `k` after the operation.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ After adding -5 to `nums[2..5]`, 1 has a frequency of 2 in `[1, 2, -2, -1, 0, 1]
 After adding 8 to `nums[1..9]`, 10 has a frequency of 4 in `[10, 10, 11, 12, 13, 13, 12, 11, 10, 10]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

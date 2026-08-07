@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ A tuple `(i, j, k)` of 3 **distinct** indices is **good** if $\text{nums}[i] = \
 The **distance** of a **good** tuple is $abs(i - j) + abs(j - k) + abs(k - i)$, where `abs(x)` denotes the **absolute value** of `x`.
 
 Return an integer denoting the **minimum** possible **distance** of a **good** tuple. If no **good** tuples exist, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ All three selected indices must be different. Their order in the tuple does not 
 
 Return the minimum good-tuple distance, or `-1` when no value occurs at least three times.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ The minimum distance is achieved by the good tuple `(2, 4, 6)`.
 There are no good tuples. Therefore, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

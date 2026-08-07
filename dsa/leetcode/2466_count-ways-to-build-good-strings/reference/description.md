@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the integers `zero`, `one`, `low`, and `high`, we can construct a string by starting with an empty string, and then at each step perform either of the following:
 
@@ -11,12 +11,13 @@ This can be performed any number of times.
 A **good** string is a string constructed by the above process having a **length** between `low` and `high` (**inclusive**).
 
 Return *the number of **different** good strings that can be constructed satisfying these properties.* Since the answer can be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ All binary strings from "000" to "111" are good strings in this example.
 - **Input:** $low = 2, high = 3, zero = 1, one = 2$
 - **Output:** `5`
 - **Explanation:** The good strings are "00", "11", "000", "110", and "011".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le low \le high \le 10^{5}$
 

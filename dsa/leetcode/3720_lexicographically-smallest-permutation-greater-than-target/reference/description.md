@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `target`, both having length `n`, consisting of lowercase English letters.
 
 Return the **lexicographically smallest permutation** of `s` that is **strictly** greater than `target`. If no permutation of `s` is lexicographically strictly greater than `target`, return an empty string.
 
 A string `a` is **lexicographically strictly greater **than a string `b` (of the same length) if in the first position where `a` and `b` differ, string `a` has a letter that appears later in the alphabet than the corresponding letter in `b`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ A string `a` is **lexicographically strictly greater **than a string `b` (of the
 
 Return the lexicographically smallest qualifying permutation of `s`, or `""` when even the greatest permutation of `s` is not strictly greater than `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ Return the lexicographically smallest qualifying permutation of `s`, or `""` whe
 - None of them is lexicographically strictly greater than `target`. Therefore, the answer is `""`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} = \text{target.length} \le 300$
 

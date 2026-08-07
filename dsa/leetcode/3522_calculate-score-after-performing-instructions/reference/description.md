@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two arrays, `instructions` and `values`, both of size `n`.
 
@@ -26,12 +26,13 @@ The process ends when you either:
 - Attempt to revisit an instruction that has been previously executed. The revisited instruction is not executed.
 
 Return your score at the end of the process.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -89,7 +90,8 @@ Simulate the process starting at instruction 0:
 - At index 0: Already visited. The process ends.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{instructions.length} = \text{values.length}$
 

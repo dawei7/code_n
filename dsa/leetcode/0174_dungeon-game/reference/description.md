@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The demons had captured the princess and imprisoned her in **the bottom-right corner** of a `dungeon`. The `dungeon` consists of `m x n` rooms laid out in a 2D grid. Our valiant knight was initially positioned in **the top-left room** and must fight his way through `dungeon` to rescue the princess.
 
@@ -10,8 +10,7 @@ To reach the princess as quickly as possible, the knight decides to move only **
 
 Return *the knight's minimum initial health so that he can rescue the princess*.
 
-**Note** that any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +20,11 @@ Return *the knight's minimum initial health so that he can rescue the princess*.
 
 Return the smallest positive initial health for which at least one right-and-down path reaches the bottom-right room without health ever falling below `1`.
 
-### Examples
+### 3. Note
+
+that any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Return the smallest positive initial health for which at least one right-and-dow
 
 - **Input:** $dungeon = [[0]]$
 - **Output:** `1`
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{dungeon.length}$
 

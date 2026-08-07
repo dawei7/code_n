@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice is texting Bob using her phone. The **mapping** of digits to letters is shown in the figure below.
 
@@ -17,12 +17,13 @@ However, due to an error in transmission, Bob did not receive Alice's text messa
 Given a string `pressedKeys` representing the string received by Bob, return *the **total number of possible text messages** Alice could have sent*.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Since there are 8 possible messages, we return 8.
 - **Explanation:**
 There are 2082876103 possible text messages Alice could have sent.
 Since we need to return the answer modulo $10^{9}$ + 7, we return 2082876103 % ($10^{9}$ + 7) = 82876089.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pressedKeys.length} \le 10^{5}$
 

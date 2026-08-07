@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Tasks`
 
@@ -33,7 +33,8 @@ Write a solution to report the IDs of the missing subtasks for each $\text{task}
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -57,7 +58,7 @@ The result format is in the following example.
 
 Return a table with columns $\text{task}_{id}$ and $\text{subtask}_{id}$. Include every valid subtask $1 \le \text{subtask}_{id} \le \text{subtasks}_{count}$ for each task that is absent from `Executed`. Sort the output by $\text{task}_{id}$ ASC, $\text{subtask}_{id}$ ASC.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a list `arr` of all integers in the range `[1, n]` sorted in a strictly increasing order. Apply the following algorithm on `arr`:
 
@@ -9,7 +9,8 @@ You have a list `arr` of all integers in the range `[1, n]` sorted in a strictly
 - Keep repeating the steps again, alternating left to right and right to left, until a single number remains.
 
 Given the integer `n`, return *the last number that remains in* `arr`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Given the integer `n`, return *the last number that remains in* `arr`.
 
 Return the sole integer left after alternating left-to-right and right-to-left elimination passes.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ arr = [6]
 
 - **Input:** $n = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

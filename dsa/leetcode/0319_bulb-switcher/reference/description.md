@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are `n` bulbs that are initially off. You first turn on all the bulbs, then you turn off every second bulb.
 
 On the third round, you toggle every third bulb (turning on if it's off or turning off if it's on). For the $$i^{\text{th}}$$ round, you toggle every `i` bulb. For the $$n^{\text{th}}$$ round, you only toggle the last bulb.
 
 Return *the number of bulbs that are on after `n` rounds*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Return *the number of bulbs that are on after `n` rounds*.
 
 Return the count of bulbs that remain on after rounds `1` through `n`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,6 +37,7 @@ So you should return 1 because there is only one bulb is on.
 
 - **Input:** $n = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{9}$

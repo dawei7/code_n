@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `maxValue`, which are used to describe an **ideal** array.
 
@@ -9,12 +9,13 @@ A **0-indexed** integer array `arr` of length `n` is considered **ideal** if the
 - Every $\text{arr}[i]$ is divisible by $arr[i - 1]$, for `0 < i < n`.
 
 Return *the number of **distinct** ideal arrays of length *`n`. Since the answer may be very large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ There are a total of 5 + 2 + 1 + 1 + 1 = 10 distinct ideal arrays.
 - Arrays starting with the value 2 (1 array): [2,2,2,2,2]
 - Arrays starting with the value 3 (1 array): [3,3,3,3,3]
 There are a total of 9 + 1 + 1 = 11 distinct ideal arrays.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{4}$
 

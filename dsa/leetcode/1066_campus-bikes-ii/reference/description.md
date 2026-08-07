@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 On a campus represented as a 2D grid, there are `n` workers and `m` bikes, with $n \le m$. Each worker and bike is a 2D coordinate on this grid.
 
@@ -7,7 +7,8 @@ We assign one unique bike to each worker so that the sum of the **Manhattan dist
 Return `the minimum possible sum of Manhattan distances between each worker and their assigned bike`.
 
 The **Manhattan distance** between two points `p1` and `p2` is $Manhattan(p1, p2) = |\text{p1.x} - \text{p2.x}| + |\text{p1.y} - \text{p2.y}|$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $n=\lvert\texttt{workers}\rvert$ and $m=\lvert\texttt{bikes}\rvert$. The inp
 
 - The minimum sum of Manhattan distances obtained by assigning a distinct bike to every worker.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ We first assign bike 0 to worker 0, then assign bike 1 to worker 1 or worker 2, 
 
 - **Input:** $workers = [[0,0],[1,0],[2,0],[3,0],[4,0]], bikes = [[0,999],[1,999],[2,999],[3,999],[4,999]]$
 - **Output:** `4995`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{workers.length}$
 

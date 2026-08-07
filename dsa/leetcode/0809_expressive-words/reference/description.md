@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Sometimes people repeat letters to represent extra feeling. For example:
 
@@ -13,12 +13,13 @@ You are given a string `s` and an array of query strings `words`. A query word i
 - For example, starting with `"hello"`, we could do an extension on the group `"o"` to get `"hellooo"`, but we cannot get `"helloo"` since the group `"oo"` has a size less than three. Also, we could do another extension like `"ll" -> "lllll"` to get `"helllllooo"`. If `s = "helllllooo"`, then the query word `"hello"` would be **stretchy** because of these two extension operations: $query = "hello" -> "hellooo" -> "helllllooo" = s$.
 
 Return *the number of query strings that are **stretchy***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ We can't extend "helo" to get "heeellooo" because the group "ll" is not size 3 o
 
 - **Input:** `s = "zzzzzyyyyy", words = ["zzyy","zy","zyy"]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{words.length} \le 100$
 

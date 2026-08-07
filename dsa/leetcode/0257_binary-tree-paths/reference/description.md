@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *all root-to-leaf paths in **any order***.
 
 A **leaf** is a node with no children.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **leaf** is a node with no children.
 
 Return every root-to-leaf sequence as a string with `"->"` between adjacent node values; path order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return every root-to-leaf sequence as a string with `"->"` between adjacent node
 
 - **Input:** `root = [1]`
 - **Output:** `["1"]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 100]`.
 

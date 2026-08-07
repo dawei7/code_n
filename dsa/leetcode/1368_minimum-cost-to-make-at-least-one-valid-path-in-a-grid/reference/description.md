@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an `m x n` grid. Each cell of the grid has a sign pointing to the next cell you should visit if you are currently in this cell. The sign of $\text{grid}[i][j]$ can be:
 
@@ -17,12 +17,13 @@ You will initially start at the upper left cell `(0, 0)`. A valid path in the gr
 You can modify the sign on a cell with $cost = 1$. You can modify the sign on a cell **one time only**.
 
 Return *the minimum cost to make the grid have at least one valid path*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The total cost = 3.
 
 - **Input:** `grid = [[1,2],[4,3]]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

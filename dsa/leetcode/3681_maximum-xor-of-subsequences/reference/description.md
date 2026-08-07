@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` where each element is a non-negative integer.
 
@@ -10,13 +10,16 @@ Select **two** subsequences of `nums` (they may be empty and are **allowed** to 
 
 Return the **maximum** possible value of `X XOR Y`.
 
-**Note:** The XOR of an **empty** subsequence is 0.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The XOR of an **empty** subsequence is 0.
+
+### 4. Examples
 
 #### Example 1
 
@@ -58,7 +61,8 @@ Then, XOR of both subsequences = $5 XOR 2 = 7$.
 This is the maximum XOR value achievable from any two subsequences.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, the level of its root is `1`, the level of its children is `2`, and so on.
 
 Return the **smallest** level `x` such that the sum of all the values of nodes at level `x` is **maximal**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ So we return the level with the maximum sum which is level 2.
 
 - **Input:** `root = [989,null,10250,98693,-89388,null,null,null,-32127]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

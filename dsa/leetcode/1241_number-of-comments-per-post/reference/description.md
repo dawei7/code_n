@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Submissions`
 
@@ -24,7 +24,8 @@ The `Submissions` table may contain duplicate posts. You should treat them as on
 The result table should be **ordered** by $\text{post}_{id}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -40,7 +41,7 @@ Let $r$ be the total number of rows in `Submissions`.
 - Return zero for a post with no matching comments and ignore comments whose parent post is absent.
 - Order the rows by $\text{post}_{id}$ in ascending order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array of `prices` `[p_1,p_2...,p_n]` and a `target`, round each price $p_{i}$ to $\text{Round}_{i}(p_{i})$ so that the rounded array `[Round_1(p_1),Round_2(p_2)...,Round_n(p_n)]` sums to the given `target`. Each operation $\text{Round}_{i}(p_{i})$ could be either $Floor(p_{i})$ or $Ceil(p_{i})$.
 
 Return the string `"-1"` if the rounded array is impossible to sum to `target`. Otherwise, return the smallest rounding error, which is defined as $Σ |\text{Round}_{i}(p_{i}) - (p_{i})|$ for <italic>`i`</italic> from `1` to <italic>`n`</italic>, as a string with three places after the decimal.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Every price must be rounded independently to either its floor or its ceiling. Le
 
 - The minimum total absolute rounding error, formatted as a string with exactly three decimal places, or `"-1"` when no permitted choices sum to `target`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Use Floor, Ceil and Ceil operations to get (0.7 - 0) + (3 - 2.8) + (5 - 4.9) = 0
 
 - **Input:** $prices = ["1.500","2.500","3.500"], target = 9$
 - **Output:** `"1.500"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prices.length} \le 500$
 

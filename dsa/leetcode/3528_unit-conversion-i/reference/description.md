@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There are `n` types of units indexed from `0` to $n - 1$. You are given a 2D integer array `conversions` of length $n - 1$, where $\text{conversions}[i] = [\text{sourceUnit}_{i}, \text{targetUnit}_{i}, \text{conversionFactor}_{i}]$. This indicates that a single unit of type $\text{sourceUnit}_{i}$ is equivalent to $\text{conversionFactor}_{i}$ units of type $\text{targetUnit}_{i}$.
 
 Return an array `baseUnitConversion` of length `n`, where $\text{baseUnitConversion}[i]$ is the number of units of type `i` equivalent to a single unit of type 0. Since the answer may be large, return each $\text{baseUnitConversion}[i]$ **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Return an array `baseUnitConversion` of length `n`, where $\text{baseUnitConvers
 - Convert a single unit of type 0 into 24 units of type 7 using $\text{conversions}[1]$, $\text{conversions}[4]$, then $\text{conversions}[6]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given two strings `ransomNote` and `magazine`, return `true`* if *`ransomNote`* can be constructed by using the letters from *`magazine`* and *`false`* otherwise*.
 
 Each letter in `magazine` can only be used once in `ransomNote`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Each letter in `magazine` can only be used once in `ransomNote`.
 
 Return `true` when every required character occurrence can be supplied by `magazine`; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return `true` when every required character occurrence can be supplied by `magaz
 
 - **Input:** $ransomNote = "aa", magazine = "aab"$
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{ransomNote.length}, \text{magazine.length} \le 10^{5}$
 

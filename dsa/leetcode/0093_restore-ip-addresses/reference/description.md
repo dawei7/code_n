@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 A **valid IP address** consists of exactly four integers separated by single dots. Each integer is between `0` and `255` (**inclusive**) and cannot have leading zeros.
 
 - For example, `"0.1.2.201"` and `"192.168.1.1"` are **valid** IP addresses, but `"0.011.255.245"`, `"192.168.1.312"` and `"192.168@1.1"` are **invalid** IP addresses.
 
 Given a string `s` containing only digits, return *all possible valid IP addresses that can be formed by inserting dots into *`s`. You are **not** allowed to reorder or remove any digits in `s`. You may return the valid IP addresses in **any** order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Given a string `s` containing only digits, return *all possible valid IP address
 
 Return every valid four-component IP address that preserves all digits of `s` in their original order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return every valid four-component IP address that preserves all digits of `s` in
 
 - **Input:** `s = "101023"`
 - **Output:** `["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 20$
 

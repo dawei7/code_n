@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list, return *the middle node of the linked list*.
 
 If there are two middle nodes, return **the second middle** node.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ If there are two middle nodes, return **the second middle** node.
 - **Input:** $head = [1,2,3,4,5,6]$
 - **Output:** `[4,5,6]`
 - **Explanation:** Since the list has two middle nodes with values 3 and 4, we return the second one.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[1, 100]`.
 

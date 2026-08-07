@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two arrays `arr1` and `arr2`, return a new array `joinedArray`. All the objects in each of the two inputs arrays will contain an `id` field that has an integer value.
 
@@ -11,12 +11,13 @@ If two objects share an `id`, their properties should be merged into a single ob
 - If a key only exists in one object, that single key-value pair should be included in the object.
 
 - If a key is included in both objects, the value in the object from `arr2` should override the value from `arr1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ arr2 = [
 {"id": 1, "b": {"c": 84}, "v": [1, 3], "y": 48}
 ]
 - **Explanation:** The two objects with id=1 are merged together. For the keys "b" and "v" the values from arr2 are used. Since the key "y" only exists in arr1, that value is taken form arr1.
-### Constraints
+
+### 4. Constraints
 
 - `arr1` and `arr2` are valid JSON arrays
 

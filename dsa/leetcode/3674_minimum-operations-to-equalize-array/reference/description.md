@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`.
 
@@ -7,12 +7,13 @@ In one operation, choose any subarray `nums[l...r]` ($0 \le l \le r < n$) and **
 Return the **minimum** number of operations required to make all elements of `nums` equal.
 
 A **subarray** is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Choose `nums[0...1]`: $(1 AND 2) = 0$, so the array becomes `[0, 0]` and all ele
 `nums` is `[5, 5, 5]` which already has all elements equal, so 0 operations are required.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 100$
 

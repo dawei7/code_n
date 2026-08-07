@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a **non-empty** array of integers `nums`, every element appears *twice* except for one. Find that single one.
 
 You must implement a solution with a linear runtime complexity and use only constant extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must implement a solution with a linear runtime complexity and use only cons
 
 Return the unique element that occurs exactly once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Return the unique element that occurs exactly once.
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{4}$
 

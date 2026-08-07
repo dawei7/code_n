@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A game on an **undirected** graph is played by two players, Mouse and Cat, who alternate turns.
 
@@ -25,12 +25,13 @@ Given a `graph`, and assuming both players play optimally, return
 - `2` if the cat wins the game, or
 
 - `0` if the game is a draw.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Given a `graph`, and assuming both players play optimally, return
 
 - **Input:** $graph = [[1,3],[0],[3],[0,2]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{graph.length} \le 50$
 

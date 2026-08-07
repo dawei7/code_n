@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `arr` which consists of only zeros and ones, divide the array into **three non-empty parts** such that all of these parts represent the same binary value.
 
@@ -15,12 +15,13 @@ If it is possible, return any `[i, j]` with $i + 1 < j$, such that:
 If it is not possible, return `[-1, -1]`.
 
 Note that the entire part is used when considering what binary value it represents. For example, `[1,1,0]` represents `6` in decimal, not `3`. Also, leading zeros **are allowed**, so `[0,1,1]` and `[1,1]` represent the same value.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that the entire part is used when considering what binary value it represen
 
 - **Input:** `arr = [1,1,0,0,1]`
 - **Output:** `[0,2]`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{arr.length} \le 3 * 10^{4}$
 

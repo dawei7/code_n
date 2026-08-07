@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have an infinite number of stacks arranged in a row and numbered (left to right) from `0`, each of the stacks has the same maximum capacity.
 
@@ -11,12 +11,13 @@ Implement the `DinnerPlates` class:
 - `int pop()` Returns the value at the top of the rightmost non-empty stack and removes it from that stack, and returns `-1` if all the stacks are empty.
 
 - `int popAtStack(int index)` Returns the value at the top of the stack with the given index `index` and removes it from that stack or returns `-1` if the stack with that given index is empty.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ D.pop()            // Returns 3.  The stacks are now:   1
 D.pop()            // Returns 1.  There are no stacks.
 D.pop()            // Returns -1.  There are still no stacks.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le capacity \le 2 * 10^{4}$
 

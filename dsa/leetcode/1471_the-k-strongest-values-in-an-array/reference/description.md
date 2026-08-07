@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr` and an integer `k`.
 
@@ -29,12 +29,13 @@ The **centre** is the middle value in an ordered integer list. More formally, if
 </div>
 </div>
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ Please note that although |5 - 3| == |1 - 3| but 5 is stronger than 1 because 5 
 - **Output:** `[11,8,6,6,7]`
 - **Explanation:** Centre is 7, the elements of the array sorted by the strongest are [11,8,6,6,7,7].
 Any permutation of [11,8,6,6,7] is **accepted**.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{5}$
 

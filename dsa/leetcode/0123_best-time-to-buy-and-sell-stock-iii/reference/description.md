@@ -1,11 +1,10 @@
-## Description
+### 1. Description
 
 You are given an array `prices` where $\text{prices}[i]$ is the price of a given stock on the $$i^{\text{th}}$$ day.
 
 Find the maximum profit you can achieve. You may complete **at most two transactions**.
 
-**Note:** You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +14,11 @@ Find the maximum profit you can achieve. You may complete **at most two transact
 
 Return the maximum profit obtainable with zero, one, or two non-overlapping transactions.
 
-### Examples
+### 3. Note
+
+You may not engage in multiple transactions simultaneously (i.e., you must sell the stock before you buy again).
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Note that you cannot buy on day 1, buy on day 2 and sell them later, as you are 
 - **Input:** $prices = [7,6,4,3,1]$
 - **Output:** `0`
 - **Explanation:** In this case, no transaction is done, i.e. max profit = 0.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{prices.length} \le 10^{5}$
 

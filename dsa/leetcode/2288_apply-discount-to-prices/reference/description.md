@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **sentence** is a string of single-space separated words where each word can contain digits, lowercase letters, and the dollar sign `'$'`. A word represents a **price** if it is a sequence of digits preceded by a dollar sign.
 
@@ -9,12 +9,13 @@ You are given a string `sentence` representing a sentence and an integer `discou
 Return *a string representing the modified sentence*.
 
 Note that all prices will contain **at most** `10` digits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The words which represent prices are "$1" and "$2".
 Applying a 100% discount on any price will result in 0.
 The words representing prices are "$3", "$5", "$6", and "$9".
 Each of them is replaced by "$0.00".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 10^{5}$
 

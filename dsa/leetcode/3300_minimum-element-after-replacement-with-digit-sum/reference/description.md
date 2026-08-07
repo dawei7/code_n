@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 You replace each element in `nums` with the **sum** of its digits.
 
 Return the **minimum** element in `nums` after all replacements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Return the **minimum** element in `nums` after all replacements.
 `nums` becomes `[27, 10, 19]` after all replacements, with minimum element 10.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

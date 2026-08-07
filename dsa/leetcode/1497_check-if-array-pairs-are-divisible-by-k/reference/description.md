@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr` of even length `n` and an integer `k`.
 
 We want to divide the array into exactly $n / 2$ pairs such that the sum of each pair is divisible by `k`.
 
 Return `true`* If you can find a way to do that or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true`* If you can find a way to do that or *`false`* otherwise*.
 - **Input:** `arr = [1,2,3,4,5,6], k = 10`
 - **Output:** `false`
 - **Explanation:** You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.
-### Constraints
+
+### 4. Constraints
 
 - $\text{arr.length} = n$
 

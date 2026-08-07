@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `sentence` that consist of words separated by spaces. Each word consists of lowercase and uppercase letters only.
 
@@ -21,12 +21,13 @@ We would like to convert the sentence to "Goat Latin" (a made-up language simila
 	</li>
 
 Return* the final sentence representing the conversion from sentence to Goat Latin*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return* the final sentence representing the conversion from sentence to Goat Lat
 
 - **Input:** $sentence = "The quick brown fox jumped over the lazy dog"$
 - **Output:** `"heTmaa uickqmaaa rownbmaaaa oxfmaaaaa umpedjmaaaaaa overmaaaaaaa hetmaaaaaaaa azylmaaaaaaaaa ogdmaaaaaaaaaa"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentence.length} \le 150$
 

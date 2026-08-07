@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,12 +9,13 @@ You are given an integer array `nums`.
 - The **score** of `nums` is the sum of the **high** and **low** scores.
 
 Return the **minimum score** after **changing two elements** of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Return the **minimum score** after **changing two elements** of `nums`.
 - The sum of maximum absolute difference and minimum absolute difference is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

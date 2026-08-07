@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `EmployeeShifts`
 
@@ -82,6 +82,6 @@ The output table contains the employee_id, the maximum number of simultaneous ov
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

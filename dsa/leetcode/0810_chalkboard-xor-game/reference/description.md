@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of integers `nums` represents the numbers written on a chalkboard.
 
@@ -7,12 +7,13 @@ Alice and Bob take turns erasing exactly one number from the chalkboard, with Al
 Also, if any player starts their turn with the bitwise XOR of all the elements of the chalkboard equal to `0`, then that player wins.
 
 Return `true` *if and only if Alice wins the game, assuming both players play optimally*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ If Alice erases 2 first, now nums become [1, 1]. The bitwise XOR of all the elem
 
 - **Input:** `nums = [1,2,3]`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

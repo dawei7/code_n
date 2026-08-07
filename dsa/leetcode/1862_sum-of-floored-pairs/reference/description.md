@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return the sum of $floor(\text{nums}[i] / \text{nums}[j])$ for all pairs of indices $0 \le i, j < \text{nums.length}$ in the array. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 The `floor()` function returns the integer part of the division.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ We calculate the floor of the division for every pair of indices in the array th
 
 - **Input:** `nums = [7,7,7,7,7,7,7]`
 - **Output:** `49`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

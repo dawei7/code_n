@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In an infinite binary tree where every node has two children, the nodes are labelled in row order.
 
@@ -7,12 +7,13 @@ In the odd numbered rows (ie., the first, third, fifth,...), the labelling is le
 ![](images/tree.png)
 
 Given the `label` of a node in this tree, return the labels in the path from the root of the tree to the node with that `label`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -22,6 +23,7 @@ Given the `label` of a node in this tree, return the labels in the path from the
 
 - **Input:** $label = 26$
 - **Output:** `[1,2,6,10,26]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le label \le 10^{6}$

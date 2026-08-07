@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are playing a simplified PAC-MAN game on an infinite 2-D grid. You start at the point `[0, 0]`, and you are given a destination point $target = [x_{target}, y_{target}]$ that you are trying to get to. There are several ghosts on the map with their starting positions given as a 2D array `ghosts`, where $\text{ghosts}[i] = [x_{i}, y_{i}]$ represents the starting position of the $$i^{\text{th}}$$ ghost. All inputs are **integral coordinates**.
 
@@ -7,12 +7,13 @@ Each turn, you and all the ghosts may independently choose to either **move 1 un
 You escape if and only if you can reach the target **before** any ghost reaches you. If you reach any square (including the target) at the **same time** as a ghost, it **does not** count as an escape.
 
 Return `true`* if it is possible to escape regardless of how the ghosts move, otherwise return *`false`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return `true`* if it is possible to escape regardless of how the ghosts move, ot
 - **Input:** $ghosts = [[2,0]], target = [1,0]$
 - **Output:** `false`
 - **Explanation:** The ghost can reach the target at the same time as you.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{ghosts.length} \le 100$
 

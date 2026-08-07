@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word` and an array of strings `forbidden`.
 
@@ -7,12 +7,13 @@ A string is called **valid** if none of its substrings are present in `forbidden
 Return *the length of the **longest valid substring** of the string *`word`.
 
 A **substring** is a contiguous sequence of characters in a string, possibly empty.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ It can be shown that all other substrings contain either "aaa" or "cb" as a subs
 - **Output:** `4`
 - **Explanation:** There are 11 valid substrings in word: "l", "t", "c", "o", "d", "tc", "co", "od", "tco", "cod", and "tcod". The length of the longest valid substring is 4.
 It can be shown that all other substrings contain either "de", "le", or "e" as a substring.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 10^{5}$
 

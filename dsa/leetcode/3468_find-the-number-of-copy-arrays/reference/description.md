@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `original` of length `n` and a 2D array `bounds` of length `n x 2`, where $\text{bounds}[i] = [u_{i}, v_{i}]$.
 
@@ -9,12 +9,13 @@ You need to find the number of **possible** arrays `copy` of length `n` such tha
 - $u_{i} \le \text{copy}[i] \le v_{i}$ for $0 \le i \le n - 1$.
 
 Return the number of such arrays.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ The possible arrays are:
 No array is possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n = \text{original.length} \le 10^{5}$
 

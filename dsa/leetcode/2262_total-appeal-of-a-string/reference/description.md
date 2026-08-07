@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **appeal** of a string is the number of **distinct** characters found in the string.
 
@@ -7,12 +7,13 @@ The **appeal** of a string is the number of **distinct** characters found in the
 Given a string `s`, return *the **total appeal of all of its <strong>substrings**.</strong>*
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The total sum is 5 + 7 + 7 + 6 + 3 = 28.
 - Substrings of length 3: "cod", "ode" have an appeal of 3 and 3 respectively. The sum is 6.
 - Substrings of length 4: "code" has an appeal of 4. The sum is 4.
 The total sum is 4 + 6 + 6 + 4 = 20.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

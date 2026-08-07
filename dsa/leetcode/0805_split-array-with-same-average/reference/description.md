@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -6,13 +6,16 @@ You should move each element of `nums` into one of the two arrays `A` and `B` su
 
 Return `true` if it is possible to achieve that and `false` otherwise.
 
-**Note** that for an array `arr`, `average(arr)` is the sum of all the elements of `arr` over the length of `arr`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that for an array `arr`, `average(arr)` is the sum of all the elements of `arr` over the length of `arr`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -23,7 +26,8 @@ Return `true` if it is possible to achieve that and `false` otherwise.
 
 - **Input:** `nums = [3,1]`
 - **Output:** `false`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 30$
 

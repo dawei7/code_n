@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 We define a harmonious array as an array where the difference between its maximum value and its minimum value is **exactly** `1`.
 
 Given an integer array `nums`, return the length of its longest harmonious subsequence among all its possible subsequences.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The longest harmonious subsequences are `[1,2]`, `[2,3]`, and `[3,4]`, all of wh
 No harmonic subsequence exists.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

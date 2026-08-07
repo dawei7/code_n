@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `k`.
 
@@ -11,7 +11,8 @@ A binary string is considered **valid** if:
 - Its cost is **less than or equal** to `k`.
 
 Return a list of all valid binary strings of length `n` in any order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Return a list containing each length-`n` binary string with no consecutive ones 
 
 Let $R$ denote the number of strings in the returned list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -66,7 +67,8 @@ The valid binary strings of length 1 are `"0"` and `"1"`.
 Thus the answer is `["0", "1"]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 12$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected graph** with `n` nodes labeled from 0 to $n - 1$. The graph consists of `m` edges represented by a 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ with a repair cost of $w_{i}$.
 
@@ -9,7 +9,8 @@ You may choose a non-negative integer `money` and repair **all** edges whose rep
 You want to travel from node 0 to node $n - 1$ using at most `k` edges.
 
 Return an integer denoting the **minimum** amount of money required to make this possible, or return -1 if it is impossible.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Let $N=n$ and $M=\lvert\texttt{edges}\rvert$. Selecting `money` repairs all edge
 
 Return the minimum repair threshold that permits a route from node `0` to node $n - 1$ within the edge limit. Return `-1` if the destination is unreachable within `k` edges even after every edge is repaired.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -85,7 +86,8 @@ The only valid path using at most $k = 1$ edge is `0 -> 2`, which requires repai
 It is impossible to reach node 2 from node 0 using any amount of money. Therefore, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

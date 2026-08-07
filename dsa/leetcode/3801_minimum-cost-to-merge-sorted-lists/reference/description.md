@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `lists`, where each $\text{lists}[i]$ is a non-empty array of integers **sorted** in **non-decreasing** order.
 
@@ -11,7 +11,8 @@ After merging `a` and `b`, remove both `a` and `b` from `lists` and insert the n
 Return an integer denoting the **minimum total cost** required to merge all lists into one single sorted list.
 
 The **median** of an array is the middle element after sorting it in non-decreasing order. If the array has an even number of elements, the median is the left middle element.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ After every operation, the chosen pair is replaced by its complete sorted merge.
 
 Return an integer equal to the smallest attainable sum of merge costs after combining all input lists into one sorted list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -107,7 +108,8 @@ So `lists` becomes `[[1, 3]]`, and total cost is 4.
 The total cost is $len(a) + len(b) + abs(median(a) - median(b)) = 1 + 1 + abs(1 - 1) = 2$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{lists.length} \le 12$
 

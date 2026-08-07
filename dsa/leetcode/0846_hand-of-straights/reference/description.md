@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Alice has some number of cards and she wants to rearrange the cards into groups so that each group is of size `groupSize`, and consists of `groupSize` consecutive cards.
 
 Given an integer array `hand` where $\text{hand}[i]$ is the value written on the $$i^{\text{th}}$$ card and an integer `groupSize`, return `true` if she can rearrange the cards, or `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given an integer array `hand` where $\text{hand}[i]$ is the value written on the
 - **Input:** $hand = [1,2,3,4,5], groupSize = 4$
 - **Output:** `false`
 - **Explanation:** Alice's hand can not be rearranged into groups of 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{hand.length} \le 10^{4}$
 
@@ -28,4 +30,6 @@ Given an integer array `hand` where $\text{hand}[i]$ is the value written on the
 
 - $1 \le groupSize \le \text{hand.length}$
 
-**Note:** This question is the same as 1296: <a href="https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/" target="_blank">https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/</a>
+### 5. Note
+
+This question is the same as 1296: <a href="https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/" target="_blank">https://leetcode.com/problems/divide-array-in-sets-of-k-consecutive-numbers/</a>

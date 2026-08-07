@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given an `m x n` integer matrix `grid`, return *the maximum **score** of a path starting at *`(0, 0)`* and ending at *$(m - 1, n - 1)$ moving in the 4 cardinal directions.
 
 The **score** of a path is the minimum value in that path.
 
 - For example, the score of the path `8 → 4 → 5 → 9` is `4`.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -19,7 +20,7 @@ Let $V = mn$ be the number of cells.
 
 Return the largest possible minimum cell value over every valid corner-to-corner path.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Return the largest possible minimum cell value over every valid corner-to-corner
 
 - **Input:** `grid = [[3,4,6,3,4],[0,2,1,1,7],[8,8,3,2,7],[3,2,4,9,8],[4,1,2,0,0],[4,6,5,4,3]]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

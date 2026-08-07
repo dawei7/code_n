@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Salesperson`
 
@@ -47,11 +47,12 @@ Write a solution to report the sum of prices paid by the customers of each sales
 Return the result table in **any order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

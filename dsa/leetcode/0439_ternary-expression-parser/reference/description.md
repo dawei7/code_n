@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a string `expression` representing arbitrarily nested ternary expressions, evaluate the expression, and return *the result of it*.
 
 You can always assume that the given expression is valid and only contains digits, `'?'`, `':'`, `'T'`, and `'F'` where `'T'` is true and `'F'` is false. All the numbers in the expression are **one-digit** numbers (i.e., in the range `[0, 9]`).
 
 The conditional expressions group right-to-left (as usual in most languages), and the result of the expression will always evaluate to either a digit, `'T'` or `'F'`.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(expression: str) -> str`
 
@@ -19,7 +20,7 @@ Let $n$ be the number of characters in `expression`.
 
 Return the single-character terminal selected by evaluating `expression`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ or "(F ? 1 : (T ? 4 : 5))" --> "(T ? 4 : 5)" --> "4"
 - **Explanation:** The conditional expressions group right-to-left. Using parenthesis, it is read/evaluated as:
 "(T ? (T ? F : 5) : 3)" --> "(T ? F : 3)" --> "F"
 "(T ? (T ? F : 5) : 3)" --> "(T ? F : 5)" --> "F"
-### Constraints
+
+### 4. Constraints
 
 - $5 \le \text{expression.length} \le 10^{4}$
 

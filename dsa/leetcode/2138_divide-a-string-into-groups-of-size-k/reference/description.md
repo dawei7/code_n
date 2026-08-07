@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A string `s` can be partitioned into groups of size `k` using the following procedure:
 
@@ -9,12 +9,13 @@ A string `s` can be partitioned into groups of size `k` using the following proc
 Note that the partition is done so that after removing the `fill` character from the last group (if it exists) and concatenating all the groups in order, the resultant string should be `s`.
 
 Given the string `s`, the size of each group `k` and the character `fill`, return *a string array denoting the **composition of every group** *`s`* has been divided into, using the above procedure*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Thus, the groups formed are "abc", "def", and "ghi".
 Similar to the previous example, we are forming the first three groups "abc", "def", and "ghi".
 For the last group, we can only use the character 'j' from the string. To complete this group, we add 'x' twice.
 Thus, the 4 groups formed are "abc", "def", "ghi", and "jxx".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

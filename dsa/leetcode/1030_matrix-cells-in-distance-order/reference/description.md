@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given four integers `row`, `cols`, `rCenter`, and `cCenter`. There is a `rows x cols` matrix and you are on the cell with the coordinates `(rCenter, cCenter)`.
 
 Return *the coordinates of all cells in the matrix, sorted by their **distance** from *`(rCenter, cCenter)`* from the smallest distance to the largest distance*. You may return the answer in **any order** that satisfies this condition.
 
 The **distance** between two cells $(r_{1}, c_{1})$ and $(r_{2}, c_{2})$ is $|r_{1} - r_{2}| + |c_{1} - c_{2}|$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ The answer [[0,1],[1,1],[0,0],[1,0]] would also be accepted as correct.
 - **Output:** `[[1,2],[0,2],[1,1],[0,1],[1,0],[0,0]]`
 - **Explanation:** The distances from (1, 2) to other cells are: [0,1,1,2,2,3]
 There are other answers that would also be accepted as correct, such as [[1,2],[1,1],[0,2],[1,0],[0,1],[0,0]].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le rows, cols \le 100$
 

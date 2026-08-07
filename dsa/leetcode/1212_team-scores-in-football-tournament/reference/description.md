@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Teams`
 
@@ -43,7 +43,8 @@ Write a solution that selects the $\text{team}_{id}$, $\text{team}_{name}$ and $
 Return the result table ordered by $\text{num}_{points}$ **in decreasing order**. In case of a tie, order the records by $\text{team}_{id}$ **in increasing order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input tables**
 
@@ -58,7 +59,7 @@ Return exactly one row per team with columns $\text{team}_{id}$, $\text{team}_{n
 
 Sort the result by $\text{num}_{points}$ in decreasing order. When totals tie, sort those rows by $\text{team}_{id}$ in increasing order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the $$i^{\text{th}}$$ line are `(i, 0)` and $(i, \text{height}[i])$.
 
@@ -6,8 +6,7 @@ Find two lines that together with the x-axis form a container, such that the con
 
 Return *the maximum amount of water a container can store*.
 
-**Notice** that you may not slant the container.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +18,11 @@ Let $n = \lvert\texttt{height}\rvert$.
 
 Return the maximum container area formed by two lines and the x-axis.
 
-### Examples
+### 3. Notice
+
+that you may not slant the container.
+
+### 4. Examples
 
 #### Example 1
 
@@ -32,7 +35,8 @@ Return the maximum container area formed by two lines and the x-axis.
 
 - **Input:** $height = [1,1]$
 - **Output:** `1`
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{height.length}$
 

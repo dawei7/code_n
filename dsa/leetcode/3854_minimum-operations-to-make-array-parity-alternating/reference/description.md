@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -13,7 +13,8 @@ Return an integer array `answer` of length 2 where:
 - $\text{answer}[1]$ is the **minimum** possible value of $max(nums) - min(nums)$ taken over all arrays that are parity alternating and can be obtained by performing **exactly** $\text{answer}[0]$ operations.
 
 An array of length 1 is considered parity alternating.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ The operation count is optimized first. Only arrays obtained with exactly that o
 
 Return `[minimum operations, minimum final range]`, where the range is the final maximum element minus the final minimum element.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ The resulting array is parity alternating, and the value of $max(nums) - min(num
 No operations are required. The array is already parity alternating, and the value of $max(nums) - min(nums) = 7 - 7 = 0$, which is the minimum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

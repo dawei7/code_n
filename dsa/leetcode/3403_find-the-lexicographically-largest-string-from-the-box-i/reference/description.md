@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word`, and an integer `numFriends`.
 
@@ -9,12 +9,13 @@ Alice is organizing a game for her `numFriends` friends. There are multiple roun
 - All the split words are put into a box.
 
 Find the lexicographically largest string from the box after all the rounds are finished.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ All possible splits are:
 The only possible split is: `"g"`, `"g"`, `"g"`, and `"g"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 5 * 10^{3}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Relations`
 
@@ -20,11 +20,12 @@ The result table should contain the pairs $\text{user1}_{id}$ and $\text{user2}_
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

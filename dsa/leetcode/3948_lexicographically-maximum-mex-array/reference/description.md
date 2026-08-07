@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -17,7 +17,8 @@ Return the **lexicographically maximum** array `result` that can be obtained aft
 The **MEX** of an array is the **smallest non-negative** integer not present in the array.
 
 An array `a` is **lexicographically greater** than an array `b` if in the first position where `a` and `b` differ, array `a` has an element that is greater than the corresponding element in `b`. If the first `min(a.length, b.length)` elements do not differ, then the longer array is the **lexicographically greater** one.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Let $n=\lvert\texttt{nums}\rvert$.
 
 Return the lexicographically maximum array of prefix MEX values obtainable by removing one nonempty prefix after another until `nums` is empty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the lexicographically maximum array of prefix MEX values obtainable by re
 - Remaining array `[1]` has MEX = 0. Thus, the final $result = [0, 0]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

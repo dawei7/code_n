@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, you start with an initial **positive** value *startValue**.*
 
 In each iteration, you calculate the step by step sum of *startValue* plus elements in `nums` (from left to right).
 
 Return the minimum **positive** value of *startValue* such that the step by step sum is never less than 1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return the minimum **positive** value of *startValue* such that the step by step
 
 - **Input:** `nums = [1,-2,-3]`
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

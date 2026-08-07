@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, find the maximum value `v` for which there exist **different** nodes `a` and `b` where $v = |\text{a.val} - \text{b.val}|$ and `a` is an ancestor of `b`.
 
 A node `a` is an ancestor of `b` if either: any child of `a` is equal to `b` or any child of `a` is an ancestor of `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 
 
 - **Input:** `root = [1,null,2,null,0,3]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[2, 5000]`.
 

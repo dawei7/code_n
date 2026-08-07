@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Departments`
 
@@ -32,7 +32,8 @@ Find the id and the name of all students who are enrolled in departments that no
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -50,7 +51,7 @@ Return a table with these columns:
 
 A row qualifies exactly when its $\text{department}_{id}$ does not equal the `id` of any current department. The result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

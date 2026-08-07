@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point on the Cartesian plane.
 
@@ -7,12 +7,13 @@ A **horizontal** **trapezoid** is a convex quadrilateral with **at least one pai
 Return the * number of unique ****horizontal* *trapezoids*** that can be formed by choosing any four distinct points from `points`.
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ There are three distinct ways to pick four points that form a horizontal trapezo
 There is only one horizontal trapezoid that can be formed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{points.length} \le 10^{5}$
 

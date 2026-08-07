@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, find the number of subsequences of size 5 of `nums` with a **unique middle mode**.
 
@@ -9,12 +9,13 @@ A **mode** of a sequence of numbers is defined as the element that appears the *
 A sequence of numbers contains a** unique mode** if it has only one mode.
 
 A sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *middle element* ($\text{seq}[2]$) is a **unique mode**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ A sequence of numbers `seq` of size 5 contains a **unique middle mode** if the *
 There is no subsequence of length 5 with a unique middle mode.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $5 \le \text{nums.length} \le 1000$
 

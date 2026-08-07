@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a keypad with `9` buttons, numbered from `1` to `9`, each mapped to lowercase English letters. You can choose which characters each button is matched to as long as:
 
@@ -12,8 +12,7 @@ To type the first character matched to a button, you press the button once. To t
 
 Given a string `s`, return *the **minimum** number of keypresses needed to type *`s`* using your keypad.*
 
-**Note** that the characters mapped to by each button, and the order they are mapped in cannot be changed.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +22,11 @@ Given a string `s`, return *the **minimum** number of keypresses needed to type 
 
 Return an integer representing the minimum number of total keypresses required to type `s` under an optimal assignment of all 26 letters to the 9 buttons.
 
-### Examples
+### 3. Note
+
+that the characters mapped to by each button, and the order they are mapped in cannot be changed.
+
+### 4. Examples
 
 #### Example 1
 
@@ -50,7 +53,8 @@ Type 'j' by pressing button 1 twice.
 Type 'k' by pressing button 2 twice.
 Type 'l' by pressing button 3 twice.
 A total of 15 button presses are needed, so return 15.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

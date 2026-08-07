@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr` and an integer `d`. In one step you can jump from index `i` to index:
 
@@ -11,12 +11,13 @@ In addition, you can only jump from index `i` to index `j` if $\text{arr}[i] > \
 You can choose any index of the array and start jumping. Return *the maximum number of indices* you can visit.
 
 Notice that you can not jump outside of the array at any time.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Similarly You cannot jump from index 3 to index 2 or index 1.
 - **Input:** `arr = [7,6,5,4,3,2,1], d = 1`
 - **Output:** `7`
 - **Explanation:** Start at index 0. You can visit all the indicies.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 1000$
 

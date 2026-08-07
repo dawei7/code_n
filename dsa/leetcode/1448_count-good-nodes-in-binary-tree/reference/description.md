@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a binary tree `root`, a node *X* in the tree is named **good** if in the path from root to *X* there are no nodes with a value *greater than* X.
 
 Return the number of **good** nodes in the binary tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Node 3 -> (3,1,3) is the maximum value in the path.
 - **Input:** `root = [1]`
 - **Output:** `1`
 - **Explanation:** Root is considered as **good**.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the binary tree is in the range $[1, 10^{5}]$.
 

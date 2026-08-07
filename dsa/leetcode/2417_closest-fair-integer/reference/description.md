@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `n`.
 
 We call an integer `k` fair if the number of **even** digits in `k` is equal to the number of **odd** digits in it.
 
 Return *the **smallest** fair integer that is **greater than or equal** to *`n`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Return *the **smallest** fair integer that is **greater than or equal** to *`n`.
 - **Output:** `1001`
 - **Explanation:** The smallest fair integer that is greater than or equal to 403 is 1001.
 1001 is fair because it has an equal number of even and odd digits (two odd digits and two even digits).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

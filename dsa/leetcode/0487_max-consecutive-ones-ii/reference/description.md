@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s in the array if you can flip at most one* `0`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Given a binary array `nums`, return *the maximum number of consecutive *`1`*'s i
 
 The flip is optional, so an existing all-`1` run is a valid choice without modifying the array.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The max number of consecutive ones is 4.
 - If we flip the first zero, nums becomes [1,1,1,1,0,1] and we have 4 consecutive ones.
 - If we flip the second zero, nums becomes [1,0,1,1,1,1] and we have 4 consecutive ones.
 The max number of consecutive ones is 4.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

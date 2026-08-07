@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two integers, `n` and `k`, an **alternating permutation** is a permutation of the first `n` positive integers such that no **two** adjacent elements are both odd or both even.
 
 Return the **k-th** **alternating permutation** sorted in *lexicographical order*. If there are fewer than `k` valid **alternating permutations**, return an empty list.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ The lexicographically-sorted alternating permutations of `[1, 2]` are:
 There are only 2 alternating permutations, but $k = 3$, which is out of range. Thus, we return an empty list `[]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

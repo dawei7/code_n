@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `arr` of positive integers. You are also given the array `queries` where $\text{queries}[i] = [\text{left}_{i}, \text{right}_{i}]$.
 
 For each query `i` compute the **XOR** of elements from $\text{left}_{i}$ to $\text{right}_{i}$ (that is, $arr[\text{left}_{i}] XOR arr[\text{left}_{i} + 1] XOR ... XOR arr[\text{right}_{i}]$ ).
 
 Return an array `answer` where $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The XOR values for queries are:
 
 - **Input:** `arr = [4,8,2,10], queries = [[2,3],[1,3],[0,0],[0,3]]`
 - **Output:** `[8,0,4,4]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length}, \text{queries.length} \le 3 * 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have two soups, **A** and **B**, each starting with `n` mL. On every turn, one of the following four serving operations is chosen *at random*, each with probability `0.25` **independent** of all previous turns:
 
@@ -10,7 +10,12 @@ You have two soups, **A** and **B**, each starting with `n` mL. On every turn, o
 
 - pour 25 mL from type A and 75 mL from type B
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - There is no operation that pours 0 mL from A and 100 mL from B.
 
@@ -21,12 +26,8 @@ You have two soups, **A** and **B**, each starting with `n` mL. On every turn, o
 The process stops immediately after any turn in which *one of the soups* is used up.
 
 Return the probability that A is used up *before* B, plus half the probability that both soups are used up in the** same turn**. Answers within $10^{-5}$ of the actual answer will be accepted.
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -47,6 +48,7 @@ If we perform the second serving operations, A will become empty on performing o
 If we perform the third operation, A will become empty on performing operation [1, 2], and both A and B become empty on performing operation 3.
 If we perform the fourth operation, A will become empty on performing operation 1, and both A and B become empty on performing operation 2.
 So the total probability of A becoming empty first plus half the probability that A and B become empty at the same time, is 0.71875.
-### Constraints
+
+### 5. Constraints
 
 - $0 \le n \le 10^{9}$

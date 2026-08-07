@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `values` where values[i] represents the value of the $$i^{\text{th}}$$ sightseeing spot. Two sightseeing spots `i` and `j` have a **distance** $j - i$ between them.
 
 The score of a pair (`i < j`) of sightseeing spots is $\text{values}[i] + \text{values}[j] + i - j$: the sum of the values of the sightseeing spots, minus the distance between them.
 
 Return *the maximum score of a pair of sightseeing spots*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return *the maximum score of a pair of sightseeing spots*.
 
 - **Input:** $values = [1,2]$
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{values.length} \le 5 * 10^{4}$
 

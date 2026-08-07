@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` that consists of lowercase English letters.
 
@@ -7,12 +7,13 @@ A string is called **special** if it is made up of only a single character. For 
 Return *the length of the **longest special substring** of *`s` *which occurs **at least thrice***, *or *`-1`* if no special substring occurs at least thrice*.
 
 A **substring** is a contiguous **non-empty** sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that the maximum length achievable is 2.
 - **Output:** `1`
 - **Explanation:** The longest special substring which occurs thrice is "a": substrings "<u>**a**</u>bcaba", "abc<u>**a**</u>ba", and "abcab<u>**a**</u>".
 It can be shown that the maximum length achievable is 1.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{s.length} \le 50$
 

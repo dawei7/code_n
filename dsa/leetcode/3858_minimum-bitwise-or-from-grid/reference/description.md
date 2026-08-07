@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `grid` of size `m x n`.
 
 You must select **exactly one** integer from each row of the grid.
 
 Return an integer denoting the **minimum possible bitwise OR** of the selected integers from each row.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ No column consistency is required: each row may contribute a value from any of i
 
 Return the minimum numerical value of the combined bitwise OR among all selections.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ Return the minimum numerical value of the combined bitwise OR among all selectio
 - Choosing 7 gives the minimum bitwise OR.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m = \text{grid.length} \le 10^{5}$
 

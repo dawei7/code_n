@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -9,7 +9,8 @@ For each index `i`, define the **delayed count** as the number of indices `j` su
 - $\text{nums}[j] = \text{nums}[i]$
 
 Return an array `ans` where $\text{ans}[i]$ is the **delayed count** of index `i`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -36,7 +37,7 @@ The strict inequality excludes the position $i + k$ as well as the `k` positions
 
 Return the length-$N$ array containing the delayed count for every original index.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -160,7 +161,8 @@ Thus, $ans = [2, 0, 0, 0]$​​​​​​​.
 Thus, $ans = [1, 1, 0, 0]$​​​​​​​.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

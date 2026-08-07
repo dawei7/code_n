@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `n`, `m` and `k`. Consider the following algorithm to find the maximum element of an array of positive integers:
 
@@ -13,12 +13,13 @@ You should build the array arr which has the following properties:
 - After applying the mentioned algorithm to `arr`, the value $\text{search}_{cost}$ is equal to `k`.
 
 Return *the number of ways* to build the array `arr` under the mentioned conditions. As the answer may grow large, the answer **must be** computed modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return *the number of ways* to build the array `arr` under the mentioned conditi
 - **Input:** $n = 9, m = 1, k = 1$
 - **Output:** `1`
 - **Explanation:** The only possible array is [1, 1, 1, 1, 1, 1, 1, 1, 1]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 50$
 

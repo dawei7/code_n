@@ -1,18 +1,21 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers and an integer `k`.
 
-**Partition** the array into two ordered **groups** such that each element is in exactly **one** group. A partition is called great if the **sum** of elements of each group is greater than or equal to `k`.
-
-Return *the number of **distinct** great partitions*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-
-Two partitions are considered distinct if some element $\text{nums}[i]$ is in different groups in the two partitions.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Partition
+
+the array into two ordered **groups** such that each element is in exactly **one** group. A partition is called great if the **sum** of elements of each group is greater than or equal to `k`.
+
+Return *the number of **distinct** great partitions*. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
+
+Two partitions are considered distinct if some element $\text{nums}[i]$ is in different groups in the two partitions.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ Two partitions are considered distinct if some element $\text{nums}[i]$ is in di
 - **Output:** `2`
 - **Explanation:** We can either put nums[0] in the first partition or in the second partition.
 The great partitions will be ([6], [6]) and ([6], [6]).
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length}, k \le 1000$
 

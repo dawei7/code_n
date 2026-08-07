@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` with **distinct** elements.
 
@@ -9,12 +9,13 @@ A subarray `nums[l...r]` of `nums` is called a **bowl** if:
 - The **minimum** of its two ends is **strictly greater** than the **maximum** of all elements in between. That is, $min(\text{nums}[l], \text{nums}[r]) > max(nums[l + 1], ..., nums[r - 1])$.
 
 Return the number of **bowl** subarrays in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ The bowl subarrays are `[5, 1, 2]`, `[5, 1, 2, 3]` and `[5, 1, 2, 3, 4]`.
 No subarray is a bowl.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

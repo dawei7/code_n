@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return a `counter` function. This `counter` function initially returns `n` and then returns 1 more than the previous value every subsequent time it is called (`n`, $n + 1$, $n + 2$, etc).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ n = -2
 ["call","call","call","call","call"]
 - **Output:** `[-2,-1,0,1,2]`
 - **Explanation:** counter() initially returns -2. Then increases after each sebsequent call.
-### Constraints
+
+### 4. Constraints
 
 - $-1000^ \le n \le 1000$
 

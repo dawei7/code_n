@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `n x m` integer matrix `matrix` containing non-negative integers.
 
@@ -78,7 +78,8 @@ Only the cell with value 4 is a local maximum. Every other non-zero cell conside
 All cells have the same value. Therefore, no cell considers another cell with a greater value, so all 4 cells are local maximums.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -90,7 +91,7 @@ Let $n$ be the number of rows, $m$ the number of columns, $A=nm$ the number of c
 
 Return the number of nonzero cells for which every considered neighborhood value is at most the cell's own value.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le n = \text{matrix.length} \le 200$
 

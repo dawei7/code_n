@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two positive integers `n` and `limit`.
 
 Return *the **total number** of ways to distribute *`n` *candies among *`3`* children such that no child gets more than *`limit`* candies.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Return *the **total number** of ways to distribute *`n` *candies among *`3`* chi
 - **Input:** $n = 3, limit = 3$
 - **Output:** `10`
 - **Explanation:** There are 10 ways to distribute 3 candies such that no child gets more than 3 candies: (0, 0, 3), (0, 1, 2), (0, 2, 1), (0, 3, 0), (1, 0, 2), (1, 1, 1), (1, 2, 0), (2, 0, 1), (2, 1, 0) and (3, 0, 0).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{6}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string s, return *the number of **distinct non-empty subsequences** of* `s`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
 
 A **subsequence** of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., `"ace"` is a subsequence of `"<u>a</u>b<u>c</u>d<u>e</u>"` while `"aec"` is not.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A **subsequence** of a string is a new string that is formed from the original s
 - **Input:** `s = "aaa"`
 - **Output:** `3`
 - **Explanation:** The 3 distinct subsequences are "a", "aa" and "aaa".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 2000$
 

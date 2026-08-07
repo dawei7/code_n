@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -31,12 +31,13 @@ Write a solution to find the percentage of the users registered in each contest 
 Return the result table ordered by `percentage` in **descending order**. In case of a tie, order it by $\text{contest}_{id}$ in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

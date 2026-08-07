@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two **distinct** integers `target1` and `target2`.
 
@@ -16,8 +16,7 @@ Formally, for blocks `b1`, `b2`, …:
 
 Return the number of valid partitions of `nums`, modulo $10^{9} + 7$.
 
-**Note:** A single block is valid if its **XOR** equals `target1`.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +30,11 @@ Let $N=\lvert\texttt{nums}\rvert$. Every chosen block must contain at least one 
 
 Return the number of complete partitions whose block XOR values follow `target1`, `target2`, `target1`, and so on. Reduce the count modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Note
+
+A single block is valid if its **XOR** equals `target1`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -79,7 +82,8 @@ Return the number of complete partitions whose block XOR values follow `target1`
 - The XOR of `[7]` is 7, which does not match `target1`, so no valid partition exists.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

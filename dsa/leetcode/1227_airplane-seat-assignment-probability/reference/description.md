@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 `n` passengers board an airplane with exactly `n` seats. The first passenger has lost the ticket and picks a seat randomly. But after that, the rest of the passengers will:
 
@@ -7,12 +7,13 @@
 - Pick other seats randomly when they find their seat occupied
 
 Return *the probability that the *$$n^{\text{th}}$$* person gets his own seat*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ Return *the probability that the *$$n^{\text{th}}$$* person gets his own seat*.
 - **Input:** $n = 2$
 - **Output:** `0.50000`
 - **Explanation:** The second person has a probability of 0.5 to get the second seat (when first person gets the first seat).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

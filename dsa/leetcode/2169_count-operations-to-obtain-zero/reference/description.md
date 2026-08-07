@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **non-negative** integers `num1` and `num2`.
 
@@ -7,12 +7,13 @@ In one **operation**, if $num1 \ge num2$, you must subtract `num2` from `num1`, 
 - For example, if $num1 = 5$ and $num2 = 4$, subtract `num2` from `num1`, thus obtaining $num1 = 1$ and $num2 = 4$. However, if $num1 = 4$ and $num2 = 5$, after one operation, $num1 = 4$ and $num2 = 1$.
 
 Return *the **number of operations** required to make either* $num1 = 0$ *or* $num2 = 0$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,6 +33,7 @@ So the total number of operations required is 3.
 - Operation 1: num1 = 10, num2 = 10. Since num1 == num2, we subtract num2 from num1 and get num1 = 10 - 10 = 0.
 Now num1 = 0 and num2 = 10. Since num1 == 0, we are done.
 So the total number of operations required is 1.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num1, num2 \le 10^{5}$

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `k` and two integer arrays `speed` and `efficiency` both of length `n`. There are `n` engineers numbered from `1` to `n`. $\text{speed}[i]$ and $\text{efficiency}[i]$ represent the speed and efficiency of the $$i^{\text{th}}$$ engineer respectively.
 
@@ -7,12 +7,13 @@ Choose **at most** `k` different engineers out of the `n` engineers to form a te
 The performance of a team is the sum of its engineers' speeds multiplied by the minimum efficiency among its engineers.
 
 Return *the maximum performance of this team*. Since the answer can be a huge number, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ We have the maximum performance of the team by selecting engineer 2 (with speed=
 
 - **Input:** $n = 6, speed = [2,10,3,1,5,8], efficiency = [5,4,3,9,7,2], k = 4$
 - **Output:** `72`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 10^{5}$
 

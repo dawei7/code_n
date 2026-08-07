@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of trailing zeroes in *`n!`.
 
 Note that $n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Note that $n! = n * (n - 1) * (n - 2) * ... * 3 * 2 * 1$.
 
 Return the number of zero digits at the end of the decimal representation of `n!`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the number of zero digits at the end of the decimal representation of `n!
 
 - **Input:** $n = 0$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{4}$
 

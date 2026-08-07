@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You and a gang of thieves are planning on robbing a bank. You are given a **0-indexed** integer array `security`, where $\text{security}[i]$ is the number of guards on duty on the $$i^{\text{th}}$$ day. The days are numbered starting from `0`. You are also given an integer `time`.
 
@@ -13,12 +13,13 @@ The $$i^{\text{th}}$$ day is a good day to rob the bank if:
 More formally, this means day `i` is a good day to rob the bank if and only if $security[i - time] \ge security[i - time + 1] \ge ... \ge \text{security}[i] \le ... \le security[i + time - 1] \le security[i + time]$.
 
 Return *a list of **all** days **(0-indexed) **that are good days to rob the bank*.* The order that the days are returned in does** ****not** matter.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Since time equals 0, every day is a good day to rob the bank, so return every da
 - **Explanation:**
 No day has 2 days before it that have a non-increasing number of guards.
 Thus, no day is a good day to rob the bank, so return an empty list.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{security.length} \le 10^{5}$
 

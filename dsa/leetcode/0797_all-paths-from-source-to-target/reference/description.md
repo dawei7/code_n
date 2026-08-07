@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a directed acyclic graph (**DAG**) of `n` nodes labeled from `0` to $n - 1$, find all possible paths from node `0` to node $n - 1$ and return them in **any order**.
 
 The graph is given as follows: $\text{graph}[i]$ is a list of all nodes you can visit from node `i` (i.e., there is a directed edge from node `i` to node $\text{graph}[i][j]$).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ The graph is given as follows: $\text{graph}[i]$ is a list of all nodes you can 
 
 - **Input:** $graph = [[4,3,1],[3,2,4],[3],[4],[]]$
 - **Output:** `[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{graph.length}$
 

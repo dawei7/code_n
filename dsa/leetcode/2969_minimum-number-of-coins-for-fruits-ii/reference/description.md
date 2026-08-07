@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are at a fruit market with different types of exotic fruits on display.
 
@@ -8,14 +8,17 @@ The fruit market has the following offer:
 
 - If you purchase the $$i^{\text{th}}$$ fruit at $\text{prices}[i]$ coins, you can get the next `i` fruits for free.
 
-**Note** that even if you **can** take fruit `j` for free, you can still purchase it for $\text{prices}[j]$ coins to receive a new offer.
-
-Return *the **minimum** number of coins needed to acquire all the fruits*.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+that even if you **can** take fruit `j` for free, you can still purchase it for $\text{prices}[j]$ coins to receive a new offer.
+
+Return *the **minimum** number of coins needed to acquire all the fruits*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -37,7 +40,8 @@ It can be proven that 4 is the minimum number of coins needed to acquire all the
 - Purchase the 3^rd fruit for 1 coin, and you are allowed to take the 4^th fruit for free.
 - Take the 4^t^h fruit for free.
 It can be proven that 2 is the minimum number of coins needed to acquire all the fruits.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{prices.length} \le 10^{5}$
 

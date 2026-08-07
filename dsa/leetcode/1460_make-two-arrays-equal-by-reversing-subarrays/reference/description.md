@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two integer arrays of equal length `target` and `arr`. In one step, you can select any **non-empty subarray** of `arr` and reverse it. You are allowed to make any number of steps.
 
 Return `true` *if you can make *`arr`* equal to *`target`* or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ There are multiple ways to convert arr to target, this is not the only way to do
 - **Input:** $target = [3,7,9], arr = [3,7,11]$
 - **Output:** `false`
 - **Explanation:** arr does not have value 9 and it can never be converted to target.
-### Constraints
+
+### 4. Constraints
 
 - $\text{target.length} = \text{arr.length}$
 

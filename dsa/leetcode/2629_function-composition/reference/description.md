@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of functions `[f1, f_2, f_3, ..., f_n]`, return a new function `fn` that is the **function composition** of the array of functions.
 
@@ -7,12 +7,13 @@ The **function composition** of `[f(x), g(x), h(x)]` is $fn(x) = f(g(h(x)))$.
 The **function composition** of an empty list of functions is the **identity function** $f(x) = x$.
 
 You may assume each function in the array accepts one integer as input and returns one integer as output.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Evaluating from right to left ...
 - **Output:** `42`
 - **Explanation:**
 The composition of zero functions is the identity function
-### Constraints
+
+### 4. Constraints
 
 - $-1000 \le x \le 1000$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`, and an integer `k`.
 
 In one operation, you can remove one occurrence of the smallest element of `nums`.
 
 Return *the **minimum** number of operations needed so that all elements of the array are greater than or equal to* `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that 3 is the minimum number of operations needed so that all el
 - **Input:** `nums = [1,1,2,4,9], k = 9`
 - **Output:** `4`
 - **Explanation:** only a single element of nums is greater than or equal to 9 so we need to apply the operations 4 times on nums.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

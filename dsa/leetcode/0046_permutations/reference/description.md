@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return all complete orderings of `nums`, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return all complete orderings of `nums`, in any order.
 
 - **Input:** `nums = [1]`
 - **Output:** `[[1]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 6$
 

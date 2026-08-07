@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer `total` indicating the amount of money you have. You are also given two integers `cost1` and `cost2` indicating the price of a pen and pencil respectively. You can spend **part or all** of your money to buy multiple quantities (or none) of each kind of writing utensil.
 
 Return *the **number of distinct ways** you can buy some number of pens and pencils.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,6 +25,7 @@ The total number of ways to buy pens and pencils is 5 + 3 + 1 = 9.
 - **Input:** $total = 5, cost1 = 10, cost2 = 10$
 - **Output:** `1`
 - **Explanation:** The price of both pens and pencils are 10, which cost more than total, so you cannot buy any writing utensils. Therefore, there is only 1 way: buy 0 pens and 0 pencils.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le total, cost1, cost2 \le 10^{6}$

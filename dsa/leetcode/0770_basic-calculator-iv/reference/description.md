@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an expression such as $expression = "e + 8 - a + 5"$ and an evaluation map such as `{"e": 1}` (given in terms of $evalvars = ["e"]$ and $evalints = [1]$), return a list of tokens representing the simplified expression, such as `["-1*a","14"]`
 
@@ -34,13 +34,16 @@ The format of the output is as follows:
 
 	</li>
 
-**Note:** You may assume that the given expression is always valid. All intermediate results will be in the range of $[-2^{31}, 2^{31} - 1]$.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+You may assume that the given expression is always valid. All intermediate results will be in the range of $[-2^{31}, 2^{31} - 1]$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ The format of the output is as follows:
 
 - **Input:** $expression = "(e + 8) * (e - 8)", evalvars = [], evalints = []$
 - **Output:** `["1*e*e","-64"]`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{expression.length} \le 250$
 

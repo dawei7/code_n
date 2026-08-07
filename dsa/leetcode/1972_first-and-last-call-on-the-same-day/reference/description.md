@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Calls`
 
@@ -19,11 +19,12 @@ Write a solution to report the IDs of the users whose first and last calls on **
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

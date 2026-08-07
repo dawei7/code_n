@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` where `nums` is **strictly increasing**.
 
@@ -15,7 +15,8 @@ For each query $[l_{i}, r_{i}, k_{i}]$:
 - Find the $k_{i}^th$ **smallest integer** remaining in the sequence after the removals.
 
 Return an integer array `ans`, where $\text{ans}[i]$ is the result for the $$i^{\text{th}}$$ query.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ Let $n = \lvert\texttt{nums}\rvert$ and $q = \lvert\texttt{queries}\rvert$.
 
 Return an array of length $q$. Its $i$-th value is the $k_i$-th smallest positive even integer left after removing the even values present in $nums[l_{i}..r_{i}]$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -198,7 +199,8 @@ Thus, $ans = [6, 2, 12]$.
 Thus, $ans = [2, 8]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

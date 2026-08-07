@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an integer array `nums` sorted in ascending order (with **distinct** values).
 
@@ -7,7 +7,8 @@ Prior to being passed to your function, `nums` is **possibly left rotated** at a
 Given the array `nums` **after** the possible rotation and an integer `target`, return *the index of *`target`* if it is in *`nums`*, or *`-1`* if it is not in *`nums`.
 
 You must write an algorithm with `O(log n)` runtime complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Let $n = \lvert\texttt{nums}\rvert$.
 
 Return the zero-based target index, or `-1` when `target` is absent.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return the zero-based target index, or `-1` when `target` is absent.
 
 - **Input:** `nums = [1], target = 0`
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

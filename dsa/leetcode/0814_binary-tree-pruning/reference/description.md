@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the same tree where every subtree (of the given tree) not containing a *`1`* has been removed*.
 
 A subtree of a node `node` is `node` plus every node that is a descendant of `node`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The diagram on the right represents the answer.
 
 - **Input:** `root = [1,1,0,1,1,0,1,0]`
 - **Output:** `[1,1,0,1,1,null,1]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 200]`.
 

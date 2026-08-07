@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement a function `signFunc(x)` that returns:
 
@@ -11,12 +11,13 @@ Implement a function `signFunc(x)` that returns:
 You are given an integer array `nums`. Let `product` be the product of all values in the array `nums`.
 
 Return `signFunc(product)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return `signFunc(product)`.
 - **Input:** `nums = [-1,1,-1,1,-1]`
 - **Output:** `-1`
 - **Explanation:** The product of all values in the array is -1, and signFunc(-1) = -1
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

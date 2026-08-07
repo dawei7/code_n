@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have `n` chips, where the position of the $$i^{\text{th}}$$ chip is $\text{position}[i]$.
 
@@ -9,12 +9,13 @@ We need to move all the chips to **the same position**. In one step, we can chan
 - $\text{position}[i] + 1$ or $\text{position}[i] - 1$ with $cost = 1$.
 
 Return *the minimum cost* needed to move all the chips to the same position.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Total cost is 1.
 
 - **Input:** $position = [1,1000000000]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{position.length} \le 100$
 

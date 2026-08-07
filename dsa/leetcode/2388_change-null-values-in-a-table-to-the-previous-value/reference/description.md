@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `CoffeeShop`
 
@@ -18,11 +18,12 @@ Write a solution to replace the `null` values of the drink with the name of the 
 Return the result table **in the same order as the input**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

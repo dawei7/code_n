@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design your implementation of the linked list. You can choose to use a singly or doubly linked list.
 
@@ -19,12 +19,13 @@ Implement the `MyLinkedList` class:
 - `void addAtIndex(int index, int val)` Add a node of value `val` before the $index^th$ node in the linked list. If `index` equals the length of the linked list, the node will be appended to the end of the linked list. If `index` is greater than the length, the node **will not be inserted**.
 
 - `void deleteAtIndex(int index)` Delete the $index^th$ node in the linked list, if the index is valid.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ myLinkedList.get(1);              // return 2
 myLinkedList.deleteAtIndex(1);    // now the linked list is 1->3
 myLinkedList.get(1);              // return 3
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le index, val \le 1000$
 

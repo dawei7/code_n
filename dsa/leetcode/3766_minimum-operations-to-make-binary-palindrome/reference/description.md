@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -11,7 +11,8 @@ For each element $\text{nums}[i]$, you may perform the following operations **an
 A number is called a **binary palindrome** if its binary representation without leading zeros reads the same forward and backward.
 
 Your task is to return an integer array `ans`, where $\text{ans}[i]$ represents the **minimum** number of operations required to convert $\text{nums}[i]$ into a **binary palindrome**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $N = \lvert\texttt{nums}\rvert$ and let $V = \max(\texttt{nums})$.
 
 Return `ans`, where $\text{ans}[i]$ is the smallest absolute difference between $\text{nums}[i]$ and any nonnegative integer whose ordinary binary representation is palindromic. Preserve the input order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -141,7 +142,8 @@ One optimal set of operations:
 Thus, $ans = [1, 0, 3]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

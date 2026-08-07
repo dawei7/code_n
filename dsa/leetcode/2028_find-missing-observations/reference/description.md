@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have observations of $n + m$ **6-sided** dice rolls with each face numbered from `1` to `6`. `n` of the observations went missing, and you only have the observations of `m` rolls. Fortunately, you have also calculated the **average value** of the $n + m$ rolls.
 
@@ -9,12 +9,13 @@ Return *an array of length *`n`* containing the missing observations such that t
 The **average value** of a set of `k` numbers is the sum of the numbers divided by `k`.
 
 Note that `mean` is an integer, so the sum of the $n + m$ rolls should be divisible by $n + m$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Note that `mean` is an integer, so the sum of the $n + m$ rolls should be divisi
 - **Input:** $rolls = [1,2,3,4], mean = 6, n = 4$
 - **Output:** `[]`
 - **Explanation:** It is impossible for the mean to be 6 no matter what the 4 missing rolls are.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{rolls.length}$
 

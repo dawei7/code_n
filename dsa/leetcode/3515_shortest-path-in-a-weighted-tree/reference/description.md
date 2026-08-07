@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an undirected, weighted tree rooted at node 1 with `n` nodes numbered from 1 to `n`. This is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates an undirected edge from node $u_{i}$ to $v_{i}$ with weight $w_{i}$.
 
@@ -9,12 +9,13 @@ You are also given a 2D integer array `queries` of length `q`, where each $\text
 - `[2, x]` – **Compute** the **shortest** path distance from the root node 1 to node `x`.
 
 Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** path distance from node 1 to `x` for the $$i^{\text{th}}$$ query of `[2, x]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -78,7 +79,8 @@ Return an integer array `answer`, where $\text{answer}[i]$ is the **shortest** p
 - Query `[2,3]`: The shortest path from root node 1 to node 3 consists of edges `(1,2)` and `(2,3)` with updated weights $2 + 3 = 5$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string, `message`, and a positive integer, `limit`.
 
@@ -7,12 +7,13 @@ You must **split** `message` into one or more **parts** based on `limit`. Each r
 The resulting parts should be formed such that when their suffixes are removed and they are all concatenated **in order**, they should be equal to `message`. Also, the result should contain as few parts as possible.
 
 Return* the parts *`message`* would be split into as an array of strings*. If it is impossible to split `message` as required, return* an empty array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown it is not possible to split message into less than 14 parts.
 Under the given constraints, the string can be split into two parts:
 - The first part comprises of the first 10 characters, and has a length 15.
 - The next part comprises of the last 3 characters, and has a length 8.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{message.length} \le 10^{4}$
 

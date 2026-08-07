@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the length of an unknown array that you are trying to recover. You are also given an array `sums` containing the values of all $2^n$ **subset sums** of the unknown array (in no particular order).
 
@@ -6,13 +6,16 @@ Return *the array *`ans`* of length *`n`* representing the unknown array. If **m
 
 An array `sub` is a **subset** of an array `arr` if `sub` can be obtained from `arr` by deleting some (possibly zero or all) elements of `arr`. The sum of the elements in `sub` is one possible **subset sum** of `arr`. The sum of an empty array is considered to be `0`.
 
-**Note:** Test cases are generated such that there will **always** be at least one correct answer.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Test cases are generated such that there will **always** be at least one correct answer.
+
+### 4. Examples
 
 #### Example 1
 
@@ -38,7 +41,8 @@ Note that any permutation of [1,2,-3] and also any permutation of [-1,-2,3] will
 - **Input:** $n = 4, sums = [0,0,5,5,4,-1,4,9,9,-1,4,3,4,8,3,8]$
 - **Output:** `[0,-1,4,5]`
 - **Explanation:** [0,-1,4,5] is able to achieve the given subset sums.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 15$
 

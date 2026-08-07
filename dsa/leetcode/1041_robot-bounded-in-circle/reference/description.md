@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 On an infinite plane, a robot initially stands at `(0, 0)` and faces north. Note that:
 
@@ -21,12 +21,13 @@ The robot can receive one of three instructions:
 The robot performs the `instructions` given in order, and repeats them forever.
 
 Return `true` if and only if there exists a circle in the plane such that the robot never leaves the circle.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ Based on that, we return false.
 "L": turn 90 degrees anti-clockwise. Position: (0, 0). Direction: North.
 Repeating the instructions, the robot goes into the cycle: (0, 0) --> (0, 1) --> (-1, 1) --> (-1, 0) --> (0, 0).
 Based on that, we return true.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{instructions.length} \le 100$
 

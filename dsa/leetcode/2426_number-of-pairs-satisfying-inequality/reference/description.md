@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2`, each of size `n`, and an integer `diff`. Find the number of **pairs** `(i, j)` such that:
 
@@ -7,12 +7,13 @@ You are given two **0-indexed** integer arrays `nums1` and `nums2`, each of size
 - $\text{nums1}[i] - \text{nums1}[j] \le \text{nums2}[i] - \text{nums2}[j] + diff$.
 
 Return* the **number of pairs** that satisfy the conditions.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Therefore, we return 3.
 - **Output:** `0`
 - **Explanation:**
 Since there does not exist any pair that satisfies the conditions, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

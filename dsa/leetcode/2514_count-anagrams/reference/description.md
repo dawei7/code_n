@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` containing one or more words. Every consecutive pair of words is separated by a single space `' '`.
 
@@ -7,12 +7,13 @@ A string `t` is an **anagram** of string `s` if the $$i^{\text{th}}$$ word of `t
 - For example, `"acb dfe"` is an anagram of `"abc def"`, but `"def cab"` and `"adc bef"` are not.
 
 Return *the number of **distinct anagrams** of *`s`. Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the number of **distinct anagrams** of *`s`. Since the answer may be ver
 - **Input:** `s = "aa"`
 - **Output:** `1`
 - **Explanation:** There is only one anagram possible for the given string.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

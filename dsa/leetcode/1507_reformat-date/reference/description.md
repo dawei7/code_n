@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a `date` string in the form `Day Month Year`, where:
 
@@ -15,12 +15,13 @@ Convert the date string to the format `YYYY-MM-DD`, where:
 - `MM` denotes the 2 digit month.
 
 - `DD` denotes the 2 digit day.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,6 +35,7 @@ Convert the date string to the format `YYYY-MM-DD`, where:
 
 - **Input:** $date = "26th May 1960"$
 - **Output:** `"1960-05-26"`
-### Constraints
+
+### 4. Constraints
 
 - The given dates are guaranteed to be valid, so no error handling is necessary.

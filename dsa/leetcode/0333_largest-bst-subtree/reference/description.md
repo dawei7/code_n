@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the root of a binary tree, find the largest subtree, which is also a Binary Search Tree (BST), where the largest means subtree has the largest number of nodes.
 
@@ -8,8 +8,7 @@ A **Binary Search Tree (BST)** is a tree in which all the nodes follow the below
 
 - The right subtree values are greater than the value of their parent (root) node's value.
 
-**Note:** A subtree must include all of its descendants.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +18,11 @@ A **Binary Search Tree (BST)** is a tree in which all the nodes follow the below
 
 Return the number of nodes in the largest complete subtree that satisfies the strict BST ordering rules.
 
-### Examples
+### 3. Note
+
+A subtree must include all of its descendants.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +39,8 @@ Return the number of nodes in the largest complete subtree that satisfies the st
 
 - **Input:** `root = [4,2,7,2,3,5,null,2,null,null,null,null,null,1]`
 - **Output:** `2`
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{4}]$.
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A city's **skyline** is the outer contour of the silhouette formed by all the buildings in that city when viewed from a distance. Given the locations and heights of all the buildings, return *the **skyline** formed by these buildings collectively*.
 
@@ -14,8 +14,7 @@ You may assume all buildings are perfect rectangles grounded on an absolutely fl
 
 The **skyline** should be represented as a list of "key points" **sorted by their x-coordinate** in the form `[[x_1,y_1],[x_2,y_2],...]`. Each key point is the left endpoint of some horizontal segment in the skyline except the last point in the list, which always has a y-coordinate `0` and is used to mark the skyline's termination where the rightmost building ends. Any ground between the leftmost and rightmost buildings should be part of the skyline's contour.
 
-**Note:** There must be no consecutive horizontal lines of equal height in the output skyline. For instance, `[...,[2 3],[4 5],[7 5],[11 5],[12 7],...]` is not acceptable; the three lines of height 5 should be merged into one in the final output as such: `[...,[2 3],[4 5],[12 7],...]`
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +24,11 @@ The **skyline** should be represented as a list of "key points" **sorted by thei
 
 Return the left-to-right key points where the visible height changes, including the final drop to `0`.
 
-### Examples
+### 3. Note
+
+There must be no consecutive horizontal lines of equal height in the output skyline. For instance, `[...,[2 3],[4 5],[7 5],[11 5],[12 7],...]` is not acceptable; the three lines of height 5 should be merged into one in the final output as such: `[...,[2 3],[4 5],[12 7],...]`
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Figure B shows the skyline formed by those buildings. The red points in figure B
 
 - **Input:** $buildings = [[0,2,3],[2,5,3]]$
 - **Output:** `[[0,3],[5,0]]`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{buildings.length} \le 10^{4}$
 

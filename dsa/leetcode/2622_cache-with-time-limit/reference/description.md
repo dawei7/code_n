@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write a class that allows getting and setting key-value pairs, however a **time until expiration** is associated with each key.
 
@@ -9,12 +9,13 @@ The class has three public methods:
 `get(key)`: if an un-expired key exists, it should return the associated value. Otherwise it should return `-1`.
 
 `count()`: returns the count of un-expired keys.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ At t=120, get(1) is called which returned 50.
 At t=140, key=1 expires.
 At t=200, get(1) is called but the cache is empty so -1 is returned.
 At t=250, count() returns 0 because the cache is empty.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le key, value \le 10^{9}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **Bitset** is a data structure that compactly stores bits.
 
@@ -19,12 +19,13 @@ Implement the `Bitset` class:
 - `int count()` Returns the **total number** of bits in the Bitset which have value `1`.
 
 - `String toString()` Returns the current composition of the Bitset. Note that in the resultant string, the character at the $$i^{\text{th}}$$ index should coincide with the value at the $$i^{\text{th}}$$ bit of the Bitset.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ bs.unfix(0);   // the value at idx = 0 is updated to 0, so bitset = "01010".
 bs.count();    // return 2, as there are 2 bits with value 1.
 bs.toString(); // return "01010", which is the composition of bitset.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le size \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Return the number of permutations of 1 to `n` so that prime numbers are at prime indices (1-indexed.)
 
 *(Recall that an integer is prime if and only if it is greater than 1, and cannot be written as a product of two positive integers both smaller than it.)*
 
 Since the answer may be large, return the answer **modulo $10^{9} + 7$**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,6 +22,7 @@ Since the answer may be large, return the answer **modulo $10^{9} + 7$**.
 
 - **Input:** $n = 100$
 - **Output:** `682289015`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$

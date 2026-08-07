@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n`. You are asked to solve `n` queries for each integer `i` in the range $0 \le i < n$.
 
@@ -11,11 +11,12 @@ To solve the $$i^{\text{th}}$$ query:
 Return *a **0-indexed** integer array* `ans` *of size *`n` *such that *$\text{ans}[i]$ *is the answer to the *$$i^{\text{th}}$$ *query*.
 
 A **subarray** is a contiguous sequence of elements in an array.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ i=2:
 i=3:
 - There is one subarray of size 4, which is [10,20,50,10]. The minimum value is 10.
 - There is only one value, so the maximum is 10.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

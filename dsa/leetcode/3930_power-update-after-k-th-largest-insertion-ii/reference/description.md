@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `p`.
 
@@ -13,7 +13,8 @@ For each query:
 - **Update** `p` to $p^x \% (10^{9} + 7)$.
 
 Return an array `ans` where the $\text{ans}[i]$ represents the value of `p` after processing the $$i^{\text{th}}$$ query.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ $M=$10^{9}$+7.$
 
 Return a list of length $Q$. Its entry at index $i$ is the updated `p` after inserting $\text{val}_{i}$, selecting the requested order statistic, and computing the modular power. Processing a query never resets `p` to its original value.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -133,7 +134,8 @@ Thus, $ans = [64, 4096]$.
 Thus, $ans = [1296, 220296870]$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 2 * 10^{4}$
 

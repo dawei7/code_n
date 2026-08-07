@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` can be segmented into a space-separated sequence of one or more dictionary words.
 
-**Note** that the same word in the dictionary may be reused multiple times in the segmentation.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +13,11 @@ Given a string `s` and a dictionary of strings `wordDict`, return `true` if `s` 
 
 Return `true` if a complete dictionary-word segmentation exists; otherwise return `false`.
 
-### Examples
+### 3. Note
+
+that the same word in the dictionary may be reused multiple times in the segmentation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -31,7 +34,8 @@ Note that you are allowed to reuse a dictionary word.
 
 - **Input:** `s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]`
 - **Output:** `false`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 300$
 

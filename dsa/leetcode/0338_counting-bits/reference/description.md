@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *an array *`ans`* of length *$n + 1$* such that for each *`i`* *($0 \le i \le n$)*, *$\text{ans}[i]$* is the **number of ***`1`***'s** in the binary representation of *`i`.
 
 Do not solve it with built-in functions (i.e., like `__builtin_popcount` in C++).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Do not solve it with built-in functions (i.e., like `__builtin_popcount` in C++)
 
 Return an array of length $n + 1$ whose value at index `i` is the count of `1` bits in $i$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return an array of length $n + 1$ whose value at index `i` is the count of `1` b
 3 --> 11
 4 --> 100
 5 --> 101
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{5}$
 

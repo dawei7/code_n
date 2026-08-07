@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the array `restaurants` where  $\text{restaurants}[i] = [\text{id}_{i}, \text{rating}_{i}, \text{veganFriendly}_{i}, \text{price}_{i}, \text{distance}_{i}]$. You have to filter the restaurants using three filters.
 
 The `veganFriendly` filter will be either *true* (meaning you should only include restaurants with $\text{veganFriendly}_{i}$ set to true) or *false* (meaning you can include any restaurant). In addition, you have the filters `maxPrice` and `maxDistance` which are the maximum value for price and distance of restaurants you should consider respectively.
 
 Return the array of restaurant ***IDs*** after filtering, ordered by **rating** from highest to lowest. For restaurants with the same rating, order them by ***id*** from highest to lowest. For simplicity $\text{veganFriendly}_{i}$ and `veganFriendly` take value *1* when it is *true*, and *0* when it is *false*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ After filter restaurants with veganFriendly = 1, maxPrice = 50 and maxDistance =
 
 - **Input:** $restaurants = [[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], veganFriendly = 0, maxPrice = 30, maxDistance = 3$
 - **Output:** `[4,5]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{restaurants.length} \le 10^{4}$
 

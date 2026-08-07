@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `transactions`
 
@@ -80,11 +80,13 @@ The result format is in the following example.
 
 	</li>
 
-**Note:** The output table is ordered by $\text{transaction}_{date}$ in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
+
+### 3. Note
+
+The output table is ordered by $\text{transaction}_{date}$ in ascending order.
+
+</div>

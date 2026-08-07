@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the head of a singly linked-list. The list can be represented as:
 
@@ -13,7 +13,8 @@ L_0 → L_n → L_1 → L_n - 1 → L_2 → L_n - 2 → …
 ```
 
 You may not modify the values in the list's nodes. Only nodes themselves may be changed.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ You may not modify the values in the list's nodes. Only nodes themselves may be 
 
 Return nothing; relink the supplied linked list in place. The app displays the resulting value order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Return nothing; relink the supplied linked list in place. The app displays the r
 
 - **Input:** $head = [1,2,3,4,5]$
 - **Output:** `[1,5,2,4,3]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 5 * 10^{4}]$.
 

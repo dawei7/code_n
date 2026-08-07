@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` **0-indexed** 2D array of positive integers `heights` where $\text{heights}[i][j]$ is the height of the person standing at position `(i, j)`.
 
@@ -9,11 +9,12 @@ A person standing at position $(\text{row}_{1}, \text{col}_{1})$ can see a perso
 - Everyone in between them is shorter than **both** of them.
 
 Return* an *`m x n`* 2D array of integers *`answer`* where *$\text{answer}[i][j]$* is the number of people that the person at position *`(i, j)`* can see.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Note that he cannot see the person at (0, 4) because the person at (0, 2) is tal
 - The person at (1, 1) can see the person at (2, 1).
 - The person at (2, 0) can see the person at (2, 1).
 - The person at (2, 1) cannot see anybody.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{heights.length} \le 400$
 

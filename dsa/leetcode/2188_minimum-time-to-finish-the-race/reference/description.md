@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** 2D integer array `tires` where $\text{tires}[i] = [f_{i}, r_{i}]$ indicates that the $$i^{\text{th}}$$ tire can finish its $$x^{\text{th}}$$ successive lap in $f_{i} * r_{i}^(x-1)$ seconds.
 
@@ -9,12 +9,13 @@ You are also given an integer `changeTime` and an integer `numLaps`.
 The race consists of `numLaps` laps and you may start the race with **any** tire. You have an **unlimited** supply of each tire and after every lap, you may **change** to any given tire (including the current tire type) if you wait `changeTime` seconds.
 
 Return* the **minimum** time to finish the race.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Lap 4: Continue with tire 1 and finish the lap in 2 * 2 = 4 seconds.
 Lap 5: Change tires to tire 0 for 6 seconds then finish the lap in another 1 second.
 Total time = 2 + 4 + 6 + 2 + 4 + 6 + 1 = 25 seconds.
 The minimum time to complete the race is 25 seconds.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{tires.length} \le 10^{5}$
 

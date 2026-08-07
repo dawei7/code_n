@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of lowercase English letters and an array `widths` denoting **how many pixels wide** each lowercase English letter is. Specifically, $\text{widths}[0]$ is the width of `'a'`, $\text{widths}[1]$ is the width of `'b'`, and so on.
 
@@ -9,12 +9,13 @@ Return *an array *`result`* of length 2 where:*
 - $\text{result}[0]$* is the total number of lines.*
 
 - $\text{result}[1]$* is the width of the last line in pixels.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ There are a total of 3 lines, and the last line is 60 pixels wide.
 bbbcccdddaa  // 98 pixels wide
 a            // 4 pixels wide
 There are a total of 2 lines, and the last line is 4 pixels wide.
-### Constraints
+
+### 4. Constraints
 
 - $\text{widths.length} = 26$
 

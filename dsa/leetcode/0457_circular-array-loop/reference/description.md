@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are playing a game involving a **circular** array of non-zero integers `nums`. Each $\text{nums}[i]$ denotes the number of indices forward/backward you must move if you are located at index `i`:
 
@@ -17,7 +17,8 @@ A **cycle** in the array consists of a sequence of indices `seq` of length `k` w
 - `k > 1`
 
 Return `true`* if there is a **cycle** in *`nums`*, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Return `true`* if there is a **cycle** in *`nums`*, or *`false`* otherwise*.
 
 The destination of position `i` is $(i + \text{nums}[i]) \% len(nums)$. A one-position self-loop is not a valid cycle.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ The only cycle is of size 1, so we return false.
 - **Explanation:** The graph shows how the indices are connected. White nodes are jumping forward, while red is jumping backward.
 We can see the cycle 0 --> 1 --> 0 --> ..., and while it is of size > 1, it has a node jumping forward and a node jumping backward, so **it is not a cycle**.
 We can see the cycle 3 --> 4 --> 3 --> ..., and all of its nodes are white (jumping in the same direction).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

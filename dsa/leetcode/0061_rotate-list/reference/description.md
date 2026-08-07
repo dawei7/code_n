@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list, rotate the list to the right by `k` places.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -12,7 +13,7 @@ Given the `head` of a linked list, rotate the list to the right by `k` places.
 
 Return the head of the rotated list.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the head of the rotated list.
 
 - **Input:** $head = [0,1,2], k = 4$
 - **Output:** `[2,0,1]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range `[0, 500]`.
 

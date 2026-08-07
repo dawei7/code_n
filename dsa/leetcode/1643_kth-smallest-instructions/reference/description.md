@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Bob is standing at cell `(0, 0)`, and he wants to reach `destination`: `(row, column)`. He can only travel **right** and **down**. You are going to help Bob by providing **instructions** for him to reach `destination`.
 
@@ -13,12 +13,13 @@ Multiple **instructions** will lead Bob to `destination`. For example, if `desti
 However, Bob is very picky. Bob has a lucky number `k`, and he wants the $$k^{\text{th}}$$ **lexicographically smallest instructions** that will lead him to `destination`. `k` is **1-indexed**.
 
 Given an integer array `destination` and an integer `k`, return *the *$$k^{\text{th}}$$* **lexicographically smallest instructions** that will take Bob to *`destination`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Given an integer array `destination` and an integer `k`, return *the *$$k^{\text
 
 - **Input:** $destination = [2,3], k = 3$
 - **Output:** `"HHVVH"`
-### Constraints
+
+### 4. Constraints
 
 - $\text{destination.length} = 2$
 

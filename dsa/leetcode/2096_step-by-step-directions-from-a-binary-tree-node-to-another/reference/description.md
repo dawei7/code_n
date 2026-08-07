@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a **binary tree** with `n` nodes. Each node is uniquely assigned a value from `1` to `n`. You are also given an integer `startValue` representing the value of the start node `s`, and a different integer `destValue` representing the value of the destination node `t`.
 
@@ -11,12 +11,13 @@ Find the **shortest path** starting from node `s` and ending at node `t`. Genera
 - `'U'` means to go from a node to its **parent** node.
 
 Return *the step-by-step directions of the **shortest path** from node *`s`* to node* `t`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *the step-by-step directions of the **shortest path** from node *`s`* to 
 - **Input:** `root = [2,1], startValue = 2, destValue = 1`
 - **Output:** `"L"`
 - **Explanation:** The shortest path is: 2 → 1.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is `n`.
 

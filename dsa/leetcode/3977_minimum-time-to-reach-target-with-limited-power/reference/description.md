@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **directed** weighted graph with `n` nodes labeled from 0 to $n - 1$.
 
@@ -25,7 +25,8 @@ Return an integer array `answer` of size 2, where:
 - $\text{answer}[1]$ is the **maximum** remaining power among all paths that achieve $\text{answer}[0]$.
 
 If the signal cannot reach `target`, return `[-1, -1]`.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(n, edges, power, cost, source, target) -> \text{list}[int]$
 
@@ -46,7 +47,7 @@ Return `[minimum_time, maximum_remaining_power]`. The first component is the lea
 
 A departure from `u` is legal exactly when the current power is at least $\text{cost}[u]$; that cost is subtracted once for the departure, independently of which outgoing edge is selected. Arrival does not consume power. In particular, when $source = target$, the result is `[0, power]` without paying any departure cost.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -104,7 +105,8 @@ A departure from `u` is legal exactly when the current power is at least $\text{
 There is no valid path from `source` to `target`, therefore return `[-1, -1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

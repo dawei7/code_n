@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice plays the following game, loosely based on the card game **"21"**.
 
@@ -9,12 +9,13 @@ Alice stops drawing numbers when she gets `k` **or more points**.
 Return the probability that Alice has `n` or fewer points.
 
 Answers within $10^{-5}$ of the actual answer are considered accepted.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ In 6 out of 10 possibilities, she is at or below 6 points.
 
 - **Input:** $n = 21, k = 17, maxPts = 10$
 - **Output:** `0.73278`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le k \le n \le 10^{4}$
 

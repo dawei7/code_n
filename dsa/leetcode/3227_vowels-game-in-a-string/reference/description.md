@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob are playing a game on a string.
 
@@ -13,12 +13,13 @@ The first player who cannot make a move on their turn loses the game. We assume 
 Return `true` if Alice wins the game, and `false` otherwise.
 
 The English vowels are: `a`, `e`, `i`, `o`, and `u`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Alice can win the game as follows:
 There is no valid play for Alice in her first turn, so Alice loses the game.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

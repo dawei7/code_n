@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2` of equal length. Every second, for all indices $0 \le i < \text{nums1.length}$, value of $\text{nums1}[i]$ is incremented by $\text{nums2}[i]$. **After** this is done, you can do the following operation:
 
@@ -7,12 +7,13 @@ You are given two **0-indexed** integer arrays `nums1` and `nums2` of equal leng
 You are also given an integer `x`.
 
 Return *the **minimum** time in which you can make the sum of all elements of *`nums1`* to be** less than or equal** to *`x`, *or *`-1`* if this is not possible.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Now sum of nums1 = 4. It can be shown that these operations are optimal, so we r
 - **Input:** $nums1 = [1,2,3], nums2 = [3,3,3], x = 4$
 - **Output:** `-1`
 - **Explanation:** It can be shown that the sum of nums1 will always be greater than x, no matter which operations are performed.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length} \le 10^{3}$
 

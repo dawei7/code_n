@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Return the bitwise **OR** of all **even** numbers in the array.
 
 If there are no even numbers in `nums`, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ There are no even numbers, so the result is 0.
 The even numbers are 8 and 16. Their bitwise OR equals 24.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

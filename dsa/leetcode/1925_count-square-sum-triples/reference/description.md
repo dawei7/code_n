@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 A **square triple** `(a,b,c)` is a triple where `a`, `b`, and `c` are **integers** and $a^{2} + b^{2} = c^{2}$.
 
 Given an integer `n`, return *the number of **square triples** such that *$1 \le a, b, c \le n$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,6 +21,7 @@ Given an integer `n`, return *the number of **square triples** such that *$1 \le
 - **Input:** $n = 10$
 - **Output:** `4`
 **Explanation**: The square triples are (3,4,5), (4,3,5), (6,8,10), and (8,6,10).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 250$

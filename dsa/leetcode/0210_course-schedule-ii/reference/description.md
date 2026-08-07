@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 There are a total of `numCourses` courses you have to take, labeled from `0` to $numCourses - 1$. You are given an array `prerequisites` where $\text{prerequisites}[i] = [a_{i}, b_{i}]$ indicates that you **must** take course $b_{i}$ first if you want to take course $a_{i}$.
 
 - For example, the pair `[0, 1]`, indicates that to take course `0` you have to first take course `1`.
 
 Return *the ordering of courses you should take to finish all courses*. If there are many valid answers, return **any** of them. If it is impossible to finish all courses, return **an empty array**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Return *the ordering of courses you should take to finish all courses*. If there
 
 Return any ordering containing every course and respecting all prerequisites, or an empty list if no such ordering exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ So one correct course order is [0,1,2,3]. Another correct ordering is [0,2,1,3].
 
 - **Input:** $numCourses = 1, prerequisites = []$
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le numCourses \le 2000$
 

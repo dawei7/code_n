@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a string `num` which represents an integer, return `true` *if* `num` *is a **strobogrammatic number***.
 
 A **strobogrammatic number** is a number that looks the same when rotated `180` degrees (looked at upside down).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **strobogrammatic number** is a number that looks the same when rotated `180` 
 
 Return `true` if `num` looks identical when rotated 180 degrees, otherwise `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return `true` if `num` looks identical when rotated 180 degrees, otherwise `fals
 
 - **Input:** $num = "962"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 50$
 

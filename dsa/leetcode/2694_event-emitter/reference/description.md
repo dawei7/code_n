@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design an `EventEmitter` class. This interface is similar (but with some differences) to the one found in Node.js or the Event Target interface of the DOM. The `EventEmitter` should allow for subscribing to events and emitting them.
 
@@ -11,12 +11,13 @@ Your `EventEmitter` class should have the following two methods:
 	The `subscribe` method should also return an object with an `unsubscribe` method that enables the user to unsubscribe. When it is called, the callback should be removed from the list of subscriptions and `undefined` should be returned.
 
 - **emit** - This method takes in two arguments: the name of an event as a string and an optional array of arguments that will be passed to the callback(s). If there are no callbacks subscribed to the given event, return an empty array. Otherwise, return an array of the results of all callback calls in the order they were subscribed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -65,7 +66,8 @@ const sub1 = emitter.subscribe("firstEvent", x => x + 1);
 const sub2 = emitter.subscribe("firstEvent", x => x + 2);
 sub1.unsubscribe(); // undefined
 emitter.emit("firstEvent", [5]); // [7]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{actions.length} \le 10$
 

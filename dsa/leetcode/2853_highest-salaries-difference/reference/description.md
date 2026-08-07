@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Salaries`
 
@@ -19,11 +19,12 @@ Write a solution to calculate the difference between the **highest** salaries in
 Return* the result table.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

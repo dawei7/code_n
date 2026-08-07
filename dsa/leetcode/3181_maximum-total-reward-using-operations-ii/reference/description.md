@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `rewardValues` of length `n`, representing the values of rewards.
 
@@ -9,12 +9,13 @@ Initially, your total reward `x` is 0, and all indices are **unmarked**. You are
 - If $\text{rewardValues}[i]$ is **greater** than your current total reward `x`, then add $\text{rewardValues}[i]$ to `x` (i.e., $x = x + \text{rewardValues}[i]$), and **mark** the index `i`.
 
 Return an integer denoting the **maximum ***total reward* you can collect by performing the operations optimally.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ During the operations, we can choose to mark the indices 0 and 2 in order, and t
 Mark the indices 0, 2, and 1 in order. The total reward will then be 11, which is the maximum.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{rewardValues.length} \le 5 * 10^{4}$
 

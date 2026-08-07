@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a `50 x 50` chessboard with **one** knight and some pawns on it. You are given two integers `kx` and `ky` where `(kx, ky)` denotes the position of the knight, and a 2D array `positions` where $\text{positions}[i] = [x_{i}, y_{i}]$ denotes the position of the pawns on the chessboard.
 
@@ -15,12 +15,13 @@ Return the **maximum** *total* number of moves made during the game that Alice c
 Note that in one **move, **a chess knight has eight possible positions it can move to, as illustrated below. Each move is two cells in a cardinal direction, then one cell in an orthogonal direction.
 
 ![](images/chess_knight.jpg)
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ The knight takes 4 moves to reach the pawn at `(0, 0)`.
 - Bob picks the pawn at `(1, 2)` and captures it in one move: `(2, 4) -> (1, 2)`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le kx, ky \le 49$
 

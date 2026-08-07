@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, find the length of the **longest** **substring** without duplicate characters.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a string `s`, find the length of the **longest** **substring** without dup
 
 Return the greatest length of a substring containing no duplicate character.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the greatest length of a substring containing no duplicate character.
 - **Output:** `3`
 - **Explanation:** The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length} \le 10^{5}$
 

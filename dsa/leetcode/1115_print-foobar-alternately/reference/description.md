@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Suppose you are given the following code:
 
@@ -25,12 +25,13 @@ The same instance of `FooBar` will be passed to two different threads:
 - thread `B` will call `bar()`.
 
 Modify the given program to output `"foobar"` `n` times.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,6 +44,7 @@ Modify the given program to output `"foobar"` `n` times.
 - **Input:** $n = 2$
 - **Output:** `"foobarfoobar"`
 - **Explanation:** "foobar" is being output 2 times.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

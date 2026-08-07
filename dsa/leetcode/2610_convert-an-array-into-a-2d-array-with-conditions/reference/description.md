@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. You need to create a 2D array from `nums` satisfying the following conditions:
 
@@ -10,13 +10,16 @@ You are given an integer array `nums`. You need to create a 2D array from `nums`
 
 Return *the resulting array*. If there are multiple answers, return any of them.
 
-**Note** that the 2D array can have a different number of elements on each row.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the 2D array can have a different number of elements on each row.
+
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ It can be shown that we cannot have less than 3 rows in a valid array.
 - **Input:** `nums = [1,2,3,4]`
 - **Output:** `[[4,3,2,1]]`
 - **Explanation:** All elements of the array are distinct, so we can keep all of them in the first row of the 2D array.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

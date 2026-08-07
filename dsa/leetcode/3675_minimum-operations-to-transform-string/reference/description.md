@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of lowercase English letters.
 
@@ -8,13 +8,16 @@ You can perform the following operation any number of times (including zero):
 
 Return the **minimum** number of operations required to transform `s` into a string consisting of **only** `'a'` characters.
 
-**Note: **Consider the alphabet as circular, thus `'a'` comes after `'z'`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Consider the alphabet as circular, thus `'a'` comes after `'z'`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -44,7 +47,8 @@ Return the **minimum** number of operations required to transform `s` into a str
 - The string `"a"` only consists of `'a'`​​​​​​​ characters. Thus, the answer is 0.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{5}$
 

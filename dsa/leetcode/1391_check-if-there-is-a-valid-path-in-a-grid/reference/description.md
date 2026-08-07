@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` `grid`. Each cell of `grid` represents a street. The street of $\text{grid}[i][j]$ can be:
 
@@ -18,15 +18,18 @@ You are given an `m x n` `grid`. Each cell of `grid` represents a street. The st
 
 You will initially start at the street of the upper-left cell `(0, 0)`. A valid path in the grid is a path that starts from the upper left cell `(0, 0)` and ends at the bottom-right cell $(m - 1, n - 1)$. **The path should only follow the streets**.
 
-**Notice** that you are **not allowed** to change any street.
-
-Return `true`* if there is a valid path in the grid or *`false`* otherwise*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Notice
+
+that you are **not allowed** to change any street.
+
+Return `true`* if there is a valid path in the grid or *`false`* otherwise*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -47,7 +50,8 @@ Return `true`* if there is a valid path in the grid or *`false`* otherwise*.
 - **Input:** `grid = [[1,1,2]]`
 - **Output:** `false`
 - **Explanation:** You will get stuck at cell (0, 1) and you cannot reach cell (0, 2).
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{grid.length}$
 

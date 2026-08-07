@@ -1,18 +1,19 @@
-## Description
+### 1. Description
 
 Given a 2D integer array `circles` where $\text{circles}[i] = [x_{i}, y_{i}, r_{i}]$ represents the center $(x_{i}, y_{i})$ and radius $r_{i}$ of the $$i^{\text{th}}$$ circle drawn on a grid, return *the **number of lattice points** **that are present inside **at least one** circle*.
 
-**Note:**
-
-- A **lattice point** is a point with integer coordinates.
-
-- Points that lie **on the circumference of a circle** are also considered to be inside it.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- A **lattice point** is a point with integer coordinates.
+
+- Points that lie **on the circumference of a circle** are also considered to be inside it.
+
+### 4. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Hence, the number of lattice points present inside at least one circle is 5.
 The figure above shows the given circles.
 There are exactly 16 lattice points which are present inside at least one circle.
 Some of them are (0, 2), (2, 0), (2, 4), (3, 2), and (4, 4).
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{circles.length} \le 200$
 

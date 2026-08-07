@@ -1,18 +1,21 @@
-## Description
+### 1. Description
 
 Given an array `nums` of integers, return *the length of the longest arithmetic subsequence in* `nums`.
 
-**Note** that:
-
-- A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-
-- A sequence `seq` is arithmetic if $seq[i + 1] - \text{seq}[i]$ are all the same value (for $0 \le i < \text{seq.length} - 1$).
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that:
+
+- A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
+
+- A sequence `seq` is arithmetic if $seq[i + 1] - \text{seq}[i]$ are all the same value (for $0 \le i < \text{seq.length} - 1$).
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ Given an array `nums` of integers, return *the length of the longest arithmetic 
 - **Input:** `nums = [20,1,15,3,10,5,8]`
 - **Output:** `4`
 - **Explanation:** The longest arithmetic subsequence is [20,15,10,5].
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{nums.length} \le 1000$
 

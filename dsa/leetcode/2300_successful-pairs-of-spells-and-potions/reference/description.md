@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two positive integer arrays `spells` and `potions`, of length `n` and `m` respectively, where $\text{spells}[i]$ represents the strength of the $$i^{\text{th}}$$ spell and $\text{potions}[j]$ represents the strength of the $$j^{\text{th}}$$ potion.
 
 You are also given an integer `success`. A spell and potion pair is considered **successful** if the **product** of their strengths is **at least** `success`.
 
 Return *an integer array *`pairs`* of length *`n`* where *$\text{pairs}[i]$* is the number of **potions** that will form a successful pair with the *$$i^{\text{th}}$$* spell.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Thus, [4,0,3] is returned.
 - 1^st spell: 1 * [8,5,8] = [8,5,8]. 0 pairs are successful.
 - 2^nd spell: 2 * [8,5,8] = [**<u>16</u>**,10,<u>**16**</u>]. 2 pairs are successful.
 Thus, [2,0,2] is returned.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{spells.length}$
 

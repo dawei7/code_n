@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an array `nums` of size `n`, return *the majority element*.
 
 The majority element is the element that appears more than $⌊n / 2⌋$ times. You may assume that the majority element always exists in the array.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ The majority element is the element that appears more than $⌊n / 2⌋$ times. 
 
 Return the value that appears more than $\lfloor n / 2 \rfloor$ times.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return the value that appears more than $\lfloor n / 2 \rfloor$ times.
 
 - **Input:** `nums = [2,2,1,1,1,2,2]`
 - **Output:** `2`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 
@@ -32,4 +34,7 @@ Return the value that appears more than $\lfloor n / 2 \rfloor$ times.
 - $-10^{9} \le \text{nums}[i] \le 10^{9}$
 
 - The input is generated such that a majority element will exist in the array.
-### Follow-up Could you solve the problem in linear time and in `O(1)` space?
+
+### 5. Follow-up
+
+Could you solve the problem in linear time and in `O(1)` space?

@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `nums` of length `n` and a non‑negative integer `k`.
 
 Return the number of **contiguous subarrays** whose bitwise XOR of all elements is **greater** than or **equal** to `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The valid subarrays with $XOR \ge 2$ are `[3]` at index 0, `[3, 1]` at indices 0
 Every contiguous subarray yields $XOR = 0$, which meets $k = 0$. There are 6 such subarrays in total.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

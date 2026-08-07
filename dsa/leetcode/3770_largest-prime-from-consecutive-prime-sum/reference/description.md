@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
 Return the **largest prime number** less than or equal to `n` that can be expressed as the **sum** of one or more **consecutive prime numbers** starting from 2. If no such number exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Let $N=\texttt{n}$, and list the primes as $p_1=2,p_2=3,p_3=5,\ldots$. The only 
 
 Return the largest $S_j\leq N$ that is prime. Return `0` when no such prefix sum exists; in particular, this occurs when $n = 1$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,6 +50,7 @@ The largest is 17, so it is the answer.
 The only consecutive prime sum less than or equal to 2 is 2 itself.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{5}$

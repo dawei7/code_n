@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 An `n x n` matrix is **valid** if every row and every column contains **all** the integers from `1` to `n` (**inclusive**).
 
 Given an `n x n` integer matrix `matrix`, return `true` *if the matrix is **valid**.* Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Hence, we return true.
 - **Output:** `false`
 - **Explanation:** In this case, n = 3, but the first row and the first column do not contain the numbers 2 or 3.
 Hence, we return false.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{matrix.length} = \text{matrix}[i].length$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `nums1` and `nums2` of equal length `n` and an integer `k`. You can perform the following operation on `nums1`:
 
@@ -7,12 +7,13 @@ You are given two integer arrays `nums1` and `nums2` of equal length `n` and an 
 `nums1` is said to be **equal** to `nums2` if for all indices `i` such that $0 \le i < n$, $\text{nums1}[i] = \text{nums2}[i]$.
 
 Return *the **minimum** number of operations required to make *`nums1`* equal to *`nums2`. If it is impossible to make them equal, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ One can prove that it is impossible to make arrays equal in fewer operations.
 - **Input:** $nums1 = [3,8,5,2], nums2 = [2,4,1,6], k = 1$
 - **Output:** `-1`
 - **Explanation:** It can be proved that it is impossible to make the two arrays equal.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

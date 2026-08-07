@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** matrix `grid` of order $n * n$. Each cell in this matrix has a value $\text{grid}[i][j]$, which is either a **positive** integer or `-1` representing a blocked cell.
 
@@ -11,11 +11,12 @@ For any cell `(i, j)`, we represent its **remoteness** as $R[i][j]$ which is def
 - For blocked cells, $R[i][j] = 0$.
 
 Return* the sum of *$R[i][j]$* over all cells.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Now let's jump on the bottom-right grid in the above picture and calculate R[2][
 - **Input:** `grid = [[1]]`
 - **Output:** `0`
 - **Explanation:** Since there are no other cells than (0, 0), R[0][0] is equal to 0. So the sum of R[i][j] over all cells would be 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 300$
 

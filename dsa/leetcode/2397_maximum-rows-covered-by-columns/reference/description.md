@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `matrix` and an integer `numSelect`.
 
@@ -13,12 +13,13 @@ More formally, let us consider $selected = {c_{1}, c_{2}, ...., c_{numSelect}}$ 
 - Or, no cell in row `i` has a value of `1`.
 
 Return the **maximum** number of rows that can be **covered** by a set of `numSelect` columns.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ Note that s = {1, 2} will also cover 3 rows, but it can be shown that no more th
 Selecting the only column will result in both rows being covered since the entire matrix is selected.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

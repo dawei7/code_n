@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer `mass`, which represents the original mass of a planet. You are further given an integer array `asteroids`, where $\text{asteroids}[i]$ is the mass of the $$i^{\text{th}}$$ asteroid.
 
 You can arrange for the planet to collide with the asteroids in **any arbitrary order**. If the mass of the planet is **greater than or equal to** the mass of the asteroid, the asteroid is **destroyed** and the planet **gains** the mass of the asteroid. Otherwise, the planet is destroyed.
 
 Return `true`* if **all** asteroids can be destroyed. Otherwise, return *`false`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ All asteroids are destroyed.
 The planet cannot ever gain enough mass to destroy the asteroid with a mass of 23.
 After the planet destroys the other asteroids, it will have a mass of 5 + 4 + 9 + 4 = 22.
 This is less than 23, so a collision would not destroy the last asteroid.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le mass \le 10^{5}$
 

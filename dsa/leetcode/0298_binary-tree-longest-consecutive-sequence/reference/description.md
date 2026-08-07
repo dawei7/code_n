@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the length of the longest **consecutive sequence path***.
 
 A **consecutive sequence path** is a path where the values **increase by one** along the path.
 
 Note that the path can start **at any node** in the tree, and you cannot go from a node to its parent in the path.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +16,7 @@ Note that the path can start **at any node** in the tree, and you cannot go from
 
 Return the number of nodes in the longest downward path whose values increase by exactly one at every edge.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the number of nodes in the longest downward path whose values increase by
 - **Input:** `root = [2,null,3,2,null,1]`
 - **Output:** `2`
 - **Explanation:** Longest consecutive sequence path is 2-3, not 3-2-1, so return 2.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 3 * 10^{4}]$.
 

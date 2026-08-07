@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a video sharing platform where users can upload and delete videos. Each `video` is a **string** of digits, where the $$i^{\text{th}}$$ digit of the string represents the content of the video at minute `i`. For example, the first digit represents the content at minute `0` in the video, the second digit represents the content at minute `1` in the video, and so on. Viewers of videos can also like and dislike videos. Internally, the platform keeps track of the **number of views, likes, and dislikes** on each video.
 
@@ -21,7 +21,8 @@ Implement the `VideoSharingPlatform` class:
 - `int[] getLikesAndDislikes(int videoId)` Return a **0-indexed** integer array `values` of length `2` where $\text{values}[0]$ is the number of likes and $\text{values}[1]$ is the number of dislikes on the video associated with `videoId`. If there is no video associated with `videoId`, return `[-1]`.
 
 - `int getViews(int videoId)` Return the number of views on the video associated with `videoId`, if there is no video associated with `videoId`, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Methods**
 
@@ -34,7 +35,7 @@ Implement the `VideoSharingPlatform` class:
 - $getLikesAndDislikes(videoId: int) -> \text{list}[int]$: If `videoId` exists, returns `[likes, dislikes]`. If `videoId` does not exist, returns `[-1]`.
 - `getViews(videoId: int) -> int`: If `videoId` exists, returns the view count. If `videoId` does not exist, returns `-1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -81,7 +82,8 @@ videoSharingPlatform.dislike(0);             // There is no video associated wit
 videoSharingPlatform.getLikesAndDislikes(0); // There is no video associated with videoId 0, so return [-1].
 videoSharingPlatform.getViews(0);            // There is no video associated with videoId 0, so return -1.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{video.length} \le 10^{5}$
 

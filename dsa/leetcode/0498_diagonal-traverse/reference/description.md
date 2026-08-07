@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an `m x n` matrix `mat`, return *an array of all the elements of the array in a diagonal order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ Given an `m x n` matrix `mat`, return *an array of all the elements of the array
 
 - **Input:** $mat = [[1,2],[3,4]]$
 - **Output:** `[1,2,3,4]`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a 2D **binary** array `grid`. You need to find 3 **non-overlapping** rectangles having **non-zero** areas with horizontal and vertical sides such that all the 1's in `grid` lie inside these rectangles.
 
 Return the **minimum** possible sum of the area of these rectangles.
 
-**Note** that the rectangles are allowed to touch.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the rectangles are allowed to touch.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ Return the **minimum** possible sum of the area of these rectangles.
 - The 1 at `(1, 3)` is covered by a rectangle of area 1.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{grid.length}, \text{grid}[i].length \le 30$
 

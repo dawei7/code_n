@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` cities numbered from `0` to `n-1`. Given the array `edges` where $\text{edges}[i] = [\text{from}_{i}, \text{to}_{i}, \text{weight}_{i}]$ represents a bidirectional and weighted edge between cities $\text{from}_{i}$ and $\text{to}_{i}$, and given the integer `distanceThreshold`.
 
 Return the city with the smallest number of cities that are reachable through some path and whose distance is **at most** `distanceThreshold`, If there are multiple such cities, return the city with the greatest number.
 
 Notice that the distance of a path connecting cities ***i*** and ***j*** is equal to the sum of the edges' weights along that path.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ City 2 -> [City 3, City 4]
 City 3 -> [City 2, City 4]
 City 4 -> [City 1, City 2, City 3]
 The city 0 has 1 neighboring city at a distanceThreshold = 2.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 100$
 

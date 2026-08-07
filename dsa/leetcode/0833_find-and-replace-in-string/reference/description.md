@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` that you must perform `k` replacement operations on. The replacement operations are given as three **0-indexed** parallel arrays, `indices`, `sources`, and `targets`, all of length `k`.
 
@@ -19,12 +19,13 @@ All replacement operations must occur **simultaneously**, meaning the replacemen
 Return *the **resulting string** after performing all replacement operations on *`s`.
 
 A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ A **substring** is a contiguous sequence of characters in a string.
 - **Explanation:**
 "ab" occurs at index 0 in s, so we replace it with "eee".
 "ec" does not occur at index 2 in s, so we do nothing.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

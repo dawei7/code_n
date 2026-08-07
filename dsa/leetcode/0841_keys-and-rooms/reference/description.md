@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` rooms labeled from `0` to $n - 1$ and all the rooms are locked except for room `0`. Your goal is to visit all the rooms. However, you cannot enter a locked room without having its key.
 
 When you visit a room, you may find a set of **distinct keys** in it. Each key has a number on it, denoting which room it unlocks, and you can take all of them with you to unlock the other rooms.
 
 Given an array `rooms` where $\text{rooms}[i]$ is the set of keys that you can obtain if you visited room `i`, return `true` *if you can visit **all** the rooms, or* `false` *otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Since we were able to visit every room, we return true.
 - **Input:** $rooms = [[1,3],[3,0,1],[2],[0]]$
 - **Output:** `false`
 - **Explanation:** We can not enter room number 2 since the only key that unlocks it is in that room.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{rooms.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, *determine if it is a valid binary search tree (BST)*.
 
@@ -9,7 +9,8 @@ A **valid BST** is defined as follows:
 - The right subtree of a node contains only nodes with keys **strictly greater than** the node's key.
 
 - Both the left and right subtrees must also be binary search trees.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ A **valid BST** is defined as follows:
 
 Return `true` exactly when every node satisfies the strict, recursive BST ordering rules.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true` exactly when every node satisfies the strict, recursive BST orderi
 - **Input:** `root = [5,1,4,null,null,3,6]`
 - **Output:** `false`
 - **Explanation:** The root node's value is 5 but its right child's value is 4.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{4}]$.
 

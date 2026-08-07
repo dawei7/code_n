@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an array `sick` sorted in increasing order, representing positions of infected people in a line of `n` people.
 
@@ -7,12 +7,13 @@ At each step, **one **uninfected person **adjacent** to an infected person gets 
 An **infection sequence** is the order in which uninfected people become infected, excluding those initially infected.
 
 Return the number of different infection sequences possible, modulo $10^{9}+7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ There is a total of 6 different sequences overall.
 - `[3,2,0]`, `[3,0,2]`, and `[0,3,2]` are not valid infection sequences because the infection starts at the person at index 1, then the order of infection is 2, then 3, and hence 3 cannot be infected earlier than 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

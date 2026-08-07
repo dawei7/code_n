@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice and Bob take turns playing a game, with Alice starting first.
 
@@ -7,12 +7,13 @@ Initially, there are `n` stones in a pile. On each player's turn, that player ma
 Also, if a player cannot make a move, he/she loses the game.
 
 Given a positive integer `n`, return `true` if and only if Alice wins the game otherwise return `false`, assuming both players play optimally.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Given a positive integer `n`, return `true` if and only if Alice wins the game o
 - **Input:** $n = 4$
 - **Output:** `true`
 - **Explanation:** n is already a perfect square, Alice can win with one move, removing 4 stones (4 -> 0).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Strings `s1` and `s2` are `k`**-similar** (for some non-negative integer `k`) if we can swap the positions of two letters in `s1` exactly `k` times so that the resulting string equals `s2`.
 
 Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and `s2` are `k`**-similar**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given two anagrams `s1` and `s2`, return the smallest `k` for which `s1` and `s2
 - **Input:** $s1 = "abc", s2 = "bca"$
 - **Output:** `2`
 - **Explanation:** The two strings are 2-similar because we can use two swaps to change s1 to s2: "abc" --> "bac" --> "bca".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s1.length} \le 20$
 

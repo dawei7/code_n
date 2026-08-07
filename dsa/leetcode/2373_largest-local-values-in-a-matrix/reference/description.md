@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `n x n` integer matrix `grid`.
 
@@ -9,12 +9,13 @@ Generate an integer matrix `maxLocal` of size $(n - 2) x (n - 2)$ such that:
 In other words, we want to find the largest value in every contiguous `3 x 3` matrix in `grid`.
 
 Return *the generated matrix*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Notice that each value in the generated matrix corresponds to the largest value 
 - **Input:** `grid = [[1,1,1,1,1],[1,1,1,1,1],[1,1,2,1,1],[1,1,1,1,1],[1,1,1,1,1]]`
 - **Output:** `[[2,2,2],[2,2,2],[2,2,2]]`
 - **Explanation:** Notice that the 2 is contained within every contiguous 3 x 3 matrix in grid.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length} = \text{grid}[i].length$
 

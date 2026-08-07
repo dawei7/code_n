@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an integer `n`, return *the number of structurally unique **BST'**s (binary search trees) which has exactly *`n`* nodes of unique values from* `1` *to* `n`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an integer `n`, return *the number of structurally unique **BST'**s (binar
 
 Return the count of structurally unique BSTs that use every value from `1` through `n` exactly once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Return the count of structurally unique BSTs that use every value from `1` throu
 
 - **Input:** $n = 1$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 19$

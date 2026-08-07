@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `nums` and a **positive** integer `k`. You are also given a 2D array `queries`, where $\text{queries}[i] = [\text{index}_{i}, \text{value}_{i}, \text{start}_{i}, x_{i}]$.
 
@@ -18,15 +18,20 @@ A **prefix** of an array is a subarray that starts from the beginning of the arr
 
 A **suffix** of an array is a subarray that starts at any point within the array and extends to the end of the array.
 
-**Note** that the prefix and suffix to be chosen for the operation can be **empty**.
-
-**Note** that x-value has a *different* definition in this version.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the prefix and suffix to be chosen for the operation can be **empty**.
+
+### 4. Note
+
+that x-value has a *different* definition in this version.
+
+### 5. Examples
 
 #### Example 1
 
@@ -85,7 +90,8 @@ A **suffix** of an array is a subarray that starts at any point within the array
 **Output:** [5]
 
 </div>
-### Constraints
+
+### 6. Constraints
 
 - $1 \le \text{nums}[i] \le 10^{9}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a search autocomplete system for a search engine. Users may input a sentence (at least one word and end with a special character `'#'`).
 
@@ -25,7 +25,8 @@ Implement the `AutocompleteSystem` class:
 - Returns the top `3` historical hot sentences that have the same prefix as the part of the sentence already typed. If there are fewer than `3` matches, return them all.
 
 	</li>
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -39,7 +40,7 @@ When $c = '#'$, add the completed current sentence to the history or increase it
 
 In the app-local operation trace, construction produces `null`, and each later result occupies the position of its corresponding `input` call.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ obj.input(" "); // return ["i love you", "i love leetcode"]. There are only two 
 obj.input("a"); // return []. There are no sentences that have prefix "i a".
 obj.input("#"); // return []. The user finished the input, the sentence "i a" should be saved as a historical sentence in system. And the following input will be counted as a new search.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{sentences.length}$
 

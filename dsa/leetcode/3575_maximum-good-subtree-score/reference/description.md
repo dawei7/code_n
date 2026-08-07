@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. Each node `i` has an integer value $\text{vals}[i]$, and its parent is given by $\text{par}[i]$.
 
@@ -11,12 +11,13 @@ Define an array `maxScore` of length `n`, where $\text{maxScore}[u]$ represents 
 Return the sum of all values in `maxScore`.
 
 Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -98,7 +99,8 @@ Since the answer may be large, return it **modulo** $10^{9} + 7$.
 - The `maxScore` array is `[8, 5, 5]`, and the sum of all values in `maxScore` is $8 + 5 + 5 = 18$. Thus, the answer is 18.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{vals.length} \le 500$
 

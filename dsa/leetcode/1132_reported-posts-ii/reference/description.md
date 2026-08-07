@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Actions`
 
@@ -33,7 +33,8 @@ Each row in this table indicates that some post was removed due to being reporte
 Write a solution to find the average daily percentage of posts that got removed after being reported as spam, **rounded to 2 decimal places**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -48,7 +49,7 @@ For a date, form the distinct set of $\text{post}_{id}$ values whose rows satisf
 - Round only the final average to two decimal places.
 - Ignore the value and relative timing of $\text{remove}_{date}$; only removal membership matters.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

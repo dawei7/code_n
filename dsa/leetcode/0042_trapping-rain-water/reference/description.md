@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it can trap after raining.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given `n` non-negative integers representing an elevation map where the width of
 
 Return the total volume of trapped rain water in unit squares.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return the total volume of trapped rain water in unit squares.
 
 - **Input:** $height = [4,2,0,3,2,5]$
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{height.length}$
 

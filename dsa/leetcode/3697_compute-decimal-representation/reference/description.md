@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer `n`.
 
@@ -7,7 +7,8 @@ A positive integer is a **base-10 component** if it is the product of a single d
 Express `n` as a sum of **only** base-10 components, using the **fewest** base-10 components possible.
 
 Return an array containing these **base-10 components** in **descending** order.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Every returned value must have exactly one nonzero decimal digit and must equal 
 
 Return the minimum-cardinality list of base-10 components in descending order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,6 +58,7 @@ We can express 102 as $100 + 2$. 102 is not a base-10 component, which means 2 b
 6 is a base-10 component.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$

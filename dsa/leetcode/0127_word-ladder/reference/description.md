@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **transformation sequence** from word `beginWord` to word `endWord` using a dictionary `wordList` is a sequence of words $beginWord -> s_{1} -> s_{2} -> ... -> s_{k}$ such that:
 
@@ -9,7 +9,8 @@ A **transformation sequence** from word `beginWord` to word `endWord` using a di
 - $s_{k} = endWord$
 
 Given two words, `beginWord` and `endWord`, and a dictionary `wordList`, return *the **number of words** in the **shortest transformation sequence** from* `beginWord` *to* `endWord`*, or *`0`* if no such sequence exists.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Given two words, `beginWord` and `endWord`, and a dictionary `wordList`, return 
 
 Return the number of words in the shortest valid sequence, including both endpoints, or `0` when none exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return the number of words in the shortest valid sequence, including both endpoi
 - **Input:** $beginWord = "hit", endWord = "cog", wordList = ["hot","dot","dog","lot","log"]$
 - **Output:** `0`
 - **Explanation:** The endWord "cog" is not in wordList, therefore there is no valid transformation sequence.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{beginWord.length} \le 10$
 

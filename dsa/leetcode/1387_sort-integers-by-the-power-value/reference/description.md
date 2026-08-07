@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The power of an integer `x` is defined as the number of steps needed to transform `x` into `1` using the following steps:
 
@@ -13,12 +13,13 @@ Given three integers `lo`, `hi` and `k`. The task is to sort all integers in the
 Return the $$k^{\text{th}}$$ integer in the range `[lo, hi]` sorted by the power value.
 
 Notice that for any integer `x` $(lo \le x \le hi)$ it is **guaranteed** that `x` will transform into `1` using these steps and that the power of `x` is will **fit** in a 32-bit signed integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Notice that 12 and 13 have the same power value and we sorted them in ascending 
 - **Explanation:** The power array corresponding to the interval [7, 8, 9, 10, 11] is [16, 3, 19, 6, 14].
 The interval sorted by power is [8, 10, 11, 7, 9].
 The fourth number in the sorted array is 7.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le lo \le hi \le 1000$
 

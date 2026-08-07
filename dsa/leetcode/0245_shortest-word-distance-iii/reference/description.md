@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of strings `wordsDict` and two strings that already exist in the array `word1` and `word2`, return *the shortest distance between the occurrence of these two words in the list*.
 
-**Note** that `word1` and `word2` may be the same. It is guaranteed that they represent **two individual words** in the list.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -15,7 +14,11 @@ Given an array of strings `wordsDict` and two strings that already exist in the 
 
 Integer representing the shortest distance between occurrences of `word1` and `word2` in `wordsDict`.
 
-### Examples
+### 3. Note
+
+that `word1` and `word2` may be the same. It is guaranteed that they represent **two individual words** in the list.
+
+### 4. Examples
 
 #### Example 1
 
@@ -25,7 +28,8 @@ Integer representing the shortest distance between occurrences of `word1` and `w
 
 - **Input:** $wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "makes"$
 - **Output:** `3`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{wordsDict.length} \le 10^{5}$
 

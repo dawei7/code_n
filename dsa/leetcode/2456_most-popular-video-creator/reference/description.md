@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two string arrays `creators` and `ids`, and an integer array `views`, all of length `n`. The $$i^{\text{th}}$$ video on a platform was created by $\text{creators}[i]$, has an id of $\text{ids}[i]$, and has $\text{views}[i]$ views.
 
@@ -11,12 +11,13 @@ The **popularity** of a creator is the **sum** of the number of views on **all**
 Note: It is possible for different videos to have the same `id`, meaning that `id`s do not uniquely identify a video. For example, two videos with the same ID are considered as distinct videos with their own viewcount.
 
 Return* *a **2D array** of **strings** `answer` where $\text{answer}[i] = [\text{creators}_{i}, \text{id}_{i}]$ means that $\text{creators}_{i}$ has the **highest** popularity and $\text{id}_{i}$ is the **id** of their most **popular** video. The answer can be returned in any order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The videos with id "b" and "c" have the highest view count.
 Since "b" is lexicographically smaller than "c", it is included in the answer.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{creators.length} = \text{ids.length} = \text{views.length}$
 

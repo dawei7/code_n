@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `coordinates`, a string that represents the coordinates of a square of the chessboard. Below is a chessboard for your reference.
 
@@ -7,12 +7,13 @@ You are given `coordinates`, a string that represents the coordinates of a squar
 Return `true`* if the square is white, and *`false`* if the square is black*.
 
 The coordinate will always represent a valid chessboard square. The coordinate will always have the letter first, and the number second.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ The coordinate will always represent a valid chessboard square. The coordinate w
 
 - **Input:** $coordinates = "c7"$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $\text{coordinates.length} = 2$
 

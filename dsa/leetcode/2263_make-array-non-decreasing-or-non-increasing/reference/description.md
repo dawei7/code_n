@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. In one operation, you can:
 
@@ -7,11 +7,12 @@ You are given a **0-indexed** integer array `nums`. In one operation, you can:
 - Set $\text{nums}[i]$ to $\text{nums}[i] + 1$ **or** $\text{nums}[i] - 1$
 
 Return *the **minimum** number of operations to make *`nums`* **non-decreasing** or **non-increasing**.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ It can be proven that 4 is the minimum number of operations needed.
 - **Input:** `nums = [0]`
 - **Output:** `0`
 - **Explanation:** nums is already in non-decreasing order, so no operations are needed and we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

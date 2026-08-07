@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the sum of all left leaves.*
 
 A **leaf** is a node with no children. A **left leaf** is a leaf that is the left child of another node.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ A **leaf** is a node with no children. A **left leaf** is a leaf that is the lef
 
 Return the sum of values belonging to leaf nodes reached through a parent's left edge.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return the sum of values belonging to leaf nodes reached through a parent's left
 
 - **Input:** `root = [1]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[1, 1000]`.
 

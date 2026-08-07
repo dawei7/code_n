@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n` representing the number of nodes in a tree, numbered from `0` to $n - 1$ (**inclusive**). You are also given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [\text{node1}_{i}, \text{node2}_{i}]$ denotes that there is a **bidirectional** edge connecting $\text{node1}_{i}$ and $\text{node2}_{i}$ in the tree.
 
 You are given a **0-indexed** integer array `query` of length `m` where $\text{query}[i] = [\text{start}_{i}, \text{end}_{i}, \text{node}_{i}]$ means that for the $$i^{\text{th}}$$ query, you are tasked with finding the node on the path from $\text{start}_{i}$ to $\text{end}_{i}$ that is **closest** to $\text{node}_{i}$.
 
 Return *an integer array *`answer`* of length *`m`*, where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return *an integer array *`answer`* of length *`m`*, where *$\text{answer}[i]$* 
 
 Return a list of integers of length $\text{query.length}$, where the $i$-th element is the node on the simple path between `start` and `end` closest to `node` for query $i$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Node 1 is the node on the path closest to node 2, so the answer to the first que
 - **Explanation:**
 The path from node 0 to node 0 consists of the node 0.
 Since 0 is the only node on the path, the answer to the first query is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

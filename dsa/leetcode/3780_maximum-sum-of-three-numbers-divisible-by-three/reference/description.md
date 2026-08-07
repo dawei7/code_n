@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Your task is to choose **exactly three** integers from `nums` such that their sum is divisible by three.
 
 Return the **maximum** possible sum of such a triplet. If no such triplet exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $N=\lvert\texttt{nums}\rvert$. A selection uses three distinct array positio
 
 Return the largest sum of exactly three selected elements that is congruent to zero modulo three, or `0` when no such triplet exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ Thus, the answer is 9.
 No triplet forms a sum divisible by 3, so the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

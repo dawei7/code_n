@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a data structure that can efficiently manage data packets in a network router. Each data packet consists of the following attributes:
 
@@ -34,13 +34,16 @@ Implement the `Router` class:
 
 - Returns the number of packets currently stored in the router (i.e., not yet forwarded) that have the specified destination and have timestamps in the inclusive range `[startTime, endTime]`.
 
-**Note** that queries for `addPacket` will be made in non-decreasing order of `timestamp`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that queries for `addPacket` will be made in non-decreasing order of `timestamp`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -96,7 +99,8 @@ router.addPacket(7, 4, 90); // Return True.
 router.forwardPacket(); // Return `[7, 4, 90]`.
 
 router.forwardPacket(); // There are no packets left, return `[]`.</div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le memoryLimit \le 10^{5}$
 

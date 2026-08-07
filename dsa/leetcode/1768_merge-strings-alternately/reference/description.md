@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given two strings `word1` and `word2`. Merge the strings by adding letters in alternating order, starting with `word1`. If a string is longer than the other, append the additional letters onto the end of the merged string.
 
 Return *the merged string.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ merged: a p b q   r   s
 word1:  a   b   c   d
 word2:    p   q
 merged: a p b q c   d
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word1.length}, \text{word2.length} \le 100$
 

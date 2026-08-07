@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of asynchronous functions `functions`, return a new promise `promise`. Each function in the array accepts no arguments and returns a promise. All the promises should be executed in parallel.
 
@@ -11,12 +11,13 @@ Given an array of asynchronous functions `functions`, return a new promise `prom
 - When any of the promises returned from `functions` were rejected. `promise` should also reject with the reason of the first rejection.
 
 Please solve it without using the built-in `Promise.all` function.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The single function was resolved at 200ms with a value of 5.
 ]
 - **Output:** ${"t": 150, "resolved": [4, 10, 16]}$
 - **Explanation:** All the promises resolved with a value. The returned promise resolved when the last promise resolved.
-### Constraints
+
+### 4. Constraints
 
 - `functions` is an array of functions that returns promises
 

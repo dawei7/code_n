@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `num1` and `num2` representing an **inclusive** range `[num1, num2]`.
 
@@ -13,7 +13,8 @@ The **waviness** of a number is defined as the total count of its **peaks** and 
 - Any number with fewer than 3 digits has a waviness of 0.
 
 Return the total sum of waviness for all numbers in the range `[num1, num2]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Let $R=\texttt{num2}-\texttt{num1}+1$ be the number of values in the range, and 
 
 Return the sum of the peak-and-valley counts of all $R$ integers.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -84,6 +85,7 @@ Thus, total waviness is $1 + 1 + 1 = 3$.
 Number `4848`: the second digit 8 is a peak, and the third digit 4 is a valley, giving a waviness of 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num1 \le num2 \le 10^{5}$

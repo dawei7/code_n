@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$. This is represented by a 2D array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an edge from node $u_{i}$ to $v_{i}$ .
 
@@ -9,12 +9,13 @@ The **score** of a path is defined as the sum of the costs of all nodes along th
 Your goal is to make the scores of all **root-to-leaf** paths **equal** by **increasing** the cost of any number of nodes by **any non-negative** amount.
 
 Return the **minimum** number of nodes whose cost must be increased to make all root-to-leaf path scores equal.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -78,7 +79,8 @@ There are three root-to-leaf paths:
 To make all root-to-leaf path scores equal to 10, increase the cost of node 1 by 2. Thus, the output is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** `m x n` binary matrix `land` where a `0` represents a hectare of forested land and a `1` represents a hectare of farmland.
 
@@ -7,12 +7,13 @@ To keep the land organized, there are designated rectangular areas of hectares t
 `land` can be represented by a coordinate system where the top left corner of `land` is `(0, 0)` and the bottom right corner of `land` is `(m-1, n-1)`. Find the coordinates of the top left and bottom right corner of each **group** of farmland. A **group** of farmland with a top left corner at $(r_{1}, c_{1})$ and a bottom right corner at $(r_{2}, c_{2})$ is represented by the 4-length array $[r_{1}, c_{1}, r_{2}, c_{2}].$
 
 Return *a 2D array containing the 4-length arrays described above for each **group** of farmland in *`land`*. If there are no groups of farmland, return an empty array. You may return the answer in **any order***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ The first group has a top left corner at land[0][0] and a bottom right corner at
 - **Output:** `[]`
 - **Explanation:**
 There are no groups of farmland.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{land.length}$
 

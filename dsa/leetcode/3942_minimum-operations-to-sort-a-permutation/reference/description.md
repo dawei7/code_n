@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, where `nums` is a permutation of the integers from 0 to $n - 1$.
 
@@ -9,7 +9,8 @@ You may perform **only** the following operations:
 - **Rotate Left by One**: Move the first element to the end of the array, and rest elements to left by one position.
 
 Return an integer denoting the **minimum** number of operations required to sort the array in **increasing** order. If it is **not possible** to sort the array using only the given operations, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Return the fewest whole-array reversals and one-position left rotations needed t
 
 The function observes `nums` without modifying it.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ The array becomes sorted in 2 operations, which is minimal.
 It is impossible to reach `[2, 0, 1, 3]`. Thus, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

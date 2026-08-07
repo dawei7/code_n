@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of strings `queries` and a string `pattern`, return a boolean array `answer` where $\text{answer}[i]$ is `true` if $\text{queries}[i]$ matches `pattern`, and `false` otherwise.
 
 A query word $\text{queries}[i]$ matches `pattern` if you can insert lowercase English letters into the pattern so that it equals the query. You may insert a character at any position in pattern or you may choose not to insert any characters **at all**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A query word $\text{queries}[i]$ matches `pattern` if you can insert lowercase E
 - **Input:** $queries = ["FooBar","FooBarTest","FootBall","FrameBuffer","ForceFeedBack"], pattern = "FoBaT"$
 - **Output:** `[false,true,false,false,false]`
 - **Explanation:** "FooBarTest" can be generated like this "Fo" + "o" + "Ba" + "r" + "T" + "est".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length}, \text{queries.length} \le 100$
 

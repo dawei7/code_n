@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Consider a function that implements an algorithm **similar** to <a href="https://leetcode.com/explore/learn/card/binary-search/" target="_blank">Binary Search</a>. The function has two input parameters: `sequence` is a sequence of integers, and `target` is an integer value. The purpose of the function is to find if the `target` exists in the `sequence`.
 
@@ -18,11 +18,12 @@ func(sequence, target)
 When the `sequence` is sorted, the function works correctly for **all** values. When the `sequence` is not sorted, the function does not work for all values, but may still work for **some** values.
 
 Given an integer array `nums`, representing the `sequence`, that contains **unique** numbers and **may or may not be sorted**, return *the number of values that are **guaranteed** to be found using the function, for **every possible** pivot selection*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,11 +46,15 @@ If 2 was chosen as the pivot, -1, 5 and 2 would be removed. The sequence would b
 Searching for value 2 is NOT guaranteed to be found.
 If 5 was chosen as the pivot, 5 and 2 would be removed. In the next loop, the sequence would have only -1 and the function would return false.
 Because only -1 is guaranteed to be found, you should return 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 
 - $-10^{5} \le \text{nums}[i] \le 10^{5}$
 
 - All the values of `nums` are **unique**.
-### Follow-up If `nums` has **duplicates**, would you modify your algorithm? If so, how?
+
+### 5. Follow-up
+
+If `nums` has **duplicates**, would you modify your algorithm? If so, how?

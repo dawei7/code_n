@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `text`. You should split it to k substrings $(\text{subtext}_{1}, \text{subtext}_{2}, ..., \text{subtext}_{k})$ such that:
 
@@ -9,12 +9,13 @@ You are given a string `text`. You should split it to k substrings $(\text{subte
 - $\text{subtext}_{i} = \text{subtext}_{k} - i + 1$ for all valid values of `i` (i.e., $1 \le i \le k$).
 
 Return the largest possible value of `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ Return the largest possible value of `k`.
 - **Input:** $text = "antaprezatepzapreanta"$
 - **Output:** `11`
 - **Explanation:** We can split the string on "(a)(nt)(a)(pre)(za)(tep)(za)(pre)(a)(nt)(a)".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 1000$
 

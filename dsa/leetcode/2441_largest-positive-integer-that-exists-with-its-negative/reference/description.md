@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` that **does not contain** any zeros, find **the largest positive** integer `k` such that `-k` also exists in the array.
 
 Return *the positive integer *`k`. If there is no such integer, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the positive integer *`k`. If there is no such integer, return `-1`.
 - **Input:** `nums = [-10,8,6,7,-2,-3]`
 - **Output:** `-1`
 - **Explanation:** There is no a single valid k, we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

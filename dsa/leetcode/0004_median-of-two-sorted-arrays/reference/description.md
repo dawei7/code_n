@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively, return **the median** of the two sorted arrays.
 
 The overall run time complexity should be `O(log (m+n))`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $m = \lvert\texttt{nums1}\rvert$ and $n = \lvert\texttt{nums2}\rvert$.
 
 Return the median of all values from both arrays as a floating-point number.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the median of all values from both arrays as a floating-point number.
 - **Input:** $nums1 = [1,2], nums2 = [3,4]$
 - **Output:** `2.50000`
 - **Explanation:** merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums1.length} = m$
 

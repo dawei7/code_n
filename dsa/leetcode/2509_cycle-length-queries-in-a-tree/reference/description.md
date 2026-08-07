@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. There is a **complete binary tree** with $2^n - 1$ nodes. The root of that tree is the node with the value `1`, and every node with a value `val` in the range $[1, 2^n - 1 - 1]$ has two children where:
 
@@ -14,7 +14,14 @@ You are also given a 2D integer array `queries` of length `m`, where $\text{quer
 
 - Remove the added edge between nodes with values $a_{i}$ and $b_{i}$.
 
-**Note** that:
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
+
+that:
 
 - A **cycle** is a path that starts and ends at the same node, and each edge in the path is visited only once.
 
@@ -23,12 +30,8 @@ You are also given a 2D integer array `queries` of length `m`, where $\text{quer
 - There could be multiple edges between two nodes in the tree after adding the edge of the query.
 
 Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the answer to the* $$i^{\text{th}}$$ *query.*
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ Return *an array *`answer`* of length *`m`* where* $\text{answer}[i]$ *is the an
 - **Output:** `[2]`
 - **Explanation:** The diagram above shows the tree of $2^{2}$ - 1 nodes. Nodes colored in red describe the nodes in the cycle after adding the edge.
 - After adding the edge between nodes 1 and 2, the graph contains a cycle of nodes [2,1]. Thus answer for the first query is 2. We delete the added edge.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 30$
 

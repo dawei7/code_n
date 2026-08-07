@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` binary matrix `grid`.
 
@@ -7,12 +7,13 @@ A row or column is considered **palindromic** if its values read the same forwar
 You can **flip** any number of cells in `grid` from `0` to `1`, or from `1` to `0`.
 
 Return the **minimum** number of cells that need to be flipped to make **all** rows and columns **palindromic**, and the total number of `1`'s in `grid` **divisible** by `4`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Return the **minimum** number of cells that need to be flipped to make **all** r
 ![](images/screenshot-from-2024-08-01-23-05-26.png)
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

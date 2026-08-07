@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an **undirected** tree with `n` nodes numbered `0` to $n - 1$. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ in the tree.
 
@@ -10,13 +10,16 @@ Initially, **all** nodes are **unmarked**. For each node `i`:
 
 Return an array `times` where $\text{times}[i]$ is the time when all nodes get marked in the tree, if you mark node `i` at time $t = 0$.
 
-**Note** that the answer for each $\text{times}[i]$ is **independent**, i.e. when you mark node `i` all other nodes are *unmarked*.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the answer for each $\text{times}[i]$ is **independent**, i.e. when you mark node `i` all other nodes are *unmarked*.
+
+### 4. Examples
 
 #### Example 1
 
@@ -81,7 +84,8 @@ Return an array `times` where $\text{times}[i]$ is the time when all nodes get m
 ![](images/screenshot-2024-06-03-210550.png)
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{5}$
 

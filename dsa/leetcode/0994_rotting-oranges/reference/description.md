@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` `grid` where each cell can have one of three values:
 
@@ -11,12 +11,13 @@ You are given an `m x n` `grid` where each cell can have one of three values:
 Every minute, any fresh orange that is **4-directionally adjacent** to a rotten orange becomes rotten.
 
 Return *the minimum number of minutes that must elapse until no cell has a fresh orange*. If *this is impossible, return* `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return *the minimum number of minutes that must elapse until no cell has a fresh
 - **Input:** `grid = [[0,2]]`
 - **Output:** `0`
 - **Explanation:** Since there are already no fresh oranges at minute 0, the answer is just 0.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

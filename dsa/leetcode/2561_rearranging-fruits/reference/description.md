@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have two fruit baskets containing `n` fruits each. You are given two **0-indexed** integer arrays `basket1` and `basket2` representing the cost of fruit in each basket. You want to make both baskets **equal**. To do so, you can use the following operation as many times as you want:
 
@@ -9,12 +9,13 @@ You have two fruit baskets containing `n` fruits each. You are given two **0-ind
 Two baskets are considered equal if sorting them according to the fruit cost makes them exactly the same baskets.
 
 Return *the minimum cost to make both the baskets equal or *`-1`* if impossible.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the minimum cost to make both the baskets equal or *`-1`* if impossible.
 - **Input:** $basket1 = [2,3,4,1], basket2 = [3,2,5,1]$
 - **Output:** `-1`
 - **Explanation:** It can be shown that it is impossible to make both the baskets equal.
-### Constraints
+
+### 4. Constraints
 
 - $\text{basket1.length} = \text{basket2.length}$
 

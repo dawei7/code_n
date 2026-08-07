@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three **positive** integers `n`, `x`, and `y`.
 
@@ -8,13 +8,16 @@ For each `k`, such that $1 \le k \le n$, you need to find the number of **pairs 
 
 Return *a **1-indexed** array *`result`* of length *`n`* where *$\text{result}[k]$* represents the **total** number of pairs of houses such that the **minimum** streets required to reach one house from the other is *`k`.
 
-**Note** that `x` and `y` can be **equal**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that `x` and `y` can be **equal**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -51,7 +54,8 @@ Return *a **1-indexed** array *`result`* of length *`n`* where *$\text{result}[k
 - For k == 2, the pairs are (1, 3), (3, 1), (2, 4), and (4, 2).
 - For k == 3, the pairs are (1, 4), and (4, 1).
 - For k == 4, there are no pairs.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{5}$
 

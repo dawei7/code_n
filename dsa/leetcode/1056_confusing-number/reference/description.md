@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **confusing number** is a number that when rotated `180` degrees becomes a different number with **each digit valid**.
 
@@ -13,7 +13,8 @@ Note that after rotating a number, we can ignore leading zeros.
 - For example, after rotating `8000`, we have `0008` which is considered as just `8`.
 
 Given an integer `n`, return `true`* if it is a **confusing number**, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ Let $D$ be the number of decimal digits in `n`, with zero having one digit.
 
 - `true` when the rotation is valid and its numeric value is different from `n`; otherwise, `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,6 +51,7 @@ Let $D$ be the number of decimal digits in `n`, with zero having one digit.
 - **Input:** $n = 11$
 - **Output:** `false`
 - **Explanation:** We get 11 after rotating 11, 11 is a valid number but the value remains the same, thus 11 is not a confusing number
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{9}$

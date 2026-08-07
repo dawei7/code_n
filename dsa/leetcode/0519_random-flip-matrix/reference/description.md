@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `m x n` binary grid `matrix` with all the values set `0` initially. Design an algorithm to randomly pick an index `(i, j)` where $\text{matrix}[i][j] = 0$ and flips it to `1`. All the indices `(i, j)` where $\text{matrix}[i][j] = 0$ should be equally likely to be returned.
 
@@ -11,12 +11,13 @@ Implement the `Solution` class:
 - `int[] flip()` Returns a random index `[i, j]` of the matrix where $\text{matrix}[i][j] = 0$ and flips it to `1`.
 
 - `void reset()` Resets all the values of the matrix to be `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ solution.flip();  // return [0, 0], Based on the previously returned indices, on
 solution.reset(); // All the values are reset to 0 and can be returned.
 solution.flip();  // return [2, 0], [0,0], [1,0], and [2,0] should be equally likely to be returned.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{4}$
 

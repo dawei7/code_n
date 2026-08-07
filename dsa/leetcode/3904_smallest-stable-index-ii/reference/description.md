@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `k`.
 
@@ -13,7 +13,8 @@ In other words:
 An index `i` is called **stable** if its instability score is **less than or equal to** `k`.
 
 Return the **smallest** stable index. If no such index exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ $\max(\texttt{nums}[0..i])-\min(\texttt{nums}[i..n-1])\le \texttt{k}.$
 
 Return `-1` if no index meets this inequality.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -82,7 +83,8 @@ Return `-1` if no index meets this inequality.
 At index 0, the instability score is $0 - 0 = 0$, which is less than or equal to $k = 0$. Therefore, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

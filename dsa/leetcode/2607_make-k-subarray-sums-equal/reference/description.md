@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `arr` and an integer `k`. The array `arr` is circular. In other words, the first element of the array is the next element of the last element, and the last element of the array is the previous element of the first element.
 
@@ -9,12 +9,13 @@ You can do the following operation any number of times:
 Return *the minimum number of operations such that the sum of each **subarray** of length *`k`* is equal*.
 
 A **subarray** is a contiguous part of the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The array after the operations is [5,5,5,5]
 - Subarray starts at index 1 is [5, 5, 5], and its sum is 15
 - Subarray starts at index 2 is [5, 5, 5], and its sum is 15
 - Subarray starts at index 3 is [5, 5, 5], and its sum is 15
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{arr.length} \le 10^{5}$
 

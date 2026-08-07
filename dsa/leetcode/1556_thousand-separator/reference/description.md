@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer `n`, add a dot (".") as the thousands separator and return it in string format.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,6 +17,7 @@ Given an integer `n`, add a dot (".") as the thousands separator and return it i
 
 - **Input:** $n = 1234$
 - **Output:** `"1.234"`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 2^{31} - 1$

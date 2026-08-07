@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You may recall that an array `arr` is a **mountain array** if and only if:
 
@@ -13,12 +13,13 @@ You may recall that an array `arr` is a **mountain array** if and only if:
 	</li>
 
 Given an integer array `arr`, return *the length of the longest subarray, which is a mountain*. Return `0` if there is no mountain subarray.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Given an integer array `arr`, return *the length of the longest subarray, which 
 - **Input:** `arr = [2,2,2]`
 - **Output:** `0`
 - **Explanation:** There is no mountain.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Creating clones of immutable objects with minor alterations can be a tedious process. Write a class `ImmutableHelper` that serves as a tool to help with this requirement. The constructor accepts an immutable object `obj` which will be a JSON object or array.
 
@@ -31,11 +31,12 @@ Properties of the `mutator` function:
 - It will never set keys to objects ($\text{proxy.x} = {}$)
 
 **Note on how the solution will be tested:** the solution validator will only analyze differences between what was returned and the original `obj`. Doing a full comparison would be too computationally expensive. Also, any mutations to the original object will result in a wrong answer.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ data.y = temp;
 {"obj": {"val": {"x": 20, "y": 10}}}
 ]
 - **Explanation:** The values of "x" and "y" were swapped.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{JSON.stringify}(obj).length \le 4 * 10^{5}$
 

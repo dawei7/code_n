@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exists an undirected and initially unrooted tree with `n` nodes indexed from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -9,12 +9,13 @@ The **price sum** of a given path is the sum of the prices of all nodes lying on
 The tree can be rooted at any node `root` of your choice. The incurred **cost** after choosing `root` is the difference between the maximum and minimum **price sum** amongst all paths starting at `root`.
 
 Return *the **maximum** possible **cost*** *amongst all possible root choices*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The difference between the maximum and minimum price sum is 24. It can be proved
 - The first path contains nodes [0,1,2]: the prices are [1,1,1], and the sum of the prices is 3.
 - The second path contains node [0] with a price [1].
 The difference between the maximum and minimum price sum is 2. It can be proved that 2 is the maximum cost.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

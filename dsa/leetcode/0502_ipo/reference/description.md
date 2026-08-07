@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Suppose LeetCode will start its **IPO** soon. In order to sell a good price of its shares to Venture Capital, LeetCode would like to work on some projects to increase its capital before the **IPO**. Since it has limited resources, it can only finish at most `k` distinct projects before the **IPO**. Help LeetCode design the best way to maximize its total capital after finishing at most `k` distinct projects.
 
@@ -9,12 +9,13 @@ Initially, you have `w` capital. When you finish a project, you will obtain its 
 Pick a list of **at most** `k` distinct projects from given projects to **maximize your final capital**, and return *the final maximized capital*.
 
 The answer is guaranteed to fit in a 32-bit signed integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Therefore, output the final maximized capital, which is 0 + 1 + 3 = 4.
 
 - **Input:** $k = 3, w = 0, profits = [1,2,3], capital = [0,1,2]$
 - **Output:** `6`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 10^{5}$
 

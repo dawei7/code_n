@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a $m * n$ matrix of ones and zeros, return how many **square** submatrices have all ones.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Total number of squares = 10 + 4 + 1 = **15**.
 There are **6** squares of side 1.
 There is **1** square of side 2.
 Total number of squares = 6 + 1 = **7**.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 300$
 

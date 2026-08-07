@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{course}_{completions}$
 
@@ -103,7 +103,7 @@ Results are ordered by transition_count in descending order, then by first_cours
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 

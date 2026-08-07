@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s`, calculate its **reverse degree**.
 
@@ -9,12 +9,13 @@ The **reverse degree** is calculated as follows:
 - Sum these products for all characters in the string.
 
 Return the **reverse degree** of `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -104,7 +105,8 @@ The reversed degree is $26 + 50 + 72 = 148$.
 The reverse degree is $1 + 52 + 3 + 104 = 160$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

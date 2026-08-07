@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a wooden stick of length `n` units. The stick is labelled from `0` to `n`. For example, a stick of length **6** is labelled as follows:
 
@@ -11,12 +11,13 @@ You should perform the cuts in order, you can change the order of the cuts as yo
 The cost of one cut is the length of the stick to be cut, the total cost is the sum of costs of all cuts. When you cut a stick, it will be split into two smaller sticks (i.e. the sum of their lengths is the length of the stick before the cut). Please refer to the first example for a better explanation.
 
 Return *the minimum total cost* of the cuts.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Rearranging the cuts to be [3, 5, 1, 4] for example will lead to a scenario with
 - **Output:** `22`
 - **Explanation:** If you try the given cuts ordering the cost will be 25.
 There are much ordering with total cost <= 25, for example, the order [4, 6, 5, 2, 1] has total cost = 22 which is the minimum possible.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{6}$
 

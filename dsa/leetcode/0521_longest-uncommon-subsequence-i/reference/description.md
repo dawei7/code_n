@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two strings `a` and `b`, return *the length of the **longest uncommon subsequence** between *`a` *and* `b`. *If no such uncommon subsequence exists, return* `-1`*.*
 
 An **uncommon subsequence** between two strings is a string that is a **subsequence of exactly one of them**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Note that "cdc" is also a longest uncommon subsequence.
 - **Input:** $a = "aaa", b = "aaa"$
 - **Output:** `-1`
 - **Explanation:** Every subsequence of string a is also a subsequence of string b. Similarly, every subsequence of string b is also a subsequence of string a. So the answer would be -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{a.length}, \text{b.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and an integer `k`.
 
@@ -7,12 +7,13 @@ You are initially standing at index `0`. In one move, you can jump at most `k` s
 You want to reach the last index of the array (index $n - 1$). Your **score** is the **sum** of all $\text{nums}[j]$ for each index `j` you visited in the array.
 
 Return *the **maximum score** you can get*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return *the **maximum score** you can get*.
 
 - **Input:** `nums = [1,-5,-20,4,-1,3,-6,-3], k = 2`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length}, k \le 10^{5}$
 

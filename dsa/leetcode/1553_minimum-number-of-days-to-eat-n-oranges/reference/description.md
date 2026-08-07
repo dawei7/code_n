@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` oranges in the kitchen and you decided to eat some of these oranges every day as follows:
 
@@ -11,12 +11,13 @@ There are `n` oranges in the kitchen and you decided to eat some of these orange
 You can only choose one of the actions per day.
 
 Given the integer `n`, return *the minimum number of days to eat* `n` *oranges*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,6 +38,7 @@ Day 1: Eat 3 oranges, 6 - 6/2 = 6 - 3 = 3. (Since 6 is divisible by 2).
 Day 2: Eat 2 oranges, 3 - 2*(3/3) = 3 - 2 = 1. (Since 3 is divisible by 3)
 Day 3: Eat the last orange  1 - 1  = 0.
 You need at least 3 days to eat the 6 oranges.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{9}$

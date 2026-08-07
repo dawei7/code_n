@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of meeting time intervals `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$, return *the minimum number of conference rooms required*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given an array of meeting time intervals `intervals` where $\text{intervals}[i] 
 
 Return integer minimum number of conference rooms required.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Return integer minimum number of conference rooms required.
 
 - **Input:** $intervals = [[7,10],[2,4]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{intervals.length} \le 10^{4}$
 

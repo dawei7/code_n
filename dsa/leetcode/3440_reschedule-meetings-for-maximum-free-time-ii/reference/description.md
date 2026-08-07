@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `eventTime` denoting the duration of an event. You are also given two integer arrays `startTime` and `endTime`, each of length `n`.
 
@@ -8,15 +8,20 @@ You can reschedule **at most **one meeting by moving its start time while mainta
 
 Return the **maximum** amount of free time possible after rearranging the meetings.
 
-**Note** that the meetings can **not** be rescheduled to a time outside the event and they should remain non-overlapping.
-
-**Note:** *In this version*, it is **valid** for the relative ordering of the meetings to change after rescheduling one meeting.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the meetings can **not** be rescheduled to a time outside the event and they should remain non-overlapping.
+
+### 4. Note
+
+*In this version*, it is **valid** for the relative ordering of the meetings to change after rescheduling one meeting.
+
+### 5. Examples
 
 #### Example 1
 
@@ -76,7 +81,8 @@ Reschedule the meeting at `[3, 4]` to `[8, 9]`, leaving no meetings during the t
 There is no time during the event not occupied by meetings.
 
 </div>
-### Constraints
+
+### 6. Constraints
 
 - $1 \le eventTime \le 10^{9}$
 

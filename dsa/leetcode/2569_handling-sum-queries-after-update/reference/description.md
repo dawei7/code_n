@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** arrays `nums1` and `nums2` and a 2D array `queries` of queries. There are three types of queries:
 
@@ -9,12 +9,13 @@ You are given two **0-indexed** arrays `nums1` and `nums2` and a 2D array `queri
 - For a query of type 3, $\text{queries}[i] = [3, 0, 0]$. Find the sum of the elements in `nums2`.
 
 Return *an array containing all the answers to the third type queries.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *an array containing all the answers to the third type queries.*
 - **Input:** $nums1 = [1], nums2 = [5], queries = [[2,0,0],[3,0,0]]$
 - **Output:** `[5]`
 - **Explanation:** After the first query, nums2 remains [5], so the answer to the second query is 5. Thus, [5] is returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums1.length},\text{nums2.length} \le 10^{5}$
 

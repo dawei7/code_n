@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a binary tree where each path going from the root to any leaf form a **valid sequence**, check if a given string is a **valid sequence** in such binary tree.
 
 We get the given string from the concatenation of an array of integers `arr` and the concatenation of all values of the nodes along a path results in a **sequence** in the given binary tree.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Let $N$ be the number of tree nodes and let $h$ be the tree height. A leaf is a 
 
 Return `true` if some connected path starts at `root`, ends at a leaf, and has exactly the values of `arr` in the same order. Return `false` otherwise.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ Other valid sequences are:
 - **Input:** `root = [0,1,0,0,1,0,null,null,1,0,0], arr = [0,1,1]`
 - **Output:** `false`
 - **Explanation:** The path 0 -> 1 -> 1 is a sequence, but it is not a valid sequence.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 5000$
 

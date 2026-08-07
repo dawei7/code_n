@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums` and an integer `k`, return *the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than *`k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -19,7 +20,8 @@ Note that [10, 5, 2] is not included as the product of 100 is not strictly less 
 
 - **Input:** `nums = [1,2,3], k = 0`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{4}$
 

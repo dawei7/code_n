@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` matrix `grid` where each cell is either a wall `'W'`, an enemy `'E'` or empty `'0'`, return *the maximum enemies you can kill using one bomb*. You can only place the bomb in an empty cell.
 
 The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since it is too strong to be destroyed.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ The bomb kills all the enemies in the same row and column from the planted point
 
 Return the maximum number of enemies visible horizontally or vertically from a single empty cell without crossing a wall.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the maximum number of enemies visible horizontally or vertically from a s
 
 - **Input:** `grid = [["W","W","W"],["0","0","0"],["E","E","E"]]`
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

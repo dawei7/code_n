@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a room with `n` bulbs labeled from `1` to `n` that all are turned on initially, and **four buttons** on the wall. Each of the four buttons has a different functionality where:
 
@@ -13,12 +13,13 @@ There is a room with `n` bulbs labeled from `1` to `n` that all are turned on in
 You must make **exactly** `presses` button presses in total. For each press, you may pick **any** of the four buttons to press.
 
 Given the two integers `n` and `presses`, return *the number of **different possible statuses** after performing all *`presses`* button presses*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Given the two integers `n` and `presses`, return *the number of **different poss
 - [on, off, on] by pressing button 2
 - [off, on, off] by pressing button 3
 - [off, on, on] by pressing button 4
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

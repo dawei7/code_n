@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two **positive** integers `x` and `y`, denoting the number of coins with values 75 and 10 *respectively*.
 
 Alice and Bob are playing a game. Each turn, starting with **Alice**, the player must pick up coins with a **total** value 115. If the player is unable to do so, they **lose** the game.
 
 Return the *name* of the player who wins the game if both players play **optimally**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,6 +43,7 @@ The game ends in 2 turns:
 - Bob picks 1 coin with a value of 75 and 4 coins with a value of 10.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le x, y \le 100$

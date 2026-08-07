@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are a total of `numCourses` courses you have to take, labeled from `0` to $numCourses - 1$. You are given an array `prerequisites` where $\text{prerequisites}[i] = [a_{i}, b_{i}]$ indicates that you **must** take course $a_{i}$ first if you want to take course $b_{i}$.
 
@@ -9,12 +9,13 @@ Prerequisites can also be **indirect**. If course `a` is a prerequisite of cours
 You are also given an array `queries` where $\text{queries}[j] = [u_{j}, v_{j}]$. For the $$j^{\text{th}}$$ query, you should answer whether course $u_{j}$ is a prerequisite of course $v_{j}$ or not.
 
 Return *a boolean array *`answer`*, where *$\text{answer}[j]$* is the answer to the *$$j^{\text{th}}$$* query.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Course 0 is not a prerequisite of course 1, but the opposite is true.
 
 - **Input:** $numCourses = 3, prerequisites = [[1,2],[1,0],[2,0]], queries = [[1,0],[1,2]]$
 - **Output:** `[true,true]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le numCourses \le 100$
 

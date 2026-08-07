@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once. You can return the answer in **any order**.
 
 You must write an algorithm that runs in linear runtime complexity and uses only constant extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must write an algorithm that runs in linear runtime complexity and uses only
 
 Return the two singleton values in either order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the two singleton values in either order.
 
 - **Input:** `nums = [0,1]`
 - **Output:** `[1,0]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 3 * 10^{4}$
 

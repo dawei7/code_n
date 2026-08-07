@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` boxes. You are given a binary string `boxes` of length `n`, where $\text{boxes}[i]$ is `'0'` if the $$i^{\text{th}}$$ box is **empty**, and `'1'` if it contains **one** ball.
 
@@ -7,12 +7,13 @@ In one operation, you can move **one** ball from a box to an adjacent box. Box `
 Return an array `answer` of size `n`, where $\text{answer}[i]$ is the **minimum** number of operations needed to move all the balls to the $$i^{\text{th}}$$ box.
 
 Each $\text{answer}[i]$ is calculated considering the **initial** state of the boxes.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Each $\text{answer}[i]$ is calculated considering the **initial** state of the b
 
 - **Input:** $boxes = "001011"$
 - **Output:** `[11,8,5,4,3,4]`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{boxes.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `initialCurrency`, and you start with `1.0` of `initialCurrency`.
 
@@ -14,13 +14,16 @@ You can perform **any** number of conversions, **including zero**, using `rates1
 
 Return the **maximum** amount of `initialCurrency` you can have after performing any number of conversions on both days **in order**.
 
-**Note: **Conversion rates are valid, and there will be no contradictions in the rates for either day. The rates for the days are independent of each other.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Conversion rates are valid, and there will be no contradictions in the rates for either day. The rates for the days are independent of each other.
+
+### 4. Examples
 
 #### Example 1
 
@@ -75,7 +78,8 @@ Converting **NGN** to **EUR** on day 1 and **EUR** to **NGN** using the inverse 
 In this example, there is no need to make any conversions on either day.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{initialCurrency.length} \le 3$
 

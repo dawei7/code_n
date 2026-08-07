@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array `queries`, where $\text{queries}[i]$ is of the form `[l, r]`. Each $\text{queries}[i]$ defines an array of integers `nums` consisting of elements ranging from `l` to `r`, both **inclusive**.
 
@@ -9,12 +9,13 @@ In one operation, you can:
 - Replace them with $floor(a / 4)$ and $floor(b / 4)$.
 
 Your task is to determine the **minimum** number of operations required to reduce all elements of the array to zero for each query. Return the sum of the results for all queries.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ For $\text{queries}[0]$:
 The output is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{queries.length} \le 10^{5}$
 

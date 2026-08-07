@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.
 
 Two binary trees are considered the same if they are structurally identical, and the nodes have the same value.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ Two binary trees are considered the same if they are structurally identical, and
 
 Return `true` if `p` and `q` have identical structure and values; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Return `true` if `p` and `q` have identical structure and values; otherwise retu
 
 - **Input:** $p = [1,2,1], q = [1,1,2]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in both trees is in the range `[0, 100]`.
 

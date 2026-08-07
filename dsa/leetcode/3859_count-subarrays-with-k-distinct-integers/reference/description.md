@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and two integers `k` and `m`.
 
@@ -7,7 +7,8 @@ Return an integer denoting the count of **subarrays** of `nums` such that:
 - The subarray contains **exactly** `k` **distinct** integers.
 
 - Within the subarray, each **distinct** integer appears **at least** `m` times.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ within that interval alone.
 Return the number of subarrays that contain exactly $K$ distinct integers and
 give each of those integers a frequency of at least `m`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -109,7 +110,8 @@ The possible subarrays with $k = 2$ distinct integers, each appearing at least $
 Thus, the answer is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

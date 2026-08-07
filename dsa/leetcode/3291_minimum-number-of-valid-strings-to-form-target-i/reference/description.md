@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of strings `words` and a string `target`.
 
 A string `x` is called **valid** if `x` is a prefix of **any** string in `words`.
 
 Return the **minimum** number of **valid** strings that can be *concatenated* to form `target`. If it is **not** possible to form `target`, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The target string can be formed by concatenating:
 **Output:** -1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

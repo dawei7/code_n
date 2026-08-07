@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Teacher`
 
@@ -19,12 +19,13 @@ Write a solution to calculate the number of unique subjects each teacher teaches
 Return the result table in **any order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of size `n` and a positive integer `k`.
 
@@ -7,12 +7,13 @@ An array **capped** by value `x` is obtained by replacing every element $\text{n
 For each integer `x` from 1 to `n`, determine whether it is possible to choose a **subsequence** from the array capped by `x` such that the sum of the chosen elements is **exactly** `k`.
 
 Return a **0-indexed** boolean array `answer` of size `n`, where $\text{answer}[i]$ is `true` if it is possible when using $x = i + 1$, and `false` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return a **0-indexed** boolean array `answer` of size `n`, where $\text{answer}[
 For every value of `x`, it is always possible to select a subsequence from the capped array that sums exactly to `3`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 4000$
 

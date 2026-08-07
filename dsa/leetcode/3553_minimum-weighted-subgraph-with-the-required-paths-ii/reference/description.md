@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an **undirected weighted** tree with `n` nodes, numbered from `0` to $n - 1$. It is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight $w_{i}$.​
 
@@ -7,12 +7,13 @@ Additionally, you are given a 2D integer array `queries`, where $\text{queries}[
 Return an array `answer` of length equal to `queries.length`, where $\text{answer}[j]$ is the **minimum total weight** of a subtree such that it is possible to reach $\text{dest}_{j}$ from both $\text{src1}_{j}$ and $\text{src2}_{j}$ using edges in this subtree.
 
 A **subtree** here is any connected subset of nodes and edges of the original tree forming a valid tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The blue edges represent one of the subtrees that yield the optimal answer.
 - $\text{answer}[0]$: The total weight of the selected subtree that ensures a path from $src1 = 0$ and $src2 = 1$ to $dest = 2$ is $8 + 7 = 15$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

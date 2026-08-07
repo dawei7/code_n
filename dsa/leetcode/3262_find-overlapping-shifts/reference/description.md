@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `EmployeeShifts`
 
@@ -95,6 +95,6 @@ The output shows the employee_id and the count of overlapping shifts for each em
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

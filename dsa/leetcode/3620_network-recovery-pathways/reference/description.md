@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a directed acyclic graph of `n` nodes numbered from 0 to `n − 1`. This is represented by a 2D array `edges` of length `m`, where $\text{edges}[i] = [u_{i}, v_{i}, \text{cost}_{i}]$ indicates a one‑way communication from node $u_{i}$ to node $v_{i}$ with a recovery cost of $\text{cost}_{i}$.
 
@@ -13,12 +13,13 @@ A path from 0 to `n − 1` is **valid** if:
 For each valid path, define its **score** as the minimum edge‑cost along that path.
 
 Return the **maximum** path score (i.e., the largest **minimum**-edge cost) among all valid paths. If no valid path exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -96,7 +97,8 @@ Return the **maximum** path score (i.e., the largest **minimum**-edge cost) amon
 - Among the two valid paths, their scores are 5 and 6. Therefore, the answer is 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{online.length}$
 

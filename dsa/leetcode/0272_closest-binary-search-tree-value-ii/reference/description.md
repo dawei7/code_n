@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary search tree, a `target` value, and an integer `k`, return *the *`k`* values in the BST that are closest to the* `target`. You may return the answer in **any order**.
 
 You are **guaranteed** to have only one unique set of `k` values in the BST that are closest to the `target`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $n$ be the number of nodes in the tree, and let $h$ be its height.
 
 Return the unique set of `k` closest BST values in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the unique set of `k` closest BST values in any order.
 
 - **Input:** `root = [1], target = 0.000000, k = 1`
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is `n`.
 

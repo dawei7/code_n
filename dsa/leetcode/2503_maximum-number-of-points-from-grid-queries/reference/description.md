@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid` and an array `queries` of size `k`.
 
@@ -11,12 +11,13 @@ Find an array `answer` of size `k` such that for each integer $\text{queries}[i]
 After the process, $\text{answer}[i]$ is the **maximum** number of points you can get. **Note** that for each query you are allowed to visit the same cell **multiple** times.
 
 Return *the resulting array* `answer`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *the resulting array* `answer`.
 - **Input:** `grid = [[5,2,1],[1,1,2]], queries = [3]`
 - **Output:** `[0]`
 - **Explanation:** We can not get any points because the value of the top left cell is already greater than or equal to 3.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

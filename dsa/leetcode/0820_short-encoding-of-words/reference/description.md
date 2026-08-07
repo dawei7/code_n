@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **valid encoding** of an array of `words` is any reference string `s` and array of indices `indices` such that:
 
@@ -9,12 +9,13 @@ A **valid encoding** of an array of `words` is any reference string `s` and arra
 - For each index $\text{indices}[i]$, the **substring** of `s` starting from $\text{indices}[i]$ and up to (but not including) the next `'#'` character is equal to $\text{words}[i]$.
 
 Given an array of `words`, return *the **length of the shortest reference string** *`s`* possible of any **valid encoding** of *`words`*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ words[2] = "bell", the substring of s starting from indices[2] = 5 to the next '
 - **Input:** $words = ["t"]$
 - **Output:** `2`
 - **Explanation:** A valid encoding would be s = "t#" and indices = [0].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 2000$
 

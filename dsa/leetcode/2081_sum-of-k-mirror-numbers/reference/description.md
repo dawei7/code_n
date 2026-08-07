@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A **k-mirror number** is a **positive** integer **without leading zeros** that reads the same both forward and backward in base-10 **as well as** in base-k.
 
@@ -7,12 +7,13 @@ A **k-mirror number** is a **positive** integer **without leading zeros** that r
 - On the contrary, `4` is not a 2-mirror number. The representation of `4` in base-2 is `100`, which does not read the same both forward and backward.
 
 Given the base `k` and the number `n`, return *the **sum** of the* `n` ***smallest** k-mirror numbers*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Their sum = 1 + 2 + 4 + 8 + 121 + 151 + 212 = 499.
 - **Output:** `20379000`
 - **Explanation:** The 17 smallest 7-mirror numbers are:
 1, 2, 3, 4, 5, 6, 8, 121, 171, 242, 292, 16561, 65656, 2137312, 4602064, 6597956, 6958596
-### Constraints
+
+### 4. Constraints
 
 - $2 \le k \le 9$
 

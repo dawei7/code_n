@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and an integer `maxVal`.
 
@@ -17,7 +17,8 @@ Let:
 The score is defined as $score = selectedValue - modificationCost$.
 
 Return the **maximum** possible score.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ $U=\max(\texttt{maxVal},\max(\texttt{nums})).$
 
 Return the maximum possible final selected value minus the number of changed array elements, subject to the selected value being co-prime with every other final element.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -88,7 +89,8 @@ Change $\text{nums}[0]$ from 2 to 1, which costs 1. Choose $\text{nums}[1] = 2$,
 - The score is ​​​​​​​$2 - 1 = 1$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

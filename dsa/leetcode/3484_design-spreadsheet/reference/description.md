@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A spreadsheet is a grid with 26 columns (labeled from `'A'` to `'Z'`) and a given number of `rows`. Each cell in the spreadsheet can hold an integer value between 0 and $10^{5}$.
 
@@ -12,13 +12,16 @@ Implement the `Spreadsheet` class:
 
 - `int getValue(String formula)` Evaluates a formula of the form `"=X+Y"`, where `X` and `Y` are **either** cell references or non-negative integers, and returns the computed sum.
 
-**Note:** If `getValue` references a cell that has not been explicitly set using `setCell`, its value is considered 0.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+If `getValue` references a cell that has not been explicitly set using `setCell`, its value is considered 0.
+
+### 4. Examples
 
 #### Example 1
 
@@ -43,7 +46,8 @@ spreadsheet.setCell("B2", 15); // sets B2 to 15<br data-end="527" data-start="52
 spreadsheet.getValue("=A1+B2"); // returns 25 (10+15)<br data-end="583" data-start="580" />
 spreadsheet.resetCell("A1"); // resets A1 to 0<br data-end="634" data-start="631" />
 spreadsheet.getValue("=A1+B2"); // returns 15 (0+15)</div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le rows \le 10^{3}$
 

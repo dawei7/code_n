@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **swap** is defined as taking two **distinct** positions in an array and swapping the values in them.
 
 A **circular** array is defined as an array where we consider the **first** element and the **last** element to be **adjacent**.
 
 Given a **binary** **circular** array `nums`, return *the minimum number of swaps required to group all *`1`*'s present in the array together at **any location***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Thus, the minimum number of swaps required is 2.
 - **Output:** `0`
 - **Explanation:** All the 1's are already grouped together due to the circular property of the array.
 Thus, the minimum number of swaps required is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

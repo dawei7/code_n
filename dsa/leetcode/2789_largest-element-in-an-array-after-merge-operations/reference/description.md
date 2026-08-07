@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` consisting of positive integers.
 
@@ -7,12 +7,13 @@ You can do the following operation on the array **any** number of times:
 - Choose an index `i` such that $0 \le i < \text{nums.length} - 1$ and $\text{nums}[i] \le nums[i + 1]$. Replace the element $nums[i + 1]$ with $\text{nums}[i] + nums[i + 1]$ and delete the element $\text{nums}[i]$ from the array.
 
 Return *the value of the **largest** element that you can possibly obtain in the final array.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The largest element in the final array is 21. It can be shown that we cannot obt
 - Choose i = 1. The resulting array will be nums = [5,<u>6</u>].
 - Choose i = 0. The resulting array will be nums = [<u>11</u>].
 There is only one element in the final array, which is 11.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

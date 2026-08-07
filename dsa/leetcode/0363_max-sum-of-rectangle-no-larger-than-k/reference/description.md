@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an `m x n` matrix `matrix` and an integer `k`, return *the max sum of a rectangle in the matrix such that its sum is no larger than* `k`.
 
 It is **guaranteed** that there will be a rectangle with a sum no larger than `k`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ It is **guaranteed** that there will be a rectangle with a sum no larger than `k
 
 Return the maximum sum among all contiguous axis-aligned matrix rectangles whose sums do not exceed `k`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the maximum sum among all contiguous axis-aligned matrix rectangles whose
 
 - **Input:** $matrix = [[2,2,-1]], k = 3$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{matrix.length}$
 

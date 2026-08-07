@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Logs`
 
@@ -18,7 +18,8 @@ Find all numbers that appear at least three times consecutively.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The result format is in the following example.
 
 Return one row per qualifying value under the column `ConsecutiveNums`, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

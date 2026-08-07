@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` where every element appears **three times** except for one, which appears **exactly once**. *Find the single element and return it*.
 
 You must implement a solution with a linear runtime complexity and use only constant extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must implement a solution with a linear runtime complexity and use only cons
 
 Return the unique element that occurs exactly once.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return the unique element that occurs exactly once.
 
 - **Input:** `nums = [0,1,0,1,0,1,99]`
 - **Output:** `99`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 3 * 10^{4}$
 

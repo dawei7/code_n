@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `n` individuals at a base camp who need to cross a river to reach a destination using a single boat. The boat can carry at most `k` people at a time. The trip is affected by environmental conditions that vary **cyclically** over `m` stages.
 
@@ -19,12 +19,13 @@ Each individual `i` has a rowing strength represented by $\text{time}[i]$, the t
 - If individuals are left behind, one person must return with the boat. Let `r` be the index of the returning person, the return takes $\text{time}[r] × mul[\text{current}_{stage}]$, defined as $\text{return}_{time}$, and the stage advances by $floor(\text{return}_{time}) \% m$.
 
 Return the **minimum** total time required to transport all individuals. If it is not possible to transport all individuals to the destination, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ The optimal strategy is:
 - Since the boat can only carry one person at a time, it is impossible to transport both individuals as one must always return. Thus, the answer is `-1.00`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{time.length} \le 12$
 

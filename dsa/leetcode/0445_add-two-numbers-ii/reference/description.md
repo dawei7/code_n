@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given two **non-empty** linked lists representing two non-negative integers. The most significant digit comes first and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
 You may assume the two numbers do not contain any leading zero, except the number 0 itself.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ You may assume the two numbers do not contain any leading zero, except the numbe
 
 The standalone app defines a minimal local equivalent of LeetCode's injected `ListNode` model and uses the same linked-list interface.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The standalone app defines a minimal local equivalent of LeetCode's injected `Li
 
 - **Input:** $l1 = [0], l2 = [0]$
 - **Output:** `[0]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in each linked list is in the range `[1, 100]`.
 

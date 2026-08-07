@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` of length `n`. You are initially standing at index `0`. You can jump from index `i` to index `j` where `i < j` if:
 
@@ -9,7 +9,8 @@ You are given a **0-indexed** integer array `nums` of length `n`. You are initia
 You are also given an integer array `costs` of length `n` where $\text{costs}[i]$ denotes the cost of jumping **to** index `i`.
 
 Return *the **minimum** cost to jump to the index *$n - 1$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -20,7 +21,7 @@ Return *the **minimum** cost to jump to the index *$n - 1$.
 
 Return an integer representing the minimum total landing cost to reach index $n-1$ starting from index $0$. Return 0 if $n = 1$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ These have a total cost of 9 and 12, respectively.
 - Jump to index 1 with a cost of costs[1] = 1.
 - Jump to index 2 with a cost of costs[2] = 1.
 The total cost is 2. Note that you cannot jump directly from index 0 to index 2 because nums[0] <= nums[1].
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length} = \text{costs.length}$
 

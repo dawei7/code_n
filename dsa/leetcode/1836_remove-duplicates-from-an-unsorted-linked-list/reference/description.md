@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given the `head` of a linked list, find all the values that appear **more than once** in the list and delete the nodes that have any of those values.
 
 Return *the linked list after the deletions.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return *the linked list after the deletions.*
 - **Input:** $head = [3,2,2,1,3,2,4]$
 - **Output:** `[1,4]`
 - **Explanation:** 3 appears twice and 2 appears three times. After deleting all 3's and 2's, we are left with [1,4].
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[1, 10^{5}]$
 

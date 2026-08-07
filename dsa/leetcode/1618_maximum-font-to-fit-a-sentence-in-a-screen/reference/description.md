@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `text`. We want to display `text` on a screen of width `w` and height `h`. You can choose any font size from array `fonts`, which contains the available font sizes **in ascending order**.
 
@@ -29,7 +29,8 @@ It is also guaranteed that for any font size `fontSize` and any character `ch`:
 - $getWidth(fontSize, ch) \le getWidth(fontSize+1, ch)$
 
 Return *the maximum font size you can use to display *`text`* on the screen*. If `text` cannot fit on the display with any font size, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -43,7 +44,7 @@ Return *the maximum font size you can use to display *`text`* on the screen*. If
 
 Return the maximum integer font size from `fonts` that allows `text` to fit within `w` and `h` on a single line, or `-1` if no font size fits.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Return the maximum integer font size from `fonts` that allows `text` to fit with
 
 - **Input:** $text = "easyquestion", w = 100, h = 100, fonts = [10,15,20,25]$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{text.length} \le 50000$
 

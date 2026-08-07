@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 The **beauty** of a string is the difference in frequencies between the most frequent and least frequent characters.
 
 - For example, the beauty of `"abaacc"` is $3 - 1 = 2$.
 
 Given a string `s`, return *the sum of **beauty** of all of its substrings.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given a string `s`, return *the sum of **beauty** of all of its substrings.*
 
 - **Input:** `s = "aabcbaa"`
 - **Output:** `17`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le ^ 500$
 

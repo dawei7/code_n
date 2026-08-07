@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. In one operation, you may do the following:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** integer array `nums`. In one operation, you may do
 The operation is done on `nums` as many times as possible.
 
 Return *a **0-indexed** integer array *`answer`* of size *`2`* where *$\text{answer}[0]$* is the number of pairs that are formed and *$\text{answer}[1]$* is the number of leftover integers in *`nums`* after doing the operation as many times as possible*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ No more pairs can be formed. A total of 1 pair has been formed, and there are 0 
 - **Input:** `nums = [0]`
 - **Output:** `[0,1]`
 - **Explanation:** No pairs can be formed, and there is 1 number leftover in nums.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

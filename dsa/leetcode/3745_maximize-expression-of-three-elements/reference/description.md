@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Choose three elements `a`, `b`, and `c` from `nums` at **distinct** indices such that the value of the expression $a + b - c$ is maximized.
 
 Return an integer denoting the **maximum possible value** of this expression.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ The same index cannot fill two roles. Duplicate values at separate indices remai
 
 Return the maximum value of $a + b - c$ over all choices of three distinct indices.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ We can choose $a = 4$, $b = 5$, and $c = 1$. The expression value is $4 + 5 - 1 
 We can choose $a = 5$, $b = 4$, and $c = -2$. The expression value is $5 + 4 - (-2) = 11$, which is the maximum possible.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array of integers `envelopes` where $\text{envelopes}[i] = [w_{i}, h_{i}]$ represents the width and the height of an envelope.
 
@@ -6,8 +6,7 @@ One envelope can fit into another if and only if both the width and height of on
 
 Return *the maximum number of envelopes you can Russian doll (i.e., put one inside the other)*.
 
-**Note:** You cannot rotate an envelope.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +16,11 @@ Return *the maximum number of envelopes you can Russian doll (i.e., put one insi
 
 Return the maximum length of a chain in which both dimensions increase strictly from each inner envelope to the next outer envelope.
 
-### Examples
+### 3. Note
+
+You cannot rotate an envelope.
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,7 +31,8 @@ Return the maximum length of a chain in which both dimensions increase strictly 
 
 - **Input:** $envelopes = [[1,1],[1,1],[1,1]]$
 - **Output:** `1`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{envelopes.length} \le 10^{5}$
 

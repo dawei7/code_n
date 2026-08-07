@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of integers between 1 and 3, and a **binary** array `locked` of the same size.
 
@@ -7,11 +7,12 @@ We consider `nums` **sortable** if it can be sorted using adjacent swaps, where 
 In one operation, you can unlock any index `i` by setting $\text{locked}[i]$ to 0.
 
 Return the **minimum** number of operations needed to make `nums` **sortable**. If it is not possible to make `nums` sortable, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -63,7 +64,8 @@ If we unlock indices 2 and 5, we can sort `nums` using the following swaps:
 Even if all indices are unlocked, it can be shown that `nums` is not sortable.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array `heights` of `n` integers representing the number of bricks in `n` consecutive towers. Your task is to remove some bricks to form a **mountain-shaped** tower arrangement. In this arrangement, the tower heights are non-decreasing, reaching a maximum peak value with one or multiple consecutive towers and then non-increasing.
 
 Return the **maximum possible sum** of heights of a mountain-shaped tower arrangement.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ We remove some bricks to make $heights = [3,3,3,9,2,2]$, the peak is at index 3.
 We remove some bricks to make $heights = [2,2,5,5,2,2]$, the peak is at index 2 or 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{heights.length} \le 10^{3}$
 

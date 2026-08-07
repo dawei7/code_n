@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 For a string `sequence`, a string `word` is **`k`-repeating** if `word` concatenated `k` times is a substring of `sequence`. The `word`'s **maximum `k`-repeating value** is the highest value `k` where `word` is `k`-repeating in `sequence`. If `word` is not a substring of `sequence`, `word`'s maximum `k`-repeating value is `0`.
 
 Given strings `sequence` and `word`, return *the **maximum `k`-repeating value** of `word` in `sequence`*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Given strings `sequence` and `word`, return *the **maximum `k`-repeating value**
 - **Input:** $sequence = "ababc", word = "ac"$
 - **Output:** `0`
 - **Explanation:** "ac" is not a substring in "ababc".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sequence.length} \le 100$
 

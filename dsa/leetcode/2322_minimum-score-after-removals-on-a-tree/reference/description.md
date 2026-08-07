@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected connected tree with `n` nodes labeled from `0` to $n - 1$ and $n - 1$ edges.
 
@@ -13,12 +13,13 @@ Remove two **distinct** edges of the tree to form three connected components. Fo
 - For example, say the three components have the node values: `[4,5,7]`, `[1,9]`, and `[3,3,3]`. The three XOR values are $4 ^ 5 ^ 7 = <u>**6**</u>$, $1 ^ 9 = <u>**8**</u>$, and $3 ^ 3 ^ 3 = <u>**3**</u>$. The largest XOR value is `8` and the smallest XOR value is `3`. The score is then $8 - 3 = 5$.
 
 Return *the **minimum** score of any possible pair of edge removals on the given tree*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ It can be shown that no other pair of removals will obtain a smaller score than 
 - The 3^rd component has nodes [2,5] with values [2,2]. Its XOR value is 2 ^ 2 = 0.
 The score is the difference between the largest and smallest XOR value which is 0 - 0 = 0.
 We cannot obtain a smaller score than 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

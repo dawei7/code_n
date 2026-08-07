@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `n x n` integer matrix `grid` where each value $\text{grid}[i][j]$ represents the elevation at that point `(i, j)`.
 
@@ -7,12 +7,13 @@ It starts raining, and water gradually rises over time. At time `t`, the water l
 You can swim from a square to another 4-directionally adjacent square if and only if the elevation of both squares individually are at most `t`. You can swim infinite distances in zero time. Of course, you must stay within the boundaries of the grid during your swim.
 
 Return *the minimum time until you can reach the bottom right square *$(n - 1, n - 1)$* if you start at the top left square *`(0, 0)`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ When the depth of water is 3, we can swim anywhere inside the grid.
 - **Output:** `16`
 - **Explanation:** The final route is shown.
 We need to wait until time 16 so that (0, 0) and (4, 4) are connected.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length}$
 

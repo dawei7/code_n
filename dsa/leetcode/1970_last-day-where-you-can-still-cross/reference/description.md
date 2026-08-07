@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **1-based** binary matrix where `0` represents land and `1` represents water. You are given integers `row` and `col` representing the number of rows and columns in the matrix, respectively.
 
@@ -7,12 +7,13 @@ Initially on day `0`, the **entire** matrix is **land**. However, each day a new
 You want to find the **last** day that it is possible to walk from the **top** to the **bottom** by only walking on land cells. You can start from **any** cell in the top row and end at **any** cell in the bottom row. You can only travel in the** four** cardinal directions (left, right, up, and down).
 
 Return *the **last** day where it is possible to walk from the **top** to the **bottom** by only walking on land cells*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The last day where it is possible to cross from top to bottom is on day 1.
 - **Output:** `3`
 - **Explanation:** The above image depicts how the matrix changes each day starting from day 0.
 The last day where it is possible to cross from top to bottom is on day 3.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le row, col \le 2 * 10^{4}$
 

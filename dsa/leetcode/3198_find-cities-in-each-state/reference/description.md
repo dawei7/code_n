@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `cities`
 
@@ -62,10 +62,12 @@ cities table:
 
 - **Texas:** All cities ("Austin", "Dallas", "Houston") are listed in a comma-separated string.
 
-**Note:** The output table is ordered by the state name in ascending order.
-
-</div>
-
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
+
+### 3. Note
+
+The output table is ordered by the state name in ascending order.
+
+</div>

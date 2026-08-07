@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree with **unique** values, and an integer `start`. At minute `0`, an **infection** starts from the node with value `start`.
 
@@ -9,12 +9,13 @@ Each minute, a node becomes infected if:
 - The node is adjacent to an infected node.
 
 Return *the number of minutes needed for the entire tree to be infected.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ It takes 4 minutes for the whole tree to be infected so we return 4.
 - **Input:** `root = [1], start = 1`
 - **Output:** `0`
 - **Explanation:** At minute 0, the only node in the tree is infected so we return 0.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

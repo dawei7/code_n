@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a queue of integers, you need to retrieve the first unique integer in the queue.
 
@@ -9,7 +9,8 @@ Implement the `FirstUnique` class:
 - `int showFirstUnique()` returns the value of **the first unique** integer of the queue, and returns **-1** if there is no such integer.
 
 - `void add(int value)` insert value to the queue.
-### Function Contract
+
+### 2. Function Contract
 
 The source-native object exposes these operations:
 
@@ -28,7 +29,7 @@ Let $n = \lvert\texttt{nums}\rvert$ and let $q$ be the number of calls after con
 
 Return one result per operation. Construction and `add` produce `null`; each `showFirstUnique` entry produces the requested integer or `-1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -74,7 +75,8 @@ FirstUnique firstUnique = new FirstUnique([809]);
 firstUnique.showFirstUnique(); // return 809
 firstUnique.add(809);          // the queue is now [809,809]
 firstUnique.showFirstUnique(); // return -1
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

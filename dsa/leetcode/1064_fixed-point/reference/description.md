@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given an array of distinct integers `arr`, where `arr` is sorted in **ascending order**, return the smallest index `i` that satisfies $\text{arr}[i] = i$. If there is no such index, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $N = \lvert\texttt{arr}\rvert$. Indices are zero-based, so the positions ran
 
 - The smallest index `i` such that $\text{arr}[i] = i$, or `-1` when no such index exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Let $N = \lvert\texttt{arr}\rvert$. Indices are zero-based, so the positions ran
 - **Input:** `arr = [-10,-5,3,4,7,9]`
 - **Output:** `-1`
 - **Explanation:** There is no such i that arr[i] == i, thus the output is -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} < 10^{4}$
 

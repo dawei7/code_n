@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `nums`, return the **maximum** possible sum of an strictly increasing subarray in* *`nums`.
 
 A subarray is defined as a contiguous sequence of numbers in an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A subarray is defined as a contiguous sequence of numbers in an array.
 - **Input:** `nums = [12,17,15,13,10,11,12]`
 - **Output:** `33`
 - **Explanation:** [10,11,12] is the ascending subarray with the maximum sum of 33.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

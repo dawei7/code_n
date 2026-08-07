@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given the `root` of a binary tree with **unique values**.
 
@@ -7,12 +7,13 @@ In one operation, you can choose any two nodes **at the same level** and swap th
 Return *the minimum number of operations needed to make the values at each level sorted in a **strictly increasing order***.
 
 The **level** of a node is the number of edges along the path between it and the root node*.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ It can be proven that 3 is the minimum number of operations needed.
 - **Input:** `root = [1,2,3,4,5,6]`
 - **Output:** `0`
 - **Explanation:** Each level is already sorted in increasing order so return 0.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

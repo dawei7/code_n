@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D array `events` which represents a sequence of events where a child pushes a series of buttons on a keyboard.
 
@@ -9,12 +9,13 @@ Each $\text{events}[i] = [\text{index}_{i}, \text{time}_{i}]$ indicates that the
 - The time taken to press a button is the difference in time between consecutive button presses. The time for the first button is simply the time at which it was pressed.
 
 Return the `index` of the button that took the **longest** time to push. If multiple buttons have the same longest time, return the button with the **smallest** `index`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Return the `index` of the button that took the **longest** time to push. If mult
 - Button with index 1 is pressed at time 7, so it took $7 - 5 = 2$ units of time.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{events.length} \le 1000$
 

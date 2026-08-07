@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 An undirected graph of `n` nodes is defined by `edgeList`, where $\text{edgeList}[i] = [u_{i}, v_{i}, \text{dis}_{i}]$ denotes an edge between nodes $u_{i}$ and $v_{i}$ with distance $\text{dis}_{i}$. Note that there may be **multiple** edges between two nodes.
 
 Given an array `queries`, where $\text{queries}[j] = [p_{j}, q_{j}, \text{limit}_{j}]$, your task is to determine for each $\text{queries}[j]$ whether there is a path between $p_{j}$ and $q_{j}$_ such that each edge on the path has a distance **strictly less than** $\text{limit}_{j}$ .
 
 Return *a **boolean array** *`answer`*, where *$\text{answer.length} = \text{queries.length}$ *and the *$$j^{\text{th}}$$ *value of *`answer` *is *`true`* if there is a path for *$\text{queries}[j]$* is *`true`*, and *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ For the second query, there is a path (0 -> 1 -> 2) of two edges with distances 
 - **Input:** $n = 5, edgeList = [[0,1,10],[1,2,5],[2,3,9],[3,4,13]], queries = [[0,4,14],[1,4,13]]$
 - **Output:** `[true,false]`
 - **Explanation:** The above figure shows the given graph.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

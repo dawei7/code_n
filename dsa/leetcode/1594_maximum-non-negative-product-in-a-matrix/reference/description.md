@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `m x n` matrix `grid`. Initially, you are located at the top-left corner `(0, 0)`, and in each step, you can only **move right or down** in the matrix.
 
@@ -7,12 +7,13 @@ Among all possible paths starting from the top-left corner `(0, 0)` and ending i
 Return the *maximum non-negative product **modulo** *$10^{9} + 7$. *If the maximum product is **negative**, return *`-1`.
 
 Notice that the modulo is performed after getting the maximum product.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Notice that the modulo is performed after getting the maximum product.
 - **Input:** `grid = [[1,3],[0,-4]]`
 - **Output:** `0`
 - **Explanation:** Maximum non-negative product is shown (1 * 0 * -4 = 0).
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

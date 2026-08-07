@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting only of the characters `'a'`, `'b'`, and `'c'`.
 
 A **substring** of `s` is called **balanced** if all **distinct** characters in the **substring** appear the **same** number of times.
 
 Return the **length of the longest balanced substring** of `s`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Only positive frequencies inside the chosen contiguous interval are compared. A 
 
 Return the maximum length of a balanced substring. At least one character can always be chosen, so the answer is at least `1`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ The longest balanced substring is `"abc"` because all distinct characters `'a'`,
 One of the longest balanced substrings is `"ab"` because both distinct characters `'a'` and `'b'` each appear exactly 1 time. Another longest balanced substring is `"ba"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, and an integer `k`.
 
@@ -14,8 +14,7 @@ After processing all elements, `val` is considered **equal** to `k` only if its 
 
 Return the count of **distinct** sequences of choices that result in $val = k$.
 
-**Note:** Division is rational (exact), not integer division. For example, $2 / 4 = 1 / 2$.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +29,11 @@ Let $N=\lvert\texttt{nums}\rvert$. Represent a reachable rational value by its s
 
 Return the number of distinct length-$N$ action sequences whose final rational value is exactly `k`.
 
-### Examples
+### 3. Note
+
+Division is rational (exact), not integer division. For example, $2 / 4 = 1 / 2$.
+
+### 4. Examples
 
 #### Example 1
 
@@ -152,7 +155,8 @@ The following 3 distinct sequences of choices result in $val = k$:
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 19$
 

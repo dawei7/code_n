@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `capacity`.
 
@@ -9,7 +9,8 @@ A subarray `capacity[l..r]` is considered **stable** if:
 - The **first** and **last** elements are each equal to the **sum** of all elements **strictly between** them (i.e., $\text{capacity}[l] = \text{capacity}[r] = capacity[l + 1] + capacity[l + 2] + ... + capacity[r - 1]$).
 
 Return an integer denoting the number of **stable subarrays**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Each candidate is a nonempty contiguous subarray identified by inclusive endpoin
 
 Return the integer count of all endpoint pairs `(l, r)` whose subarray satisfies both stability conditions. Overlapping and nested stable subarrays are counted separately.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ No subarray of length at least 3 has equal first and last elements, so the answe
 `[-4,4,0,0,-8,-4]` is stable because the first and last elements are both -4, and the sum of the elements strictly between them is $4 + 0 + 0 + (-8) = -4$
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{capacity.length} \le 10^{5}$
 

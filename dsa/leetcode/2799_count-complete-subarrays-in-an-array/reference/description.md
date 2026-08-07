@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers.
 
@@ -9,12 +9,13 @@ We call a subarray of an array **complete** if the following condition is satisf
 Return *the number of **complete** subarrays*.
 
 A **subarray** is a contiguous non-empty part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ A **subarray** is a contiguous non-empty part of an array.
 - **Input:** `nums = [5,5,5,5]`
 - **Output:** `10`
 - **Explanation:** The array consists only of the integer 5, so any subarray is complete. The number of subarrays that we can choose is 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

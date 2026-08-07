@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. In one move, you can pick an index `i` where $0 \le i < \text{nums.length}$ and increment $\text{nums}[i]$ by `1`.
 
 Return *the minimum number of moves to make every value in *`nums`* **unique***.
 
 The test cases are generated so that the answer fits in a 32-bit integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ The test cases are generated so that the answer fits in a 32-bit integer.
 - **Output:** `6`
 - **Explanation:** After 6 moves, the array could be [3, 4, 1, 2, 5, 7].
 It can be shown that it is impossible for the array to have all unique values with 5 or less moves.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

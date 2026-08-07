@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$ represents the coordinates of the $$i^{\text{th}}$$ point. All coordinates in `points` are **distinct**.
 
@@ -9,7 +9,8 @@ Activation continues until no additional points can be activated.
 You may add **one additional** point at any integer coordinate `(x, y)` not already present in `points`. Activation begins by **activating** this **newly added point**.
 
 Return an integer denoting the **maximum** number of points that can be activated, including the newly added point.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ Let $n=\lvert\texttt{points}\rvert$.
 
 Return the largest number of activated points achievable after adding and initially activating one valid point. Include the newly added point in the count.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -79,7 +80,8 @@ Adding and activating a point such as `(2, 1)` causes activations:
 Thus, the activated points are `(2, 1)`, `(2, 3)`, `(2, 2)`, `(1, 1)`, so 4 points in total.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 10^{5}$
 

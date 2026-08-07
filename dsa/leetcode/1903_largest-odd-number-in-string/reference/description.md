@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given a string `num`, representing a large integer. Return *the **largest-valued odd** integer (as a string) that is a **non-empty substring** of *`num`*, or an empty string *`""`* if no odd integer exists*.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** $num = "35427"$
 - **Output:** `"35427"`
 - **Explanation:** "35427" is already an odd number.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{num.length} \le 10^{5}$
 

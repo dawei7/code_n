@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array of strings `words` and a 2D array of integers `queries`.
 
@@ -6,13 +6,16 @@ Each query $\text{queries}[i] = [l_{i}, r_{i}]$ asks us to find the number of st
 
 Return *an array *`ans`* of size *`queries.length`*, where *$\text{ans}[i]$* is the answer to the *`i`^th* query*.
 
-**Note** that the vowel letters are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the vowel letters are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,7 +31,8 @@ We return [2,3,0].
 - **Input:** $words = ["a","e","i"], queries = [[0,2],[0,1],[2,2]]$
 - **Output:** `[3,2,1]`
 - **Explanation:** Every string satisfies the conditions, so we return [3,2,1].
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{words.length} \le 10^{5}$
 

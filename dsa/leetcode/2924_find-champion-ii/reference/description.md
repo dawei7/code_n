@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` teams numbered from `0` to $n - 1$ in a tournament; each team is also a node in a **DAG**.
 
@@ -10,17 +10,18 @@ Team `a` will be the **champion** of the tournament if there is no team `b` that
 
 Return *the team that will be the **champion** of the tournament if there is a **unique** champion, otherwise, return *`-1`*.*
 
-**Notes**
-
-- A **cycle** is a series of nodes $a_{1}, a_{2}, ..., a_{n}, a_{n}+1$ such that node $a_{1}$ is the same node as node $a_{n}+1$, the nodes $a_{1}, a_{2}, ..., a_{n}$ are distinct, and there is a directed edge from the node $a_{i}$ to node $a_{i}+1$ for every `i` in the range `[1, n]`.
-
-- A **DAG** is a directed graph that does not have any **cycle**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+- A **cycle** is a series of nodes $a_{1}, a_{2}, ..., a_{n}, a_{n}+1$ such that node $a_{1}$ is the same node as node $a_{n}+1$, the nodes $a_{1}, a_{2}, ..., a_{n}$ are distinct, and there is a directed edge from the node $a_{i}$ to node $a_{i}+1$ for every `i` in the range `[1, n]`.
+
+- A **DAG** is a directed graph that does not have any **cycle**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return *the team that will be the **champion** of the tournament if there is a *
 - **Input:** $n = 4, edges = [[0,2],[1,3],[1,2]]$
 - **Output:** `-1`
 - **Explanation:** Team 2 is weaker than team 0 and team 1. Team 3 is weaker than team 1. But team 1 and team 0 are not weaker than any other teams. So the answer is -1.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n \le 100$
 

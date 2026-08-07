@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two integers `num` and `k`, consider a set of positive integers with the following properties:
 
@@ -13,12 +13,13 @@ Note:
 - The set can contain multiple instances of the same integer, and the sum of an empty set is considered `0`.
 
 - The **units digit** of a number is the rightmost digit of the number.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It can be shown that 2 is the minimum possible size of a valid set.
 - **Input:** $num = 0, k = 7$
 - **Output:** `0`
 - **Explanation:** The sum of an empty set is considered 0.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le num \le 3000$
 

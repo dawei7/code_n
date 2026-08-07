@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `maxC`.
 
@@ -10,19 +10,20 @@ You may modify **at most** `maxC` elements of the array to any integer.
 
 Return the **minimum** possible stability factor of the array after at most `maxC` modifications. If no stable subarray remains, return 0.
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - The **highest common factor (HCF)** of an array is the largest integer that evenly divides all the array elements.
 
 - A **subarray** of length 1 is stable if its only element is greater than or equal to 2, since $HCF([x]) = x$.
 
 <div class="notranslate" style="all: initial;"> </div>
-### Function Contract
 
-- `n`: Input parameter.
-- Returns expected result.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -75,7 +76,8 @@ Return the **minimum** possible stability factor of the array after at most `max
 - Since $maxC = 1$, the stability factor of 2 cannot be reduced due to two separate stable subarrays. Thus, the minimum possible stability factor is 2.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string `date` representing a <a href="https://en.wikipedia.org/wiki/Gregorian_calendar" target="_blank">Gregorian calendar</a> date formatted as `YYYY-MM-DD`, return *the day number of the year*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -17,7 +18,8 @@ Given a string `date` representing a <a href="https://en.wikipedia.org/wiki/Greg
 
 - **Input:** $date = "2019-02-10"$
 - **Output:** `41`
-### Constraints
+
+### 4. Constraints
 
 - $\text{date.length} = 10$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of nodes in a graph, labeled from 0 to $n - 1$.
 
@@ -10,13 +10,16 @@ You are also given a 2D integer array `queries`. For each $\text{queries}[i] = [
 
 Return an array `answer`, where $\text{answer}[i]$ is the result of the $$i^{\text{th}}$$ query.
 
-**Note:** The edges between the nodes are unweighted.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+The edges between the nodes are unweighted.
+
+### 4. Examples
 
 #### Example 1
 
@@ -120,7 +123,8 @@ There are no edges between any two nodes because:
 Thus, no node can reach any other node, and the output is `[0, -1, -1]`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

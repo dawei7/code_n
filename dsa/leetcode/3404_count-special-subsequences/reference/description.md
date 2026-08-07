@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of positive integers.
 
@@ -9,12 +9,13 @@ A **special subsequence** is defined as a subsequence of length 4, represented b
 - There must be *at least* **one** element between each pair of indices. In other words, $q - p > 1$, $r - q > 1$ and $s - r > 1$.
 
 Return the *number* of different **special** **subsequences** in `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -78,7 +79,8 @@ There are three special subsequences in `nums`.
 	</li>
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $7 \le \text{nums.length} \le 1000$
 

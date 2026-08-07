@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `maximumHeight`, where $\text{maximumHeight}[i]$ denotes the **maximum** height the $$i^{\text{th}}$$ tower can be assigned.
 
@@ -9,12 +9,13 @@ Your task is to assign a height to each tower so that:
 - No two towers have the same height.
 
 Return the **maximum** possible total sum of the tower heights. If it's not possible to assign heights, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ We can assign heights in the following way: `[15, 10]`.
 It's impossible to assign positive heights to each index so that no two towers have the same height.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{maximumHeight.length} \le 10^{5}$
 

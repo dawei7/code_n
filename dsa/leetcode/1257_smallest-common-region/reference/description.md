@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given some lists of `regions` where the first region of each list **directly** contains all other regions in that list.
 
@@ -9,7 +9,8 @@ Naturally, if a region `x` contains (either *directly* or *indirectly*) another 
 Given two regions: `region1` and `region2`, return *the smallest region that contains both of them*.
 
 It is guaranteed the smallest region exists.
-### Function Contract
+
+### 2. Function Contract
 
 ### Inputs
 
@@ -29,7 +30,7 @@ be the total number of region-name occurrences across all lists.
 
 Return the smallest region that contains both queried regions. Containment includes the region itself.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ region2 = "New York"
 
 - **Input:** $regions = [["Earth", "North America", "South America"],["North America", "United States", "Canada"],["United States", "New York", "Boston"],["Canada", "Ontario", "Quebec"],["South America", "Brazil"]], region1 = "Canada", region2 = "South America"$
 - **Output:** `"Earth"`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{regions.length} \le 10^{4}$
 

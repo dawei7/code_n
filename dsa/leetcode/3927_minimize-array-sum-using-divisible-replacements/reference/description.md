@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -9,7 +9,8 @@ You can perform the following operation any number of times:
 - Replace $\text{nums}[a]$ with $\text{nums}[b]$.
 
 Return the **minimum** possible sum of the array after performing any number of operations.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ At any moment, position `a` may be assigned the current value at position `b` ex
 
 Return the minimum possible sum of all array elements. The result may exceed the range of a 32-bit signed integer.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,7 +74,8 @@ Return the minimum possible sum of all array elements. The result may exceed the
 - Hence, no operation can be performed. The sum remains $7 + 5 + 9 = 21$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` and a **0-indexed** array `queries`.
 
@@ -13,11 +13,12 @@ We start processing queries in the given order; for each query, we do the follow
 - Otherwise, we choose either the first **or** the last element of `nums` if it is **greater than or equal to** $\text{queries}[i]$, and we **remove** the chosen element from `nums`.
 
 Return *the **maximum** number of queries that can be processed by doing the operation optimally.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Then we can process the queries as follows:
 3- We can not process any more queries since nums is empty.
 Hence, the answer is 2.
 It can be shown that we can't process more than 2 queries.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

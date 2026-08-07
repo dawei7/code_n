@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of integers `nums`, calculate the **pivot index** of this array.
 
@@ -7,12 +7,13 @@ The **pivot index** is the index where the sum of all the numbers **strictly** t
 If the index is on the left edge of the array, then the left sum is `0` because there are no elements to the left. This also applies to the right edge of the array.
 
 Return *the **leftmost pivot index***. If no such index exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,10 +37,13 @@ There is no index that satisfies the conditions in the problem statement.
 The pivot index is 0.
 Left sum = 0 (no elements to the left of index 0)
 Right sum = nums[1] + nums[2] = 1 + -1 = 0
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 
 - $-1000 \le \text{nums}[i] \le 1000$
 
-**Note:** This question is the same as 1991: <a href="https://leetcode.com/problems/find-the-middle-index-in-array/" target="_blank">https://leetcode.com/problems/find-the-middle-index-in-array/</a>
+### 5. Note
+
+This question is the same as 1991: <a href="https://leetcode.com/problems/find-the-middle-index-in-array/" target="_blank">https://leetcode.com/problems/find-the-middle-index-in-array/</a>

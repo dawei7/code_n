@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and a 2D integer array `queries`.
 
@@ -9,12 +9,13 @@ $\text{queries}[i] = [u_{i}, v_{i}]$ represents the addition of a new **unidirec
 There are no two queries such that $\text{queries}[i][0] < \text{queries}[j][0] < \text{queries}[i][1] < \text{queries}[j][1]$.
 
 Return an array `answer` where for each `i` in the range `[0, queries.length - 1]`, $\text{answer}[i]$ is the *length of the shortest path* from city `0` to city $n - 1$ after processing the **first **$i + 1$ queries.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ After the addition of the road from 0 to 3, the length of the shortest path from
 After the addition of the road from 0 to 2, the length of the shortest path remains 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

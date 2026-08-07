@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are an infinite amount of bags on a number line, one bag for each coordinate. Some of these bags contain coins.
 
@@ -9,12 +9,13 @@ The segments that `coins` contain are non-overlapping.
 You are also given an integer `k`.
 
 Return the **maximum** amount of coins you can obtain by collecting `k` consecutive bags.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Selecting bags at positions `[3, 4, 5, 6]` gives the maximum number of coins: $2
 Selecting bags at positions `[1, 2]` gives the maximum number of coins: $3 + 3 = 6$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{coins.length} \le 10^{5}$
 

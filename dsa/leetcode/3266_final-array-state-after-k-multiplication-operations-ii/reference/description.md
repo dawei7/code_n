@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`, an integer `k`, and an integer `multiplier`.
 
@@ -11,12 +11,13 @@ You need to perform `k` operations on `nums`. In each operation:
 After the `k` operations, apply **modulo** $10^{9} + 7$ to every value in `nums`.
 
 Return an integer array denoting the *final state* of `nums` after performing all `k` operations and then applying the modulo.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -90,7 +91,8 @@ Return an integer array denoting the *final state* of `nums` after performing al
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the number of **reverse pairs** in the array*.
 
@@ -7,12 +7,13 @@ A **reverse pair** is a pair `(i, j)` where:
 - $0 \le i < j < \text{nums.length}$ and
 
 - $\text{nums}[i] > 2 * \text{nums}[j]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A **reverse pair** is a pair `(i, j)` where:
 (1, 4) --> nums[1] = 4, nums[4] = 1, 4 > 2 * 1
 (2, 4) --> nums[2] = 3, nums[4] = 1, 3 > 2 * 1
 (3, 4) --> nums[3] = 5, nums[4] = 1, 5 > 2 * 1
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5 * 10^{4}$
 

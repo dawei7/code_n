@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an array of positive integers `nums`, remove the **smallest** subarray (possibly **empty**) such that the **sum** of the remaining elements is divisible by `p`. It is **not** allowed to remove the whole array.
 
 Return *the length of the smallest subarray that you need to remove, or *`-1`* if it's impossible*.
 
 A **subarray** is defined as a contiguous block of elements in the array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ A **subarray** is defined as a contiguous block of elements in the array.
 - **Input:** `nums = [1,2,3], p = 3`
 - **Output:** `0`
 - **Explanation:** Here the sum is 6. which is already divisible by 3. Thus we do not need to remove anything.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

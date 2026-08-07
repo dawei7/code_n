@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame students
@@ -36,7 +36,7 @@ Input:**
 **Student Ulysses has student_id = 101, we select the name and age.
 ```
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

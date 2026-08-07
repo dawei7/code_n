@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `heights` of size `n`, where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ block in an exercise routine.
 
@@ -10,8 +10,7 @@ You start on the ground (height 0) and **must** jump onto each block **exactly o
 
 Return the **maximum** total calories you can burn by selecting an optimal jumping sequence.
 
-**Note:** Once you jump onto the first block, you cannot return to the ground.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +22,11 @@ The order in the input does not restrict the visiting order. The ground at heigh
 
 Return the greatest possible sum of squared height differences over the initial ground-to-block jump and the subsequent $n - 1$ block-to-block jumps.
 
-### Examples
+### 3. Note
+
+Once you jump onto the first block, you cannot return to the ground.
+
+### 4. Examples
 
 #### Example 1
 
@@ -83,7 +86,8 @@ The optimal sequence is `[3, 3]`.
 Total calories burned = $9 + 0 = 9$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le n = \text{heights.length} \le 10^{5}$
 

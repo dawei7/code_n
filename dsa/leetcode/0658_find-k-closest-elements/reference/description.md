@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **sorted** integer array `arr`, two integers `k` and `x`, return the `k` closest integers to `x` in the array. The result should also be sorted in ascending order.
 
@@ -7,12 +7,13 @@ An integer `a` is closer to `x` than an integer `b` if:
 - $|a - x| < |b - x|$, or
 
 - $|a - x| = |b - x|$ and `a < b`
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ An integer `a` is closer to `x` than an integer `b` if:
 **Output:** [1,1,2,3]
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{arr.length}$
 

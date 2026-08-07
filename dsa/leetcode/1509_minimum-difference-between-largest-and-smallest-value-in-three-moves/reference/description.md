@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 In one move, you can choose one element of `nums` and change it to **any value**.
 
 Return *the minimum difference between the largest and smallest value of `nums` **after performing at most three moves***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ In the first move, change 100 to 7. nums becomes [3,7,20].
 In the second move, change 20 to 7. nums becomes [3,7,7].
 In the third move, change 3 to 7. nums becomes [7,7,7].
 After performing 3 moves, the difference between the minimum and maximum is 7 - 7 = 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

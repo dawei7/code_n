@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected graph with `n` nodes labeled from 0 to $n - 1$. Node `i` has a **value** of $\text{nums}[i]$, which is either 0 or 1. The edges of the graph are given by a 2D array `edges` where $\text{edges}[i] = [u_{i}, v_{i}]$ represents an edge between node $u_{i}$ and node $v_{i}$.
 
@@ -13,7 +13,8 @@ Return an integer representing the number of **non-empty** subsets `s` of nodes 
 - The **induced subgraph** of `s` is **connected**.
 
 - The **sum** of node **values** in `s` is **even**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ Let $n = \lvert\texttt{nums}\rvert$ denote the number of graph nodes.
 
 Return the number of non-empty node subsets whose induced subgraph is connected and whose node-value sum is even.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -120,7 +121,8 @@ Return the number of non-empty node subsets whose induced subgraph is connected 
 	</tbody>
 </table>
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 13$
 

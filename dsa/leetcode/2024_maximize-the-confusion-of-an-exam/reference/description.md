@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A teacher is writing a test with `n` true/false questions, with `'T'` denoting true and `'F'` denoting false. He wants to confuse the students by **maximizing** the number of **consecutive** questions with the **same** answer (multiple trues or multiple falses in a row).
 
@@ -7,12 +7,13 @@ You are given a string `answerKey`, where $\text{answerKey}[i]$ is the original 
 - Change the answer key for any question to `'T'` or `'F'` (i.e., set $\text{answerKey}[i]$ to `'T'` or `'F'`).
 
 Return *the **maximum** number of consecutive* `'T'`s or `'F'`s *in the answer key after performing the operation at most* `k` *times*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ In both cases, there are three consecutive 'F's.
 - **Explanation:** We can replace the first 'F' to make answerKey = "<u>TTTTT</u>FTT"
 Alternatively, we can replace the second 'F' to make answerKey = "TTF<u>TTTTT</u>".
 In both cases, there are five consecutive 'T's.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{answerKey.length}$
 

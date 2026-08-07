@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **1-indexed** array of integers `numbers` that is already ***sorted in non-decreasing order***, find two numbers such that they add up to a specific `target` number. Let these two numbers be $numbers[\text{index}_{1}]$ and $numbers[\text{index}_{2}]$ where $1 \le \text{index}_{1} < \text{index}_{2} \le \text{numbers.length}$.
 
@@ -7,7 +7,8 @@ Return* the indices of the two numbers *$\text{index}_{1}$* and *$\text{index}_{
 The tests are generated such that there is **exactly one solution**. You **may not** use the same element twice.
 
 Your solution must use only constant extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Your solution must use only constant extra space.
 
 Return the unique pair of 1-based indices `[index1, index2]`, with `index1 < index2`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return the unique pair of 1-based indices `[index1, index2]`, with `index1 < ind
 - **Input:** $numbers = [<u>-1</u>,<u>0</u>], target = -1$
 - **Output:** `[1,2]`
 - **Explanation:** The sum of -1 and 0 is -1. Therefore index_1 = 1, index_2 = 2. We return [1, 2].
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{numbers.length} \le 3 * 10^{4}$
 

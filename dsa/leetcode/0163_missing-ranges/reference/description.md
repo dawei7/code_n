@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an inclusive range `[lower, upper]` and a **sorted unique** integer array `nums`, where all elements are within the inclusive range.
 
 A number `x` is considered **missing** if `x` is in the range `[lower, upper]` and `x` is not in `nums`.
 
 Return *the **shortest sorted** list of ranges that **exactly covers all the missing numbers***. That is, no element of `nums` is included in any of the ranges, and each missing number is covered by one of the ranges.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return *the **shortest sorted** list of ranges that **exactly covers all the mis
 
 Return $List[\text{List}[int]]$ representing the shortest sorted list of ranges `[a, b]` covering all missing numbers.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return $List[\text{List}[int]]$ representing the shortest sorted list of ranges 
 - **Input:** `nums = [-1], lower = -1, upper = -1`
 - **Output:** `[]`
 - **Explanation:** There are no missing ranges since there are no missing numbers.
-### Constraints
+
+### 4. Constraints
 
 - $-10^{9} \le lower \le upper \le 10^{9}$
 

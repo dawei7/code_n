@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, find the **maximum** possible **bitwise OR** of a subset of `nums` and return *the **number of different non-empty subsets** with the maximum bitwise OR*.
 
 An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by deleting some (possibly zero) elements of `b`. Two subsets are considered **different** if the indices of the elements chosen are different.
 
 The bitwise OR of an array `a` is equal to $a[0] **OR** a[1] **OR** ... **OR** a[\text{a.length} - 1]$ (**0-indexed**).
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ The bitwise OR of an array `a` is equal to $a[0] **OR** a[1] **OR** ... **OR** a
 - [3,2,1,5]
 - [2,5]
 - [2,1,5]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 16$
 

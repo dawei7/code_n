@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A perfectly straight street is represented by a number line. The street has building(s) on it and is represented by a 2D integer array `buildings`, where $\text{buildings}[i] = [\text{start}_{i}, \text{end}_{i}, \text{height}_{i}]$. This means that there is a building with $\text{height}_{i}$ in the **half-closed segment** $[\text{start}_{i}, \text{end}_{i})$.
 
@@ -19,11 +19,12 @@ Given `buildings`, return *the 2D integer array *`street`* as described above (*
 The **average** of `n` elements is the **sum** of the `n` elements divided (**integer division**) by `n`.
 
 A **half-closed segment** `[a, b)` is the section of the number line between points `a` and `b` **including** point `a` and **not including** point `b`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ From 1 to 2, there is only the first building with an average height of 1 / 1 = 
 From 2 to 5, there are no buildings, so it is not included in the output.
 From 5 to 6, there is only the second building with an average height of 1 / 1 = 1.
 We cannot group the segments together because an empty space with no buildings seperates the segments.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{buildings.length} \le 10^{5}$
 

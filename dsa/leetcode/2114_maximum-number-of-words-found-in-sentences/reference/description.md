@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A **sentence** is a list of **words** that are separated by a single space with no leading or trailing spaces.
 
 You are given an array of strings `sentences`, where each $\text{sentences}[i]$ represents a single **sentence**.
 
 Return *the **maximum number of words** that appear in a single sentence*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Thus, the maximum number of words in a single sentence comes from the third sent
 - **Output:** `3`
 - **Explanation:** It is possible that multiple sentences contain the same number of words.
 In this example, the second and third sentences (underlined) have the same number of words.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{sentences.length} \le 100$
 

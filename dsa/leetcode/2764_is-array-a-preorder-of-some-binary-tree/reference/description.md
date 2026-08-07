@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer **2D array** `nodes`, your task is to determine if the given array represents the **preorder** traversal of some **binary** tree.
 
@@ -6,12 +6,15 @@ For each index `i`, $\text{nodes}[i] = [id, parentId]$, where `id` is the id of 
 
 Return `true` *if the given array **represents the preorder traversal of some tree, and* `false` *otherwise.*
 
-**Note:** the **preorder** traversal of a tree is a recursive way to traverse a tree in which we first visit the current node, then we do the preorder traversal for the left child, and finally, we do it for the right child.
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Note
+
+the **preorder** traversal of a tree is a recursive way to traverse a tree in which we first visit the current node, then we do the preorder traversal for the left child, and finally, we do it for the right child.
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ We can show that this is the preorder traversal of the tree, first we visit node
 For the preorder traversal, first we visit node 0, then we do the preorder traversal of the right child which is [1,3,4], but we can see that in the given order, 2 comes between 1 and 3, so, it's not the preorder traversal of the tree.
 
 ![](images/2.png)
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nodes.length} \le 10^{5}$
 

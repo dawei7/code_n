@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Orders`
 
@@ -20,11 +20,12 @@ Write a query to calculate **total** **orders**** **within each **interval**. Ea
 Return* the result table ordered by **interval_no** in **ascending** order.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

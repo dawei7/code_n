@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of digits.
 
 An index `i` is called **good** if there exists a substring of `s` that ends at index `i` and is equal to the decimal representation of `i`.
 
 Return an integer array of all good indices in **increasing order**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ A qualifying substring must be contiguous and must end at the index it represent
 
 Return an integer array containing precisely the good indices in increasing order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -67,7 +68,8 @@ No index has a substring ending at it that matches its decimal representation.
 Therefore, there are no good indices and the result is an empty array.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

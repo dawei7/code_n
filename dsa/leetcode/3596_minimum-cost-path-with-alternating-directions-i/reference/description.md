@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n` representing the number of rows and columns of a grid, respectively.
 
@@ -13,11 +13,12 @@ At each step, you move to an **adjacent** cell, following an alternating pattern
 - On **even-numbered** moves, you must move either** left** or **up**.
 
 Return the **minimum** total cost required to reach $(m - 1, n - 1)$. If it is impossible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,6 +52,7 @@ Return the **minimum** total cost required to reach $(m - 1, n - 1)$. If it is i
 - Thus, the total cost is $1 + 2 = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 10^{6}$

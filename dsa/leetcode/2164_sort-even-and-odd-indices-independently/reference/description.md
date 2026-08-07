@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. Rearrange the values of `nums` according to the following rules:
 
@@ -14,12 +14,13 @@ You are given a **0-indexed** integer array `nums`. Rearrange the values of `num
 	</li>
 
 Return *the array formed after rearranging the values of* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Thus, the array formed after rearranging the values is [2,3,4,1].
 - **Explanation:**
 Since there is exactly one odd index and one even index, no rearrangement of values takes place.
 The resultant array formed is [2,1], which is the same as the initial array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

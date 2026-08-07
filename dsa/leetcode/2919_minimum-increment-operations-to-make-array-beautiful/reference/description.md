@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` having length `n`, and an integer `k`.
 
@@ -11,12 +11,13 @@ An array is considered **beautiful** if, for any **subarray** with a size of `3`
 Return *an integer denoting the **minimum** number of increment operations needed to make *`nums`* **beautiful**.*
 
 A subarray is a contiguous **non-empty** sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Hence, the answer is 2.
 - **Explanation:** The only subarray with a size of 3 or more in this example is [1,1,2].
 The maximum element, 2, is already greater than k = 1, so we don't need any increment operation.
 Hence, the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n = \text{nums.length} \le 10^{5}$
 

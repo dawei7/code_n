@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `licensePlate` and an array of strings `words`, find the **shortest completing** word in `words`.
 
@@ -7,12 +7,13 @@ A **completing** word is a word that **contains all the letters** in `licensePla
 For example, if `licensePlate` = "aBc 12c"`, then it contains letters `'a'`, `'b'` (ignoring case), and `'c'` twice. Possible **completing** words are `"abccdef"`, `"caaacab"`, and `"cbca"`.
 
 Return *the shortest **completing** word in *`words`*.* It is guaranteed an answer exists. If there are multiple shortest **completing** words, return the **first** one that occurs in `words`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Since "steps" is the only word containing all the letters, that is the answer.
 - **Input:** $licensePlate = "1s3 456", words = ["looks","pest","stew","show"]$
 - **Output:** `"pest"`
 - **Explanation:** licensePlate only contains the letter 's'. All the words contain 's', but among these "pest", "stew", and "show" are shortest. The answer is "pest" because it is the word that appears earliest of the 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{licensePlate.length} \le 7$
 

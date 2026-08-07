@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` jobs and `m` workers. You are given three arrays: `difficulty`, `profit`, and `worker` where:
 
@@ -11,12 +11,13 @@ Every worker can be assigned **at most one job**, but one job can be **completed
 - For example, if three workers attempt the same job that pays `$1`, then the total profit will be `$3`. If a worker cannot complete any job, their profit is `$0`.
 
 Return the maximum profit we can achieve after assigning the workers to the jobs.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ Return the maximum profit we can achieve after assigning the workers to the jobs
 
 - **Input:** $difficulty = [85,47,57], profit = [24,66,99], worker = [40,25,25]$
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{difficulty.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters.
 
@@ -10,13 +10,16 @@ You **must** repeatedly perform the following operation while the string `s` has
 
 Return the resulting string after no more operations can be performed.
 
-**Note:** Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+Consider the alphabet as circular, thus `'a'` and `'z'` are consecutive.
+
+### 4. Examples
 
 #### Example 1
 
@@ -62,7 +65,8 @@ Return the resulting string after no more operations can be performed.
 - No further operations are possible. Thus, the resulting string after all possible removals is `"db"`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

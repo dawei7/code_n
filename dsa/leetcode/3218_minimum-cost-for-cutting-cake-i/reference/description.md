@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `m x n` cake that needs to be cut into `1 x 1` pieces.
 
@@ -19,12 +19,13 @@ After the cut, the piece of cake is divided into two distinct pieces.
 The cost of a cut depends only on the initial cost of the line and does not change.
 
 Return the **minimum** total cost to cut the entire cake into `1 x 1` pieces.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ The total cost is $5 + 1 + 1 + 3 + 3 = 13$.
 The total cost is $7 + 4 + 4 = 15$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 20$
 

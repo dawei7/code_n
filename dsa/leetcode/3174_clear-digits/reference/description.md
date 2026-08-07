@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`.
 
@@ -8,13 +8,16 @@ Your task is to remove **all** digits by doing this operation repeatedly:
 
 Return the resulting string after removing all digits.
 
-**Note** that the operation *cannot* be performed on a digit that does not have any non-digit character to its left.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the operation *cannot* be performed on a digit that does not have any non-digit character to its left.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ First, we apply the operation on $s[2]$, and `s` becomes `"c4"`.
 Then we apply the operation on $s[1]$, and `s` becomes `""`.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

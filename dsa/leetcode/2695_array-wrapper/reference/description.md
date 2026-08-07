@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Create a class `ArrayWrapper` that accepts an array of integers in its constructor. This class should have two features:
 
 - When two instances of this class are added together with the `+` operator, the resulting value is the sum of all the elements in both arrays.
 
 - When the `String()` function is called on the instance, it will return a comma separated string surrounded by brackets. For example, `[1,2,3]`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ String(obj); // "[23,98,42,70]"
 const obj1 = new ArrayWrapper([]);
 const obj2 = new ArrayWrapper([]);
 obj1 + obj2; // 0
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums.length} \le 1000$
 

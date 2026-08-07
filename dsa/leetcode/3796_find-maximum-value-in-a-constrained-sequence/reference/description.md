@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`, a 2D integer array `restrictions`, and an integer array `diff` of length $n - 1$. Your task is to construct a sequence of length `n`, denoted by $a[0], a[1], ..., a[n - 1]$, such that it satisfies the following conditions:
 
@@ -13,7 +13,8 @@ You are given an integer `n`, a 2D integer array `restrictions`, and an integer 
 Your goal is to construct a valid sequence that **maximizes** the **largest** value within the sequence while satisfying all the above conditions.
 
 Return an integer denoting the **largest** value present in such an optimal sequence.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +28,7 @@ The constructed sequence is not returned. A restriction is only an upper bound, 
 
 Return the greatest value that can appear in any valid sequence while the maximum over that entire sequence is as large as possible.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Return the greatest value that can appear in any valid sequence while the maximu
 - The maximum value in the sequence is 12.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

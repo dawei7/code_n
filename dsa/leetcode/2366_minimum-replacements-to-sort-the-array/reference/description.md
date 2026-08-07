@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. In one operation you can replace any element of the array with **any two** elements that **sum** to it.
 
 - For example, consider `nums = [5,6,7]`. In one operation, we can replace $\text{nums}[1]$ with `2` and `4` and convert `nums` to `[5,2,4,7]`.
 
 Return *the minimum number of operations to make an array that is sorted in **non-decreasing** order*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ There are 2 steps to sort the array in non-decreasing order. Therefore, we retur
 - **Input:** `nums = [1,2,3,4,5]`
 - **Output:** `0`
 - **Explanation:** The array is already in non-decreasing order. Therefore, we return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

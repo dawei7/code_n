@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 Given three integers `a`, `b`, and `n`, return *the **maximum value** of* $(a XOR x) * (b XOR x)$ *where* $0 \le x < 2^n$.
 
 Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
-**Note** that `XOR` is the bitwise XOR operation.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that `XOR` is the bitwise XOR operation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ It can be shown that 930 is the maximum value of (a XOR x) * (b XOR x) for all 0
 - **Output:** `12`
 - **Explanation:** For x = 5, (a XOR x) = 4 and (b XOR x) = 3. Hence, (a XOR x) * (b XOR x) = 12.
 It can be shown that 12 is the maximum value of (a XOR x) * (b XOR x) for all 0 <= x < 2^n.
-### Constraints
+
+### 5. Constraints
 
 - $0 \le a, b < 2^{50}$
 

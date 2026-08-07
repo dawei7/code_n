@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` consisting of only lowercase English letters. Return *the number of **substrings** in *`s` *that begin and end with the **same** character.*
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ The substring of length 5 that starts and ends with the same letter is: "abaca".
 - **Output:** `1`
 - **Explanation:**
 The substring of length 1 that starts and ends with the same letter is: "a".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

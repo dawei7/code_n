@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Flights`
 
@@ -35,11 +35,12 @@ Write a solution to determine the current status of flight tickets for each pass
 Return the result table ordered by $\text{passenger}_{id}$ *in **ascending order**.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a **browser** of one tab where you start on the `homepage` and you can visit another `url`, get back in the history number of `steps` or move forward in the history number of `steps`.
 
@@ -31,12 +31,13 @@ browserHistory.visit("linkedin.com");     // You are in "facebook.com". Visit "l
 browserHistory.forward(2);                // You are in "linkedin.com", you cannot move forward any steps.
 browserHistory.back(2);                   // You are in "linkedin.com", move back two steps to "facebook.com" then to "google.com". return "google.com"
 browserHistory.back(7);                   // You are in "google.com", you can move back only one step to "leetcode.com". return "leetcode.com"
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le \text{homepage.length} \le 20$
 

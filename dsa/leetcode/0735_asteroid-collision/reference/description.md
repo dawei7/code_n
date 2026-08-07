@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 We are given an array `asteroids` of integers representing asteroids in a row. The indices of the asteroid in the array represent their relative position in space.
 
 For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
 
 Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Find out the state of the asteroids after all collisions. If two asteroids meet,
 - **Input:** $asteroids = [3,5,-6,2,-1,4]​​​​​​​$
 - **Output:** `[-6,2,4]`
 - **Explanation:** The asteroid -6 makes the asteroid 3 and 5 explode, and then continues going left. On the other side, the asteroid 2 destroys -1. Since 2 and 4 are both moving right, they never collide.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{asteroids.length} \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame report
@@ -16,12 +16,13 @@ DataFrame report
 Write a solution to **reshape** the data so that each row represents sales data for a product in a specific quarter.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

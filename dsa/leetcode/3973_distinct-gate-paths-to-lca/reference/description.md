@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected tree rooted at node 0 with `n` nodes numbered from 0 to $n - 1$, represented by an array `parent` where $\text{parent}[i]$ is the parent of node `i`.
 
@@ -36,14 +36,7 @@ For each query, count the number of **distinct** valid ways **modulo** $10^{9} +
 
 After computing the result for all queries, return the **bitwise XOR** of those values.
 
-**Note:**
-
-- Two ways are distinct if the set of gates used **differs** for either Alice or Bob.
-
-- If any person is already at the **LCA**, then the number of ways for them is 1.
-
-- The **lowest common ancestor (LCA)** is defined between two nodes `a` and `b` as the lowest node in a tree that has both `a` and `b` as descendants (where a node is allowed to be a descendant of itself).
-### Function Contract
+### 2. Function Contract
 
 `solve(n, parent, gates, queries) -> int`
 
@@ -62,7 +55,15 @@ Return one integer: the bitwise XOR of the $q$ per-query joint route counts afte
 
 For one query, Alice's and Bob's route counts are independent and are multiplied modulo $10^9 + 7$. A zero-length route from a starting node already equal to the LCA has count one.
 
-### Examples
+### 3. Note
+
+- Two ways are distinct if the set of gates used **differs** for either Alice or Bob.
+
+- If any person is already at the **LCA**, then the number of ways for them is 1.
+
+- The **lowest common ancestor (LCA)** is defined between two nodes `a` and `b` as the lowest node in a tree that has both `a` and `b` as descendants (where a node is allowed to be a descendant of itself).
+
+### 4. Examples
 
 #### Example 1
 
@@ -204,7 +205,10 @@ Thus, the XOR of all values: $3 XOR 3 XOR 3 = 3$.
 
 </div>
 </div>
-### Constraints​​​​​​​
+
+### 5. Constraints
+
+​​​​​​​
 
 - $2 \le n \le 2 * 10^{4}$
 

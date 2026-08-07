@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 You are given a string `s`. You can convert `s` to a palindrome by adding characters in front of it.
 
 Return *the shortest palindrome you can find by performing this transformation*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Return *the shortest palindrome you can find by performing this transformation*.
 
 Return the shortest palindrome formed solely by prepending characters to `s`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return the shortest palindrome formed solely by prepending characters to `s`.
 
 - **Input:** `s = "abcd"`
 - **Output:** `"dcbabcd"`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{s.length} \le 5 * 10^{4}$
 

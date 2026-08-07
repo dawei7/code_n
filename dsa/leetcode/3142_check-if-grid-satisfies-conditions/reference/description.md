@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D matrix `grid` of size `m x n`. You need to check if each cell $\text{grid}[i][j]$ is:
 
@@ -7,12 +7,13 @@ You are given a 2D matrix `grid` of size `m x n`. You need to check if each cell
 - Different from the cell to its right, i.e. $\text{grid}[i][j] \neq \text{grid}[i][j + 1]$ (if it exists).
 
 Return `true` if **all** the cells satisfy these conditions, otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ All cells in the first row are equal.
 Cells in the first column have different values.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 10$
 

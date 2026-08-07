@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two integers `red` and `blue` representing the count of red and blue colored balls. You have to arrange these balls to form a triangle such that the 1^st row will have 1 ball, the 2^nd row will have 2 balls, the 3^rd row will have 3 balls, and so on.
 
 All the balls in a particular row should be the **same** color, and adjacent rows should have **different** colors.
 
 Return the **maximum*** height of the triangle* that can be achieved.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,6 +63,7 @@ The only possible arrangement is shown above.
 The only possible arrangement is shown above.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le red, blue \le 100$

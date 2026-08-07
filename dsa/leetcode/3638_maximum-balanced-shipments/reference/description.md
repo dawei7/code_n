@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `weight` of length `n`, representing the weights of `n` parcels arranged in a straight line. A **shipment** is defined as a contiguous subarray of parcels. A shipment is considered **balanced** if the weight of the **last parcel** is **strictly less** than the **maximum weight** among all parcels in that shipment.
 
 Select a set of **non-overlapping**, contiguous, balanced shipments such that **each parcel appears in at most one shipment** (parcels may remain unshipped).
 
 Return the **maximum possible number** of balanced shipments that can be formed.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ No balanced shipment can be formed in this case:
 As there is no way to form even one balanced shipment, the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

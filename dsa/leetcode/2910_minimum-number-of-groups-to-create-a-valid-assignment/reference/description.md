@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a collection of numbered `balls` and instructed to sort them into boxes for a nearly balanced distribution. There are two rules you must follow:
 
@@ -49,12 +49,13 @@ We can sort `balls` into boxes as follows:
 You can't use fewer than four boxes while still following the rules. For example, putting all three balls numbered 10 in one box would break the rule about the maximum size difference between boxes.
 
 </div>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Constraints
+### 3. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

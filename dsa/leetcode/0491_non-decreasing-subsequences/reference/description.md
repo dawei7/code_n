@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *all the different possible non-decreasing subsequences of the given array with at least two elements*. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,7 +17,8 @@ Given an integer array `nums`, return *all the different possible non-decreasing
 
 - **Input:** `nums = [4,4,3,2,1]`
 - **Output:** `[[4,4]]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 15$
 

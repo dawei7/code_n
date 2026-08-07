@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. For each index `i` ($1 \le i \le \text{nums.length} - 2$) the **beauty** of $\text{nums}[i]$ equals:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** integer array `nums`. For each index `i` ($1 \le i
 - `0`, if none of the previous conditions holds.
 
 Return* the **sum of beauty** of all *$\text{nums}[i]$* where *$1 \le i \le \text{nums.length} - 2$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return* the **sum of beauty** of all *$\text{nums}[i]$* where *$1 \le i \le \tex
 - **Output:** `0`
 - **Explanation:** For each index i in the range 1 <= i <= 1:
 - The beauty of nums[1] equals 0.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Players`
 
@@ -34,7 +34,8 @@ Write a solution to report the number of grand slam tournaments won by each play
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -59,7 +60,7 @@ The result format is in the following example.
 
 Return columns $\text{player}_{id}$, $\text{player}_{name}$, and `grand_slams_count`. Include only players who won at least one Grand Slam tournament. `grand_slams_count` is the total number of titles won across all four tournament columns and years. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

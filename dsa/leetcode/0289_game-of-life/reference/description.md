@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 According to <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Wikipedia's article</a>: "The **Game of Life**, also known simply as **Life**, is a cellular automaton devised by the British mathematician John Horton Conway in 1970."
 
@@ -16,8 +16,7 @@ The next state of the board is determined by applying the above rules simultaneo
 
 Given the current state of the `board`, **update** the `board` to reflect its next state.
 
-**Note** that you do not need to return anything.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +26,11 @@ Given the current state of the `board`, **update** the `board` to reflect its ne
 
 Return `None`. Mutate `board` in place to the next simultaneously computed generation.
 
-### Examples
+### 3. Note
+
+that you do not need to return anything.
+
+### 4. Examples
 
 #### Example 1
 
@@ -41,7 +44,8 @@ Return `None`. Mutate `board` in place to the next simultaneously computed gener
 
 - **Input:** $board = [[1,1],[1,0]]$
 - **Output:** `[[1,1],[1,1]]`
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{board.length}$
 

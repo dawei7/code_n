@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `words` containing `n` strings.
 
@@ -15,12 +15,13 @@ You are to perform $n - 1$ **join** operations. Let $\text{str}_{0} = \text{word
 Your task is to **minimize** the length of $\text{str}_{n} - 1$.
 
 Return *an integer denoting the minimum possible length of* $\text{str}_{n} - 1$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ str_2 = join("aba", str_1) = "abaaac"
 It can be shown that the minimum possible length of str_2 is 6.
 
 <div class="notranslate" style="all: initial;"> </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

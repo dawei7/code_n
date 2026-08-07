@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return all **duplicate subtrees**.
 
 For each kind of duplicate subtrees, you only need to return the root node of any **one** of them.
 
 Two trees are **duplicate** if they have the **same structure** with the **same node values**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Two trees are **duplicate** if they have the **same structure** with the **same 
 
 - **Input:** `root = [2,2,2,3,null,3,null]`
 - **Output:** `[[2,3],[3]]`
-### Constraints
+
+### 4. Constraints
 
 - The number of the nodes in the tree will be in the range `[1, 5000]`
 

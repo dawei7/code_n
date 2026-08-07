@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -6,13 +6,16 @@ The **factor score** of an array is defined as the *product* of the LCM and GCD 
 
 Return the **maximum factor score** of `nums` after removing **at most** one element from it.
 
-**Note** that *both* the LCM and GCD of a single number are the number itself, and the *factor score* of an **empty** array is 0.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that *both* the LCM and GCD of a single number are the number itself, and the *factor score* of an **empty** array is 0.
+
+### 4. Examples
 
 #### Example 1
 
@@ -46,7 +49,8 @@ The maximum factor score of 60 can be obtained without removing any elements.
 **Output:** 9
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

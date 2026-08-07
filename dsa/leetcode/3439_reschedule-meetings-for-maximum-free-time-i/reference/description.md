@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `eventTime` denoting the duration of an event, where the event occurs from time $t = 0$ to time $t = eventTime$.
 
@@ -10,13 +10,16 @@ The **relative** order of all the meetings should stay the* same* and they shoul
 
 Return the **maximum** amount of free time possible after rearranging the meetings.
 
-**Note** that the meetings can **not** be rescheduled to a time outside the event.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the meetings can **not** be rescheduled to a time outside the event.
+
+### 4. Examples
 
 #### Example 1
 
@@ -58,7 +61,8 @@ Reschedule the meeting at `[2, 4]` to `[1, 3]`, leaving no meetings during the t
 There is no time during the event not occupied by meetings.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le eventTime \le 10^{9}$
 

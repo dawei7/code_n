@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Teams`
 
@@ -50,11 +50,12 @@ Each row of the result table should contain:
 Return the result table ordered by `points` **in descending order**. If two or more teams have the same `points`, order them by $\text{goal}_{diff}$ **in descending order**. If there is still a tie, order them by $\text{team}_{name}$ in **lexicographical order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

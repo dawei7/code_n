@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
 
@@ -17,7 +17,8 @@ Or you can follow LeetCode's level order traversal serialization format, where e
 For example, the above tree may be serialized as `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`.
 
 You do not necessarily need to follow the above-suggested formats, there are many more different formats that work so please be creative and come up with different approaches yourself.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ objects before calling `solve`.
 The app adapter serializes `root`, deserializes that string, and returns the reconstructed `Node`. The immutable
 native artifact exposes the source-required `Codec.serialize(root)` and `Codec.deserialize(data)` methods.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ native artifact exposes the source-required `Codec.serialize(root)` and `Codec.d
 
 - **Input:** `root = []`
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{4}]$.
 

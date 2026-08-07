@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A virus is spreading rapidly, and your task is to quarantine the infected area by installing walls.
 
@@ -7,12 +7,13 @@ The world is modeled as an `m x n` binary grid `isInfected`, where $\text{isInfe
 Every night, the virus spreads to all neighboring cells in all four directions unless blocked by a wall. Resources are limited. Each day, you can install walls around only one region (i.e., the affected area (continuous block of infected cells) that threatens the most uninfected cells the following night). There **will never be a tie**.
 
 Return *the number of walls used to quarantine all the infected regions*. If the world will become fully infected, return the number of walls used.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Notice that walls are only built on the shared boundary of two different cells.
 - **Input:** $isInfected = [[1,1,1,0,0,0,0,0,0],[1,0,1,0,1,1,1,1,1],[1,1,1,0,0,0,0,0,0]]$
 - **Output:** `13`
 - **Explanation:** The region on the left only builds two new walls.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{isInfected.length}$
 

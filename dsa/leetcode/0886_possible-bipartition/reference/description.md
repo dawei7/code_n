@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 We want to split a group of `n` people (labeled from `1` to `n`) into two groups of **any size**. Each person may dislike some other people, and they should not go into the same group.
 
 Given the integer `n` and the array `dislikes` where $\text{dislikes}[i] = [a_{i}, b_{i}]$ indicates that the person labeled $a_{i}$ does not like the person labeled $b_{i}$, return `true` *if it is possible to split everyone into two groups in this way*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Given the integer `n` and the array `dislikes` where $\text{dislikes}[i] = [a_{i
 - **Input:** $n = 3, dislikes = [[1,2],[1,3],[2,3]]$
 - **Output:** `false`
 - **Explanation:** We need at least 3 groups to divide them. We cannot put them in two groups.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2000$
 

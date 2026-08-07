@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` of **positive** integers, return *the average value of all even integers that are divisible by* `3`*.*
 
 Note that the **average** of `n` elements is the **sum** of the `n` elements divided by `n` and **rounded down** to the nearest integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ Note that the **average** of `n` elements is the **sum** of the `n` elements div
 - **Input:** `nums = [1,2,4,7,10]`
 - **Output:** `0`
 - **Explanation:** There is no single number that satisfies the requirement, so return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`. A number `x` is **lonely** when it appears only **once**, and no **adjacent** numbers (i.e. $x + 1$ and $x - 1)$ appear in the array.
 
 Return ***all** lonely numbers in *`nums`. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Note that [8, 10] may also be returned.
 - 3 is not a lonely number since it appears twice.
 Hence, the lonely numbers in nums are [1, 5].
 Note that [5, 1] may also be returned.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

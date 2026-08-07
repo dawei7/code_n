@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and a **positive** integer `k`.
 A subsequence `sub` of `nums` with length `x` is called **valid** if it satisfies:
@@ -6,12 +6,13 @@ A subsequence `sub` of `nums` with length `x` is called **valid** if it satisfie
 - $(\text{sub}[0] + \text{sub}[1]) \% k = (\text{sub}[1] + \text{sub}[2]) \% k = ... = (sub[x - 2] + sub[x - 1]) \% k.$
 
 Return the length of the **longest** **valid** subsequence of `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The longest valid subsequence is `[1, 2, 3, 4, 5]`.
 The longest valid subsequence is `[1, 4, 1, 4]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{3}$
 

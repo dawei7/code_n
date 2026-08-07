@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Fruits are available at some positions on an infinite x-axis. You are given a 2D integer array `fruits` where $\text{fruits}[i] = [\text{position}_{i}, \text{amount}_{i}]$ depicts $\text{amount}_{i}$ fruits at the position $\text{position}_{i}$. `fruits` is already **sorted** by $\text{position}_{i}$ in **ascending order**, and each $\text{position}_{i}$ is **unique**.
 
 You are also given an integer `startPos` and an integer `k`. Initially, you are at the position `startPos`. From any position, you can either walk to the **left or right**. It takes **one step** to move **one unit** on the x-axis, and you can walk **at most** `k` steps in total. For every position you reach, you harvest all the fruits at that position, and the fruits will disappear from that position.
 
 Return *the **maximum total number** of fruits you can harvest*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ You moved 1 + 3 = 4 steps and harvested 7 + 1 + 2 + 4 = 14 fruits in total.
 - **Output:** `0`
 - **Explanation:**
 You can move at most k = 2 steps and cannot reach any position with fruits.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{fruits.length} \le 10^{5}$
 

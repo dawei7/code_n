@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an array of integers `arr`, return `true` *if the number of occurrences of each value in the array is **unique** or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ Given an array of integers `arr`, return `true` *if the number of occurrences of
 
 - **Input:** `arr = [-3,0,1,-3,1,1,1,-3,10,0]`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{arr.length} \le 1000$
 

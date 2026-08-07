@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An **IP address** is a formatted 32-bit unsigned integer where each group of 8 bits is printed as a decimal number and the dot character `'.'` splits the groups.
 
@@ -11,7 +11,8 @@ A **CIDR block** is a format used to denote a specific set of IP addresses. It i
 You are given a start IP address `ip` and the number of IP addresses we need to cover `n`. Your goal is to use **as few CIDR blocks as possible** to cover all the IP addresses in the **inclusive** range `[ip, ip + n - 1]` **exactly**. No other IP addresses outside of the range should be covered.
 
 Return *the **shortest** list of **CIDR blocks** that covers the range of IP addresses. If there are multiple answers, return **any** of them*.
-### Function Contract
+
+### 2. Function Contract
 
 $solve(ip: str, n: int) -> \text{list}[str]$
 
@@ -24,7 +25,7 @@ $solve(ip: str, n: int) -> \text{list}[str]$
 
 Return a minimum-length list of strings in `"base-address/prefix-length"` form whose CIDR ranges together cover exactly the inclusive interval `[ip, ip + n - 1]`. No returned block may cover an address outside that interval. If several minimum-length covers are possible, any of them is valid.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ Note that while the CIDR block "255.0.0.0/28" does cover all the addresses, it a
 
 - **Input:** $ip = "117.145.102.62", n = 8$
 - **Output:** `["117.145.102.62/31","117.145.102.64/30","117.145.102.68/31"]`
-### Constraints
+
+### 4. Constraints
 
 - $7 \le \text{ip.length} \le 15$
 

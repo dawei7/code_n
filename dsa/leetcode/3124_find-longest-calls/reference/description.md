@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Contacts`
 
@@ -35,11 +35,12 @@ Write a solution to find the **three longest ****incoming** and **outgoing** cal
 Return t*he result table ordered by* `type`, `duration`, and$\text{first}_{name}$ *in **descending **order and `duration` must be formatted as **HH:MM:SS**.*
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -108,6 +109,8 @@ Calls table:
 
 - Emily had an incoming call lasting 3 minutes.
 
-**Note:** Output table is sorted by type, duration, and first_name in descending order.
+### 4. Note
+
+Output table is sorted by type, duration, and first_name in descending order.
 
 </div>

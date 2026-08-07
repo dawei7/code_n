@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 Given 2 integer arrays `nums1` and `nums2` consisting only of 0 and 1, your task is to calculate the **minimum** possible **largest** number in arrays `nums1` and `nums2`, after doing the following.
 
 Replace every 0 with an *even positive integer* and every 1 with an *odd positive integer*. After replacement, both arrays should be **increasing** and each integer should be used **at most** once.
 
 Return the *minimum possible largest number* after applying the changes.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -47,7 +48,8 @@ One way to replace, having 9 as the largest element is $nums1 = [2, 3, 8, 9]$, a
 One way to replace, having 13 as the largest element is $nums1 = [2, 3, 4, 6, 7]$, and $nums2 = [8, 10, 12, 13]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums1.length} \le 1000$
 

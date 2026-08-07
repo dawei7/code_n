@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `n` consisting of lowercase English letters.
 
 Return the smallest index `i` such that $s[i] = s[n - i - 1]$.
 
 If no such index exists, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Let $n=\lvert\texttt{s}\rvert$. The mirror of an index $i$ is $m(i)=n-i-1$, so v
 
 Return the minimum index $i$ for which $s[i] = s[n - i - 1]$. Return `-1` when no such index exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ No smaller index satisfies the condition, so the answer is 1.
 Therefore, no valid index exists, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 100$
 

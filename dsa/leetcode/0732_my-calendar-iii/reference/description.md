@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A `k`-booking happens when `k` events have some non-empty intersection (i.e., there is some time that is common to all `k` events.)
 
@@ -9,12 +9,13 @@ Implement the `MyCalendarThree` class:
 - `MyCalendarThree()` Initializes the object.
 
 - `int book(int startTime, int endTime)` Returns an integer `k` representing the largest integer such that there exists a `k`-booking in the calendar.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ myCalendarThree.book(5, 15); // return 3
 myCalendarThree.book(5, 10); // return 3
 myCalendarThree.book(25, 55); // return 3
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le startTime < endTime \le 10^{9}$
 

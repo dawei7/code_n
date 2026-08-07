@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a **3 lane road** of length `n` that consists of $n + 1$ **points** labeled from `0` to `n`. A frog **starts** at point `0` in the **second **lane** **and wants to jump to point `n`. However, there could be obstacles along the way.
 
@@ -12,13 +12,16 @@ The frog can only travel from point `i` to point $i + 1$ on the same lane if the
 
 Return* the **minimum number of side jumps** the frog needs to reach **any lane** at point n starting from lane `2` at point 0.*
 
-**Note:** There will be no obstacles on points `0` and `n`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+There will be no obstacles on points `0` and `n`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -42,7 +45,8 @@ Note that the frog can jump over obstacles only when making side jumps (as shown
 - **Input:** $obstacles = [0,2,1,0,3,0]$
 - **Output:** `2`
 - **Explanation:** The optimal solution is shown by the arrows above. There are 2 side jumps.
-### Constraints
+
+### 5. Constraints
 
 - $\text{obstacles.length} = n + 1$
 

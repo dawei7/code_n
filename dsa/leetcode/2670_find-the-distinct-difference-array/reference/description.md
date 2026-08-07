@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of length `n`.
 
@@ -7,12 +7,13 @@ The **distinct difference** array of `nums` is an array `diff` of length `n` suc
 Return *the **distinct difference** array of *`nums`.
 
 Note that `nums[i, ..., j]` denotes the subarray of `nums` starting at index `i` and ending at index `j` inclusive. Particularly, if `i > j` then `nums[i, ..., j]` denotes an empty subarray.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ For index i = 1, there are 2 distinct elements in the prefix and 3 distinct elem
 For index i = 2, there are 2 distinct elements in the prefix and 2 distinct elements in the suffix. Thus, diff[2] = 2 - 2 = 0.
 For index i = 3, there are 3 distinct elements in the prefix and 1 distinct element in the suffix. Thus, diff[3] = 3 - 1 = 2.
 For index i = 4, there are 3 distinct elements in the prefix and no elements in the suffix. Thus, diff[4] = 3 - 0 = 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 50$
 

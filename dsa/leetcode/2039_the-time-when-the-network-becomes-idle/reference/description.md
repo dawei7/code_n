@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a network of `n` servers, labeled from `0` to $n - 1$. You are given a 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates there is a message channel between servers $u_{i}$ and $v_{i}$, and they can pass **any** number of messages to **each other** directly in **one** second. You are also given a **0-indexed** integer array `patience` of length `n`.
 
@@ -15,12 +15,13 @@ At the beginning of second `0`, each data server sends its message to be process
 The network becomes **idle** when there are **no** messages passing between servers or arriving at servers.
 
 Return *the **earliest second** starting from which the network becomes **idle***.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,7 +56,8 @@ This is the time when the network becomes idle.
 - **Output:** `3`
 - **Explanation:** Data servers 1 and 2 receive a reply back at the beginning of second 2.
 From the beginning of the second 3, the network becomes idle.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{patience.length}$
 

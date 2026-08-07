@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Boxes`
 
@@ -33,11 +33,12 @@ This table contains information about the chests and the corresponding number of
 Write a solution to count the number of apples and oranges in all the boxes. If a box contains a chest, you should also include the number of apples and oranges it has.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

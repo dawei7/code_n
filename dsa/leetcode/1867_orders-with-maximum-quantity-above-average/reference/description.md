@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `OrdersDetails`
 
@@ -24,11 +24,12 @@ Write a solution to find the $\text{order}_{id}$ of all **imbalanced orders**.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

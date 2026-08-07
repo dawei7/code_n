@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A tree rooted at node 0 is given as follows:
 
@@ -11,7 +11,8 @@ A tree rooted at node 0 is given as follows:
 Remove every subtree whose sum of values of nodes is zero.
 
 Return *the number of the remaining nodes in the tree*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ The three inputs are guaranteed to describe a valid tree rooted at node `0`. The
 
 - Return the number of nodes remaining after every subtree whose node-value sum is zero has been removed.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The three inputs are guaranteed to describe a valid tree rooted at node `0`. The
 
 - **Input:** $nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-2]$
 - **Output:** `6`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le nodes \le 10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and an integer `k`.
 
@@ -11,12 +11,13 @@ Determine if there exists a substring of length **exactly** `k` in `s` that sati
 - If there is a character **immediately after** the substring, it must also be different from the character in the substring.
 
 Return `true` if such a substring exists. Otherwise, return `false`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -50,7 +51,8 @@ The substring $s[4..6] = "aaa"$ satisfies the conditions.
 There is no substring of length 2 that consists of one distinct character and satisfies the conditions.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{s.length} \le 100$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given three integers, `k`, `digit1`, and `digit2`, you want to find the **smallest** integer that is:
 
@@ -9,11 +9,12 @@ Given three integers, `k`, `digit1`, and `digit2`, you want to find the **smalle
 - Comprised of **only** the digits `digit1` and/or `digit2`.
 
 Return *the **smallest** such integer. If no such integer exists or the integer exceeds the limit of a signed 32-bit integer (*$2^{31} - 1$*), return *`-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Return *the **smallest** such integer. If no such integer exists or the integer 
 - **Output:** `-1`
 - **Explanation:**
 **No integer meets the requirements so return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le 1000$
 

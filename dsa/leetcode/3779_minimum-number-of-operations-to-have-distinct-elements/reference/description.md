@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ In one operation, you remove the **first three elements** of the current array. 
 Repeat this operation until the array is empty or contains no duplicate values.
 
 Return an integer denoting the number of operations required.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Let $N=\lvert\texttt{nums}\rvert$. Each operation discards one prefix of length 
 
 Return the minimum—and, because the operation is fixed, uniquely determined—number of prefix-removal operations needed until the remaining suffix is empty or has pairwise-distinct values.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ After one operation, the array becomes empty, which meets the stopping condition
 All elements in the array are distinct, therefore no operations are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

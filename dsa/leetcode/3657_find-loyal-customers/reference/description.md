@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{customer}_{transactions}$
 
@@ -130,7 +130,7 @@ The result table is ordered by customer_id in ascending order.
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

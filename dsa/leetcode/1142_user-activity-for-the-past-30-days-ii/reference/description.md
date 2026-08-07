@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activity`
 
@@ -20,7 +20,8 @@ Note that each session belongs to exactly one user.
 Write a solution to find the average number of sessions per user for a period of `30` days ending `2019-07-27` inclusively, **rounded to 2 decimal places**. The sessions we want to count for a user are those with at least one activity in that time period.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -34,7 +35,7 @@ The inclusive 30-day period is `2019-06-28` through `2019-07-27`. Count each qua
 
 - A one-row, one-column table named `average_sessions_per_user`. Its value is the average distinct-session count across users with at least one qualifying activity, rounded to two decimal places; when there is no such user, the value is `0`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

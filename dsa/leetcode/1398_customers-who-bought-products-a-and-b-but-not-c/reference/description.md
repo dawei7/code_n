@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -32,7 +32,8 @@ Write a solution to report the customer_id and customer_name of customers who bo
 Return the result table **ordered** by $\text{customer}_{id}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -49,7 +50,7 @@ Return exactly the columns $\text{customer}_{id}$ and $\text{customer}_{name}$. 
 
 Other product names and repeated purchases do not change those presence conditions. Customers without orders or without either required product do not qualify. Order the result rows by $\text{customer}_{id}$. Let $R$ be the number of qualifying customers.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

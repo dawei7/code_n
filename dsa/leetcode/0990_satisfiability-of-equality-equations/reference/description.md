@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array of strings `equations` that represent relationships between variables where each string $\text{equations}[i]$ is of length `4` and takes one of two different forms: $"x_{i} = y_{i}"$ or $"x_{i}\neq y_{i}"$.Here, $x_{i}$ and $y_{i}$ are lowercase letters (not necessarily different) that represent one-letter variable names.
 
 Return `true`* if it is possible to assign integers to variable names so as to satisfy all the given equations, or *`false`* otherwise*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ There is no way to assign the variables to satisfy both equations.
 - **Input:** $equations = ["b = a","a = b"]$
 - **Output:** `true`
 - **Explanation:** We could assign a = 1 and b = 1 to satisfy both equations.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{equations.length} \le 500$
 

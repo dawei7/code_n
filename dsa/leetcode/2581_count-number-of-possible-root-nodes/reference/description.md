@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Alice has an undirected tree with `n` nodes labeled from `0` to $n - 1$. The tree is represented as a 2D integer array `edges` of length $n - 1$ where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree.
 
@@ -13,12 +13,13 @@ Bob's guesses are represented by a 2D integer array `guesses` where $\text{guess
 Alice being lazy, does not reply to each of Bob's guesses, but just says that **at least** `k` of his guesses are `true`.
 
 Given the 2D integer arrays `edges`, `guesses` and the integer `k`, return *the **number of possible nodes** that can be the root of Alice's tree*. If there is no such tree, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Root = 2, correct guesses = [1,0], [2,1], [3,4]
 Root = 3, correct guesses = [1,0], [2,1], [3,2], [3,4]
 Root = 4, correct guesses = [1,0], [2,1], [3,2]
 Considering any node as root will give at least 1 correct guess.
-### Constraints
+
+### 4. Constraints
 
 - $\text{edges.length} = n - 1$
 

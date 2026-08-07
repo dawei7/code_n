@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` of length `n` consisting only of the characters `'A'` and `'B'`.
 
@@ -11,7 +11,8 @@ You are also given a 2D integer array `queries` of length `q`, where each $\text
 A **substring** is **alternating** if no two **adjacent** characters are **equal**. A substring of length 1 is always alternating.
 
 Return an integer array `answer`, where $\text{answer}[i]$ is the result of the $$i^{\text{th}}$$ query of type `[2, l, r]`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Let $N=\lvert s\rvert$ and $Q=\lvert\texttt{queries}\rvert$. All indices are zer
 
 Return one integer for each type-2 query, in the same relative order as those queries. Each integer is the fewest deletions needed to leave an alternating subsequence of the requested current substring.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -215,7 +216,8 @@ Thus, the answer is `[1, 0]`.
 Thus, the answer is `[0, 1]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{s.length} \le 10^{5}$
 

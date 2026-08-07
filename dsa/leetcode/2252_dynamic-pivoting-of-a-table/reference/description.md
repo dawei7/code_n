@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Products`
 
@@ -16,7 +16,13 @@ There will be at most 30 different stores in the table.
 price is the price of the product at this store.
 ```
 
-**Important note:** This problem targets those who have a good experience with SQL. If you are a beginner, we recommend that you skip it for now.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Important Note
+
+This problem targets those who have a good experience with SQL. If you are a beginner, we recommend that you skip it for now.
 
 Implement the procedure `PivotProducts` to reorganize the `Products` table so that each row has the id of one product and its price in each store. The price should be `null` if the product is not sold in a store. The columns of the table should contain each store and they should be sorted in **lexicographical order**.
 
@@ -25,11 +31,8 @@ The procedure should return the table after reorganizing it.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 

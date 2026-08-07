@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Visits`
 
@@ -43,7 +43,8 @@ $\text{transactions}_{count}$ should take all values from `0` to $max(\text{tran
 Return the result table ordered by $\text{transactions}_{count}$.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -61,7 +62,7 @@ Return a table with these columns:
 
 Count visits rather than distinct users: one user may have several visits on different dates. Return the buckets by ascending $\text{transactions}_{count}$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

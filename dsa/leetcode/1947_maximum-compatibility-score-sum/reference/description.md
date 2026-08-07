@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a survey that consists of `n` questions where each question's answer is either `0` (no) or `1` (yes).
 
@@ -11,12 +11,13 @@ Each student will be assigned to **one** mentor, and each mentor will have **one
 You are tasked with finding the optimal student-mentor pairings to **maximize** the** sum of the compatibility scores**.
 
 Given `students` and `mentors`, return *the **maximum compatibility score sum** that can be achieved.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ The compatibility score sum is 3 + 2 + 3 = 8.
 - **Input:** $students = [[0,0],[0,0],[0,0]], mentors = [[1,1],[1,1],[1,1]]$
 - **Output:** `0`
 - **Explanation:** The compatibility score of any student-mentor pair is 0.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{students.length} = \text{mentors.length}$
 

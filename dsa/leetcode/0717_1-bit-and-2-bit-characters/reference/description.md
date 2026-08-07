@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 We have two special characters:
 
@@ -7,12 +7,13 @@ We have two special characters:
 - The second character can be represented by two bits (`10` or `11`).
 
 Given a binary array `bits` that ends with `0`, return `true` if the last character must be a one-bit character.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ So the last character is one-bit character.
 - **Output:** `false`
 - **Explanation:** The only way to decode it is two-bit character and two-bit character.
 So the last character is not one-bit character.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{bits.length} \le 1000$
 

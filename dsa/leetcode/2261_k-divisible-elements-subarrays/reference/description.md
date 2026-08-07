@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and two integers `k` and `p`, return *the number of **distinct subarrays,** which have **at most*** `k` *elements *that are *divisible by* `p`.
 
@@ -9,12 +9,13 @@ Two arrays `nums1` and `nums2` are said to be **distinct** if:
 - There exists **at least** one index `i` where $\text{nums1}[i] \neq \text{nums2}[i]$.
 
 A **subarray** is defined as a **non-empty** contiguous sequence of elements in an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The subarray [2,3,3,2,2] should not be counted because it has 3 elements that ar
 All element of nums are divisible by p = 1.
 Also, every subarray of nums will have at most 4 elements that are divisible by 1.
 Since all subarrays are distinct, the total number of subarrays satisfying all the constraints is 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 200$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **binary** string `s` representing a number `n` in its binary form.
 
@@ -13,12 +13,13 @@ For example, the binary representation of 6 is `"110"`. Applying the operation o
 Return an integer denoting the number of positive integers **less** than `n` that are **k-reducible**.
 
 Since the answer may be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ $n = 8$. The 2-reducible integers less than 8 are 1, 2, 3, 4, 5, and 6.
 There are no positive integers less than $n = 1$, so the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 800$
 

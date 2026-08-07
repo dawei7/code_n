@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an array of `intervals`, where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$ and each $\text{start}_{i}$ is **unique**.
 
 The **right interval** for an interval `i` is an interval `j` such that $\text{start}_{j} \ge \text{end}_{i}$ and $\text{start}_{j}$ is **minimized**. Note that `i` may equal `j`.
 
 Return *an array of **right interval** indices for each interval `i`*. If no **right interval** exists for interval `i`, then put `-1` at index `i`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Return *an array of **right interval** indices for each interval `i`*. If no **r
 Return one integer per input interval in the same order. Each value is the original index of the qualifying interval
 with the smallest start, or `-1` when none exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The right interval for [1,2] is [2,3] since start_1 = 2 is the smallest start th
 - **Output:** `[-1,2,-1]`
 - **Explanation:** There is no right interval for [1,4] and [3,4].
 The right interval for [2,3] is [3,4] since start_2 = 3 is the smallest start that is >= end_1 = 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{intervals.length} \le 2 * 10^{4}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the sum of every tree node's **tilt**.*
 
 The **tilt** of a tree node is the **absolute difference** between the sum of all left subtree node **values** and all right subtree node **values**. If a node does not have a left child, then the sum of the left subtree node **values** is treated as `0`. The rule is similar if the node does not have a right child.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ Sum of every tilt : 0 + 0 + 0 + 2 + 7 + 6 = 15
 
 - **Input:** `root = [21,7,14,1,1,2,2,3,3]`
 - **Output:** `9`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[0, 10^{4}]$.
 

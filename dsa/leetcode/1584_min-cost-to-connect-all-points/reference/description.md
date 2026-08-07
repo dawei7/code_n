@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `points` representing integer coordinates of some points on a 2D-plane, where $\text{points}[i] = [x_{i}, y_{i}]$.
 
 The cost of connecting two points $[x_{i}, y_{i}]$ and $[x_{j}, y_{j}]$ is the **manhattan distance** between them: $|x_{i} - x_{j}| + |y_{i} - y_{j}|$, where `|val|` denotes the absolute value of `val`.
 
 Return *the minimum cost to make all points connected.* All points are connected if there is **exactly one** simple path between any two points.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Notice that there is a unique path between every pair of points.
 
 - **Input:** $points = [[3,12],[-2,5],[-4,1]]$
 - **Output:** `18`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{points.length} \le 1000$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of variable pairs `equations` and an array of real numbers `values`, where $\text{equations}[i] = [A_{i}, B_{i}]$ and $\text{values}[i]$ represent the equation $A_{i} / B_{i} = \text{values}[i]$. Each $A_{i}$ or $B_{i}$ is a string that represents a single variable.
 
@@ -6,10 +6,7 @@ You are also given some `queries`, where $\text{queries}[j] = [C_{j}, D_{j}]$ re
 
 Return *the answers to all queries*. If a single answer cannot be determined, return `-1.0`.
 
-**Note:** The input is always valid. You may assume that evaluating the queries will not result in division by zero and that there is no contradiction.
-
-**Note: **The variables that do not occur in the list of equations are undefined, so the answer cannot be determined for them.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +18,15 @@ Return *the answers to all queries*. If a single answer cannot be determined, re
 
 Return the quotient for each query in order, using `-1.0` when either variable is undefined or no relationship determines the quotient.
 
-### Examples
+### 3. Note
+
+The input is always valid. You may assume that evaluating the queries will not result in division by zero and that there is no contradiction.
+
+### 4. Note
+
+The variables that do not occur in the list of equations are undefined, so the answer cannot be determined for them.
+
+### 5. Examples
 
 #### Example 1
 
@@ -40,7 +45,8 @@ note: x is undefined => -1.0
 
 - **Input:** `equations = [["a","b"]], values = [0.5], queries = [["a","b"],["b","a"],["a","c"],["x","y"]]`
 - **Output:** `[0.50000,2.00000,-1.00000,-1.00000]`
-### Constraints
+
+### 6. Constraints
 
 - $1 \le \text{equations.length} \le 20$
 

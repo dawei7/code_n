@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ represents the coordinates $(x_{i}, y_{i})$ and quality factor $q_{i}$ of the $$i^{\text{th}}$$ tower.
 
@@ -17,7 +17,8 @@ The **Manhattan Distance** between two cells $(x_{i}, y_{i})$ and $(x_{j}, y_{j}
 A coordinate $[x_{i}, y_{i}]$ is **lexicographically smaller** than $[x_{j}, y_{j}]$ if $x_{i} < x_{j}$, or $x_{i} = x_{j}$ and $y_{i} < y_{j}$.
 
 `|x|` denotes the **absolute** **value** of `x`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -33,7 +34,7 @@ $\lvert x_i-cx\rvert+\lvert y_i-cy\rvert\le\texttt{radius}.$
 
 Return $[x_{i}, y_{i}]$ for the reachable tower with greatest $q_i$. Among equal greatest qualities, return the smallest coordinate under ordinary list lexicographic order. Return `[-1, -1]` if the reachable set is empty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -87,7 +88,8 @@ Among the reachable towers, the maximum quality factor is 4. Both `[1, 3]` and `
 No tower is reachable within the given radius, so `[-1, -1]` is returned.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{towers.length} \le 10^{5}$
 

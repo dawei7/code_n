@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `word` of length `n` consisting of digits, and a positive integer `m`.
 
@@ -9,12 +9,13 @@ The **divisibility array** `div` of `word` is an integer array of length `n` suc
 - $\text{div}[i] = 0$ otherwise.
 
 Return* the divisibility array of** *`word`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return* the divisibility array of** *`word`.
 - **Input:** $word = "1010", m = 10$
 - **Output:** `[0,1,0,1]`
 - **Explanation:** There are only 2 prefixes that are divisible by 10: "10", and "1010".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$
 

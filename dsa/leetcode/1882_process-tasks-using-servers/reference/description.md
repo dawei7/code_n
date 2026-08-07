@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `servers` and `tasks` of lengths `n`​​​​​​ and `m`​​​​​​ respectively. $\text{servers}[i]$ is the **weight** of the $i^​​​​​​th$​​​​ server, and $\text{tasks}[j]$ is the **time needed** to process the $j^​​​​​​th$​​​​ task **in seconds**.
 
@@ -13,12 +13,13 @@ A server that is assigned task `j` at second `t` will be free again at second $t
 Build an array `ans`​​​​ of length `m`, where $\text{ans}[j]$ is the **index** of the server the $j^​​​​​​th$ task will be assigned to.
 
 Return *the array *`ans`​​​​.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Return *the array *`ans`​​​​.
 - At second 4, server 1 becomes free. Task 4 is added and processed using server 1 until second 9.
 - At second 5, task 5 is added and processed using server 3 until second 7.
 - At second 6, task 6 is added and processed using server 2 until second 7.
-### Constraints
+
+### 4. Constraints
 
 - $\text{servers.length} = n$
 

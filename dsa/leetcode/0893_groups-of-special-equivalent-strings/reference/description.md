@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of strings of the same length `words`.
 
@@ -15,12 +15,13 @@ A **group of special-equivalent strings** from `words` is a non-empty subset of 
 - The group is the largest size possible (i.e., there is not a string $\text{words}[i]$ not in the group such that $\text{words}[i]$ is special-equivalent to every string in the group).
 
 Return *the number of **groups of special-equivalent strings** from *`words`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ Note that in particular, "zzxy" is not special equivalent to "zzyx".
 
 - **Input:** $words = ["abc","acb","bac","bca","cab","cba"]$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 1000$
 

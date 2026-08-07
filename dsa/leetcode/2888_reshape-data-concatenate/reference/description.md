@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 ```
 DataFrame df1
@@ -23,12 +23,13 @@ DataFrame df2
 Write a solution to concatenate these two DataFrames **vertically** into one DataFrame.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

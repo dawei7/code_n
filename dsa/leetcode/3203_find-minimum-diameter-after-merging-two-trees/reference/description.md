@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There exist two **undirected **trees with `n` and `m` nodes, numbered from `0` to $n - 1$ and from `0` to $m - 1$, respectively. You are given two 2D integer arrays `edges1` and `edges2` of lengths $n - 1$ and $m - 1$, respectively, where $\text{edges1}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the first tree and $\text{edges2}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ in the second tree.
 
@@ -7,12 +7,13 @@ You must connect one node from the first tree with another node from the second 
 Return the **minimum **possible **diameter **of the resulting tree.
 
 The **diameter** of a tree is the length of the *longest* path between any two nodes in the tree.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ We can obtain a tree of diameter 3 by connecting node 0 from the first tree with
 We can obtain a tree of diameter 5 by connecting node 0 from the first tree with node 0 from the second tree.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 10^{5}$
 

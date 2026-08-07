@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums`, return *the number of subarrays of *`nums`* having an even product*.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Given a **0-indexed** integer array `nums`, return *the number of subarrays of *
 - **Input:** `nums = [7,3,5]`
 - **Output:** `0`
 - **Explanation:** There are no subarrays with an even product.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

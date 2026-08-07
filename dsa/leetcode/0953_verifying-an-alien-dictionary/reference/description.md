@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 In an alien language, surprisingly, they also use English lowercase letters, but possibly in a different `order`. The `order` of the alphabet is some permutation of lowercase letters.
 
 Given a sequence of `words` written in the alien language, and the `order` of the alphabet, return `true` if and only if the given `words` are sorted lexicographically in this alien language.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Given a sequence of `words` written in the alien language, and the `order` of th
 - **Input:** $words = ["apple","app"], order = "abcdefghijklmnopqrstuvwxyz"$
 - **Output:** `false`
 - **Explanation:** The first three characters "app" match, and the second string is shorter (in size.) According to lexicographical rules "apple" > "app", because 'l' > '∅', where '∅' is defined as the blank character which is less than any other character (<a href="https://en.wikipedia.org/wiki/Lexicographical_order" target="_blank">More info</a>).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

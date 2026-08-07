@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` and two integers `x` and `y`. You can perform two types of operations any number of times.
 
@@ -14,12 +14,13 @@ You are given a string `s` and two integers `x` and `y`. You can perform two typ
 	</li>
 
 Return *the maximum points you can gain after applying the above operations on* `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Total score = 5 + 4 + 5 + 5 = 19.
 
 - **Input:** `s = "aabbaaxybbaabb", x = 5, y = 4`
 - **Output:** `20`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

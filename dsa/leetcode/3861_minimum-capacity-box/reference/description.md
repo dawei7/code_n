@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `capacity`, where $\text{capacity}[i]$ represents the capacity of the $$i^{\text{th}}$$ box, and an integer `itemSize` representing the size of an item.
 
@@ -7,7 +7,8 @@ The $$i^{\text{th}}$$ box can store the item if $\text{capacity}[i] \ge itemSize
 Return an integer denoting the index of the box with the **minimum** capacity that can store the item. If multiple such boxes exist, return the **smallest index**.
 
 If no box can store the item, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -23,7 +24,7 @@ $\text{capacity}[i] \ge itemSize$. Indexing is zero-based.
 Return the smallest index among the eligible boxes having minimum capacity.
 Return `-1` when no eligible box exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ The minimum capacity that can store the item is 3, and it appears at indices 0 a
 No box has enough capacity to store the item, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{capacity.length} \le 100$
 

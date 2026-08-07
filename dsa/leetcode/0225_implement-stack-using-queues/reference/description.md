@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (`push`, `top`, `pop`, and `empty`).
 
@@ -12,12 +12,7 @@ Implement the `MyStack` class:
 
 - `boolean empty()` Returns `true` if the stack is empty, `false` otherwise.
 
-**Notes:**
-
-- You must use **only** standard operations of a queue, which means that only `push to back`, `peek/pop from front`, `size` and `is empty` operations are valid.
-
-- Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -27,7 +22,13 @@ Implement the `MyStack` class:
 
 Return the result of each `pop`, `top`, and `empty` command in command order; `push` produces no result.
 
-### Examples
+### 3. Note
+
+- You must use **only** standard operations of a queue, which means that only `push to back`, `peek/pop from front`, `size` and `is empty` operations are valid.
+
+- Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
+
+### 4. Examples
 
 #### Example 1
 
@@ -46,11 +47,15 @@ myStack.top(); // return 2
 myStack.pop(); // return 2
 myStack.empty(); // return False
 ```
-### Constraints
+
+### 5. Constraints
 
 - $1 \le x \le 9$
 
 - At most `100` calls will be made to `push`, `pop`, `top`, and `empty`.
 
 - All the calls to `pop` and `top` are valid.
-### Follow-up Can you implement the stack using only one queue?
+
+### 6. Follow-up
+
+Can you implement the stack using only one queue?

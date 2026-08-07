@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D matrix `grid` of size `n x n`. Initially, all cells of the grid are colored white. In one operation, you can select any cell of indices `(i, j)`, and color black all the cells of the $$j^{\text{th}}$$ column starting from the top row down to the $$i^{\text{th}}$$ row.
 
 The grid score is the sum of all $\text{grid}[i][j]$ such that cell `(i, j)` is white and it has a horizontally adjacent black cell.
 
 Return the **maximum** score that can be achieved after some number of operations.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ In the first operation, we color all cells in column 1 down to row 3, and in the
 We perform operations on 1, 2, and 3 down to rows 1, 4, and 0, respectively. The score of the resulting grid is $\text{grid}[0][0] + \text{grid}[1][0] + \text{grid}[2][1] + \text{grid}[4][1] + \text{grid}[1][3] + \text{grid}[2][3] + \text{grid}[3][3] + \text{grid}[4][3] + \text{grid}[0][4]$ which is equal to 94.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{grid.length} \le 100$
 

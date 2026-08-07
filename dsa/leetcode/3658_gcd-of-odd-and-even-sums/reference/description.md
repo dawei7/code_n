@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`. Your task is to compute the **GCD** (greatest common divisor) of two values:
 
@@ -7,12 +7,13 @@ You are given an integer `n`. Your task is to compute the **GCD** (greatest comm
 - `sumEven`: the sum of the smallest `n` positive even numbers.
 
 Return the GCD of `sumOdd` and `sumEven`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,6 +47,7 @@ Hence, $GCD(sumOdd, sumEven) = GCD(16, 20) = 4$.
 Hence, $GCD(sumOdd, sumEven) = GCD(25, 30) = 5$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10​​​​​​​00$

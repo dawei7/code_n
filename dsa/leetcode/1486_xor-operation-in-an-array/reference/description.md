@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and an integer `start`.
 
 Define an array `nums` where $\text{nums}[i] = start + 2 * i$ (**0-indexed**) and $n = \text{nums.length}$.
 
 Return *the bitwise XOR of all elements of* `nums`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Where "^" corresponds to bitwise XOR operator.
 - **Input:** $n = 4, start = 3$
 - **Output:** `8`
 - **Explanation:** Array nums is equal to [3, 5, 7, 9] where (3 ^ 5 ^ 7 ^ 9) = 8.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$
 

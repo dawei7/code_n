@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two **positive** integers `startPos` and `endPos`. Initially, you are standing at position `startPos` on an **infinite** number line. With one step, you can move either one position to the left, or one position to the right.
 
@@ -6,13 +6,16 @@ Given a positive integer `k`, return *the number of **different** ways to reach 
 
 Two ways are considered different if the order of the steps made is not exactly the same.
 
-**Note** that the number line includes negative integers.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that the number line includes negative integers.
+
+### 4. Examples
 
 #### Example 1
 
@@ -28,6 +31,7 @@ It can be proven that no other way is possible, so we return 3.
 - **Input:** $startPos = 2, endPos = 5, k = 10$
 - **Output:** `0`
 - **Explanation:** It is impossible to reach position 5 from position 2 in exactly 10 steps.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le startPos, endPos, k \le 1000$

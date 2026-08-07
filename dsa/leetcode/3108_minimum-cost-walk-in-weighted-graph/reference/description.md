@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected weighted graph with `n` vertices labeled from `0` to $n - 1$.
 
@@ -11,12 +11,13 @@ The **cost** of a walk starting at node `u` and ending at node `v` is defined as
 You are also given a 2D array `query`, where $\text{query}[i] = [s_{i}, t_{i}]$. For each query, you need to find the minimum cost of the walk starting at vertex $s_{i}$ and ending at vertex $t_{i}$. If there exists no such walk, the answer is `-1`.
 
 Return *the array *`answer`*, where *$\text{answer}[i]$* denotes the **minimum** cost of a walk for query *`i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ In the second query, there is no walk between nodes 3 and 4, so the answer is -1
 To achieve the cost of 0 in the first query, we need to move on the following edges: `1->2` (weight 1), `2->1` (weight 6), `1->2` (weight 1).
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

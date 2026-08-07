@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There is a rooted tree consisting of `n` nodes numbered `0` to $n - 1$. Each node's number denotes its **unique genetic value** (i.e. the genetic value of node `x` is `x`). The **genetic difference** between two genetic values is defined as the **bitwise-****XOR** of their values. You are given the integer array `parents`, where $\text{parents}[i]$ is the parent for node `i`. If node `x` is the **root** of the tree, then $\text{parents}[x] = -1$.
 
 You are also given the array `queries` where $\text{queries}[i] = [\text{node}_{i}, \text{val}_{i}]$. For each query `i`, find the **maximum genetic difference** between $\text{val}_{i}$ and $p_{i}$, where $p_{i}$ is the genetic value of any node that is on the path between $\text{node}_{i}$ and the root (including $\text{node}_{i}$ and the root). More formally, you want to maximize $\text{val}_{i} XOR p_{i}$.
 
 Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return *an array *`ans`* where *$\text{ans}[i]$* is the answer to the *$$i^{\tex
 - [4,6]: The node with the maximum genetic difference is 0, with a difference of 6 XOR 0 = 6.
 - [1,15]: The node with the maximum genetic difference is 1, with a difference of 15 XOR 1 = 14.
 - [0,5]: The node with the maximum genetic difference is 2, with a difference of 5 XOR 2 = 7.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{parents.length} \le 10^{5}$
 

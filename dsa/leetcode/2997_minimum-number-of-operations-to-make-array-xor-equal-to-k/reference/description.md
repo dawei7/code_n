@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and a positive integer `k`.
 
@@ -8,13 +8,16 @@ You can apply the following operation on the array **any** number of times:
 
 Return *the **minimum** number of operations required to make the bitwise *`XOR`* of **all** elements of the final array equal to *`k`.
 
-**Note** that you can flip leading zero bits in the binary representation of elements. For example, for the number `(101)_2` you can flip the fourth bit and obtain `(1101)_2`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you can flip leading zero bits in the binary representation of elements. For example, for the number `(101)_2` you can flip the fourth bit and obtain `(1101)_2`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -30,7 +33,8 @@ It can be shown that we cannot make the XOR equal to k in less than 2 operations
 - **Input:** `nums = [2,0,2,0], k = 0`
 - **Output:** `0`
 - **Explanation:** The XOR of elements of the array is (2 XOR 0 XOR 2 XOR 0) == 0 == k. So no operation is needed.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

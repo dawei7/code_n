@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `weights` and two integers `w1` and `w2` representing the **maximum** capacities of two bags.
 
@@ -9,11 +9,12 @@ Each item may be placed in **at most** one bag such that:
 - Bag 2 holds **at most** `w2` total weight.
 
 Return the **maximum** total weight that can be packed into the two bags.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ Return the **maximum** total weight that can be packed into the two bags.
 No weight fits in either bag, thus the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{weights.length} \le 100$
 

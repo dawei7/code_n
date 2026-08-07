@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a positive integer, check whether it has alternating bits: namely, if two adjacent bits will always have different values.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,6 +24,7 @@ Given a positive integer, check whether it has alternating bits: namely, if two 
 - **Input:** $n = 11$
 - **Output:** `false`
 - **Explanation:** The binary representation of 11 is: 1011.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2^{31} - 1$

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 A company is organizing a meeting and has a list of `n` employees, waiting to be invited. They have arranged for a large **circular** table, capable of seating **any number** of employees.
 
 The employees are numbered from `0` to $n - 1$. Each employee has a **favorite** person and they will attend the meeting **only if** they can sit next to their favorite person at the table. The favorite person of an employee is **not** themself.
 
 Given a **0-indexed** integer array `favorite`, where $\text{favorite}[i]$ denotes the favorite person of the $$i^{\text{th}}$$ employee, return *the **maximum number of employees** that can be invited to the meeting*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The above figure shows how the company will invite employees 0, 1, 3, and 4, and
 Employee 2 cannot be invited because the two spots next to their favorite employee 1 are taken.
 So the company leaves them out of the meeting.
 The maximum number of employees that can be invited to the meeting is 4.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{favorite.length}$
 

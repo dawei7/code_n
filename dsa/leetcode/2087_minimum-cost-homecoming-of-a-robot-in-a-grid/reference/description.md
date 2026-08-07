@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an `m x n` grid, where `(0, 0)` is the top-left cell and $(m - 1, n - 1)$ is the bottom-right cell. You are given an integer array `startPos` where $startPos = [\text{start}_{row}, \text{start}_{col}]$ indicates that **initially**, a **robot** is at the cell $(\text{start}_{row}, \text{start}_{col})$. You are also given an integer array `homePos` where $homePos = [\text{home}_{row}, \text{home}_{col}]$ indicates that its **home** is at the cell $(\text{home}_{row}, \text{home}_{col})$.
 
@@ -9,12 +9,13 @@ The robot needs to go to its home. It can move one cell in four directions: **le
 - If the robot moves **left** or **right** into a cell whose **column** is `c`, then this move costs $\text{colCosts}[c]$.
 
 Return *the **minimum total cost** for this robot to return home*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ The total cost is 3 + 2 + 6 + 7 = 18
 - **Input:** $startPos = [0, 0], homePos = [0, 0], rowCosts = [5], colCosts = [26]$
 - **Output:** `0`
 - **Explanation:** The robot is already at its home. Since no moves occur, the total cost is 0.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{rowCosts.length}$
 

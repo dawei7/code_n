@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
@@ -15,7 +15,8 @@ Implement the `MinStack` class:
 - `int getMin()` retrieves the minimum element in the stack.
 
 You must implement a solution with `O(1)` time complexity for each function.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -26,7 +27,7 @@ You must implement a solution with `O(1)` time complexity for each function.
 
 Return one result per operation: `null` for construction, `push`, and `pop`; the requested integer for `top` and `getMin`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ minStack.pop();
 minStack.top();    // return 0
 minStack.getMin(); // return -2
 ```
-### Constraints
+
+### 4. Constraints
 
 - $-2^{31} \le val \le 2^{31} - 1$
 

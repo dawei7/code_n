@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have `n` computers. You are given the integer `n` and a **0-indexed** integer array `batteries` where the $$i^{\text{th}}$$ battery can **run** a computer for $\text{batteries}[i]$ minutes. You are interested in running **all** `n` computers **simultaneously** using the given batteries.
 
@@ -7,12 +7,13 @@ Initially, you can insert **at most one battery** into each computer. After that
 Note that the batteries cannot be recharged.
 
 Return *the **maximum** number of minutes you can run all the *`n`* computers simultaneously.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Initially, insert battery 0 into the first computer and battery 2 into the secon
 After one minute, battery 0 and battery 2 are drained so you need to remove them and insert battery 1 into the first computer and battery 3 into the second computer.
 After another minute, battery 1 and battery 3 are also drained so the first and second computers are no longer running.
 We can run the two computers simultaneously for at most 2 minutes, so we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le \text{batteries.length} \le 10^{5}$
 

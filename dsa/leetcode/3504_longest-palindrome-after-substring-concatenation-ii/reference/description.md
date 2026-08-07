@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two strings, `s` and `t`.
 
 You can create a new string by selecting a substring from `s` (possibly empty) and a substring from `t` (possibly empty), then concatenating them **in order**.
 
 Return the length of the **longest** palindrome that can be formed this way.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ Selecting "`aaaa`" from `t` is the longest palindrome, so the answer is 4.
 Concatenating `"abc"` from `s` and `"ba"` from `t` results in `"abcba"`, which is a palindrome of length 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 1000$
 

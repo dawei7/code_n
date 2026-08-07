@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are playing a game with integers. You start with the integer `1` and you want to reach the integer `target`.
 
@@ -11,12 +11,13 @@ In one move, you can either:
 You can use the **increment** operation **any** number of times, however, you can only use the **double** operation **at most** `maxDoubles` times.
 
 Given the two integers `target` and `maxDoubles`, return *the minimum number of moves needed to reach *`target`* starting with *`1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Increment once so x = 2
 Double once so x = 4
 Increment once so x = 5
 Double again so x = 10
-### Constraints
+
+### 4. Constraints
 
 - $1 \le target \le 10^{9}$
 

@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given two integer arrays, `preorder` and `postorder` where `preorder` is the preorder traversal of a binary tree of **distinct** values and `postorder` is the postorder traversal of the same tree, reconstruct and return *the binary tree*.
 
 If there exist multiple answers, you can **return any** of them.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ If there exist multiple answers, you can **return any** of them.
 
 - **Input:** $preorder = [1], postorder = [1]$
 - **Output:** `[1]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{preorder.length} \le 30$
 

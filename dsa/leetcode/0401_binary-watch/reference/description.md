@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A binary watch has 4 LEDs on the top to represent the hours (0-11), and 6 LEDs on the bottom to represent the minutes (0-59). Each LED represents a zero or one, with the least significant bit on the right.
 
@@ -15,7 +15,8 @@ The hour must not contain a leading zero.
 The minute must consist of two digits and may contain a leading zero.
 
 - For example, `"10:2"` is not valid. It should be `"10:02"`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ The minute must consist of two digits and may contain a leading zero.
 
 Return all valid formatted times in any order, with an unpadded hour and a two-digit minute.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,6 +36,7 @@ Return all valid formatted times in any order, with an unpadded hour and a two-d
 
 - **Input:** $turnedOn = 9$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le turnedOn \le 10$

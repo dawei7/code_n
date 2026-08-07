@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array of **distinct** positive integers locations where $\text{locations}[i]$ represents the position of city `i`. You are also given integers `start`, `finish` and `fuel` representing the starting city, ending city, and the initial amount of fuel you have, respectively.
 
@@ -7,12 +7,13 @@ At each step, if you are at city `i`, you can pick any city `j` such that $j \ne
 Notice that `fuel` **cannot** become negative at any point in time, and that you are **allowed** to visit any city more than once (including `start` and `finish`).
 
 Return *the count of all possible routes from *`start` *to* `finish`. Since the answer may be too large, return it modulo $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Return *the count of all possible routes from *`start` *to* `finish`. Since the 
 - **Input:** $locations = [5,2,1], start = 0, finish = 2, fuel = 3$
 - **Output:** `0`
 - **Explanation:** It is impossible to get from 0 to 2 using only 3 units of fuel since the shortest route needs 4 units of fuel.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{locations.length} \le 100$
 

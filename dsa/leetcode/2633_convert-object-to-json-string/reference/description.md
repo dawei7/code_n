@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a value, return a valid JSON string of that value. The value can be a string, number, array, object, boolean, or null. The returned string should not include extra spaces. The order of keys should be the same as the order returned by `Object.keys()`.
 
 Please solve it without using the built-in `JSON.stringify` method.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Please solve it without using the built-in `JSON.stringify` method.
 
 Return a compact JSON string representing `object` without invoking `JSON.stringify`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ Objects and arrays can include other objects and arrays.
 - **Output:** `true`
 - **Explanation:**
 Primitive types are valid inputs.
-### Constraints
+
+### 4. Constraints
 
 - `value` is a valid JSON value
 

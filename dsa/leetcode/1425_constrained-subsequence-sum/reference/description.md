@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` and an integer `k`, return the maximum sum of a **non-empty** subsequence of that array such that for every two **consecutive** integers in the subsequence, $\text{nums}[i]$ and $\text{nums}[j]$, where `i < j`, the condition $j - i \le k$ is satisfied.
 
 A *subsequence* of an array is obtained by deleting some number of elements (can be zero) from the array, leaving the remaining elements in their original order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A *subsequence* of an array is obtained by deleting some number of elements (can
 - **Input:** `nums = [10,-2,-10,-5,20], k = 2`
 - **Output:** `23`
 - **Explanation:** The subsequence is [10, -2, -5, 20].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

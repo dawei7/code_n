@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the lowest common ancestor of its deepest leaves*.
 
@@ -9,12 +9,13 @@ Recall that:
 - The depth of the root of the tree is `0`. if the depth of a node is `d`, the depth of each of its children is $d + 1$.
 
 - The lowest common ancestor of a set `S` of nodes, is the node `A` with the largest depth such that every node in `S` is in the subtree with root `A`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Note that nodes 6, 0, and 8 are also leaf nodes, but the depth of them is 2, but
 - **Input:** `root = [0,1,3,null,2]`
 - **Output:** `[2]`
 - **Explanation:** The deepest leaf node in the tree is 2, the lca of one node is itself.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree will be in the range `[1, 1000]`.
 
@@ -43,4 +45,6 @@ Note that nodes 6, 0, and 8 are also leaf nodes, but the depth of them is 2, but
 
 - The values of the nodes in the tree are **unique**.
 
-**Note:** This question is the same as 865: <a href="https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/" target="_blank">https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/</a>
+### 5. Note
+
+This question is the same as 865: <a href="https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/" target="_blank">https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/</a>

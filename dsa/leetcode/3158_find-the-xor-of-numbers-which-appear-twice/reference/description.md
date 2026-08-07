@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array `nums`, where each number in the array appears **either*** *once* *or* *twice.
 
 Return the bitwise* *`XOR` of all the numbers that appear twice in the array, or 0 if no number appears twice.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ No number appears twice in `nums`.
 Numbers 1 and 2 appeared twice. $1 XOR 2 = 3$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 50$
 

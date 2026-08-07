@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given a string `s` and an integer `k`, return *the maximum number of vowel letters in any substring of *`s`* with length *`k`.
 
 **Vowel letters** in English are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Given a string `s` and an integer `k`, return *the maximum number of vowel lette
 - **Input:** `s = "leetcode", k = 3`
 - **Output:** `2`
 - **Explanation:** "lee", "eet" and "ode" contain 2 vowels.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

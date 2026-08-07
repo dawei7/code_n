@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a function `fn`, an array of arguments `args`, and an interval time `t`, return a cancel function `cancelFn`.
 
@@ -9,12 +9,13 @@ setTimeout(cancelFn, cancelTimeMs)
 ```
 
 The function `fn` should be called with `args` immediately and then called again every `t` milliseconds until `cancelFn` is called at `cancelTimeMs` ms.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -84,7 +85,8 @@ Every 50ms, fn(5, 1, 3) is called. Until t=180ms, then it is cancelled.
 3rd fn call is at 100ms
 4th fn call is at 150ms
 Cancelled at 180ms
-### Constraints
+
+### 4. Constraints
 
 - `fn` is a function
 

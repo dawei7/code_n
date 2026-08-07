@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a **0-indexed** integer array `nums`, determine whether there exist **two** subarrays of length `2` with **equal** sum. Note that the two subarrays must begin at **different** indices.
 
 Return `true`* if these subarrays exist, and *`false`* otherwise.*
 
 A **subarray** is a contiguous non-empty sequence of elements within an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ A **subarray** is a contiguous non-empty sequence of elements within an array.
 - **Output:** `true`
 - **Explanation:** The subarrays [nums[0],nums[1]] and [nums[1],nums[2]] have the same sum of 0.
 Note that even though the subarrays have the same content, the two subarrays are considered different because they are in different positions in the original array.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 1000$
 

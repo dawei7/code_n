@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 Given a string `s`, partition the string into one or more **substrings** such that the characters in each substring are **unique**. That is, no letter appears in a single substring more than **once**.
 
 Return *the **minimum** number of substrings in such a partition.*
 
 Note that each character should belong to exactly one substring in a partition.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ It can be shown that 4 is the minimum number of substrings needed.
 - **Output:** `6`
 - **Explanation:**
 **The only valid partition is ("s","s","s","s","s","s").
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design an algorithm that accepts a stream of characters and checks if a suffix of these characters is a string of a given array of strings `words`.
 
@@ -9,12 +9,13 @@ Implement the `StreamChecker` class:
 - `StreamChecker(String[] words)` Initializes the object with the strings array `words`.
 
 - `boolean query(char letter)` Accepts a new character from the stream and returns `true` if any non-empty suffix from the stream forms a word that is in `words`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ streamChecker.query("j"); // return False
 streamChecker.query("k"); // return False
 streamChecker.query("l"); // return True, because 'kl' is in the wordlist
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 2000$
 

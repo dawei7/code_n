@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `s` of length `n` and an integer `k`, determine whether it is possible to select `k` disjoint **special substrings**.
 
@@ -8,15 +8,18 @@ A **special substring** is a substring where:
 
 - The substring is not the entire string `s`.
 
-**Note** that all `k` substrings must be disjoint, meaning they cannot overlap.
-
-Return `true` if it is possible to select `k` such disjoint special substrings; otherwise, return `false`.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that all `k` substrings must be disjoint, meaning they cannot overlap.
+
+Return `true` if it is possible to select `k` such disjoint special substrings; otherwise, return `false`.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ There can be at most 2 disjoint special substrings: `"e"` and `"f"`. Since $k = 
 **Output:** true
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n = \text{s.length} \le 5 * 10^{4}$
 

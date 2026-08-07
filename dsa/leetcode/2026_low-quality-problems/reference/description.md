@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Problems`
 
@@ -19,11 +19,12 @@ Find the IDs of the **low-quality** problems. A LeetCode problem is **low-qualit
 Return the result table ordered by $\text{problem}_{id}$ in ascending order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Orders`
 
@@ -20,7 +20,8 @@ Write a solution to find the number of **unique orders** and the number of **uni
 Return the result table sorted in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -30,7 +31,7 @@ The result format is in the following example.
 
 Return a table with columns `month` (varchar `YYYY-MM`), $\text{order}_{count}$ (int), and $\text{customer}_{count}$ (int) for orders with `invoice > 20`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

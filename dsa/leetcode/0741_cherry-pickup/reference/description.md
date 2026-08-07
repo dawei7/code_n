@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `n x n` `grid` representing a field of cherries, each cell is one of three possible integers.
 
@@ -17,12 +17,13 @@ Return *the maximum number of cherries you can collect by following the rules be
 - When passing through a path cell containing a cherry, you pick it up, and the cell becomes an empty cell `0`.
 
 - If there is no valid path between `(0, 0)` and $(n - 1, n - 1)$, then no cherries can be collected.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The total number of cherries picked up is 5, and this is the maximum possible.
 
 - **Input:** `grid = [[1,1,-1],[1,-1,1],[-1,1,1]]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{grid.length}$
 

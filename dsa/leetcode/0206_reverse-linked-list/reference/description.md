@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given the `head` of a singly linked list, reverse the list, and return *the reversed list*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given the `head` of a singly linked list, reverse the list, and return *the reve
 
 Return the head whose traversal visits all original nodes in reverse order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return the head whose traversal visits all original nodes in reverse order.
 
 - **Input:** $head = []$
 - **Output:** `[]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is the range `[0, 5000]`.
 

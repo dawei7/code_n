@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design a stack-like data structure to push elements to the stack and pop the most frequent element from the stack.
 
@@ -13,12 +13,13 @@ Implement the `FreqStack` class:
 		<li>If there is a tie for the most frequent element, the element closest to the stack's top is removed and returned.
 
 	</li>
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ freqStack.pop();   // return 7, as 5 and 7 is the most frequent, but 7 is closes
 freqStack.pop();   // return 5, as 5 is the most frequent. The stack becomes [5,7,4].
 freqStack.pop();   // return 4, as 4, 5 and 7 is the most frequent, but 4 is closest to the top. The stack becomes [5,7].
 ```
-### Constraints
+
+### 4. Constraints
 
 - $0 \le val \le 10^{9}$
 

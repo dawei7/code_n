@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`.** **You are also given an integer `key`, which is present in `nums`.
 
@@ -11,12 +11,13 @@ For every unique integer `target` in `nums`, **count** the number of times `targ
 - $nums[i + 1] = target$.
 
 Return *the *`target`* with the **maximum** count*. The test cases will be generated such that the `target` with maximum count is unique.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ No other integers follow an occurrence of key, so we return 100.
 - **Explanation:** For target = 2, there are 3 occurrences at indices 1, 2, and 3 which follow an occurrence of key.
 For target = 3, there is only one occurrence at index 4 which follows an occurrence of key.
 target = 2 has the maximum number of occurrences following an occurrence of key, so we return 2.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 1000$
 

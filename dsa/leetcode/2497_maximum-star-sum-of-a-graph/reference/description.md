@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected graph consisting of `n` nodes numbered from `0` to $n - 1$. You are given a **0-indexed** integer array `vals` of length `n` where $\text{vals}[i]$ denotes the value of the $$i^{\text{th}}$$ node.
 
@@ -13,12 +13,13 @@ The image below shows star graphs with `3` and `4` neighbors respectively, cente
 The **star sum** is the sum of the values of all the nodes present in the star graph.
 
 Given an integer `k`, return *the **maximum star sum** of a star graph containing **at most** *`k`* edges.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ It can be shown it is not possible to get a star graph with a sum greater than 1
 - **Output:** `-5`
 - **Explanation:** There is only one possible star graph, which is node 0 itself.
 Hence, we return -5.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{vals.length}$
 

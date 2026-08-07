@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `points` where $\text{points}[i] = [x_{i}, y_{i}]$ represents a point on the **X-Y** plane, return `true` *if these points are a **boomerang***.
 
 A **boomerang** is a set of three points that are **all distinct** and **not in a straight line**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,7 +19,8 @@ A **boomerang** is a set of three points that are **all distinct** and **not in 
 
 - **Input:** $points = [[1,1],[2,2],[3,3]]$
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $\text{points.length} = 3$
 

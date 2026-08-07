@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a 2D character matrix `grid`, where $\text{grid}[i][j]$ is either `'X'`, `'Y'`, or `'.'`, return the number of submatrices that contain:
 
@@ -7,12 +7,13 @@ Given a 2D character matrix `grid`, where $\text{grid}[i][j]$ is either `'X'`, `
 - an **equal** frequency of `'X'` and `'Y'`.
 
 - **at least** one `'X'`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ No submatrix has an equal frequency of `'X'` and `'Y'`.
 No submatrix has at least one `'X'`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grid.length}, \text{grid}[i].length \le 1000$
 

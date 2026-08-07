@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given a Circular Linked List node, which is sorted in non-descending order, write a function to insert a value `insertVal` into the list such that it remains a sorted circular list. The given node can be a reference to any single node in the list and may not necessarily be the smallest value in the circular list.
 
 If there are multiple suitable places for insertion, you may choose any place to insert the new value. After the insertion, the circular list should remain sorted.
 
 If the list is empty (i.e., the given node is `null`), you should create a new single circular list and return the reference to that single node. Otherwise, you should return the originally given node.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(head: Node | None, insertVal: int) -> Node`
 
@@ -20,7 +21,7 @@ If the list is empty (i.e., the given node is `null`), you should create a new s
 
 Insert exactly one node and preserve the circular, non-descending cyclic order. Return the original linked-list head node when the input is nonempty; otherwise return the newly created self-linked node. Any insertion location satisfying the order contract is valid.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ Insert exactly one node and preserve the circular, non-descending cyclic order. 
 
 - **Input:** $head = [1], insertVal = 0$
 - **Output:** `[1,0]`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the list is in the range $[0, 5 * 10^{4}]$.
 

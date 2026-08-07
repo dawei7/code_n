@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employee`
 
@@ -18,7 +18,8 @@ Write a solution to find the team size of each of the employees.
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input**
 
@@ -35,7 +36,7 @@ Return a table with these columns:
 
 Return exactly $n$ rows—one for every employee. Team identifiers and employee identifiers need not be contiguous, and result order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

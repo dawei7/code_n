@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -7,7 +7,8 @@ You **must** replace **exactly one** element in the array with **any** integer v
 After performing this single replacement, determine the **maximum possible product** of **any three** elements at **distinct indices** from the modified array.
 
 Return an integer denoting the **maximum product** achievable.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ The replaced index may be one of the three selected indices. All three factors i
 
 Return the greatest integer product obtainable after choosing both the replacement and the three selected indices optimally.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -61,7 +62,8 @@ The maximum product is 1200000.</div>
 There is no way to replace an element with another integer and not have a 0 in the array. Hence, the product of all three elements will always be 0, and the maximum product is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 10^{5}$
 

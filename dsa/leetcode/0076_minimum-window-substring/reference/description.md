@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t` of lengths `m` and `n` respectively, return *the **minimum window*** ***substring**** of *`s`* such that every character in *`t`* (**including duplicates**) is included in the window*. If there is no such substring, return *the empty string *`""`.
 
 The testcases will be generated such that the answer is **unique**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +15,7 @@ The testcases will be generated such that the answer is **unique**.
 
 Return the unique minimum-length substring of `s` containing all characters of `t` with their required multiplicities, or `""` if none exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ Return the unique minimum-length substring of `s` containing all characters of `
 - **Output:** `""`
 - **Explanation:** Both 'a's from t must be included in the window.
 Since the largest window of s only has one 'a', return empty string.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{s.length}$
 

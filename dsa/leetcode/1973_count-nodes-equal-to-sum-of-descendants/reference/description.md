@@ -1,13 +1,14 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree, return *the number of nodes where the value of the node is equal to the **sum** of the values of its descendants*.
 
 A **descendant** of a node `x` is any node that is on the path from node `x` to some leaf node. The sum is considered to be `0` if the node has no descendants.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ No node has a value that is equal to the sum of its descendants.
 - **Input:** `root = [0]`
 - **Output:** `1`
 For the node with value 0: The sum of its descendants is 0 since it has no descendants.
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

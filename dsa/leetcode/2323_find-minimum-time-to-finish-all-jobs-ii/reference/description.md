@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `jobs` and `workers` of **equal** length, where $\text{jobs}[i]$ is the amount of time needed to complete the $$i^{\text{th}}$$ job, and $\text{workers}[j]$ is the amount of time the $$j^{\text{th}}$$ worker can work each day.
 
 Each job should be assigned to **exactly** one worker, such that each worker completes **exactly** one job.
 
 Return *the **minimum** number of days needed to complete all the jobs after assignment.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Return *the **minimum** number of days needed to complete all the jobs after ass
 
 Return an integer representing the minimum number of days required to finish all jobs under an optimal one-to-one assignment.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ It can be proven that 2 days is the minimum number of days needed.
 - Assign the 3^rd worker to the 3^rd job. It takes them 3 days to finish the job.
 It takes 3 days for all the jobs to be completed, so return 3.
 It can be proven that 3 days is the minimum number of days needed.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{jobs.length} = \text{workers.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` integer matrix `grid`, and three integers `x`, `y`, and `k`.
 
@@ -7,12 +7,13 @@ The integers `x` and `y` represent the row and column indices of the **top-left*
 Your task is to flip the submatrix by reversing the order of its rows vertically.
 
 Return the updated matrix.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ The diagram above shows the grid before and after the transformation.
 The diagram above shows the grid before and after the transformation.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

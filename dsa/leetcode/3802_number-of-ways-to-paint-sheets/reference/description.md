@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` representing the number of sheets.
 
@@ -14,8 +14,7 @@ You must paint **all** `n` sheets under the following conditions:
 
 Return an integer denoting the number of **distinct** ways to paint all sheets. Since the answer may be large, return it **modulo** $10^{9} + 7$.
 
-**Note:** Two ways differ if **at least** one sheet is painted with a different color.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +27,11 @@ Both color segments must be nonempty. Their lengths sum to $n$, and their order 
 
 Return the number of distinct valid full-row paintings, reduced modulo $1{,}000{,}000{,}007$.
 
-### Examples
+### 3. Note
+
+Two ways differ if **at least** one sheet is painted with a different color.
+
+### 4. Examples
 
 #### Example 1
 
@@ -94,7 +97,8 @@ Valid pairs and counts are:
 Therefore, there are 4 valid ways in total.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 10^{9}$
 

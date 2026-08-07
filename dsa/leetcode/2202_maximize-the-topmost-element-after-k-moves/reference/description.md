@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` representing the contents of a **pile**, where $\text{nums}[0]$ is the topmost element of the pile.
 
@@ -11,12 +11,13 @@ In one move, you can perform **either** of the following:
 You are also given an integer `k`, which denotes the total number of moves to be made.
 
 Return *the **maximum value** of the topmost element of the pile possible after **exactly*** `k` *moves*. In case it is not possible to obtain a non-empty pile after `k` moves, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Note that this is not the only way to end with 5 at the top of the pile. It can 
 - **Explanation:**
 In the first move, our only option is to pop the topmost element of the pile.
 Since it is not possible to obtain a non-empty pile after one move, we return -1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

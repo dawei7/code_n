@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:
 
 - Select an index `i` and replace $\text{nums}[i]$ with $\text{nums}[i] - 1$.
 
 Return the **minimum** number of operations required to make the sum of the array divisible by `k`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Return the **minimum** number of operations required to make the sum of the arra
 - The sum is 0, which is divisible by 6.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an integer array `nums`, return *the maximum difference between two successive elements in its sorted form*. If the array contains less than two elements, return `0`.
 
 You must write an algorithm that runs in linear time and uses linear extra space.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must write an algorithm that runs in linear time and uses linear extra space
 
 Return the largest difference between successive values in sorted order, or `0` when fewer than two values exist.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return the largest difference between successive values in sorted order, or `0` 
 - **Input:** `nums = [10]`
 - **Output:** `0`
 - **Explanation:** The array contains less than 2 elements, therefore return 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

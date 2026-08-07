@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a `m x n` **0-indexed **2D** **matrix `mat`. From every cell, you can create numbers in the following way:
 
@@ -10,13 +10,16 @@ You are given a `m x n` **0-indexed **2D** **matrix `mat`. From every cell, you 
 
 Return *the most frequent prime number **greater** than *`10`* out of all the numbers created by traversing the matrix or *`-1`* if no such prime number exists. If there are multiple prime numbers with the highest frequency, then return the **largest** among them.*
 
-**Note:** It is invalid to change the direction during the move.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+It is invalid to change the direction during the move.
+
+### 4. Examples
 
 #### Example 1
 
@@ -58,7 +61,8 @@ Numbers greater than 10 created from the cell (2,0) in all possible directions a
 Numbers greater than 10 created from the cell (2,1) in all possible directions are: [86,82,84,86,867,85].
 Numbers greater than 10 created from the cell (2,2) in all possible directions are: [68,682,66,669,65,658].
 The most frequent prime number among all the created numbers is 97.
-### Constraints
+
+### 5. Constraints
 
 - $m = \text{mat.length}$
 

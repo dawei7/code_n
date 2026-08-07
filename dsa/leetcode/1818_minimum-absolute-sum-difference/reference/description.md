@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two positive integer arrays `nums1` and `nums2`, both of length `n`.
 
@@ -13,12 +13,13 @@ Return the *minimum absolute sum difference **after** replacing at most one** **
 - `x` if $x \ge 0$, or
 
 - `-x` if `x < 0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ absolute sum difference of 0.
 - **Output:** `20`
 - **Explanation:** Replace the first element with the second: [<u>**1**</u>,10,4,4,2,7] => [<u>**10**</u>,10,4,4,2,7].
 This yields an absolute sum difference of |10-9| + |10-3| + |4-5| + |4-1| + |2-7| + |7-4| = 20
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length}$
 

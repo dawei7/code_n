@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 In a row of dominoes, $\text{tops}[i]$ and $\text{bottoms}[i]$ represent the top and bottom halves of the $$i^{\text{th}}$$ domino. (A domino is a tile with two numbers from 1 to 6 - one on each half of the tile.)
 
@@ -7,12 +7,13 @@ We may rotate the $$i^{\text{th}}$$ domino, so that $\text{tops}[i]$ and $\text{
 Return the minimum number of rotations so that all the values in `tops` are the same, or all the values in `bottoms` are the same.
 
 If it cannot be done, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ If we rotate the second and fourth dominoes, we can make every value in the top 
 - **Output:** `-1`
 - **Explanation:**
 In this case, it is not possible to rotate the dominoes to make one row of values equal.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{tops.length} \le 2 * 10^{4}$
 

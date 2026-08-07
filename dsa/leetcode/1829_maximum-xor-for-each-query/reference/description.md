@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **sorted** array `nums` of `n` non-negative integers and an integer `maximumBit`. You want to perform the following query `n` **times**:
 
@@ -7,12 +7,13 @@ You are given a **sorted** array `nums` of `n` non-negative integers and an inte
 - Remove the **last **element from the current array `nums`.
 
 Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$i^{\text{th}}$$* query*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Return *an array* `answer`*, where *$\text{answer}[i]$* is the answer to the *$$
 
 - **Input:** `nums = [0,1,2,2,5,7], maximumBit = 3`
 - **Output:** `[4,3,6,4,6,7]`
-### Constraints
+
+### 4. Constraints
 
 - $\text{nums.length} = n$
 

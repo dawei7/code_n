@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` **availabe **seats and `n` students **standing** in a room. You are given an array `seats` of length `n`, where $\text{seats}[i]$ is the position of the $$i^{\text{th}}$$ seat. You are also given the array `students` of length `n`, where $\text{students}[j]$ is the position of the $$j^{\text{th}}$$ student.
 
@@ -9,12 +9,13 @@ You may perform the following move any number of times:
 Return *the **minimum number of moves** required to move each student to a seat** such that no two students are in the same seat.*
 
 Note that there may be **multiple** seats or students in the **same **position at the beginning.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ The students are moved as follows:
 - The third student is not moved.
 - The fourth student is not moved.
 In total, 1 + 3 + 0 + 0 = 4 moves were used.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{seats.length} = \text{students.length}$
 

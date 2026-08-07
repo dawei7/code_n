@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a positive integer **0-indexed** array `nums`.
 
@@ -9,12 +9,13 @@ A **square-free integer** is an integer that is divisible by no square number ot
 Return *the number of square-free non-empty subsets of the array* **nums**. Since the answer may be too large, return it **modulo** $10^{9} + 7$.
 
 A **non-empty** **subset** of `nums` is an array that can be obtained by deleting some (possibly none but not all) elements from `nums`. Two subsets are different if and only if the chosen indices to delete are different.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ It can be proven that there are no more than 3 square-free subsets in the given 
 - **Explanation:** There is 1 square-free subset in this example:
 - The subset consisting of the 0^th element [1]. The product of its elements is 1, which is a square-free integer.
 It can be proven that there is no more than 1 square-free subset in the given array.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 1000$
 

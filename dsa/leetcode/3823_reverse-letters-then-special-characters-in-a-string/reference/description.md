@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of lowercase English letters and special characters.
 
@@ -9,7 +9,8 @@ Your task is to perform these **in order**:
 - **Reverse** the **special characters** and place them back into the positions originally occupied by special characters.
 
 Return the resulting string after performing the reversals.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ Let $N = \lvert\texttt{s}\rvert$.
 
 Return a string of length $N$. Every original letter position must still contain a letter, with the left-to-right letter sequence reversed. Every original special-character position must still contain a special character, with that left-to-right sequence reversed.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -72,7 +73,8 @@ The string contains only one letter, and reversing it does not change the string
 The string contains no letters. The string contains all special characters, so reversing the special characters reverses the whole string.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 100$
 

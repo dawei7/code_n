@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums`. You can rearrange the elements of `nums` to **any order** (including the given order).
 
 Let `prefix` be the array containing the prefix sums of `nums` after rearranging it. In other words, $\text{prefix}[i]$ is the sum of the elements from `0` to `i` in `nums` after rearranging it. The **score** of `nums` is the number of positive integers in the array `prefix`.
 
 Return *the maximum score you can achieve*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ It can be shown that 6 is the maximum score we can obtain.
 - **Input:** `nums = [-2,-3,0]`
 - **Output:** `0`
 - **Explanation:** Any rearrangement of the array will result in a score of 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array of **positive** integers `beans`, where each integer represents the number of magic beans found in a particular magic bag.
 
 **Remove** any number of beans (**possibly none**) from each bag such that the number of beans in each remaining **non-empty** bag (still containing **at least one** bean) is **equal**. Once a bean has been removed from a bag, you are **not** allowed to return it to any of the bags.
 
 Return *the **minimum** number of magic beans that you have to remove*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ This results in the remaining bags: [0,10,3,<u>**0**</u>]
 This results in the remaining bags: [0,10,<u>**0**</u>,0]
 We removed a total of 2 + 2 + 3 = 7 beans to make the remaining non-empty bags have an equal number of beans.
 There are no other solutions that removes 7 beans or fewer.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{beans.length} \le 10^{5}$
 

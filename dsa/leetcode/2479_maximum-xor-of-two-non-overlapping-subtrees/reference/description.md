@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected tree with `n` nodes labeled from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree. The root of the tree is the node labeled `0`.
 
@@ -8,16 +8,19 @@ Select any two **non-overlapping** subtrees. Your **score** is the bitwise XOR o
 
 Return *the* ***maximum*** *possible **score** you can achieve*. *If it is impossible to find two nonoverlapping subtrees*, return `0`.
 
-**Note** that:
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+that:
 
 - The **subtree** of a node is the tree consisting of that node and all of its descendants.
 
 - Two subtrees are **non-overlapping **if they do not share **any common** node.
-### Function Contract
 
-- Refer to method signature.
-
-### Examples
+### 4. Examples
 
 #### Example 1
 
@@ -33,7 +36,8 @@ Return *the* ***maximum*** *possible **score** you can achieve*. *If it is impos
 - **Input:** $n = 3, edges = [[0,1],[1,2]], values = [4,6,1]$
 - **Output:** `0`
 - **Explanation:** There is no possible way to select two non-overlapping subtrees, so we just return 0.
-### Constraints
+
+### 5. Constraints
 
 - $2 \le n \le 5 * 10^{4}$
 

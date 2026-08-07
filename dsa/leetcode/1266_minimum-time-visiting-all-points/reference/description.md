@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 On a 2D plane, there are `n` points with integer coordinates $\text{points}[i] = [x_{i}, y_{i}]$. Return *the **minimum time** in seconds to visit all the points in the order given by *`points`.
 
@@ -16,12 +16,13 @@ You can move according to these rules:
 - You have to visit the points in the same order as they appear in the array.
 
 - You are allowed to pass through points that appear later in the order, but these do not count as visits.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ Total time = 7 seconds
 
 - **Input:** $points = [[3,2],[-2,2]]$
 - **Output:** `5`
-### Constraints
+
+### 4. Constraints
 
 - $\text{points.length} = n$
 

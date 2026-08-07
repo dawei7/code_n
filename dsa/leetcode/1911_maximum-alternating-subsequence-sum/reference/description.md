@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **alternating sum** of a **0-indexed** array is defined as the **sum** of the elements at **even** indices **minus** the **sum** of the elements at **odd** indices.
 
@@ -7,12 +7,13 @@ The **alternating sum** of a **0-indexed** array is defined as the **sum** of th
 Given an array `nums`, return *the **maximum alternating sum** of any subsequence of *`nums`* (after **reindexing** the elements of the subsequence)*.
 
 A **subsequence** of an array is a new array generated from the original array by deleting some elements (possibly none) without changing the remaining elements' relative order. For example, `[2,7,4]` is a subsequence of `[4,<u>2</u>,3,<u>7</u>,2,1,<u>4</u>]` (the underlined elements), while `[2,4,2]` is not.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A **subsequence** of an array is a new array generated from the original array b
 - **Input:** `nums = [<u>6</u>,2,<u>1</u>,2,4,<u>5</u>]`
 - **Output:** `10`
 - **Explanation:** It is optimal to choose the subsequence [6,1,5] with alternating sum (6 + 5) - 1 = 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

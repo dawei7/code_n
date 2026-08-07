@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` consisting of **positive** integers.
 
 You have to take each integer in the array, **reverse its digits**, and add it to the end of the array. You should apply this operation to the original integers in `nums`.
 
 Return *the number of **distinct** integers in the final array*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ The number of distinct integers in this array is 6 (The numbers 1, 10, 12, 13, 2
 - **Output:** `1`
 - **Explanation:** After including the reverse of each number, the resulting array is [2,2,2,<u>2,2,2</u>].
 The number of distinct integers in this array is 1 (The number 2).
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

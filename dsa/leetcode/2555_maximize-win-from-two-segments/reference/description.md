@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are some prizes on the **X-axis**. You are given an integer array `prizePositions` that is **sorted in non-decreasing order**, where $\text{prizePositions}[i]$ is the position of the $$i^{\text{th}}$$ prize. There could be different prizes at the same position on the line. You are also given an integer `k`.
 
@@ -7,12 +7,13 @@ You are allowed to select two segments with integer endpoints. The length of eac
 - For example if $k = 2$, you can choose segments `[1, 3]` and `[2, 4]`, and you will win any prize i that satisfies $1 \le \text{prizePositions}[i] \le 3$ or $2 \le \text{prizePositions}[i] \le 4$.
 
 Return *the **maximum** number of prizes you can win if you choose the two segments optimally*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Return *the **maximum** number of prizes you can win if you choose the two segme
 - **Input:** $prizePositions = [1,2,3,4], k = 0$
 - **Output:** `2`
 - **Explanation:** For this example, **one choice** for the segments is [3, 3] and [4, 4], and you will be able to get 2 prizes.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{prizePositions.length} \le 10^{5}$
 

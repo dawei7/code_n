@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an `m x n` grid `grid` where:
 
@@ -19,12 +19,13 @@ If you walk over a key, you can pick it up and you cannot walk over a lock unles
 For some $1 \le k \le 6$, there is exactly one lowercase and one uppercase letter of the first `k` letters of the English alphabet in the grid. This means that there is exactly one key for each lock, and one lock for each key; and also that the letters used to represent the keys and locks were chosen in the same order as the English alphabet.
 
 Return *the lowest number of moves to acquire all keys*. If it is impossible, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ Return *the lowest number of moves to acquire all keys*. If it is impossible, re
 
 - **Input:** $grid = ["@Aa"]$
 - **Output:** `-1`
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

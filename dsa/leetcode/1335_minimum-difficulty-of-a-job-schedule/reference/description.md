@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You want to schedule a list of jobs in `d` days. Jobs are dependent (i.e To work on the $$i^{\text{th}}$$ job, you have to finish all the jobs `j` where $0 \le j < i$).
 
@@ -7,12 +7,13 @@ You have to finish **at least** one task every day. The difficulty of a job sche
 You are given an integer array `jobDifficulty` and an integer `d`. The difficulty of the $$i^{\text{th}}$$ job is $\text{jobDifficulty}[i]$.
 
 Return *the minimum difficulty of a job schedule*. If you cannot find a schedule for the jobs return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The difficulty of the schedule = 6 + 1 = 7
 - **Input:** $jobDifficulty = [1,1,1], d = 3$
 - **Output:** `3`
 - **Explanation:** The schedule is one job per day. total difficulty will be 3.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{jobDifficulty.length} \le 300$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement a SnapshotArray that supports the following interface:
 
@@ -9,12 +9,13 @@ Implement a SnapshotArray that supports the following interface:
 - `int snap()` takes a snapshot of the array and returns the $\text{snap}_{id}$: the total number of times we called `snap()` minus `1`.
 
 - $int get(index, \text{snap}_{id})$ returns the value at the given `index`, at the time we took the snapshot with the given $\text{snap}_{id}$
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -27,7 +28,8 @@ snapshotArr.set(0,5);  // Set array[0] = 5
 snapshotArr.snap();  // Take a snapshot, return snap_id = 0
 snapshotArr.set(0,6);
 snapshotArr.get(0,0);  // Get the value of array[0] with snap_id = 0, return 5
-### Constraints
+
+### 4. Constraints
 
 - $1 \le length \le 5 * 10^{4}$
 

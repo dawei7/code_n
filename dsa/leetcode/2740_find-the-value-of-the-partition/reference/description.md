@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **positive** integer array `nums`.
 
@@ -15,12 +15,13 @@ The value of the partition is $|max(nums1) - min(nums2)|$.
 Here, `max(nums1)` denotes the maximum element of the array `nums1`, and `min(nums2)` denotes the minimum element of the array `nums2`.
 
 Return *the integer denoting the value of such partition*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,7 +41,8 @@ It can be proven that 1 is the minimum value out of all partitions.
 - The minimum element of the array nums2 is equal to 1.
 The value of the partition is |10 - 1| = 9.
 It can be proven that 9 is the minimum value out of all partitions.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

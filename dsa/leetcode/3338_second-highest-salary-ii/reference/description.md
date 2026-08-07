@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `employees`
 
@@ -96,6 +96,6 @@ employees table:
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

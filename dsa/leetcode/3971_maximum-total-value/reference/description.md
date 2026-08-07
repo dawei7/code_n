@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `value` and `decay`, and an integer `m`.
 
@@ -11,7 +11,8 @@ You may select any index **multiple** times. The total number of selections acro
 If you select index `i` for the $$t^{\text{th}}$$ time, where `t` is 1-indexed, the value gained is $\text{value}[i] - \text{decay}[i] * (t - 1)$.
 
 Return the **maximum** total value you can obtain. Since the answer may be large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -25,7 +26,7 @@ Let $n = \lvert\texttt{value}\rvert = \lvert\texttt{decay}\rvert$ and let $A = \
 
 Return the greatest total obtainable with at most `m` selections, reduced modulo $10^9 + 7$. Maximization is performed on the actual gains before applying the modulus.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -85,7 +86,8 @@ One optimal sequence of selections is as follows:
 The total value is $4 + 3 = 7$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{value.length} = \text{decay.length} \le 10^{5}$
 

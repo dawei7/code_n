@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an array `arr` and a function `fn`, return a sorted array `sortedArr`. You can assume `fn` only returns numbers and those numbers determine the sort order of `sortedArr`. `sortedArr` must be sorted in **ascending order** by `fn` output.
 
 You may assume that `fn` will never duplicate numbers for a given array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ You may assume that `fn` will never duplicate numbers for a given array.
 - **Input:** `arr = [[3, 4], [5, 2], [10, 1]], fn = (x) => x[1]`
 - **Output:** `[[10, 1], [5, 2], [3, 4]]`
 - **Explanation:** arr is sorted in ascending order by number at index=1.
-### Constraints
+
+### 4. Constraints
 
 - `arr` is a valid JSON array
 

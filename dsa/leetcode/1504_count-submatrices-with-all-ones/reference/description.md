@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given an `m x n` binary matrix `mat`, *return the number of **submatrices** that have all ones*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ There are 2 rectangles of side 2x2.
 There are 2 rectangles of side 3x1.
 There is 1 rectangle of side 3x2.
 Total number of rectangles = 8 + 5 + 2 + 4 + 2 + 2 + 1 = 24.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 150$
 

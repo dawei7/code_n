@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `m` and `n`, representing the number of rows and columns of a grid.
 
@@ -23,7 +23,8 @@ A **valid path** is a sequence of free cells that:
 	</li>
 
 Return any grid such that there is **exactly one valid path** from the top-left cell to the bottom-right cell.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -34,7 +35,7 @@ Return any grid such that there is **exactly one valid path** from the top-left 
 
 Return a list of `m` strings, each of length `n`, containing only `.` and `#`. The free cells must admit exactly one right-or-down path from `(0, 0)` to $(m - 1, n - 1)$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,6 +77,7 @@ The only valid path is: `(0,0) → (0,1) → (1,1) → (1,2) → (2,2)`
 The only valid path is: `(0,0) → (0,1) → (0,2) → (0,3)`
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 25$

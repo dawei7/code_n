@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, and an integer array `queries` of length `m`.
 
 Return *an array *`answer`* of length *`m`* where *$\text{answer}[i]$* is the **maximum** size of a **subsequence** that you can take from *`nums`* such that the **sum** of its elements is less than or equal to *$\text{queries}[i]$.
 
 A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ A **subsequence** is an array that can be derived from another array by deleting
 - **Input:** `nums = [2,3,4,5], queries = [1]`
 - **Output:** `[0]`
 - **Explanation:** The empty subsequence is the only subsequence that has a sum less than or equal to 1, so answer[0] = 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

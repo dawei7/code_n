@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an array `nums` of size `n`, consisting of **non-negative** integers. Your task is to apply some (possibly zero) operations on the array so that **all** elements become 0.
 
 In one operation, you can select a subarray `[i, j]` (where $0 \le i \le j < n$) and set all occurrences of the **minimum** **non-negative** integer in that subarray to 0.
 
 Return the **minimum** number of operations required to make all elements in the array 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Return the **minimum** number of operations required to make all elements in the
 - Thus, the minimum number of operations required is 4.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

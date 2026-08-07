@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integer arrays `prices` and `strategy`, where:
 
@@ -26,13 +26,16 @@ The **profit** is defined as the **sum** of $\text{strategy}[i] * \text{prices}[
 
 Return the **maximum** possible profit you can achieve.
 
-**Note:** There are no constraints on budget or stock ownership, so all buy and sell operations are feasible regardless of past actions.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+There are no constraints on budget or stock ownership, so all buy and sell operations are feasible regardless of past actions.
+
+### 4. Examples
 
 #### Example 1
 
@@ -122,7 +125,8 @@ Thus, the maximum possible profit is 9, which is achieved without any modificati
 
 </div>
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $2 \le \text{prices.length} = \text{strategy.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` friends that are playing a game. The friends are sitting in a circle and are numbered from `1` to `n` in **clockwise order**. More formally, moving clockwise from the $$i^{\text{th}}$$ friend brings you to the $(i+1)^th$ friend for $1 \le i < n$, and moving clockwise from the $$n^{\text{th}}$$ friend brings you to the $1^st$ friend.
 
@@ -15,12 +15,13 @@ The rules of the game are as follows:
 - Else, the last friend in the circle wins the game.
 
 Given the number of friends, `n`, and an integer `k`, return *the winner of the game*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Given the number of friends, `n`, and an integer `k`, return *the winner of the 
 - **Input:** $n = 6, k = 5$
 - **Output:** `1`
 - **Explanation:** The friends leave in this order: 5, 4, 6, 2, 3. The winner is friend 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le n \le 500$
 

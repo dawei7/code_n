@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **min-product** of an array is equal to the **minimum value** in the array **multiplied by** the array's **sum**.
 
@@ -9,12 +9,13 @@ Given an array of integers `nums`, return *the **maximum min-product** of any **
 Note that the min-product should be maximized **before** performing the modulo operation. Testcases are generated such that the maximum min-product **without** modulo will fit in a **64-bit signed integer**.
 
 A **subarray** is a **contiguous** part of an array.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ A **subarray** is a **contiguous** part of an array.
 - **Output:** `60`
 - **Explanation:** The maximum min-product is achieved with the subarray [5,6,4] (minimum value is 4).
 4 * (5+6+4) = 4 * 15 = 60.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

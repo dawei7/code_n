@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Samples`
 
@@ -139,15 +139,15 @@ Samples table:
 
 	</li>
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - The result is ordered by sample_id in ascending order
 
 - For each pattern, 1 indicates the pattern is present and 0 indicates it is not present
 
 </div>
-
-### Function Contract
-
-- `n`: Input parameter.
-- Returns expected result.

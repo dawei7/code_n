@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a binary string `s`, and an integer `k`.
 
 In one operation, you must choose **exactly** `k` **different** indices and **flip** each `'0'` to `'1'` and each `'1'` to `'0'`.
 
 Return the **minimum** number of operations required to make all characters in the string equal to `'1'`. If it is not possible, return -1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -56,7 +57,8 @@ Thus, the minimum number of operations is 2.
 Since $k = 2$ and `s` has only one `'0'`, it is impossible to flip exactly `k` indices to make all `'1'`. Hence, the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 10^​​​​​​​5$
 

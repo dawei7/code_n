@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
 Split the array into **exactly** two subarrays, `left` and `right`, such that `left` is **strictly increasing ** and `right` is **strictly decreasing**.
 
 Return the **minimum possible absolute difference** between the sums of `left` and `right`. If no valid split exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ A split after index $i$ produces $left = nums[0..i]$ and $right = nums[i+1..n-1]
 
 Return the minimum value of $\lvert\operatorname{sum}(\texttt{left})-\operatorname{sum}(\texttt{right})\rvert$ over valid splits, or `-1` if none exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -132,7 +133,8 @@ Thus, the minimum absolute difference is 4.
 No valid split exists, so the answer is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums`.
 
@@ -10,13 +10,16 @@ Split `nums` into two arrays `A` and `B` using the following rule:
 
 Return the **absolute** difference between the sums of the two arrays: $|sum(A) - sum(B)|$.
 
-**Note:** An empty array has a sum of 0.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+An empty array has a sum of 0.
+
+### 4. Examples
 
 #### Example 1
 
@@ -54,7 +57,8 @@ Return the **absolute** difference between the sums of the two arrays: $|sum(A) 
 - The absolute difference is $|7 - 4| = 3$.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Users`
 
@@ -32,12 +32,13 @@ Write a solution to report the distance traveled by each user.
 Return the result table ordered by $\text{travelled}_{distance}$ in **descending order**, if two or more users traveled the same distance, order them by their `name` in **ascending order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

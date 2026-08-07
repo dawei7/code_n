@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a positive integer num, return *the smallest positive integer *`x`* whose multiplication of each digit equals *`num`. If there is no answer or the answer is not fit in **32-bit** signed integer, return `0`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a positive integer num, return *the smallest positive integer *`x`* whose 
 
 Return the smallest positive integer whose decimal digits multiply to `a`. Return `0` when no such positive integer exists or when the smallest valid result is greater than $2^{31} - 1$.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,6 +22,7 @@ Return the smallest positive integer whose decimal digits multiply to `a`. Retur
 
 - **Input:** $num = 15$
 - **Output:** `35`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 2^{31} - 1$

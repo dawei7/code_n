@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Followers`
 
@@ -18,12 +18,13 @@ Write a solution that will, for each user, return the number of followers.
 Return the result table ordered by $\text{user}_{id}$ in ascending order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

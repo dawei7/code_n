@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** binary string `s` and two integers `minJump` and `maxJump`. In the beginning, you are standing at index `0`, which is equal to `'0'`. You can move from index `i` to index `j` if the following conditions are fulfilled:
 
@@ -7,12 +7,13 @@ You are given a **0-indexed** binary string `s` and two integers `minJump` and `
 - $s[j] = '0'$.
 
 Return `true`* if you can reach index *$\text{s.length} - 1$* in *`s`*, or *`false`* otherwise.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ In the second step, move from index 3 to index 5.
 
 - **Input:** `s = "01101110", minJump = 2, maxJump = 3`
 - **Output:** `false`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 10^{5}$
 

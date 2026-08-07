@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a set which contains all positive integers `[1, 2, 3, 4, 5, ...]`.
 
@@ -9,12 +9,13 @@ Implement the `SmallestInfiniteSet` class:
 - `int popSmallest()` **Removes** and returns the smallest integer contained in the infinite set.
 
 - `void addBack(int num)` **Adds** a positive integer `num` back into the infinite set, if it is **not** already in the infinite set.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ smallestInfiniteSet.popSmallest(); // return 1, since 1 was added back to the se
 smallestInfiniteSet.popSmallest(); // return 4, and remove it from the set.
 smallestInfiniteSet.popSmallest(); // return 5, and remove it from the set.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le num \le 1000$
 

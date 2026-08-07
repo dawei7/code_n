@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given an unsorted array of integers `nums`, return *the length of the longest consecutive elements sequence.*
 
 You must write an algorithm that runs in `O(n)` time.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ You must write an algorithm that runs in `O(n)` time.
 
 Return the number of distinct consecutive integers in the longest sequence present in `nums`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -28,7 +29,8 @@ Return the number of distinct consecutive integers in the longest sequence prese
 
 - **Input:** `nums = [1,0,1,2]`
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{nums.length} \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Drivers`
 
@@ -53,7 +53,8 @@ Write a solution to report the following statistics for each month of **2020**:
 Return the result table ordered by `month` in ascending order, where `month` is the month's number (January is `1`, February is `2`, etc.).
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -65,7 +66,7 @@ The result format is in the following example.
 
 Return a table with columns `month`, $\text{active}_{drivers}$, and $\text{accepted}_{rides}$ for each month of 2020 (1 through 12) ordered by `month` ascending.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

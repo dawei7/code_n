@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Design and implement a data structure for a <a href="https://en.wikipedia.org/wiki/Least_frequently_used" target="_blank">Least Frequently Used (LFU)</a> cache.
 
@@ -15,7 +15,8 @@ To determine the least frequently used key, a **use counter** is maintained for 
 When a key is first inserted into the cache, its **use counter** is set to `1` (due to the `put` operation). The **use counter** for a key in the cache is incremented either a `get` or `put` operation is called on it.
 
 The functions `get` and `put` must each run in `O(1)` average time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The functions `get` and `put` must each run in `O(1)` average time complexity.
 
 The native interface exposes the `LFUCache` class directly. The app-local `solve` adapter executes the supplied operation trace in order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -60,7 +61,8 @@ lfu.get(3);      // return 3
 lfu.get(4);      // return 4
                  // cache=[4,3], cnt(4)=2, cnt(3)=3
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le capacity \le 10^{4}$
 

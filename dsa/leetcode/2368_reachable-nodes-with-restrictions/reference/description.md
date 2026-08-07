@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is an undirected tree with `n` nodes labeled from `0` to $n - 1$ and $n - 1$ edges.
 
@@ -7,12 +7,13 @@ You are given a 2D integer array `edges` of length $n - 1$ where $\text{edges}[i
 Return *the **maximum** number of nodes you can reach from node *`0`* without visiting a restricted node.*
 
 Note that node `0` will **not** be a restricted node.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ We have that [0,1,2,3] are the only nodes that can be reached from node 0 withou
 - **Output:** `3`
 - **Explanation:** The diagram above shows the tree.
 We have that [0,5,6] are the only nodes that can be reached from node 0 without visiting a restricted node.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

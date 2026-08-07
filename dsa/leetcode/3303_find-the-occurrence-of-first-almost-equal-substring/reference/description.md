@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `pattern`.
 
@@ -7,12 +7,13 @@ A string `x` is called **almost equal** to `y` if you can change **at most** one
 Return the **smallest** *starting index* of a substring in `s` that is **almost equal** to `pattern`. If no such index exists, return `-1`.
 
 A **substring** is a contiguous **non-empty** sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,9 +55,13 @@ The substring $s[4..9] = "bababa"$ can be converted to `"bacaba"` by changing $s
 **Output:** 0
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{pattern.length} < \text{s.length} \le 10^{5}$
 
 - `s` and `pattern` consist only of lowercase English letters.
-### Follow-up Could you solve the problem if **at most** `k` **consecutive** characters can be changed?
+
+### 5. Follow-up
+
+Could you solve the problem if **at most** `k` **consecutive** characters can be changed?

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Insurance`
 
@@ -29,12 +29,13 @@ Write a solution to report the sum of all total investment values in 2016 $\text
 Round $\text{tiv}_{2016}$ to **two decimal places**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: $\text{user}_{permissions}$
 
@@ -76,6 +76,6 @@ user_permissions table:
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

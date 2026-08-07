@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an integer array `nums` containing **distinct** **positive** integers, find and return **any** number from the array that is neither the **minimum** nor the **maximum** value in the array, or **`-1`** if there is no such number.
 
 Return *the selected integer.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the selected integer.*
 - **Input:** `nums = [2,1,3]`
 - **Output:** `2`
 - **Explanation:** Since 2 is neither the maximum nor the minimum value in nums, it is the only valid answer.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

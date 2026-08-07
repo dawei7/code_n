@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed**, **strictly increasing** integer array `nums` and a positive integer `diff`. A triplet `(i, j, k)` is an **arithmetic triplet** if the following conditions are met:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed**, **strictly increasing** integer array `nums` and 
 - $\text{nums}[k] - \text{nums}[j] = diff$.
 
 Return *the number of unique **arithmetic triplets**.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return *the number of unique **arithmetic triplets**.*
 - **Explanation:**
 (0, 2, 4) is an arithmetic triplet because both 8 - 6 == 2 and 6 - 4 == 2.
 (1, 3, 5) is an arithmetic triplet because both 9 - 7 == 2 and 7 - 5 == 2.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{nums.length} \le 200$
 

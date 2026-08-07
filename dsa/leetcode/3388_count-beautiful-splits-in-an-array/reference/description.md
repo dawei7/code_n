@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums`.
 
@@ -9,12 +9,13 @@ A split of an array `nums` is **beautiful** if:
 - The subarray `nums1` is a prefix of `nums2` **OR** `nums2` is a prefix of `nums3`.
 
 Return the **number of ways** you can make this split.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ The beautiful splits are:
 There are 0 beautiful splits.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

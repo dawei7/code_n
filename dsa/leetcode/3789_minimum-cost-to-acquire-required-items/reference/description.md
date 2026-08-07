@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given five integers `cost1`, `cost2`, `costBoth`, `need1`, and `need2`.
 
@@ -13,7 +13,8 @@ There are three types of items available:
 You must collect enough items so that the total contribution toward type 1 is **at least** `need1` and the total contribution toward type 2 is **at least** `need2`.
 
 Return an integer representing the **minimum** possible total cost to achieve these requirements.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -29,7 +30,7 @@ Contributions may exceed either requirement; exact equality is not required. Any
 
 Return the least total purchase cost whose contributions meet or exceed both required amounts.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -70,7 +71,8 @@ Any other valid combination would cost more, so the minimum total cost is 22.
 Since no items are required ($need1 = need2 = 0$), we buy nothing and pay 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le cost1, cost2, costBoth \le 10^{6}$
 

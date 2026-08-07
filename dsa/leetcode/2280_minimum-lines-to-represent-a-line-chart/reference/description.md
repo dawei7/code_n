@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D integer array `stockPrices` where $\text{stockPrices}[i] = [\text{day}_{i}, \text{price}_{i}]$ indicates the price of the stock on day $\text{day}_{i}$ is $\text{price}_{i}$. A **line chart** is created from the array by plotting the points on an XY plane with the X-axis representing the day and the Y-axis representing the price and connecting adjacent points. One such example is shown below:
 
 ![](images/1920px-pushkin_population_historysvg.png)
 
 Return *the **minimum number of lines** needed to represent the line chart*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ It can be shown that it is not possible to represent the line chart using less t
 - **Output:** `1`
 - **Explanation:**
 As shown in the diagram above, the line chart can be represented with a single line.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{stockPrices.length} \le 10^{5}$
 

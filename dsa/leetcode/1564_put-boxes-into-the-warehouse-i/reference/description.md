@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two arrays of positive integers, `boxes` and `warehouse`, representing the heights of some boxes of unit width and the heights of `n` rooms in a warehouse respectively. The warehouse's rooms are labelled from `0` to $n - 1$ from left to right where $\text{warehouse}[i]$ (0-indexed) is the height of the $$i^{\text{th}}$$ room.
 
@@ -13,7 +13,8 @@ Boxes are put into the warehouse by the following rules:
 - If the height of some room in the warehouse is less than the height of a box, then that box and all other boxes behind it will be stopped before that room.
 
 Return *the maximum number of boxes you can put into the warehouse.*
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ Return *the maximum number of boxes you can put into the warehouse.*
 
 Return an integer representing the maximum number of boxes that can be placed into the warehouse from the left entrance.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -53,7 +54,8 @@ Swapping the orange and green boxes is also valid, or swapping one of them with 
 - **Input:** $boxes = [1,2,3], warehouse = [1,2,3,4]$
 - **Output:** `1`
 - **Explanation:** Since the first room in the warehouse is of height 1, we can only put boxes of height 1.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{warehouse.length}$
 

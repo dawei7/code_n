@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Write code that enhances all arrays such that you can call the `array.last()` method on any array and it will return the last element. If there are no elements in the array, it should return `-1`.
 
 You may assume the array is the output of `JSON.parse`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -20,7 +21,8 @@ You may assume the array is the output of `JSON.parse`.
 - **Input:** `nums = []`
 - **Output:** `-1`
 - **Explanation:** Because there are no elements, return -1.
-### Constraints
+
+### 4. Constraints
 
 - `arr` is a valid JSON array
 

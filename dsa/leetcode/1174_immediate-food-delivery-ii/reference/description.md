@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Delivery`
 
@@ -22,12 +22,13 @@ The **first order** of a customer is the order with the earliest order date that
 Write a solution to find the percentage of immediate orders in the first orders of all customers, **rounded to 2 decimal places**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

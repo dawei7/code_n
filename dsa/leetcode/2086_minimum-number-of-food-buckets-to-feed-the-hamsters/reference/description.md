@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `hamsters` where $\text{hamsters}[i]$ is either:
 
@@ -9,12 +9,13 @@ You are given a **0-indexed** string `hamsters` where $\text{hamsters}[i]$ is ei
 You will add some number of food buckets at the empty indices in order to feed the hamsters. A hamster can be fed if there is at least one food bucket to its left or to its right. More formally, a hamster at index `i` can be fed if you place a food bucket at index $i - 1$ **and/or** at index $i + 1$.
 
 Return *the minimum number of food buckets you should **place at empty indices** to feed all the hamsters or *`-1`* if it is impossible to feed all of them*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ It can be shown that if we place only one food bucket, one of the hamsters will 
 - **Input:** $hamsters = ".HHH."$
 - **Output:** `-1`
 - **Explanation:** If we place a food bucket at every empty index as shown, the hamster at index 2 will not be able to eat.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{hamsters.length} \le 10^{5}$
 

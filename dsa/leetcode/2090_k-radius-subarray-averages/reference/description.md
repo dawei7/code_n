@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** array `nums` of `n` integers, and an integer `k`.
 
@@ -9,12 +9,13 @@ Build and return *an array *`avgs`* of length *`n`* where *$\text{avgs}[i]$* is 
 The **average** of `x` elements is the sum of the `x` elements divided by `x`, using **integer division**. The integer division truncates toward zero, which means losing its fractional part.
 
 - For example, the average of four elements `2`, `3`, `1`, and `5` is $(2 + 3 + 1 + 5) / 4 = 11 / 4 = 2.75$, which truncates to `2`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ avg[0] = 100000 / 1 = 100000.
 - **Output:** `[-1]`
 - **Explanation:**
 - avg[0] is -1 because there are less than k elements before and after index 0.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums.length}$
 

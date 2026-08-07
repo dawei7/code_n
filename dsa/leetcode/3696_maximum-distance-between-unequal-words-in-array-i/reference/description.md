@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string array `words`.
 
@@ -9,7 +9,8 @@ Find the **maximum distance** between two **distinct** indices `i` and `j` such 
 - the distance is defined as $j - i + 1$.
 
 Return the maximum distance among all such pairs. If no valid pair exists, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ A candidate uses two distinct indices $i<j$. The candidate is valid only when $\
 
 Return the maximum distance among all valid pairs, or `0` when no unequal pair exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -59,7 +60,8 @@ In this example $\text{words}[1]$ and $\text{words}[4]$ have the largest distanc
 In this example all the words are equal, thus the answer is 0.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

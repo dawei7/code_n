@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given `n × m` grid and an integer `k`.
 
@@ -7,12 +7,13 @@ A sensor placed on cell `(r, c)` covers all cells whose **Chebyshev distance** f
 The **Chebyshev distance** between two cells $(r_{1}, c_{1})$ and $(r_{2}, c_{2})$ is $max(|r_{1} − r_{2}|,|c_{1} − c_{2}|)$.
 
 Your task is to return the **minimum** number of sensors required to cover every cell of the grid.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ Placing sensors at positions `(0, 3)`, `(1, 0)`, `(3, 3)`, and `(4, 1)` ensures 
 With $k = 2$, a single sensor can cover the entire $2 * 2$ grid regardless of its position. Thus, the answer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{3}$
 

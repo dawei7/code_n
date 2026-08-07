@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` and a **0-indexed** **2D array** `queries` where $\text{queries}[i] = [\text{type}_{i}, \text{index}_{i}, \text{val}_{i}]$.
 
@@ -9,12 +9,13 @@ Initially, there is a **0-indexed** `n x n` matrix filled with `0`'s. For each q
 - if $\text{type}_{i} = 1$, set the values in the column with $\text{index}_{i}$ to $\text{val}_{i}$, overwriting any previous values.
 
 Return *the sum of integers in the matrix after all queries are applied*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ Return *the sum of integers in the matrix after all queries are applied*.
 - **Input:** $n = 3, queries = [[0,0,4],[0,1,2],[1,0,1],[0,2,3],[1,2,1]]$
 - **Output:** `17`
 - **Explanation:** The image above describes the matrix after each query. The sum of the matrix after all queries are applied is 17.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{4}$
 

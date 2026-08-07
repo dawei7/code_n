@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -9,7 +9,8 @@ We write the integers from 1 to `n` in a sequence from left to right. Then, **al
 - **Operation 2**: Starting from the right, delete every second number.
 
 Return the last remaining integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -21,7 +22,7 @@ The initial sequence is `[1, 2, ..., n]`. A sweep keeps the first number visited
 
 Return the sole integer left after all alternating deletion operations finish.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -73,6 +74,7 @@ Return the sole integer left after all alternating deletion operations finish.
 - The last remaining integer is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{15}$

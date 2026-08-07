@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A farmer has a **rectangular grid** of land with `m` rows and `n` columns that can be divided into unit cells. Each cell is either **fertile** (represented by a `1`) or **barren** (represented by a `0`). All cells outside the grid are considered barren.
 
@@ -19,12 +19,13 @@ Some examples of valid and invalid pyramidal (and inverse pyramidal) plots are s
 ![](images/image.png)
 
 Given a **0-indexed** `m x n` binary matrix `grid` representing the farmland, return *the **total number** of pyramidal and inverse pyramidal plots that can be found in* `grid`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -52,7 +53,8 @@ Hence the total number of plots is 1 + 1 = 2.
 - **Explanation:** There are 7 pyramidal plots, 3 of which are shown in the 2nd and 3rd figures.
 There are 6 inverse pyramidal plots, 2 of which are shown in the last figure.
 The total number of plots is 7 + 6 = 13.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D** **array `points` and a string `s` where, $\text{points}[i]$ represents the coordinates of point `i`, and $s[i]$ represents the **tag** of point `i`.
 
@@ -11,12 +11,13 @@ Note:
 - A point is considered to be inside the square if it lies on or within the square's boundaries.
 
 - The side length of the square can be zero.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -58,7 +59,8 @@ The square of side length 2 covers one point, which is $\text{points}[0]$.
 It's impossible to make any valid squares centered at the origin such that it covers only one point among $\text{points}[0]$ and $\text{points}[1]$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{points.length} \le 10^{5}$
 

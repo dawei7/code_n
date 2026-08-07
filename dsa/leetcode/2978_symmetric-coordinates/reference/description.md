@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Coordinates`
 
@@ -19,11 +19,12 @@ Write a solution that outputs, among all these **symmetric** **coordintes**, onl
 Return *the result table ordered by *`X` *and * `Y` *(respectively)* *in **ascending order***.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

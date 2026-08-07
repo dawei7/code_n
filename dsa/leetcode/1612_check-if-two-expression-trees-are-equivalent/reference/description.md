@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 A **<a href="https://en.wikipedia.org/wiki/Binary_expression_tree" target="_blank">binary expression tree</a>** is a kind of binary tree used to represent arithmetic expressions. Each node of a binary expression tree has either zero or two children. Leaf nodes (nodes with 0 children) correspond to operands (variables), and internal nodes (nodes with two children) correspond to the operators. In this problem, we only consider the `'+'` operator (i.e. addition).
 
 You are given the roots of two binary expression trees, `root1` and `root2`. Return `true`* if the two binary expression trees are equivalent*. Otherwise, return `false`.
 
 Two binary expression trees are equivalent if they **evaluate to the same value** regardless of what the variables are set to.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Two binary expression trees are equivalent if they **evaluate to the same value*
 
 Return `true` if `root1` and `root2` represent equivalent addition expressions (same variable multiset/counts), otherwise `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -44,7 +45,8 @@ Return `true` if `root1` and `root2` represent equivalent addition expressions (
 - **Input:** $root1 = [+,a,+,null,null,b,c], root2 = [+,+,a,b,d]$
 - **Output:** `false`
 **Explanation****:** a + (b + c) != (b + d) + a
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in both trees are equal, odd and, in the range `[1, 4999]`.
 

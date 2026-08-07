@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string array `words`, consisting of **distinct** 4-letter strings, each containing lowercase English letters.
 
@@ -19,7 +19,8 @@ It must satisfy:
 - $\text{bottom}[0] = \text{left}[3]$, $\text{bottom}[3] = \text{right}[3]$
 
 Return all valid **distinct** word squares, sorted in **ascending lexicographic** order by the 4-tuple `(top, left, right, bottom)​​​​​​​`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -31,7 +32,7 @@ Each returned square must use four different entries from `words`; a word cannot
 
 Return a list of all valid four-word arrays in the role order `[top, left, right, bottom]`. Order that outer list lexicographically by those four positions. Return an empty list when no valid square exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Thus, the answer is `[["able","area","echo","also"],["area","able","also","echo"
 No combination of four words satisfies all four corner constraints. Thus, the answer is empty array `[]`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $4 \le \text{words.length} \le 15$
 

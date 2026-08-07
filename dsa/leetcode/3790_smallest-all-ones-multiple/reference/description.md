@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given a positive integer `k`.
 
 Find the **smallest** integer `n` divisible by `k` that consists of **only the digit 1** in its decimal representation (e.g., 1, 11, 111, ...).
 
 Return an integer denoting the **number of digits** in the decimal representation of `n`. If no such `n` exists, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -17,7 +18,7 @@ Return an integer denoting the **number of digits** in the decimal representatio
 
 Return the minimum positive length $L$ for which the $L$-digit repunit is divisible by `k`, or `-1` if no such length exists.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -55,6 +56,7 @@ $n = 111111$. The length of $n = 111111$ is 6.
 There does not exist a valid `n` that is a multiple of 2.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le k \le 10^{5}$

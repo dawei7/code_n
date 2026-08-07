@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
@@ -9,12 +9,13 @@ A number is called **special** if:
 - Every digit `k` in the number appears **exactly** `k` times.
 
 Return the **smallest** special number **strictly **greater than `n`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,6 +41,7 @@ Return the **smallest** special number **strictly **greater than `n`.
 212 is the smallest special number greater than 33, as it is a palindrome and the digits 1 and 2 appear exactly 1 and 2 times respectively.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 10^{15}$

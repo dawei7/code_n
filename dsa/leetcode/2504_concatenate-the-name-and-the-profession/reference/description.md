@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Person`
 
@@ -20,11 +20,12 @@ Write a solution to report each person's name followed by the first letter of th
 Return the result table **ordered** by $\text{person}_{id}$ in **descending order**.
 
 The result format is shown in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

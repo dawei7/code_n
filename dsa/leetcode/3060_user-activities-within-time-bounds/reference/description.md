@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sessions`
 
@@ -57,6 +57,6 @@ Sessions table:
 Output table is ordered by user_id in increasing order.
 ```
 
-### Function Contract
+### 2. Function Contract
 
 - Refer to method signature.

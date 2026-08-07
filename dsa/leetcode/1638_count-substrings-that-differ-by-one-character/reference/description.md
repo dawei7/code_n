@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, find the number of ways you can choose a non-empty substring of `s` and replace a **single character** by a different character such that the resulting substring is a substring of `t`. In other words, find the number of substrings in `s` that differ from some substring in `t` by **exactly** one character.
 
@@ -7,12 +7,13 @@ For example, the underlined substrings in `"<u>compute</u>r"` and `"<u>computa</
 Return *the number of substrings that satisfy the condition above.*
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ The underlined portions are the substrings that are chosen from s and t.
 ("<u>a</u>b", "b<u>b</u>")
 ("<u>ab</u>", "<u>bb</u>")
 ​​​​The underlined portions are the substrings that are chosen from s and t.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 100$
 

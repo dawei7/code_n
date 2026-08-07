@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 An **ugly number** is a positive integer that is divisible by `a`, `b`, or `c`.
 
 Given four integers `n`, `a`, `b`, and `c`, return the $$n^{\text{th}}$$ **ugly number**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Given four integers `n`, `a`, `b`, and `c`, return the $$n^{\text{th}}$$ **ugly 
 - **Input:** $n = 5, a = 2, b = 11, c = 13$
 - **Output:** `10`
 - **Explanation:** The ugly numbers are 2, 4, 6, 8, 10, 11, 12, 13... The 5^th is 10.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, a, b, c \le 10^{9}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s`, return *the number of substrings that have only **one distinct** letter*.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Let $n = \lvert s\rvert$. Each candidate substring is identified by an interval 
 
 - Return the integer number of qualifying non-empty intervals. Occurrences at different positions count separately even when their substring text is identical.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ So the answer is 1 + 2 + 4 + 1 = 8.
 
 - **Input:** `s = "aaaaaaaaaa"`
 - **Output:** `55`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 1000$
 

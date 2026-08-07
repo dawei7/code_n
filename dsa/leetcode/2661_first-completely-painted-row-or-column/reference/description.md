@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `arr`, and an `m x n` integer **matrix** `mat`. `arr` and `mat` both contain **all** the integers in the range `[1, m * n]`.
 
 Go through each index `i` in `arr` starting from index `0` and paint the cell in `mat` containing the integer $\text{arr}[i]$.
 
 Return *the smallest index* `i` *at which either a row or a column will be completely painted in* `mat`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -26,7 +27,8 @@ Return *the smallest index* `i` *at which either a row or a column will be compl
 - **Input:** `arr = [2,8,7,4,1,3,5,6,9], mat = [[3,2,5],[1,4,6],[8,7,9]]`
 - **Output:** `3`
 - **Explanation:** The second column becomes fully painted at arr[3].
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{mat.length}$
 

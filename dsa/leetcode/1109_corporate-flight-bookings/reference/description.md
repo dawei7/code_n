@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` flights that are labeled from `1` to `n`.
 
 You are given an array of flight bookings `bookings`, where $\text{bookings}[i] = [\text{first}_{i}, \text{last}_{i}, \text{seats}_{i}]$ represents a booking for flights $\text{first}_{i}$ through $\text{last}_{i}$ (**inclusive**) with $\text{seats}_{i}$ seats reserved for **each flight** in the range.
 
 Return *an array *`answer`* of length *`n`*, where *$\text{answer}[i]$* is the total number of seats reserved for flight *`i`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ Booking 1 reserved:  10  10
 Booking 2 reserved:      15
 Total seats:         10  25
 Hence, answer = [10,25]
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 2 * 10^{4}$
 

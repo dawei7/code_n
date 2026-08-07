@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given the `root` of a binary tree and a `leaf` node, reroot the tree so that the `leaf` is the new root.
 
@@ -10,8 +10,7 @@ You can reroot the tree with the following steps for each node `cur` on the path
 
 Return *the new root **of the rerooted tree.*
 
-**Note:** Ensure that your solution sets the `Node.parent` pointers correctly after rerooting or you will receive "Wrong Answer".
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -22,7 +21,11 @@ Return *the new root **of the rerooted tree.*
 
 Return the supplied `leaf` node as the new root of the rerooted tree with `leaf.parent` set to `null`.
 
-### Examples
+### 3. Note
+
+Ensure that your solution sets the `Node.parent` pointers correctly after rerooting or you will receive "Wrong Answer".
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ Return the supplied `leaf` node as the new root of the rerooted tree with `leaf.
 
 - **Input:** `root = [3,5,1,6,2,0,8,null,null,7,4], leaf = 0`
 - **Output:** `[0,1,null,3,8,5,null,null,null,6,2,null,null,7,4]`
-### Constraints
+
+### 5. Constraints
 
 - The number of nodes in the tree is in the range `[2, 100]`.
 

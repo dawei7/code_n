@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a rectangle of size `n` x `m`, return *the minimum number of integer-sided squares that tile the rectangle*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ Given a rectangle of size `n` x `m`, return *the minimum number of integer-sided
 
 - **Input:** $n = 11, m = 13$
 - **Output:** `6`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 13$

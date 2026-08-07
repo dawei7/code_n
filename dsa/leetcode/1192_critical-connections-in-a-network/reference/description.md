@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 There are `n` servers numbered from `0` to $n - 1$ connected by undirected server-to-server `connections` forming a network where $\text{connections}[i] = [a_{i}, b_{i}]$ represents a connection between servers $a_{i}$ and $b_{i}$. Any server can reach other servers directly or indirectly through the network.
 
 A *critical connection* is a connection that, if removed, will make some servers unable to reach some other server.
 
 Return all critical connections in the network in any order.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return all critical connections in the network in any order.
 
 - **Input:** $n = 2, connections = [[0,1]]$
 - **Output:** `[[0,1]]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

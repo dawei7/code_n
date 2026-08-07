@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an array `nums`​​​ and an integer `k`​​​​​. The XOR of a segment `[left, right]` where $left \le right$ is the `XOR` of all the elements with indices between `left` and `right`, inclusive: $\text{nums}[left] XOR nums[left+1] XOR ... XOR \text{nums}[right]$.
 
 Return *the minimum number of elements to change in the array *such that the `XOR` of all segments of size `k`​​​​​​ is equal to zero.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the minimum number of elements to change in the array *such that the `XO
 - **Input:** `nums = [1,2,4,1,2,5,1,2,6], k = 3`
 - **Output:** `3`
 - **Explanation:** Modify the array from [1,2,**<u>4,</u>**1,2,**<u>5</u>**,1,2,**<u>6</u>**] to [1,2,**<u>3</u>**,1,2,**<u>3</u>**,1,2,**<u>3</u>**].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 2000$
 

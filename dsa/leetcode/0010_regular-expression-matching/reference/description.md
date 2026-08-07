@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an input string `s` and a pattern `p`, implement regular expression matching with support for `'.'` and `'*'` where:
 
@@ -7,7 +7,8 @@ Given an input string `s` and a pattern `p`, implement regular expression matchi
 - `'*'` Matches zero or more of the preceding element.
 
 Return a boolean indicating whether the matching covers the entire input string (not partial).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -18,7 +19,7 @@ Return a boolean indicating whether the matching covers the entire input string 
 
 Return `True` when `p` matches all of `s`; otherwise return `False`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ Return `True` when `p` matches all of `s`; otherwise return `False`.
 - **Input:** `s = "ab", p = ".*"`
 - **Output:** `true`
 - **Explanation:** ".*" means "zero or more (*) of any character (.)".
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 20$
 

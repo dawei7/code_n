@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given two positive integers `m` and `n` which are the height and width of a **0-indexed** 2D-array `board`, a pair of positive integers `(r, c)` which is the starting position of the knight on the board.
 
@@ -7,11 +7,12 @@ Your task is to find an order of movements for the knight, in a manner that ever
 Return *the array* `board` *in which the cells' values show the order of visiting the cell starting from 0 (the initial place of the knight).*
 
 Note that a **knight** can **move** from cell `(r1, c1)` to cell `(r2, c2)` if $0 \le r2 \le m - 1$ and $0 \le c2 \le n - 1$ and $min(abs(r1 - r2), abs(c1 - c2)) = 1$ and $max(abs(r1 - r2), abs(c1 - c2)) = 2$.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ Note that a **knight** can **move** from cell `(r1, c1)` to cell `(r2, c2)` if $
 - **Output:** `[[0,3,6,9],[11,8,1,4],[2,5,10,7]]`
 - **Explanation:** By the following order of movements we can visit the entire board.
 (0,0)->(1,2)->(2,0)->(0,1)->(1,3)->(2,1)->(0,2)->(2,3)->(1,1)->(0,3)->(2,2)->(1,0)
-### Constraints
+
+### 4. Constraints
 
 - $1 \le m, n \le 5$
 

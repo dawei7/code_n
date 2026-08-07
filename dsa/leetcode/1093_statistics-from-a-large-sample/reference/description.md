@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a large sample of integers in the range `[0, 255]`. Since the sample is so large, it is represented by an array `count` where $\text{count}[k]$ is the **number of times** that `k` appears in the sample.
 
@@ -20,12 +20,13 @@ Calculate the following statistics:
 - `mode`: The number that appears the most in the sample. It is guaranteed to be **unique**.
 
 Return *the statistics of the sample as an array of floating-point numbers *`[minimum, maximum, mean, median, mode]`*. Answers within *$10^{-5}$* of the actual answer will be accepted.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The minimum and maximum are 1 and 4 respectively.
 The mean is (1+1+1+1+2+2+2+3+3+4+4) / 11 = 24 / 11 = 2.18181818... (for display purposes, the output shows the rounded number 2.18182).
 Since the size of the sample is odd, the median is the middle element 2.
 The mode is 1 as it appears the most in the sample.
-### Constraints
+
+### 4. Constraints
 
 - $\text{count.length} = 256$
 

@@ -1,15 +1,16 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` consisting of only lowercase English letters, and an integer `count`. A **substring** of `s` is said to be an **equal count substring** if, for each **unique** letter in the substring, it appears exactly `count` times in the substring.
 
 Return *the number of **equal count substrings** in *`s`.
 
 A **substring** is a contiguous non-empty sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Therefore, no substrings in s are equal count substrings, so return 0.
 - **Explanation:**
 The number of times each letter appears in s is less than count.
 Therefore, no substrings in s are equal count substrings, so return 0
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 3 * 10^{4}$
 

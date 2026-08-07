@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer **mountain** array `arr` of length `n` where the values increase to a **peak element** and then decrease.
 
 Return the index of the peak element.
 
 Your task is to solve it in `O(log(n))` time complexity.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -36,7 +37,8 @@ Your task is to solve it in `O(log(n))` time complexity.
 **Output:** 1
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{arr.length} \le 10^{5}$
 

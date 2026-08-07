@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an integer `n`, find a sequence with elements in the range `[1, n]` that satisfies all of the following:
 
@@ -13,12 +13,13 @@ The **distance** between two numbers on the sequence, $a[i]$ and $a[j]$, is the 
 Return *the **lexicographically largest** sequence**. It is guaranteed that under the given constraints, there is always a solution. *
 
 A sequence `a` is lexicographically larger than a sequence `b` (of the same length) if in the first position where `a` and `b` differ, sequence `a` has a number greater than the corresponding number in `b`. For example, `[0,1,9,0]` is lexicographically larger than `[0,1,5,6]` because the first position they differ is at the third number, and `9` is greater than `5`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,6 +30,7 @@ A sequence `a` is lexicographically larger than a sequence `b` (of the same leng
 
 - **Input:** $n = 5$
 - **Output:** `[5,3,1,4,3,5,2,4,2]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 20$

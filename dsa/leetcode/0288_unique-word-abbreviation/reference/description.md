@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **abbreviation** of a word is a concatenation of its first letter, the number of characters between the first and last letter, and its last letter. If a word has only two characters, then it is an **abbreviation** of itself.
 
@@ -21,7 +21,8 @@ Implement the `ValidWordAbbr` class:
 - For any word in `dictionary` whose **abbreviation** is equal to `word`'s **abbreviation**, that word and `word` are **the same**.
 
 	</li>
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -32,7 +33,7 @@ Implement the `ValidWordAbbr` class:
 
 Return one boolean per query in `words`. A result is true exactly when the corresponding query meets the native uniqueness rule.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ validWordAbbr.isUnique("cane"); // return false, dictionary word "cake" and word
 validWordAbbr.isUnique("make"); // return true, no words in the dictionary have the abbreviation "m2e".
 validWordAbbr.isUnique("cake"); // return true, because "cake" is already in the dictionary and no other word in the dictionary has "c2e" abbreviation.
 ```
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{dictionary.length} \le 3 * 10^{4}$
 

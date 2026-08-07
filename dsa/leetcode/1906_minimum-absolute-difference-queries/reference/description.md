@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 The **minimum absolute difference** of an array `a` is defined as the **minimum value** of $|a[i] - a[j]|$, where $0 \le i < j < \text{a.length}$ and $a[i] \neq a[j]$. If all elements of `a` are the **same**, the minimum absolute difference is `-1`.
 
@@ -15,12 +15,13 @@ The value of `|x|` is defined as:
 - `x` if $x \ge 0$.
 
 - `-x` if `x < 0`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ elements are the same.
 - queries[1] = [0,2]: The subarray is [<u>4</u>,<u>5</u>,2] and the minimum absolute difference is |4-5| = 1.
 - queries[2] = [0,5]: The subarray is [<u>4</u>,<u>5</u>,2,2,7,10] and the minimum absolute difference is |4-5| = 1.
 - queries[3] = [3,5]: The subarray is [2,<u>7</u>,<u>10</u>] and the minimum absolute difference is |7-10| = 3.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{nums.length} \le 10^{5}$
 

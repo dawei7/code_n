@@ -1,9 +1,8 @@
-## Description
+### 1. Description
 
 Given a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to construct a sentence where each word is a valid dictionary word. Return all such possible sentences in **any order**.
 
-**Note** that the same word in the dictionary may be reused multiple times in the segmentation.
-### Function Contract
+### 2. Function Contract
 
 **Inputs**
 
@@ -14,7 +13,11 @@ Given a string `s` and a dictionary of strings `wordDict`, add spaces in `s` to 
 
 Return every complete dictionary-word sentence obtainable from `s`, in any order.
 
-### Examples
+### 3. Note
+
+that the same word in the dictionary may be reused multiple times in the segmentation.
+
+### 4. Examples
 
 #### Example 1
 
@@ -29,7 +32,8 @@ Return every complete dictionary-word sentence obtainable from `s`, in any order
 
 - **Input:** `s = "catsandog", wordDict = ["cats","dog","sand","and","cat"]`
 - **Output:** `[]`
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 20$
 

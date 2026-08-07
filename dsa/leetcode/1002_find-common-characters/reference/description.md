@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given a string array `words`, return *an array of all characters that show up in all strings within the *`words`* (including duplicates)*. You may return the answer in **any order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -16,7 +17,8 @@ Given a string array `words`, return *an array of all characters that show up in
 
 - **Input:** $words = ["cool","lock","cook"]$
 - **Output:** `["c","o"]`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{words.length} \le 100$
 

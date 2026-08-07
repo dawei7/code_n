@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Posts`
 
@@ -16,7 +16,13 @@ Each row of this table contains post_id, user_id, and post_date.
 
 Write a solution to find users who demonstrate **bursty behavior** in their posting patterns during February `2024`. **Bursty behavior** is defined as **any** period of **7** **consecutive** days where a user's posting frequency is **at least twice** to their **average** weekly posting frequency for February `2024`.
 
-**Note:** Only include the dates from February `1` to February `28` in your analysis, which means you should count February as having exactly `4` weeks.
+### 2. Function Contract
+
+- Refer to method signature.
+
+### 3. Note
+
+Only include the dates from February `1` to February `28` in your analysis, which means you should count February as having exactly `4` weeks.
 
 Return *the result table orderd by *$\text{user}_{id}$* in ***ascending*** order.*
 
@@ -64,10 +70,8 @@ Posts table:
 
 - **User 3:** Although User 3 made more posts than the others (3 posts), they did not reach twice the average weekly posts in their consecutive 7-day window, so they are not listed in the output.
 
-**Note:** Output table is ordered by user_id in ascending order.
+### 4. Note
+
+Output table is ordered by user_id in ascending order.
 
 </div>
-
-### Function Contract
-
-- Refer to method signature.

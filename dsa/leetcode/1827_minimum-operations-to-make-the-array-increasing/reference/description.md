@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` (**0-indexed**). In one operation, you can choose an element of the array and increment it by `1`.
 
@@ -7,12 +7,13 @@ You are given an integer array `nums` (**0-indexed**). In one operation, you can
 Return *the **minimum** number of operations needed to make* `nums` ***strictly** **increasing**.*
 
 An array `nums` is **strictly increasing** if $\text{nums}[i] < nums[i+1]$ for all $0 \le i < \text{nums.length} - 1$. An array of length `1` is trivially strictly increasing.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ An array `nums` is **strictly increasing** if $\text{nums}[i] < nums[i+1]$ for a
 
 - **Input:** `nums = [8]`
 - **Output:** `0`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 5000$
 

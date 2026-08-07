@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Person`
 
@@ -18,7 +18,8 @@ Write a solution to report all the duplicate emails. Note that it's guaranteed t
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -28,7 +29,7 @@ The result format is in the following example.
 
 Return one row for each duplicated address under the column `Email`, in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

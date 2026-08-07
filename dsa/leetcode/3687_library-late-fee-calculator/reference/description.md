@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `daysLate` where $\text{daysLate}[i]$ indicates how many days late the $$i^{\text{th}}$$ book was returned.
 
@@ -11,11 +11,12 @@ The penalty is calculated as follows:
 - If $\text{daysLate}[i] > 5$, penalty is $3 * \text{daysLate}[i]$.
 
 Return the total penalty for all books.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -51,7 +52,8 @@ Return the total penalty for all books.
 - Thus, the total penalty is $1 + 1 = 2$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{daysLate.length} \le 100$
 

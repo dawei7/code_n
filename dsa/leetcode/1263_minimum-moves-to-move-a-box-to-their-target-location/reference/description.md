@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A storekeeper is a game in which the player pushes boxes around in a warehouse trying to get them to target locations.
 
@@ -19,12 +19,13 @@ Your task is to move the box `'B'` to the target position `'T'` under the follow
 - The player cannot walk through the box.
 
 Return *the minimum number of **pushes** to move the box to the target*. If there is no way to reach the target, return `-1`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -57,7 +58,8 @@ Return *the minimum number of **pushes** to move the box to the target*. If ther
 ["#","#","#","#","#","#"]]
 - **Output:** `5`
 - **Explanation:** push the box down, left, left, up and up.
-### Constraints
+
+### 4. Constraints
 
 - $m = \text{grid.length}$
 

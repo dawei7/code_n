@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given positive integers `n` and `m`.
 
@@ -9,12 +9,13 @@ Define two integers as follows:
 - `num2`: The sum of all integers in the range `[1, n]` (both **inclusive**) that are **divisible** by `m`.
 
 Return *the integer* $num1 - num2$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -40,6 +41,7 @@ We return 15 - 0 = 15 as the answer.
 - Integers in the range [1, 5] that are not divisible by 1 are [], num1 is the sum of those integers = 0.
 - Integers in the range [1, 5] that are divisible by 1 are [1,2,3,4,5], num2 is the sum of those integers = 15.
 We return 0 - 15 = -15 as the answer.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, m \le 1000$

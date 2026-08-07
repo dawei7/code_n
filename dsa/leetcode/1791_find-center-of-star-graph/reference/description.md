@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 There is an undirected **star** graph consisting of `n` nodes labeled from `1` to `n`. A star graph is a graph where there is one **center** node and **exactly** $n - 1$ edges that connect the center node with every other node.
 
 You are given a 2D integer array `edges` where each $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between the nodes $u_{i}$ and $v_{i}$. Return the center of the given star graph.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -21,7 +22,8 @@ You are given a 2D integer array `edges` where each $\text{edges}[i] = [u_{i}, v
 
 - **Input:** $edges = [[1,2],[5,1],[1,3],[1,4]]$
 - **Output:** `1`
-### Constraints
+
+### 4. Constraints
 
 - $3 \le n \le 10^{5}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three positive integers: `n`, `index`, and `maxSum`. You want to construct an array `nums` (**0-indexed**)** **that satisfies the following conditions:
 
@@ -15,12 +15,13 @@ You are given three positive integers: `n`, `index`, and `maxSum`. You want to c
 Return $\text{nums}[index]$* of the constructed array*.
 
 Note that `abs(x)` equals `x` if $x \ge 0$, and `-x` otherwise.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ There are no arrays that satisfy all the conditions and have nums[2] == 3, so 2 
 
 - **Input:** $n = 6, index = 1, maxSum = 10$
 - **Output:** `3`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le maxSum \le 10^{9}$
 

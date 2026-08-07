@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** string `s` and are tasked with finding two **non-intersecting palindromic **substrings of **odd** length such that the product of their lengths is maximized.
 
@@ -7,12 +7,13 @@ More formally, you want to choose four integers `i`, `j`, `k`, `l` such that $0 
 Return *the **maximum** possible product of the lengths of the two non-intersecting palindromic substrings.*
 
 A **palindrome** is a string that is the same forward and backward. A **substring** is a contiguous sequence of characters in a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -24,7 +25,8 @@ A **palindrome** is a string that is the same forward and backward. A **substrin
 - **Input:** `s = "zaaaxbbby"`
 - **Output:** `9`
 - **Explanation:** Substrings "aaa" and "bbb" are palindromes with odd length. product = 3 * 3 = 9.
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{s.length} \le 10^{5}$
 

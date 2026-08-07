@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` hens and `m` grains on a line. You are given the initial positions of the hens and the grains in two integer arrays `hens` and `grains` of size `n` and `m` respectively.
 
@@ -7,11 +7,12 @@ Any hen can eat a grain if they are on the same position. The time taken for thi
 In `1` second, a hen can move right or left by `1` unit. The hens can move simultaneously and independently of each other.
 
 Return *the **minimum** time to eat all grains if the hens act optimally.*
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -35,7 +36,8 @@ One of the ways hens eat all grains in 1 second is described below:
 - The sixth hen eats the grain at position 214 in 1 second.
 - The other hens do not move.
 So, the maximum time needed is 1.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{hens.length}, \text{grains.length} \le 2*10^{4}$
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two linked lists: `list1` and `list2` of sizes `n` and `m` respectively.
 
@@ -9,12 +9,13 @@ The blue edges and nodes in the following figure indicate the result:
 ![](images/fig1.png)
 
 *Build the result list and return its head.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ The blue edges and nodes in the following figure indicate the result:
 - **Input:** $list1 = [0,1,2,3,4,5,6], a = 2, b = 5, list2 = [1000000,1000001,1000002,1000003,1000004]$
 - **Output:** `[0,1,1000000,1000001,1000002,1000003,1000004,6]`
 - **Explanation:** The blue edges and nodes in the above figure indicate the result.
-### Constraints
+
+### 4. Constraints
 
 - $3 \le \text{list1.length} \le 10^{4}$
 

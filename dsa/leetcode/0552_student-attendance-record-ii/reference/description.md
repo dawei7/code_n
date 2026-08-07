@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 An attendance record for a student can be represented as a string where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters:
 
@@ -15,12 +15,13 @@ Any student is eligible for an attendance award if they meet **both** of the fol
 - The student was **never** late (`'L'`) for 3 or more **consecutive** days.
 
 Given an integer `n`, return *the **number** of possible attendance records of length* `n`* that make a student eligible for an attendance award. The answer may be very large, so return it **modulo** *$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,6 +38,7 @@ Only "AA" is not eligible because there are 2 absences (there need to be fewer t
 
 - **Input:** $n = 10101$
 - **Output:** `183236316`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{5}$

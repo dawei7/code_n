@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You have a function `printNumber` that can be called with an integer parameter and prints it to the console.
 
@@ -23,12 +23,13 @@ Implement the `ZeroEvenOdd` class:
 - `void even(printNumber)` Calls `printNumber` to output one even number.
 
 - `void odd(printNumber)` Calls `printNumber` to output one odd number.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,6 +42,7 @@ One of them calls zero(), the other calls even(), and the last one calls odd().
 
 - **Input:** $n = 5$
 - **Output:** `"0102030405"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 1000$

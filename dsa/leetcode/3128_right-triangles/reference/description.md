@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a 2D boolean matrix `grid`.
 
 A collection of 3 elements of `grid` is a **right triangle** if one of its elements is in the **same row** with another element and in the **same column** with the third element. The 3 elements may **not** be next to each other.
 
 Return an integer that is the number of **right triangles** that can be made with 3 elements of `grid` such that **all** of them have a value of 1.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -177,7 +178,8 @@ There are no right triangles with elements of the value 1.  Notice that the blue
 There are two right triangles with elements of the value 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{grid.length} \le 1000$
 

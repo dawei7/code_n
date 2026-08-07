@@ -1,12 +1,13 @@
-## Description
+### 1. Description
 
 Given two integers `num1` and `num2`, return *the **sum** of the two integers*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -18,6 +19,7 @@ Given two integers `num1` and `num2`, return *the **sum** of the two integers*.
 - **Input:** $num1 = -10, num2 = 4$
 - **Output:** `-6`
 - **Explanation:** num1 + num2 = -6, so -6 is returned.
-### Constraints
+
+### 4. Constraints
 
 - $-100 \le num1, num2 \le 100$

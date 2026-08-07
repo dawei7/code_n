@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There is a safe protected by a password. The password is a sequence of `n` digits where each digit can be in the range `[0, k - 1]`.
 
@@ -21,12 +21,13 @@ The safe has a peculiar way of checking the password. When you enter in a sequen
 	</li>
 
 Return *any string of **minimum length** that will unlock the safe **at some point** of entering it*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -43,7 +44,8 @@ Return *any string of **minimum length** that will unlock the safe **at some poi
 - "10" is typed in starting from the 3^rd digit.
 - "11" is typed in starting from the 2^nd digit.
 Thus "01100" will unlock the safe. "10011", and "11001" would also unlock the safe.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 4$
 

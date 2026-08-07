@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `stations` of length `n`, where $\text{stations}[i]$ represents the number of power stations in the $$i^{\text{th}}$$ city.
 
@@ -12,13 +12,16 @@ The government has sanctioned building `k` more power stations, each of which ca
 
 Given the two integers `r` and `k`, return *the **maximum possible minimum power** of a city, if the additional power stations are built optimally.*
 
-**Note** that you can build the `k` power stations in multiple cities.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you can build the `k` power stations in multiple cities.
+
+### 4. Examples
 
 #### Example 1
 
@@ -40,7 +43,8 @@ Since it is not possible to obtain a larger power, we return 5.
 - **Output:** `4`
 - **Explanation:**
 It can be proved that we cannot make the minimum power of a city greater than 4.
-### Constraints
+
+### 5. Constraints
 
 - $n = \text{stations.length}$
 

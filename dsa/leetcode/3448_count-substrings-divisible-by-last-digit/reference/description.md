@@ -1,16 +1,19 @@
-## Description
+### 1. Description
 
 You are given a string `s` consisting of digits.
 
 Return the **number** of substrings of `s` **divisible** by their **non-zero** last digit.
 
-**Note**: A substring may contain leading zeros.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+: A substring may contain leading zeros.
+
+### 4. Examples
 
 #### Example 1
 
@@ -48,7 +51,8 @@ Substrings `"01"`, `"12"`, `"701"`, `"012"`, `"128"`, `"5701"`, `"7012"`, `"0128
 Only substrings that end with digit `'1'` are divisible by their last digit. There are 25 such substrings.
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{s.length} \le 10^{5}$
 

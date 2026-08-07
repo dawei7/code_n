@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a string `formula` representing a chemical formula, return *the count of each atom*.
 
@@ -19,12 +19,13 @@ A formula placed in parentheses, and a count (optionally added) is also a formul
 Return the count of all elements as a string in the following form: the first name (in sorted order), followed by its count (if that count is more than `1`), followed by the second name (in sorted order), followed by its count (if that count is more than `1`), and so on.
 
 The test cases are generated so that all the values in the output fit in a **32-bit** integer.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ The test cases are generated so that all the values in the output fit in a **32-
 - **Input:** $formula = "K4(ON(SO3)2)2"$
 - **Output:** `"K4N2O14S4"`
 - **Explanation:** The count of elements are {'K': 4, 'N': 2, 'O': 14, 'S': 4}.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{formula.length} \le 1000$
 

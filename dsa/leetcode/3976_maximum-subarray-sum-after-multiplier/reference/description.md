@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` and a positive integer `k`.
 
@@ -17,7 +17,8 @@ You must choose **exactly** one subarray of `nums` and perform **exactly** one o
 Return the **maximum** possible sum of a **non-empty** subarray in the resulting array.
 
 Note that the subarray chosen for the operation and the subarray chosen for the sum may be **different**.
-### Function Contract
+
+### 2. Function Contract
 
 `solve(nums, k) -> int`
 
@@ -30,7 +31,7 @@ Note that the subarray chosen for the operation and the subarray chosen for the 
 
 Return the maximum sum of a nonempty contiguous subarray after performing exactly one permitted operation. When division is chosen, each transformed value is independently truncated toward zero. The operation range and the range whose sum is returned may be different.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -64,7 +65,8 @@ Return the maximum sum of a nonempty contiguous subarray after performing exactl
 - The subarray with the largest sum is `[-1]`, so the output is -1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

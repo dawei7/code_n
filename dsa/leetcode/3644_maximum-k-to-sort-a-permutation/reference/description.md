@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n`, where `nums` is a **permutation** of the numbers in the range `[0..n - 1]`.
 
 You may swap elements at indices `i` and `j` **only if** $\text{nums}[i] AND \text{nums}[j] = k$, where `AND` denotes the bitwise AND operation and `k` is a **non-negative** integer.
 
 Return the **maximum** value of `k` such that the array can be sorted in **non-decreasing** order using any number of such swaps. If `nums` is already sorted, return 0.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ Choose $k = 2$. Swapping $\text{nums}[2] = 3$ and $\text{nums}[3] = 2$ is allowe
 Only $k = 0$ allows sorting since no greater `k` allows the required swaps where $\text{nums}[i] AND \text{nums}[j] = k$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n = \text{nums.length} \le 10^{5}$
 

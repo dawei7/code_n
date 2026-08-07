@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a binary string `s` consisting only of zeroes and ones.
 
@@ -7,12 +7,13 @@ A substring of `s` is considered balanced if** all zeroes are before ones** and 
 Return *the length of the longest balanced substring of *`s`.
 
 A **substring** is a contiguous sequence of characters within a string.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ A **substring** is a contiguous sequence of characters within a string.
 - **Input:** `s = "111"`
 - **Output:** `0`
 - **Explanation:** There is no balanced substring except the empty substring, so the answer is 0.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 50$
 

@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two strings `s` and `t` consisting of only lowercase English letters.
 
 Return *the minimum number of characters that need to be appended to the end of *`s`* so that *`t`* becomes a **subsequence** of *`s`.
 
 A **subsequence** is a string that can be derived from another string by deleting some or no characters without changing the order of the remaining characters.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that appending any 3 characters to the end of s will never make 
 - **Explanation:** Append the characters "abcde" to the end of s so that s = "zabcde".
 Now, t is a subsequence of s ("z<u>**abcde**</u>").
 It can be shown that appending any 4 characters to the end of s will never make t a subsequence.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length}, \text{t.length} \le 10^{5}$
 

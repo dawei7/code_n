@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer array `nums` of length `n` and a **positive** integer `k`.
 
@@ -7,12 +7,13 @@ The **power** of an array of integers is defined as the number of subsequences w
 Return *the **sum** of **power** of all subsequences of* `nums`*.*
 
 Since the answer may be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -68,7 +69,8 @@ Hence the answer is $2 + 1 + 1 = 4$.
 **Explanation: **There exists no subsequence with sum `7`. Hence all subsequences of nums have $power = 0$.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 100$
 

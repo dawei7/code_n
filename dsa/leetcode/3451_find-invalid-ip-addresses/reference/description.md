@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: ` logs`
 
@@ -71,7 +71,7 @@ The output table is ordered by invalid_count, ip in descending order respectivel
 
 </div>
 
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.

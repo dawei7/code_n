@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie.
 
 Each child `i` has a greed factor $g[i]$, which is the minimum size of a cookie that the child will be content with; and each cookie `j` has a size $s[j]$. If $s[j] \ge g[i]$, we can assign the cookie `j` to the child `i`, and the child `i` will be content. Your goal is to maximize the number of your content children and output the maximum number.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ Each child `i` has a greed factor $g[i]$, which is the minimum size of a cookie 
 
 A cookie whose size exactly equals a child's greed factor is sufficient.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -32,7 +33,8 @@ You need to output 1.
 - **Explanation:** You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2.
 You have 3 cookies and their sizes are big enough to gratify all of the children,
 You need to output 2.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{g.length} \le 3 * 10^{4}$
 
@@ -40,4 +42,6 @@ You need to output 2.
 
 - $1 \le g[i], s[j] \le 2^{31} - 1$
 
-**Note:** This question is the same as <a href="https://leetcode.com/problems/maximum-matching-of-players-with-trainers/description/" target="_blank"> 2410: Maximum Matching of Players With Trainers.</a>
+### 5. Note
+
+This question is the same as <a href="https://leetcode.com/problems/maximum-matching-of-players-with-trainers/description/" target="_blank"> 2410: Maximum Matching of Players With Trainers.</a>

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `word`, and an integer `numFriends`.
 
@@ -13,11 +13,12 @@ Find the **lexicographically largest** string from the box after all the rounds 
 A string `a` is **lexicographically smaller** than a string `b` if in the first position where `a` and `b` differ, string `a` has a letter that appears earlier in the alphabet than the corresponding letter in `b`.
 
 If the first `min(a.length, b.length)` characters do not differ, then the shorter string is the lexicographically smaller one.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ All possible splits are:
 The only possible split is: `"g"`, `"g"`, `"g"`, and `"g"`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{word.length} \le 2 * 10^{5}$
 

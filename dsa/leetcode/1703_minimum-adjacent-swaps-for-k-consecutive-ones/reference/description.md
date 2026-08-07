@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 You are given an integer array, `nums`, and an integer `k`. `nums` comprises of only `0`'s and `1`'s. In one move, you can choose two **adjacent** indices and swap their values.
 
 Return *the **minimum** number of moves required so that *`nums`* has *`k`* **consecutive** *`1`*'s*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the **minimum** number of moves required so that *`nums`* has *`k`* **co
 - **Input:** `nums = [1,1,0,1], k = 2`
 - **Output:** `0`
 - **Explanation:** nums already has 2 consecutive 1's.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

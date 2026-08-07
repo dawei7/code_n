@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are the owner of a company that creates alloys using various types of metals. There are `n` different types of metals available, and you have access to `k` machines that can be used to create alloys. Each machine requires a specific amount of each metal type to create an alloy.
 
@@ -9,12 +9,13 @@ Given integers `n`, `k`, `budget`, a **1-indexed** 2D array `composition`, and *
 **All alloys must be created with the same machine.**
 
 Return *the maximum number of alloys that the company can create*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ To create 2 alloys we need to buy the:
 - 1 unit of metal of the 2^nd type.
 In total, we need 1 * 5 + 1 * 5 = 10 coins, which is smaller than or equal to budget = 10.
 It can be proven that we can create at most 2 alloys.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n, k \le 100$
 

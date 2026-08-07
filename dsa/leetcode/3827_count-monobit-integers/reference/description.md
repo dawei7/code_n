@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 You are given an integer `n`.
 
 An integer is called **Monobit** if all bits in its binary representation are the same.
 
 Return the count of **Monobit** integers in the range `[0, n]` (inclusive).
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -19,7 +20,7 @@ Binary representations are the ordinary forms without leading zeroes. In particu
 
 Return how many integers from `0` through `n`, including both endpoints, have a binary representation made entirely from one repeated bit.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,6 +50,7 @@ Return how many integers from `0` through `n`, including both endpoints, have a 
 - Only 0, 1 and 3 satisfy the Monobit condition. Thus, the answer is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $0 \le n \le 1000$

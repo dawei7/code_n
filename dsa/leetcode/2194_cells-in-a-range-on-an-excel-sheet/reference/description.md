@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 A cell `(r, c)` of an excel sheet is represented as a string `"<col><row>"` where:
 
@@ -12,12 +12,13 @@ A cell `(r, c)` of an excel sheet is represented as a string `"<col><row>"` wher
 You are given a string `s` in the format `"<col1><row1>:<col2><row2>"`, where `<col1>` represents the column `c1`, `<row1>` represents the row `r1`, `<col2>` represents the column `c2`, and `<row2>` represents the row `r2`, such that $r1 \le r2$ and $c1 \le c2$.
 
 Return *the **list of cells*** `(x, y)` *such that* $r1 \le x \le r2$ *and* $c1 \le y \le c2$. The cells should be represented as **strings** in the format mentioned above and be sorted in **non-decreasing** order first by columns and then by rows.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -37,7 +38,8 @@ The red arrows denote the order in which the cells should be presented.
 - **Explanation:**
 The above diagram shows the cells which should be present in the list.
 The red arrow denotes the order in which the cells should be presented.
-### Constraints
+
+### 4. Constraints
 
 - $\text{s.length} = 5$
 

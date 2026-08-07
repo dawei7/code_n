@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Implement the `BSTIterator` class that represents an iterator over the **<a href="https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR)" target="_blank">in-order traversal</a>** of a binary search tree (BST):
 
@@ -11,7 +11,8 @@ Implement the `BSTIterator` class that represents an iterator over the **<a href
 Notice that by initializing the pointer to a non-existent smallest number, the first call to `next()` will return the smallest element in the BST.
 
 You may assume that `next()` calls will always be valid. That is, there will be at least a next number in the in-order traversal when `next()` is called.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -24,7 +25,7 @@ JSON cases encode `root` as a level-order array. The runner reconstructs the tre
 
 Return one result per operation: `null` for construction, the next integer for `next`, and a boolean for `hasNext`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -49,7 +50,8 @@ bSTIterator.hasNext(); // return True
 bSTIterator.next();    // return 20
 bSTIterator.hasNext(); // return False
 ```
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range $[1, 10^{5}]$.
 

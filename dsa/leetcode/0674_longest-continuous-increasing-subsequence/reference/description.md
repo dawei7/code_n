@@ -1,14 +1,15 @@
-## Description
+### 1. Description
 
 Given an unsorted array of integers `nums`, return *the length of the longest **continuous increasing subsequence** (i.e. subarray)*. The subsequence must be **strictly** increasing.
 
 A **continuous increasing subsequence** is defined by two indices `l` and `r` (`l < r`) such that it is `[nums[l], nums[l + 1], ..., nums[r - 1], nums[r]]` and for each $l \le i < r$, $\text{nums}[i] < nums[i + 1]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Even though [1,3,5,7] is an increasing subsequence, it is not continuous as elem
 - **Output:** `1`
 - **Explanation:** The longest continuous increasing subsequence is [2] with length 1. Note that it must be strictly
 increasing.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{4}$
 

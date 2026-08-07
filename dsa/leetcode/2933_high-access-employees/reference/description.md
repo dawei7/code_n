@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a 2D **0-indexed** array of strings, $\text{access}_{times}$, with size `n`. For each `i` where $0 \le i \le n - 1$, $\text{access}_{times}[i][0]$ represents the name of an employee, and $\text{access}_{times}[i][1]$ represents the access time of that employee. All entries in $\text{access}_{times}$ are within the same day.
 
@@ -11,12 +11,13 @@ Times with exactly one hour of difference are **not** considered part of the sam
 Access times at the start and end of the day are **not** counted within the same one-hour period. For example, `"0005"` and `"2350"` are not part of the same one-hour period.
 
 Return *a list that contains the names of **high-access** employees with any order you want.*
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -39,7 +40,8 @@ However, "e" has just one access time, so it can not be in the answer and the fi
 - **Explanation:** "ab" has three access times in the one-hour period of [10:25, 11:24] which are 10:25, 11:20, and 11:24.
 "cd" has also three access times in the one-hour period of [10:25, 11:24] which are 10:25, 10:46, and 10:55.
 So the answer is ["ab","cd"].
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{access}_{times}.length \le 100$
 

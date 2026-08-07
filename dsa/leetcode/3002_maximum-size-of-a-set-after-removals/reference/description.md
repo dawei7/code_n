@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given two **0-indexed** integer arrays `nums1` and `nums2` of even length `n`.
 
 You must remove $n / 2$ elements from `nums1` and $n / 2$ elements from `nums2`. After the removals, you insert the remaining elements of `nums1` and `nums2` into a set `s`.
 
 Return *the **maximum** possible size of the set* `s`.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -30,7 +31,8 @@ It can be shown that 5 is the maximum possible size of the set s after the remov
 - **Output:** `6`
 - **Explanation:** We remove 1, 2, and 3 from nums1, as well as 4, 5, and 6 from nums2. After the removals, the arrays become equal to nums1 = [1,2,3] and nums2 = [4,5,6]. Therefore, s = {1,2,3,4,5,6}.
 It can be shown that 6 is the maximum possible size of the set s after the removals.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{nums1.length} = \text{nums2.length}$
 

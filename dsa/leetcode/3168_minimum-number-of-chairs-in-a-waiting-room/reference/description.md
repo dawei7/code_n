@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`. Simulate events at each second `i`:
 
@@ -7,12 +7,13 @@ You are given a string `s`. Simulate events at each second `i`:
 - If $s[i] = 'L'$, a person leaves the waiting room, freeing up a chair.
 
 Return the **minimum **number of chairs needed so that a chair is available for every person who enters the waiting room given that it is initially **empty**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -174,7 +175,8 @@ Let's consider that there are 3 chairs in the waiting room. The table below show
 		</tr>
 	</tbody>
 </table>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 50$
 

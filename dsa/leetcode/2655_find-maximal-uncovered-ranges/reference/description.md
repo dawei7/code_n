@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an integer `n` which is the length of a **0-indexed** array `nums`, and a **0-indexed** 2D-array `ranges`, which is a list of sub-ranges of `nums` (sub-ranges may **overlap**).
 
@@ -17,11 +17,12 @@ By all of the **uncovered** ranges with **maximal** length, we mean satisfying t
 - Each uncovered cell should belong to **exactly** one sub-range
 
 - There should **not exist** two ranges (l_1, r_1) and (l_2, r_2) such that r_1 + 1 = l_2
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ By all of the **uncovered** ranges with **maximal** length, we mean satisfying t
 - **Input:** $n = 7, ranges = [[2,4],[0,3]]$
 - **Output:** `[[5,6]]`
 - **Explanation:** The ranges (0, 3) and (2, 4) are covered, so if we simplify the array nums to a binary array where 0 shows an uncovered cell and 1 shows a covered cell, the array becomes [1,1,1,1,1,0,0] in which we can observe that the range (5, 6) is uncovered.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

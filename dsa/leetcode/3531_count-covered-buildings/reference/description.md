@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a positive integer `n`, representing an `n x n` city. You are also given a 2D grid `buildings`, where $\text{buildings}[i] = [x, y]$ denotes a **unique** building located at coordinates `[x, y]`.
 
 A building is **covered** if there is at least one building in all **four** directions: left, right, above, and below.
 
 Return the number of **covered** buildings.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -76,7 +77,8 @@ Return the number of **covered** buildings.
 - Thus, the count of covered buildings is 1.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $2 \le n \le 10^{5}$
 

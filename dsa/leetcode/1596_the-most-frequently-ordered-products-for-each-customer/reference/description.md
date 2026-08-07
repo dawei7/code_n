@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Customers`
 
@@ -50,7 +50,8 @@ The result table should have the $\text{product}_{id}$ and $\text{product}_{name
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Database Schemas**
 
@@ -82,7 +83,7 @@ The result format is in the following example.
 
 Return columns $\text{customer}_{id}$, $\text{product}_{id}$, and $\text{product}_{name}$. Include every product tied for the maximum number of order rows for each customer with orders. Row order is unrestricted.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

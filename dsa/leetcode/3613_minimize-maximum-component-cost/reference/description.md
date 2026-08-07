@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected connected graph with `n` nodes labeled from 0 to $n - 1$ and a 2D integer array `edges` where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ denotes an undirected edge between node $u_{i}$ and node $v_{i}$ with weight $w_{i}$, and an integer `k`.
 
@@ -7,12 +7,13 @@ You are allowed to remove any number of edges from the graph such that the resul
 The **cost** of a component is defined as the **maximum** edge weight in that component. If a component has no edges, its cost is 0.
 
 Return the **minimum** possible value of the **maximum** cost among all components **after such removals**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -46,7 +47,8 @@ Return the **minimum** possible value of the **maximum** cost among all componen
 - That single component’s cost equals its largest edge weight, which is 5.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 5 * 10^{4}$
 

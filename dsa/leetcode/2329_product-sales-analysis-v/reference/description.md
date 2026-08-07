@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Sales`
 
@@ -34,11 +34,12 @@ Write a solution to report the spending of each user.
 Return the resulting table ordered by `spending` in **descending order**. In case of a tie, order them by $\text{user}_{id}$ in ascending order.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given two integers `n` and `k`.
 
@@ -17,12 +17,13 @@ For example, if $x = 7$ (binary representation `"111"`). Then, the sequence is: 
 Your task is to determine the number of integers in the range `[1, n]` whose popcount-depth is **exactly** equal to `k`.
 
 Return the number of such integers.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -101,7 +102,8 @@ The following integers in the range `[1, 7]` have popcount-depth exactly equal t
 Thus, the answer is 3.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{15}$
 

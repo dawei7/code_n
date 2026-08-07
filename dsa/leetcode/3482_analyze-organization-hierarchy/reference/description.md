@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Employees`
 
@@ -123,15 +123,15 @@ Employees table:
 
 	</li>
 
-**Note:**
+### 2. Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### 3. Note
 
 - The result is ordered first by level in ascending order
 
 - Within the same level, employees are ordered by budget in descending order then by name in ascending order
 
 </div>
-
-### Function Contract
-
-- `n`: Input parameter.
-- Returns expected result.

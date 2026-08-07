@@ -1,9 +1,10 @@
-## Description
+### 1. Description
 
 Given a list of non-negative integers `nums`, arrange them such that they form the largest number and return it.
 
 Since the result may be very large, so you need to return a string instead of an integer.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -13,7 +14,7 @@ Since the result may be very large, so you need to return a string instead of an
 
 Return the lexically represented decimal number produced by the largest possible concatenation.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ Return the lexically represented decimal number produced by the largest possible
 
 - **Input:** `nums = [3,30,34,5,9]`
 - **Output:** `"9534330"`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 100$
 

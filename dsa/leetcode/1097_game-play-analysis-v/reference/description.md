@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Table: `Activity`
 
@@ -25,7 +25,8 @@ Write a solution to report for each install date, the number of players that ins
 Return the result table in **any order**.
 
 The result format is in the following example.
-### Function Contract
+
+### 2. Function Contract
 
 **Input table**
 
@@ -41,7 +42,7 @@ For each player, let $\text{install}_{dt}$ be the minimum $\text{event}_{date}$ 
 
 Produce one result row per install date. Result order is unrestricted. If `Activity` is empty, the result is empty.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 

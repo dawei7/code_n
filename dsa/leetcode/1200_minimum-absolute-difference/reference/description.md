@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given an array of **distinct** integers `arr`, find all pairs of elements with the minimum absolute difference of any two elements.
 
@@ -9,12 +9,13 @@ Return a list of pairs in ascending order(with respect to pairs), each pair `[a,
 - `a < b`
 
 - $b - a$ equals to the minimum absolute difference of any two elements in `arr`
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return a list of pairs in ascending order(with respect to pairs), each pair `[a,
 
 - **Input:** `arr = [3,8,-10,23,19,-4,-14,27]`
 - **Output:** `[[-14,-10],[19,23],[23,27]]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 10^{5}$
 

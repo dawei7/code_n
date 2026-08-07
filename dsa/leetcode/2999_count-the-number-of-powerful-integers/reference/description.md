@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given three integers `start`, `finish`, and `limit`. You are also given a **0-indexed** string `s` representing a **positive** integer.
 
@@ -7,12 +7,13 @@ A **positive** integer `x` is called **powerful** if it ends with `s` (in other 
 Return *the **total** number of powerful integers in the range* `[start..finish]`.
 
 A string `x` is a suffix of a string `y` if and only if `x` is a substring of `y` that starts from some index (**including **`0`) in `y` and extends to the index $\text{y.length} - 1$. For example, `25` is a suffix of `5125` whereas `512` is not.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -31,7 +32,8 @@ It can be shown that there are only 2 powerful integers in this range.
 - **Input:** $start = 1000, finish = 2000, limit = 4, s = "3000"$
 - **Output:** `0`
 - **Explanation:** All integers in the range [1000..2000] are smaller than 3000, hence "3000" cannot be a suffix of any integer in this range.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le start \le finish \le 10^{15}$
 

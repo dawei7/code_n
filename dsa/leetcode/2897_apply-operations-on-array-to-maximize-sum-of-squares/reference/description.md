@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** integer array `nums` and a **positive** integer `k`.
 
@@ -11,12 +11,13 @@ You have to choose `k` elements from the final array and calculate the sum of th
 Return *the **maximum** sum of squares you can achieve*.
 
 Since the answer can be very large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -34,7 +35,8 @@ It can be shown that this is the maximum value we can get.
 - **Explanation:** We do not need to apply any operations.
 We can choose the elements 7, 5, and 4 with a sum of squares: $7^{2}$ + $5^{2}$ + $4^{2}$ = 90.
 It can be shown that this is the maximum value we can get.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le k \le \text{nums.length} \le 10^{5}$
 

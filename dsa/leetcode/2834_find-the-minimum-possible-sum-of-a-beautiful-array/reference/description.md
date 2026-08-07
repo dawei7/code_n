@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given positive integers `n` and `target`.
 
@@ -11,12 +11,13 @@ An array `nums` is **beautiful** if it meets the following conditions:
 - There doesn't exist two **distinct** indices, `i` and `j`, in the range `[0, n - 1]`, such that $\text{nums}[i] + \text{nums}[j] = target$.
 
 Return *the **minimum** possible sum that a beautiful array could have modulo *$10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -41,7 +42,8 @@ It can be proven that 8 is the minimum possible sum that a beautiful array could
 - **Input:** $n = 1, target = 1$
 - **Output:** `1`
 - **Explanation:** We can see, that nums = [1] is beautiful.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le n \le 10^{9}$
 

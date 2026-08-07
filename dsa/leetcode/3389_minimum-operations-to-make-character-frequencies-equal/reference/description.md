@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string `s`.
 
@@ -12,15 +12,18 @@ You can perform the following operations **any number of times**:
 
 - Change a character in `s` to its next letter in the alphabet.
 
-**Note** that you cannot change `'z'` to `'a'` using the third operation.
-
-Return* *the **minimum** number of operations required to make `s` **good**.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that you cannot change `'z'` to `'a'` using the third operation.
+
+Return* *the **minimum** number of operations required to make `s` **good**.
+
+### 4. Examples
 
 #### Example 1
 
@@ -62,7 +65,8 @@ We can make `s` good by applying these operations:
 - Insert one occurrence of `'c'` into `s`
 
 </div>
-### Constraints
+
+### 5. Constraints
 
 - $3 \le \text{s.length} \le 2 * 10^{4}$
 

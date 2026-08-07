@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Given a url `startUrl` and an interface `HtmlParser`, implement a web crawler to crawl all links that are under the **same hostname** as `startUrl`.
 
@@ -30,7 +30,8 @@ interface HtmlParser {
 Below are two examples explaining the functionality of the problem, for custom testing purposes you'll have three variables `urls`, `edges` and `startUrl`. Notice that you will only have access to `startUrl` in your code, while `urls` and `edges` are not directly accessible to you in code.
 
 Note: Consider the same URL with the trailing slash "/" as a different URL. For example, "http://news.yahoo.com", and "http://news.yahoo.com/" are different urls.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -45,7 +46,7 @@ Let $V$ be the number of same-host URLs reachable from `startUrl`, and let $E$ b
 
 Return every URL reachable from `startUrl` through a path containing only URLs with the starting hostname. Include `startUrl`, include each qualifying URL exactly once, exclude every off-host URL, and return the result in any order.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -86,7 +87,8 @@ edges = [[0,2],[2,1],[3,2],[3,1],[3,0]]
 startUrl = "http://news.google.com"
 - **Output:** `["http://news.google.com"]`
 - **Explanation:** The startUrl links to all other pages that do not share the same hostname.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{urls.length} \le 1000$
 

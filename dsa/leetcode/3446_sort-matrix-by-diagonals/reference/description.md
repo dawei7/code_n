@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given an `n x n` square matrix of integers `grid`. Return the matrix such that:
 
 - The diagonals in the **bottom-left triangle** (including the middle diagonal) are sorted in **non-increasing order**.
 
 - The diagonals in the **top-right triangle** are sorted in **non-decreasing order**.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -62,7 +63,8 @@ The diagonals with a black arrow must be non-increasing, so `[0, 2]` is changed 
 Diagonals with exactly one element are already in order, so no changes are needed.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $\text{grid.length} = \text{grid}[i].length = n$
 

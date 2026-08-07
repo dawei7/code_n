@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 An array is considered **special** if every pair of its adjacent elements contains two numbers with different parity.
 
 You are given an array of integer `nums` and a 2D integer matrix `queries`, where for $\text{queries}[i] = [\text{from}_{i}, \text{to}_{i}]$ your task is to check that subarray $nums[\text{from}_{i}..\text{to}_{i}]$ is **special** or not.
 
 Return an array of booleans `answer` such that $\text{answer}[i]$ is `true` if $nums[\text{from}_{i}..\text{to}_{i}]$ is special.<!-- notionvc: e5d6f4e2-d20a-4fbd-9c7f-22fbe52ef730 -->
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -38,7 +39,8 @@ The subarray is `[3,4,1,2,6]`. 2 and 6 are both even.
 - The subarray is `[1,6]`. There is only one pair: `(1,6)` and it contains numbers with different parity. So the answer to this query is `true`.
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

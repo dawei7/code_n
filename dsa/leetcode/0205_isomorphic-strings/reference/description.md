@@ -1,11 +1,12 @@
-## Description
+### 1. Description
 
 Given two strings `s` and `t`, *determine if they are isomorphic*.
 
 Two strings `s` and `t` are isomorphic if the characters in `s` can be replaced to get `t`.
 
 All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -16,7 +17,7 @@ All occurrences of a character must be replaced with another character while pre
 
 Return `true` exactly when a consistent one-to-one character mapping transforms `s` into `t`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -54,7 +55,8 @@ The strings `s` and `t` can not be made identical as `'1'` needs to be mapped to
 **Output:** true
 
 </div>
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{s.length} \le 5 * 10^{4}$
 

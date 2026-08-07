@@ -1,16 +1,17 @@
-## Description
+### 1. Description
 
 You are given a sorted integer array `arr` containing `1` and **prime** numbers, where all the integers of `arr` are unique. You are also given an integer `k`.
 
 For every `i` and `j` where $0 \le i < j < \text{arr.length}$, we consider the fraction $\text{arr}[i] / \text{arr}[j]$.
 
 Return *the* $$k^{\text{th}}$$ *smallest fraction considered*. Return your answer as an array of integers of size `2`, where $\text{answer}[0] = \text{arr}[i]$ and $\text{answer}[1] = \text{arr}[j]$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -23,7 +24,8 @@ The third fraction is 2/5.
 
 - **Input:** `arr = [1,7], k = 1`
 - **Output:** `[1,7]`
-### Constraints
+
+### 4. Constraints
 
 - $2 \le \text{arr.length} \le 1000$
 

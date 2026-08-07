@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 There are `n` projects numbered from `0` to $n - 1$. You are given an integer array `milestones` where each $\text{milestones}[i]$ denotes the number of milestones the $$i^{\text{th}}$$ project has.
 
@@ -11,12 +11,13 @@ You can work on the projects following these two rules:
 Once all the milestones of all the projects are finished, or if the only milestones that you can work on will cause you to violate the above rules, you will **stop working**. Note that you may not be able to finish every project's milestones due to these constraints.
 
 Return *the **maximum** number of weeks you would be able to work on the projects without violating the rules mentioned above*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -45,7 +46,8 @@ The total number of weeks is 6.
 The total number of weeks is 7.
 Note that you cannot work on the last milestone of project 0 on 8^th week because it would violate the rules.
 Thus, one milestone in project 0 will remain unfinished.
-### Constraints
+
+### 4. Constraints
 
 - $n = \text{milestones.length}$
 

@@ -1,7 +1,8 @@
-## Description
+### 1. Description
 
 Given a binary tree, determine if it is **height-balanced**.
-### Function Contract
+
+### 2. Function Contract
 
 **Inputs**
 
@@ -11,7 +12,7 @@ Given a binary tree, determine if it is **height-balanced**.
 
 Return `true` if the height-balance condition holds at every node; otherwise return `false`.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -29,7 +30,8 @@ Return `true` if the height-balance condition holds at every node; otherwise ret
 
 - **Input:** `root = []`
 - **Output:** `true`
-### Constraints
+
+### 4. Constraints
 
 - The number of nodes in the tree is in the range `[0, 5000]`.
 

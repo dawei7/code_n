@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 Write your version of method `forEach` that enhances all arrays such that you can call the `array.forEach(callback, context)` method on any array and it will execute `callback` on each element of the array. Method `forEach` should not return anything.
 
@@ -13,11 +13,12 @@ Write your version of method `forEach` that enhances all arrays such that you ca
 The `context` is the object that should be passed as the function context parameter to the `callback` function, ensuring that the `this` keyword within the `callback` function refers to this `context` object.
 
 Try to implement it without using the built-in array methods.
-### Function Contract
+
+### 2. Function Contract
 
 - Refer to method signature.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -48,7 +49,8 @@ arr = [true, true, false, false],
 callback = (val, i, arr) => arr[i] = !val,
 context = {"context": 5}
 - **Output:** `[false,false,true,true]`
-### Constraints
+
+### 4. Constraints
 
 - `arr` is a valid JSON array
 

@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a **0-indexed** positive integer array `nums` and a positive integer `k`.
 
@@ -12,13 +12,16 @@ Return *the number of **distinct** excellent pairs*.
 
 Two pairs `(a, b)` and `(c, d)` are considered distinct if either $a \neq c$ or $b \neq d$. For example, `(1, 2)` and `(2, 1)` are distinct.
 
-**Note** that a pair `(num1, num2)` such that $num1 = num2$ can also be excellent if you have at least **one** occurrence of `num1` in the array.
-### Function Contract
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Note
+
+that a pair `(num1, num2)` such that $num1 = num2$ can also be excellent if you have at least **one** occurrence of `num1` in the array.
+
+### 4. Examples
 
 #### Example 1
 
@@ -34,7 +37,8 @@ So the number of excellent pairs is 5.
 - **Input:** `nums = [5,1,1], k = 10`
 - **Output:** `0`
 - **Explanation:** There are no excellent pairs for this array.
-### Constraints
+
+### 5. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

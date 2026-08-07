@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an array `nums` that consists of non-negative integers. Let us define `rev(x)` as the reverse of the non-negative integer `x`. For example, $rev(123) = 321$, and $rev(120) = 21$. A pair of indices `(i, j)` is **nice** if it satisfies all of the following conditions:
 
@@ -7,12 +7,13 @@ You are given an array `nums` that consists of non-negative integers. Let us def
 - $\text{nums}[i] + rev(\text{nums}[j]) = \text{nums}[j] + rev(\text{nums}[i])$
 
 Return *the number of nice pairs of indices*. Since that number can be too large, return it **modulo** $10^{9} + 7$.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -25,7 +26,8 @@ Return *the number of nice pairs of indices*. Since that number can be too large
 
 - **Input:** `nums = [13,10,35,24,76]`
 - **Output:** `4`
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{nums.length} \le 10^{5}$
 

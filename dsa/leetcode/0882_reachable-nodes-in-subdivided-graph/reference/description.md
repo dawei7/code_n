@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given an undirected graph (the **"original graph"**) with `n` nodes labeled from `0` to $n - 1$. You decide to **subdivide** each edge in the graph into a chain of nodes, with the number of new nodes varying between each edge.
 
@@ -9,12 +9,13 @@ To **subdivide** the edge $[u_{i}, v_{i}]$, replace it with $(\text{cnt}_{i} + 1
 In this **new graph**, you want to know how many nodes are **reachable** from the node `0`, where a node is **reachable** if the distance is `maxMoves` or less.
 
 Given the original graph and `maxMoves`, return *the number of nodes that are **reachable** from node *`0`* in the new graph*.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -33,7 +34,8 @@ The nodes that are reachable are highlighted in yellow.
 - **Input:** $edges = [[1,2,4],[1,4,5],[1,3,1],[2,3,4],[3,4,5]], maxMoves = 17, n = 5$
 - **Output:** `1`
 - **Explanation:** Node 0 is disconnected from the rest of the graph, so only node 0 is reachable.
-### Constraints
+
+### 4. Constraints
 
 - $0 \le \text{edges.length} \le min(n * (n - 1) / 2, 10^{4})$
 

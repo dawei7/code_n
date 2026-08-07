@@ -1,4 +1,4 @@
-## Description
+### 1. Description
 
 You are given a string expression representing a Lisp-like expression to return the integer value of.
 
@@ -17,12 +17,13 @@ The syntax for these expressions is given as follows.
 - For this question, we will use a smaller subset of variable names. A variable starts with a lowercase letter, then zero or more lowercase letters or digits. Additionally, for your convenience, the names `"add"`, `"let"`, and `"mult"` are protected and will never be used as variable names.
 
 - Finally, there is the concept of scope. When an expression of a variable name is evaluated, within the context of that evaluation, the innermost scope (in terms of parentheses) is checked first for the value of that variable, and then outer scopes are checked sequentially. It is guaranteed that every expression is legal. Please see the examples for more details on the scope.
-### Function Contract
+
+### 2. Function Contract
 
 - `n`: Input parameter.
 - Returns expected result.
 
-### Examples
+### 3. Examples
 
 #### Example 1
 
@@ -42,7 +43,8 @@ Since x = 3 is found first, the value of x is 3.
 - **Output:** `5`
 - **Explanation:** The first (add x y) evaluates as 3, and is assigned to x.
 The second (add x y) evaluates as 3+2 = 5.
-### Constraints
+
+### 4. Constraints
 
 - $1 \le \text{expression.length} \le 2000$
 
