@@ -11,15 +11,6 @@
       "summary": "Returns false as soon as the first enumerable JSON property or array index exists, and true when none exists.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "competitive",
-      "label": "Competitive",
-      "kind": "competitive",
-      "directory": "variants/competitive",
-      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(1)"
     }
   ]
 }

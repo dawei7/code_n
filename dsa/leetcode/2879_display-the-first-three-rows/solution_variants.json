@@ -11,15 +11,6 @@
       "summary": "Uses pandas head selection to return at most the first three rows without scanning the rest of the table.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
-    },
-    {
-      "id": "competitive",
-      "label": "Competitive",
-      "kind": "competitive",
-      "directory": "variants/competitive",
-      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
-      "time_complexity": "O(1)",
-      "space_complexity": "O(1)"
     }
   ]
 }
