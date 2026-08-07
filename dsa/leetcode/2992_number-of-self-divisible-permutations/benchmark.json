@@ -1,5 +1,0 @@
-{"challenge_id":"lc_2992","cases":[
-{"id":"benchmark-n-3","name":"benchmark: permutation size 3","kind":"benchmark","visible":false,"size":3,"input":{"n":3},"expected":3,"tags":["benchmark","scaling","permutation-size","redundant-mask-count-baseline"]},
-{"id":"benchmark-n-6","name":"benchmark: permutation size 6","kind":"benchmark","visible":false,"size":6,"input":{"n":6},"expected":16,"tags":["benchmark","scaling","permutation-size","redundant-mask-count-baseline"]},
-{"id":"benchmark-n-12","name":"benchmark: permutation size 12","kind":"benchmark","visible":false,"size":12,"input":{"n":12},"expected":63504,"tags":["benchmark","scaling","permutation-size","redundant-mask-count-baseline"]}
-]}

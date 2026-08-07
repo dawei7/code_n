@@ -1,9 +1,0 @@
-{
-  "challenge_id": "lc_3158",
-  "measurement_note": "Size is the array length n. Each tier consists entirely of pairs, so a single pass performs linear work while rescanning the complete array to count each encountered value performs quadratic work.",
-  "cases": [
-    {"id":"benchmark-pairs-4","name":"benchmark: 2 pairs in 4 elements","kind":"benchmark","visible":false,"size":4,"input":{"nums":[1,2,1,2]},"expected":3,"tags":["benchmark","all-pairs","repeated-counting"]},
-    {"id":"benchmark-pairs-16","name":"benchmark: 8 pairs in 16 elements","kind":"benchmark","visible":false,"size":16,"input":{"nums":[1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8]},"expected":8,"tags":["benchmark","all-pairs","repeated-counting"]},
-    {"id":"benchmark-pairs-48","name":"benchmark: 24 pairs in 48 elements","kind":"benchmark","visible":false,"size":48,"input":{"nums":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]},"expected":24,"tags":["benchmark","all-pairs","repeated-counting"]}
-  ]
-}

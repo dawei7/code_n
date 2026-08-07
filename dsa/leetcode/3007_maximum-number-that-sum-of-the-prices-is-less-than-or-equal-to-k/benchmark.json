@@ -1,5 +1,0 @@
-{"challenge_id":"lc_3007","cases":[
-{"id":"benchmark-budget-64","name":"benchmark: budget 64","kind":"benchmark","visible":false,"size":64,"input":{"k":64,"x":1},"expected":27,"tags":["benchmark","scaling","budget","number-enumeration-baseline"]},
-{"id":"benchmark-budget-1024","name":"benchmark: budget 1024","kind":"benchmark","visible":false,"size":1024,"input":{"k":1024,"x":1},"expected":255,"tags":["benchmark","scaling","budget","number-enumeration-baseline"]},
-{"id":"benchmark-budget-16384","name":"benchmark: budget 16384","kind":"benchmark","visible":false,"size":16384,"input":{"k":16384,"x":1},"expected":2935,"tags":["benchmark","scaling","budget","number-enumeration-baseline"]}
-]}

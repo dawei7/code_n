@@ -1,7 +1,7 @@
 {
   "name": "coden-web",
   "private": true,
-  "version": "0.5.4",
+  "version": "0.6.0",
   "type": "module",
   "description": "cOde(n) web frontend - React + Vite + Tailwind with in-app editing, debugging, reference docs, and progress tracking.",
   "scripts": {

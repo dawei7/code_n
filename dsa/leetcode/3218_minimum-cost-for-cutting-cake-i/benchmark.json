@@ -1,9 +1,0 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_3218",
-  "cases": [
-    {"id":"benchmark-cake-cuts-scale-1","name":"benchmark: merge four boundary costs","kind":"benchmark","visible":false,"size":4,"input":{"m":3,"n":3,"horizontalCut":[6,23],"verticalCut":[12,41]},"expected":129,"tags":["benchmark","scale-1"]},
-    {"id":"benchmark-cake-cuts-scale-2","name":"benchmark: merge sixteen boundary costs","kind":"benchmark","visible":false,"size":16,"input":{"m":9,"n":9,"horizontalCut":[6,23,40,57,74,91,11,28],"verticalCut":[12,41,70,10,39,68,8,37]},"expected":2119,"tags":["benchmark","scale-2"]},
-    {"id":"benchmark-cake-cuts-scale-3","name":"benchmark: merge the maximum thirty-eight boundary costs","kind":"benchmark","visible":false,"size":38,"input":{"m":20,"n":20,"horizontalCut":[6,23,40,57,74,91,11,28,45,62,79,96,16,33,50,67,84,4,21],"verticalCut":[12,41,70,10,39,68,8,37,66,6,35,64,4,33,62,2,31,60,89]},"expected":11202,"tags":["benchmark","scale-3","maximum-dimensions"]}
-  ]
-}

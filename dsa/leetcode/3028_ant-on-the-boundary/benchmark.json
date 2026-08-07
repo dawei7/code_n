@@ -1,9 +1,0 @@
-{
-  "schema_version": 1,
-  "challenge_id": "lc_3028",
-  "cases": [
-    {"id":"benchmark-scale-1","name":"benchmark: 8 alternating movements","kind":"benchmark","visible":false,"size":8,"input":{"nums":[1,-1,1,-1,1,-1,1,-1]},"expected":4,"tags":["benchmark","scale-small","repeated-returns"]},
-    {"id":"benchmark-scale-2","name":"benchmark: 32 alternating movements","kind":"benchmark","visible":false,"size":32,"input":{"nums":[1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1]},"expected":16,"tags":["benchmark","scale-medium","repeated-returns"]},
-    {"id":"benchmark-scale-3","name":"benchmark: 100 alternating movements","kind":"benchmark","visible":false,"size":100,"input":{"nums":[1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1,1,-1]},"expected":50,"tags":["benchmark","scale-large","repeated-returns"]}
-  ]
-}

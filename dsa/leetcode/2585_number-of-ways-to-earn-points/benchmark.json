@@ -1,9 +1,0 @@
-{
-  "challenge_id": "lc_2585",
-  "measurement_note": "Size is n * target, the number of dynamic-programming states processed. The tiers increase n, target, and the per-type count together; the sliding-window recurrence performs constant work per state, while explicitly trying every permitted count adds a scaling factor.",
-  "cases": [
-    {"id":"benchmark-scale-1","name":"benchmark: 8 types and target 25","kind":"benchmark","visible":false,"size":200,"input":{"target":25,"types":[[5,1],[5,1],[5,1],[5,1],[5,1],[5,1],[5,1],[5,1]]},"expected":82384,"tags":["benchmark","scale-small","bounded-knapsack"]},
-    {"id":"benchmark-scale-2","name":"benchmark: 16 types and target 75","kind":"benchmark","visible":false,"size":1200,"input":{"target":75,"types":[[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1],[15,1]]},"expected":74791944,"tags":["benchmark","scale-medium","bounded-knapsack"]},
-    {"id":"benchmark-scale-3","name":"benchmark: 32 types and target 200","kind":"benchmark","visible":false,"size":6400,"input":{"target":200,"types":[[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1],[40,1]]},"expected":590038191,"tags":["benchmark","scale-large","bounded-knapsack"]}
-  ]
-}
