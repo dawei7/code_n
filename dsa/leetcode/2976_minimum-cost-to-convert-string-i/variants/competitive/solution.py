@@ -25,7 +25,7 @@ class Solution:
                     continue
                 if u not in dist:
                     continue
-                for v, w in dist[u].iteritems():     
+                for v, w in dist[u].items():     
                     if v in best and best[v] <= curr+w:
                         continue
                     best[v] = curr+w

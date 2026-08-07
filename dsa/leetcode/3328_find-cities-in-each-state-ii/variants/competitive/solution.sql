@@ -2,7 +2,7 @@
 # Space: O(n)
 
 SELECT state,
-       GROUP_CONCAT(city ORDER BY city SEPARATOR ', ') AS cities,
+       STRING_AGG(city ORDER BY city SEPARATOR ', ') AS cities,
        SUM(IF(LEFT(city, 1) = LEFT(state, 1), 1, 0)) AS matching_letter_count
 FROM cities
 GROUP BY 1

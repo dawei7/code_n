@@ -11,4 +11,4 @@ class Solution:
         :type s: str
         :rtype: int
         """
-        return sum(cnt*(i//9+1) for i, cnt in enumerate(sorted(collections.Counter(s).itervalues(), reverse=True)))
+        return sum(cnt*(i//9+1) for i, cnt in enumerate(sorted(collections.Counter(s).values(), reverse=True)))

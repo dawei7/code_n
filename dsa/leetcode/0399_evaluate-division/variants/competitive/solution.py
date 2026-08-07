@@ -117,7 +117,7 @@ class Solution2(object):
                 if u == b:
                     lookup[a, b] = val
                     return val
-                for v, k in adj[u].iteritems():
+                for v, k in adj[u].items():
                     if v in visited:
                         continue                    
                     visited.add(v)
@@ -172,7 +172,7 @@ class Solution4(object):
         def check(up, down, lookup, visited):
             if up in lookup and down in lookup[up]:
                 return (True, lookup[up][down])
-            for k, v in lookup[up].iteritems():
+            for k, v in lookup[up].items():
                 if k not in visited:
                     visited.add(k)
                     tmp = check(k, down, lookup, visited)

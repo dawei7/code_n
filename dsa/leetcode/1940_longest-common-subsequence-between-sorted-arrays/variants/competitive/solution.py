@@ -35,4 +35,4 @@ class Solution2(object):
         :type arrays: List[List[int]]
         :rtype: List[int]
         """
-        return [num for num, cnt in collections.Counter(x for arr in arrays for x in arr).iteritems() if cnt == len(arrays)]
+        return [num for num, cnt in collections.Counter(x for arr in arrays for x in arr).items() if cnt == len(arrays)]

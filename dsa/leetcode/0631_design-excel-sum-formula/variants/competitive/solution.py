@@ -81,7 +81,7 @@ class Excel(object):
         while q:
             key, diff = q.popleft()
             if key in self.__fward:
-                for k, count in self.__fward[key].iteritems():
+                for k, count in self.__fward[key].items():
                     q.append((k, diff*count))
                     self.__exl[k[0]][ord(k[1])-ord('A')] += diff*count
 

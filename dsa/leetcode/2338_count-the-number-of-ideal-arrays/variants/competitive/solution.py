@@ -50,7 +50,7 @@ class Solution:
         result = 0
         for k in range(1, maxValue+1):
             total = 1
-            for c in prime_factors(k).itervalues():
+            for c in prime_factors(k).values():
                 total = (total*nCr(n+c-1, c))%MOD  # H(n, c) = nCr(n+c-1, n)
             result = (result+total)%MOD
         return result

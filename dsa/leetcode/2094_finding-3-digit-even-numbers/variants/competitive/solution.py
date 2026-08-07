@@ -95,7 +95,7 @@ class Solution3(object):
                 node = node.right
 
         prev = dummy = Node()
-        for digit, cnt in sorted(map(list, collections.Counter(digits).iteritems())):
+        for digit, cnt in sorted(map(list, collections.Counter(digits).items())):
             prev.right = Node(val=[digit, cnt], left=prev)
             prev = prev.right
         result = []

@@ -19,13 +19,13 @@ class Solution:
             for c in s:
                 new_dp = [collections.defaultdict(int) for _ in range(2)]
                 for b in range(2):
-                    for (mul, total), cnt in dp[b].iteritems():
+                    for (mul, total), cnt in dp[b].items():
                         for x in range((c if b else 9)+1):
                             new_dp[b and x == c][mul*(1 if total == 0 == x else x), total+x] += cnt
                 dp = new_dp
             result = 0
             for b in range(2):
-                for (mul, total), cnt in dp[b].iteritems():
+                for (mul, total), cnt in dp[b].items():
                     if total and mul%total == 0:
                         result += cnt
             return result

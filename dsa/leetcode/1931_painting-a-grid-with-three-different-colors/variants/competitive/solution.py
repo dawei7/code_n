@@ -170,7 +170,7 @@ class Solution2(object):
             assert(len(dp) == 3*2**(m-1) // 3 // (2 if m >= 2 else 1))  # divided by 3 * 2 is since the first two colors are normalized to speed up performance
             new_dp = collections.Counter()
             for mask, v in dp.items():
-                for new_mask, cnt in normalized_adj[mask].iteritems():
+                for new_mask, cnt in normalized_adj[mask].items():
                     new_dp[lookup[new_mask]] = (new_dp[lookup[new_mask]] + v*cnt) % MOD
             dp = new_dp
         return reduce(lambda x,y: (x+y)%MOD, dp.values(), 0)  # Time: O(2^m)

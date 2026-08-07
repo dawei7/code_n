@@ -37,11 +37,11 @@ class Solution:
                     stk.append((1, (node.left, left)))
                 else:
                     left, right, ret = params
-                    for left_d, left_c in left[0].iteritems():
-                        for right_d,right_c in right[0].iteritems():
+                    for left_d, left_c in left[0].items():
+                        for right_d,right_c in right[0].items():
                             if left_d+right_d+2 <= distance:
                                 result += left_c*right_c
-                    ret[0] = collections.Counter({k+1:v for k,v in (left[0]+right[0]).iteritems()})
+                    ret[0] = collections.Counter({k+1:v for k,v in (left[0]+right[0]).items()})
             return result
         
         return iter_dfs(distance, root)
@@ -66,10 +66,10 @@ class Solution2(object):
                 return 0, collections.Counter([0])
             left, right = dfs(distance, node.left), dfs(distance, node.right)
             result = left[0]+right[0]
-            for left_d, left_c in left[1].iteritems():
-                for right_d,right_c in right[1].iteritems():
+            for left_d, left_c in left[1].items():
+                for right_d,right_c in right[1].items():
                     if left_d+right_d+2 <= distance:
                         result += left_c*right_c
-            return result, collections.Counter({k+1:v for k,v in (left[1]+right[1]).iteritems()})
+            return result, collections.Counter({k+1:v for k,v in (left[1]+right[1]).items()})
         
         return dfs(distance, root)[0]

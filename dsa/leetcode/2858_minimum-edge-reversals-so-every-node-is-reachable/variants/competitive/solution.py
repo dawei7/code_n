@@ -14,7 +14,7 @@ class Solution:
             stk = [(0, -1)]
             while stk:
                 u, p = stk.pop()
-                for v in adj[u].iterkeys():
+                for v in adj[u].keys():
                     if v == p:
                         continue
                     result += adj[u][v]
@@ -27,7 +27,7 @@ class Solution:
             while stk:
                 u, curr = stk.pop()
                 result[u] = curr
-                for v in adj[u].iterkeys():
+                for v in adj[u].keys():
                     if result[v] == -1:
                         stk.append((v, curr-adj[u][v]+adj[v][u]))
             return result

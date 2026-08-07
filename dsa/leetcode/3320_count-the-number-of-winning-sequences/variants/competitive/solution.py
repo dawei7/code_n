@@ -25,8 +25,8 @@ class Solution:
                 for k in range(3):
                     if k == j:
                         continue
-                    for v, c in dp[k].iteritems():
+                    for v, c in dp[k].items():
                         new_dp[j][v+diff] = (new_dp[j][v+diff]+c)%MOD
             dp = new_dp
-        return reduce(lambda accu, x: (accu+x)%MOD, (c for j in range(3) for v, c in dp[j].iteritems() if v >= 1), 0)
+        return reduce(lambda accu, x: (accu+x)%MOD, (c for j in range(3) for v, c in dp[j].items() if v >= 1), 0)
     

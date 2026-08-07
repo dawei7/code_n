@@ -11,7 +11,7 @@ class Solution:
         :type word: str
         :rtype: bool
         """
-        cnt = collections.Counter(collections.Counter(word).itervalues())
+        cnt = collections.Counter(collections.Counter(word).values())
         if len(cnt) > 2:
             return False
         if len(cnt) == 1:

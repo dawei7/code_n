@@ -56,7 +56,7 @@ class Solution:
                 continue
             if state == target_state:
                 return cur_d
-            for dest, d in dists[place].iteritems():
+            for dest, d in dists[place].items():
                 next_state = state
                 if dest.islower():
                     next_state |= (1 << (ord(dest)-ord('a')))

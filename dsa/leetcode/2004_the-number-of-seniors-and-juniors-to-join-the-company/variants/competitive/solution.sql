@@ -16,7 +16,7 @@ WITH senior_cte AS
 ),
 senior_max_cte AS
 (
-    SELECT IFNULL(MAX(salary_accu), 0) AS salary
+    SELECT COALESCE(MAX(salary_accu), 0) AS salary
     FROM senior_cte
 ),
 junior_cte AS

@@ -2,7 +2,7 @@
 # Space: O(n)
 
 WITH event_cte AS (
-  SELECT IFNULL(start_day > MAX(end_day) OVER w, 1) AS is_new_event_start,
+  SELECT COALESCE(start_day > MAX(end_day) OVER w, 1) AS is_new_event_start,
          hall_id,
          start_day,
          end_day

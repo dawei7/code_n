@@ -11,7 +11,7 @@ class Solution:
         :rtype: int
         """
         odds = 0
-        for k, v in collections.Counter(s).iteritems():
+        for k, v in collections.Counter(s).items():
             odds += v & 1
         return len(s) - odds + int(odds > 0)
 

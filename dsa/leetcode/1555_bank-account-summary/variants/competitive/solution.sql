@@ -3,8 +3,8 @@
 
 SELECT user_id,
        user_name,
-       (credit - IFNULL(out_cash, 0) + IFNULL(in_cash, 0)) AS credit,
-       IF((credit - IFNULL(out_cash, 0) + IFNULL(in_cash, 0)) < 0, 'Yes', 'No') AS credit_limit_breached
+       (credit - COALESCE(out_cash, 0) + COALESCE(in_cash, 0)) AS credit,
+       IF((credit - COALESCE(out_cash, 0) + COALESCE(in_cash, 0)) < 0, 'Yes', 'No') AS credit_limit_breached
 FROM Users users
 LEFT JOIN
   (SELECT paid_by,

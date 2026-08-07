@@ -3,7 +3,7 @@
 
 SELECT
 ROUND(
-    IFNULL(
+    COALESCE(
     (SELECT COUNT(*) FROM (SELECT DISTINCT requester_id, accepter_id FROM request_accepted) AS r)
     /
     (SELECT COUNT(*) FROM (SELECT DISTINCT sender_id, send_to_id FROM friend_request) AS a),

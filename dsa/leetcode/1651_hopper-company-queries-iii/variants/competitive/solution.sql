@@ -37,8 +37,8 @@ SELECT month,
 FROM (
     SELECT t1.year,
            t1.month,
-           ROUND(IFNULL(SUM(t2.monthly_distance) OVER w, 0)/3, 2) average_ride_distance, 
-           ROUND(IFNULL(SUM(t2.monthly_duration) OVER w, 0)/3, 2) average_ride_duration
+           ROUND(COALESCE(SUM(t2.monthly_distance) OVER w, 0)/3, 2) average_ride_distance, 
+           ROUND(COALESCE(SUM(t2.monthly_duration) OVER w, 0)/3, 2) average_ride_duration
     FROM year_month_cte t1
          LEFT JOIN total_per_month_cte t2 ON t1.year = t2.year AND t1.month = t2.month
          WINDOW w AS (ORDER BY t1.year, t1.month ROWS BETWEEN CURRENT ROW AND 2 FOLLOWING)

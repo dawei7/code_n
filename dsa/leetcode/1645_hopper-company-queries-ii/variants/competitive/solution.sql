@@ -39,12 +39,12 @@ working_drivers_count_cte AS (
 )
 
 SELECT month,
-       ROUND(IFNULL(working_drivers/active_drivers*100, 0), 2) AS working_percentage
+       ROUND(COALESCE(working_drivers/active_drivers*100, 0), 2) AS working_percentage
 FROM (
     SELECT t1.month,
            t1.year,
-           IFNULL(SUM(t2.drivers_count) OVER (ORDER BY t1.year, t1.month), 0) active_drivers, 
-           IFNULL(t3.working_drivers, 0) working_drivers
+           COALESCE(SUM(t2.drivers_count) OVER (ORDER BY t1.year, t1.month), 0) active_drivers, 
+           COALESCE(t3.working_drivers, 0) working_drivers
     FROM year_month_cte t1
          LEFT JOIN drivers_count_cte t2         ON t1.year = t2.year AND t1.month = t2.month 
          LEFT JOIN working_drivers_count_cte t3 ON t1.year = t3.year AND t1.month = t3.month

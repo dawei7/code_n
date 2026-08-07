@@ -29,4 +29,4 @@ class Solution:
         :type s: str
         :rtype: int
         """
-        return sum(v*(v+1)//2 for v in collections.Counter(s).itervalues())
+        return sum(v*(v+1)//2 for v in collections.Counter(s).values())

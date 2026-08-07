@@ -24,8 +24,8 @@ employee_with_level_cte AS (
 SELECT a.employee_id, 
        a.employee_name, 
        a.level, 
-       IFNULL(b.team_size, 0) AS team_size,
-       a.salary + IFNULL(b.budget, 0) AS budget
+       COALESCE(b.team_size, 0) AS team_size,
+       a.salary + COALESCE(b.budget, 0) AS budget
 FROM employee_with_level_cte a
 LEFT JOIN (
     SELECT manager_id AS employee_id, 

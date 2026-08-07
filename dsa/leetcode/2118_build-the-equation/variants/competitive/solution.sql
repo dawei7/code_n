@@ -3,7 +3,7 @@
 
 SELECT 
     CONCAT(
-        GROUP_CONCAT(
+        STRING_AGG(
         CASE 
             WHEN factor > 0 THEN CONCAT('+', factor)
             ELSE factor

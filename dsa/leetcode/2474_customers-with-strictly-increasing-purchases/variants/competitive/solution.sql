@@ -15,5 +15,5 @@ FROM year_cte a
      LEFT JOIN year_cte b
      ON b.customer_id = a.customer_id AND b.year = a.year + 1
 GROUP BY a.customer_id
-HAVING SUM(a.total >= IFNULL(b.total, 0)) = 1
+HAVING SUM(a.total >= COALESCE(b.total, 0)) = 1
 ORDER BY NULL;

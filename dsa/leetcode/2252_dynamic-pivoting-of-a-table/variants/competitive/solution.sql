@@ -6,7 +6,7 @@ BEGIN
     SET SESSION group_concat_max_len = 1000000;
 
     SET @case_stmt = NULL;
-    SELECT GROUP_CONCAT(
+    SELECT STRING_AGG(
         DISTINCT CONCAT(
             'MIN(CASE WHEN store = "', store, '" THEN price END) AS ', store
         ) SEPARATOR ','

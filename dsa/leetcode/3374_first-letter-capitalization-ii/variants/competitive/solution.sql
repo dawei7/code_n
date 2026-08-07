@@ -68,7 +68,7 @@ formatted_word_cte AS (
 
 SELECT content_id,
        content_text AS original_text,
-       GROUP_CONCAT(formatted_word ORDER BY idx SEPARATOR '') AS converted_text
+       STRING_AGG(formatted_word ORDER BY idx SEPARATOR '', ',') AS converted_text
 FROM formatted_word_cte
 GROUP BY 1, 2
 ORDER BY 1;

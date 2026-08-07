@@ -2,7 +2,7 @@
 # Space: O(n)
 
 SELECT
-IFNULL(
+COALESCE(
     (SELECT
         MAX(num)
     FROM

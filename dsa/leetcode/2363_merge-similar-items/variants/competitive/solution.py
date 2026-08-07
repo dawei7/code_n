@@ -9,4 +9,4 @@ class Solution:
         :type items2: List[List[int]]
         :rtype: List[List[int]]
         """
-        return sorted((Counter(dict(items1))+Counter(dict(items2))).iteritems())
+        return sorted((Counter(dict(items1))+Counter(dict(items2))).items())

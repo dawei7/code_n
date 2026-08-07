@@ -2,9 +2,9 @@
 # Space: O(m + n)  
 
 SELECT seq.transactions_count AS transactions_count,
-       Ifnull(v.visits_count, 0) AS visits_count 
+       COALESCE(v.visits_count, 0) AS visits_count 
 FROM   (SELECT @count := CAST(@count + 1 AS SIGNED) AS transactions_count 
-        FROM   (SELECT @count := -1, @max_count := Ifnull(Max(count), 0)
+        FROM   (SELECT @count := -1, @max_count := COALESCE(Max(count), 0)
                 FROM   (SELECT Count(1) AS count 
                         FROM   transactions 
                         GROUP  BY user_id, 

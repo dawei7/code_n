@@ -21,7 +21,7 @@ groups_cte AS (
 patterns_cte AS (
   SELECT g.student_id,
          g.group_id,
-         GROUP_CONCAT(g.subject ORDER BY g.session_date SEPARATOR ',') AS seq,
+         STRING_AGG(g.subject ORDER BY g.session_date SEPARATOR ', ') AS seq,
          COUNT(*) AS total_sessions,
          COUNT(DISTINCT g.subject) AS cycle_length,
          ROUND(SUM(g.hours_studied), 1) AS total_study_hours

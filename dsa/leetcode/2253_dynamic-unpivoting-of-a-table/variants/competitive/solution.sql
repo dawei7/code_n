@@ -6,7 +6,7 @@ BEGIN
     SET SESSION group_concat_max_len = 1000000;
     
     SET @sql_query = NULL;
-	  SELECT GROUP_CONCAT(
+	  SELECT STRING_AGG(
         CONCAT(
             'SELECT product_id, "', column_name, '" AS store, ', column_name, ' AS price FROM products WHERE ', column_name, ' IS NOT NULL'
         ) SEPARATOR ' UNION ALL '

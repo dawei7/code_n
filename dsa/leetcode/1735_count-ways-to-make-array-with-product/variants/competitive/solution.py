@@ -48,7 +48,7 @@ class Solution:
         result = []
         for n, k in queries:
             total = 1
-            for c in prime_factors(k).itervalues():
+            for c in prime_factors(k).values():
                 total *= nCr(n+c-1, c)  # H(n, c) = nCr(n+c-1, n)
             result.append(total % MOD)
         return result

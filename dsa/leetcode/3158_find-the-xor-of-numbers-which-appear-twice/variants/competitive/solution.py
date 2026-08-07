@@ -23,5 +23,5 @@ class Solution2(object):
         :type nums: List[int]
         :rtype: int
         """
-        return reduce(lambda x, y: x^y, (x for x, c in collections.Counter(nums).iteritems() if c == 2), 0)
+        return reduce(lambda x, y: x^y, (x for x, c in collections.Counter(nums).items() if c == 2), 0)
 

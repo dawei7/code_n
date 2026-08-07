@@ -11,5 +11,5 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        mx = max(collections.Counter(nums).itervalues())
+        mx = max(collections.Counter(nums).values())
         return mx-(len(nums)-mx) if mx > (len(nums)-mx) else len(nums)%2

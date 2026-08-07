@@ -22,8 +22,8 @@ purchases_cte AS
 
 SELECT a.member_id, name,
        CASE WHEN visit_cnt = 0 THEN 'Bronze'
-       WHEN IFNULL(purchase_cnt, 0) / visit_cnt < 0.5 THEN 'Silver'
-       WHEN IFNULL(purchase_cnt, 0) / visit_cnt < 0.8 THEN 'Gold'
+       WHEN COALESCE(purchase_cnt, 0) / visit_cnt < 0.5 THEN 'Silver'
+       WHEN COALESCE(purchase_cnt, 0) / visit_cnt < 0.8 THEN 'Gold'
        ELSE 'Diamond'
        END AS category
 FROM visits_cte a
