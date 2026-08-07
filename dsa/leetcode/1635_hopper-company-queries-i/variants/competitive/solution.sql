@@ -44,8 +44,8 @@ SELECT month,
 FROM (
     SELECT t1.month,
            t1.year,
-           IFNULL(SUM(t2.drivers_count) OVER (ORDER BY t1.year, t1.month), 0) active_drivers, 
-           IFNULL(t3.accepted_rides, 0) accepted_rides
+           COALESCE(SUM(t2.drivers_count) OVER (ORDER BY t1.year, t1.month), 0) active_drivers, 
+           COALESCE(t3.accepted_rides, 0) accepted_rides
     FROM year_month_cte t1
          LEFT JOIN drivers_count_cte t2 ON t1.year = t2.year AND t1.month = t2.month 
          LEFT JOIN rides_count_cte t3   ON t1.year = t3.year AND t1.month = t3.month

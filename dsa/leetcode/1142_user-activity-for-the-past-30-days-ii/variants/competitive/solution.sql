@@ -1,7 +1,7 @@
 # Time:  O(n)
 # Space: O(n)
 
-SELECT Round(Ifnull(Count(DISTINCT session_id) / Count(DISTINCT user_id), 0), 2) 
+SELECT Round(COALESCE(Count(DISTINCT session_id) / Count(DISTINCT user_id), 0), 2) 
        AS 
        average_sessions_per_user 
 FROM   activity 

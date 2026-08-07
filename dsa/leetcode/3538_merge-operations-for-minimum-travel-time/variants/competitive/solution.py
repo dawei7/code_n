@@ -24,7 +24,7 @@ class Solution:
             new_dp = collections.defaultdict(lambda: collections.defaultdict(lambda: float("inf")))
             for i in range(cnt-1, (cnt-1)+(k+1)):
                 for j in range(cnt-2, i):
-                    for t, c in dp[j].iteritems():
+                    for t, c in dp[j].items():
                         new_dp[i][prefix[i+1]-prefix[j+1]] = min(new_dp[i][prefix[i+1]-prefix[j+1]], (position[i]-position[j])*t+c)
             dp = new_dp
-        return min(dp[n-1].itervalues())
+        return min(dp[n-1].values())

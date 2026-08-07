@@ -44,6 +44,6 @@ class Solution2(object):
                 diff = nums[i]-nums[j]
                 dp[i][2][diff] += 1
                 for l in range(max(k-(len(nums)-i+1), 0), i+1):
-                    for mn, cnt in dp[j][l].iteritems():
+                    for mn, cnt in dp[j][l].items():
                         dp[i][l+1][min(diff, mn)] = (dp[i][l+1][min(diff, mn)]+cnt)%MOD
-        return reduce(lambda accu, x: (accu+x)%MOD, ((mn*cnt)%MOD for i in range(k-1, len(dp)) for mn, cnt in dp[i][k].iteritems()))
+        return reduce(lambda accu, x: (accu+x)%MOD, ((mn*cnt)%MOD for i in range(k-1, len(dp)) for mn, cnt in dp[i][k].items()))

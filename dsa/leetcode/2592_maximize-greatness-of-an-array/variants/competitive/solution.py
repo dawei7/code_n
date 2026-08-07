@@ -8,7 +8,7 @@ class Solution:
         :type nums: List[int]
         :rtype: int
         """
-        return len(nums)-max(collections.Counter(nums).itervalues())
+        return len(nums)-max(collections.Counter(nums).values())
   
 
 # Time:  O(nlogn)

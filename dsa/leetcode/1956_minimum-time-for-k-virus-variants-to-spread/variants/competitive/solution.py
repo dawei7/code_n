@@ -158,7 +158,7 @@ class Solution2(object):
             sorted_x = sorted(intervals.keys())
             count = collections.Counter()
             for x in sorted_x:  # line sweep
-                for y, c in intervals[x].iteritems():
+                for y, c in intervals[x].items():
                     count[y] += c
                 cnt = 0
                 for y in sorted_y:

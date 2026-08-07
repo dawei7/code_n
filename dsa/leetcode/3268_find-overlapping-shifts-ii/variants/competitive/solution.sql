@@ -41,7 +41,7 @@ WITH events_cte AS (
 
 SELECT c.employee_id,
        max_overlapping_shifts,
-       IFNULL(total_overlap_duration, 0) AS total_overlap_duration
+       COALESCE(total_overlap_duration, 0) AS total_overlap_duration
 FROM max_count_cte c
 LEFT JOIN total_duration_cte d
      ON c.employee_id = d.employee_id

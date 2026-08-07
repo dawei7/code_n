@@ -3,8 +3,8 @@
 
 WITH cte 
      AS (SELECT box_id, 
-                (a.apple_count  + IFNULL(b.apple_count,  0)) AS apple, 
-                (a.orange_count + IFNULL(b.orange_count, 0)) AS orange 
+                (a.apple_count  + COALESCE(b.apple_count,  0)) AS apple, 
+                (a.orange_count + COALESCE(b.orange_count, 0)) AS orange 
          FROM   boxes a 
                 LEFT JOIN chests b 
                        ON a.chest_id = b.chest_id) 

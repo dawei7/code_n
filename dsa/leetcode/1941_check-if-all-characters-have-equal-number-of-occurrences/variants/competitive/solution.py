@@ -10,4 +10,4 @@ class Solution:
         :type s: str
         :rtype: bool
         """
-        return len(set(collections.Counter(s).itervalues())) == 1
+        return len(set(collections.Counter(s).values())) == 1

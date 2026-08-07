@@ -124,7 +124,7 @@ class Solution_Wrong_Greedy_SortedList(object):
             curr = 0
             while ordered_set:  # the while loop runs O(k) times
                 if len(stks)-curr in freq_to_nodes:  # fill the deterministic elements into the remaining subsets
-                    for x in freq_to_nodes[len(stks)-curr].iterkeys():  # total time = O(n)
+                    for x in freq_to_nodes[len(stks)-curr].keys():  # total time = O(n)
                         for i in range(curr, len(stks)):
                             stks[i].append(x)
                         count.pop(x)
@@ -298,7 +298,7 @@ class Solution_Wrong_Greedy_SkipList(object):
             curr = 0
             while ordered_set:  # the while loop runs O(k) times
                 if len(stks)-curr in freq_to_nodes:  # fill the deterministic elements into the remaining subsets
-                    for x in freq_to_nodes[len(stks)-curr].iterkeys():  # total time = O(n)
+                    for x in freq_to_nodes[len(stks)-curr].keys():  # total time = O(n)
                         for i in range(curr, len(stks)):
                             stks[i].append(x)
                         count.pop(x)

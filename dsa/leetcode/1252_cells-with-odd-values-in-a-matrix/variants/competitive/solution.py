@@ -31,6 +31,6 @@ class Solution2(object):
         :type indices: List[List[int]]
         :rtype: int
         """
-        fn = lambda x: sum(count&1 for count in collections.Counter(x).itervalues())
+        fn = lambda x: sum(count&1 for count in collections.Counter(x).values())
         row_sum, col_sum = map(fn, itertools.izip(*indices))
         return row_sum*m+col_sum*n-2*row_sum*col_sum

@@ -3,7 +3,7 @@
 
 SELECT t1.spend_date, 
        'both'                       AS platform, 
-       Sum(Ifnull(t.sum_amount, 0)) AS total_amount, 
+       Sum(COALESCE(t.sum_amount, 0)) AS total_amount, 
        Count(t.user_id)             AS total_users 
 FROM   (SELECT spend_date, 
                user_id, 
@@ -19,7 +19,7 @@ GROUP  BY t1.spend_date
 UNION 
 SELECT t2.spend_date, 
        'mobile'                 AS platform, 
-       Sum(Ifnull(t.amount, 0)) AS total_amount, 
+       Sum(COALESCE(t.amount, 0)) AS total_amount, 
        Count(t.user_id)         AS total_users 
 FROM   (SELECT spend_date, 
                user_id, 
@@ -37,7 +37,7 @@ GROUP  BY t2.spend_date
 UNION 
 SELECT t3.spend_date, 
        'desktop'                AS platform, 
-       Sum(Ifnull(t.amount, 0)) AS total_amount, 
+       Sum(COALESCE(t.amount, 0)) AS total_amount, 
        Count(t.user_id)         AS total_users 
 FROM   (SELECT spend_date, 
                user_id, 

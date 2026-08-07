@@ -18,7 +18,7 @@ player_match_group_cte AS (
     ORDER BY NULL
 )
 
-SELECT a.player_id, IFNULL(MAX(b.cnt), 0) as longest_streak
+SELECT a.player_id, COALESCE(MAX(b.cnt), 0) as longest_streak
 FROM (SELECT DISTINCT player_id FROM matches) a
      LEFT JOIN
      player_match_group_cte b

@@ -21,7 +21,7 @@ class Solution:
                     cnt += 1
                     mn = min(mn, x+1)
                     mx = max(mx, x-1)
-            return [cnt, 0 if len(nums) == 1 else 1 if max(nums) == min(nums) else mx-mn]
+            return [cnt, 0 if len(nums) == 1 else 1 if max(nums) == min(nums) else mx-mn]
         
         return min(count(0), count(1))
 

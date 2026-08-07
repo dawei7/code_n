@@ -22,7 +22,7 @@ class Solution:
                 curr, u = heapq.heappop(min_heap)
                 if curr != best[u]:
                     continue
-                for v, w in adj[u].iteritems():
+                for v, w in adj[u].items():
                     if not (max(curr, w) < best[v]):
                         continue
                     best[v] = max(curr, w)
@@ -59,7 +59,7 @@ class Solution2(object):
                 if best[u] != float("inf"):
                     continue
                 best[u] = curr
-                for v, w in adj[u].iteritems():
+                for v, w in adj[u].items():
                     if best[v] != float("inf"):
                         continue
                     heapq.heappush(min_heap, (w, v))
@@ -104,7 +104,7 @@ class Solution3(object):
             while q:
                 new_q = []
                 for u in q:
-                    for v, w in adj[u].iteritems():
+                    for v, w in adj[u].items():
                         if w > x or lookup[v]:
                             continue
                         lookup[v] = True

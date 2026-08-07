@@ -3,7 +3,7 @@
 
 SELECT a.id, 
        a.year, 
-       Ifnull(b.npv, 0) AS npv 
+       COALESCE(b.npv, 0) AS npv 
 FROM   queries a 
        LEFT JOIN npv b 
               ON a.id = b.id 

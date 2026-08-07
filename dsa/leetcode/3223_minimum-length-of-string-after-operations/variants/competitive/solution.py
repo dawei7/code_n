@@ -26,4 +26,4 @@ class Solution2(object):
         :type s: str
         :rtype: int
         """
-        return sum(2-x%2 for x in collections.Counter(s).itervalues())
+        return sum(2-x%2 for x in collections.Counter(s).values())

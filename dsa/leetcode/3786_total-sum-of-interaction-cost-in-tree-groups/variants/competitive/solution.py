@@ -81,11 +81,11 @@ class Solution2(object):
             for v in adj[u]:
                 if u != parent[v]:
                     continue
-                for k, c in cnt[v].iteritems():
+                for k, c in cnt[v].items():
                     result += c*(total[k]-c)
                 if len(cnt[v]) > len(cnt[u]):
                     cnt[u], cnt[v] = cnt[v], cnt[u]
-                for k, c in cnt[v].iteritems():
+                for k, c in cnt[v].items():
                     cnt[u][k] += c
                 cnt[v].clear()
         return result

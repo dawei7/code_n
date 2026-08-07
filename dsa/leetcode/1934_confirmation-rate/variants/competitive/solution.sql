@@ -12,6 +12,6 @@ WITH rate_cte AS
    ORDER BY NULL)
 
 SELECT s.user_id,
-       IFNULL(r.confirmation_rate, 0) AS confirmation_rate
+       COALESCE(r.confirmation_rate, 0) AS confirmation_rate
 FROM Signups s
 LEFT JOIN rate_cte r ON s.user_id = r.user_id;

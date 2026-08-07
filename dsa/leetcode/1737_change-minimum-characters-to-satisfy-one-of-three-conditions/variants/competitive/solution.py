@@ -13,7 +13,7 @@ class Solution:
         """
         count1 = collections.Counter(ord(c)-ord('a') for c in a)
         count2 = collections.Counter(ord(c)-ord('a') for c in b)
-        result = len(a) + len(b) - max((count1+count2).itervalues())  # condition 3
+        result = len(a) + len(b) - max((count1+count2).values())  # condition 3
         for i in range(26-1):
             if i > 0:
                 count1[i] += count1[i-1]

@@ -4,8 +4,8 @@
 SELECT i.invoice_id, 
        c.customer_name, 
        i.price, 
-       Ifnull(tmp.c_cnt, 0) AS contacts_cnt, 
-       Ifnull(tmp.t_cnt, 0) AS trusted_contacts_cnt 
+       COALESCE(tmp.c_cnt, 0) AS contacts_cnt, 
+       COALESCE(tmp.t_cnt, 0) AS trusted_contacts_cnt 
 FROM   invoices i 
        LEFT JOIN (SELECT co.user_id, 
                          Count(co.user_id)       AS c_cnt, 

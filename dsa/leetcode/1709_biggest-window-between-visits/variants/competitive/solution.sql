@@ -8,7 +8,7 @@ FROM (
     SELECT
         user_id,
         visit_date,
-        IFNULL(
+        COALESCE(
             LEAD(visit_date, 1) OVER (
                 PARTITION BY user_id
                 ORDER BY visit_date

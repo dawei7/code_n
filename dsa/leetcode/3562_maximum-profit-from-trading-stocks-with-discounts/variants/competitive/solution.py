@@ -39,24 +39,24 @@ class Solution:
                     new_ret, ret = args
                     for i in range(2):
                         for j1, v1 in ret[i].items():
-                            for j2, v2 in new_ret[i].iteritems():
+                            for j2, v2 in new_ret[i].items():
                                 if j1+j2 <= budget:
                                     ret[i][j1+j2] = max(ret[i][j1+j2], v1+v2)
                 elif step == 4:
                     u, ret = args
                     new_ret = [collections.defaultdict(int) for _ in range(2)]
                     for i in range(2):
-                        for j, v in ret[0].iteritems():
+                        for j, v in ret[0].items():
                             new_ret[i][j] = max(new_ret[i][j], v)
                         cost = present[u]>>i
                         if cost > budget:
                             continue
                         profit = future[u]-cost
-                        for j, v in ret[1].iteritems():
+                        for j, v in ret[1].items():
                             if j+cost <= budget:
                                 new_ret[i][j+cost] = max(new_ret[i][j+cost], v+profit)
                     ret[:] = new_ret
-            return max(ret[0].itervalues())
+            return max(ret[0].values())
 
         adj = [[] for _ in range(n)]
         for u, v in hierarchy:
@@ -87,18 +87,18 @@ class Solution2(object):
                 new_dp = dfs(v)
                 for i in range(2):
                     for j1, v1 in dp[i].items():
-                        for j2, v2 in new_dp[i].iteritems():
+                        for j2, v2 in new_dp[i].items():
                             if j1+j2 <= budget:
                                 dp[i][j1+j2] = max(dp[i][j1+j2], v1+v2)
             result = [collections.defaultdict(int) for _ in range(2)]
             for i in range(2):
-                for j, v in dp[0].iteritems():
+                for j, v in dp[0].items():
                     result[i][j] = max(result[i][j], v)
                 cost = present[u]>>i
                 if cost > budget:
                     continue
                 profit = future[u]-cost
-                for j, v in dp[1].iteritems():
+                for j, v in dp[1].items():
                     if j+cost <= budget:
                         result[i][j+cost] = max(result[i][j+cost], v+profit)
             return result  # result[i][j]: max profit for budget j with i discount
@@ -106,4 +106,4 @@ class Solution2(object):
         adj = [[] for _ in range(n)]
         for u, v in hierarchy:
             adj[u-1].append(v-1)
-        return max(dfs(0)[0].itervalues())
+        return max(dfs(0)[0].values())
