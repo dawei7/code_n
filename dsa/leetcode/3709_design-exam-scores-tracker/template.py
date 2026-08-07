@@ -1,12 +1,16 @@
 class ExamTracker:
+    pass
 
     def __init__(self):
+        pass
         
 
     def record(self, time: int, score: int) -> None:
+        pass
         
 
     def totalScore(self, startTime: int, endTime: int) -> int:
+        pass
         
 
 

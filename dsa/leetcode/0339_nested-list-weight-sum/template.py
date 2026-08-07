@@ -44,3 +44,4 @@
 class Solution:
     def depthSum(self, nestedList: List[NestedInteger]) -> int:
         pass
+

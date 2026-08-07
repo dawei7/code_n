@@ -14,3 +14,4 @@ class HitCounter:
 # obj = HitCounter()
 # obj.hit(timestamp)
 # param_2 = obj.getHits(timestamp)
+

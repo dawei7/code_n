@@ -11,11 +11,30 @@
     "checked_at": "2026-07-28"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal": 1, "input": "words = [\"leetcode\",\"leetcode\",\"codeforces\"]", "output": "3", "has_explanation": true},
-      {"ordinal": 2, "input": "words = [\"a\",\"b\",\"c\",\"a\",\"a\"]", "output": "4", "has_explanation": true},
-      {"ordinal": 3, "input": "words = [\"z\",\"z\",\"z\"]", "output": "0", "has_explanation": true}
+      {
+        "ordinal": 1,
+        "input": "words = [\"leetcode\",\"leetcode\",\"codeforces\"]",
+        "output": "3",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "words = [\"a\",\"b\",\"c\",\"a\",\"a\"]",
+        "output": "4",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "words = [\"z\",\"z\",\"z\"]",
+        "output": "0",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 3,
     "visuals": {

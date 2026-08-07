@@ -1,5 +1,7 @@
 ## Description
 
-Given `n` points in the two-dimensional plane, determine whether some line parallel to the $y$-axis reflects the points symmetrically.
+Given `n` points on a 2D plane, find if there is such a line parallel to the y-axis that reflects the given points symmetrically.
 
-Equivalently, after reflecting every supplied point across one vertical line, the resulting set of points must be identical to the original set. Input coordinates may contain repeated points.
+In other words, answer whether or not if there exists a line that after reflecting all points over the given line, the original points' set is the same as the reflected ones.
+
+**Note** that there can be repeated points.

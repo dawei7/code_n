@@ -4,5 +4,6 @@ Design a data structure that will be initialized with a string array, and then i
 
 Implement the `WordDistance` class:
 
-- `WordDistance(String[] wordsDict)` initializes the object with the strings array `wordsDict`.
-- `int shortest(String word1, String word2)` returns the shortest distance between `word1` and `word2` in the array `wordsDict`.
+* `WordDistance(String[] wordsDict)` initializes the object with the strings array `wordsDict`.
+* `int shortest(String word1, String word2)` returns the shortest distance between `word1` and `word2` in the array `wordsDict`.
+

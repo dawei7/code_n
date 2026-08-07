@@ -6,4 +6,5 @@
 #         self.right = right
 class Solution:
     def countDominantNodes(self, root: TreeNode | None) -> int:
+        pass
         

@@ -1,34 +1,21 @@
 ## Description
 
-Given a `file` and an integer `n`, read `n` characters from `file` and store them in the buffer array `buf`.
+Given a `file` and assume that you can only read the file using a given method `read4`, implement a method to read `n` characters.
+
+**Method read4:**
+
+The API `read4` reads **four consecutive characters** from `file`, then writes those characters into the buffer array `buf4`.
 
 The return value is the number of actual characters read.
-
-The `read4` API is defined as such:
-
-```python
-def read4(buf4: List[str]) -> int
-```
-
-- `@param buf4`: Destination buffer of length 4 where characters read will be stored (`List[str]`).
-- `@return`: The number of actual characters read (`int`).
 
 Note that `read4()` has its own file pointer, much like `FILE *fp` in C.
 
-Method `read`:
+**Definition of read4:**
 
-By using the `read4` API, implement the function `read` that reads `n` characters from `file` and stores them in the buffer array `buf`. Consider that you cannot manipulate `file` directly.
+    Parameter:  char[] buf4
+    Returns:    int
 
-The return value is the number of actual characters read.
+`buf4[]` is a destination, not a source. The results from `read4` will be copied to `buf4[]`.
 
-Definition of `read`:
+Below is a high-level example of how `read4` works:
 
-```python
-def read(buf: List[str], n: int) -> int
-```
-
-- `buf`: Destination buffer (`List[str]`).
-- `n`: Number of characters to read (`int`).
-- `@return`: The number of actual characters read (`int`).
-
-**Note:** `buf` is passed by reference in Python (and similar in C++/Java), meaning modifying `buf` in-place is reflected in the caller.

@@ -6,3 +6,4 @@
 class Solution:
     def plusOne(self, head: ListNode) -> ListNode:
         pass
+

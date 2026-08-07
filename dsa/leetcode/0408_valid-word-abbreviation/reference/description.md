@@ -1,23 +1,20 @@
 ## Description
 
 An abbreviation of a string may replace any number of non-adjacent, non-empty substrings with their decimal
-lengths. Characters outside those replacements remain literal and keep their original order. A replacement length
-cannot have a leading zero.
+A string can be abbreviated by replacing any number of non-adjacent, non-empty substrings with their lengths. The lengths should not have leading zeros.
 
-For example, `"substitution"` has each of these valid representations:
+For example, a string such as `"substitution"` could be abbreviated as (but not limited to):
+- `"s10n"` (`"s ubstitutio n"`)
+- `"sub4u4"` (`"sub stit u tion"`)
+- `"12"` (`"substitution"`)
+- `"su3i1u2on"` (`"su bst i t u ti on"`)
+- `"substitution"` (no substrings replaced)
 
-- `"s10n"` keeps `s` and `n` while replacing `"ubstitutio"` with its length.
-- `"sub4u4"` replaces `"stit"` and `"tion"`, with the literal `u` separating the two replacements.
-- `"12"` replaces the entire word.
-- `"su3i1u2on"` replaces `"bst"`, `"t"`, and `"ti"`; every pair of replacements is separated by a literal
-  character.
-- `"substitution"` replaces no substring.
+The following are not valid abbreviations:
+- `"s55n"` (`"s ubsti tutio n"`, the replaced substrings are adjacent)
+- `"s010n"` (has leading zeros)
+- `"s0ubstitution"` (replaces an empty substring)
 
-These forms are invalid:
+Given a string `word` and an abbreviation `abbr`, return whether the string matches the given abbreviation.
 
-- `"s55n"` represents two adjacent replaced substrings rather than non-adjacent replacements.
-- `"s010n"` starts a replacement length with zero.
-- `"s0ubstitution"` uses zero as though an empty substring had been replaced.
-
-Given `word` and `abbr`, determine whether `abbr` is a valid abbreviation of `word`. A substring is a contiguous,
-non-empty sequence of characters within a string.
+A **substring** is a contiguous non-empty sequence of characters within a string.

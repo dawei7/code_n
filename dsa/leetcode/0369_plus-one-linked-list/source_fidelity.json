@@ -43,7 +43,7 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "23a73a37ac0c127b1fa533879a6fcb79b6d83f5c4abdc22a405a27f188db311c",
+      "reference/description.md": "f94fcb2a12bf08b1cb2e818d6115d1df48138aba04f86d634729348578267666",
       "reference/contract.md": "5fe56e6d9b49365a19785adf8ec2d5ba913724aad745ae06d0ad6d47b19518b7",
       "reference/examples.md": "23785057cd16f15530c3eaa3c88dc920ec5f25dd6720ca490feabb2273b29990",
       "reference/constraints.md": "5f7cb13d14bfa2c7330046025ef7def29a7364a5ba61fd95c4f4ecff5a13d933"

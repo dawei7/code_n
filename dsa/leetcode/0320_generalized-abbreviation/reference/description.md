@@ -1,17 +1,15 @@
 ## Description
 
-A generalized abbreviation of a word is formed by selecting any number of substrings that neither overlap nor touch one another, then replacing every selected substring with its length.
+A word's **generalized abbreviation** can be constructed by taking any number of non-overlapping and non-adjacent substrings and replacing them with their respective lengths.
 
-For `"abcde"`, the following are valid abbreviations:
+For example, `"abcde"` can be abbreviated into:
+* `"a3e"` (`"bcd"` turned into `"3"`)
+* `"1bcd1"` (`"a"` and `"e"` both turned into `"1"`)
+* `"5"` (`"abcde"` turned into `"5"`)
+* `"abcde"` (no substrings replaced)
 
-- `"a3e"`: replace `"bcd"` with its length `3`.
-- `"1bcd1"`: independently replace `"a"` and `"e"` with `1`.
-- `"5"`: replace the entire word with its length.
-- `"abcde"`: select no substring.
+However, these abbreviations are **invalid**:
+* `"23"` (`"ab"` turned into `"2"` and `"cde"` turned into `"3"`) is invalid as the substrings chosen are adjacent.
+* `"22de"` (`"ab"` turned into `"2"` and `"bc"` turned into `"2"`) is invalid as the substring chosen overlap.
 
-The following forms are invalid:
-
-- `"23"`: the substrings `"ab"` and `"cde"` are adjacent, so they must not be encoded as separate neighboring numbers.
-- `"22de"`: the proposed substrings `"ab"` and `"bc"` overlap.
-
-Given `word`, return every possible generalized abbreviation. The result may use any order.
+Given a string `word`, return *a list of all the possible **generalized abbreviations** of* `word`. Return the answer in **any order**.

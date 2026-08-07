@@ -1,20 +1,22 @@
 ## Examples
 
-**Example 1**
+**Example 1:**
 
-- **Input:** `file = "abc"`, `queries = [1,2,1]`
-- **Output:** `[1,2,0]`
-- **Explanation:**
-  - `Solution sol;`
-  - `sol.read(buf, 1);` // returns 1. `buf` contains `"a"`.
-  - `sol.read(buf, 2);` // returns 2. `buf` contains `"bc"`.
-  - `sol.read(buf, 1);` // returns 0. `buf` contains `""` (end of file).
+- Input: `file = "abc", queries = [1,2,1]`
+- Output: `[1,2,0]`
+- Explanation:
+  Solution sol;
+  sol.read(buf, 1); // After calling your read method, buf should contain "a". We read a total of 1 character from the file, so return 1.
+  sol.read(buf, 2); // Now buf should contain "bc". We read a total of 2 characters from the file, so return 2.
+  sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
+  Assume buf is allocated and guaranteed to have enough space for storing all characters from the file.
 
-**Example 2**
+**Example 2:**
 
-- **Input:** `file = "abc"`, `queries = [4,1]`
-- **Output:** `[3,0]`
-- **Explanation:**
-  - `Solution sol;`
-  - `sol.read(buf, 4);` // returns 3. `buf` contains `"abc"`.
-  - `sol.read(buf, 1);` // returns 0. `buf` contains `""`.
+- Input: `file = "abc", queries = [4,1]`
+- Output: `[3,0]`
+- Explanation:
+  Solution sol;
+  sol.read(buf, 4); // After calling your read method, buf should contain "abc". We read a total of 3 characters from the file, so return 3.
+  sol.read(buf, 1); // We have reached the end of file, no more characters can be read. So return 0.
+

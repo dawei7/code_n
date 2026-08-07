@@ -1,5 +1,5 @@
 ## Description
 
-Given strings `pattern` and `s`, determine whether `s` matches `pattern`.
+Given a `pattern` and a string `s`, return `true` *if* `s` ***matches** the* `pattern`.
 
-A match requires a bijection from the individual characters of `pattern` to nonempty substrings. Replacing each pattern character with its assigned substring must reconstruct all of `s` in order. One character cannot map to two different substrings, and two different characters cannot map to the same substring.
+A string `s` **matches** a `pattern` if there is some **bijective mapping** of single characters to **non-empty** strings such that if each character in `pattern` is replaced by the string it maps to, then the resulting string is `s`. A **bijective mapping** means that no two characters map to the same string, and no character maps to two different strings.

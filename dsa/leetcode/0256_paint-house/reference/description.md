@@ -4,7 +4,7 @@ There is a row of `n` houses, where each house can be painted one of three color
 
 The cost of painting each house with a certain color is represented by an `n x 3` cost matrix `costs`.
 
-- For example, `costs[0][0]` is the cost of painting house `0` with the color red; `costs[1][2]` is the cost of painting house `1` with color green, and so on...
+* For example, `costs[0][0]` is the cost of painting house `0` with the color red; `costs[1][2]` is the cost of painting house `1` with color green, and so on...
 
-Return the minimum cost to paint all houses.
+Return *the minimum cost to paint all houses*.
 

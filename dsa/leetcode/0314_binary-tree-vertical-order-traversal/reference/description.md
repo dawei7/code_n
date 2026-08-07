@@ -1,5 +1,5 @@
 ## Description
 
-Given a binary-tree root, return the vertical order traversal of the node values: process columns from left to right and, within each column, process nodes from top to bottom.
+Given the `root` of a binary tree, return *the vertical order traversal* of its nodes' values. (i.e., from top to bottom, column by column).
 
-When two nodes occupy the same row and column, list them in left-to-right order.
+If two nodes are in the same row and column, the order should be from **left to right**.

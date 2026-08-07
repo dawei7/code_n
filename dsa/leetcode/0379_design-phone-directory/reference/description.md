@@ -1,10 +1,11 @@
 ## Description
 
-Design a phone directory with `maxNumbers` initially empty slots. It must allocate an available number, report whether a specified slot is available, and release a slot for reuse.
+Design a phone directory that initially has `maxNumbers` empty slots that can store numbers. The directory should store numbers, check if a certain slot is empty or not, and empty a given slot.
 
 Implement the `PhoneDirectory` class:
 
-- `PhoneDirectory(maxNumbers)` initializes the directory with that many available slots.
-- `get()` reserves and returns any unassigned number, or returns `-1` when none remains.
-- `check(number)` returns whether `number` is currently available.
-- `release(number)` makes the specified slot available again.
+* `PhoneDirectory(int maxNumbers)` Initializes the phone directory with the number of available slots `maxNumbers`.
+* `int get()` Provides a number that is not assigned to anyone. Returns `-1` if no number is available.
+* `bool check(int number)` Returns `true` if the slot `number` is available and `false` otherwise.
+* `void release(int number)` Recycles or releases the slot `number`.
+

@@ -1,5 +1,3 @@
 ## Description
 
-Given a string `s` and an integer `k`, rearrange all characters of `s` so that any two occurrences of the same character are separated by a distance of at least `k` positions.
-
-Return any rearrangement that satisfies this spacing rule. If no such arrangement exists, return the empty string `""`.
+Given a string `s` and an integer `k`, rearrange `s` such that the same characters are at least distance `k` from each other. If it is not possible to rearrange the string, return an empty string `""`.

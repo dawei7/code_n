@@ -1,5 +1,7 @@
 ## Description
 
-You and a friend play a game on `currentState`, a string containing only `'+'` and `'-'`. Players alternate changing one consecutive `"++"` pair into `"--"`. When the current player has no legal move, that player loses and the other player wins.
+You are playing a Flip Game with your friend.
 
-Return `true` when the starting player can guarantee a win, and return `false` otherwise.
+You are given a string `currentState` that contains only `'+'` and `'-'`. You and your friend take turns to flip **two consecutive** `"++"` into `"--"`. The game ends when a person can no longer make a move, and therefore the other person will be the winner.
+
+Return `true` *if the starting player can **guarantee a win**, and* `false` *otherwise*.

@@ -7,3 +7,4 @@
 class Solution:
     def longestConsecutive(self, root: Optional[TreeNode]) -> int:
         pass
+

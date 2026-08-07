@@ -1,7 +1,8 @@
 ## Description
 
-You are given an $m \times n$ matrix `grid`. Every cell contains a wall `"W"`, an enemy `"E"`, or an empty position `"0"`.
+Given an `m x n` matrix `grid` where each cell is either a wall `'W'`, an enemy `'E'` or empty `'0'`, return *the maximum enemies you can kill using one bomb*. You can only place the bomb in an empty cell.
 
-Place one bomb in an empty cell. Its blast eliminates every enemy in the same row and column until a wall stops the blast in each direction; walls themselves are not destroyed.
+The bomb kills all the enemies in the same row and column from the planted point until it hits the wall since it is too strong to be destroyed.
+
 
 Return the largest number of enemies that one valid bomb placement can eliminate.

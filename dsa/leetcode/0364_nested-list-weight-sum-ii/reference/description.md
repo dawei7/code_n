@@ -1,13 +1,9 @@
 ## Description
 
-You are given a nested list of integers named `nestedList`. Each element is either an integer or another list whose elements can recursively be integers or lists.
+You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists.
 
-An integer's depth is the number of lists that contain it. For instance, in `[1,[2,2],[[3],2],1]`, the displayed integer values also happen to equal their depths. Let `maxDepth` denote the greatest depth occupied by any integer.
+The **depth** of an integer is the number of lists that it is inside of. For example, the nested list `[1,[2,2],[[3],2],1]` has each integer's value set to its **depth**. Let `maxDepth` be the **maximum depth** of any integer.
 
-Assign an integer at depth $d$ the inverse-depth weight
+The **weight** of an integer is `maxDepth - (the depth of the integer) + 1`.
 
-$$
-\texttt{maxDepth}-d+1.
-$$
-
-Return the sum of every integer multiplied by its weight.
+Return *the sum of each integer in* `nestedList` *multiplied by its* **weight**.

@@ -1,11 +1,13 @@
 ## Description
 
-You are given an $m \times n$ grid `grid` whose cells contain `0`, `1`, or `2`:
+You are given an `m x n` grid `grid` of values `0`, `1`, or `2`, where:
 
-- `0` denotes empty land through which travel is allowed.
-- `1` denotes a building, which cannot be crossed.
-- `2` denotes an obstacle, which also cannot be crossed.
+- each `0` marks **an empty land** that you can pass by freely,
+- each `1` marks **a building** that you cannot pass through, and
+- each `2` marks **an obstacle** that you cannot pass through.
 
-Choose an empty cell on which to build a house so that every building is reachable and the sum of all building-to-house travel distances is as small as possible. Movement is limited to one cell up, down, left, or right.
+You want to build a house on an empty land that reaches all buildings in the **shortest total travel** distance. You can only move up, down, left, and right.
 
-Return that minimum total distance. If no empty cell can reach every building under these rules, return `-1`. The total distance is the sum of the individual shortest travel distances from all buildings to the chosen location.
+Return *the shortest travel distance for such a house*. If it is not possible to build such a house according to the above rules, return `-1`.
+
+The **total travel distance** is the sum of the distances between the houses of the friends and the meeting point.

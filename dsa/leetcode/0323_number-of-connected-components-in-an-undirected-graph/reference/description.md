@@ -1,5 +1,5 @@
 ## Description
 
-An undirected graph has `n` nodes. You are given `n` and an array `edges`, where each pair `edges[i] = [a_i,b_i]` indicates an edge joining nodes `a_i` and `b_i`.
+You have a graph of `n` nodes. You are given an integer `n` and an array `edges` where `edges[i] = [ai, bi]` indicates that there is an edge between `ai` and `bi` in the graph.
 
-Return the number of connected components in the graph.
+Return *the number of connected components in the graph*.

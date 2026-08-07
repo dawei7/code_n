@@ -1,18 +1,24 @@
 class TaskManager:
+    pass
 
     def __init__(self, tasks: List[List[int]]):
+        pass
         
 
     def add(self, userId: int, taskId: int, priority: int) -> None:
+        pass
         
 
     def edit(self, taskId: int, newPriority: int) -> None:
+        pass
         
 
     def rmv(self, taskId: int) -> None:
+        pass
         
 
     def execTop(self) -> int:
+        pass
         
 
 

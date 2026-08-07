@@ -10,3 +10,4 @@ class WordDistance:
 # Your WordDistance object will be instantiated and called as such:
 # obj = WordDistance(wordsDict)
 # param_1 = obj.shortest(word1,word2)
+

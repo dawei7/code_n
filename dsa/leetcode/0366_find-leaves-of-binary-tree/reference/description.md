@@ -1,9 +1,9 @@
 ## Description
 
-Given the root of a binary tree, collect its nodes through this repeated process:
+Given the `root` of a binary tree, collect a tree's nodes as if you were doing this:
 
-1. Collect every current leaf node.
-2. Remove all of those leaves from the tree.
-3. Continue until no nodes remain.
+* Collect all the leaf nodes.
+* Remove all the leaf nodes.
+* Repeat until the tree is empty.
 
 Return the collected values grouped by removal round.

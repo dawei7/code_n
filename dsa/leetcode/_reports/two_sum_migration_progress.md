@@ -1,6 +1,6 @@
 # Two Sum Migration Progress
 
-Generated: 2026-08-06T18:59:36.336244+00:00
+Generated: 2026-08-06T19:31:40.656978+00:00
 
 All canonical packages in ascending numeric LeetCode frontend-ID order; IDs are sparse.
 
@@ -13,10 +13,10 @@ A package is locally complete only when its shared canonical document (including
 | Metric | Count |
 | --- | ---: |
 | packages | 4005 |
-| local complete | 2794 |
-| fully complete and verified | 2794 |
+| local complete | 2787 |
+| fully complete and verified | 2787 |
 | blocked | 0 |
-| doc complete | 3085 |
+| doc complete | 3077 |
 | cases complete | 4005 |
 | benchmarks complete | 3594 |
 | optimal solution complete | 3685 |

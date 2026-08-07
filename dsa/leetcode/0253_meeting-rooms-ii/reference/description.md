@@ -1,4 +1,4 @@
 ## Description
 
-Given an array of meeting time intervals `intervals` where `intervals[i] = [\text{start}_i, \text{end}_i]`, return the minimum number of conference rooms required.
+Given an array of meeting time intervals `intervals` where `intervals[i] = [start_i, end_i]`, return *the minimum number of conference rooms required*.
 

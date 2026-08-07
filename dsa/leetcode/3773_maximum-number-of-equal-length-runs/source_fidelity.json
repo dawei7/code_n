@@ -11,13 +11,34 @@
     "checked_at": "2026-07-29"
   },
   "structure": {
-    "sections": ["description", "examples", "constraints"],
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
     "examples": [
-      {"ordinal":1,"input":"`s = \"hello\"`","output":"`3`","has_explanation":true},
-      {"ordinal":2,"input":"`s = \"aaabaaa\"`","output":"`2`","has_explanation":true}
+      {
+        "ordinal": 1,
+        "input": "`s = \"hello\"`",
+        "output": "`3`",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "`s = \"aaabaaa\"`",
+        "output": "`2`",
+        "has_explanation": true
+      }
     ],
     "constraint_count": 2,
-    "visuals": {"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
   },
   "review": {
     "status": "verified",
@@ -27,6 +48,13 @@
       "reference/examples.md": "1a75d94e7e478342b32a1017f66760beebc85988ff4b4d66f248b48feb06a8b8",
       "reference/constraints.md": "4a20b2483caceaacafd4c81d696c4167b44e32015de0b3f101c4b3e112e2313f"
     },
-    "assertions": {"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
   }
 }

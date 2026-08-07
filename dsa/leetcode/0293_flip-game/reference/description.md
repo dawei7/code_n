@@ -1,5 +1,7 @@
 ## Description
 
-You and a friend play a game on `currentState`, a string containing only `'+'` and `'-'`. On each turn, the current player changes one consecutive `"++"` pair into `"--"`. A player who has no legal move loses, so the other player wins.
+You are playing a Flip Game with your friend.
 
-Return every state that can result from one valid move on `currentState`, in any order. If no pair can be flipped, return the empty list `[]`.
+You are given a string `currentState` that contains only `'+'` and `'-'`. You and your friend take turns to flip **two consecutive** `"++"` into `"--"`. The game ends when a person can no longer make a move, and therefore the other person will be the winner.
+
+Return all possible states of the string `currentState` after **one valid move**. You may return the answer in **any order**. If there is no valid move, return an empty list `[]`.

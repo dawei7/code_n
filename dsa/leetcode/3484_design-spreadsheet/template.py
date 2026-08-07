@@ -1,15 +1,20 @@
 class Spreadsheet:
+    pass
 
     def __init__(self, rows: int):
+        pass
         
 
     def setCell(self, cell: str, value: int) -> None:
+        pass
         
 
     def resetCell(self, cell: str) -> None:
+        pass
         
 
     def getValue(self, formula: str) -> int:
+        pass
         
 
 

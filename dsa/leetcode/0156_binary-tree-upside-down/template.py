@@ -7,3 +7,4 @@
 class Solution:
     def upsideDownBinaryTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         pass
+

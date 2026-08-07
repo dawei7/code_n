@@ -1,5 +1,6 @@
 ## Constraints
 
-- $1 \le \texttt{preorder.length} \le 10^4$
-- $1 \le \texttt{preorder[i]} \le 10^4$
-- All values in `preorder` are unique.
+- `1 <= preorder.length <= 10^4`
+- `1 <= preorder[i] <= 10^4`
+- All the elements of `preorder` are **unique**.
+

@@ -7,3 +7,4 @@
 class Solution:
     def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
         pass
+

@@ -1,18 +1,24 @@
 class AuctionSystem:
+    pass
 
     def __init__(self):
+        pass
         
 
     def addBid(self, userId: int, itemId: int, bidAmount: int) -> None:
+        pass
         
 
     def updateBid(self, userId: int, itemId: int, newAmount: int) -> None:
+        pass
         
 
     def removeBid(self, userId: int, itemId: int) -> None:
+        pass
         
 
     def getHighestBidder(self, itemId: int) -> int:
+        pass
         
 
 

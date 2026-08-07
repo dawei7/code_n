@@ -1,5 +1,6 @@
 ## Constraints
 
-- $1 \le \text{file.length} \le 500$.
+- `1 <= file.length <= 500`
 - `file` consists of English letters and digits.
-- $1 \le n \le 1000$.
+- `1 <= n <= 1000`
+

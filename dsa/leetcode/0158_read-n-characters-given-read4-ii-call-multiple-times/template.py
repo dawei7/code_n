@@ -4,3 +4,4 @@
 class Solution:
     def read(self, buf: List[str], n: int) -> int:
         pass
+

@@ -1,7 +1,9 @@
 ## Description
 
-An $m \times n$ binary matrix `image` uses `'0'` for a white pixel and `'1'` for a black pixel. All black pixels belong to one horizontally or vertically connected region.
+You are given an `m x n` binary matrix `image` where `'0'` represents a white pixel and `'1'` represents a black pixel.
 
-The coordinates `(x,y)` identify one known black pixel. Return the area of the smallest axis-aligned rectangle that contains every black pixel.
+The black pixels are connected (i.e., there is only one black region). Pixels are connected horizontally and vertically.
 
-The algorithm must run in less than $O(mn)$ time.
+Given two integers `x` and `y` that represents the location of one of the black pixels, return *the area of the smallest (axis-aligned) rectangle that encloses all black pixels*.
+
+You must write an algorithm with less than `O(mn)` runtime complexity

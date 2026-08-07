@@ -1,3 +1,3 @@
 ## Description
 
-Given an integer array `nums` and an integer `k`, return the greatest length of any subarray whose elements sum to `k`. If no qualifying subarray exists, return `0`.
+Given an integer array `nums` and an integer `k`, return *the maximum length of a subarray that sums to* `k`. If there is not one, return `0` instead.

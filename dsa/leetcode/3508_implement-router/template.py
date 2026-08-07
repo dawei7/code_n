@@ -1,15 +1,20 @@
 class Router:
+    pass
 
     def __init__(self, memoryLimit: int):
+        pass
         
 
     def addPacket(self, source: int, destination: int, timestamp: int) -> bool:
+        pass
         
 
     def forwardPacket(self) -> List[int]:
+        pass
         
 
     def getCount(self, destination: int, startTime: int, endTime: int) -> int:
+        pass
         
 
 

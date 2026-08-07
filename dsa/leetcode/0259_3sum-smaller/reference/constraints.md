@@ -1,7 +1,8 @@
 ## Constraints
 
 - `n == nums.length`
-- $0 \le n \le 3500$
-- $-100 \le \texttt{nums[i]} \le 100$
-- $-100 \le \texttt{target} \le 100$
-- The generated answer is at most $10^9$.
+- `0 <= n <= 3500`
+- `-100 <= nums[i] <= 100`
+- `-100 <= target <= 100`
+- The input is generated such that the answer is less than or equal to `10^9`.
+

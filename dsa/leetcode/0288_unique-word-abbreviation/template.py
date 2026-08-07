@@ -10,3 +10,4 @@ class ValidWordAbbr:
 # Your ValidWordAbbr object will be instantiated and called as such:
 # obj = ValidWordAbbr(dictionary)
 # param_1 = obj.isUnique(word)
+

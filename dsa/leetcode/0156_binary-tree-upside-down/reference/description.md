@@ -1,6 +1,6 @@
 ## Description
 
-Given the `root` of a binary tree, turn the tree upside down and return the new root.
+Given the `root` of a binary tree, turn the tree upside down and return *the new root*.
 
 You can turn a binary tree upside down with the following steps:
 
@@ -8,4 +8,5 @@ You can turn a binary tree upside down with the following steps:
 2. The original root becomes the new right child.
 3. The original right child becomes the new left child.
 
-The mentioned steps are done level by level. It is guaranteed that every right node has a sibling (a left node with the same parent) and has no children.
+The mentioned steps are done level by level. It is **guaranteed** that every right node has a sibling (a left node with the same parent) and has no children.
+

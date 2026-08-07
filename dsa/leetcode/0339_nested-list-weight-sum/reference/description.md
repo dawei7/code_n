@@ -1,7 +1,7 @@
 ## Description
 
-You are given a nested list of integers `nestedList`. Each element is either an integer or another list, whose elements may recursively be integers or further lists.
+You are given a nested list of integers `nestedList`. Each element is either an integer or a list whose elements may also be integers or other lists.
 
-An integer's depth is the number of lists that contain it. For example, in `[1,[2,2],[[3],2],1]`, the outer `1` values have depth `1`, each `2` has depth `2`, and `3` has depth `3`.
+The **depth** of an integer is the number of lists that it is inside of. For example, the nested list `[1,[2,2],[[3],2],1]` has each integer's value set to its **depth**.
 
-Return the sum obtained by multiplying every integer in `nestedList` by its depth.
+Return *the sum of each integer in* `nestedList` *multiplied by its* **depth**.

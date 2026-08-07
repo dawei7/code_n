@@ -1,6 +1,7 @@
 ## Constraints
 
-- $1 \le \text{file.length} \le 500$.
-- `file` consists of English letters and digits.
-- $1 \le n \le 1000$.
-- `read` will be called at most 500 times per test case.
+- `1 <= file.length <= 500`
+- `file` consist of English letters and digits.
+- `1 <= queries.length <= 10`
+- `1 <= queries[i] <= 500`
+

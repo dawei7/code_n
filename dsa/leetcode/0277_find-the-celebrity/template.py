@@ -5,3 +5,4 @@
 class Solution:
     def findCelebrity(self, n: int) -> int:
         pass
+

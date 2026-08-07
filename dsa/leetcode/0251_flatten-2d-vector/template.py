@@ -14,3 +14,4 @@ class Vector2D:
 # obj = Vector2D(vec)
 # param_1 = obj.next()
 # param_2 = obj.hasNext()
+

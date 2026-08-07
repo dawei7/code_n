@@ -1,11 +1,12 @@
 ## Description
 
-Design a counter that reports how many hits occurred during the preceding five minutes, which is a window of `300` seconds.
+Design a hit counter which counts the number of hits received in the past 5 minutes (i.e., the past 300 seconds).
 
-Each operation receives an integer timestamp measured in seconds. Calls arrive in chronological order, and multiple hits may occur at the same timestamp.
+Your system should accept a `timestamp` parameter (in seconds granularity), and you may assume that calls are being made to the system in chronological order (i.e., `timestamp` is monotonically increasing). Several hits may arrive roughly at the same time.
 
-Implement the `HitCounter` class with these operations:
+Implement the `HitCounter` class:
 
-- `HitCounter()` initializes an empty counter.
-- `hit(timestamp)` records one hit at `timestamp`; repeated calls at the same timestamp record separate hits.
-- `getHits(timestamp)` returns the number of recorded hits within the past `300` seconds relative to `timestamp`.
+* `HitCounter()` Initializes the object of the hit counter system.
+* `void hit(int timestamp)` Records a hit that happened at `timestamp` (in seconds). Several hits may happen at the same `timestamp`.
+* `int getHits(int timestamp)` Returns the number of hits in the past 5 minutes from `timestamp` (i.e., the past 300 seconds).
+

@@ -1,12 +1,18 @@
 ## Description
 
-Design a Snake game on a screen with `height` rows and `width` columns. The snake begins at the upper-left cell `(0,0)` with length `1`.
+Design a Snake game that is played on a device with screen size `height x width`. [Play the game online](http://patorjk.com/games/snake/) if you are not familiar with the game.
 
-The array `food` lists food positions in appearance order, with `food[i] = [r_i,c_i]`. Eating a piece increases both the snake's length and the score by `1`. Food appears one piece at a time: piece `i + 1` is unavailable until piece `i` has been eaten. A newly appearing piece is guaranteed not to occupy the snake's current body.
+The snake is initially positioned at the top left corner `(0, 0)` with a length of `1` unit.
 
-The game ends when the head moves beyond the screen or, after a move, occupies a cell still occupied by the snake's body.
+You are given an array `food` where `food[i] = (ri, ci)` is the row and column position of a piece of food that the snake can eat. When a snake eats a piece of food, its length and the game's score both increase by `1`.
+
+Each piece of food appears one by one on the screen, meaning the second piece of food will not appear until the snake eats the first piece of food.
+
+When a piece of food appears on the screen, it is **guaranteed** that it will not appear on a block occupied by the snake.
+
+The game is over if the snake goes out of bounds (hits a wall) or if its head occupies a space that its body occupies **after** moving (i.e. a snake of length 4 cannot run into itself).
 
 Implement the `SnakeGame` class:
 
-- `SnakeGame(int width, int height, int[][] food)` initializes the screen, snake, and ordered food positions.
-- `int move(String direction)` moves once in direction `"U"`, `"D"`, `"L"`, or `"R"`. Return the updated score, or `-1` if that move ends the game.
+* `SnakeGame(int width, int height, int[][] food)` Initializes the object with a screen of size `height x width` and the positions of the `food`.
+* `int move(String direction)` Returns the score of the game after applying one `direction` move by the snake. If the game is over, return `-1`.

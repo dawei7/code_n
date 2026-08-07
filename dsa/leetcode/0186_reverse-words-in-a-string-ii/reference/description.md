@@ -2,6 +2,7 @@
 
 Given a character array `s`, reverse the order of the **words**.
 
-A **word** is defined as a sequence of non-space characters. The words in `s` will be separated by a single space.
+A **word** is defined as a sequence of non-space characters. The **words** in `s` will be separated by a single space.
 
-Your code must solve the problem **in-place**, i.e. by modifying the input array directly with $O(1)$ extra memory.
+Your code must solve the problem **in-place**, i.e. without allocating extra space.
+

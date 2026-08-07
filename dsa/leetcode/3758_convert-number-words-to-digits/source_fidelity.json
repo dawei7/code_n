@@ -1,1 +1,72 @@
-{"schema_version":1,"source":{"provider":"leetcode","challenge_id":"lc_3758","frontend_id":"3758","title_slug":"convert-number-words-to-digits","url":"https://leetcode.com/problems/convert-number-words-to-digits/description/","paid_only":true,"content_sha256":"9e6d7a1316834a58f186e67ee588174bc511bd52478ab68ad590091965e6a1cf","checked_at":"2026-07-28"},"structure":{"sections":["description","examples","constraints"],"examples":[{"ordinal":1,"input":"s = \"onefourthree\"","output":"\"143\"","has_explanation":true},{"ordinal":2,"input":"s = \"ninexsix\"","output":"\"96\"","has_explanation":true},{"ordinal":3,"input":"s = \"zeero\"","output":"\"\"","has_explanation":true},{"ordinal":4,"input":"s = \"tw\"","output":"\"\"","has_explanation":true}],"constraint_count":2,"visuals":{"source_images":0,"source_tables":0,"source_diagrams":0,"local_images":0,"local_tables":0,"local_diagrams":0}},"review":{"status":"verified","files":{"reference/description.md":"6a8a5f7b5ffeafa06c456c1a6a407d649aeecae0fc48fb0ccf07620cbfa67ada","reference/contract.md":"6727b066194060583d5209680e535170791dbe0549058697bb9da7c1d9d0dd31","reference/examples.md":"41269a72df508716c12e45c541b2a7077c1919a7ddb43061075225c3e8904693","reference/constraints.md":"8c83921573b2b11ac7ce9c5df1c57cd69c6069830b66e574bc92d116f5079c1f"},"assertions":{"semantic_coverage":true,"section_order":true,"examples":true,"example_explanations":true,"constraints":true,"visuals_and_tables":true}}}
+{
+  "schema_version": 1,
+  "source": {
+    "provider": "leetcode",
+    "challenge_id": "lc_3758",
+    "frontend_id": "3758",
+    "title_slug": "convert-number-words-to-digits",
+    "url": "https://leetcode.com/problems/convert-number-words-to-digits/description/",
+    "paid_only": true,
+    "content_sha256": "9e6d7a1316834a58f186e67ee588174bc511bd52478ab68ad590091965e6a1cf",
+    "checked_at": "2026-07-28"
+  },
+  "structure": {
+    "sections": [
+      "description",
+      "examples",
+      "constraints"
+    ],
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "s = \"onefourthree\"",
+        "output": "\"143\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 2,
+        "input": "s = \"ninexsix\"",
+        "output": "\"96\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 3,
+        "input": "s = \"zeero\"",
+        "output": "\"\"",
+        "has_explanation": true
+      },
+      {
+        "ordinal": 4,
+        "input": "s = \"tw\"",
+        "output": "\"\"",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
+    "visuals": {
+      "source_images": 0,
+      "source_tables": 0,
+      "source_diagrams": 0,
+      "local_images": 0,
+      "local_tables": 0,
+      "local_diagrams": 0
+    }
+  },
+  "review": {
+    "status": "verified",
+    "files": {
+      "reference/description.md": "6a8a5f7b5ffeafa06c456c1a6a407d649aeecae0fc48fb0ccf07620cbfa67ada",
+      "reference/contract.md": "6727b066194060583d5209680e535170791dbe0549058697bb9da7c1d9d0dd31",
+      "reference/examples.md": "41269a72df508716c12e45c541b2a7077c1919a7ddb43061075225c3e8904693",
+      "reference/constraints.md": "8c83921573b2b11ac7ce9c5df1c57cd69c6069830b66e574bc92d116f5079c1f"
+    },
+    "assertions": {
+      "semantic_coverage": true,
+      "section_order": true,
+      "examples": true,
+      "example_explanations": true,
+      "constraints": true,
+      "visuals_and_tables": true
+    }
+  }
+}

@@ -1,5 +1,6 @@
 ## Description
 
-A nonnegative integer is represented by a linked list containing one decimal digit per node. The head stores the most significant digit.
+Given a non-negative integer represented as a linked list of digits, plus one to the integer.
 
-Add one to the represented integer and return the resulting linked list.
+The digits are stored such that the most significant digit is at the head of the list.
+

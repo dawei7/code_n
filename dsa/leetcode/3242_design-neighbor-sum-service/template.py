@@ -16,4 +16,5 @@ class NeighborSum:
 
 # Your NeighborSum object will be instantiated and called as such:
 # obj = NeighborSum(grid)
-# param_1 = obj.ad
+# param_1 = obj.adjacentSum(value)
+# param_2 = obj.diagonalSum(value)
