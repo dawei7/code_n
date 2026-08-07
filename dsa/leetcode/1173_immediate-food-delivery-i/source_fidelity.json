@@ -7,24 +7,24 @@
     "title_slug": "immediate-food-delivery-i",
     "url": "https://leetcode.com/problems/immediate-food-delivery-i/description/",
     "paid_only": true,
-    "content_sha256": "a81654eeb9aa7a3e3b9a67940cfe34ca3eab83ab7080a4fff1d9c25c1ffad7af",
-    "checked_at": "2026-08-04"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
-      "delivery_table",
       "description",
-      "examples"
+      "examples",
+      "constraints"
     ],
     "examples": [
       {
         "ordinal": 1,
-        "input": "Delivery = [[1,1,\"2019-08-01\",\"2019-08-02\"],[2,5,\"2019-08-02\",\"2019-08-02\"],[3,1,\"2019-08-11\",\"2019-08-11\"],[4,3,\"2019-08-24\",\"2019-08-26\"],[5,4,\"2019-08-21\",\"2019-08-22\"],[6,2,\"2019-08-11\",\"2019-08-13\"]]",
-        "output": "[[33.33]]",
+        "input": "`Delivery` table:",
+        "output": "| immediate_percentage |",
         "has_explanation": true
       }
     ],
-    "constraint_count": 0,
+    "constraint_count": 2,
     "visuals": {
       "source_images": 0,
       "source_tables": 3,
@@ -37,10 +37,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/delivery_table.md": "8aefdb8d683bbf4da7458b2c7e7bd6125d957906822dc3363c3d7cc89c616242",
-      "reference/description.md": "0314cbe0e624da6d4728e345047bd01d0cfaa8dcbd75d918f05388378fae5f69",
-      "reference/contract.md": "c66f9ea4032bd1d5960e4b43be260a5ff2c36a674c5dbb8ecfa48129a27fdde2",
-      "reference/examples.md": "8937f0f2ef0d36ca8ac0cc7d849c5599a64cf18caafb88b39ed813b15016d02c"
+      "reference/constraints.md": "832ce32c9a1b69c920362a149cafe9b296c164356961152f2010d7db0d121c57",
+      "reference/contract.md": "0feacf7ff1122af7600ea4a7436cb138fd973dfe62028585d1e92a971482d879",
+      "reference/description.md": "2af190194dd6eda7a4c80951a738a4d7734571f3cc7ecc1679d49cfaf8c48536",
+      "reference/examples.md": "6cc762428f202b1d026ea98343930608187e819ea065cb247400bc8c342718a6"
     },
     "assertions": {
       "semantic_coverage": true,

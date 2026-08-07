@@ -1,7 +1,35 @@
 ## Description
 
-You are playing a game that contains multiple characters, and each of the characters has **two** main properties: **attack** and **defense**. You are given a 2D integer array `properties` where `properties[i] = [attack_i, defense_i]` represents the properties of the `i^th` character in the game.
+You are playing a game that contains multiple characters, and each of the characters has **two** main properties: **attack** and **defense**. You are given a 2D integer array `properties` where $\text{properties}[i] = [\text{attack}_{i}, \text{defense}_{i}]$ represents the properties of the $$i^{\text{th}}$$ character in the game.
 
-A character is said to be **weak** if any other character has **both** attack and defense levels **strictly greater** than this character's attack and defense levels. More formally, a character `i` is said to be **weak** if there exists another character `j` where `attack_j > attack_i` and `defense_j > defense_i`.
+A character is said to be **weak** if any other character has **both** attack and defense levels **strictly greater** than this character's attack and defense levels. More formally, a character `i` is said to be **weak** if there exists another character `j` where $\text{attack}_{j} > \text{attack}_{i}$ and $\text{defense}_{j} > \text{defense}_{i}$.
 
 Return *the number of **weak** characters*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $properties = [[5,5],[6,3],[3,6]]$
+- **Output:** `0`
+- **Explanation:** No character has strictly greater attack and defense than the other.
+#### Example 2
+
+- **Input:** $properties = [[2,2],[3,3]]$
+- **Output:** `1`
+- **Explanation:** The first character is weak because the second character has a strictly greater attack and defense.
+#### Example 3
+
+- **Input:** $properties = [[1,5],[10,4],[4,3]]$
+- **Output:** `1`
+- **Explanation:** The third character is weak because the second character has a strictly greater attack and defense.
+### Constraints
+
+- $2 \le \text{properties.length} \le 10^{5}$
+
+- $\text{properties}[i].length = 2$
+
+- $1 \le \text{attack}_{i}, \text{defense}_{i} \le 10^{5}$

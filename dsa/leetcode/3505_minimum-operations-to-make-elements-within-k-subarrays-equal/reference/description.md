@@ -2,8 +2,53 @@
 
 You are given an integer array `nums` and two integers, `x` and `k`. You can perform the following operation any number of times (**including zero**):
 
-<ul>
-	<li>Increase or decrease any element of `nums` by 1.</li>
-</ul>
+- Increase or decrease any element of `nums` by 1.
 
-Return the **minimum** number of operations needed to have **at least** `k` *non-overlapping <span data-keyword="subarray-nonempty">subarrays</span>* of size **exactly** `x` in `nums`, where all elements within each subarray are equal.
+Return the **minimum** number of operations needed to have **at least** `k` *non-overlapping subarrays* of size **exactly** `x` in `nums`, where all elements within each subarray are equal.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [5,-2,1,3,7,3,6,4,-1], x = 3, k = 2
+
+**Output:** 8
+
+**Explanation:**
+
+- Use 3 operations to add 3 to $\text{nums}[1]$ and use 2 operations to subtract 2 from $\text{nums}[3]$. The resulting array is `[5, 1, 1, 1, 7, 3, 6, 4, -1]`.
+
+- Use 1 operation to add 1 to $\text{nums}[5]$ and use 2 operations to subtract 2 from $\text{nums}[6]$. The resulting array is `[5, 1, 1, 1, 7, 4, 4, 4, -1]`.
+
+- Now, all elements within each subarray `[1, 1, 1]` (from indices 1 to 3) and `[4, 4, 4]` (from indices 5 to 7) are equal. Since 8 total operations were used, 8 is the output.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [9,-2,-2,-2,1,5], x = 2, k = 2
+
+**Output:** 3
+
+**Explanation:**
+
+- Use 3 operations to subtract 3 from $\text{nums}[4]$. The resulting array is `[9, -2, -2, -2, -2, 5]`.
+
+- Now, all elements within each subarray `[-2, -2]` (from indices 1 to 2) and `[-2, -2]` (from indices 3 to 4) are equal. Since 3 operations were used, 3 is the output.
+
+</div>
+### Constraints
+
+- $2 \le \text{nums.length} \le 10^{5}$
+
+- $-10^{6} \le \text{nums}[i] \le 10^{6}$
+
+- $2 \le x \le \text{nums.length}$
+
+- $1 \le k \le 15$
+
+- $2 \le k * x \le \text{nums.length}$

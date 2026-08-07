@@ -7,8 +7,8 @@
     "title_slug": "verify-preorder-sequence-in-binary-search-tree",
     "url": "https://leetcode.com/problems/verify-preorder-sequence-in-binary-search-tree/description/",
     "paid_only": true,
-    "content_sha256": "1f3b93701c20d9bf73c449cc6fe79987d273ae947671d0f50ec427207d5e84c0",
-    "checked_at": "2026-07-28"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -20,14 +20,14 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "preorder = [5,2,1,3,6]",
-        "output": "true",
+        "input": "`preorder = [5,2,1,3,6]`",
+        "output": "`true`",
         "has_explanation": false
       },
       {
         "ordinal": 2,
-        "input": "preorder = [5,2,6,1,3]",
-        "output": "false",
+        "input": "`preorder = [5,2,6,1,3]`",
+        "output": "`false`",
         "has_explanation": false
       }
     ],
@@ -38,17 +38,17 @@
       "source_diagrams": 0,
       "local_images": 0,
       "local_tables": 0,
-      "local_diagrams": 0
+      "local_diagrams": 1
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "bd00bc42b996ba7b6bacfe560509df3901db5f803a58a452d3a681ff7172322a",
-      "reference/contract.md": "f955d32560d0881fd6b22bba182a5f9f377987fd3a854b9bcefa5bd43eb00ada",
-      "reference/examples.md": "eab13e16ef63ebe7b75ef8d974d81212eeb07d030926a60f6b2669d9ac68e0e2",
-      "reference/constraints.md": "c001a951d9bb49fa13afc53aa43ba84f83b269503741bbc0bf048f77a9359962",
-      "reference/follow_up.md": "afb715414a4835dbbde24335f5536c43490ef9fc0dff6962dc0de68cd32b6b5f"
+      "reference/constraints.md": "9f8a10e2ba710e6f0d800f477eab7b19e09f7caacb14bcd5200093cb0563fee3",
+      "reference/contract.md": "369b1f5df4dd21ef87cf461f34fb998fcd1bfe796df201325ec857214e39ec80",
+      "reference/description.md": "f0d1375bdcf6d649ddd8786069fc0977c461010f4c1b9c4e09598055ea05616f",
+      "reference/examples.md": "28c17911f83a6bc0ff79b1aba90f3ccf734e5c9f8aa8b74b02e7bf8fda9f0fcd",
+      "reference/follow_up.md": "1c42fdb992f802157cc071d2e5bb2dcf3cee525316bb7e789fc661ddff2c422e"
     },
     "assertions": {
       "semantic_coverage": true,

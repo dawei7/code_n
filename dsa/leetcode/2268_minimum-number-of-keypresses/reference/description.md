@@ -1,7 +1,56 @@
 ## Description
 
-A configurable keypad has nine buttons numbered from `1` through `9`. All 26 lowercase English letters must be assigned to the buttons. Every letter is assigned to exactly one button, and each button holds at most three letters.
+You have a keypad with `9` buttons, numbered from `1` to `9`, each mapped to lowercase English letters. You can choose which characters each button is matched to as long as:
 
-The first letter assigned to a button costs one press, the second costs two presses, and the third costs three presses. The assignment and the order of letters on each button are fixed before the given string is typed.
+- All 26 lowercase English letters are mapped to.
 
-Given a lowercase string `s`, choose a valid keypad layout that minimizes the total number of presses required to type every character of `s`, and return that minimum total.
+- Each character is mapped to by **exactly** `1` button.
+
+- Each button maps to **at most** `3` characters.
+
+To type the first character matched to a button, you press the button once. To type the second character, you press the button twice, and so on.
+
+Given a string `s`, return *the **minimum** number of keypresses needed to type *`s`* using your keypad.*
+
+**Note** that the characters mapped to by each button, and the order they are mapped in cannot be changed.
+### Function Contract
+
+**Inputs**
+
+- `s`: A lowercase English string of length $1 \le n \le 10^5$.
+
+**Return value**
+
+Return an integer representing the minimum number of total keypresses required to type `s` under an optimal assignment of all 26 letters to the 9 buttons.
+
+### Examples
+#### Example 1
+
+![](images/image-20220505184346-1.png)
+
+- **Input:** `s = "apple"`
+- **Output:** `5`
+- **Explanation:** One optimal way to setup your keypad is shown above.
+Type 'a' by pressing button 1 once.
+Type 'p' by pressing button 6 once.
+Type 'p' by pressing button 6 once.
+Type 'l' by pressing button 5 once.
+Type 'e' by pressing button 3 once.
+A total of 5 button presses are needed, so return 5.
+#### Example 2
+
+![](images/image-20220505203823-1.png)
+
+- **Input:** `s = "abcdefghijkl"`
+- **Output:** `15`
+- **Explanation:** One optimal way to setup your keypad is shown above.
+The letters 'a' to 'i' can each be typed by pressing a button once.
+Type 'j' by pressing button 1 twice.
+Type 'k' by pressing button 2 twice.
+Type 'l' by pressing button 3 twice.
+A total of 15 button presses are needed, so return 15.
+### Constraints
+
+- $1 \le \text{s.length} \le 10^{5}$
+
+- `s` consists of lowercase English letters.

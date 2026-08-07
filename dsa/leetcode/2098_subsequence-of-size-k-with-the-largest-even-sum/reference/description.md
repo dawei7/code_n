@@ -1,5 +1,37 @@
 ## Description
 
-You are given an integer array `nums` and an integer `k`. Among all subsequences containing exactly `k` elements, find the largest possible sum that is even.
+You are given an integer array `nums` and an integer `k`. Find the **largest even sum** of any subsequence of `nums` that has a length of `k`.
 
-A subsequence is formed by deleting any number of elements without changing the relative order of those retained. Because only the sum matters, choosing a set of positions also determines a valid subsequence in their original order. Return the largest even sum, or `-1` when no size-$k$ subsequence has an even sum.
+Return *this sum, or *`-1`* if such a sum does not exist*.
+
+A **subsequence** is an array that can be derived from another array by deleting some or no elements without changing the order of the remaining elements.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** `nums = [4,1,5,3,1], k = 3`
+- **Output:** `12`
+- **Explanation:**
+The subsequence with the largest possible even sum is [4,5,3]. It has a sum of 4 + 5 + 3 = 12.
+#### Example 2
+
+- **Input:** `nums = [4,6,2], k = 3`
+- **Output:** `12`
+- **Explanation:**
+The subsequence with the largest possible even sum is [4,6,2]. It has a sum of 4 + 6 + 2 = 12.
+#### Example 3
+
+- **Input:** `nums = [1,3,5], k = 1`
+- **Output:** `-1`
+- **Explanation:**
+No subsequence of nums with length 1 has an even sum.
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $0 \le \text{nums}[i] \le 10^{5}$
+
+- $1 \le k \le \text{nums.length}$

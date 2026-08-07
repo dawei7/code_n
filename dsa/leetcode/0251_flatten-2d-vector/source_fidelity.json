@@ -7,8 +7,8 @@
     "title_slug": "flatten-2d-vector",
     "url": "https://leetcode.com/problems/flatten-2d-vector/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -20,7 +20,7 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "`[\"Vector2D\", \"next\", \"next\", \"next\", \"hasNext\", \"hasNext\", \"next\", \"hasNext\"]`, `[[[[1, 2], [3], [4]]], [], [], [], [], [], [], []]`",
+        "input": "`[\"Vector2D\", \"next\", \"next\", \"next\", \"hasNext\", \"hasNext\", \"next\", \"hasNext\"]`, `[[[1, 2], [3], [4]]], [], [], [], [], [], [], []]`",
         "output": "`[null, 1, 2, 3, true, true, 4, false]`",
         "has_explanation": true
       }
@@ -38,10 +38,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "361a04f7da8797b20c03a9f4c19da394f0896febc19112561218789a78a6993c",
-      "reference/contract.md": "af95895ce28a6a399989c185a525ba2739f43d84d3e163b7013dd44ca2a4236a",
-      "reference/examples.md": "f665877d51d1d2ff32f0bb64db46757724cf1f304de4640478b9cb5c6e7cbc43",
-      "reference/constraints.md": "b81e5177a005f5216c47d61e6d3199ddec7255ab1b110218ffa65746aa8b9fb6",
+      "reference/constraints.md": "f29feb17cb6d2796d30e44c6d657398b9f42f321b922258ac87967456c929885",
+      "reference/contract.md": "38cde21a14f3bba961d4a942620ebcd6e2d635c971538eb33704364884ae2efc",
+      "reference/description.md": "b42718b369f48c7e0582bee7b856c5c686bcc0335ee872a83008f3b7f422814d",
+      "reference/examples.md": "769f09a2624291320ebe9f13193e27a55fb51b414fed186e9601a960a5f02711",
       "reference/follow_up.md": "72be568fac57192154f16b9e397f244ef2e367606bb80649414d0f04d51624d0"
     },
     "assertions": {

@@ -7,8 +7,8 @@
     "title_slug": "missing-ranges",
     "url": "https://leetcode.com/problems/missing-ranges/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -30,7 +30,7 @@
         "has_explanation": true
       }
     ],
-    "constraint_count": 4,
+    "constraint_count": 3,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "03f7a18a666497b578cae1b7199fbdb6eb55149c6d8147996a20caec8c63a5eb",
-      "reference/contract.md": "238e5bd2881d9d42e5dc2ca33a1316a0f5d9f3aef77c41d8ba7cb146f76c735a",
-      "reference/examples.md": "7edae21d2dece03a749bb2713d51f144b8568c878aed11d32a0ca30f4e0a5f8b",
-      "reference/constraints.md": "29871557174f81cbc92ed17c90b5589cbd69e6b9545ca74bbcda0b1c10c75a64"
+      "reference/constraints.md": "b28aa297f72e29bcd82bc4f972f3d14d4cdf6e0fcb531479781a960c1d0442b7",
+      "reference/contract.md": "185452dad20e5ff7df0905d8df6baa84e8bdb0b49b115c072a6824055ed97188",
+      "reference/description.md": "f8a542951182301a3bc31b5d33aad6831048f499cc0df53e520de0920917158f",
+      "reference/examples.md": "4f3dffc4cd4f20ce9a2cdbbd7718661adb47a386a2f4d720d37c8c457971ceb9"
     },
     "assertions": {
       "semantic_coverage": true,

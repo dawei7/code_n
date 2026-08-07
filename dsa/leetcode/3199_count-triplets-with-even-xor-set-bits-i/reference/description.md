@@ -1,5 +1,45 @@
 ## Description
 
-You are given three integer arrays, `a`, `b`, and `c`. Form a triplet by independently choosing one element from each array, so every index combination `(i, j, k)` represents the values `(a[i], b[j], c[k])`.
+Given three integer arrays `a`, `b`, and `c`, return the number of triplets $(a[i], b[j], c[k])$, such that the bitwise `XOR` of the elements of each triplet has an **even** number of set bits.
+### Function Contract
 
-For each such triplet, compute `a[i] XOR b[j] XOR c[k]`. A set bit is a binary digit equal to one. Count and return the index triplets whose XOR result contains an even number of set bits. Repeated values at different indices represent distinct choices and therefore contribute separately.
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** a = [1], b = [2], c = [3]
+
+**Output:** 1
+
+**Explanation:**
+
+The only triplet is $(a[0], b[0], c[0])$ and their `XOR` is: $1 XOR 2 XOR 3 = \text{00}_{2}$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** a = [1,1], b = [2,3], c = [1,5]
+
+**Output:** 4
+
+**Explanation:**
+
+Consider these four triplets:
+
+- $(a[0], b[1], c[0])$: $1 XOR 3 XOR 1 = \text{011}_{2}$
+
+- $(a[1], b[1], c[0])$: $1 XOR 3 XOR 1 = \text{011}_{2}$
+
+- $(a[0], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
+
+- $(a[1], b[0], c[1])$: $1 XOR 2 XOR 5 = \text{110}_{2}$
+
+</div>
+### Constraints
+
+- $1 \le \text{a.length}, \text{b.length}, \text{c.length} \le 100$
+
+- $0 \le a[i], b[i], c[i] \le 100$

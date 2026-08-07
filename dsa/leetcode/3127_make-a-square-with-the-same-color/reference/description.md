@@ -6,8 +6,6 @@ Your task is to change the color of **at most one** cell<!-- notionvc: c04cb478-
 
 Return `true` if it is possible to create a `2 x 2` square of the same color, otherwise, return `false`.
 
- 
-
 <style type="text/css">.grid-container {
   display: grid;
   grid-template-columns: 30px 30px 30px;
@@ -26,3 +24,112 @@ Return `true` if it is possible to create a `2 x 2` square of the same color, ot
 </style>
 <style class="darkreader darkreader--sync" media="screen" type="text/css">
 </style>
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="grid-container">
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+</div>
+
+<div class="example-block">
+**Input:** grid = [["B","W","B"],["B","W","W"],["B","W","B"]]
+
+**Output:** true
+
+**Explanation:**
+
+It can be done by changing the color of the $\text{grid}[0][2]$.
+
+</div>
+#### Example 2
+
+<div class="grid-container">
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+</div>
+
+<div class="example-block">
+**Input:** grid = [["B","W","B"],["W","B","W"],["B","W","B"]]
+
+**Output:** false
+
+**Explanation:**
+
+It cannot be done by changing at most one cell.
+
+</div>
+#### Example 3
+
+<div class="grid-container">
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+
+<div class="grid-item grid-item-white"> </div>
+</div>
+
+<div class="example-block">
+**Input:** grid = [["B","W","B"],["B","W","W"],["B","W","W"]]
+
+**Output:** true
+
+**Explanation:**
+
+The `grid` already contains a `2 x 2` square of the same color.<!-- notionvc: 9a8b2d3d-1e73-457a-abe0-c16af51ad5c2 -->
+
+</div>
+### Constraints
+
+- $\text{grid.length} = 3$
+
+- $\text{grid}[i].length = 3$
+
+- $\text{grid}[i][j]$ is either `'W'` or `'B'`.

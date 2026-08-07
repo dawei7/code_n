@@ -1,10 +1,49 @@
 ## Description
 
-An $m \times n$ grid contains one person in each cell, and
-`heights[i][j]` gives that person's positive height. A person may look only
-to the right within the same row or downward within the same column.
+You are given an `m x n` **0-indexed** 2D array of positive integers `heights` where $\text{heights}[i][j]$ is the height of the person standing at position `(i, j)`.
 
-The person in one cell can see a later person in one of those directions
-exactly when every person strictly between them is shorter than both endpoint
-people. Return an $m \times n$ matrix whose entry at `(i, j)` counts everyone
-visible to the right or below the person in that cell.
+A person standing at position $(\text{row}_{1}, \text{col}_{1})$ can see a person standing at position $(\text{row}_{2}, \text{col}_{2})$ if:
+
+- The person at $(\text{row}_{2}, \text{col}_{2})$ is to the right **or** below the person at $(\text{row}_{1}, \text{col}_{1})$. More formally, this means that either $\text{row}_{1} = \text{row}_{2}$ and $\text{col}_{1} < \text{col}_{2}$ **or** $\text{row}_{1} < \text{row}_{2}$ and $\text{col}_{1} = \text{col}_{2}$.
+
+- Everyone in between them is shorter than **both** of them.
+
+Return* an *`m x n`* 2D array of integers *`answer`* where *$\text{answer}[i][j]$* is the number of people that the person at position *`(i, j)`* can see.*
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+![](images/image-20220524180458-1.png)
+
+- **Input:** $heights = [[3,1,4,2,5]]$
+- **Output:** `[[2,1,2,1,0]]`
+- **Explanation:**
+- The person at (0, 0) can see the people at (0, 1) and (0, 2).
+Note that he cannot see the person at (0, 4) because the person at (0, 2) is taller than him.
+- The person at (0, 1) can see the person at (0, 2).
+- The person at (0, 2) can see the people at (0, 3) and (0, 4).
+- The person at (0, 3) can see the person at (0, 4).
+- The person at (0, 4) cannot see anybody.
+#### Example 2
+
+![](images/image-20220523113533-2.png)
+
+- **Input:** $heights = [[5,1],[3,1],[4,1]]$
+- **Output:** `[[3,1],[2,1],[1,0]]`
+- **Explanation:**
+- The person at (0, 0) can see the people at (0, 1), (1, 0) and (2, 0).
+- The person at (0, 1) can see the person at (1, 1).
+- The person at (1, 0) can see the people at (1, 1) and (2, 0).
+- The person at (1, 1) can see the person at (2, 1).
+- The person at (2, 0) can see the person at (2, 1).
+- The person at (2, 1) cannot see anybody.
+### Constraints
+
+- $1 \le \text{heights.length} \le 400$
+
+- $1 \le \text{heights}[i].length \le 400$
+
+- $1 \le \text{heights}[i][j] \le 10^{5}$

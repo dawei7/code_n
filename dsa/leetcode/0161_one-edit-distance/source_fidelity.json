@@ -7,8 +7,8 @@
     "title_slug": "one-edit-distance",
     "url": "https://leetcode.com/problems/one-edit-distance/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "df3f5a845dc22264ff8e9779fa8028fb0fa2d5a0fbed3c4b25123575dbcddebb",
-      "reference/contract.md": "450fddab464e7579bc78337470665dfc51612a1e7c0815817dd60fe3049493ee",
-      "reference/examples.md": "47a087f9003d278b0d1d03cca212907d59620432ae276ab28fea1d7f91a2c485",
-      "reference/constraints.md": "369c6a499e7f884e46e18a7380317b00bd0fecf423f88a1bbed2ca0edbf4333d"
+      "reference/constraints.md": "77b5f9401c4e88a8d00c32d338355ea13d9864bf9a4ad3c1b3b2d6296969e725",
+      "reference/contract.md": "9e2276af0f0bdcfb2702e42eb8ab8cabe1e822b8c9bc8952c16345ee45e59ac2",
+      "reference/description.md": "d55e2724b33056e4d3a9a8ede9f31501a8ba639b4b21ed83f4d545034be666f5",
+      "reference/examples.md": "13f4c02bde2e702a0ea121d0e24a7b5ef487e6dd7f019577a8572ea95645e4f6"
     },
     "assertions": {
       "semantic_coverage": true,

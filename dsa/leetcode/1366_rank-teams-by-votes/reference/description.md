@@ -7,3 +7,42 @@ The ordering of teams is decided by who received the most position-one votes. If
 You are given an array of strings `votes` which is the votes of all voters in the ranking systems. Sort all teams according to the ranking system described above.
 
 Return *a string of all teams **sorted** by the ranking system*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $votes = ["ABC","ACB","ABC","ACB","ACB"]$
+- **Output:** `"ACB"`
+- **Explanation:**
+Team A was ranked first place by 5 voters. No other team was voted as first place, so team A is the first team.
+Team B was ranked second by 2 voters and ranked third by 3 voters.
+Team C was ranked second by 3 voters and ranked third by 2 voters.
+As most of the voters ranked C second, team C is the second team, and team B is the third.
+#### Example 2
+
+- **Input:** $votes = ["WXYZ","XYZW"]$
+- **Output:** `"XWYZ"`
+- **Explanation:**
+X is the winner due to the tie-breaking rule. X has the same votes as W for the first position, but X has one vote in the second position, while W does not have any votes in the second position.
+#### Example 3
+
+- **Input:** $votes = ["ZMNAGUEDSJYLBOPHRQICWFXTVK"]$
+- **Output:** `"ZMNAGUEDSJYLBOPHRQICWFXTVK"`
+- **Explanation:** Only one voter, so their votes are used for the ranking.
+### Constraints
+
+- $1 \le \text{votes.length} \le 1000$
+
+- $1 \le \text{votes}[i].length \le 26$
+
+- $\text{votes}[i].length = \text{votes}[j].length$ for $0 \le i, j < \text{votes.length}$.
+
+- $\text{votes}[i][j]$ is an English **uppercase** letter.
+
+- All characters of $\text{votes}[i]$ are unique.
+
+- All the characters that occur in $\text{votes}[0]$ **also occur** in $\text{votes}[j]$ where $1 \le j < \text{votes.length}$.

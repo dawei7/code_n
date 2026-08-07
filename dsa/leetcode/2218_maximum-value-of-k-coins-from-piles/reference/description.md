@@ -4,4 +4,34 @@ There are `n` **piles** of coins on a table. Each pile consists of a **positive 
 
 In one move, you can choose any coin on **top** of any pile, remove it, and add it to your wallet.
 
-Given a list `piles`, where `piles[i]` is a list of integers denoting the composition of the `i^th` pile from **top to bottom**, and a positive integer `k`, return *the **maximum total value** of coins you can have in your wallet if you choose **exactly*** `k` *coins optimally*.
+Given a list `piles`, where $\text{piles}[i]$ is a list of integers denoting the composition of the $$i^{\text{th}}$$ pile from **top to bottom**, and a positive integer `k`, return *the **maximum total value** of coins you can have in your wallet if you choose **exactly*** `k` *coins optimally*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/e1.png)
+
+- **Input:** $piles = [[1,100,3],[7,8,9]], k = 2$
+- **Output:** `101`
+- **Explanation:**
+The above diagram shows the different ways we can choose k coins.
+The maximum total we can obtain is 101.
+#### Example 2
+
+- **Input:** $piles = [[100],[100],[100],[100],[100],[100],[1,1,1,1,1,1,700]], k = 7$
+- **Output:** `706`
+- **Explanation:**
+**The maximum total can be obtained if we choose all coins from the last pile.
+### Constraints
+
+- $n = \text{piles.length}$
+
+- $1 \le n \le 1000$
+
+- $1 \le \text{piles}[i][j] \le 10^{5}$
+
+- $1 \le k \le sum(\text{piles}[i].length) \le 2000$

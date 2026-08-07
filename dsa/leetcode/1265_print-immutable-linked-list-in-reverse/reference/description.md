@@ -1,10 +1,53 @@
 ## Description
 
-You are given the head of an immutable linked list and must print the value of every node in reverse order, from the tail back to the head. The list is opaque: its nodes cannot be inspected through ordinary fields and none of their contents or links may be changed.
+You are given an immutable linked list, print out all values of each node in reverse with the help of the following interface:
 
-An `ImmutableListNode` exposes only two operations:
+- `ImmutableListNode`: An interface of immutable linked list, you are given the head of the list.
 
-- `ImmutableListNode.printValue()` prints the value stored in the current node.
-- `ImmutableListNode.getNext()` returns the following node.
+You need to use the following functions to access the linked list (you **can't** access the `ImmutableListNode` directly):
 
-The serialized list in an input fixture exists only so the judge can construct these nodes internally. Solve the task exclusively through the supplied node interfaces, without modifying the list or trying to access an `ImmutableListNode` directly.
+- `ImmutableListNode.printValue()`: Print value of the current node.
+
+- `ImmutableListNode.getNext()`: Return the next node.
+
+The input is only given to initialize the linked list internally. You must solve this problem without modifying the linked list. In other words, you must operate the linked list using only the mentioned APIs.
+### Function Contract
+
+**Input**
+
+- `head`: the first `ImmutableListNode` in a nonempty immutable linked list.
+
+Starting from `head`, `getNext()` advances through the list toward the tail. Node values are not returned by that method and are not available through a public value field.
+
+**Output**
+
+Return `None`. Produce the answer as a side effect by calling `printValue()` on every original node exactly once, in tail-to-head order.
+
+The linked list must remain unchanged, and the implementation may operate only through `getNext()` and `printValue()`.
+
+### Examples
+#### Example 1
+
+- **Input:** $head = [1,2,3,4]$
+- **Output:** `[4,3,2,1]`
+#### Example 2
+
+- **Input:** $head = [0,-4,-1,3,-5]$
+- **Output:** `[-5,3,-1,-4,0]`
+#### Example 3
+
+- **Input:** $head = [-2,0,6,4,4,-6]$
+- **Output:** `[-6,4,4,6,0,-2]`
+### Constraints
+
+- The length of the linked list is between `[1, 1000]`.
+
+- The value of each node in the linked list is between `[-1000, 1000]`.
+
+**Follow up:**
+
+Could you solve this problem in:
+
+- Constant space complexity?
+
+- Linear time complexity and less than linear space complexity?

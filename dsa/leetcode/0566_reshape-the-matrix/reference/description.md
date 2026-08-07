@@ -7,3 +7,32 @@ You are given an `m x n` matrix `mat` and two integers `r` and `c` representing 
 The reshaped matrix should be filled with all the elements of the original matrix in the same row-traversing order as they were.
 
 If the `reshape` operation with given parameters is possible and legal, output the new reshaped matrix; Otherwise, output the original matrix.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/reshape1-grid.jpg)
+
+- **Input:** $mat = [[1,2],[3,4]], r = 1, c = 4$
+- **Output:** `[[1,2,3,4]]`
+#### Example 2
+
+![](images/reshape2-grid.jpg)
+
+- **Input:** $mat = [[1,2],[3,4]], r = 2, c = 4$
+- **Output:** `[[1,2],[3,4]]`
+### Constraints
+
+- $m = \text{mat.length}$
+
+- $n = \text{mat}[i].length$
+
+- $1 \le m, n \le 100$
+
+- $-1000 \le \text{mat}[i][j] \le 1000$
+
+- $1 \le r, c \le 300$

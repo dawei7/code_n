@@ -6,14 +6,49 @@ A group of duplicate files consists of at least two files that have the same con
 
 A single directory info string in the input list has the following format:
 
-<ul>
-	<li>`"root/d1/d2/.../dm f1.txt(f1_content) f2.txt(f2_content) ... fn.txt(fn_content)"`</li>
-</ul>
+- $"root/d1/d2/.../dm \text{f1.txt}(\text{f1}_{content}) \text{f2.txt}(\text{f2}_{content}) ... \text{fn.txt}(\text{fn}_{content})"$
 
-It means there are `n` files `(f1.txt, f2.txt ... fn.txt)` with content `(f1_content, f2_content ... fn_content)` respectively in the directory "`root/d1/d2/.../dm"`. Note that `n >= 1` and `m >= 0`. If `m = 0`, it means the directory is just the root directory.
+It means there are `n` files `(f1.txt, f2.txt ... fn.txt)` with content $(\text{f1}_{content}, \text{f2}_{content} ... \text{fn}_{content})$ respectively in the directory "`root/d1/d2/.../dm"`. Note that $n \ge 1$ and $m \ge 0$. If $m = 0$, it means the directory is just the root directory.
 
 The output is a list of groups of duplicate file paths. For each group, it contains all the file paths of the files that have the same content. A file path is a string that has the following format:
 
-<ul>
-	<li>`"directory_path/file_name.txt"`</li>
-</ul>
+- $"\text{directory}_{path}/\text{file}_{name}.txt"$
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)","root 4.txt(efgh)"]$
+- **Output:** `[["root/a/2.txt","root/c/d/4.txt","root/4.txt"],["root/a/1.txt","root/c/3.txt"]]`
+#### Example 2
+
+- **Input:** $paths = ["root/a 1.txt(abcd) 2.txt(efgh)","root/c 3.txt(abcd)","root/c/d 4.txt(efgh)"]$
+- **Output:** `[["root/a/2.txt","root/c/d/4.txt"],["root/a/1.txt","root/c/3.txt"]]`
+### Constraints
+
+- $1 \le \text{paths.length} \le 2 * 10^{4}$
+
+- $1 \le \text{paths}[i].length \le 3000$
+
+- $1 \le sum(\text{paths}[i].length) \le 5 * 10^{5}$
+
+- $\text{paths}[i]$ consist of English letters, digits, `'/'`, `'.'`, `'('`, `')'`, and `' '`.
+
+- You may assume no files or directories share the same name in the same directory.
+
+- You may assume each given directory info represents a unique directory. A single blank space separates the directory path and file info.
+
+**Follow up:**
+
+- Imagine you are given a real file system, how will you search files? DFS or BFS?
+
+- If the file content is very large (GB level), how will you modify your solution?
+
+- If you can only read the file by 1kb each time, how will you modify your solution?
+
+- What is the time complexity of your modified solution? What is the most time-consuming part and memory-consuming part of it? How to optimize?
+
+- How to make sure the duplicated files you find are not false positive?

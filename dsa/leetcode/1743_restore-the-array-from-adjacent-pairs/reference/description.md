@@ -2,8 +2,43 @@
 
 There is an integer array `nums` that consists of `n` **unique **elements, but you have forgotten it. However, you do remember every pair of adjacent elements in `nums`.
 
-You are given a 2D integer array `adjacentPairs` of size `n - 1` where each `adjacentPairs[i] = [u_i, v_i]` indicates that the elements `u_i` and `v_i` are adjacent in `nums`.
+You are given a 2D integer array `adjacentPairs` of size $n - 1$ where each $\text{adjacentPairs}[i] = [u_{i}, v_{i}]$ indicates that the elements $u_{i}$ and $v_{i}$ are adjacent in `nums`.
 
-It is guaranteed that every adjacent pair of elements `nums[i]` and `nums[i+1]` will exist in `adjacentPairs`, either as `[nums[i], nums[i+1]]` or `[nums[i+1], nums[i]]`. The pairs can appear **in any order**.
+It is guaranteed that every adjacent pair of elements $\text{nums}[i]$ and `nums[i+1]` will exist in `adjacentPairs`, either as `[nums[i], nums[i+1]]` or `[nums[i+1], nums[i]]`. The pairs can appear **in any order**.
 
 Return *the original array *`nums`*. If there are multiple solutions, return **any of them***.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $adjacentPairs = [[2,1],[3,4],[3,2]]$
+- **Output:** `[1,2,3,4]`
+- **Explanation:** This array has all its adjacent pairs in adjacentPairs.
+Notice that adjacentPairs[i] may not be in left-to-right order.
+#### Example 2
+
+- **Input:** $adjacentPairs = [[4,-2],[1,4],[-3,1]]$
+- **Output:** `[-2,4,1,-3]`
+- **Explanation:** There can be negative numbers.
+Another solution is [-3,1,4,-2], which would also be accepted.
+#### Example 3
+
+- **Input:** $adjacentPairs = [[100000,-100000]]$
+- **Output:** `[100000,-100000]`
+### Constraints
+
+- $\text{nums.length} = n$
+
+- $\text{adjacentPairs.length} = n - 1$
+
+- $\text{adjacentPairs}[i].length = 2$
+
+- $2 \le n \le 10^{5}$
+
+- $-10^{5} \le \text{nums}[i], u_{i}, v_{i} \le 10^{5}$
+
+- There exists some `nums` that has `adjacentPairs` as its pairs.

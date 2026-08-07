@@ -4,9 +4,47 @@ You are given an array `nums`.
 
 A split of an array `nums` is **beautiful** if:
 
-<ol>
-	<li>The array `nums` is split into three <span data-keyword="subarray-nonempty">subarrays</span>: `nums1`, `nums2`, and `nums3`, such that `nums` can be formed by concatenating `nums1`, `nums2`, and `nums3` in that order.</li>
-	<li>The subarray `nums1` is a <span data-keyword="array-prefix">prefix</span> of `nums2` **OR** `nums2` is a <span data-keyword="array-prefix">prefix</span> of `nums3`.</li>
-</ol>
+- The array `nums` is split into three subarrays: `nums1`, `nums2`, and `nums3`, such that `nums` can be formed by concatenating `nums1`, `nums2`, and `nums3` in that order.
+
+- The subarray `nums1` is a prefix of `nums2` **OR** `nums2` is a prefix of `nums3`.
 
 Return the **number of ways** you can make this split.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,1,2,1]
+
+**Output:** 2
+
+**Explanation:**
+
+The beautiful splits are:
+
+- A split with $nums1 = [1]$, $nums2 = [1,2]$, $nums3 = [1]$.
+
+- A split with $nums1 = [1]$, $nums2 = [1]$, $nums3 = [2,1]$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [1,2,3,4]
+
+**Output:** 0
+
+**Explanation:**
+
+There are 0 beautiful splits.
+
+</div>
+### Constraints
+
+- $1 \le \text{nums.length} \le 5000$
+
+- $0 \le \text{nums}[i] \le 50$

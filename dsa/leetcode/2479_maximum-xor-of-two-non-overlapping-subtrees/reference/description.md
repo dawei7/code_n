@@ -1,7 +1,47 @@
 ## Description
 
-An undirected tree contains `n` nodes numbered from `0` through `n - 1` and is rooted at node `0`. The array `edges` gives its `n - 1` connections, and `values[i]` is the positive integer value assigned to node `i`.
+There is an undirected tree with `n` nodes labeled from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that there is an edge between nodes $a_{i}$ and $b_{i}$ in the tree. The root of the tree is the node labeled `0`.
 
-For any node, its subtree contains that node and every descendant determined by the root. Choose two subtrees that share no node. Their score is the bitwise XOR of their two value sums.
+Each node has an associated **value**. You are given an array `values` of length `n`, where $\text{values}[i]$ is the **value** of the $$i^{\text{th}}$$ node.
 
-Return the maximum achievable score. If the rooted tree has no pair of non-overlapping subtrees, return `0`.
+Select any two **non-overlapping** subtrees. Your **score** is the bitwise XOR of the sum of the values within those subtrees.
+
+Return *the* ***maximum*** *possible **score** you can achieve*. *If it is impossible to find two nonoverlapping subtrees*, return `0`.
+
+**Note** that:
+
+- The **subtree** of a node is the tree consisting of that node and all of its descendants.
+
+- Two subtrees are **non-overlapping **if they do not share **any common** node.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+![](images/treemaxxor.png)
+
+- **Input:** $n = 6, edges = [[0,1],[0,2],[1,3],[1,4],[2,5]], values = [2,8,3,6,2,5]$
+- **Output:** `24`
+- **Explanation:** Node 1's subtree has sum of values 16, while node 2's subtree has sum of values 8, so choosing these nodes will yield a score of 16 XOR 8 = 24. It can be proved that is the maximum possible score we can obtain.
+#### Example 2
+
+![](images/tree3drawio.png)
+
+- **Input:** $n = 3, edges = [[0,1],[1,2]], values = [4,6,1]$
+- **Output:** `0`
+- **Explanation:** There is no possible way to select two non-overlapping subtrees, so we just return 0.
+### Constraints
+
+- $2 \le n \le 5 * 10^{4}$
+
+- $\text{edges.length} = n - 1$
+
+- $0 \le a_{i}, b_{i} < n$
+
+- $\text{values.length} = n$
+
+- $1 \le \text{values}[i] \le 10^{9}$
+
+- It is guaranteed that `edges` represents a valid tree.

@@ -14,4 +14,3 @@ class TwoSum:
 # obj = TwoSum()
 # obj.add(number)
 # param_2 = obj.find(value)
-

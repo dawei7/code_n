@@ -2,9 +2,33 @@
 
 Given a string `s`, reverse the string according to the following rules:
 
-<ul>
-	<li>All the characters that are not English letters remain in the same position.</li>
-	<li>All the English letters (lowercase or uppercase) should be reversed.</li>
-</ul>
+- All the characters that are not English letters remain in the same position.
+
+- All the English letters (lowercase or uppercase) should be reversed.
 
 Return `s`* after reversing it*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "ab-cd"`
+- **Output:** `"dc-ba"`
+#### Example 2
+
+- **Input:** `s = "a-bC-dEf-ghIj"`
+- **Output:** `"j-Ih-gfE-dCba"`
+#### Example 3
+
+- **Input:** `s = "Test1ng-Leet=code-Q!"`
+- **Output:** `"Qedo1ct-eeLg=ntse-T!"`
+### Constraints
+
+- $1 \le \text{s.length} \le 100$
+
+- `s` consists of characters with ASCII values in the range `[33, 122]`.
+
+- `s` does not contain `'\"'` or `'\\'`.

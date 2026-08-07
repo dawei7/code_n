@@ -1,17 +1,78 @@
 ## Description
 
-You are given two integers `w` and `m`, and an integer array `arrivals`, where `arrivals[i]` is the type of item arriving on day `i` (days are **1-indexed**).
+You are given two integers `w` and `m`, and an integer array `arrivals`, where $\text{arrivals}[i]$ is the type of item arriving on day `i` (days are **1-indexed**).
 
 Items are managed according to the following rules:
 
-<ul>
-	<li>Each arrival may be **kept** or **discarded**; an item may only be discarded on its arrival day.</li>
-	<li>For each day `i`, consider the window of days `[max(1, i - w + 1), i]` (the `w` most recent days up to day `i`):
-	<ul>
-		<li>For **any** such window, each item type may appear **at most** `m` times among kept arrivals whose arrival day lies in that window.</li>
-		<li>If keeping the arrival on day `i` would cause its type to appear **more than** `m` times in the window, that arrival **must** be discarded.</li>
-	</ul>
+- Each arrival may be **kept** or **discarded**; an item may only be discarded on its arrival day.
+
+- For each day `i`, consider the window of days `[max(1, i - w + 1), i]` (the `w` most recent days up to day `i`):
+
+		<li>For **any** such window, each item type may appear **at most** `m` times among kept arrivals whose arrival day lies in that window.
+
+- If keeping the arrival on day `i` would cause its type to appear **more than** `m` times in the window, that arrival **must** be discarded.
+
 	</li>
-</ul>
 
 Return the **minimum** number of arrivals to be discarded so that every `w`-day window contains at most `m` occurrences of each type.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** arrivals = [1,2,1,3,1], w = 4, m = 2
+
+**Output:** 0
+
+**Explanation:**
+
+- On day 1, Item 1 arrives; the window contains no more than `m` occurrences of this type, so we keep it.
+
+- On day 2, Item 2 arrives; the window of days 1 - 2 is fine.
+
+- On day 3, Item 1 arrives, window `[1, 2, 1]` has item 1 twice, within limit.
+
+- On day 4, Item 3 arrives, window `[1, 2, 1, 3]` has item 1 twice, allowed.
+
+- On day 5, Item 1 arrives, window `[2, 1, 3, 1]` has item 1 twice, still valid.
+
+There are no discarded items, so return 0.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** arrivals = [1,2,3,3,3,4], w = 3, m = 2
+
+**Output:** 1
+
+**Explanation:**
+
+- On day 1, Item 1 arrives. We keep it.
+
+- On day 2, Item 2 arrives, window `[1, 2]` is fine.
+
+- On day 3, Item 3 arrives, window `[1, 2, 3]` has item 3 once.
+
+- On day 4, Item 3 arrives, window `[2, 3, 3]` has item 3 twice, allowed.
+
+- On day 5, Item 3 arrives, window `[3, 3, 3]` has item 3 three times, exceeds limit, so the arrival must be discarded.
+
+- On day 6, Item 4 arrives, window `[3, 4]` is fine.
+
+Item 3 on day 5 is discarded, and this is the minimum number of arrivals to discard, so return 1.
+
+</div>
+### Constraints
+
+- $1 \le \text{arrivals.length} \le 10^{5}$
+
+- $1 \le \text{arrivals}[i] \le 10^{5}$
+
+- $1 \le w \le \text{arrivals.length}$
+
+- $1 \le m \le w$

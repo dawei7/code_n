@@ -7,8 +7,8 @@
     "title_slug": "strobogrammatic-number-iii",
     "url": "https://leetcode.com/problems/strobogrammatic-number-iii/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -21,7 +21,7 @@
         "ordinal": 1,
         "input": "`low = \"50\"`, `high = \"100\"`",
         "output": "`3`",
-        "has_explanation": true
+        "has_explanation": false
       },
       {
         "ordinal": 2,
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "aaa57a253525ac9350e1a6b625886b53c41c79abcda5218c44dfbf542c70e8a7",
-      "reference/contract.md": "20157cb8c402332daf0e76af6d3b1854671d05ebe4e7cb28ed3fdb39e8f4f5bf",
-      "reference/examples.md": "697a7e81c47d5a58ed1e3d302f5f4090301f6147b81629eaec0d7dec6d14e4b1",
-      "reference/constraints.md": "b7bef0ff055cd576d9fb79a017886bafa69dc7d4b237f1c7fdd899adf17fa604"
+      "reference/constraints.md": "e7e686dadd6e07a1b8b3ceb5247a2d197926e9e057125a35a08d1b2f7e6ecf0d",
+      "reference/contract.md": "d358e254a3a559403786f82514816865c81fd5e78f647ff5d5525601e6d2d660",
+      "reference/description.md": "59628182f24d44f1f22ef6d11dcd05838cbcd12484ad414f2c58d898930f38ac",
+      "reference/examples.md": "9a3b4f7df176a535d56ab655b9afb111b9cbcf6a6efce0dfc301e42f66bbbe98"
     },
     "assertions": {
       "semantic_coverage": true,

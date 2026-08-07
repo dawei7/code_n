@@ -5,10 +5,10 @@
     "challenge_id": "lc_1777",
     "frontend_id": "1777",
     "title_slug": "products-price-for-each-store",
-    "url": "https://leetcode.com/problems/products-price-for-each-store/",
-    "paid_only": false,
-    "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-    "checked_at": "2026-08-06"
+    "url": "https://leetcode.com/problems/products-price-for-each-store/description/",
+    "paid_only": true,
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -16,24 +16,31 @@
       "examples",
       "constraints"
     ],
-    "examples": [],
-    "constraint_count": 0,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "`Products` table:",
+        "output": "| product_id | store1 | store2 | store3 |",
+        "has_explanation": true
+      }
+    ],
+    "constraint_count": 2,
     "visuals": {
       "source_images": 0,
-      "source_tables": 0,
+      "source_tables": 2,
       "source_diagrams": 0,
       "local_images": 0,
-      "local_tables": 0,
+      "local_tables": 3,
       "local_diagrams": 0
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1639ab0a042e4a85f48697f62baaba7fb9c1afbb2831986952878e8c0787ad1a",
-      "reference/contract.md": "739a211641e3c4bc262f0745064705adb77895aa0573bb82fb23bfb477dd758f",
-      "reference/examples.md": "46ee017afd8766d1cab377a9dc03790073108deab2059ab5c4c22ea2431a1a3b",
-      "reference/constraints.md": "60a79c8a70321c0e876752ee3e9078c89127c3eef5dcb6b39f20128c647a5e85"
+      "reference/constraints.md": "146b1a686e3a174f08b979053bb92147c2b0d7e9c907afab65f595aa10210774",
+      "reference/contract.md": "f74f22285e571e69960fd0e4fb94c8c9f6d34c554f1e788a256e5e05e14cfdc4",
+      "reference/description.md": "2db940b4bd5c3f5dc37baf46632ee6c1a92dca628b59be253b32bf0290d1ba2d",
+      "reference/examples.md": "d787335cd19105989a5b627d85e19ccdbce561720c22a76dba58bb6e46ee79ec"
     },
     "assertions": {
       "semantic_coverage": true,

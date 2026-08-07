@@ -19,20 +19,20 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "nums = [3,7,9]",
-        "output": "2",
+        "input": "`nums = [3,7,9]`",
+        "output": "`2`",
         "has_explanation": true
       },
       {
         "ordinal": 2,
-        "input": "nums = [1,1,1]",
-        "output": "0",
+        "input": "`nums = [1,1,1]`",
+        "output": "`0`",
         "has_explanation": true
       },
       {
         "ordinal": 3,
-        "input": "nums = [4]",
-        "output": "0",
+        "input": "`nums = [4]`",
+        "output": "`0`",
         "has_explanation": true
       }
     ],
@@ -49,10 +49,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "632029b273a990cdf0ab943592cfcc6847a2c7f6557cf20f3097e476175fc020",
+      "reference/constraints.md": "a6ad61a07b50442a42ffc339f8211f85d82bb91c1c588f82ce13c99efe454084",
       "reference/contract.md": "efc1c3a8002ba85ac7bd0881ac79b410782ca7fbef40bfc532498ace8a9d8377",
-      "reference/examples.md": "a2d0e26964dd2f3e84164312d64b3eb784ce4a3eed901febe2eb331a4250ac3b",
-      "reference/constraints.md": "a6ad61a07b50442a42ffc339f8211f85d82bb91c1c588f82ce13c99efe454084"
+      "reference/description.md": "3c692463d8abc2fa2ac054a5efdf0952b3a4ed97771bf2d96975b4673161a38b",
+      "reference/examples.md": "db6d87e6b462d23d9936909a62766147ce77d53614a41cc2801d2d96bfa22423"
     },
     "assertions": {
       "semantic_coverage": true,

@@ -1,29 +1,111 @@
 ## Description
 
-<p data-end="143" data-start="53">You are given two categories of theme park attractions: <strong data-end="122" data-start="108">land rides</strong> and <strong data-end="142" data-start="127">water rides</strong>.
+You are given two categories of theme park attractions: **land rides** and **water rides**.
 
-<ul>
-	<li data-end="163" data-start="147"><strong data-end="161" data-start="147">Land rides</strong>
+- **Land rides**
 
-	<ul>
-		<li data-end="245" data-start="168"><code data-end="186" data-start="168">landStartTime[i]</code> – the earliest time the `i^th` land ride can be boarded.</li>
-		<li data-end="306" data-start="250"><code data-end="267" data-start="250">landDuration[i]</code> – how long the `i^th` land ride lasts.</li>
-	</ul>
+		<li data-end="245" data-start="168">$\text{landStartTime}[i]$ – the earliest time the $$i^{\text{th}}$$ land ride can be boarded.
+
+- $\text{landDuration}[i]$ – how long the $$i^{\text{th}}$$ land ride lasts.
+
 	</li>
-	<li><strong data-end="325" data-start="310">Water rides</strong>
-	<ul>
-		<li><code data-end="351" data-start="332">waterStartTime[j]</code> – the earliest time the `j^th` water ride can be boarded.</li>
-		<li><code data-end="434" data-start="416">waterDuration[j]</code> – how long the `j^th` water ride lasts.</li>
-	</ul>
+- **Water rides**
+
+		<li>$\text{waterStartTime}[j]$ – the earliest time the $$j^{\text{th}}$$ water ride can be boarded.
+
+- $\text{waterDuration}[j]$ – how long the $$j^{\text{th}}$$ water ride lasts.
+
 	</li>
-</ul>
 
-<p data-end="569" data-start="476">A tourist must experience <strong data-end="517" data-start="502">exactly one</strong> ride from <strong data-end="536" data-start="528">each</strong> category, in <strong data-end="566" data-start="550">either order</strong>.
+A tourist must experience **exactly one** ride from **each** category, in **either order**.
 
-<ul>
-	<li data-end="641" data-start="573">A ride may be started at its opening time or <strong data-end="638" data-start="618">any later moment</strong>.</li>
-	<li data-end="715" data-start="644">If a ride is started at time <code data-end="676" data-start="673">t</code>, it finishes at time <code data-end="712" data-start="698">t + duration</code>.</li>
-	<li data-end="834" data-start="718">Immediately after finishing one ride the tourist may board the other (if it is already open) or wait until it opens.</li>
-</ul>
+- A ride may be started at its opening time or **any later moment**.
 
-<p data-end="917" data-start="836">Return the <strong data-end="873" data-start="847">earliest possible time</strong> at which the tourist can finish both rides.
+- If a ride is started at time `t`, it finishes at time $t + duration$.
+
+- Immediately after finishing one ride the tourist may board the other (if it is already open) or wait until it opens.
+
+Return the **earliest possible time** at which the tourist can finish both rides.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** landStartTime = [2,8], landDuration = [4,1], waterStartTime = [6], waterDuration = [3]
+
+**Output:** 9
+
+**Explanation:**​​​​​​​
+
+- Plan A (land ride 0 → water ride 0):
+
+		<li data-end="272" data-start="186">Start land ride 0 at time $\text{landStartTime}[0] = 2$. Finish at $2 + \text{landDuration}[0] = 6$.
+
+- Water ride 0 opens at time $\text{waterStartTime}[0] = 6$. Start immediately at `6`, finish at $6 + \text{waterDuration}[0] = 9$.
+
+	</li>
+- Plan B (water ride 0 → land ride 1):
+
+		<li data-end="526" data-start="437">Start water ride 0 at time $\text{waterStartTime}[0] = 6$. Finish at $6 + \text{waterDuration}[0] = 9$.
+
+- Land ride 1 opens at $\text{landStartTime}[1] = 8$. Start at time `9`, finish at $9 + \text{landDuration}[1] = 10$.
+
+	</li>
+- Plan C (land ride 1 → water ride 0):
+
+		<li data-end="763" data-start="677">Start land ride 1 at time $\text{landStartTime}[1] = 8$. Finish at $8 + \text{landDuration}[1] = 9$.
+
+- Water ride 0 opened at $\text{waterStartTime}[0] = 6$. Start at time `9`, finish at $9 + \text{waterDuration}[0] = 12$.
+
+	</li>
+- Plan D (water ride 0 → land ride 0):
+
+		<li data-end="1007" data-start="918">Start water ride 0 at time $\text{waterStartTime}[0] = 6$. Finish at $6 + \text{waterDuration}[0] = 9$.
+
+- Land ride 0 opened at $\text{landStartTime}[0] = 2$. Start at time `9`, finish at $9 + \text{landDuration}[0] = 13$.
+
+	</li>
+
+Plan A gives the earliest finish time of 9.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** landStartTime = [5], landDuration = [3], waterStartTime = [1], waterDuration = [10]
+
+**Output:** 14
+
+**Explanation:**​​​​​​​
+
+- Plan A (water ride 0 → land ride 0):
+
+		<li data-end="1219" data-start="1129">Start water ride 0 at time $\text{waterStartTime}[0] = 1$. Finish at $1 + \text{waterDuration}[0] = 11$.
+
+- Land ride 0 opened at $\text{landStartTime}[0] = 5$. Start immediately at `11` and finish at $11 + \text{landDuration}[0] = 14$.
+
+	</li>
+- Plan B (land ride 0 → water ride 0):
+
+		<li data-end="1469" data-start="1383">Start land ride 0 at time $\text{landStartTime}[0] = 5$. Finish at $5 + \text{landDuration}[0] = 8$.
+
+- Water ride 0 opened at $\text{waterStartTime}[0] = 1$. Start immediately at `8` and finish at $8 + \text{waterDuration}[0] = 18$.
+
+	</li>
+
+Plan A provides the earliest finish time of 14.**​​​​​​​**
+
+</div>
+### Constraints
+
+- $1 \le n, m \le 100$
+
+- $\text{landStartTime.length} = \text{landDuration.length} = n$
+
+- $\text{waterStartTime.length} = \text{waterDuration.length} = m$
+
+- $1 \le \text{landStartTime}[i], \text{landDuration}[i], \text{waterStartTime}[j], \text{waterDuration}[j] \le 1000$

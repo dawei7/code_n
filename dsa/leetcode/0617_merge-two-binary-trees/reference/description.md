@@ -7,3 +7,24 @@ Imagine that when you put one of them to cover the other, some nodes of the two 
 Return *the merged tree*.
 
 **Note:** The merging process must start from the root nodes of both trees.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/merge.jpg)
+
+- **Input:** $root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]$
+- **Output:** `[3,4,5,5,4,null,7]`
+#### Example 2
+
+- **Input:** $root1 = [1], root2 = [1,2]$
+- **Output:** `[2,2]`
+### Constraints
+
+- The number of nodes in both trees is in the range `[0, 2000]`.
+
+- $-10^{4} \le \text{Node.val} \le 10^{4}$

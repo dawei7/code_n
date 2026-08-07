@@ -1,5 +1,5 @@
 id,name, completed
-65,Valid Number, true
+65,Valid Number
 157,Read N Characters Given Read4
 158,Read N Characters Given read4 II - Call Multiple Times
 159,Longest Substring with At Most Two Distinct Characters

@@ -4,9 +4,35 @@ Given an integer `k`, *return the minimum number of Fibonacci numbers whose sum 
 
 The Fibonacci numbers are defined as:
 
-<ul>
-	<li>`F_1 = 1`</li>
-	<li>`F_2 = 1`</li>
-	<li>`F_n = F_n-1 + F_n-2` for `n > 2.`</li>
-</ul>
+- $F_{1} = 1$
+
+- $F_{2} = 1$
+
+- $F_{n} = F_{n}-1 + F_{n}-2$ for `n > 2.`
+
 It is guaranteed that for the given constraints we can always find such Fibonacci numbers that sum up to `k`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $k = 7$
+- **Output:** `2`
+- **Explanation:** The Fibonacci numbers are: 1, 1, 2, 3, 5, 8, 13, ...
+For k = 7 we can use 2 + 5 = 7.
+#### Example 2
+
+- **Input:** $k = 10$
+- **Output:** `2`
+- **Explanation:** For k = 10 we can use 2 + 8 = 10.
+#### Example 3
+
+- **Input:** $k = 19$
+- **Output:** `3`
+- **Explanation:** For k = 19 we can use 1 + 5 + 13 = 19.
+### Constraints
+
+- $1 \le k \le 10^{9}$

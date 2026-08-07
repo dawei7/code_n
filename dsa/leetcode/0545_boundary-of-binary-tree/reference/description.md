@@ -1,15 +1,66 @@
 ## Description
 
-The **boundary** of a binary tree is formed in this order: the root, the left boundary, every leaf from left to
-right, and the right boundary in reverse order.
+The **boundary** of a binary tree is the concatenation of the **root**, the **left boundary**, the **leaves** ordered from left-to-right, and the **reverse order** of the **right boundary**.
 
-The left boundary begins with the root's left child. If the root has no left child, this part is empty. From a node
-already on that boundary, continue to its left child when one exists; otherwise continue to its right child. The
-leftmost leaf is excluded from the left boundary because it belongs to the leaf portion instead.
+The **left boundary** is the set of nodes defined by the following:
 
-The right boundary is the mirror image within the root's right subtree. It begins at the right child, prefers right
-children, falls back to left children, excludes its final leaf, and is empty when the root has no right child. Its
-nodes are placed into the answer from bottom to top.
+- The root node's left child is in the left boundary. If the root does not have a left child, then the left boundary is **empty**.
 
-A leaf has neither a left nor a right child. Under this problem's definition, the root itself is not treated as a
-leaf. Given the tree's `root`, return the values of all boundary nodes in the required concatenated order.
+- If a node is in the left boundary and has a left child, then the left child is in the left boundary.
+
+- If a node is in the left boundary, has **no** left child, but has a right child, then the right child is in the left boundary.
+
+- The leftmost leaf is **not** in the left boundary.
+
+The **right boundary** is similar to the **left boundary**, except it is the right side of the root's right subtree. Again, the leaf is **not** part of the **right boundary**, and the **right boundary** is empty if the root does not have a right child.
+
+The **leaves** are nodes that do not have any children. For this problem, the root is **not** a leaf.
+
+Given the `root` of a binary tree, return *the values of its **boundary***.
+### Function Contract
+
+**Inputs**
+
+- `root`: the root node of the binary tree. Each node provides an integer `val` and optional `left` and `right`
+  children.
+
+Legal source inputs contain at least one node. Let $n$ be the number of nodes and $h$ be the tree height. Nodes are
+classified by structure rather than by value, so equal values in different boundary nodes remain separate output
+entries.
+
+**Return value**
+
+Return a list of node values ordered as root, non-leaf left boundary from top to bottom, all leaves from left to
+right, and non-leaf right boundary from bottom to top. No physical node is included in more than one portion.
+
+### Examples
+#### Example 1
+
+![](images/boundary1.jpg)
+
+- **Input:** `root = [1,null,2,3,4]`
+- **Output:** `[1,3,4,2]`
+- **Explanation:**
+- The left boundary is empty because the root does not have a left child.
+- The right boundary follows the path starting from the root's right child 2 -> 4.
+4 is a leaf, so the right boundary is [2].
+- The leaves from left to right are [3,4].
+Concatenating everything results in [1] + [] + [3,4] + [2] = [1,3,4,2].
+#### Example 2
+
+![](images/boundary2.jpg)
+
+- **Input:** `root = [1,2,3,4,5,6,null,null,null,7,8,9,10]`
+- **Output:** `[1,2,4,7,8,9,10,6,3]`
+- **Explanation:**
+- The left boundary follows the path starting from the root's left child 2 -> 4.
+4 is a leaf, so the left boundary is [2].
+- The right boundary follows the path starting from the root's right child 3 -> 6 -> 10.
+10 is a leaf, so the right boundary is [3,6], and in reverse order is [6,3].
+- The leaves from left to right are [4,7,8,9,10].
+Concatenating everything results in [1] + [2] + [4,7,8,9,10] + [6,3] = [1,2,4,7,8,9,10,6,3].
+### Constraints
+
+- The number of nodes in the tree is in the range $[1, 10^{4}]$.
+
+- $-1000 \le \text{Node.val} \le 1000$

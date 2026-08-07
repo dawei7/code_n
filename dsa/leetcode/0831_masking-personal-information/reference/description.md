@@ -6,41 +6,87 @@ You are given a personal information string `s`, representing either an **email 
 
 An email address is:
 
-<ul>
-	<li>A **name** consisting of **at least** two uppercase and lowercase English letters, followed by</li>
-	<li>The `'@'` symbol, followed by</li>
-	<li>The **domain** consisting of uppercase and lowercase English letters with a dot `'.'` somewhere in the middle (not the first or last character).</li>
-</ul>
+- A **name** consisting of **at least** two uppercase and lowercase English letters, followed by
+
+- The `'@'` symbol, followed by
+
+- The **domain** consisting of uppercase and lowercase English letters with a dot `'.'` somewhere in the middle (not the first or last character).
 
 To mask an email:
 
-<ul>
-	<li>The uppercase letters in the **name** and **domain** must be converted to lowercase letters.</li>
-	<li>The middle letters of the **name** (i.e., all but the first and last letters) must be replaced by 5 asterisks `"*****"`.</li>
-</ul>
+- The uppercase letters in the **name** and **domain** must be converted to lowercase letters.
+
+- The middle letters of the **name** (i.e., all but the first and last letters) must be replaced by 5 asterisks `"*****"`.
 
 <u>**Phone number:**</u>
 
 A phone number is formatted as follows:
 
-<ul>
-	<li>The phone number contains 10-13 digits.</li>
-	<li>The last 10 digits make up the **local number**.</li>
-	<li>The remaining 0-3 digits, in the beginning, make up the **country code**.</li>
-	<li>**Separation characters** from the set `{'+', '-', '(', ')', ' '}` separate the above digits in some way.</li>
-</ul>
+- The phone number contains 10-13 digits.
+
+- The last 10 digits make up the **local number**.
+
+- The remaining 0-3 digits, in the beginning, make up the **country code**.
+
+- **Separation characters** from the set `{'+', '-', '(', ')', ' '}` separate the above digits in some way.
 
 To mask a phone number:
 
-<ul>
-	<li>Remove all **separation characters**.</li>
-	<li>The masked phone number should have the form:
-	<ul>
-		<li>`"***-***-XXXX"` if the country code has 0 digits.</li>
-		<li>`"+*-***-***-XXXX"` if the country code has 1 digit.</li>
-		<li>`"+**-***-***-XXXX"` if the country code has 2 digits.</li>
-		<li>`"+***-***-***-XXXX"` if the country code has 3 digits.</li>
-	</ul>
+- Remove all **separation characters**.
+
+- The masked phone number should have the form:
+
+		<li>`"***-***-XXXX"` if the country code has 0 digits.
+
+- `"+*-***-***-XXXX"` if the country code has 1 digit.
+
+- `"+**-***-***-XXXX"` if the country code has 2 digits.
+
+- `"+***-***-***-XXXX"` if the country code has 3 digits.
+
 	</li>
-	<li>`"XXXX"` is the last 4 digits of the **local number**.</li>
-</ul>
+- `"XXXX"` is the last 4 digits of the **local number**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `s = "LeetCode@LeetCode.com"`
+- **Output:** `"l*****e@leetcode.com"`
+- **Explanation:** s is an email address.
+The name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.
+#### Example 2
+
+- **Input:** `s = "AB@qq.com"`
+- **Output:** `"a*****b@qq.com"`
+- **Explanation:** s is an email address.
+The name and domain are converted to lowercase, and the middle of the name is replaced by 5 asterisks.
+Note that even though "ab" is 2 characters, it still must have 5 asterisks in the middle.
+#### Example 3
+
+- **Input:** `s = "1(234)567-890"`
+- **Output:** `"***-***-7890"`
+- **Explanation:** s is a phone number.
+There are 10 digits, so the local number is 10 digits and the country code is 0 digits.
+Thus, the resulting masked number is "***-***-7890".
+### Constraints
+
+- `s` is either a **valid** email or a phone number.
+
+- If `s` is an email:
+
+		<li>$8 \le \text{s.length} \le 40$
+
+- `s` consists of uppercase and lowercase English letters and exactly one `'@'` symbol and `'.'` symbol.
+
+	</li>
+- If `s` is a phone number:
+
+		<li>$10 \le \text{s.length} \le 20$
+
+- `s` consists of digits, spaces, and the symbols `'('`, `')'`, `'-'`, and `'+'`.
+
+	</li>

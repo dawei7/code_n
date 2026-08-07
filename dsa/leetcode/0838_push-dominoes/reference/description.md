@@ -10,10 +10,34 @@ For the purposes of this question, we will consider that a falling domino expend
 
 You are given a string `dominoes` representing the initial state where:
 
-<ul>
-	<li>`dominoes[i] = 'L'`, if the `i^th` domino has been pushed to the left,</li>
-	<li>`dominoes[i] = 'R'`, if the `i^th` domino has been pushed to the right, and</li>
-	<li>`dominoes[i] = '.'`, if the `i^th` domino has not been pushed.</li>
-</ul>
+- $\text{dominoes}[i] = 'L'$, if the $$i^{\text{th}}$$ domino has been pushed to the left,
+
+- $\text{dominoes}[i] = 'R'$, if the $$i^{\text{th}}$$ domino has been pushed to the right, and
+
+- $\text{dominoes}[i] = '.'$, if the $$i^{\text{th}}$$ domino has not been pushed.
 
 Return *a string representing the final state*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $dominoes = "\text{RR.L}"$
+- **Output:** `"RR.L"`
+- **Explanation:** The first domino expends no additional force on the second domino.
+#### Example 2
+
+![](images/domino.png)
+
+- **Input:** $dominoes = ".\text{L.R}...LR..L.."$
+- **Output:** `"LL.RR.LLRRLL.."`
+### Constraints
+
+- $n = \text{dominoes.length}$
+
+- $1 \le n \le 10^{5}$
+
+- $\text{dominoes}[i]$ is either `'L'`, `'R'`, or `'.'`.

@@ -1,5 +1,75 @@
 ## Description
 
-The `UserVisits` table records the dates on which users visited a website during 2020. A user's visit window is the number of days from one visit to that user's next visit. The final visit has no later table row, so its window ends on the fixed reporting date `2021-01-01`.
+Table: `UserVisits`
 
-Produce one row per user containing the greatest of these windows. Dates must be compared independently within each user: visits by other users do not end a window, and input row order does not imply chronological order. Result rows may appear in any order.
+```
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| user_id     | int  |
+| visit_date  | date |
++-------------+------+
+This table does not have a primary key, it might contain duplicate rows.
+This table contains logs of the dates that users visited a certain retailer.
+```
+
+Assume today's date is `'2021-1-1'`.
+
+Write a solution that will, for each $\text{user}_{id}$, find out the largest `window` of days between each visit and the one right after it (or today if you are considering the last visit).
+
+Return the result table ordered by $\text{user}_{id}$.
+
+The query result format is in the following example.
+### Function Contract
+
+**Database Schema**
+
+**`UserVisits`**
+
+| Column | Type | Meaning |
+|---|---|---|
+| `user_id` | int | Unique user identifier; composite primary key with `visit_date`. |
+| `visit_date` | date | Date of the visit during 2020. |
+
+- `(user_id, visit_date)` is unique.
+
+**Return value**
+
+Return a table with columns `user_id` and `biggest_window`. For each user, `biggest_window` is the maximum number of days between consecutive visits, using `2021-01-01` as the default next visit date for the last visit. Row order is unrestricted.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+UserVisits table:
++---------+------------+
+| user_id | visit_date |
++---------+------------+
+| 1       | 2020-11-28 |
+| 1       | 2020-10-20 |
+| 1       | 2020-12-3  |
+| 2       | 2020-10-5  |
+| 2       | 2020-12-9  |
+| 3       | 2020-11-11 |
++---------+------------+
+**Output:**
++---------+---------------+
+| user_id | biggest_window|
++---------+---------------+
+| 1       | 39            |
+| 2       | 65            |
+| 3       | 51            |
++---------+---------------+
+**Explanation:**
+For the first user, the windows in question are between dates:
+- 2020-10-20 and 2020-11-28 with a total of 39 days.
+- 2020-11-28 and 2020-12-3 with a total of 5 days.
+- 2020-12-3 and 2021-1-1 with a total of 29 days.
+Making the biggest window the one with 39 days.
+For the second user, the windows in question are between dates:
+- 2020-10-5 and 2020-12-9 with a total of 65 days.
+- 2020-12-9 and 2021-1-1 with a total of 23 days.
+Making the biggest window the one with 65 days.
+For the third user, the only window in question is between dates 2020-11-11 and 2021-1-1 with a total of 51 days.
+```

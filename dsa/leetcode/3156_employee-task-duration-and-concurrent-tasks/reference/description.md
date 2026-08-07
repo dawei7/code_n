@@ -1,7 +1,97 @@
 ## Description
 
-The `Tasks` table records work intervals. Each row identifies a task and employee together with the task's start and end timestamps. The pair (`task_id`, `employee_id`) uniquely identifies a row.
+Table: `Tasks`
 
-For every employee, report two measures. First, find the total amount of time covered by at least one of that employee's tasks, counting overlapping time only once, and round this duration down to a whole number of hours. Second, find the greatest number of the employee's tasks active concurrently at any point. Treat intervals as half-open: a task that starts exactly when another ends does not overlap the ending task.
+```
++---------------+----------+
+| Column Name   | Type     |
++---------------+----------+
+| task_id       | int      |
+| employee_id   | int      |
+| start_time    | datetime |
+| end_time      | datetime |
++---------------+----------+
+(task_id, employee_id) is the primary key for this table.
+Each row in this table contains the task identifier, the employee identifier, and the start and end times of each task.
+```
 
-Return one row per employee, ordered by `employee_id` in ascending order.
+Write a solution to find the **total duration** of tasks for **each** employee and the **maximum number of concurrent tasks** an employee handled at **any point in time**. The total duration should be **rounded down** to the nearest number of **full hours**.
+
+Return *the result table ordered by* $\text{employee}_{id}$** *ascending**** order*.
+
+The result format is in the following example.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+Tasks table:
+
+```
++---------+-------------+---------------------+---------------------+
+| task_id | employee_id | start_time          | end_time            |
++---------+-------------+---------------------+---------------------+
+| 1       | 1001        | 2023-05-01 08:00:00 | 2023-05-01 09:00:00 |
+| 2       | 1001        | 2023-05-01 08:30:00 | 2023-05-01 10:30:00 |
+| 3       | 1001        | 2023-05-01 11:00:00 | 2023-05-01 12:00:00 |
+| 7       | 1001        | 2023-05-01 13:00:00 | 2023-05-01 15:30:00 |
+| 4       | 1002        | 2023-05-01 09:00:00 | 2023-05-01 10:00:00 |
+| 5       | 1002        | 2023-05-01 09:30:00 | 2023-05-01 11:30:00 |
+| 6       | 1003        | 2023-05-01 14:00:00 | 2023-05-01 16:00:00 |
++---------+-------------+---------------------+---------------------+
+```
+
+**Output:**
+
+```
++-------------+------------------+----------------------+
+| employee_id | total_task_hours | max_concurrent_tasks |
++-------------+------------------+----------------------+
+| 1001        | 6                | 2                    |
+| 1002        | 2                | 2                    |
+| 1003        | 2                | 1                    |
++-------------+------------------+----------------------+
+```
+
+**Explanation:**
+
+- For employee ID 1001:
+
+		<li>Task 1 and Task 2 overlap from 08:30 to 09:00 (30 minutes).
+
+- Task 7 has a duration of 150 minutes (2 hours and 30 minutes).
+
+- Total task time: 60 (Task 1) + 120 (Task 2) + 60 (Task 3) + 150 (Task 7) - 30 (overlap) = 360 minutes = 6 hours.
+
+- Maximum concurrent tasks: 2 (during the overlap period).
+
+	</li>
+- For employee ID 1002:
+
+		<li>Task 4 and Task 5 overlap from 09:30 to 10:00 (30 minutes).
+
+- Total task time: 60 (Task 4) + 120 (Task 5) - 30 (overlap) = 150 minutes = 2 hours and 30 minutes.
+
+- Total task hours (rounded down): 2 hours.
+
+- Maximum concurrent tasks: 2 (during the overlap period).
+
+	</li>
+- For employee ID 1003:
+
+		<li>No overlapping tasks.
+
+- Total task time: 120 minutes = 2 hours.
+
+- Maximum concurrent tasks: 1.
+
+	</li>
+
+**Note:** Output table is ordered by employee_id in ascending order.
+
+</div>
+
+### Function Contract
+
+- Refer to method signature.

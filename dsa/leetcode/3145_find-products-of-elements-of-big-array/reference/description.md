@@ -37,8 +37,53 @@ The **powerful array** of a non-negative integer `x` is defined as the shortest 
 	</tbody>
 </table>
 
-The array `big_nums` is created by concatenating the **powerful arrays** for every positive integer `i` in ascending order: 1, 2, 3, and so on. Thus, `big_nums` begins as `[<u>1</u>, <u>2</u>, <u>1, 2</u>, <u>4</u>, <u>1, 4</u>, <u>2, 4</u>, <u>1, 2, 4</u>, <u>8</u>, ...]`.
+The array $\text{big}_{nums}$ is created by concatenating the **powerful arrays** for every positive integer `i` in ascending order: 1, 2, 3, and so on. Thus, $\text{big}_{nums}$ begins as `[<u>1</u>, <u>2</u>, <u>1, 2</u>, <u>4</u>, <u>1, 4</u>, <u>2, 4</u>, <u>1, 2, 4</u>, <u>8</u>, ...]`.
 
-You are given a 2D integer matrix `queries`, where for `queries[i] = [from_i, to_i, mod_i]` you should calculate `(big_nums[from_i] * big_nums[from_i + 1] * ... * big_nums[to_i]) % mod_i`<!-- notionvc: a71131cc-7b52-4786-9a4b-660d6d864f89 -->.
+You are given a 2D integer matrix `queries`, where for $\text{queries}[i] = [\text{from}_{i}, \text{to}_{i}, \text{mod}_{i}]$ you should calculate $(\text{big}_{nums}[\text{from}_{i}] * \text{big}_{nums}[\text{from}_{i} + 1] * ... * \text{big}_{nums}[\text{to}_{i}]) \% \text{mod}_{i}$<!-- notionvc: a71131cc-7b52-4786-9a4b-660d6d864f89 -->.
 
-Return an integer array `answer` such that `answer[i]` is the answer to the `i^th` query.
+Return an integer array `answer` such that $\text{answer}[i]$ is the answer to the $$i^{\text{th}}$$ query.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** queries = [[1,3,7]]
+
+**Output:** [4]
+
+**Explanation:**
+
+There is one query.
+
+$\text{big}_{nums}[1..3] = [2,1,2]$. The product of them is 4. The result is $4 \% 7 = 4.$
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** queries = [[2,5,3],[7,7,4]]
+
+**Output:** [2,2]
+
+**Explanation:**
+
+There are two queries.
+
+First query: $\text{big}_{nums}[2..5] = [1,2,4,1]$. The product of them is 8. The result is $8 \% 3 = 2$.
+
+Second query: $\text{big}_{nums}[7] = 2$. The result is $2 \% 4 = 2$.
+
+</div>
+### Constraints
+
+- $1 \le \text{queries.length} \le 500$
+
+- $\text{queries}[i].length = 3$
+
+- $0 \le \text{queries}[i][0] \le \text{queries}[i][1] \le 10^{15}$
+
+- $1 \le \text{queries}[i][2] \le 10^{5}$

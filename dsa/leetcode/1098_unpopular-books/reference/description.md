@@ -1,5 +1,87 @@
 ## Description
 
-Assume the current date is `2019-06-23`. Report the books that sold fewer than 10 copies during the last year, after excluding books that have been available for less than one month.
+Table: `Books`
 
-The age rule excludes only releases later than `2019-05-23`; a book available on that date has reached one full month and remains eligible. For each eligible book, add the `quantity` values of orders dispatched from `2018-06-23` through `2019-06-23`, including both endpoints. A book with no orders in that period has sold zero copies. Return qualifying books in any order.
+```
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| book_id        | int     |
+| name           | varchar |
+| available_from | date    |
++----------------+---------+
+book_id is the primary key (column with unique values) of this table.
+```
+
+Table: `Orders`
+
+```
++----------------+---------+
+| Column Name    | Type    |
++----------------+---------+
+| order_id       | int     |
+| book_id        | int     |
+| quantity       | int     |
+| dispatch_date  | date    |
++----------------+---------+
+order_id is the primary key (column with unique values) of this table.
+book_id is a foreign key (reference column) to the Books table.
+```
+
+Write a solution to report the **books** that have sold **less than **`10` copies in the last year, excluding books that have been available for less than one month from today. **Assume today is **`2019-06-23`.
+
+Return the result table in **any order**.
+
+The result format is in the following example.
+### Function Contract
+
+**Input tables**
+
+- `Books(book_id, name, available_from)`: the uniquely identified books and their availability dates.
+- `Orders(order_id, book_id, quantity, dispatch_date)`: uniquely identified orders whose `book_id` values reference `Books`.
+
+Let $B$ and $O$ be the numbers of rows in `Books` and `Orders`. A book is old enough when `available_from <= '2019-05-23'`. For such a book, its last-year sales are the sum of `quantity` over orders whose `dispatch_date` lies in the closed interval from `2018-06-23` to `2019-06-23`. Orders before or after that interval do not contribute.
+
+**Return value**
+
+- `book_id`: the identifier of a sufficiently old book whose last-year quantity total is strictly less than 10.
+- `name`: that book's name.
+
+Return each qualifying book once, in any order. A qualifying book without an order in the interval has total zero. If no book qualifies, the result is empty.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Books table:
++---------+--------------------+----------------+
+| book_id | name               | available_from |
++---------+--------------------+----------------+
+| 1       | "Kalila And Demna" | 2010-01-01     |
+| 2       | "28 Letters"       | 2012-05-12     |
+| 3       | "The Hobbit"       | 2019-06-10     |
+| 4       | "13 Reasons Why"   | 2019-06-01     |
+| 5       | "The Hunger Games" | 2008-09-21     |
++---------+--------------------+----------------+
+Orders table:
++----------+---------+----------+---------------+
+| order_id | book_id | quantity | dispatch_date |
++----------+---------+----------+---------------+
+| 1        | 1       | 2        | 2018-07-26    |
+| 2        | 1       | 1        | 2018-11-05    |
+| 3        | 3       | 8        | 2019-06-11    |
+| 4        | 4       | 6        | 2019-06-05    |
+| 5        | 4       | 5        | 2019-06-20    |
+| 6        | 5       | 9        | 2009-02-02    |
+| 7        | 5       | 8        | 2010-04-13    |
++----------+---------+----------+---------------+
+**Output:**
++-----------+--------------------+
+| book_id   | name               |
++-----------+--------------------+
+| 1         | "Kalila And Demna" |
+| 2         | "28 Letters"       |
+| 5         | "The Hunger Games" |
++-----------+--------------------+
+```

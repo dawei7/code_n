@@ -1,14 +1,45 @@
 ## Description
 
-You are given a zero-indexed binary matrix `grid`. One operation chooses any
-cell currently containing `1` and changes it to `0`; zero cells cannot be
-changed into ones.
+You are given a **0-indexed** binary matrix `grid`. In one operation, you can flip any `1` in `grid` to be `0`.
 
-The matrix is well-isolated when no two remaining `1` cells share a horizontal
-or vertical edge. Diagonal contact does not count as adjacency. Choose which
-ones to remove so that every originally adjacent pair has at least one endpoint
-flipped, while using as few operations as possible.
+A binary matrix is **well-isolated** if there is no `1` in the matrix that is **4-directionally connected** (i.e., horizontal and vertical) to another `1`.
 
-Return that minimum operation count. The positions of the flips themselves are
-not required, and disconnected groups of ones are all covered by the same
-global minimum.
+Return *the minimum number of operations to make *`grid`* **well-isolated***.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+![](images/image-20211223181501-1.png)
+
+- **Input:** `grid = [[1,1,0],[0,1,1],[1,1,1]]`
+- **Output:** `3`
+- **Explanation:** Use 3 operations to change grid[0][1], grid[1][2], and grid[2][1] to 0.
+After, no more 1's are 4-directionally connected and grid is well-isolated.
+#### Example 2
+
+![](images/image-20211223181518-2.png)
+
+- **Input:** `grid = [[0,0,0],[0,0,0],[0,0,0]]`
+- **Output:** `0`
+- **Explanation:** There are no 1's in grid and it is well-isolated.
+No operations were done so return 0.
+#### Example 3
+
+![](images/image-20211223181817-3.png)
+
+- **Input:** `grid = [[0,1],[1,0]]`
+- **Output:** `0`
+- **Explanation:** None of the 1's are 4-directionally connected and grid is well-isolated.
+No operations were done so return 0.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 300$
+
+- $\text{grid}[i][j]$ is either `0` or `1`.

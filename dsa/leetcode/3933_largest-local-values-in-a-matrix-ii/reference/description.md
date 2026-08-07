@@ -4,35 +4,96 @@ You are given an `n x m` integer matrix `matrix` containing non-negative integer
 
 A **non-zero **cell `(row, col)` checks the cells near it as follows:
 
-<ul>
-	<li>Let `x = matrix[row][col]`.</li>
-	<li>Consider every cell within `x` rows and `x` columns of `(row, col)`.</li>
-	<li>Ignore cells that are outside the matrix.</li>
-	<li>Ignore the cells where both the row distance and column distance are exactly `x`.</li>
-</ul>
+- Let $x = \text{matrix}[row][col]$.
+
+- Consider every cell within `x` rows and `x` columns of `(row, col)`.
+
+- Ignore cells that are outside the matrix.
+
+- Ignore the cells where both the row distance and column distance are exactly `x`.
 
 The cell `(row, col)` is a **local maximum** if it is **non-zero** and no considered cell has a value **greater than** `x`.
 
 Return an integer denoting the number of **local maximums** in `matrix`.
 
- 
-
-<strong class="example">​​​​​​​Example 1:</strong>
+**​​​​​​​Example 1:**
 
 <div class="example-block">
-**Input:** <span class="example-io">matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]</span>
+**Input:** matrix = [[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,2,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0]]
 
-**Output:** <span class="example-io">1</span>
+**Output:** 1
 
-<img alt="" src="https://assets.leetcode.com/uploads/2026/05/13/chatgpt-image-may-14-2026-01_53_19-am.png" style="width: 300px; height: 300px;" />​​​​​​​​​​​​​​​​​​​​​
+![](images/chatgpt-image-may-14-2026-01_53_19-am.png)
+
+​​​​​​​​​​​​​​​​​​​​​
 
 **Explanation:**
 
-<ul>
-	<li>For the non-zero cell `(3, 3)`, `x = matrix[3][3] = 2`.</li>
-	<li>The highlighted cells are the considered cells within `x` rows and `x` columns of `(3, 3)`.</li>
-	<li>The four cells with both row and column distances equal to `x = 2` are ignored.</li>
-	<li>No considered cell has a value greater than 2, so `(3, 3)` is a local maximum.</li>
-	<li>There are no other non-zero cells, so the answer is 1.</li>
-</ul>
+- For the non-zero cell `(3, 3)`, $x = \text{matrix}[3][3] = 2$.
+
+- The highlighted cells are the considered cells within `x` rows and `x` columns of `(3, 3)`.
+
+- The four cells with both row and column distances equal to $x = 2$ are ignored.
+
+- No considered cell has a value greater than 2, so `(3, 3)` is a local maximum.
+
+- There are no other non-zero cells, so the answer is 1.
+
 </div>
+#### Example 2
+
+<div class="example-block">
+**Input:** matrix = [[1,2],[3,4]]
+
+**Output:** 1
+
+**Explanation:**
+
+Only the cell with value 4 is a local maximum. Every other non-zero cell considers a cell with a greater value.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** matrix = [[1,0,1],[0,1,0],[1,0,1]]
+
+**Output:** 5
+
+**Explanation:**
+
+- For a cell with value 1, the considered cells are the cell itself and its 4-directionally adjacent cells that are inside the matrix.
+
+- Each of the five cells with value 1 only considers cells with values 0 or 1, so all five of them are local maximums.
+
+</div>
+#### Example 4
+
+<div class="example-block">
+**Input:** matrix = [[1,1],[1,1]]
+
+**Output:** 4
+
+**Explanation:**
+
+All cells have the same value. Therefore, no cell considers another cell with a greater value, so all 4 cells are local maximums.
+
+</div>
+### Function Contract
+
+**Input**
+
+- `matrix`: A nonempty rectangular matrix of nonnegative integers.
+
+Let $n$ be the number of rows, $m$ the number of columns, $A=nm$ the number of cells, and $V=201$ the number of possible cell values. Row and column indices are zero-based when coordinates are discussed. Neighborhood bounds are clipped to the matrix, and the four exact-distance corner positions are excluded only when they are in bounds.
+
+**Return value**
+
+Return the number of nonzero cells for which every considered neighborhood value is at most the cell's own value.
+
+### Constraints
+
+- $1 \le n = \text{matrix.length} \le 200$
+
+- $1 \le m = \text{matrix}[i].length \le 200$
+
+- $0 \le \text{matrix}[i][j] \le 200$

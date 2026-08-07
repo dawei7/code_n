@@ -1,6 +1,6 @@
 ## Description
 
-You are given an integer `k` and an integer `x`. The price of a number `num` is calculated by the count of <span data-keyword="set-bit">set bits</span> at positions `x`, `2x`, `3x`, etc., in its binary representation, starting from the least significant bit. The following table contains examples of how price is calculated.
+You are given an integer `k` and an integer `x`. The price of a number `num` is calculated by the count of set bits at positions `x`, `2x`, `3x`, etc., in its binary representation, starting from the least significant bit. The following table contains examples of how price is calculated.
 
 <table border="1">
 	<tbody>
@@ -46,3 +46,179 @@ You are given an integer `k` and an integer `x`. The price of a number `num` is 
 The **accumulated price** of `num` is the **total** price of numbers from `1` to `num`. `num` is considered **cheap** if its accumulated price is less than or equal to `k`.
 
 Return the **greatest** cheap number.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** k = 9, x = 1
+
+**Output:** 6
+
+**Explanation:**
+
+As shown in the table below, `6` is the greatest cheap number.
+
+<table border="1">
+	<tbody>
+		<tr>
+			<th>x</th>
+			<th>num</th>
+			<th>Binary Representation</th>
+			<th>Price</th>
+			<th>Accumulated Price</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>1</td>
+			<td><u>0</u><u>0</u>**<u>1</u>**</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>2</td>
+			<td><u>0</u>**<u>1</u>**<u>0</u></td>
+			<td>1</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>3</td>
+			<td><u>0</u>**<u>1</u>****<u>1</u>**</td>
+			<td>2</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>4</td>
+			<td>**<u>1</u>**<u>0</u><u>0</u></td>
+			<td>1</td>
+			<td>5</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>5</td>
+			<td>**<u>1</u>**<u>0</u>**<u>1</u>**</td>
+			<td>2</td>
+			<td>7</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>6</td>
+			<td>**<u>1</u>****<u>1</u>**<u>0</u></td>
+			<td>2</td>
+			<td>9</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>7</td>
+			<td>**<u>1</u>****<u>1</u>****<u>1</u>**</td>
+			<td>3</td>
+			<td>12</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** k = 7, x = 2
+
+**Output:** 9
+
+**Explanation:**
+
+As shown in the table below, `9` is the greatest cheap number.
+
+<table border="1">
+	<tbody>
+		<tr>
+			<th>x</th>
+			<th>num</th>
+			<th>Binary Representation</th>
+			<th>Price</th>
+			<th>Accumulated Price</th>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>1</td>
+			<td><u>0</u>0<u>0</u>1</td>
+			<td>0</td>
+			<td>0</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>2</td>
+			<td><u>0</u>0**<u>1</u>**0</td>
+			<td>1</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>3</td>
+			<td><u>0</u>0**<u>1</u>**1</td>
+			<td>1</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>4</td>
+			<td><u>0</u>1<u>0</u>0</td>
+			<td>0</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>5</td>
+			<td><u>0</u>1<u>0</u>1</td>
+			<td>0</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>6</td>
+			<td><u>0</u>1**<u>1</u>**0</td>
+			<td>1</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>7</td>
+			<td><u>0</u>1**<u>1</u>**1</td>
+			<td>1</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>8</td>
+			<td>**<u>1</u>**0<u>0</u>0</td>
+			<td>1</td>
+			<td>5</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>9</td>
+			<td>**<u>1</u>**0<u>0</u>1</td>
+			<td>1</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>10</td>
+			<td>**<u>1</u>**0**<u>1</u>**0</td>
+			<td>2</td>
+			<td>8</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+### Constraints
+
+- $1 \le k \le 10^{15}$
+
+- $1 \le x \le 8$

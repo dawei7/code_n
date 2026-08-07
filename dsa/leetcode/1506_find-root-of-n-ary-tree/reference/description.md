@@ -1,5 +1,62 @@
 ## Description
 
-An N-ary tree consists of nodes that each store a unique integer value and a list of zero or more children. Instead of receiving a pointer to the root, you are given an array containing every node object in the tree. The nodes may appear in any order, but their child references still describe the original directed parent-to-child edges.
+You are given all the nodes of an **<a href="https://leetcode.com/explore/learn/card/n-ary-tree/">N-ary tree</a>** as an array of `Node` objects, where each node has a **unique value**.
 
-Find and return the one node that is the root. The input is guaranteed to describe one valid N-ary tree, so exactly one node has no parent. LeetCode's displayed level-order serialization is only a way to construct tests; the array supplied to the function is randomly ordered.
+Return *the **root** of the N-ary tree*.
+
+**Custom testing:**
+
+An N-ary tree can be serialized as represented in its level order traversal where each group of children is separated by the `null` value (see examples).
+
+![](images/sample_4_964.png)
+
+For example, the above tree is serialized as `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`.
+
+The testing will be done in the following way:
+
+- The **input data** should be provided as a serialization of the tree.
+
+- The driver code will construct the tree from the serialized input data and put each `Node` object into an array **in an arbitrary order**.
+
+- The driver code will pass the array to `findRoot`, and your function should find and return the root `Node` object in the array.
+
+- The driver code will take the returned `Node` object and serialize it. If the serialized value and the input data are the **same**, the test **passes**.
+### Function Contract
+
+**Inputs**
+
+- `tree`: A list of all $N$ N-ary `Node` objects in arbitrary order. Each node exposes a unique integer `val` and a `children` list containing references to its children.
+
+Let $N$ be the total number of nodes in the tree.
+
+**Return value**
+
+Return the root `Node` object. The root is the unique node in `tree` that does not appear in any other node's `children` list.
+
+### Examples
+#### Example 1
+
+![](images/narytreeexample.png)
+
+- **Input:** $tree = [1,null,3,2,4,null,5,6]$
+- **Output:** `[1,null,3,2,4,null,5,6]`
+- **Explanation:** The tree from the input data is shown above.
+The driver code creates the tree and gives findRoot the Node objects in an arbitrary order.
+For example, the passed array could be [Node(5),Node(4),Node(3),Node(6),Node(2),Node(1)] or [Node(2),Node(6),Node(1),Node(3),Node(5),Node(4)].
+The findRoot function should return the root Node(1), and the driver code will serialize it and compare with the input data.
+The input data and serialized Node(1) are the same, so the test passes.
+#### Example 2
+
+![](images/sample_4_964.png)
+
+- **Input:** $tree = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]$
+- **Output:** `[1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]`
+### Constraints
+
+- The total number of nodes is between $[1, 5 * 10^{4}]$.
+
+- Each node has a **unique** value.
+
+**Follow up:**
+
+- Could you solve this problem in constant space complexity with a linear time algorithm?

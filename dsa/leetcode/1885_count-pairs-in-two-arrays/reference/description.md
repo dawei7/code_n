@@ -1,12 +1,33 @@
 ## Description
 
-Two integer arrays, `nums1` and `nums2`, have the same length $N$. Choose two distinct positions in increasing index order, $(i,j)$ with $i<j$, and compare the sum of the two values selected from `nums1` with the sum at those same positions in `nums2`.
+Given two integer arrays `nums1` and `nums2` of length `n`, count the pairs of indices `(i, j)` such that `i < j` and $\text{nums1}[i] + \text{nums1}[j] > \text{nums2}[i] + \text{nums2}[j]$.
 
-Count how many index pairs satisfy the strict inequality
+Return *the **number of pairs** satisfying the condition.*
+### Function Contract
 
-$$
-\texttt{nums1[i]}+\texttt{nums1[j]} >
-\texttt{nums2[i]}+\texttt{nums2[j]}.
-$$
+- Refer to method signature.
 
-Pairs whose two sums are equal do not count. Return the total over all possible index pairs.
+### Examples
+#### Example 1
+
+- **Input:** $nums1 = [2,1,2,1], nums2 = [1,2,1,2]$
+- **Output:** `1`
+**Explanation**: The pairs satisfying the condition are:
+- (0, 2) where 2 + 2 > 1 + 1.
+#### Example 2
+
+- **Input:** $nums1 = [1,10,6,2], nums2 = [1,4,1,5]$
+- **Output:** `5`
+**Explanation**: The pairs satisfying the condition are:
+- (0, 1) where 1 + 10 > 1 + 4.
+- (0, 2) where 1 + 6 > 1 + 1.
+- (1, 2) where 10 + 6 > 4 + 1.
+- (1, 3) where 10 + 2 > 4 + 5.
+- (2, 3) where 6 + 2 > 1 + 5.
+### Constraints
+
+- $n = \text{nums1.length} = \text{nums2.length}$
+
+- $1 \le n \le 10^{5}$
+
+- $1 \le \text{nums1}[i], \text{nums2}[i] \le 10^{5}$

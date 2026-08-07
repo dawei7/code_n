@@ -1,5 +1,65 @@
 ## Description
 
-The `Cinema` table records seats by `seat_id` and indicates whether each seat is available. A value of `1` in `free` means the seat is available, while `0` means it is occupied.
+Table: `Cinema`
 
-Find every longest sequence of available seats whose IDs are consecutive integers. For each maximum-length sequence, report its first seat ID, last seat ID, and number of seats. If several sequences share the maximum length, include all of them. Order the result by `first_seat_id` in ascending order.
+```
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| seat_id     | int  |
+| free        | bool |
++-------------+------+
+seat_id is an auto-increment column for this table.
+Each row of this table indicates whether the i^th seat is free or not. 1 means free while 0 means occupied.
+```
+
+Write a solution to find the **length** of **longest consecutive sequence** of **available** seats in the cinema.
+
+Note:
+
+- There will always be **at most** **one** longest consecutive sequence.
+
+- If there are **multiple** consecutive sequences with the **same length**, include all of them in the output.
+
+Return *the result table **ordered** by* `first_seat_id` ***in ascending order***.
+
+The result format is in the following example.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+Cinema table:
+
+```
++---------+------+
+| seat_id | free |
++---------+------+
+| 1       | 1    |
+| 2       | 0    |
+| 3       | 1    |
+| 4       | 1    |
+| 5       | 1    |
++---------+------+
+```
+
+**Output:**
+
+```
++-----------------+----------------+-----------------------+
+| first_seat_id   | last_seat_id   | consecutive_seats_len |
++-----------------+----------------+-----------------------+
+| 3               | 5              | 3                     |
++-----------------+----------------+-----------------------+
+```
+
+**Explanation:**
+
+- Longest consecutive sequence of available seats starts from seat 3 and ends at seat 5 with a length of 3.
+
+Output table is ordered by first_seat_id in ascending order.</div>
+
+### Function Contract
+
+- Refer to method signature.

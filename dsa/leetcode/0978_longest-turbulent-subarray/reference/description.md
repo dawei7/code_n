@@ -6,18 +6,41 @@ A subarray is **turbulent** if the comparison sign flips between each adjacent p
 
 More formally, a subarray `[arr[i], arr[i + 1], ..., arr[j]]` of `arr` is said to be turbulent if and only if:
 
-<ul>
-	<li>For `i <= k < j`:
+- For $i \le k < j$:
 
-	<ul>
-		<li>`arr[k] > arr[k + 1]` when `k` is odd, and</li>
-		<li>`arr[k] < arr[k + 1]` when `k` is even.</li>
-	</ul>
+		<li>$\text{arr}[k] > arr[k + 1]$ when `k` is odd, and
+
+- $\text{arr}[k] < arr[k + 1]$ when `k` is even.
+
 	</li>
-	<li>Or, for `i <= k < j`:
-	<ul>
-		<li>`arr[k] > arr[k + 1]` when `k` is even, and</li>
-		<li>`arr[k] < arr[k + 1]` when `k` is odd.</li>
-	</ul>
+- Or, for $i \le k < j$:
+
+		<li>$\text{arr}[k] > arr[k + 1]$ when `k` is even, and
+
+- $\text{arr}[k] < arr[k + 1]$ when `k` is odd.
+
 	</li>
-</ul>
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** `arr = [9,4,2,10,7,8,8,1,9]`
+- **Output:** `5`
+- **Explanation:** arr[1] > arr[2] < arr[3] > arr[4] < arr[5]
+#### Example 2
+
+- **Input:** `arr = [4,8,12,16]`
+- **Output:** `2`
+#### Example 3
+
+- **Input:** `arr = [100]`
+- **Output:** `1`
+### Constraints
+
+- $1 \le \text{arr.length} \le 4 * 10^{4}$
+
+- $0 \le \text{arr}[i] \le 10^{9}$

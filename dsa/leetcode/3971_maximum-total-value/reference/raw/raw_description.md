@@ -1,0 +1,82 @@
+## Description
+
+You are given two integer arrays `value` and `decay`, and an integer `m`.
+
+	- `value[i]` represents the initial value at index `i`.
+
+	- `decay[i]` represents how much the value decreases after each selection of index `i`.
+
+You may select any index **multiple** times. The total number of selections across all indices must not exceed `m`.
+
+If you select index `i` for the `t^th` time, where `t` is 1-indexed, the value gained is `value[i] - decay[i] * (t - 1)`.
+
+Return the **maximum** total value you can obtain. Since the answer may be large, return it **modulo** `10^9 + 7`.
+
+**Example 1:**
+
+<div class="example-block">
+**Input:** <span class="example-io">value = [6,5,4], decay = [2,1,1], m = 4</span>
+
+**Output:** <span class="example-io">19</span>
+
+**Explanation:**
+
+One optimal sequence of selections is as follows:
+
+	- By selecting index 0, the value gained is 6.
+
+	- By selecting index 1, the value gained is 5.
+
+	- By selecting index 2, the value gained is 4.
+
+	- By selecting index 0 again, the value gained is `6 - 2 = 4`.
+
+The total value is `6 + 5 + 4 + 4 = 19`. No other sequence of at most 4 selections gives a higher total value.
+
+</div>
+
+**Example 2:**
+
+<div class="example-block">
+**Input:** <span class="example-io">value = [7,2,2], decay = [3,2,1], m = 2</span>
+
+**Output:** <span class="example-io">11</span>
+
+**Explanation:**
+
+One optimal sequence of selections is as follows:
+
+	- By selecting index 0, the value gained is 7.
+
+	- By selecting index 0 again, the value gained is `7 - 3 = 4`.
+
+The total value is `7 + 4 = 11`.
+
+</div>
+
+**Example 3:**
+
+<div class="example-block">
+**Input:** <span class="example-io">value = [4,3], decay = [5,4], m = 5</span>
+
+**Output:** <span class="example-io">7</span>
+
+**Explanation:**
+
+One optimal sequence of selections is as follows:
+
+	- By selecting index 0, the value gained is 4.
+
+	- By selecting index 1, the value gained is 3.
+
+The total value is `4 + 3 = 7`.
+
+</div>
+
+**Constraints:**
+
+	- `1 <= value.length == decay.length <= 10^5`
+
+	- `1 <= value[i], decay[i] <= 10^9​​​​​​​`
+
+	- `1 <= m <= 10^9`

@@ -1,12 +1,32 @@
 ## Description
 
-You are given two numeric strings `num1` and `num2` and two integers `max_sum` and `min_sum`. We denote an integer `x` to be *good* if:
+You are given two numeric strings `num1` and `num2` and two integers $\text{max}_{sum}$ and $\text{min}_{sum}$. We denote an integer `x` to be *good* if:
 
-<ul>
-	<li>`num1 <= x <= num2`</li>
-	<li>`min_sum <= digit_sum(x) <= max_sum`.</li>
-</ul>
+- $num1 \le x \le num2$
 
-Return *the number of good integers*. Since the answer may be large, return it modulo `10^9 + 7`.
+- $\text{min}_{sum} \le \text{digit}_{sum}(x) \le \text{max}_{sum}$.
 
-Note that `digit_sum(x)` denotes the sum of the digits of `x`.
+Return *the number of good integers*. Since the answer may be large, return it modulo $10^{9} + 7$.
+
+Note that $\text{digit}_{sum}(x)$ denotes the sum of the digits of `x`.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $num1 = "1", num2 = "12", \text{min}_{sum} = 1, \text{max}_{sum} = 8$
+- **Output:** `11`
+- **Explanation:** There are 11 integers whose sum of digits lies between 1 and 8 are 1,2,3,4,5,6,7,8,10,11, and 12. Thus, we return 11.
+#### Example 2
+
+- **Input:** $num1 = "1", num2 = "5", \text{min}_{sum} = 1, \text{max}_{sum} = 5$
+- **Output:** `5`
+- **Explanation:** The 5 integers whose sum of digits lies between 1 and 5 are 1,2,3,4, and 5. Thus, we return 5.
+### Constraints
+
+- $1 \le num1 \le num2 \le 10^{22}$
+
+- $1 \le \text{min}_{sum} \le \text{max}_{sum} \le 400$

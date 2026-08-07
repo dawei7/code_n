@@ -1,11 +1,54 @@
 ## Description
 
-The `Rides` table records rides by unique `ride_id`. Each row names the
-`driver_id` of the person who drove that ride and the `passenger_id` of the
-person who rode as its passenger. Within one row, the driver and passenger are
-different people.
+Table: `Rides`
 
-Report every distinct person who appears as a driver in at least one row. For
-each such driver, count how many rows list that same person as the passenger.
-A driver who never appears in the passenger column must still be included with
-a count of zero. The result rows may be returned in any order.
+```
++--------------+------+
+| Column Name  | Type |
++--------------+------+
+| ride_id      | int  |
+| driver_id    | int  |
+| passenger_id | int  |
++--------------+------+
+ride_id is the column with unique values for this table.
+Each row of this table contains the ID of the driver and the ID of the passenger that rode in ride_id.
+Note that driver_id != passenger_id.
+```
+
+Write a solution to report the ID of each driver and the number of times they were a passenger.
+
+Return the result table in **any order**.
+
+The result format is in the following example.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Rides table:
++---------+-----------+--------------+
+| ride_id | driver_id | passenger_id |
++---------+-----------+--------------+
+| 1       | 7         | 1            |
+| 2       | 7         | 2            |
+| 3       | 11        | 1            |
+| 4       | 11        | 7            |
+| 5       | 11        | 7            |
+| 6       | 11        | 3            |
++---------+-----------+--------------+
+**Output:**
++-----------+-----+
+| driver_id | cnt |
++-----------+-----+
+| 7         | 2   |
+| 11        | 0   |
++-----------+-----+
+**Explanation:**
+There are two drivers in all the given rides: 7 and 11.
+The driver with ID = 7 was a passenger two times.
+The driver with ID = 11 was never a passenger.
+```

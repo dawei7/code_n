@@ -2,9 +2,37 @@
 
 Given an integer `n`, return *a string array *`answer`* (**1-indexed**) where*:
 
-<ul>
-	<li>`answer[i] == "FizzBuzz"` if `i` is divisible by `3` and `5`.</li>
-	<li>`answer[i] == "Fizz"` if `i` is divisible by `3`.</li>
-	<li>`answer[i] == "Buzz"` if `i` is divisible by `5`.</li>
-	<li>`answer[i] == i` (as a string) if none of the above conditions are true.</li>
-</ul>
+- $\text{answer}[i] = "FizzBuzz"$ if `i` is divisible by `3` and `5`.
+
+- $\text{answer}[i] = "Fizz"$ if `i` is divisible by `3`.
+
+- $\text{answer}[i] = "Buzz"$ if `i` is divisible by `5`.
+
+- $\text{answer}[i] = i$ (as a string) if none of the above conditions are true.
+### Function Contract
+
+**Inputs**
+
+- `n`: The positive inclusive upper bound of the integer sequence to classify.
+
+**Return value**
+
+Return the `n` required strings in increasing integer order, so the first list element represents $1$ and the last
+represents `n`.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 3$
+- **Output:** `["1","2","Fizz"]`
+#### Example 2
+
+- **Input:** $n = 5$
+- **Output:** `["1","2","Fizz","4","Buzz"]`
+#### Example 3
+
+- **Input:** $n = 15$
+- **Output:** `["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]`
+### Constraints
+
+- $1 \le n \le 10^{4}$

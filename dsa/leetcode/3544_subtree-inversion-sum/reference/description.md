@@ -1,36 +1,91 @@
 ## Description
 
-<p data-end="551" data-start="302">You are given an undirected tree rooted at node `0`, with `n` nodes numbered from 0 to `n - 1`. The tree is represented by a 2D integer array `edges` of length `n - 1`, where `edges[i] = [u_i, v_i]` indicates an edge between nodes `u_i` and `v_i`.
+You are given an undirected tree rooted at node `0`, with `n` nodes numbered from 0 to $n - 1$. The tree is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates an edge between nodes $u_{i}$ and $v_{i}$.
 
-<p data-end="670" data-start="553">You are also given an integer array `nums` of length `n`, where `nums[i]` represents the value at node `i`, and an integer `k`.
+You are also given an integer array `nums` of length `n`, where $\text{nums}[i]$ represents the value at node `i`, and an integer `k`.
 
-<p data-end="763" data-start="672">You may perform **inversion operations** on a subset of nodes subject to the following rules:
+You may perform **inversion operations** on a subset of nodes subject to the following rules:
 
-<ul data-end="1247" data-start="765">
-	<li data-end="890" data-start="765">
-	<p data-end="799" data-start="767"><strong data-end="799" data-start="767">Subtree Inversion Operation:</strong>
+- **Subtree Inversion Operation:**
 
-	<ul data-end="890" data-start="802">
 		<li data-end="887" data-start="802">
-		<p data-end="887" data-start="804">When you invert a node, every value in the <span data-keyword="subtree-of-node">subtree</span> rooted at that node is multiplied by -1.
+		When you invert a node, every value in the subtree rooted at that node is multiplied by -1.
 
-		</li>
-	</ul>
 	</li>
-	<li data-end="1247" data-start="891">
-	<p data-end="931" data-start="893"><strong data-end="931" data-start="893">Distance Constraint on Inversions:</strong>
+- **Distance Constraint on Inversions:**
 
-	<ul data-end="1247" data-start="934">
 		<li data-end="1020" data-start="934">
-		<p data-end="1020" data-start="936">You may only invert a node if it is "sufficiently far" from any other inverted node.
+		You may only invert a node if it is "sufficiently far" from any other inverted node.
 
-		</li>
-		<li data-end="1247" data-start="1023">
-		<p data-end="1247" data-start="1025">Specifically, if you invert two nodes `a` and `b` such that one is an ancestor of the other (i.e., if `LCA(a, b) = a` or `LCA(a, b) = b`), then the distance (the number of edges on the unique path between them) must be at least `k`.
+- Specifically, if you invert two nodes `a` and `b` such that one is an ancestor of the other (i.e., if $LCA(a, b) = a$ or $LCA(a, b) = b$), then the distance (the number of edges on the unique path between them) must be at least `k`.
 
-		</li>
-	</ul>
 	</li>
-</ul>
 
-<p data-end="1358" data-start="1249">Return the **maximum** possible **sum** of the tree's node values after applying **inversion operations**.
+Return the **maximum** possible **sum** of the tree's node values after applying **inversion operations**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** edges = [[0,1],[0,2],[1,3],[1,4],[2,5],[2,6]], nums = [4,-8,-6,3,7,-2,5], k = 2
+
+**Output:** 27
+
+**Explanation:**
+
+![](images/tree1-3.jpg)
+
+- Apply inversion operations at nodes 0, 3, 4 and 6.
+
+- The final `nums` array is `[-4, 8, 6, 3, 7, 2, 5]`, and the total sum is 27.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** edges = [[0,1],[1,2],[2,3],[3,4]], nums = [-1,3,-2,4,-5], k = 2
+
+**Output:** 9
+
+**Explanation:**
+
+![](images/tree2-1.jpg)
+
+- Apply the inversion operation at node 4.
+
+- The final `nums` array becomes `[-1, 3, -2, 4, 5]`, and the total sum is 9.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** edges = [[0,1],[0,2]], nums = [0,-1,-2], k = 3
+
+**Output:** 3
+
+**Explanation:**
+
+Apply inversion operations at nodes 1 and 2.
+
+</div>
+### Constraints
+
+- $2 \le n \le 5 * 10^{4}$
+
+- $\text{edges.length} = n - 1$
+
+- $\text{edges}[i] = [u_{i}, v_{i}]$
+
+- $0 \le u_{i}, v_{i} < n$
+
+- $\text{nums.length} = n$
+
+- $-5 * 10^{4} \le \text{nums}[i] \le 5 * 10^{4}$
+
+- $1 \le k \le 50$
+
+- The input is generated such that `edges` represents a valid tree.

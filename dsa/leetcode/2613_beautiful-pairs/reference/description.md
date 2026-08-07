@@ -1,13 +1,39 @@
 ## Description
 
-Two 0-indexed integer arrays, `nums1` and `nums2`, have the same length. Treat every index $i$ as the point whose coordinates are `(nums1[i], nums2[i])`.
+You are given two **0-indexed** integer arrays `nums1` and `nums2` of the same length. A pair of indices `(i,j)` is called **beautiful** if$|\text{nums1}[i] - \text{nums1}[j]| + |\text{nums2}[i] - \text{nums2}[j]|$ is the smallest amongst all possible indices pairs where `i < j`.
 
-For a pair of indices $(i,j)$ with $i<j$, its Manhattan distance is
+Return *the beautiful pair. In the case that there are multiple beautiful pairs, return the lexicographically smallest pair.*
 
-$$
-\lvert \texttt{nums1}[i]-\texttt{nums1}[j] \rvert
-+
-\lvert \texttt{nums2}[i]-\texttt{nums2}[j] \rvert.
-$$
+Note that
 
-A pair is beautiful when this value is the minimum among all possible index pairs. Return a beautiful pair. If several pairs attain the same minimum distance, choose the lexicographically smallest one: prefer the smaller first index, and when those are equal, prefer the smaller second index.
+- `|x|` denotes the absolute value of `x`.
+
+- A pair of indices $(i_{1}, j_{1})$ is lexicographically smaller than $(i_{2}, j_{2})$ if $i_{1} < i_{2}$ or $i_{1} = i_{2}$ and $j_{1} < j_{2}$.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+```
+**Input:** nums1 = [1,2,3,2,4], nums2 = [2,3,1,2,3]
+**Output:** [0,3]
+**Explanation:** Consider index 0 and index 3. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
+```
+#### Example 2
+
+```
+**Input:** nums1 = [1,2,4,3,2,5], nums2 = [1,4,2,3,5,1]
+**Output:** [1,4]
+**Explanation:** Consider index 1 and index 4. The value of |nums1[i]-nums1[j]| + |nums2[i]-nums2[j]| is 1, which is the smallest value we can achieve.
+```
+### Constraints
+
+- $2 \le \text{nums1.length}, \text{nums2.length} \le 10^{5}$
+
+- $\text{nums1.length} = \text{nums2.length}$
+
+- $0 \le nums1_{i\_} \le \text{nums1.length}$
+
+- $0 \le \text{nums2}_{i} \le \text{nums2.length}$

@@ -1,5 +1,71 @@
 ## Description
 
-The `Customers` table stores one customer's revenue for a particular calendar year. Revenue is allowed to be positive, zero, or negative, and the same customer may have separate rows for different years.
+Table: `Customers`
 
-Report the identifiers of customers whose revenue in the year 2021 is strictly greater than zero. A positive value from another year does not qualify, while zero or a negative 2021 value must be excluded. Result rows may appear in any order.
+```
++--------------+------+
+| Column Name  | Type |
++--------------+------+
+| customer_id  | int  |
+| year         | int  |
+| revenue      | int  |
++--------------+------+
+(customer_id, year) is the primary key (combination of columns with unique values) for this table.
+This table contains the customer ID and the revenue of customers in different years.
+Note that this revenue can be negative.
+```
+
+Write a solution to report the customers with **postive revenue** in the year 2021.
+
+Return the result table in **any order**.
+
+The result format is in the following example.
+### Function Contract
+
+**Database Schema**
+
+**`Customers`**
+
+| Column | Type | Meaning |
+|---|---|---|
+| `customer_id` | int | Customer identifier; composite primary key with `year`. |
+| `year` | int | Calendar year. |
+| `revenue` | int | Customer's revenue for that year (can be negative, zero, or positive). |
+
+- `(customer_id, year)` is unique.
+
+**Return value**
+
+Return a table with the single column `customer_id`. Include each `customer_id` whose row in `Customers` has `year = 2021` and `revenue > 0`. Row order is unrestricted.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Customers table:
++-------------+------+---------+
+| customer_id | year | revenue |
++-------------+------+---------+
+| 1           | 2018 | 50      |
+| 1           | 2021 | 30      |
+| 1           | 2020 | 70      |
+| 2           | 2021 | -50     |
+| 3           | 2018 | 10      |
+| 3           | 2016 | 50      |
+| 4           | 2021 | 20      |
++-------------+------+---------+
+**Output:**
++-------------+
+| customer_id |
++-------------+
+| 1           |
+| 4           |
++-------------+
+**Explanation:**
+Customer 1 has revenue equal to 30 in the year 2021.
+Customer 2 has revenue equal to -50 in the year 2021.
+Customer 3 has no revenue in the year 2021.
+Customer 4 has revenue equal to 20 in the year 2021.
+Thus only customers 1 and 4 have positive revenue in the year 2021.
+```

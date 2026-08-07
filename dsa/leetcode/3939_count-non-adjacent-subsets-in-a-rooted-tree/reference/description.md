@@ -1,19 +1,92 @@
 ## Description
 
-<p data-end="186" data-start="43">You are given a rooted tree with <code data-end="79" data-start="76">n</code> nodes labeled from 0 to <code data-end="113" data-start="106">n - 1</code>, represented by an integer array <code data-end="164" data-start="156">parent</code> of length <code data-end="178" data-start="175">n</code>, where:
+You are given a rooted tree with `n` nodes labeled from 0 to $n - 1$, represented by an integer array `parent` of length `n`, where:
 
-<ul>
-	<li data-end="227" data-start="190"><code data-end="206" data-start="190">parent[0] = -1</code> (node 0 is the root).</li>
-	<li data-end="311" data-start="230">For each <code data-end="250" data-start="239">1 <= i < n</code>, <code data-end="263" data-start="252">parent[i]</code> is the parent of node <code data-end="289" data-start="286">i</code> (<code data-end="310" data-start="291">0 <= parent[i] < i</code>).</li>
-</ul>
+- $\text{parent}[0] = -1$ (node 0 is the root).
 
-<p data-end="439" data-start="313">You are also given an integer array <font face="monospace">nums</font> of length <code data-end="377" data-start="374">n</code>, where `<font face="monospace">nums[i]</font>` is the value of node <code data-end="418" data-start="415">i</code>, and an integer <code data-end="438" data-start="435">k</code>.
+- For each $1 \le i < n$, $\text{parent}[i]$ is the parent of node `i` ($0 \le \text{parent}[i] < i$).
 
-<p data-end="488" data-start="441">A non-empty subset of nodes is called **valid** if:
+You are also given an integer array nums of length `n`, where $\text{nums}[i]$ is the value of node `i`, and an integer `k`.
 
-<ul>
-	<li data-end="555" data-start="491">The **sum** of the values of the selected nodes is **divisible** by <code data-end="554" data-start="551">k</code>.</li>
-	<li data-end="669" data-start="558">No **two** selected nodes are **adjacent** in the tree (no node and its direct parent are both included in the subset).</li>
-</ul>
+A non-empty subset of nodes is called **valid** if:
 
-<p data-end="721" data-start="671">Return the number of valid subsets modulo `10^9 + 7`.
+- The **sum** of the values of the selected nodes is **divisible** by `k`.
+
+- No **two** selected nodes are **adjacent** in the tree (no node and its direct parent are both included in the subset).
+
+Return the number of valid subsets modulo $10^{9} + 7$.
+### Function Contract
+
+**Inputs**
+
+- `parent`: The rooted-tree encoding. `parent[0]` is `-1`; for every later node `i`, `parent[i]` is its unique direct parent and has a smaller index.
+- `nums`: The node values, where `nums[i]` belongs to node `i`.
+- `k`: The positive divisor used to test a selected subset's value sum.
+
+Let $N=\lvert\texttt{parent}\rvert=\lvert\texttt{nums}\rvert$ and $K=k$. Two nodes are adjacent exactly when one is the direct parent of the other. A counted subset must be nonempty, contain no adjacent pair, and have total value congruent to zero modulo $K$.
+
+**Return value**
+
+Return the number of valid node subsets modulo $1{,}000{,}000{,}007$.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** parent = [-1,0,1], nums = [1,2,3], k = 3
+
+**Output:** 1
+
+**Explanation:**
+
+**
+
+![](images/image1.png)
+
+​​​​​​​**
+
+The only valid subset is `{2}`. It contains node 2 with value 3, which is divisible by 3.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** parent = [-1,0,0,0], nums = [2,1,2,1], k = 3
+
+**Output:** 2
+
+**Explanation:**
+
+**
+
+![](images/image2.png)
+
+​​​​​​​**​​​​​​​
+
+The valid subsets are:
+
+- `{1, 2}`: Nodes 1 and 2 are both children of node 0 and not directly connected to each other. Their values sum to $1 + 2 = 3$, which is divisible by 3.
+
+- `{2, 3}`: Nodes 2 and 3 are also non-adjacent. Their values sum to $2 + 1 = 3$, which is divisible by 3.
+
+No other subset satisfies both conditions. Therefore, the answer is 2.
+
+</div>
+### Constraints
+
+- $n = \text{parent.length} = \text{nums.length}$
+
+- $1 \le n \le 1000$
+
+- $\text{parent}[0] = -1$
+
+- For all $1 \le i < n$:
+
+		<li data-end="147" data-start="103">$0 \le \text{parent}[i] < i$
+
+	</li>
+- $1 \le \text{nums}[i] \le 10^{9}$
+
+- $1 \le k \le 100$​​​​​​​​​​​​​​`​​​​​​​`
+
+- `parent` describes a valid rooted tree.

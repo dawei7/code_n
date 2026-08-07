@@ -4,13 +4,58 @@ You are given a string `password`.
 
 The **strength** of the password is calculated based on the following rules:
 
-<ul>
-	<li>1 point for each distinct lowercase letter (`'a'` to `'z'`).</li>
-	<li>2 points for each distinct uppercase letter (`'A'` to `'Z'`).</li>
-	<li>3 points for each distinct digit (`'0'` to `'9'`).</li>
-	<li>5 points for each distinct special character from the set `"!@#$"`.</li>
-</ul>
+- 1 point for each distinct lowercase letter (`'a'` to `'z'`).
+
+- 2 points for each distinct uppercase letter (`'A'` to `'Z'`).
+
+- 3 points for each distinct digit (`'0'` to `'9'`).
+
+- 5 points for each distinct special character from the set `"!@#$"`.
 
 Each character contributes **at most** once, even if it appears multiple times.
 
 Return an integer denoting the strength of the password.
+### Function Contract
+
+**Inputs**
+
+- `password`: A nonempty string containing only English letters, decimal digits, and the four allowed special characters `"!@#$"`.
+
+**Return value**
+
+Return the integer sum of the category weight for every distinct character present in `password`.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** password = "aA1!"
+
+**Output:** 11
+
+**Explanation:**
+
+- The distinct characters are `'a'`, `'A'`, `'1'` and `'!'`.
+
+- Thus, the $strength = 1 + 2 + 3 + 5 = 11$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** password = "bbB11#"
+
+**Output:** 11
+
+**Explanation:**
+
+- The distinct characters are `'b'`, `'B'`, `'1'` and `'#'`.
+
+- Thus, the $strength = 1 + 2 + 3 + 5 = 11$.​​​​​​​
+
+</div>
+### Constraints
+
+- $1 \le \text{password.length} \le 10^{5}$
+
+- `password` consists of lowercase and uppercase English letters, digits, and special characters from `"!@#$"`.

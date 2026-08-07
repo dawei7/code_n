@@ -1,11 +1,36 @@
 ## Description
 
-You are given an array `words` containing lowercase English words. A word is
-eligible when every nonempty prefix obtained by taking its first $1, 2, \ldots,
-\lvert w \rvert$ characters also occurs as an element of `words`. Thus the word
-itself must be present, as must the one-character word that begins its prefix
-chain and every intermediate length.
+Given an array of strings `words`, find the **longest** string in `words` such that **every prefix** of it is also in `words`.
 
-Return the longest eligible word. When several eligible words have the same
-maximum length, choose the lexicographically smallest one. If no input word has
-all of its required prefixes, return the empty string.
+- For example, let $words = ["a", "app", "ap"]$. The string `"app"` has prefixes `"ap"` and `"a"`, all of which are in `words`.
+
+Return *the string described above. If there is more than one string with the same length, return the **lexicographically smallest** one, and if no string exists, return *`""`.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+- **Input:** $words = ["k","ki","kir","kira", "kiran"]$
+- **Output:** `"kiran"`
+- **Explanation:** "kiran" has prefixes "kira", "kir", "ki", and "k", and all of them appear in words.
+#### Example 2
+
+- **Input:** $words = ["a", "banana", "app", "appl", "ap", "apply", "apple"]$
+- **Output:** `"apple"`
+- **Explanation:** Both "apple" and "apply" have all their prefixes in words.
+However, "apple" is lexicographically smaller, so we return that.
+#### Example 3
+
+- **Input:** $words = ["abc", "bc", "ab", "qwe"]$
+- **Output:** `""`
+### Constraints
+
+- $1 \le \text{words.length} \le 10^{5}$
+
+- $1 \le \text{words}[i].length \le 10^{5}$
+
+- $1 \le sum(\text{words}[i].length) \le 10^{5}$
+
+- $\text{words}[i]$ consists only of lowercase English letters.

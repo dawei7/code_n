@@ -1,10 +1,49 @@
 ## Description
 
-The `Data` table contains two integer columns, `first_col` and `second_col`,
-and may include duplicate rows. Reorder the values in the two columns
-independently rather than preserving their original row pairings.
+Table: `Data`
 
-The result's `first_col` values must appear in ascending order, while its
-`second_col` values must appear in descending order. Preserve every occurrence
-from each input column, including duplicates, and pair values solely by their
-positions in these two independently sorted sequences.
+```
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| first_col   | int  |
+| second_col  | int  |
++-------------+------+
+This table may contain duplicate rows.
+```
+
+Write a solution to independently:
+
+- order $\text{first}_{col}$ in **ascending order**.
+
+- order $\text{second}_{col}$ in **descending order**.
+
+The result format is in the following example.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Data table:
++-----------+------------+
+| first_col | second_col |
++-----------+------------+
+| 4         | 2          |
+| 2         | 3          |
+| 3         | 1          |
+| 1         | 4          |
++-----------+------------+
+**Output:**
++-----------+------------+
+| first_col | second_col |
++-----------+------------+
+| 1         | 4          |
+| 2         | 3          |
+| 3         | 2          |
+| 4         | 1          |
++-----------+------------+
+```

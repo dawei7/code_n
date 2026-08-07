@@ -1,7 +1,29 @@
 ## Description
 
-Given a 0-indexed integer array `nums`, count its non-empty contiguous subarrays whose element product is even.
+Given a **0-indexed** integer array `nums`, return *the number of subarrays of *`nums`* having an even product*.
+### Function Contract
 
-The product itself may become extremely large, but only its parity matters: a product is even exactly when at least one selected element is even. Return the total number of subarrays satisfying that condition.
+- Refer to method signature.
 
-A subarray must use consecutive positions and contain at least one element; selecting scattered values or the empty range does not count. Each distinct pair of start and end indices defines a separate subarray, even when its values match another range.
+### Examples
+#### Example 1
+
+- **Input:** `nums = [9,6,7,13]`
+- **Output:** `6`
+- **Explanation:** There are 6 subarrays with an even product:
+- nums[0..1] = 9 * 6 = 54.
+- nums[0..2] = 9 * 6 * 7 = 378.
+- nums[0..3] = 9 * 6 * 7 * 13 = 4914.
+- nums[1..1] = 6.
+- nums[1..2] = 6 * 7 = 42.
+- nums[1..3] = 6 * 7 * 13 = 546.
+#### Example 2
+
+- **Input:** `nums = [7,3,5]`
+- **Output:** `0`
+- **Explanation:** There are no subarrays with an even product.
+### Constraints
+
+- $1 \le \text{nums.length} \le 10^{5}$
+
+- $1 \le \text{nums}[i] \le 10^{5}$

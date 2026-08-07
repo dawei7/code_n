@@ -8,10 +8,39 @@ Every time you guess wrong, I will tell you whether the number I picked is highe
 
 You call a pre-defined API `int guess(int num)`, which returns three possible results:
 
-<ul>
-	<li>`-1`: Your guess is higher than the number I picked (i.e. `num > pick`).</li>
-	<li>`1`: Your guess is lower than the number I picked (i.e. `num < pick`).</li>
-	<li>`0`: your guess is equal to the number I picked (i.e. `num == pick`).</li>
-</ul>
+- `-1`: Your guess is higher than the number I picked (i.e. `num > pick`).
+
+- `1`: Your guess is lower than the number I picked (i.e. `num < pick`).
+
+- `0`: your guess is equal to the number I picked (i.e. $num = pick$).
 
 Return *the number that I picked*.
+### Function Contract
+
+**Inputs**
+
+- `n`: The inclusive upper bound of the search range.
+- `pick`: Only the app adapter receives the hidden chosen number so it can emulate `guess`; the native LeetCode method receives only `n`.
+
+**Return value**
+
+Return the fixed hidden number identified through the `guess(num)` responses.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 10, pick = 6$
+- **Output:** `6`
+#### Example 2
+
+- **Input:** $n = 1, pick = 1$
+- **Output:** `1`
+#### Example 3
+
+- **Input:** $n = 2, pick = 1$
+- **Output:** `1`
+### Constraints
+
+- $1 \le n \le 2^{31} - 1$
+
+- $1 \le pick \le n$

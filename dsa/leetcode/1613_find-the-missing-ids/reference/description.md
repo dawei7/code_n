@@ -1,5 +1,55 @@
 ## Description
 
-Table `Customers` contains existing customer identifiers and their names, but the positive identifier sequence may have gaps. Let $m$ be the greatest `customer_id` currently present.
+Table: `Customers`
 
-Find every integer ID from 1 through $m$ that does not occur in `Customers`. Return those absent IDs in ascending order. Values above the current maximum are outside the requested range and must not be generated.
+```
++---------------+---------+
+| Column Name   | Type    |
++---------------+---------+
+| customer_id   | int     |
+| customer_name | varchar |
++---------------+---------+
+customer_id is the column with unique values for this table.
+Each row of this table contains the name and the id customer.
+```
+
+Write a solution to find the missing customer IDs. The missing IDs are ones that are not in the `Customers` table but are in the range between `1` and the **maximum** $\text{customer}_{id}$ present in the table.
+
+**Notice** that the maximum $\text{customer}_{id}$ will not exceed `100`.
+
+Return the result table ordered by `ids` in **ascending order**.
+
+The result format is in the following example.
+### Function Contract
+
+**Inputs**
+
+- `Customers`: Table with columns `customer_id` (int), `customer_name` (varchar).
+
+**Return value**
+
+Return a table with single column `ids` (int) containing all missing integers in $[1, \max(\text{customer\_id})]$ sorted ascending.
+
+### Examples
+#### Example 1
+
+```
+**Input:**
+Customers table:
++-------------+---------------+
+| customer_id | customer_name |
++-------------+---------------+
+| 1           | Alice         |
+| 4           | Bob           |
+| 5           | Charlie       |
++-------------+---------------+
+**Output:**
++-----+
+| ids |
++-----+
+| 2   |
+| 3   |
++-----+
+**Explanation:**
+The maximum customer_id present in the table is 5, so in the range [1,5], IDs 2 and 3 are missing from the table.
+```

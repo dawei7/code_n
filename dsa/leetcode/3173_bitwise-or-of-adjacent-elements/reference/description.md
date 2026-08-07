@@ -1,7 +1,37 @@
 ## Description
 
-Given an integer array `nums` of length $n$, construct a new array with one entry for every adjacent pair in `nums`.
+Given an array `nums` of length `n`, return an array `answer` of length $n - 1$ such that $\text{answer}[i] = \text{nums}[i] | nums[i + 1]$ where `|` is the bitwise `OR` operation.
+### Function Contract
 
-For each index $i$ from $0$ through $n-2$, set `answer[i] = nums[i] | nums[i + 1]`, where `|` denotes bitwise OR. Return the resulting array of length $n-1$.
+- Refer to method signature.
 
-Consecutive output positions come from overlapping pairs: an interior value of `nums` participates once as the right member of a pair and once as the left member of the next pair. Each pair is evaluated independently, and its result remains in the same left-to-right order as that pair in the input.
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,3,7,15]
+
+**Output:** [3,7,15]
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [8,4,2]
+
+**Output:** [12,6]
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** nums = [5,4,9,11]
+
+**Output:** [5,13,11]
+
+</div>
+### Constraints
+
+- $2 \le \text{nums.length} \le 100$
+
+- $0 \le \text{nums}[i] \le 100$

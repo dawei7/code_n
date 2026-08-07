@@ -6,9 +6,57 @@ Two sentences `s1` and `s2` are considered **similar** if it is possible to inse
 
 For example,
 
-<ul>
-	<li>`s1 = "Hello Jane"` and `s2 = "Hello my name is Jane"` can be made equal by inserting `"my name is"` between `"Hello"`<font face="monospace"> </font>and `"Jane"`<font face="monospace"> in s1.</font></li>
-	<li><font face="monospace">`s1 = "Frog cool"` </font>and<font face="monospace"> `s2 = "Frogs are cool"` </font>are **not** similar, since although there is a sentence `"s are"` inserted into `s1`, it is not separated from `"Frog"` by a space.</li>
-</ul>
+- $s1 = "Hello Jane"$ and $s2 = "Hello my name is Jane"$ can be made equal by inserting `"my name is"` between `"Hello"` and `"Jane"` in s1.
+
+- $s1 = "Frog cool"$ and $s2 = "Frogs are cool"$ are **not** similar, since although there is a sentence `"s are"` inserted into `s1`, it is not separated from `"Frog"` by a space.
 
 Given two sentences `sentence1` and `sentence2`, return **true** if `sentence1` and `sentence2` are **similar**. Otherwise, return **false**.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** sentence1 = "My name is Haley", sentence2 = "My Haley"
+
+**Output:** true
+
+**Explanation:**
+
+`sentence2` can be turned to `sentence1` by inserting "name is" between "My" and "Haley".
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** sentence1 = "of", sentence2 = "A lot of words"
+
+**Output:** false
+
+**Explanation:**
+
+No single sentence can be inserted inside one of the sentences to make it equal to the other.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** sentence1 = "Eating right now", sentence2 = "Eating"
+
+**Output:** true
+
+**Explanation:**
+
+`sentence2` can be turned to `sentence1` by inserting "right now" at the end of the sentence.
+
+</div>
+### Constraints
+
+- $1 \le \text{sentence1.length}, \text{sentence2.length} \le 100$
+
+- `sentence1` and `sentence2` consist of lowercase and uppercase English letters and spaces.
+
+- The words in `sentence1` and `sentence2` are separated by a single space.

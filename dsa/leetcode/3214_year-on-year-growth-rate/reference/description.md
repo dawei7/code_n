@@ -1,7 +1,116 @@
 ## Description
 
-The `user_transactions` table records individual product purchases with a spend amount and timestamp. Aggregate all transactions for the same product and calendar year to obtain that product's current annual spend.
+Table: $\text{user}_{transactions}$
 
-For every product-year row, report the preceding annual row's total spend for that product. Compute the year-on-year percentage change from the previous total to the current total and round it to two decimal places. A product's first annual row has no previous value, so both `prev_year_spend` and `yoy_rate` are `NULL`.
+```
++------------------+----------+
+| Column Name      | Type     |
++------------------+----------+
+| transaction_id   | integer  |
+| product_id       | integer  |
+| spend            | decimal  |
+| transaction_date | datetime |
++------------------+----------+
+The transaction_id column uniquely identifies each row in this table.
+Each row of this table contains the transaction ID, product ID, the spend amount, and the transaction date.
+```
 
-Return the rows in ascending `product_id` order and, within each product, ascending `year` order.
+Write a solution to calculate the **year-on-year growth rate** for the total spend **for each product**.
+
+The result table should include the following columns:
+
+- `year`: The year of the transaction.
+
+- $\text{product}_{id}$: The ID of the product.
+
+- `curr_year_spend`: The total spend for the current year.
+
+- `prev_year_spend`: The total spend for the previous year.
+
+- $\text{yoy}_{rate}$: The year-on-year growth rate percentage, rounded to `2` decimal places.
+
+Return *the result table ordered by* $\text{product}_{id}$,`year` *in **ascending** order*.
+
+The result format is in the following example.
+
+**Example:**
+
+<div class="example-block">
+**Input:**
+
+$\text{user}_{transactions}$ table:
+
+```
++----------------+------------+---------+---------------------+
+| transaction_id | product_id | spend   | transaction_date    |
++----------------+------------+---------+---------------------+
+| 1341           | 123424     | 1500.60 | 2019-12-31 12:00:00 |
+| 1423           | 123424     | 1000.20 | 2020-12-31 12:00:00 |
+| 1623           | 123424     | 1246.44 | 2021-12-31 12:00:00 |
+| 1322           | 123424     | 2145.32 | 2022-12-31 12:00:00 |
++----------------+------------+---------+---------------------+
+```
+
+**Output:**
+
+```
++------+------------+----------------+----------------+----------+
+| year | product_id | curr_year_spend| prev_year_spend| yoy_rate |
++------+------------+----------------+----------------+----------+
+| 2019 | 123424     | 1500.60        | NULL           | NULL     |
+| 2020 | 123424     | 1000.20        | 1500.60        | -33.35   |
+| 2021 | 123424     | 1246.44        | 1000.20        | 24.62    |
+| 2022 | 123424     | 2145.32        | 1246.44        | 72.12    |
++------+------------+----------------+----------------+----------+
+```
+
+**Explanation:**
+
+- For product ID 123424:
+
+		<li>In 2019:
+
+			<li>Current year's spend is 1500.60
+
+- No previous year's spend recorded
+
+- YoY growth rate: NULL
+
+		</li>
+- In 2020:
+
+			<li>Current year's spend is 1000.20
+
+- Previous year's spend is 1500.60
+
+- YoY growth rate: ((1000.20 - 1500.60) / 1500.60) * 100 = -33.35%
+
+		</li>
+- In 2021:
+
+			<li>Current year's spend is 1246.44
+
+- Previous year's spend is 1000.20
+
+- YoY growth rate: ((1246.44 - 1000.20) / 1000.20) * 100 = 24.62%
+
+		</li>
+- In 2022:
+
+			<li>Current year's spend is 2145.32
+
+- Previous year's spend is 1246.44
+
+- YoY growth rate: ((2145.32 - 1246.44) / 1246.44) * 100 = 72.12%
+
+		</li>
+
+	</li>
+
+**Note:** Output table is ordered by $\text{product}_{id}$ and `year` in ascending order.
+
+</div>
+
+### Function Contract
+
+- Refer to method signature.

@@ -1,13 +1,49 @@
 ## Description
 
-A straight street contains the integer positions from $0$ through $n-1$. Each
-street lamp is described by `lights[i] = [position_i, range_i]`. That lamp
-illuminates every position in the inclusive interval from
-`max(0, position_i - range_i)` through
-`min(n - 1, position_i + range_i)`; clipping keeps its coverage within the
-street.
+You are given an integer `n`. A perfectly straight street is represented by a number line ranging from `0` to $n - 1$. You are given a 2D integer array `lights` representing the street lamp(s) on the street. Each $\text{lights}[i] = [\text{position}_{i}, \text{range}_{i}]$ indicates that there is a street lamp at position $\text{position}_{i}$ that lights up the area from $[max(0, \text{position}_{i} - \text{range}_{i}), min(n - 1, \text{position}_{i} + \text{range}_{i})]$ (**inclusive**).
 
-The brightness of a position is the number of lamps whose illuminated
-intervals contain it. A 0-indexed array `requirement` gives the minimum
-brightness required at every street position. Return the number of positions
-whose actual brightness is at least their corresponding requirement.
+The **brightness** of a position `p` is defined as the number of street lamps that light up the position `p`. You are given a **0-indexed** integer array `requirement` of size `n` where $\text{requirement}[i]$ is the minimum **brightness** of the $$i^{\text{th}}$$ position on the street.
+
+Return *the number of positions *`i`* on the street between *`0`* and *$n - 1$* that have a **brightness** **of **at least** *$\text{requirement}[i]$*.*
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+![](images/screenshot-2022-04-11-at-22-24-43-diagramdrawio-diagramsnet.png)
+
+- **Input:** $n = 5, lights = [[0,1],[2,1],[3,2]], requirement = [0,2,1,4,1]$
+- **Output:** `4`
+- **Explanation:**
+- The first street lamp lights up the area from [max(0, 0 - 1), min(n - 1, 0 + 1)] = [0, 1] (inclusive).
+- The second street lamp lights up the area from [max(0, 2 - 1), min(n - 1, 2 + 1)] = [1, 3] (inclusive).
+- The third street lamp lights up the area from [max(0, 3 - 2), min(n - 1, 3 + 2)] = [1, 4] (inclusive).
+- Position 0 is covered by the first street lamp. It is covered by 1 street lamp which is greater than requirement[0].
+- Position 1 is covered by the first, second, and third street lamps. It is covered by 3 street lamps which is greater than requirement[1].
+- Position 2 is covered by the second and third street lamps. It is covered by 2 street lamps which is greater than requirement[2].
+- Position 3 is covered by the second and third street lamps. It is covered by 2 street lamps which is less than requirement[3].
+- Position 4 is covered by the third street lamp. It is covered by 1 street lamp which is equal to requirement[4].
+Positions 0, 1, 2, and 4 meet the requirement so we return 4.
+#### Example 2
+
+- **Input:** $n = 1, lights = [[0,1]], requirement = [2]$
+- **Output:** `0`
+- **Explanation:**
+- The first street lamp lights up the area from [max(0, 0 - 1), min(n - 1, 0 + 1)] = [0, 0] (inclusive).
+- Position 0 is covered by the first street lamp. It is covered by 1 street lamp which is less than requirement[0].
+- We return 0 because no position meets their brightness requirement.
+### Constraints
+
+- $1 \le n \le 10^{5}$
+
+- $1 \le \text{lights.length} \le 10^{5}$
+
+- $0 \le \text{position}_{i} < n$
+
+- $0 \le \text{range}_{i} \le 10^{5}$
+
+- $\text{requirement.length} = n$
+
+- $0 \le \text{requirement}[i] \le 10^{5}$

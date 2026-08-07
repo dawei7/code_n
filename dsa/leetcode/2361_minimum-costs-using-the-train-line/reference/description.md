@@ -1,11 +1,56 @@
 ## Description
 
-A city train line has regular and express routes passing through the same
-$n+1$ stops, numbered from 0 through $n$. You begin on the regular route at
-stop 0. For each segment from stop $i-1$ to stop $i$, `regular[i]` and
-`express[i]` give the respective travel costs.
+A train line going through a city has two routes, the regular route and the express route. Both routes go through the **same** $n + 1$ stops labeled from `0` to `n`. Initially, you start on the regular route at stop `0`.
 
-Moving from regular to express costs `expressCost` every time that transfer is
-made. Returning from express to regular is free, and remaining on the express
-route has no additional transfer cost. Return the minimum total cost to reach
-each stop 1 through $n$ from stop 0; reaching a stop on either route counts.
+You are given two **1-indexed** integer arrays `regular` and `express`, both of length `n`. $\text{regular}[i]$ describes the cost it takes to go from stop $i - 1$ to stop `i` using the regular route, and $\text{express}[i]$ describes the cost it takes to go from stop $i - 1$ to stop `i` using the express route.
+
+You are also given an integer `expressCost` which represents the cost to transfer from the regular route to the express route.
+
+Note that:
+
+- There is no cost to transfer from the express route back to the regular route.
+
+- You pay `expressCost` **every** time you transfer from the regular route to the express route.
+
+- There is no extra cost to stay on the express route.
+
+Return *a **1-indexed** array *`costs`* of length *`n`*, where *$\text{costs}[i]$* is the **minimum** cost to reach stop *`i`* from stop *`0`.
+
+Note that a stop can be counted as **reached** from either route.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+![](images/ex1drawio.png)
+
+- **Input:** $regular = [1,6,9,5], express = [5,2,3,10], expressCost = 8$
+- **Output:** `[1,7,14,19]`
+- **Explanation:** The diagram above shows how to reach stop 4 from stop 0 with minimum cost.
+- Take the regular route from stop 0 to stop 1, costing 1.
+- Take the express route from stop 1 to stop 2, costing 8 + 2 = 10.
+- Take the express route from stop 2 to stop 3, costing 3.
+- Take the regular route from stop 3 to stop 4, costing 5.
+The total cost is 1 + 10 + 3 + 5 = 19.
+Note that a different route could be taken to reach the other stops with minimum cost.
+#### Example 2
+
+![](images/ex2drawio.png)
+
+- **Input:** $regular = [11,5,13], express = [7,10,6], expressCost = 3$
+- **Output:** `[10,15,24]`
+- **Explanation:** The diagram above shows how to reach stop 3 from stop 0 with minimum cost.
+- Take the express route from stop 0 to stop 1, costing 3 + 7 = 10.
+- Take the regular route from stop 1 to stop 2, costing 5.
+- Take the express route from stop 2 to stop 3, costing 3 + 6 = 9.
+The total cost is 10 + 5 + 9 = 24.
+Note that the expressCost is paid again to transfer back to the express route.
+### Constraints
+
+- $n = \text{regular.length} = \text{express.length}$
+
+- $1 \le n \le 10^{5}$
+
+- $1 \le \text{regular}[i], \text{express}[i], expressCost \le 10^{5}$

@@ -1,0 +1,58 @@
+## Description
+
+You are given a string `s` of length `n` consisting of lowercase English letters.
+
+Return the smallest index `i` such that `s[i] == s[n - i - 1]`.
+
+If no such index exists, return -1.
+
+**Example 1:**
+
+<div class="example-block">
+**Input:** <span class="example-io">s = "abcacbd"</span>
+
+**Output:** <span class="example-io">1</span>
+
+**Explanation:**
+
+At index `i = 1`, `s[1]` and `s[5]` are both `'b'`.
+
+No smaller index satisfies the condition, so the answer is 1.
+
+</div>
+
+**Example 2:**
+
+<div class="example-block">
+**Input:** <span class="example-io">s = "abc"</span>
+
+**Output:** <span class="example-io">1</span>
+
+**Explanation:**
+
+​​​​​​​At index `i = 1`, the two compared positions coincide, so both characters are `'b'`.
+
+No smaller index satisfies the condition, so the answer is 1.
+
+</div>
+
+**Example 3:**
+
+<div class="example-block">
+**Input:** <span class="example-io">s = "abcdab"</span>
+
+**Output:** <span class="example-io">-1</span>
+
+**Explanation:**
+
+​​​​​​​For every index `i`, the characters at positions `i` and `n - i - 1` are different.
+
+Therefore, no valid index exists, so the answer is -1.
+
+</div>
+
+**Constraints:**
+
+	- `1 <= n == s.length <= 100`
+
+	- `s` consists of lowercase English letters.

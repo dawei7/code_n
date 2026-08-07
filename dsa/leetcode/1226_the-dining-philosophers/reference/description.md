@@ -8,20 +8,40 @@ Eating is not limited by the remaining amounts of spaghetti or stomach space; an
 
 Design a discipline of behaviour (a concurrent algorithm) such that no philosopher will starve; *i.e.*, each can forever continue to alternate between eating and thinking, assuming that no philosopher can know when others may want to eat or think.
 
-<p style="text-align: center"><img alt="" src="https://assets.leetcode.com/uploads/2019/09/24/an_illustration_of_the_dining_philosophers_problem.png" style="width: 400px; height: 415px;" />
+![](images/an_illustration_of_the_dining_philosophers_problem.png)
 
-<p style="text-align: center">*The problem statement and the image above are taken from <a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank">wikipedia.org</a>*
-
- 
+*The problem statement and the image above are taken from <a href="https://en.wikipedia.org/wiki/Dining_philosophers_problem" target="_blank">wikipedia.org</a>*
 
 The philosophers' ids are numbered from **0** to **4** in a **clockwise** order. Implement the function `void wantsToEat(philosopher, pickLeftFork, pickRightFork, eat, putLeftFork, putRightFork)` where:
 
-<ul>
-	<li>`philosopher` is the id of the philosopher who wants to eat.</li>
-	<li>`pickLeftFork` and `pickRightFork` are functions you can call to pick the corresponding forks of that philosopher.</li>
-	<li>`eat` is a function you can call to let the philosopher eat once he has picked both forks.</li>
-	<li>`putLeftFork` and `putRightFork` are functions you can call to put down the corresponding forks of that philosopher.</li>
-	<li>The philosophers are assumed to be thinking as long as they are not asking to eat (the function is not being called with their number).</li>
-</ul>
+- `philosopher` is the id of the philosopher who wants to eat.
+
+- `pickLeftFork` and `pickRightFork` are functions you can call to pick the corresponding forks of that philosopher.
+
+- `eat` is a function you can call to let the philosopher eat once he has picked both forks.
+
+- `putLeftFork` and `putRightFork` are functions you can call to put down the corresponding forks of that philosopher.
+
+- The philosophers are assumed to be thinking as long as they are not asking to eat (the function is not being called with their number).
 
 Five threads, each representing a philosopher, will simultaneously use one object of your class to simulate the process. The function may be called for the same philosopher more than once, even before the last call ends.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 1$
+- **Output:** `[[3,2,1],[3,1,1],[3,0,3],[3,1,2],[3,2,2],[4,2,1],[4,1,1],[2,2,1],[2,1,1],[1,2,1],[2,0,3],[2,1,2],[2,2,2],[4,0,3],[4,1,2],[4,2,2],[1,1,1],[1,0,3],[1,1,2],[1,2,2],[0,1,1],[0,2,1],[0,0,3],[0,1,2],[0,2,2]]`
+- **Explanation:**
+n is the number of times each philosopher will call the function.
+The output array describes the calls you made to the functions controlling the forks and the eat function, its format is:
+output[i] = [a, b, c] (three integers)
+- a is the id of a philosopher.
+- b specifies the fork: {1 : left, 2 : right}.
+- c specifies the operation: {1 : pick, 2 : put, 3 : eat}.
+### Constraints
+
+- $1 \le n \le 60$

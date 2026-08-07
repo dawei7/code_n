@@ -6,8 +6,42 @@ Design an algorithm to insert a new node to a complete binary tree keeping it co
 
 Implement the `CBTInserter` class:
 
-<ul>
-	<li>`CBTInserter(TreeNode root)` Initializes the data structure with the `root` of the complete binary tree.</li>
-	<li>`int insert(int v)` Inserts a `TreeNode` into the tree with value `Node.val == val` so that the tree remains complete, and returns the value of the parent of the inserted `TreeNode`.</li>
-	<li>`TreeNode get_root()` Returns the root node of the tree.</li>
-</ul>
+- `CBTInserter(TreeNode root)` Initializes the data structure with the `root` of the complete binary tree.
+
+- `int insert(int v)` Inserts a `TreeNode` into the tree with value $\text{Node.val} = val$ so that the tree remains complete, and returns the value of the parent of the inserted `TreeNode`.
+
+- $TreeNode \text{get}_{root}()$ Returns the root node of the tree.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/lc-treeinsert.jpg)
+
+```
+**Input**
+["CBTInserter", "insert", "insert", "get_root"]
+[[[1, 2]], [3], [4], []]
+**Output**
+[null, 1, 2, [1, 2, 3, 4]]
+
+**Explanation**
+CBTInserter cBTInserter = new CBTInserter([1, 2]);
+cBTInserter.insert(3);  // return 1
+cBTInserter.insert(4);  // return 2
+cBTInserter.get_root(); // return [1, 2, 3, 4]
+```
+### Constraints
+
+- The number of nodes in the tree will be in the range `[1, 1000]`.
+
+- $0 \le \text{Node.val} \le 5000$
+
+- `root` is a complete binary tree.
+
+- $0 \le val \le 5000$
+
+- At most $10^{4}$ calls will be made to `insert` and $\text{get}_{root}$.

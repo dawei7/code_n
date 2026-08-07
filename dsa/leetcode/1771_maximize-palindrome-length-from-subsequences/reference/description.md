@@ -2,14 +2,40 @@
 
 You are given two strings, `word1` and `word2`. You want to construct a string in the following manner:
 
-<ul>
-	<li>Choose some **non-empty** subsequence `subsequence1` from `word1`.</li>
-	<li>Choose some **non-empty** subsequence `subsequence2` from `word2`.</li>
-	<li>Concatenate the subsequences: `subsequence1 + subsequence2`, to make the string.</li>
-</ul>
+- Choose some **non-empty** subsequence `subsequence1` from `word1`.
+
+- Choose some **non-empty** subsequence `subsequence2` from `word2`.
+
+- Concatenate the subsequences: $subsequence1 + subsequence2$, to make the string.
 
 Return *the **length** of the longest **palindrome** that can be constructed in the described manner. *If no palindromes can be constructed, return `0`.
 
 A **subsequence** of a string `s` is a string that can be made by deleting some (possibly none) characters from `s` without changing the order of the remaining characters.
 
 A **palindrome** is a string that reads the same forward as well as backward.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $word1 = "cacb", word2 = "cbba"$
+- **Output:** `5`
+- **Explanation:** Choose "ab" from word1 and "cba" from word2 to make "abcba", which is a palindrome.
+#### Example 2
+
+- **Input:** $word1 = "ab", word2 = "ab"$
+- **Output:** `3`
+- **Explanation:** Choose "ab" from word1 and "a" from word2 to make "aba", which is a palindrome.
+#### Example 3
+
+- **Input:** $word1 = "aa", word2 = "bb"$
+- **Output:** `0`
+- **Explanation:** You cannot construct a palindrome from the described method, so return 0.
+### Constraints
+
+- $1 \le \text{word1.length}, \text{word2.length} \le 1000$
+
+- `word1` and `word2` consist of lowercase English letters.

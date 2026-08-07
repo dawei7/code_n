@@ -1,9 +1,68 @@
 ## Description
 
-You are given an **undirected weighted** tree with <code data-end="51" data-start="48">n</code> nodes, numbered from <code data-end="75" data-start="72">0</code> to <code data-end="86" data-start="79">n - 1</code>. It is represented by a 2D integer array <code data-end="129" data-start="122">edges</code> of length <code data-end="147" data-start="140">n - 1</code>, where <code data-end="185" data-start="160">edges[i] = [u_i, v_i, w_i]</code> indicates that there is an edge between nodes <code data-end="236" data-start="232">u_i</code> and <code data-end="245" data-start="241">v_i</code> with weight <code data-end="262" data-start="258">w_i</code>.​
+You are given an **undirected weighted** tree with `n` nodes, numbered from `0` to $n - 1$. It is represented by a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}, w_{i}]$ indicates that there is an edge between nodes $u_{i}$ and $v_{i}$ with weight $w_{i}$.​
 
-Additionally, you are given a 2D integer array <code data-end="56" data-start="47">queries</code>, where <code data-end="105" data-start="69">queries[j] = [src1_j, src2_j, dest_j]</code>.
+Additionally, you are given a 2D integer array `queries`, where $\text{queries}[j] = [\text{src1}_{j}, \text{src2}_{j}, \text{dest}_{j}]$.
 
-Return an array <code data-end="24" data-start="16">answer</code> of length equal to <code data-end="60" data-start="44">queries.length</code>, where <code data-end="79" data-start="68">answer[j]</code> is the **minimum total weight** of a subtree such that it is possible to reach <code data-end="174" data-start="167">dest_j</code> from both <code data-end="192" data-start="185">src1_j</code> and <code data-end="204" data-start="197">src2_j</code> using edges in this subtree.
+Return an array `answer` of length equal to `queries.length`, where $\text{answer}[j]$ is the **minimum total weight** of a subtree such that it is possible to reach $\text{dest}_{j}$ from both $\text{src1}_{j}$ and $\text{src2}_{j}$ using edges in this subtree.
 
-A <strong data-end="2287" data-start="2276">subtree</strong> here is any connected subset of nodes and edges of the original tree forming a valid tree.
+A **subtree** here is any connected subset of nodes and edges of the original tree forming a valid tree.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** edges = [[0,1,2],[1,2,3],[1,3,5],[1,4,4],[2,5,6]], queries = [[2,3,4],[0,2,5]]
+
+**Output:** [12,11]
+
+**Explanation:**
+
+The blue edges represent one of the subtrees that yield the optimal answer.
+
+![](images/tree1-4.jpg)
+
+- $\text{answer}[0]$: The total weight of the selected subtree that ensures a path from $src1 = 2$ and $src2 = 3$ to $dest = 4$ is $3 + 5 + 4 = 12$.
+
+- $\text{answer}[1]$: The total weight of the selected subtree that ensures a path from $src1 = 0$ and $src2 = 2$ to $dest = 5$ is $2 + 3 + 6 = 11$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** edges = [[1,0,8],[0,2,7]], queries = [[0,1,2]]
+
+**Output:** [15]
+
+**Explanation:**
+
+![](images/tree1-5.jpg)
+
+- $\text{answer}[0]$: The total weight of the selected subtree that ensures a path from $src1 = 0$ and $src2 = 1$ to $dest = 2$ is $8 + 7 = 15$.
+
+</div>
+### Constraints
+
+- $3 \le n \le 10^{5}$
+
+- $\text{edges.length} = n - 1$
+
+- $\text{edges}[i].length = 3$
+
+- $0 \le u_{i}, v_{i} < n$
+
+- $1 \le w_{i} \le 10^{4}$
+
+- $1 \le \text{queries.length} \le 10^{5}$
+
+- $\text{queries}[j].length = 3$
+
+- $0 \le \text{src1}_{j}, \text{src2}_{j}, \text{dest}_{j} < n$
+
+- $\text{src1}_{j}$, $\text{src2}_{j}$, and $\text{dest}_{j}$ are pairwise distinct.
+
+- The input is generated such that `edges` represents a valid tree.

@@ -1,7 +1,57 @@
 ## Description
 
-A **confusing number** changes into a different valid number when all of its decimal digits are rotated by $180$ degrees. The digits `0`, `1`, and `8` remain `0`, `1`, and `8`; `6` becomes `9`, and `9` becomes `6`. Any occurrence of `2`, `3`, `4`, `5`, or `7` makes the rotated representation invalid.
+A **confusing number** is a number that when rotated `180` degrees becomes a different number with **each digit valid**.
 
-Rotating a complete number reverses the positions of its mapped digits. Leading zeros in the result are ignored: rotating `8000` produces `0008`, which denotes `8`. A number is confusing only when its rotation is valid and its resulting numeric value differs from the original.
+We can rotate digits of a number by `180` degrees to form new digits.
 
-Given `n`, count every confusing number in the inclusive range `[1, n]`.
+- When `0`, `1`, `6`, `8`, and `9` are rotated `180` degrees, they become `0`, `1`, `9`, `8`, and `6` respectively.
+
+- When `2`, `3`, `4`, `5`, and `7` are rotated `180` degrees, they become **invalid**.
+
+Note that after rotating a number, we can ignore leading zeros.
+
+- For example, after rotating `8000`, we have `0008` which is considered as just `8`.
+
+Given an integer `n`, return *the number of **confusing numbers** in the inclusive range *`[1, n]`.
+### Function Contract
+
+**Input**
+
+- `n`: the positive inclusive upper bound.
+
+The complete rotation map is:
+
+- `0` becomes `0`.
+- `1` becomes `1`.
+- `6` becomes `9`.
+- `8` becomes `8`.
+- `9` becomes `6`.
+
+Digits `2`, `3`, `4`, `5`, and `7` have no valid rotated form. When a valid number is rotated, reverse the digit positions, apply the map, discard any leading zeros in the result, and compare the resulting integer with the original.
+
+Let $D$ be the number of decimal digits in `n`.
+
+**Return value**
+
+- The number of integers in `[1, n]` whose rotated value is valid and different from the original integer.
+
+### Examples
+#### Example 1
+
+- **Input:** $n = 20$
+- **Output:** `6`
+- **Explanation:** The confusing numbers are [6,9,10,16,18,19].
+6 converts to 9.
+9 converts to 6.
+10 converts to 01 which is just 1.
+16 converts to 91.
+18 converts to 81.
+19 converts to 61.
+#### Example 2
+
+- **Input:** $n = 100$
+- **Output:** `19`
+- **Explanation:** The confusing numbers are [6,9,10,16,18,19,60,61,66,68,80,81,86,89,90,91,98,99,100].
+### Constraints
+
+- $1 \le n \le 10^{9}$

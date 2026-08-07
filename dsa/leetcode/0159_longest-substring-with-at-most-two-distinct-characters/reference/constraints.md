@@ -1,5 +1,0 @@
-## Constraints
-
-- `1 <= s.length <= 10^5`
-- `s` consists of English letters.
-

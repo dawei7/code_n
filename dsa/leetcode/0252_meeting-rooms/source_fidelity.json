@@ -7,8 +7,8 @@
     "title_slug": "meeting-rooms",
     "url": "https://leetcode.com/problems/meeting-rooms/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "ebc42403a9c4085b522a0adc090a374689fbda39f26ab41e4d1cd6e907b4552c",
-      "reference/contract.md": "7e49a72f488fd6ec4edf725a5dad64c3372942b90cf3aaa4447ad936e5888f7d",
-      "reference/examples.md": "072f34c38a2a99ffe914c2f4d62dcf1d778f60b1d8ba2181929539212001258c",
-      "reference/constraints.md": "c4d90f1121ffaae6ace0137ee8955fc64a60b60f9cbee0b1ee72f9ac47bbd84e"
+      "reference/constraints.md": "4e84998f2248121ecbdf3277a59fcc4ba7a4fce7f07b9c6631643afc355e89a8",
+      "reference/contract.md": "128ee0288195665173768922f1a795e5be0b5c19a527cee1ad7cb37da626f5d5",
+      "reference/description.md": "81ffe55697f3f24e8893f9fd34c0bb8d61619643eaf24422dabbf78f40a48043",
+      "reference/examples.md": "e6a6ff44fb25e5eb3e460093ac31aa25c23a2fee6860b487832119b9c4e5a356"
     },
     "assertions": {
       "semantic_coverage": true,

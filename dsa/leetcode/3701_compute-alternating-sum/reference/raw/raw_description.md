@@ -1,0 +1,47 @@
+## Description
+
+You are given an integer array `nums`.
+
+The **alternating sum** of `nums` is the value obtained by **adding** elements at even indices and **subtracting** elements at odd indices. That is, `nums[0] - nums[1] + nums[2] - nums[3]...`
+
+Return an integer denoting the alternating sum of `nums`.
+
+**Example 1:**
+
+<div class="example-block">
+**Input:** <span class="example-io">nums = [1,3,5,7]</span>
+
+**Output:** <span class="example-io">-4</span>
+
+**Explanation:**
+
+	- Elements at even indices are `nums[0] = 1` and `nums[2] = 5` because 0 and 2 are even numbers.
+
+	- Elements at odd indices are `nums[1] = 3` and `nums[3] = 7` because 1 and 3 are odd numbers.
+
+	- The alternating sum is `nums[0] - nums[1] + nums[2] - nums[3] = 1 - 3 + 5 - 7 = -4`.
+
+</div>
+
+**Example 2:**
+
+<div class="example-block">
+**Input:** <span class="example-io">nums = [100]</span>
+
+**Output:** <span class="example-io">100</span>
+
+**Explanation:**
+
+	- The only element at even indices is `nums[0] = 100` because 0 is an even number.
+
+	- There are no elements on odd indices.
+
+	- The alternating sum is `nums[0] = 100`.
+
+</div>
+
+**Constraints:**
+
+	- `1 <= nums.length <= 100`
+
+	- `1 <= nums[i] <= 100`

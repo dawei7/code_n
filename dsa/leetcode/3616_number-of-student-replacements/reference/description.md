@@ -1,5 +1,53 @@
 ## Description
 
-Students arrive in the order given by `ranks`, where `ranks[i]` is the rank of the $i$th arriving student. A smaller integer represents a better rank. The first arriving student is selected initially and does not count as a replacement.
+You are given an integer array `ranks` where $\text{ranks}[i]$ represents the rank of the $$i^{\text{th}}$$ student arriving **in order**. A lower number indicates a **better** rank.
 
-For every later arrival, replace the selected student only when the new student's rank is strictly better than the current selected rank. Equal or larger rank values leave the selection unchanged. Return the total number of replacements made after processing the complete arrival sequence.
+Initially, the first student is **selected** by default.
+
+A **replacement** occurs when a student with a **strictly** better rank arrives and **replaces** the current selection.
+
+Return the total number of replacements made.
+### Function Contract
+
+- Refer to method signature.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** ranks = [4,1,2]
+
+**Output:** 1
+
+**Explanation:**
+
+- The first student with $\text{ranks}[0] = 4$ is initially selected.
+
+- The second student with $\text{ranks}[1] = 1$ is better than the current selection, so a replacement occurs.
+
+- The third student has a worse rank, so no replacement occurs.
+
+- Thus, the number of replacements is 1.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** ranks = [2,2,3]
+
+**Output:** 0
+
+**Explanation:**
+
+- The first student with $\text{ranks}[0] = 2$ is initially selected.
+
+- Neither of $\text{ranks}[1] = 2$ or $\text{ranks}[2] = 3$ is better than the current selection.
+
+- Thus, the number of replacements is 0.
+
+</div>
+### Constraints
+
+- $1 \le \text{ranks.length} \le 10^{5}​​​​​​​$
+
+- $1 \le \text{ranks}[i] \le 10^{5}$

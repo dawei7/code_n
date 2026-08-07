@@ -9,9 +9,7 @@ class Vector2D:
     def hasNext(self) -> bool:
         pass
 
-
 # Your Vector2D object will be instantiated and called as such:
 # obj = Vector2D(vec)
 # param_1 = obj.next()
 # param_2 = obj.hasNext()
-

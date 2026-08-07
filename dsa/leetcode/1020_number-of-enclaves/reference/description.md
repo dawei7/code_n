@@ -5,3 +5,32 @@ You are given an `m x n` binary matrix `grid`, where `0` represents a sea cell a
 A **move** consists of walking from one land cell to another adjacent (**4-directionally**) land cell or walking off the boundary of the `grid`.
 
 Return *the number of land cells in* `grid` *for which we cannot walk off the boundary of the grid in any number of **moves***.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+![](images/enclaves1.jpg)
+
+- **Input:** `grid = [[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]`
+- **Output:** `3`
+- **Explanation:** There are three 1s that are enclosed by 0s, and one 1 that is not enclosed because its on the boundary.
+#### Example 2
+
+![](images/enclaves2.jpg)
+
+- **Input:** `grid = [[0,1,1,0],[0,0,1,0],[0,0,1,0],[0,0,0,0]]`
+- **Output:** `0`
+- **Explanation:** All 1s are either on the boundary or can reach the boundary.
+### Constraints
+
+- $m = \text{grid.length}$
+
+- $n = \text{grid}[i].length$
+
+- $1 \le m, n \le 500$
+
+- $\text{grid}[i][j]$ is either `0` or `1`.

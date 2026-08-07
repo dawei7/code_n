@@ -2,22 +2,48 @@
 
 Every **valid email** consists of a **local name** and a **domain name**, separated by the `'@'` sign. Besides lowercase letters, the email may contain one or more `'.'` or `'+'`.
 
-<ul>
-	<li>For example, in `"alice@leetcode.com"`, `"alice"` is the **local name**, and `"leetcode.com"` is the **domain name**.</li>
-</ul>
+- For example, in `"alice@leetcode.com"`, `"alice"` is the **local name**, and `"leetcode.com"` is the **domain name**.
 
 If you add periods `'.'` between some characters in the **local name** part of an email address, mail sent there will be forwarded to the same address without dots in the local name. Note that this rule **does not apply** to **domain names**.
 
-<ul>
-	<li>For example, `"alice.z@leetcode.com"` and `"alicez@leetcode.com"` forward to the same email address.</li>
-</ul>
+- For example, `"alice.z@leetcode.com"` and `"alicez@leetcode.com"` forward to the same email address.
 
 If you add a plus `'+'` in the **local name**, everything after the first plus sign **will be ignored**. This allows certain emails to be filtered. Note that this rule **does not apply** to **domain names**.
 
-<ul>
-	<li>For example, `"m.y+name@email.com"` will be forwarded to `"my@email.com"`.</li>
-</ul>
+- For example, `"m.y+name@email.com"` will be forwarded to `"my@email.com"`.
 
 It is possible to use both of these rules at the same time.
 
-Given an array of strings `emails` where we send one email to each `emails[i]`, return *the number of different addresses that actually receive mails*.
+Given an array of strings `emails` where we send one email to each $\text{emails}[i]$, return *the number of different addresses that actually receive mails*.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+- **Input:** $emails = ["\text{test.email}+alex@\text{leetcode.com}","\text{test.e}.mail+\text{bob.cathy}@\text{leetcode.com}","testemail+david@\text{lee.tcode}.com"]$
+- **Output:** `2`
+- **Explanation:** "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails.
+#### Example 2
+
+- **Input:** $emails = ["a@\text{leetcode.com}","b@\text{leetcode.com}","c@\text{leetcode.com}"]$
+- **Output:** `3`
+### Constraints
+
+- $1 \le \text{emails.length} \le 100$
+
+- $1 \le \text{emails}[i].length \le 100$
+
+- $\text{emails}[i]$ consist of lowercase English letters, `'+'`, `'.'` and `'@'`.
+
+- Each $\text{emails}[i]$ contains exactly one `'@'` character.
+
+- All local and domain names are non-empty.
+
+- Local names do not start with a `'+'` character.
+
+- Domain names end with the `".com"` suffix.
+
+- Domain names must contain at least one character before `".com"` suffix.

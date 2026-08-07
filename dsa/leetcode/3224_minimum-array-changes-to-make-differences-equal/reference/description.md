@@ -6,8 +6,55 @@ You can perform some changes on the array, where in one change you can replace *
 
 You need to perform some changes (possibly none) such that the final array satisfies the following condition:
 
-<ul>
-	<li>There exists an integer `X` such that `abs(a[i] - a[n - i - 1]) = X` for all `(0 <= i < n)`.</li>
-</ul>
+- There exists an integer `X` such that $abs(a[i] - a[n - i - 1]) = X$ for all $(0 \le i < n)$.
 
 Return the **minimum** number of changes required to satisfy the above condition.
+### Function Contract
+
+- `n`: Input parameter.
+- Returns expected result.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** nums = [1,0,1,2,4,3], k = 4
+
+**Output:** 2
+
+**Explanation:**
+
+We can perform the following changes:
+
+- Replace $\text{nums}[1]$ by 2. The resulting array is `nums = [1,<u>**2**</u>,1,2,4,3]`.
+
+- Replace $\text{nums}[3]$ by 3. The resulting array is `nums = [1,2,1,<u>**3**</u>,4,3]`.
+
+The integer `X` will be 2.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** nums = [0,1,2,3,3,6,5,4], k = 6
+
+**Output:** 2
+
+**Explanation:**
+
+We can perform the following operations:
+
+- Replace $\text{nums}[3]$ by 0. The resulting array is `nums = [0,1,2,<u>**0**</u>,3,6,5,4]`.
+
+- Replace $\text{nums}[4]$ by 4. The resulting array is `nums = [0,1,2,0,**<u>4</u>**,6,5,4]`.
+
+The integer `X` will be 4.
+
+</div>
+### Constraints
+
+- $2 \le n = \text{nums.length} \le 10^{5}$
+
+- `n` is even.
+
+- $0 \le \text{nums}[i] \le k \le 10^{5}$

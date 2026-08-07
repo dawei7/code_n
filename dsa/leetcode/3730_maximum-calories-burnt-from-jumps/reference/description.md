@@ -1,10 +1,89 @@
 ## Description
 
-You are given an integer array `heights` of length `n`, where `heights[i]` is the height of the $i$th block in an exercise routine.
+You are given an integer array `heights` of size `n`, where $\text{heights}[i]$ represents the height of the $$i^{\text{th}}$$ block in an exercise routine.
 
-You begin on the ground at height `0`. Choose any order in which to visit the blocks, but jump onto every block exactly once.
+You start on the ground (height 0) and **must** jump onto each block **exactly once** in any order.
 
-- A jump from a block of height `a` to a block of height `b` burns $(a-b)^2$ calories.
-- If `heights[i]` is visited first, the initial jump from the ground burns $(0-\texttt{heights}[i])^2$ calories.
+- The **calories burned** for a jump from a block of height `a` to a block of height `b` is $(a - b)^2$.
 
-Return the maximum total calories that can be burned by choosing the jumping sequence optimally.
+- The **calories burned** for the first jump from the ground to the chosen first block $\text{heights}[i]$ is $(0 - \text{heights}[i])^2$.
+
+Return the **maximum** total calories you can burn by selecting an optimal jumping sequence.
+
+**Note:** Once you jump onto the first block, you cannot return to the ground.
+### Function Contract
+
+**Inputs**
+
+- `heights`: The positive heights of all blocks that must each be visited exactly once.
+
+The order in the input does not restrict the visiting order. The ground at height `0` supplies only the starting position and is not one of the blocks.
+
+**Return value**
+
+Return the greatest possible sum of squared height differences over the initial ground-to-block jump and the subsequent `n - 1` block-to-block jumps.
+
+### Examples
+#### Example 1
+
+<div class="example-block">
+**Input:** heights = [1,7,9]
+
+**Output:** 181
+
+**Explanation:**​​​​​​​
+
+The optimal sequence is `[9, 1, 7]`.
+
+- Initial jump from the ground to $\text{heights}[2] = 9$: $(0 - 9)^2 = 81$.
+
+- Next jump to $\text{heights}[0] = 1$: $(9 - 1)^2 = 64$.
+
+- Final jump to $\text{heights}[1] = 7$: $(1 - 7)^2 = 36$.
+
+Total calories burned = $81 + 64 + 36 = 181$.
+
+</div>
+#### Example 2
+
+<div class="example-block">
+**Input:** heights = [5,2,4]
+
+**Output:** 38
+
+**Explanation:**
+
+The optimal sequence is `[5, 2, 4]`.
+
+- Initial jump from the ground to $\text{heights}[0] = 5$: $(0 - 5)^2 = 25$.
+
+- Next jump to $\text{heights}[1] = 2$: $(5 - 2)^2 = 9$.
+
+- Final jump to $\text{heights}[2] = 4$: $(2 - 4)^2 = 4$.
+
+Total calories burned = $25 + 9 + 4 = 38$.
+
+</div>
+#### Example 3
+
+<div class="example-block">
+**Input:** heights = [3,3]
+
+**Output:** 9
+
+**Explanation:**
+
+The optimal sequence is `[3, 3]`.
+
+- Initial jump from the ground to $\text{heights}[0] = 3$: $(0 - 3)^2 = 9$.
+
+- Next jump to $\text{heights}[1] = 3$: $(3 - 3)^2 = 0$.
+
+Total calories burned = $9 + 0 = 9$.
+
+</div>
+### Constraints
+
+- $1 \le n = \text{heights.length} \le 10^{5}$
+
+- $1 \le \text{heights}[i] \le 10^{5}$
