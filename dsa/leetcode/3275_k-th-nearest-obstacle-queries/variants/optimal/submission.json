@@ -7,7 +7,7 @@
   "title_slug": "k-th-nearest-obstacle-queries",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.resultsArray",
   "verified_submission_id": "2080453191",
   "verified_at": "2026-07-25T07:43:47.650528+00:00"

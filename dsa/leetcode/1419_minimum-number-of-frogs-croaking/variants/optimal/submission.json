@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-frogs-croaking",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minNumberOfFrogs",
   "verified_submission_id": "2074386346",
   "verified_at": "2026-07-20T09:37:31.168588+00:00"

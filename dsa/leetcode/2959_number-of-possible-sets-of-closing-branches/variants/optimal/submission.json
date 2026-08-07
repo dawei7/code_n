@@ -7,7 +7,7 @@
   "title_slug": "number-of-possible-sets-of-closing-branches",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfSets",
   "verified_submission_id": "2078400214",
   "verified_at": "2026-07-23T12:57:09.083772+00:00"

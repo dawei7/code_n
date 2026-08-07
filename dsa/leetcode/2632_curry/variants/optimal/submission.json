@@ -7,7 +7,7 @@
   "title_slug": "curry",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/solution.js",
+  "source": "solution.js",
   "native_entrypoint": "curry",
   "verified_submission_id": "2076113090",
   "verified_at": "2026-07-21T16:45:00+00:00"

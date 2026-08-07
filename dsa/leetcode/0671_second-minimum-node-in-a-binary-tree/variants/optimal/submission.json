@@ -7,7 +7,7 @@
   "title_slug": "second-minimum-node-in-a-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065547657",
   "verified_at": "2026-07-13T02:17:43.925607+00:00"
 }

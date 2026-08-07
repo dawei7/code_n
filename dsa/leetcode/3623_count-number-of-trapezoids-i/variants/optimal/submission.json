@@ -7,7 +7,7 @@
   "title_slug": "count-number-of-trapezoids-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countTrapezoids",
   "verified_submission_id": "2083751170",
   "verified_at": "2026-07-27T17:37:32.317961+00:00"

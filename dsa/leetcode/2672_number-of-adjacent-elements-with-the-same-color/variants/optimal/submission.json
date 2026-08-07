@@ -7,7 +7,7 @@
   "title_slug": "number-of-adjacent-elements-with-the-same-color",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2076349634",
   "verified_at": "2026-07-21T20:10:00+00:00"
 }

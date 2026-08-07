@@ -7,7 +7,7 @@
   "title_slug": "most-profit-assigning-work",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxProfitAssignment",
   "verified_submission_id": "2066678254",
   "verified_at": "2026-07-13T21:55:15.409027+00:00"

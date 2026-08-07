@@ -7,7 +7,7 @@
   "title_slug": "first-unique-even-element",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.firstUniqueEven",
   "verified_submission_id": "2086354631",
   "verified_at": "2026-07-29T15:56:10.038881+00:00"

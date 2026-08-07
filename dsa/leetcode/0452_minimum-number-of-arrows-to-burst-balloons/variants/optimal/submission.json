@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-arrows-to-burst-balloons",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064921277",
   "verified_at": "2026-07-12T11:25:57.404397+00:00"
 }

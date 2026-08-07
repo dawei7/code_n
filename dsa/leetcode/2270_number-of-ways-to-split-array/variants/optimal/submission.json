@@ -7,7 +7,7 @@
   "title_slug": "number-of-ways-to-split-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.waysToSplitArray",
   "verified_submission_id": "2073960061",
   "verified_at": "2026-07-20T01:06:23.872264+00:00"

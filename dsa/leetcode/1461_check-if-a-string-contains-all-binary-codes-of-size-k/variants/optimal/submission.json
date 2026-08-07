@@ -7,7 +7,7 @@
   "title_slug": "check-if-a-string-contains-all-binary-codes-of-size-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.hasAllCodes",
   "verified_submission_id": "2069176461",
   "verified_at": "2026-07-15T23:49:39.777174+00:00"

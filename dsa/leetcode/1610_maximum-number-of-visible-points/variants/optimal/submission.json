@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-visible-points",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.visiblePoints",
   "verified_submission_id": "2070134095",
   "verified_at": "2026-07-16T16:28:59.361924+00:00"

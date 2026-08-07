@@ -7,7 +7,7 @@
   "title_slug": "min-cost-to-connect-all-points",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minCostConnectPoints",
   "verified_submission_id": "2069936240",
   "verified_at": "2026-07-16T13:54:42.065371+00:00"

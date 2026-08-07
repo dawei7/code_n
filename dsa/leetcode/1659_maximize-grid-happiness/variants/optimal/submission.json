@@ -7,7 +7,7 @@
   "title_slug": "maximize-grid-happiness",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.getMaxGridHappiness",
   "verified_submission_id": "2070485157",
   "verified_at": "2026-07-17T01:18:11.348788+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-profit-from-valid-topological-order-in-dag",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxProfit",
   "verified_submission_id": "2082609992",
   "verified_at": "2026-07-26T22:51:00Z"

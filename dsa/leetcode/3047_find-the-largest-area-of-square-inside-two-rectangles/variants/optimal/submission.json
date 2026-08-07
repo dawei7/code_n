@@ -7,7 +7,7 @@
   "title_slug": "find-the-largest-area-of-square-inside-two-rectangles",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.largestSquareArea",
   "verified_submission_id": "2078938972",
   "verified_at": "2026-07-24T00:27:52.793388+00:00"

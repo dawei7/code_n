@@ -7,7 +7,7 @@
   "title_slug": "customers-who-bought-products-a-and-b-but-not-c",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2068872192",
   "verified_at": "2026-07-15T16:36:41.948598+00:00"

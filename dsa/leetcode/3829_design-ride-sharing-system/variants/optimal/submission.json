@@ -7,7 +7,7 @@
   "title_slug": "design-ride-sharing-system",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "RideSharingSystem",
   "verified_submission_id": "2085733008",
   "verified_at": "2026-07-29T06:52:31.842512+00:00"

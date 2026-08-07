@@ -7,7 +7,7 @@
   "title_slug": "maximize-spanning-tree-stability-with-upgrades",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxStability",
   "verified_submission_id": "2083492686",
   "verified_at": "2026-07-27T14:39:00Z"

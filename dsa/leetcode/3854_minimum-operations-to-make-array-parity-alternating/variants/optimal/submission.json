@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-array-parity-alternating",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.makeParityAlternating",
   "verified_submission_id": "2086150731",
   "verified_at": "2026-07-29T13:17:11.457560+00:00"

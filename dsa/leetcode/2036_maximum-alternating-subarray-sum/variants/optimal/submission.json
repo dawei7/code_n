@@ -7,7 +7,7 @@
   "title_slug": "maximum-alternating-subarray-sum",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumAlternatingSubarraySum",
   "verified_submission_id": "2072863061",
   "verified_at": "2026-07-19T00:51:39.576455+00:00"

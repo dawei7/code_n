@@ -7,7 +7,7 @@
   "title_slug": "find-circular-gift-exchange-chains",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2081398569",
   "verified_at": "2026-07-26T03:03:00Z"

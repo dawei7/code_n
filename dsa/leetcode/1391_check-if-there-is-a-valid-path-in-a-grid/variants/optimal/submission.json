@@ -7,7 +7,7 @@
   "title_slug": "check-if-there-is-a-valid-path-in-a-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.hasValidPath",
   "verified_submission_id": "2068841616",
   "verified_at": "2026-07-15T16:13:55.832549+00:00"

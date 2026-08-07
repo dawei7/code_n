@@ -7,7 +7,7 @@
   "title_slug": "unique-length-3-palindromic-subsequences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countPalindromicSubsequence",
   "verified_submission_id": "2072528805",
   "verified_at": "2026-07-18T16:04:16.722957+00:00"

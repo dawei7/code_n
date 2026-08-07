@@ -7,7 +7,7 @@
   "title_slug": "x-of-a-kind-in-a-deck-of-cards",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.hasGroupsSizeX",
   "verified_submission_id": "2066930441",
   "verified_at": "2026-07-14T05:40:19.532863+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-houses-in-a-circular-street-ii",
   "paid_only": true,
   "language": "python",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.houseCount",
   "verified_submission_id": "2076511528",
   "verified_at": "2026-07-22T03:15:00+00:00"

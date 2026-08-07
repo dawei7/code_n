@@ -7,7 +7,7 @@
   "title_slug": "vowels-game-in-a-string",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.doesAliceWin",
   "verified_submission_id": "2080172377",
   "verified_at": "2026-07-25T02:46:13.865598+00:00"

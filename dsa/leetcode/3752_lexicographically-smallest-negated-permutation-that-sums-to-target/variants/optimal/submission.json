@@ -7,7 +7,7 @@
   "title_slug": "lexicographically-smallest-negated-permutation-that-sums-to-target",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.lexSmallestNegatedPerm",
   "verified_submission_id": "2085306444",
   "verified_at": "2026-07-28T19:47:16.611088+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "neighboring-bitwise-xor",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.doesValidArrayExist",
   "verified_submission_id": "2076382532",
   "verified_at": "2026-07-21T21:16:00+00:00"

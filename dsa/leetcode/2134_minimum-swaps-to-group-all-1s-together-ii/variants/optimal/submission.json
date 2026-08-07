@@ -7,7 +7,7 @@
   "title_slug": "minimum-swaps-to-group-all-1s-together-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minSwaps",
   "verified_submission_id": "2073430736",
   "verified_at": "2026-07-19T12:07:42.215101+00:00"

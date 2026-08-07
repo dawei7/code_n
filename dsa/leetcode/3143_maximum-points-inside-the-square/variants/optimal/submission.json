@@ -7,7 +7,7 @@
   "title_slug": "maximum-points-inside-the-square",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxPointsInsideSquare",
   "verified_submission_id": "2079713026",
   "verified_at": "2026-07-24T17:01:00+02:00"

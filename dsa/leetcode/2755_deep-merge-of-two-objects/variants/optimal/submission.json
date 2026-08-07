@@ -7,7 +7,7 @@
   "title_slug": "deep-merge-of-two-objects",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/solution.js",
+  "source": "solution.js",
   "native_entrypoint": "deepMerge",
   "verified_submission_id": "2076519760",
   "verified_at": "2026-07-22T03:28:00+00:00"

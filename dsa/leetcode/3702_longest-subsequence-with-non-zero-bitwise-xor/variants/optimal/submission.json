@@ -7,7 +7,7 @@
   "title_slug": "longest-subsequence-with-non-zero-bitwise-xor",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.longestSubsequence",
   "verified_submission_id": "2084855432",
   "verified_at": "2026-07-28T14:08:46.064659+00:00"

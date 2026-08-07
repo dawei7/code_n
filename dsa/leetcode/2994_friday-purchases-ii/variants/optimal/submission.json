@@ -7,7 +7,7 @@
   "title_slug": "friday-purchases-ii",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2078605059",
   "verified_at": "2026-07-23T15:56:00.909310+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "remove-letter-to-equalize-frequency",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.equalFrequency",
   "verified_submission_id": "2074780968",
   "verified_at": "2026-07-20T16:01:09.264955+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "the-maze-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065145855",
   "verified_at": "2026-07-12T15:29:52.579529+00:00",
   "review_scope": "solution_only",

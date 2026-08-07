@@ -7,7 +7,7 @@
   "title_slug": "smallest-stable-index-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.firstStableIndex",
   "verified_submission_id": "2086780799",
   "verified_at": "2026-07-30T01:01:36.905074+00:00"

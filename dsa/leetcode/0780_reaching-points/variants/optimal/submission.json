@@ -7,7 +7,7 @@
   "title_slug": "reaching-points",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.reachingPoints",
   "verified_submission_id": "2066105413",
   "verified_at": "2026-07-13T12:18:22.581143+00:00"

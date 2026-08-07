@@ -7,7 +7,7 @@
   "title_slug": "count-paths-with-the-given-xor-value",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countPathsWithXorValue",
   "verified_submission_id": "2081322222",
   "verified_at": "2026-07-26T01:53:00Z"

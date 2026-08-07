@@ -7,7 +7,7 @@
   "title_slug": "jump-game-viii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2080684965",
   "verified_at": "2026-07-25T11:48:11.7538644Z"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-array-modulo-alternating-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2087296321",
   "verified_at": "2026-07-30T09:38:22.314238+00:00"

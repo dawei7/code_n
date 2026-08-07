@@ -7,7 +7,7 @@
   "title_slug": "flip-game",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064318085",
   "verified_at": "2026-07-11T22:02:25.525730+00:00",
   "review_scope": "solution_only",

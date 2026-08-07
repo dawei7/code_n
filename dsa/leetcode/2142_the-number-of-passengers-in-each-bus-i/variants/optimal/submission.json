@@ -7,7 +7,7 @@
   "title_slug": "the-number-of-passengers-in-each-bus-i",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2073470481",
   "verified_at": "2026-07-19T12:53:04.785706+00:00"

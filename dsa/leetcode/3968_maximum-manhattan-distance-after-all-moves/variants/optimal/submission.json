@@ -7,7 +7,7 @@
   "title_slug": "maximum-manhattan-distance-after-all-moves",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxDistance",
   "verified_submission_id": "2087910623",
   "verified_at": "2026-07-30T18:03:41.656922+00:00"

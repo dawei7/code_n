@@ -7,7 +7,7 @@
   "title_slug": "shift-distance-between-two-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.shiftDistance",
   "verified_submission_id": "2081238613",
   "verified_at": "2026-07-25T21:12:00Z"

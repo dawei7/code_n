@@ -7,7 +7,7 @@
   "title_slug": "split-array-with-minimum-difference",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.splitArray",
   "verified_submission_id": "2084810093",
   "verified_at": "2026-07-28T13:34:44.293944+00:00"

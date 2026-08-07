@@ -7,7 +7,7 @@
   "title_slug": "maximum-xor-product",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumXorProduct",
   "verified_submission_id": "2078305560",
   "verified_at": "2026-07-23T11:12:11.809286+00:00"

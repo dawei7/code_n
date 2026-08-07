@@ -7,7 +7,7 @@
   "title_slug": "wiggle-sort-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064384828",
   "verified_at": "2026-07-12T02:23:40.040734+00:00"
 }

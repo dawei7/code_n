@@ -7,7 +7,7 @@
   "title_slug": "zero-array-transformation-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.isZeroArray",
   "verified_submission_id": "2081209596",
   "verified_at": "2026-07-25T20:13:22Z"

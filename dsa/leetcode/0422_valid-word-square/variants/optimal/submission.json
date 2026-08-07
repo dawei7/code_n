@@ -7,7 +7,7 @@
   "title_slug": "valid-word-square",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064768312",
   "verified_at": "2026-07-12T08:17:45.134833+00:00",
   "review_scope": "solution_only",

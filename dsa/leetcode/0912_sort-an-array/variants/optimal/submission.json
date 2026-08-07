@@ -7,7 +7,7 @@
   "title_slug": "sort-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sortArray",
   "verified_submission_id": "2066865843",
   "verified_at": "2026-07-14T04:43:52.604414+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "binary-tree-coloring-game",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.btreeGameWinningMove",
   "verified_submission_id": "2067838839",
   "verified_at": "2026-07-14T19:47:39.954713+00:00"

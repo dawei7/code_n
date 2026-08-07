@@ -7,7 +7,7 @@
   "title_slug": "maximum-sum-of-alternating-subsequence-with-distance-at-least-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxAlternatingSum",
   "verified_submission_id": "2086864316",
   "verified_at": "2026-07-30T03:47:56.716165+00:00"

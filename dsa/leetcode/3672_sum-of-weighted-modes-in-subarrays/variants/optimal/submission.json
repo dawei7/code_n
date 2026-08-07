@@ -7,7 +7,7 @@
   "title_slug": "sum-of-weighted-modes-in-subarrays",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.modeWeight",
   "verified_submission_id": "2083992423",
   "verified_at": "2026-07-27T23:24:33.844075+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "coin-path",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065480112",
   "verified_at": "2026-07-12T21:18:19.422504+00:00",
   "review_scope": "solution_only",

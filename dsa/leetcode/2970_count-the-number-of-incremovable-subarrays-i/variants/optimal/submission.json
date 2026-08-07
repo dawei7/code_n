@@ -7,7 +7,7 @@
   "title_slug": "count-the-number-of-incremovable-subarrays-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.incremovableSubarrayCount",
   "verified_submission_id": "2078461635",
   "verified_at": "2026-07-23T13:54:04.954346+00:00"

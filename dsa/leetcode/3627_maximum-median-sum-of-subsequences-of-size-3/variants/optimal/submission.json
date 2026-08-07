@@ -7,7 +7,7 @@
   "title_slug": "maximum-median-sum-of-subsequences-of-size-3",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumMedianSum",
   "verified_submission_id": "2083866869",
   "verified_at": "2026-07-27T19:04:00Z"

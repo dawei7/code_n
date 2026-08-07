@@ -7,7 +7,7 @@
   "title_slug": "odd-and-even-transactions",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2080160169",
   "verified_at": "2026-07-25T02:12:31.903628+00:00"

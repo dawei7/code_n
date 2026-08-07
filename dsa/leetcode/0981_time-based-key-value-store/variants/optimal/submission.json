@@ -7,7 +7,7 @@
   "title_slug": "time-based-key-value-store",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "TimeMap",
   "verified_submission_id": "2067183879",
   "verified_at": "2026-07-14T09:37:44.526895+00:00"

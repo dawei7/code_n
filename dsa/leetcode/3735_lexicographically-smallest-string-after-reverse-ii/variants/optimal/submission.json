@@ -7,7 +7,7 @@
   "title_slug": "lexicographically-smallest-string-after-reverse-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.lexSmallest",
   "verified_submission_id": "2085178432",
   "verified_at": "2026-07-28T17:52:25.042914+00:00"

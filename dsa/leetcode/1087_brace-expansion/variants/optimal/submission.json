@@ -7,7 +7,7 @@
   "title_slug": "brace-expansion",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.expand",
   "verified_submission_id": "2067562451",
   "verified_at": "2026-07-14T15:52:07.103535+00:00",

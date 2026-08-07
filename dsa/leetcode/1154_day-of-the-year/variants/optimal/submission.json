@@ -7,7 +7,7 @@
   "title_slug": "day-of-the-year",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.dayOfYear",
   "verified_submission_id": "2067859686",
   "verified_at": "2026-07-14T20:25:59.663303+00:00"

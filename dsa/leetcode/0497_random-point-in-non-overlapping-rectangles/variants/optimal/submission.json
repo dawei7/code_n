@@ -7,7 +7,7 @@
   "title_slug": "random-point-in-non-overlapping-rectangles",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065113653",
   "verified_at": "2026-07-12T14:56:13.372754+00:00"
 }

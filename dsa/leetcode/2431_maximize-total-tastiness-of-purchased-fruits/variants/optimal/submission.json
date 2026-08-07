@@ -7,7 +7,7 @@
   "title_slug": "maximize-total-tastiness-of-purchased-fruits",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxTastiness",
   "verified_submission_id": "2074848988",
   "verified_at": "2026-07-20T16:50:54.313319+00:00"

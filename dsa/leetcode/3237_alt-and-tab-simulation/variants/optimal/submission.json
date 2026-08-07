@@ -7,7 +7,7 @@
   "title_slug": "alt-and-tab-simulation",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.simulationResult",
   "verified_submission_id": "2080205155",
   "verified_at": "2026-07-25T03:51:04.772185+00:00"

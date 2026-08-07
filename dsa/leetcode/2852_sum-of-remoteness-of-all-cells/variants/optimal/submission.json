@@ -7,7 +7,7 @@
   "title_slug": "sum-of-remoteness-of-all-cells",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sumRemoteness",
   "verified_submission_id": "2077573193",
   "verified_at": "2026-07-22T18:46:00+00:00"

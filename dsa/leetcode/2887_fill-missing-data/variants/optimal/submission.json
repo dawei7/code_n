@@ -7,7 +7,7 @@
   "title_slug": "fill-missing-data",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "fillMissingValues",
   "verified_submission_id": "2077911963",
   "verified_at": "2026-07-23T05:19:32+00:00"

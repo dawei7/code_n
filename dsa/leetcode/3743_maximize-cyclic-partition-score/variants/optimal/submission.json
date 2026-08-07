@@ -7,7 +7,7 @@
   "title_slug": "maximize-cyclic-partition-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumScore",
   "verified_submission_id": "2085256404",
   "verified_at": "2026-07-28T18:49:20.723555+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "products-with-three-or-more-orders-in-two-consecutive-years",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2080679925",
   "verified_at": "2026-07-25T11:42:34.4282334Z"
 }

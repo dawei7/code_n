@@ -7,7 +7,7 @@
   "title_slug": "contain-virus",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.containVirus",
   "verified_submission_id": "2065907068",
   "verified_at": "2026-07-13T08:57:09.133181+00:00"

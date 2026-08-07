@@ -7,7 +7,7 @@
   "title_slug": "wiggle-subsequence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064637964",
   "verified_at": "2026-07-12T05:56:38.429810+00:00"
 }

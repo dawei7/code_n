@@ -7,7 +7,7 @@
   "title_slug": "people-whose-list-of-favorite-companies-is-not-a-subset-of-another-list",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.peopleIndexes",
   "verified_submission_id": "2069164103",
   "verified_at": "2026-07-15T23:00:32.318659+00:00"

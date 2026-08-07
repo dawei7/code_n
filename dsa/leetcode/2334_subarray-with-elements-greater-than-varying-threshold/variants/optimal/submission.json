@@ -7,7 +7,7 @@
   "title_slug": "subarray-with-elements-greater-than-varying-threshold",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.validSubarraySize",
   "verified_submission_id": "2074400580",
   "verified_at": "2026-07-20T09:50:08.581290+00:00"

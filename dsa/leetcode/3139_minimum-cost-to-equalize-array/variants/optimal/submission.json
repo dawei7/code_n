@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-equalize-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minCostToEqualizeArray",
   "verified_submission_id": "2079666039",
   "verified_at": "2026-07-24T16:17:00+02:00"

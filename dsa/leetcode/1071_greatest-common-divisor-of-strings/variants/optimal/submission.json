@@ -7,7 +7,7 @@
   "title_slug": "greatest-common-divisor-of-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.gcdOfStrings",
   "verified_submission_id": "2067496318",
   "verified_at": "2026-07-14T14:54:25.331901+00:00"

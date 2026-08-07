@@ -7,7 +7,7 @@
   "title_slug": "smallest-integer-divisible-by-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.smallestRepunitDivByK",
   "verified_submission_id": "2067296852",
   "verified_at": "2026-07-14T11:34:18.100191+00:00"

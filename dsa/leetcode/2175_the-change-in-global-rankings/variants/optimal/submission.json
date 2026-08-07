@@ -7,7 +7,7 @@
   "title_slug": "the-change-in-global-rankings",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2073696394",
   "verified_at": "2026-07-19T16:41:06.283952+00:00"

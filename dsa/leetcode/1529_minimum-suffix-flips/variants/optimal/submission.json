@@ -7,7 +7,7 @@
   "title_slug": "minimum-suffix-flips",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minFlips",
   "verified_submission_id": "2069578266",
   "verified_at": "2026-07-16T08:11:26.845511+00:00"

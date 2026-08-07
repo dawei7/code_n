@@ -7,7 +7,7 @@
   "title_slug": "xor-operation-in-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.xorOperation",
   "verified_submission_id": "2074762415",
   "verified_at": "2026-07-20T15:46:39.124474+00:00"

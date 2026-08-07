@@ -144,12 +144,17 @@ def _validate_case_layout(package: Path, errors: list[str]) -> tuple[int, int, s
 
 
 def _expected_paths(package: Path, language: str, target: str, *, include_cases: bool = True) -> dict[str, Path]:
-    solutions = package / "variants" / "optimal" / "solutions"
+    optimal_folder = package / "variants" / "optimal"
+    solutions = optimal_folder / "solutions"
     complexity_evidence = package / "benchmark.json"
     if not complexity_evidence.is_file():
         complexity_evidence = package / "complexity_certificate.json"
-    current_src = solutions / app_solution_filename(language)
-    native_src = solutions / leetcode_solution_filename(language)
+    current_src = optimal_folder / app_solution_filename(language)
+    if not current_src.is_file():
+        current_src = solutions / app_solution_filename(language)
+    native_src = optimal_folder / leetcode_solution_filename(language)
+    if not native_src.is_file():
+        native_src = solutions / leetcode_solution_filename(language)
     if not native_src.is_file():
         native_src = current_src
 

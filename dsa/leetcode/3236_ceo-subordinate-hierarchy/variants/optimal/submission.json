@@ -7,7 +7,7 @@
   "title_slug": "ceo-subordinate-hierarchy",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2080202097",
   "verified_at": "2026-07-25T03:46:17.579150+00:00"

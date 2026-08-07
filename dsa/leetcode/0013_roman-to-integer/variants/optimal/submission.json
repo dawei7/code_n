@@ -7,7 +7,7 @@
   "title_slug": "roman-to-integer",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2089309706",
   "verified_at": "2026-07-31T21:44:53.964+00:00"
 }

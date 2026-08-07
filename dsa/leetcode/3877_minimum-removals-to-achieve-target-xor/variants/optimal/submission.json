@@ -7,7 +7,7 @@
   "title_slug": "minimum-removals-to-achieve-target-xor",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minRemovals",
   "verified_submission_id": "2086586485",
   "verified_at": "2026-07-29T18:27:40.895335+00:00"

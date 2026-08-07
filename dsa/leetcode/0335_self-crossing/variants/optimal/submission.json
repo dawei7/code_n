@@ -7,7 +7,7 @@
   "title_slug": "self-crossing",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064440475",
   "verified_at": "2026-07-12T02:59:40.386823+00:00"
 }

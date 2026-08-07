@@ -7,7 +7,7 @@
   "title_slug": "find-the-distance-value-between-two-arrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findTheDistanceValue",
   "verified_submission_id": "2068812262",
   "verified_at": "2026-07-15T15:50:51.967440+00:00"

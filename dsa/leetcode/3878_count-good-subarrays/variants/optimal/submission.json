@@ -7,7 +7,7 @@
   "title_slug": "count-good-subarrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.countGoodSubarrays",
   "verified_submission_id": "2086599174",
   "verified_at": "2026-07-29T18:37:41.432423+00:00"

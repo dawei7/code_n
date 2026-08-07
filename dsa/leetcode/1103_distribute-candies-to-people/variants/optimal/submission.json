@@ -7,7 +7,7 @@
   "title_slug": "distribute-candies-to-people",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.distributeCandies",
   "verified_submission_id": "2067651434",
   "verified_at": "2026-07-14T17:00:01.517387+00:00"

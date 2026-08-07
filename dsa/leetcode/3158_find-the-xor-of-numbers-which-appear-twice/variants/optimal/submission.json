@@ -7,7 +7,7 @@
   "title_slug": "find-the-xor-of-numbers-which-appear-twice",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.duplicateNumbersXOR",
   "verified_submission_id": "2079877100",
   "verified_at": "2026-07-24T19:17:00+02:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-height-trees",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064368278",
   "verified_at": "2026-07-12T01:27:49.764369+00:00"
 }

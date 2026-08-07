@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-days-to-disconnect-island",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minDays",
   "verified_submission_id": "2069837609",
   "verified_at": "2026-07-16T12:17:57.930724+00:00"

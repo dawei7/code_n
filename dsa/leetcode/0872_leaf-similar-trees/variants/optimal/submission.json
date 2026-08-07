@@ -7,7 +7,7 @@
   "title_slug": "leaf-similar-trees",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.leafSimilar",
   "verified_submission_id": "2066741181",
   "verified_at": "2026-07-14T01:23:41.196428+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-absolute-difference-between-two-values",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minAbsoluteDifference",
   "verified_submission_id": "2086628581",
   "verified_at": "2026-07-29T19:06:17.855498+00:00"

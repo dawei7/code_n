@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findMaximumNumber",
   "verified_submission_id": "2078697011",
   "verified_at": "2026-07-23T17:02:52.457217+00:00"

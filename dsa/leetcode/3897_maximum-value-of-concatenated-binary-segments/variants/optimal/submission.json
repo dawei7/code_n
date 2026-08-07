@@ -7,7 +7,7 @@
   "title_slug": "maximum-value-of-concatenated-binary-segments",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxValue",
   "verified_submission_id": "2086749303",
   "verified_at": "2026-07-29T23:18:55.771268+00:00"

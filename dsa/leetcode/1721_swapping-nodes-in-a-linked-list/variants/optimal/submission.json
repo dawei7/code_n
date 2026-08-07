@@ -7,7 +7,7 @@
   "title_slug": "swapping-nodes-in-a-linked-list",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.swapNodes",
   "verified_submission_id": "2070761019",
   "verified_at": "2026-07-17T06:41:00.506408+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "valid-sudoku",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2063772978",
   "verified_at": "2026-07-11T10:47:32.527Z"
 }

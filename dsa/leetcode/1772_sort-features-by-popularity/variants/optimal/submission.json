@@ -7,7 +7,7 @@
   "title_slug": "sort-features-by-popularity",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sortFeatures",
   "verified_submission_id": "2071081479",
   "verified_at": "2026-07-17T12:10:52.745300+00:00"

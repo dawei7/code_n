@@ -7,7 +7,7 @@
   "title_slug": "longest-line-of-consecutive-one-in-matrix",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065391126",
   "verified_at": "2026-07-12T19:22:45.800026+00:00",
   "review_scope": "solution_only",

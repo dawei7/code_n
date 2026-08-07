@@ -7,7 +7,7 @@
   "title_slug": "max-difference-you-can-get-from-changing-an-integer",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxDiff",
   "verified_submission_id": "2069082111",
   "verified_at": "2026-07-15T19:28:09.831187+00:00"

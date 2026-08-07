@@ -7,7 +7,7 @@
   "title_slug": "all-ancestors-of-a-node-in-a-directed-acyclic-graph",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.getAncestors",
   "verified_submission_id": "2073809795",
   "verified_at": "2026-07-19T18:21:59.543800+00:00"

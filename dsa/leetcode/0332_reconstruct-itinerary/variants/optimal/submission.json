@@ -7,7 +7,7 @@
   "title_slug": "reconstruct-itinerary",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064418975",
   "verified_at": "2026-07-12T02:49:42.214786+00:00"
 }

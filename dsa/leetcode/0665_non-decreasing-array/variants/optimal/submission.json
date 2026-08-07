@@ -7,7 +7,7 @@
   "title_slug": "non-decreasing-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065535918",
   "verified_at": "2026-07-13T01:47:58.768865+00:00"
 }

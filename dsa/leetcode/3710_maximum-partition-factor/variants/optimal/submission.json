@@ -7,7 +7,7 @@
   "title_slug": "maximum-partition-factor",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxPartitionFactor",
   "verified_submission_id": "2084937573",
   "verified_at": "2026-07-28T15:11:14.990445+00:00"

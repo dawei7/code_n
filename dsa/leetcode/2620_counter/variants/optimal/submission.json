@@ -7,7 +7,7 @@
   "title_slug": "counter",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/solution.js",
+  "source": "solution.js",
   "native_entrypoint": "createCounter",
   "verified_submission_id": "2075911299",
   "verified_at": "2026-07-21T14:12:00+00:00"

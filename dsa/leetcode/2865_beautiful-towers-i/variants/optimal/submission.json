@@ -7,7 +7,7 @@
   "title_slug": "beautiful-towers-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumSumOfHeights",
   "verified_submission_id": "2077640814",
   "verified_at": "2026-07-22T20:16:00+00:00"

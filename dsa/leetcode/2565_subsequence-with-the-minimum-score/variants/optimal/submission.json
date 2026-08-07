@@ -7,7 +7,7 @@
   "title_slug": "subsequence-with-the-minimum-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimumScore",
   "verified_submission_id": "2075500351",
   "verified_at": "2026-07-21T07:39:00+00:00"

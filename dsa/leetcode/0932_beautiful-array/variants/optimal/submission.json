@@ -7,7 +7,7 @@
   "title_slug": "beautiful-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.beautifulArray",
   "verified_submission_id": "2066998915",
   "verified_at": "2026-07-14T06:34:14.842021+00:00"

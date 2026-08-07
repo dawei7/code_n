@@ -7,7 +7,7 @@
   "title_slug": "reshape-data-melt",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "meltTable",
   "verified_submission_id": "2077937793",
   "verified_at": "2026-07-23T05:41:08+00:00"

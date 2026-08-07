@@ -7,7 +7,7 @@
   "title_slug": "last-remaining-integer-after-alternating-deletion-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.lastInteger",
   "verified_submission_id": "2085397751",
   "verified_at": "2026-07-28T23:29:18.011376+00:00"

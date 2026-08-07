@@ -7,7 +7,7 @@
   "title_slug": "average-of-levels-in-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065501186",
   "verified_at": "2026-07-12T23:59:19.959519+00:00"
 }

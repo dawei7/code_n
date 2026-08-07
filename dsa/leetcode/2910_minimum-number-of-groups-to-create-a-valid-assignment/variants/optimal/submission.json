@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-groups-to-create-a-valid-assignment",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minGroupsForValidAssignment",
   "verified_submission_id": "2078106545",
   "verified_at": "2026-07-23T08:09:37.635001+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "merge-similar-items",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.mergeSimilarItems",
   "verified_submission_id": "2074420354",
   "verified_at": "2026-07-20T10:07:33.811321+00:00"

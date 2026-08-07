@@ -7,7 +7,7 @@
   "title_slug": "final-array-state-after-k-multiplication-operations-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.getFinalState",
   "verified_submission_id": "2080391952",
   "verified_at": "2026-07-25T06:46:09.655966+00:00"

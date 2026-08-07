@@ -7,7 +7,7 @@
   "title_slug": "replace-all-digits-with-characters",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.replaceDigits",
   "verified_submission_id": "2071665036",
   "verified_at": "2026-07-18T02:15:30.751653+00:00"

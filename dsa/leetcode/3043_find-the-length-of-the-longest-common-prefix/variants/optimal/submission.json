@@ -7,7 +7,7 @@
   "title_slug": "find-the-length-of-the-longest-common-prefix",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.longestCommonPrefix",
   "verified_submission_id": "2078930852",
   "verified_at": "2026-07-23T23:57:38.972652+00:00"

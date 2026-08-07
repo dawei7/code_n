@@ -7,7 +7,7 @@
   "title_slug": "find-nearest-point-that-has-the-same-x-or-y-coordinate",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.nearestValidPoint",
   "verified_submission_id": "2071115561",
   "verified_at": "2026-07-17T12:52:26.775925+00:00"

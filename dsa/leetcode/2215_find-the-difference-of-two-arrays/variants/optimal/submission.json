@@ -7,7 +7,7 @@
   "title_slug": "find-the-difference-of-two-arrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "class Solution.findDifference",
   "verified_submission_id": "2073885480",
   "verified_at": "2026-07-19T20:25:21.680926+00:00"

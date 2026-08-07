@@ -7,7 +7,7 @@
   "title_slug": "calculate-parking-fees-and-duration",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2079981325",
   "verified_at": "2026-07-24T20:39:00+02:00"

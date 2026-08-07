@@ -7,7 +7,7 @@
   "title_slug": "count-the-number-of-substrings-with-dominant-ones",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfSubstrings",
   "verified_submission_id": "2080194755",
   "verified_at": "2026-07-25T03:33:50.853087+00:00"

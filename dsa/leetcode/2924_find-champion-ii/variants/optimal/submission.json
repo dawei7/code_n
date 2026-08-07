@@ -7,7 +7,7 @@
   "title_slug": "find-champion-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.findChampion",
   "verified_submission_id": "2078207791",
   "verified_at": "2026-07-23T09:40:22.715934+00:00"

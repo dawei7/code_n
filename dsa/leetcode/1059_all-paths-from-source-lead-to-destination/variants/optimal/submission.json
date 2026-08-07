@@ -7,7 +7,7 @@
   "title_slug": "all-paths-from-source-lead-to-destination",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.leadsToDestination",
   "verified_submission_id": "2067451290",
   "verified_at": "2026-07-14T14:13:36.721310+00:00",

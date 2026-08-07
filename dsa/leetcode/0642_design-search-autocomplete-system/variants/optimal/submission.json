@@ -7,7 +7,7 @@
   "title_slug": "design-search-autocomplete-system",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065507081",
   "verified_at": "2026-07-13T00:19:10.960362+00:00",
   "review_scope": "solution_only",

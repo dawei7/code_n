@@ -7,7 +7,7 @@
   "title_slug": "random-pick-with-blacklist",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065635559",
   "verified_at": "2026-07-13T04:38:08.985437+00:00"
 }

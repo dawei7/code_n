@@ -7,7 +7,7 @@
   "title_slug": "maximum-energy-boost-from-two-drinks",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxEnergyBoost",
   "verified_submission_id": "2080340036",
   "verified_at": "2026-07-25T06:05:19.558552+00:00"

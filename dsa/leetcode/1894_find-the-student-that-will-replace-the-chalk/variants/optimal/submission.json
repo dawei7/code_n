@@ -7,7 +7,7 @@
   "title_slug": "find-the-student-that-will-replace-the-chalk",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.chalkReplacer",
   "verified_submission_id": "2071946860",
   "verified_at": "2026-07-18T07:55:05.080296+00:00"

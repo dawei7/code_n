@@ -7,7 +7,7 @@
   "title_slug": "number-of-ways-to-select-buildings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "class Solution.numberOfWays",
   "verified_submission_id": "2073896846",
   "verified_at": "2026-07-19T20:58:49.088388+00:00"

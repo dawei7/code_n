@@ -7,7 +7,7 @@
   "title_slug": "minimum-element-after-replacement-with-digit-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minElement",
   "verified_submission_id": "2080792018",
   "verified_at": "2026-07-25T13:41:54.0615306Z"

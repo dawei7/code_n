@@ -7,7 +7,7 @@
   "title_slug": "keyboard-row",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2065126140",
   "verified_at": "2026-07-12T15:09:24.337339+00:00"
 }

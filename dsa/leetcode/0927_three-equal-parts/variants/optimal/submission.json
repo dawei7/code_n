@@ -7,7 +7,7 @@
   "title_slug": "three-equal-parts",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.threeEqualParts",
   "verified_submission_id": "2066982484",
   "verified_at": "2026-07-14T06:21:24.958416+00:00"

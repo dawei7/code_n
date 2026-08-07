@@ -7,7 +7,7 @@
   "title_slug": "maximum-coins-heroes-can-collect",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maximumCoins",
   "verified_submission_id": "2077419762",
   "verified_at": "2026-07-22T16:56:00+00:00"

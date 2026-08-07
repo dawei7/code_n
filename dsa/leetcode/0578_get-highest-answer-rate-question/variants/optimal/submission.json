@@ -7,7 +7,7 @@
   "title_slug": "get-highest-answer-rate-question",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2065426173",
   "verified_at": "2026-07-12T20:17:41.205791+00:00",
   "review_scope": "solution_only",

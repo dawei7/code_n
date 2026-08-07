@@ -7,7 +7,7 @@
   "title_slug": "sum-of-prefix-scores-of-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.sumPrefixScores",
   "verified_submission_id": "2074693333",
   "verified_at": "2026-07-20T14:48:24.826726+00:00"

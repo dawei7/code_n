@@ -7,7 +7,7 @@
   "title_slug": "kth-smallest-path-xor-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.kthSmallest",
   "verified_submission_id": "2083373295",
   "verified_at": "2026-07-27T13:05:00Z"

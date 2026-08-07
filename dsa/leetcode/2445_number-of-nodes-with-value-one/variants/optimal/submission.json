@@ -7,7 +7,7 @@
   "title_slug": "number-of-nodes-with-value-one",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.numberOfNodes",
   "verified_submission_id": "2074993649",
   "verified_at": "2026-07-20T18:37:49.741960+00:00"

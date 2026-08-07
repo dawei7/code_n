@@ -7,7 +7,7 @@
   "title_slug": "check-if-strings-can-be-made-equal-with-operations-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.checkStrings",
   "verified_submission_id": "2077440886",
   "verified_at": "2026-07-22T17:10:00+00:00"

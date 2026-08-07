@@ -7,7 +7,7 @@
   "title_slug": "factorial-trailing-zeroes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "verified_submission_id": "2064189369",
   "verified_at": "2026-07-11T18:21:19.452955+00:00"
 }

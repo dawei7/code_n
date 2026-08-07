@@ -7,7 +7,7 @@
   "title_slug": "minimum-fuel-cost-to-report-to-the-capital",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minimumFuelCost",
   "verified_submission_id": "2075113747",
   "verified_at": "2026-07-20T22:16:00+00:00"

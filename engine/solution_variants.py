@@ -288,15 +288,19 @@ def validate_solution_variants(
         solution_paths: dict[str, Path] = {}
         for language in supported_languages:
             ext = language_extension(language)
-            candidate = variant_root / "solutions" / f"solution.{ext}"
+            candidate = variant_root / f"solution.{ext}"
             if candidate.is_file():
                 solution_paths[language] = candidate
             else:
-                for fallback_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
-                    fallback_candidate = variant_root / "solutions" / fallback_name
-                    if fallback_candidate.is_file():
-                        solution_paths[language] = fallback_candidate
-                        break
+                nested_candidate = variant_root / "solutions" / f"solution.{ext}"
+                if nested_candidate.is_file():
+                    solution_paths[language] = nested_candidate
+                else:
+                    for fallback_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
+                        fallback_candidate = variant_root / "solutions" / fallback_name
+                        if fallback_candidate.is_file():
+                            solution_paths[language] = fallback_candidate
+                            break
         if primary_language not in solution_paths:
             errors.append(f"{prefix} has no {primary_language} app-local solution")
 

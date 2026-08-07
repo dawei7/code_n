@@ -7,7 +7,7 @@
   "title_slug": "maximum-valid-pair-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.maxValidPairSum",
   "verified_submission_id": "2088060655",
   "verified_at": "2026-07-30T21:24:02.0848756+00:00"

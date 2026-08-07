@@ -7,7 +7,7 @@
   "title_slug": "find-minimum-cost-to-remove-array-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/solution.py",
+  "source": "solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2082089208",
   "verified_at": "2026-07-26T13:37:00Z"

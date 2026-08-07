@@ -7,7 +7,7 @@
   "title_slug": "not-boring-movies",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/solution.sql",
+  "source": "solution.sql",
   "verified_submission_id": "2065481138",
   "verified_at": "2026-07-12T22:46:57.938392+00:00"
 }
