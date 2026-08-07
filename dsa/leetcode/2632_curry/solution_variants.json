@@ -11,15 +11,6 @@
       "summary": "Retains each argument batch as an immutable linked chunk and flattens the chunks once when the original arity is reached.",
       "time_complexity": "O(n + p)",
       "space_complexity": "O(n + p)"
-    },
-    {
-      "id": "competitive",
-      "label": "Competitive",
-      "kind": "competitive",
-      "directory": "variants/competitive",
-      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
-      "time_complexity": "O(n + p)",
-      "space_complexity": "O(n + p)"
     }
   ]
 }

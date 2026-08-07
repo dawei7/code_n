@@ -11,15 +11,6 @@
       "summary": "Uses the canonical optimal approach for Reorder Data in Log Files and meets the required complexity bound.",
       "time_complexity": "O(S + LC\\log L)",
       "space_complexity": "O(S)"
-    },
-    {
-      "id": "competitive",
-      "label": "Competitive",
-      "kind": "competitive",
-      "directory": "variants/competitive",
-      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
-      "time_complexity": "O(S + LC\\log L)",
-      "space_complexity": "O(S)"
     }
   ]
 }
