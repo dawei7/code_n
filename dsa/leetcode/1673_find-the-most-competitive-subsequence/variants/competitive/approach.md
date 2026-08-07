@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards.
+Given an integer array `nums` and a positive integer `k`, return *the most** competitive** subsequence of *`nums` *of size *`k`, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

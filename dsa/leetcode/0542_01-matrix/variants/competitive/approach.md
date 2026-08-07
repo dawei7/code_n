@@ -1,5 +1,5 @@
 ## General
-Algorithm uses breadth-first search queue level traversal. Maintains double-ended queue (`deque`) for $O(1)$ window bounds, dynamic programming memoization array/table. Edge cases: handles empty/null inputs via early return guards.
+Given an `m x n` binary matrix `mat`, return *the distance of the nearest *`0`* for each cell*, the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends, a dynamic programming memoization table to cache intermediate subproblem states. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(rows \cdot cols)$ — Operation count bound.

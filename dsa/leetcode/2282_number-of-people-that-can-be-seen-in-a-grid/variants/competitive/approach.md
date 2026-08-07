@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards.
+Given an `m x n` **0-indexed** 2D array of positive integers `heights` where $\text{heights}[i][j]$ is the height of the person standing at position `(i, j)`, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.

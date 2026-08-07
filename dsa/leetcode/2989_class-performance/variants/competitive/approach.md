@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Class Performance** using relational predicates.
+Given Table: `Scores`, the database query executes a relational database query for **Class Performance**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

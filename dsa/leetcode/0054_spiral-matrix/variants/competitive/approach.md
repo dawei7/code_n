@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration.
+Given an `m x n` `matrix`, return *all elements of the* `matrix` *in spiral order*, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.

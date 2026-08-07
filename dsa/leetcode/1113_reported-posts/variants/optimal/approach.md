@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Reported Posts** using GROUP BY aggregations.
+Given Table: `Actions`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

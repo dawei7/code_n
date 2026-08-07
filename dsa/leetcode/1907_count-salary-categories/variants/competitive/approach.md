@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Count Salary Categories** using relational predicates.
+Given Table: `Accounts`, the database query executes a relational database query for **Count Salary Categories**.
 
 ## Complexity detail
 - **Time Complexity**: $O(A)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash map lookup (`dict`) for $O(1)$ average speed, priority queue (`heapq`) for dynamic ordering. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given two integers `n` and `k` and two integer arrays `speed` and `efficiency` both of length `n`. There are `n` engineers numbered from `1` to `n`. $\text{speed}[i]$ and $\text{efficiency}[i]$ represent the speed and effic..., the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

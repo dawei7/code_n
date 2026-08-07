@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Number of Calls Between Two Persons** using GROUP BY aggregations.
+Given Table: `Calls`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

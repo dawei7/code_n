@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given an `m x n` matrix `grid` consisting of characters and a string `pattern`, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(N + P)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given Design an algorithm to encode **a list of strings** to **a string**. The encoded string is then sent over the network and is decoded back to the original list of strings, the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(c)$ — Operation count bound.

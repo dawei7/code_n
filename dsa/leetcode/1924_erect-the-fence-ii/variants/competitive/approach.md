@@ -1,5 +1,5 @@
 ## General
-Edge cases: handles empty/null inputs via early return guards.
+Given a 2D integer array `trees` where $\text{trees}[i] = [x_{i}, y_{i}]$ represents the location of the $$i^{\text{th}}$$ tree in the garden, the algorithm solves **Erect the Fence II** directly. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

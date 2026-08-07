@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an integer array `nums`, move all the even integers at the beginning of the array followed by all the odd integers, the algorithm solves **Sort Array By Parity** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

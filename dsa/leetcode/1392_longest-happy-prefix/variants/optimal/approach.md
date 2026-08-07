@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given A string is called a **happy prefix** if it is a **non-empty** prefix which is also a suffix (excluding itself), the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

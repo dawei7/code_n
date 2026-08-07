@@ -1,5 +1,5 @@
 ## General
-Maintains hash map lookup (`dict`) for $O(1)$ average speed, tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards.
+Given the `root` of a binary tree, return *the inorder traversal of its nodes' values*, the algorithm solves **Binary Tree Inorder Traversal** directly. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

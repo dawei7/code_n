@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an array of integers, return the maximum sum for a **non-empty** subarray (contiguous elements) with at most one element deletion. In other words, you want to choose a subarray and optionally delete one element from i..., the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

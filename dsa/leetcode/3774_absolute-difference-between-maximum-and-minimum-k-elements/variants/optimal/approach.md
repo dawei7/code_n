@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Absolute Difference Between Maximum and Minimum K Elements** with natural boundary handling.
+Given an integer array `nums` and an integer `k`, the algorithm solves **Absolute Difference Between Maximum and Minimum K Elements** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N + V)$ — Operation count bound.

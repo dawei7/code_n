@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an array of strings `message` and an array of strings `bannedWords`, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(m + b)$ — Operation count bound.

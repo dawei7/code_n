@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given The **score** of an array is defined as the **product** of its sum and its length, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

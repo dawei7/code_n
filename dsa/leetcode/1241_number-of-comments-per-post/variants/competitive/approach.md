@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Number of Comments per Post** using relational JOINs.
+Given Table: `Submissions`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

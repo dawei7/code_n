@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Ads Performance** using GROUP BY aggregations. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Ads`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(r+a\log a)$ — Operation count bound.

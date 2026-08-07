@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given You have an array of floating point numbers `averages` which is initially empty. You are given an array `nums` of `n` integers where `n` is even, the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

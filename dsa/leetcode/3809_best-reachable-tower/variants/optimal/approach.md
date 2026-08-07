@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a 2D integer array `towers`, where $\text{towers}[i] = [x_{i}, y_{i}, q_{i}]$ represents the coordinates $(x_{i}, y_{i})$ and quality factor $q_{i}$ of the $$i^{\text{th}}$$ tower, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find the Quiet Students in All Exams** using relational JOINs.
+Given Table: `Student`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(E \log E + S)$ — Operation count bound.

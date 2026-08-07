@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Change Null Values in a Table to the Previous Value** using Common Table Expressions (CTEs), window ranking functions.
+Given Table: `CoffeeShop`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log R)$ — Operation count bound.

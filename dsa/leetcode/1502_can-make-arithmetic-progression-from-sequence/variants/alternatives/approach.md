@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Can Make Arithmetic Progression From Sequence** with natural boundary handling.
+Given A sequence of numbers is called an **arithmetic progression** if the difference between any two consecutive elements is the same, the algorithm solves **Can Make Arithmetic Progression From Sequence** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

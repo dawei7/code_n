@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Big Countries** using relational predicates.
+Given Table: `World`, the database query executes a relational database query for **Big Countries**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

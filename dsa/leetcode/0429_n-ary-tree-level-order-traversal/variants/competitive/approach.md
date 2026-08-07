@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards.
+Given an n-ary tree, return the *level order* traversal of its nodes' values, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

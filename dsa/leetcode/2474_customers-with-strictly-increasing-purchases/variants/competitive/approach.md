@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Customers With Strictly Increasing Purchases** using Common Table Expressions (CTEs), relational JOINs, GROUP BY aggregations. Edge cases: replaces NULL values using `COALESCE` guard, filters aggregated group boundaries using `HAVING` clause.
+Given Table: `Orders`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups. Edge case handling: replaces `NULL` values using `COALESCE` guards, filters aggregated group results via `HAVING` predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(r log r)$ — Operation count bound.

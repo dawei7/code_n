@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Distribute Candies Among Children I** with natural boundary handling.
+Given two positive integers `n` and `limit`, the algorithm solves **Distribute Candies Among Children I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

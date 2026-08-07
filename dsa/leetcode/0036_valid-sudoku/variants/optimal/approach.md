@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given Determine if a `9 x 9` Sudoku board is valid. Only the filled cells need to be validated **according to the following rules**:, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

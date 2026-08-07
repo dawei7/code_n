@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration.
+Given `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it can trap after raining, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash set (`set`) for $O(1)$ duplicate check.
+Given an `m x n` matrix `grid` of positive integers. Your task is to determine if it is possible to make **either one horizontal or one vertical cut** on the grid such that:, the algorithm executes a single-pass linear scan through input elements. It utilizes a hash set (`set`) to track unique elements and prevent duplicate processing in $O(1)$ time.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Total Time Spent by Each Employee** using relational predicates.
+Given Table: `Employees`, the database query executes a relational database query for **Find Total Time Spent by Each Employee**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

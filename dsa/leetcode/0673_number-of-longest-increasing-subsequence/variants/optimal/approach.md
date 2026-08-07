@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an integer array `nums`, return *the number of longest increasing subsequences.*, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N \log N)$ — Operation count bound.

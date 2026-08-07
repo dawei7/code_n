@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given two integers `height` and `width` representing a garden of size `height x width`. You are also given:, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

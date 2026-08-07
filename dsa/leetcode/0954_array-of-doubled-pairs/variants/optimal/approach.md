@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash map lookup (`dict`) for $O(1)$ average speed. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given an integer array of even length `arr`, return `true`* if it is possible to reorder *`arr`* such that *$arr[2 * i + 1] = 2 * arr[2 * i]$* for every *$0 \le i < len(arr) / 2$*, or *`false`* otherwise*, the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

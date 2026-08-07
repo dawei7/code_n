@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Bulb Switcher** with natural boundary handling.
+Given There are `n` bulbs that are initially off. You first turn on all the bulbs, then you turn off every second bulb, the algorithm solves **Bulb Switcher** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Drop Duplicate Rows** with natural boundary handling.
+Given DataFrame customers, the algorithm solves **Drop Duplicate Rows** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

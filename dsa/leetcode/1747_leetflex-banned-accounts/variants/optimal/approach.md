@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Leetflex Banned Accounts** using relational JOINs.
+Given Table: `LogInfo`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(R^2)$ — Operation count bound.

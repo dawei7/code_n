@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Game Play Analysis V** using Common Table Expressions (CTEs), GROUP BY aggregations.
+Given Table: `Activity`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(A \log A)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Arithmetic Slices** with natural boundary handling.
+Given An integer array is called arithmetic if it consists of **at least three elements** and if the difference between any two consecutive elements is the same, the algorithm solves **Arithmetic Slices** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

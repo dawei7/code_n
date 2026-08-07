@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Customer Placing the Largest Number of Orders** using GROUP BY aggregations.
+Given Table: `Orders`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log c)$ — Operation count bound.

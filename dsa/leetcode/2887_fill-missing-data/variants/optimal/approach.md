@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Fill Missing Data** with natural boundary handling.
+Given DataFrame products, the algorithm solves **Fill Missing Data** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

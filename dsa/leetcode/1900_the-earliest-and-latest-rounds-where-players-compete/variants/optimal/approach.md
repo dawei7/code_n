@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given There is a tournament where `n` players are participating. The players are standing in a single row and are numbered from `1` to `n` based on their **initial** standing position (player `1` is the first player in the ..., the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^5)$ — Operation count bound.

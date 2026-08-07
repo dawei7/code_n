@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains priority queue (`heapq`) for dynamic ordering.
+Given There is an infinite 2D plane, the algorithm executes a single-pass linear scan through input elements. It utilizes a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log k)$ — Operation count bound.

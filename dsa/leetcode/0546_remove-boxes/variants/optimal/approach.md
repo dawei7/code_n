@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given several `boxes` with different colors represented by different positive numbers, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^4)$ — Operation count bound.

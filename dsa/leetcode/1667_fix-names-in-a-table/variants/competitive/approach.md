@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Fix Names in a Table** using relational predicates.
+Given Table: `Users`, the database query executes a relational database query for **Fix Names in a Table**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

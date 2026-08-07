@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given an integer `n` denoting the number of cities in a country. The cities are numbered from `0` to $n - 1$, the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n + r)$ — Operation count bound.

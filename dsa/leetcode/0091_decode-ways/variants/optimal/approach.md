@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given You have intercepted a secret message encoded as a string of numbers. The message is **decoded** via the following mapping:, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

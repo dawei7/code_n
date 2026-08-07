@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given Write a program to count the number of days between two dates, the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

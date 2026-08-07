@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given two integers `n` and `k`, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(min(n, k) + log M)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Reported Posts** using relational predicates.
+Given Table: `Actions`, the database query executes a relational database query for **Reported Posts**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

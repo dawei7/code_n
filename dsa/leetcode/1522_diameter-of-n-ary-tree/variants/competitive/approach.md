@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given a `root` of an `N-ary tree`, you need to compute the length of the diameter of the tree, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

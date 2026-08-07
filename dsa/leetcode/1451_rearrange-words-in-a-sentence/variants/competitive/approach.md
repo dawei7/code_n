@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Rearrange Words in a Sentence** with natural boundary handling.
+Given a sentence `text` (A *sentence* is a string of space-separated words) in the following format:, the algorithm solves **Rearrange Words in a Sentence** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N+W\log W)$ — Operation count bound.

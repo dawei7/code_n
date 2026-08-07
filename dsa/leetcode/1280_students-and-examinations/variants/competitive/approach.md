@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Students and Examinations** using relational JOINs.
+Given Table: `Students`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(R+E)$ — Operation count bound.

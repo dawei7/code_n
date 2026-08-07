@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Find Xor-Beauty of Array** with natural boundary handling.
+Given a **0-indexed** integer array `nums`, the algorithm solves **Find Xor-Beauty of Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

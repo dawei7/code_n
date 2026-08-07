@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given two numbers, `hour` and `minutes`, return *the smaller angle (in degrees) formed between the *`hour`* and the *`minute`* hand*, the algorithm solves **Angle Between Hands of a Clock** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

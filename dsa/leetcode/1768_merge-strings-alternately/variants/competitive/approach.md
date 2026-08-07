@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Merge Strings Alternately** with natural boundary handling.
+Given two strings `word1` and `word2`. Merge the strings by adding letters in alternating order, starting with `word1`. If a string is longer than the other, append the additional letters onto the end of the merged string, the algorithm solves **Merge Strings Alternately** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(A+B)$ — Operation count bound.

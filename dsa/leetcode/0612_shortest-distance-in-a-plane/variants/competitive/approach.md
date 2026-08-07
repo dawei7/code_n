@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Shortest Distance in a Plane** using relational JOINs.
+Given Table: `Point2D`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(P^2)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given two integers `a` and `b`, return *the sum of the two integers without using the operators* `+` *and* `-`, the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(w)$ — Operation count bound.

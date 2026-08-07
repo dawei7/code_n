@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given a **0-indexed** integer array `nums`, where $\text{nums}[i]$ is a digit between `0` and `9` (**inclusive**), the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

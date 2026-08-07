@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards.
+Given an array of `intervals` where $\text{intervals}[i] = [\text{start}_{i}, \text{end}_{i}]$, merge all overlapping intervals, and return *an array of the non-overlapping intervals that cover all the intervals in the input*, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

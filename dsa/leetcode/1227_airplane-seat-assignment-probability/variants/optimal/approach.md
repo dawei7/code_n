@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Airplane Seat Assignment Probability** with natural boundary handling.
+Given `n` passengers board an airplane with exactly `n` seats. The first passenger has lost the ticket and picks a seat randomly. But after that, the rest of the passengers will:, the algorithm solves **Airplane Seat Assignment Probability** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

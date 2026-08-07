@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given A string is called a **happy prefix** if it is a **non-empty** prefix which is also a suffix (excluding itself), the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

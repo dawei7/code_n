@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Premier League Table Ranking** using Common Table Expressions (CTEs), window ranking functions.
+Given Table: `TeamStats`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(t log t)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Removing Minimum and Maximum From Array** with natural boundary handling.
+Given a **0-indexed** array of **distinct** integers `nums`, the algorithm solves **Removing Minimum and Maximum From Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Split With Minimum Sum** with natural boundary handling.
+Given a positive integer `num`, split it into two non-negative integers `num1` and `num2` such that:, the algorithm solves **Split With Minimum Sum** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(d log d)$ — Operation count bound.

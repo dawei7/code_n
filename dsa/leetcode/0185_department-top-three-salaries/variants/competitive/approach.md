@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Department Top Three Salaries** using relational JOINs.
+Given Table: `Employee`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

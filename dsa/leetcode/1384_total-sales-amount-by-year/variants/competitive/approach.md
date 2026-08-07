@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Total Sales Amount by Year** using relational JOINs.
+Given Table: `Product`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(P + S + R)$ — Operation count bound.

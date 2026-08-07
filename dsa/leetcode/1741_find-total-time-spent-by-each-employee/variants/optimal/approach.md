@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Total Time Spent by Each Employee** using GROUP BY aggregations.
+Given Table: `Employees`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

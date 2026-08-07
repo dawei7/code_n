@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Water Bottles II** with natural boundary handling.
+Given two integers `numBottles` and `numExchange`, the algorithm solves **Water Bottles II** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(\sqrt{n})$ — Operation count bound.

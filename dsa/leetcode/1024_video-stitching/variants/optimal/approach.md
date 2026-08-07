@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a series of video clips from a sporting event that lasted `time` seconds. These video clips can be overlapping with each other and have varying lengths, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N+T)$ — Operation count bound.

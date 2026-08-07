@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Odd and Even Transactions** using GROUP BY aggregations.
+Given Table: `transactions`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(r log r)$ — Operation count bound.

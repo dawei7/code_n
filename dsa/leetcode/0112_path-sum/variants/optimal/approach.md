@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Maintains tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards.
+Given the `root` of a binary tree and an integer `targetSum`, return `true` if the tree has a **root-to-leaf** path such that adding up all the values along the path equals `targetSum`, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. It utilizes binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

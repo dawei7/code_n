@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Game Play Analysis IV** using relational JOINs.
+Given Table: `Activity`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(A \log A)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Display the First Three Rows** with natural boundary handling.
+Given DataFrame: employees, the algorithm solves **Display the First Three Rows** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

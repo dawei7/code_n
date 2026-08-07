@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Cost for Cutting Cake II** with natural boundary handling.
+Given There is an `m x n` cake that needs to be cut into `1 x 1` pieces, the algorithm solves **Minimum Cost for Cutting Cake II** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(m log m + n log n)$ — Operation count bound.

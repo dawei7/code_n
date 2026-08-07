@@ -1,5 +1,5 @@
 ## General
-Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given a positive integer `n`, you can apply one of the following operations:, the algorithm solves **Integer Replacement** directly. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(\log n)$ — Operation count bound.

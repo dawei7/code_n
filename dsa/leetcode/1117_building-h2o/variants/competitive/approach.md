@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Building H2O** with natural boundary handling.
+Given There are two kinds of threads: `oxygen` and `hydrogen`. Your goal is to group these threads to form water molecules, the algorithm solves **Building H2O** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(m)$ — Operation count bound.

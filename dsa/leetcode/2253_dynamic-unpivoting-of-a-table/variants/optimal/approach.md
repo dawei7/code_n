@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Dynamic Unpivoting of a Table** using Common Table Expressions (CTEs).
+Given Table: `Products`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Activity Participants** using relational predicates. Edge cases: filters aggregated group boundaries using `HAVING` clause.
+Given Table: `Friends`, the database query executes a relational database query for **Activity Participants**. Edge case handling: filters aggregated group results via `HAVING` predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(N \log N)$ — Operation count bound.

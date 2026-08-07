@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Flips to Make Binary String Coherent** with natural boundary handling.
+Given a binary string `s`, the algorithm solves **Minimum Flips to Make Binary String Coherent** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

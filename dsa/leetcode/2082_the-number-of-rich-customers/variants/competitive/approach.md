@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Number of Rich Customers** using relational predicates.
+Given Table: `Store`, the database query executes a relational database query for **The Number of Rich Customers**.
 
 ## Complexity detail
 - **Time Complexity**: $O(B\log B)$ — Operation count bound.

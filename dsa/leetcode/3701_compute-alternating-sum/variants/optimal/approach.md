@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Compute Alternating Sum** with natural boundary handling.
+Given an integer array `nums`, the algorithm solves **Compute Alternating Sum** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

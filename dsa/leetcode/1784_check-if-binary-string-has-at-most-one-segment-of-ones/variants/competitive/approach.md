@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Check if Binary String Has at Most One Segment of Ones** with natural boundary handling.
+Given a binary string `s` **​​​​​without leading zeros**, return `true`​​​ *if *`s`* contains **at most one contiguous segment of ones***. Otherwise, return `false`, the algorithm solves **Check if Binary String Has at Most One Segment of Ones** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

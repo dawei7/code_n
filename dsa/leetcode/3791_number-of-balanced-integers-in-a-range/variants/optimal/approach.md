@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given two integers `low` and `high`, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(D^2)$ — Operation count bound.

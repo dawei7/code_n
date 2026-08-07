@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Change Null Values in a Table to the Previous Value** using relational predicates.
+Given Table: `CoffeeShop`, the database query executes a relational database query for **Change Null Values in a Table to the Previous Value**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log R)$ — Operation count bound.

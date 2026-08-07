@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Group Sold Products By The Date** using GROUP BY aggregations.
+Given Table `Activities`:, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R + P \log P)$ — Operation count bound.

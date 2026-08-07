@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Consecutive Numbers** using relational predicates.
+Given Table: `Logs`, the database query executes a relational database query for **Consecutive Numbers**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

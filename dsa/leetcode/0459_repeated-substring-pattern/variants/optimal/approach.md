@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Repeated Substring Pattern** with natural boundary handling.
+Given a string `s`, check if it can be constructed by taking a substring of it and appending multiple copies of the substring together, the algorithm solves **Repeated Substring Pattern** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

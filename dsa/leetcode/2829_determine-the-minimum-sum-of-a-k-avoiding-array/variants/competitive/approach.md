@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Determine the Minimum Sum of a k-avoiding Array** with natural boundary handling.
+Given two integers, `n` and `k`, the algorithm solves **Determine the Minimum Sum of a k-avoiding Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses binary search over sorted domain. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
+Given a **0-indexed** integer array `nums`, the algorithm executes binary search over the search space to achieve logarithmic reduction. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log(n))$ — Operation count bound.

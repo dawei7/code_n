@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given an integer `n` representing the length of an unknown array that you are trying to recover. You are also given an array `sums` containing the values of all $2^n$ **subset sums** of the unknown array (in no particular o..., the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(N2^N)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given On an alphabet board, we start at position `(0, 0)`, corresponding to character $\text{board}[0][0]$, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(L)$ — Operation count bound.

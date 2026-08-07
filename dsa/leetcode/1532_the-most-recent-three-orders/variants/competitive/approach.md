@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Most Recent Three Orders** using relational JOINs.
+Given Table: `Customers`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(m\log m + c)$ — Operation count bound.

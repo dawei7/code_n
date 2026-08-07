@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Summary Ranges** with natural boundary handling.
+Given a **sorted unique** integer array `nums`, the algorithm solves **Summary Ranges** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

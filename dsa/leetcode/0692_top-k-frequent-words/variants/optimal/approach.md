@@ -1,5 +1,5 @@
 ## General
-Maintains hash map lookup (`dict`) for $O(1)$ average speed.
+Given an array of strings `words` and an integer `k`, return *the *`k`* most frequent strings*, the algorithm solves **Top K Frequent Words** directly. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access.
 
 ## Complexity detail
 - **Time Complexity**: $O(N \log K)$ — Operation count bound.

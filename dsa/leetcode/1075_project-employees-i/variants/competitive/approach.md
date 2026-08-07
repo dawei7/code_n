@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Project Employees I** using relational JOINs.
+Given Table: `Project`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(E+R\log R)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given two integers `n` and `x`. You have to construct an array of **positive** integers `nums` of size `n` where for every $0 \le i < n - 1$, $nums[i + 1]$ is **greater than** $\text{nums}[i]$, and the result of the bitwise..., the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n + log x)$ — Operation count bound.

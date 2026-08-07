@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Reverse String Prefix** with natural boundary handling.
+Given a string `s` and an integer `k`, the algorithm solves **Reverse String Prefix** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The First Day of the Maximum Recorded Degree in Each City** using Common Table Expressions (CTEs), window ranking functions.
+Given Table: `Weather`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(r log r)$ — Operation count bound.

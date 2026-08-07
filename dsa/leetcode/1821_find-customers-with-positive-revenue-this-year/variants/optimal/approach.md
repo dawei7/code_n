@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Customers With Positive Revenue this Year** using relational predicates.
+Given Table: `Customers`, the database query executes a relational database query for **Find Customers With Positive Revenue this Year**.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Count Occurrences in Text** using relational predicates.
+Given Table: `Files`, the database query executes a relational database query for **Count Occurrences in Text**.
 
 ## Complexity detail
 - **Time Complexity**: $O(S)$ — Operation count bound.

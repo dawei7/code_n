@@ -1,5 +1,5 @@
 ## General
-Algorithm uses breadth-first search queue level traversal. Maintains hash map lookup (`dict`) for $O(1)$ average speed, double-ended queue (`deque`) for $O(1)$ window bounds.
+Given There is a **bi-directional **graph with `n` vertices, where each vertex is labeled from `0` to $n - 1$. The edges in the graph are represented by a given 2D integer array `edges`, where $\text{edges}[i] = [u_{i}, v_{..., the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends.
 
 ## Complexity detail
 - **Time Complexity**: $O(n(n + m))$ — Operation count bound.

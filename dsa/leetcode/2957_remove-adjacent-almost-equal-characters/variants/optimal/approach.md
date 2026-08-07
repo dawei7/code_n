@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Remove Adjacent Almost-Equal Characters** with natural boundary handling.
+Given a **0-indexed** string `word`, the algorithm solves **Remove Adjacent Almost-Equal Characters** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

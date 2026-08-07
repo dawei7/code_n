@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Partial Function with Placeholders** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
+Given a function `fn` and an array `args`, return a function `partialFn`, the JavaScript algorithm implements the solution for **Partial Function with Placeholders**. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(a + r)$ — Operation count bound.

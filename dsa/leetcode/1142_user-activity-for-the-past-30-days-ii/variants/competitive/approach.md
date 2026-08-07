@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **User Activity for the Past 30 Days II** using relational predicates. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Activity`, the database query executes a relational database query for **User Activity for the Past 30 Days II**. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.

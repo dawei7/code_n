@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given two non-negative integer arrays `price` and `tastiness`, both arrays have the same length `n`. You are also given two non-negative integers `maxAmount` and `maxCoupons`, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(nkB)$ — Operation count bound.

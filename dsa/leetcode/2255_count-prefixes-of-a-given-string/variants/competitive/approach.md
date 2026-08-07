@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Count Prefixes of a Given String** with natural boundary handling.
+Given a string array `words` and a string `s`, where $\text{words}[i]$ and `s` comprise only of **lowercase English letters**, the algorithm solves **Count Prefixes of a Given String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(S)$ — Operation count bound.

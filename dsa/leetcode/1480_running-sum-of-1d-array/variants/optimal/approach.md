@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Running Sum of 1d Array** with natural boundary handling.
+Given an array `nums`. We define a running sum of an array as $\text{runningSum}[i] = sum(\text{nums}[0]…\text{nums}[i])$, the algorithm solves **Running Sum of 1d Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

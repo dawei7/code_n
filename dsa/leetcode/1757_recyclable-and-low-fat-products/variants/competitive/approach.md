@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Recyclable and Low Fat Products** using relational predicates.
+Given Table: `Products`, the database query executes a relational database query for **Recyclable and Low Fat Products**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

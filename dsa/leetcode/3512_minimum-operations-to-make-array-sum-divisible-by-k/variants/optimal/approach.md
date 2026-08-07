@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:, the algorithm solves **Minimum Operations to Make Array Sum Divisible by K** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

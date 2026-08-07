@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count of Matches in Tournament** with natural boundary handling.
+Given an integer `n`, the number of teams in a tournament that has strange rules:, the algorithm solves **Count of Matches in Tournament** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

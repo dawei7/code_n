@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Maintains tree node traversal (`val`, `left`, `right`).
+Given Implement the `BSTIterator` class that represents an iterator over the **<a href="https://en.wikipedia.org/wiki/Tree_traversal#In-order_(LNR)" target="_blank">in-order traversal</a>** of a binary search tree (BST):, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. It utilizes binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

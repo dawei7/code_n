@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Reshape Data: Concatenate** with natural boundary handling.
+Given DataFrame df1, the algorithm solves **Reshape Data: Concatenate** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.

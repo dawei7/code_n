@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given a non-negative integer `n` representing a $2^n x 2^n$ grid. You must fill the grid with integers from 0 to $2^2n - 1$ to make it **special**. A grid is **special** if it satisfies **all** the following conditions:, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(k^n)$ — Operation count bound.

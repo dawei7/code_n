@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Online Stock Span** with natural boundary handling.
+Given Design an algorithm that collects daily price quotes for some stock and returns **the span** of that stock's price for the current day, the algorithm solves **Online Stock Span** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(q)$ — Operation count bound.

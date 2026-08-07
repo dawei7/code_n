@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Construct the Longest New String** with natural boundary handling.
+Given three integers `x`, `y`, and `z`, the algorithm solves **Construct the Longest New String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses breadth-first search queue level traversal. Maintains double-ended queue (`deque`) for $O(1)$ window bounds, tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards, uses infinity sentinels for extreme boundary comparisons.
+Given Serialization is converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same..., the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends, binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies. Edge case handling: guards against empty/null inputs via early returns, uses infinity sentinels for safe boundary initialization.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

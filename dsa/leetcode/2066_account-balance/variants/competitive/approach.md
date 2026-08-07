@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Account Balance** using relational predicates.
+Given Table: `Transactions`, the database query executes a relational database query for **Account Balance**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.

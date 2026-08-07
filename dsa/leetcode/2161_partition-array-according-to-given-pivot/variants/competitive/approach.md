@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration.
+Given a **0-indexed** integer array `nums` and an integer `pivot`. Rearrange `nums` such that the following conditions are satisfied:, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

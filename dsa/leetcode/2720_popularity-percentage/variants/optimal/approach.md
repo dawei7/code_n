@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Popularity Percentage** using Common Table Expressions (CTEs).
+Given Table: `Friends`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log R)$ — Operation count bound.

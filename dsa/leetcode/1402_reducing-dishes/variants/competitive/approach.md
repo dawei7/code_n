@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given A chef has collected data on the `satisfaction` level of his `n` dishes. Chef can cook any dish in 1 unit of time, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n\log n)$ — Operation count bound.

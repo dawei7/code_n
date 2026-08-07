@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Operations to Make Array Values Equal to K** with natural boundary handling.
+Given an integer array `nums` and an integer `k`, the algorithm solves **Minimum Operations to Make Array Values Equal to K** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

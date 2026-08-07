@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Maximize Active Section with Trade I** with natural boundary handling.
+Given a binary string `s` of length `n`, where:, the algorithm solves **Maximize Active Section with Trade I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

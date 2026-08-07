@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given a **circular** array `balance` of length `n`, where $\text{balance}[i]$ is the net balance of person `i`, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log N)$ — Operation count bound.

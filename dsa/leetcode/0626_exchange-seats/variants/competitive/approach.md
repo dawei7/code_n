@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Exchange Seats** using relational JOINs. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Seat`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

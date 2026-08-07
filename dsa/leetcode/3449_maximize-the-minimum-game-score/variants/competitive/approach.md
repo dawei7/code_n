@@ -1,5 +1,5 @@
 ## General
-Algorithm uses binary search over sorted domain. Maintains hash map lookup (`dict`) for $O(1)$ average speed. Edge cases: handles empty/null inputs via early return guards.
+Given an array `points` of size `n` and an integer `m`. There is another array `gameScore` of size `n`, where $\text{gameScore}[i]$ represents the score achieved at the $$i^{\text{th}}$$ game. Initially, $\text{gameScore}[i..., the algorithm executes binary search over the search space to achieve logarithmic reduction. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log(m p + 1))$ — Operation count bound.

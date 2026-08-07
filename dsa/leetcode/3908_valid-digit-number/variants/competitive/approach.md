@@ -1,5 +1,5 @@
 ## General
-Edge cases: handles empty/null inputs via early return guards.
+Given an integer `n` and a digit `x`, the algorithm solves **Valid Digit Number** directly. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(log N)$ — Operation count bound.

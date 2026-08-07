@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given three integers `n`, `m`, `k`. A **good array** `arr` of size `n` is defined as follows:, the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(min(k, n - 1 - k) + log n)$ — Operation count bound.

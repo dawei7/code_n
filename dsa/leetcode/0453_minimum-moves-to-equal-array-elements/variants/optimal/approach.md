@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Moves to Equal Array Elements** with natural boundary handling.
+Given an integer array `nums` of size `n`, return *the minimum number of moves required to make all array elements equal*, the algorithm solves **Minimum Moves to Equal Array Elements** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

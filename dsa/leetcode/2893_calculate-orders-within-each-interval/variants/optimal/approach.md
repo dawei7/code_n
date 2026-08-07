@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Calculate Orders Within Each Interval** using Common Table Expressions (CTEs).
+Given Table: `Orders`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(M + I log I)$ — Operation count bound.

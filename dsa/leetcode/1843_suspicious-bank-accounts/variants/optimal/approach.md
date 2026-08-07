@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Suspicious Bank Accounts** using Common Table Expressions (CTEs), relational JOINs.
+Given Table: `Accounts`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(r\log r)$ — Operation count bound.

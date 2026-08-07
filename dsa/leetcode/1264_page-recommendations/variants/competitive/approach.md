@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Page Recommendations** using relational predicates.
+Given Table: `Friendship`, the database query executes a relational database query for **Page Recommendations**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

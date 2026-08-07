@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Employees Whose Manager Left the Company** using relational predicates.
+Given Table: `Employees`, the database query executes a relational database query for **Employees Whose Manager Left the Company**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

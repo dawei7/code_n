@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Number of Elapsed Seconds Between Two Times** with natural boundary handling.
+Given two valid times `startTime` and `endTime`, each represented as a string in the format `"HH:MM:SS"`, the algorithm solves **Number of Elapsed Seconds Between Two Times** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

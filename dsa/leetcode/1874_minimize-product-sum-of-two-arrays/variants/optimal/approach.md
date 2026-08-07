@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given The **product sum **of two equal-length arrays `a` and `b` is equal to the sum of $a[i] * b[i]$ for all $0 \le i < \text{a.length}$ (**0-indexed**), the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

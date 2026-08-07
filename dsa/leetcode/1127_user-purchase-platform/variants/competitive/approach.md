@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **User Purchase Platform** using relational JOINs. Edge cases: replaces NULL values using `COALESCE` guard, filters aggregated group boundaries using `HAVING` clause.
+Given Table: `Spending`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables. Edge case handling: replaces `NULL` values using `COALESCE` guards, filters aggregated group results via `HAVING` predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

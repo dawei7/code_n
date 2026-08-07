@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Customer Who Visited but Did Not Make Any Transactions** using relational JOINs, GROUP BY aggregations.
+Given Table: `Visits`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O((V+T)\log(V+T))$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **New Users Daily Count** using GROUP BY aggregations.
+Given Table: `Traffic`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(N \log N)$ — Operation count bound.

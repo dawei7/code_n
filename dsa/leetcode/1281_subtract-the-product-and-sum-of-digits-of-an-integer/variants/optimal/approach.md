@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Subtract the Product and Sum of Digits of an Integer** with natural boundary handling.
+Given an integer number `n`, return the difference between the product of its digits and the sum of its digits, the algorithm solves **Subtract the Product and Sum of Digits of an Integer** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(d)$ — Operation count bound.

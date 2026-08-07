@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains priority queue (`heapq`) for dynamic ordering.
+Given a **0-indexed** integer array `nums`. You can apply the following operation any number of times:, the algorithm executes a single-pass linear scan through input elements. It utilizes a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Immediate Food Delivery III** using GROUP BY aggregations.
+Given Table: `Delivery`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log R)$ — Operation count bound.

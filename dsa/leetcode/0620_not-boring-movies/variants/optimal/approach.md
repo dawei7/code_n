@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Not Boring Movies** using relational predicates.
+Given Table: `Cinema`, the database query executes a relational database query for **Not Boring Movies**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

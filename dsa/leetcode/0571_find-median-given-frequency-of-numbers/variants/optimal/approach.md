@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Median Given Frequency of Numbers** using Common Table Expressions (CTEs).
+Given Table: `Numbers`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

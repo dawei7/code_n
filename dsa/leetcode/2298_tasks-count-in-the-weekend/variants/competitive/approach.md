@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Tasks Count in the Weekend** using relational predicates.
+Given Table: `Tasks`, the database query executes a relational database query for **Tasks Count in the Weekend**.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

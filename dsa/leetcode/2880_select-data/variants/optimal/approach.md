@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Select Data** with natural boundary handling.
+Given DataFrame students, the algorithm solves **Select Data** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

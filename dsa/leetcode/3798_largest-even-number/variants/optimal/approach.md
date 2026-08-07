@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Largest Even Number** with natural boundary handling.
+Given a string `s` consisting only of the characters `'1'` and `'2'`, the algorithm solves **Largest Even Number** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

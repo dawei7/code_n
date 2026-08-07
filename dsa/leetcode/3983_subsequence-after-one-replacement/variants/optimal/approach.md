@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Subsequence After One Replacement** with natural boundary handling.
+Given two strings `s` and `t` consisting of lowercase English letters, the algorithm solves **Subsequence After One Replacement** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(m)$ — Operation count bound.

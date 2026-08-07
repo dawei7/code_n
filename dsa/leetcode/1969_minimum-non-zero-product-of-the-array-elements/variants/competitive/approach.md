@@ -1,5 +1,5 @@
 ## General
-Maintains hash map lookup (`dict`) for $O(1)$ average speed. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given a positive integer `p`. Consider an array `nums` (**1-indexed**) that consists of the integers in the **inclusive** range $[1, 2^p - 1]$ in their binary representations. You are allowed to do the following operation *..., the algorithm solves **Minimum Non-Zero Product of the Array Elements** directly. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(p)$ — Operation count bound.

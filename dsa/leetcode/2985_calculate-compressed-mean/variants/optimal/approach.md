@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Calculate Compressed Mean** using relational predicates.
+Given Table: `Orders`, the database query executes a relational database query for **Calculate Compressed Mean**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

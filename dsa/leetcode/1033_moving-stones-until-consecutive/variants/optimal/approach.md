@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Moving Stones Until Consecutive** with natural boundary handling.
+Given There are three stones in different positions on the X-axis. You are given three integers `a`, `b`, and `c`, the positions of the stones, the algorithm solves **Moving Stones Until Consecutive** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Number of Seniors and Juniors to Join the Company** using Common Table Expressions (CTEs), window ranking functions. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Candidates`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, window functions for positional ranking and partition analytical operations. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

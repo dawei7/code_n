@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Highest Grade For Each Student** using Common Table Expressions (CTEs), window ranking functions.
+Given Table: `Enrollments`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

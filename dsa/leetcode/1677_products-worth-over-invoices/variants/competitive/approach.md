@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Product's Worth Over Invoices** using relational JOINs.
+Given Table: `Product`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(I + P \log P)$ — Operation count bound.

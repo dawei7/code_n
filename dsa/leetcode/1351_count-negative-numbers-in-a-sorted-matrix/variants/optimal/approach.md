@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count Negative Numbers in a Sorted Matrix** with natural boundary handling.
+Given a `m x n` matrix `grid` which is sorted in non-increasing order both row-wise and column-wise, return *the number of **negative** numbers in* `grid`, the algorithm solves **Count Negative Numbers in a Sorted Matrix** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(m+n)$ — Operation count bound.

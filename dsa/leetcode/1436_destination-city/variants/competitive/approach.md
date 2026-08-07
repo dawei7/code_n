@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Destination City** with natural boundary handling.
+Given the array `paths`, where $\text{paths}[i] = [\text{cityA}_{i}, \text{cityB}_{i}]$ means there exists a direct path going from $\text{cityA}_{i}$ to $\text{cityB}_{i}$. *Return the destination city, that is, the city w..., the algorithm solves **Destination City** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

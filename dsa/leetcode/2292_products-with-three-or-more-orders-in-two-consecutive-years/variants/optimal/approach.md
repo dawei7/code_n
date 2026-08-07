@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Products With Three or More Orders in Two Consecutive Years** using Common Table Expressions (CTEs), relational JOINs, GROUP BY aggregations.
+Given Table: `Orders`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(r log r)$ — Operation count bound.

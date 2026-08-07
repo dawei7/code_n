@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards.
+Given two arrays `rowSum` and `colSum` of non-negative integers where $\text{rowSum}[i]$ is the sum of the elements in the $$i^{\text{th}}$$ row and $\text{colSum}[j]$ is the sum of the elements of the $$j^{\text{th}}$$ col..., the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.

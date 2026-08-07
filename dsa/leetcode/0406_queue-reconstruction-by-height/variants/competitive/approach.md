@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
+Given an array of people, `people`, which are the attributes of some people in a queue (not necessarily in order). Each $\text{people}[i] = [h_{i}, k_{i}]$ represents the $$i^{\text{th}}$$ person of height $h_{i}$ with **ex..., the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

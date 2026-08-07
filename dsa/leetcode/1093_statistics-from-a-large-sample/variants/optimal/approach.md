@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given a large sample of integers in the range `[0, 255]`. Since the sample is so large, it is represented by an array `count` where $\text{count}[k]$ is the **number of times** that `k` appears in the sample, the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

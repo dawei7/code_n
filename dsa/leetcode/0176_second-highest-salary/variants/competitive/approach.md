@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Second Highest Salary** using GROUP BY aggregations.
+Given Table: `Employee`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

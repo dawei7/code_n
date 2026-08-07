@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count Operations to Obtain Zero** with natural boundary handling.
+Given two **non-negative** integers `num1` and `num2`, the algorithm solves **Count Operations to Obtain Zero** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log M)$ — Operation count bound.

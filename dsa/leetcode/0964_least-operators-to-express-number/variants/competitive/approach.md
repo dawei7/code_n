@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Least Operators to Express Number** with natural boundary handling.
+Given a single positive integer `x`, we will write an expression of the form `x (op1) x (op2) x (op3) x ...` where each operator `op1`, `op2`, etc. is either addition, subtraction, multiplication, or division (`+`, `-`, `*`..., the algorithm solves **Least Operators to Express Number** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(L)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Edge cases: handles empty/null inputs via early return guards.
+Given an array `nums` of distinct integers, return all the possible permutations. You can return the answer in **any order**, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \cdot n!)$ — Operation count bound.

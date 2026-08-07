@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Form a Chemical Bond** using relational predicates.
+Given Table: `Elements`, the database query executes a relational database query for **Form a Chemical Bond**.
 
 ## Complexity detail
 - **Time Complexity**: $O(r+b)$ — Operation count bound.

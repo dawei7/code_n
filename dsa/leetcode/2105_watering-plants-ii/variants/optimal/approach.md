@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Watering Plants II** with natural boundary handling.
+Given Alice and Bob want to water `n` plants in their garden. The plants are arranged in a row and are labeled from `0` to $n - 1$ from left to right where the $$i^{\text{th}}$$ plant is located at $x = i$, the algorithm solves **Watering Plants II** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

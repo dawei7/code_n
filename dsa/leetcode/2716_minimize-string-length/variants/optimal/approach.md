@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimize String Length** with natural boundary handling.
+Given a string `s`, you have two types of operation:, the algorithm solves **Minimize String Length** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

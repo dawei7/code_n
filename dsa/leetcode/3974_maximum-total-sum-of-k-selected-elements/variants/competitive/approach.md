@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains priority queue (`heapq`) for dynamic ordering. Edge cases: handles empty/null inputs via early return guards.
+Given an integer array `nums` and two integers `k` and `mul`, the algorithm executes a single-pass linear scan through input elements. It utilizes a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log(k + 1))$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **All Valid Triplets That Can Represent a Country** using relational predicates.
+Given Table: `SchoolA`, the database query executes a relational database query for **All Valid Triplets That Can Represent a Country**.
 
 ## Complexity detail
 - **Time Complexity**: $O(abc)$ — Operation count bound.

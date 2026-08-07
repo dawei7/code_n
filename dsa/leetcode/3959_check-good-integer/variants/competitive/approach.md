@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Check Good Integer** with natural boundary handling.
+Given a positive integer `n`, the algorithm solves **Check Good Integer** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n)$ — Operation count bound.

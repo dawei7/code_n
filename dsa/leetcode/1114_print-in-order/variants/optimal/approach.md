@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Print in Order** with natural boundary handling.
+Given Suppose we have a class:, the algorithm solves **Print in Order** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

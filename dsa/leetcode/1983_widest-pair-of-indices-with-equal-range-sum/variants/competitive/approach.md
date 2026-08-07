@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given two **0-indexed** binary arrays `nums1` and `nums2`. Find the **widest** pair of indices `(i, j)` such that $i \le j$ and $\text{nums1}[i] + nums1[i+1] + ... + \text{nums1}[j] = \text{nums2}[i] + nums2[i+1] + ... + \t..., the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

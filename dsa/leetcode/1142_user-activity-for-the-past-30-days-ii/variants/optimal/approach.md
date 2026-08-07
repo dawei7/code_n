@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **User Activity for the Past 30 Days II** using Common Table Expressions (CTEs), GROUP BY aggregations. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Activity`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, `GROUP BY` aggregations to summarize record groups. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.

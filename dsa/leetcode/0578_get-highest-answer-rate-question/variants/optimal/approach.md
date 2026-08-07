@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Get Highest Answer Rate Question** using GROUP BY aggregations.
+Given Table: `SurveyLog`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log Q)$ — Operation count bound.

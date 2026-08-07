@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given A <a href="https://en.wikipedia.org/wiki/Complex_number" target="_blank">complex number</a> can be represented as a string on the form `"**real**+**imaginary**i"` where:, the algorithm solves **Complex Number Multiplication** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

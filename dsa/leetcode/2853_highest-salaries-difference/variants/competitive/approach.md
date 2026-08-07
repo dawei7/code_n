@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Highest Salaries Difference** using relational predicates.
+Given Table: `Salaries`, the database query executes a relational database query for **Highest Salaries Difference**.
 
 ## Complexity detail
 - **Time Complexity**: $O(S)$ — Operation count bound.

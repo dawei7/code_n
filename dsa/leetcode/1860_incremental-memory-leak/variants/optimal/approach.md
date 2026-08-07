@@ -1,5 +1,5 @@
 ## General
-Maintains dynamic programming memoization array/table.
+Given two integers `memory1` and `memory2` representing the available memory in bits on two memory sticks. There is currently a faulty program running that consumes an increasing amount of memory every second, the algorithm solves **Incremental Memory Leak** directly. It utilizes a dynamic programming memoization table to cache intermediate subproblem states.
 
 ## Complexity detail
 - **Time Complexity**: $O(\sqrt{M})$ — Operation count bound.

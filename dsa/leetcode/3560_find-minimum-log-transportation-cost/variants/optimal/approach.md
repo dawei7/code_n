@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Find Minimum Log Transportation Cost** with natural boundary handling.
+Given integers `n`, `m`, and `k`, the algorithm solves **Find Minimum Log Transportation Cost** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

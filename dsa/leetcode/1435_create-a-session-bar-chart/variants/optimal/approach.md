@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Create a Session Bar Chart** using relational predicates.
+Given Table: `Sessions`, the database query executes a relational database query for **Create a Session Bar Chart**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

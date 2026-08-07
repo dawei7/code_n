@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given an integer array `nums` and an integer `k`. You can perform the following operation any number of times:, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log k)$ — Operation count bound.

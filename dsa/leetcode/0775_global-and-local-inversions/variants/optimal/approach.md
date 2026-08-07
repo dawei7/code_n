@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies walrus operator (`:=`) for inline assignment and zero-copy conditional check.
+Given an integer array `nums` of length `n` which represents a permutation of all the integers in the range `[0, n - 1]`, the algorithm executes a single-pass linear scan through input elements. Key operations include the walrus operator (`:=`) for inline assignment and evaluation.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

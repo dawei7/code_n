@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Duplicate Zeros** with natural boundary handling.
+Given a fixed-length integer array `arr`, duplicate each occurrence of zero, shifting the remaining elements to the right, the algorithm solves **Duplicate Zeros** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Sales Analysis III** using relational predicates.
+Given Table: `Product`, the database query executes a relational database query for **Sales Analysis III**.
 
 ## Complexity detail
 - **Time Complexity**: $O(P+R\log R)$ — Operation count bound.

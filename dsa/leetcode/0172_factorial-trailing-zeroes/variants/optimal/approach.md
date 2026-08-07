@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Factorial Trailing Zeroes** with natural boundary handling.
+Given an integer `n`, return *the number of trailing zeroes in *`n!`, the algorithm solves **Factorial Trailing Zeroes** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(\log n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Moves to Capture The Queen** with natural boundary handling.
+Given There is a **1-indexed** `8 x 8` chessboard containing `3` pieces, the algorithm solves **Minimum Moves to Capture The Queen** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

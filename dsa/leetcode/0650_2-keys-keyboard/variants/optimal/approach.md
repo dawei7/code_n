@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given There is only one character `'A'` on the screen of a notepad. You can perform one of two operations on this notepad for each step:, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(\sqrt{N})$ — Operation count bound.

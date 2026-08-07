@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Maintains double-ended queue (`deque`) for $O(1)$ window bounds, tree node traversal (`val`, `left`, `right`).
+Given the `root` of a binary tree, return the leftmost value in the last row of the tree, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends, binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an array `books` where $\text{books}[i] = [\text{thickness}_{i}, \text{height}_{i}]$ indicates the thickness and height of the $$i^{\text{th}}$$ book. You are also given an integer `shelfWidth`, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

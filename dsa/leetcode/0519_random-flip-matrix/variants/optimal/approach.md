@@ -1,5 +1,5 @@
 ## General
-Maintains hash map lookup (`dict`) for $O(1)$ average speed, hash set (`set`) for $O(1)$ duplicate check. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given There is an `m x n` binary grid `matrix` with all the values set `0` initially. Design an algorithm to randomly pick an index `(i, j)` where $\text{matrix}[i][j] = 0$ and flips it to `1`. All the indices `(i, j)` wher..., the algorithm solves **Random Flip Matrix** directly. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a hash set (`set`) to track unique elements and prevent duplicate processing in $O(1)$ time. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(q)$ — Operation count bound.

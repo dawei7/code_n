@@ -1,5 +1,5 @@
 ## General
-Algorithm uses breadth-first search queue level traversal. Edge cases: handles empty/null inputs via early return guards.
+Given two integers `n` and `m` representing the number of rows and columns of a grid, respectively, the algorithm executes breadth-first search (BFS) level-order traversal using a queue. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(nm)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Drop Type 1 Orders for Customers With Type 0 Orders** using Common Table Expressions (CTEs).
+Given Table: `Orders`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

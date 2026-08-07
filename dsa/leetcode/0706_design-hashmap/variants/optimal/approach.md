@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Design HashMap** with natural boundary handling.
+Given Design a HashMap without using any built-in hash table libraries, the algorithm solves **Design HashMap** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(q)$ — Operation count bound.

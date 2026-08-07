@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Maximum Points After Enemy Battles** with natural boundary handling.
+Given an integer array `enemyEnergies` denoting the energy values of various enemies, the algorithm solves **Maximum Points After Enemy Battles** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Maintains priority queue (`heapq`) for dynamic ordering. Edge cases: handles empty/null inputs via early return guards.
+Given A string `s` is called **happy** if it satisfies the following conditions:, the algorithm solves **Longest Happy String** directly. It utilizes a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

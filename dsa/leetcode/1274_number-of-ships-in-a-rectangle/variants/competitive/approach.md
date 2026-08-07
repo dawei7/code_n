@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Number of Ships in a Rectangle** with natural boundary handling.
+Given *(This problem is an **interactive problem**.)*, the algorithm solves **Number of Ships in a Rectangle** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(s \log C)$ — Operation count bound.

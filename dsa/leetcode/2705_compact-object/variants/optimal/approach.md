@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Compact Object** using JavaScript array iteration methods. Edge cases: guards against empty arrays/strings through length bounds.
+Given an object or array `obj`, return a **compact object**, the JavaScript algorithm uses functional array iteration methods. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

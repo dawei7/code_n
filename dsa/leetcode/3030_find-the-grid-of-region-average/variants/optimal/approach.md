@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given `m x n` grid `image` which represents a grayscale image, where $\text{image}[i][j]$ represents a pixel with intensity in the range `[0..255]`. You are also given a **non-negative** integer `threshold`, the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(MN)$ — Operation count bound.

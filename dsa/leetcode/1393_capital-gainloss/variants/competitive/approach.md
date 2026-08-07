@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Capital Gain/Loss** using relational predicates.
+Given Table: `Stocks`, the database query executes a relational database query for **Capital Gain/Loss**.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

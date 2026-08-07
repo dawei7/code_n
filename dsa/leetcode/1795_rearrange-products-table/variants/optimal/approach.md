@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Rearrange Products Table** using relational predicates.
+Given Table: `Products`, the database query executes a relational database query for **Rearrange Products Table**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

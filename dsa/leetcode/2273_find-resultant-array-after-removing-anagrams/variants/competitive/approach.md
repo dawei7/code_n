@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash map lookup (`dict`) for $O(1)$ average speed.
+Given a **0-indexed** string array `words`, where $\text{words}[i]$ consists of lowercase English letters, the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access.
 
 ## Complexity detail
 - **Time Complexity**: $O(S)$ — Operation count bound.

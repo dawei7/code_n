@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Reverse Only Letters** with natural boundary handling.
+Given a string `s`, reverse the string according to the following rules:, the algorithm solves **Reverse Only Letters** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

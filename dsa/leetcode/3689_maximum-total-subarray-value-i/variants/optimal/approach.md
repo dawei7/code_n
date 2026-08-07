@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Maximum Total Subarray Value I** with natural boundary handling.
+Given an integer array `nums` of length `n` and an integer `k`, the algorithm solves **Maximum Total Subarray Value I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

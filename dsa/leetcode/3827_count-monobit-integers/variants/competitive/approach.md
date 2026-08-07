@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Count Monobit Integers** with natural boundary handling.
+Given an integer `n`, the algorithm solves **Count Monobit Integers** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log N)$ — Operation count bound.

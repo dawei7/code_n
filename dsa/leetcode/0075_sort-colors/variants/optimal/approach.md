@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Sort Colors** with natural boundary handling.
+Given an array `nums` with `n` objects colored red, white, or blue, sort them **<a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">in-place</a> **so that objects of the same color are adjacent, with ..., the algorithm solves **Sort Colors** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

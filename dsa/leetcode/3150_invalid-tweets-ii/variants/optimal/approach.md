@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Invalid Tweets II** using relational predicates.
+Given Table: `Tweets`, the database query executes a relational database query for **Invalid Tweets II**.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + R log R)$ — Operation count bound.

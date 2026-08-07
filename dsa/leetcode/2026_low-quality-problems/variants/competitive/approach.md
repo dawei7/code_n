@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Low-Quality Problems** using relational predicates.
+Given Table: `Problems`, the database query executes a relational database query for **Low-Quality Problems**.
 
 ## Complexity detail
 - **Time Complexity**: $O(P\log P)$ — Operation count bound.

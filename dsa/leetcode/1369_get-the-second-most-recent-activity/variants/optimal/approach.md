@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Get the Second Most Recent Activity** using window ranking functions.
+Given Table: `UserActivity`, the database query executes a relational pipeline using window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(A\log A)$ — Operation count bound.

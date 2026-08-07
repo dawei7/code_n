@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Users That Are Eligible for Discount** using relational predicates.
+Given Table: `Purchases`, the database query executes a relational database query for **The Users That Are Eligible for Discount**.
 
 ## Complexity detail
 - **Time Complexity**: $O(r log r)$ — Operation count bound.

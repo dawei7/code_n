@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a **0-indexed** array of integers, `nums`. The following property holds for `nums`:, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(b log(n))$ — Operation count bound.

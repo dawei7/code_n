@@ -1,5 +1,5 @@
 ## General
-Maintains dynamic programming memoization array/table.
+Given a binary string `s`, the algorithm solves **Minimum Flips to Make Binary String Coherent** directly. It utilizes a dynamic programming memoization table to cache intermediate subproblem states.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

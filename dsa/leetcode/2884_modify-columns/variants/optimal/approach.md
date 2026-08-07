@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Modify Columns** with natural boundary handling.
+Given DataFrame employees, the algorithm solves **Modify Columns** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

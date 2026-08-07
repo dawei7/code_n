@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Maximize Expression of Three Elements** with natural boundary handling.
+Given an integer array `nums`, the algorithm solves **Maximize Expression of Three Elements** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

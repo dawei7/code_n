@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given The **factorial** of a positive integer `n` is the product of all positive integers less than or equal to `n`, the algorithm solves **Clumsy Factorial** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

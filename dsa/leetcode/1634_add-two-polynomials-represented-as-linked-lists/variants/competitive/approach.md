@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Add Two Polynomials Represented as Linked Lists** with natural boundary handling.
+Given A polynomial linked list is a special type of linked list where every node represents a term in a polynomial expression, the algorithm solves **Add Two Polynomials Represented as Linked Lists** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n+m)$ — Operation count bound.

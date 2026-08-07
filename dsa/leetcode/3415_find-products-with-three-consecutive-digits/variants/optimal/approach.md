@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Products with Three Consecutive Digits ** using relational predicates.
+Given Table: `Products`, the database query executes a relational database query for **Find Products with Three Consecutive Digits **.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + n log n)$ — Operation count bound.

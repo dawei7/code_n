@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Reverse Vowels of a String** with natural boundary handling.
+Given a string `s`, reverse only all the vowels in the string and return it, the algorithm solves **Reverse Vowels of a String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

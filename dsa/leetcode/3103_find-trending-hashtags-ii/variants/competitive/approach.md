@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Trending Hashtags II** using Common Table Expressions (CTEs), GROUP BY aggregations.
+Given Table: `Tweets`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + h + g log g)$ — Operation count bound.

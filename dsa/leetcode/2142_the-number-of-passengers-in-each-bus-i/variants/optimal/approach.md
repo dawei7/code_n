@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Number of Passengers in Each Bus I** using relational JOINs, window ranking functions, GROUP BY aggregations.
+Given Table: `Buses`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables, window functions for positional ranking and partition analytical operations, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log N)$ — Operation count bound.

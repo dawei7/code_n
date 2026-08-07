@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration.
+Given an array `original` of length `n` and a 2D array `bounds` of length `n x 2`, where $\text{bounds}[i] = [u_{i}, v_{i}]$, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

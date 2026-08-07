@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains dynamic programming memoization array/table. Edge cases: handles empty/null inputs via early return guards.
+Given There is a **directed graph** of `n` colored nodes and `m` edges. The nodes are numbered from `0` to $n - 1$, the algorithm executes a single-pass linear scan through input elements. It utilizes a dynamic programming memoization table to cache intermediate subproblem states. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(26(n+m))$ — Operation count bound.

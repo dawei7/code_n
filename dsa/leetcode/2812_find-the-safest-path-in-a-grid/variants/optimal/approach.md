@@ -1,5 +1,5 @@
 ## General
-Algorithm uses breadth-first search queue level traversal. Maintains double-ended queue (`deque`) for $O(1)$ window bounds.
+Given a **0-indexed** 2D matrix `grid` of size `n x n`, where `(r, c)` represents:, the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends.
 
 ## Complexity detail
 - **Time Complexity**: $O(N \log N)$ — Operation count bound.

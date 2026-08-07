@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an integer `n`, the algorithm solves **Hexadecimal and Hexatrigesimal Conversion** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n)$ — Operation count bound.

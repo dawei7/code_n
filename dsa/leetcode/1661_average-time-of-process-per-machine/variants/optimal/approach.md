@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Average Time of Process per Machine** using GROUP BY aggregations.
+Given Table: `Activity`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

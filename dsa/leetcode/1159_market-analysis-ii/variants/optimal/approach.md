@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Market Analysis II** using relational JOINs, window ranking functions.
+Given Table: `Users`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables, window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(r \log r)$ — Operation count bound.

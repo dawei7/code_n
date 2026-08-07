@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Reformat Date** with natural boundary handling.
+Given a `date` string in the form `Day Month Year`, where:, the algorithm solves **Reformat Date** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

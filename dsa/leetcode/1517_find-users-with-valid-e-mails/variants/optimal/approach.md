@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Users With Valid E-Mails** using relational predicates.
+Given Table: `Users`, the database query executes a relational database query for **Find Users With Valid E-Mails**.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + n\log n)$ — Operation count bound.

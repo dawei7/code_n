@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Active Users** using window ranking functions.
+Given Table: `Users`, the database query executes a relational pipeline using window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log R)$ — Operation count bound.

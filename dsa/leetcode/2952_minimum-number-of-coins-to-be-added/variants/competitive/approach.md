@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a **0-indexed** integer array `coins`, representing the values of the coins available, and an integer `target`, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log N)$ — Operation count bound.

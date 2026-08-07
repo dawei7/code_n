@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Find the Pivot Integer** with natural boundary handling.
+Given a positive integer `n`, find the **pivot integer** `x` such that:, the algorithm solves **Find the Pivot Integer** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

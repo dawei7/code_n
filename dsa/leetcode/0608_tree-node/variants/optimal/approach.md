@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Tree Node** using relational predicates.
+Given Table: `Tree`, the database query executes a relational database query for **Tree Node**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

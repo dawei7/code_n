@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Number of Food Buckets to Feed the Hamsters** with natural boundary handling.
+Given a **0-indexed** string `hamsters` where $\text{hamsters}[i]$ is either:, the algorithm solves **Minimum Number of Food Buckets to Feed the Hamsters** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Invalid IP Addresses** using GROUP BY aggregations.
+Given Table: ` logs`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + k log k)$ — Operation count bound.

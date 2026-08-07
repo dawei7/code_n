@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given two integers `l` and `r`, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(D^2)$ — Operation count bound.

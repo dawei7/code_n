@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Smallest Absent Positive Greater Than Average** with natural boundary handling.
+Given an integer array `nums`, the algorithm solves **Smallest Absent Positive Greater Than Average** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

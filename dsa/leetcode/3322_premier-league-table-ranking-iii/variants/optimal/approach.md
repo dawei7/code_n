@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Premier League Table Ranking III** using window ranking functions.
+Given Table: `SeasonStats`, the database query executes a relational pipeline using window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

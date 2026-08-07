@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Dynamic Unpivoting of a Table** using relational predicates.
+Given Table: `Products`, the database query executes a relational database query for **Dynamic Unpivoting of a Table**.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

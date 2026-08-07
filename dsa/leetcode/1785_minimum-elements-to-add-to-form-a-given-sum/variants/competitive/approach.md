@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Elements to Add to Form a Given Sum** with natural boundary handling.
+Given an integer array `nums` and two integers `limit` and `goal`. The array `nums` has an interesting property that $abs(\text{nums}[i]) \le limit$, the algorithm solves **Minimum Elements to Add to Form a Given Sum** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

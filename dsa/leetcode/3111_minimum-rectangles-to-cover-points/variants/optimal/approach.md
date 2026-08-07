@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a 2D integer array `points`, where $\text{points}[i] = [x_{i}, y_{i}]$. You are also given an integer `w`. Your task is to **cover** **all** the given points with rectangles, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

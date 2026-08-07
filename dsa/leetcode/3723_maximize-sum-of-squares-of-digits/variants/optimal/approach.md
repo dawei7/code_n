@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Maximize Sum of Squares of Digits** with natural boundary handling.
+Given two **positive** integers `num` and `sum`, the algorithm solves **Maximize Sum of Squares of Digits** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(num)$ — Operation count bound.

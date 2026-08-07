@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Positions of Large Groups** with natural boundary handling.
+Given In a string `s` of lowercase letters, these letters form consecutive groups of the same character, the algorithm solves **Positions of Large Groups** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

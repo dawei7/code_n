@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Final Element After Subarray Deletions** with natural boundary handling.
+Given an integer array `nums`, the algorithm solves **Final Element After Subarray Deletions** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

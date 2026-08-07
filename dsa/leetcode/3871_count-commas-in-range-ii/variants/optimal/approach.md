@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count Commas in Range II** with natural boundary handling.
+Given an integer `n`, the algorithm solves **Count Commas in Range II** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n)$ — Operation count bound.

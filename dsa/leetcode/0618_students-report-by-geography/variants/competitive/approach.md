@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Students Report By Geography** using relational JOINs.
+Given Table: `Student`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

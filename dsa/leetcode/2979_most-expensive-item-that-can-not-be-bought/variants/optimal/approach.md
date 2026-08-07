@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Most Expensive Item That Can Not Be Bought** with natural boundary handling.
+Given two **distinct** **prime** numbers `primeOne` and `primeTwo`, the algorithm solves **Most Expensive Item That Can Not Be Bought** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

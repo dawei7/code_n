@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Find Closest Number to Zero** with natural boundary handling.
+Given an integer array `nums` of size `n`, return *the number with the value **closest** to *`0`* in *`nums`. If there are multiple answers, return *the number with the **largest** value*, the algorithm solves **Find Closest Number to Zero** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

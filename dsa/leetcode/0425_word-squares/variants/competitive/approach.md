@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
+Given an array of **unique** strings `words`, return *all the ***<a href="https://en.wikipedia.org/wiki/Word_square" target="_blank">word squares</a>*** you can build from *`words`. The same word from `words` can be used **..., the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(NL^2 + PL)$ — Operation count bound.

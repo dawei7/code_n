@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Valid Palindrome** with natural boundary handling.
+Given A phrase is a **palindrome** if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include lett..., the algorithm solves **Valid Palindrome** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Date Range Generator** using idiomatic control flow.
+Given a start date `start`, an end date `end`, and a positive integer `step`, return a generator object that yields dates in the range from `start` to `end` inclusive, the JavaScript algorithm implements the solution for **Date Range Generator**.
 
 ## Complexity detail
 - **Time Complexity**: $O(k)$ — Operation count bound.

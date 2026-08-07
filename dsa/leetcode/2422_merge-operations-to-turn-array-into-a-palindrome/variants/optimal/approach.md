@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Merge Operations to Turn Array Into a Palindrome** with natural boundary handling.
+Given an array `nums` consisting of **positive** integers, the algorithm solves **Merge Operations to Turn Array Into a Palindrome** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Circular Gift Exchange Chains** using Common Table Expressions (CTEs), relational JOINs, window ranking functions, GROUP BY aggregations.
+Given Table: `SecretSanta`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables, window functions for positional ranking and partition analytical operations, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(e^2)$ — Operation count bound.

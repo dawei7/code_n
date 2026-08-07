@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Article Views II** using relational predicates. Edge cases: filters aggregated group boundaries using `HAVING` clause.
+Given Table: `Views`, the database query executes a relational database query for **Article Views II**. Edge case handling: filters aggregated group results via `HAVING` predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(r\log r)$ — Operation count bound.

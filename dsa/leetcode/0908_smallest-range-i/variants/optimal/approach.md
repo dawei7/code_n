@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Smallest Range I** with natural boundary handling.
+Given an integer array `nums` and an integer `k`, the algorithm solves **Smallest Range I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

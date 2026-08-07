@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given You have two soups, **A** and **B**, each starting with `n` mL. On every turn, one of the following four serving operations is chosen *at random*, each with probability `0.25` **independent** of all previous turns:, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(s^2)$ — Operation count bound.

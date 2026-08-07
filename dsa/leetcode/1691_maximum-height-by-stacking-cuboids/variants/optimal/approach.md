@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given `n` `cuboids` where the dimensions of the $$i^{\text{th}}$$ cuboid is $\text{cuboids}[i] = [\text{width}_{i}, \text{length}_{i}, \text{height}_{i}]$ (**0-indexed**). Choose a **subset** of `cuboids` and place them on ..., the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

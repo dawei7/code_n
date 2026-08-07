@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given two positive integers `left` and `right` with $left \le right$. Calculate the **product** of all integers in the **inclusive** range `[left, right]`, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log R)$ — Operation count bound.

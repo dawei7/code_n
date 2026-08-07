@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Apply Transform Over Each Element in Array** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
+Given an integer array `arr` and a mapping function `fn`, return a new array with a transformation applied to each element, the JavaScript algorithm implements the solution for **Apply Transform Over Each Element in Array**. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

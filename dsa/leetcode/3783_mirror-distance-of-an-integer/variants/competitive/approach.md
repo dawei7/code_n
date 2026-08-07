@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Mirror Distance of an Integer** with natural boundary handling.
+Given an integer `n`, the algorithm solves **Mirror Distance of an Integer** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log N)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Building Boxes** with natural boundary handling.
+Given You have a cubic storeroom where the width, length, and height of the room are all equal to `n` units. You are asked to place `n` boxes in this room where each box is a cube of unit side length. There are however some..., the algorithm solves **Building Boxes** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(\log n)$ — Operation count bound.

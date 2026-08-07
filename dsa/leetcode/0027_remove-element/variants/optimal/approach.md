@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an integer array `nums` and an integer `val`, remove all occurrences of `val` in `nums` <a href="https://en.wikipedia.org/wiki/In-place_algorithm" target="_blank">**in-place**</a>. The order of the elements may be cha..., the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

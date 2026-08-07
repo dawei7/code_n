@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Maximum Number of Coins You Can Get** with natural boundary handling.
+Given There are `3n` piles of coins of varying size, you and your friends will take piles of coins as follows:, the algorithm solves **Maximum Number of Coins You Can Get** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

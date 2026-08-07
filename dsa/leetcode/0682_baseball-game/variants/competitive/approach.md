@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

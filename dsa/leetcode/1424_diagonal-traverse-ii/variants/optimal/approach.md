@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a 2D integer array `nums`, return *all elements of *`nums`* in diagonal order as shown in the below images*, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

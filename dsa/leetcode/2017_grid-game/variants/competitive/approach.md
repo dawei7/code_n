@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration.
+Given a **0-indexed** 2D array `grid` of size `2 x n`, where $\text{grid}[r][c]$ represents the number of points at position `(r, c)` on the matrix. Two robots are playing a game on this matrix, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

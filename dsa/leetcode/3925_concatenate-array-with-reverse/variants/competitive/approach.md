@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Concatenate Array With Reverse** with natural boundary handling.
+Given an integer array `nums` of length `n`, the algorithm solves **Concatenate Array With Reverse** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

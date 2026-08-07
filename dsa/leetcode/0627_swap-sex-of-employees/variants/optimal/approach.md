@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Swap Sex of Employees** using relational predicates.
+Given Table: `Salary`, the database query executes a relational database query for **Swap Sex of Employees**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

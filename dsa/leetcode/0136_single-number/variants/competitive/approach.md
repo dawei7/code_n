@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Single Number** with natural boundary handling.
+Given a **non-empty** array of integers `nums`, every element appears *twice* except for one. Find that single one, the algorithm solves **Single Number** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

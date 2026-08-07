@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Calculate Trapping Rain Water** using Common Table Expressions (CTEs).
+Given Table: Heights, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

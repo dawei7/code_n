@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Rename Columns** with natural boundary handling.
+Given DataFrame students, the algorithm solves **Rename Columns** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

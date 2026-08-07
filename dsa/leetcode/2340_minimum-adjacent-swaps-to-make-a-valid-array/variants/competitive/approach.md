@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Adjacent Swaps to Make a Valid Array** with natural boundary handling.
+Given a **0-indexed** integer array `nums`, the algorithm solves **Minimum Adjacent Swaps to Make a Valid Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

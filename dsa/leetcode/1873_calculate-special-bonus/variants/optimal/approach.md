@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Calculate Special Bonus** using relational predicates.
+Given Table: `Employees`, the database query executes a relational database query for **Calculate Special Bonus**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.

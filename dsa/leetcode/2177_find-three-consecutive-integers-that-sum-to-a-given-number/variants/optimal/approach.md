@@ -1,5 +1,5 @@
 ## General
-Maintains hash map lookup (`dict`) for $O(1)$ average speed.
+Given an integer `num`, return *three consecutive integers (as a sorted array)** that **sum** to *`num`. If `num` cannot be expressed as the sum of three consecutive integers, return* an **empty** array.*, the algorithm solves **Find Three Consecutive Integers That Sum to a Given Number** directly. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

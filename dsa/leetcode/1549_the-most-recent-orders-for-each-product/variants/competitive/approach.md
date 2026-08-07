@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Most Recent Orders for Each Product** using relational JOINs, GROUP BY aggregations.
+Given Table: `Customers`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(r \log r)$ — Operation count bound.

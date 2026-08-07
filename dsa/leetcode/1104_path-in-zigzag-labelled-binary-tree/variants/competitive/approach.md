@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Path In Zigzag Labelled Binary Tree** with natural boundary handling.
+Given In an infinite binary tree where every node has two children, the nodes are labelled in row order, the algorithm solves **Path In Zigzag Labelled Binary Tree** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(\log L)$ — Operation count bound.

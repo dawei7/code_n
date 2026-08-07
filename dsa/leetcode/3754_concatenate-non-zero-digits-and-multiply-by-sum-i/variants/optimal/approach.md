@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Concatenate Non-Zero Digits and Multiply by Sum I** with natural boundary handling.
+Given an integer `n`, the algorithm solves **Concatenate Non-Zero Digits and Multiply by Sum I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(D)$ — Operation count bound.

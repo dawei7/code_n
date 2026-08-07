@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Account Balance After Rounded Purchase** with natural boundary handling.
+Given Initially, you have a bank account balance of **100** dollars, the algorithm solves **Account Balance After Rounded Purchase** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

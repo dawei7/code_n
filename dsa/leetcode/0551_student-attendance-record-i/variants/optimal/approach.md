@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Student Attendance Record I** with natural boundary handling.
+Given a string `s` representing an attendance record for a student where each character signifies whether the student was absent, late, or present on that day. The record only contains the following three characters:, the algorithm solves **Student Attendance Record I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Sleep** using idiomatic control flow.
+Given a positive integer `millis`, write an asynchronous function that sleeps for `millis` milliseconds. It can resolve any value, the JavaScript algorithm implements the solution for **Sleep**.
 
 ## Complexity detail
 - **Time Complexity**: $O(m)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash set (`set`) for $O(1)$ duplicate check. Applies walrus operator (`:=`) for inline assignment and zero-copy conditional check.
+Given a **0-indexed** integer array `nums`, determine whether there exist **two** subarrays of length `2` with **equal** sum. Note that the two subarrays must begin at **different** indices, the algorithm executes a single-pass linear scan through input elements. It utilizes a hash set (`set`) to track unique elements and prevent duplicate processing in $O(1)$ time. Key operations include the walrus operator (`:=`) for inline assignment and evaluation.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

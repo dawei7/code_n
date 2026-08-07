@@ -1,5 +1,5 @@
 ## General
-Algorithm uses binary search over sorted domain. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given two positive integers `left` and `right`, find the two integers `num1` and `num2` such that:, the algorithm executes binary search over the search space to achieve logarithmic reduction. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log log R)$ — Operation count bound.

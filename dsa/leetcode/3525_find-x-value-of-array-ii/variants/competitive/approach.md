@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an array of **positive** integers `nums` and a **positive** integer `k`. You are also given a 2D array `queries`, where $\text{queries}[i] = [\text{index}_{i}, \text{value}_{i}, \text{start}_{i}, x_{i}]$, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O((n + q log n)k)$ — Operation count bound.

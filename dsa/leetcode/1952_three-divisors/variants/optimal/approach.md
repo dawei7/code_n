@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an integer `n`, return `true`* if *`n`* has **exactly three positive divisors**. Otherwise, return *`false`, the algorithm executes a single-pass linear scan through input elements. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(\sqrt[4]{N})$ — Operation count bound.

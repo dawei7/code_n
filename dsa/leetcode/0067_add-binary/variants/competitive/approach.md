@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given two binary strings `a` and `b`, return *their sum as a binary string*, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(\max(m,n))$ — Operation count bound.

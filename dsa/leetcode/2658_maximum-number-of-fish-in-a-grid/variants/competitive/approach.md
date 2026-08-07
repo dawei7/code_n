@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Edge cases: handles empty/null inputs via early return guards.
+Given a **0-indexed** 2D matrix `grid` of size `m x n`, where `(r, c)` represents:, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.

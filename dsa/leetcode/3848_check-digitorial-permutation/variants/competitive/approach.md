@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Check Digitorial Permutation** with natural boundary handling.
+Given an integer `n`, the algorithm solves **Check Digitorial Permutation** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(D)$ — Operation count bound.

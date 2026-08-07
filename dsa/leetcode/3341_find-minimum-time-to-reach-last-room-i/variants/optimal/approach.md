@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains priority queue (`heapq`) for dynamic ordering.
+Given There is a dungeon with `n x m` rooms arranged as a grid, the algorithm executes a single-pass linear scan through input elements. It utilizes a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(nm log(nm))$ — Operation count bound.

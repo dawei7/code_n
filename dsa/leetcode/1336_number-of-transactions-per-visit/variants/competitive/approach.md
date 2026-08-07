@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Number of Transactions per Visit** using relational JOINs. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Visits`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

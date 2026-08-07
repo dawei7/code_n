@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an integer `rowIndex`, return the $rowIndex^th$ (**0-indexed**) row of the **Pascal's triangle**, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(rowIndex)$ — Operation count bound.

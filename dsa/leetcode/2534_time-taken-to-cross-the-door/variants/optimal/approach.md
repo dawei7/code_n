@@ -1,5 +1,5 @@
 ## General
-Algorithm uses breadth-first search queue level traversal. Maintains double-ended queue (`deque`) for $O(1)$ window bounds.
+Given There are `n` persons numbered from `0` to $n - 1$ and a door. Each person can enter or exit through the door once, taking one second, the algorithm executes breadth-first search (BFS) level-order traversal using a queue. It utilizes a double-ended queue (`deque`) to support dynamic $O(1)$ push and pop operations at both ends.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

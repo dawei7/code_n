@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Employees Earning More Than Their Managers** using relational JOINs.
+Given Table: `Employee`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

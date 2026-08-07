@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given Alice and Bob take turns playing a game, with **Alice starting first**, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Monthly Transactions I** using relational predicates.
+Given Table: `Transactions`, the database query executes a relational database query for **Monthly Transactions I**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

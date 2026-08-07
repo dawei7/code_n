@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Find the Integer Added to Array I** with natural boundary handling.
+Given two arrays of equal length, `nums1` and `nums2`, the algorithm solves **Find the Integer Added to Array I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

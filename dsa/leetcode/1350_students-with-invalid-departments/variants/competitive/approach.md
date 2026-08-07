@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Students With Invalid Departments** using relational JOINs.
+Given Table: `Departments`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Delay the Resolution of Each Promise** using JavaScript array iteration methods.
+Given an array `functions` and a number `ms`, return a new array of functions, the JavaScript algorithm uses functional array iteration methods.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

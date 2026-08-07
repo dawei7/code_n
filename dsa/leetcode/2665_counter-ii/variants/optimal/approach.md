@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Counter II** using idiomatic control flow.
+Given Write a function `createCounter`. It should accept an initial integer `init`. It should return an object with three functions, the JavaScript algorithm implements the solution for **Counter II**.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

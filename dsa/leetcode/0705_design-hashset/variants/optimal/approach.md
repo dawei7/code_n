@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Design HashSet** with natural boundary handling.
+Given Design a HashSet without using any built-in hash table libraries, the algorithm solves **Design HashSet** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(q)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Is Object Empty** using idiomatic control flow.
+Given an object or an array, return if it is empty, the JavaScript algorithm implements the solution for **Is Object Empty**.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

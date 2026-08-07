@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Neighboring Bitwise XOR** with natural boundary handling.
+Given A **0-indexed** array `derived` with length `n` is derived by computing the **bitwise XOR** (⊕) of adjacent values in a **binary array** `original` of length `n`, the algorithm solves **Neighboring Bitwise XOR** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

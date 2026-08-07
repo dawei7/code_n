@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Swap Adjacent in LR String** with natural boundary handling.
+Given In a string composed of `'L'`, `'R'`, and `'X'` characters, like `"RXXLRXRXL"`, a move consists of either replacing one occurrence of `"XL"` with `"LX"`, or replacing one occurrence of `"RX"` with `"XR"`. Given the st..., the algorithm solves **Swap Adjacent in LR String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

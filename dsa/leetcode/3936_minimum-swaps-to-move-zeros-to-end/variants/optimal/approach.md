@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Swaps to Move Zeros to End** with natural boundary handling.
+Given an integer array `nums`, the algorithm solves **Minimum Swaps to Move Zeros to End** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

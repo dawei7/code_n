@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains priority queue (`heapq`) for dynamic ordering.
+Given an integer array `nums` and a **positive** integer `k`. You can choose any **subsequence** of the array and sum all of its elements together, the algorithm executes a single-pass linear scan through input elements. It utilizes a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n + k log k)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given a positive integer `num` consisting only of digits `6` and `9`, the algorithm solves **Maximum 69 Number** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(d)$ — Operation count bound.

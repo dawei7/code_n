@@ -1,5 +1,5 @@
 ## General
-Maintains tree node traversal (`val`, `left`, `right`).
+Given two binary trees `root1` and `root2`, the algorithm solves **Merge Two Binary Trees** directly. It utilizes binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

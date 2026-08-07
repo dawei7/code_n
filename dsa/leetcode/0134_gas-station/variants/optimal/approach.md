@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given There are `n` gas stations along a circular route, where the amount of gas at the $$i^{\text{th}}$$ station is $\text{gas}[i]$, the algorithm solves **Gas Station** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

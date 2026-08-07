@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given two groups of points where the first group has $\text{size}_{1}$ points, the second group has $\text{size}_{2}$ points, and $\text{size}_{1} \ge \text{size}_{2}$, the algorithm executes a single-pass linear scan through input elements. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn2^n)$ — Operation count bound.

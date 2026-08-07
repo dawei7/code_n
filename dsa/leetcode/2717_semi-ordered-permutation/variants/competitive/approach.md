@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Semi-Ordered Permutation** with natural boundary handling.
+Given a **0-indexed** permutation of `n` integers `nums`, the algorithm solves **Semi-Ordered Permutation** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

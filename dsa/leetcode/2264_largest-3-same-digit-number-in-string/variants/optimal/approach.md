@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Applies walrus operator (`:=`) for inline assignment and zero-copy conditional check.
+Given a string `num` representing a large integer. An integer is **good** if it meets the following conditions:, the algorithm executes a single-pass linear scan through input elements. Key operations include the walrus operator (`:=`) for inline assignment and evaluation.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

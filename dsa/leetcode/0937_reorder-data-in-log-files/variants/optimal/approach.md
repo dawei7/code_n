@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Reorder Data in Log Files** with natural boundary handling.
+Given an array of `logs`. Each log is a space-delimited string of words, where the first word is the **identifier**, the algorithm solves **Reorder Data in Log Files** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + LC\log L)$ — Operation count bound.

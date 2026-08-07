@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash map lookup (`dict`) for $O(1)$ average speed, priority queue (`heapq`) for dynamic ordering.
+Given a **0-indexed** $m * n$ integer matrix `values`, representing the values of $m * n$ different items in `m` different shops. Each shop has `n` items where the $$j^{\text{th}}$$ item in the $$i^{\text{th}}$$ shop has a ..., the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(m n log(m))$ — Operation count bound.

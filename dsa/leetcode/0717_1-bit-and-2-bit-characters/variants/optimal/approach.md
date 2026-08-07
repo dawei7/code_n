@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **1-bit and 2-bit Characters** with natural boundary handling.
+Given We have two special characters:, the algorithm solves **1-bit and 2-bit Characters** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

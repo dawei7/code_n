@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Create a New Column** with natural boundary handling.
+Given DataFrame employees, the algorithm solves **Create a New Column** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

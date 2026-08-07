@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Angle Between Hands of a Clock** with natural boundary handling.
+Given two numbers, `hour` and `minutes`, return *the smaller angle (in degrees) formed between the *`hour`* and the *`minute`* hand*, the algorithm solves **Angle Between Hands of a Clock** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

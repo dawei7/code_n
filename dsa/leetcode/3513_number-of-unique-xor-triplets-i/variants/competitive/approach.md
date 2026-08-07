@@ -1,5 +1,5 @@
 ## General
-Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
+Given an integer array `nums` of length `n`, where `nums` is a **permutation** of the numbers in the range `[1, n]`, the algorithm solves **Number of Unique XOR Triplets I** directly. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

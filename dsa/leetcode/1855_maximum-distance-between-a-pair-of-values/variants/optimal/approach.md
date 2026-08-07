@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given two **non-increasing 0-indexed **integer arrays `nums1`​​​​​​ and `nums2`​​​​​​, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n+m)$ — Operation count bound.

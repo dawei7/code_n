@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Special Binary String** with natural boundary handling.
+Given **Special binary strings** are binary strings with the following two properties:, the algorithm solves **Special Binary String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

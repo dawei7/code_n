@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Rising Temperature** using relational JOINs.
+Given Table: `Weather`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

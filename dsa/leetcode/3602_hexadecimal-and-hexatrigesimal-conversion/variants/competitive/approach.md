@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Hexadecimal and Hexatrigesimal Conversion** with natural boundary handling.
+Given an integer `n`, the algorithm solves **Hexadecimal and Hexatrigesimal Conversion** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n)$ — Operation count bound.

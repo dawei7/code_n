@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Average Selling Price** using relational JOINs.
+Given Table: `Prices`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

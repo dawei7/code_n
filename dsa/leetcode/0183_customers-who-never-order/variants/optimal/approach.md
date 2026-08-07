@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Customers Who Never Order** using relational predicates.
+Given Table: `Customers`, the database query executes a relational database query for **Customers Who Never Order**.
 
 ## Complexity detail
 - **Time Complexity**: $O(c + o)$ — Operation count bound.

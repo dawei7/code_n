@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Followers Count** using relational predicates.
+Given Table: `Followers`, the database query executes a relational database query for **Find Followers Count**.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

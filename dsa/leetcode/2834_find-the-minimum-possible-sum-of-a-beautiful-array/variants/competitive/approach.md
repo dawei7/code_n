@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Find the Minimum Possible Sum of a Beautiful Array** with natural boundary handling.
+Given positive integers `n` and `target`, the algorithm solves **Find the Minimum Possible Sum of a Beautiful Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

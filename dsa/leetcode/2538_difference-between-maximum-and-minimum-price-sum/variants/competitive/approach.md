@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Maintains dynamic programming memoization array/table.
+Given There exists an undirected and initially unrooted tree with `n` nodes indexed from `0` to $n - 1$. You are given the integer `n` and a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}..., the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. It utilizes a dynamic programming memoization table to cache intermediate subproblem states.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

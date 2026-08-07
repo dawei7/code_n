@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find Median Given Frequency of Numbers** using relational JOINs.
+Given Table: `Numbers`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(R \log R)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Maintains hash map lookup (`dict`) for $O(1)$ average speed. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given There is a regular convex polygon with `n` vertices. The vertices are labeled from `0` to $n - 1$ in a clockwise direction, and each vertex has **exactly one monkey**. The following figure shows a convex polygon of `6..., the algorithm solves **Count Collisions of Monkeys on a Polygon** directly. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n)$ — Operation count bound.

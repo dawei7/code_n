@@ -1,5 +1,5 @@
 ## General
-Algorithm uses binary search over sorted domain. Maintains hash map lookup (`dict`) for $O(1)$ average speed, priority queue (`heapq`) for dynamic ordering.
+Given two **1-indexed** integer arrays, `nums` and, `changeIndices`, having lengths `n` and `m`, respectively, the algorithm executes binary search over the search space to achieve logarithmic reduction. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access, a priority queue (`heapq`) to maintain dynamic minimum/maximum element ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O((n + m log n) log m)$ — Operation count bound.

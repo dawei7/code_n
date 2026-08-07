@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Reshape Data: Melt** with natural boundary handling.
+Given DataFrame report, the algorithm solves **Reshape Data: Melt** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

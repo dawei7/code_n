@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Merge Two 2D Arrays by Summing Values** with natural boundary handling.
+Given two **2D** integer arrays `nums1` and `nums2.`, the algorithm solves **Merge Two 2D Arrays by Summing Values** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.

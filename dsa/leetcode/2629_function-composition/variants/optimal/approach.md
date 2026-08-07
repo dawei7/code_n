@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Function Composition** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
+Given an array of functions `[f1, f_2, f_3, ..., f_n]`, return a new function `fn` that is the **function composition** of the array of functions, the JavaScript algorithm implements the solution for **Function Composition**. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

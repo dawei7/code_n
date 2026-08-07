@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Optimal Division** with natural boundary handling.
+Given an integer array `nums`. The adjacent integers in `nums` will perform the float division, the algorithm solves **Optimal Division** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

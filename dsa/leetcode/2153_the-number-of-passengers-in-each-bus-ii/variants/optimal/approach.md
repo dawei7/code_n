@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Number of Passengers in Each Bus II** using Common Table Expressions (CTEs), relational JOINs.
+Given Table: `Buses`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log N)$ — Operation count bound.

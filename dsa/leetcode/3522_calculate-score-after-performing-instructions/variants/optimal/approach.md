@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Calculate Score After Performing Instructions** with natural boundary handling.
+Given two arrays, `instructions` and `values`, both of size `n`, the algorithm solves **Calculate Score After Performing Instructions** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

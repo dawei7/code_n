@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Find First and Last Position of Element in Sorted Array** with natural boundary handling.
+Given an array of integers `nums` sorted in non-decreasing order, find the starting and ending position of a given `target` value, the algorithm solves **Find First and Last Position of Element in Sorted Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(\log n)$ — Operation count bound.

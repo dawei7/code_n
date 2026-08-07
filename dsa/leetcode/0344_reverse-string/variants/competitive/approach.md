@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Reverse String** with natural boundary handling.
+Given Write a function that reverses a string. The input string is given as an array of characters `s`, the algorithm solves **Reverse String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

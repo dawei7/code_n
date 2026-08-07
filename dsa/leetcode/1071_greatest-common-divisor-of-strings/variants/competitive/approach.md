@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given For two strings `s` and `t`, we say "`t` divides `s`" if and only if $s = t + t + t + ... + t + t$ (i.e., `t` is concatenated with itself one or more times), the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(N+M)$ — Operation count bound.

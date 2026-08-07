@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given On a **0-indexed** `8 x 8` chessboard, there can be multiple black queens and one white king, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(q)$ — Operation count bound.

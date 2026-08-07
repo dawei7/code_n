@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Build the Equation** using relational predicates.
+Given Table: `Terms`, the database query executes a relational database query for **Build the Equation**.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log N)$ — Operation count bound.

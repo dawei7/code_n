@@ -1,5 +1,5 @@
 ## General
-Maintains tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards.
+Given the roots of two binary trees `root` and `subRoot`, return `true` if there is a subtree of `root` with the same structure and node values of` subRoot` and `false` otherwise, the algorithm solves **Subtree of Another Tree** directly. It utilizes binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Fraction Addition and Subtraction** with natural boundary handling.
+Given a string `expression` representing an expression of fraction addition and subtraction, return the calculation result in string format, the algorithm solves **Fraction Addition and Subtraction** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log V)$ — Operation count bound.

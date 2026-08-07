@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Convert Date Format** using relational predicates.
+Given Table: `Days`, the database query executes a relational database query for **Convert Date Format**.
 
 ## Complexity detail
 - **Time Complexity**: $O(r)$ — Operation count bound.

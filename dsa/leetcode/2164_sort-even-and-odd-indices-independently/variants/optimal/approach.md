@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Sort Even and Odd Indices Independently** with natural boundary handling.
+Given a **0-indexed** integer array `nums`. Rearrange the values of `nums` according to the following rules:, the algorithm solves **Sort Even and Odd Indices Independently** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

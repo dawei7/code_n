@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Valid Mountain Array** with natural boundary handling.
+Given an array of integers `arr`, return *`true` if and only if it is a valid mountain array*, the algorithm solves **Valid Mountain Array** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Detect Capital** with natural boundary handling.
+Given We define the usage of capitals in a word to be right when one of the following cases holds:, the algorithm solves **Detect Capital** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

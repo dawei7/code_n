@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Maintains hash map lookup (`dict`) for $O(1)$ average speed.
+Given `n` rectangles represented by a **0-indexed** 2D integer array `rectangles`, where $\text{rectangles}[i] = [\text{width}_{i}, \text{height}_{i}]$ denotes the width and height of the $$i^{\text{th}}$$ rectangle, the algorithm executes a single-pass linear scan through input elements. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log M)$ — Operation count bound.

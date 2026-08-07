@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Finding the Topic of Each Post** using relational JOINs, GROUP BY aggregations. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Keywords`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(pkL + t log t)$ — Operation count bound.

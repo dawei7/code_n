@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **String Without AAA or BBB** with natural boundary handling.
+Given two integers `a` and `b`, return **any** string `s` such that:, the algorithm solves **String Without AAA or BBB** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(L)$ — Operation count bound.

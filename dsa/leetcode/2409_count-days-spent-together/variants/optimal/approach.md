@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count Days Spent Together** with natural boundary handling.
+Given Alice and Bob are traveling to Rome for separate business meetings, the algorithm solves **Count Days Spent Together** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

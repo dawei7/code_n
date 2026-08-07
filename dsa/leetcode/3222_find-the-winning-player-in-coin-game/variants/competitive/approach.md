@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given two **positive** integers `x` and `y`, denoting the number of coins with values 75 and 10 *respectively*, the algorithm solves **Find the Winning Player in Coin Game** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Deep Object Filter** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
+Given an object or an array `obj` and a function `fn`, return a filtered object or array `filteredObject`, the JavaScript algorithm implements the solution for **Deep Object Filter**. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(V)$ — Operation count bound.

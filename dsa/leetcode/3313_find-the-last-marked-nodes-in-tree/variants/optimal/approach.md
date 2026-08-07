@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given There exists an **undirected** tree with `n` nodes numbered `0` to $n - 1$. You are given a 2D integer array `edges` of length $n - 1$, where $\text{edges}[i] = [u_{i}, v_{i}]$ indicates that there is an edge between ..., the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

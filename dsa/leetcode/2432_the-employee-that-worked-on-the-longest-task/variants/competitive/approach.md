@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **The Employee That Worked on the Longest Task** with natural boundary handling.
+Given There are `n` employees, each with a unique id from `0` to $n - 1$, the algorithm solves **The Employee That Worked on the Longest Task** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(m)$ — Operation count bound.

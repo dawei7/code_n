@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Poor Pigs** with natural boundary handling.
+Given There are `buckets` buckets of liquid, where **exactly one** of the buckets is poisonous. To figure out which one is poisonous, you feed some number of (poor) pigs the liquid to see whether they will die or not. Unfor..., the algorithm solves **Poor Pigs** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(\log buckets)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Find COVID Recovery Patients** using Common Table Expressions (CTEs), relational JOINs, GROUP BY aggregations.
+Given Table: `patients`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(T log T + P log P)$ — Operation count bound.

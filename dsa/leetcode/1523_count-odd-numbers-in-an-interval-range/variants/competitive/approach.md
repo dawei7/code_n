@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Count Odd Numbers in an Interval Range** with natural boundary handling.
+Given two non-negative integers `low` and `high`. Return the *count of odd numbers between *`low`* and *`high`* (inclusive)*, the algorithm solves **Count Odd Numbers in an Interval Range** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Maximum Odd Binary Number** with natural boundary handling.
+Given a **binary** string `s` that contains at least one `'1'`, the algorithm solves **Maximum Odd Binary Number** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

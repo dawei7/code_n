@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Winner University** using relational predicates.
+Given Table: `NewYork`, the database query executes a relational database query for **The Winner University**.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

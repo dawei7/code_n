@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count Binary Substrings** with natural boundary handling.
+Given a binary string `s`, return the number of non-empty substrings that have the same number of `0`'s and `1`'s, and all the `0`'s and all the `1`'s in these substrings are grouped consecutively, the algorithm solves **Count Binary Substrings** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

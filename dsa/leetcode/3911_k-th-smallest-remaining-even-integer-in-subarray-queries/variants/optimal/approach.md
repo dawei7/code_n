@@ -1,5 +1,5 @@
 ## General
-Algorithm uses binary search over sorted domain. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an integer array `nums` where `nums` is **strictly increasing**, the algorithm executes binary search over the search space to achieve logarithmic reduction. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + q log n)$ — Operation count bound.

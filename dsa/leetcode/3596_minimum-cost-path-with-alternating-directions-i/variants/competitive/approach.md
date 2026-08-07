@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Cost Path with Alternating Directions I** with natural boundary handling.
+Given two integers `m` and `n` representing the number of rows and columns of a grid, respectively, the algorithm solves **Minimum Cost Path with Alternating Directions I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given There is an undirected tree with `n` nodes labeled from `0` to $n - 1$, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n d(S))$ — Operation count bound.

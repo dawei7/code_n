@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Find Permutation** with natural boundary handling.
+Given A permutation `perm` of `n` integers of all the integers in the range `[1, n]` can be represented as a string `s` of length $n - 1$ where:, the algorithm solves **Find Permutation** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

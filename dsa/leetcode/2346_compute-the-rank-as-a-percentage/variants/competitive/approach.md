@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Compute the Rank as a Percentage** using window ranking functions. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Students`, the database query executes a relational pipeline using window functions for positional ranking and partition analytical operations. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

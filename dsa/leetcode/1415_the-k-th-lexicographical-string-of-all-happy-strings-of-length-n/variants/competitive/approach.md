@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **The k-th Lexicographical String of All Happy Strings of Length n** with natural boundary handling.
+Given A **happy string** is a string that:, the algorithm solves **The k-th Lexicographical String of All Happy Strings of Length n** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

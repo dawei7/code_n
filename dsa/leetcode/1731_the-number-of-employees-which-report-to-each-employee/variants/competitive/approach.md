@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Number of Employees Which Report to Each Employee** using relational JOINs.
+Given Table: `Employees`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(E)$ — Operation count bound.

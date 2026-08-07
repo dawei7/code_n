@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Count the Number of Incremovable Subarrays I** with natural boundary handling.
+Given a **0-indexed** array of **positive** integers `nums`, the algorithm solves **Count the Number of Incremovable Subarrays I** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

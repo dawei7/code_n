@@ -1,5 +1,5 @@
 ## General
-Maintains tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards.
+Given the `root` of a binary search tree (BST) with duplicates, return *all the <a href="https://en.wikipedia.org/wiki/Mode_(statistics)" target="_blank">mode(s)</a> (i.e., the most frequently occurred element) in it*, the algorithm solves **Find Mode in Binary Search Tree** directly. It utilizes binary tree node references (`val`, `left`, `right`) to traverse structural hierarchies. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

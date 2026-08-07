@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Movie Rating** using relational JOINs.
+Given Table: `Movies`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(N\log N)$ — Operation count bound.

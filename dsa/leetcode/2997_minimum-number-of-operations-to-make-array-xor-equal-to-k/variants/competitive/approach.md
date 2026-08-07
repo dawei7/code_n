@@ -1,5 +1,5 @@
 ## General
-Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given a **0-indexed** integer array `nums` and a positive integer `k`, the algorithm solves **Minimum Number of Operations to Make Array XOR Equal to K** directly. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

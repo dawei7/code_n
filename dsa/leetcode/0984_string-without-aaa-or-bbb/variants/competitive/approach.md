@@ -1,5 +1,5 @@
 ## General
-Edge cases: handles empty/null inputs via early return guards.
+Given two integers `a` and `b`, return **any** string `s` such that:, the algorithm solves **String Without AAA or BBB** directly. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(L)$ — Operation count bound.

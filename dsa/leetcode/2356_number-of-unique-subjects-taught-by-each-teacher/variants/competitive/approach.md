@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Number of Unique Subjects Taught by Each Teacher** using GROUP BY aggregations.
+Given Table: `Teacher`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.

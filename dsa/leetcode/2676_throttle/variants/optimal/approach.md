@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Throttle** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
+Given a function `fn` and a time in milliseconds `t`, return a **throttled** version of that function, the JavaScript algorithm implements the solution for **Throttle**. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

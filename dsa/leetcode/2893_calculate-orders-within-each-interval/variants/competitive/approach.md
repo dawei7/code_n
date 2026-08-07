@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Calculate Orders Within Each Interval** using GROUP BY aggregations.
+Given Table: `Orders`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(M + I log I)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Apply Bitwise Operations to Make Strings Equal** with natural boundary handling.
+Given two **0-indexed binary** strings `s` and `target` of the same length `n`. You can do the following operation on `s` **any** number of times:, the algorithm solves **Apply Bitwise Operations to Make Strings Equal** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

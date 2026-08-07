@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Compute Decimal Representation** with natural boundary handling.
+Given a **positive** integer `n`, the algorithm solves **Compute Decimal Representation** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(log n)$ — Operation count bound.

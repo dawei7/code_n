@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Convert Date to Binary** with natural boundary handling.
+Given a string `date` representing a Gregorian calendar date in the `yyyy-mm-dd` format, the algorithm solves **Convert Date to Binary** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

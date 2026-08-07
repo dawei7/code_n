@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **The Latest Login in 2020** using GROUP BY aggregations.
+Given Table: `Logins`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

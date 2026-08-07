@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Students With Invalid Departments** using relational predicates.
+Given Table: `Departments`, the database query executes a relational database query for **Students With Invalid Departments**.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

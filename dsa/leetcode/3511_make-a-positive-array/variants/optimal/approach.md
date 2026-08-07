@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration.
+Given an array `nums`. An array is considered **positive** if the sum of all numbers in each **subarray** with **more than two** elements is positive, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

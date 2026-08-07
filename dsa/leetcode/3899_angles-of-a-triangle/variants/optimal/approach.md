@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Angles of a Triangle** with natural boundary handling.
+Given a positive integer array `sides` of length 3, the algorithm solves **Angles of a Triangle** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

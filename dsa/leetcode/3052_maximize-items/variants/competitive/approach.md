@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Maximize Items** using Common Table Expressions (CTEs).
+Given Table: `Inventory`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

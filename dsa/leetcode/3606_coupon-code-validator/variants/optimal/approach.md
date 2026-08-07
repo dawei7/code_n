@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards.
+Given three arrays of length `n` that describe the properties of `n` coupons: `code`, `businessLine`, and `isActive`. The $$i^{\text{th}}$$coupon has:, the algorithm executes a single-pass linear scan through input elements. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + vL log v)$ — Operation count bound.

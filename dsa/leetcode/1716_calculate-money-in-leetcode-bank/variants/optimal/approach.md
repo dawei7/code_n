@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Calculate Money in Leetcode Bank** with natural boundary handling.
+Given Hercy wants to save money for his first car. He puts money in the Leetcode bank **every day**, the algorithm solves **Calculate Money in Leetcode Bank** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

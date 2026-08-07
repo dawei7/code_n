@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Number of Times a Driver Was a Passenger** using Common Table Expressions (CTEs), relational JOINs, GROUP BY aggregations.
+Given Table: `Rides`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(r log r)$ — Operation count bound.

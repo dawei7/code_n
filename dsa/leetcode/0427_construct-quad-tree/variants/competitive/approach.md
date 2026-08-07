@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Edge cases: handles empty/null inputs via early return guards.
+Given a $n * n$ matrix `grid` of `0's` and `1's` only. We want to represent `grid` with a Quad-Tree, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

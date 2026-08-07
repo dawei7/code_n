@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Build the Equation** using Common Table Expressions (CTEs).
+Given Table: `Terms`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log N)$ — Operation count bound.

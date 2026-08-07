@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Maintains hash map lookup (`dict`) for $O(1)$ average speed.
+Given an integer `n` denoting the total number of servers and a **2D** **0-indexed **integer array `logs`, where $\text{logs}[i] = [\text{server}_{id}, time]$ denotes that the server with id $\text{server}_{id}$ received a ..., the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. It utilizes a hash map (`dict`) to store element values and their indices/frequencies for $O(1)$ fast access.
 
 ## Complexity detail
 - **Time Complexity**: $O(m log m + q log q)$ — Operation count bound.

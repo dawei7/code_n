@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Active Users** using relational JOINs.
+Given Table: `Accounts`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(L\log L+A)$ — Operation count bound.

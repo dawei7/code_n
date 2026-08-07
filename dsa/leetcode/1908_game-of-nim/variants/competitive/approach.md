@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Game of Nim** with natural boundary handling.
+Given Alice and Bob take turns playing a game with **Alice starting first**, the algorithm solves **Game of Nim** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

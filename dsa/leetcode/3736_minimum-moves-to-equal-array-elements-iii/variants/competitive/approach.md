@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Moves to Equal Array Elements III** with natural boundary handling.
+Given an integer array `nums`, the algorithm solves **Minimum Moves to Equal Array Elements III** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

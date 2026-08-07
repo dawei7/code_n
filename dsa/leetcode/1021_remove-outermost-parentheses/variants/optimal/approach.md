@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given A valid parentheses string is either empty `""`, $"(" + A + ")"$, or $A + B$, where `A` and `B` are valid parentheses strings, and `+` represents string concatenation, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

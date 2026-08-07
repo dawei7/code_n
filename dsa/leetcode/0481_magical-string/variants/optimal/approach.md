@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Magical String** with natural boundary handling.
+Given A magical string `s` consists of only `'1'` and `'2'` and obeys the following rule:, the algorithm solves **Magical String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

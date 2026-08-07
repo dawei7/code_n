@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **DNA Pattern Recognition ** using relational predicates.
+Given Table: `Samples`, the database query executes a relational database query for **DNA Pattern Recognition **.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + r log r)$ — Operation count bound.

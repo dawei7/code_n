@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an integer array `weights` and two integers `w1` and `w2` representing the **maximum** capacities of two bags, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n * w1 * w2)$ — Operation count bound.

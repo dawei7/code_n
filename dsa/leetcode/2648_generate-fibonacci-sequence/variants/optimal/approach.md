@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Generate Fibonacci Sequence** using idiomatic control flow.
+Given Write a generator function that returns a generator object which yields the **fibonacci sequence**, the JavaScript algorithm implements the solution for **Generate Fibonacci Sequence**.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

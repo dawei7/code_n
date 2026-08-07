@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Moves to Convert String** with natural boundary handling.
+Given a string `s` consisting of `n` characters which are either `'X'` or `'O'`, the algorithm solves **Minimum Moves to Convert String** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Daily Leads and Partners** using GROUP BY aggregations.
+Given Table: `DailySales`, the database query executes a relational pipeline using `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(R)$ — Operation count bound.

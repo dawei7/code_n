@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given a string `s` consisting of the characters `'N'`, `'S'`, `'E'`, and `'W'`, where $s[i]$ indicates movements in an infinite grid:, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

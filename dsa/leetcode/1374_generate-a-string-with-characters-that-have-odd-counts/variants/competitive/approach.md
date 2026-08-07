@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given an integer `n`, *return a string with `n` characters such that each character in such string occurs **an odd number of times***, the algorithm solves **Generate a String With Characters That Have Odd Counts** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

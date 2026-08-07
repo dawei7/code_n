@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Tenth Line** with natural boundary handling.
+Given a text file `file.txt`, print just the 10th line of the file, the algorithm solves **Tenth Line** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

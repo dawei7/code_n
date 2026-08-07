@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Evaluate Valid Expressions** with natural boundary handling.
+Given a string `expression` that represents a nested mathematical expression in a simplified form, the algorithm solves **Evaluate Valid Expressions** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

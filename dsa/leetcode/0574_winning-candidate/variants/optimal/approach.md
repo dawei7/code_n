@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Winning Candidate** using relational JOINs, GROUP BY aggregations.
+Given Table: `Candidate`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables, `GROUP BY` aggregations to summarize record groups.
 
 ## Complexity detail
 - **Time Complexity**: $O(V + C \log C)$ — Operation count bound.

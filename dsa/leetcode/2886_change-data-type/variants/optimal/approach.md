@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Change Data Type** with natural boundary handling.
+Given DataFrame students, the algorithm solves **Change Data Type** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Minimum Common Value** with natural boundary handling.
+Given two integer arrays `nums1` and `nums2`, sorted in non-decreasing order, return *the **minimum integer common** to both arrays*. If there is no common integer amongst `nums1` and `nums2`, return `-1`, the algorithm solves **Minimum Common Value** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.

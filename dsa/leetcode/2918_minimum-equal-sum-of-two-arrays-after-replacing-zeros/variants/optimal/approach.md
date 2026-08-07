@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Equal Sum of Two Arrays After Replacing Zeros** with natural boundary handling.
+Given two arrays `nums1` and `nums2` consisting of positive integers, the algorithm solves **Minimum Equal Sum of Two Arrays After Replacing Zeros** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.

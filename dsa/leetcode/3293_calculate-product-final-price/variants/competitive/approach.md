@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Calculate Product Final Price** using relational JOINs. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `Products`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O((P + D) log(P + D))$ — Operation count bound.

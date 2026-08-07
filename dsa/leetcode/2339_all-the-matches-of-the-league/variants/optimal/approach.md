@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **All the Matches of the League** using relational JOINs.
+Given Table: `Teams`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(t^2)$ — Operation count bound.

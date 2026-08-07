@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Reformat Department Table** using relational predicates.
+Given Table: `Department`, the database query executes a relational database query for **Reformat Department Table**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

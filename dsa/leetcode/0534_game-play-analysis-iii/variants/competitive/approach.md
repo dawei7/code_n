@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Game Play Analysis III** using relational predicates.
+Given Table: `Activity`, the database query executes a relational database query for **Game Play Analysis III**.
 
 ## Complexity detail
 - **Time Complexity**: $O(A \log A)$ — Operation count bound.

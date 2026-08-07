@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Order Two Columns Independently** using Common Table Expressions (CTEs), relational JOINs, window ranking functions.
+Given Table: `Data`, the database query executes a relational pipeline using Common Table Expressions (CTEs) to separate intermediate logic into modular subqueries, relational `JOIN` operations to correlate matching records across tables, window functions for positional ranking and partition analytical operations.
 
 ## Complexity detail
 - **Time Complexity**: $O(n \log n)$ — Operation count bound.

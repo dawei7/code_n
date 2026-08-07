@@ -1,5 +1,5 @@
 ## General
-Edge cases: applies modulo arithmetic to prevent integer overflow.
+Given three integers `l`, `r`, and `k`, the algorithm solves **Sum of K-Digit Numbers in a Range** directly. Edge case handling: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(log K)$ — Operation count bound.

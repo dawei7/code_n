@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Remove Palindromic Subsequences** with natural boundary handling.
+Given a string `s` consisting **only** of letters `'a'` and `'b'`. In a single step you can remove one **palindromic subsequence** from `s`, the algorithm solves **Remove Palindromic Subsequences** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

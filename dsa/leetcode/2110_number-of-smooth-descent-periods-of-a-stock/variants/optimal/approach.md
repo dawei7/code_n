@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Number of Smooth Descent Periods of a Stock** with natural boundary handling.
+Given an integer array `prices` representing the daily price history of a stock, where $\text{prices}[i]$ is the stock price on the $$i^{\text{th}}$$ day, the algorithm solves **Number of Smooth Descent Periods of a Stock** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

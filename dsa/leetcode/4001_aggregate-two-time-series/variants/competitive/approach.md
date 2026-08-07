@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Aggregate Two Time Series** with natural boundary handling.
+Given two 2D integer arrays `series1` and `series2`, the algorithm solves **Aggregate Two Time Series** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(n+m)$ — Operation count bound.

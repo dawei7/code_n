@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+Given There exists an undirected tree rooted at node `0` with `n` nodes labeled from `0` to $n - 1$. You are given a 2D **integer** array `edges` of length $n - 1$, where $\text{edges}[i] = [a_{i}, b_{i}]$ indicates that th..., the algorithm executes depth-first search (DFS) recursion to explore valid decision branches. Key operations include bitwise operators (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log(C))$ — Operation count bound.

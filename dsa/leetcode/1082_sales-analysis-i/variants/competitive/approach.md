@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Sales Analysis I** using relational predicates. Edge cases: filters aggregated group boundaries using `HAVING` clause.
+Given Table: `Product`, the database query executes a relational database query for **Sales Analysis I**. Edge case handling: filters aggregated group results via `HAVING` predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.

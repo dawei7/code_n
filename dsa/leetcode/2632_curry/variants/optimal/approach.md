@@ -1,5 +1,5 @@
 ## General
-Executes JavaScript logic for **Curry** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
+Given a function `fn`, return a **curried** version of that function, the JavaScript algorithm implements the solution for **Curry**. Edge case handling: guards against empty inputs using array/string length checks.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + p)$ — Operation count bound.

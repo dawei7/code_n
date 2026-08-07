@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Rising Temperature** using relational predicates.
+Given Table: `Weather`, the database query executes a relational database query for **Rising Temperature**.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.

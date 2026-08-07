@@ -1,5 +1,5 @@
 ## General
-Algorithm uses two-pointer sliding window iteration. Edge cases: handles empty/null inputs via early return guards.
+Given an integer array `nums`, the algorithm executes a two-pointer approach to shrink boundaries or maintain a sliding window. Edge case handling: guards against empty/null inputs via early returns.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.

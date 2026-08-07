@@ -1,5 +1,5 @@
 ## General
-Algorithm uses depth-first search recursion.
+Given You have a 2-D `grid` of size `m x n` representing a box, and you have `n` balls. The box is open on the top and bottom sides, the algorithm executes depth-first search (DFS) recursion to explore valid decision branches.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Binary Tree Nodes** using relational JOINs.
+Given Table: `Tree`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n)$ — Operation count bound.

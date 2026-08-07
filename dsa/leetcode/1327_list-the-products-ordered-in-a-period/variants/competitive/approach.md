@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **List the Products Ordered in a Period** using relational JOINs. Edge cases: filters aggregated group boundaries using `HAVING` clause.
+Given Table: `Products`, the database query executes a relational pipeline using relational `JOIN` operations to correlate matching records across tables. Edge case handling: filters aggregated group results via `HAVING` predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(p+o+k\log k)$ — Operation count bound.

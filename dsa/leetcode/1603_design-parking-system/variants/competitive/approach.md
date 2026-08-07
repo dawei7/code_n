@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Design Parking System** with natural boundary handling.
+Given Design a parking system for a parking lot. The parking lot has three kinds of parking spaces: big, medium, and small, with a fixed number of slots for each size, the algorithm solves **Design Parking System** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(q)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Minimum Sensors to Cover Grid** with natural boundary handling.
+Given `n × m` grid and an integer `k`, the algorithm solves **Minimum Sensors to Cover Grid** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

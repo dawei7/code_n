@@ -1,5 +1,5 @@
 ## General
-Implements the optimal algorithm for **Is Subsequence** with natural boundary handling.
+Given two strings `s` and `t`, return `true`* if *`s`* is a **subsequence** of *`t`*, or *`false`* otherwise*, the algorithm solves **Is Subsequence** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(|t|)$ — Operation count bound.

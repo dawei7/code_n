@@ -1,5 +1,5 @@
 ## General
-Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
+Given Numbers can be regarded as the product of their factors, the algorithm solves **Factor Combinations** directly. Edge case handling: guards against empty/null inputs via early returns, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(\sqrt{n} + output)$ — Operation count bound.

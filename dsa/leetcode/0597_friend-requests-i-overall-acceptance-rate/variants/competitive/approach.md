@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Friend Requests I: Overall Acceptance Rate** using relational predicates. Edge cases: replaces NULL values using `COALESCE` guard.
+Given Table: `FriendRequest`, the database query executes a relational database query for **Friend Requests I: Overall Acceptance Rate**. Edge case handling: replaces `NULL` values using `COALESCE` guards.
 
 ## Complexity detail
 - **Time Complexity**: $O((R + A) \log(R + A))$ — Operation count bound.

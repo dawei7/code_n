@@ -1,5 +1,5 @@
 ## General
-Algorithm uses single-pass sequential scanning.
+Given an array `arr` of 4 digits, find the latest 24-hour time that can be made using each digit **exactly once**, the algorithm executes a single-pass linear scan through input elements.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

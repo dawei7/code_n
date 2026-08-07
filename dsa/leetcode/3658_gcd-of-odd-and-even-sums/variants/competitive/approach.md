@@ -1,5 +1,5 @@
 ## General
-Implements the competitive micro-optimized algorithm for **GCD of Odd and Even Sums** with natural boundary handling.
+Given an integer `n`. Your task is to compute the **GCD** (greatest common divisor) of two values:, the algorithm solves **GCD of Odd and Even Sums** directly.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.

@@ -1,5 +1,5 @@
 ## General
-Executes a SQL query for **Report Contiguous Dates** using relational predicates.
+Given Table: `Failed`, the database query executes a relational database query for **Report Contiguous Dates**.
 
 ## Complexity detail
 - **Time Complexity**: $O(d\log d)$ — Operation count bound.
