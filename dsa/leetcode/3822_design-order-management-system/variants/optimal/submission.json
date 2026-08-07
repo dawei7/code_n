@@ -7,7 +7,7 @@
   "title_slug": "design-order-management-system",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "OrderManagementSystem",
   "verified_submission_id": "2085607442",
   "verified_at": "2026-07-29T05:18:47.183508+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-changes-to-make-binary-string-beautiful",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minChanges",
   "verified_submission_id": "2078133111",
   "verified_at": "2026-07-23T08:37:03.891741+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "delete-nodes-from-linked-list-present-in-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.modifiedList",
   "verified_submission_id": "2080153303",
   "verified_at": "2026-07-25T01:51:38.439135+00:00"

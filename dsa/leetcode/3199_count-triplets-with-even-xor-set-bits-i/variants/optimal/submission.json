@@ -7,7 +7,7 @@
   "title_slug": "count-triplets-with-even-xor-set-bits-i",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.tripletCount",
   "verified_submission_id": "2080127449",
   "verified_at": "2026-07-25T00:14:44.004944+00:00"

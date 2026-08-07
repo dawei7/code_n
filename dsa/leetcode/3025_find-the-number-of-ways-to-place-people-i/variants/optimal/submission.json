@@ -7,7 +7,7 @@
   "title_slug": "find-the-number-of-ways-to-place-people-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numberOfPairs",
   "verified_submission_id": "2078882892",
   "verified_at": "2026-07-23T21:15:16.3036299Z"

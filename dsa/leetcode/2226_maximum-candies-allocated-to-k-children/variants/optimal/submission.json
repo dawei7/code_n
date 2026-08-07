@@ -7,7 +7,7 @@
   "title_slug": "maximum-candies-allocated-to-k-children",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "class Solution.maximumCandies",
   "verified_submission_id": "2073902343",
   "verified_at": "2026-07-19T21:18:21.153315+00:00"

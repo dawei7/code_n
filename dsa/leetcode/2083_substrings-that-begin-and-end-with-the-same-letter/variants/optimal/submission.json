@@ -7,7 +7,7 @@
   "title_slug": "substrings-that-begin-and-end-with-the-same-letter",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numberOfSubstrings",
   "verified_submission_id": "2073055294",
   "verified_at": "2026-07-19T04:46:48.793432+00:00"

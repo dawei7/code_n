@@ -7,7 +7,7 @@
   "title_slug": "check-if-two-chessboard-squares-have-the-same-color",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.checkTwoChessboards",
   "verified_submission_id": "2080448286",
   "verified_at": "2026-07-25T07:38:40.294606+00:00"

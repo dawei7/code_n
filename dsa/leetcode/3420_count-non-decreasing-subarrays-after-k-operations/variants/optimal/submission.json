@@ -7,7 +7,7 @@
   "title_slug": "count-non-decreasing-subarrays-after-k-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countNonDecreasingSubarrays",
   "verified_submission_id": "2081690710",
   "verified_at": "2026-07-26T07:07:00Z"

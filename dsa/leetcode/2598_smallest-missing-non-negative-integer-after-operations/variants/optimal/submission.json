@@ -7,7 +7,7 @@
   "title_slug": "smallest-missing-non-negative-integer-after-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findSmallestInteger",
   "verified_submission_id": "2075762932",
   "verified_at": "2026-07-21T11:51:00+00:00"

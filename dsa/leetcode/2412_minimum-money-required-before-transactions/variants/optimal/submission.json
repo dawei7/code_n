@@ -7,7 +7,7 @@
   "title_slug": "minimum-money-required-before-transactions",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumMoney",
   "verified_submission_id": "2074672561",
   "verified_at": "2026-07-20T14:30:25.322144+00:00"

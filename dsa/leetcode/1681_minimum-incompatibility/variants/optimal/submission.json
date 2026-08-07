@@ -7,7 +7,7 @@
   "title_slug": "minimum-incompatibility",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumIncompatibility",
   "verified_submission_id": "2070538578",
   "verified_at": "2026-07-17T03:21:06.832588+00:00"

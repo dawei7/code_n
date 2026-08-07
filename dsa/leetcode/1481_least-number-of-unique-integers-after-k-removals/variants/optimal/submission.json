@@ -7,7 +7,7 @@
   "title_slug": "least-number-of-unique-integers-after-k-removals",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findLeastNumOfUniqueInts",
   "verified_submission_id": "2074759405",
   "verified_at": "2026-07-20T15:44:12.799711+00:00"

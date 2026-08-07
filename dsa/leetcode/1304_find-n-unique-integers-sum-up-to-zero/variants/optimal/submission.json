@@ -7,7 +7,7 @@
   "title_slug": "find-n-unique-integers-sum-up-to-zero",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.sumZero",
   "verified_submission_id": "2068429171",
   "verified_at": "2026-07-15T09:43:44.907625+00:00"

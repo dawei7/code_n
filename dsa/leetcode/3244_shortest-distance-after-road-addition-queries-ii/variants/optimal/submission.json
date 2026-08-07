@@ -7,7 +7,7 @@
   "title_slug": "shortest-distance-after-road-addition-queries-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.shortestDistanceAfterQueries",
   "verified_submission_id": "2080245177",
   "verified_at": "2026-07-25T04:38:51.676860+00:00"

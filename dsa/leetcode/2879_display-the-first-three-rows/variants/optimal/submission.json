@@ -7,7 +7,7 @@
   "title_slug": "display-the-first-three-rows",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "selectFirstRows",
   "verified_submission_id": "2077853521",
   "verified_at": "2026-07-23T04:28:55+00:00"

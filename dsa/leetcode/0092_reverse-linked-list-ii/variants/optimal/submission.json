@@ -7,7 +7,7 @@
   "title_slug": "reverse-linked-list-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064142522",
   "verified_at": "2026-07-11T17:40:40.426289+00:00"
 }

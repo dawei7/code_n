@@ -7,7 +7,7 @@
   "title_slug": "count-elements-with-maximum-frequency",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxFrequencyElements",
   "verified_submission_id": "2078684475",
   "verified_at": "2026-07-23T16:54:25.857450+00:00"

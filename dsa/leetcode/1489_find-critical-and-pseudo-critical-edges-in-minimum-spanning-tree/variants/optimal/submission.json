@@ -7,7 +7,7 @@
   "title_slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findCriticalAndPseudoCriticalEdges",
   "verified_submission_id": "2074764556",
   "verified_at": "2026-07-20T15:48:22.456476+00:00"

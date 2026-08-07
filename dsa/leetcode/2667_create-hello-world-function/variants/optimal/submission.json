@@ -7,7 +7,7 @@
   "title_slug": "create-hello-world-function",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "createHelloWorld",
   "verified_submission_id": "2076332381",
   "verified_at": "2026-07-21T19:43:23+00:00"

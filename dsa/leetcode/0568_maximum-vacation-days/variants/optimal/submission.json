@@ -7,7 +7,7 @@
   "title_slug": "maximum-vacation-days",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065405269",
   "verified_at": "2026-07-12T19:44:00.176736+00:00",
   "review_scope": "solution_only",

@@ -7,7 +7,7 @@
   "title_slug":"classifying-triangles-by-lengths",
   "paid_only":true,
   "language":"mysql",
-  "source":"solutions/leetcode.sql",
+  "source":"solutions/solution.sql",
   "native_entrypoint":"SQL query",
   "verified_submission_id":"2078958362",
   "verified_at":"2026-07-24T01:27:00Z"

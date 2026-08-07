@@ -7,7 +7,7 @@
   "title_slug": "print-immutable-linked-list-in-reverse",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.printLinkedListInReverse",
   "verified_submission_id": "2068046006",
   "verified_at": "2026-07-15T04:00:22.673477+00:00"

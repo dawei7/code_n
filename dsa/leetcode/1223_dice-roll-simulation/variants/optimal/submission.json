@@ -7,7 +7,7 @@
   "title_slug": "dice-roll-simulation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.dieSimulator",
   "verified_submission_id": "2067952943",
   "verified_at": "2026-07-15T01:12:06.306022+00:00"

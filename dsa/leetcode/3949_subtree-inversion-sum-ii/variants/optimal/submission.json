@@ -7,7 +7,7 @@
   "title_slug": "subtree-inversion-sum-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.subtreeInversionSum",
   "verified_submission_id": "2087578967",
   "verified_at": "2026-07-30T13:58:00+00:00"

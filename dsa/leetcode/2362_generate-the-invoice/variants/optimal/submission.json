@@ -7,7 +7,7 @@
   "title_slug": "generate-the-invoice",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2074416381",
   "verified_at": "2026-07-20T10:04:02.790245+00:00"

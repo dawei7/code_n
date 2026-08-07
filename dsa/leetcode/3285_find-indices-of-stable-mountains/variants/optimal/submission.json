@@ -7,7 +7,7 @@
   "title_slug": "find-indices-of-stable-mountains",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.stableMountains",
   "verified_submission_id": "2080515281",
   "verified_at": "2026-07-25T08:50:31.867354+00:00"

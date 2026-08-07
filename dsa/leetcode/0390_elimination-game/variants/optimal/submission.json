@@ -7,7 +7,7 @@
   "title_slug": "elimination-game",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064681886",
   "verified_at": "2026-07-12T06:40:45.749652+00:00"
 }

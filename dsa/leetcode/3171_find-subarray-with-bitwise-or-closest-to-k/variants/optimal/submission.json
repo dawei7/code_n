@@ -7,7 +7,7 @@
   "title_slug": "find-subarray-with-bitwise-or-closest-to-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumDifference",
   "verified_submission_id": "2080018420",
   "verified_at": "2026-07-24T21:24:00+02:00"

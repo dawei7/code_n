@@ -80,9 +80,7 @@ def app_solution_filename(language: str | None) -> str:
     """Return the canonical app-local reference filename for a language."""
 
     language_id = normalize_language(language)
-    if language_id == "sql":
-        return "leetcode_sqlite.sql"
-    return f"leetcode.{SUPPORTED_LANGUAGES[language_id].extension}"
+    return f"solution.{SUPPORTED_LANGUAGES[language_id].extension}"
 
 
 def leetcode_solution_filename(language: str | None) -> str:

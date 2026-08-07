@@ -7,7 +7,7 @@
   "title_slug": "check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.isPrefixOfWord",
   "verified_submission_id": "2069168170",
   "verified_at": "2026-07-15T23:16:18.588620+00:00"

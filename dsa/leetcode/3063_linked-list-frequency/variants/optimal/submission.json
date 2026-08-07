@@ -7,7 +7,7 @@
   "title_slug": "linked-list-frequency",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.frequenciesOfElements",
   "verified_submission_id": "2078983783",
   "verified_at": "2026-07-24T04:30:16+02:00"

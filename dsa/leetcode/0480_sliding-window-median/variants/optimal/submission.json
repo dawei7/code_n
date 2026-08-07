@@ -7,7 +7,7 @@
   "title_slug": "sliding-window-median",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064997042",
   "verified_at": "2026-07-12T12:52:46.585209+00:00"
 }

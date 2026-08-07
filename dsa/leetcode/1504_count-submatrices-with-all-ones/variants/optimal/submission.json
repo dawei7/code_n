@@ -7,7 +7,7 @@
   "title_slug": "count-submatrices-with-all-ones",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numSubmat",
   "verified_submission_id": "2069404571",
   "verified_at": "2026-07-16T05:41:26.232992+00:00"

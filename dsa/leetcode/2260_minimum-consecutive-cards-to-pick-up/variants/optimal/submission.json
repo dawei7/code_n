@@ -7,7 +7,7 @@
   "title_slug": "minimum-consecutive-cards-to-pick-up",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumCardPickup",
   "verified_submission_id": "2073944808",
   "verified_at": "2026-07-20T00:14:48.458137+00:00"

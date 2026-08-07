@@ -7,7 +7,7 @@
   "title_slug": "count-of-substrings-containing-every-vowel-and-k-consonants-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countOfSubstrings",
   "verified_submission_id": "2080818616",
   "verified_at": "2026-07-25T14:08:35.2052554Z"

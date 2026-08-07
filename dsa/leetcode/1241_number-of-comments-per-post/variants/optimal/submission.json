@@ -7,7 +7,7 @@
   "title_slug": "number-of-comments-per-post",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2067983498",
   "verified_at": "2026-07-15T02:22:34.009533+00:00"

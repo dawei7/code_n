@@ -7,7 +7,7 @@
   "title_slug": "minimum-difference-between-largest-and-smallest-value-in-three-moves",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minDifference",
   "verified_submission_id": "2069440199",
   "verified_at": "2026-07-16T06:08:32.778196+00:00"

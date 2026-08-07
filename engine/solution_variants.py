@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from engine.languages import app_solution_filename, leetcode_solution_filename, normalize_language
+from engine.languages import app_solution_filename, language_extension, leetcode_solution_filename, normalize_language
 
 
 VARIANT_KINDS = {"optimal", "simplified", "alternative"}
@@ -287,9 +287,16 @@ def validate_solution_variants(
 
         solution_paths: dict[str, Path] = {}
         for language in supported_languages:
-            candidate = variant_root / "solutions" / app_solution_filename(language)
+            ext = language_extension(language)
+            candidate = variant_root / "solutions" / f"solution.{ext}"
             if candidate.is_file():
                 solution_paths[language] = candidate
+            else:
+                for fallback_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
+                    fallback_candidate = variant_root / "solutions" / fallback_name
+                    if fallback_candidate.is_file():
+                        solution_paths[language] = fallback_candidate
+                        break
         if primary_language not in solution_paths:
             errors.append(f"{prefix} has no {primary_language} app-local solution")
 

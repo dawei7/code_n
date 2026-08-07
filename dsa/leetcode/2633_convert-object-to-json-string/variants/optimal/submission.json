@@ -7,7 +7,7 @@
   "title_slug": "convert-object-to-json-string",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "jsonStringify",
   "verified_submission_id": "2076122795",
   "verified_at": "2026-07-21T16:51:00+00:00"

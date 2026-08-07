@@ -7,7 +7,7 @@
   "title_slug": "game-of-nim",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.nimGame",
   "verified_submission_id": "2072252392",
   "verified_at": "2026-07-18T13:31:36.875850+00:00"

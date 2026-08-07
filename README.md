@@ -112,8 +112,7 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
       approach.md
       submission.json              # present after remote verification
       solutions/
-        solve.py                    # app-local Python solve(...) implementation
-        leetcode.py                 # native candidate when available
+        solution.py                 # primary-language solution (python, javascript, sql, bash)
     simplified/                     # optional, only after reviewed verification
       approach.md
       submission.json
@@ -178,6 +177,15 @@ questions, solutions, and related platform material as protected content and
 also impose restrictions separate from copyright, including restrictions on
 automated access. Anyone using optional synchronization or submission tools is
 responsible for complying with those current Terms and applicable law.
+
+### Solution Provenance & Representative Sources
+
+cOde(n) incorporates representative solution patterns and algorithm implementations from two open-source projects:
+
+1. **[doocs/leetcode](https://github.com/doocs/leetcode)** — Selected as our representative for **Optimal Solutions**.
+   - **Why selected**: Renowned for clean, idiomatic code, software engineering interview standards, clear time/space complexity guarantees, and multi-language readability ideal for technical interviews.
+2. **[kamyu104/LeetCode-Solutions](https://github.com/kamyu104/LeetCode-Solutions)** — Selected as our representative for **Competitive Programming Solutions**.
+   - **Why selected**: Celebrated for advanced data structures, exhaustive mathematical problem coverage, bit-manipulation optimizations, and ultra-high-efficiency competitive programming techniques.
 
 This section documents the project's copyright-respect policy; it is not a
 legal opinion or a guarantee about every jurisdiction. If a rights holder

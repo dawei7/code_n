@@ -7,7 +7,7 @@
   "title_slug": "merge-in-between-linked-lists",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.mergeInBetween",
   "verified_submission_id": "2070506479",
   "verified_at": "2026-07-17T02:14:49.699920+00:00"

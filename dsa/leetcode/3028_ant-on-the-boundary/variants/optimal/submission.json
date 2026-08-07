@@ -7,7 +7,7 @@
   "title_slug": "ant-on-the-boundary",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.returnToBoundaryCount",
   "verified_submission_id": "2078889946",
   "verified_at": "2026-07-23T21:33:17.8185584Z"

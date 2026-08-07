@@ -7,7 +7,7 @@
   "title_slug": "separate-black-and-white-balls",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumSteps",
   "verified_submission_id": "2078300070",
   "verified_at": "2026-07-23T11:06:04.574127+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximize-the-number-of-target-nodes-after-connecting-trees-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxTargetNodes",
   "verified_submission_id": "2081275747",
   "verified_at": "2026-07-25T23:03:00Z"

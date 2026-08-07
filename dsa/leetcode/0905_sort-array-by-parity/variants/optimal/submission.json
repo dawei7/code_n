@@ -7,7 +7,7 @@
   "title_slug": "sort-array-by-parity",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.sortArrayByParity",
   "verified_submission_id": "2066809884",
   "verified_at": "2026-07-14T03:42:48.559378+00:00"

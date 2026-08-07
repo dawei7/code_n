@@ -7,7 +7,7 @@
   "title_slug": "special-positions-in-a-binary-matrix",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numSpecial",
   "verified_submission_id": "2069920845",
   "verified_at": "2026-07-16T13:41:25.966541+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "weighted-word-mapping",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.mapWordWeights",
   "verified_submission_id": "2085892822",
   "verified_at": "2026-07-29T09:21:17.664326+00:00"

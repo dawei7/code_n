@@ -7,7 +7,7 @@
   "title_slug": "merge-overlapping-events-in-the-same-hall",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2075148698",
   "verified_at": "2026-07-21T00:21:00+00:00"

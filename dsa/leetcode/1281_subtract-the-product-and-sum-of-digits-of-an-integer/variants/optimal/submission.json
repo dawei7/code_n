@@ -7,7 +7,7 @@
   "title_slug": "subtract-the-product-and-sum-of-digits-of-an-integer",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.subtractProductAndSum",
   "verified_submission_id": "2068315469",
   "verified_at": "2026-07-15T07:56:27.676428+00:00"

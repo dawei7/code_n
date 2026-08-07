@@ -7,7 +7,7 @@
   "title_slug": "k-similar-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.kSimilarity",
   "verified_submission_id": "2066716898",
   "verified_at": "2026-07-14T00:06:31.721910+00:00"

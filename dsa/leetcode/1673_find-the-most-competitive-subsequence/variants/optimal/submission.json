@@ -7,7 +7,7 @@
   "title_slug": "find-the-most-competitive-subsequence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.mostCompetitive",
   "verified_submission_id": "2070516125",
   "verified_at": "2026-07-17T02:36:47.344660+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-segment-sum-after-removals",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumSegmentSum",
   "verified_submission_id": "2074509052",
   "verified_at": "2026-07-20T11:43:02.920041+00:00"

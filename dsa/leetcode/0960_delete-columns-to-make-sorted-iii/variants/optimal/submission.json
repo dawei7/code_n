@@ -7,7 +7,7 @@
   "title_slug": "delete-columns-to-make-sorted-iii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minDeletionSize",
   "verified_submission_id": "2067101389",
   "verified_at": "2026-07-14T08:16:13.242695+00:00"

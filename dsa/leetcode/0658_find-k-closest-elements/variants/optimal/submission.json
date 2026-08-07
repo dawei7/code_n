@@ -7,7 +7,7 @@
   "title_slug": "find-k-closest-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065527008",
   "verified_at": "2026-07-13T01:22:42.788998+00:00"
 }

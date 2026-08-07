@@ -7,7 +7,7 @@
   "title_slug": "undefined-to-null",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "undefinedToNull",
   "verified_submission_id": "2076662244",
   "verified_at": "2026-07-22T05:45:00+00:00"

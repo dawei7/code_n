@@ -7,7 +7,7 @@
   "title_slug": "day-of-the-week",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.dayOfTheWeek",
   "verified_submission_id": "2067905563",
   "verified_at": "2026-07-14T22:34:26.064953+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "buddy-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.buddyStrings",
   "verified_submission_id": "2066723049",
   "verified_at": "2026-07-14T00:27:43.411510+00:00"

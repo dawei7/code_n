@@ -7,7 +7,7 @@
   "title_slug": "rolling-average-steps",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2077585060",
   "verified_at": "2026-07-22T18:58:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "next-special-palindrome-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.specialPalindrome",
   "verified_submission_id": "2083946548",
   "verified_at": "2026-07-27T21:07:07.537514+00:00"

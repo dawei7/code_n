@@ -7,7 +7,7 @@
   "title_slug": "number-of-great-partitions",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countPartitions",
   "verified_submission_id": "2075210807",
   "verified_at": "2026-07-21T02:58:00+00:00"

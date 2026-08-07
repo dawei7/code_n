@@ -7,7 +7,7 @@
   "title_slug": "maximum-cost-of-trip-with-k-highways",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumCost",
   "verified_submission_id": "2073928843",
   "verified_at": "2026-07-19T23:10:28.354394+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximize-score-of-numbers-in-ranges",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxPossibleScore",
   "verified_submission_id": "2080489688",
   "verified_at": "2026-07-25T08:23:22.974769+00:00"

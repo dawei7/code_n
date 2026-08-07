@@ -7,7 +7,7 @@
   "title_slug": "grid-game",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.gridGame",
   "verified_submission_id": "2072841722",
   "verified_at": "2026-07-18T23:26:38.968059+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "range-addition",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064622576",
   "verified_at": "2026-07-12T05:39:55.334435+00:00",
   "review_scope": "solution_only",

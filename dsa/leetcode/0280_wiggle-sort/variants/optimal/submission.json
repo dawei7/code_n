@@ -7,7 +7,7 @@
   "title_slug": "wiggle-sort",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064305374",
   "verified_at": "2026-07-11T21:21:44.220310+00:00",
   "review_scope": "solution_only",

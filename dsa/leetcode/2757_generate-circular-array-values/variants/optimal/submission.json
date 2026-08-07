@@ -7,7 +7,7 @@
   "title_slug": "generate-circular-array-values",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "cycleGenerator",
   "verified_submission_id": "2076528328",
   "verified_at": "2026-07-22T03:40:00+00:00"

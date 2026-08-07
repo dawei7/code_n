@@ -7,7 +7,7 @@
   "title_slug": "delete-n-nodes-after-m-nodes-of-a-linked-list",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.deleteNodes",
   "verified_submission_id": "2074753886",
   "verified_at": "2026-07-20T15:39:44.905511+00:00"

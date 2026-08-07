@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-vertices-to-reach-all-nodes",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findSmallestSetOfVertices",
   "verified_submission_id": "2069776826",
   "verified_at": "2026-07-16T11:11:54.918394+00:00"

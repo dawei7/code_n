@@ -7,7 +7,7 @@
   "title_slug": "minimum-total-distance-traveled",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumTotalDistance",
   "verified_submission_id": "2075077554",
   "verified_at": "2026-07-20T20:40:00+00:00"

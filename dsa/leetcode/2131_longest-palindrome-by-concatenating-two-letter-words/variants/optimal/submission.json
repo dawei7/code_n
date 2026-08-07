@@ -7,7 +7,7 @@
   "title_slug": "longest-palindrome-by-concatenating-two-letter-words",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestPalindrome",
   "verified_submission_id": "2073418842",
   "verified_at": "2026-07-19T11:53:46.774151+00:00"

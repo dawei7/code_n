@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-merge-sorted-lists",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minMergeCost",
   "verified_submission_id": "2085441135",
   "verified_at": "2026-07-29T01:43:13.251093+00:00"

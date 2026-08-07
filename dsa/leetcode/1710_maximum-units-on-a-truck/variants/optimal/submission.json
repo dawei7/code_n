@@ -7,7 +7,7 @@
   "title_slug": "maximum-units-on-a-truck",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumUnits",
   "verified_submission_id": "2070677103",
   "verified_at": "2026-07-17T05:36:23.926284+00:00"

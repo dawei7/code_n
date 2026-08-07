@@ -7,7 +7,7 @@
   "title_slug": "maximum-distance-in-arrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065485192",
   "verified_at": "2026-07-12T23:00:38.768290+00:00"
 }

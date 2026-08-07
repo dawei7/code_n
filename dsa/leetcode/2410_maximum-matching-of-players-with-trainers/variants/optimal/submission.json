@@ -7,7 +7,7 @@
   "title_slug": "maximum-matching-of-players-with-trainers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.matchPlayersAndTrainers",
   "verified_submission_id": "2074662072",
   "verified_at": "2026-07-20T14:21:22.268412+00:00"

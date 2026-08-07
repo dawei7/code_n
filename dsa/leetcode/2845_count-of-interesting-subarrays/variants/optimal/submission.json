@@ -7,7 +7,7 @@
   "title_slug": "count-of-interesting-subarrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countInterestingSubarrays",
   "verified_submission_id": "2077498903",
   "verified_at": "2026-07-22T17:49:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "pairs-of-songs-with-total-durations-divisible-by-60",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numPairsDivisibleBy60",
   "verified_submission_id": "2067282531",
   "verified_at": "2026-07-14T11:17:30.651662+00:00"

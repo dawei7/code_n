@@ -7,7 +7,7 @@
   "title_slug": "similar-rgb-color",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065526112",
   "verified_at": "2026-07-12T22:06:12.800026+00:00",
   "review_scope": "solution_only",

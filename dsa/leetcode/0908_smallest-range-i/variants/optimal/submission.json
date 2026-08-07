@@ -7,7 +7,7 @@
   "title_slug": "smallest-range-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.smallestRangeI",
   "verified_submission_id": "2066820756",
   "verified_at": "2026-07-14T03:56:34.498023+00:00"

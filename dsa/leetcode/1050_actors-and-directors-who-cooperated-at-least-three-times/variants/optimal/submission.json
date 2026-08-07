@@ -7,7 +7,7 @@
   "title_slug": "actors-and-directors-who-cooperated-at-least-three-times",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "verified_submission_id": "2067411298",
   "verified_at": "2026-07-14T13:36:50.168017+00:00"
 }

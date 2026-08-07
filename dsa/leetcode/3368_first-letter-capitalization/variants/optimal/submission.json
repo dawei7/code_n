@@ -7,7 +7,7 @@
   "title_slug": "first-letter-capitalization",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2081262956",
   "verified_at": "2026-07-25T22:19:00Z"

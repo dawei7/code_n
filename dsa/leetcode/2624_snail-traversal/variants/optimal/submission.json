@@ -7,7 +7,7 @@
   "title_slug": "snail-traversal",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "Array.prototype.snail",
   "verified_submission_id": "2075939446",
   "verified_at": "2026-07-21T14:34:00+00:00"

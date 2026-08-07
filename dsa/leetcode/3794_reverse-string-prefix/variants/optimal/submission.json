@@ -7,7 +7,7 @@
   "title_slug": "reverse-string-prefix",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.reversePrefix",
   "verified_submission_id": "2085421496",
   "verified_at": "2026-07-29T00:50:18.104665+00:00"

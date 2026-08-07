@@ -7,7 +7,7 @@
   "title_slug": "maximize-sum-of-squares-of-digits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxSumOfSquares",
   "verified_submission_id": "2085068445",
   "verified_at": "2026-07-28T16:42:50.139683+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "construct-uniform-parity-array-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.uniformArray",
   "verified_submission_id": "2086542041",
   "verified_at": "2026-07-29T17:57:44.735481+00:00"

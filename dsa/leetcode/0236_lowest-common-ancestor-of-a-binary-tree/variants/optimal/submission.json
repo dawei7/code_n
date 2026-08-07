@@ -7,7 +7,7 @@
   "title_slug": "lowest-common-ancestor-of-a-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064251710",
   "verified_at": "2026-07-11T19:37:42.362131+00:00"
 }

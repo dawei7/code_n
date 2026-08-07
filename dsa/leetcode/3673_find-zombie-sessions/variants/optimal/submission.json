@@ -7,7 +7,7 @@
   "title_slug": "find-zombie-sessions",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2083994204",
   "verified_at": "2026-07-27T23:30:52.563467+00:00"

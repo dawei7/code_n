@@ -7,7 +7,7 @@
   "title_slug": "minimum-increments-for-target-multiples-in-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumIncrements",
   "verified_submission_id": "2081855270",
   "verified_at": "2026-07-26T09:53:00Z"

@@ -7,7 +7,7 @@
   "title_slug": "relocate-marbles",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.relocateMarbles",
   "verified_submission_id": "2076580653",
   "verified_at": "2026-07-22T04:35:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "sum-of-total-strength-of-wizards",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.totalStrength",
   "verified_submission_id": "2073984376",
   "verified_at": "2026-07-20T02:17:13.517864+00:00"

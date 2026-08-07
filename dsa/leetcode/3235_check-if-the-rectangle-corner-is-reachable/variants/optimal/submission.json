@@ -7,7 +7,7 @@
   "title_slug": "check-if-the-rectangle-corner-is-reachable",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.canReachCorner",
   "verified_submission_id": "2080198708",
   "verified_at": "2026-07-25T03:40:53.147780+00:00"

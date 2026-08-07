@@ -7,7 +7,7 @@
   "title_slug": "range-module",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065658000",
   "verified_at": "2026-07-13T05:00:20.983675+00:00"
 }

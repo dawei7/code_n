@@ -7,7 +7,7 @@
   "title_slug": "valid-digit-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.validDigit",
   "verified_submission_id": "2086808107",
   "verified_at": "2026-07-30T02:09:17.952644+00:00"

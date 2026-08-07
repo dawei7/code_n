@@ -7,7 +7,7 @@
   "title_slug": "shortest-subarray-with-sum-at-least-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.shortestSubarray",
   "verified_submission_id": "2066725928",
   "verified_at": "2026-07-14T00:38:02.763852+00:00"

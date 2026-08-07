@@ -7,7 +7,7 @@
   "title_slug": "digit-frequency-score",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.digitFrequencyScore",
   "verified_submission_id": "2087493662",
   "verified_at": "2026-07-30T12:45:12.176098+00:00"

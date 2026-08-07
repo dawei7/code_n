@@ -7,7 +7,7 @@
   "title_slug": "sum-of-consecutive-subsequences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.getSum",
   "verified_submission_id": "2080787777",
   "verified_at": "2026-07-25T13:37:27.7020964Z"

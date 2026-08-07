@@ -7,7 +7,7 @@
   "title_slug": "the-number-of-passengers-in-each-bus-ii",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2073530990",
   "verified_at": "2026-07-19T13:58:17.063405+00:00"

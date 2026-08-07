@@ -7,7 +7,7 @@
   "title_slug": "alternating-groups-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numberOfAlternatingGroups",
   "verified_submission_id": "2080140736",
   "verified_at": "2026-07-25T01:07:26.038555+00:00"

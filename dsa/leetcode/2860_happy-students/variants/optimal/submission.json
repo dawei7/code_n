@@ -7,7 +7,7 @@
   "title_slug": "happy-students",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countWays",
   "verified_submission_id": "2077614969",
   "verified_at": "2026-07-22T19:35:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "linked-list-components",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numComponents",
   "verified_submission_id": "2066319231",
   "verified_at": "2026-07-13T15:41:22.414988+00:00"

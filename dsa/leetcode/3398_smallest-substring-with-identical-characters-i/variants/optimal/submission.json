@@ -7,7 +7,7 @@
   "title_slug": "smallest-substring-with-identical-characters-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minLength",
   "verified_submission_id": "2081350755",
   "verified_at": "2026-07-26T02:39:00Z"

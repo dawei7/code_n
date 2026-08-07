@@ -7,7 +7,7 @@
   "title_slug": "minimum-score-by-changing-two-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimizeSum",
   "verified_submission_id": "2075509761",
   "verified_at": "2026-07-21T07:50:00+00:00"

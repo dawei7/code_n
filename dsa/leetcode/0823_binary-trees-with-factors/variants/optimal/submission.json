@@ -7,7 +7,7 @@
   "title_slug": "binary-trees-with-factors",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numFactoredBinaryTrees",
   "verified_submission_id": "2066667507",
   "verified_at": "2026-07-13T21:25:46.216023+00:00"

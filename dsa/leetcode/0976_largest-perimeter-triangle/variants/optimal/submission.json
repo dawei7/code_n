@@ -7,7 +7,7 @@
   "title_slug": "largest-perimeter-triangle",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.largestPerimeter",
   "verified_submission_id": "2067166188",
   "verified_at": "2026-07-14T09:20:35.291431+00:00"

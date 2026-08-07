@@ -7,7 +7,7 @@
   "title_slug": "binary-search-tree-iterator-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "BSTIterator",
   "verified_submission_id": "2069956982",
   "verified_at": "2026-07-16T14:12:05.366311+00:00"

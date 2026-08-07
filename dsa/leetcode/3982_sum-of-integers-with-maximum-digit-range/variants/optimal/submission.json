@@ -7,7 +7,7 @@
   "title_slug": "sum-of-integers-with-maximum-digit-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxDigitRange",
   "verified_submission_id": "2088081250",
   "verified_at": "2026-07-30T22:25:57.3544869+00:00"

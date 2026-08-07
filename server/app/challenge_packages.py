@@ -419,11 +419,14 @@ def leetcode_variant_solution_path(
     if variant_dir is None:
         return None
     language_id = normalize_language(language)
-    path = variant_dir / "solutions" / app_solution_filename(language_id)
-    if not path.exists() and language_id == "sql":
-        fallback = variant_dir / "solutions" / "leetcode.sql"
-        if fallback.exists():
-            return fallback
+    ext = language_extension(language_id)
+    path = variant_dir / "solutions" / f"solution.{ext}"
+    if path.exists():
+        return path
+    for legacy_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
+        legacy_path = variant_dir / "solutions" / legacy_name
+        if legacy_path.exists():
+            return legacy_path
     return path
 
 
@@ -432,11 +435,14 @@ def leetcode_solution_path(challenge_id: str, language: str | None = "python") -
     default_variant = _variant_directory(challenge_id)
     if default_variant is None:
         return None
-    path = default_variant / "solutions" / app_solution_filename(language_id)
-    if not path.exists() and language_id == "sql":
-        fallback = default_variant / "solutions" / "leetcode.sql"
-        if fallback.exists():
-            return fallback
+    ext = language_extension(language_id)
+    path = default_variant / "solutions" / f"solution.{ext}"
+    if path.exists():
+        return path
+    for legacy_name in [f"leetcode.{ext}", "leetcode_sqlite.sql", "leetcode.sql", "solve.py"]:
+        legacy_path = default_variant / "solutions" / legacy_name
+        if legacy_path.exists():
+            return legacy_path
     return path
 
 

@@ -7,7 +7,7 @@
   "title_slug": "manager-of-the-largest-department",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2078573374",
   "verified_at": "2026-07-23T15:30:04.651879+00:00"

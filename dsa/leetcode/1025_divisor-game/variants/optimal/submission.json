@@ -7,7 +7,7 @@
   "title_slug": "divisor-game",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.divisorGame",
   "verified_submission_id": "2067322975",
   "verified_at": "2026-07-14T12:04:52.586086+00:00"

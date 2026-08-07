@@ -7,7 +7,7 @@
   "title_slug": "maximum-absolute-sum-of-any-subarray",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxAbsoluteSum",
   "verified_submission_id": "2070959223",
   "verified_at": "2026-07-17T09:55:21.382115+00:00"

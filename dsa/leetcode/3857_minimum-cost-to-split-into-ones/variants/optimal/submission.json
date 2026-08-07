@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-split-into-ones",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2086189555",
   "verified_at": "2026-07-29T13:48:09.807946+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-routes-to-climb-a-rectangular-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numberOfRoutes",
   "verified_submission_id": "2085427371",
   "verified_at": "2026-07-29T01:07:07.692891+00:00"

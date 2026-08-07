@@ -7,7 +7,7 @@
   "title_slug": "the-number-of-seniors-and-juniors-to-join-the-company",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2072827483",
   "verified_at": "2026-07-18T22:30:45.707434+00:00"

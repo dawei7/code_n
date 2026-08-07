@@ -7,7 +7,7 @@
   "title_slug": "design-graph-with-shortest-path-calculator",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Graph",
   "verified_submission_id": "2076197128",
   "verified_at": "2026-07-21T17:40:00+00:00"

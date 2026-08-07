@@ -7,7 +7,7 @@
   "title_slug": "maximum-running-time-of-n-computers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxRunTime",
   "verified_submission_id": "2073464215",
   "verified_at": "2026-07-19T12:46:10.444836+00:00"

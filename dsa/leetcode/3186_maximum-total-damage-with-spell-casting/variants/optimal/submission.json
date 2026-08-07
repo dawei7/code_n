@@ -7,7 +7,7 @@
   "title_slug": "maximum-total-damage-with-spell-casting",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumTotalDamage",
   "verified_submission_id": "2080089587",
   "verified_at": "2026-07-24T23:47:00+02:00"

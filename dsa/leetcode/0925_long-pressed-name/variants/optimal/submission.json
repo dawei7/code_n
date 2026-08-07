@@ -7,7 +7,7 @@
   "title_slug": "long-pressed-name",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.isLongPressedName",
   "verified_submission_id": "2066972490",
   "verified_at": "2026-07-14T06:13:44.510118+00:00"

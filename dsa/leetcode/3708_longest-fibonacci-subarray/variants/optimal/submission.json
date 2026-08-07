@@ -7,7 +7,7 @@
   "title_slug": "longest-fibonacci-subarray",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestSubarray",
   "verified_submission_id": "2084911448",
   "verified_at": "2026-07-28T14:51:11.848548+00:00"

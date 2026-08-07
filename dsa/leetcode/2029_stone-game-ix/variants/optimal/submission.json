@@ -7,7 +7,7 @@
   "title_slug": "stone-game-ix",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.stoneGameIX",
   "verified_submission_id": "2072855281",
   "verified_at": "2026-07-19T00:20:26.597786+00:00"

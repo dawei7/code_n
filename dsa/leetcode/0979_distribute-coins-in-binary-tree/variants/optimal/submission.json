@@ -7,7 +7,7 @@
   "title_slug": "distribute-coins-in-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.distributeCoins",
   "verified_submission_id": "2067175306",
   "verified_at": "2026-07-14T09:29:30.271055+00:00"

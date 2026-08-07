@@ -7,7 +7,7 @@
   "title_slug": "smallest-even-multiple",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.smallestEvenMultiple",
   "verified_submission_id": "2074677032",
   "verified_at": "2026-07-20T14:34:15.993964+00:00"

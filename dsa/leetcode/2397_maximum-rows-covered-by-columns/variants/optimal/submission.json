@@ -7,7 +7,7 @@
   "title_slug": "maximum-rows-covered-by-columns",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumRows",
   "verified_submission_id": "2074588723",
   "verified_at": "2026-07-20T13:13:50.676335+00:00"

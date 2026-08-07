@@ -7,7 +7,7 @@
   "title_slug": "greatest-english-letter-in-upper-and-lower-case",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.greatestLetter",
   "verified_submission_id": "2074394075",
   "verified_at": "2026-07-20T09:44:22.267074+00:00"

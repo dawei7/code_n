@@ -7,7 +7,7 @@
   "title_slug": "balanced-k-factor-decomposition",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minDifference",
   "verified_submission_id": "2083988060",
   "verified_at": "2026-07-27T23:08:51.774431+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-reach-city-with-discounts",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumCost",
   "verified_submission_id": "2073091252",
   "verified_at": "2026-07-19T05:32:33.843196+00:00"

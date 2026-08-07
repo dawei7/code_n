@@ -7,7 +7,7 @@
   "title_slug": "bulls-and-cows",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064356922",
   "verified_at": "2026-07-12T00:44:06.145142+00:00"
 }

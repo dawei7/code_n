@@ -7,7 +7,7 @@
   "title_slug": "maximum-sum-of-m-non-overlapping-subarrays-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumSum",
   "verified_submission_id": "2087703864",
   "verified_at": "2026-07-30T15:39:00+00:00"

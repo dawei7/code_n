@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-accepted-invitations",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumInvitations",
   "verified_submission_id": "2071634437",
   "verified_at": "2026-07-18T00:28:20.380219+00:00"

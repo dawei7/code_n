@@ -7,7 +7,7 @@
   "title_slug": "4-keys-keyboard",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065518769",
   "verified_at": "2026-07-13T00:57:54.010518+00:00",
   "review_scope": "solution_only",

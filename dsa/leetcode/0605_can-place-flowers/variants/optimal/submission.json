@@ -7,7 +7,7 @@
   "title_slug": "can-place-flowers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065462672",
   "verified_at": "2026-07-12T21:48:50.315388+00:00"
 }

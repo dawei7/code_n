@@ -7,7 +7,7 @@
   "title_slug": "find-leaves-of-binary-tree",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064613125",
   "verified_at": "2026-07-12T05:29:06.600164+00:00",
   "review_scope": "solution_only",

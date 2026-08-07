@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-flips-to-make-binary-grid-palindromic-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minFlips",
   "verified_submission_id": "2080216615",
   "verified_at": "2026-07-25T04:06:34.209556+00:00"

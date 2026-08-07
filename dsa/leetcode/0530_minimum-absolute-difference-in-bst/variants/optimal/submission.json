@@ -7,7 +7,7 @@
   "title_slug": "minimum-absolute-difference-in-bst",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065251281",
   "verified_at": "2026-07-12T17:07:56.693564+00:00"
 }

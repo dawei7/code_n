@@ -7,7 +7,7 @@
   "title_slug": "probability-of-a-two-boxes-having-the-same-number-of-distinct-balls",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.getProbability",
   "verified_submission_id": "2074748406",
   "verified_at": "2026-07-20T15:35:28.421707+00:00"

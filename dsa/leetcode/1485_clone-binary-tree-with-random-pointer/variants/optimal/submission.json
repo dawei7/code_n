@@ -7,7 +7,7 @@
   "title_slug": "clone-binary-tree-with-random-pointer",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.copyRandomBinaryTree",
   "verified_submission_id": "2074761861",
   "verified_at": "2026-07-20T15:46:11.257681+00:00"

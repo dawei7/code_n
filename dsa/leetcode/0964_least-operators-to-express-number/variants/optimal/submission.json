@@ -7,7 +7,7 @@
   "title_slug": "least-operators-to-express-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.leastOpsExpressTarget",
   "verified_submission_id": "2067113721",
   "verified_at": "2026-07-14T08:29:11.636694+00:00"

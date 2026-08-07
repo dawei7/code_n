@@ -7,7 +7,7 @@
   "title_slug": "k-th-smallest-remaining-even-integer-in-subarray-queries",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.kthRemainingInteger",
   "verified_submission_id": "2086829681",
   "verified_at": "2026-07-30T02:53:26.605147+00:00"

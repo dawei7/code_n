@@ -7,7 +7,7 @@
   "title_slug": "partial-function-with-placeholders",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "partial",
   "verified_submission_id": "2077085871",
   "verified_at": "2026-07-22T12:22:00+00:00"

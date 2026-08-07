@@ -7,7 +7,7 @@
   "title_slug": "make-the-prefix-sum-non-negative",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.makePrefSumNonNegative",
   "verified_submission_id": "2075767452",
   "verified_at": "2026-07-21T11:56:00+00:00"

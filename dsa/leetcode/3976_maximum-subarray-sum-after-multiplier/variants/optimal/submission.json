@@ -7,7 +7,7 @@
   "title_slug": "maximum-subarray-sum-after-multiplier",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxSubarraySum",
   "verified_submission_id": "2088032931",
   "verified_at": "2026-07-30T20:22:06.6050595+00:00"

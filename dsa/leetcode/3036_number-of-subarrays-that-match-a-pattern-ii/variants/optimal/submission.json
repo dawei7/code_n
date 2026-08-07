@@ -7,7 +7,7 @@
   "title_slug": "number-of-subarrays-that-match-a-pattern-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countMatchingSubarrays",
   "verified_submission_id": "2078912690",
   "verified_at": "2026-07-23T22:46:22.489510+00:00"

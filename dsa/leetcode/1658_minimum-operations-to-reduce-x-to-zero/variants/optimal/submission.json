@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-reduce-x-to-zero",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2070483278",
   "verified_at": "2026-07-17T01:12:34.195168+00:00"

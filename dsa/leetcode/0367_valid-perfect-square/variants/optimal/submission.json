@@ -7,7 +7,7 @@
   "title_slug": "valid-perfect-square",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064615122",
   "verified_at": "2026-07-12T05:31:30.731768+00:00"
 }

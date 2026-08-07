@@ -7,7 +7,7 @@
   "title_slug": "process-string-with-special-operations-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.processStr",
   "verified_submission_id": "2083649135",
   "verified_at": "2026-07-27T16:33:05.802456+00:00"

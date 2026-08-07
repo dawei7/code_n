@@ -7,7 +7,7 @@
   "title_slug": "find-the-maximum-factor-score-of-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxScore",
   "verified_submission_id": "2081043723",
   "verified_at": "2026-07-25T17:23:00Z"

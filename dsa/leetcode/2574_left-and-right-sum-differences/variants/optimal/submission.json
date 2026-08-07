@@ -7,7 +7,7 @@
   "title_slug": "left-and-right-sum-differences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.leftRightDifference",
   "verified_submission_id": "2075605527",
   "verified_at": "2026-07-21T09:21:00+00:00"

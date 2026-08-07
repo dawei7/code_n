@@ -7,7 +7,7 @@
   "title_slug": "third-maximum-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064744396",
   "verified_at": "2026-07-12T07:48:46.740955+00:00"
 }

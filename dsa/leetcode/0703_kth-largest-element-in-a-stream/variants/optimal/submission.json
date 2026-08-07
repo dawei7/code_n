@@ -7,7 +7,7 @@
   "title_slug": "kth-largest-element-in-a-stream",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065614194",
   "verified_at": "2026-07-13T04:13:43.584458+00:00"
 }

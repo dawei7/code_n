@@ -7,7 +7,7 @@
   "title_slug": "iterator-for-combination",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "CombinationIterator",
   "verified_submission_id": "2068335476",
   "verified_at": "2026-07-15T08:18:11.460909+00:00"

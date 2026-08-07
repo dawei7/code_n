@@ -7,7 +7,7 @@
   "title_slug": "convert-callback-based-function-to-promise-based-function",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "promisify",
   "verified_submission_id": "2076670361",
   "verified_at": "2026-07-22T05:50:00+00:00"

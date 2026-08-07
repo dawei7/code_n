@@ -7,7 +7,7 @@
   "title_slug": "stone-game-vii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.stoneGameVII",
   "verified_submission_id": "2070570668",
   "verified_at": "2026-07-17T04:03:52.852935+00:00"

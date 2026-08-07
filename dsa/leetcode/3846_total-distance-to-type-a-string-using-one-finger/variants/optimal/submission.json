@@ -7,7 +7,7 @@
   "title_slug": "total-distance-to-type-a-string-using-one-finger",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.totalDistance",
   "verified_submission_id": "2086027806",
   "verified_at": "2026-07-29T11:13:44.584998+00:00"

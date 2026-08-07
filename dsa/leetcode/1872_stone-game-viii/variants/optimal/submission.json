@@ -7,7 +7,7 @@
   "title_slug": "stone-game-viii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.stoneGameVIII",
   "verified_submission_id": "2071809102",
   "verified_at": "2026-07-18T05:43:28.301632+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "high-access-employees",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findHighAccessEmployees",
   "verified_submission_id": "2078270406",
   "verified_at": "2026-07-23T10:34:57.419721+00:00"

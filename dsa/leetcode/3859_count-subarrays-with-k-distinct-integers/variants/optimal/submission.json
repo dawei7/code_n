@@ -7,7 +7,7 @@
   "title_slug": "count-subarrays-with-k-distinct-integers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countSubarrays",
   "verified_submission_id": "2086227262",
   "verified_at": "2026-07-29T14:16:53.195442+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "string-transforms-into-another-string",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065591810",
   "verified_at": "2026-07-12T23:14:11.800026+00:00",
   "review_scope": "solution_only",

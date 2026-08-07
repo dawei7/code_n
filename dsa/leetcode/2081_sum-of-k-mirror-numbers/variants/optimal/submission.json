@@ -7,7 +7,7 @@
   "title_slug": "sum-of-k-mirror-numbers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.kMirror",
   "verified_submission_id": "2073046889",
   "verified_at": "2026-07-19T04:34:41.411130+00:00"

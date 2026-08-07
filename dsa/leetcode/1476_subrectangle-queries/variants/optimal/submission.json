@@ -7,7 +7,7 @@
   "title_slug": "subrectangle-queries",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "SubrectangleQueries",
   "verified_submission_id": "2074755176",
   "verified_at": "2026-07-20T15:40:45.966999+00:00"

@@ -148,9 +148,14 @@ def _expected_paths(package: Path, language: str, target: str, *, include_cases:
     complexity_evidence = package / "benchmark.json"
     if not complexity_evidence.is_file():
         complexity_evidence = package / "complexity_certificate.json"
+    current_src = solutions / app_solution_filename(language)
+    native_src = solutions / leetcode_solution_filename(language)
+    if not native_src.is_file():
+        native_src = current_src
+
     paths = {
-        "current_source_sha256": solutions / app_solution_filename(language),
-        "native_source_sha256": solutions / leetcode_solution_filename(language),
+        "current_source_sha256": current_src,
+        "native_source_sha256": native_src,
         "approach_sha256": package / "variants" / "optimal" / "approach.md",
         "solution_variants_sha256": package / "solution_variants.json",
         "complexity_evidence_sha256": complexity_evidence,

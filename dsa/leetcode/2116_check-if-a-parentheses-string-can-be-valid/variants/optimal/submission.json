@@ -7,7 +7,7 @@
   "title_slug": "check-if-a-parentheses-string-can-be-valid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.canBeValid",
   "verified_submission_id": "2073343688",
   "verified_at": "2026-07-19T10:24:55.078926+00:00"

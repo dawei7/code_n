@@ -7,7 +7,7 @@
   "title_slug": "largest-values-from-labels",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.largestValsFromLabels",
   "verified_submission_id": "2067576585",
   "verified_at": "2026-07-14T16:03:43.251703+00:00"

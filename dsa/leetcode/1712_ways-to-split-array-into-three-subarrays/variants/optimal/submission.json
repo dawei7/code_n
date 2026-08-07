@@ -7,7 +7,7 @@
   "title_slug": "ways-to-split-array-into-three-subarrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.waysToSplit",
   "verified_submission_id": "2070689071",
   "verified_at": "2026-07-17T05:46:27.266222+00:00"

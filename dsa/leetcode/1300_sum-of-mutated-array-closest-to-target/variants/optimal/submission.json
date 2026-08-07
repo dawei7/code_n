@@ -7,7 +7,7 @@
   "title_slug": "sum-of-mutated-array-closest-to-target",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findBestValue",
   "verified_submission_id": "2068393866",
   "verified_at": "2026-07-15T09:12:27.169281+00:00"

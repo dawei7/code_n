@@ -7,7 +7,7 @@
   "title_slug": "decrypt-string-from-alphabet-to-integer-mapping",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.freqAlphabets",
   "verified_submission_id": "2068452085",
   "verified_at": "2026-07-15T10:03:51.385948+00:00"

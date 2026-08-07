@@ -7,7 +7,7 @@
   "title_slug": "sort-items-by-groups-respecting-dependencies",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.sortItems",
   "verified_submission_id": "2067926919",
   "verified_at": "2026-07-14T23:52:58.554014+00:00"
