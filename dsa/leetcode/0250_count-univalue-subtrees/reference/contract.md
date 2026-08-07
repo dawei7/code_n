@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `root`: The root node of a binary tree, or `None` ($0 \le \text{node count} \le 1000$).
+- `root`: Binary tree root node (`Optional[TreeNode]`).
 
 **Return value**
 
-Return an integer representing the total count of uni-value subtrees.
+Integer count of uni-value subtrees in the given binary tree.

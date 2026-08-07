@@ -1,6 +1,6 @@
 ## Examples
 
-**Example 1:**
+**Example 1**
 
 - Input: `["TwoSum", "add", "add", "add", "find", "find"]`, `[[], [1], [3], [5], [4], [7]]`
 - Output: `[null, null, null, null, true, false]`
@@ -11,4 +11,3 @@
   twoSum.add(5);   // [1,3] --> [1,3,5]
   twoSum.find(4);  // 1 + 3 = 4, return true
   twoSum.find(7);  // No two integers sum up to 7, return false
-

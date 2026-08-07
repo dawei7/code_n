@@ -19,14 +19,14 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "n = 3",
-        "output": "3",
+        "input": "`n = 3`",
+        "output": "`3`",
         "has_explanation": true
       },
       {
         "ordinal": 2,
-        "input": "n = 4",
-        "output": "6",
+        "input": "`n = 4`",
+        "output": "`6`",
         "has_explanation": true
       }
     ],
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "027202a5c06bb0e3f73bc26666b387da056ce3213cce84ae783776864065d8fd",
+      "reference/constraints.md": "c3ba53cfbbf3ddf2fd52b3c2f8355035daecd54465919e1541f7a3b31fc8ef2c",
       "reference/contract.md": "2ec6bf321d12b3fa86f5690d11f4f43d25edf13b5c31242c6bd1d596b665e695",
-      "reference/examples.md": "85ca25b281d37f717d3f9624d85e65b0958565ef065d57331e1198c129d579a8",
-      "reference/constraints.md": "c3ba53cfbbf3ddf2fd52b3c2f8355035daecd54465919e1541f7a3b31fc8ef2c"
+      "reference/description.md": "7c4c57ad8387919efc9f272ee2a9c30dd2d2666d727e7eb88274c3ebd51ec1d0",
+      "reference/examples.md": "8ca18671725ce9e73b49f85f3027284382e143e50aece002cdb49dd51831fc17"
     },
     "assertions": {
       "semantic_coverage": true,

@@ -1,12 +1,12 @@
 ## Examples
 
-**Example 1:**
+**Example 1**
 
 - Input: `target = "apple", dictionary = ["blade"]`
 - Output: `"a4"`
 - Explanation: The shortest abbreviation of "apple" is "5", but this is also an abbreviation of "blade". The next shortest abbreviations are "a4" and "4e". "4e" is an abbreviation of blade while "a4" is not. Hence, return "a4".
 
-**Example 2:**
+**Example 2**
 
 - Input: `target = "apple", dictionary = ["blade","plain","amber"]`
 - Output: `"1p3"`

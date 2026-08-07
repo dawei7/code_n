@@ -7,8 +7,8 @@
     "title_slug": "reverse-words-in-a-string-ii",
     "url": "https://leetcode.com/problems/reverse-words-in-a-string-ii/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1daee718625961c899149a3e327f8334ec0c022b5a1a5146e7e5eae5626e4765",
-      "reference/contract.md": "5b106ecd54eb79955f15b08ebcae0876e6861d5e596cd2c8ff3013c02195dea7",
-      "reference/examples.md": "84557f78e5fdb9ab7d96b585c1bbba3c0389601940f5748112021e743a249240",
-      "reference/constraints.md": "b618777e3f56c25c15004fa99b1f2ca210c68b26c31709b18eea11c5b2260c59"
+      "reference/constraints.md": "ea0bf758b01a256e4043621c86b433340f2411c8d4df7d97249e43af5c9826b9",
+      "reference/contract.md": "3271b5def182e7b24c4143a49937734affecdac5f96288785434b2b40149e064",
+      "reference/description.md": "4e40fb4a7a22f4f5ad245206536885ddbac457994a049faf3db7b5b8951899eb",
+      "reference/examples.md": "2cedc39b3dc746888f15a0f1a3e6eef3961dde471eb5a205690966efceefef02"
     },
     "assertions": {
       "semantic_coverage": true,

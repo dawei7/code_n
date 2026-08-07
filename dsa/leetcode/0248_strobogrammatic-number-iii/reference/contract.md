@@ -2,9 +2,9 @@
 
 **Inputs**
 
-- `low`: A string representing an integer ($1 \le \text{low.length} \le 15$).
-- `high`: A string representing an integer ($1 \le \text{high.length} \le 15$, $\text{low} \le \text{high}$).
+- `low`: String representing lower bound integer.
+- `high`: String representing upper bound integer.
 
 **Return value**
 
-Return an integer representing the total count of strobogrammatic numbers in the inclusive range `[low, high]`.
+Return integer count of strobogrammatic numbers in `[low, high]`.

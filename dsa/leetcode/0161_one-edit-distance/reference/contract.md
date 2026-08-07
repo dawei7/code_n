@@ -2,9 +2,9 @@
 
 **Inputs**
 
-- `s`: A string consisting of English letters and digits ($0 \le \text{s.length} \le 10^4$).
-- `t`: A string consisting of English letters and digits ($0 \le \text{t.length} \le 10^4$).
+- `s`: String candidate.
+- `t`: String target.
 
 **Return value**
 
-Return a boolean: `true` if `s` and `t` are exactly one edit distance apart, and `false` otherwise.
+Return `true` if `s` and `t` are exactly one edit distance apart (insert 1 char, delete 1 char, or replace 1 char with a different character), otherwise return `false`.

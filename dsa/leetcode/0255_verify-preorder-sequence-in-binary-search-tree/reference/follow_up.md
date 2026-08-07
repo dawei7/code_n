@@ -1,5 +1,3 @@
 ## Follow-up
 
-**Follow up:** Could you do it using only constant space complexity?
-
-
+Could you do it using only constant extra space complexity?

@@ -5,7 +5,7 @@
     "challenge_id": "lc_2797",
     "frontend_id": "2797",
     "title_slug": "partial-function-with-placeholders",
-    "url": "https://leetcode.com/problems/partial-function-with-placeholders/",
+    "url": "https://leetcode.com/problems/partial-function-with-placeholders/description/",
     "paid_only": false,
     "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
     "checked_at": "2026-08-06"
@@ -16,8 +16,15 @@
       "examples",
       "constraints"
     ],
-    "examples": [],
-    "constraint_count": 0,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "",
+        "output": "",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -30,10 +37,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "1f67e13c20fd2c00390245083ac93b04fd8f898c74aacb7234ad307b1854a80d",
-      "reference/contract.md": "739a211641e3c4bc262f0745064705adb77895aa0573bb82fb23bfb477dd758f",
-      "reference/examples.md": "46ee017afd8766d1cab377a9dc03790073108deab2059ab5c4c22ea2431a1a3b",
-      "reference/constraints.md": "60a79c8a70321c0e876752ee3e9078c89127c3eef5dcb6b39f20128c647a5e85"
+      "reference/constraints.md": "065bdaf81a0a894cb0780dd5888f831faef660c2565f5b47700e39a9f2ab90b1",
+      "reference/contract.md": "8e6d98dc12cb3416230af97d6c4dfeefaecd31776c97cf1569c1bbea56d27c72",
+      "reference/description.md": "9df8aedc8632b75b3603f4f35c2aa457e8f2f20f447a2fc8ddd694c9d7c07209",
+      "reference/examples.md": "bc3699078c8e6309d848f99e0c564619685118f379aaa62339836c3c50b482d5"
     },
     "assertions": {
       "semantic_coverage": true,

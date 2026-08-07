@@ -7,8 +7,8 @@
     "title_slug": "shortest-word-distance",
     "url": "https://leetcode.com/problems/shortest-word-distance/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "a58cdeb0d26f9c6d4dbdff93a1e4f32a751e90ee5797187e6a2e38cb3c44894c",
-      "reference/contract.md": "1678ece67353c285dc912e9a1ab33b6a20965d153461654bfb6b9a4a931c5980",
-      "reference/examples.md": "c2e09c6c80fbb8068fa2ab3177d5e5c7ece24bec95ee92aafb68ae505bc4bc20",
-      "reference/constraints.md": "4f125e356e210c9b4c84da25137587586b5a946ce3ff63eab75e2df68635ea6f"
+      "reference/constraints.md": "094f390f74b14806d43fc18c5b3fbd6abce06458a1db1e3d58b80f35d787d85e",
+      "reference/contract.md": "644a2ffc262a154fcff2828b9db59e15be65212d0b1c20d6592a322fd6f49ab0",
+      "reference/description.md": "a0dfaddd92514433e7e74ddce5c1b1cb0e95af9275549c50ee83cea94ae42438",
+      "reference/examples.md": "fdef132b1997effe1ae4f2e134a3c8ccc82ddce18e18d89f31822b2b1c7f94ba"
     },
     "assertions": {
       "semantic_coverage": true,

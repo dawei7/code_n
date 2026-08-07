@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `num`: A string of digits ($1 \le \text{num.length} \le 50$).
+- `num`: String representing an integer.
 
 **Return value**
 
-Return a boolean `True` if `num` remains unchanged after a 180-degree rotation, and `False` otherwise.
+Return `true` if `num` looks identical when rotated 180 degrees, otherwise `false`.

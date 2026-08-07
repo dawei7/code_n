@@ -7,4 +7,3 @@
 class Solution:
     def countUnivalSubtrees(self, root: Optional[TreeNode]) -> int:
         pass
-

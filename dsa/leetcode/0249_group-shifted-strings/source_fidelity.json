@@ -7,8 +7,8 @@
     "title_slug": "group-shifted-strings",
     "url": "https://leetcode.com/problems/group-shifted-strings/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -43,10 +43,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "dfeacd4e49ae2a1bc29902a69a513254b8b7a3a8f6520ff18d9a7b6af97a6f96",
-      "reference/contract.md": "436bba213d0ec4f101f9a03f14794df125f1a4c0151e2b8486cdde58d47325c4",
-      "reference/examples.md": "7342f311981910142bf2f6bacc23c10e357866b7d3e663f219d9cd6bf5bb736a",
-      "reference/constraints.md": "a0456f164a2bb27303d4cebe22312f62d68a2810b94deb80dcbb6dc02736aab7"
+      "reference/constraints.md": "471c956563e86c76582e3b5e39157759a6205ea65ba947372bb288099a631663",
+      "reference/contract.md": "45ddf0cac5cb3bdf3a79ab4253baaca77e7e4edccf45edfdd155002ee626ad8f",
+      "reference/description.md": "bc159503ad7412320cc76f681a0723433740c5bdc3eb2fc82d13511f28ba35e7",
+      "reference/examples.md": "d1bb9f09d0daf7ac4a0314a573fbefb757b3e4134b5ae2fd133f444fdfb06ad2"
     },
     "assertions": {
       "semantic_coverage": true,

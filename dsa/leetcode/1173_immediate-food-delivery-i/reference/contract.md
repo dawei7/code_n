@@ -1,13 +1,9 @@
-## Function Contract
+## Contract
 
-**Input table**
+**Table Schema**
 
-- `Delivery`: Food-delivery orders and their requested dates. Let $n$ be the number of rows in this table.
+`Delivery` (`delivery_id`: `int`, `customer_id`: `int`, `order_date`: `date`, `customer_pref_delivery_date`: `date`)
 
-Classification is per delivery row, even when one customer has placed several orders. Exact date equality is immediate; a preferred date after the order date is scheduled.
+**Return Table Schema**
 
-**Return value**
-
-Return one row with one column:
-
-- `immediate_percentage`: The number of immediate deliveries divided by $n$, multiplied by $100$, and rounded to two decimal places.
+`Result` (`immediate_percentage`: `decimal(5,2)`)

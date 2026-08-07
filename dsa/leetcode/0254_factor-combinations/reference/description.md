@@ -2,9 +2,8 @@
 
 Numbers can be regarded as the product of their factors.
 
-* For example, `8 = 2 x 2 x 2 = 2 x 4`.
+- For example, $8 = 2 \times 2 \times 2 = 2 \times 4$.
 
 Given an integer `n`, return *all possible combinations of its factors*. You may return the answer in **any order**.
 
-**Note** that the factors should be in the range `[2, n - 1]`.
-
+**Note** that the factors should be in the range $[2, n - 1]$.

@@ -7,14 +7,15 @@
     "title_slug": "strobogrammatic-number-ii",
     "url": "https://leetcode.com/problems/strobogrammatic-number-ii/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
       "description",
       "examples",
-      "constraints"
+      "constraints",
+      "hints"
     ],
     "examples": [
       {
@@ -43,10 +44,11 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "f5420243f57eb1f66686d2a253a97f601bec89bea113cb233f4147fd02c37139",
-      "reference/contract.md": "32c2408d1e1d84504f956a1a9552387202be9c1b7a0c1f7e5fe45272f1a9ee0f",
-      "reference/examples.md": "fc50a5b79d2b67782da2bd51e9eae015eb3e4c1771180adf0ceee8f4d9fd152a",
-      "reference/constraints.md": "cfa4e9353ead7542c91c5e32b40dd36c7d6a2e8e2ab0c0723c85afd665dbbd83"
+      "reference/constraints.md": "ece56ca582bf4113828130191ea754e510f87c7766e0329b24849beea51a51e5",
+      "reference/contract.md": "993365e8af08e108a36317ee7e973979cbb73457bedf8d0eb255e4d70ed4d53d",
+      "reference/description.md": "a178f60648796fa129bb5f79439003892b306571a2cff8200176f658b543e23d",
+      "reference/examples.md": "2366e708d61d33bc8132e47a3a630e7501a8349af9d55bf6cdfa6e8d94632e1a",
+      "reference/hints.md": "644b05db7079ccb6eee2255696cb915e57d6d4ae29fc80a14fd1cd139d9c3018"
     },
     "assertions": {
       "semantic_coverage": true,

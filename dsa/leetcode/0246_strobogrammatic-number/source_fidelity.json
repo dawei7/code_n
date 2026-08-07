@@ -7,8 +7,8 @@
     "title_slug": "strobogrammatic-number",
     "url": "https://leetcode.com/problems/strobogrammatic-number/description/",
     "paid_only": true,
-    "content_sha256": "f664f3fcf4447d4c2472c9e017471858bb4799b05c7420a91fd1e917f71df270",
-    "checked_at": "2026-08-05"
+    "content_sha256": "567b0e1312873e5de5fccd1974489f60effaa414c7769a1f6109c9a1ff0c3da4",
+    "checked_at": "2026-08-07"
   },
   "structure": {
     "sections": [
@@ -49,10 +49,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "539adba99f0ac60f620052a27910407e55d0aed5cafc010301966169d9a43ef8",
-      "reference/contract.md": "75daaa883c7255a840e34fd45622db5c2231eba3d7d48d3770ecef4051a3f345",
-      "reference/examples.md": "d28681e849a47883b3f3c013370150e392c65d08dbe32bd3e1450929ddbd3115",
-      "reference/constraints.md": "cec1eb015a6f68e18fed5203f124b72a448eb9cf949717204ef8f1558e7425e9"
+      "reference/constraints.md": "e2b69f0bb59a2c4a586f7359a6a242f28b29bd30510ec8fc51b9869590abf4d2",
+      "reference/contract.md": "ac2d30ad27d8e415f955d5828a2d716d0449cb816af1e0a1aaa9bf531d1df5aa",
+      "reference/description.md": "f1a760ad5231029c5990c6ac2bd6bf340342704da0f6d5b5666462d24f9b98d8",
+      "reference/examples.md": "e41548a250e1092a482c70befd5a5aaab524c07fe9d2eeda1aa230075552e0da"
     },
     "assertions": {
       "semantic_coverage": true,

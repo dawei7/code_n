@@ -1,0 +1,1746 @@
+{
+  "total_targets": 777,
+  "verified_count": 674,
+  "queue_count": 103,
+  "queue": [
+    {
+      "frontend_id": 3125,
+      "name": "Maximum Number That Makes Result of Bitwise AND Zero",
+      "package_path": "dsa/leetcode/3125_maximum-number-that-makes-result-of-bitwise-and-zero",
+      "slug": "maximum-number-that-makes-result-of-bitwise-and-zero",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3126,
+      "name": "Server Utilization Time",
+      "package_path": "dsa/leetcode/3126_server-utilization-time",
+      "slug": "server-utilization-time",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3135,
+      "name": "Equalize Strings by Adding or Removing Characters at Ends",
+      "package_path": "dsa/leetcode/3135_equalize-strings-by-adding-or-removing-characters-at-ends",
+      "slug": "equalize-strings-by-adding-or-removing-characters-at-ends",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3140,
+      "name": "Consecutive Available Seats II",
+      "package_path": "dsa/leetcode/3140_consecutive-available-seats-ii",
+      "slug": "consecutive-available-seats-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3141,
+      "name": "Maximum Hamming Distances",
+      "package_path": "dsa/leetcode/3141_maximum-hamming-distances",
+      "slug": "maximum-hamming-distances",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3150,
+      "name": "Invalid Tweets II",
+      "package_path": "dsa/leetcode/3150_invalid-tweets-ii",
+      "slug": "invalid-tweets-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3155,
+      "name": "Maximum Number of Upgradable Servers",
+      "package_path": "dsa/leetcode/3155_maximum-number-of-upgradable-servers",
+      "slug": "maximum-number-of-upgradable-servers",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3156,
+      "name": "Employee Task Duration and Concurrent Tasks",
+      "package_path": "dsa/leetcode/3156_employee-task-duration-and-concurrent-tasks",
+      "slug": "employee-task-duration-and-concurrent-tasks",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3157,
+      "name": "Find the Level of Tree with Minimum Sum",
+      "package_path": "dsa/leetcode/3157_find-the-level-of-tree-with-minimum-sum",
+      "slug": "find-the-level-of-tree-with-minimum-sum",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3166,
+      "name": "Calculate Parking Fees and Duration",
+      "package_path": "dsa/leetcode/3166_calculate-parking-fees-and-duration",
+      "slug": "calculate-parking-fees-and-duration",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3167,
+      "name": "Better Compression of String",
+      "package_path": "dsa/leetcode/3167_better-compression-of-string",
+      "slug": "better-compression-of-string",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3172,
+      "name": "Second Day Verification",
+      "package_path": "dsa/leetcode/3172_second-day-verification",
+      "slug": "second-day-verification",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3173,
+      "name": "Bitwise OR of Adjacent Elements",
+      "package_path": "dsa/leetcode/3173_bitwise-or-of-adjacent-elements",
+      "slug": "bitwise-or-of-adjacent-elements",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3182,
+      "name": "Find Top Scoring Students",
+      "package_path": "dsa/leetcode/3182_find-top-scoring-students",
+      "slug": "find-top-scoring-students",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3183,
+      "name": "The Number of Ways to Make the Sum",
+      "package_path": "dsa/leetcode/3183_the-number-of-ways-to-make-the-sum",
+      "slug": "the-number-of-ways-to-make-the-sum",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3188,
+      "name": "Find Top Scoring Students II",
+      "package_path": "dsa/leetcode/3188_find-top-scoring-students-ii",
+      "slug": "find-top-scoring-students-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3189,
+      "name": "Minimum Moves to Get a Peaceful Board",
+      "package_path": "dsa/leetcode/3189_minimum-moves-to-get-a-peaceful-board",
+      "slug": "minimum-moves-to-get-a-peaceful-board",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3198,
+      "name": "Find Cities in Each State",
+      "package_path": "dsa/leetcode/3198_find-cities-in-each-state",
+      "slug": "find-cities-in-each-state",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3199,
+      "name": "Count Triplets with Even XOR Set Bits I",
+      "package_path": "dsa/leetcode/3199_count-triplets-with-even-xor-set-bits-i",
+      "slug": "count-triplets-with-even-xor-set-bits-i",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3204,
+      "name": "Bitwise User Permissions Analysis",
+      "package_path": "dsa/leetcode/3204_bitwise-user-permissions-analysis",
+      "slug": "bitwise-user-permissions-analysis",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3205,
+      "name": "Maximum Array Hopping Score I",
+      "package_path": "dsa/leetcode/3205_maximum-array-hopping-score-i",
+      "slug": "maximum-array-hopping-score-i",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3214,
+      "name": "Year on Year Growth Rate",
+      "package_path": "dsa/leetcode/3214_year-on-year-growth-rate",
+      "slug": "year-on-year-growth-rate",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3215,
+      "name": "Count Triplets with Even XOR Set Bits II",
+      "package_path": "dsa/leetcode/3215_count-triplets-with-even-xor-set-bits-ii",
+      "slug": "count-triplets-with-even-xor-set-bits-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3221,
+      "name": "Maximum Array Hopping Score II",
+      "package_path": "dsa/leetcode/3221_maximum-array-hopping-score-ii",
+      "slug": "maximum-array-hopping-score-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3230,
+      "name": "Customer Purchasing Behavior Analysis",
+      "package_path": "dsa/leetcode/3230_customer-purchasing-behavior-analysis",
+      "slug": "customer-purchasing-behavior-analysis",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3231,
+      "name": "Minimum Number of Increasing Subsequence to Be Removed",
+      "package_path": "dsa/leetcode/3231_minimum-number-of-increasing-subsequence-to-be-removed",
+      "slug": "minimum-number-of-increasing-subsequence-to-be-removed",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3236,
+      "name": "CEO Subordinate Hierarchy",
+      "package_path": "dsa/leetcode/3236_ceo-subordinate-hierarchy",
+      "slug": "ceo-subordinate-hierarchy",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3237,
+      "name": "Alt and Tab Simulation",
+      "package_path": "dsa/leetcode/3237_alt-and-tab-simulation",
+      "slug": "alt-and-tab-simulation",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3246,
+      "name": "Premier League Table Ranking",
+      "package_path": "dsa/leetcode/3246_premier-league-table-ranking",
+      "slug": "premier-league-table-ranking",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3247,
+      "name": "Number of Subsequences with Odd Sum",
+      "package_path": "dsa/leetcode/3247_number-of-subsequences-with-odd-sum",
+      "slug": "number-of-subsequences-with-odd-sum",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3252,
+      "name": "Premier League Table Ranking II",
+      "package_path": "dsa/leetcode/3252_premier-league-table-ranking-ii",
+      "slug": "premier-league-table-ranking-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3253,
+      "name": "Construct String with Minimum Cost (Easy)",
+      "package_path": "dsa/leetcode/3253_construct-string-with-minimum-cost-easy",
+      "slug": "construct-string-with-minimum-cost-easy",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3262,
+      "name": "Find Overlapping Shifts",
+      "package_path": "dsa/leetcode/3262_find-overlapping-shifts",
+      "slug": "find-overlapping-shifts",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3263,
+      "name": "Convert Doubly Linked List to Array I",
+      "package_path": "dsa/leetcode/3263_convert-doubly-linked-list-to-array-i",
+      "slug": "convert-doubly-linked-list-to-array-i",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3268,
+      "name": "Find Overlapping Shifts II",
+      "package_path": "dsa/leetcode/3268_find-overlapping-shifts-ii",
+      "slug": "find-overlapping-shifts-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3269,
+      "name": "Constructing Two Increasing Arrays",
+      "package_path": "dsa/leetcode/3269_constructing-two-increasing-arrays",
+      "slug": "constructing-two-increasing-arrays",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3278,
+      "name": "Find Candidates for Data Scientist Position II",
+      "package_path": "dsa/leetcode/3278_find-candidates-for-data-scientist-position-ii",
+      "slug": "find-candidates-for-data-scientist-position-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3279,
+      "name": "Maximum Total Area Occupied by Pistons",
+      "package_path": "dsa/leetcode/3279_maximum-total-area-occupied-by-pistons",
+      "slug": "maximum-total-area-occupied-by-pistons",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3284,
+      "name": "Sum of Consecutive Subarrays",
+      "package_path": "dsa/leetcode/3284_sum-of-consecutive-subarrays",
+      "slug": "sum-of-consecutive-subarrays",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3293,
+      "name": "Calculate Product Final Price",
+      "package_path": "dsa/leetcode/3293_calculate-product-final-price",
+      "slug": "calculate-product-final-price",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3294,
+      "name": "Convert Doubly Linked List to Array II",
+      "package_path": "dsa/leetcode/3294_convert-doubly-linked-list-to-array-ii",
+      "slug": "convert-doubly-linked-list-to-array-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3299,
+      "name": "Sum of Consecutive Subsequences",
+      "package_path": "dsa/leetcode/3299_sum-of-consecutive-subsequences",
+      "slug": "sum-of-consecutive-subsequences",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3308,
+      "name": "Find Top Performing Driver",
+      "package_path": "dsa/leetcode/3308_find-top-performing-driver",
+      "slug": "find-top-performing-driver",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3313,
+      "name": "Find the Last Marked Nodes in Tree",
+      "package_path": "dsa/leetcode/3313_find-the-last-marked-nodes-in-tree",
+      "slug": "find-the-last-marked-nodes-in-tree",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3322,
+      "name": "Premier League Table Ranking III",
+      "package_path": "dsa/leetcode/3322_premier-league-table-ranking-iii",
+      "slug": "premier-league-table-ranking-iii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3323,
+      "name": "Minimize Connected Groups by Inserting Interval",
+      "package_path": "dsa/leetcode/3323_minimize-connected-groups-by-inserting-interval",
+      "slug": "minimize-connected-groups-by-inserting-interval",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3328,
+      "name": "Find Cities in Each State II",
+      "package_path": "dsa/leetcode/3328_find-cities-in-each-state-ii",
+      "slug": "find-cities-in-each-state-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3329,
+      "name": "Count Substrings With K-Frequency Characters II",
+      "package_path": "dsa/leetcode/3329_count-substrings-with-k-frequency-characters-ii",
+      "slug": "count-substrings-with-k-frequency-characters-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3338,
+      "name": "Second Highest Salary II",
+      "package_path": "dsa/leetcode/3338_second-highest-salary-ii",
+      "slug": "second-highest-salary-ii",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3339,
+      "name": "Find the Number of K-Even Arrays",
+      "package_path": "dsa/leetcode/3339_find-the-number-of-k-even-arrays",
+      "slug": "find-the-number-of-k-even-arrays",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3344,
+      "name": "Maximum Sized Array",
+      "package_path": "dsa/leetcode/3344_maximum-sized-array",
+      "slug": "maximum-sized-array",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3353,
+      "name": "Minimum Total Operations",
+      "package_path": "dsa/leetcode/3353_minimum-total-operations",
+      "slug": "minimum-total-operations",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3358,
+      "name": "Books with NULL Ratings",
+      "package_path": "dsa/leetcode/3358_books-with-null-ratings",
+      "slug": "books-with-null-ratings",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3359,
+      "name": "Find Sorted Submatrices With Maximum Element at Most K",
+      "package_path": "dsa/leetcode/3359_find-sorted-submatrices-with-maximum-element-at-most-k",
+      "slug": "find-sorted-submatrices-with-maximum-element-at-most-k",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3368,
+      "name": "First Letter Capitalization",
+      "package_path": "dsa/leetcode/3368_first-letter-capitalization",
+      "slug": "first-letter-capitalization",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3369,
+      "name": "Design an Array Statistics Tracker",
+      "package_path": "dsa/leetcode/3369_design-an-array-statistics-tracker",
+      "slug": "design-an-array-statistics-tracker",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3383,
+      "name": "Minimum Runes to Add to Cast Spell",
+      "package_path": "dsa/leetcode/3383_minimum-runes-to-add-to-cast-spell",
+      "slug": "minimum-runes-to-add-to-cast-spell",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3384,
+      "name": "Team Dominance by Pass Success",
+      "package_path": "dsa/leetcode/3384_team-dominance-by-pass-success",
+      "slug": "team-dominance-by-pass-success",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3385,
+      "name": "Minimum Time to Break Locks II",
+      "package_path": "dsa/leetcode/3385_minimum-time-to-break-locks-ii",
+      "slug": "minimum-time-to-break-locks-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3390,
+      "name": "Longest Team Pass Streak",
+      "package_path": "dsa/leetcode/3390_longest-team-pass-streak",
+      "slug": "longest-team-pass-streak",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3391,
+      "name": "Design a 3D Binary Matrix with Efficient Layer Tracking",
+      "package_path": "dsa/leetcode/3391_design-a-3d-binary-matrix-with-efficient-layer-tracking",
+      "slug": "design-a-3d-binary-matrix-with-efficient-layer-tracking",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3400,
+      "name": "Maximum Number of Matching Indices After Right Shifts",
+      "package_path": "dsa/leetcode/3400_maximum-number-of-matching-indices-after-right-shifts",
+      "slug": "maximum-number-of-matching-indices-after-right-shifts",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3401,
+      "name": "Find Circular Gift Exchange Chains",
+      "package_path": "dsa/leetcode/3401_find-circular-gift-exchange-chains",
+      "slug": "find-circular-gift-exchange-chains",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3406,
+      "name": "Find the Lexicographically Largest String From the Box II",
+      "package_path": "dsa/leetcode/3406_find-the-lexicographically-largest-string-from-the-box-ii",
+      "slug": "find-the-lexicographically-largest-string-from-the-box-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3415,
+      "name": "Find Products with Three Consecutive Digits",
+      "package_path": "dsa/leetcode/3415_find-products-with-three-consecutive-digits",
+      "slug": "find-products-with-three-consecutive-digits",
+      "category": "database",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3416,
+      "name": "Subsequences with a Unique Middle Mode II",
+      "package_path": "dsa/leetcode/3416_subsequences-with-a-unique-middle-mode-ii",
+      "slug": "subsequences-with-a-unique-middle-mode-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3422,
+      "name": "Minimum Operations to Make Subarray Elements Equal",
+      "package_path": "dsa/leetcode/3422_minimum-operations-to-make-subarray-elements-equal",
+      "slug": "minimum-operations-to-make-subarray-elements-equal",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3431,
+      "name": "Minimum Unlocked Indices to Sort Nums",
+      "package_path": "dsa/leetcode/3431_minimum-unlocked-indices-to-sort-nums",
+      "slug": "minimum-unlocked-indices-to-sort-nums",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3437,
+      "name": "Permutations III",
+      "package_path": "dsa/leetcode/3437_permutations-iii",
+      "slug": "permutations-iii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3450,
+      "name": "Maximum Students on a Single Bench",
+      "package_path": "dsa/leetcode/3450_maximum-students-on-a-single-bench",
+      "slug": "maximum-students-on-a-single-bench",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3460,
+      "name": "Longest Common Prefix After at Most One Removal",
+      "package_path": "dsa/leetcode/3460_longest-common-prefix-after-at-most-one-removal",
+      "slug": "longest-common-prefix-after-at-most-one-removal",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3466,
+      "name": "Maximum Coin Collection",
+      "package_path": "dsa/leetcode/3466_maximum-coin-collection",
+      "slug": "maximum-coin-collection",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3476,
+      "name": "Maximize Profit from Task Assignment",
+      "package_path": "dsa/leetcode/3476_maximize-profit-from-task-assignment",
+      "slug": "maximize-profit-from-task-assignment",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3481,
+      "name": "Apply Substitutions",
+      "package_path": "dsa/leetcode/3481_apply-substitutions",
+      "slug": "apply-substitutions",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3491,
+      "name": "Phone Number Prefix",
+      "package_path": "dsa/leetcode/3491_phone-number-prefix",
+      "slug": "phone-number-prefix",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3496,
+      "name": "Maximize Score After Pair Deletions",
+      "package_path": "dsa/leetcode/3496_maximize-score-after-pair-deletions",
+      "slug": "maximize-score-after-pair-deletions",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3506,
+      "name": "Find Time Required to Eliminate Bacterial Strains",
+      "package_path": "dsa/leetcode/3506_find-time-required-to-eliminate-bacterial-strains",
+      "slug": "find-time-required-to-eliminate-bacterial-strains",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3511,
+      "name": "Make a Positive Array",
+      "package_path": "dsa/leetcode/3511_make-a-positive-array",
+      "slug": "make-a-positive-array",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3520,
+      "name": "Minimum Threshold for Inversion Pairs Count",
+      "package_path": "dsa/leetcode/3520_minimum-threshold-for-inversion-pairs-count",
+      "slug": "minimum-threshold-for-inversion-pairs-count",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3526,
+      "name": "Range XOR Queries with Subarray Reversals",
+      "package_path": "dsa/leetcode/3526_range-xor-queries-with-subarray-reversals",
+      "slug": "range-xor-queries-with-subarray-reversals",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3535,
+      "name": "Unit Conversion II",
+      "package_path": "dsa/leetcode/3535_unit-conversion-ii",
+      "slug": "unit-conversion-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3540,
+      "name": "Minimum Time to Visit All Houses",
+      "package_path": "dsa/leetcode/3540_minimum-time-to-visit-all-houses",
+      "slug": "minimum-time-to-visit-all-houses",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3549,
+      "name": "Multiply Two Polynomials",
+      "package_path": "dsa/leetcode/3549_multiply-two-polynomials",
+      "slug": "multiply-two-polynomials",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3555,
+      "name": "Smallest Subarray to Sort in Every Sliding Window",
+      "package_path": "dsa/leetcode/3555_smallest-subarray-to-sort-in-every-sliding-window",
+      "slug": "smallest-subarray-to-sort-in-every-sliding-window",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3565,
+      "name": "Sequential Grid Path Cover",
+      "package_path": "dsa/leetcode/3565_sequential-grid-path-cover",
+      "slug": "sequential-grid-path-cover",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3571,
+      "name": "Find the Shortest Superstring II",
+      "package_path": "dsa/leetcode/3571_find-the-shortest-superstring-ii",
+      "slug": "find-the-shortest-superstring-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3581,
+      "name": "Count Odd Letters from Number",
+      "package_path": "dsa/leetcode/3581_count-odd-letters-from-number",
+      "slug": "count-odd-letters-from-number",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3595,
+      "name": "Once Twice",
+      "package_path": "dsa/leetcode/3595_once-twice",
+      "slug": "once-twice",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3596,
+      "name": "Minimum Cost Path with Alternating Directions I",
+      "package_path": "dsa/leetcode/3596_minimum-cost-path-with-alternating-directions-i",
+      "slug": "minimum-cost-path-with-alternating-directions-i",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3610,
+      "name": "Minimum Number of Primes to Sum to Target",
+      "package_path": "dsa/leetcode/3610_minimum-number-of-primes-to-sum-to-target",
+      "slug": "minimum-number-of-primes-to-sum-to-target",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3616,
+      "name": "Number of Student Replacements",
+      "package_path": "dsa/leetcode/3616_number-of-student-replacements",
+      "slug": "number-of-student-replacements",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3631,
+      "name": "Sort Threats by Severity and Exploitability",
+      "package_path": "dsa/leetcode/3631_sort-threats-by-severity-and-exploitability",
+      "slug": "sort-threats-by-severity-and-exploitability",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3632,
+      "name": "Subarrays with XOR at Least K",
+      "package_path": "dsa/leetcode/3632_subarrays-with-xor-at-least-k",
+      "slug": "subarrays-with-xor-at-least-k",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3641,
+      "name": "Longest Semi-Repeating Subarray",
+      "package_path": "dsa/leetcode/3641_longest-semi-repeating-subarray",
+      "slug": "longest-semi-repeating-subarray",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3647,
+      "name": "Maximum Weight in Two Bags",
+      "package_path": "dsa/leetcode/3647_maximum-weight-in-two-bags",
+      "slug": "maximum-weight-in-two-bags",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3656,
+      "name": "Determine if a Simple Graph Exists",
+      "package_path": "dsa/leetcode/3656_determine-if-a-simple-graph-exists",
+      "slug": "determine-if-a-simple-graph-exists",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3662,
+      "name": "Filter Characters by Frequency",
+      "package_path": "dsa/leetcode/3662_filter-characters-by-frequency",
+      "slug": "filter-characters-by-frequency",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3667,
+      "name": "Sort Array By Absolute Value",
+      "package_path": "dsa/leetcode/3667_sort-array-by-absolute-value",
+      "slug": "sort-array-by-absolute-value",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3672,
+      "name": "Sum of Weighted Modes in Subarrays",
+      "package_path": "dsa/leetcode/3672_sum-of-weighted-modes-in-subarrays",
+      "slug": "sum-of-weighted-modes-in-subarrays",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3682,
+      "name": "Minimum Index Sum of Common Elements",
+      "package_path": "dsa/leetcode/3682_minimum-index-sum-of-common-elements",
+      "slug": "minimum-index-sum-of-common-elements",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3687,
+      "name": "Library Late Fee Calculator",
+      "package_path": "dsa/leetcode/3687_library-late-fee-calculator",
+      "slug": "library-late-fee-calculator",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "source.url must be the canonical LeetCode description URL",
+        "reference/constraints.md bullet count does not match the source",
+        "structure.examples must be a non-empty list",
+        "reviewed file changed after verification: reference/description.md",
+        "reviewed file changed after verification: reference/contract.md",
+        "reviewed file changed after verification: reference/examples.md",
+        "reviewed file changed after verification: reference/constraints.md"
+      ]
+    },
+    {
+      "frontend_id": 3717,
+      "name": "Minimum Operations to Make the Array Beautiful",
+      "package_path": "dsa/leetcode/3717_minimum-operations-to-make-the-array-beautiful",
+      "slug": "minimum-operations-to-make-the-array-beautiful",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "reviewed file changed after verification: reference/description.md"
+      ]
+    },
+    {
+      "frontend_id": 3958,
+      "name": "Minimum Cost to Split into Ones II",
+      "package_path": "dsa/leetcode/3958_minimum-cost-to-split-into-ones-ii",
+      "slug": "minimum-cost-to-split-into-ones-ii",
+      "category": "algorithms",
+      "status": "invalid",
+      "errors": [
+        "reviewed file changed after verification: reference/description.md"
+      ]
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 """
 The read4 API is already defined for you.
 
-    @param buf4, a list of characters
-    @return an integer
-    def read4(buf4):
+@param buf4, a list of characters
+@return an integer
+def read4(buf4):
 
 # Below is an example of how the read4 API can be called.
 file = File("abcdefghijk") # File is "abcdefghijk", initially file pointer (fp) points to 'a'
@@ -21,4 +21,3 @@ class Solution:
         :rtype: The number of actual characters read (int)
         """
         pass
-

@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `preorder`: Unique node values in a proposed root-left-right traversal order.
+- `preorder`: Array of unique integers `List[int]`.
 
 **Return value**
 
-Return whether some binary search tree has exactly this preorder traversal.
+Return `true` if `preorder` is a valid preorder traversal of a BST, otherwise `false`.

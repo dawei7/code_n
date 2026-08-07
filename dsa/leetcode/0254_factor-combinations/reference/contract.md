@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `n`: A positive integer to factor.
+- `n`: Target integer.
 
 **Return value**
 
-Return all nontrivial factor combinations of `n`, with arbitrary outer order.
+Return `List[List[int]]` containing all possible factor combinations of `n` (factors in range $[2, n-1]$).

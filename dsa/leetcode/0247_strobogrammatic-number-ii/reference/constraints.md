@@ -1,4 +1,3 @@
 ## Constraints
 
-- `1 <= n <= 14`
-
+- $1 \le n \le 14$

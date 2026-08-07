@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `n`: An integer ($1 \le n \le 14$).
+- `n`: Target length integer.
 
 **Return value**
 
-Return a list of strings containing all strobogrammatic numbers of length $n$ without leading zeros (except for the single-digit `"0"` when $n = 1$).
+Return `List[str]` containing all strobogrammatic numbers of length `n`.

@@ -2,8 +2,8 @@
 
 **Inputs**
 
-- `intervals`: An array of meeting intervals represented as `[start, end]` pairs.
+- `intervals`: List of meeting intervals `List[List[int]]`.
 
 **Return value**
 
-Return the smallest room count that can accommodate the entire schedule.
+Return integer minimum number of conference rooms required.

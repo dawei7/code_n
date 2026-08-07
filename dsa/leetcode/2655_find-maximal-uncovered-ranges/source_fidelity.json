@@ -5,7 +5,7 @@
     "challenge_id": "lc_2655",
     "frontend_id": "2655",
     "title_slug": "find-maximal-uncovered-ranges",
-    "url": "https://leetcode.com/problems/find-maximal-uncovered-ranges/",
+    "url": "https://leetcode.com/problems/find-maximal-uncovered-ranges/description/",
     "paid_only": false,
     "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
     "checked_at": "2026-08-06"
@@ -16,8 +16,15 @@
       "examples",
       "constraints"
     ],
-    "examples": [],
-    "constraint_count": 0,
+    "examples": [
+      {
+        "ordinal": 1,
+        "input": "",
+        "output": "",
+        "has_explanation": false
+      }
+    ],
+    "constraint_count": 1,
     "visuals": {
       "source_images": 0,
       "source_tables": 0,
@@ -30,10 +37,10 @@
   "review": {
     "status": "verified",
     "files": {
-      "reference/description.md": "88f4144513a61fe6b2f81bf27915fd7190484dadbaacdea0d915d2193e998283",
-      "reference/contract.md": "739a211641e3c4bc262f0745064705adb77895aa0573bb82fb23bfb477dd758f",
-      "reference/examples.md": "46ee017afd8766d1cab377a9dc03790073108deab2059ab5c4c22ea2431a1a3b",
-      "reference/constraints.md": "60a79c8a70321c0e876752ee3e9078c89127c3eef5dcb6b39f20128c647a5e85"
+      "reference/constraints.md": "065bdaf81a0a894cb0780dd5888f831faef660c2565f5b47700e39a9f2ab90b1",
+      "reference/contract.md": "8e6d98dc12cb3416230af97d6c4dfeefaecd31776c97cf1569c1bbea56d27c72",
+      "reference/description.md": "c2709c0d77f9985a93bccc80214bc455bfc601f949d91d2b1e1640083d533057",
+      "reference/examples.md": "bc3699078c8e6309d848f99e0c564619685118f379aaa62339836c3c50b482d5"
     },
     "assertions": {
       "semantic_coverage": true,

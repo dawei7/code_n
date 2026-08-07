@@ -2,6 +2,10 @@
 
 **Class Interface**
 
-- `Vector2D(vec: List[List[int]])`: Initializes the 2D vector iterator ($0 \le \text{vec.length} \le 200$, $0 \le \text{vec}[i].\text{length} \le 500$).
-- `next() -> int`: Returns the next integer element in 2D vector order and advances the iterator.
-- `hasNext() -> bool`: Returns `True` if there are remaining unread elements, and `False` otherwise.
+`Vector2D`
+
+**Methods**
+
+- `__init__(vec: List[List[int]])`: Initializes the object with 2D vector `vec`.
+- `next() -> int`: Returns next element from 2D vector and moves pointer forward.
+- `hasNext() -> bool`: Returns `true` if there are remaining elements, otherwise `false`.

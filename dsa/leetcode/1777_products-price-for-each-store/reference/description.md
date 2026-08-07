@@ -1,5 +1,17 @@
 ## Description
 
-The `Products` table records prices in row form. Each row identifies a product, one of the stores `"store1"`, `"store2"`, or `"store3"`, and that product's price at the store. The pair `(product_id, store)` is unique, so a product has at most one recorded price per store.
+Table: `Products`
 
-Pivot these rows into one row per product. The result must contain `product_id` followed by columns `store1`, `store2`, and `store3`. Put each recorded price in its store's column and use `NULL` when the product is not available at that store. The rows may be returned in any order.
+| Column Name | Type |
+| :--- | :--- |
+| `product_id` | `int` |
+| `store` | `enum` |
+| `price` | `int` |
+
+`(product_id, store)` is the primary key (combination of columns with unique values) for this table.
+`store` is an ENUM (category) of type `('store1', 'store2', 'store3')` where each value represents the store this product is available at.
+`price` is the price of the product at this store.
+
+Write a solution to find the price of each product in each store.
+
+Return the result table in **any order**.

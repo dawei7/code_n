@@ -1,12 +1,11 @@
 ## Examples
 
-**Example 1:**
+**Example 1**
 
-- Input: `wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "coding"`
+- Input: `wordsDict = ["practice", "makes", "perfect", "coding", "makes"]`, `word1 = "makes"`, `word2 = "coding"`
 - Output: `1`
 
-**Example 2:**
+**Example 2**
 
-- Input: `wordsDict = ["practice", "makes", "perfect", "coding", "makes"], word1 = "makes", word2 = "makes"`
+- Input: `wordsDict = ["practice", "makes", "perfect", "coding", "makes"]`, `word1 = "makes"`, `word2 = "makes"`
 - Output: `3`
-

@@ -20,8 +20,8 @@
     "examples": [
       {
         "ordinal": 1,
-        "input": "Countries = [[2,\"USA\"],[3,\"Australia\"],[7,\"Peru\"],[5,\"China\"],[8,\"Morocco\"],[9,\"Spain\"]], Weather = [[2,15,\"2019-11-01\"],[2,12,\"2019-10-28\"],[2,12,\"2019-10-27\"],[3,-2,\"2019-11-10\"],[3,0,\"2019-11-11\"],[3,3,\"2019-11-12\"],[5,16,\"2019-11-07\"],[5,18,\"2019-11-09\"],[5,21,\"2019-11-23\"],[7,25,\"2019-11-28\"],[7,22,\"2019-12-01\"],[7,20,\"2019-12-02\"],[8,25,\"2019-11-05\"],[8,27,\"2019-11-15\"],[8,31,\"2019-11-25\"],[9,7,\"2019-10-23\"],[9,3,\"2019-12-23\"]]",
-        "output": "[[\"USA\",\"Cold\"],[\"Australia\",\"Cold\"],[\"Peru\",\"Hot\"],[\"Morocco\",\"Hot\"],[\"China\",\"Warm\"]]",
+        "input": "`Countries = [[2,\"USA\"],[3,\"Australia\"],[7,\"Peru\"],[5,\"China\"],[8,\"Morocco\"],[9,\"Spain\"]], Weather = [[2,15,\"2019-11-01\"],[2,12,\"2019-10-28\"],[2,12,\"2019-10-27\"],[3,-2,\"2019-11-10\"],[3,0,\"2019-11-11\"],[3,3,\"2019-11-12\"],[5,16,\"2019-11-07\"],[5,18,\"2019-11-09\"],[5,21,\"2019-11-23\"],[7,25,\"2019-11-28\"],[7,22,\"2019-12-01\"],[7,20,\"2019-12-02\"],[8,25,\"2019-11-05\"],[8,27,\"2019-11-15\"],[8,31,\"2019-11-25\"],[9,7,\"2019-10-23\"],[9,3,\"2019-12-23\"]]`",
+        "output": "`[[\"USA\",\"Cold\"],[\"Australia\",\"Cold\"],[\"Peru\",\"Hot\"],[\"Morocco\",\"Hot\"],[\"China\",\"Warm\"]]`",
         "has_explanation": true
       }
     ],
@@ -29,20 +29,20 @@
     "visuals": {
       "source_images": 0,
       "source_tables": 5,
-      "source_diagrams": 0,
+      "source_diagrams": 2,
       "local_images": 0,
       "local_tables": 5,
-      "local_diagrams": 0
+      "local_diagrams": 2
     }
   },
   "review": {
     "status": "verified",
     "files": {
-      "reference/countries_table.md": "7ad3652856dc5ec9c3d6c9daafa1de01b2043a4aeade8486ccf306ecc9942321",
-      "reference/weather_table.md": "41196967b22d5873ff823e916e094af7ae7db4fe90837315eb1b9f1101509940",
-      "reference/description.md": "854fe17e8932e13dddab4c41412f98aec8103ab1cda9d558a9f1b3f1b5a7ea1d",
       "reference/contract.md": "3c80e88151c287ab4fb9a8ace683a24bd5bcf47ea79ae0b604cd400e6c2bd6e0",
-      "reference/examples.md": "8ab6d225e8f56c13158f85dd3c1a14c393956cde7d6b503eaa2df22c75c71879"
+      "reference/countries_table.md": "7ad3652856dc5ec9c3d6c9daafa1de01b2043a4aeade8486ccf306ecc9942321",
+      "reference/description.md": "854fe17e8932e13dddab4c41412f98aec8103ab1cda9d558a9f1b3f1b5a7ea1d",
+      "reference/examples.md": "75e975daeb7511123bd58727575c4e7730e35ab4a37c6ffa41824ef8f1298988",
+      "reference/weather_table.md": "41196967b22d5873ff823e916e094af7ae7db4fe90837315eb1b9f1101509940"
     },
     "assertions": {
       "semantic_coverage": true,
