@@ -1,9 +1,0 @@
-{
-  "challenge_id": "lc_2523",
-  "measurement_note": "Size is R, the inclusive right endpoint. Each interval begins at R / 2, so its width grows with R. The sieve runs in O(R log log R), while independently testing every candidate by trial division requires O(R sqrt R) work in the worst case.",
-  "cases": [
-    {"id": "benchmark-scale-1", "name": "benchmark: right endpoint 1000", "kind": "benchmark", "visible": false, "size": 1000, "input": {"left": 500, "right": 1000}, "expected": [521, 523], "tags": ["benchmark", "scale-small", "trial-division-contrast"]},
-    {"id": "benchmark-scale-2", "name": "benchmark: right endpoint 4000", "kind": "benchmark", "visible": false, "size": 4000, "input": {"left": 2000, "right": 4000}, "expected": [2027, 2029], "tags": ["benchmark", "scale-medium", "trial-division-contrast"]},
-    {"id": "benchmark-scale-3", "name": "benchmark: right endpoint 8000", "kind": "benchmark", "visible": false, "size": 8000, "input": {"left": 4000, "right": 8000}, "expected": [4001, 4003], "tags": ["benchmark", "scale-large", "trial-division-contrast"]}
-  ]
-}

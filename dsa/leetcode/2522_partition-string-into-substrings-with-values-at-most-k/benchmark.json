@@ -1,9 +1,0 @@
-{
-  "challenge_id": "lc_2522",
-  "measurement_note": "Size is n, the string length. All-one strings with k = 1000000000 require maximal nine-digit parts; the greedy scan is O(n), while an exhaustive dynamic program that considers every earlier cut is O(n^2).",
-  "cases": [
-    {"id": "benchmark-scale-1", "name": "benchmark: 32 one-digits", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "11111111111111111111111111111111", "k": 1000000000}, "expected": 4, "tags": ["benchmark", "scale-small", "quadratic-contrast"]},
-    {"id": "benchmark-scale-2", "name": "benchmark: 128 one-digits", "kind": "benchmark", "visible": false, "size": 128, "input": {"s": "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "k": 1000000000}, "expected": 15, "tags": ["benchmark", "scale-medium", "quadratic-contrast"]},
-    {"id": "benchmark-scale-3", "name": "benchmark: 256 one-digits", "kind": "benchmark", "visible": false, "size": 256, "input": {"s": "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111", "k": 1000000000}, "expected": 29, "tags": ["benchmark", "scale-large", "quadratic-contrast"]}
-  ]
-}

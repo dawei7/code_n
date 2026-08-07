@@ -1,8 +1,0 @@
-{
-  "challenge_id": "lc_3289",
-  "cases": [
-    {"id":"benchmark-scan-4","name":"benchmark: four-value range","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 4\na, b = 1, 3\ncase = {'nums': list(range(n)) + [a, b]}\nexpected = [a, b]"},"size":4,"tags":["benchmark","scan"]},
-    {"id":"benchmark-scan-20","name":"benchmark: twenty-value range","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 20\na, b = 6, 13\ncase = {'nums': list(range(n)) + [a, b]}\nexpected = [a, b]"},"size":20,"tags":["benchmark","scan"]},
-    {"id":"benchmark-scan-100","name":"benchmark: maximum legal range","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 100\na, b = 33, 67\ncase = {'nums': list(range(n)) + [a, b]}\nexpected = [a, b]"},"size":100,"tags":["benchmark","scan","boundary"]}
-  ]
-}

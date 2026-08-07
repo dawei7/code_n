@@ -1,8 +1,0 @@
-{
-  "challenge_id": "lc_3290",
-  "cases": [
-    {"id":"benchmark-linear-64","name":"benchmark: increasing sequence of length 64","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 64\ncase = {'a': [1, 1, 1, 1], 'b': list(range(n))}\nexpected = 4 * n - 10"},"size":64,"tags":["benchmark","linear"]},
-    {"id":"benchmark-linear-1024","name":"benchmark: increasing sequence of length 1024","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 1024\ncase = {'a': [1, 1, 1, 1], 'b': list(range(n))}\nexpected = 4 * n - 10"},"size":1024,"tags":["benchmark","linear"]},
-    {"id":"benchmark-linear-16384","name":"benchmark: increasing sequence of length 16384","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 16384\ncase = {'a': [1, 1, 1, 1], 'b': list(range(n))}\nexpected = 4 * n - 10"},"size":16384,"tags":["benchmark","linear"]}
-  ]
-}

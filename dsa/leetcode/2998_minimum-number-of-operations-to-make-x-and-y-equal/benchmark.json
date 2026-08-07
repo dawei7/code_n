@@ -1,5 +1,0 @@
-{"challenge_id":"lc_2998","cases":[
-{"id":"benchmark-distance-400","name":"benchmark: direct increment distance 399","kind":"benchmark","visible":false,"size":400,"input":{"x":1,"y":400},"expected":399,"tags":["benchmark","scaling","target-magnitude","bounded-bfs-baseline"]},
-{"id":"benchmark-distance-2000","name":"benchmark: direct increment distance 1999","kind":"benchmark","visible":false,"size":2000,"input":{"x":1,"y":2000},"expected":1999,"tags":["benchmark","scaling","target-magnitude","bounded-bfs-baseline"]},
-{"id":"benchmark-distance-10000","name":"benchmark: direct increment distance 9999","kind":"benchmark","visible":false,"size":10000,"input":{"x":1,"y":10000},"expected":9999,"tags":["benchmark","scaling","target-magnitude","bounded-bfs-baseline"]}
-]}
