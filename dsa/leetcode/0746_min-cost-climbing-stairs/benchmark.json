@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_746",
+  "measurement_note": "Size is the number of stairs. Equal positive costs keep both jump choices viable at every position: rolling dynamic programming grows linearly, while an unmemoized recursive search repeatedly solves the same suffixes.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 equal-cost stairs", "kind": "benchmark", "visible": false, "size": 2, "input": {"cost": [1, 1]}, "expected": 1, "tags": ["benchmark", "scaling", "branching"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 4 equal-cost stairs", "kind": "benchmark", "visible": false, "size": 4, "input": {"cost": [1, 1, 1, 1]}, "expected": 2, "tags": ["benchmark", "scaling", "branching"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 8 equal-cost stairs", "kind": "benchmark", "visible": false, "size": 8, "input": {"cost": [1, 1, 1, 1, 1, 1, 1, 1]}, "expected": 4, "tags": ["benchmark", "scaling", "branching"]}
+  ]
+}

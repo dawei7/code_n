@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_740",
+  "measurement_note": "Size is the largest value m, which is also the count of consecutive distinct values in each workload. Aggregation followed by value-axis dynamic programming is linear in m; recursively branching between taking and skipping each value without memoization repeats overlapping subproblems exponentially.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: values 1 through 2", "kind": "benchmark", "visible": false, "size": 2, "input": {"nums": [1,2]}, "expected": 2, "tags": ["benchmark", "scaling", "consecutive-values"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: values 1 through 5", "kind": "benchmark", "visible": false, "size": 5, "input": {"nums": [1,2,3,4,5]}, "expected": 9, "tags": ["benchmark", "scaling", "consecutive-values"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: values 1 through 9", "kind": "benchmark", "visible": false, "size": 9, "input": {"nums": [1,2,3,4,5,6,7,8,9]}, "expected": 25, "tags": ["benchmark", "scaling", "consecutive-values"]}
+  ]
+}

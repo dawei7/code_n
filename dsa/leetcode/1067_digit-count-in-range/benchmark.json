@@ -1,0 +1,59 @@
+{
+  "challenge_id": "lc_1067",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: range through one hundred",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "d": 7,
+        "low": 1,
+        "high": 100
+      },
+      "expected": 20,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "range-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: range through one thousand",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "d": 7,
+        "low": 1,
+        "high": 1000
+      },
+      "expected": 300,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "range-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: range through ten thousand",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000,
+      "input": {
+        "d": 7,
+        "low": 1,
+        "high": 10000
+      },
+      "expected": 4000,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "range-enumeration"
+      ]
+    }
+  ]
+}

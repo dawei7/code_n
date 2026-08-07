@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2186",
+  "measurement_note": "Size is the combined input length n+m. Each string consists of a high-letter block followed by an a-block, making insertion sort perform quadratic shifts before a correct merge count. That implementation completes all tiers and fails only by scaling; frequency differences remain linear.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two eight-character reverse-block strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s":"zzzzaaaa","t":"yyyyaaaa"},
+      "expected": 8,
+      "tags": ["benchmark","scale-small","reverse-blocks"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: two thirty-two-character reverse-block strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s":"zzzzzzzzzzzzzzzzaaaaaaaaaaaaaaaa","t":"yyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaa"},
+      "expected": 32,
+      "tags": ["benchmark","scale-medium","reverse-blocks"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reverse-block strings totaling 257 characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 257,
+      "input": {"s":"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","t":"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+      "expected": 129,
+      "tags": ["benchmark","scale-large","reverse-blocks"]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2469",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "The contract supplies one fixed scalar and requires two fixed conversion outputs, so there is no scalable workload and the constant-time upper bound matches the unavoidable constant output work.",
+  "optimality": {
+    "symbol": "q",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Any correct implementation must produce the two-element result, while two fixed arithmetic formulas and one fixed-size array construction use a constant number of operations regardless of the Celsius magnitude."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Producing the required two-element conversion result requires at least one operation, establishing an Omega(1) lower bound."},
+    {"kind":"upper_bound_proof","evidence":"The reference performs one addition, one multiplication plus addition, and one fixed-size array construction for every legal input."},
+    {"kind":"boundary_property_cases","evidence":"Regression evaluates every legal two-decimal Celsius value from 0.00 through 1000.00 against independently written Kelvin and Fahrenheit formulas with the accepted floating-point tolerance."}
+  ]
+}

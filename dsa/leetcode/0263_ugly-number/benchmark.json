@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_263",
+  "measurement_note": "Size is the numeric input; increasing disallowed primes make broad trial division grow while direct stripping tests only 2, 3, and 5.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: disallowed prime 1009",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1009,
+      "input": {
+        "n": 1009
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "prime"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: disallowed prime 10007",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10007,
+      "input": {
+        "n": 10007
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "prime"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: disallowed prime 100003",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100003,
+      "input": {
+        "n": 100003
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "prime"
+      ]
+    }
+  ]
+}

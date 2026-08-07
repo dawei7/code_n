@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_718",
+  "measurement_note": "Size is the common length of the two arrays. Equal-value arrays force every starting pair to match for a long suffix. Dynamic programming examines each index pair once, while independently extending every matching pair repeats those suffix comparisons and adds another factor of size.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: equal arrays of length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums1": [1,1,1,1,1,1,1,1],
+        "nums2": [1,1,1,1,1,1,1,1]
+      },
+      "expected": 8,
+      "tags": ["benchmark", "scaling", "equal-runs"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: equal arrays of length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums1": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "nums2": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+      },
+      "expected": 16,
+      "tags": ["benchmark", "scaling", "equal-runs"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: equal arrays of length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums1": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        "nums2": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+      },
+      "expected": 32,
+      "tags": ["benchmark", "scaling", "equal-runs"]
+    }
+  ]
+}

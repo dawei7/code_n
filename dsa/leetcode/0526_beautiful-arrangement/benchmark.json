@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_526",
+  "measurement_note": "Size is the number of possible used-value masks, 2^n. Memoized bitmask search computes each reachable mask once, while uncached backtracking revisits the same remaining-value state through different valid prefixes.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 64 possible masks for n = 6", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 6}, "expected": 36, "tags": ["benchmark", "scaling", "bitmask"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 256 possible masks for n = 8", "kind": "benchmark", "visible": false, "size": 256, "input": {"n": 8}, "expected": 132, "tags": ["benchmark", "scaling", "bitmask"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 1024 possible masks for n = 10", "kind": "benchmark", "visible": false, "size": 1024, "input": {"n": 10}, "expected": 700, "tags": ["benchmark", "scaling", "bitmask"]}
+  ]
+}

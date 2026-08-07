@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_266",
+  "measurement_note": "Size is string length; all inputs use only lowercase English letters with even counts, so parity toggling is linear while recounting the full string for every position is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 lowercase characters in paired halves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abcdefghijklmnopabcdefghijklmnop"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "lowercase-paired"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 96 lowercase characters in paired halves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "lowercase-paired"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 320 lowercase characters in paired halves",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 320,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "lowercase-paired"
+      ]
+    }
+  ]
+}

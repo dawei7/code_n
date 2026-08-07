@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_794",
+  "measurement_note": "Size is the number of occupied cells on the fixed 3x3 board. Direct count and line checks are constant-time; enumerating all alternating orders of the occupied marks grows factorially in size.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 1 occupied cell", "kind": "benchmark", "visible": false, "size": 1, "input": {"board": ["X  ", "   ", "   "]}, "expected": true, "tags": ["benchmark", "scaling", "reachable"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 2 occupied cells", "kind": "benchmark", "visible": false, "size": 2, "input": {"board": ["XO ", "   ", "   "]}, "expected": true, "tags": ["benchmark", "scaling", "reachable"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 4 occupied cells", "kind": "benchmark", "visible": false, "size": 4, "input": {"board": ["XO ", "XO ", "   "]}, "expected": true, "tags": ["benchmark", "scaling", "reachable"]}
+  ]
+}

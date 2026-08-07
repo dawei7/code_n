@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_59",
+  "measurement_note": "Side lengths grow across the legal output scale; every valid implementation must write n squared cells, while the reviewed boundary fill uses no visited structure beyond the returned matrix.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: side one", "kind": "benchmark", "visible": false, "size": 1, "input": {"n": 1}, "expected": [[1]], "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: side four", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 4}, "expected": null, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: side sixteen", "kind": "benchmark", "visible": false, "size": 16, "input": {"n": 16}, "expected": null, "tags": ["benchmark", "scale-large"]}
+  ]
+}

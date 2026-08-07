@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3753",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(D)",
+  "summary": "The legal endpoints have at most 16 decimal digits, which is too narrow for an honest runtime-scaling verdict; the accepted digit DP visits a constant number of decimal states per position.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 16,
+    "unit": "decimal digits",
+    "source_constraint": "1 <= num1 <= num2 <= 10^15"
+  },
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The accepted memoization has O(D) positions, constant tightness and previous-digit states, and ten transitions per state, establishing O(D) time over the complete legal width bound."},
+    {"kind":"boundary_property_cases","evidence":"The dedicated regression compares the accepted adapter with direct decimal enumeration on sampled prefixes and ranges through one million, then checks full-width singleton and prefix identities."}
+  ]
+}

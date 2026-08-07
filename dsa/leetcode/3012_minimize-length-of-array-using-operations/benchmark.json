@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3012",
+  "cases": [
+    {
+      "id": "benchmark-length-8",
+      "name": "benchmark: eight equal minima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [6, 6, 6, 6, 6, 6, 6, 6]},
+      "expected": 4,
+      "tags": ["benchmark", "scaling", "array-length", "allowed-pairwise-remainder-baseline"]
+    },
+    {
+      "id": "benchmark-length-32",
+      "name": "benchmark: thirty-two equal minima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"nums": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
+      "expected": 16,
+      "tags": ["benchmark", "scaling", "array-length", "allowed-pairwise-remainder-baseline"]
+    },
+    {
+      "id": "benchmark-length-125",
+      "name": "benchmark: one hundred twenty-five equal minima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 125,
+      "input": {"nums": [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6]},
+      "expected": 63,
+      "tags": ["benchmark", "scaling", "array-length", "allowed-pairwise-remainder-baseline"]
+    }
+  ]
+}

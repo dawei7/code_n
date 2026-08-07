@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_140",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(S + n + R)",
+  "summary": "The legal source domain caps the string at 20 characters, every dictionary word at 10 characters, and total returned text at 100000 characters. The candidate bounds every suffix search by the maximum word length and explicitly accounts for all memoized sentence text in R.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 20,
+    "unit": "input string characters",
+    "source_constraint": "The verified source constraints are 1 <= s.length <= 20, 1 <= wordDict[i].length <= 10, and total answer length <= 100000."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Hash-set construction reads S dictionary characters. Each of at most n suffix states tries at most 10 candidate ends, with at most 10 characters sliced and hashed per candidate, so nonoutput search is O(n) on the legal domain. Creating and storing all memoized sentence strings costs O(R), giving O(S + n + R) total time."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover multiple segmentations, word reuse, shared suffixes, and no complete sentence; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

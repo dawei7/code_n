@@ -1,0 +1,5083 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1142",
+  "measurement_note": "Size is the Activity row count R. One user has R distinct sessions; direct per-user grouping scales near linearly, while the calibrated same-user self-join generates R squared qualifying pairs before distinct counting.",
+  "cases": [
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: one user with 64 sessions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 2,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 3,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 4,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 5,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 6,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 7,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 8,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 9,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 10,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 11,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 12,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 13,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 14,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 15,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 16,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 17,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 18,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 19,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 20,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 21,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 22,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 23,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 24,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 25,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 26,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 27,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 28,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 29,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 30,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 31,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 32,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 33,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 34,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 35,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 36,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 37,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 38,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 39,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 40,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 41,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 42,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 43,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 44,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 45,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 46,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 47,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 48,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 49,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 50,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 51,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 52,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 53,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 54,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 55,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 56,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 57,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 58,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 59,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 60,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 61,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 62,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 63,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 64,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            64.0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "same-user-self-join"
+      ]
+    },
+    {
+      "id": "benchmark-scale-256",
+      "name": "benchmark: one user with 256 sessions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 2,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 3,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 4,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 5,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 6,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 7,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 8,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 9,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 10,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 11,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 12,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 13,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 14,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 15,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 16,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 17,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 18,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 19,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 20,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 21,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 22,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 23,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 24,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 25,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 26,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 27,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 28,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 29,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 30,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 31,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 32,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 33,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 34,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 35,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 36,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 37,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 38,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 39,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 40,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 41,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 42,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 43,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 44,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 45,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 46,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 47,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 48,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 49,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 50,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 51,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 52,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 53,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 54,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 55,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 56,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 57,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 58,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 59,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 60,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 61,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 62,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 63,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 64,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 65,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 66,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 67,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 68,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 69,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 70,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 71,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 72,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 73,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 74,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 75,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 76,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 77,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 78,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 79,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 80,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 81,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 82,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 83,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 84,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 85,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 86,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 87,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 88,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 89,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 90,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 91,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 92,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 93,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 94,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 95,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 96,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 97,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 98,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 99,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 100,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 101,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 102,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 103,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 104,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 105,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 106,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 107,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 108,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 109,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 110,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 111,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 112,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 113,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 114,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 115,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 116,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 117,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 118,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 119,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 120,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 121,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 122,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 123,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 124,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 125,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 126,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 127,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 128,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 129,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 130,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 131,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 132,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 133,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 134,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 135,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 136,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 137,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 138,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 139,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 140,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 141,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 142,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 143,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 144,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 145,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 146,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 147,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 148,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 149,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 150,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 151,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 152,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 153,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 154,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 155,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 156,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 157,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 158,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 159,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 160,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 161,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 162,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 163,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 164,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 165,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 166,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 167,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 168,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 169,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 170,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 171,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 172,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 173,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 174,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 175,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 176,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 177,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 178,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 179,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 180,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 181,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 182,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 183,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 184,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 185,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 186,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 187,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 188,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 189,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 190,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 191,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 192,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 193,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 194,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 195,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 196,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 197,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 198,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 199,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 200,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 201,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 202,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 203,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 204,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 205,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 206,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 207,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 208,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 209,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 210,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 211,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 212,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 213,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 214,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 215,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 216,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 217,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 218,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 219,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 220,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 221,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 222,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 223,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 224,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 225,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 226,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 227,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 228,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 229,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 230,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 231,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 232,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 233,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 234,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 235,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 236,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 237,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 238,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 239,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 240,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 241,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 242,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 243,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 244,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 245,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 246,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 247,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 248,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 249,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 250,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 251,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 252,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 253,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 254,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 255,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 256,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            256.0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "same-user-self-join"
+      ]
+    },
+    {
+      "id": "benchmark-scale-512",
+      "name": "benchmark: one user with 512 sessions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Activity": [
+            {
+              "user_id": 1,
+              "session_id": 1,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 2,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 3,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 4,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 5,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 6,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 7,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 8,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 9,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 10,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 11,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 12,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 13,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 14,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 15,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 16,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 17,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 18,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 19,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 20,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 21,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 22,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 23,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 24,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 25,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 26,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 27,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 28,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 29,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 30,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 31,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 32,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 33,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 34,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 35,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 36,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 37,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 38,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 39,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 40,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 41,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 42,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 43,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 44,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 45,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 46,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 47,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 48,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 49,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 50,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 51,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 52,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 53,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 54,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 55,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 56,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 57,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 58,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 59,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 60,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 61,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 62,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 63,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 64,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 65,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 66,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 67,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 68,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 69,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 70,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 71,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 72,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 73,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 74,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 75,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 76,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 77,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 78,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 79,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 80,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 81,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 82,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 83,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 84,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 85,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 86,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 87,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 88,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 89,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 90,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 91,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 92,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 93,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 94,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 95,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 96,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 97,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 98,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 99,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 100,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 101,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 102,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 103,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 104,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 105,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 106,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 107,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 108,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 109,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 110,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 111,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 112,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 113,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 114,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 115,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 116,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 117,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 118,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 119,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 120,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 121,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 122,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 123,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 124,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 125,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 126,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 127,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 128,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 129,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 130,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 131,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 132,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 133,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 134,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 135,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 136,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 137,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 138,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 139,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 140,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 141,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 142,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 143,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 144,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 145,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 146,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 147,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 148,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 149,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 150,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 151,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 152,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 153,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 154,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 155,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 156,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 157,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 158,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 159,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 160,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 161,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 162,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 163,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 164,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 165,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 166,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 167,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 168,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 169,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 170,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 171,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 172,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 173,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 174,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 175,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 176,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 177,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 178,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 179,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 180,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 181,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 182,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 183,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 184,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 185,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 186,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 187,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 188,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 189,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 190,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 191,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 192,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 193,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 194,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 195,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 196,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 197,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 198,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 199,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 200,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 201,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 202,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 203,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 204,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 205,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 206,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 207,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 208,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 209,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 210,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 211,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 212,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 213,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 214,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 215,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 216,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 217,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 218,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 219,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 220,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 221,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 222,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 223,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 224,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 225,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 226,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 227,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 228,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 229,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 230,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 231,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 232,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 233,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 234,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 235,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 236,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 237,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 238,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 239,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 240,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 241,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 242,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 243,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 244,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 245,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 246,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 247,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 248,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 249,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 250,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 251,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 252,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 253,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 254,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 255,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 256,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 257,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 258,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 259,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 260,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 261,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 262,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 263,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 264,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 265,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 266,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 267,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 268,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 269,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 270,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 271,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 272,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 273,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 274,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 275,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 276,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 277,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 278,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 279,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 280,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 281,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 282,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 283,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 284,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 285,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 286,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 287,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 288,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 289,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 290,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 291,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 292,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 293,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 294,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 295,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 296,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 297,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 298,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 299,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 300,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 301,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 302,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 303,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 304,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 305,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 306,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 307,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 308,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 309,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 310,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 311,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 312,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 313,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 314,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 315,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 316,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 317,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 318,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 319,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 320,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 321,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 322,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 323,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 324,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 325,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 326,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 327,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 328,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 329,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 330,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 331,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 332,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 333,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 334,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 335,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 336,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 337,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 338,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 339,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 340,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 341,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 342,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 343,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 344,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 345,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 346,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 347,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 348,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 349,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 350,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 351,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 352,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 353,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 354,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 355,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 356,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 357,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 358,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 359,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 360,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 361,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 362,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 363,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 364,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 365,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 366,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 367,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 368,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 369,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 370,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 371,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 372,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 373,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 374,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 375,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 376,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 377,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 378,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 379,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 380,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 381,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 382,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 383,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 384,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 385,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 386,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 387,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 388,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 389,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 390,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 391,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 392,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 393,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 394,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 395,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 396,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 397,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 398,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 399,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 400,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 401,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 402,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 403,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 404,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 405,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 406,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 407,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 408,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 409,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 410,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 411,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 412,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 413,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 414,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 415,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 416,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 417,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 418,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 419,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 420,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 421,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 422,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 423,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 424,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 425,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 426,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 427,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 428,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 429,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 430,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 431,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 432,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 433,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 434,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 435,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 436,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 437,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 438,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 439,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 440,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 441,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 442,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 443,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 444,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 445,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 446,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 447,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 448,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 449,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 450,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 451,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 452,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 453,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 454,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 455,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 456,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 457,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 458,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 459,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 460,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 461,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 462,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 463,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 464,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 465,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 466,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 467,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 468,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 469,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 470,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 471,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 472,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 473,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 474,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 475,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 476,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 477,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 478,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 479,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 480,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 481,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 482,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 483,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 484,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 485,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 486,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 487,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 488,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 489,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 490,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 491,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 492,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 493,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 494,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 495,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 496,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 497,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 498,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 499,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 500,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 501,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 502,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 503,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 504,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 505,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 506,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 507,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 508,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 509,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 510,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 511,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            },
+            {
+              "user_id": 1,
+              "session_id": 512,
+              "activity_date": "2019-07-20",
+              "activity_type": "open_session"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "average_sessions_per_user"
+        ],
+        "rows": [
+          [
+            512.0
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "same-user-self-join"
+      ]
+    }
+  ]
+}

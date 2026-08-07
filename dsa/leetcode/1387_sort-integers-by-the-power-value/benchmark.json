@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1387",
+  "measurement_note": "Size is R, the number of consecutive integers from 1 through hi. The memoized reference evaluates shared Collatz suffixes once and sorts cached keys in O(U + R log R) time. A correct slower implementation computes every starting integer's complete power independently without reusing shared suffixes; the 100/300/600-value tiers complete normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: rank 66 among 1 through 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "lo": 1,
+        "hi": 100,
+        "k": 66
+      },
+      "expected": 49,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "collatz-comparisons"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: rank 200 among 1 through 300",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 300,
+      "input": {
+        "lo": 1,
+        "hi": 300,
+        "k": 200
+      },
+      "expected": 123,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "collatz-comparisons"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: rank 400 among 1 through 600",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 600,
+      "input": {
+        "lo": 1,
+        "hi": 600,
+        "k": 400
+      },
+      "expected": 519,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "collatz-comparisons"
+      ]
+    }
+  ]
+}

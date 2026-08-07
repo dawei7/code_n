@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1732",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The legal input contains at most 100 gains, which is too small to separate linear and quadratic Python implementations through an honest runtime trend.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 100,
+    "unit": "route segments",
+    "source_constraint": "gain contains from 1 through 100 integers"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference performs exactly one running-sum update and one maximum comparison for each of at most 100 gains."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover both public examples, single-segment value boundaries, all-zero gains, an interior peak, a final peak, recovery to zero, repeated peaks, and the maximum length."
+    }
+  ]
+}

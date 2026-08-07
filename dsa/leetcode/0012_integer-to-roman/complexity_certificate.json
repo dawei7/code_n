@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_12",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete source domain is the fixed interval from 1 through 3,999, and every canonical Roman numeral has bounded length, so runtime scaling cannot provide an honest asymptotic verdict.",
+  "workload_bound": {
+    "symbol": "num",
+    "maximum": 3999,
+    "unit": "integer value",
+    "source_constraint": "The source contract requires 1 <= num <= 3999."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The current solution performs exactly 13 denomination iterations, emits at most 15 Roman symbols for any legal input, and stores only a fixed table and bounded result fragments."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "An independent digit-place lookup oracle checks every integer from 1 through 3,999 against both the app-local and immutable native implementations and verifies every authored expected result."
+    }
+  ]
+}

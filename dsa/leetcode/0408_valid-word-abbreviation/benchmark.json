@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_408",
+  "measurement_note": "Size is the common word and literal-abbreviation length, within the public abbreviation bound. Index pointers scan each character once, while consuming each token by explicitly copying both remaining suffixes repeats work and grows quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: validate 2 literal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "word": "aa",
+        "abbr": "aa"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "literal"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: validate 5 literal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "word": "aaaaa",
+        "abbr": "aaaaa"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "literal"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: validate 10 literal characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "word": "aaaaaaaaaa",
+        "abbr": "aaaaaaaaaa"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "literal"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1677",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(I + P \\log P)",
+  "summary": "Every invoice can change an exact product total, every product must appear, and arbitrary unique names must be ordered; the left join, grouped aggregation, and final sort match the resulting input and comparison-order lower bound.",
+  "optimality": {
+    "symbol": "I, P",
+    "lower_bound": "Omega(I + P log P)",
+    "upper_bound": "O(I + P log P)",
+    "argument": "Inspecting all I invoices is necessary because any amount can change a required total, while emitting P products in ascending order by arbitrary unique names has an Omega(P log P) comparison lower bound without a name index. Hash joining and aggregation take O(I + P) expected work, and sorting the P groups takes O(P log P)."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Any invoice amount may alter one output aggregate, and arbitrary unique product names require comparison ordering of all P result rows."},
+    {"kind":"upper_bound_proof","evidence":"A hash left join plus grouped sums processes each input row once, retains P group states, and a final comparison sort orders those groups."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, products without invoices, zero-valued invoices, mixed empty and invoiced products, independent amount columns, identifier gaps, row-order independence, and required name ordering."}
+  ]
+}

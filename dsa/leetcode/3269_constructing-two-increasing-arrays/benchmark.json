@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3269",
+  "measurement_note": "Total position count t = n + m is the workload size, with the two arrays kept nearly balanced. Mixed parity patterns force both transition choices; prefix dynamic programming is quadratic in t for balanced arrays, while enumerating every valid interleaving grows combinatorially.",
+  "cases": [
+    {
+      "id": "benchmark-interleavings-scale-1",
+      "name": "benchmark: 3 total parity positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "nums1": [
+          0
+        ],
+        "nums2": [
+          1,
+          0
+        ]
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-interleavings-scale-2",
+      "name": "benchmark: 6 total parity positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {
+        "nums1": [
+          0,
+          0,
+          0
+        ],
+        "nums2": [
+          1,
+          0,
+          1
+        ]
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-interleavings-scale-3",
+      "name": "benchmark: 12 total parity positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "nums1": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "nums2": [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "expected": 18,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

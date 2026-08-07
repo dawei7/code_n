@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3366",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: all five choices at n=1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1,
+      "input": {"nums": [10], "k": 5, "op1": 1, "op2": 1},
+      "expected": 0,
+      "tags": ["benchmark", "scale-small", "exhaustive-assignment-baseline"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: all five choices at n=3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {"nums": [10, 11, 12], "k": 5, "op1": 3, "op2": 3},
+      "expected": 2,
+      "tags": ["benchmark", "scale-medium", "exhaustive-assignment-baseline"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: all five choices at n=6",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [10, 11, 12, 13, 14, 15], "k": 5, "op1": 6, "op2": 6},
+      "expected": 9,
+      "tags": ["benchmark", "scale-large", "exhaustive-assignment-baseline"]
+    }
+  ]
+}

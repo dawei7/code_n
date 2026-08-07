@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2777",
+  "measurement_note": "Size is k, the number of yielded dates, with step fixed at one day. The optimal generator updates one UTC timestamp per yield. A correct slower implementation that restarts at the first date and advances i days to derive the ith output performs quadratic date updates.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 128 daily dates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"start": "2020-01-01", "end": "2020-05-07", "step": 1, "summary": true},
+      "expected": {"count": 128, "first": "2020-01-01", "last": "2020-05-07"},
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 512 daily dates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"start": "2020-01-01", "end": "2021-05-26", "step": 1, "summary": true},
+      "expected": {"count": 512, "first": "2020-01-01", "last": "2021-05-26"},
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: complete legal 1501-date range",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1501,
+      "input": {"start": "2020-01-01", "end": "2024-02-09", "step": 1, "summary": true},
+      "expected": {"count": 1501, "first": "2020-01-01", "last": "2024-02-09"},
+      "tags": ["benchmark", "scale-large", "maximum-span"]
+    }
+  ]
+}

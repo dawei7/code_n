@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_753",
+  "measurement_note": "Size is k^n, the number of password edges that every valid output must cover. Integer Hierholzer traversal visits each edge once. A string-based traversal that stores visited passwords in a list performs linear membership scans and grows quadratically in size.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 binary password edges", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 2, "k": 2}, "expected": "01100", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["benchmark", "scaling", "eulerian"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 quaternary password edges", "kind": "benchmark", "visible": false, "size": 16, "input": {"n": 2, "k": 4}, "expected": "03322312113020100", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["benchmark", "scaling", "eulerian"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 64 octal password edges", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 2, "k": 8}, "expected": "07766756557464544736353433726252423227161514131211706050403020100", "validator": {"kind": "de_bruijn_sequence"}, "tags": ["benchmark", "scaling", "eulerian"]}
+  ]
+}

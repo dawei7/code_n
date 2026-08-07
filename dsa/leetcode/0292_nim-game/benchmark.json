@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_292",
+  "measurement_note": "Size is pile size. The modular invariant is constant-time while tabulating every preceding game state grows linearly.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: pile n=2000", "kind": "benchmark", "visible": false, "size": 2000, "input": {"n": 2000}, "expected": false, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: pile n=8000", "kind": "benchmark", "visible": false, "size": 8000, "input": {"n": 8000}, "expected": false, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: pile n=32000", "kind": "benchmark", "visible": false, "size": 32000, "input": {"n": 32000}, "expected": false, "tags": ["benchmark", "scale-large"]}
+  ]
+}

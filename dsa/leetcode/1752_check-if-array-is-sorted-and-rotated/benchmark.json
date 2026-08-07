@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1752",
+  "measurement_note": "Size is n, the array length. Each tier swaps only the final ascending pair, placing one descent near the end and the second at the circular boundary, so the accepted O(n) scan examines the full array. No rotation of the sorted copy matches; a correct implementation that checks all n rotations with n explicit comparisons completes all legal tiers and is rejected by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 6 values with a swapped tail",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [1, 2, 3, 4, 6, 5]},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "multiple-descents"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24 values with a swapped tail",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 23]},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "multiple-descents"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 96 values with a swapped tail",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {"nums": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,96,95]},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "multiple-descents"]
+    }
+  ]
+}

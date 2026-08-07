@@ -1,0 +1,55 @@
+{
+  "challenge_id": "lc_3168",
+  "measurement_note": "Size is the number n of waiting-room events. All events are entries, so a repeated-capacity simulation must test every candidate chair count through n, while the optimal occupancy scan remains linear.",
+  "cases": [
+    {
+      "id": "benchmark-minimum-chairs-8",
+      "name": "benchmark: 8 consecutive entries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "s": "EEEEEEEE"
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "all-entries",
+        "repeated-capacity-trials"
+      ]
+    },
+    {
+      "id": "benchmark-minimum-chairs-24",
+      "name": "benchmark: 24 consecutive entries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "s": "EEEEEEEEEEEEEEEEEEEEEEEE"
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "all-entries",
+        "repeated-capacity-trials"
+      ]
+    },
+    {
+      "id": "benchmark-minimum-chairs-50",
+      "name": "benchmark: 50 consecutive entries",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "s": "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+      },
+      "expected": 50,
+      "tags": [
+        "benchmark",
+        "all-entries",
+        "repeated-capacity-trials"
+      ]
+    }
+  ]
+}
+

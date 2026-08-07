@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2078",
+  "measurement_note": "Size is n, the number of houses. Every tier has matching endpoint colors and one central outlier, so the linear reference must inspect the whole array and the answer depends on an endpoint comparison. A correct implementation that tests every index pair completes all legal tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 houses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"colors": [1, 1, 2, 1]},
+      "expected": 2,
+      "tags": ["benchmark", "scale-small", "all-pairs"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 20 houses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "colors": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      },
+      "expected": 10,
+      "tags": ["benchmark", "scale-medium", "all-pairs"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 houses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "colors": [
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          2,
+          1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ]
+      },
+      "expected": 50,
+      "tags": ["benchmark", "scale-large", "all-pairs"]
+    }
+  ]
+}

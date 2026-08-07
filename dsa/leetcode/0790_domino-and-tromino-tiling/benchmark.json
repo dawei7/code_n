@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_790",
+  "measurement_note": "Size is the board width. Rolling recurrence evaluation takes O(size); recomputing the recurrence from its bases for every prefix width takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: width 4", "kind": "benchmark", "visible": false, "size": 4, "input": {"n": 4}, "expected": 11, "tags": ["benchmark", "scaling", "recurrence"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: width 16", "kind": "benchmark", "visible": false, "size": 16, "input": {"n": 16}, "expected": 144467, "tags": ["benchmark", "scaling", "recurrence"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: width 24", "kind": "benchmark", "visible": false, "size": 24, "input": {"n": 24}, "expected": 80897393, "tags": ["benchmark", "scaling", "recurrence"]}
+  ]
+}

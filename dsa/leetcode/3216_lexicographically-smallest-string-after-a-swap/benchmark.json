@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3216",
+  "cases": [
+    {
+      "id": "benchmark-adjacent-swap-scale-1",
+      "name": "benchmark: inspect 16 descending even digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "8642086420864208"},
+      "expected": "6842086420864208",
+      "tags": ["benchmark", "same-parity", "scale-1"]
+    },
+    {
+      "id": "benchmark-adjacent-swap-scale-2",
+      "name": "benchmark: inspect 40 descending even digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"s": "8642086420864208642086420864208642086420"},
+      "expected": "6842086420864208642086420864208642086420",
+      "tags": ["benchmark", "same-parity", "scale-2"]
+    },
+    {
+      "id": "benchmark-adjacent-swap-scale-3",
+      "name": "benchmark: inspect 100 descending even digits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {"s": "8642086420864208642086420864208642086420864208642086420864208642086420864208642086420864208642086420"},
+      "expected": "6842086420864208642086420864208642086420864208642086420864208642086420864208642086420864208642086420",
+      "tags": ["benchmark", "same-parity", "scale-3"]
+    }
+  ]
+}

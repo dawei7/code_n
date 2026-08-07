@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_738",
+  "measurement_note": "Size is the decimal digit count. Each input has a final zero after a run of ones, forcing the repair to cascade across the prefix. A single right-to-left scan is linear; restarting a left-to-right scan after every propagated decrement is quadratic in the digit count.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2-digit cascade", "kind": "benchmark", "visible": false, "size": 2, "input": {"n": 10}, "expected": 9, "tags": ["benchmark", "scaling", "cascade"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 5-digit cascade", "kind": "benchmark", "visible": false, "size": 5, "input": {"n": 11110}, "expected": 9999, "tags": ["benchmark", "scaling", "cascade"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 9-digit cascade", "kind": "benchmark", "visible": false, "size": 9, "input": {"n": 111111110}, "expected": 99999999, "tags": ["benchmark", "scaling", "cascade"]}
+  ]
+}

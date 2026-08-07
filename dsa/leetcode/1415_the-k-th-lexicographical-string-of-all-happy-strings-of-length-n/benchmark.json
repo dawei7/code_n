@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1415",
+  "measurement_note": "Size is n, the requested string length. The ranks 4, 25, and 100 increase with n and force lexicographic generation to construct progressively more earlier strings; the 2/5/10 tiers span 5x. Block unranking takes O(n) time independent of k. Correct ordered backtracking through the requested rank takes O(kn) time and completes normally within the full legal domain.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: length 2, rank 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "n": 2,
+        "k": 4
+      },
+      "expected": "bc",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "unranking"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: length 5, rank 25",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "n": 5,
+        "k": 25
+      },
+      "expected": "bcaba",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "unranking"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: length 10, rank 100",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "n": 10,
+        "k": 100
+      },
+      "expected": "abacbabacb",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "unranking"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_120",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N)",
+  "summary": "Every triangle cell can affect the minimum path sum, so a correct algorithm must inspect all N cells in the worst case. The bottom-up recurrence processes each cell once.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N)",
+    "upper_bound": "O(N)",
+    "argument": "Every cell belongs to at least one valid top-to-bottom path. If an algorithm does not inspect some cell, an adversary can lower that cell enough to make a path through it uniquely optimal without changing any inspected value. Therefore exact computation requires Omega(N) cell inspections in the worst case. The current algorithm copies the bottom row and evaluates every remaining cell once, giving O(N) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An unseen cell can be changed within the value domain so that a path containing it becomes the unique minimum, forcing worst-case inspection of all N cells."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The bottom-up dynamic program reads each triangle cell once and performs constant work for it."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a multirow choice structure and the one-cell minimum; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

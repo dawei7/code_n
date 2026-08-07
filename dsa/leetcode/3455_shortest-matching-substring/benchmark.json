@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3455",
+  "measurement_note": "Size is n = |s|, the legal text length. Tiers 33, 129, and 513 span more than 15x. Each text is a long run of 'a' followed by 'b', while the first literal block is half that run followed by 'b' and the other two blocks are empty. KMP processes the repetitive near-matches in linear time; a correct occurrence finder that compares the literal explicitly at every text position is quadratic and must finish every output but fail scaling.",
+  "cases": [
+    {
+      "id": "benchmark-repetitive-33",
+      "name": "benchmark: repetitive text of length 33",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 33,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "p": "aaaaaaaaaaaaaaaab**"
+      },
+      "expected": 17,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-repetitive-129",
+      "name": "benchmark: repetitive text of length 129",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 129,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "p": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab**"
+      },
+      "expected": 65,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-repetitive-513",
+      "name": "benchmark: repetitive text of length 513",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 513,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab",
+        "p": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab**"
+      },
+      "expected": 257,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

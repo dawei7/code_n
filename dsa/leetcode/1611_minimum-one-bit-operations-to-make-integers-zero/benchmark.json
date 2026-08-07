@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1611",
+  "measurement_note": "Size is b, the bit length of n. The legal 2/8/30-bit tiers span the supported domain. The Accepted suffix-XOR method and an independent highest-bit recurrence take O(b)=O(log n) time. A correct implementation that independently recomputes each binary output bit from its Gray-code suffix takes O(b^2), completes every correctness case and tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: inverse Gray code for 2-bit input",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "n": 3
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "bit-length"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: inverse Gray code for 8-bit input",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 255
+      },
+      "expected": 170,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "bit-length"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: inverse Gray code for 30-bit input",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 30,
+      "input": {
+        "n": 1000000000
+      },
+      "expected": 756249599,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "bit-length"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3898",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N^2)",
+  "summary": "Every independently selectable undirected-edge indicator can change the requested degree vector, and the accepted row scan visits the quadratic adjacency-matrix input once, so its upper bound matches the problem-level lower bound.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N^2)",
+    "upper_bound": "O(N^2)",
+    "argument": "The upper triangle contains N(N-1)/2 independent edge indicators, and changing any one changes the degrees of its two endpoints; an exact algorithm must determine all of them, while summing every row performs constant work per matrix entry."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "If one upper-triangle edge indicator were not determined, toggling only that edge would change two required output entries without being detected, establishing Omega(N^2)."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The accepted implementation sums each of the N rows once and processes each of the N^2 binary entries exactly once, establishing O(N^2) time."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression compares both exact packaged sources with an independent upper-triangle edge oracle over every simple graph through N=6, deterministic random legal graphs, all authored cases, and maximum-size empty, complete, path, and star graphs."
+    }
+  ]
+}

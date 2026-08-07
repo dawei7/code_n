@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2071",
+  "measurement_note": "Size is R = min(n, m), with all task requirements and worker strengths zero and no pills. Each feasibility check immediately queues every selected task and then uses only unboosted front removals. The reference deque removes fronts in constant time. A correct implementation that explicitly shifts a linear list for every front removal completes all tiers and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id":"benchmark-scale-1","name":"benchmark: 16 zero tasks and workers","kind":"benchmark","visible":false,"size":16,
+      "input":{"tasks":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"workers":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"pills":0,"strength":0},
+      "expected":16,
+      "tags":["benchmark","scale-small","linear-front-removal"]
+    },
+    {
+      "id":"benchmark-scale-2","name":"benchmark: 64 zero tasks and workers","kind":"benchmark","visible":false,"size":64,
+      "input":{"tasks":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"workers":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"pills":0,"strength":0},
+      "expected":64,
+      "tags":["benchmark","scale-medium","linear-front-removal"]
+    },
+    {
+      "id":"benchmark-scale-3","name":"benchmark: 173 assignable zero pairs","kind":"benchmark","visible":false,"size":173,
+      "input":{"tasks":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"workers":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"pills":0,"strength":0},
+      "expected":173,
+      "tags":["benchmark","scale-large","linear-front-removal"]
+    }
+  ]
+}

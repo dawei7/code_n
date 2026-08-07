@@ -1,0 +1,5806 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1581",
+  "measurement_note": "Size is V, the Visits row count; each tier has V distinct customers and V/2 transaction rows attached to the first half of visits. The Accepted left anti-join and an independent uncorrelated NOT IN materialization have an O((V+T) log(V+T)) portable bound. A correct correlated COUNT subquery rescans Transactions for every visit, performs O(VT) work, completes all 32/128/512 tiers, and is rejected only by scaling. An unindexed correlated NOT EXISTS draft also exhibited slower growth and was rejected as the independent passing candidate.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 visits with half unmatched",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 1
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 2
+            },
+            {
+              "visit_id": 3,
+              "customer_id": 3
+            },
+            {
+              "visit_id": 4,
+              "customer_id": 4
+            },
+            {
+              "visit_id": 5,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 6,
+              "customer_id": 6
+            },
+            {
+              "visit_id": 7,
+              "customer_id": 7
+            },
+            {
+              "visit_id": 8,
+              "customer_id": 8
+            },
+            {
+              "visit_id": 9,
+              "customer_id": 9
+            },
+            {
+              "visit_id": 10,
+              "customer_id": 10
+            },
+            {
+              "visit_id": 11,
+              "customer_id": 11
+            },
+            {
+              "visit_id": 12,
+              "customer_id": 12
+            },
+            {
+              "visit_id": 13,
+              "customer_id": 13
+            },
+            {
+              "visit_id": 14,
+              "customer_id": 14
+            },
+            {
+              "visit_id": 15,
+              "customer_id": 15
+            },
+            {
+              "visit_id": 16,
+              "customer_id": 16
+            },
+            {
+              "visit_id": 17,
+              "customer_id": 17
+            },
+            {
+              "visit_id": 18,
+              "customer_id": 18
+            },
+            {
+              "visit_id": 19,
+              "customer_id": 19
+            },
+            {
+              "visit_id": 20,
+              "customer_id": 20
+            },
+            {
+              "visit_id": 21,
+              "customer_id": 21
+            },
+            {
+              "visit_id": 22,
+              "customer_id": 22
+            },
+            {
+              "visit_id": 23,
+              "customer_id": 23
+            },
+            {
+              "visit_id": 24,
+              "customer_id": 24
+            },
+            {
+              "visit_id": 25,
+              "customer_id": 25
+            },
+            {
+              "visit_id": 26,
+              "customer_id": 26
+            },
+            {
+              "visit_id": 27,
+              "customer_id": 27
+            },
+            {
+              "visit_id": 28,
+              "customer_id": 28
+            },
+            {
+              "visit_id": 29,
+              "customer_id": 29
+            },
+            {
+              "visit_id": 30,
+              "customer_id": 30
+            },
+            {
+              "visit_id": 31,
+              "customer_id": 31
+            },
+            {
+              "visit_id": 32,
+              "customer_id": 32
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 1
+            },
+            {
+              "transaction_id": 2,
+              "visit_id": 2,
+              "amount": 1
+            },
+            {
+              "transaction_id": 3,
+              "visit_id": 3,
+              "amount": 1
+            },
+            {
+              "transaction_id": 4,
+              "visit_id": 4,
+              "amount": 1
+            },
+            {
+              "transaction_id": 5,
+              "visit_id": 5,
+              "amount": 1
+            },
+            {
+              "transaction_id": 6,
+              "visit_id": 6,
+              "amount": 1
+            },
+            {
+              "transaction_id": 7,
+              "visit_id": 7,
+              "amount": 1
+            },
+            {
+              "transaction_id": 8,
+              "visit_id": 8,
+              "amount": 1
+            },
+            {
+              "transaction_id": 9,
+              "visit_id": 9,
+              "amount": 1
+            },
+            {
+              "transaction_id": 10,
+              "visit_id": 10,
+              "amount": 1
+            },
+            {
+              "transaction_id": 11,
+              "visit_id": 11,
+              "amount": 1
+            },
+            {
+              "transaction_id": 12,
+              "visit_id": 12,
+              "amount": 1
+            },
+            {
+              "transaction_id": 13,
+              "visit_id": 13,
+              "amount": 1
+            },
+            {
+              "transaction_id": 14,
+              "visit_id": 14,
+              "amount": 1
+            },
+            {
+              "transaction_id": 15,
+              "visit_id": 15,
+              "amount": 1
+            },
+            {
+              "transaction_id": 16,
+              "visit_id": 16,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            17,
+            1
+          ],
+          [
+            18,
+            1
+          ],
+          [
+            19,
+            1
+          ],
+          [
+            20,
+            1
+          ],
+          [
+            21,
+            1
+          ],
+          [
+            22,
+            1
+          ],
+          [
+            23,
+            1
+          ],
+          [
+            24,
+            1
+          ],
+          [
+            25,
+            1
+          ],
+          [
+            26,
+            1
+          ],
+          [
+            27,
+            1
+          ],
+          [
+            28,
+            1
+          ],
+          [
+            29,
+            1
+          ],
+          [
+            30,
+            1
+          ],
+          [
+            31,
+            1
+          ],
+          [
+            32,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "distinct-customers",
+        "correlated-rescan",
+        "visits-32"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 visits with half unmatched",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 1
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 2
+            },
+            {
+              "visit_id": 3,
+              "customer_id": 3
+            },
+            {
+              "visit_id": 4,
+              "customer_id": 4
+            },
+            {
+              "visit_id": 5,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 6,
+              "customer_id": 6
+            },
+            {
+              "visit_id": 7,
+              "customer_id": 7
+            },
+            {
+              "visit_id": 8,
+              "customer_id": 8
+            },
+            {
+              "visit_id": 9,
+              "customer_id": 9
+            },
+            {
+              "visit_id": 10,
+              "customer_id": 10
+            },
+            {
+              "visit_id": 11,
+              "customer_id": 11
+            },
+            {
+              "visit_id": 12,
+              "customer_id": 12
+            },
+            {
+              "visit_id": 13,
+              "customer_id": 13
+            },
+            {
+              "visit_id": 14,
+              "customer_id": 14
+            },
+            {
+              "visit_id": 15,
+              "customer_id": 15
+            },
+            {
+              "visit_id": 16,
+              "customer_id": 16
+            },
+            {
+              "visit_id": 17,
+              "customer_id": 17
+            },
+            {
+              "visit_id": 18,
+              "customer_id": 18
+            },
+            {
+              "visit_id": 19,
+              "customer_id": 19
+            },
+            {
+              "visit_id": 20,
+              "customer_id": 20
+            },
+            {
+              "visit_id": 21,
+              "customer_id": 21
+            },
+            {
+              "visit_id": 22,
+              "customer_id": 22
+            },
+            {
+              "visit_id": 23,
+              "customer_id": 23
+            },
+            {
+              "visit_id": 24,
+              "customer_id": 24
+            },
+            {
+              "visit_id": 25,
+              "customer_id": 25
+            },
+            {
+              "visit_id": 26,
+              "customer_id": 26
+            },
+            {
+              "visit_id": 27,
+              "customer_id": 27
+            },
+            {
+              "visit_id": 28,
+              "customer_id": 28
+            },
+            {
+              "visit_id": 29,
+              "customer_id": 29
+            },
+            {
+              "visit_id": 30,
+              "customer_id": 30
+            },
+            {
+              "visit_id": 31,
+              "customer_id": 31
+            },
+            {
+              "visit_id": 32,
+              "customer_id": 32
+            },
+            {
+              "visit_id": 33,
+              "customer_id": 33
+            },
+            {
+              "visit_id": 34,
+              "customer_id": 34
+            },
+            {
+              "visit_id": 35,
+              "customer_id": 35
+            },
+            {
+              "visit_id": 36,
+              "customer_id": 36
+            },
+            {
+              "visit_id": 37,
+              "customer_id": 37
+            },
+            {
+              "visit_id": 38,
+              "customer_id": 38
+            },
+            {
+              "visit_id": 39,
+              "customer_id": 39
+            },
+            {
+              "visit_id": 40,
+              "customer_id": 40
+            },
+            {
+              "visit_id": 41,
+              "customer_id": 41
+            },
+            {
+              "visit_id": 42,
+              "customer_id": 42
+            },
+            {
+              "visit_id": 43,
+              "customer_id": 43
+            },
+            {
+              "visit_id": 44,
+              "customer_id": 44
+            },
+            {
+              "visit_id": 45,
+              "customer_id": 45
+            },
+            {
+              "visit_id": 46,
+              "customer_id": 46
+            },
+            {
+              "visit_id": 47,
+              "customer_id": 47
+            },
+            {
+              "visit_id": 48,
+              "customer_id": 48
+            },
+            {
+              "visit_id": 49,
+              "customer_id": 49
+            },
+            {
+              "visit_id": 50,
+              "customer_id": 50
+            },
+            {
+              "visit_id": 51,
+              "customer_id": 51
+            },
+            {
+              "visit_id": 52,
+              "customer_id": 52
+            },
+            {
+              "visit_id": 53,
+              "customer_id": 53
+            },
+            {
+              "visit_id": 54,
+              "customer_id": 54
+            },
+            {
+              "visit_id": 55,
+              "customer_id": 55
+            },
+            {
+              "visit_id": 56,
+              "customer_id": 56
+            },
+            {
+              "visit_id": 57,
+              "customer_id": 57
+            },
+            {
+              "visit_id": 58,
+              "customer_id": 58
+            },
+            {
+              "visit_id": 59,
+              "customer_id": 59
+            },
+            {
+              "visit_id": 60,
+              "customer_id": 60
+            },
+            {
+              "visit_id": 61,
+              "customer_id": 61
+            },
+            {
+              "visit_id": 62,
+              "customer_id": 62
+            },
+            {
+              "visit_id": 63,
+              "customer_id": 63
+            },
+            {
+              "visit_id": 64,
+              "customer_id": 64
+            },
+            {
+              "visit_id": 65,
+              "customer_id": 65
+            },
+            {
+              "visit_id": 66,
+              "customer_id": 66
+            },
+            {
+              "visit_id": 67,
+              "customer_id": 67
+            },
+            {
+              "visit_id": 68,
+              "customer_id": 68
+            },
+            {
+              "visit_id": 69,
+              "customer_id": 69
+            },
+            {
+              "visit_id": 70,
+              "customer_id": 70
+            },
+            {
+              "visit_id": 71,
+              "customer_id": 71
+            },
+            {
+              "visit_id": 72,
+              "customer_id": 72
+            },
+            {
+              "visit_id": 73,
+              "customer_id": 73
+            },
+            {
+              "visit_id": 74,
+              "customer_id": 74
+            },
+            {
+              "visit_id": 75,
+              "customer_id": 75
+            },
+            {
+              "visit_id": 76,
+              "customer_id": 76
+            },
+            {
+              "visit_id": 77,
+              "customer_id": 77
+            },
+            {
+              "visit_id": 78,
+              "customer_id": 78
+            },
+            {
+              "visit_id": 79,
+              "customer_id": 79
+            },
+            {
+              "visit_id": 80,
+              "customer_id": 80
+            },
+            {
+              "visit_id": 81,
+              "customer_id": 81
+            },
+            {
+              "visit_id": 82,
+              "customer_id": 82
+            },
+            {
+              "visit_id": 83,
+              "customer_id": 83
+            },
+            {
+              "visit_id": 84,
+              "customer_id": 84
+            },
+            {
+              "visit_id": 85,
+              "customer_id": 85
+            },
+            {
+              "visit_id": 86,
+              "customer_id": 86
+            },
+            {
+              "visit_id": 87,
+              "customer_id": 87
+            },
+            {
+              "visit_id": 88,
+              "customer_id": 88
+            },
+            {
+              "visit_id": 89,
+              "customer_id": 89
+            },
+            {
+              "visit_id": 90,
+              "customer_id": 90
+            },
+            {
+              "visit_id": 91,
+              "customer_id": 91
+            },
+            {
+              "visit_id": 92,
+              "customer_id": 92
+            },
+            {
+              "visit_id": 93,
+              "customer_id": 93
+            },
+            {
+              "visit_id": 94,
+              "customer_id": 94
+            },
+            {
+              "visit_id": 95,
+              "customer_id": 95
+            },
+            {
+              "visit_id": 96,
+              "customer_id": 96
+            },
+            {
+              "visit_id": 97,
+              "customer_id": 97
+            },
+            {
+              "visit_id": 98,
+              "customer_id": 98
+            },
+            {
+              "visit_id": 99,
+              "customer_id": 99
+            },
+            {
+              "visit_id": 100,
+              "customer_id": 100
+            },
+            {
+              "visit_id": 101,
+              "customer_id": 101
+            },
+            {
+              "visit_id": 102,
+              "customer_id": 102
+            },
+            {
+              "visit_id": 103,
+              "customer_id": 103
+            },
+            {
+              "visit_id": 104,
+              "customer_id": 104
+            },
+            {
+              "visit_id": 105,
+              "customer_id": 105
+            },
+            {
+              "visit_id": 106,
+              "customer_id": 106
+            },
+            {
+              "visit_id": 107,
+              "customer_id": 107
+            },
+            {
+              "visit_id": 108,
+              "customer_id": 108
+            },
+            {
+              "visit_id": 109,
+              "customer_id": 109
+            },
+            {
+              "visit_id": 110,
+              "customer_id": 110
+            },
+            {
+              "visit_id": 111,
+              "customer_id": 111
+            },
+            {
+              "visit_id": 112,
+              "customer_id": 112
+            },
+            {
+              "visit_id": 113,
+              "customer_id": 113
+            },
+            {
+              "visit_id": 114,
+              "customer_id": 114
+            },
+            {
+              "visit_id": 115,
+              "customer_id": 115
+            },
+            {
+              "visit_id": 116,
+              "customer_id": 116
+            },
+            {
+              "visit_id": 117,
+              "customer_id": 117
+            },
+            {
+              "visit_id": 118,
+              "customer_id": 118
+            },
+            {
+              "visit_id": 119,
+              "customer_id": 119
+            },
+            {
+              "visit_id": 120,
+              "customer_id": 120
+            },
+            {
+              "visit_id": 121,
+              "customer_id": 121
+            },
+            {
+              "visit_id": 122,
+              "customer_id": 122
+            },
+            {
+              "visit_id": 123,
+              "customer_id": 123
+            },
+            {
+              "visit_id": 124,
+              "customer_id": 124
+            },
+            {
+              "visit_id": 125,
+              "customer_id": 125
+            },
+            {
+              "visit_id": 126,
+              "customer_id": 126
+            },
+            {
+              "visit_id": 127,
+              "customer_id": 127
+            },
+            {
+              "visit_id": 128,
+              "customer_id": 128
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 1
+            },
+            {
+              "transaction_id": 2,
+              "visit_id": 2,
+              "amount": 1
+            },
+            {
+              "transaction_id": 3,
+              "visit_id": 3,
+              "amount": 1
+            },
+            {
+              "transaction_id": 4,
+              "visit_id": 4,
+              "amount": 1
+            },
+            {
+              "transaction_id": 5,
+              "visit_id": 5,
+              "amount": 1
+            },
+            {
+              "transaction_id": 6,
+              "visit_id": 6,
+              "amount": 1
+            },
+            {
+              "transaction_id": 7,
+              "visit_id": 7,
+              "amount": 1
+            },
+            {
+              "transaction_id": 8,
+              "visit_id": 8,
+              "amount": 1
+            },
+            {
+              "transaction_id": 9,
+              "visit_id": 9,
+              "amount": 1
+            },
+            {
+              "transaction_id": 10,
+              "visit_id": 10,
+              "amount": 1
+            },
+            {
+              "transaction_id": 11,
+              "visit_id": 11,
+              "amount": 1
+            },
+            {
+              "transaction_id": 12,
+              "visit_id": 12,
+              "amount": 1
+            },
+            {
+              "transaction_id": 13,
+              "visit_id": 13,
+              "amount": 1
+            },
+            {
+              "transaction_id": 14,
+              "visit_id": 14,
+              "amount": 1
+            },
+            {
+              "transaction_id": 15,
+              "visit_id": 15,
+              "amount": 1
+            },
+            {
+              "transaction_id": 16,
+              "visit_id": 16,
+              "amount": 1
+            },
+            {
+              "transaction_id": 17,
+              "visit_id": 17,
+              "amount": 1
+            },
+            {
+              "transaction_id": 18,
+              "visit_id": 18,
+              "amount": 1
+            },
+            {
+              "transaction_id": 19,
+              "visit_id": 19,
+              "amount": 1
+            },
+            {
+              "transaction_id": 20,
+              "visit_id": 20,
+              "amount": 1
+            },
+            {
+              "transaction_id": 21,
+              "visit_id": 21,
+              "amount": 1
+            },
+            {
+              "transaction_id": 22,
+              "visit_id": 22,
+              "amount": 1
+            },
+            {
+              "transaction_id": 23,
+              "visit_id": 23,
+              "amount": 1
+            },
+            {
+              "transaction_id": 24,
+              "visit_id": 24,
+              "amount": 1
+            },
+            {
+              "transaction_id": 25,
+              "visit_id": 25,
+              "amount": 1
+            },
+            {
+              "transaction_id": 26,
+              "visit_id": 26,
+              "amount": 1
+            },
+            {
+              "transaction_id": 27,
+              "visit_id": 27,
+              "amount": 1
+            },
+            {
+              "transaction_id": 28,
+              "visit_id": 28,
+              "amount": 1
+            },
+            {
+              "transaction_id": 29,
+              "visit_id": 29,
+              "amount": 1
+            },
+            {
+              "transaction_id": 30,
+              "visit_id": 30,
+              "amount": 1
+            },
+            {
+              "transaction_id": 31,
+              "visit_id": 31,
+              "amount": 1
+            },
+            {
+              "transaction_id": 32,
+              "visit_id": 32,
+              "amount": 1
+            },
+            {
+              "transaction_id": 33,
+              "visit_id": 33,
+              "amount": 1
+            },
+            {
+              "transaction_id": 34,
+              "visit_id": 34,
+              "amount": 1
+            },
+            {
+              "transaction_id": 35,
+              "visit_id": 35,
+              "amount": 1
+            },
+            {
+              "transaction_id": 36,
+              "visit_id": 36,
+              "amount": 1
+            },
+            {
+              "transaction_id": 37,
+              "visit_id": 37,
+              "amount": 1
+            },
+            {
+              "transaction_id": 38,
+              "visit_id": 38,
+              "amount": 1
+            },
+            {
+              "transaction_id": 39,
+              "visit_id": 39,
+              "amount": 1
+            },
+            {
+              "transaction_id": 40,
+              "visit_id": 40,
+              "amount": 1
+            },
+            {
+              "transaction_id": 41,
+              "visit_id": 41,
+              "amount": 1
+            },
+            {
+              "transaction_id": 42,
+              "visit_id": 42,
+              "amount": 1
+            },
+            {
+              "transaction_id": 43,
+              "visit_id": 43,
+              "amount": 1
+            },
+            {
+              "transaction_id": 44,
+              "visit_id": 44,
+              "amount": 1
+            },
+            {
+              "transaction_id": 45,
+              "visit_id": 45,
+              "amount": 1
+            },
+            {
+              "transaction_id": 46,
+              "visit_id": 46,
+              "amount": 1
+            },
+            {
+              "transaction_id": 47,
+              "visit_id": 47,
+              "amount": 1
+            },
+            {
+              "transaction_id": 48,
+              "visit_id": 48,
+              "amount": 1
+            },
+            {
+              "transaction_id": 49,
+              "visit_id": 49,
+              "amount": 1
+            },
+            {
+              "transaction_id": 50,
+              "visit_id": 50,
+              "amount": 1
+            },
+            {
+              "transaction_id": 51,
+              "visit_id": 51,
+              "amount": 1
+            },
+            {
+              "transaction_id": 52,
+              "visit_id": 52,
+              "amount": 1
+            },
+            {
+              "transaction_id": 53,
+              "visit_id": 53,
+              "amount": 1
+            },
+            {
+              "transaction_id": 54,
+              "visit_id": 54,
+              "amount": 1
+            },
+            {
+              "transaction_id": 55,
+              "visit_id": 55,
+              "amount": 1
+            },
+            {
+              "transaction_id": 56,
+              "visit_id": 56,
+              "amount": 1
+            },
+            {
+              "transaction_id": 57,
+              "visit_id": 57,
+              "amount": 1
+            },
+            {
+              "transaction_id": 58,
+              "visit_id": 58,
+              "amount": 1
+            },
+            {
+              "transaction_id": 59,
+              "visit_id": 59,
+              "amount": 1
+            },
+            {
+              "transaction_id": 60,
+              "visit_id": 60,
+              "amount": 1
+            },
+            {
+              "transaction_id": 61,
+              "visit_id": 61,
+              "amount": 1
+            },
+            {
+              "transaction_id": 62,
+              "visit_id": 62,
+              "amount": 1
+            },
+            {
+              "transaction_id": 63,
+              "visit_id": 63,
+              "amount": 1
+            },
+            {
+              "transaction_id": 64,
+              "visit_id": 64,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            65,
+            1
+          ],
+          [
+            66,
+            1
+          ],
+          [
+            67,
+            1
+          ],
+          [
+            68,
+            1
+          ],
+          [
+            69,
+            1
+          ],
+          [
+            70,
+            1
+          ],
+          [
+            71,
+            1
+          ],
+          [
+            72,
+            1
+          ],
+          [
+            73,
+            1
+          ],
+          [
+            74,
+            1
+          ],
+          [
+            75,
+            1
+          ],
+          [
+            76,
+            1
+          ],
+          [
+            77,
+            1
+          ],
+          [
+            78,
+            1
+          ],
+          [
+            79,
+            1
+          ],
+          [
+            80,
+            1
+          ],
+          [
+            81,
+            1
+          ],
+          [
+            82,
+            1
+          ],
+          [
+            83,
+            1
+          ],
+          [
+            84,
+            1
+          ],
+          [
+            85,
+            1
+          ],
+          [
+            86,
+            1
+          ],
+          [
+            87,
+            1
+          ],
+          [
+            88,
+            1
+          ],
+          [
+            89,
+            1
+          ],
+          [
+            90,
+            1
+          ],
+          [
+            91,
+            1
+          ],
+          [
+            92,
+            1
+          ],
+          [
+            93,
+            1
+          ],
+          [
+            94,
+            1
+          ],
+          [
+            95,
+            1
+          ],
+          [
+            96,
+            1
+          ],
+          [
+            97,
+            1
+          ],
+          [
+            98,
+            1
+          ],
+          [
+            99,
+            1
+          ],
+          [
+            100,
+            1
+          ],
+          [
+            101,
+            1
+          ],
+          [
+            102,
+            1
+          ],
+          [
+            103,
+            1
+          ],
+          [
+            104,
+            1
+          ],
+          [
+            105,
+            1
+          ],
+          [
+            106,
+            1
+          ],
+          [
+            107,
+            1
+          ],
+          [
+            108,
+            1
+          ],
+          [
+            109,
+            1
+          ],
+          [
+            110,
+            1
+          ],
+          [
+            111,
+            1
+          ],
+          [
+            112,
+            1
+          ],
+          [
+            113,
+            1
+          ],
+          [
+            114,
+            1
+          ],
+          [
+            115,
+            1
+          ],
+          [
+            116,
+            1
+          ],
+          [
+            117,
+            1
+          ],
+          [
+            118,
+            1
+          ],
+          [
+            119,
+            1
+          ],
+          [
+            120,
+            1
+          ],
+          [
+            121,
+            1
+          ],
+          [
+            122,
+            1
+          ],
+          [
+            123,
+            1
+          ],
+          [
+            124,
+            1
+          ],
+          [
+            125,
+            1
+          ],
+          [
+            126,
+            1
+          ],
+          [
+            127,
+            1
+          ],
+          [
+            128,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "distinct-customers",
+        "correlated-rescan",
+        "visits-128"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 visits with half unmatched",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "visit_id": 1,
+              "customer_id": 1
+            },
+            {
+              "visit_id": 2,
+              "customer_id": 2
+            },
+            {
+              "visit_id": 3,
+              "customer_id": 3
+            },
+            {
+              "visit_id": 4,
+              "customer_id": 4
+            },
+            {
+              "visit_id": 5,
+              "customer_id": 5
+            },
+            {
+              "visit_id": 6,
+              "customer_id": 6
+            },
+            {
+              "visit_id": 7,
+              "customer_id": 7
+            },
+            {
+              "visit_id": 8,
+              "customer_id": 8
+            },
+            {
+              "visit_id": 9,
+              "customer_id": 9
+            },
+            {
+              "visit_id": 10,
+              "customer_id": 10
+            },
+            {
+              "visit_id": 11,
+              "customer_id": 11
+            },
+            {
+              "visit_id": 12,
+              "customer_id": 12
+            },
+            {
+              "visit_id": 13,
+              "customer_id": 13
+            },
+            {
+              "visit_id": 14,
+              "customer_id": 14
+            },
+            {
+              "visit_id": 15,
+              "customer_id": 15
+            },
+            {
+              "visit_id": 16,
+              "customer_id": 16
+            },
+            {
+              "visit_id": 17,
+              "customer_id": 17
+            },
+            {
+              "visit_id": 18,
+              "customer_id": 18
+            },
+            {
+              "visit_id": 19,
+              "customer_id": 19
+            },
+            {
+              "visit_id": 20,
+              "customer_id": 20
+            },
+            {
+              "visit_id": 21,
+              "customer_id": 21
+            },
+            {
+              "visit_id": 22,
+              "customer_id": 22
+            },
+            {
+              "visit_id": 23,
+              "customer_id": 23
+            },
+            {
+              "visit_id": 24,
+              "customer_id": 24
+            },
+            {
+              "visit_id": 25,
+              "customer_id": 25
+            },
+            {
+              "visit_id": 26,
+              "customer_id": 26
+            },
+            {
+              "visit_id": 27,
+              "customer_id": 27
+            },
+            {
+              "visit_id": 28,
+              "customer_id": 28
+            },
+            {
+              "visit_id": 29,
+              "customer_id": 29
+            },
+            {
+              "visit_id": 30,
+              "customer_id": 30
+            },
+            {
+              "visit_id": 31,
+              "customer_id": 31
+            },
+            {
+              "visit_id": 32,
+              "customer_id": 32
+            },
+            {
+              "visit_id": 33,
+              "customer_id": 33
+            },
+            {
+              "visit_id": 34,
+              "customer_id": 34
+            },
+            {
+              "visit_id": 35,
+              "customer_id": 35
+            },
+            {
+              "visit_id": 36,
+              "customer_id": 36
+            },
+            {
+              "visit_id": 37,
+              "customer_id": 37
+            },
+            {
+              "visit_id": 38,
+              "customer_id": 38
+            },
+            {
+              "visit_id": 39,
+              "customer_id": 39
+            },
+            {
+              "visit_id": 40,
+              "customer_id": 40
+            },
+            {
+              "visit_id": 41,
+              "customer_id": 41
+            },
+            {
+              "visit_id": 42,
+              "customer_id": 42
+            },
+            {
+              "visit_id": 43,
+              "customer_id": 43
+            },
+            {
+              "visit_id": 44,
+              "customer_id": 44
+            },
+            {
+              "visit_id": 45,
+              "customer_id": 45
+            },
+            {
+              "visit_id": 46,
+              "customer_id": 46
+            },
+            {
+              "visit_id": 47,
+              "customer_id": 47
+            },
+            {
+              "visit_id": 48,
+              "customer_id": 48
+            },
+            {
+              "visit_id": 49,
+              "customer_id": 49
+            },
+            {
+              "visit_id": 50,
+              "customer_id": 50
+            },
+            {
+              "visit_id": 51,
+              "customer_id": 51
+            },
+            {
+              "visit_id": 52,
+              "customer_id": 52
+            },
+            {
+              "visit_id": 53,
+              "customer_id": 53
+            },
+            {
+              "visit_id": 54,
+              "customer_id": 54
+            },
+            {
+              "visit_id": 55,
+              "customer_id": 55
+            },
+            {
+              "visit_id": 56,
+              "customer_id": 56
+            },
+            {
+              "visit_id": 57,
+              "customer_id": 57
+            },
+            {
+              "visit_id": 58,
+              "customer_id": 58
+            },
+            {
+              "visit_id": 59,
+              "customer_id": 59
+            },
+            {
+              "visit_id": 60,
+              "customer_id": 60
+            },
+            {
+              "visit_id": 61,
+              "customer_id": 61
+            },
+            {
+              "visit_id": 62,
+              "customer_id": 62
+            },
+            {
+              "visit_id": 63,
+              "customer_id": 63
+            },
+            {
+              "visit_id": 64,
+              "customer_id": 64
+            },
+            {
+              "visit_id": 65,
+              "customer_id": 65
+            },
+            {
+              "visit_id": 66,
+              "customer_id": 66
+            },
+            {
+              "visit_id": 67,
+              "customer_id": 67
+            },
+            {
+              "visit_id": 68,
+              "customer_id": 68
+            },
+            {
+              "visit_id": 69,
+              "customer_id": 69
+            },
+            {
+              "visit_id": 70,
+              "customer_id": 70
+            },
+            {
+              "visit_id": 71,
+              "customer_id": 71
+            },
+            {
+              "visit_id": 72,
+              "customer_id": 72
+            },
+            {
+              "visit_id": 73,
+              "customer_id": 73
+            },
+            {
+              "visit_id": 74,
+              "customer_id": 74
+            },
+            {
+              "visit_id": 75,
+              "customer_id": 75
+            },
+            {
+              "visit_id": 76,
+              "customer_id": 76
+            },
+            {
+              "visit_id": 77,
+              "customer_id": 77
+            },
+            {
+              "visit_id": 78,
+              "customer_id": 78
+            },
+            {
+              "visit_id": 79,
+              "customer_id": 79
+            },
+            {
+              "visit_id": 80,
+              "customer_id": 80
+            },
+            {
+              "visit_id": 81,
+              "customer_id": 81
+            },
+            {
+              "visit_id": 82,
+              "customer_id": 82
+            },
+            {
+              "visit_id": 83,
+              "customer_id": 83
+            },
+            {
+              "visit_id": 84,
+              "customer_id": 84
+            },
+            {
+              "visit_id": 85,
+              "customer_id": 85
+            },
+            {
+              "visit_id": 86,
+              "customer_id": 86
+            },
+            {
+              "visit_id": 87,
+              "customer_id": 87
+            },
+            {
+              "visit_id": 88,
+              "customer_id": 88
+            },
+            {
+              "visit_id": 89,
+              "customer_id": 89
+            },
+            {
+              "visit_id": 90,
+              "customer_id": 90
+            },
+            {
+              "visit_id": 91,
+              "customer_id": 91
+            },
+            {
+              "visit_id": 92,
+              "customer_id": 92
+            },
+            {
+              "visit_id": 93,
+              "customer_id": 93
+            },
+            {
+              "visit_id": 94,
+              "customer_id": 94
+            },
+            {
+              "visit_id": 95,
+              "customer_id": 95
+            },
+            {
+              "visit_id": 96,
+              "customer_id": 96
+            },
+            {
+              "visit_id": 97,
+              "customer_id": 97
+            },
+            {
+              "visit_id": 98,
+              "customer_id": 98
+            },
+            {
+              "visit_id": 99,
+              "customer_id": 99
+            },
+            {
+              "visit_id": 100,
+              "customer_id": 100
+            },
+            {
+              "visit_id": 101,
+              "customer_id": 101
+            },
+            {
+              "visit_id": 102,
+              "customer_id": 102
+            },
+            {
+              "visit_id": 103,
+              "customer_id": 103
+            },
+            {
+              "visit_id": 104,
+              "customer_id": 104
+            },
+            {
+              "visit_id": 105,
+              "customer_id": 105
+            },
+            {
+              "visit_id": 106,
+              "customer_id": 106
+            },
+            {
+              "visit_id": 107,
+              "customer_id": 107
+            },
+            {
+              "visit_id": 108,
+              "customer_id": 108
+            },
+            {
+              "visit_id": 109,
+              "customer_id": 109
+            },
+            {
+              "visit_id": 110,
+              "customer_id": 110
+            },
+            {
+              "visit_id": 111,
+              "customer_id": 111
+            },
+            {
+              "visit_id": 112,
+              "customer_id": 112
+            },
+            {
+              "visit_id": 113,
+              "customer_id": 113
+            },
+            {
+              "visit_id": 114,
+              "customer_id": 114
+            },
+            {
+              "visit_id": 115,
+              "customer_id": 115
+            },
+            {
+              "visit_id": 116,
+              "customer_id": 116
+            },
+            {
+              "visit_id": 117,
+              "customer_id": 117
+            },
+            {
+              "visit_id": 118,
+              "customer_id": 118
+            },
+            {
+              "visit_id": 119,
+              "customer_id": 119
+            },
+            {
+              "visit_id": 120,
+              "customer_id": 120
+            },
+            {
+              "visit_id": 121,
+              "customer_id": 121
+            },
+            {
+              "visit_id": 122,
+              "customer_id": 122
+            },
+            {
+              "visit_id": 123,
+              "customer_id": 123
+            },
+            {
+              "visit_id": 124,
+              "customer_id": 124
+            },
+            {
+              "visit_id": 125,
+              "customer_id": 125
+            },
+            {
+              "visit_id": 126,
+              "customer_id": 126
+            },
+            {
+              "visit_id": 127,
+              "customer_id": 127
+            },
+            {
+              "visit_id": 128,
+              "customer_id": 128
+            },
+            {
+              "visit_id": 129,
+              "customer_id": 129
+            },
+            {
+              "visit_id": 130,
+              "customer_id": 130
+            },
+            {
+              "visit_id": 131,
+              "customer_id": 131
+            },
+            {
+              "visit_id": 132,
+              "customer_id": 132
+            },
+            {
+              "visit_id": 133,
+              "customer_id": 133
+            },
+            {
+              "visit_id": 134,
+              "customer_id": 134
+            },
+            {
+              "visit_id": 135,
+              "customer_id": 135
+            },
+            {
+              "visit_id": 136,
+              "customer_id": 136
+            },
+            {
+              "visit_id": 137,
+              "customer_id": 137
+            },
+            {
+              "visit_id": 138,
+              "customer_id": 138
+            },
+            {
+              "visit_id": 139,
+              "customer_id": 139
+            },
+            {
+              "visit_id": 140,
+              "customer_id": 140
+            },
+            {
+              "visit_id": 141,
+              "customer_id": 141
+            },
+            {
+              "visit_id": 142,
+              "customer_id": 142
+            },
+            {
+              "visit_id": 143,
+              "customer_id": 143
+            },
+            {
+              "visit_id": 144,
+              "customer_id": 144
+            },
+            {
+              "visit_id": 145,
+              "customer_id": 145
+            },
+            {
+              "visit_id": 146,
+              "customer_id": 146
+            },
+            {
+              "visit_id": 147,
+              "customer_id": 147
+            },
+            {
+              "visit_id": 148,
+              "customer_id": 148
+            },
+            {
+              "visit_id": 149,
+              "customer_id": 149
+            },
+            {
+              "visit_id": 150,
+              "customer_id": 150
+            },
+            {
+              "visit_id": 151,
+              "customer_id": 151
+            },
+            {
+              "visit_id": 152,
+              "customer_id": 152
+            },
+            {
+              "visit_id": 153,
+              "customer_id": 153
+            },
+            {
+              "visit_id": 154,
+              "customer_id": 154
+            },
+            {
+              "visit_id": 155,
+              "customer_id": 155
+            },
+            {
+              "visit_id": 156,
+              "customer_id": 156
+            },
+            {
+              "visit_id": 157,
+              "customer_id": 157
+            },
+            {
+              "visit_id": 158,
+              "customer_id": 158
+            },
+            {
+              "visit_id": 159,
+              "customer_id": 159
+            },
+            {
+              "visit_id": 160,
+              "customer_id": 160
+            },
+            {
+              "visit_id": 161,
+              "customer_id": 161
+            },
+            {
+              "visit_id": 162,
+              "customer_id": 162
+            },
+            {
+              "visit_id": 163,
+              "customer_id": 163
+            },
+            {
+              "visit_id": 164,
+              "customer_id": 164
+            },
+            {
+              "visit_id": 165,
+              "customer_id": 165
+            },
+            {
+              "visit_id": 166,
+              "customer_id": 166
+            },
+            {
+              "visit_id": 167,
+              "customer_id": 167
+            },
+            {
+              "visit_id": 168,
+              "customer_id": 168
+            },
+            {
+              "visit_id": 169,
+              "customer_id": 169
+            },
+            {
+              "visit_id": 170,
+              "customer_id": 170
+            },
+            {
+              "visit_id": 171,
+              "customer_id": 171
+            },
+            {
+              "visit_id": 172,
+              "customer_id": 172
+            },
+            {
+              "visit_id": 173,
+              "customer_id": 173
+            },
+            {
+              "visit_id": 174,
+              "customer_id": 174
+            },
+            {
+              "visit_id": 175,
+              "customer_id": 175
+            },
+            {
+              "visit_id": 176,
+              "customer_id": 176
+            },
+            {
+              "visit_id": 177,
+              "customer_id": 177
+            },
+            {
+              "visit_id": 178,
+              "customer_id": 178
+            },
+            {
+              "visit_id": 179,
+              "customer_id": 179
+            },
+            {
+              "visit_id": 180,
+              "customer_id": 180
+            },
+            {
+              "visit_id": 181,
+              "customer_id": 181
+            },
+            {
+              "visit_id": 182,
+              "customer_id": 182
+            },
+            {
+              "visit_id": 183,
+              "customer_id": 183
+            },
+            {
+              "visit_id": 184,
+              "customer_id": 184
+            },
+            {
+              "visit_id": 185,
+              "customer_id": 185
+            },
+            {
+              "visit_id": 186,
+              "customer_id": 186
+            },
+            {
+              "visit_id": 187,
+              "customer_id": 187
+            },
+            {
+              "visit_id": 188,
+              "customer_id": 188
+            },
+            {
+              "visit_id": 189,
+              "customer_id": 189
+            },
+            {
+              "visit_id": 190,
+              "customer_id": 190
+            },
+            {
+              "visit_id": 191,
+              "customer_id": 191
+            },
+            {
+              "visit_id": 192,
+              "customer_id": 192
+            },
+            {
+              "visit_id": 193,
+              "customer_id": 193
+            },
+            {
+              "visit_id": 194,
+              "customer_id": 194
+            },
+            {
+              "visit_id": 195,
+              "customer_id": 195
+            },
+            {
+              "visit_id": 196,
+              "customer_id": 196
+            },
+            {
+              "visit_id": 197,
+              "customer_id": 197
+            },
+            {
+              "visit_id": 198,
+              "customer_id": 198
+            },
+            {
+              "visit_id": 199,
+              "customer_id": 199
+            },
+            {
+              "visit_id": 200,
+              "customer_id": 200
+            },
+            {
+              "visit_id": 201,
+              "customer_id": 201
+            },
+            {
+              "visit_id": 202,
+              "customer_id": 202
+            },
+            {
+              "visit_id": 203,
+              "customer_id": 203
+            },
+            {
+              "visit_id": 204,
+              "customer_id": 204
+            },
+            {
+              "visit_id": 205,
+              "customer_id": 205
+            },
+            {
+              "visit_id": 206,
+              "customer_id": 206
+            },
+            {
+              "visit_id": 207,
+              "customer_id": 207
+            },
+            {
+              "visit_id": 208,
+              "customer_id": 208
+            },
+            {
+              "visit_id": 209,
+              "customer_id": 209
+            },
+            {
+              "visit_id": 210,
+              "customer_id": 210
+            },
+            {
+              "visit_id": 211,
+              "customer_id": 211
+            },
+            {
+              "visit_id": 212,
+              "customer_id": 212
+            },
+            {
+              "visit_id": 213,
+              "customer_id": 213
+            },
+            {
+              "visit_id": 214,
+              "customer_id": 214
+            },
+            {
+              "visit_id": 215,
+              "customer_id": 215
+            },
+            {
+              "visit_id": 216,
+              "customer_id": 216
+            },
+            {
+              "visit_id": 217,
+              "customer_id": 217
+            },
+            {
+              "visit_id": 218,
+              "customer_id": 218
+            },
+            {
+              "visit_id": 219,
+              "customer_id": 219
+            },
+            {
+              "visit_id": 220,
+              "customer_id": 220
+            },
+            {
+              "visit_id": 221,
+              "customer_id": 221
+            },
+            {
+              "visit_id": 222,
+              "customer_id": 222
+            },
+            {
+              "visit_id": 223,
+              "customer_id": 223
+            },
+            {
+              "visit_id": 224,
+              "customer_id": 224
+            },
+            {
+              "visit_id": 225,
+              "customer_id": 225
+            },
+            {
+              "visit_id": 226,
+              "customer_id": 226
+            },
+            {
+              "visit_id": 227,
+              "customer_id": 227
+            },
+            {
+              "visit_id": 228,
+              "customer_id": 228
+            },
+            {
+              "visit_id": 229,
+              "customer_id": 229
+            },
+            {
+              "visit_id": 230,
+              "customer_id": 230
+            },
+            {
+              "visit_id": 231,
+              "customer_id": 231
+            },
+            {
+              "visit_id": 232,
+              "customer_id": 232
+            },
+            {
+              "visit_id": 233,
+              "customer_id": 233
+            },
+            {
+              "visit_id": 234,
+              "customer_id": 234
+            },
+            {
+              "visit_id": 235,
+              "customer_id": 235
+            },
+            {
+              "visit_id": 236,
+              "customer_id": 236
+            },
+            {
+              "visit_id": 237,
+              "customer_id": 237
+            },
+            {
+              "visit_id": 238,
+              "customer_id": 238
+            },
+            {
+              "visit_id": 239,
+              "customer_id": 239
+            },
+            {
+              "visit_id": 240,
+              "customer_id": 240
+            },
+            {
+              "visit_id": 241,
+              "customer_id": 241
+            },
+            {
+              "visit_id": 242,
+              "customer_id": 242
+            },
+            {
+              "visit_id": 243,
+              "customer_id": 243
+            },
+            {
+              "visit_id": 244,
+              "customer_id": 244
+            },
+            {
+              "visit_id": 245,
+              "customer_id": 245
+            },
+            {
+              "visit_id": 246,
+              "customer_id": 246
+            },
+            {
+              "visit_id": 247,
+              "customer_id": 247
+            },
+            {
+              "visit_id": 248,
+              "customer_id": 248
+            },
+            {
+              "visit_id": 249,
+              "customer_id": 249
+            },
+            {
+              "visit_id": 250,
+              "customer_id": 250
+            },
+            {
+              "visit_id": 251,
+              "customer_id": 251
+            },
+            {
+              "visit_id": 252,
+              "customer_id": 252
+            },
+            {
+              "visit_id": 253,
+              "customer_id": 253
+            },
+            {
+              "visit_id": 254,
+              "customer_id": 254
+            },
+            {
+              "visit_id": 255,
+              "customer_id": 255
+            },
+            {
+              "visit_id": 256,
+              "customer_id": 256
+            },
+            {
+              "visit_id": 257,
+              "customer_id": 257
+            },
+            {
+              "visit_id": 258,
+              "customer_id": 258
+            },
+            {
+              "visit_id": 259,
+              "customer_id": 259
+            },
+            {
+              "visit_id": 260,
+              "customer_id": 260
+            },
+            {
+              "visit_id": 261,
+              "customer_id": 261
+            },
+            {
+              "visit_id": 262,
+              "customer_id": 262
+            },
+            {
+              "visit_id": 263,
+              "customer_id": 263
+            },
+            {
+              "visit_id": 264,
+              "customer_id": 264
+            },
+            {
+              "visit_id": 265,
+              "customer_id": 265
+            },
+            {
+              "visit_id": 266,
+              "customer_id": 266
+            },
+            {
+              "visit_id": 267,
+              "customer_id": 267
+            },
+            {
+              "visit_id": 268,
+              "customer_id": 268
+            },
+            {
+              "visit_id": 269,
+              "customer_id": 269
+            },
+            {
+              "visit_id": 270,
+              "customer_id": 270
+            },
+            {
+              "visit_id": 271,
+              "customer_id": 271
+            },
+            {
+              "visit_id": 272,
+              "customer_id": 272
+            },
+            {
+              "visit_id": 273,
+              "customer_id": 273
+            },
+            {
+              "visit_id": 274,
+              "customer_id": 274
+            },
+            {
+              "visit_id": 275,
+              "customer_id": 275
+            },
+            {
+              "visit_id": 276,
+              "customer_id": 276
+            },
+            {
+              "visit_id": 277,
+              "customer_id": 277
+            },
+            {
+              "visit_id": 278,
+              "customer_id": 278
+            },
+            {
+              "visit_id": 279,
+              "customer_id": 279
+            },
+            {
+              "visit_id": 280,
+              "customer_id": 280
+            },
+            {
+              "visit_id": 281,
+              "customer_id": 281
+            },
+            {
+              "visit_id": 282,
+              "customer_id": 282
+            },
+            {
+              "visit_id": 283,
+              "customer_id": 283
+            },
+            {
+              "visit_id": 284,
+              "customer_id": 284
+            },
+            {
+              "visit_id": 285,
+              "customer_id": 285
+            },
+            {
+              "visit_id": 286,
+              "customer_id": 286
+            },
+            {
+              "visit_id": 287,
+              "customer_id": 287
+            },
+            {
+              "visit_id": 288,
+              "customer_id": 288
+            },
+            {
+              "visit_id": 289,
+              "customer_id": 289
+            },
+            {
+              "visit_id": 290,
+              "customer_id": 290
+            },
+            {
+              "visit_id": 291,
+              "customer_id": 291
+            },
+            {
+              "visit_id": 292,
+              "customer_id": 292
+            },
+            {
+              "visit_id": 293,
+              "customer_id": 293
+            },
+            {
+              "visit_id": 294,
+              "customer_id": 294
+            },
+            {
+              "visit_id": 295,
+              "customer_id": 295
+            },
+            {
+              "visit_id": 296,
+              "customer_id": 296
+            },
+            {
+              "visit_id": 297,
+              "customer_id": 297
+            },
+            {
+              "visit_id": 298,
+              "customer_id": 298
+            },
+            {
+              "visit_id": 299,
+              "customer_id": 299
+            },
+            {
+              "visit_id": 300,
+              "customer_id": 300
+            },
+            {
+              "visit_id": 301,
+              "customer_id": 301
+            },
+            {
+              "visit_id": 302,
+              "customer_id": 302
+            },
+            {
+              "visit_id": 303,
+              "customer_id": 303
+            },
+            {
+              "visit_id": 304,
+              "customer_id": 304
+            },
+            {
+              "visit_id": 305,
+              "customer_id": 305
+            },
+            {
+              "visit_id": 306,
+              "customer_id": 306
+            },
+            {
+              "visit_id": 307,
+              "customer_id": 307
+            },
+            {
+              "visit_id": 308,
+              "customer_id": 308
+            },
+            {
+              "visit_id": 309,
+              "customer_id": 309
+            },
+            {
+              "visit_id": 310,
+              "customer_id": 310
+            },
+            {
+              "visit_id": 311,
+              "customer_id": 311
+            },
+            {
+              "visit_id": 312,
+              "customer_id": 312
+            },
+            {
+              "visit_id": 313,
+              "customer_id": 313
+            },
+            {
+              "visit_id": 314,
+              "customer_id": 314
+            },
+            {
+              "visit_id": 315,
+              "customer_id": 315
+            },
+            {
+              "visit_id": 316,
+              "customer_id": 316
+            },
+            {
+              "visit_id": 317,
+              "customer_id": 317
+            },
+            {
+              "visit_id": 318,
+              "customer_id": 318
+            },
+            {
+              "visit_id": 319,
+              "customer_id": 319
+            },
+            {
+              "visit_id": 320,
+              "customer_id": 320
+            },
+            {
+              "visit_id": 321,
+              "customer_id": 321
+            },
+            {
+              "visit_id": 322,
+              "customer_id": 322
+            },
+            {
+              "visit_id": 323,
+              "customer_id": 323
+            },
+            {
+              "visit_id": 324,
+              "customer_id": 324
+            },
+            {
+              "visit_id": 325,
+              "customer_id": 325
+            },
+            {
+              "visit_id": 326,
+              "customer_id": 326
+            },
+            {
+              "visit_id": 327,
+              "customer_id": 327
+            },
+            {
+              "visit_id": 328,
+              "customer_id": 328
+            },
+            {
+              "visit_id": 329,
+              "customer_id": 329
+            },
+            {
+              "visit_id": 330,
+              "customer_id": 330
+            },
+            {
+              "visit_id": 331,
+              "customer_id": 331
+            },
+            {
+              "visit_id": 332,
+              "customer_id": 332
+            },
+            {
+              "visit_id": 333,
+              "customer_id": 333
+            },
+            {
+              "visit_id": 334,
+              "customer_id": 334
+            },
+            {
+              "visit_id": 335,
+              "customer_id": 335
+            },
+            {
+              "visit_id": 336,
+              "customer_id": 336
+            },
+            {
+              "visit_id": 337,
+              "customer_id": 337
+            },
+            {
+              "visit_id": 338,
+              "customer_id": 338
+            },
+            {
+              "visit_id": 339,
+              "customer_id": 339
+            },
+            {
+              "visit_id": 340,
+              "customer_id": 340
+            },
+            {
+              "visit_id": 341,
+              "customer_id": 341
+            },
+            {
+              "visit_id": 342,
+              "customer_id": 342
+            },
+            {
+              "visit_id": 343,
+              "customer_id": 343
+            },
+            {
+              "visit_id": 344,
+              "customer_id": 344
+            },
+            {
+              "visit_id": 345,
+              "customer_id": 345
+            },
+            {
+              "visit_id": 346,
+              "customer_id": 346
+            },
+            {
+              "visit_id": 347,
+              "customer_id": 347
+            },
+            {
+              "visit_id": 348,
+              "customer_id": 348
+            },
+            {
+              "visit_id": 349,
+              "customer_id": 349
+            },
+            {
+              "visit_id": 350,
+              "customer_id": 350
+            },
+            {
+              "visit_id": 351,
+              "customer_id": 351
+            },
+            {
+              "visit_id": 352,
+              "customer_id": 352
+            },
+            {
+              "visit_id": 353,
+              "customer_id": 353
+            },
+            {
+              "visit_id": 354,
+              "customer_id": 354
+            },
+            {
+              "visit_id": 355,
+              "customer_id": 355
+            },
+            {
+              "visit_id": 356,
+              "customer_id": 356
+            },
+            {
+              "visit_id": 357,
+              "customer_id": 357
+            },
+            {
+              "visit_id": 358,
+              "customer_id": 358
+            },
+            {
+              "visit_id": 359,
+              "customer_id": 359
+            },
+            {
+              "visit_id": 360,
+              "customer_id": 360
+            },
+            {
+              "visit_id": 361,
+              "customer_id": 361
+            },
+            {
+              "visit_id": 362,
+              "customer_id": 362
+            },
+            {
+              "visit_id": 363,
+              "customer_id": 363
+            },
+            {
+              "visit_id": 364,
+              "customer_id": 364
+            },
+            {
+              "visit_id": 365,
+              "customer_id": 365
+            },
+            {
+              "visit_id": 366,
+              "customer_id": 366
+            },
+            {
+              "visit_id": 367,
+              "customer_id": 367
+            },
+            {
+              "visit_id": 368,
+              "customer_id": 368
+            },
+            {
+              "visit_id": 369,
+              "customer_id": 369
+            },
+            {
+              "visit_id": 370,
+              "customer_id": 370
+            },
+            {
+              "visit_id": 371,
+              "customer_id": 371
+            },
+            {
+              "visit_id": 372,
+              "customer_id": 372
+            },
+            {
+              "visit_id": 373,
+              "customer_id": 373
+            },
+            {
+              "visit_id": 374,
+              "customer_id": 374
+            },
+            {
+              "visit_id": 375,
+              "customer_id": 375
+            },
+            {
+              "visit_id": 376,
+              "customer_id": 376
+            },
+            {
+              "visit_id": 377,
+              "customer_id": 377
+            },
+            {
+              "visit_id": 378,
+              "customer_id": 378
+            },
+            {
+              "visit_id": 379,
+              "customer_id": 379
+            },
+            {
+              "visit_id": 380,
+              "customer_id": 380
+            },
+            {
+              "visit_id": 381,
+              "customer_id": 381
+            },
+            {
+              "visit_id": 382,
+              "customer_id": 382
+            },
+            {
+              "visit_id": 383,
+              "customer_id": 383
+            },
+            {
+              "visit_id": 384,
+              "customer_id": 384
+            },
+            {
+              "visit_id": 385,
+              "customer_id": 385
+            },
+            {
+              "visit_id": 386,
+              "customer_id": 386
+            },
+            {
+              "visit_id": 387,
+              "customer_id": 387
+            },
+            {
+              "visit_id": 388,
+              "customer_id": 388
+            },
+            {
+              "visit_id": 389,
+              "customer_id": 389
+            },
+            {
+              "visit_id": 390,
+              "customer_id": 390
+            },
+            {
+              "visit_id": 391,
+              "customer_id": 391
+            },
+            {
+              "visit_id": 392,
+              "customer_id": 392
+            },
+            {
+              "visit_id": 393,
+              "customer_id": 393
+            },
+            {
+              "visit_id": 394,
+              "customer_id": 394
+            },
+            {
+              "visit_id": 395,
+              "customer_id": 395
+            },
+            {
+              "visit_id": 396,
+              "customer_id": 396
+            },
+            {
+              "visit_id": 397,
+              "customer_id": 397
+            },
+            {
+              "visit_id": 398,
+              "customer_id": 398
+            },
+            {
+              "visit_id": 399,
+              "customer_id": 399
+            },
+            {
+              "visit_id": 400,
+              "customer_id": 400
+            },
+            {
+              "visit_id": 401,
+              "customer_id": 401
+            },
+            {
+              "visit_id": 402,
+              "customer_id": 402
+            },
+            {
+              "visit_id": 403,
+              "customer_id": 403
+            },
+            {
+              "visit_id": 404,
+              "customer_id": 404
+            },
+            {
+              "visit_id": 405,
+              "customer_id": 405
+            },
+            {
+              "visit_id": 406,
+              "customer_id": 406
+            },
+            {
+              "visit_id": 407,
+              "customer_id": 407
+            },
+            {
+              "visit_id": 408,
+              "customer_id": 408
+            },
+            {
+              "visit_id": 409,
+              "customer_id": 409
+            },
+            {
+              "visit_id": 410,
+              "customer_id": 410
+            },
+            {
+              "visit_id": 411,
+              "customer_id": 411
+            },
+            {
+              "visit_id": 412,
+              "customer_id": 412
+            },
+            {
+              "visit_id": 413,
+              "customer_id": 413
+            },
+            {
+              "visit_id": 414,
+              "customer_id": 414
+            },
+            {
+              "visit_id": 415,
+              "customer_id": 415
+            },
+            {
+              "visit_id": 416,
+              "customer_id": 416
+            },
+            {
+              "visit_id": 417,
+              "customer_id": 417
+            },
+            {
+              "visit_id": 418,
+              "customer_id": 418
+            },
+            {
+              "visit_id": 419,
+              "customer_id": 419
+            },
+            {
+              "visit_id": 420,
+              "customer_id": 420
+            },
+            {
+              "visit_id": 421,
+              "customer_id": 421
+            },
+            {
+              "visit_id": 422,
+              "customer_id": 422
+            },
+            {
+              "visit_id": 423,
+              "customer_id": 423
+            },
+            {
+              "visit_id": 424,
+              "customer_id": 424
+            },
+            {
+              "visit_id": 425,
+              "customer_id": 425
+            },
+            {
+              "visit_id": 426,
+              "customer_id": 426
+            },
+            {
+              "visit_id": 427,
+              "customer_id": 427
+            },
+            {
+              "visit_id": 428,
+              "customer_id": 428
+            },
+            {
+              "visit_id": 429,
+              "customer_id": 429
+            },
+            {
+              "visit_id": 430,
+              "customer_id": 430
+            },
+            {
+              "visit_id": 431,
+              "customer_id": 431
+            },
+            {
+              "visit_id": 432,
+              "customer_id": 432
+            },
+            {
+              "visit_id": 433,
+              "customer_id": 433
+            },
+            {
+              "visit_id": 434,
+              "customer_id": 434
+            },
+            {
+              "visit_id": 435,
+              "customer_id": 435
+            },
+            {
+              "visit_id": 436,
+              "customer_id": 436
+            },
+            {
+              "visit_id": 437,
+              "customer_id": 437
+            },
+            {
+              "visit_id": 438,
+              "customer_id": 438
+            },
+            {
+              "visit_id": 439,
+              "customer_id": 439
+            },
+            {
+              "visit_id": 440,
+              "customer_id": 440
+            },
+            {
+              "visit_id": 441,
+              "customer_id": 441
+            },
+            {
+              "visit_id": 442,
+              "customer_id": 442
+            },
+            {
+              "visit_id": 443,
+              "customer_id": 443
+            },
+            {
+              "visit_id": 444,
+              "customer_id": 444
+            },
+            {
+              "visit_id": 445,
+              "customer_id": 445
+            },
+            {
+              "visit_id": 446,
+              "customer_id": 446
+            },
+            {
+              "visit_id": 447,
+              "customer_id": 447
+            },
+            {
+              "visit_id": 448,
+              "customer_id": 448
+            },
+            {
+              "visit_id": 449,
+              "customer_id": 449
+            },
+            {
+              "visit_id": 450,
+              "customer_id": 450
+            },
+            {
+              "visit_id": 451,
+              "customer_id": 451
+            },
+            {
+              "visit_id": 452,
+              "customer_id": 452
+            },
+            {
+              "visit_id": 453,
+              "customer_id": 453
+            },
+            {
+              "visit_id": 454,
+              "customer_id": 454
+            },
+            {
+              "visit_id": 455,
+              "customer_id": 455
+            },
+            {
+              "visit_id": 456,
+              "customer_id": 456
+            },
+            {
+              "visit_id": 457,
+              "customer_id": 457
+            },
+            {
+              "visit_id": 458,
+              "customer_id": 458
+            },
+            {
+              "visit_id": 459,
+              "customer_id": 459
+            },
+            {
+              "visit_id": 460,
+              "customer_id": 460
+            },
+            {
+              "visit_id": 461,
+              "customer_id": 461
+            },
+            {
+              "visit_id": 462,
+              "customer_id": 462
+            },
+            {
+              "visit_id": 463,
+              "customer_id": 463
+            },
+            {
+              "visit_id": 464,
+              "customer_id": 464
+            },
+            {
+              "visit_id": 465,
+              "customer_id": 465
+            },
+            {
+              "visit_id": 466,
+              "customer_id": 466
+            },
+            {
+              "visit_id": 467,
+              "customer_id": 467
+            },
+            {
+              "visit_id": 468,
+              "customer_id": 468
+            },
+            {
+              "visit_id": 469,
+              "customer_id": 469
+            },
+            {
+              "visit_id": 470,
+              "customer_id": 470
+            },
+            {
+              "visit_id": 471,
+              "customer_id": 471
+            },
+            {
+              "visit_id": 472,
+              "customer_id": 472
+            },
+            {
+              "visit_id": 473,
+              "customer_id": 473
+            },
+            {
+              "visit_id": 474,
+              "customer_id": 474
+            },
+            {
+              "visit_id": 475,
+              "customer_id": 475
+            },
+            {
+              "visit_id": 476,
+              "customer_id": 476
+            },
+            {
+              "visit_id": 477,
+              "customer_id": 477
+            },
+            {
+              "visit_id": 478,
+              "customer_id": 478
+            },
+            {
+              "visit_id": 479,
+              "customer_id": 479
+            },
+            {
+              "visit_id": 480,
+              "customer_id": 480
+            },
+            {
+              "visit_id": 481,
+              "customer_id": 481
+            },
+            {
+              "visit_id": 482,
+              "customer_id": 482
+            },
+            {
+              "visit_id": 483,
+              "customer_id": 483
+            },
+            {
+              "visit_id": 484,
+              "customer_id": 484
+            },
+            {
+              "visit_id": 485,
+              "customer_id": 485
+            },
+            {
+              "visit_id": 486,
+              "customer_id": 486
+            },
+            {
+              "visit_id": 487,
+              "customer_id": 487
+            },
+            {
+              "visit_id": 488,
+              "customer_id": 488
+            },
+            {
+              "visit_id": 489,
+              "customer_id": 489
+            },
+            {
+              "visit_id": 490,
+              "customer_id": 490
+            },
+            {
+              "visit_id": 491,
+              "customer_id": 491
+            },
+            {
+              "visit_id": 492,
+              "customer_id": 492
+            },
+            {
+              "visit_id": 493,
+              "customer_id": 493
+            },
+            {
+              "visit_id": 494,
+              "customer_id": 494
+            },
+            {
+              "visit_id": 495,
+              "customer_id": 495
+            },
+            {
+              "visit_id": 496,
+              "customer_id": 496
+            },
+            {
+              "visit_id": 497,
+              "customer_id": 497
+            },
+            {
+              "visit_id": 498,
+              "customer_id": 498
+            },
+            {
+              "visit_id": 499,
+              "customer_id": 499
+            },
+            {
+              "visit_id": 500,
+              "customer_id": 500
+            },
+            {
+              "visit_id": 501,
+              "customer_id": 501
+            },
+            {
+              "visit_id": 502,
+              "customer_id": 502
+            },
+            {
+              "visit_id": 503,
+              "customer_id": 503
+            },
+            {
+              "visit_id": 504,
+              "customer_id": 504
+            },
+            {
+              "visit_id": 505,
+              "customer_id": 505
+            },
+            {
+              "visit_id": 506,
+              "customer_id": 506
+            },
+            {
+              "visit_id": 507,
+              "customer_id": 507
+            },
+            {
+              "visit_id": 508,
+              "customer_id": 508
+            },
+            {
+              "visit_id": 509,
+              "customer_id": 509
+            },
+            {
+              "visit_id": 510,
+              "customer_id": 510
+            },
+            {
+              "visit_id": 511,
+              "customer_id": 511
+            },
+            {
+              "visit_id": 512,
+              "customer_id": 512
+            }
+          ],
+          "Transactions": [
+            {
+              "transaction_id": 1,
+              "visit_id": 1,
+              "amount": 1
+            },
+            {
+              "transaction_id": 2,
+              "visit_id": 2,
+              "amount": 1
+            },
+            {
+              "transaction_id": 3,
+              "visit_id": 3,
+              "amount": 1
+            },
+            {
+              "transaction_id": 4,
+              "visit_id": 4,
+              "amount": 1
+            },
+            {
+              "transaction_id": 5,
+              "visit_id": 5,
+              "amount": 1
+            },
+            {
+              "transaction_id": 6,
+              "visit_id": 6,
+              "amount": 1
+            },
+            {
+              "transaction_id": 7,
+              "visit_id": 7,
+              "amount": 1
+            },
+            {
+              "transaction_id": 8,
+              "visit_id": 8,
+              "amount": 1
+            },
+            {
+              "transaction_id": 9,
+              "visit_id": 9,
+              "amount": 1
+            },
+            {
+              "transaction_id": 10,
+              "visit_id": 10,
+              "amount": 1
+            },
+            {
+              "transaction_id": 11,
+              "visit_id": 11,
+              "amount": 1
+            },
+            {
+              "transaction_id": 12,
+              "visit_id": 12,
+              "amount": 1
+            },
+            {
+              "transaction_id": 13,
+              "visit_id": 13,
+              "amount": 1
+            },
+            {
+              "transaction_id": 14,
+              "visit_id": 14,
+              "amount": 1
+            },
+            {
+              "transaction_id": 15,
+              "visit_id": 15,
+              "amount": 1
+            },
+            {
+              "transaction_id": 16,
+              "visit_id": 16,
+              "amount": 1
+            },
+            {
+              "transaction_id": 17,
+              "visit_id": 17,
+              "amount": 1
+            },
+            {
+              "transaction_id": 18,
+              "visit_id": 18,
+              "amount": 1
+            },
+            {
+              "transaction_id": 19,
+              "visit_id": 19,
+              "amount": 1
+            },
+            {
+              "transaction_id": 20,
+              "visit_id": 20,
+              "amount": 1
+            },
+            {
+              "transaction_id": 21,
+              "visit_id": 21,
+              "amount": 1
+            },
+            {
+              "transaction_id": 22,
+              "visit_id": 22,
+              "amount": 1
+            },
+            {
+              "transaction_id": 23,
+              "visit_id": 23,
+              "amount": 1
+            },
+            {
+              "transaction_id": 24,
+              "visit_id": 24,
+              "amount": 1
+            },
+            {
+              "transaction_id": 25,
+              "visit_id": 25,
+              "amount": 1
+            },
+            {
+              "transaction_id": 26,
+              "visit_id": 26,
+              "amount": 1
+            },
+            {
+              "transaction_id": 27,
+              "visit_id": 27,
+              "amount": 1
+            },
+            {
+              "transaction_id": 28,
+              "visit_id": 28,
+              "amount": 1
+            },
+            {
+              "transaction_id": 29,
+              "visit_id": 29,
+              "amount": 1
+            },
+            {
+              "transaction_id": 30,
+              "visit_id": 30,
+              "amount": 1
+            },
+            {
+              "transaction_id": 31,
+              "visit_id": 31,
+              "amount": 1
+            },
+            {
+              "transaction_id": 32,
+              "visit_id": 32,
+              "amount": 1
+            },
+            {
+              "transaction_id": 33,
+              "visit_id": 33,
+              "amount": 1
+            },
+            {
+              "transaction_id": 34,
+              "visit_id": 34,
+              "amount": 1
+            },
+            {
+              "transaction_id": 35,
+              "visit_id": 35,
+              "amount": 1
+            },
+            {
+              "transaction_id": 36,
+              "visit_id": 36,
+              "amount": 1
+            },
+            {
+              "transaction_id": 37,
+              "visit_id": 37,
+              "amount": 1
+            },
+            {
+              "transaction_id": 38,
+              "visit_id": 38,
+              "amount": 1
+            },
+            {
+              "transaction_id": 39,
+              "visit_id": 39,
+              "amount": 1
+            },
+            {
+              "transaction_id": 40,
+              "visit_id": 40,
+              "amount": 1
+            },
+            {
+              "transaction_id": 41,
+              "visit_id": 41,
+              "amount": 1
+            },
+            {
+              "transaction_id": 42,
+              "visit_id": 42,
+              "amount": 1
+            },
+            {
+              "transaction_id": 43,
+              "visit_id": 43,
+              "amount": 1
+            },
+            {
+              "transaction_id": 44,
+              "visit_id": 44,
+              "amount": 1
+            },
+            {
+              "transaction_id": 45,
+              "visit_id": 45,
+              "amount": 1
+            },
+            {
+              "transaction_id": 46,
+              "visit_id": 46,
+              "amount": 1
+            },
+            {
+              "transaction_id": 47,
+              "visit_id": 47,
+              "amount": 1
+            },
+            {
+              "transaction_id": 48,
+              "visit_id": 48,
+              "amount": 1
+            },
+            {
+              "transaction_id": 49,
+              "visit_id": 49,
+              "amount": 1
+            },
+            {
+              "transaction_id": 50,
+              "visit_id": 50,
+              "amount": 1
+            },
+            {
+              "transaction_id": 51,
+              "visit_id": 51,
+              "amount": 1
+            },
+            {
+              "transaction_id": 52,
+              "visit_id": 52,
+              "amount": 1
+            },
+            {
+              "transaction_id": 53,
+              "visit_id": 53,
+              "amount": 1
+            },
+            {
+              "transaction_id": 54,
+              "visit_id": 54,
+              "amount": 1
+            },
+            {
+              "transaction_id": 55,
+              "visit_id": 55,
+              "amount": 1
+            },
+            {
+              "transaction_id": 56,
+              "visit_id": 56,
+              "amount": 1
+            },
+            {
+              "transaction_id": 57,
+              "visit_id": 57,
+              "amount": 1
+            },
+            {
+              "transaction_id": 58,
+              "visit_id": 58,
+              "amount": 1
+            },
+            {
+              "transaction_id": 59,
+              "visit_id": 59,
+              "amount": 1
+            },
+            {
+              "transaction_id": 60,
+              "visit_id": 60,
+              "amount": 1
+            },
+            {
+              "transaction_id": 61,
+              "visit_id": 61,
+              "amount": 1
+            },
+            {
+              "transaction_id": 62,
+              "visit_id": 62,
+              "amount": 1
+            },
+            {
+              "transaction_id": 63,
+              "visit_id": 63,
+              "amount": 1
+            },
+            {
+              "transaction_id": 64,
+              "visit_id": 64,
+              "amount": 1
+            },
+            {
+              "transaction_id": 65,
+              "visit_id": 65,
+              "amount": 1
+            },
+            {
+              "transaction_id": 66,
+              "visit_id": 66,
+              "amount": 1
+            },
+            {
+              "transaction_id": 67,
+              "visit_id": 67,
+              "amount": 1
+            },
+            {
+              "transaction_id": 68,
+              "visit_id": 68,
+              "amount": 1
+            },
+            {
+              "transaction_id": 69,
+              "visit_id": 69,
+              "amount": 1
+            },
+            {
+              "transaction_id": 70,
+              "visit_id": 70,
+              "amount": 1
+            },
+            {
+              "transaction_id": 71,
+              "visit_id": 71,
+              "amount": 1
+            },
+            {
+              "transaction_id": 72,
+              "visit_id": 72,
+              "amount": 1
+            },
+            {
+              "transaction_id": 73,
+              "visit_id": 73,
+              "amount": 1
+            },
+            {
+              "transaction_id": 74,
+              "visit_id": 74,
+              "amount": 1
+            },
+            {
+              "transaction_id": 75,
+              "visit_id": 75,
+              "amount": 1
+            },
+            {
+              "transaction_id": 76,
+              "visit_id": 76,
+              "amount": 1
+            },
+            {
+              "transaction_id": 77,
+              "visit_id": 77,
+              "amount": 1
+            },
+            {
+              "transaction_id": 78,
+              "visit_id": 78,
+              "amount": 1
+            },
+            {
+              "transaction_id": 79,
+              "visit_id": 79,
+              "amount": 1
+            },
+            {
+              "transaction_id": 80,
+              "visit_id": 80,
+              "amount": 1
+            },
+            {
+              "transaction_id": 81,
+              "visit_id": 81,
+              "amount": 1
+            },
+            {
+              "transaction_id": 82,
+              "visit_id": 82,
+              "amount": 1
+            },
+            {
+              "transaction_id": 83,
+              "visit_id": 83,
+              "amount": 1
+            },
+            {
+              "transaction_id": 84,
+              "visit_id": 84,
+              "amount": 1
+            },
+            {
+              "transaction_id": 85,
+              "visit_id": 85,
+              "amount": 1
+            },
+            {
+              "transaction_id": 86,
+              "visit_id": 86,
+              "amount": 1
+            },
+            {
+              "transaction_id": 87,
+              "visit_id": 87,
+              "amount": 1
+            },
+            {
+              "transaction_id": 88,
+              "visit_id": 88,
+              "amount": 1
+            },
+            {
+              "transaction_id": 89,
+              "visit_id": 89,
+              "amount": 1
+            },
+            {
+              "transaction_id": 90,
+              "visit_id": 90,
+              "amount": 1
+            },
+            {
+              "transaction_id": 91,
+              "visit_id": 91,
+              "amount": 1
+            },
+            {
+              "transaction_id": 92,
+              "visit_id": 92,
+              "amount": 1
+            },
+            {
+              "transaction_id": 93,
+              "visit_id": 93,
+              "amount": 1
+            },
+            {
+              "transaction_id": 94,
+              "visit_id": 94,
+              "amount": 1
+            },
+            {
+              "transaction_id": 95,
+              "visit_id": 95,
+              "amount": 1
+            },
+            {
+              "transaction_id": 96,
+              "visit_id": 96,
+              "amount": 1
+            },
+            {
+              "transaction_id": 97,
+              "visit_id": 97,
+              "amount": 1
+            },
+            {
+              "transaction_id": 98,
+              "visit_id": 98,
+              "amount": 1
+            },
+            {
+              "transaction_id": 99,
+              "visit_id": 99,
+              "amount": 1
+            },
+            {
+              "transaction_id": 100,
+              "visit_id": 100,
+              "amount": 1
+            },
+            {
+              "transaction_id": 101,
+              "visit_id": 101,
+              "amount": 1
+            },
+            {
+              "transaction_id": 102,
+              "visit_id": 102,
+              "amount": 1
+            },
+            {
+              "transaction_id": 103,
+              "visit_id": 103,
+              "amount": 1
+            },
+            {
+              "transaction_id": 104,
+              "visit_id": 104,
+              "amount": 1
+            },
+            {
+              "transaction_id": 105,
+              "visit_id": 105,
+              "amount": 1
+            },
+            {
+              "transaction_id": 106,
+              "visit_id": 106,
+              "amount": 1
+            },
+            {
+              "transaction_id": 107,
+              "visit_id": 107,
+              "amount": 1
+            },
+            {
+              "transaction_id": 108,
+              "visit_id": 108,
+              "amount": 1
+            },
+            {
+              "transaction_id": 109,
+              "visit_id": 109,
+              "amount": 1
+            },
+            {
+              "transaction_id": 110,
+              "visit_id": 110,
+              "amount": 1
+            },
+            {
+              "transaction_id": 111,
+              "visit_id": 111,
+              "amount": 1
+            },
+            {
+              "transaction_id": 112,
+              "visit_id": 112,
+              "amount": 1
+            },
+            {
+              "transaction_id": 113,
+              "visit_id": 113,
+              "amount": 1
+            },
+            {
+              "transaction_id": 114,
+              "visit_id": 114,
+              "amount": 1
+            },
+            {
+              "transaction_id": 115,
+              "visit_id": 115,
+              "amount": 1
+            },
+            {
+              "transaction_id": 116,
+              "visit_id": 116,
+              "amount": 1
+            },
+            {
+              "transaction_id": 117,
+              "visit_id": 117,
+              "amount": 1
+            },
+            {
+              "transaction_id": 118,
+              "visit_id": 118,
+              "amount": 1
+            },
+            {
+              "transaction_id": 119,
+              "visit_id": 119,
+              "amount": 1
+            },
+            {
+              "transaction_id": 120,
+              "visit_id": 120,
+              "amount": 1
+            },
+            {
+              "transaction_id": 121,
+              "visit_id": 121,
+              "amount": 1
+            },
+            {
+              "transaction_id": 122,
+              "visit_id": 122,
+              "amount": 1
+            },
+            {
+              "transaction_id": 123,
+              "visit_id": 123,
+              "amount": 1
+            },
+            {
+              "transaction_id": 124,
+              "visit_id": 124,
+              "amount": 1
+            },
+            {
+              "transaction_id": 125,
+              "visit_id": 125,
+              "amount": 1
+            },
+            {
+              "transaction_id": 126,
+              "visit_id": 126,
+              "amount": 1
+            },
+            {
+              "transaction_id": 127,
+              "visit_id": 127,
+              "amount": 1
+            },
+            {
+              "transaction_id": 128,
+              "visit_id": 128,
+              "amount": 1
+            },
+            {
+              "transaction_id": 129,
+              "visit_id": 129,
+              "amount": 1
+            },
+            {
+              "transaction_id": 130,
+              "visit_id": 130,
+              "amount": 1
+            },
+            {
+              "transaction_id": 131,
+              "visit_id": 131,
+              "amount": 1
+            },
+            {
+              "transaction_id": 132,
+              "visit_id": 132,
+              "amount": 1
+            },
+            {
+              "transaction_id": 133,
+              "visit_id": 133,
+              "amount": 1
+            },
+            {
+              "transaction_id": 134,
+              "visit_id": 134,
+              "amount": 1
+            },
+            {
+              "transaction_id": 135,
+              "visit_id": 135,
+              "amount": 1
+            },
+            {
+              "transaction_id": 136,
+              "visit_id": 136,
+              "amount": 1
+            },
+            {
+              "transaction_id": 137,
+              "visit_id": 137,
+              "amount": 1
+            },
+            {
+              "transaction_id": 138,
+              "visit_id": 138,
+              "amount": 1
+            },
+            {
+              "transaction_id": 139,
+              "visit_id": 139,
+              "amount": 1
+            },
+            {
+              "transaction_id": 140,
+              "visit_id": 140,
+              "amount": 1
+            },
+            {
+              "transaction_id": 141,
+              "visit_id": 141,
+              "amount": 1
+            },
+            {
+              "transaction_id": 142,
+              "visit_id": 142,
+              "amount": 1
+            },
+            {
+              "transaction_id": 143,
+              "visit_id": 143,
+              "amount": 1
+            },
+            {
+              "transaction_id": 144,
+              "visit_id": 144,
+              "amount": 1
+            },
+            {
+              "transaction_id": 145,
+              "visit_id": 145,
+              "amount": 1
+            },
+            {
+              "transaction_id": 146,
+              "visit_id": 146,
+              "amount": 1
+            },
+            {
+              "transaction_id": 147,
+              "visit_id": 147,
+              "amount": 1
+            },
+            {
+              "transaction_id": 148,
+              "visit_id": 148,
+              "amount": 1
+            },
+            {
+              "transaction_id": 149,
+              "visit_id": 149,
+              "amount": 1
+            },
+            {
+              "transaction_id": 150,
+              "visit_id": 150,
+              "amount": 1
+            },
+            {
+              "transaction_id": 151,
+              "visit_id": 151,
+              "amount": 1
+            },
+            {
+              "transaction_id": 152,
+              "visit_id": 152,
+              "amount": 1
+            },
+            {
+              "transaction_id": 153,
+              "visit_id": 153,
+              "amount": 1
+            },
+            {
+              "transaction_id": 154,
+              "visit_id": 154,
+              "amount": 1
+            },
+            {
+              "transaction_id": 155,
+              "visit_id": 155,
+              "amount": 1
+            },
+            {
+              "transaction_id": 156,
+              "visit_id": 156,
+              "amount": 1
+            },
+            {
+              "transaction_id": 157,
+              "visit_id": 157,
+              "amount": 1
+            },
+            {
+              "transaction_id": 158,
+              "visit_id": 158,
+              "amount": 1
+            },
+            {
+              "transaction_id": 159,
+              "visit_id": 159,
+              "amount": 1
+            },
+            {
+              "transaction_id": 160,
+              "visit_id": 160,
+              "amount": 1
+            },
+            {
+              "transaction_id": 161,
+              "visit_id": 161,
+              "amount": 1
+            },
+            {
+              "transaction_id": 162,
+              "visit_id": 162,
+              "amount": 1
+            },
+            {
+              "transaction_id": 163,
+              "visit_id": 163,
+              "amount": 1
+            },
+            {
+              "transaction_id": 164,
+              "visit_id": 164,
+              "amount": 1
+            },
+            {
+              "transaction_id": 165,
+              "visit_id": 165,
+              "amount": 1
+            },
+            {
+              "transaction_id": 166,
+              "visit_id": 166,
+              "amount": 1
+            },
+            {
+              "transaction_id": 167,
+              "visit_id": 167,
+              "amount": 1
+            },
+            {
+              "transaction_id": 168,
+              "visit_id": 168,
+              "amount": 1
+            },
+            {
+              "transaction_id": 169,
+              "visit_id": 169,
+              "amount": 1
+            },
+            {
+              "transaction_id": 170,
+              "visit_id": 170,
+              "amount": 1
+            },
+            {
+              "transaction_id": 171,
+              "visit_id": 171,
+              "amount": 1
+            },
+            {
+              "transaction_id": 172,
+              "visit_id": 172,
+              "amount": 1
+            },
+            {
+              "transaction_id": 173,
+              "visit_id": 173,
+              "amount": 1
+            },
+            {
+              "transaction_id": 174,
+              "visit_id": 174,
+              "amount": 1
+            },
+            {
+              "transaction_id": 175,
+              "visit_id": 175,
+              "amount": 1
+            },
+            {
+              "transaction_id": 176,
+              "visit_id": 176,
+              "amount": 1
+            },
+            {
+              "transaction_id": 177,
+              "visit_id": 177,
+              "amount": 1
+            },
+            {
+              "transaction_id": 178,
+              "visit_id": 178,
+              "amount": 1
+            },
+            {
+              "transaction_id": 179,
+              "visit_id": 179,
+              "amount": 1
+            },
+            {
+              "transaction_id": 180,
+              "visit_id": 180,
+              "amount": 1
+            },
+            {
+              "transaction_id": 181,
+              "visit_id": 181,
+              "amount": 1
+            },
+            {
+              "transaction_id": 182,
+              "visit_id": 182,
+              "amount": 1
+            },
+            {
+              "transaction_id": 183,
+              "visit_id": 183,
+              "amount": 1
+            },
+            {
+              "transaction_id": 184,
+              "visit_id": 184,
+              "amount": 1
+            },
+            {
+              "transaction_id": 185,
+              "visit_id": 185,
+              "amount": 1
+            },
+            {
+              "transaction_id": 186,
+              "visit_id": 186,
+              "amount": 1
+            },
+            {
+              "transaction_id": 187,
+              "visit_id": 187,
+              "amount": 1
+            },
+            {
+              "transaction_id": 188,
+              "visit_id": 188,
+              "amount": 1
+            },
+            {
+              "transaction_id": 189,
+              "visit_id": 189,
+              "amount": 1
+            },
+            {
+              "transaction_id": 190,
+              "visit_id": 190,
+              "amount": 1
+            },
+            {
+              "transaction_id": 191,
+              "visit_id": 191,
+              "amount": 1
+            },
+            {
+              "transaction_id": 192,
+              "visit_id": 192,
+              "amount": 1
+            },
+            {
+              "transaction_id": 193,
+              "visit_id": 193,
+              "amount": 1
+            },
+            {
+              "transaction_id": 194,
+              "visit_id": 194,
+              "amount": 1
+            },
+            {
+              "transaction_id": 195,
+              "visit_id": 195,
+              "amount": 1
+            },
+            {
+              "transaction_id": 196,
+              "visit_id": 196,
+              "amount": 1
+            },
+            {
+              "transaction_id": 197,
+              "visit_id": 197,
+              "amount": 1
+            },
+            {
+              "transaction_id": 198,
+              "visit_id": 198,
+              "amount": 1
+            },
+            {
+              "transaction_id": 199,
+              "visit_id": 199,
+              "amount": 1
+            },
+            {
+              "transaction_id": 200,
+              "visit_id": 200,
+              "amount": 1
+            },
+            {
+              "transaction_id": 201,
+              "visit_id": 201,
+              "amount": 1
+            },
+            {
+              "transaction_id": 202,
+              "visit_id": 202,
+              "amount": 1
+            },
+            {
+              "transaction_id": 203,
+              "visit_id": 203,
+              "amount": 1
+            },
+            {
+              "transaction_id": 204,
+              "visit_id": 204,
+              "amount": 1
+            },
+            {
+              "transaction_id": 205,
+              "visit_id": 205,
+              "amount": 1
+            },
+            {
+              "transaction_id": 206,
+              "visit_id": 206,
+              "amount": 1
+            },
+            {
+              "transaction_id": 207,
+              "visit_id": 207,
+              "amount": 1
+            },
+            {
+              "transaction_id": 208,
+              "visit_id": 208,
+              "amount": 1
+            },
+            {
+              "transaction_id": 209,
+              "visit_id": 209,
+              "amount": 1
+            },
+            {
+              "transaction_id": 210,
+              "visit_id": 210,
+              "amount": 1
+            },
+            {
+              "transaction_id": 211,
+              "visit_id": 211,
+              "amount": 1
+            },
+            {
+              "transaction_id": 212,
+              "visit_id": 212,
+              "amount": 1
+            },
+            {
+              "transaction_id": 213,
+              "visit_id": 213,
+              "amount": 1
+            },
+            {
+              "transaction_id": 214,
+              "visit_id": 214,
+              "amount": 1
+            },
+            {
+              "transaction_id": 215,
+              "visit_id": 215,
+              "amount": 1
+            },
+            {
+              "transaction_id": 216,
+              "visit_id": 216,
+              "amount": 1
+            },
+            {
+              "transaction_id": 217,
+              "visit_id": 217,
+              "amount": 1
+            },
+            {
+              "transaction_id": 218,
+              "visit_id": 218,
+              "amount": 1
+            },
+            {
+              "transaction_id": 219,
+              "visit_id": 219,
+              "amount": 1
+            },
+            {
+              "transaction_id": 220,
+              "visit_id": 220,
+              "amount": 1
+            },
+            {
+              "transaction_id": 221,
+              "visit_id": 221,
+              "amount": 1
+            },
+            {
+              "transaction_id": 222,
+              "visit_id": 222,
+              "amount": 1
+            },
+            {
+              "transaction_id": 223,
+              "visit_id": 223,
+              "amount": 1
+            },
+            {
+              "transaction_id": 224,
+              "visit_id": 224,
+              "amount": 1
+            },
+            {
+              "transaction_id": 225,
+              "visit_id": 225,
+              "amount": 1
+            },
+            {
+              "transaction_id": 226,
+              "visit_id": 226,
+              "amount": 1
+            },
+            {
+              "transaction_id": 227,
+              "visit_id": 227,
+              "amount": 1
+            },
+            {
+              "transaction_id": 228,
+              "visit_id": 228,
+              "amount": 1
+            },
+            {
+              "transaction_id": 229,
+              "visit_id": 229,
+              "amount": 1
+            },
+            {
+              "transaction_id": 230,
+              "visit_id": 230,
+              "amount": 1
+            },
+            {
+              "transaction_id": 231,
+              "visit_id": 231,
+              "amount": 1
+            },
+            {
+              "transaction_id": 232,
+              "visit_id": 232,
+              "amount": 1
+            },
+            {
+              "transaction_id": 233,
+              "visit_id": 233,
+              "amount": 1
+            },
+            {
+              "transaction_id": 234,
+              "visit_id": 234,
+              "amount": 1
+            },
+            {
+              "transaction_id": 235,
+              "visit_id": 235,
+              "amount": 1
+            },
+            {
+              "transaction_id": 236,
+              "visit_id": 236,
+              "amount": 1
+            },
+            {
+              "transaction_id": 237,
+              "visit_id": 237,
+              "amount": 1
+            },
+            {
+              "transaction_id": 238,
+              "visit_id": 238,
+              "amount": 1
+            },
+            {
+              "transaction_id": 239,
+              "visit_id": 239,
+              "amount": 1
+            },
+            {
+              "transaction_id": 240,
+              "visit_id": 240,
+              "amount": 1
+            },
+            {
+              "transaction_id": 241,
+              "visit_id": 241,
+              "amount": 1
+            },
+            {
+              "transaction_id": 242,
+              "visit_id": 242,
+              "amount": 1
+            },
+            {
+              "transaction_id": 243,
+              "visit_id": 243,
+              "amount": 1
+            },
+            {
+              "transaction_id": 244,
+              "visit_id": 244,
+              "amount": 1
+            },
+            {
+              "transaction_id": 245,
+              "visit_id": 245,
+              "amount": 1
+            },
+            {
+              "transaction_id": 246,
+              "visit_id": 246,
+              "amount": 1
+            },
+            {
+              "transaction_id": 247,
+              "visit_id": 247,
+              "amount": 1
+            },
+            {
+              "transaction_id": 248,
+              "visit_id": 248,
+              "amount": 1
+            },
+            {
+              "transaction_id": 249,
+              "visit_id": 249,
+              "amount": 1
+            },
+            {
+              "transaction_id": 250,
+              "visit_id": 250,
+              "amount": 1
+            },
+            {
+              "transaction_id": 251,
+              "visit_id": 251,
+              "amount": 1
+            },
+            {
+              "transaction_id": 252,
+              "visit_id": 252,
+              "amount": 1
+            },
+            {
+              "transaction_id": 253,
+              "visit_id": 253,
+              "amount": 1
+            },
+            {
+              "transaction_id": 254,
+              "visit_id": 254,
+              "amount": 1
+            },
+            {
+              "transaction_id": 255,
+              "visit_id": 255,
+              "amount": 1
+            },
+            {
+              "transaction_id": 256,
+              "visit_id": 256,
+              "amount": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "count_no_trans"
+        ],
+        "rows": [
+          [
+            257,
+            1
+          ],
+          [
+            258,
+            1
+          ],
+          [
+            259,
+            1
+          ],
+          [
+            260,
+            1
+          ],
+          [
+            261,
+            1
+          ],
+          [
+            262,
+            1
+          ],
+          [
+            263,
+            1
+          ],
+          [
+            264,
+            1
+          ],
+          [
+            265,
+            1
+          ],
+          [
+            266,
+            1
+          ],
+          [
+            267,
+            1
+          ],
+          [
+            268,
+            1
+          ],
+          [
+            269,
+            1
+          ],
+          [
+            270,
+            1
+          ],
+          [
+            271,
+            1
+          ],
+          [
+            272,
+            1
+          ],
+          [
+            273,
+            1
+          ],
+          [
+            274,
+            1
+          ],
+          [
+            275,
+            1
+          ],
+          [
+            276,
+            1
+          ],
+          [
+            277,
+            1
+          ],
+          [
+            278,
+            1
+          ],
+          [
+            279,
+            1
+          ],
+          [
+            280,
+            1
+          ],
+          [
+            281,
+            1
+          ],
+          [
+            282,
+            1
+          ],
+          [
+            283,
+            1
+          ],
+          [
+            284,
+            1
+          ],
+          [
+            285,
+            1
+          ],
+          [
+            286,
+            1
+          ],
+          [
+            287,
+            1
+          ],
+          [
+            288,
+            1
+          ],
+          [
+            289,
+            1
+          ],
+          [
+            290,
+            1
+          ],
+          [
+            291,
+            1
+          ],
+          [
+            292,
+            1
+          ],
+          [
+            293,
+            1
+          ],
+          [
+            294,
+            1
+          ],
+          [
+            295,
+            1
+          ],
+          [
+            296,
+            1
+          ],
+          [
+            297,
+            1
+          ],
+          [
+            298,
+            1
+          ],
+          [
+            299,
+            1
+          ],
+          [
+            300,
+            1
+          ],
+          [
+            301,
+            1
+          ],
+          [
+            302,
+            1
+          ],
+          [
+            303,
+            1
+          ],
+          [
+            304,
+            1
+          ],
+          [
+            305,
+            1
+          ],
+          [
+            306,
+            1
+          ],
+          [
+            307,
+            1
+          ],
+          [
+            308,
+            1
+          ],
+          [
+            309,
+            1
+          ],
+          [
+            310,
+            1
+          ],
+          [
+            311,
+            1
+          ],
+          [
+            312,
+            1
+          ],
+          [
+            313,
+            1
+          ],
+          [
+            314,
+            1
+          ],
+          [
+            315,
+            1
+          ],
+          [
+            316,
+            1
+          ],
+          [
+            317,
+            1
+          ],
+          [
+            318,
+            1
+          ],
+          [
+            319,
+            1
+          ],
+          [
+            320,
+            1
+          ],
+          [
+            321,
+            1
+          ],
+          [
+            322,
+            1
+          ],
+          [
+            323,
+            1
+          ],
+          [
+            324,
+            1
+          ],
+          [
+            325,
+            1
+          ],
+          [
+            326,
+            1
+          ],
+          [
+            327,
+            1
+          ],
+          [
+            328,
+            1
+          ],
+          [
+            329,
+            1
+          ],
+          [
+            330,
+            1
+          ],
+          [
+            331,
+            1
+          ],
+          [
+            332,
+            1
+          ],
+          [
+            333,
+            1
+          ],
+          [
+            334,
+            1
+          ],
+          [
+            335,
+            1
+          ],
+          [
+            336,
+            1
+          ],
+          [
+            337,
+            1
+          ],
+          [
+            338,
+            1
+          ],
+          [
+            339,
+            1
+          ],
+          [
+            340,
+            1
+          ],
+          [
+            341,
+            1
+          ],
+          [
+            342,
+            1
+          ],
+          [
+            343,
+            1
+          ],
+          [
+            344,
+            1
+          ],
+          [
+            345,
+            1
+          ],
+          [
+            346,
+            1
+          ],
+          [
+            347,
+            1
+          ],
+          [
+            348,
+            1
+          ],
+          [
+            349,
+            1
+          ],
+          [
+            350,
+            1
+          ],
+          [
+            351,
+            1
+          ],
+          [
+            352,
+            1
+          ],
+          [
+            353,
+            1
+          ],
+          [
+            354,
+            1
+          ],
+          [
+            355,
+            1
+          ],
+          [
+            356,
+            1
+          ],
+          [
+            357,
+            1
+          ],
+          [
+            358,
+            1
+          ],
+          [
+            359,
+            1
+          ],
+          [
+            360,
+            1
+          ],
+          [
+            361,
+            1
+          ],
+          [
+            362,
+            1
+          ],
+          [
+            363,
+            1
+          ],
+          [
+            364,
+            1
+          ],
+          [
+            365,
+            1
+          ],
+          [
+            366,
+            1
+          ],
+          [
+            367,
+            1
+          ],
+          [
+            368,
+            1
+          ],
+          [
+            369,
+            1
+          ],
+          [
+            370,
+            1
+          ],
+          [
+            371,
+            1
+          ],
+          [
+            372,
+            1
+          ],
+          [
+            373,
+            1
+          ],
+          [
+            374,
+            1
+          ],
+          [
+            375,
+            1
+          ],
+          [
+            376,
+            1
+          ],
+          [
+            377,
+            1
+          ],
+          [
+            378,
+            1
+          ],
+          [
+            379,
+            1
+          ],
+          [
+            380,
+            1
+          ],
+          [
+            381,
+            1
+          ],
+          [
+            382,
+            1
+          ],
+          [
+            383,
+            1
+          ],
+          [
+            384,
+            1
+          ],
+          [
+            385,
+            1
+          ],
+          [
+            386,
+            1
+          ],
+          [
+            387,
+            1
+          ],
+          [
+            388,
+            1
+          ],
+          [
+            389,
+            1
+          ],
+          [
+            390,
+            1
+          ],
+          [
+            391,
+            1
+          ],
+          [
+            392,
+            1
+          ],
+          [
+            393,
+            1
+          ],
+          [
+            394,
+            1
+          ],
+          [
+            395,
+            1
+          ],
+          [
+            396,
+            1
+          ],
+          [
+            397,
+            1
+          ],
+          [
+            398,
+            1
+          ],
+          [
+            399,
+            1
+          ],
+          [
+            400,
+            1
+          ],
+          [
+            401,
+            1
+          ],
+          [
+            402,
+            1
+          ],
+          [
+            403,
+            1
+          ],
+          [
+            404,
+            1
+          ],
+          [
+            405,
+            1
+          ],
+          [
+            406,
+            1
+          ],
+          [
+            407,
+            1
+          ],
+          [
+            408,
+            1
+          ],
+          [
+            409,
+            1
+          ],
+          [
+            410,
+            1
+          ],
+          [
+            411,
+            1
+          ],
+          [
+            412,
+            1
+          ],
+          [
+            413,
+            1
+          ],
+          [
+            414,
+            1
+          ],
+          [
+            415,
+            1
+          ],
+          [
+            416,
+            1
+          ],
+          [
+            417,
+            1
+          ],
+          [
+            418,
+            1
+          ],
+          [
+            419,
+            1
+          ],
+          [
+            420,
+            1
+          ],
+          [
+            421,
+            1
+          ],
+          [
+            422,
+            1
+          ],
+          [
+            423,
+            1
+          ],
+          [
+            424,
+            1
+          ],
+          [
+            425,
+            1
+          ],
+          [
+            426,
+            1
+          ],
+          [
+            427,
+            1
+          ],
+          [
+            428,
+            1
+          ],
+          [
+            429,
+            1
+          ],
+          [
+            430,
+            1
+          ],
+          [
+            431,
+            1
+          ],
+          [
+            432,
+            1
+          ],
+          [
+            433,
+            1
+          ],
+          [
+            434,
+            1
+          ],
+          [
+            435,
+            1
+          ],
+          [
+            436,
+            1
+          ],
+          [
+            437,
+            1
+          ],
+          [
+            438,
+            1
+          ],
+          [
+            439,
+            1
+          ],
+          [
+            440,
+            1
+          ],
+          [
+            441,
+            1
+          ],
+          [
+            442,
+            1
+          ],
+          [
+            443,
+            1
+          ],
+          [
+            444,
+            1
+          ],
+          [
+            445,
+            1
+          ],
+          [
+            446,
+            1
+          ],
+          [
+            447,
+            1
+          ],
+          [
+            448,
+            1
+          ],
+          [
+            449,
+            1
+          ],
+          [
+            450,
+            1
+          ],
+          [
+            451,
+            1
+          ],
+          [
+            452,
+            1
+          ],
+          [
+            453,
+            1
+          ],
+          [
+            454,
+            1
+          ],
+          [
+            455,
+            1
+          ],
+          [
+            456,
+            1
+          ],
+          [
+            457,
+            1
+          ],
+          [
+            458,
+            1
+          ],
+          [
+            459,
+            1
+          ],
+          [
+            460,
+            1
+          ],
+          [
+            461,
+            1
+          ],
+          [
+            462,
+            1
+          ],
+          [
+            463,
+            1
+          ],
+          [
+            464,
+            1
+          ],
+          [
+            465,
+            1
+          ],
+          [
+            466,
+            1
+          ],
+          [
+            467,
+            1
+          ],
+          [
+            468,
+            1
+          ],
+          [
+            469,
+            1
+          ],
+          [
+            470,
+            1
+          ],
+          [
+            471,
+            1
+          ],
+          [
+            472,
+            1
+          ],
+          [
+            473,
+            1
+          ],
+          [
+            474,
+            1
+          ],
+          [
+            475,
+            1
+          ],
+          [
+            476,
+            1
+          ],
+          [
+            477,
+            1
+          ],
+          [
+            478,
+            1
+          ],
+          [
+            479,
+            1
+          ],
+          [
+            480,
+            1
+          ],
+          [
+            481,
+            1
+          ],
+          [
+            482,
+            1
+          ],
+          [
+            483,
+            1
+          ],
+          [
+            484,
+            1
+          ],
+          [
+            485,
+            1
+          ],
+          [
+            486,
+            1
+          ],
+          [
+            487,
+            1
+          ],
+          [
+            488,
+            1
+          ],
+          [
+            489,
+            1
+          ],
+          [
+            490,
+            1
+          ],
+          [
+            491,
+            1
+          ],
+          [
+            492,
+            1
+          ],
+          [
+            493,
+            1
+          ],
+          [
+            494,
+            1
+          ],
+          [
+            495,
+            1
+          ],
+          [
+            496,
+            1
+          ],
+          [
+            497,
+            1
+          ],
+          [
+            498,
+            1
+          ],
+          [
+            499,
+            1
+          ],
+          [
+            500,
+            1
+          ],
+          [
+            501,
+            1
+          ],
+          [
+            502,
+            1
+          ],
+          [
+            503,
+            1
+          ],
+          [
+            504,
+            1
+          ],
+          [
+            505,
+            1
+          ],
+          [
+            506,
+            1
+          ],
+          [
+            507,
+            1
+          ],
+          [
+            508,
+            1
+          ],
+          [
+            509,
+            1
+          ],
+          [
+            510,
+            1
+          ],
+          [
+            511,
+            1
+          ],
+          [
+            512,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "distinct-customers",
+        "correlated-rescan",
+        "visits-512"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4003",
+  "measurement_note": "Size is N=mn, the number of cells and therefore half the number of parity states. Each tier is a zero-penalty single row, so reaching the far end still requires settling states across the row. Heap-based Dijkstra is O(N log N); a correct array-based Dijkstra that linearly scans every unsettled state for the next minimum grows as O(N^2).",
+  "cases": [
+    {
+      "id": "benchmark-zero-row-16",
+      "name": "benchmark: zero-penalty row with 16 cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"m": 1, "n": 16, "penalty": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]},
+      "expected": 136,
+      "tags": ["benchmark", "scale-small", "single-row"]
+    },
+    {
+      "id": "benchmark-zero-row-64",
+      "name": "benchmark: zero-penalty row with 64 cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"m": 1, "n": 64, "penalty": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]},
+      "expected": 2080,
+      "tags": ["benchmark", "scale-medium", "single-row"]
+    },
+    {
+      "id": "benchmark-zero-row-238",
+      "name": "benchmark: zero-penalty row with 238 cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 238,
+      "input": {"m": 1, "n": 238, "penalty": [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]},
+      "expected": 28441,
+      "tags": ["benchmark", "scale-large", "single-row"]
+    }
+  ]
+}

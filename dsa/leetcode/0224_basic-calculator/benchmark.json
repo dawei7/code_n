@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_224",
+  "measurement_note": "Size is the legal expression length n. Flat single-digit sums force a complete token scan while repeatedly rescanning every expression prefix makes redundant validation quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 31 expression characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 31,
+      "input": {
+        "s": "1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7"
+      },
+      "expected": 73,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "flat-expression",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 127 expression characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {
+        "s": "1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1"
+      },
+      "expected": 316,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "flat-expression",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 511 expression characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 511,
+      "input": {
+        "s": "1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4+5+6+7+8+9+1+2+3+4"
+      },
+      "expected": 1270,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "flat-expression",
+        "full-scan"
+      ]
+    }
+  ]
+}

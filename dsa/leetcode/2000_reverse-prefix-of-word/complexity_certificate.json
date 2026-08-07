@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2000",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N)",
+  "summary": "Every valid result contains exactly N explicit output characters, giving an Omega(N) construction lower bound, and the accepted-form method performs one search followed by one linear result construction.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N)",
+    "upper_bound": "O(N)",
+    "argument": "The function must return a string of length N, so materializing the explicit output requires writing N character positions. Searching for the boundary and constructing the reversed prefix plus unchanged suffix each take only linear work."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "The required return value has exactly N characters, establishing an Omega(N) output-construction lower bound in the explicit-string model."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The reference performs one linear first-occurrence search and constructs exactly one reversed prefix, one suffix, and the N-character result."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover the first character, repeated occurrences, an absent character, a one-character word, a whole-word reversal, an internal boundary, and maximum legal length."
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3280",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input is a fixed ten-character date, and the inclusive 1900 through 2100 source domain contains only 73,414 valid dates.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 10,
+    "unit": "date characters",
+    "source_constraint": "date.length == 10 and the date is valid from 1900-01-01 through 2100-12-31"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation splits at two fixed separators, parses exactly three bounded decimal components, formats each once, and joins three outputs."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression exhausts all 73,414 valid dates in the inclusive source interval and compares each result with an independent repeated-division binary oracle."
+    }
+  ]
+}

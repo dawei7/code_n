@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_712",
+  "measurement_note": "Size is the length of each string. Repeated a and b strings have no matches, so tabulation fills size squared states while an uncached recursion explores both deletion choices at every mismatch.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: disjoint length two",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"s1": "aa", "s2": "bb"},
+      "expected": 390,
+      "tags": ["benchmark", "scaling", "disjoint"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: disjoint length four",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"s1": "aaaa", "s2": "bbbb"},
+      "expected": 780,
+      "tags": ["benchmark", "scaling", "disjoint"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: disjoint length eight",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"s1": "aaaaaaaa", "s2": "bbbbbbbb"},
+      "expected": 1560,
+      "tags": ["benchmark", "scaling", "disjoint"]
+    }
+  ]
+}

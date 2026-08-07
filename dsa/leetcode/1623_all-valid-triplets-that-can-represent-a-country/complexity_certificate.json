@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1623",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(abc)",
+  "summary": "The result may contain every combination of one row from each school, so its worst-case abc output size matches the cross-join filter's abc candidate checks and leaves no genuine slower principal class to calibrate.",
+  "optimality": {
+    "symbol": "abc",
+    "lower_bound": "Omega(abc)",
+    "upper_bound": "O(abc)",
+    "argument": "When all IDs and names are distinct across the three schools, every Cartesian triplet is valid and must be emitted, requiring Omega(abc) output work; the query examines each candidate once with six constant-time comparisons."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Tables with globally distinct IDs and names produce exactly abc valid output rows, so any correct query must perform at least proportional output work."},
+    {"kind":"upper_bound_proof","evidence":"The three-way Cartesian product has abc rows and the query applies three ID and three name inequalities to each row before projection."},
+    {"kind":"boundary_property_cases","evidence":"Regression compares SQLite query output with an independent Python Cartesian oracle across full-product, empty-result, pairwise ID collision, pairwise name collision, and partial-filter fixtures."}
+  ]
+}

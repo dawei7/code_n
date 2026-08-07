@@ -1,0 +1,57 @@
+{
+  "challenge_id": "lc_2950",
+  "cases": [
+    {
+      "id": "benchmark-length-32",
+      "name": "benchmark: count divisible substrings in 32 cyclic alphabet letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyzabcdef"
+      },
+      "expected": 118,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-substring-enumeration-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-128",
+      "name": "benchmark: count divisible substrings in 128 cyclic alphabet letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx"
+      },
+      "expected": 663,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-substring-enumeration-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-length-512",
+      "name": "benchmark: count divisible substrings in 512 cyclic alphabet letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "word": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr"
+      },
+      "expected": 3096,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "string-length",
+        "quadratic-substring-enumeration-baseline"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2005",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The legal source domain contains only the one hundred integer orders from 1 through 100, and the proven six-order game-state cycle reduces every case to one remainder comparison.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 100,
+    "unit": "legal Fibonacci-tree orders",
+    "source_constraint": "The only input is an integer n satisfying 1 <= n <= 100."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The game-state sequence repeats every six orders, so evaluation performs one modulo-six operation and one comparison without constructing any tree nodes."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover all outcome-relevant residues, the first and repeated losing orders, the minimum order, later large orders, and the maximum legal order."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_678",
+  "measurement_note": "Size is the string length. All-wildcard tiers keep every balance from zero through the prefix length reachable, so explicit balance-state dynamic programming grows quadratically while the greedy feasible-balance interval updates once per character.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 20 wildcards",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "s": "********************"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "wildcards"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 50 wildcards",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "s": "**************************************************"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "wildcards"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 100 wildcards",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "s": "****************************************************************************************************"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "wildcards"
+      ]
+    }
+  ]
+}
+

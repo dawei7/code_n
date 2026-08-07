@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1866",
+  "measurement_note": "Size is n*k, the dynamic-programming state rectangle. Rolling DP evaluates each state once. A correct slower implementation that applies the recurrence recursively without memoization completes the legal (4,2), (8,4), and (16,8) tiers and fails only the measured repeated-subproblem scaling verdict.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: n 4 and k 2","kind":"benchmark","visible":false,"size":8,"input":{"n":4,"k":2},"expected":11,"validator":{"kind":"exact"},"tags":["benchmark","scaling","middle-k"]},
+    {"id":"benchmark-scale-2","name":"benchmark: n 8 and k 4","kind":"benchmark","visible":false,"size":32,"input":{"n":8,"k":4},"expected":6769,"validator":{"kind":"exact"},"tags":["benchmark","scaling","middle-k"]},
+    {"id":"benchmark-scale-3","name":"benchmark: n 16 and k 8","kind":"benchmark","visible":false,"size":128,"input":{"n":16,"k":8},"expected":631129175,"validator":{"kind":"exact"},"tags":["benchmark","scaling","middle-k"]}
+  ]
+}

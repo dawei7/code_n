@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2076",
+  "measurement_note": "Size is S with R = Q = S and n = 3S + 1. Every legal request joins another active person, while each repeated legal restriction lies wholly outside that component, so the reference must inspect all R restrictions before every union. A correct implementation that rebuilds connectivity from all accepted edges separately for every restriction completes all tiers and fails only by cubic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 restrictions and requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "n": 13,
+        "restrictions": [[5, 6], [5, 6], [5, 6], [5, 6]],
+        "requests": [[0, 1], [0, 2], [0, 3], [0, 4]]
+      },
+      "expected": [true, true, true, true],
+      "tags": ["benchmark", "scale-small", "rebuild-connectivity"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 12 restrictions and requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "n": 37,
+        "restrictions": [
+          [13, 14], [13, 14], [13, 14], [13, 14],
+          [13, 14], [13, 14], [13, 14], [13, 14],
+          [13, 14], [13, 14], [13, 14], [13, 14]
+        ],
+        "requests": [
+          [0, 1], [0, 2], [0, 3], [0, 4],
+          [0, 5], [0, 6], [0, 7], [0, 8],
+          [0, 9], [0, 10], [0, 11], [0, 12]
+        ]
+      },
+      "expected": [
+        true, true, true, true, true, true,
+        true, true, true, true, true, true
+      ],
+      "tags": ["benchmark", "scale-medium", "rebuild-connectivity"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 36 restrictions and requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "n": 109,
+        "restrictions": [
+          [37, 38], [37, 38], [37, 38], [37, 38], [37, 38], [37, 38],
+          [37, 38], [37, 38], [37, 38], [37, 38], [37, 38], [37, 38],
+          [37, 38], [37, 38], [37, 38], [37, 38], [37, 38], [37, 38],
+          [37, 38], [37, 38], [37, 38], [37, 38], [37, 38], [37, 38],
+          [37, 38], [37, 38], [37, 38], [37, 38], [37, 38], [37, 38],
+          [37, 38], [37, 38], [37, 38], [37, 38], [37, 38], [37, 38]
+        ],
+        "requests": [
+          [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6],
+          [0, 7], [0, 8], [0, 9], [0, 10], [0, 11], [0, 12],
+          [0, 13], [0, 14], [0, 15], [0, 16], [0, 17], [0, 18],
+          [0, 19], [0, 20], [0, 21], [0, 22], [0, 23], [0, 24],
+          [0, 25], [0, 26], [0, 27], [0, 28], [0, 29], [0, 30],
+          [0, 31], [0, 32], [0, 33], [0, 34], [0, 35], [0, 36]
+        ]
+      },
+      "expected": [
+        true, true, true, true, true, true,
+        true, true, true, true, true, true,
+        true, true, true, true, true, true,
+        true, true, true, true, true, true,
+        true, true, true, true, true, true,
+        true, true, true, true, true, true
+      ],
+      "tags": ["benchmark", "scale-large", "rebuild-connectivity"]
+    }
+  ]
+}

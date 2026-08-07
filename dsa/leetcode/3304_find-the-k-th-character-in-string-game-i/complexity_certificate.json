@@ -1,0 +1,13 @@
+{
+  "schema_version":1,
+  "challenge_id":"lc_3304",
+  "status":"verified",
+  "method":"bounded_domain",
+  "required_time":"O(log k)",
+  "summary":"The complete legal position domain is only 1 through 500, at most nine binary digits, so runtime scaling cannot honestly distinguish plausible complexity classes.",
+  "workload_bound":{"symbol":"k","maximum":500,"unit":"one-based positions","source_constraint":"The public contract restricts k to the inclusive range from 1 through 500."},
+  "replacement_checks":[
+    {"kind":"bounded_work_proof","evidence":"Each set bit of k - 1 identifies one transformed half on the path to the requested position, so counting at most nine bits determines the exact shift."},
+    {"kind":"boundary_property_cases","evidence":"Authored cases cover k = 1, powers of two and adjacent boundaries, a position with eight set bits, and the maximum k = 500."}
+  ]
+}

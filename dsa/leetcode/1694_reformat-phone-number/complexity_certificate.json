@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1694",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N)",
+  "summary": "Any character may be a digit that must appear in the formatted output, and the output can itself have linear length, so one cleanup-and-grouping pass matches the linear lower bound.",
+  "optimality": {
+    "symbol": "N",
+    "lower_bound": "Omega(N)",
+    "upper_bound": "O(N)",
+    "argument": "Changing any uninspected character between a separator and a digit can change the retained sequence and every later block boundary. In digit-dense inputs the returned string also contains Theta(N) characters. Filtering once and copying each digit into one output block therefore takes O(N) time and meets the Omega(N) inspection and output lower bounds."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary may place a significant digit at any input position, and digit-dense inputs require emitting a linear-size answer."},
+    {"kind":"upper_bound_proof","evidence":"One character filter plus a monotone block index examines and copies every input digit only a constant number of times."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover final suffixes of length two, three, and four; the five-digit greedy boundary; multiple triples; zeroes; and leading, trailing, adjacent, mixed separators."}
+  ]
+}

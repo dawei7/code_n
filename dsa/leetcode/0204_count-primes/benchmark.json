@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_204",
+  "measurement_note": "Size is the exclusive upper bound n. Growing legal bounds exercise sieve marking across prime multiples, while trial-dividing every candidate repeats square-root work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: exclusive bound 800",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 800,
+      "input": {
+        "n": 800
+      },
+      "expected": 139,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: exclusive bound 6400",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6400,
+      "input": {
+        "n": 6400
+      },
+      "expected": 834,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: exclusive bound 25600",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 25600,
+      "input": {
+        "n": 25600
+      },
+      "expected": 2818,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

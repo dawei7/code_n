@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1760",
+  "measurement_note": "Size is n, the number of equal bags. Every bag contains 64 balls and the operation budget is n, so splitting each bag once gives the optimum 32. The accepted feasibility binary search is O(n log M); a correct binary search that redundantly recomputes the full feasibility sum once per bag completes every tier and is rejected by O(n^2 log M) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 6 equal bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [64, 64, 64, 64, 64, 64], "maxOperations": 6},
+      "expected": 32,
+      "tags": ["benchmark", "scaling", "single-bag"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24 equal bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"nums": [64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64], "maxOperations": 24},
+      "expected": 32,
+      "tags": ["benchmark", "scaling", "single-bag"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 96 equal bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {"nums": [64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64], "maxOperations": 96},
+      "expected": 32,
+      "tags": ["benchmark", "scaling", "single-bag"]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3352",
+  "measurement_note": "Size is m, the number of bits in s. All-one bounds with k=5 produce dense popcount states. The optimal prefix digit DP computes every popcount class together in O(m^2), while a correct baseline reruns the full DP for each target popcount and takes O(m^3).",
+  "cases": [
+    {
+      "id": "benchmark-all-ones-12",
+      "name": "benchmark: 12-bit all-one bound",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "111111111111",
+        "k": 5
+      },
+      "expected": 4094,
+      "size": 12,
+      "tags": [
+        "benchmark",
+        "all-ones",
+        "digit-dp",
+        "cubic-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-all-ones-24",
+      "name": "benchmark: 24-bit all-one bound",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "111111111111111111111111",
+        "k": 5
+      },
+      "expected": 16777214,
+      "size": 24,
+      "tags": [
+        "benchmark",
+        "all-ones",
+        "digit-dp",
+        "cubic-baseline"
+      ]
+    },
+    {
+      "id": "benchmark-all-ones-50",
+      "name": "benchmark: 50-bit all-one bound",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "s": "11111111111111111111111111111111111111111111111111",
+        "k": 5
+      },
+      "expected": 898961329,
+      "size": 50,
+      "tags": [
+        "benchmark",
+        "all-ones",
+        "digit-dp",
+        "cubic-baseline"
+      ]
+    }
+  ]
+}

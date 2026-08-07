@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_766",
+  "measurement_note": "Size is both the row and column count of a square matrix. Comparing each cell with its upper-left neighbor takes O(size^2); walking every cell back through its diagonal prefix takes O(size^3) on these all-equal matrices.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: constant 3 by 3 matrix", "kind": "benchmark", "visible": false, "size": 3, "input": {"matrix": [[1, 1, 1], [1, 1, 1], [1, 1, 1]]}, "expected": true, "tags": ["benchmark", "scaling", "all-equal"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: constant 6 by 6 matrix", "kind": "benchmark", "visible": false, "size": 6, "input": {"matrix": [[1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1]]}, "expected": true, "tags": ["benchmark", "scaling", "all-equal"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: constant 12 by 12 matrix", "kind": "benchmark", "visible": false, "size": 12, "input": {"matrix": [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]}, "expected": true, "tags": ["benchmark", "scaling", "all-equal"]}
+  ]
+}

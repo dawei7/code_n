@@ -1,0 +1,237 @@
+{
+  "challenge_id": "lc_2658",
+  "measurement_note": "Size is m*n, the number of cells. Every tier is a square grid of ones, so all cells form one component. The reference visits that component once in O(mn), while a correct alternative that starts an independent flood fill from every water cell completes all legal tiers and exhibits O((mn)^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: connected 3 by 3 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 9,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 9,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: connected 6 by 6 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 36,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 36,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: connected 10 by 10 grid",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "grid": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ]
+        ]
+      },
+      "expected": 100,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1234",
+  "measurement_note": "Size is the string length. An all-Q string requires a replacement of length 3n/4, forcing a substring-length enumeration to test quadratically many windows while the sliding window remains linear.",
+  "cases": [
+    {
+      "id": "benchmark-scale-32",
+      "name": "benchmark: 32 identical characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      },
+      "expected": 24,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "all-same"
+      ]
+    },
+    {
+      "id": "benchmark-scale-128",
+      "name": "benchmark: 128 identical characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      },
+      "expected": 96,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "all-same"
+      ]
+    },
+    {
+      "id": "benchmark-scale-512",
+      "name": "benchmark: 512 identical characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      },
+      "expected": 384,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "all-same"
+      ]
+    }
+  ]
+}

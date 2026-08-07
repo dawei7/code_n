@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1699",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Any call row can create a new unordered pair or change an existing pair's count and duration, so exact aggregation has a linear inspection lower bound; one canonicalizing hash scan matches it.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing any uninspected row can introduce a new participant pair or alter both aggregates for an existing pair, so every one of the R rows must be considered. Computing min/max-oriented IDs and updating a hash group takes expected O(1) work per row and O(R) total time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary may place the only call for a new pair or an additional duration contribution in any uninspected row."},
+    {"kind":"upper_bound_proof","evidence":"One hash-aggregation scan computes a constant-size canonical pair and updates COUNT and SUM once for each input row, with no required sort."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, opposite directions, exact duplicates, reverse-only input, a single call, several pairs sharing a person, and unsorted pair IDs."}
+  ]
+}

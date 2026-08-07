@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_3978",
+  "measurement_note": "Size is n, the odd array length. Every tier contains distinct increasing legal values, so the middle value is unique and the one-pass reference must inspect the complete array. A naive full-frequency-table implementation that recounts every distinct candidate with a nested scan performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-distinct-small",
+      "name": "benchmark: five distinct values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {"nums": [1, 2, 3, 4, 5]},
+      "expected": true,
+      "tags": ["benchmark", "scale-small", "all-distinct", "full-scan"]
+    },
+    {
+      "id": "benchmark-distinct-medium",
+      "name": "benchmark: twenty-one distinct values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 21,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]},
+      "expected": true,
+      "tags": ["benchmark", "scale-medium", "all-distinct", "full-scan"]
+    },
+    {
+      "id": "benchmark-distinct-large",
+      "name": "benchmark: eighty-one distinct values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 81,
+      "input": {"nums": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81]},
+      "expected": true,
+      "tags": ["benchmark", "scale-large", "all-distinct", "full-scan"]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2079",
+  "measurement_note": "Size is n, the plant count. Every plant needs the full one-unit can, so each plant after the first forces a legal refill and the answer is n squared. The reference charges each detour arithmetically in one pass. A correct implementation that moves a position variable through every physical step completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 full-can plants",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "plants": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "capacity": 1
+      },
+      "expected": 256,
+      "tags": ["benchmark", "scale-small", "step-by-step-walk"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 full-can plants",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "plants": [
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ],
+        "capacity": 1
+      },
+      "expected": 4096,
+      "tags": ["benchmark", "scale-medium", "step-by-step-walk"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 full-can plants",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "plants": [
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+          1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        ],
+        "capacity": 1
+      },
+      "expected": 65536,
+      "tags": ["benchmark", "scale-large", "step-by-step-walk"]
+    }
+  ]
+}

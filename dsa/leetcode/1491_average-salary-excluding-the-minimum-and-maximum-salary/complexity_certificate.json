@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1491",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(N)",
+  "summary": "The source contract fixes N between 3 and 100 salaries, a range too small for a stable runtime scaling regression that distinguishes a linear scan from optimized sorting.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 100,
+    "unit": "salary values",
+    "source_constraint": "salary contains between 3 and 100 unique integer values"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The official maximum length is 100, so the optimal scan examines at most 100 salary values and stores only three aggregates."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression checks every legal length from 3 through 100 against an independent sort-and-slice oracle, including permutations and value boundaries."
+    }
+  ]
+}
+

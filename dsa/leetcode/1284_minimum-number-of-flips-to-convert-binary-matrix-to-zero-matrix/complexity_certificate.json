@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1284",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(k2^k)",
+  "summary": "The matrix has at most nine cells and therefore at most 512 states, which is too small for an honest runtime scaling verdict.",
+  "workload_bound": {
+    "symbol": "k",
+    "maximum": 9,
+    "unit": "binary matrix cells",
+    "source_constraint": "m and n are each between 1 and 3 inclusive"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Breadth-first search visits each of at most 2^k masks once and tries exactly k precomputed flip masks at each visited state."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression checks every binary state for every legal matrix shape against an independent exhaustive enumeration of all flip subsets."
+    }
+  ]
+}

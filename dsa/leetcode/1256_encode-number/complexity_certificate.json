@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1256",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(\\log q)",
+  "summary": "The legal domain produces at most 29 output bits, so runtime tiers cannot separate logarithmic and mildly superlinear bit-processing reliably. The required output length supplies a matching lower bound that directly certifies the current solution's optimality.",
+  "optimality": {
+    "symbol": "q = num + 1",
+    "lower_bound": "Omega(log q)",
+    "upper_bound": "O(log q)",
+    "argument": "For q greater than one, the returned encoding contains exactly floor(log2(q)) characters, so materializing the required string takes Omega(log q) time in the worst case. The current solution converts q to its binary representation once and takes one linear-length slice, giving O(log q) time. For q = 1, both the input and the empty result require constant work, consistent with the bound over the complete domain."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "The contract requires exactly floor(log2(q)) returned bits for q greater than one, and every character of that output must be materialized."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Python constructs the binary representation of q once, then the solution slices its O(log q)-character representation once."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Independent exhaustive verification covered every num from 0 through 1,000,000, deterministic randomized verification covered 50,000 legal inputs including group boundaries and the maximum, and all ten visible correctness cases passed the independent oracle and both protected sources."
+    }
+  ]
+}

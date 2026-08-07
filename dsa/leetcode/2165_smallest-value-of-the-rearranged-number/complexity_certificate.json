@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2165",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The magnitude is bounded by 10^15 and therefore contains at most 16 decimal digits, leaving no honest asymptotic workload axis inside the legal contract.",
+  "workload_bound": {
+    "symbol": "d",
+    "maximum": 16,
+    "unit": "decimal digits",
+    "source_constraint": "the absolute value of num is at most 10^15, so its decimal representation has no more than 16 digits"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The reference sorts at most 16 characters, performs one bounded scan for a nonzero digit, and parses one bounded-length result."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares every signed value through five digits plus deterministic full-width and extremal values against an independent digit-frequency oracle."
+    }
+  ]
+}

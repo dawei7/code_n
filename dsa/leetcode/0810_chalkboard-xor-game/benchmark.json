@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_810",
+  "measurement_note": "Size is the number of distinct power-of-two entries. XOR plus parity takes O(size); memoized minimax evaluates O(2^size) remaining subsets because every nonempty subset has nonzero XOR.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 1 independent bit", "kind": "benchmark", "visible": false, "size": 1, "input": {"nums": [1]}, "expected": false, "tags": ["benchmark", "scaling", "nonzero-xor"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 2 independent bits", "kind": "benchmark", "visible": false, "size": 2, "input": {"nums": [1, 2]}, "expected": true, "tags": ["benchmark", "scaling", "nonzero-xor"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 4 independent bits", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums": [1, 2, 4, 8]}, "expected": true, "tags": ["benchmark", "scaling", "nonzero-xor"]}
+  ]
+}

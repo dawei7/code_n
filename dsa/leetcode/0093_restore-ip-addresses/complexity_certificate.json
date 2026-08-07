@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_93",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "IPv4 fixes exactly four segments of at most three digits, so the complete search tree has a constant maximum size independent of the legal input-length cap. A bounded-work proof verifies the required O(1) bound.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 20,
+    "unit": "digits in s",
+    "source_constraint": "The verified source constraint is 1 <= |s| <= 20."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The recursion has depth four and tries at most three segment lengths per level, for at most 1 + 3 + 3^2 + 3^3 + 3^4 states. Every slice, integer parse, and final join handles at most the constant IPv4 address length; strings outside 4 through 12 digits are rejected at the root."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover maximum-value segments, all-zero segments, and several valid boundary layouts; black-box real-test execution verifies all existing ordinary checks without inspecting their definitions."
+    }
+  ]
+}

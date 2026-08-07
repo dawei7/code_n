@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1271",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(\\log n)",
+  "summary": "The legal decimal value is at most 10^12 and therefore produces at most ten hexadecimal digits, which is too small for an honest runtime scaling regression.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 10,
+    "unit": "hexadecimal digits",
+    "source_constraint": "num represents an integer from 1 through 10^12"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Because 16^9 is below 10^12 and 16^10 is above it, every legal value has at most ten hexadecimal digits."},
+    {"kind": "boundary_property_cases", "evidence": "Regression compares an independent hexadecimal oracle across 1 through 4096, powers of sixteen, pronounceable forms, and the 10^12 boundary."}
+  ]
+}

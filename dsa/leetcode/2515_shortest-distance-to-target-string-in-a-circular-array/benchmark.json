@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2515",
+  "measurement_note": "Size is n, the number of array positions. Every position contains the target. Computing each circular distance from its index is O(n) overall, while simulating both paths separately for every matching destination takes O(n^2).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: twenty matching positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {"words": ["target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target"], "target": "target", "startIndex": 10},
+      "expected": 0,
+      "tags": ["benchmark", "all-matching"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: eighty matching positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 80,
+      "input": {"words": ["target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target"], "target": "target", "startIndex": 40},
+      "expected": 0,
+      "tags": ["benchmark", "all-matching"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one hundred ninety-four matching positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 194,
+      "input": {"words": ["target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target", "target"], "target": "target", "startIndex": 100},
+      "expected": 0,
+      "tags": ["benchmark", "all-matching"]
+    }
+  ]
+}

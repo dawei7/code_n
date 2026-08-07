@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_668",
+  "measurement_note": "Size is the total number of cells in a square multiplication table. Value-space binary search counts only one row per side length for each candidate, while materializing and sorting examines and stores every cell.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 by 32 table",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"m": 32, "n": 32, "k": 512},
+      "expected": 208,
+      "tags": ["benchmark", "scaling", "middle-rank"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 by 128 table",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16384,
+      "input": {"m": 128, "n": 128, "k": 8192},
+      "expected": 3120,
+      "tags": ["benchmark", "scaling", "middle-rank"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 by 512 table",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 262144,
+      "input": {"m": 512, "n": 512, "k": 131072},
+      "expected": 49184,
+      "tags": ["benchmark", "scaling", "middle-rank"]
+    }
+  ]
+}

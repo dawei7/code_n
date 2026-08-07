@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1729",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every relationship can change one user's follower count, so exact output has a linear row-inspection lower bound; one grouped scan matches it.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing any uninspected relationship changes the count for its user or introduces another represented user, so all R rows must be considered. Grouping by user_id updates one counter per row in expected constant time, and the composite primary key begins with user_id so an ordered index scan can aggregate groups while preserving the required ascending output."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An adversary may place the only relationship for a user or one additional follower for an existing user in any uninspected row."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "One GROUP BY scan counts each primary-key relationship once and emits groups in user_id order through the declared composite-key ordering."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover the public sample, one row, one large group, unsorted input, nonconsecutive users, a follower shared across users, and zero and large identifiers."
+    }
+  ]
+}

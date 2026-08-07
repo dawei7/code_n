@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_541",
+  "measurement_note": "Size is the string length. With k = 2, the input creates many small blocks; a character-array pass is linear, while explicitly rebuilding the complete accumulated prefix for every block performs quadratic copying.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: transform 32 characters in small blocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdef",
+        "k": 2
+      },
+      "expected": "bacdfeghjiklnmoprqstvuwxzyabdcef",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "many-blocks"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: transform 128 characters in small blocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwx",
+        "k": 2
+      },
+      "expected": "bacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwx",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "many-blocks"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: transform 512 characters in small blocks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqr",
+        "k": 2
+      },
+      "expected": "bacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqrtsuvxwyzbacdfeghjiklnmoprqstvuwxzyabdcefhgijlkmnpoqr",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "many-blocks"
+      ]
+    }
+  ]
+}
+

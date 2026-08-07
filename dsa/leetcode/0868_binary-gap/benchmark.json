@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_868",
+  "measurement_note": "Size is the bit length L. Dense all-ones values maximize the number of set-bit positions while remaining within n <= 10^9. The direct scan is O(L), while a correct baseline that examines every pair of stored set-bit positions performs O(L^2) work at 6, 14, and 29 bits.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 6 dense bits", "kind": "benchmark", "visible": false, "size": 6, "input": {"n": 63}, "expected": 1, "tags": ["benchmark", "scale-small", "dense"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 14 dense bits", "kind": "benchmark", "visible": false, "size": 14, "input": {"n": 16383}, "expected": 1, "tags": ["benchmark", "scale-medium", "dense"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 29 dense bits", "kind": "benchmark", "visible": false, "size": 29, "input": {"n": 536870911}, "expected": 1, "tags": ["benchmark", "scale-large", "dense"]}
+  ]
+}

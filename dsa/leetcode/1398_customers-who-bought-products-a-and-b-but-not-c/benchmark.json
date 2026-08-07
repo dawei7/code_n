@@ -1,0 +1,3115 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1398",
+  "measurement_note": "Size is C + O, the combined customer and order row count. Every customer has exactly one A and one B order and no C order, so all groups qualify. The 24/96/384-row tiers span 16x. Join plus conditional aggregation runs in O(C + O + R); correct de-indexed correlated presence and absence checks rescan Orders for every customer, taking O(CO) time and completing normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 qualifying customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Customer 001"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Customer 002"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Customer 003"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer 004"
+            },
+            {
+              "customer_id": 5,
+              "customer_name": "Customer 005"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer 006"
+            },
+            {
+              "customer_id": 7,
+              "customer_name": "Customer 007"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer 008"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "product_name": "A"
+            },
+            {
+              "order_id": 2,
+              "customer_id": 1,
+              "product_name": "B"
+            },
+            {
+              "order_id": 3,
+              "customer_id": 2,
+              "product_name": "A"
+            },
+            {
+              "order_id": 4,
+              "customer_id": 2,
+              "product_name": "B"
+            },
+            {
+              "order_id": 5,
+              "customer_id": 3,
+              "product_name": "A"
+            },
+            {
+              "order_id": 6,
+              "customer_id": 3,
+              "product_name": "B"
+            },
+            {
+              "order_id": 7,
+              "customer_id": 4,
+              "product_name": "A"
+            },
+            {
+              "order_id": 8,
+              "customer_id": 4,
+              "product_name": "B"
+            },
+            {
+              "order_id": 9,
+              "customer_id": 5,
+              "product_name": "A"
+            },
+            {
+              "order_id": 10,
+              "customer_id": 5,
+              "product_name": "B"
+            },
+            {
+              "order_id": 11,
+              "customer_id": 6,
+              "product_name": "A"
+            },
+            {
+              "order_id": 12,
+              "customer_id": 6,
+              "product_name": "B"
+            },
+            {
+              "order_id": 13,
+              "customer_id": 7,
+              "product_name": "A"
+            },
+            {
+              "order_id": 14,
+              "customer_id": 7,
+              "product_name": "B"
+            },
+            {
+              "order_id": 15,
+              "customer_id": 8,
+              "product_name": "A"
+            },
+            {
+              "order_id": 16,
+              "customer_id": 8,
+              "product_name": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "customer_name"
+        ],
+        "rows": [
+          [
+            1,
+            "Customer 001"
+          ],
+          [
+            2,
+            "Customer 002"
+          ],
+          [
+            3,
+            "Customer 003"
+          ],
+          [
+            4,
+            "Customer 004"
+          ],
+          [
+            5,
+            "Customer 005"
+          ],
+          [
+            6,
+            "Customer 006"
+          ],
+          [
+            7,
+            "Customer 007"
+          ],
+          [
+            8,
+            "Customer 008"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "qualifying-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 qualifying customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Customer 001"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Customer 002"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Customer 003"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer 004"
+            },
+            {
+              "customer_id": 5,
+              "customer_name": "Customer 005"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer 006"
+            },
+            {
+              "customer_id": 7,
+              "customer_name": "Customer 007"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer 008"
+            },
+            {
+              "customer_id": 9,
+              "customer_name": "Customer 009"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer 010"
+            },
+            {
+              "customer_id": 11,
+              "customer_name": "Customer 011"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer 012"
+            },
+            {
+              "customer_id": 13,
+              "customer_name": "Customer 013"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer 014"
+            },
+            {
+              "customer_id": 15,
+              "customer_name": "Customer 015"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer 016"
+            },
+            {
+              "customer_id": 17,
+              "customer_name": "Customer 017"
+            },
+            {
+              "customer_id": 18,
+              "customer_name": "Customer 018"
+            },
+            {
+              "customer_id": 19,
+              "customer_name": "Customer 019"
+            },
+            {
+              "customer_id": 20,
+              "customer_name": "Customer 020"
+            },
+            {
+              "customer_id": 21,
+              "customer_name": "Customer 021"
+            },
+            {
+              "customer_id": 22,
+              "customer_name": "Customer 022"
+            },
+            {
+              "customer_id": 23,
+              "customer_name": "Customer 023"
+            },
+            {
+              "customer_id": 24,
+              "customer_name": "Customer 024"
+            },
+            {
+              "customer_id": 25,
+              "customer_name": "Customer 025"
+            },
+            {
+              "customer_id": 26,
+              "customer_name": "Customer 026"
+            },
+            {
+              "customer_id": 27,
+              "customer_name": "Customer 027"
+            },
+            {
+              "customer_id": 28,
+              "customer_name": "Customer 028"
+            },
+            {
+              "customer_id": 29,
+              "customer_name": "Customer 029"
+            },
+            {
+              "customer_id": 30,
+              "customer_name": "Customer 030"
+            },
+            {
+              "customer_id": 31,
+              "customer_name": "Customer 031"
+            },
+            {
+              "customer_id": 32,
+              "customer_name": "Customer 032"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "product_name": "A"
+            },
+            {
+              "order_id": 2,
+              "customer_id": 1,
+              "product_name": "B"
+            },
+            {
+              "order_id": 3,
+              "customer_id": 2,
+              "product_name": "A"
+            },
+            {
+              "order_id": 4,
+              "customer_id": 2,
+              "product_name": "B"
+            },
+            {
+              "order_id": 5,
+              "customer_id": 3,
+              "product_name": "A"
+            },
+            {
+              "order_id": 6,
+              "customer_id": 3,
+              "product_name": "B"
+            },
+            {
+              "order_id": 7,
+              "customer_id": 4,
+              "product_name": "A"
+            },
+            {
+              "order_id": 8,
+              "customer_id": 4,
+              "product_name": "B"
+            },
+            {
+              "order_id": 9,
+              "customer_id": 5,
+              "product_name": "A"
+            },
+            {
+              "order_id": 10,
+              "customer_id": 5,
+              "product_name": "B"
+            },
+            {
+              "order_id": 11,
+              "customer_id": 6,
+              "product_name": "A"
+            },
+            {
+              "order_id": 12,
+              "customer_id": 6,
+              "product_name": "B"
+            },
+            {
+              "order_id": 13,
+              "customer_id": 7,
+              "product_name": "A"
+            },
+            {
+              "order_id": 14,
+              "customer_id": 7,
+              "product_name": "B"
+            },
+            {
+              "order_id": 15,
+              "customer_id": 8,
+              "product_name": "A"
+            },
+            {
+              "order_id": 16,
+              "customer_id": 8,
+              "product_name": "B"
+            },
+            {
+              "order_id": 17,
+              "customer_id": 9,
+              "product_name": "A"
+            },
+            {
+              "order_id": 18,
+              "customer_id": 9,
+              "product_name": "B"
+            },
+            {
+              "order_id": 19,
+              "customer_id": 10,
+              "product_name": "A"
+            },
+            {
+              "order_id": 20,
+              "customer_id": 10,
+              "product_name": "B"
+            },
+            {
+              "order_id": 21,
+              "customer_id": 11,
+              "product_name": "A"
+            },
+            {
+              "order_id": 22,
+              "customer_id": 11,
+              "product_name": "B"
+            },
+            {
+              "order_id": 23,
+              "customer_id": 12,
+              "product_name": "A"
+            },
+            {
+              "order_id": 24,
+              "customer_id": 12,
+              "product_name": "B"
+            },
+            {
+              "order_id": 25,
+              "customer_id": 13,
+              "product_name": "A"
+            },
+            {
+              "order_id": 26,
+              "customer_id": 13,
+              "product_name": "B"
+            },
+            {
+              "order_id": 27,
+              "customer_id": 14,
+              "product_name": "A"
+            },
+            {
+              "order_id": 28,
+              "customer_id": 14,
+              "product_name": "B"
+            },
+            {
+              "order_id": 29,
+              "customer_id": 15,
+              "product_name": "A"
+            },
+            {
+              "order_id": 30,
+              "customer_id": 15,
+              "product_name": "B"
+            },
+            {
+              "order_id": 31,
+              "customer_id": 16,
+              "product_name": "A"
+            },
+            {
+              "order_id": 32,
+              "customer_id": 16,
+              "product_name": "B"
+            },
+            {
+              "order_id": 33,
+              "customer_id": 17,
+              "product_name": "A"
+            },
+            {
+              "order_id": 34,
+              "customer_id": 17,
+              "product_name": "B"
+            },
+            {
+              "order_id": 35,
+              "customer_id": 18,
+              "product_name": "A"
+            },
+            {
+              "order_id": 36,
+              "customer_id": 18,
+              "product_name": "B"
+            },
+            {
+              "order_id": 37,
+              "customer_id": 19,
+              "product_name": "A"
+            },
+            {
+              "order_id": 38,
+              "customer_id": 19,
+              "product_name": "B"
+            },
+            {
+              "order_id": 39,
+              "customer_id": 20,
+              "product_name": "A"
+            },
+            {
+              "order_id": 40,
+              "customer_id": 20,
+              "product_name": "B"
+            },
+            {
+              "order_id": 41,
+              "customer_id": 21,
+              "product_name": "A"
+            },
+            {
+              "order_id": 42,
+              "customer_id": 21,
+              "product_name": "B"
+            },
+            {
+              "order_id": 43,
+              "customer_id": 22,
+              "product_name": "A"
+            },
+            {
+              "order_id": 44,
+              "customer_id": 22,
+              "product_name": "B"
+            },
+            {
+              "order_id": 45,
+              "customer_id": 23,
+              "product_name": "A"
+            },
+            {
+              "order_id": 46,
+              "customer_id": 23,
+              "product_name": "B"
+            },
+            {
+              "order_id": 47,
+              "customer_id": 24,
+              "product_name": "A"
+            },
+            {
+              "order_id": 48,
+              "customer_id": 24,
+              "product_name": "B"
+            },
+            {
+              "order_id": 49,
+              "customer_id": 25,
+              "product_name": "A"
+            },
+            {
+              "order_id": 50,
+              "customer_id": 25,
+              "product_name": "B"
+            },
+            {
+              "order_id": 51,
+              "customer_id": 26,
+              "product_name": "A"
+            },
+            {
+              "order_id": 52,
+              "customer_id": 26,
+              "product_name": "B"
+            },
+            {
+              "order_id": 53,
+              "customer_id": 27,
+              "product_name": "A"
+            },
+            {
+              "order_id": 54,
+              "customer_id": 27,
+              "product_name": "B"
+            },
+            {
+              "order_id": 55,
+              "customer_id": 28,
+              "product_name": "A"
+            },
+            {
+              "order_id": 56,
+              "customer_id": 28,
+              "product_name": "B"
+            },
+            {
+              "order_id": 57,
+              "customer_id": 29,
+              "product_name": "A"
+            },
+            {
+              "order_id": 58,
+              "customer_id": 29,
+              "product_name": "B"
+            },
+            {
+              "order_id": 59,
+              "customer_id": 30,
+              "product_name": "A"
+            },
+            {
+              "order_id": 60,
+              "customer_id": 30,
+              "product_name": "B"
+            },
+            {
+              "order_id": 61,
+              "customer_id": 31,
+              "product_name": "A"
+            },
+            {
+              "order_id": 62,
+              "customer_id": 31,
+              "product_name": "B"
+            },
+            {
+              "order_id": 63,
+              "customer_id": 32,
+              "product_name": "A"
+            },
+            {
+              "order_id": 64,
+              "customer_id": 32,
+              "product_name": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "customer_name"
+        ],
+        "rows": [
+          [
+            1,
+            "Customer 001"
+          ],
+          [
+            2,
+            "Customer 002"
+          ],
+          [
+            3,
+            "Customer 003"
+          ],
+          [
+            4,
+            "Customer 004"
+          ],
+          [
+            5,
+            "Customer 005"
+          ],
+          [
+            6,
+            "Customer 006"
+          ],
+          [
+            7,
+            "Customer 007"
+          ],
+          [
+            8,
+            "Customer 008"
+          ],
+          [
+            9,
+            "Customer 009"
+          ],
+          [
+            10,
+            "Customer 010"
+          ],
+          [
+            11,
+            "Customer 011"
+          ],
+          [
+            12,
+            "Customer 012"
+          ],
+          [
+            13,
+            "Customer 013"
+          ],
+          [
+            14,
+            "Customer 014"
+          ],
+          [
+            15,
+            "Customer 015"
+          ],
+          [
+            16,
+            "Customer 016"
+          ],
+          [
+            17,
+            "Customer 017"
+          ],
+          [
+            18,
+            "Customer 018"
+          ],
+          [
+            19,
+            "Customer 019"
+          ],
+          [
+            20,
+            "Customer 020"
+          ],
+          [
+            21,
+            "Customer 021"
+          ],
+          [
+            22,
+            "Customer 022"
+          ],
+          [
+            23,
+            "Customer 023"
+          ],
+          [
+            24,
+            "Customer 024"
+          ],
+          [
+            25,
+            "Customer 025"
+          ],
+          [
+            26,
+            "Customer 026"
+          ],
+          [
+            27,
+            "Customer 027"
+          ],
+          [
+            28,
+            "Customer 028"
+          ],
+          [
+            29,
+            "Customer 029"
+          ],
+          [
+            30,
+            "Customer 030"
+          ],
+          [
+            31,
+            "Customer 031"
+          ],
+          [
+            32,
+            "Customer 032"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "qualifying-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 qualifying customers",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Customer 001"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Customer 002"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Customer 003"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer 004"
+            },
+            {
+              "customer_id": 5,
+              "customer_name": "Customer 005"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer 006"
+            },
+            {
+              "customer_id": 7,
+              "customer_name": "Customer 007"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer 008"
+            },
+            {
+              "customer_id": 9,
+              "customer_name": "Customer 009"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer 010"
+            },
+            {
+              "customer_id": 11,
+              "customer_name": "Customer 011"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer 012"
+            },
+            {
+              "customer_id": 13,
+              "customer_name": "Customer 013"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer 014"
+            },
+            {
+              "customer_id": 15,
+              "customer_name": "Customer 015"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer 016"
+            },
+            {
+              "customer_id": 17,
+              "customer_name": "Customer 017"
+            },
+            {
+              "customer_id": 18,
+              "customer_name": "Customer 018"
+            },
+            {
+              "customer_id": 19,
+              "customer_name": "Customer 019"
+            },
+            {
+              "customer_id": 20,
+              "customer_name": "Customer 020"
+            },
+            {
+              "customer_id": 21,
+              "customer_name": "Customer 021"
+            },
+            {
+              "customer_id": 22,
+              "customer_name": "Customer 022"
+            },
+            {
+              "customer_id": 23,
+              "customer_name": "Customer 023"
+            },
+            {
+              "customer_id": 24,
+              "customer_name": "Customer 024"
+            },
+            {
+              "customer_id": 25,
+              "customer_name": "Customer 025"
+            },
+            {
+              "customer_id": 26,
+              "customer_name": "Customer 026"
+            },
+            {
+              "customer_id": 27,
+              "customer_name": "Customer 027"
+            },
+            {
+              "customer_id": 28,
+              "customer_name": "Customer 028"
+            },
+            {
+              "customer_id": 29,
+              "customer_name": "Customer 029"
+            },
+            {
+              "customer_id": 30,
+              "customer_name": "Customer 030"
+            },
+            {
+              "customer_id": 31,
+              "customer_name": "Customer 031"
+            },
+            {
+              "customer_id": 32,
+              "customer_name": "Customer 032"
+            },
+            {
+              "customer_id": 33,
+              "customer_name": "Customer 033"
+            },
+            {
+              "customer_id": 34,
+              "customer_name": "Customer 034"
+            },
+            {
+              "customer_id": 35,
+              "customer_name": "Customer 035"
+            },
+            {
+              "customer_id": 36,
+              "customer_name": "Customer 036"
+            },
+            {
+              "customer_id": 37,
+              "customer_name": "Customer 037"
+            },
+            {
+              "customer_id": 38,
+              "customer_name": "Customer 038"
+            },
+            {
+              "customer_id": 39,
+              "customer_name": "Customer 039"
+            },
+            {
+              "customer_id": 40,
+              "customer_name": "Customer 040"
+            },
+            {
+              "customer_id": 41,
+              "customer_name": "Customer 041"
+            },
+            {
+              "customer_id": 42,
+              "customer_name": "Customer 042"
+            },
+            {
+              "customer_id": 43,
+              "customer_name": "Customer 043"
+            },
+            {
+              "customer_id": 44,
+              "customer_name": "Customer 044"
+            },
+            {
+              "customer_id": 45,
+              "customer_name": "Customer 045"
+            },
+            {
+              "customer_id": 46,
+              "customer_name": "Customer 046"
+            },
+            {
+              "customer_id": 47,
+              "customer_name": "Customer 047"
+            },
+            {
+              "customer_id": 48,
+              "customer_name": "Customer 048"
+            },
+            {
+              "customer_id": 49,
+              "customer_name": "Customer 049"
+            },
+            {
+              "customer_id": 50,
+              "customer_name": "Customer 050"
+            },
+            {
+              "customer_id": 51,
+              "customer_name": "Customer 051"
+            },
+            {
+              "customer_id": 52,
+              "customer_name": "Customer 052"
+            },
+            {
+              "customer_id": 53,
+              "customer_name": "Customer 053"
+            },
+            {
+              "customer_id": 54,
+              "customer_name": "Customer 054"
+            },
+            {
+              "customer_id": 55,
+              "customer_name": "Customer 055"
+            },
+            {
+              "customer_id": 56,
+              "customer_name": "Customer 056"
+            },
+            {
+              "customer_id": 57,
+              "customer_name": "Customer 057"
+            },
+            {
+              "customer_id": 58,
+              "customer_name": "Customer 058"
+            },
+            {
+              "customer_id": 59,
+              "customer_name": "Customer 059"
+            },
+            {
+              "customer_id": 60,
+              "customer_name": "Customer 060"
+            },
+            {
+              "customer_id": 61,
+              "customer_name": "Customer 061"
+            },
+            {
+              "customer_id": 62,
+              "customer_name": "Customer 062"
+            },
+            {
+              "customer_id": 63,
+              "customer_name": "Customer 063"
+            },
+            {
+              "customer_id": 64,
+              "customer_name": "Customer 064"
+            },
+            {
+              "customer_id": 65,
+              "customer_name": "Customer 065"
+            },
+            {
+              "customer_id": 66,
+              "customer_name": "Customer 066"
+            },
+            {
+              "customer_id": 67,
+              "customer_name": "Customer 067"
+            },
+            {
+              "customer_id": 68,
+              "customer_name": "Customer 068"
+            },
+            {
+              "customer_id": 69,
+              "customer_name": "Customer 069"
+            },
+            {
+              "customer_id": 70,
+              "customer_name": "Customer 070"
+            },
+            {
+              "customer_id": 71,
+              "customer_name": "Customer 071"
+            },
+            {
+              "customer_id": 72,
+              "customer_name": "Customer 072"
+            },
+            {
+              "customer_id": 73,
+              "customer_name": "Customer 073"
+            },
+            {
+              "customer_id": 74,
+              "customer_name": "Customer 074"
+            },
+            {
+              "customer_id": 75,
+              "customer_name": "Customer 075"
+            },
+            {
+              "customer_id": 76,
+              "customer_name": "Customer 076"
+            },
+            {
+              "customer_id": 77,
+              "customer_name": "Customer 077"
+            },
+            {
+              "customer_id": 78,
+              "customer_name": "Customer 078"
+            },
+            {
+              "customer_id": 79,
+              "customer_name": "Customer 079"
+            },
+            {
+              "customer_id": 80,
+              "customer_name": "Customer 080"
+            },
+            {
+              "customer_id": 81,
+              "customer_name": "Customer 081"
+            },
+            {
+              "customer_id": 82,
+              "customer_name": "Customer 082"
+            },
+            {
+              "customer_id": 83,
+              "customer_name": "Customer 083"
+            },
+            {
+              "customer_id": 84,
+              "customer_name": "Customer 084"
+            },
+            {
+              "customer_id": 85,
+              "customer_name": "Customer 085"
+            },
+            {
+              "customer_id": 86,
+              "customer_name": "Customer 086"
+            },
+            {
+              "customer_id": 87,
+              "customer_name": "Customer 087"
+            },
+            {
+              "customer_id": 88,
+              "customer_name": "Customer 088"
+            },
+            {
+              "customer_id": 89,
+              "customer_name": "Customer 089"
+            },
+            {
+              "customer_id": 90,
+              "customer_name": "Customer 090"
+            },
+            {
+              "customer_id": 91,
+              "customer_name": "Customer 091"
+            },
+            {
+              "customer_id": 92,
+              "customer_name": "Customer 092"
+            },
+            {
+              "customer_id": 93,
+              "customer_name": "Customer 093"
+            },
+            {
+              "customer_id": 94,
+              "customer_name": "Customer 094"
+            },
+            {
+              "customer_id": 95,
+              "customer_name": "Customer 095"
+            },
+            {
+              "customer_id": 96,
+              "customer_name": "Customer 096"
+            },
+            {
+              "customer_id": 97,
+              "customer_name": "Customer 097"
+            },
+            {
+              "customer_id": 98,
+              "customer_name": "Customer 098"
+            },
+            {
+              "customer_id": 99,
+              "customer_name": "Customer 099"
+            },
+            {
+              "customer_id": 100,
+              "customer_name": "Customer 100"
+            },
+            {
+              "customer_id": 101,
+              "customer_name": "Customer 101"
+            },
+            {
+              "customer_id": 102,
+              "customer_name": "Customer 102"
+            },
+            {
+              "customer_id": 103,
+              "customer_name": "Customer 103"
+            },
+            {
+              "customer_id": 104,
+              "customer_name": "Customer 104"
+            },
+            {
+              "customer_id": 105,
+              "customer_name": "Customer 105"
+            },
+            {
+              "customer_id": 106,
+              "customer_name": "Customer 106"
+            },
+            {
+              "customer_id": 107,
+              "customer_name": "Customer 107"
+            },
+            {
+              "customer_id": 108,
+              "customer_name": "Customer 108"
+            },
+            {
+              "customer_id": 109,
+              "customer_name": "Customer 109"
+            },
+            {
+              "customer_id": 110,
+              "customer_name": "Customer 110"
+            },
+            {
+              "customer_id": 111,
+              "customer_name": "Customer 111"
+            },
+            {
+              "customer_id": 112,
+              "customer_name": "Customer 112"
+            },
+            {
+              "customer_id": 113,
+              "customer_name": "Customer 113"
+            },
+            {
+              "customer_id": 114,
+              "customer_name": "Customer 114"
+            },
+            {
+              "customer_id": 115,
+              "customer_name": "Customer 115"
+            },
+            {
+              "customer_id": 116,
+              "customer_name": "Customer 116"
+            },
+            {
+              "customer_id": 117,
+              "customer_name": "Customer 117"
+            },
+            {
+              "customer_id": 118,
+              "customer_name": "Customer 118"
+            },
+            {
+              "customer_id": 119,
+              "customer_name": "Customer 119"
+            },
+            {
+              "customer_id": 120,
+              "customer_name": "Customer 120"
+            },
+            {
+              "customer_id": 121,
+              "customer_name": "Customer 121"
+            },
+            {
+              "customer_id": 122,
+              "customer_name": "Customer 122"
+            },
+            {
+              "customer_id": 123,
+              "customer_name": "Customer 123"
+            },
+            {
+              "customer_id": 124,
+              "customer_name": "Customer 124"
+            },
+            {
+              "customer_id": 125,
+              "customer_name": "Customer 125"
+            },
+            {
+              "customer_id": 126,
+              "customer_name": "Customer 126"
+            },
+            {
+              "customer_id": 127,
+              "customer_name": "Customer 127"
+            },
+            {
+              "customer_id": 128,
+              "customer_name": "Customer 128"
+            }
+          ],
+          "Orders": [
+            {
+              "order_id": 1,
+              "customer_id": 1,
+              "product_name": "A"
+            },
+            {
+              "order_id": 2,
+              "customer_id": 1,
+              "product_name": "B"
+            },
+            {
+              "order_id": 3,
+              "customer_id": 2,
+              "product_name": "A"
+            },
+            {
+              "order_id": 4,
+              "customer_id": 2,
+              "product_name": "B"
+            },
+            {
+              "order_id": 5,
+              "customer_id": 3,
+              "product_name": "A"
+            },
+            {
+              "order_id": 6,
+              "customer_id": 3,
+              "product_name": "B"
+            },
+            {
+              "order_id": 7,
+              "customer_id": 4,
+              "product_name": "A"
+            },
+            {
+              "order_id": 8,
+              "customer_id": 4,
+              "product_name": "B"
+            },
+            {
+              "order_id": 9,
+              "customer_id": 5,
+              "product_name": "A"
+            },
+            {
+              "order_id": 10,
+              "customer_id": 5,
+              "product_name": "B"
+            },
+            {
+              "order_id": 11,
+              "customer_id": 6,
+              "product_name": "A"
+            },
+            {
+              "order_id": 12,
+              "customer_id": 6,
+              "product_name": "B"
+            },
+            {
+              "order_id": 13,
+              "customer_id": 7,
+              "product_name": "A"
+            },
+            {
+              "order_id": 14,
+              "customer_id": 7,
+              "product_name": "B"
+            },
+            {
+              "order_id": 15,
+              "customer_id": 8,
+              "product_name": "A"
+            },
+            {
+              "order_id": 16,
+              "customer_id": 8,
+              "product_name": "B"
+            },
+            {
+              "order_id": 17,
+              "customer_id": 9,
+              "product_name": "A"
+            },
+            {
+              "order_id": 18,
+              "customer_id": 9,
+              "product_name": "B"
+            },
+            {
+              "order_id": 19,
+              "customer_id": 10,
+              "product_name": "A"
+            },
+            {
+              "order_id": 20,
+              "customer_id": 10,
+              "product_name": "B"
+            },
+            {
+              "order_id": 21,
+              "customer_id": 11,
+              "product_name": "A"
+            },
+            {
+              "order_id": 22,
+              "customer_id": 11,
+              "product_name": "B"
+            },
+            {
+              "order_id": 23,
+              "customer_id": 12,
+              "product_name": "A"
+            },
+            {
+              "order_id": 24,
+              "customer_id": 12,
+              "product_name": "B"
+            },
+            {
+              "order_id": 25,
+              "customer_id": 13,
+              "product_name": "A"
+            },
+            {
+              "order_id": 26,
+              "customer_id": 13,
+              "product_name": "B"
+            },
+            {
+              "order_id": 27,
+              "customer_id": 14,
+              "product_name": "A"
+            },
+            {
+              "order_id": 28,
+              "customer_id": 14,
+              "product_name": "B"
+            },
+            {
+              "order_id": 29,
+              "customer_id": 15,
+              "product_name": "A"
+            },
+            {
+              "order_id": 30,
+              "customer_id": 15,
+              "product_name": "B"
+            },
+            {
+              "order_id": 31,
+              "customer_id": 16,
+              "product_name": "A"
+            },
+            {
+              "order_id": 32,
+              "customer_id": 16,
+              "product_name": "B"
+            },
+            {
+              "order_id": 33,
+              "customer_id": 17,
+              "product_name": "A"
+            },
+            {
+              "order_id": 34,
+              "customer_id": 17,
+              "product_name": "B"
+            },
+            {
+              "order_id": 35,
+              "customer_id": 18,
+              "product_name": "A"
+            },
+            {
+              "order_id": 36,
+              "customer_id": 18,
+              "product_name": "B"
+            },
+            {
+              "order_id": 37,
+              "customer_id": 19,
+              "product_name": "A"
+            },
+            {
+              "order_id": 38,
+              "customer_id": 19,
+              "product_name": "B"
+            },
+            {
+              "order_id": 39,
+              "customer_id": 20,
+              "product_name": "A"
+            },
+            {
+              "order_id": 40,
+              "customer_id": 20,
+              "product_name": "B"
+            },
+            {
+              "order_id": 41,
+              "customer_id": 21,
+              "product_name": "A"
+            },
+            {
+              "order_id": 42,
+              "customer_id": 21,
+              "product_name": "B"
+            },
+            {
+              "order_id": 43,
+              "customer_id": 22,
+              "product_name": "A"
+            },
+            {
+              "order_id": 44,
+              "customer_id": 22,
+              "product_name": "B"
+            },
+            {
+              "order_id": 45,
+              "customer_id": 23,
+              "product_name": "A"
+            },
+            {
+              "order_id": 46,
+              "customer_id": 23,
+              "product_name": "B"
+            },
+            {
+              "order_id": 47,
+              "customer_id": 24,
+              "product_name": "A"
+            },
+            {
+              "order_id": 48,
+              "customer_id": 24,
+              "product_name": "B"
+            },
+            {
+              "order_id": 49,
+              "customer_id": 25,
+              "product_name": "A"
+            },
+            {
+              "order_id": 50,
+              "customer_id": 25,
+              "product_name": "B"
+            },
+            {
+              "order_id": 51,
+              "customer_id": 26,
+              "product_name": "A"
+            },
+            {
+              "order_id": 52,
+              "customer_id": 26,
+              "product_name": "B"
+            },
+            {
+              "order_id": 53,
+              "customer_id": 27,
+              "product_name": "A"
+            },
+            {
+              "order_id": 54,
+              "customer_id": 27,
+              "product_name": "B"
+            },
+            {
+              "order_id": 55,
+              "customer_id": 28,
+              "product_name": "A"
+            },
+            {
+              "order_id": 56,
+              "customer_id": 28,
+              "product_name": "B"
+            },
+            {
+              "order_id": 57,
+              "customer_id": 29,
+              "product_name": "A"
+            },
+            {
+              "order_id": 58,
+              "customer_id": 29,
+              "product_name": "B"
+            },
+            {
+              "order_id": 59,
+              "customer_id": 30,
+              "product_name": "A"
+            },
+            {
+              "order_id": 60,
+              "customer_id": 30,
+              "product_name": "B"
+            },
+            {
+              "order_id": 61,
+              "customer_id": 31,
+              "product_name": "A"
+            },
+            {
+              "order_id": 62,
+              "customer_id": 31,
+              "product_name": "B"
+            },
+            {
+              "order_id": 63,
+              "customer_id": 32,
+              "product_name": "A"
+            },
+            {
+              "order_id": 64,
+              "customer_id": 32,
+              "product_name": "B"
+            },
+            {
+              "order_id": 65,
+              "customer_id": 33,
+              "product_name": "A"
+            },
+            {
+              "order_id": 66,
+              "customer_id": 33,
+              "product_name": "B"
+            },
+            {
+              "order_id": 67,
+              "customer_id": 34,
+              "product_name": "A"
+            },
+            {
+              "order_id": 68,
+              "customer_id": 34,
+              "product_name": "B"
+            },
+            {
+              "order_id": 69,
+              "customer_id": 35,
+              "product_name": "A"
+            },
+            {
+              "order_id": 70,
+              "customer_id": 35,
+              "product_name": "B"
+            },
+            {
+              "order_id": 71,
+              "customer_id": 36,
+              "product_name": "A"
+            },
+            {
+              "order_id": 72,
+              "customer_id": 36,
+              "product_name": "B"
+            },
+            {
+              "order_id": 73,
+              "customer_id": 37,
+              "product_name": "A"
+            },
+            {
+              "order_id": 74,
+              "customer_id": 37,
+              "product_name": "B"
+            },
+            {
+              "order_id": 75,
+              "customer_id": 38,
+              "product_name": "A"
+            },
+            {
+              "order_id": 76,
+              "customer_id": 38,
+              "product_name": "B"
+            },
+            {
+              "order_id": 77,
+              "customer_id": 39,
+              "product_name": "A"
+            },
+            {
+              "order_id": 78,
+              "customer_id": 39,
+              "product_name": "B"
+            },
+            {
+              "order_id": 79,
+              "customer_id": 40,
+              "product_name": "A"
+            },
+            {
+              "order_id": 80,
+              "customer_id": 40,
+              "product_name": "B"
+            },
+            {
+              "order_id": 81,
+              "customer_id": 41,
+              "product_name": "A"
+            },
+            {
+              "order_id": 82,
+              "customer_id": 41,
+              "product_name": "B"
+            },
+            {
+              "order_id": 83,
+              "customer_id": 42,
+              "product_name": "A"
+            },
+            {
+              "order_id": 84,
+              "customer_id": 42,
+              "product_name": "B"
+            },
+            {
+              "order_id": 85,
+              "customer_id": 43,
+              "product_name": "A"
+            },
+            {
+              "order_id": 86,
+              "customer_id": 43,
+              "product_name": "B"
+            },
+            {
+              "order_id": 87,
+              "customer_id": 44,
+              "product_name": "A"
+            },
+            {
+              "order_id": 88,
+              "customer_id": 44,
+              "product_name": "B"
+            },
+            {
+              "order_id": 89,
+              "customer_id": 45,
+              "product_name": "A"
+            },
+            {
+              "order_id": 90,
+              "customer_id": 45,
+              "product_name": "B"
+            },
+            {
+              "order_id": 91,
+              "customer_id": 46,
+              "product_name": "A"
+            },
+            {
+              "order_id": 92,
+              "customer_id": 46,
+              "product_name": "B"
+            },
+            {
+              "order_id": 93,
+              "customer_id": 47,
+              "product_name": "A"
+            },
+            {
+              "order_id": 94,
+              "customer_id": 47,
+              "product_name": "B"
+            },
+            {
+              "order_id": 95,
+              "customer_id": 48,
+              "product_name": "A"
+            },
+            {
+              "order_id": 96,
+              "customer_id": 48,
+              "product_name": "B"
+            },
+            {
+              "order_id": 97,
+              "customer_id": 49,
+              "product_name": "A"
+            },
+            {
+              "order_id": 98,
+              "customer_id": 49,
+              "product_name": "B"
+            },
+            {
+              "order_id": 99,
+              "customer_id": 50,
+              "product_name": "A"
+            },
+            {
+              "order_id": 100,
+              "customer_id": 50,
+              "product_name": "B"
+            },
+            {
+              "order_id": 101,
+              "customer_id": 51,
+              "product_name": "A"
+            },
+            {
+              "order_id": 102,
+              "customer_id": 51,
+              "product_name": "B"
+            },
+            {
+              "order_id": 103,
+              "customer_id": 52,
+              "product_name": "A"
+            },
+            {
+              "order_id": 104,
+              "customer_id": 52,
+              "product_name": "B"
+            },
+            {
+              "order_id": 105,
+              "customer_id": 53,
+              "product_name": "A"
+            },
+            {
+              "order_id": 106,
+              "customer_id": 53,
+              "product_name": "B"
+            },
+            {
+              "order_id": 107,
+              "customer_id": 54,
+              "product_name": "A"
+            },
+            {
+              "order_id": 108,
+              "customer_id": 54,
+              "product_name": "B"
+            },
+            {
+              "order_id": 109,
+              "customer_id": 55,
+              "product_name": "A"
+            },
+            {
+              "order_id": 110,
+              "customer_id": 55,
+              "product_name": "B"
+            },
+            {
+              "order_id": 111,
+              "customer_id": 56,
+              "product_name": "A"
+            },
+            {
+              "order_id": 112,
+              "customer_id": 56,
+              "product_name": "B"
+            },
+            {
+              "order_id": 113,
+              "customer_id": 57,
+              "product_name": "A"
+            },
+            {
+              "order_id": 114,
+              "customer_id": 57,
+              "product_name": "B"
+            },
+            {
+              "order_id": 115,
+              "customer_id": 58,
+              "product_name": "A"
+            },
+            {
+              "order_id": 116,
+              "customer_id": 58,
+              "product_name": "B"
+            },
+            {
+              "order_id": 117,
+              "customer_id": 59,
+              "product_name": "A"
+            },
+            {
+              "order_id": 118,
+              "customer_id": 59,
+              "product_name": "B"
+            },
+            {
+              "order_id": 119,
+              "customer_id": 60,
+              "product_name": "A"
+            },
+            {
+              "order_id": 120,
+              "customer_id": 60,
+              "product_name": "B"
+            },
+            {
+              "order_id": 121,
+              "customer_id": 61,
+              "product_name": "A"
+            },
+            {
+              "order_id": 122,
+              "customer_id": 61,
+              "product_name": "B"
+            },
+            {
+              "order_id": 123,
+              "customer_id": 62,
+              "product_name": "A"
+            },
+            {
+              "order_id": 124,
+              "customer_id": 62,
+              "product_name": "B"
+            },
+            {
+              "order_id": 125,
+              "customer_id": 63,
+              "product_name": "A"
+            },
+            {
+              "order_id": 126,
+              "customer_id": 63,
+              "product_name": "B"
+            },
+            {
+              "order_id": 127,
+              "customer_id": 64,
+              "product_name": "A"
+            },
+            {
+              "order_id": 128,
+              "customer_id": 64,
+              "product_name": "B"
+            },
+            {
+              "order_id": 129,
+              "customer_id": 65,
+              "product_name": "A"
+            },
+            {
+              "order_id": 130,
+              "customer_id": 65,
+              "product_name": "B"
+            },
+            {
+              "order_id": 131,
+              "customer_id": 66,
+              "product_name": "A"
+            },
+            {
+              "order_id": 132,
+              "customer_id": 66,
+              "product_name": "B"
+            },
+            {
+              "order_id": 133,
+              "customer_id": 67,
+              "product_name": "A"
+            },
+            {
+              "order_id": 134,
+              "customer_id": 67,
+              "product_name": "B"
+            },
+            {
+              "order_id": 135,
+              "customer_id": 68,
+              "product_name": "A"
+            },
+            {
+              "order_id": 136,
+              "customer_id": 68,
+              "product_name": "B"
+            },
+            {
+              "order_id": 137,
+              "customer_id": 69,
+              "product_name": "A"
+            },
+            {
+              "order_id": 138,
+              "customer_id": 69,
+              "product_name": "B"
+            },
+            {
+              "order_id": 139,
+              "customer_id": 70,
+              "product_name": "A"
+            },
+            {
+              "order_id": 140,
+              "customer_id": 70,
+              "product_name": "B"
+            },
+            {
+              "order_id": 141,
+              "customer_id": 71,
+              "product_name": "A"
+            },
+            {
+              "order_id": 142,
+              "customer_id": 71,
+              "product_name": "B"
+            },
+            {
+              "order_id": 143,
+              "customer_id": 72,
+              "product_name": "A"
+            },
+            {
+              "order_id": 144,
+              "customer_id": 72,
+              "product_name": "B"
+            },
+            {
+              "order_id": 145,
+              "customer_id": 73,
+              "product_name": "A"
+            },
+            {
+              "order_id": 146,
+              "customer_id": 73,
+              "product_name": "B"
+            },
+            {
+              "order_id": 147,
+              "customer_id": 74,
+              "product_name": "A"
+            },
+            {
+              "order_id": 148,
+              "customer_id": 74,
+              "product_name": "B"
+            },
+            {
+              "order_id": 149,
+              "customer_id": 75,
+              "product_name": "A"
+            },
+            {
+              "order_id": 150,
+              "customer_id": 75,
+              "product_name": "B"
+            },
+            {
+              "order_id": 151,
+              "customer_id": 76,
+              "product_name": "A"
+            },
+            {
+              "order_id": 152,
+              "customer_id": 76,
+              "product_name": "B"
+            },
+            {
+              "order_id": 153,
+              "customer_id": 77,
+              "product_name": "A"
+            },
+            {
+              "order_id": 154,
+              "customer_id": 77,
+              "product_name": "B"
+            },
+            {
+              "order_id": 155,
+              "customer_id": 78,
+              "product_name": "A"
+            },
+            {
+              "order_id": 156,
+              "customer_id": 78,
+              "product_name": "B"
+            },
+            {
+              "order_id": 157,
+              "customer_id": 79,
+              "product_name": "A"
+            },
+            {
+              "order_id": 158,
+              "customer_id": 79,
+              "product_name": "B"
+            },
+            {
+              "order_id": 159,
+              "customer_id": 80,
+              "product_name": "A"
+            },
+            {
+              "order_id": 160,
+              "customer_id": 80,
+              "product_name": "B"
+            },
+            {
+              "order_id": 161,
+              "customer_id": 81,
+              "product_name": "A"
+            },
+            {
+              "order_id": 162,
+              "customer_id": 81,
+              "product_name": "B"
+            },
+            {
+              "order_id": 163,
+              "customer_id": 82,
+              "product_name": "A"
+            },
+            {
+              "order_id": 164,
+              "customer_id": 82,
+              "product_name": "B"
+            },
+            {
+              "order_id": 165,
+              "customer_id": 83,
+              "product_name": "A"
+            },
+            {
+              "order_id": 166,
+              "customer_id": 83,
+              "product_name": "B"
+            },
+            {
+              "order_id": 167,
+              "customer_id": 84,
+              "product_name": "A"
+            },
+            {
+              "order_id": 168,
+              "customer_id": 84,
+              "product_name": "B"
+            },
+            {
+              "order_id": 169,
+              "customer_id": 85,
+              "product_name": "A"
+            },
+            {
+              "order_id": 170,
+              "customer_id": 85,
+              "product_name": "B"
+            },
+            {
+              "order_id": 171,
+              "customer_id": 86,
+              "product_name": "A"
+            },
+            {
+              "order_id": 172,
+              "customer_id": 86,
+              "product_name": "B"
+            },
+            {
+              "order_id": 173,
+              "customer_id": 87,
+              "product_name": "A"
+            },
+            {
+              "order_id": 174,
+              "customer_id": 87,
+              "product_name": "B"
+            },
+            {
+              "order_id": 175,
+              "customer_id": 88,
+              "product_name": "A"
+            },
+            {
+              "order_id": 176,
+              "customer_id": 88,
+              "product_name": "B"
+            },
+            {
+              "order_id": 177,
+              "customer_id": 89,
+              "product_name": "A"
+            },
+            {
+              "order_id": 178,
+              "customer_id": 89,
+              "product_name": "B"
+            },
+            {
+              "order_id": 179,
+              "customer_id": 90,
+              "product_name": "A"
+            },
+            {
+              "order_id": 180,
+              "customer_id": 90,
+              "product_name": "B"
+            },
+            {
+              "order_id": 181,
+              "customer_id": 91,
+              "product_name": "A"
+            },
+            {
+              "order_id": 182,
+              "customer_id": 91,
+              "product_name": "B"
+            },
+            {
+              "order_id": 183,
+              "customer_id": 92,
+              "product_name": "A"
+            },
+            {
+              "order_id": 184,
+              "customer_id": 92,
+              "product_name": "B"
+            },
+            {
+              "order_id": 185,
+              "customer_id": 93,
+              "product_name": "A"
+            },
+            {
+              "order_id": 186,
+              "customer_id": 93,
+              "product_name": "B"
+            },
+            {
+              "order_id": 187,
+              "customer_id": 94,
+              "product_name": "A"
+            },
+            {
+              "order_id": 188,
+              "customer_id": 94,
+              "product_name": "B"
+            },
+            {
+              "order_id": 189,
+              "customer_id": 95,
+              "product_name": "A"
+            },
+            {
+              "order_id": 190,
+              "customer_id": 95,
+              "product_name": "B"
+            },
+            {
+              "order_id": 191,
+              "customer_id": 96,
+              "product_name": "A"
+            },
+            {
+              "order_id": 192,
+              "customer_id": 96,
+              "product_name": "B"
+            },
+            {
+              "order_id": 193,
+              "customer_id": 97,
+              "product_name": "A"
+            },
+            {
+              "order_id": 194,
+              "customer_id": 97,
+              "product_name": "B"
+            },
+            {
+              "order_id": 195,
+              "customer_id": 98,
+              "product_name": "A"
+            },
+            {
+              "order_id": 196,
+              "customer_id": 98,
+              "product_name": "B"
+            },
+            {
+              "order_id": 197,
+              "customer_id": 99,
+              "product_name": "A"
+            },
+            {
+              "order_id": 198,
+              "customer_id": 99,
+              "product_name": "B"
+            },
+            {
+              "order_id": 199,
+              "customer_id": 100,
+              "product_name": "A"
+            },
+            {
+              "order_id": 200,
+              "customer_id": 100,
+              "product_name": "B"
+            },
+            {
+              "order_id": 201,
+              "customer_id": 101,
+              "product_name": "A"
+            },
+            {
+              "order_id": 202,
+              "customer_id": 101,
+              "product_name": "B"
+            },
+            {
+              "order_id": 203,
+              "customer_id": 102,
+              "product_name": "A"
+            },
+            {
+              "order_id": 204,
+              "customer_id": 102,
+              "product_name": "B"
+            },
+            {
+              "order_id": 205,
+              "customer_id": 103,
+              "product_name": "A"
+            },
+            {
+              "order_id": 206,
+              "customer_id": 103,
+              "product_name": "B"
+            },
+            {
+              "order_id": 207,
+              "customer_id": 104,
+              "product_name": "A"
+            },
+            {
+              "order_id": 208,
+              "customer_id": 104,
+              "product_name": "B"
+            },
+            {
+              "order_id": 209,
+              "customer_id": 105,
+              "product_name": "A"
+            },
+            {
+              "order_id": 210,
+              "customer_id": 105,
+              "product_name": "B"
+            },
+            {
+              "order_id": 211,
+              "customer_id": 106,
+              "product_name": "A"
+            },
+            {
+              "order_id": 212,
+              "customer_id": 106,
+              "product_name": "B"
+            },
+            {
+              "order_id": 213,
+              "customer_id": 107,
+              "product_name": "A"
+            },
+            {
+              "order_id": 214,
+              "customer_id": 107,
+              "product_name": "B"
+            },
+            {
+              "order_id": 215,
+              "customer_id": 108,
+              "product_name": "A"
+            },
+            {
+              "order_id": 216,
+              "customer_id": 108,
+              "product_name": "B"
+            },
+            {
+              "order_id": 217,
+              "customer_id": 109,
+              "product_name": "A"
+            },
+            {
+              "order_id": 218,
+              "customer_id": 109,
+              "product_name": "B"
+            },
+            {
+              "order_id": 219,
+              "customer_id": 110,
+              "product_name": "A"
+            },
+            {
+              "order_id": 220,
+              "customer_id": 110,
+              "product_name": "B"
+            },
+            {
+              "order_id": 221,
+              "customer_id": 111,
+              "product_name": "A"
+            },
+            {
+              "order_id": 222,
+              "customer_id": 111,
+              "product_name": "B"
+            },
+            {
+              "order_id": 223,
+              "customer_id": 112,
+              "product_name": "A"
+            },
+            {
+              "order_id": 224,
+              "customer_id": 112,
+              "product_name": "B"
+            },
+            {
+              "order_id": 225,
+              "customer_id": 113,
+              "product_name": "A"
+            },
+            {
+              "order_id": 226,
+              "customer_id": 113,
+              "product_name": "B"
+            },
+            {
+              "order_id": 227,
+              "customer_id": 114,
+              "product_name": "A"
+            },
+            {
+              "order_id": 228,
+              "customer_id": 114,
+              "product_name": "B"
+            },
+            {
+              "order_id": 229,
+              "customer_id": 115,
+              "product_name": "A"
+            },
+            {
+              "order_id": 230,
+              "customer_id": 115,
+              "product_name": "B"
+            },
+            {
+              "order_id": 231,
+              "customer_id": 116,
+              "product_name": "A"
+            },
+            {
+              "order_id": 232,
+              "customer_id": 116,
+              "product_name": "B"
+            },
+            {
+              "order_id": 233,
+              "customer_id": 117,
+              "product_name": "A"
+            },
+            {
+              "order_id": 234,
+              "customer_id": 117,
+              "product_name": "B"
+            },
+            {
+              "order_id": 235,
+              "customer_id": 118,
+              "product_name": "A"
+            },
+            {
+              "order_id": 236,
+              "customer_id": 118,
+              "product_name": "B"
+            },
+            {
+              "order_id": 237,
+              "customer_id": 119,
+              "product_name": "A"
+            },
+            {
+              "order_id": 238,
+              "customer_id": 119,
+              "product_name": "B"
+            },
+            {
+              "order_id": 239,
+              "customer_id": 120,
+              "product_name": "A"
+            },
+            {
+              "order_id": 240,
+              "customer_id": 120,
+              "product_name": "B"
+            },
+            {
+              "order_id": 241,
+              "customer_id": 121,
+              "product_name": "A"
+            },
+            {
+              "order_id": 242,
+              "customer_id": 121,
+              "product_name": "B"
+            },
+            {
+              "order_id": 243,
+              "customer_id": 122,
+              "product_name": "A"
+            },
+            {
+              "order_id": 244,
+              "customer_id": 122,
+              "product_name": "B"
+            },
+            {
+              "order_id": 245,
+              "customer_id": 123,
+              "product_name": "A"
+            },
+            {
+              "order_id": 246,
+              "customer_id": 123,
+              "product_name": "B"
+            },
+            {
+              "order_id": 247,
+              "customer_id": 124,
+              "product_name": "A"
+            },
+            {
+              "order_id": 248,
+              "customer_id": 124,
+              "product_name": "B"
+            },
+            {
+              "order_id": 249,
+              "customer_id": 125,
+              "product_name": "A"
+            },
+            {
+              "order_id": 250,
+              "customer_id": 125,
+              "product_name": "B"
+            },
+            {
+              "order_id": 251,
+              "customer_id": 126,
+              "product_name": "A"
+            },
+            {
+              "order_id": 252,
+              "customer_id": 126,
+              "product_name": "B"
+            },
+            {
+              "order_id": 253,
+              "customer_id": 127,
+              "product_name": "A"
+            },
+            {
+              "order_id": 254,
+              "customer_id": 127,
+              "product_name": "B"
+            },
+            {
+              "order_id": 255,
+              "customer_id": 128,
+              "product_name": "A"
+            },
+            {
+              "order_id": 256,
+              "customer_id": 128,
+              "product_name": "B"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "customer_id",
+          "customer_name"
+        ],
+        "rows": [
+          [
+            1,
+            "Customer 001"
+          ],
+          [
+            2,
+            "Customer 002"
+          ],
+          [
+            3,
+            "Customer 003"
+          ],
+          [
+            4,
+            "Customer 004"
+          ],
+          [
+            5,
+            "Customer 005"
+          ],
+          [
+            6,
+            "Customer 006"
+          ],
+          [
+            7,
+            "Customer 007"
+          ],
+          [
+            8,
+            "Customer 008"
+          ],
+          [
+            9,
+            "Customer 009"
+          ],
+          [
+            10,
+            "Customer 010"
+          ],
+          [
+            11,
+            "Customer 011"
+          ],
+          [
+            12,
+            "Customer 012"
+          ],
+          [
+            13,
+            "Customer 013"
+          ],
+          [
+            14,
+            "Customer 014"
+          ],
+          [
+            15,
+            "Customer 015"
+          ],
+          [
+            16,
+            "Customer 016"
+          ],
+          [
+            17,
+            "Customer 017"
+          ],
+          [
+            18,
+            "Customer 018"
+          ],
+          [
+            19,
+            "Customer 019"
+          ],
+          [
+            20,
+            "Customer 020"
+          ],
+          [
+            21,
+            "Customer 021"
+          ],
+          [
+            22,
+            "Customer 022"
+          ],
+          [
+            23,
+            "Customer 023"
+          ],
+          [
+            24,
+            "Customer 024"
+          ],
+          [
+            25,
+            "Customer 025"
+          ],
+          [
+            26,
+            "Customer 026"
+          ],
+          [
+            27,
+            "Customer 027"
+          ],
+          [
+            28,
+            "Customer 028"
+          ],
+          [
+            29,
+            "Customer 029"
+          ],
+          [
+            30,
+            "Customer 030"
+          ],
+          [
+            31,
+            "Customer 031"
+          ],
+          [
+            32,
+            "Customer 032"
+          ],
+          [
+            33,
+            "Customer 033"
+          ],
+          [
+            34,
+            "Customer 034"
+          ],
+          [
+            35,
+            "Customer 035"
+          ],
+          [
+            36,
+            "Customer 036"
+          ],
+          [
+            37,
+            "Customer 037"
+          ],
+          [
+            38,
+            "Customer 038"
+          ],
+          [
+            39,
+            "Customer 039"
+          ],
+          [
+            40,
+            "Customer 040"
+          ],
+          [
+            41,
+            "Customer 041"
+          ],
+          [
+            42,
+            "Customer 042"
+          ],
+          [
+            43,
+            "Customer 043"
+          ],
+          [
+            44,
+            "Customer 044"
+          ],
+          [
+            45,
+            "Customer 045"
+          ],
+          [
+            46,
+            "Customer 046"
+          ],
+          [
+            47,
+            "Customer 047"
+          ],
+          [
+            48,
+            "Customer 048"
+          ],
+          [
+            49,
+            "Customer 049"
+          ],
+          [
+            50,
+            "Customer 050"
+          ],
+          [
+            51,
+            "Customer 051"
+          ],
+          [
+            52,
+            "Customer 052"
+          ],
+          [
+            53,
+            "Customer 053"
+          ],
+          [
+            54,
+            "Customer 054"
+          ],
+          [
+            55,
+            "Customer 055"
+          ],
+          [
+            56,
+            "Customer 056"
+          ],
+          [
+            57,
+            "Customer 057"
+          ],
+          [
+            58,
+            "Customer 058"
+          ],
+          [
+            59,
+            "Customer 059"
+          ],
+          [
+            60,
+            "Customer 060"
+          ],
+          [
+            61,
+            "Customer 061"
+          ],
+          [
+            62,
+            "Customer 062"
+          ],
+          [
+            63,
+            "Customer 063"
+          ],
+          [
+            64,
+            "Customer 064"
+          ],
+          [
+            65,
+            "Customer 065"
+          ],
+          [
+            66,
+            "Customer 066"
+          ],
+          [
+            67,
+            "Customer 067"
+          ],
+          [
+            68,
+            "Customer 068"
+          ],
+          [
+            69,
+            "Customer 069"
+          ],
+          [
+            70,
+            "Customer 070"
+          ],
+          [
+            71,
+            "Customer 071"
+          ],
+          [
+            72,
+            "Customer 072"
+          ],
+          [
+            73,
+            "Customer 073"
+          ],
+          [
+            74,
+            "Customer 074"
+          ],
+          [
+            75,
+            "Customer 075"
+          ],
+          [
+            76,
+            "Customer 076"
+          ],
+          [
+            77,
+            "Customer 077"
+          ],
+          [
+            78,
+            "Customer 078"
+          ],
+          [
+            79,
+            "Customer 079"
+          ],
+          [
+            80,
+            "Customer 080"
+          ],
+          [
+            81,
+            "Customer 081"
+          ],
+          [
+            82,
+            "Customer 082"
+          ],
+          [
+            83,
+            "Customer 083"
+          ],
+          [
+            84,
+            "Customer 084"
+          ],
+          [
+            85,
+            "Customer 085"
+          ],
+          [
+            86,
+            "Customer 086"
+          ],
+          [
+            87,
+            "Customer 087"
+          ],
+          [
+            88,
+            "Customer 088"
+          ],
+          [
+            89,
+            "Customer 089"
+          ],
+          [
+            90,
+            "Customer 090"
+          ],
+          [
+            91,
+            "Customer 091"
+          ],
+          [
+            92,
+            "Customer 092"
+          ],
+          [
+            93,
+            "Customer 093"
+          ],
+          [
+            94,
+            "Customer 094"
+          ],
+          [
+            95,
+            "Customer 095"
+          ],
+          [
+            96,
+            "Customer 096"
+          ],
+          [
+            97,
+            "Customer 097"
+          ],
+          [
+            98,
+            "Customer 098"
+          ],
+          [
+            99,
+            "Customer 099"
+          ],
+          [
+            100,
+            "Customer 100"
+          ],
+          [
+            101,
+            "Customer 101"
+          ],
+          [
+            102,
+            "Customer 102"
+          ],
+          [
+            103,
+            "Customer 103"
+          ],
+          [
+            104,
+            "Customer 104"
+          ],
+          [
+            105,
+            "Customer 105"
+          ],
+          [
+            106,
+            "Customer 106"
+          ],
+          [
+            107,
+            "Customer 107"
+          ],
+          [
+            108,
+            "Customer 108"
+          ],
+          [
+            109,
+            "Customer 109"
+          ],
+          [
+            110,
+            "Customer 110"
+          ],
+          [
+            111,
+            "Customer 111"
+          ],
+          [
+            112,
+            "Customer 112"
+          ],
+          [
+            113,
+            "Customer 113"
+          ],
+          [
+            114,
+            "Customer 114"
+          ],
+          [
+            115,
+            "Customer 115"
+          ],
+          [
+            116,
+            "Customer 116"
+          ],
+          [
+            117,
+            "Customer 117"
+          ],
+          [
+            118,
+            "Customer 118"
+          ],
+          [
+            119,
+            "Customer 119"
+          ],
+          [
+            120,
+            "Customer 120"
+          ],
+          [
+            121,
+            "Customer 121"
+          ],
+          [
+            122,
+            "Customer 122"
+          ],
+          [
+            123,
+            "Customer 123"
+          ],
+          [
+            124,
+            "Customer 124"
+          ],
+          [
+            125,
+            "Customer 125"
+          ],
+          [
+            126,
+            "Customer 126"
+          ],
+          [
+            127,
+            "Customer 127"
+          ],
+          [
+            128,
+            "Customer 128"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "qualifying-groups"
+      ]
+    }
+  ]
+}

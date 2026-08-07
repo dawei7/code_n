@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_88",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(m+n)",
+  "summary": "When the first meaningful sequence is empty, all n values from nums2 must be written into nums1, giving a linear output lower bound. The current backward merge performs at most m+n writes and matches it.",
+  "optimality": {
+    "symbol": "m+n",
+    "lower_bound": "Omega(m+n)",
+    "upper_bound": "O(m+n)",
+    "argument": "Choose the legal family m = 0 and n > 0. The reserved positions in nums1 are placeholders, so every one of the n = m + n meaningful values from nums2 must be copied into nums1; producing the required in-place result therefore takes Omega(m+n) writes. In the current algorithm, each loop iteration writes one unmerged value and decrements either first or second. There can be at most m + n iterations, yielding O(m+n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "For m = 0, every nums1 position is reserved capacity and all n source values must be materialized there, requiring n = m + n writes."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each iteration fixes one destination position and consumes one endpoint; neither first nor second can be decremented more than its source length."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover interleaving, an empty nums2, and an empty meaningful nums1 prefix; black-box real-test execution verifies all existing ordinary checks without inspecting their definitions."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3434",
+  "measurement_note": "Size is the legal array length n. Tiers 8, 32, and 128 span 16x and alternate a source value with k, exercising gain and penalty positions. The fixed-domain Kadane method is linear; a correct all-subarray gain search must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-alternating-8",
+      "name": "benchmark: eight alternating values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1, 2, 1, 2, 1, 2, 1, 2], "k": 2},
+      "expected": 5,
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-alternating-32",
+      "name": "benchmark: thirty-two alternating values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums": [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+                 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2],
+        "k": 2
+      },
+      "expected": 17,
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-alternating-128",
+      "name": "benchmark: one hundred twenty-eight alternating values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "nums": [
+          1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+          1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+          1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+          1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+          1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+          1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+          1, 2, 1, 2, 1, 2, 1, 2
+        ],
+        "k": 2
+      },
+      "expected": 65,
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

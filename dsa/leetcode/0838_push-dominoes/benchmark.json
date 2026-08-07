@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_838",
+  "measurement_note": "Size is the number of dominoes. Resolving force-bounded segments takes O(size) time. A simultaneous round-by-round simulation scans the string once for each step a lone rightward force travels, taking O(size squared) time on these long suffixes.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: rightward run of 16 dominoes", "kind": "benchmark", "visible": false, "size": 16, "input": {"dominoes": "R..............."}, "expected": "RRRRRRRRRRRRRRRR", "tags": ["benchmark", "scale-small", "single-force"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: rightward run of 64 dominoes", "kind": "benchmark", "visible": false, "size": 64, "input": {"dominoes": "R..............................................................."}, "expected": "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR", "tags": ["benchmark", "scale-medium", "single-force"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: rightward run of 256 dominoes", "kind": "benchmark", "visible": false, "size": 256, "input": {"dominoes": "R..............................................................................................................................................................................................................................................................."}, "expected": "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR", "tags": ["benchmark", "scale-large", "single-force"]}
+  ]
+}

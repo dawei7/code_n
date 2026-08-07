@@ -1,0 +1,63 @@
+{
+  "challenge_id": "lc_3906",
+  "measurement_note": "Size is W = r - l + 1, the inclusive interval width. All tiers use directions DRDRDR and begin at 10^12, where the path condition exercises padded and significant digits. Digit DP counts two 16-digit prefixes in O(D A^2) time independent of W, while the slower control formats and checks each of the W integers in O(WD) time.",
+  "cases": [
+    {
+      "id": "benchmark-range-width-1000",
+      "name": "benchmark: enumerate-versus-digit-DP interval width 1000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "l": 1000000000000,
+        "r": 1000000000999,
+        "directions": "DRDRDR"
+      },
+      "expected": 550,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "range-width",
+        "digit-dp"
+      ]
+    },
+    {
+      "id": "benchmark-range-width-4000",
+      "name": "benchmark: enumerate-versus-digit-DP interval width 4000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4000,
+      "input": {
+        "l": 1000000000000,
+        "r": 1000000003999,
+        "directions": "DRDRDR"
+      },
+      "expected": 2200,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "range-width",
+        "digit-dp"
+      ]
+    },
+    {
+      "id": "benchmark-range-width-16000",
+      "name": "benchmark: enumerate-versus-digit-DP interval width 16000",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16000,
+      "input": {
+        "l": 1000000000000,
+        "r": 1000000015999,
+        "directions": "DRDRDR"
+      },
+      "expected": 8800,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "range-width",
+        "digit-dp"
+      ]
+    }
+  ]
+}

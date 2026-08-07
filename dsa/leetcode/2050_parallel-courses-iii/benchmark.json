@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2050",
+  "measurement_note": "Size is n for a unit-duration prerequisite chain whose relations are listed in reverse topological order. The reference processes each course and relation once. Correct repeated whole-edge relaxation needs one additional pass per chain level, completes all tiers, and fails by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reverse-listed chain of 8 courses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"n": 8, "relations": [[7,8],[6,7],[5,6],[4,5],[3,4],[2,3],[1,2]], "time": [1,1,1,1,1,1,1,1]},
+      "expected": 8,
+      "tags": ["benchmark", "scale-small", "repeated-relaxation"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reverse-listed chain of 32 courses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"n": 32, "relations": [[31,32],[30,31],[29,30],[28,29],[27,28],[26,27],[25,26],[24,25],[23,24],[22,23],[21,22],[20,21],[19,20],[18,19],[17,18],[16,17],[15,16],[14,15],[13,14],[12,13],[11,12],[10,11],[9,10],[8,9],[7,8],[6,7],[5,6],[4,5],[3,4],[2,3],[1,2]], "time": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 32,
+      "tags": ["benchmark", "scale-medium", "repeated-relaxation"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reverse-listed chain of 64 courses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"n": 64, "relations": [[63,64],[62,63],[61,62],[60,61],[59,60],[58,59],[57,58],[56,57],[55,56],[54,55],[53,54],[52,53],[51,52],[50,51],[49,50],[48,49],[47,48],[46,47],[45,46],[44,45],[43,44],[42,43],[41,42],[40,41],[39,40],[38,39],[37,38],[36,37],[35,36],[34,35],[33,34],[32,33],[31,32],[30,31],[29,30],[28,29],[27,28],[26,27],[25,26],[24,25],[23,24],[22,23],[21,22],[20,21],[19,20],[18,19],[17,18],[16,17],[15,16],[14,15],[13,14],[12,13],[11,12],[10,11],[9,10],[8,9],[7,8],[6,7],[5,6],[4,5],[3,4],[2,3],[1,2]], "time": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": 64,
+      "tags": ["benchmark", "scale-large", "repeated-relaxation"]
+    }
+  ]
+}

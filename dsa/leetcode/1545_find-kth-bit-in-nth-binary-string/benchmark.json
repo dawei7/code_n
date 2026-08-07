@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1545",
+  "measurement_note": "Size is n, the recursive sequence level. The legal 4/10/20 tiers span 5x, use nontrivial positions, and keep n within its maximum of 20. The remotely Accepted symmetry recursion is O(n), and an independent iterative reflection also passes. A correct implementation that explicitly constructs every sequence through Sn completes all tiers and fails only the scaling verdict because its work and storage are O(2^n).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: query level 4 without construction",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "n": 4,
+        "k": 11
+      },
+      "expected": "1",
+      "tags": [
+        "benchmark",
+        "symmetry",
+        "n-4"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: query level 10 without construction",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "n": 10,
+        "k": 777
+      },
+      "expected": "0",
+      "tags": [
+        "benchmark",
+        "symmetry",
+        "n-10"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: query level 20 without construction",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "n": 20,
+        "k": 999999
+      },
+      "expected": "1",
+      "tags": [
+        "benchmark",
+        "symmetry",
+        "n-20"
+      ]
+    }
+  ]
+}
+

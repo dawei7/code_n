@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1681",
+  "measurement_note": "Size is S=2^n, the bitmask state-space cardinality; the 16/64/256 tiers correspond to n=4/6/8 distinct values split into pairs. The Accepted anchored submask DP and an independent anchored valid-group DP take O(3^n)=O(S^(log_2 3)) time. A correct memoized implementation that scans every possible group mask at every reachable state takes O(4^n)=O(S^2), completes all tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 distinct values split into pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "k": 2
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-pair-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 distinct values split into pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-pair-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 distinct values split into pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "nums": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "k": 4
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "distinct-pair-groups"
+      ]
+    }
+  ]
+}
+

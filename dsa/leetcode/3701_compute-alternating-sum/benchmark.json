@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3701",
+  "cases": [
+    {
+      "id": "benchmark-alternating-6",
+      "name": "benchmark: six values with negative pair contributions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"nums": [1,100,1,100,1,100]},
+      "expected": -297,
+      "tags": ["benchmark", "full-scan", "redundant-loop-pressure"]
+    },
+    {
+      "id": "benchmark-alternating-24",
+      "name": "benchmark: twenty-four values with negative pair contributions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"nums": [1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100]},
+      "expected": -1188,
+      "tags": ["benchmark", "full-scan", "redundant-loop-pressure"]
+    },
+    {
+      "id": "benchmark-alternating-96",
+      "name": "benchmark: ninety-six values with negative pair contributions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {"nums": [1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100,1,100]},
+      "expected": -4752,
+      "tags": ["benchmark", "full-scan", "redundant-loop-pressure"]
+    }
+  ]
+}

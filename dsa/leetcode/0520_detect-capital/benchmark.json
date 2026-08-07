@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_520",
+  "measurement_note": "Size is the word length. Counting uppercase characters once is linear, while independently rescanning the whole word from every character position is quadratic.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: validate 20 lowercase letters", "kind": "benchmark", "visible": false, "size": 20, "input": {"word": "aaaaaaaaaaaaaaaaaaaa"}, "expected": true, "tags": ["benchmark", "scaling", "lowercase"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: validate 50 lowercase letters", "kind": "benchmark", "visible": false, "size": 50, "input": {"word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": true, "tags": ["benchmark", "scaling", "lowercase"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: validate 100 lowercase letters", "kind": "benchmark", "visible": false, "size": 100, "input": {"word": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}, "expected": true, "tags": ["benchmark", "scaling", "lowercase"]}
+  ]
+}

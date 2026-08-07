@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_104",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "A longest skewed path forces inspection through the final node to determine the maximum depth. The explicit depth-first traversal visits every node once and retains height-proportional pending state.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider an n-node skewed tree. Without reaching the final node, an algorithm cannot distinguish depth n from a tree whose path ends earlier, so worst-case maximum-depth computation requires Omega(n) node visits. The current iterative traversal pushes and pops every node once with constant work per visit, giving O(n) time and O(h) auxiliary stack space."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "The last node of a skewed path determines whether the maximum depth is n or smaller, forcing a linear worst-case traversal."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each node is pushed once, popped once, and processed with constant additional work; pending DFS state is bounded by height h."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover branching and skewed trees; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1768",
+  "measurement_note": "Size is A+B, the total output length. Both words have equal length and contain repeated letters. Buffered construction is O(A+B); a correct implementation that rebuilds every output prefix completes all legal tiers and is rejected by O((A+B)^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two 8-character words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"word1": "aaaaaaaa", "word2": "bbbbbbbb"},
+      "expected": "abababababababab",
+      "tags": ["benchmark", "scaling", "equal-length"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: two 32-character words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": "abababababababababababababababababababababababababababababababab",
+      "tags": ["benchmark", "scaling", "equal-length"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two 100-character words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 200,
+      "input": {
+        "word1": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "word2": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+      "tags": ["benchmark", "scaling", "equal-length", "maximum-length"]
+    }
+  ]
+}

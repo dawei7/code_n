@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3301",
+  "measurement_note": "The workload size n is the number of towers. Equal maximum limits force n consecutive downward choices; the closed-form total is an arithmetic series, while a used-set implementation that searches downward repeatedly performs quadratic work.",
+  "cases": [
+    {"id":"benchmark-equal-1000","name":"benchmark: 1000 equal maximum limits","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 1000\nlimit = 1_000_000_000\ncase = {'maximumHeight': [limit] * n}\nexpected = n * (2 * limit - n + 1) // 2"},"size":1000,"tags":["benchmark","duplicates","greedy"]},
+    {"id":"benchmark-equal-10000","name":"benchmark: 10000 equal maximum limits","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 10000\nlimit = 1_000_000_000\ncase = {'maximumHeight': [limit] * n}\nexpected = n * (2 * limit - n + 1) // 2"},"size":10000,"tags":["benchmark","duplicates","greedy"]},
+    {"id":"benchmark-equal-100000","name":"benchmark: maximum tower count with equal limits","kind":"benchmark","visible":false,"generator":{"kind":"python","source":"n = 100000\nlimit = 1_000_000_000\ncase = {'maximumHeight': [limit] * n}\nexpected = n * (2 * limit - n + 1) // 2"},"size":100000,"tags":["benchmark","duplicates","greedy","boundary"]}
+  ]
+}

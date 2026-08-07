@@ -1,0 +1,2389 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2314",
+  "measurement_note": "Size is r, the number of Weather rows. Reverse-ordered partitions contain repeated maximum degrees, forcing both window ordering keys and the final city ordering across a tenfold span.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 30 weather records with repeated maxima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 30,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 20,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-01",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-01",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-01",
+              "degree": -10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            10,
+            "2022-01-07",
+            -4
+          ],
+          [
+            20,
+            "2022-01-07",
+            -4
+          ],
+          [
+            30,
+            "2022-01-07",
+            -4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 120 weather records with repeated maxima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 120,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 20,
+              "day": "2022-02-09",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-08",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-07",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-06",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-05",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-04",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-03",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-02",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-01",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-31",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-30",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-29",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-28",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-27",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-26",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-25",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-24",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-23",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-22",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-21",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-20",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-19",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-18",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-17",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-16",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-15",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-14",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-13",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-12",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-11",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-01",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-09",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-08",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-07",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-06",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-05",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-04",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-03",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-02",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-01",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-31",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-30",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-29",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-28",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-27",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-26",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-25",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-24",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-23",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-22",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-21",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-20",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-19",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-18",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-17",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-16",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-15",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-14",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-13",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-12",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-11",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-01",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-09",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-08",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-07",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-06",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-05",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-04",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-03",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-02",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-01",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-31",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-30",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-29",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-28",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-27",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-26",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-25",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-24",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-23",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-22",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-21",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-20",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-19",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-18",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-17",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-16",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-15",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-14",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-13",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-12",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-11",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-01",
+              "degree": -10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            10,
+            "2022-01-07",
+            -4
+          ],
+          [
+            20,
+            "2022-01-07",
+            -4
+          ],
+          [
+            30,
+            "2022-01-07",
+            -4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 300 weather records with repeated maxima",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 300,
+      "input": {
+        "tables": {
+          "Weather": [
+            {
+              "city_id": 20,
+              "day": "2022-04-10",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-09",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-08",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-07",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-06",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-05",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-04",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-03",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-02",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-04-01",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-31",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-30",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-29",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-28",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-27",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-26",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-25",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-24",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-23",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-22",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-21",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-20",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-19",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-18",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-17",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-16",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-15",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-14",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-13",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-12",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-11",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-10",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-09",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-08",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-07",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-06",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-05",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-04",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-03",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-02",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-03-01",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-28",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-27",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-26",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-25",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-24",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-23",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-22",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-21",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-20",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-19",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-18",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-17",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-16",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-15",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-14",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-13",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-12",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-11",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-10",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-09",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-08",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-07",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-06",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-05",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-04",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-03",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-02",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-02-01",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-31",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-30",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-29",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-28",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-27",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-26",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-25",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-24",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-23",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-22",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-21",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-20",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-19",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-18",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-17",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-16",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-15",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-14",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-13",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-12",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-11",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 20,
+              "day": "2022-01-01",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-10",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-09",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-08",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-07",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-06",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-05",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-04",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-03",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-02",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-04-01",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-31",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-30",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-29",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-28",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-27",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-26",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-25",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-24",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-23",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-22",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-21",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-20",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-19",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-18",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-17",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-16",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-15",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-14",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-13",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-12",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-11",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-10",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-09",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-08",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-07",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-06",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-05",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-04",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-03",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-02",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-03-01",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-28",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-27",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-26",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-25",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-24",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-23",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-22",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-21",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-20",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-19",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-18",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-17",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-16",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-15",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-14",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-13",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-12",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-11",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-10",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-09",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-08",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-07",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-06",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-05",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-04",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-03",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-02",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-02-01",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-31",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-30",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-29",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-28",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-27",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-26",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-25",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-24",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-23",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-22",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-21",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-20",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-19",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-18",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-17",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-16",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-15",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-14",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-13",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-12",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-11",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 10,
+              "day": "2022-01-01",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-10",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-09",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-08",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-07",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-06",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-05",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-04",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-03",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-02",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-04-01",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-31",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-30",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-29",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-28",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-27",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-26",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-25",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-24",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-23",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-22",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-21",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-20",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-19",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-18",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-17",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-16",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-15",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-14",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-13",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-12",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-11",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-10",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-09",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-08",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-07",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-06",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-05",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-04",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-03",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-02",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-03-01",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-28",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-27",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-26",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-25",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-24",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-23",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-22",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-21",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-20",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-19",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-18",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-17",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-16",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-15",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-14",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-13",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-12",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-11",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-10",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-09",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-08",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-07",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-06",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-05",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-04",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-03",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-02",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-02-01",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-31",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-30",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-29",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-28",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-27",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-26",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-25",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-24",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-23",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-22",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-21",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-20",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-19",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-18",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-17",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-16",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-15",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-14",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-13",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-12",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-11",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-10",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-09",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-08",
+              "degree": -10
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-07",
+              "degree": -4
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-06",
+              "degree": -5
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-05",
+              "degree": -6
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-04",
+              "degree": -7
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-03",
+              "degree": -8
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-02",
+              "degree": -9
+            },
+            {
+              "city_id": 30,
+              "day": "2022-01-01",
+              "degree": -10
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "city_id",
+          "day",
+          "degree"
+        ],
+        "rows": [
+          [
+            10,
+            "2022-01-07",
+            -4
+          ],
+          [
+            20,
+            "2022-01-07",
+            -4
+          ],
+          [
+            30,
+            "2022-01-07",
+            -4
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

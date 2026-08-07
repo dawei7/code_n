@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_640",
+  "measurement_note": "Size is the number of variable terms; the unique solution also equals size. Symbolic aggregation scans the equation once. A correct candidate-search design reevaluates all size terms for each of size candidate values and grows quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 24 variable terms and solution 24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "equation": "x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x=576"
+      },
+      "expected": "x=24",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "many-terms",
+        "candidate-search"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 96 variable terms and solution 96",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "equation": "x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x=9216"
+      },
+      "expected": "x=96",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "many-terms",
+        "candidate-search"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 240 variable terms and solution 240",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 240,
+      "input": {
+        "equation": "x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x+x=57600"
+      },
+      "expected": "x=240",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "many-terms",
+        "candidate-search"
+      ]
+    }
+  ]
+}

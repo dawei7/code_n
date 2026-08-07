@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2266",
+  "measurement_note": "Size is n, the number of received key presses. The repeated 2-through-9 pattern forces every boundary and has answer one. The optimal run recurrence takes O(n) time. A correct general prefix partition dynamic program that checks every earlier split point completes all tiers and fails only through O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: forced boundaries at n=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"pressedKeys":"2345678923456789"},
+      "expected": 1,
+      "tags": ["benchmark","scale-small","forced-boundaries"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: forced boundaries at n=64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"pressedKeys":"2345678923456789234567892345678923456789234567892345678923456789"},
+      "expected": 1,
+      "tags": ["benchmark","scale-medium","forced-boundaries"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: forced boundaries at n=248",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 248,
+      "input": {"pressedKeys":"23456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789234567892345678923456789"},
+      "expected": 1,
+      "tags": ["benchmark","scale-large","forced-boundaries"]
+    }
+  ]
+}

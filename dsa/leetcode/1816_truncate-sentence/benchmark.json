@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1816",
+  "measurement_note": "Size is n, the sentence length. Every tier uses ten-letter words and requests all words, forcing the complete sentence to be processed. A single scan takes O(n) time. A correct alternative that restarts at the beginning to locate each successive word boundary repeatedly examines the same prefixes and takes O(n^2) time while completing every legal tier.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 3 ten-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s":"abcdefghij abcdefghij abcdefghij","k":3},
+      "expected": "abcdefghij abcdefghij abcdefghij",
+      "tags": ["benchmark","scale-small","maximum-word-length"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 12 ten-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 131,
+      "input": {"s":"abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij","k":12},
+      "expected": "abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij",
+      "tags": ["benchmark","scale-medium","maximum-word-length"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 45 ten-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 494,
+      "input": {"s":"abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij","k":45},
+      "expected": "abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij abcdefghij",
+      "tags": ["benchmark","scale-large","maximum-word-length"]
+    }
+  ]
+}

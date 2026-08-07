@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_416",
+  "measurement_note": "Size is the element count. Each array contains only even values but has an odd half-total, so packed subset-sum state finishes pseudo-polynomially while uncached include-or-exclude search cannot reach the target and explores all 2^size choices.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: reject 4 even values with odd half-total",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "exhaustive-failure"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: reject 8 even values with odd half-total",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "exhaustive-failure"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: reject 16 even values with odd half-total",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          4
+        ]
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "exhaustive-failure"
+      ]
+    }
+  ]
+}

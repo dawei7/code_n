@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1715",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "An exact relational join must account for every box and locate every potentially referenced chest, giving a linear input-inspection lower bound; one hash join and aggregate scan match it.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "In the general unordered-table access model, changing any uninspected box alters a direct count or reference, and a matching chest record may occur at any uninspected chest row. Thus all B+C=R input rows may need inspection. Building a chest hash table and scanning every box performs O(1) expected join and aggregation work per row, for O(R) total time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary can change fruit totals through the final uninspected box or place a referenced chest at the final uninspected chest row."},
+    {"kind":"upper_bound_proof","evidence":"One hash build over Chests followed by one left-join aggregation scan over Boxes performs constant expected work per input row."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, null chest IDs, one joined chest, repeated chest references, zero fruit counts, and an unreferenced chest."}
+  ]
+}

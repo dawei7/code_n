@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1960",
+  "measurement_note": "Size is N, the input string length governing the required linear scan. Every tier is a uniform even-length string, so its best odd palindrome lengths are the two closest odd values summing to N. The reference uses Manacher radii and linear endpoint propagation. A correct slower implementation expands every odd center independently, completes all tiers, and fails by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: uniform string of length thirty-two","kind":"benchmark","visible":false,"size":32,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":255,"tags":["benchmark","scale-small","uniform"]},
+    {"id":"benchmark-scale-2","name":"benchmark: uniform string of length one hundred twenty-eight","kind":"benchmark","visible":false,"size":128,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":4095,"tags":["benchmark","scale-medium","uniform"]},
+    {"id":"benchmark-scale-3","name":"benchmark: uniform string of length five hundred twelve","kind":"benchmark","visible":false,"size":512,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":65535,"tags":["benchmark","scale-large","uniform"]}
+  ]
+}

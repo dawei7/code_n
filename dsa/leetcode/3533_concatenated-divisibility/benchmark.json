@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3533",
+  "measurement_note": "Size is 2^n, the number of used-index masks. Divisibility by 3 depends on the invariant digit sum, and each tier has total digit sum congruent to 1 modulo 3, so no permutation is valid. Memoized mask DP explores each subset state once, while a correct permutation enumerator must inspect all n! orders.",
+  "cases": [
+    {"id":"benchmark-impossible-16","name":"benchmark: 16 masks for four values","kind":"benchmark","visible":false,"size":16,"input":{"nums":[1,2,3,4],"k":3},"expected":[],"tags":["benchmark","impossible","scale-small"]},
+    {"id":"benchmark-impossible-64","name":"benchmark: 64 masks for six values","kind":"benchmark","visible":false,"size":64,"input":{"nums":[1,2,3,4,5,7],"k":3},"expected":[],"tags":["benchmark","impossible","scale-medium"]},
+    {"id":"benchmark-impossible-256","name":"benchmark: 256 masks for eight values","kind":"benchmark","visible":false,"size":256,"input":{"nums":[1,2,3,4,5,6,7,9],"k":3},"expected":[],"tags":["benchmark","impossible","scale-large"]}
+  ]
+}

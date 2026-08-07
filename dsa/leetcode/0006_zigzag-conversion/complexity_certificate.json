@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_6",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(n)",
+  "summary": "The source limits the string and row count to 1,000, which is too narrow for the runtime harness to distinguish a linear row-buffer simulation reliably from a correct quadratic sparse-grid implementation.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 1000,
+    "unit": "characters",
+    "source_constraint": "The source contract requires 1 <= |s| <= 1000 and 1 <= numRows <= 1000."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The current solution appends each of the at most 1,000 input characters once, performs constant state updates per character, and joins buffers whose total length is n."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Independent cycle-arithmetic regression covers every authored case, legal row-count boundaries, punctuation, top and bottom direction changes, and all row counts from 1 through 1,000 for a maximum-length string."
+    }
+  ]
+}

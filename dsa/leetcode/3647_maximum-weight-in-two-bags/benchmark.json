@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3647",
+  "measurement_note": "Size N is the item count, with N unit-weight items and both capacities equal to N. Tiers 2, 5, and 10 span 5x. The accepted two-capacity DP takes O(N^3) under this scaling; a correct uncached search explores all 3^N assignments, must finish every tier, and must fail only the scaling verdict.",
+  "cases": [
+    {
+      "id": "benchmark-items-2",
+      "name": "benchmark: assign 2 unit items across two bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "weights": [
+          1,
+          1
+        ],
+        "w1": 2,
+        "w2": 2
+      },
+      "expected": 2,
+      "tags": [
+        "benchmark",
+        "three-way-choice"
+      ]
+    },
+    {
+      "id": "benchmark-items-5",
+      "name": "benchmark: assign 5 unit items across two bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 5,
+      "input": {
+        "weights": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "w1": 5,
+        "w2": 5
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "three-way-choice"
+      ]
+    },
+    {
+      "id": "benchmark-items-10",
+      "name": "benchmark: assign 10 unit items across two bags",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {
+        "weights": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "w1": 10,
+        "w2": 10
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark",
+        "three-way-choice"
+      ]
+    }
+  ]
+}

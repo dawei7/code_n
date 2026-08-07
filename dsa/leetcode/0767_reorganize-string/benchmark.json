@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_767",
+  "measurement_note": "Size is the string length. Counting once and filling alternating positions costs O(size) for a fixed lowercase alphabet; rebuilding frequencies from all remaining characters at every position costs O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 8 balanced characters", "kind": "benchmark", "visible": false, "size": 8, "input": {"s": "aaaabbbb"}, "expected": "abababab", "validator": {"kind": "reorganized_string"}, "tags": ["benchmark", "scaling", "balanced"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 32 balanced characters", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "aaaaaaaaaaaaaaaabbbbbbbbbbbbbbbb"}, "expected": "abababababababababababababababab", "validator": {"kind": "reorganized_string"}, "tags": ["benchmark", "scaling", "balanced"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 128 balanced characters", "kind": "benchmark", "visible": false, "size": 128, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}, "expected": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab", "validator": {"kind": "reorganized_string"}, "tags": ["benchmark", "scaling", "balanced"]}
+  ]
+}

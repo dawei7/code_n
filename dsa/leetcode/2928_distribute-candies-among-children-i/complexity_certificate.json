@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2928",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Both source inputs are restricted to 1 through 50, giving only 2500 legal pairs, while the optimal inclusion-exclusion implementation always evaluates the same four arithmetic terms; this fixed domain is too small for a stable runtime-scaling verdict.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 2500,
+    "unit": "legal input pairs",
+    "source_constraint": "n and limit are integers from 1 through 50, so the complete Cartesian input domain contains 50 times 50 pairs"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "For every legal pair, the optimal source evaluates exactly four inclusion-exclusion terms and performs no input-dependent loop or recursion."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "The certificate regression evaluates all 2500 legal n and limit pairs against an independent bounded enumeration of the first two child counts."
+    }
+  ]
+}

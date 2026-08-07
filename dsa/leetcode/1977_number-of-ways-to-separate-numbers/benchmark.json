@@ -1,0 +1,55 @@
+{
+    "schema_version":  1,
+    "challenge_id":  "lc_1977",
+    "measurement_note":  "Size is N, the digit-string length. Each tier contains only the digit 1, forcing equal-length comparisons to scan their complete common prefixes in the cubic control. The LCP-plus-prefix DP is quadratic. A correct DP that compares equal-length candidates digit by digit completes all tiers and fails by cubic scaling.",
+    "cases":  [
+                  {
+                      "id":  "benchmark-scale-1",
+                      "name":  "benchmark: twenty repeated digits",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  20,
+                      "input":  {
+                                    "num":  "11111111111111111111"
+                                },
+                      "expected":  627,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-small",
+                                   "equal-prefix"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-scale-2",
+                      "name":  "benchmark: fifty repeated digits",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  50,
+                      "input":  {
+                                    "num":  "11111111111111111111111111111111111111111111111111"
+                                },
+                      "expected":  204226,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-medium",
+                                   "equal-prefix"
+                               ]
+                  },
+                  {
+                      "id":  "benchmark-scale-3",
+                      "name":  "benchmark: one hundred repeated digits",
+                      "kind":  "benchmark",
+                      "visible":  false,
+                      "size":  100,
+                      "input":  {
+                                    "num":  "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+                                },
+                      "expected":  190569292,
+                      "tags":  [
+                                   "benchmark",
+                                   "scale-large",
+                                   "equal-prefix"
+                               ]
+                  }
+              ]
+}

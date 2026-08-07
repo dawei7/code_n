@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3407",
+  "measurement_note": "Size is n, the length of s. The legal 10-, 20-, and 40-character tiers span 4x. Each all-a text is paired with a repeated-a prefix and an absent final b, forcing a substring-enumeration matcher to exhaust its candidates while the accepted ordered searches remain within the required bound.",
+  "cases": [
+    {
+      "id": "benchmark-absent-suffix-10",
+      "name": "benchmark: absent suffix after repeated prefix at n=10",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {"s": "aaaaaaaaaa", "p": "aaaaa*b"},
+      "expected": false,
+      "tags": ["benchmark", "scale-small", "absent-suffix"]
+    },
+    {
+      "id": "benchmark-absent-suffix-20",
+      "name": "benchmark: absent suffix after repeated prefix at n=20",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaa", "p": "aaaaaaaaaa*b"},
+      "expected": false,
+      "tags": ["benchmark", "scale-medium", "absent-suffix"]
+    },
+    {
+      "id": "benchmark-absent-suffix-40",
+      "name": "benchmark: absent suffix after repeated prefix at n=40",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "p": "aaaaaaaaaaaaaaaaaaaa*b"},
+      "expected": false,
+      "tags": ["benchmark", "scale-large", "absent-suffix"]
+    }
+  ]
+}

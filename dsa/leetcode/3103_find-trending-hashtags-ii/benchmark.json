@@ -1,0 +1,4160 @@
+{
+  "challenge_id": "lc_3103",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: three hashtags in each of 32 tweets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0001"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0002"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0003"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0004"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 5,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0005"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 6,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0006"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 7,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0007"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 8,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0008"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 9,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0009"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0010"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0011"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 12,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0012"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 13,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0013"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 14,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0014"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 15,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0015"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 16,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0016"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 17,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0017"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 18,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0018"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 19,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0019"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0020"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0021"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0022"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0023"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 24,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0024"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 25,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0025"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 26,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0026"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 27,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0027"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 28,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0028"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 29,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0029"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0030"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0031"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0032"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Common",
+            32
+          ],
+          [
+            "#Group03",
+            8
+          ],
+          [
+            "#Group02",
+            8
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "multiple-hashtags"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: three hashtags in each of 128 tweets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0001"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0002"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0003"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0004"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 5,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0005"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 6,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0006"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 7,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0007"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 8,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0008"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 9,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0009"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0010"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0011"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 12,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0012"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 13,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0013"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 14,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0014"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 15,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0015"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 16,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0016"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 17,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0017"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 18,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0018"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 19,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0019"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0020"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0021"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0022"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0023"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 24,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0024"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 25,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0025"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 26,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0026"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 27,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0027"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 28,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0028"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 29,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0029"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0030"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0031"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0032"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 33,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group00 #Tag0033"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 34,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group01 #Tag0034"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 35,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group02 #Tag0035"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 36,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group03 #Tag0036"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 37,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group00 #Tag0037"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 38,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group01 #Tag0038"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 39,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group02 #Tag0039"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 40,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group03 #Tag0040"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 41,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group00 #Tag0041"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 42,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group01 #Tag0042"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 43,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group02 #Tag0043"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 44,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group03 #Tag0044"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 45,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group00 #Tag0045"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 46,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group01 #Tag0046"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 47,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group02 #Tag0047"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 48,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group03 #Tag0048"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 49,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group00 #Tag0049"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 50,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group01 #Tag0050"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 51,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group02 #Tag0051"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 52,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group03 #Tag0052"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 53,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group00 #Tag0053"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 54,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group01 #Tag0054"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 55,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group02 #Tag0055"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 56,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group03 #Tag0056"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 57,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group00 #Tag0057"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 58,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group01 #Tag0058"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 59,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group02 #Tag0059"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 60,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group03 #Tag0060"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 61,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group00 #Tag0061"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 62,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group01 #Tag0062"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 63,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group02 #Tag0063"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 64,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group03 #Tag0064"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 65,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group00 #Tag0065"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 66,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group01 #Tag0066"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 67,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group02 #Tag0067"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 68,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group03 #Tag0068"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 69,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group00 #Tag0069"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 70,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group01 #Tag0070"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 71,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group02 #Tag0071"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 72,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group03 #Tag0072"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 73,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group00 #Tag0073"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 74,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group01 #Tag0074"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 75,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group02 #Tag0075"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 76,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group03 #Tag0076"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 77,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group00 #Tag0077"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 78,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group01 #Tag0078"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 79,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group02 #Tag0079"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 80,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group03 #Tag0080"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 81,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group00 #Tag0081"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 82,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group01 #Tag0082"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 83,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group02 #Tag0083"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 84,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group03 #Tag0084"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 85,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group00 #Tag0085"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 86,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group01 #Tag0086"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 87,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group02 #Tag0087"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 88,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group03 #Tag0088"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 89,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group00 #Tag0089"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 90,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group01 #Tag0090"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 91,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group02 #Tag0091"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 92,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group03 #Tag0092"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 93,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group00 #Tag0093"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 94,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group01 #Tag0094"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 95,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group02 #Tag0095"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 96,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group03 #Tag0096"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 97,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group00 #Tag0097"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 98,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group01 #Tag0098"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 99,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group02 #Tag0099"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 100,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group03 #Tag0100"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 101,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group00 #Tag0101"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 102,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group01 #Tag0102"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 103,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group02 #Tag0103"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 104,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group03 #Tag0104"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 105,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group00 #Tag0105"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 106,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group01 #Tag0106"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 107,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group02 #Tag0107"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 108,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group03 #Tag0108"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 109,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group00 #Tag0109"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 110,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group01 #Tag0110"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 111,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group02 #Tag0111"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 112,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group03 #Tag0112"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 113,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group00 #Tag0113"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 114,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group01 #Tag0114"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 115,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group02 #Tag0115"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 116,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group03 #Tag0116"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 117,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0117"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 118,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0118"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 119,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0119"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 120,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0120"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 121,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0121"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 122,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0122"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 123,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0123"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 124,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0124"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 125,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0125"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 126,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0126"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 127,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0127"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 128,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0128"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Common",
+            128
+          ],
+          [
+            "#Group03",
+            32
+          ],
+          [
+            "#Group02",
+            32
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "multiple-hashtags"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: three hashtags in each of 512 tweets",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Tweets": [
+            {
+              "user_id": 1,
+              "tweet_id": 1,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0001"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 2,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0002"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 3,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0003"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 4,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0004"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 5,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0005"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 6,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0006"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 7,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0007"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 8,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0008"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 9,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0009"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 10,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0010"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 11,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0011"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 12,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0012"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 13,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0013"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 14,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0014"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 15,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0015"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 16,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0016"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 17,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0017"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 18,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0018"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 19,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0019"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 20,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0020"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 21,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0021"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 22,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0022"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 23,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0023"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 24,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0024"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 25,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0025"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 26,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0026"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 27,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0027"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 28,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0028"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 29,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0029"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 30,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0030"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 31,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0031"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 32,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0032"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 33,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group00 #Tag0033"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 34,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group01 #Tag0034"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 35,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group02 #Tag0035"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 36,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group03 #Tag0036"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 37,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group00 #Tag0037"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 38,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group01 #Tag0038"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 39,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group02 #Tag0039"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 40,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group03 #Tag0040"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 41,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group00 #Tag0041"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 42,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group01 #Tag0042"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 43,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group02 #Tag0043"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 44,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group03 #Tag0044"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 45,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group00 #Tag0045"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 46,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group01 #Tag0046"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 47,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group02 #Tag0047"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 48,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group03 #Tag0048"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 49,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group00 #Tag0049"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 50,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group01 #Tag0050"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 51,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group02 #Tag0051"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 52,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group03 #Tag0052"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 53,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group00 #Tag0053"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 54,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group01 #Tag0054"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 55,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group02 #Tag0055"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 56,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group03 #Tag0056"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 57,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group00 #Tag0057"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 58,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group01 #Tag0058"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 59,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group02 #Tag0059"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 60,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group03 #Tag0060"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 61,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group00 #Tag0061"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 62,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group01 #Tag0062"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 63,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group02 #Tag0063"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 64,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group03 #Tag0064"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 65,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group00 #Tag0065"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 66,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group01 #Tag0066"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 67,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group02 #Tag0067"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 68,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group03 #Tag0068"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 69,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group00 #Tag0069"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 70,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group01 #Tag0070"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 71,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group02 #Tag0071"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 72,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group03 #Tag0072"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 73,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group00 #Tag0073"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 74,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group01 #Tag0074"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 75,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group02 #Tag0075"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 76,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group03 #Tag0076"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 77,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group00 #Tag0077"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 78,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group01 #Tag0078"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 79,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group02 #Tag0079"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 80,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group03 #Tag0080"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 81,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group00 #Tag0081"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 82,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group01 #Tag0082"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 83,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group02 #Tag0083"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 84,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group03 #Tag0084"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 85,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group00 #Tag0085"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 86,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group01 #Tag0086"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 87,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group02 #Tag0087"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 88,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group03 #Tag0088"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 89,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group00 #Tag0089"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 90,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group01 #Tag0090"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 91,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group02 #Tag0091"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 92,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group03 #Tag0092"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 93,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group00 #Tag0093"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 94,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group01 #Tag0094"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 95,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group02 #Tag0095"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 96,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group03 #Tag0096"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 97,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group00 #Tag0097"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 98,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group01 #Tag0098"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 99,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group02 #Tag0099"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 100,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group03 #Tag0100"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 101,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group00 #Tag0101"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 102,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group01 #Tag0102"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 103,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group02 #Tag0103"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 104,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group03 #Tag0104"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 105,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group00 #Tag0105"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 106,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group01 #Tag0106"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 107,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group02 #Tag0107"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 108,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group03 #Tag0108"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 109,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group00 #Tag0109"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 110,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group01 #Tag0110"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 111,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group02 #Tag0111"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 112,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group03 #Tag0112"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 113,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group00 #Tag0113"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 114,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group01 #Tag0114"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 115,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group02 #Tag0115"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 116,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group03 #Tag0116"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 117,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0117"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 118,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0118"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 119,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0119"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 120,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0120"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 121,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0121"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 122,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0122"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 123,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0123"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 124,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0124"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 125,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0125"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 126,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0126"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 127,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0127"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 128,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0128"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 129,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0129"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 130,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0130"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 131,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0131"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 132,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0132"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 133,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0133"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 134,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0134"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 135,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0135"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 136,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0136"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 137,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0137"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 138,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0138"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 139,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0139"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 140,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0140"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 141,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0141"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 142,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0142"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 143,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0143"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 144,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0144"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 145,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0145"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 146,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0146"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 147,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0147"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 148,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0148"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 149,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group00 #Tag0149"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 150,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group01 #Tag0150"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 151,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group02 #Tag0151"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 152,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group03 #Tag0152"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 153,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group00 #Tag0153"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 154,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group01 #Tag0154"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 155,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group02 #Tag0155"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 156,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group03 #Tag0156"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 157,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group00 #Tag0157"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 158,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group01 #Tag0158"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 159,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group02 #Tag0159"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 160,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group03 #Tag0160"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 161,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group00 #Tag0161"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 162,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group01 #Tag0162"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 163,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group02 #Tag0163"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 164,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group03 #Tag0164"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 165,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group00 #Tag0165"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 166,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group01 #Tag0166"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 167,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group02 #Tag0167"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 168,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group03 #Tag0168"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 169,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group00 #Tag0169"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 170,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group01 #Tag0170"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 171,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group02 #Tag0171"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 172,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group03 #Tag0172"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 173,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group00 #Tag0173"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 174,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group01 #Tag0174"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 175,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group02 #Tag0175"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 176,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group03 #Tag0176"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 177,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group00 #Tag0177"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 178,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group01 #Tag0178"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 179,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group02 #Tag0179"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 180,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group03 #Tag0180"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 181,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group00 #Tag0181"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 182,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group01 #Tag0182"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 183,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group02 #Tag0183"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 184,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group03 #Tag0184"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 185,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group00 #Tag0185"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 186,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group01 #Tag0186"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 187,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group02 #Tag0187"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 188,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group03 #Tag0188"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 189,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group00 #Tag0189"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 190,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group01 #Tag0190"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 191,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group02 #Tag0191"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 192,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group03 #Tag0192"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 193,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group00 #Tag0193"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 194,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group01 #Tag0194"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 195,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group02 #Tag0195"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 196,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group03 #Tag0196"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 197,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group00 #Tag0197"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 198,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group01 #Tag0198"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 199,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group02 #Tag0199"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 200,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group03 #Tag0200"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 201,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group00 #Tag0201"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 202,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group01 #Tag0202"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 203,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group02 #Tag0203"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 204,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group03 #Tag0204"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 205,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group00 #Tag0205"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 206,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group01 #Tag0206"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 207,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group02 #Tag0207"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 208,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group03 #Tag0208"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 209,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group00 #Tag0209"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 210,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group01 #Tag0210"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 211,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group02 #Tag0211"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 212,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group03 #Tag0212"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 213,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group00 #Tag0213"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 214,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group01 #Tag0214"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 215,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group02 #Tag0215"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 216,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group03 #Tag0216"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 217,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group00 #Tag0217"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 218,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group01 #Tag0218"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 219,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group02 #Tag0219"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 220,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group03 #Tag0220"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 221,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group00 #Tag0221"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 222,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group01 #Tag0222"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 223,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group02 #Tag0223"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 224,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group03 #Tag0224"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 225,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group00 #Tag0225"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 226,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group01 #Tag0226"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 227,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group02 #Tag0227"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 228,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group03 #Tag0228"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 229,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group00 #Tag0229"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 230,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group01 #Tag0230"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 231,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group02 #Tag0231"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 232,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group03 #Tag0232"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 233,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0233"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 234,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0234"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 235,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0235"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 236,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0236"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 237,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0237"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 238,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0238"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 239,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0239"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 240,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0240"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 241,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0241"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 242,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0242"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 243,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0243"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 244,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0244"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 245,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0245"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 246,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0246"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 247,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0247"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 248,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0248"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 249,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0249"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 250,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0250"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 251,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0251"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 252,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0252"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 253,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0253"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 254,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0254"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 255,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0255"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 256,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0256"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 257,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0257"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 258,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0258"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 259,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0259"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 260,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0260"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 261,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0261"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 262,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0262"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 263,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0263"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 264,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0264"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 265,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group00 #Tag0265"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 266,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group01 #Tag0266"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 267,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group02 #Tag0267"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 268,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group03 #Tag0268"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 269,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group00 #Tag0269"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 270,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group01 #Tag0270"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 271,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group02 #Tag0271"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 272,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group03 #Tag0272"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 273,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group00 #Tag0273"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 274,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group01 #Tag0274"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 275,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group02 #Tag0275"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 276,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group03 #Tag0276"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 277,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group00 #Tag0277"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 278,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group01 #Tag0278"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 279,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group02 #Tag0279"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 280,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group03 #Tag0280"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 281,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group00 #Tag0281"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 282,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group01 #Tag0282"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 283,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group02 #Tag0283"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 284,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group03 #Tag0284"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 285,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group00 #Tag0285"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 286,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group01 #Tag0286"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 287,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group02 #Tag0287"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 288,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group03 #Tag0288"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 289,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group00 #Tag0289"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 290,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group01 #Tag0290"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 291,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group02 #Tag0291"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 292,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group03 #Tag0292"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 293,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group00 #Tag0293"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 294,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group01 #Tag0294"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 295,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group02 #Tag0295"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 296,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group03 #Tag0296"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 297,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group00 #Tag0297"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 298,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group01 #Tag0298"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 299,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group02 #Tag0299"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 300,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group03 #Tag0300"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 301,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group00 #Tag0301"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 302,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group01 #Tag0302"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 303,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group02 #Tag0303"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 304,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group03 #Tag0304"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 305,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group00 #Tag0305"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 306,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group01 #Tag0306"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 307,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group02 #Tag0307"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 308,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group03 #Tag0308"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 309,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group00 #Tag0309"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 310,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group01 #Tag0310"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 311,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group02 #Tag0311"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 312,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group03 #Tag0312"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 313,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group00 #Tag0313"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 314,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group01 #Tag0314"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 315,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group02 #Tag0315"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 316,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group03 #Tag0316"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 317,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group00 #Tag0317"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 318,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group01 #Tag0318"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 319,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group02 #Tag0319"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 320,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group03 #Tag0320"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 321,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group00 #Tag0321"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 322,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group01 #Tag0322"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 323,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group02 #Tag0323"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 324,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group03 #Tag0324"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 325,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group00 #Tag0325"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 326,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group01 #Tag0326"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 327,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group02 #Tag0327"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 328,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group03 #Tag0328"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 329,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group00 #Tag0329"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 330,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group01 #Tag0330"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 331,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group02 #Tag0331"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 332,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group03 #Tag0332"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 333,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group00 #Tag0333"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 334,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group01 #Tag0334"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 335,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group02 #Tag0335"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 336,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group03 #Tag0336"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 337,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group00 #Tag0337"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 338,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group01 #Tag0338"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 339,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group02 #Tag0339"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 340,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group03 #Tag0340"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 341,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group00 #Tag0341"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 342,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group01 #Tag0342"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 343,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group02 #Tag0343"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 344,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group03 #Tag0344"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 345,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group00 #Tag0345"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 346,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group01 #Tag0346"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 347,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group02 #Tag0347"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 348,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group03 #Tag0348"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 349,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0349"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 350,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0350"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 351,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0351"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 352,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0352"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 353,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0353"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 354,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0354"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 355,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0355"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 356,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0356"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 357,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0357"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 358,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0358"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 359,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0359"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 360,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0360"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 361,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0361"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 362,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0362"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 363,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0363"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 364,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0364"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 365,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0365"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 366,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0366"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 367,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0367"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 368,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0368"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 369,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0369"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 370,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0370"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 371,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0371"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 372,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0372"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 373,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0373"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 374,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0374"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 375,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0375"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 376,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0376"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 377,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0377"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 378,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0378"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 379,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0379"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 380,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0380"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 381,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group00 #Tag0381"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 382,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group01 #Tag0382"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 383,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group02 #Tag0383"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 384,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group03 #Tag0384"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 385,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group00 #Tag0385"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 386,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group01 #Tag0386"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 387,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group02 #Tag0387"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 388,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group03 #Tag0388"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 389,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group00 #Tag0389"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 390,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group01 #Tag0390"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 391,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group02 #Tag0391"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 392,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group03 #Tag0392"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 393,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group00 #Tag0393"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 394,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group01 #Tag0394"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 395,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group02 #Tag0395"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 396,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group03 #Tag0396"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 397,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group00 #Tag0397"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 398,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group01 #Tag0398"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 399,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group02 #Tag0399"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 400,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group03 #Tag0400"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 401,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group00 #Tag0401"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 402,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group01 #Tag0402"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 403,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group02 #Tag0403"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 404,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group03 #Tag0404"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 405,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group00 #Tag0405"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 406,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group01 #Tag0406"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 407,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group02 #Tag0407"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 408,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group03 #Tag0408"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 409,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group00 #Tag0409"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 410,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group01 #Tag0410"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 411,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group02 #Tag0411"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 412,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group03 #Tag0412"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 413,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group00 #Tag0413"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 414,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group01 #Tag0414"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 415,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group02 #Tag0415"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 416,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group03 #Tag0416"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 417,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group00 #Tag0417"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 418,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group01 #Tag0418"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 419,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group02 #Tag0419"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 420,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group03 #Tag0420"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 421,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group00 #Tag0421"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 422,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group01 #Tag0422"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 423,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group02 #Tag0423"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 424,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group03 #Tag0424"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 425,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group00 #Tag0425"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 426,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group01 #Tag0426"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 427,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group02 #Tag0427"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 428,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group03 #Tag0428"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 429,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group00 #Tag0429"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 430,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group01 #Tag0430"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 431,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group02 #Tag0431"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 432,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group03 #Tag0432"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 433,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group00 #Tag0433"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 434,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group01 #Tag0434"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 435,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group02 #Tag0435"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 436,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group03 #Tag0436"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 437,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group00 #Tag0437"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 438,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group01 #Tag0438"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 439,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group02 #Tag0439"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 440,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group03 #Tag0440"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 441,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group00 #Tag0441"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 442,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group01 #Tag0442"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 443,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group02 #Tag0443"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 444,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group03 #Tag0444"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 445,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group00 #Tag0445"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 446,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group01 #Tag0446"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 447,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group02 #Tag0447"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 448,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group03 #Tag0448"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 449,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group00 #Tag0449"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 450,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group01 #Tag0450"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 451,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group02 #Tag0451"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 452,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group03 #Tag0452"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 453,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group00 #Tag0453"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 454,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group01 #Tag0454"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 455,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group02 #Tag0455"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 456,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group03 #Tag0456"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 457,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group00 #Tag0457"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 458,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group01 #Tag0458"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 459,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group02 #Tag0459"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 460,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group03 #Tag0460"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 461,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group00 #Tag0461"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 462,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group01 #Tag0462"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 463,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group02 #Tag0463"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 464,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group03 #Tag0464"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 465,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group00 #Tag0465"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 466,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group01 #Tag0466"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 467,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group02 #Tag0467"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 468,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group03 #Tag0468"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 469,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group00 #Tag0469"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 470,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group01 #Tag0470"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 471,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group02 #Tag0471"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 472,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group03 #Tag0472"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 473,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group00 #Tag0473"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 474,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group01 #Tag0474"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 475,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group02 #Tag0475"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 476,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group03 #Tag0476"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 477,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group00 #Tag0477"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 478,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group01 #Tag0478"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 479,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group02 #Tag0479"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 480,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group03 #Tag0480"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 481,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group00 #Tag0481"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 482,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group01 #Tag0482"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 483,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group02 #Tag0483"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 484,
+              "tweet_date": "2024-02-20",
+              "tweet": "Benchmark #Common #Group03 #Tag0484"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 485,
+              "tweet_date": "2024-02-21",
+              "tweet": "Benchmark #Common #Group00 #Tag0485"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 486,
+              "tweet_date": "2024-02-22",
+              "tweet": "Benchmark #Common #Group01 #Tag0486"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 487,
+              "tweet_date": "2024-02-23",
+              "tweet": "Benchmark #Common #Group02 #Tag0487"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 488,
+              "tweet_date": "2024-02-24",
+              "tweet": "Benchmark #Common #Group03 #Tag0488"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 489,
+              "tweet_date": "2024-02-25",
+              "tweet": "Benchmark #Common #Group00 #Tag0489"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 490,
+              "tweet_date": "2024-02-26",
+              "tweet": "Benchmark #Common #Group01 #Tag0490"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 491,
+              "tweet_date": "2024-02-27",
+              "tweet": "Benchmark #Common #Group02 #Tag0491"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 492,
+              "tweet_date": "2024-02-28",
+              "tweet": "Benchmark #Common #Group03 #Tag0492"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 493,
+              "tweet_date": "2024-02-29",
+              "tweet": "Benchmark #Common #Group00 #Tag0493"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 494,
+              "tweet_date": "2024-02-01",
+              "tweet": "Benchmark #Common #Group01 #Tag0494"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 495,
+              "tweet_date": "2024-02-02",
+              "tweet": "Benchmark #Common #Group02 #Tag0495"
+            },
+            {
+              "user_id": 3,
+              "tweet_id": 496,
+              "tweet_date": "2024-02-03",
+              "tweet": "Benchmark #Common #Group03 #Tag0496"
+            },
+            {
+              "user_id": 4,
+              "tweet_id": 497,
+              "tweet_date": "2024-02-04",
+              "tweet": "Benchmark #Common #Group00 #Tag0497"
+            },
+            {
+              "user_id": 5,
+              "tweet_id": 498,
+              "tweet_date": "2024-02-05",
+              "tweet": "Benchmark #Common #Group01 #Tag0498"
+            },
+            {
+              "user_id": 6,
+              "tweet_id": 499,
+              "tweet_date": "2024-02-06",
+              "tweet": "Benchmark #Common #Group02 #Tag0499"
+            },
+            {
+              "user_id": 7,
+              "tweet_id": 500,
+              "tweet_date": "2024-02-07",
+              "tweet": "Benchmark #Common #Group03 #Tag0500"
+            },
+            {
+              "user_id": 8,
+              "tweet_id": 501,
+              "tweet_date": "2024-02-08",
+              "tweet": "Benchmark #Common #Group00 #Tag0501"
+            },
+            {
+              "user_id": 9,
+              "tweet_id": 502,
+              "tweet_date": "2024-02-09",
+              "tweet": "Benchmark #Common #Group01 #Tag0502"
+            },
+            {
+              "user_id": 10,
+              "tweet_id": 503,
+              "tweet_date": "2024-02-10",
+              "tweet": "Benchmark #Common #Group02 #Tag0503"
+            },
+            {
+              "user_id": 11,
+              "tweet_id": 504,
+              "tweet_date": "2024-02-11",
+              "tweet": "Benchmark #Common #Group03 #Tag0504"
+            },
+            {
+              "user_id": 12,
+              "tweet_id": 505,
+              "tweet_date": "2024-02-12",
+              "tweet": "Benchmark #Common #Group00 #Tag0505"
+            },
+            {
+              "user_id": 13,
+              "tweet_id": 506,
+              "tweet_date": "2024-02-13",
+              "tweet": "Benchmark #Common #Group01 #Tag0506"
+            },
+            {
+              "user_id": 14,
+              "tweet_id": 507,
+              "tweet_date": "2024-02-14",
+              "tweet": "Benchmark #Common #Group02 #Tag0507"
+            },
+            {
+              "user_id": 15,
+              "tweet_id": 508,
+              "tweet_date": "2024-02-15",
+              "tweet": "Benchmark #Common #Group03 #Tag0508"
+            },
+            {
+              "user_id": 16,
+              "tweet_id": 509,
+              "tweet_date": "2024-02-16",
+              "tweet": "Benchmark #Common #Group00 #Tag0509"
+            },
+            {
+              "user_id": 17,
+              "tweet_id": 510,
+              "tweet_date": "2024-02-17",
+              "tweet": "Benchmark #Common #Group01 #Tag0510"
+            },
+            {
+              "user_id": 1,
+              "tweet_id": 511,
+              "tweet_date": "2024-02-18",
+              "tweet": "Benchmark #Common #Group02 #Tag0511"
+            },
+            {
+              "user_id": 2,
+              "tweet_id": 512,
+              "tweet_date": "2024-02-19",
+              "tweet": "Benchmark #Common #Group03 #Tag0512"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "hashtag",
+          "count"
+        ],
+        "rows": [
+          [
+            "#Common",
+            512
+          ],
+          [
+            "#Group03",
+            128
+          ],
+          [
+            "#Group02",
+            128
+          ]
+        ]
+      },
+      "validator": {
+        "kind": "ordered_table"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "multiple-hashtags"
+      ]
+    }
+  ]
+}

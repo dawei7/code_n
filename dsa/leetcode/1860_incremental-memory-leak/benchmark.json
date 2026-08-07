@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1860",
+  "measurement_note": "Size is M, the initial total memory. Balanced sticks keep allocations active for Theta(sqrt(M)) seconds. The reference subtracts each whole request in one operation. A correct slower implementation that decrements the selected stick one bit at a time performs Theta(M) work, completes every tier, and fails only the measured scaling verdict.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 1024 total balanced bits","kind":"benchmark","visible":false,"size":1024,"input":{"memory1":512,"memory2":512},"expected":[45,28,6],"validator":{"kind":"exact"},"tags":["benchmark","balanced","triangular-growth"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 16384 total balanced bits","kind":"benchmark","visible":false,"size":16384,"input":{"memory1":8192,"memory2":8192},"expected":[181,92,2],"validator":{"kind":"exact"},"tags":["benchmark","balanced","triangular-growth"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 262144 total balanced bits","kind":"benchmark","visible":false,"size":262144,"input":{"memory1":131072,"memory2":131072},"expected":[724,28,390],"validator":{"kind":"exact"},"tags":["benchmark","balanced","triangular-growth"]}
+  ]
+}

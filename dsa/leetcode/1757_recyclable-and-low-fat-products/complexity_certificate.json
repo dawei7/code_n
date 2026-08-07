@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1757",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Any product row can independently change the result membership, so exact filtering has a linear inspection lower bound; one predicate scan matches that bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "An uninspected row may be the only row with both flags equal to Y, so omitting any row can omit a required product identifier. Evaluating both constant-time predicates once per row takes O(R) time and matches the lower bound."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Changing either flag of any uninspected product can change whether its unique product_id must appear."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The query performs one scan, two equality checks per row, and projects each qualifying primary key once."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover all four flag combinations, empty and complete result sets, each one-flag exclusion, one match, unsorted identifiers, and mixed qualifying and nonqualifying rows."
+    }
+  ]
+}

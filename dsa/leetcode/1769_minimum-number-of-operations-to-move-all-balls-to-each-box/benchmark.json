@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1769",
+  "measurement_note": "Size is n, the number of boxes. Empty configurations keep outputs simple while still requiring a direct per-target scan to inspect every source position. Two sweeps are O(n); correct direct distance summation completes all tiers and is rejected by O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 empty boxes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"boxes": "0000"},
+      "expected": [0,0,0,0],
+      "tags": ["benchmark", "scaling", "no-balls"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 empty boxes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"boxes": "0000000000000000"},
+      "expected": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      "tags": ["benchmark", "scaling", "no-balls"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 empty boxes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"boxes": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "expected": [
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+        0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+      ],
+      "tags": ["benchmark", "scaling", "no-balls"]
+    }
+  ]
+}

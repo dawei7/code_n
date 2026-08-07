@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1615",
+  "measurement_note": "Size is n, the number of cities. Each tier is one cycle, so m=n and every maximal network rank is 4. The Accepted degree-plus-matrix method and an independent degree-plus-set method take O(n^2+m) time. A correct implementation that rescans all m roads for each of the O(n^2) city pairs takes O(n^2 m), completes all 8/24/72 tiers, and is rejected only by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: cycle of eight cities","kind":"benchmark","visible":false,"size":8,"input":{"n":8,"roads":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,0]]},"expected":4,"tags":["benchmark","scale-small","cycle"]},
+    {"id":"benchmark-scale-2","name":"benchmark: cycle of twenty-four cities","kind":"benchmark","visible":false,"size":24,"input":{"n":24,"roads":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],[16,17],[17,18],[18,19],[19,20],[20,21],[21,22],[22,23],[23,0]]},"expected":4,"tags":["benchmark","scale-medium","cycle"]},
+    {"id":"benchmark-scale-3","name":"benchmark: cycle of seventy-two cities","kind":"benchmark","visible":false,"size":72,"input":{"n":72,"roads":[[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,7],[7,8],[8,9],[9,10],[10,11],[11,12],[12,13],[13,14],[14,15],[15,16],[16,17],[17,18],[18,19],[19,20],[20,21],[21,22],[22,23],[23,24],[24,25],[25,26],[26,27],[27,28],[28,29],[29,30],[30,31],[31,32],[32,33],[33,34],[34,35],[35,36],[36,37],[37,38],[38,39],[39,40],[40,41],[41,42],[42,43],[43,44],[44,45],[45,46],[46,47],[47,48],[48,49],[49,50],[50,51],[51,52],[52,53],[53,54],[54,55],[55,56],[56,57],[57,58],[58,59],[59,60],[60,61],[61,62],[62,63],[63,64],[64,65],[65,66],[66,67],[67,68],[68,69],[69,70],[70,71],[71,0]]},"expected":4,"tags":["benchmark","scale-large","cycle"]}
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1796",
+  "measurement_note": "Size is n, the string length. Every character is a repeated 9 or 8, so a one-pass rank tracker examines the full input in O(n) time. A correct implementation that compares every ordered pair of digit positions to find the greatest lower value completes all tiers and is rejected only by O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16-character alternating digit string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "9898989898989898"
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "two-distinct-digits",
+        "repeated-digits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64-character alternating digit string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "9898989898989898989898989898989898989898989898989898989898989898"
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "two-distinct-digits",
+        "repeated-digits"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256-character alternating digit string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "9898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898989898"
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "two-distinct-digits",
+        "largest-tier"
+      ]
+    }
+  ]
+}

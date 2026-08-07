@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_226",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Inverting an arbitrary n-node tree requires changing the child orientation at every node, yielding a matching linear lower bound and leaving no genuine slower principal class to calibrate.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Every node owns a left/right child pair whose mirrored orientation contributes independently to the required output, so an algorithm must inspect or update all n nodes in the worst case. The explicit DFS pops each node once, performs one constant-time reference swap, and pushes each existing child once, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Two trees can differ only at the child orientation of an otherwise unvisited node and require different mirrored outputs, so every node must be reached in the worst case."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The protected implementation schedules every reachable node exactly once and performs constant work per node, with no repeated subtree traversal."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Black-box real-test execution verifies every existing ordinary tree check without inspecting its definition, including empty and asymmetric structure handling."
+    }
+  ]
+}

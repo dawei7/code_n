@@ -1,0 +1,5 @@
+{"challenge_id":"lc_1015","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: repunit period for 503","kind":"benchmark","visible":false,"size":503,"input":{"k":503},"expected":502,"tags":["benchmark","scale-small","materialized-repunit"]},
+{"id":"benchmark-scale-2","name":"benchmark: repunit period for 2017","kind":"benchmark","visible":false,"size":2017,"input":{"k":2017},"expected":2016,"tags":["benchmark","scale-medium","materialized-repunit"]},
+{"id":"benchmark-scale-3","name":"benchmark: repunit period for 10007","kind":"benchmark","visible":false,"size":10007,"input":{"k":10007},"expected":10006,"tags":["benchmark","scale-large","materialized-repunit"]}
+]}

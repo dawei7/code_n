@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1917",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(L^2 + F)",
+  "summary": "The directed recommendation output can itself contain quadratically many rows in the number of distinct listening facts, and the deduplicated self-join query matches that worst-case output bound.",
+  "optimality": {
+    "symbol": "L",
+    "lower_bound": "Omega(L^2)",
+    "upper_bound": "O(L^2 + F)",
+    "argument": "With U nonfriend users all listening to the same three songs on one day, L = 3U distinct facts and the required output contains U(U-1) directed recommendations, which is Theta(L^2). The query deduplicates L facts, processes at most O(L^2) same-song/day user pairs, and performs one friendship exclusion phase over F rows."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Three universally shared songs among U users force every ordered pair of distinct users into the output, yielding U(U-1) rows from only 3U distinct listening facts."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The self-join creates at most one row per ordered combination of two distinct listening facts after canonical user ordering; grouping, deduplication, and bidirectional projection do not exceed quadratic logical work."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover duplicate logs, exactly two versus three common songs, songs split across days, repeated qualification across days, existing friendships, independent pairs, bidirectional output, and empty input."
+    }
+  ]
+}

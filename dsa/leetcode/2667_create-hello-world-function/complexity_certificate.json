@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2667",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(1)",
+  "summary": "Returning the fixed required value takes constant work and matches the unavoidable constant lower bound, so runtime scaling has no genuine slower principal class.",
+  "optimality": {
+    "symbol": "a",
+    "lower_bound": "Omega(1)",
+    "upper_bound": "O(1)",
+    "argument": "Every invocation must return one result and therefore requires Omega(1) work. The accepted function ignores all arguments and returns one fixed literal with O(1) work independent of argument count a."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Producing the required return value imposes a constant lower bound on every invocation."},
+    {"kind":"upper_bound_proof","evidence":"The returned function performs one literal return and never reads, copies, or traverses its supplied arguments."},
+    {"kind":"boundary_property_cases","evidence":"Cases cover zero and ten arguments, primitive values, null, objects, nested arrays, and strings resembling the required output."}
+  ]
+}

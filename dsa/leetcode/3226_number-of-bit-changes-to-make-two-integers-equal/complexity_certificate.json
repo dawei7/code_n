@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3226",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Both integers are capped at one million, so every legal input occupies at most 20 significant bits and the accepted solution uses a fixed sequence of machine-word bit operations; the workload width is too small for honest runtime scaling.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 20,
+    "unit": "significant binary positions",
+    "source_constraint": "1 <= n <= 1000000 and 1 <= k <= 1000000"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation performs one AND subset test, one XOR, and one population count on integers whose legal representation is at most 20 bits wide."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The certificate regression exhausts every positive 10-bit (n, k) pair against an independent bit loop, then checks maximum-width subset, impossible, equality, and random legal cases through the same oracle."
+    }
+  ]
+}

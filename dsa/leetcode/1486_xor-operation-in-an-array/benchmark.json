@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1486",
+  "measurement_note": "Size is n, the number of generated progression values. The legal 64/256/1000 tiers span more than 15x. Splitting off the shared low bit and evaluating two prefix-XOR formulas takes O(1) time. A correct implementation that explicitly XORs all n generated values takes O(n), completes normally at n = 1000, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 generated values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64,
+        "start": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "closed-form"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 256 generated values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "n": 256,
+        "start": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "closed-form"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1000 generated values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "n": 1000,
+        "start": 1000
+      },
+      "expected": 0,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "closed-form"
+      ]
+    }
+  ]
+}

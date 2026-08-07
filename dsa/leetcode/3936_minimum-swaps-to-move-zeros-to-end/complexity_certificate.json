@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3936",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(N)",
+  "summary": "The legal array length is capped at 100, too small for a stable scaling trend for two constant-work scans, so bounded work and property evidence replace runtime tiers.",
+  "workload_bound": {
+    "symbol": "N",
+    "maximum": 100,
+    "unit": "array elements",
+    "source_constraint": "1 <= nums.length <= 100"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted implementation inspects all N entries once to count zeroes and at most N suffix entries once more, for no more than 2N element inspections and constant auxiliary state."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Independent checks include exact shortest-swap distances for every binary array through length 10, every ternary array through length 11, 100,000 randomized legal arrays, and authored maximum-length boundary cases."
+    }
+  ]
+}

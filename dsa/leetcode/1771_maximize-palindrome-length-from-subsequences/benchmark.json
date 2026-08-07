@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1771",
+  "measurement_note": "Size is L=A+B. Both words consist only of a, so the full concatenation is optimal and every subsequence pair must still be considered by exhaustive enumeration. Interval DP is O(L^2); correct nonempty-subsequence enumeration completes all tiers and is rejected by exponential scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: total length 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"word1": "aa", "word2": "aa"},
+      "expected": 4,
+      "tags": ["benchmark", "scaling", "repeated-letters"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: total length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"word1": "aaaa", "word2": "aaaa"},
+      "expected": 8,
+      "tags": ["benchmark", "scaling", "repeated-letters"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: total length 16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"word1": "aaaaaaaa", "word2": "aaaaaaaa"},
+      "expected": 16,
+      "tags": ["benchmark", "scaling", "repeated-letters"]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2821",
+  "status": "verified",
+  "method": "bounded_concurrency",
+  "required_time": "O(n)",
+  "summary": "The legal array contains at most ten promise-producing functions, while correctness depends on lazy invocation, one independent post-settlement timer per call, preserved array order, and symmetric fulfillment and rejection handling rather than scalable wall-clock growth.",
+  "workload_bound": {
+    "symbol": "n",
+    "maximum": 10,
+    "unit": "promise-producing functions",
+    "source_constraint": "functions.length is between one and ten and ms is between 10 and 500 milliseconds"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Array mapping performs one constant-work wrapper construction for each of n source functions; each wrapper invocation installs one two-branch promise continuation and at most one pending timer."
+    },
+    {
+      "kind": "scheduler_stress",
+      "evidence": "A deterministic fake scheduler verifies no eager calls, source invocation at wrapper call time, exactly one timer after either settlement path, the exact ms delay, independent repeated calls, and maximum-array behavior."
+    },
+    {
+      "kind": "semantic_validator",
+      "evidence": "Authored cases cover fulfillment, rejection, mixed outcomes, simultaneous settlements, reverse completion order, structured values, minimum delay, maximum delay, and ten functions."
+    },
+    {
+      "kind": "deadlock_timeout",
+      "evidence": "The exact native source is remotely Accepted under the provider timeout, and every wrapper creates its timer immediately after its finite source promise settles."
+    }
+  ]
+}

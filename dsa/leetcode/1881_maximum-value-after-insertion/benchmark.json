@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1881",
+  "measurement_note": "Size is N, the number of digits in n. The greedy scan and output construction take O(N) time. A correct implementation that constructs and compares every possible insertion result completes all tiers and fails only by O(N^2) scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: scan 16 digits before appending","kind":"benchmark","visible":false,"size":16,"input":{"n":"9999999999999999","x":8},"expected":"99999999999999998","tags":["benchmark","full-scan","append"]},
+    {"id":"benchmark-scale-2","name":"benchmark: scan 64 digits before appending","kind":"benchmark","visible":false,"size":64,"input":{"n":"9999999999999999999999999999999999999999999999999999999999999999","x":8},"expected":"99999999999999999999999999999999999999999999999999999999999999998","tags":["benchmark","full-scan","append"]},
+    {"id":"benchmark-scale-3","name":"benchmark: scan 256 digits before appending","kind":"benchmark","visible":false,"size":256,"input":{"n":"9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999","x":8},"expected":"99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999998","tags":["benchmark","full-scan","append"]}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1758",
+  "measurement_note": "Size is n, the binary-string length. Every tier is already alternating, but both the accepted mismatch scan and the reviewed slower implementation inspect all positions. The accepted solution is O(n); rebuilding a length-n target inside each position check completes every tier and is rejected by O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 alternating bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"s": "0101010101010101"},
+      "expected": 0,
+      "tags": ["benchmark", "scaling", "already-alternating"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 alternating bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "0101010101010101010101010101010101010101010101010101010101010101"},
+      "expected": 0,
+      "tags": ["benchmark", "scaling", "already-alternating"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 alternating bits",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"s": "0101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"},
+      "expected": 0,
+      "tags": ["benchmark", "scaling", "already-alternating"]
+    }
+  ]
+}

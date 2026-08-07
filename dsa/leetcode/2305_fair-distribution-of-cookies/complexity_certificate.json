@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2305",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(k^n)",
+  "summary": "The source limits the number of bags to eight and k to at most that count, so even the unpruned assignment tree has at most 8^8 leaves. This fixed domain is too narrow for an honest asymptotic scaling verdict.",
+  "workload_bound": {
+    "symbol": "A",
+    "maximum": 16777216,
+    "unit": "complete bag-to-child assignments",
+    "source_constraint": "2 <= n <= 8 and 2 <= k <= n"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each of at most eight indivisible bags has at most eight child choices, so exhaustive assignment has no more than 8^8 leaves; symmetry and incumbent-bound pruning only reduce that work."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression compares the optimized reference with exhaustive labeled-child assignment across deterministic randomized small instances and verifies maximum-length, k=2, and k=n boundaries."
+    }
+  ]
+}

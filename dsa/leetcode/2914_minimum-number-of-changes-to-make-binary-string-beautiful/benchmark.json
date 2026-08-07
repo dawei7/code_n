@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_2914",
+  "cases": [
+    {
+      "id": "benchmark-alternating-24",
+      "name": "benchmark: 24 alternating bits make every pair disagree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"s": "010101010101010101010101"},
+      "expected": 12,
+      "tags": ["benchmark", "scaling", "alternating", "partition-dp-baseline"]
+    },
+    {
+      "id": "benchmark-alternating-96",
+      "name": "benchmark: 96 alternating bits make every pair disagree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {"s": "010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"},
+      "expected": 48,
+      "tags": ["benchmark", "scaling", "alternating", "partition-dp-baseline"]
+    },
+    {
+      "id": "benchmark-alternating-336",
+      "name": "benchmark: 336 alternating bits make every pair disagree",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 336,
+      "input": {"s": "010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101"},
+      "expected": 168,
+      "tags": ["benchmark", "scaling", "alternating", "partition-dp-baseline"]
+    }
+  ]
+}

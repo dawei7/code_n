@@ -1,0 +1,173 @@
+{
+  "challenge_id": "lc_2861",
+  "cases": [
+    {
+      "id": "benchmark-alloy-count-32",
+      "name": "benchmark: search a maximum of 32 alloys",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 5,
+        "k": 3,
+        "budget": 160,
+        "composition": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 32,
+      "tags": [
+        "benchmark",
+        "small",
+        "answer-search",
+        "legal-constraints"
+      ]
+    },
+    {
+      "id": "benchmark-alloy-count-128",
+      "name": "benchmark: search a maximum of 128 alloys",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 5,
+        "k": 3,
+        "budget": 640,
+        "composition": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 128,
+      "tags": [
+        "benchmark",
+        "medium",
+        "answer-search",
+        "legal-constraints"
+      ]
+    },
+    {
+      "id": "benchmark-alloy-count-512",
+      "name": "benchmark: search a maximum of 512 alloys",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 5,
+        "k": 3,
+        "budget": 2560,
+        "composition": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        ],
+        "stock": [
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cost": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "large",
+        "answer-search",
+        "legal-constraints"
+      ]
+    }
+  ]
+}

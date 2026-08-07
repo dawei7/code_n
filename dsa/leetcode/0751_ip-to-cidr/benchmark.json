@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_751",
+  "measurement_note": "Size is the number of requested addresses. Each range starts at zero and has power-of-two length, so the greedy method emits one block. Building all singleton addresses before merging them performs linear work in size.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: aligned range of 4 addresses", "kind": "benchmark", "visible": false, "size": 4, "input": {"ip": "0.0.0.0", "n": 4}, "expected": ["0.0.0.0/30"], "tags": ["benchmark", "scaling", "aligned"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: aligned range of 16 addresses", "kind": "benchmark", "visible": false, "size": 16, "input": {"ip": "0.0.0.0", "n": 16}, "expected": ["0.0.0.0/28"], "tags": ["benchmark", "scaling", "aligned"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: aligned range of 64 addresses", "kind": "benchmark", "visible": false, "size": 64, "input": {"ip": "0.0.0.0", "n": 64}, "expected": ["0.0.0.0/26"], "tags": ["benchmark", "scaling", "aligned"]}
+  ]
+}

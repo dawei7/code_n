@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1780",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete legal domain has at most fifteen ternary digits, so digit extraction has a fixed maximum workload that cannot support an honest asymptotic scaling verdict.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 15,
+    "unit": "ternary digits",
+    "source_constraint": "n is an integer from 1 through 10000000"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each loop iteration removes one ternary digit, and every legal input is smaller than 3^15, so the accepted source executes at most fifteen iterations."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover the minimum and maximum inputs, low and higher digit-two failures, a single higher power, sparse valid sums, and the dense fifteen-digit valid sum."
+    }
+  ]
+}

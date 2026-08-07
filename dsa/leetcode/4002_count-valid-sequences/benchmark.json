@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_4002",
+  "measurement_note": "Size is n, the required sequence sum. Each tier uses k=n/2, so both binomial coefficients require a linear number of modular factors. The accepted multiplicative method is O(n); a correct Pascal-triangle alternative grows as O(nk)=O(n^2) on these tiers.",
+  "cases": [
+    {
+      "id": "benchmark-balanced-32",
+      "name": "benchmark: balanced composition at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"n": 32, "k": 16},
+      "expected": 300049881,
+      "tags": ["benchmark", "scale-small", "balanced"]
+    },
+    {
+      "id": "benchmark-balanced-128",
+      "name": "benchmark: balanced composition at n=128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"n": 128, "k": 64},
+      "expected": 696114525,
+      "tags": ["benchmark", "scale-medium", "balanced"]
+    },
+    {
+      "id": "benchmark-balanced-512",
+      "name": "benchmark: balanced composition at n=512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"n": 512, "k": 256},
+      "expected": 772509621,
+      "tags": ["benchmark", "scale-large", "balanced"]
+    }
+  ]
+}

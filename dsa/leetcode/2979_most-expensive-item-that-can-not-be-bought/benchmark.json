@@ -1,0 +1,5 @@
+{"challenge_id":"lc_2979","cases":[
+{"id":"benchmark-product-35","name":"benchmark: denomination product 35","kind":"benchmark","visible":false,"size":35,"input":{"primeOne":5,"primeTwo":7},"expected":23,"tags":["benchmark","scaling","denomination-product","reachability-dp-baseline"]},
+{"id":"benchmark-product-1147","name":"benchmark: denomination product 1147","kind":"benchmark","visible":false,"size":1147,"input":{"primeOne":31,"primeTwo":37},"expected":1079,"tags":["benchmark","scaling","denomination-product","reachability-dp-baseline"]},
+{"id":"benchmark-product-95477","name":"benchmark: denomination product 95477","kind":"benchmark","visible":false,"size":95477,"input":{"primeOne":307,"primeTwo":311},"expected":94859,"tags":["benchmark","scaling","denomination-product","reachability-dp-baseline"]}
+]}

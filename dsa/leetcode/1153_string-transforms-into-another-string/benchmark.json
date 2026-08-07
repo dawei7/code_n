@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1153",
+  "measurement_note": "Size is the common string length. Repeating a consistent 25-letter cycle avoids early rejection and leaves one spare lowercase letter. The optimal mapping pass is linear, while the calibrated slower implementation compares every aligned position with every other position.",
+  "cases": [
+    {
+      "id": "benchmark-scale-24",
+      "name": "benchmark: consistent cyclic mapping of length 24",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "str1": "abcdefghijklmnopqrstuvwx",
+        "str2": "bcdefghijklmnopqrstuvwxy"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "pairwise-consistency"
+      ]
+    },
+    {
+      "id": "benchmark-scale-96",
+      "name": "benchmark: consistent cyclic mapping of length 96",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "str1": "abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstu",
+        "str2": "bcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuv"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "pairwise-consistency"
+      ]
+    },
+    {
+      "id": "benchmark-scale-384",
+      "name": "benchmark: consistent cyclic mapping of length 384",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "str1": "abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghi",
+        "str2": "bcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyabcdefghij"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "pairwise-consistency"
+      ]
+    }
+  ]
+}

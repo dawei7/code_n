@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1682",
+  "measurement_note": "Size is n, the source-string length. Each tier is itself a good palindrome formed from alternating a/b layers around its sole equal middle pair, so dense repeated letters exercise endpoint inheritance and valid wrapping. The Accepted rolling boundary-letter DP and an independent memoized boundary-letter DP take O(n^2) time. A correct full interval DP that redundantly recomputes each wrapping transition once per position in that interval takes O(n^3), completes all 6/18/48-character tiers, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 6-character layered good palindrome",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 6,
+      "input": {"s": "abaaba"},
+      "expected": 6,
+      "tags": ["benchmark", "scaling", "layered-palindrome"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 18-character layered good palindrome",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 18,
+      "input": {"s": "ababababaababababa"},
+      "expected": 18,
+      "tags": ["benchmark", "scaling", "layered-palindrome"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 48-character layered good palindrome",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {"s": "ababababababababababababbabababababababababababa"},
+      "expected": 48,
+      "tags": ["benchmark", "scaling", "layered-palindrome"]
+    }
+  ]
+}

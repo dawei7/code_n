@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_999",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input is one fixed 8 by 8 board, and locating the rook plus scanning its four rays examines only a constant maximum of 64 board cells.",
+  "workload_bound": {
+    "symbol": "C",
+    "maximum": 64,
+    "unit": "board cells",
+    "source_constraint": "board always has exactly eight rows and eight columns"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The board search and four rook rays cannot inspect more than the fixed 64 cells."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover blockers, edge placement, immediate pawns, empty rays, and four-direction captures."}
+  ]
+}

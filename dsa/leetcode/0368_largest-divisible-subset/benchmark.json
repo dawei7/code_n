@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_368",
+  "measurement_note": "Size is the number of distinct input values. Pairwise-incompatible primes force exhaustive subset search to reject candidates across the power set before reaching a singleton optimum, while the sorted dynamic program examines only quadratic predecessor pairs.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 pairwise-incompatible primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "incompatible"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 pairwise-incompatible primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "incompatible"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 pairwise-incompatible primes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "nums": [
+          2,
+          3,
+          5,
+          7,
+          11,
+          13,
+          17,
+          19,
+          23,
+          29,
+          31,
+          37,
+          41,
+          43,
+          47,
+          53
+        ]
+      },
+      "expected": [
+        2
+      ],
+      "validator": {
+        "kind": "largest_divisible_subset",
+        "values_param": "nums"
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "incompatible"
+      ]
+    }
+  ]
+}
+

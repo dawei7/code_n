@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_190",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source contract fixes every legal input at exactly 32 bit positions, so no honest runtime-scaling dimension exists within the problem domain.",
+  "workload_bound": {
+    "symbol": "b",
+    "maximum": 32,
+    "unit": "bit positions",
+    "source_constraint": "The source-fidelity-verified contract requires reversal of one fixed-width 32-bit integer, including leading zero positions."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The loop executes exactly 32 iterations. Each iteration performs one result shift, one low-bit mask and append, and one input shift, proving O(1) time and O(1) auxiliary space under the fixed-width contract."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Black-box real-test execution verifies every existing ordinary check without inspecting its definition, including leading-zero placement and the integer return path."
+    }
+  ]
+}

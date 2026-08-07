@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_522",
+  "measurement_note": "Size is the total character count across three identical strings. Counting duplicates and testing whole strings is polynomial, while materializing every subsequence set grows exponentially with the individual string length.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: reject three identical length-2 strings", "kind": "benchmark", "visible": false, "size": 6, "input": {"strs": ["ab","ab","ab"]}, "expected": -1, "tags": ["benchmark", "scaling", "duplicates"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: reject three identical length-5 strings", "kind": "benchmark", "visible": false, "size": 15, "input": {"strs": ["abcde","abcde","abcde"]}, "expected": -1, "tags": ["benchmark", "scaling", "duplicates"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: reject three identical length-10 strings", "kind": "benchmark", "visible": false, "size": 30, "input": {"strs": ["abcdefghij","abcdefghij","abcdefghij"]}, "expected": -1, "tags": ["benchmark", "scaling", "duplicates"]}
+  ]
+}

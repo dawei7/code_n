@@ -1,0 +1,57 @@
+{
+  "challenge_id": "lc_2840",
+  "measurement_note": "Size is n, the common string length. Each tier permutes the even and odd character groups independently, forcing complete parity-frequency verification. The optimal fixed-counter method scans both strings once, while a correct slower alternative manually recounts each character with a nested parity scan and scales quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 characters with both parity groups permuted",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s1": "arizqofwnectkbsqhypgevmdusjarigx",
+        "s2": "gqryjguvmdespahisxkrcznofwqeitab"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "small",
+        "nested-frequency-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 characters with both parity groups permuted",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s1": "arizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdulcarizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdu",
+        "s2": "dqoyggyvjdbsmaeiwxhfzukcckuzfhxwieamsbdjvyggyoqdbltaeiwqofznrcckusmhxppeamsukjvrngyoqwilttliwqoygnrvjkusmaeppxhmsukrcznofwqeitab"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "medium",
+        "nested-frequency-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 384 characters with both parity groups permuted",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "s1": "arizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdulcarizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdulcarizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdulcarizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdulcarizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgxomdulcarizqofwnectkbsqhypgevmdusjarigxofwulctkizqhywnevmkbsjaypgx",
+        "s2": "gqyyjgbvmdeswahizxkfcuucfkxzihawsedmvbgjyyqgbotdelwaoizqrfcnucmkxsphapsekmvunjyrqgiotwllwtoigqryjnuvmkespahpsxkmcuncfrqzioawledtobgqyyjgbvmdeswahizxkfcuucfkxzihawsedmvbgjyyqgbotdelwaoizqrfcnucmkxsphapsekmvunjyrqgiotwllwtoigqryjnuvmkespahpsxkmcuncfrqzioawledtobgqyyjgbvmdeswahizxkfcuucfkxzihawsedmvbgjyyqgbotdelwaoizqrfcnucmkxsphapsekmvunjyrqgiotwllwtoigqryjnuvmkespahpsxkrcznofwqeitab"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "large",
+        "nested-frequency-scan"
+      ]
+    }
+  ]
+}

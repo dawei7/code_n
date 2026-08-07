@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2052",
+  "measurement_note": "Size is w, the number of one-letter words; k equals the full sentence length, so every word interval is feasible. The reference maintains each interval length incrementally for O(w^2) work. A correct implementation that explicitly resums every candidate interval completes all tiers and fails by cubic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"sentence": "a a a a a a a a", "k": 15},
+      "expected": 0,
+      "tags": ["benchmark", "scale-small", "interval-resum"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24 one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {"sentence": "a a a a a a a a a a a a a a a a a a a a a a a a", "k": 47},
+      "expected": 0,
+      "tags": ["benchmark", "scale-medium", "interval-resum"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 72 one-letter words",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 72,
+      "input": {"sentence": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a", "k": 143},
+      "expected": 0,
+      "tags": ["benchmark", "scale-large", "interval-resum"]
+    }
+  ]
+}

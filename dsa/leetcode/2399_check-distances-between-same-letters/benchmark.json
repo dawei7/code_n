@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2399",
+  "measurement_note": "Size is n, the string length. Each tier places all first occurrences before all matching second occurrences and satisfies every requirement, forcing complete validation; searching each prefix for a prior equal letter repeats quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 characters with delayed second occurrences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "s": "abab",
+        "distance": [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "full-scan",
+        "prefix-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 characters with delayed second occurrences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "abcdefghabcdefgh",
+        "distance": [
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "full-scan",
+        "prefix-rescan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 52 characters with delayed second occurrences",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 52,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
+        "distance": [
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25,
+          25
+        ]
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "full-scan",
+        "prefix-rescan"
+      ]
+    }
+  ]
+}

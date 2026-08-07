@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1698",
+  "measurement_note": "Size is n, the string length. Each tier is a deterministic lowercase pseudo-random prefix with repeated and overlapping substrings. The Accepted suffix automaton and an independently structured suffix automaton take O(n) time. A correct suffix-trie implementation inserts every suffix in O(n^2) time, completes every 32/128/500-character tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32-character deterministic lowercase string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "mhezirexuradyhilsledchkrkxivejsr"
+      },
+      "expected": 513,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "overlapping-substrings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128-character deterministic lowercase string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "mhezirexuradyhilsledchkrkxivejsrehgvupirkdmfepmzwdobidcbozqdgbujoxyhidqdelchynuzsvebevavwnijunodsvotsjwxudkjmjmdcvgjghevoheranij"
+      },
+      "expected": 8131,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "overlapping-substrings"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 500-character deterministic lowercase string",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 500,
+      "input": {
+        "s": "mhezirexuradyhilsledchkrkxivejsrehgvupirkdmfepmzwdobidcbozqdgbujoxyhidqdelchynuzsvebevavwnijunodsvotsjwxudkjmjmdcvgjghevoheranijunmnshkzqdyzkpilsrqdgrwhspynghspibyvqhabwninizsjwbutenyvaxqlcfidcdkvyvsxqxerklovspmbshepixytkrqlcbilmhyrodircxcxijkdgnkduzgzqbopaxyrgtsfgfetqlolijcvwhgfanazajsrejyhmbqpynyhmpwlobmxulsdmdolslsvktuzwdshadubgxsjunibifstklstmlibgzcjmhwdadalutwdqtitkxyzahshwjmvaxcdcxynyraxodazubmvexmlwrqtivujorypmpwfcxeryxgtwrkhuzezqzmbcdixqjqdgbqjurubyfchelercrgdudklwfshajkbkbifufizijyfgrqd"
+      },
+      "expected": 124493,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "overlapping-substrings"
+      ]
+    }
+  ]
+}
+

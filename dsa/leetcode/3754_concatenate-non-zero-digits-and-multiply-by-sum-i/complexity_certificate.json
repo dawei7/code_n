@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3754",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(D)",
+  "summary": "The legal integer has at most 10 decimal digits, which is too narrow for an honest runtime-scaling verdict; the accepted source processes each digit once while maintaining two accumulators.",
+  "workload_bound": {"symbol":"D","maximum":10,"unit":"decimal digits","source_constraint":"0 <= n <= 10^9"},
+  "replacement_checks": [
+    {"kind":"bounded_work_proof","evidence":"The accepted source converts at most 10 decimal characters and performs one constant-time update for each retained digit, establishing O(D) time over the complete legal width bound."},
+    {"kind":"boundary_property_cases","evidence":"The dedicated regression compares the accepted adapter with independent arithmetic digit extraction for every n from 0 through 1,000,000 and deterministic values spanning the complete legal range."}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3309",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The array always contains exactly three values and each representation has at most seven bits, so the complete legal workload is too tightly bounded for honest runtime scaling.",
+  "workload_bound": {
+    "symbol": "p",
+    "maximum": 6,
+    "unit": "positional permutations",
+    "source_constraint": "The public contract fixes nums.length at 3, yielding exactly 3! = 6 possible orders, and restricts every value to at most seven bits."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "The accepted source visits all six positional permutations and performs exactly three constant-width shift-and-OR updates for each one."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover duplicate values, one- through seven-bit widths, non-numeric optimal orders, values near 127, and three maximum values."
+    }
+  ]
+}

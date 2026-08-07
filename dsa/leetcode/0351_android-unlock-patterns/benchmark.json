@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_351",
+  "measurement_note": "Each tier counts all patterns from length one through n; size is the maximum permitted pattern length. Starting at length two avoids fixed-overhead noise while the 2, 4, and 8 tiers retain a legal 4x span.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: patterns through length 2",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"m": 1, "n": 2},
+      "expected": 65,
+      "tags": ["benchmark", "scale-small", "cumulative"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: patterns through length 4",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"m": 1, "n": 4},
+      "expected": 2009,
+      "tags": ["benchmark", "scale-medium", "cumulative"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: patterns through length 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"m": 1, "n": 8},
+      "expected": 248793,
+      "tags": ["benchmark", "scale-large", "cumulative"]
+    }
+  ]
+}

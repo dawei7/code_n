@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1320",
+  "measurement_note": "Size is n, the word length. The reference updates a constant 27-state table per character. A correct slower alternative recursively tries both finger assignments without memoization, taking O(2 to the n) time; every tier completes and returns the same minimum.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: first four alphabet keys","kind":"benchmark","visible":false,"size":4,"input":{"word":"ABCD"},"expected":2,"tags":["benchmark","scale-small","distinct-keys"]},
+    {"id":"benchmark-scale-2","name":"benchmark: first eight alphabet keys","kind":"benchmark","visible":false,"size":8,"input":{"word":"ABCDEFGH"},"expected":6,"tags":["benchmark","scale-medium","distinct-keys"]},
+    {"id":"benchmark-scale-3","name":"benchmark: first sixteen alphabet keys","kind":"benchmark","visible":false,"size":16,"input":{"word":"ABCDEFGHIJKLMNOP"},"expected":18,"tags":["benchmark","scale-large","distinct-keys"]}
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_735",
+  "measurement_note": "Size is the asteroid count. Each input ends with one large left mover that destroys the entire preceding positive chain. A monotonic survivor stack pushes and pops each asteroid once; resolving one adjacent collision and restarting from the beginning repeatedly rescans the shrinking prefix.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 7-asteroid destruction chain",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "asteroids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          -8
+        ]
+      },
+      "expected": [
+        -8
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "collision-chain"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 23-asteroid destruction chain",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "asteroids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          -24
+        ]
+      },
+      "expected": [
+        -24
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "collision-chain"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 47-asteroid destruction chain",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "asteroids": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          -48
+        ]
+      },
+      "expected": [
+        -48
+      ],
+      "tags": [
+        "benchmark",
+        "scaling",
+        "collision-chain"
+      ]
+    }
+  ]
+}

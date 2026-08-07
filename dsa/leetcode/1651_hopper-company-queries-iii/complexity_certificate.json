@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1651",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(r+a)",
+  "summary": "Exact accepted-ride totals require accounting for the ride dates and acceptance metrics; the twelve-month spine and ten fixed windows add only constant work, matching the linear worst-case input lower bound.",
+  "optimality": {
+    "symbol": "r+a",
+    "lower_bound": "Omega(r+a)",
+    "upper_bound": "O(r+a)",
+    "argument": "In the worst case every ride is accepted. Changing any Rides row can move a distance and duration contribution between months, and changing any AcceptedRides row can alter both window totals. Exact results therefore require Omega(r+a) input work. One join/group scan plus constant-size calendar and window relations meets O(r+a)."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"When every request is accepted, any one of the r request dates or a acceptance metric rows can alter at least one required window, establishing a linear worst-case lower bound."},
+    {"kind":"upper_bound_proof","evidence":"The query scans and groups the ride/acceptance join once, then combines twelve monthly totals into ten fixed windows in O(r+a) total work."},
+    {"kind":"boundary_property_cases","evidence":"Regression compares every authored fixture with an independent calendar oracle covering overlapping windows, empty months, date boundaries, monthly summation, rounding, rejected requests, out-of-year rides, and the December endpoint."}
+  ]
+}

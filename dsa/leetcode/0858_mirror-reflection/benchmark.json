@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_858",
+  "measurement_note": "Size is p/gcd(p,q), the number of room widths visited by a direct reflected-segment simulation before reaching a receptor. The coprime Fibonacci pairs make Euclid's algorithm take logarithmic work while a wall-by-wall simulator takes 21, 144, and 987 iterations.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 21 unfolded room widths",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 21,
+      "input": {"p": 21, "q": 13},
+      "expected": 1,
+      "tags": ["benchmark", "scale-small", "coprime"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 144 unfolded room widths",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 144,
+      "input": {"p": 144, "q": 89},
+      "expected": 2,
+      "tags": ["benchmark", "scale-medium", "coprime"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 987 unfolded room widths",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 987,
+      "input": {"p": 987, "q": 610},
+      "expected": 0,
+      "tags": ["benchmark", "scale-large", "coprime"]
+    }
+  ]
+}

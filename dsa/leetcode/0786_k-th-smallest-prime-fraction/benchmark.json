@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_786",
+  "measurement_note": "Size is the array length. With k = 1, heapifying one entry per numerator takes O(size); generating and sorting every eligible fraction takes O(size^2 log size).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: first fraction among 4 values", "kind": "benchmark", "visible": false, "size": 4, "input": {"arr": [1, 2, 3, 5], "k": 1}, "expected": [1, 5], "tags": ["benchmark", "scaling", "first-rank"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: first fraction among 12 values", "kind": "benchmark", "visible": false, "size": 12, "input": {"arr": [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31], "k": 1}, "expected": [1, 31], "tags": ["benchmark", "scaling", "first-rank"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: first fraction among 20 values", "kind": "benchmark", "visible": false, "size": 20, "input": {"arr": [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67], "k": 1}, "expected": [1, 67], "tags": ["benchmark", "scaling", "first-rank"]}
+  ]
+}

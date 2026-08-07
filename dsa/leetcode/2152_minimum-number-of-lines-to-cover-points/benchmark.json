@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2152",
+  "measurement_note": "Size is n * 2^n, the bitmask-state transition scale after O(n^3) line-mask precomputation. Points lie on y = x^2, so no line covers more than two and the answer is ceil(n/2). Pair-line mask DP considers at most n transitions per covered mask; a correct partition DP that enumerates every remaining collinear subset performs 3^n subset transitions, finishes all legal tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 parabola points in general position",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"points": [[-2, 4], [-1, 1], [0, 0], [1, 1]]},
+      "expected": 2,
+      "tags": ["benchmark", "scale-small", "general-position"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 7 parabola points in general position",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 896,
+      "input": {"points": [[-3, 9], [-2, 4], [-1, 1], [0, 0], [1, 1], [2, 4], [3, 9]]},
+      "expected": 4,
+      "tags": ["benchmark", "scale-medium", "general-position"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 9 parabola points in general position",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4608,
+      "input": {"points": [[-4, 16], [-3, 9], [-2, 4], [-1, 1], [0, 0], [1, 1], [2, 4], [3, 9], [4, 16]]},
+      "expected": 5,
+      "tags": ["benchmark", "scale-large", "general-position"]
+    }
+  ]
+}

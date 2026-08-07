@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_879",
+  "measurement_note": "Size is the crime count m, with n = m, unit member requirements, unit profits, and minProfit = 1. Every nonempty subset qualifies. The capped member-profit DP runs in polynomial time, while a correct include-or-skip enumeration visits all 2^m subsets.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: count all nonempty subsets of 4 crimes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "n": 4,
+        "minProfit": 1,
+        "group": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "profit": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 15,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "subset-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: count all nonempty subsets of 8 crimes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 8,
+        "minProfit": 1,
+        "group": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "profit": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 255,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "subset-enumeration"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: count all nonempty subsets of 16 crimes",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "n": 16,
+        "minProfit": 1,
+        "group": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "profit": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "expected": 65535,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "subset-enumeration"
+      ]
+    }
+  ]
+}

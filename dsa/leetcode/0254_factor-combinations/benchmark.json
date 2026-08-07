@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_254",
+  "measurement_note": "Size is n; increasing prime inputs isolate divisor-search growth because no output combinations are generated.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: prime n = 1009",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1009,
+      "input": {"n": 1009},
+      "expected": [],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["benchmark", "scale-small", "prime"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: prime n = 10007",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10007,
+      "input": {"n": 10007},
+      "expected": [],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["benchmark", "scale-medium", "prime"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: prime n = 100003",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100003,
+      "input": {"n": 100003},
+      "expected": [],
+      "validator": {"kind": "unordered_nested_list"},
+      "tags": ["benchmark", "scale-large", "prime"]
+    }
+  ]
+}

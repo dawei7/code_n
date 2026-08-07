@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_488",
+  "measurement_note": "Size is the board length. A visited set expands each stable board and remaining-hand state once, while otherwise identical breadth-first search repeats states reached by different orders of clearing independent pairs.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: clear one independent pair", "kind": "benchmark", "visible": false, "size": 2, "input": {"board": "RR", "hand": "R"}, "expected": 1, "tags": ["benchmark", "scaling", "independent-runs"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: clear two independent pairs", "kind": "benchmark", "visible": false, "size": 4, "input": {"board": "RRYY", "hand": "RY"}, "expected": 2, "tags": ["benchmark", "scaling", "independent-runs"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: clear four independent pairs", "kind": "benchmark", "visible": false, "size": 8, "input": {"board": "RRYYBBGG", "hand": "RYBG"}, "expected": 4, "tags": ["benchmark", "scaling", "independent-runs"]}
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1399",
+  "measurement_note": "Size is n, the inclusive upper bound and number of grouped integers. The 32/64/128 tiers span 4x and cross changing decimal digit-sum distributions. Direct digit-sum counting performs O(nd) work. A correct implementation that rescans all 1..n values to determine the group size for every integer performs O(n^2 d) work and completes normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: values through 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "n": 32
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "digit-sums"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: values through 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "n": 64
+      },
+      "expected": 4,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "digit-sums"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: values through 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "digit-sums"
+      ]
+    }
+  ]
+}

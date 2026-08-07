@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2504",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(r log r)",
+  "summary": "The query formats every required row once and performs the mandated descending ordering, matching the unavoidable output and comparison-ordering work with no genuine slower principal query class to calibrate.",
+  "optimality": {
+    "symbol": "r",
+    "lower_bound": "Omega(r log r)",
+    "upper_bound": "O(r log r)",
+    "argument": "Without assuming a favorable physical or index order, a correct result must inspect and emit all r rows and arrange arbitrary distinct person_id values in descending order; comparison ordering has an Omega(r log r) lower bound, while one projection followed by ORDER BY achieves O(r log r)."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "The output contains every input row and requires a total descending order over arbitrary distinct primary-key values."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The query performs constant-size formatting per row and one descending ORDER BY over person_id."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Regression fixtures cover all profession initials, shuffled identifiers, a single row, names containing spaces, formatting punctuation, and descending order."
+    }
+  ]
+}

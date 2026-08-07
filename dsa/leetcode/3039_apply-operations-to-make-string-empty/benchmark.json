@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3039",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "a",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "a",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 repeated letters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "expected": "a",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "scale-3"
+      ]
+    }
+  ]
+}

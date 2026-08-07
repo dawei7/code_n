@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2044",
+  "measurement_note": "Size is H = 2^N, the number of index subsets. Distinct powers of two force the target OR to appear only after every element is included, exercising the full binary search tree. A correct redundant ternary enumeration that records unique index masks completes all tiers and fails by O(3^N) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 distinct bit positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"nums": [1, 2, 4, 8]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-small", "ternary-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 6 distinct bit positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"nums": [1, 2, 4, 8, 16, 32]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-medium", "ternary-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 distinct bit positions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"nums": [1, 2, 4, 8, 16, 32, 64, 128]},
+      "expected": 1,
+      "tags": ["benchmark", "scale-large", "ternary-enumeration"]
+    }
+  ]
+}

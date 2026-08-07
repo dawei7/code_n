@@ -1,0 +1,14 @@
+{
+  "schema_version":1,
+  "challenge_id":"lc_3053",
+  "status":"verified",
+  "method":"asymptotic_optimality",
+  "required_time":"O(n)",
+  "summary":"Every input row requires its own classification and output row, so the single constant-time CASE evaluation per row matches the linear output lower bound.",
+  "optimality":{"symbol":"n triangle rows","lower_bound":"Omega(n)","upper_bound":"O(n)","argument":"The result contains one classification for each of n input rows, requiring Omega(n) output work; the query performs a constant number of additions and comparisons per row."},
+  "replacement_checks":[
+    {"kind":"lower_bound_proof","evidence":"Each of the n distinct input rows contributes one mandatory result classification."},
+    {"kind":"upper_bound_proof","evidence":"One CASE expression applies a constant number of triangle and equality comparisons to each row."},
+    {"kind":"boundary_property_cases","evidence":"Cases cover all classes, degeneracy, every possible largest-side position, equality pairs, permutations, and row multiplicity."}
+  ]
+}

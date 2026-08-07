@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3932",
+  "measurement_note": "Size is B = floor(sqrt(r)). Every tier uses k = 2, r = B^2, and l = (B/2)^2 + 1. The accepted two-prefix integer binary search takes O(log B) time, while a correct candidate-base enumeration takes O(B).",
+  "cases": [
+    {
+      "id": "benchmark-square-root-bound-1024",
+      "name": "benchmark: square-root candidate bound 1024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": {"l": 262145, "r": 1048576, "k": 2},
+      "expected": 512,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "squares", "scale-small"]
+    },
+    {
+      "id": "benchmark-square-root-bound-4096",
+      "name": "benchmark: square-root candidate bound 4096",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {"l": 4194305, "r": 16777216, "k": 2},
+      "expected": 2048,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "squares", "scale-medium"]
+    },
+    {
+      "id": "benchmark-square-root-bound-16384",
+      "name": "benchmark: square-root candidate bound 16384",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16384,
+      "input": {"l": 67108865, "r": 268435456, "k": 2},
+      "expected": 8192,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "squares", "scale-large"]
+    }
+  ]
+}

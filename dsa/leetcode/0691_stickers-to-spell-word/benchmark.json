@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_691",
+  "measurement_note": "Size is the target length. Targets contain only a, with stickers contributing one, two, or three copies; memoized canonical remaining states are reused, while unmemoized recursion repeatedly solves the same residual lengths through exponentially many sticker orders.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: repeated target length 3",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3,
+      "input": {
+        "stickers": [
+          "a",
+          "aa",
+          "aaa"
+        ],
+        "target": "aaa"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "overlapping-subproblems"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: repeated target length 7",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 7,
+      "input": {
+        "stickers": [
+          "a",
+          "aa",
+          "aaa"
+        ],
+        "target": "aaaaaaa"
+      },
+      "expected": 3,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "overlapping-subproblems"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: repeated target length 15",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 15,
+      "input": {
+        "stickers": [
+          "a",
+          "aa",
+          "aaa"
+        ],
+        "target": "aaaaaaaaaaaaaaa"
+      },
+      "expected": 5,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "overlapping-subproblems"
+      ]
+    }
+  ]
+}
+

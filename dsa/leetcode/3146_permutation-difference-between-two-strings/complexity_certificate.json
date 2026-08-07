@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3146",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "Every character position can affect the displacement sum, establishing a linear input-inspection lower bound, while the legal distinct-letter domain ends at 26 and cannot support an honest runtime-scaling comparison.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "A correct algorithm must determine the destination of every character: swapping an unread pair in t preserves the permutation contract but can change the total. The accepted implementation indexes t once and processes each character of s once, matching that lower bound."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Two unread positions in t can be swapped while preserving all source constraints and changing one or both absolute displacements."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The reference builds one position entry per character and performs one constant expected-time lookup and addition per character."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "Regression checks every permutation through length nine and 100,000 deterministic random legal pairs through the maximum length against repeated independent index lookup."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored cases cover one character, identical strings, adjacent and endpoint swaps, reversals, rotations, and maximum-length permutations."
+    }
+  ]
+}

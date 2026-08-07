@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1812",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The complete legal input domain contains only the 64 squares of one fixed chessboard, so runtime scaling cannot represent the source contract.",
+  "workload_bound": {
+    "symbol": "B",
+    "maximum": 64,
+    "unit": "valid chessboard coordinates",
+    "source_constraint": "the file is one of a through h and the rank is one of 1 through 8"
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Every call converts exactly one file and one rank, adds their zero-based indices, and performs one parity test."
+    },
+    {
+      "kind": "exhaustive_domain",
+      "evidence": "The certificate regression evaluates all 8 times 8 legal coordinates against an independent row-by-row alternating-color oracle."
+    }
+  ]
+}

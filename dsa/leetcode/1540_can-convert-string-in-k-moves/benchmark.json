@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1540",
+  "measurement_note": "Size is n, the common string length. The legal 32/128/384 repeated-shift tiers span 12x and require every position to use residue one, with k set to the exact final compatible move. The remotely Accepted 26-counter scheduler is O(n), and an independent maximum-occurrence formulation also passes. A correct implementation that rescans every prior position to count the same residue completes every tier and must be rejected only by its O(n^2) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 positions requiring shift one",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "k": 807
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "repeated-shift",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 positions requiring shift one",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "k": 3303
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "repeated-shift",
+        "full-scan"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 384 positions requiring shift one",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "t": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "k": 9959
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "repeated-shift",
+        "full-scan"
+      ]
+    }
+  ]
+}

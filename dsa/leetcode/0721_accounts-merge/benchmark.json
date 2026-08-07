@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_721",
+  "measurement_note": "Size is the number of account records and unique emails. Every record is disconnected despite sharing the same display name. Email-indexed union-find processes them linearly apart from output sorting, while comparing every pair of account email sets performs quadratic work even when no merge occurs.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 disconnected accounts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"accounts": [
+        ["User","e000@x.com"],["User","e001@x.com"],["User","e002@x.com"],["User","e003@x.com"],
+        ["User","e004@x.com"],["User","e005@x.com"],["User","e006@x.com"],["User","e007@x.com"]
+      ]},
+      "expected": [
+        ["User","e000@x.com"],["User","e001@x.com"],["User","e002@x.com"],["User","e003@x.com"],
+        ["User","e004@x.com"],["User","e005@x.com"],["User","e006@x.com"],["User","e007@x.com"]
+      ],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["benchmark", "scaling", "pairwise-intersection"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 disconnected accounts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"accounts": [
+        ["User","e000@x.com"],["User","e001@x.com"],["User","e002@x.com"],["User","e003@x.com"],
+        ["User","e004@x.com"],["User","e005@x.com"],["User","e006@x.com"],["User","e007@x.com"],
+        ["User","e008@x.com"],["User","e009@x.com"],["User","e010@x.com"],["User","e011@x.com"],
+        ["User","e012@x.com"],["User","e013@x.com"],["User","e014@x.com"],["User","e015@x.com"]
+      ]},
+      "expected": [
+        ["User","e000@x.com"],["User","e001@x.com"],["User","e002@x.com"],["User","e003@x.com"],
+        ["User","e004@x.com"],["User","e005@x.com"],["User","e006@x.com"],["User","e007@x.com"],
+        ["User","e008@x.com"],["User","e009@x.com"],["User","e010@x.com"],["User","e011@x.com"],
+        ["User","e012@x.com"],["User","e013@x.com"],["User","e014@x.com"],["User","e015@x.com"]
+      ],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["benchmark", "scaling", "pairwise-intersection"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 disconnected accounts",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"accounts": [
+        ["User","e000@x.com"],["User","e001@x.com"],["User","e002@x.com"],["User","e003@x.com"],
+        ["User","e004@x.com"],["User","e005@x.com"],["User","e006@x.com"],["User","e007@x.com"],
+        ["User","e008@x.com"],["User","e009@x.com"],["User","e010@x.com"],["User","e011@x.com"],
+        ["User","e012@x.com"],["User","e013@x.com"],["User","e014@x.com"],["User","e015@x.com"],
+        ["User","e016@x.com"],["User","e017@x.com"],["User","e018@x.com"],["User","e019@x.com"],
+        ["User","e020@x.com"],["User","e021@x.com"],["User","e022@x.com"],["User","e023@x.com"],
+        ["User","e024@x.com"],["User","e025@x.com"],["User","e026@x.com"],["User","e027@x.com"],
+        ["User","e028@x.com"],["User","e029@x.com"],["User","e030@x.com"],["User","e031@x.com"]
+      ]},
+      "expected": [
+        ["User","e000@x.com"],["User","e001@x.com"],["User","e002@x.com"],["User","e003@x.com"],
+        ["User","e004@x.com"],["User","e005@x.com"],["User","e006@x.com"],["User","e007@x.com"],
+        ["User","e008@x.com"],["User","e009@x.com"],["User","e010@x.com"],["User","e011@x.com"],
+        ["User","e012@x.com"],["User","e013@x.com"],["User","e014@x.com"],["User","e015@x.com"],
+        ["User","e016@x.com"],["User","e017@x.com"],["User","e018@x.com"],["User","e019@x.com"],
+        ["User","e020@x.com"],["User","e021@x.com"],["User","e022@x.com"],["User","e023@x.com"],
+        ["User","e024@x.com"],["User","e025@x.com"],["User","e026@x.com"],["User","e027@x.com"],
+        ["User","e028@x.com"],["User","e029@x.com"],["User","e030@x.com"],["User","e031@x.com"]
+      ],
+      "validator": {"kind": "accounts_merge"},
+      "tags": ["benchmark", "scaling", "pairwise-intersection"]
+    }
+  ]
+}

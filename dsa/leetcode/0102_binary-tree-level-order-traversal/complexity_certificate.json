@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_102",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The required level-order result contains every node value, so producing it takes linear time. Queue-based breadth-first traversal matches that bound while using width-proportional auxiliary space.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "For an n-node tree, the returned nested lists contain exactly n values. Materializing those values requires Omega(n) time. The current breadth-first traversal enqueues and dequeues every node once and performs constant work per node, giving O(n) time; excluding the required output, its queue contains O(w) nodes, where w is the maximum tree width."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "The result explicitly contains all n node values, so no algorithm can produce it in o(n) time."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each node enters and leaves the deque once, and the deque is bounded by the nodes spanning adjacent breadth-first levels."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover a branching tree, a one-node tree, and an empty tree; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1507",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal input is a fixed three-field date of at most thirteen characters, so the source domain provides no scalable workload dimension.",
+  "workload_bound": {
+    "symbol": "C",
+    "maximum": 13,
+    "unit": "input characters",
+    "source_constraint": "date is a valid Day Month Year value whose four-digit year ranges from 1900 through 2100"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Parsing touches at most thirteen characters, performs one lookup in a fixed twelve-month table, and emits ten characters."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression checks every valid Gregorian date from 1900-01-01 through 2100-12-31 with its proper ordinal suffix."}
+  ]
+}

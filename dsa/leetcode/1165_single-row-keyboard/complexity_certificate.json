@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1165",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(m)",
+  "summary": "Every word character affects the required cursor movement, establishing a linear lower bound, while the fixed 26-key alphabet prevents lookup alternatives from creating a genuine slower asymptotic class.",
+  "optimality": {
+    "symbol": "m",
+    "lower_bound": "Omega(m)",
+    "upper_bound": "O(m)",
+    "argument": "A correct algorithm must inspect each of the m word characters because changing any one character can change the total distance; the position map processes each character once."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "An unread word position can be changed to another key and alter the required movement total."},
+    {"kind": "upper_bound_proof", "evidence": "The reference builds a fixed 26-entry map and performs one constant-work update per word character."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover repeated keys, zero movement, both keyboard directions, and long words."}
+  ]
+}

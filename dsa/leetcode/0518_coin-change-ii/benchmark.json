@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_518",
+  "measurement_note": "Size is amount times the coin count. The optimized unbounded-knapsack transition performs constant work per state, while explicitly summing over every usable count of the current coin adds another amount-dependent loop.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: count combinations for amount 16", "kind": "benchmark", "visible": false, "size": 64, "input": {"amount": 16, "coins": [1,2,5,10]}, "expected": 25, "tags": ["benchmark", "scaling", "unbounded-knapsack"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: count combinations for amount 64", "kind": "benchmark", "visible": false, "size": 256, "input": {"amount": 64, "coins": [1,2,5,10]}, "expected": 644, "tags": ["benchmark", "scaling", "unbounded-knapsack"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: count combinations for amount 256", "kind": "benchmark", "visible": false, "size": 1024, "input": {"amount": 256, "coins": [1,2,5,10]}, "expected": 31005, "tags": ["benchmark", "scaling", "unbounded-knapsack"]}
+  ]
+}

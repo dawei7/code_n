@@ -1,0 +1,7480 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1308",
+  "measurement_note": "Size is n, the number of Scores rows. A partitioned ordered window plus final ordering takes O(n log n) time. A correct correlated prefix-sum subquery compares each row with prior rows of its gender and takes O(n squared) time on these two balanced partitions.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 chronological score rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "P1",
+              "gender": "F",
+              "day": "2020-01-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "P2",
+              "gender": "M",
+              "day": "2020-01-02",
+              "score_points": 2
+            },
+            {
+              "player_name": "P3",
+              "gender": "F",
+              "day": "2020-01-03",
+              "score_points": 3
+            },
+            {
+              "player_name": "P4",
+              "gender": "M",
+              "day": "2020-01-04",
+              "score_points": 4
+            },
+            {
+              "player_name": "P5",
+              "gender": "F",
+              "day": "2020-01-05",
+              "score_points": 5
+            },
+            {
+              "player_name": "P6",
+              "gender": "M",
+              "day": "2020-01-06",
+              "score_points": 6
+            },
+            {
+              "player_name": "P7",
+              "gender": "F",
+              "day": "2020-01-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "P8",
+              "gender": "M",
+              "day": "2020-01-08",
+              "score_points": 1
+            },
+            {
+              "player_name": "P9",
+              "gender": "F",
+              "day": "2020-01-09",
+              "score_points": 2
+            },
+            {
+              "player_name": "P10",
+              "gender": "M",
+              "day": "2020-01-10",
+              "score_points": 3
+            },
+            {
+              "player_name": "P11",
+              "gender": "F",
+              "day": "2020-01-11",
+              "score_points": 4
+            },
+            {
+              "player_name": "P12",
+              "gender": "M",
+              "day": "2020-01-12",
+              "score_points": 5
+            },
+            {
+              "player_name": "P13",
+              "gender": "F",
+              "day": "2020-01-13",
+              "score_points": 6
+            },
+            {
+              "player_name": "P14",
+              "gender": "M",
+              "day": "2020-01-14",
+              "score_points": 7
+            },
+            {
+              "player_name": "P15",
+              "gender": "F",
+              "day": "2020-01-15",
+              "score_points": 1
+            },
+            {
+              "player_name": "P16",
+              "gender": "M",
+              "day": "2020-01-16",
+              "score_points": 2
+            },
+            {
+              "player_name": "P17",
+              "gender": "F",
+              "day": "2020-01-17",
+              "score_points": 3
+            },
+            {
+              "player_name": "P18",
+              "gender": "M",
+              "day": "2020-01-18",
+              "score_points": 4
+            },
+            {
+              "player_name": "P19",
+              "gender": "F",
+              "day": "2020-01-19",
+              "score_points": 5
+            },
+            {
+              "player_name": "P20",
+              "gender": "M",
+              "day": "2020-01-20",
+              "score_points": 6
+            },
+            {
+              "player_name": "P21",
+              "gender": "F",
+              "day": "2020-01-21",
+              "score_points": 7
+            },
+            {
+              "player_name": "P22",
+              "gender": "M",
+              "day": "2020-01-22",
+              "score_points": 1
+            },
+            {
+              "player_name": "P23",
+              "gender": "F",
+              "day": "2020-01-23",
+              "score_points": 2
+            },
+            {
+              "player_name": "P24",
+              "gender": "M",
+              "day": "2020-01-24",
+              "score_points": 3
+            },
+            {
+              "player_name": "P25",
+              "gender": "F",
+              "day": "2020-01-25",
+              "score_points": 4
+            },
+            {
+              "player_name": "P26",
+              "gender": "M",
+              "day": "2020-01-26",
+              "score_points": 5
+            },
+            {
+              "player_name": "P27",
+              "gender": "F",
+              "day": "2020-01-27",
+              "score_points": 6
+            },
+            {
+              "player_name": "P28",
+              "gender": "M",
+              "day": "2020-01-28",
+              "score_points": 7
+            },
+            {
+              "player_name": "P29",
+              "gender": "F",
+              "day": "2020-01-29",
+              "score_points": 1
+            },
+            {
+              "player_name": "P30",
+              "gender": "M",
+              "day": "2020-01-30",
+              "score_points": 2
+            },
+            {
+              "player_name": "P31",
+              "gender": "F",
+              "day": "2020-01-31",
+              "score_points": 3
+            },
+            {
+              "player_name": "P32",
+              "gender": "M",
+              "day": "2020-02-01",
+              "score_points": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2020-01-01",
+            1
+          ],
+          [
+            "F",
+            "2020-01-03",
+            4
+          ],
+          [
+            "F",
+            "2020-01-05",
+            9
+          ],
+          [
+            "F",
+            "2020-01-07",
+            16
+          ],
+          [
+            "F",
+            "2020-01-09",
+            18
+          ],
+          [
+            "F",
+            "2020-01-11",
+            22
+          ],
+          [
+            "F",
+            "2020-01-13",
+            28
+          ],
+          [
+            "F",
+            "2020-01-15",
+            29
+          ],
+          [
+            "F",
+            "2020-01-17",
+            32
+          ],
+          [
+            "F",
+            "2020-01-19",
+            37
+          ],
+          [
+            "F",
+            "2020-01-21",
+            44
+          ],
+          [
+            "F",
+            "2020-01-23",
+            46
+          ],
+          [
+            "F",
+            "2020-01-25",
+            50
+          ],
+          [
+            "F",
+            "2020-01-27",
+            56
+          ],
+          [
+            "F",
+            "2020-01-29",
+            57
+          ],
+          [
+            "F",
+            "2020-01-31",
+            60
+          ],
+          [
+            "M",
+            "2020-01-02",
+            2
+          ],
+          [
+            "M",
+            "2020-01-04",
+            6
+          ],
+          [
+            "M",
+            "2020-01-06",
+            12
+          ],
+          [
+            "M",
+            "2020-01-08",
+            13
+          ],
+          [
+            "M",
+            "2020-01-10",
+            16
+          ],
+          [
+            "M",
+            "2020-01-12",
+            21
+          ],
+          [
+            "M",
+            "2020-01-14",
+            28
+          ],
+          [
+            "M",
+            "2020-01-16",
+            30
+          ],
+          [
+            "M",
+            "2020-01-18",
+            34
+          ],
+          [
+            "M",
+            "2020-01-20",
+            40
+          ],
+          [
+            "M",
+            "2020-01-22",
+            41
+          ],
+          [
+            "M",
+            "2020-01-24",
+            44
+          ],
+          [
+            "M",
+            "2020-01-26",
+            49
+          ],
+          [
+            "M",
+            "2020-01-28",
+            56
+          ],
+          [
+            "M",
+            "2020-01-30",
+            58
+          ],
+          [
+            "M",
+            "2020-02-01",
+            62
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "running-total"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 chronological score rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "P1",
+              "gender": "F",
+              "day": "2020-01-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "P2",
+              "gender": "M",
+              "day": "2020-01-02",
+              "score_points": 2
+            },
+            {
+              "player_name": "P3",
+              "gender": "F",
+              "day": "2020-01-03",
+              "score_points": 3
+            },
+            {
+              "player_name": "P4",
+              "gender": "M",
+              "day": "2020-01-04",
+              "score_points": 4
+            },
+            {
+              "player_name": "P5",
+              "gender": "F",
+              "day": "2020-01-05",
+              "score_points": 5
+            },
+            {
+              "player_name": "P6",
+              "gender": "M",
+              "day": "2020-01-06",
+              "score_points": 6
+            },
+            {
+              "player_name": "P7",
+              "gender": "F",
+              "day": "2020-01-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "P8",
+              "gender": "M",
+              "day": "2020-01-08",
+              "score_points": 1
+            },
+            {
+              "player_name": "P9",
+              "gender": "F",
+              "day": "2020-01-09",
+              "score_points": 2
+            },
+            {
+              "player_name": "P10",
+              "gender": "M",
+              "day": "2020-01-10",
+              "score_points": 3
+            },
+            {
+              "player_name": "P11",
+              "gender": "F",
+              "day": "2020-01-11",
+              "score_points": 4
+            },
+            {
+              "player_name": "P12",
+              "gender": "M",
+              "day": "2020-01-12",
+              "score_points": 5
+            },
+            {
+              "player_name": "P13",
+              "gender": "F",
+              "day": "2020-01-13",
+              "score_points": 6
+            },
+            {
+              "player_name": "P14",
+              "gender": "M",
+              "day": "2020-01-14",
+              "score_points": 7
+            },
+            {
+              "player_name": "P15",
+              "gender": "F",
+              "day": "2020-01-15",
+              "score_points": 1
+            },
+            {
+              "player_name": "P16",
+              "gender": "M",
+              "day": "2020-01-16",
+              "score_points": 2
+            },
+            {
+              "player_name": "P17",
+              "gender": "F",
+              "day": "2020-01-17",
+              "score_points": 3
+            },
+            {
+              "player_name": "P18",
+              "gender": "M",
+              "day": "2020-01-18",
+              "score_points": 4
+            },
+            {
+              "player_name": "P19",
+              "gender": "F",
+              "day": "2020-01-19",
+              "score_points": 5
+            },
+            {
+              "player_name": "P20",
+              "gender": "M",
+              "day": "2020-01-20",
+              "score_points": 6
+            },
+            {
+              "player_name": "P21",
+              "gender": "F",
+              "day": "2020-01-21",
+              "score_points": 7
+            },
+            {
+              "player_name": "P22",
+              "gender": "M",
+              "day": "2020-01-22",
+              "score_points": 1
+            },
+            {
+              "player_name": "P23",
+              "gender": "F",
+              "day": "2020-01-23",
+              "score_points": 2
+            },
+            {
+              "player_name": "P24",
+              "gender": "M",
+              "day": "2020-01-24",
+              "score_points": 3
+            },
+            {
+              "player_name": "P25",
+              "gender": "F",
+              "day": "2020-01-25",
+              "score_points": 4
+            },
+            {
+              "player_name": "P26",
+              "gender": "M",
+              "day": "2020-01-26",
+              "score_points": 5
+            },
+            {
+              "player_name": "P27",
+              "gender": "F",
+              "day": "2020-01-27",
+              "score_points": 6
+            },
+            {
+              "player_name": "P28",
+              "gender": "M",
+              "day": "2020-01-28",
+              "score_points": 7
+            },
+            {
+              "player_name": "P29",
+              "gender": "F",
+              "day": "2020-01-29",
+              "score_points": 1
+            },
+            {
+              "player_name": "P30",
+              "gender": "M",
+              "day": "2020-01-30",
+              "score_points": 2
+            },
+            {
+              "player_name": "P31",
+              "gender": "F",
+              "day": "2020-01-31",
+              "score_points": 3
+            },
+            {
+              "player_name": "P32",
+              "gender": "M",
+              "day": "2020-02-01",
+              "score_points": 4
+            },
+            {
+              "player_name": "P33",
+              "gender": "F",
+              "day": "2020-02-02",
+              "score_points": 5
+            },
+            {
+              "player_name": "P34",
+              "gender": "M",
+              "day": "2020-02-03",
+              "score_points": 6
+            },
+            {
+              "player_name": "P35",
+              "gender": "F",
+              "day": "2020-02-04",
+              "score_points": 7
+            },
+            {
+              "player_name": "P36",
+              "gender": "M",
+              "day": "2020-02-05",
+              "score_points": 1
+            },
+            {
+              "player_name": "P37",
+              "gender": "F",
+              "day": "2020-02-06",
+              "score_points": 2
+            },
+            {
+              "player_name": "P38",
+              "gender": "M",
+              "day": "2020-02-07",
+              "score_points": 3
+            },
+            {
+              "player_name": "P39",
+              "gender": "F",
+              "day": "2020-02-08",
+              "score_points": 4
+            },
+            {
+              "player_name": "P40",
+              "gender": "M",
+              "day": "2020-02-09",
+              "score_points": 5
+            },
+            {
+              "player_name": "P41",
+              "gender": "F",
+              "day": "2020-02-10",
+              "score_points": 6
+            },
+            {
+              "player_name": "P42",
+              "gender": "M",
+              "day": "2020-02-11",
+              "score_points": 7
+            },
+            {
+              "player_name": "P43",
+              "gender": "F",
+              "day": "2020-02-12",
+              "score_points": 1
+            },
+            {
+              "player_name": "P44",
+              "gender": "M",
+              "day": "2020-02-13",
+              "score_points": 2
+            },
+            {
+              "player_name": "P45",
+              "gender": "F",
+              "day": "2020-02-14",
+              "score_points": 3
+            },
+            {
+              "player_name": "P46",
+              "gender": "M",
+              "day": "2020-02-15",
+              "score_points": 4
+            },
+            {
+              "player_name": "P47",
+              "gender": "F",
+              "day": "2020-02-16",
+              "score_points": 5
+            },
+            {
+              "player_name": "P48",
+              "gender": "M",
+              "day": "2020-02-17",
+              "score_points": 6
+            },
+            {
+              "player_name": "P49",
+              "gender": "F",
+              "day": "2020-02-18",
+              "score_points": 7
+            },
+            {
+              "player_name": "P50",
+              "gender": "M",
+              "day": "2020-02-19",
+              "score_points": 1
+            },
+            {
+              "player_name": "P51",
+              "gender": "F",
+              "day": "2020-02-20",
+              "score_points": 2
+            },
+            {
+              "player_name": "P52",
+              "gender": "M",
+              "day": "2020-02-21",
+              "score_points": 3
+            },
+            {
+              "player_name": "P53",
+              "gender": "F",
+              "day": "2020-02-22",
+              "score_points": 4
+            },
+            {
+              "player_name": "P54",
+              "gender": "M",
+              "day": "2020-02-23",
+              "score_points": 5
+            },
+            {
+              "player_name": "P55",
+              "gender": "F",
+              "day": "2020-02-24",
+              "score_points": 6
+            },
+            {
+              "player_name": "P56",
+              "gender": "M",
+              "day": "2020-02-25",
+              "score_points": 7
+            },
+            {
+              "player_name": "P57",
+              "gender": "F",
+              "day": "2020-02-26",
+              "score_points": 1
+            },
+            {
+              "player_name": "P58",
+              "gender": "M",
+              "day": "2020-02-27",
+              "score_points": 2
+            },
+            {
+              "player_name": "P59",
+              "gender": "F",
+              "day": "2020-02-28",
+              "score_points": 3
+            },
+            {
+              "player_name": "P60",
+              "gender": "M",
+              "day": "2020-02-29",
+              "score_points": 4
+            },
+            {
+              "player_name": "P61",
+              "gender": "F",
+              "day": "2020-03-01",
+              "score_points": 5
+            },
+            {
+              "player_name": "P62",
+              "gender": "M",
+              "day": "2020-03-02",
+              "score_points": 6
+            },
+            {
+              "player_name": "P63",
+              "gender": "F",
+              "day": "2020-03-03",
+              "score_points": 7
+            },
+            {
+              "player_name": "P64",
+              "gender": "M",
+              "day": "2020-03-04",
+              "score_points": 1
+            },
+            {
+              "player_name": "P65",
+              "gender": "F",
+              "day": "2020-03-05",
+              "score_points": 2
+            },
+            {
+              "player_name": "P66",
+              "gender": "M",
+              "day": "2020-03-06",
+              "score_points": 3
+            },
+            {
+              "player_name": "P67",
+              "gender": "F",
+              "day": "2020-03-07",
+              "score_points": 4
+            },
+            {
+              "player_name": "P68",
+              "gender": "M",
+              "day": "2020-03-08",
+              "score_points": 5
+            },
+            {
+              "player_name": "P69",
+              "gender": "F",
+              "day": "2020-03-09",
+              "score_points": 6
+            },
+            {
+              "player_name": "P70",
+              "gender": "M",
+              "day": "2020-03-10",
+              "score_points": 7
+            },
+            {
+              "player_name": "P71",
+              "gender": "F",
+              "day": "2020-03-11",
+              "score_points": 1
+            },
+            {
+              "player_name": "P72",
+              "gender": "M",
+              "day": "2020-03-12",
+              "score_points": 2
+            },
+            {
+              "player_name": "P73",
+              "gender": "F",
+              "day": "2020-03-13",
+              "score_points": 3
+            },
+            {
+              "player_name": "P74",
+              "gender": "M",
+              "day": "2020-03-14",
+              "score_points": 4
+            },
+            {
+              "player_name": "P75",
+              "gender": "F",
+              "day": "2020-03-15",
+              "score_points": 5
+            },
+            {
+              "player_name": "P76",
+              "gender": "M",
+              "day": "2020-03-16",
+              "score_points": 6
+            },
+            {
+              "player_name": "P77",
+              "gender": "F",
+              "day": "2020-03-17",
+              "score_points": 7
+            },
+            {
+              "player_name": "P78",
+              "gender": "M",
+              "day": "2020-03-18",
+              "score_points": 1
+            },
+            {
+              "player_name": "P79",
+              "gender": "F",
+              "day": "2020-03-19",
+              "score_points": 2
+            },
+            {
+              "player_name": "P80",
+              "gender": "M",
+              "day": "2020-03-20",
+              "score_points": 3
+            },
+            {
+              "player_name": "P81",
+              "gender": "F",
+              "day": "2020-03-21",
+              "score_points": 4
+            },
+            {
+              "player_name": "P82",
+              "gender": "M",
+              "day": "2020-03-22",
+              "score_points": 5
+            },
+            {
+              "player_name": "P83",
+              "gender": "F",
+              "day": "2020-03-23",
+              "score_points": 6
+            },
+            {
+              "player_name": "P84",
+              "gender": "M",
+              "day": "2020-03-24",
+              "score_points": 7
+            },
+            {
+              "player_name": "P85",
+              "gender": "F",
+              "day": "2020-03-25",
+              "score_points": 1
+            },
+            {
+              "player_name": "P86",
+              "gender": "M",
+              "day": "2020-03-26",
+              "score_points": 2
+            },
+            {
+              "player_name": "P87",
+              "gender": "F",
+              "day": "2020-03-27",
+              "score_points": 3
+            },
+            {
+              "player_name": "P88",
+              "gender": "M",
+              "day": "2020-03-28",
+              "score_points": 4
+            },
+            {
+              "player_name": "P89",
+              "gender": "F",
+              "day": "2020-03-29",
+              "score_points": 5
+            },
+            {
+              "player_name": "P90",
+              "gender": "M",
+              "day": "2020-03-30",
+              "score_points": 6
+            },
+            {
+              "player_name": "P91",
+              "gender": "F",
+              "day": "2020-03-31",
+              "score_points": 7
+            },
+            {
+              "player_name": "P92",
+              "gender": "M",
+              "day": "2020-04-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "P93",
+              "gender": "F",
+              "day": "2020-04-02",
+              "score_points": 2
+            },
+            {
+              "player_name": "P94",
+              "gender": "M",
+              "day": "2020-04-03",
+              "score_points": 3
+            },
+            {
+              "player_name": "P95",
+              "gender": "F",
+              "day": "2020-04-04",
+              "score_points": 4
+            },
+            {
+              "player_name": "P96",
+              "gender": "M",
+              "day": "2020-04-05",
+              "score_points": 5
+            },
+            {
+              "player_name": "P97",
+              "gender": "F",
+              "day": "2020-04-06",
+              "score_points": 6
+            },
+            {
+              "player_name": "P98",
+              "gender": "M",
+              "day": "2020-04-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "P99",
+              "gender": "F",
+              "day": "2020-04-08",
+              "score_points": 1
+            },
+            {
+              "player_name": "P100",
+              "gender": "M",
+              "day": "2020-04-09",
+              "score_points": 2
+            },
+            {
+              "player_name": "P101",
+              "gender": "F",
+              "day": "2020-04-10",
+              "score_points": 3
+            },
+            {
+              "player_name": "P102",
+              "gender": "M",
+              "day": "2020-04-11",
+              "score_points": 4
+            },
+            {
+              "player_name": "P103",
+              "gender": "F",
+              "day": "2020-04-12",
+              "score_points": 5
+            },
+            {
+              "player_name": "P104",
+              "gender": "M",
+              "day": "2020-04-13",
+              "score_points": 6
+            },
+            {
+              "player_name": "P105",
+              "gender": "F",
+              "day": "2020-04-14",
+              "score_points": 7
+            },
+            {
+              "player_name": "P106",
+              "gender": "M",
+              "day": "2020-04-15",
+              "score_points": 1
+            },
+            {
+              "player_name": "P107",
+              "gender": "F",
+              "day": "2020-04-16",
+              "score_points": 2
+            },
+            {
+              "player_name": "P108",
+              "gender": "M",
+              "day": "2020-04-17",
+              "score_points": 3
+            },
+            {
+              "player_name": "P109",
+              "gender": "F",
+              "day": "2020-04-18",
+              "score_points": 4
+            },
+            {
+              "player_name": "P110",
+              "gender": "M",
+              "day": "2020-04-19",
+              "score_points": 5
+            },
+            {
+              "player_name": "P111",
+              "gender": "F",
+              "day": "2020-04-20",
+              "score_points": 6
+            },
+            {
+              "player_name": "P112",
+              "gender": "M",
+              "day": "2020-04-21",
+              "score_points": 7
+            },
+            {
+              "player_name": "P113",
+              "gender": "F",
+              "day": "2020-04-22",
+              "score_points": 1
+            },
+            {
+              "player_name": "P114",
+              "gender": "M",
+              "day": "2020-04-23",
+              "score_points": 2
+            },
+            {
+              "player_name": "P115",
+              "gender": "F",
+              "day": "2020-04-24",
+              "score_points": 3
+            },
+            {
+              "player_name": "P116",
+              "gender": "M",
+              "day": "2020-04-25",
+              "score_points": 4
+            },
+            {
+              "player_name": "P117",
+              "gender": "F",
+              "day": "2020-04-26",
+              "score_points": 5
+            },
+            {
+              "player_name": "P118",
+              "gender": "M",
+              "day": "2020-04-27",
+              "score_points": 6
+            },
+            {
+              "player_name": "P119",
+              "gender": "F",
+              "day": "2020-04-28",
+              "score_points": 7
+            },
+            {
+              "player_name": "P120",
+              "gender": "M",
+              "day": "2020-04-29",
+              "score_points": 1
+            },
+            {
+              "player_name": "P121",
+              "gender": "F",
+              "day": "2020-04-30",
+              "score_points": 2
+            },
+            {
+              "player_name": "P122",
+              "gender": "M",
+              "day": "2020-05-01",
+              "score_points": 3
+            },
+            {
+              "player_name": "P123",
+              "gender": "F",
+              "day": "2020-05-02",
+              "score_points": 4
+            },
+            {
+              "player_name": "P124",
+              "gender": "M",
+              "day": "2020-05-03",
+              "score_points": 5
+            },
+            {
+              "player_name": "P125",
+              "gender": "F",
+              "day": "2020-05-04",
+              "score_points": 6
+            },
+            {
+              "player_name": "P126",
+              "gender": "M",
+              "day": "2020-05-05",
+              "score_points": 7
+            },
+            {
+              "player_name": "P127",
+              "gender": "F",
+              "day": "2020-05-06",
+              "score_points": 1
+            },
+            {
+              "player_name": "P128",
+              "gender": "M",
+              "day": "2020-05-07",
+              "score_points": 2
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2020-01-01",
+            1
+          ],
+          [
+            "F",
+            "2020-01-03",
+            4
+          ],
+          [
+            "F",
+            "2020-01-05",
+            9
+          ],
+          [
+            "F",
+            "2020-01-07",
+            16
+          ],
+          [
+            "F",
+            "2020-01-09",
+            18
+          ],
+          [
+            "F",
+            "2020-01-11",
+            22
+          ],
+          [
+            "F",
+            "2020-01-13",
+            28
+          ],
+          [
+            "F",
+            "2020-01-15",
+            29
+          ],
+          [
+            "F",
+            "2020-01-17",
+            32
+          ],
+          [
+            "F",
+            "2020-01-19",
+            37
+          ],
+          [
+            "F",
+            "2020-01-21",
+            44
+          ],
+          [
+            "F",
+            "2020-01-23",
+            46
+          ],
+          [
+            "F",
+            "2020-01-25",
+            50
+          ],
+          [
+            "F",
+            "2020-01-27",
+            56
+          ],
+          [
+            "F",
+            "2020-01-29",
+            57
+          ],
+          [
+            "F",
+            "2020-01-31",
+            60
+          ],
+          [
+            "F",
+            "2020-02-02",
+            65
+          ],
+          [
+            "F",
+            "2020-02-04",
+            72
+          ],
+          [
+            "F",
+            "2020-02-06",
+            74
+          ],
+          [
+            "F",
+            "2020-02-08",
+            78
+          ],
+          [
+            "F",
+            "2020-02-10",
+            84
+          ],
+          [
+            "F",
+            "2020-02-12",
+            85
+          ],
+          [
+            "F",
+            "2020-02-14",
+            88
+          ],
+          [
+            "F",
+            "2020-02-16",
+            93
+          ],
+          [
+            "F",
+            "2020-02-18",
+            100
+          ],
+          [
+            "F",
+            "2020-02-20",
+            102
+          ],
+          [
+            "F",
+            "2020-02-22",
+            106
+          ],
+          [
+            "F",
+            "2020-02-24",
+            112
+          ],
+          [
+            "F",
+            "2020-02-26",
+            113
+          ],
+          [
+            "F",
+            "2020-02-28",
+            116
+          ],
+          [
+            "F",
+            "2020-03-01",
+            121
+          ],
+          [
+            "F",
+            "2020-03-03",
+            128
+          ],
+          [
+            "F",
+            "2020-03-05",
+            130
+          ],
+          [
+            "F",
+            "2020-03-07",
+            134
+          ],
+          [
+            "F",
+            "2020-03-09",
+            140
+          ],
+          [
+            "F",
+            "2020-03-11",
+            141
+          ],
+          [
+            "F",
+            "2020-03-13",
+            144
+          ],
+          [
+            "F",
+            "2020-03-15",
+            149
+          ],
+          [
+            "F",
+            "2020-03-17",
+            156
+          ],
+          [
+            "F",
+            "2020-03-19",
+            158
+          ],
+          [
+            "F",
+            "2020-03-21",
+            162
+          ],
+          [
+            "F",
+            "2020-03-23",
+            168
+          ],
+          [
+            "F",
+            "2020-03-25",
+            169
+          ],
+          [
+            "F",
+            "2020-03-27",
+            172
+          ],
+          [
+            "F",
+            "2020-03-29",
+            177
+          ],
+          [
+            "F",
+            "2020-03-31",
+            184
+          ],
+          [
+            "F",
+            "2020-04-02",
+            186
+          ],
+          [
+            "F",
+            "2020-04-04",
+            190
+          ],
+          [
+            "F",
+            "2020-04-06",
+            196
+          ],
+          [
+            "F",
+            "2020-04-08",
+            197
+          ],
+          [
+            "F",
+            "2020-04-10",
+            200
+          ],
+          [
+            "F",
+            "2020-04-12",
+            205
+          ],
+          [
+            "F",
+            "2020-04-14",
+            212
+          ],
+          [
+            "F",
+            "2020-04-16",
+            214
+          ],
+          [
+            "F",
+            "2020-04-18",
+            218
+          ],
+          [
+            "F",
+            "2020-04-20",
+            224
+          ],
+          [
+            "F",
+            "2020-04-22",
+            225
+          ],
+          [
+            "F",
+            "2020-04-24",
+            228
+          ],
+          [
+            "F",
+            "2020-04-26",
+            233
+          ],
+          [
+            "F",
+            "2020-04-28",
+            240
+          ],
+          [
+            "F",
+            "2020-04-30",
+            242
+          ],
+          [
+            "F",
+            "2020-05-02",
+            246
+          ],
+          [
+            "F",
+            "2020-05-04",
+            252
+          ],
+          [
+            "F",
+            "2020-05-06",
+            253
+          ],
+          [
+            "M",
+            "2020-01-02",
+            2
+          ],
+          [
+            "M",
+            "2020-01-04",
+            6
+          ],
+          [
+            "M",
+            "2020-01-06",
+            12
+          ],
+          [
+            "M",
+            "2020-01-08",
+            13
+          ],
+          [
+            "M",
+            "2020-01-10",
+            16
+          ],
+          [
+            "M",
+            "2020-01-12",
+            21
+          ],
+          [
+            "M",
+            "2020-01-14",
+            28
+          ],
+          [
+            "M",
+            "2020-01-16",
+            30
+          ],
+          [
+            "M",
+            "2020-01-18",
+            34
+          ],
+          [
+            "M",
+            "2020-01-20",
+            40
+          ],
+          [
+            "M",
+            "2020-01-22",
+            41
+          ],
+          [
+            "M",
+            "2020-01-24",
+            44
+          ],
+          [
+            "M",
+            "2020-01-26",
+            49
+          ],
+          [
+            "M",
+            "2020-01-28",
+            56
+          ],
+          [
+            "M",
+            "2020-01-30",
+            58
+          ],
+          [
+            "M",
+            "2020-02-01",
+            62
+          ],
+          [
+            "M",
+            "2020-02-03",
+            68
+          ],
+          [
+            "M",
+            "2020-02-05",
+            69
+          ],
+          [
+            "M",
+            "2020-02-07",
+            72
+          ],
+          [
+            "M",
+            "2020-02-09",
+            77
+          ],
+          [
+            "M",
+            "2020-02-11",
+            84
+          ],
+          [
+            "M",
+            "2020-02-13",
+            86
+          ],
+          [
+            "M",
+            "2020-02-15",
+            90
+          ],
+          [
+            "M",
+            "2020-02-17",
+            96
+          ],
+          [
+            "M",
+            "2020-02-19",
+            97
+          ],
+          [
+            "M",
+            "2020-02-21",
+            100
+          ],
+          [
+            "M",
+            "2020-02-23",
+            105
+          ],
+          [
+            "M",
+            "2020-02-25",
+            112
+          ],
+          [
+            "M",
+            "2020-02-27",
+            114
+          ],
+          [
+            "M",
+            "2020-02-29",
+            118
+          ],
+          [
+            "M",
+            "2020-03-02",
+            124
+          ],
+          [
+            "M",
+            "2020-03-04",
+            125
+          ],
+          [
+            "M",
+            "2020-03-06",
+            128
+          ],
+          [
+            "M",
+            "2020-03-08",
+            133
+          ],
+          [
+            "M",
+            "2020-03-10",
+            140
+          ],
+          [
+            "M",
+            "2020-03-12",
+            142
+          ],
+          [
+            "M",
+            "2020-03-14",
+            146
+          ],
+          [
+            "M",
+            "2020-03-16",
+            152
+          ],
+          [
+            "M",
+            "2020-03-18",
+            153
+          ],
+          [
+            "M",
+            "2020-03-20",
+            156
+          ],
+          [
+            "M",
+            "2020-03-22",
+            161
+          ],
+          [
+            "M",
+            "2020-03-24",
+            168
+          ],
+          [
+            "M",
+            "2020-03-26",
+            170
+          ],
+          [
+            "M",
+            "2020-03-28",
+            174
+          ],
+          [
+            "M",
+            "2020-03-30",
+            180
+          ],
+          [
+            "M",
+            "2020-04-01",
+            181
+          ],
+          [
+            "M",
+            "2020-04-03",
+            184
+          ],
+          [
+            "M",
+            "2020-04-05",
+            189
+          ],
+          [
+            "M",
+            "2020-04-07",
+            196
+          ],
+          [
+            "M",
+            "2020-04-09",
+            198
+          ],
+          [
+            "M",
+            "2020-04-11",
+            202
+          ],
+          [
+            "M",
+            "2020-04-13",
+            208
+          ],
+          [
+            "M",
+            "2020-04-15",
+            209
+          ],
+          [
+            "M",
+            "2020-04-17",
+            212
+          ],
+          [
+            "M",
+            "2020-04-19",
+            217
+          ],
+          [
+            "M",
+            "2020-04-21",
+            224
+          ],
+          [
+            "M",
+            "2020-04-23",
+            226
+          ],
+          [
+            "M",
+            "2020-04-25",
+            230
+          ],
+          [
+            "M",
+            "2020-04-27",
+            236
+          ],
+          [
+            "M",
+            "2020-04-29",
+            237
+          ],
+          [
+            "M",
+            "2020-05-01",
+            240
+          ],
+          [
+            "M",
+            "2020-05-03",
+            245
+          ],
+          [
+            "M",
+            "2020-05-05",
+            252
+          ],
+          [
+            "M",
+            "2020-05-07",
+            254
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "running-total"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 chronological score rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Scores": [
+            {
+              "player_name": "P1",
+              "gender": "F",
+              "day": "2020-01-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "P2",
+              "gender": "M",
+              "day": "2020-01-02",
+              "score_points": 2
+            },
+            {
+              "player_name": "P3",
+              "gender": "F",
+              "day": "2020-01-03",
+              "score_points": 3
+            },
+            {
+              "player_name": "P4",
+              "gender": "M",
+              "day": "2020-01-04",
+              "score_points": 4
+            },
+            {
+              "player_name": "P5",
+              "gender": "F",
+              "day": "2020-01-05",
+              "score_points": 5
+            },
+            {
+              "player_name": "P6",
+              "gender": "M",
+              "day": "2020-01-06",
+              "score_points": 6
+            },
+            {
+              "player_name": "P7",
+              "gender": "F",
+              "day": "2020-01-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "P8",
+              "gender": "M",
+              "day": "2020-01-08",
+              "score_points": 1
+            },
+            {
+              "player_name": "P9",
+              "gender": "F",
+              "day": "2020-01-09",
+              "score_points": 2
+            },
+            {
+              "player_name": "P10",
+              "gender": "M",
+              "day": "2020-01-10",
+              "score_points": 3
+            },
+            {
+              "player_name": "P11",
+              "gender": "F",
+              "day": "2020-01-11",
+              "score_points": 4
+            },
+            {
+              "player_name": "P12",
+              "gender": "M",
+              "day": "2020-01-12",
+              "score_points": 5
+            },
+            {
+              "player_name": "P13",
+              "gender": "F",
+              "day": "2020-01-13",
+              "score_points": 6
+            },
+            {
+              "player_name": "P14",
+              "gender": "M",
+              "day": "2020-01-14",
+              "score_points": 7
+            },
+            {
+              "player_name": "P15",
+              "gender": "F",
+              "day": "2020-01-15",
+              "score_points": 1
+            },
+            {
+              "player_name": "P16",
+              "gender": "M",
+              "day": "2020-01-16",
+              "score_points": 2
+            },
+            {
+              "player_name": "P17",
+              "gender": "F",
+              "day": "2020-01-17",
+              "score_points": 3
+            },
+            {
+              "player_name": "P18",
+              "gender": "M",
+              "day": "2020-01-18",
+              "score_points": 4
+            },
+            {
+              "player_name": "P19",
+              "gender": "F",
+              "day": "2020-01-19",
+              "score_points": 5
+            },
+            {
+              "player_name": "P20",
+              "gender": "M",
+              "day": "2020-01-20",
+              "score_points": 6
+            },
+            {
+              "player_name": "P21",
+              "gender": "F",
+              "day": "2020-01-21",
+              "score_points": 7
+            },
+            {
+              "player_name": "P22",
+              "gender": "M",
+              "day": "2020-01-22",
+              "score_points": 1
+            },
+            {
+              "player_name": "P23",
+              "gender": "F",
+              "day": "2020-01-23",
+              "score_points": 2
+            },
+            {
+              "player_name": "P24",
+              "gender": "M",
+              "day": "2020-01-24",
+              "score_points": 3
+            },
+            {
+              "player_name": "P25",
+              "gender": "F",
+              "day": "2020-01-25",
+              "score_points": 4
+            },
+            {
+              "player_name": "P26",
+              "gender": "M",
+              "day": "2020-01-26",
+              "score_points": 5
+            },
+            {
+              "player_name": "P27",
+              "gender": "F",
+              "day": "2020-01-27",
+              "score_points": 6
+            },
+            {
+              "player_name": "P28",
+              "gender": "M",
+              "day": "2020-01-28",
+              "score_points": 7
+            },
+            {
+              "player_name": "P29",
+              "gender": "F",
+              "day": "2020-01-29",
+              "score_points": 1
+            },
+            {
+              "player_name": "P30",
+              "gender": "M",
+              "day": "2020-01-30",
+              "score_points": 2
+            },
+            {
+              "player_name": "P31",
+              "gender": "F",
+              "day": "2020-01-31",
+              "score_points": 3
+            },
+            {
+              "player_name": "P32",
+              "gender": "M",
+              "day": "2020-02-01",
+              "score_points": 4
+            },
+            {
+              "player_name": "P33",
+              "gender": "F",
+              "day": "2020-02-02",
+              "score_points": 5
+            },
+            {
+              "player_name": "P34",
+              "gender": "M",
+              "day": "2020-02-03",
+              "score_points": 6
+            },
+            {
+              "player_name": "P35",
+              "gender": "F",
+              "day": "2020-02-04",
+              "score_points": 7
+            },
+            {
+              "player_name": "P36",
+              "gender": "M",
+              "day": "2020-02-05",
+              "score_points": 1
+            },
+            {
+              "player_name": "P37",
+              "gender": "F",
+              "day": "2020-02-06",
+              "score_points": 2
+            },
+            {
+              "player_name": "P38",
+              "gender": "M",
+              "day": "2020-02-07",
+              "score_points": 3
+            },
+            {
+              "player_name": "P39",
+              "gender": "F",
+              "day": "2020-02-08",
+              "score_points": 4
+            },
+            {
+              "player_name": "P40",
+              "gender": "M",
+              "day": "2020-02-09",
+              "score_points": 5
+            },
+            {
+              "player_name": "P41",
+              "gender": "F",
+              "day": "2020-02-10",
+              "score_points": 6
+            },
+            {
+              "player_name": "P42",
+              "gender": "M",
+              "day": "2020-02-11",
+              "score_points": 7
+            },
+            {
+              "player_name": "P43",
+              "gender": "F",
+              "day": "2020-02-12",
+              "score_points": 1
+            },
+            {
+              "player_name": "P44",
+              "gender": "M",
+              "day": "2020-02-13",
+              "score_points": 2
+            },
+            {
+              "player_name": "P45",
+              "gender": "F",
+              "day": "2020-02-14",
+              "score_points": 3
+            },
+            {
+              "player_name": "P46",
+              "gender": "M",
+              "day": "2020-02-15",
+              "score_points": 4
+            },
+            {
+              "player_name": "P47",
+              "gender": "F",
+              "day": "2020-02-16",
+              "score_points": 5
+            },
+            {
+              "player_name": "P48",
+              "gender": "M",
+              "day": "2020-02-17",
+              "score_points": 6
+            },
+            {
+              "player_name": "P49",
+              "gender": "F",
+              "day": "2020-02-18",
+              "score_points": 7
+            },
+            {
+              "player_name": "P50",
+              "gender": "M",
+              "day": "2020-02-19",
+              "score_points": 1
+            },
+            {
+              "player_name": "P51",
+              "gender": "F",
+              "day": "2020-02-20",
+              "score_points": 2
+            },
+            {
+              "player_name": "P52",
+              "gender": "M",
+              "day": "2020-02-21",
+              "score_points": 3
+            },
+            {
+              "player_name": "P53",
+              "gender": "F",
+              "day": "2020-02-22",
+              "score_points": 4
+            },
+            {
+              "player_name": "P54",
+              "gender": "M",
+              "day": "2020-02-23",
+              "score_points": 5
+            },
+            {
+              "player_name": "P55",
+              "gender": "F",
+              "day": "2020-02-24",
+              "score_points": 6
+            },
+            {
+              "player_name": "P56",
+              "gender": "M",
+              "day": "2020-02-25",
+              "score_points": 7
+            },
+            {
+              "player_name": "P57",
+              "gender": "F",
+              "day": "2020-02-26",
+              "score_points": 1
+            },
+            {
+              "player_name": "P58",
+              "gender": "M",
+              "day": "2020-02-27",
+              "score_points": 2
+            },
+            {
+              "player_name": "P59",
+              "gender": "F",
+              "day": "2020-02-28",
+              "score_points": 3
+            },
+            {
+              "player_name": "P60",
+              "gender": "M",
+              "day": "2020-02-29",
+              "score_points": 4
+            },
+            {
+              "player_name": "P61",
+              "gender": "F",
+              "day": "2020-03-01",
+              "score_points": 5
+            },
+            {
+              "player_name": "P62",
+              "gender": "M",
+              "day": "2020-03-02",
+              "score_points": 6
+            },
+            {
+              "player_name": "P63",
+              "gender": "F",
+              "day": "2020-03-03",
+              "score_points": 7
+            },
+            {
+              "player_name": "P64",
+              "gender": "M",
+              "day": "2020-03-04",
+              "score_points": 1
+            },
+            {
+              "player_name": "P65",
+              "gender": "F",
+              "day": "2020-03-05",
+              "score_points": 2
+            },
+            {
+              "player_name": "P66",
+              "gender": "M",
+              "day": "2020-03-06",
+              "score_points": 3
+            },
+            {
+              "player_name": "P67",
+              "gender": "F",
+              "day": "2020-03-07",
+              "score_points": 4
+            },
+            {
+              "player_name": "P68",
+              "gender": "M",
+              "day": "2020-03-08",
+              "score_points": 5
+            },
+            {
+              "player_name": "P69",
+              "gender": "F",
+              "day": "2020-03-09",
+              "score_points": 6
+            },
+            {
+              "player_name": "P70",
+              "gender": "M",
+              "day": "2020-03-10",
+              "score_points": 7
+            },
+            {
+              "player_name": "P71",
+              "gender": "F",
+              "day": "2020-03-11",
+              "score_points": 1
+            },
+            {
+              "player_name": "P72",
+              "gender": "M",
+              "day": "2020-03-12",
+              "score_points": 2
+            },
+            {
+              "player_name": "P73",
+              "gender": "F",
+              "day": "2020-03-13",
+              "score_points": 3
+            },
+            {
+              "player_name": "P74",
+              "gender": "M",
+              "day": "2020-03-14",
+              "score_points": 4
+            },
+            {
+              "player_name": "P75",
+              "gender": "F",
+              "day": "2020-03-15",
+              "score_points": 5
+            },
+            {
+              "player_name": "P76",
+              "gender": "M",
+              "day": "2020-03-16",
+              "score_points": 6
+            },
+            {
+              "player_name": "P77",
+              "gender": "F",
+              "day": "2020-03-17",
+              "score_points": 7
+            },
+            {
+              "player_name": "P78",
+              "gender": "M",
+              "day": "2020-03-18",
+              "score_points": 1
+            },
+            {
+              "player_name": "P79",
+              "gender": "F",
+              "day": "2020-03-19",
+              "score_points": 2
+            },
+            {
+              "player_name": "P80",
+              "gender": "M",
+              "day": "2020-03-20",
+              "score_points": 3
+            },
+            {
+              "player_name": "P81",
+              "gender": "F",
+              "day": "2020-03-21",
+              "score_points": 4
+            },
+            {
+              "player_name": "P82",
+              "gender": "M",
+              "day": "2020-03-22",
+              "score_points": 5
+            },
+            {
+              "player_name": "P83",
+              "gender": "F",
+              "day": "2020-03-23",
+              "score_points": 6
+            },
+            {
+              "player_name": "P84",
+              "gender": "M",
+              "day": "2020-03-24",
+              "score_points": 7
+            },
+            {
+              "player_name": "P85",
+              "gender": "F",
+              "day": "2020-03-25",
+              "score_points": 1
+            },
+            {
+              "player_name": "P86",
+              "gender": "M",
+              "day": "2020-03-26",
+              "score_points": 2
+            },
+            {
+              "player_name": "P87",
+              "gender": "F",
+              "day": "2020-03-27",
+              "score_points": 3
+            },
+            {
+              "player_name": "P88",
+              "gender": "M",
+              "day": "2020-03-28",
+              "score_points": 4
+            },
+            {
+              "player_name": "P89",
+              "gender": "F",
+              "day": "2020-03-29",
+              "score_points": 5
+            },
+            {
+              "player_name": "P90",
+              "gender": "M",
+              "day": "2020-03-30",
+              "score_points": 6
+            },
+            {
+              "player_name": "P91",
+              "gender": "F",
+              "day": "2020-03-31",
+              "score_points": 7
+            },
+            {
+              "player_name": "P92",
+              "gender": "M",
+              "day": "2020-04-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "P93",
+              "gender": "F",
+              "day": "2020-04-02",
+              "score_points": 2
+            },
+            {
+              "player_name": "P94",
+              "gender": "M",
+              "day": "2020-04-03",
+              "score_points": 3
+            },
+            {
+              "player_name": "P95",
+              "gender": "F",
+              "day": "2020-04-04",
+              "score_points": 4
+            },
+            {
+              "player_name": "P96",
+              "gender": "M",
+              "day": "2020-04-05",
+              "score_points": 5
+            },
+            {
+              "player_name": "P97",
+              "gender": "F",
+              "day": "2020-04-06",
+              "score_points": 6
+            },
+            {
+              "player_name": "P98",
+              "gender": "M",
+              "day": "2020-04-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "P99",
+              "gender": "F",
+              "day": "2020-04-08",
+              "score_points": 1
+            },
+            {
+              "player_name": "P100",
+              "gender": "M",
+              "day": "2020-04-09",
+              "score_points": 2
+            },
+            {
+              "player_name": "P101",
+              "gender": "F",
+              "day": "2020-04-10",
+              "score_points": 3
+            },
+            {
+              "player_name": "P102",
+              "gender": "M",
+              "day": "2020-04-11",
+              "score_points": 4
+            },
+            {
+              "player_name": "P103",
+              "gender": "F",
+              "day": "2020-04-12",
+              "score_points": 5
+            },
+            {
+              "player_name": "P104",
+              "gender": "M",
+              "day": "2020-04-13",
+              "score_points": 6
+            },
+            {
+              "player_name": "P105",
+              "gender": "F",
+              "day": "2020-04-14",
+              "score_points": 7
+            },
+            {
+              "player_name": "P106",
+              "gender": "M",
+              "day": "2020-04-15",
+              "score_points": 1
+            },
+            {
+              "player_name": "P107",
+              "gender": "F",
+              "day": "2020-04-16",
+              "score_points": 2
+            },
+            {
+              "player_name": "P108",
+              "gender": "M",
+              "day": "2020-04-17",
+              "score_points": 3
+            },
+            {
+              "player_name": "P109",
+              "gender": "F",
+              "day": "2020-04-18",
+              "score_points": 4
+            },
+            {
+              "player_name": "P110",
+              "gender": "M",
+              "day": "2020-04-19",
+              "score_points": 5
+            },
+            {
+              "player_name": "P111",
+              "gender": "F",
+              "day": "2020-04-20",
+              "score_points": 6
+            },
+            {
+              "player_name": "P112",
+              "gender": "M",
+              "day": "2020-04-21",
+              "score_points": 7
+            },
+            {
+              "player_name": "P113",
+              "gender": "F",
+              "day": "2020-04-22",
+              "score_points": 1
+            },
+            {
+              "player_name": "P114",
+              "gender": "M",
+              "day": "2020-04-23",
+              "score_points": 2
+            },
+            {
+              "player_name": "P115",
+              "gender": "F",
+              "day": "2020-04-24",
+              "score_points": 3
+            },
+            {
+              "player_name": "P116",
+              "gender": "M",
+              "day": "2020-04-25",
+              "score_points": 4
+            },
+            {
+              "player_name": "P117",
+              "gender": "F",
+              "day": "2020-04-26",
+              "score_points": 5
+            },
+            {
+              "player_name": "P118",
+              "gender": "M",
+              "day": "2020-04-27",
+              "score_points": 6
+            },
+            {
+              "player_name": "P119",
+              "gender": "F",
+              "day": "2020-04-28",
+              "score_points": 7
+            },
+            {
+              "player_name": "P120",
+              "gender": "M",
+              "day": "2020-04-29",
+              "score_points": 1
+            },
+            {
+              "player_name": "P121",
+              "gender": "F",
+              "day": "2020-04-30",
+              "score_points": 2
+            },
+            {
+              "player_name": "P122",
+              "gender": "M",
+              "day": "2020-05-01",
+              "score_points": 3
+            },
+            {
+              "player_name": "P123",
+              "gender": "F",
+              "day": "2020-05-02",
+              "score_points": 4
+            },
+            {
+              "player_name": "P124",
+              "gender": "M",
+              "day": "2020-05-03",
+              "score_points": 5
+            },
+            {
+              "player_name": "P125",
+              "gender": "F",
+              "day": "2020-05-04",
+              "score_points": 6
+            },
+            {
+              "player_name": "P126",
+              "gender": "M",
+              "day": "2020-05-05",
+              "score_points": 7
+            },
+            {
+              "player_name": "P127",
+              "gender": "F",
+              "day": "2020-05-06",
+              "score_points": 1
+            },
+            {
+              "player_name": "P128",
+              "gender": "M",
+              "day": "2020-05-07",
+              "score_points": 2
+            },
+            {
+              "player_name": "P129",
+              "gender": "F",
+              "day": "2020-05-08",
+              "score_points": 3
+            },
+            {
+              "player_name": "P130",
+              "gender": "M",
+              "day": "2020-05-09",
+              "score_points": 4
+            },
+            {
+              "player_name": "P131",
+              "gender": "F",
+              "day": "2020-05-10",
+              "score_points": 5
+            },
+            {
+              "player_name": "P132",
+              "gender": "M",
+              "day": "2020-05-11",
+              "score_points": 6
+            },
+            {
+              "player_name": "P133",
+              "gender": "F",
+              "day": "2020-05-12",
+              "score_points": 7
+            },
+            {
+              "player_name": "P134",
+              "gender": "M",
+              "day": "2020-05-13",
+              "score_points": 1
+            },
+            {
+              "player_name": "P135",
+              "gender": "F",
+              "day": "2020-05-14",
+              "score_points": 2
+            },
+            {
+              "player_name": "P136",
+              "gender": "M",
+              "day": "2020-05-15",
+              "score_points": 3
+            },
+            {
+              "player_name": "P137",
+              "gender": "F",
+              "day": "2020-05-16",
+              "score_points": 4
+            },
+            {
+              "player_name": "P138",
+              "gender": "M",
+              "day": "2020-05-17",
+              "score_points": 5
+            },
+            {
+              "player_name": "P139",
+              "gender": "F",
+              "day": "2020-05-18",
+              "score_points": 6
+            },
+            {
+              "player_name": "P140",
+              "gender": "M",
+              "day": "2020-05-19",
+              "score_points": 7
+            },
+            {
+              "player_name": "P141",
+              "gender": "F",
+              "day": "2020-05-20",
+              "score_points": 1
+            },
+            {
+              "player_name": "P142",
+              "gender": "M",
+              "day": "2020-05-21",
+              "score_points": 2
+            },
+            {
+              "player_name": "P143",
+              "gender": "F",
+              "day": "2020-05-22",
+              "score_points": 3
+            },
+            {
+              "player_name": "P144",
+              "gender": "M",
+              "day": "2020-05-23",
+              "score_points": 4
+            },
+            {
+              "player_name": "P145",
+              "gender": "F",
+              "day": "2020-05-24",
+              "score_points": 5
+            },
+            {
+              "player_name": "P146",
+              "gender": "M",
+              "day": "2020-05-25",
+              "score_points": 6
+            },
+            {
+              "player_name": "P147",
+              "gender": "F",
+              "day": "2020-05-26",
+              "score_points": 7
+            },
+            {
+              "player_name": "P148",
+              "gender": "M",
+              "day": "2020-05-27",
+              "score_points": 1
+            },
+            {
+              "player_name": "P149",
+              "gender": "F",
+              "day": "2020-05-28",
+              "score_points": 2
+            },
+            {
+              "player_name": "P150",
+              "gender": "M",
+              "day": "2020-05-29",
+              "score_points": 3
+            },
+            {
+              "player_name": "P151",
+              "gender": "F",
+              "day": "2020-05-30",
+              "score_points": 4
+            },
+            {
+              "player_name": "P152",
+              "gender": "M",
+              "day": "2020-05-31",
+              "score_points": 5
+            },
+            {
+              "player_name": "P153",
+              "gender": "F",
+              "day": "2020-06-01",
+              "score_points": 6
+            },
+            {
+              "player_name": "P154",
+              "gender": "M",
+              "day": "2020-06-02",
+              "score_points": 7
+            },
+            {
+              "player_name": "P155",
+              "gender": "F",
+              "day": "2020-06-03",
+              "score_points": 1
+            },
+            {
+              "player_name": "P156",
+              "gender": "M",
+              "day": "2020-06-04",
+              "score_points": 2
+            },
+            {
+              "player_name": "P157",
+              "gender": "F",
+              "day": "2020-06-05",
+              "score_points": 3
+            },
+            {
+              "player_name": "P158",
+              "gender": "M",
+              "day": "2020-06-06",
+              "score_points": 4
+            },
+            {
+              "player_name": "P159",
+              "gender": "F",
+              "day": "2020-06-07",
+              "score_points": 5
+            },
+            {
+              "player_name": "P160",
+              "gender": "M",
+              "day": "2020-06-08",
+              "score_points": 6
+            },
+            {
+              "player_name": "P161",
+              "gender": "F",
+              "day": "2020-06-09",
+              "score_points": 7
+            },
+            {
+              "player_name": "P162",
+              "gender": "M",
+              "day": "2020-06-10",
+              "score_points": 1
+            },
+            {
+              "player_name": "P163",
+              "gender": "F",
+              "day": "2020-06-11",
+              "score_points": 2
+            },
+            {
+              "player_name": "P164",
+              "gender": "M",
+              "day": "2020-06-12",
+              "score_points": 3
+            },
+            {
+              "player_name": "P165",
+              "gender": "F",
+              "day": "2020-06-13",
+              "score_points": 4
+            },
+            {
+              "player_name": "P166",
+              "gender": "M",
+              "day": "2020-06-14",
+              "score_points": 5
+            },
+            {
+              "player_name": "P167",
+              "gender": "F",
+              "day": "2020-06-15",
+              "score_points": 6
+            },
+            {
+              "player_name": "P168",
+              "gender": "M",
+              "day": "2020-06-16",
+              "score_points": 7
+            },
+            {
+              "player_name": "P169",
+              "gender": "F",
+              "day": "2020-06-17",
+              "score_points": 1
+            },
+            {
+              "player_name": "P170",
+              "gender": "M",
+              "day": "2020-06-18",
+              "score_points": 2
+            },
+            {
+              "player_name": "P171",
+              "gender": "F",
+              "day": "2020-06-19",
+              "score_points": 3
+            },
+            {
+              "player_name": "P172",
+              "gender": "M",
+              "day": "2020-06-20",
+              "score_points": 4
+            },
+            {
+              "player_name": "P173",
+              "gender": "F",
+              "day": "2020-06-21",
+              "score_points": 5
+            },
+            {
+              "player_name": "P174",
+              "gender": "M",
+              "day": "2020-06-22",
+              "score_points": 6
+            },
+            {
+              "player_name": "P175",
+              "gender": "F",
+              "day": "2020-06-23",
+              "score_points": 7
+            },
+            {
+              "player_name": "P176",
+              "gender": "M",
+              "day": "2020-06-24",
+              "score_points": 1
+            },
+            {
+              "player_name": "P177",
+              "gender": "F",
+              "day": "2020-06-25",
+              "score_points": 2
+            },
+            {
+              "player_name": "P178",
+              "gender": "M",
+              "day": "2020-06-26",
+              "score_points": 3
+            },
+            {
+              "player_name": "P179",
+              "gender": "F",
+              "day": "2020-06-27",
+              "score_points": 4
+            },
+            {
+              "player_name": "P180",
+              "gender": "M",
+              "day": "2020-06-28",
+              "score_points": 5
+            },
+            {
+              "player_name": "P181",
+              "gender": "F",
+              "day": "2020-06-29",
+              "score_points": 6
+            },
+            {
+              "player_name": "P182",
+              "gender": "M",
+              "day": "2020-06-30",
+              "score_points": 7
+            },
+            {
+              "player_name": "P183",
+              "gender": "F",
+              "day": "2020-07-01",
+              "score_points": 1
+            },
+            {
+              "player_name": "P184",
+              "gender": "M",
+              "day": "2020-07-02",
+              "score_points": 2
+            },
+            {
+              "player_name": "P185",
+              "gender": "F",
+              "day": "2020-07-03",
+              "score_points": 3
+            },
+            {
+              "player_name": "P186",
+              "gender": "M",
+              "day": "2020-07-04",
+              "score_points": 4
+            },
+            {
+              "player_name": "P187",
+              "gender": "F",
+              "day": "2020-07-05",
+              "score_points": 5
+            },
+            {
+              "player_name": "P188",
+              "gender": "M",
+              "day": "2020-07-06",
+              "score_points": 6
+            },
+            {
+              "player_name": "P189",
+              "gender": "F",
+              "day": "2020-07-07",
+              "score_points": 7
+            },
+            {
+              "player_name": "P190",
+              "gender": "M",
+              "day": "2020-07-08",
+              "score_points": 1
+            },
+            {
+              "player_name": "P191",
+              "gender": "F",
+              "day": "2020-07-09",
+              "score_points": 2
+            },
+            {
+              "player_name": "P192",
+              "gender": "M",
+              "day": "2020-07-10",
+              "score_points": 3
+            },
+            {
+              "player_name": "P193",
+              "gender": "F",
+              "day": "2020-07-11",
+              "score_points": 4
+            },
+            {
+              "player_name": "P194",
+              "gender": "M",
+              "day": "2020-07-12",
+              "score_points": 5
+            },
+            {
+              "player_name": "P195",
+              "gender": "F",
+              "day": "2020-07-13",
+              "score_points": 6
+            },
+            {
+              "player_name": "P196",
+              "gender": "M",
+              "day": "2020-07-14",
+              "score_points": 7
+            },
+            {
+              "player_name": "P197",
+              "gender": "F",
+              "day": "2020-07-15",
+              "score_points": 1
+            },
+            {
+              "player_name": "P198",
+              "gender": "M",
+              "day": "2020-07-16",
+              "score_points": 2
+            },
+            {
+              "player_name": "P199",
+              "gender": "F",
+              "day": "2020-07-17",
+              "score_points": 3
+            },
+            {
+              "player_name": "P200",
+              "gender": "M",
+              "day": "2020-07-18",
+              "score_points": 4
+            },
+            {
+              "player_name": "P201",
+              "gender": "F",
+              "day": "2020-07-19",
+              "score_points": 5
+            },
+            {
+              "player_name": "P202",
+              "gender": "M",
+              "day": "2020-07-20",
+              "score_points": 6
+            },
+            {
+              "player_name": "P203",
+              "gender": "F",
+              "day": "2020-07-21",
+              "score_points": 7
+            },
+            {
+              "player_name": "P204",
+              "gender": "M",
+              "day": "2020-07-22",
+              "score_points": 1
+            },
+            {
+              "player_name": "P205",
+              "gender": "F",
+              "day": "2020-07-23",
+              "score_points": 2
+            },
+            {
+              "player_name": "P206",
+              "gender": "M",
+              "day": "2020-07-24",
+              "score_points": 3
+            },
+            {
+              "player_name": "P207",
+              "gender": "F",
+              "day": "2020-07-25",
+              "score_points": 4
+            },
+            {
+              "player_name": "P208",
+              "gender": "M",
+              "day": "2020-07-26",
+              "score_points": 5
+            },
+            {
+              "player_name": "P209",
+              "gender": "F",
+              "day": "2020-07-27",
+              "score_points": 6
+            },
+            {
+              "player_name": "P210",
+              "gender": "M",
+              "day": "2020-07-28",
+              "score_points": 7
+            },
+            {
+              "player_name": "P211",
+              "gender": "F",
+              "day": "2020-07-29",
+              "score_points": 1
+            },
+            {
+              "player_name": "P212",
+              "gender": "M",
+              "day": "2020-07-30",
+              "score_points": 2
+            },
+            {
+              "player_name": "P213",
+              "gender": "F",
+              "day": "2020-07-31",
+              "score_points": 3
+            },
+            {
+              "player_name": "P214",
+              "gender": "M",
+              "day": "2020-08-01",
+              "score_points": 4
+            },
+            {
+              "player_name": "P215",
+              "gender": "F",
+              "day": "2020-08-02",
+              "score_points": 5
+            },
+            {
+              "player_name": "P216",
+              "gender": "M",
+              "day": "2020-08-03",
+              "score_points": 6
+            },
+            {
+              "player_name": "P217",
+              "gender": "F",
+              "day": "2020-08-04",
+              "score_points": 7
+            },
+            {
+              "player_name": "P218",
+              "gender": "M",
+              "day": "2020-08-05",
+              "score_points": 1
+            },
+            {
+              "player_name": "P219",
+              "gender": "F",
+              "day": "2020-08-06",
+              "score_points": 2
+            },
+            {
+              "player_name": "P220",
+              "gender": "M",
+              "day": "2020-08-07",
+              "score_points": 3
+            },
+            {
+              "player_name": "P221",
+              "gender": "F",
+              "day": "2020-08-08",
+              "score_points": 4
+            },
+            {
+              "player_name": "P222",
+              "gender": "M",
+              "day": "2020-08-09",
+              "score_points": 5
+            },
+            {
+              "player_name": "P223",
+              "gender": "F",
+              "day": "2020-08-10",
+              "score_points": 6
+            },
+            {
+              "player_name": "P224",
+              "gender": "M",
+              "day": "2020-08-11",
+              "score_points": 7
+            },
+            {
+              "player_name": "P225",
+              "gender": "F",
+              "day": "2020-08-12",
+              "score_points": 1
+            },
+            {
+              "player_name": "P226",
+              "gender": "M",
+              "day": "2020-08-13",
+              "score_points": 2
+            },
+            {
+              "player_name": "P227",
+              "gender": "F",
+              "day": "2020-08-14",
+              "score_points": 3
+            },
+            {
+              "player_name": "P228",
+              "gender": "M",
+              "day": "2020-08-15",
+              "score_points": 4
+            },
+            {
+              "player_name": "P229",
+              "gender": "F",
+              "day": "2020-08-16",
+              "score_points": 5
+            },
+            {
+              "player_name": "P230",
+              "gender": "M",
+              "day": "2020-08-17",
+              "score_points": 6
+            },
+            {
+              "player_name": "P231",
+              "gender": "F",
+              "day": "2020-08-18",
+              "score_points": 7
+            },
+            {
+              "player_name": "P232",
+              "gender": "M",
+              "day": "2020-08-19",
+              "score_points": 1
+            },
+            {
+              "player_name": "P233",
+              "gender": "F",
+              "day": "2020-08-20",
+              "score_points": 2
+            },
+            {
+              "player_name": "P234",
+              "gender": "M",
+              "day": "2020-08-21",
+              "score_points": 3
+            },
+            {
+              "player_name": "P235",
+              "gender": "F",
+              "day": "2020-08-22",
+              "score_points": 4
+            },
+            {
+              "player_name": "P236",
+              "gender": "M",
+              "day": "2020-08-23",
+              "score_points": 5
+            },
+            {
+              "player_name": "P237",
+              "gender": "F",
+              "day": "2020-08-24",
+              "score_points": 6
+            },
+            {
+              "player_name": "P238",
+              "gender": "M",
+              "day": "2020-08-25",
+              "score_points": 7
+            },
+            {
+              "player_name": "P239",
+              "gender": "F",
+              "day": "2020-08-26",
+              "score_points": 1
+            },
+            {
+              "player_name": "P240",
+              "gender": "M",
+              "day": "2020-08-27",
+              "score_points": 2
+            },
+            {
+              "player_name": "P241",
+              "gender": "F",
+              "day": "2020-08-28",
+              "score_points": 3
+            },
+            {
+              "player_name": "P242",
+              "gender": "M",
+              "day": "2020-08-29",
+              "score_points": 4
+            },
+            {
+              "player_name": "P243",
+              "gender": "F",
+              "day": "2020-08-30",
+              "score_points": 5
+            },
+            {
+              "player_name": "P244",
+              "gender": "M",
+              "day": "2020-08-31",
+              "score_points": 6
+            },
+            {
+              "player_name": "P245",
+              "gender": "F",
+              "day": "2020-09-01",
+              "score_points": 7
+            },
+            {
+              "player_name": "P246",
+              "gender": "M",
+              "day": "2020-09-02",
+              "score_points": 1
+            },
+            {
+              "player_name": "P247",
+              "gender": "F",
+              "day": "2020-09-03",
+              "score_points": 2
+            },
+            {
+              "player_name": "P248",
+              "gender": "M",
+              "day": "2020-09-04",
+              "score_points": 3
+            },
+            {
+              "player_name": "P249",
+              "gender": "F",
+              "day": "2020-09-05",
+              "score_points": 4
+            },
+            {
+              "player_name": "P250",
+              "gender": "M",
+              "day": "2020-09-06",
+              "score_points": 5
+            },
+            {
+              "player_name": "P251",
+              "gender": "F",
+              "day": "2020-09-07",
+              "score_points": 6
+            },
+            {
+              "player_name": "P252",
+              "gender": "M",
+              "day": "2020-09-08",
+              "score_points": 7
+            },
+            {
+              "player_name": "P253",
+              "gender": "F",
+              "day": "2020-09-09",
+              "score_points": 1
+            },
+            {
+              "player_name": "P254",
+              "gender": "M",
+              "day": "2020-09-10",
+              "score_points": 2
+            },
+            {
+              "player_name": "P255",
+              "gender": "F",
+              "day": "2020-09-11",
+              "score_points": 3
+            },
+            {
+              "player_name": "P256",
+              "gender": "M",
+              "day": "2020-09-12",
+              "score_points": 4
+            },
+            {
+              "player_name": "P257",
+              "gender": "F",
+              "day": "2020-09-13",
+              "score_points": 5
+            },
+            {
+              "player_name": "P258",
+              "gender": "M",
+              "day": "2020-09-14",
+              "score_points": 6
+            },
+            {
+              "player_name": "P259",
+              "gender": "F",
+              "day": "2020-09-15",
+              "score_points": 7
+            },
+            {
+              "player_name": "P260",
+              "gender": "M",
+              "day": "2020-09-16",
+              "score_points": 1
+            },
+            {
+              "player_name": "P261",
+              "gender": "F",
+              "day": "2020-09-17",
+              "score_points": 2
+            },
+            {
+              "player_name": "P262",
+              "gender": "M",
+              "day": "2020-09-18",
+              "score_points": 3
+            },
+            {
+              "player_name": "P263",
+              "gender": "F",
+              "day": "2020-09-19",
+              "score_points": 4
+            },
+            {
+              "player_name": "P264",
+              "gender": "M",
+              "day": "2020-09-20",
+              "score_points": 5
+            },
+            {
+              "player_name": "P265",
+              "gender": "F",
+              "day": "2020-09-21",
+              "score_points": 6
+            },
+            {
+              "player_name": "P266",
+              "gender": "M",
+              "day": "2020-09-22",
+              "score_points": 7
+            },
+            {
+              "player_name": "P267",
+              "gender": "F",
+              "day": "2020-09-23",
+              "score_points": 1
+            },
+            {
+              "player_name": "P268",
+              "gender": "M",
+              "day": "2020-09-24",
+              "score_points": 2
+            },
+            {
+              "player_name": "P269",
+              "gender": "F",
+              "day": "2020-09-25",
+              "score_points": 3
+            },
+            {
+              "player_name": "P270",
+              "gender": "M",
+              "day": "2020-09-26",
+              "score_points": 4
+            },
+            {
+              "player_name": "P271",
+              "gender": "F",
+              "day": "2020-09-27",
+              "score_points": 5
+            },
+            {
+              "player_name": "P272",
+              "gender": "M",
+              "day": "2020-09-28",
+              "score_points": 6
+            },
+            {
+              "player_name": "P273",
+              "gender": "F",
+              "day": "2020-09-29",
+              "score_points": 7
+            },
+            {
+              "player_name": "P274",
+              "gender": "M",
+              "day": "2020-09-30",
+              "score_points": 1
+            },
+            {
+              "player_name": "P275",
+              "gender": "F",
+              "day": "2020-10-01",
+              "score_points": 2
+            },
+            {
+              "player_name": "P276",
+              "gender": "M",
+              "day": "2020-10-02",
+              "score_points": 3
+            },
+            {
+              "player_name": "P277",
+              "gender": "F",
+              "day": "2020-10-03",
+              "score_points": 4
+            },
+            {
+              "player_name": "P278",
+              "gender": "M",
+              "day": "2020-10-04",
+              "score_points": 5
+            },
+            {
+              "player_name": "P279",
+              "gender": "F",
+              "day": "2020-10-05",
+              "score_points": 6
+            },
+            {
+              "player_name": "P280",
+              "gender": "M",
+              "day": "2020-10-06",
+              "score_points": 7
+            },
+            {
+              "player_name": "P281",
+              "gender": "F",
+              "day": "2020-10-07",
+              "score_points": 1
+            },
+            {
+              "player_name": "P282",
+              "gender": "M",
+              "day": "2020-10-08",
+              "score_points": 2
+            },
+            {
+              "player_name": "P283",
+              "gender": "F",
+              "day": "2020-10-09",
+              "score_points": 3
+            },
+            {
+              "player_name": "P284",
+              "gender": "M",
+              "day": "2020-10-10",
+              "score_points": 4
+            },
+            {
+              "player_name": "P285",
+              "gender": "F",
+              "day": "2020-10-11",
+              "score_points": 5
+            },
+            {
+              "player_name": "P286",
+              "gender": "M",
+              "day": "2020-10-12",
+              "score_points": 6
+            },
+            {
+              "player_name": "P287",
+              "gender": "F",
+              "day": "2020-10-13",
+              "score_points": 7
+            },
+            {
+              "player_name": "P288",
+              "gender": "M",
+              "day": "2020-10-14",
+              "score_points": 1
+            },
+            {
+              "player_name": "P289",
+              "gender": "F",
+              "day": "2020-10-15",
+              "score_points": 2
+            },
+            {
+              "player_name": "P290",
+              "gender": "M",
+              "day": "2020-10-16",
+              "score_points": 3
+            },
+            {
+              "player_name": "P291",
+              "gender": "F",
+              "day": "2020-10-17",
+              "score_points": 4
+            },
+            {
+              "player_name": "P292",
+              "gender": "M",
+              "day": "2020-10-18",
+              "score_points": 5
+            },
+            {
+              "player_name": "P293",
+              "gender": "F",
+              "day": "2020-10-19",
+              "score_points": 6
+            },
+            {
+              "player_name": "P294",
+              "gender": "M",
+              "day": "2020-10-20",
+              "score_points": 7
+            },
+            {
+              "player_name": "P295",
+              "gender": "F",
+              "day": "2020-10-21",
+              "score_points": 1
+            },
+            {
+              "player_name": "P296",
+              "gender": "M",
+              "day": "2020-10-22",
+              "score_points": 2
+            },
+            {
+              "player_name": "P297",
+              "gender": "F",
+              "day": "2020-10-23",
+              "score_points": 3
+            },
+            {
+              "player_name": "P298",
+              "gender": "M",
+              "day": "2020-10-24",
+              "score_points": 4
+            },
+            {
+              "player_name": "P299",
+              "gender": "F",
+              "day": "2020-10-25",
+              "score_points": 5
+            },
+            {
+              "player_name": "P300",
+              "gender": "M",
+              "day": "2020-10-26",
+              "score_points": 6
+            },
+            {
+              "player_name": "P301",
+              "gender": "F",
+              "day": "2020-10-27",
+              "score_points": 7
+            },
+            {
+              "player_name": "P302",
+              "gender": "M",
+              "day": "2020-10-28",
+              "score_points": 1
+            },
+            {
+              "player_name": "P303",
+              "gender": "F",
+              "day": "2020-10-29",
+              "score_points": 2
+            },
+            {
+              "player_name": "P304",
+              "gender": "M",
+              "day": "2020-10-30",
+              "score_points": 3
+            },
+            {
+              "player_name": "P305",
+              "gender": "F",
+              "day": "2020-10-31",
+              "score_points": 4
+            },
+            {
+              "player_name": "P306",
+              "gender": "M",
+              "day": "2020-11-01",
+              "score_points": 5
+            },
+            {
+              "player_name": "P307",
+              "gender": "F",
+              "day": "2020-11-02",
+              "score_points": 6
+            },
+            {
+              "player_name": "P308",
+              "gender": "M",
+              "day": "2020-11-03",
+              "score_points": 7
+            },
+            {
+              "player_name": "P309",
+              "gender": "F",
+              "day": "2020-11-04",
+              "score_points": 1
+            },
+            {
+              "player_name": "P310",
+              "gender": "M",
+              "day": "2020-11-05",
+              "score_points": 2
+            },
+            {
+              "player_name": "P311",
+              "gender": "F",
+              "day": "2020-11-06",
+              "score_points": 3
+            },
+            {
+              "player_name": "P312",
+              "gender": "M",
+              "day": "2020-11-07",
+              "score_points": 4
+            },
+            {
+              "player_name": "P313",
+              "gender": "F",
+              "day": "2020-11-08",
+              "score_points": 5
+            },
+            {
+              "player_name": "P314",
+              "gender": "M",
+              "day": "2020-11-09",
+              "score_points": 6
+            },
+            {
+              "player_name": "P315",
+              "gender": "F",
+              "day": "2020-11-10",
+              "score_points": 7
+            },
+            {
+              "player_name": "P316",
+              "gender": "M",
+              "day": "2020-11-11",
+              "score_points": 1
+            },
+            {
+              "player_name": "P317",
+              "gender": "F",
+              "day": "2020-11-12",
+              "score_points": 2
+            },
+            {
+              "player_name": "P318",
+              "gender": "M",
+              "day": "2020-11-13",
+              "score_points": 3
+            },
+            {
+              "player_name": "P319",
+              "gender": "F",
+              "day": "2020-11-14",
+              "score_points": 4
+            },
+            {
+              "player_name": "P320",
+              "gender": "M",
+              "day": "2020-11-15",
+              "score_points": 5
+            },
+            {
+              "player_name": "P321",
+              "gender": "F",
+              "day": "2020-11-16",
+              "score_points": 6
+            },
+            {
+              "player_name": "P322",
+              "gender": "M",
+              "day": "2020-11-17",
+              "score_points": 7
+            },
+            {
+              "player_name": "P323",
+              "gender": "F",
+              "day": "2020-11-18",
+              "score_points": 1
+            },
+            {
+              "player_name": "P324",
+              "gender": "M",
+              "day": "2020-11-19",
+              "score_points": 2
+            },
+            {
+              "player_name": "P325",
+              "gender": "F",
+              "day": "2020-11-20",
+              "score_points": 3
+            },
+            {
+              "player_name": "P326",
+              "gender": "M",
+              "day": "2020-11-21",
+              "score_points": 4
+            },
+            {
+              "player_name": "P327",
+              "gender": "F",
+              "day": "2020-11-22",
+              "score_points": 5
+            },
+            {
+              "player_name": "P328",
+              "gender": "M",
+              "day": "2020-11-23",
+              "score_points": 6
+            },
+            {
+              "player_name": "P329",
+              "gender": "F",
+              "day": "2020-11-24",
+              "score_points": 7
+            },
+            {
+              "player_name": "P330",
+              "gender": "M",
+              "day": "2020-11-25",
+              "score_points": 1
+            },
+            {
+              "player_name": "P331",
+              "gender": "F",
+              "day": "2020-11-26",
+              "score_points": 2
+            },
+            {
+              "player_name": "P332",
+              "gender": "M",
+              "day": "2020-11-27",
+              "score_points": 3
+            },
+            {
+              "player_name": "P333",
+              "gender": "F",
+              "day": "2020-11-28",
+              "score_points": 4
+            },
+            {
+              "player_name": "P334",
+              "gender": "M",
+              "day": "2020-11-29",
+              "score_points": 5
+            },
+            {
+              "player_name": "P335",
+              "gender": "F",
+              "day": "2020-11-30",
+              "score_points": 6
+            },
+            {
+              "player_name": "P336",
+              "gender": "M",
+              "day": "2020-12-01",
+              "score_points": 7
+            },
+            {
+              "player_name": "P337",
+              "gender": "F",
+              "day": "2020-12-02",
+              "score_points": 1
+            },
+            {
+              "player_name": "P338",
+              "gender": "M",
+              "day": "2020-12-03",
+              "score_points": 2
+            },
+            {
+              "player_name": "P339",
+              "gender": "F",
+              "day": "2020-12-04",
+              "score_points": 3
+            },
+            {
+              "player_name": "P340",
+              "gender": "M",
+              "day": "2020-12-05",
+              "score_points": 4
+            },
+            {
+              "player_name": "P341",
+              "gender": "F",
+              "day": "2020-12-06",
+              "score_points": 5
+            },
+            {
+              "player_name": "P342",
+              "gender": "M",
+              "day": "2020-12-07",
+              "score_points": 6
+            },
+            {
+              "player_name": "P343",
+              "gender": "F",
+              "day": "2020-12-08",
+              "score_points": 7
+            },
+            {
+              "player_name": "P344",
+              "gender": "M",
+              "day": "2020-12-09",
+              "score_points": 1
+            },
+            {
+              "player_name": "P345",
+              "gender": "F",
+              "day": "2020-12-10",
+              "score_points": 2
+            },
+            {
+              "player_name": "P346",
+              "gender": "M",
+              "day": "2020-12-11",
+              "score_points": 3
+            },
+            {
+              "player_name": "P347",
+              "gender": "F",
+              "day": "2020-12-12",
+              "score_points": 4
+            },
+            {
+              "player_name": "P348",
+              "gender": "M",
+              "day": "2020-12-13",
+              "score_points": 5
+            },
+            {
+              "player_name": "P349",
+              "gender": "F",
+              "day": "2020-12-14",
+              "score_points": 6
+            },
+            {
+              "player_name": "P350",
+              "gender": "M",
+              "day": "2020-12-15",
+              "score_points": 7
+            },
+            {
+              "player_name": "P351",
+              "gender": "F",
+              "day": "2020-12-16",
+              "score_points": 1
+            },
+            {
+              "player_name": "P352",
+              "gender": "M",
+              "day": "2020-12-17",
+              "score_points": 2
+            },
+            {
+              "player_name": "P353",
+              "gender": "F",
+              "day": "2020-12-18",
+              "score_points": 3
+            },
+            {
+              "player_name": "P354",
+              "gender": "M",
+              "day": "2020-12-19",
+              "score_points": 4
+            },
+            {
+              "player_name": "P355",
+              "gender": "F",
+              "day": "2020-12-20",
+              "score_points": 5
+            },
+            {
+              "player_name": "P356",
+              "gender": "M",
+              "day": "2020-12-21",
+              "score_points": 6
+            },
+            {
+              "player_name": "P357",
+              "gender": "F",
+              "day": "2020-12-22",
+              "score_points": 7
+            },
+            {
+              "player_name": "P358",
+              "gender": "M",
+              "day": "2020-12-23",
+              "score_points": 1
+            },
+            {
+              "player_name": "P359",
+              "gender": "F",
+              "day": "2020-12-24",
+              "score_points": 2
+            },
+            {
+              "player_name": "P360",
+              "gender": "M",
+              "day": "2020-12-25",
+              "score_points": 3
+            },
+            {
+              "player_name": "P361",
+              "gender": "F",
+              "day": "2020-12-26",
+              "score_points": 4
+            },
+            {
+              "player_name": "P362",
+              "gender": "M",
+              "day": "2020-12-27",
+              "score_points": 5
+            },
+            {
+              "player_name": "P363",
+              "gender": "F",
+              "day": "2020-12-28",
+              "score_points": 6
+            },
+            {
+              "player_name": "P364",
+              "gender": "M",
+              "day": "2020-12-29",
+              "score_points": 7
+            },
+            {
+              "player_name": "P365",
+              "gender": "F",
+              "day": "2020-12-30",
+              "score_points": 1
+            },
+            {
+              "player_name": "P366",
+              "gender": "M",
+              "day": "2020-12-31",
+              "score_points": 2
+            },
+            {
+              "player_name": "P367",
+              "gender": "F",
+              "day": "2021-01-01",
+              "score_points": 3
+            },
+            {
+              "player_name": "P368",
+              "gender": "M",
+              "day": "2021-01-02",
+              "score_points": 4
+            },
+            {
+              "player_name": "P369",
+              "gender": "F",
+              "day": "2021-01-03",
+              "score_points": 5
+            },
+            {
+              "player_name": "P370",
+              "gender": "M",
+              "day": "2021-01-04",
+              "score_points": 6
+            },
+            {
+              "player_name": "P371",
+              "gender": "F",
+              "day": "2021-01-05",
+              "score_points": 7
+            },
+            {
+              "player_name": "P372",
+              "gender": "M",
+              "day": "2021-01-06",
+              "score_points": 1
+            },
+            {
+              "player_name": "P373",
+              "gender": "F",
+              "day": "2021-01-07",
+              "score_points": 2
+            },
+            {
+              "player_name": "P374",
+              "gender": "M",
+              "day": "2021-01-08",
+              "score_points": 3
+            },
+            {
+              "player_name": "P375",
+              "gender": "F",
+              "day": "2021-01-09",
+              "score_points": 4
+            },
+            {
+              "player_name": "P376",
+              "gender": "M",
+              "day": "2021-01-10",
+              "score_points": 5
+            },
+            {
+              "player_name": "P377",
+              "gender": "F",
+              "day": "2021-01-11",
+              "score_points": 6
+            },
+            {
+              "player_name": "P378",
+              "gender": "M",
+              "day": "2021-01-12",
+              "score_points": 7
+            },
+            {
+              "player_name": "P379",
+              "gender": "F",
+              "day": "2021-01-13",
+              "score_points": 1
+            },
+            {
+              "player_name": "P380",
+              "gender": "M",
+              "day": "2021-01-14",
+              "score_points": 2
+            },
+            {
+              "player_name": "P381",
+              "gender": "F",
+              "day": "2021-01-15",
+              "score_points": 3
+            },
+            {
+              "player_name": "P382",
+              "gender": "M",
+              "day": "2021-01-16",
+              "score_points": 4
+            },
+            {
+              "player_name": "P383",
+              "gender": "F",
+              "day": "2021-01-17",
+              "score_points": 5
+            },
+            {
+              "player_name": "P384",
+              "gender": "M",
+              "day": "2021-01-18",
+              "score_points": 6
+            },
+            {
+              "player_name": "P385",
+              "gender": "F",
+              "day": "2021-01-19",
+              "score_points": 7
+            },
+            {
+              "player_name": "P386",
+              "gender": "M",
+              "day": "2021-01-20",
+              "score_points": 1
+            },
+            {
+              "player_name": "P387",
+              "gender": "F",
+              "day": "2021-01-21",
+              "score_points": 2
+            },
+            {
+              "player_name": "P388",
+              "gender": "M",
+              "day": "2021-01-22",
+              "score_points": 3
+            },
+            {
+              "player_name": "P389",
+              "gender": "F",
+              "day": "2021-01-23",
+              "score_points": 4
+            },
+            {
+              "player_name": "P390",
+              "gender": "M",
+              "day": "2021-01-24",
+              "score_points": 5
+            },
+            {
+              "player_name": "P391",
+              "gender": "F",
+              "day": "2021-01-25",
+              "score_points": 6
+            },
+            {
+              "player_name": "P392",
+              "gender": "M",
+              "day": "2021-01-26",
+              "score_points": 7
+            },
+            {
+              "player_name": "P393",
+              "gender": "F",
+              "day": "2021-01-27",
+              "score_points": 1
+            },
+            {
+              "player_name": "P394",
+              "gender": "M",
+              "day": "2021-01-28",
+              "score_points": 2
+            },
+            {
+              "player_name": "P395",
+              "gender": "F",
+              "day": "2021-01-29",
+              "score_points": 3
+            },
+            {
+              "player_name": "P396",
+              "gender": "M",
+              "day": "2021-01-30",
+              "score_points": 4
+            },
+            {
+              "player_name": "P397",
+              "gender": "F",
+              "day": "2021-01-31",
+              "score_points": 5
+            },
+            {
+              "player_name": "P398",
+              "gender": "M",
+              "day": "2021-02-01",
+              "score_points": 6
+            },
+            {
+              "player_name": "P399",
+              "gender": "F",
+              "day": "2021-02-02",
+              "score_points": 7
+            },
+            {
+              "player_name": "P400",
+              "gender": "M",
+              "day": "2021-02-03",
+              "score_points": 1
+            },
+            {
+              "player_name": "P401",
+              "gender": "F",
+              "day": "2021-02-04",
+              "score_points": 2
+            },
+            {
+              "player_name": "P402",
+              "gender": "M",
+              "day": "2021-02-05",
+              "score_points": 3
+            },
+            {
+              "player_name": "P403",
+              "gender": "F",
+              "day": "2021-02-06",
+              "score_points": 4
+            },
+            {
+              "player_name": "P404",
+              "gender": "M",
+              "day": "2021-02-07",
+              "score_points": 5
+            },
+            {
+              "player_name": "P405",
+              "gender": "F",
+              "day": "2021-02-08",
+              "score_points": 6
+            },
+            {
+              "player_name": "P406",
+              "gender": "M",
+              "day": "2021-02-09",
+              "score_points": 7
+            },
+            {
+              "player_name": "P407",
+              "gender": "F",
+              "day": "2021-02-10",
+              "score_points": 1
+            },
+            {
+              "player_name": "P408",
+              "gender": "M",
+              "day": "2021-02-11",
+              "score_points": 2
+            },
+            {
+              "player_name": "P409",
+              "gender": "F",
+              "day": "2021-02-12",
+              "score_points": 3
+            },
+            {
+              "player_name": "P410",
+              "gender": "M",
+              "day": "2021-02-13",
+              "score_points": 4
+            },
+            {
+              "player_name": "P411",
+              "gender": "F",
+              "day": "2021-02-14",
+              "score_points": 5
+            },
+            {
+              "player_name": "P412",
+              "gender": "M",
+              "day": "2021-02-15",
+              "score_points": 6
+            },
+            {
+              "player_name": "P413",
+              "gender": "F",
+              "day": "2021-02-16",
+              "score_points": 7
+            },
+            {
+              "player_name": "P414",
+              "gender": "M",
+              "day": "2021-02-17",
+              "score_points": 1
+            },
+            {
+              "player_name": "P415",
+              "gender": "F",
+              "day": "2021-02-18",
+              "score_points": 2
+            },
+            {
+              "player_name": "P416",
+              "gender": "M",
+              "day": "2021-02-19",
+              "score_points": 3
+            },
+            {
+              "player_name": "P417",
+              "gender": "F",
+              "day": "2021-02-20",
+              "score_points": 4
+            },
+            {
+              "player_name": "P418",
+              "gender": "M",
+              "day": "2021-02-21",
+              "score_points": 5
+            },
+            {
+              "player_name": "P419",
+              "gender": "F",
+              "day": "2021-02-22",
+              "score_points": 6
+            },
+            {
+              "player_name": "P420",
+              "gender": "M",
+              "day": "2021-02-23",
+              "score_points": 7
+            },
+            {
+              "player_name": "P421",
+              "gender": "F",
+              "day": "2021-02-24",
+              "score_points": 1
+            },
+            {
+              "player_name": "P422",
+              "gender": "M",
+              "day": "2021-02-25",
+              "score_points": 2
+            },
+            {
+              "player_name": "P423",
+              "gender": "F",
+              "day": "2021-02-26",
+              "score_points": 3
+            },
+            {
+              "player_name": "P424",
+              "gender": "M",
+              "day": "2021-02-27",
+              "score_points": 4
+            },
+            {
+              "player_name": "P425",
+              "gender": "F",
+              "day": "2021-02-28",
+              "score_points": 5
+            },
+            {
+              "player_name": "P426",
+              "gender": "M",
+              "day": "2021-03-01",
+              "score_points": 6
+            },
+            {
+              "player_name": "P427",
+              "gender": "F",
+              "day": "2021-03-02",
+              "score_points": 7
+            },
+            {
+              "player_name": "P428",
+              "gender": "M",
+              "day": "2021-03-03",
+              "score_points": 1
+            },
+            {
+              "player_name": "P429",
+              "gender": "F",
+              "day": "2021-03-04",
+              "score_points": 2
+            },
+            {
+              "player_name": "P430",
+              "gender": "M",
+              "day": "2021-03-05",
+              "score_points": 3
+            },
+            {
+              "player_name": "P431",
+              "gender": "F",
+              "day": "2021-03-06",
+              "score_points": 4
+            },
+            {
+              "player_name": "P432",
+              "gender": "M",
+              "day": "2021-03-07",
+              "score_points": 5
+            },
+            {
+              "player_name": "P433",
+              "gender": "F",
+              "day": "2021-03-08",
+              "score_points": 6
+            },
+            {
+              "player_name": "P434",
+              "gender": "M",
+              "day": "2021-03-09",
+              "score_points": 7
+            },
+            {
+              "player_name": "P435",
+              "gender": "F",
+              "day": "2021-03-10",
+              "score_points": 1
+            },
+            {
+              "player_name": "P436",
+              "gender": "M",
+              "day": "2021-03-11",
+              "score_points": 2
+            },
+            {
+              "player_name": "P437",
+              "gender": "F",
+              "day": "2021-03-12",
+              "score_points": 3
+            },
+            {
+              "player_name": "P438",
+              "gender": "M",
+              "day": "2021-03-13",
+              "score_points": 4
+            },
+            {
+              "player_name": "P439",
+              "gender": "F",
+              "day": "2021-03-14",
+              "score_points": 5
+            },
+            {
+              "player_name": "P440",
+              "gender": "M",
+              "day": "2021-03-15",
+              "score_points": 6
+            },
+            {
+              "player_name": "P441",
+              "gender": "F",
+              "day": "2021-03-16",
+              "score_points": 7
+            },
+            {
+              "player_name": "P442",
+              "gender": "M",
+              "day": "2021-03-17",
+              "score_points": 1
+            },
+            {
+              "player_name": "P443",
+              "gender": "F",
+              "day": "2021-03-18",
+              "score_points": 2
+            },
+            {
+              "player_name": "P444",
+              "gender": "M",
+              "day": "2021-03-19",
+              "score_points": 3
+            },
+            {
+              "player_name": "P445",
+              "gender": "F",
+              "day": "2021-03-20",
+              "score_points": 4
+            },
+            {
+              "player_name": "P446",
+              "gender": "M",
+              "day": "2021-03-21",
+              "score_points": 5
+            },
+            {
+              "player_name": "P447",
+              "gender": "F",
+              "day": "2021-03-22",
+              "score_points": 6
+            },
+            {
+              "player_name": "P448",
+              "gender": "M",
+              "day": "2021-03-23",
+              "score_points": 7
+            },
+            {
+              "player_name": "P449",
+              "gender": "F",
+              "day": "2021-03-24",
+              "score_points": 1
+            },
+            {
+              "player_name": "P450",
+              "gender": "M",
+              "day": "2021-03-25",
+              "score_points": 2
+            },
+            {
+              "player_name": "P451",
+              "gender": "F",
+              "day": "2021-03-26",
+              "score_points": 3
+            },
+            {
+              "player_name": "P452",
+              "gender": "M",
+              "day": "2021-03-27",
+              "score_points": 4
+            },
+            {
+              "player_name": "P453",
+              "gender": "F",
+              "day": "2021-03-28",
+              "score_points": 5
+            },
+            {
+              "player_name": "P454",
+              "gender": "M",
+              "day": "2021-03-29",
+              "score_points": 6
+            },
+            {
+              "player_name": "P455",
+              "gender": "F",
+              "day": "2021-03-30",
+              "score_points": 7
+            },
+            {
+              "player_name": "P456",
+              "gender": "M",
+              "day": "2021-03-31",
+              "score_points": 1
+            },
+            {
+              "player_name": "P457",
+              "gender": "F",
+              "day": "2021-04-01",
+              "score_points": 2
+            },
+            {
+              "player_name": "P458",
+              "gender": "M",
+              "day": "2021-04-02",
+              "score_points": 3
+            },
+            {
+              "player_name": "P459",
+              "gender": "F",
+              "day": "2021-04-03",
+              "score_points": 4
+            },
+            {
+              "player_name": "P460",
+              "gender": "M",
+              "day": "2021-04-04",
+              "score_points": 5
+            },
+            {
+              "player_name": "P461",
+              "gender": "F",
+              "day": "2021-04-05",
+              "score_points": 6
+            },
+            {
+              "player_name": "P462",
+              "gender": "M",
+              "day": "2021-04-06",
+              "score_points": 7
+            },
+            {
+              "player_name": "P463",
+              "gender": "F",
+              "day": "2021-04-07",
+              "score_points": 1
+            },
+            {
+              "player_name": "P464",
+              "gender": "M",
+              "day": "2021-04-08",
+              "score_points": 2
+            },
+            {
+              "player_name": "P465",
+              "gender": "F",
+              "day": "2021-04-09",
+              "score_points": 3
+            },
+            {
+              "player_name": "P466",
+              "gender": "M",
+              "day": "2021-04-10",
+              "score_points": 4
+            },
+            {
+              "player_name": "P467",
+              "gender": "F",
+              "day": "2021-04-11",
+              "score_points": 5
+            },
+            {
+              "player_name": "P468",
+              "gender": "M",
+              "day": "2021-04-12",
+              "score_points": 6
+            },
+            {
+              "player_name": "P469",
+              "gender": "F",
+              "day": "2021-04-13",
+              "score_points": 7
+            },
+            {
+              "player_name": "P470",
+              "gender": "M",
+              "day": "2021-04-14",
+              "score_points": 1
+            },
+            {
+              "player_name": "P471",
+              "gender": "F",
+              "day": "2021-04-15",
+              "score_points": 2
+            },
+            {
+              "player_name": "P472",
+              "gender": "M",
+              "day": "2021-04-16",
+              "score_points": 3
+            },
+            {
+              "player_name": "P473",
+              "gender": "F",
+              "day": "2021-04-17",
+              "score_points": 4
+            },
+            {
+              "player_name": "P474",
+              "gender": "M",
+              "day": "2021-04-18",
+              "score_points": 5
+            },
+            {
+              "player_name": "P475",
+              "gender": "F",
+              "day": "2021-04-19",
+              "score_points": 6
+            },
+            {
+              "player_name": "P476",
+              "gender": "M",
+              "day": "2021-04-20",
+              "score_points": 7
+            },
+            {
+              "player_name": "P477",
+              "gender": "F",
+              "day": "2021-04-21",
+              "score_points": 1
+            },
+            {
+              "player_name": "P478",
+              "gender": "M",
+              "day": "2021-04-22",
+              "score_points": 2
+            },
+            {
+              "player_name": "P479",
+              "gender": "F",
+              "day": "2021-04-23",
+              "score_points": 3
+            },
+            {
+              "player_name": "P480",
+              "gender": "M",
+              "day": "2021-04-24",
+              "score_points": 4
+            },
+            {
+              "player_name": "P481",
+              "gender": "F",
+              "day": "2021-04-25",
+              "score_points": 5
+            },
+            {
+              "player_name": "P482",
+              "gender": "M",
+              "day": "2021-04-26",
+              "score_points": 6
+            },
+            {
+              "player_name": "P483",
+              "gender": "F",
+              "day": "2021-04-27",
+              "score_points": 7
+            },
+            {
+              "player_name": "P484",
+              "gender": "M",
+              "day": "2021-04-28",
+              "score_points": 1
+            },
+            {
+              "player_name": "P485",
+              "gender": "F",
+              "day": "2021-04-29",
+              "score_points": 2
+            },
+            {
+              "player_name": "P486",
+              "gender": "M",
+              "day": "2021-04-30",
+              "score_points": 3
+            },
+            {
+              "player_name": "P487",
+              "gender": "F",
+              "day": "2021-05-01",
+              "score_points": 4
+            },
+            {
+              "player_name": "P488",
+              "gender": "M",
+              "day": "2021-05-02",
+              "score_points": 5
+            },
+            {
+              "player_name": "P489",
+              "gender": "F",
+              "day": "2021-05-03",
+              "score_points": 6
+            },
+            {
+              "player_name": "P490",
+              "gender": "M",
+              "day": "2021-05-04",
+              "score_points": 7
+            },
+            {
+              "player_name": "P491",
+              "gender": "F",
+              "day": "2021-05-05",
+              "score_points": 1
+            },
+            {
+              "player_name": "P492",
+              "gender": "M",
+              "day": "2021-05-06",
+              "score_points": 2
+            },
+            {
+              "player_name": "P493",
+              "gender": "F",
+              "day": "2021-05-07",
+              "score_points": 3
+            },
+            {
+              "player_name": "P494",
+              "gender": "M",
+              "day": "2021-05-08",
+              "score_points": 4
+            },
+            {
+              "player_name": "P495",
+              "gender": "F",
+              "day": "2021-05-09",
+              "score_points": 5
+            },
+            {
+              "player_name": "P496",
+              "gender": "M",
+              "day": "2021-05-10",
+              "score_points": 6
+            },
+            {
+              "player_name": "P497",
+              "gender": "F",
+              "day": "2021-05-11",
+              "score_points": 7
+            },
+            {
+              "player_name": "P498",
+              "gender": "M",
+              "day": "2021-05-12",
+              "score_points": 1
+            },
+            {
+              "player_name": "P499",
+              "gender": "F",
+              "day": "2021-05-13",
+              "score_points": 2
+            },
+            {
+              "player_name": "P500",
+              "gender": "M",
+              "day": "2021-05-14",
+              "score_points": 3
+            },
+            {
+              "player_name": "P501",
+              "gender": "F",
+              "day": "2021-05-15",
+              "score_points": 4
+            },
+            {
+              "player_name": "P502",
+              "gender": "M",
+              "day": "2021-05-16",
+              "score_points": 5
+            },
+            {
+              "player_name": "P503",
+              "gender": "F",
+              "day": "2021-05-17",
+              "score_points": 6
+            },
+            {
+              "player_name": "P504",
+              "gender": "M",
+              "day": "2021-05-18",
+              "score_points": 7
+            },
+            {
+              "player_name": "P505",
+              "gender": "F",
+              "day": "2021-05-19",
+              "score_points": 1
+            },
+            {
+              "player_name": "P506",
+              "gender": "M",
+              "day": "2021-05-20",
+              "score_points": 2
+            },
+            {
+              "player_name": "P507",
+              "gender": "F",
+              "day": "2021-05-21",
+              "score_points": 3
+            },
+            {
+              "player_name": "P508",
+              "gender": "M",
+              "day": "2021-05-22",
+              "score_points": 4
+            },
+            {
+              "player_name": "P509",
+              "gender": "F",
+              "day": "2021-05-23",
+              "score_points": 5
+            },
+            {
+              "player_name": "P510",
+              "gender": "M",
+              "day": "2021-05-24",
+              "score_points": 6
+            },
+            {
+              "player_name": "P511",
+              "gender": "F",
+              "day": "2021-05-25",
+              "score_points": 7
+            },
+            {
+              "player_name": "P512",
+              "gender": "M",
+              "day": "2021-05-26",
+              "score_points": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "gender",
+          "day",
+          "total"
+        ],
+        "rows": [
+          [
+            "F",
+            "2020-01-01",
+            1
+          ],
+          [
+            "F",
+            "2020-01-03",
+            4
+          ],
+          [
+            "F",
+            "2020-01-05",
+            9
+          ],
+          [
+            "F",
+            "2020-01-07",
+            16
+          ],
+          [
+            "F",
+            "2020-01-09",
+            18
+          ],
+          [
+            "F",
+            "2020-01-11",
+            22
+          ],
+          [
+            "F",
+            "2020-01-13",
+            28
+          ],
+          [
+            "F",
+            "2020-01-15",
+            29
+          ],
+          [
+            "F",
+            "2020-01-17",
+            32
+          ],
+          [
+            "F",
+            "2020-01-19",
+            37
+          ],
+          [
+            "F",
+            "2020-01-21",
+            44
+          ],
+          [
+            "F",
+            "2020-01-23",
+            46
+          ],
+          [
+            "F",
+            "2020-01-25",
+            50
+          ],
+          [
+            "F",
+            "2020-01-27",
+            56
+          ],
+          [
+            "F",
+            "2020-01-29",
+            57
+          ],
+          [
+            "F",
+            "2020-01-31",
+            60
+          ],
+          [
+            "F",
+            "2020-02-02",
+            65
+          ],
+          [
+            "F",
+            "2020-02-04",
+            72
+          ],
+          [
+            "F",
+            "2020-02-06",
+            74
+          ],
+          [
+            "F",
+            "2020-02-08",
+            78
+          ],
+          [
+            "F",
+            "2020-02-10",
+            84
+          ],
+          [
+            "F",
+            "2020-02-12",
+            85
+          ],
+          [
+            "F",
+            "2020-02-14",
+            88
+          ],
+          [
+            "F",
+            "2020-02-16",
+            93
+          ],
+          [
+            "F",
+            "2020-02-18",
+            100
+          ],
+          [
+            "F",
+            "2020-02-20",
+            102
+          ],
+          [
+            "F",
+            "2020-02-22",
+            106
+          ],
+          [
+            "F",
+            "2020-02-24",
+            112
+          ],
+          [
+            "F",
+            "2020-02-26",
+            113
+          ],
+          [
+            "F",
+            "2020-02-28",
+            116
+          ],
+          [
+            "F",
+            "2020-03-01",
+            121
+          ],
+          [
+            "F",
+            "2020-03-03",
+            128
+          ],
+          [
+            "F",
+            "2020-03-05",
+            130
+          ],
+          [
+            "F",
+            "2020-03-07",
+            134
+          ],
+          [
+            "F",
+            "2020-03-09",
+            140
+          ],
+          [
+            "F",
+            "2020-03-11",
+            141
+          ],
+          [
+            "F",
+            "2020-03-13",
+            144
+          ],
+          [
+            "F",
+            "2020-03-15",
+            149
+          ],
+          [
+            "F",
+            "2020-03-17",
+            156
+          ],
+          [
+            "F",
+            "2020-03-19",
+            158
+          ],
+          [
+            "F",
+            "2020-03-21",
+            162
+          ],
+          [
+            "F",
+            "2020-03-23",
+            168
+          ],
+          [
+            "F",
+            "2020-03-25",
+            169
+          ],
+          [
+            "F",
+            "2020-03-27",
+            172
+          ],
+          [
+            "F",
+            "2020-03-29",
+            177
+          ],
+          [
+            "F",
+            "2020-03-31",
+            184
+          ],
+          [
+            "F",
+            "2020-04-02",
+            186
+          ],
+          [
+            "F",
+            "2020-04-04",
+            190
+          ],
+          [
+            "F",
+            "2020-04-06",
+            196
+          ],
+          [
+            "F",
+            "2020-04-08",
+            197
+          ],
+          [
+            "F",
+            "2020-04-10",
+            200
+          ],
+          [
+            "F",
+            "2020-04-12",
+            205
+          ],
+          [
+            "F",
+            "2020-04-14",
+            212
+          ],
+          [
+            "F",
+            "2020-04-16",
+            214
+          ],
+          [
+            "F",
+            "2020-04-18",
+            218
+          ],
+          [
+            "F",
+            "2020-04-20",
+            224
+          ],
+          [
+            "F",
+            "2020-04-22",
+            225
+          ],
+          [
+            "F",
+            "2020-04-24",
+            228
+          ],
+          [
+            "F",
+            "2020-04-26",
+            233
+          ],
+          [
+            "F",
+            "2020-04-28",
+            240
+          ],
+          [
+            "F",
+            "2020-04-30",
+            242
+          ],
+          [
+            "F",
+            "2020-05-02",
+            246
+          ],
+          [
+            "F",
+            "2020-05-04",
+            252
+          ],
+          [
+            "F",
+            "2020-05-06",
+            253
+          ],
+          [
+            "F",
+            "2020-05-08",
+            256
+          ],
+          [
+            "F",
+            "2020-05-10",
+            261
+          ],
+          [
+            "F",
+            "2020-05-12",
+            268
+          ],
+          [
+            "F",
+            "2020-05-14",
+            270
+          ],
+          [
+            "F",
+            "2020-05-16",
+            274
+          ],
+          [
+            "F",
+            "2020-05-18",
+            280
+          ],
+          [
+            "F",
+            "2020-05-20",
+            281
+          ],
+          [
+            "F",
+            "2020-05-22",
+            284
+          ],
+          [
+            "F",
+            "2020-05-24",
+            289
+          ],
+          [
+            "F",
+            "2020-05-26",
+            296
+          ],
+          [
+            "F",
+            "2020-05-28",
+            298
+          ],
+          [
+            "F",
+            "2020-05-30",
+            302
+          ],
+          [
+            "F",
+            "2020-06-01",
+            308
+          ],
+          [
+            "F",
+            "2020-06-03",
+            309
+          ],
+          [
+            "F",
+            "2020-06-05",
+            312
+          ],
+          [
+            "F",
+            "2020-06-07",
+            317
+          ],
+          [
+            "F",
+            "2020-06-09",
+            324
+          ],
+          [
+            "F",
+            "2020-06-11",
+            326
+          ],
+          [
+            "F",
+            "2020-06-13",
+            330
+          ],
+          [
+            "F",
+            "2020-06-15",
+            336
+          ],
+          [
+            "F",
+            "2020-06-17",
+            337
+          ],
+          [
+            "F",
+            "2020-06-19",
+            340
+          ],
+          [
+            "F",
+            "2020-06-21",
+            345
+          ],
+          [
+            "F",
+            "2020-06-23",
+            352
+          ],
+          [
+            "F",
+            "2020-06-25",
+            354
+          ],
+          [
+            "F",
+            "2020-06-27",
+            358
+          ],
+          [
+            "F",
+            "2020-06-29",
+            364
+          ],
+          [
+            "F",
+            "2020-07-01",
+            365
+          ],
+          [
+            "F",
+            "2020-07-03",
+            368
+          ],
+          [
+            "F",
+            "2020-07-05",
+            373
+          ],
+          [
+            "F",
+            "2020-07-07",
+            380
+          ],
+          [
+            "F",
+            "2020-07-09",
+            382
+          ],
+          [
+            "F",
+            "2020-07-11",
+            386
+          ],
+          [
+            "F",
+            "2020-07-13",
+            392
+          ],
+          [
+            "F",
+            "2020-07-15",
+            393
+          ],
+          [
+            "F",
+            "2020-07-17",
+            396
+          ],
+          [
+            "F",
+            "2020-07-19",
+            401
+          ],
+          [
+            "F",
+            "2020-07-21",
+            408
+          ],
+          [
+            "F",
+            "2020-07-23",
+            410
+          ],
+          [
+            "F",
+            "2020-07-25",
+            414
+          ],
+          [
+            "F",
+            "2020-07-27",
+            420
+          ],
+          [
+            "F",
+            "2020-07-29",
+            421
+          ],
+          [
+            "F",
+            "2020-07-31",
+            424
+          ],
+          [
+            "F",
+            "2020-08-02",
+            429
+          ],
+          [
+            "F",
+            "2020-08-04",
+            436
+          ],
+          [
+            "F",
+            "2020-08-06",
+            438
+          ],
+          [
+            "F",
+            "2020-08-08",
+            442
+          ],
+          [
+            "F",
+            "2020-08-10",
+            448
+          ],
+          [
+            "F",
+            "2020-08-12",
+            449
+          ],
+          [
+            "F",
+            "2020-08-14",
+            452
+          ],
+          [
+            "F",
+            "2020-08-16",
+            457
+          ],
+          [
+            "F",
+            "2020-08-18",
+            464
+          ],
+          [
+            "F",
+            "2020-08-20",
+            466
+          ],
+          [
+            "F",
+            "2020-08-22",
+            470
+          ],
+          [
+            "F",
+            "2020-08-24",
+            476
+          ],
+          [
+            "F",
+            "2020-08-26",
+            477
+          ],
+          [
+            "F",
+            "2020-08-28",
+            480
+          ],
+          [
+            "F",
+            "2020-08-30",
+            485
+          ],
+          [
+            "F",
+            "2020-09-01",
+            492
+          ],
+          [
+            "F",
+            "2020-09-03",
+            494
+          ],
+          [
+            "F",
+            "2020-09-05",
+            498
+          ],
+          [
+            "F",
+            "2020-09-07",
+            504
+          ],
+          [
+            "F",
+            "2020-09-09",
+            505
+          ],
+          [
+            "F",
+            "2020-09-11",
+            508
+          ],
+          [
+            "F",
+            "2020-09-13",
+            513
+          ],
+          [
+            "F",
+            "2020-09-15",
+            520
+          ],
+          [
+            "F",
+            "2020-09-17",
+            522
+          ],
+          [
+            "F",
+            "2020-09-19",
+            526
+          ],
+          [
+            "F",
+            "2020-09-21",
+            532
+          ],
+          [
+            "F",
+            "2020-09-23",
+            533
+          ],
+          [
+            "F",
+            "2020-09-25",
+            536
+          ],
+          [
+            "F",
+            "2020-09-27",
+            541
+          ],
+          [
+            "F",
+            "2020-09-29",
+            548
+          ],
+          [
+            "F",
+            "2020-10-01",
+            550
+          ],
+          [
+            "F",
+            "2020-10-03",
+            554
+          ],
+          [
+            "F",
+            "2020-10-05",
+            560
+          ],
+          [
+            "F",
+            "2020-10-07",
+            561
+          ],
+          [
+            "F",
+            "2020-10-09",
+            564
+          ],
+          [
+            "F",
+            "2020-10-11",
+            569
+          ],
+          [
+            "F",
+            "2020-10-13",
+            576
+          ],
+          [
+            "F",
+            "2020-10-15",
+            578
+          ],
+          [
+            "F",
+            "2020-10-17",
+            582
+          ],
+          [
+            "F",
+            "2020-10-19",
+            588
+          ],
+          [
+            "F",
+            "2020-10-21",
+            589
+          ],
+          [
+            "F",
+            "2020-10-23",
+            592
+          ],
+          [
+            "F",
+            "2020-10-25",
+            597
+          ],
+          [
+            "F",
+            "2020-10-27",
+            604
+          ],
+          [
+            "F",
+            "2020-10-29",
+            606
+          ],
+          [
+            "F",
+            "2020-10-31",
+            610
+          ],
+          [
+            "F",
+            "2020-11-02",
+            616
+          ],
+          [
+            "F",
+            "2020-11-04",
+            617
+          ],
+          [
+            "F",
+            "2020-11-06",
+            620
+          ],
+          [
+            "F",
+            "2020-11-08",
+            625
+          ],
+          [
+            "F",
+            "2020-11-10",
+            632
+          ],
+          [
+            "F",
+            "2020-11-12",
+            634
+          ],
+          [
+            "F",
+            "2020-11-14",
+            638
+          ],
+          [
+            "F",
+            "2020-11-16",
+            644
+          ],
+          [
+            "F",
+            "2020-11-18",
+            645
+          ],
+          [
+            "F",
+            "2020-11-20",
+            648
+          ],
+          [
+            "F",
+            "2020-11-22",
+            653
+          ],
+          [
+            "F",
+            "2020-11-24",
+            660
+          ],
+          [
+            "F",
+            "2020-11-26",
+            662
+          ],
+          [
+            "F",
+            "2020-11-28",
+            666
+          ],
+          [
+            "F",
+            "2020-11-30",
+            672
+          ],
+          [
+            "F",
+            "2020-12-02",
+            673
+          ],
+          [
+            "F",
+            "2020-12-04",
+            676
+          ],
+          [
+            "F",
+            "2020-12-06",
+            681
+          ],
+          [
+            "F",
+            "2020-12-08",
+            688
+          ],
+          [
+            "F",
+            "2020-12-10",
+            690
+          ],
+          [
+            "F",
+            "2020-12-12",
+            694
+          ],
+          [
+            "F",
+            "2020-12-14",
+            700
+          ],
+          [
+            "F",
+            "2020-12-16",
+            701
+          ],
+          [
+            "F",
+            "2020-12-18",
+            704
+          ],
+          [
+            "F",
+            "2020-12-20",
+            709
+          ],
+          [
+            "F",
+            "2020-12-22",
+            716
+          ],
+          [
+            "F",
+            "2020-12-24",
+            718
+          ],
+          [
+            "F",
+            "2020-12-26",
+            722
+          ],
+          [
+            "F",
+            "2020-12-28",
+            728
+          ],
+          [
+            "F",
+            "2020-12-30",
+            729
+          ],
+          [
+            "F",
+            "2021-01-01",
+            732
+          ],
+          [
+            "F",
+            "2021-01-03",
+            737
+          ],
+          [
+            "F",
+            "2021-01-05",
+            744
+          ],
+          [
+            "F",
+            "2021-01-07",
+            746
+          ],
+          [
+            "F",
+            "2021-01-09",
+            750
+          ],
+          [
+            "F",
+            "2021-01-11",
+            756
+          ],
+          [
+            "F",
+            "2021-01-13",
+            757
+          ],
+          [
+            "F",
+            "2021-01-15",
+            760
+          ],
+          [
+            "F",
+            "2021-01-17",
+            765
+          ],
+          [
+            "F",
+            "2021-01-19",
+            772
+          ],
+          [
+            "F",
+            "2021-01-21",
+            774
+          ],
+          [
+            "F",
+            "2021-01-23",
+            778
+          ],
+          [
+            "F",
+            "2021-01-25",
+            784
+          ],
+          [
+            "F",
+            "2021-01-27",
+            785
+          ],
+          [
+            "F",
+            "2021-01-29",
+            788
+          ],
+          [
+            "F",
+            "2021-01-31",
+            793
+          ],
+          [
+            "F",
+            "2021-02-02",
+            800
+          ],
+          [
+            "F",
+            "2021-02-04",
+            802
+          ],
+          [
+            "F",
+            "2021-02-06",
+            806
+          ],
+          [
+            "F",
+            "2021-02-08",
+            812
+          ],
+          [
+            "F",
+            "2021-02-10",
+            813
+          ],
+          [
+            "F",
+            "2021-02-12",
+            816
+          ],
+          [
+            "F",
+            "2021-02-14",
+            821
+          ],
+          [
+            "F",
+            "2021-02-16",
+            828
+          ],
+          [
+            "F",
+            "2021-02-18",
+            830
+          ],
+          [
+            "F",
+            "2021-02-20",
+            834
+          ],
+          [
+            "F",
+            "2021-02-22",
+            840
+          ],
+          [
+            "F",
+            "2021-02-24",
+            841
+          ],
+          [
+            "F",
+            "2021-02-26",
+            844
+          ],
+          [
+            "F",
+            "2021-02-28",
+            849
+          ],
+          [
+            "F",
+            "2021-03-02",
+            856
+          ],
+          [
+            "F",
+            "2021-03-04",
+            858
+          ],
+          [
+            "F",
+            "2021-03-06",
+            862
+          ],
+          [
+            "F",
+            "2021-03-08",
+            868
+          ],
+          [
+            "F",
+            "2021-03-10",
+            869
+          ],
+          [
+            "F",
+            "2021-03-12",
+            872
+          ],
+          [
+            "F",
+            "2021-03-14",
+            877
+          ],
+          [
+            "F",
+            "2021-03-16",
+            884
+          ],
+          [
+            "F",
+            "2021-03-18",
+            886
+          ],
+          [
+            "F",
+            "2021-03-20",
+            890
+          ],
+          [
+            "F",
+            "2021-03-22",
+            896
+          ],
+          [
+            "F",
+            "2021-03-24",
+            897
+          ],
+          [
+            "F",
+            "2021-03-26",
+            900
+          ],
+          [
+            "F",
+            "2021-03-28",
+            905
+          ],
+          [
+            "F",
+            "2021-03-30",
+            912
+          ],
+          [
+            "F",
+            "2021-04-01",
+            914
+          ],
+          [
+            "F",
+            "2021-04-03",
+            918
+          ],
+          [
+            "F",
+            "2021-04-05",
+            924
+          ],
+          [
+            "F",
+            "2021-04-07",
+            925
+          ],
+          [
+            "F",
+            "2021-04-09",
+            928
+          ],
+          [
+            "F",
+            "2021-04-11",
+            933
+          ],
+          [
+            "F",
+            "2021-04-13",
+            940
+          ],
+          [
+            "F",
+            "2021-04-15",
+            942
+          ],
+          [
+            "F",
+            "2021-04-17",
+            946
+          ],
+          [
+            "F",
+            "2021-04-19",
+            952
+          ],
+          [
+            "F",
+            "2021-04-21",
+            953
+          ],
+          [
+            "F",
+            "2021-04-23",
+            956
+          ],
+          [
+            "F",
+            "2021-04-25",
+            961
+          ],
+          [
+            "F",
+            "2021-04-27",
+            968
+          ],
+          [
+            "F",
+            "2021-04-29",
+            970
+          ],
+          [
+            "F",
+            "2021-05-01",
+            974
+          ],
+          [
+            "F",
+            "2021-05-03",
+            980
+          ],
+          [
+            "F",
+            "2021-05-05",
+            981
+          ],
+          [
+            "F",
+            "2021-05-07",
+            984
+          ],
+          [
+            "F",
+            "2021-05-09",
+            989
+          ],
+          [
+            "F",
+            "2021-05-11",
+            996
+          ],
+          [
+            "F",
+            "2021-05-13",
+            998
+          ],
+          [
+            "F",
+            "2021-05-15",
+            1002
+          ],
+          [
+            "F",
+            "2021-05-17",
+            1008
+          ],
+          [
+            "F",
+            "2021-05-19",
+            1009
+          ],
+          [
+            "F",
+            "2021-05-21",
+            1012
+          ],
+          [
+            "F",
+            "2021-05-23",
+            1017
+          ],
+          [
+            "F",
+            "2021-05-25",
+            1024
+          ],
+          [
+            "M",
+            "2020-01-02",
+            2
+          ],
+          [
+            "M",
+            "2020-01-04",
+            6
+          ],
+          [
+            "M",
+            "2020-01-06",
+            12
+          ],
+          [
+            "M",
+            "2020-01-08",
+            13
+          ],
+          [
+            "M",
+            "2020-01-10",
+            16
+          ],
+          [
+            "M",
+            "2020-01-12",
+            21
+          ],
+          [
+            "M",
+            "2020-01-14",
+            28
+          ],
+          [
+            "M",
+            "2020-01-16",
+            30
+          ],
+          [
+            "M",
+            "2020-01-18",
+            34
+          ],
+          [
+            "M",
+            "2020-01-20",
+            40
+          ],
+          [
+            "M",
+            "2020-01-22",
+            41
+          ],
+          [
+            "M",
+            "2020-01-24",
+            44
+          ],
+          [
+            "M",
+            "2020-01-26",
+            49
+          ],
+          [
+            "M",
+            "2020-01-28",
+            56
+          ],
+          [
+            "M",
+            "2020-01-30",
+            58
+          ],
+          [
+            "M",
+            "2020-02-01",
+            62
+          ],
+          [
+            "M",
+            "2020-02-03",
+            68
+          ],
+          [
+            "M",
+            "2020-02-05",
+            69
+          ],
+          [
+            "M",
+            "2020-02-07",
+            72
+          ],
+          [
+            "M",
+            "2020-02-09",
+            77
+          ],
+          [
+            "M",
+            "2020-02-11",
+            84
+          ],
+          [
+            "M",
+            "2020-02-13",
+            86
+          ],
+          [
+            "M",
+            "2020-02-15",
+            90
+          ],
+          [
+            "M",
+            "2020-02-17",
+            96
+          ],
+          [
+            "M",
+            "2020-02-19",
+            97
+          ],
+          [
+            "M",
+            "2020-02-21",
+            100
+          ],
+          [
+            "M",
+            "2020-02-23",
+            105
+          ],
+          [
+            "M",
+            "2020-02-25",
+            112
+          ],
+          [
+            "M",
+            "2020-02-27",
+            114
+          ],
+          [
+            "M",
+            "2020-02-29",
+            118
+          ],
+          [
+            "M",
+            "2020-03-02",
+            124
+          ],
+          [
+            "M",
+            "2020-03-04",
+            125
+          ],
+          [
+            "M",
+            "2020-03-06",
+            128
+          ],
+          [
+            "M",
+            "2020-03-08",
+            133
+          ],
+          [
+            "M",
+            "2020-03-10",
+            140
+          ],
+          [
+            "M",
+            "2020-03-12",
+            142
+          ],
+          [
+            "M",
+            "2020-03-14",
+            146
+          ],
+          [
+            "M",
+            "2020-03-16",
+            152
+          ],
+          [
+            "M",
+            "2020-03-18",
+            153
+          ],
+          [
+            "M",
+            "2020-03-20",
+            156
+          ],
+          [
+            "M",
+            "2020-03-22",
+            161
+          ],
+          [
+            "M",
+            "2020-03-24",
+            168
+          ],
+          [
+            "M",
+            "2020-03-26",
+            170
+          ],
+          [
+            "M",
+            "2020-03-28",
+            174
+          ],
+          [
+            "M",
+            "2020-03-30",
+            180
+          ],
+          [
+            "M",
+            "2020-04-01",
+            181
+          ],
+          [
+            "M",
+            "2020-04-03",
+            184
+          ],
+          [
+            "M",
+            "2020-04-05",
+            189
+          ],
+          [
+            "M",
+            "2020-04-07",
+            196
+          ],
+          [
+            "M",
+            "2020-04-09",
+            198
+          ],
+          [
+            "M",
+            "2020-04-11",
+            202
+          ],
+          [
+            "M",
+            "2020-04-13",
+            208
+          ],
+          [
+            "M",
+            "2020-04-15",
+            209
+          ],
+          [
+            "M",
+            "2020-04-17",
+            212
+          ],
+          [
+            "M",
+            "2020-04-19",
+            217
+          ],
+          [
+            "M",
+            "2020-04-21",
+            224
+          ],
+          [
+            "M",
+            "2020-04-23",
+            226
+          ],
+          [
+            "M",
+            "2020-04-25",
+            230
+          ],
+          [
+            "M",
+            "2020-04-27",
+            236
+          ],
+          [
+            "M",
+            "2020-04-29",
+            237
+          ],
+          [
+            "M",
+            "2020-05-01",
+            240
+          ],
+          [
+            "M",
+            "2020-05-03",
+            245
+          ],
+          [
+            "M",
+            "2020-05-05",
+            252
+          ],
+          [
+            "M",
+            "2020-05-07",
+            254
+          ],
+          [
+            "M",
+            "2020-05-09",
+            258
+          ],
+          [
+            "M",
+            "2020-05-11",
+            264
+          ],
+          [
+            "M",
+            "2020-05-13",
+            265
+          ],
+          [
+            "M",
+            "2020-05-15",
+            268
+          ],
+          [
+            "M",
+            "2020-05-17",
+            273
+          ],
+          [
+            "M",
+            "2020-05-19",
+            280
+          ],
+          [
+            "M",
+            "2020-05-21",
+            282
+          ],
+          [
+            "M",
+            "2020-05-23",
+            286
+          ],
+          [
+            "M",
+            "2020-05-25",
+            292
+          ],
+          [
+            "M",
+            "2020-05-27",
+            293
+          ],
+          [
+            "M",
+            "2020-05-29",
+            296
+          ],
+          [
+            "M",
+            "2020-05-31",
+            301
+          ],
+          [
+            "M",
+            "2020-06-02",
+            308
+          ],
+          [
+            "M",
+            "2020-06-04",
+            310
+          ],
+          [
+            "M",
+            "2020-06-06",
+            314
+          ],
+          [
+            "M",
+            "2020-06-08",
+            320
+          ],
+          [
+            "M",
+            "2020-06-10",
+            321
+          ],
+          [
+            "M",
+            "2020-06-12",
+            324
+          ],
+          [
+            "M",
+            "2020-06-14",
+            329
+          ],
+          [
+            "M",
+            "2020-06-16",
+            336
+          ],
+          [
+            "M",
+            "2020-06-18",
+            338
+          ],
+          [
+            "M",
+            "2020-06-20",
+            342
+          ],
+          [
+            "M",
+            "2020-06-22",
+            348
+          ],
+          [
+            "M",
+            "2020-06-24",
+            349
+          ],
+          [
+            "M",
+            "2020-06-26",
+            352
+          ],
+          [
+            "M",
+            "2020-06-28",
+            357
+          ],
+          [
+            "M",
+            "2020-06-30",
+            364
+          ],
+          [
+            "M",
+            "2020-07-02",
+            366
+          ],
+          [
+            "M",
+            "2020-07-04",
+            370
+          ],
+          [
+            "M",
+            "2020-07-06",
+            376
+          ],
+          [
+            "M",
+            "2020-07-08",
+            377
+          ],
+          [
+            "M",
+            "2020-07-10",
+            380
+          ],
+          [
+            "M",
+            "2020-07-12",
+            385
+          ],
+          [
+            "M",
+            "2020-07-14",
+            392
+          ],
+          [
+            "M",
+            "2020-07-16",
+            394
+          ],
+          [
+            "M",
+            "2020-07-18",
+            398
+          ],
+          [
+            "M",
+            "2020-07-20",
+            404
+          ],
+          [
+            "M",
+            "2020-07-22",
+            405
+          ],
+          [
+            "M",
+            "2020-07-24",
+            408
+          ],
+          [
+            "M",
+            "2020-07-26",
+            413
+          ],
+          [
+            "M",
+            "2020-07-28",
+            420
+          ],
+          [
+            "M",
+            "2020-07-30",
+            422
+          ],
+          [
+            "M",
+            "2020-08-01",
+            426
+          ],
+          [
+            "M",
+            "2020-08-03",
+            432
+          ],
+          [
+            "M",
+            "2020-08-05",
+            433
+          ],
+          [
+            "M",
+            "2020-08-07",
+            436
+          ],
+          [
+            "M",
+            "2020-08-09",
+            441
+          ],
+          [
+            "M",
+            "2020-08-11",
+            448
+          ],
+          [
+            "M",
+            "2020-08-13",
+            450
+          ],
+          [
+            "M",
+            "2020-08-15",
+            454
+          ],
+          [
+            "M",
+            "2020-08-17",
+            460
+          ],
+          [
+            "M",
+            "2020-08-19",
+            461
+          ],
+          [
+            "M",
+            "2020-08-21",
+            464
+          ],
+          [
+            "M",
+            "2020-08-23",
+            469
+          ],
+          [
+            "M",
+            "2020-08-25",
+            476
+          ],
+          [
+            "M",
+            "2020-08-27",
+            478
+          ],
+          [
+            "M",
+            "2020-08-29",
+            482
+          ],
+          [
+            "M",
+            "2020-08-31",
+            488
+          ],
+          [
+            "M",
+            "2020-09-02",
+            489
+          ],
+          [
+            "M",
+            "2020-09-04",
+            492
+          ],
+          [
+            "M",
+            "2020-09-06",
+            497
+          ],
+          [
+            "M",
+            "2020-09-08",
+            504
+          ],
+          [
+            "M",
+            "2020-09-10",
+            506
+          ],
+          [
+            "M",
+            "2020-09-12",
+            510
+          ],
+          [
+            "M",
+            "2020-09-14",
+            516
+          ],
+          [
+            "M",
+            "2020-09-16",
+            517
+          ],
+          [
+            "M",
+            "2020-09-18",
+            520
+          ],
+          [
+            "M",
+            "2020-09-20",
+            525
+          ],
+          [
+            "M",
+            "2020-09-22",
+            532
+          ],
+          [
+            "M",
+            "2020-09-24",
+            534
+          ],
+          [
+            "M",
+            "2020-09-26",
+            538
+          ],
+          [
+            "M",
+            "2020-09-28",
+            544
+          ],
+          [
+            "M",
+            "2020-09-30",
+            545
+          ],
+          [
+            "M",
+            "2020-10-02",
+            548
+          ],
+          [
+            "M",
+            "2020-10-04",
+            553
+          ],
+          [
+            "M",
+            "2020-10-06",
+            560
+          ],
+          [
+            "M",
+            "2020-10-08",
+            562
+          ],
+          [
+            "M",
+            "2020-10-10",
+            566
+          ],
+          [
+            "M",
+            "2020-10-12",
+            572
+          ],
+          [
+            "M",
+            "2020-10-14",
+            573
+          ],
+          [
+            "M",
+            "2020-10-16",
+            576
+          ],
+          [
+            "M",
+            "2020-10-18",
+            581
+          ],
+          [
+            "M",
+            "2020-10-20",
+            588
+          ],
+          [
+            "M",
+            "2020-10-22",
+            590
+          ],
+          [
+            "M",
+            "2020-10-24",
+            594
+          ],
+          [
+            "M",
+            "2020-10-26",
+            600
+          ],
+          [
+            "M",
+            "2020-10-28",
+            601
+          ],
+          [
+            "M",
+            "2020-10-30",
+            604
+          ],
+          [
+            "M",
+            "2020-11-01",
+            609
+          ],
+          [
+            "M",
+            "2020-11-03",
+            616
+          ],
+          [
+            "M",
+            "2020-11-05",
+            618
+          ],
+          [
+            "M",
+            "2020-11-07",
+            622
+          ],
+          [
+            "M",
+            "2020-11-09",
+            628
+          ],
+          [
+            "M",
+            "2020-11-11",
+            629
+          ],
+          [
+            "M",
+            "2020-11-13",
+            632
+          ],
+          [
+            "M",
+            "2020-11-15",
+            637
+          ],
+          [
+            "M",
+            "2020-11-17",
+            644
+          ],
+          [
+            "M",
+            "2020-11-19",
+            646
+          ],
+          [
+            "M",
+            "2020-11-21",
+            650
+          ],
+          [
+            "M",
+            "2020-11-23",
+            656
+          ],
+          [
+            "M",
+            "2020-11-25",
+            657
+          ],
+          [
+            "M",
+            "2020-11-27",
+            660
+          ],
+          [
+            "M",
+            "2020-11-29",
+            665
+          ],
+          [
+            "M",
+            "2020-12-01",
+            672
+          ],
+          [
+            "M",
+            "2020-12-03",
+            674
+          ],
+          [
+            "M",
+            "2020-12-05",
+            678
+          ],
+          [
+            "M",
+            "2020-12-07",
+            684
+          ],
+          [
+            "M",
+            "2020-12-09",
+            685
+          ],
+          [
+            "M",
+            "2020-12-11",
+            688
+          ],
+          [
+            "M",
+            "2020-12-13",
+            693
+          ],
+          [
+            "M",
+            "2020-12-15",
+            700
+          ],
+          [
+            "M",
+            "2020-12-17",
+            702
+          ],
+          [
+            "M",
+            "2020-12-19",
+            706
+          ],
+          [
+            "M",
+            "2020-12-21",
+            712
+          ],
+          [
+            "M",
+            "2020-12-23",
+            713
+          ],
+          [
+            "M",
+            "2020-12-25",
+            716
+          ],
+          [
+            "M",
+            "2020-12-27",
+            721
+          ],
+          [
+            "M",
+            "2020-12-29",
+            728
+          ],
+          [
+            "M",
+            "2020-12-31",
+            730
+          ],
+          [
+            "M",
+            "2021-01-02",
+            734
+          ],
+          [
+            "M",
+            "2021-01-04",
+            740
+          ],
+          [
+            "M",
+            "2021-01-06",
+            741
+          ],
+          [
+            "M",
+            "2021-01-08",
+            744
+          ],
+          [
+            "M",
+            "2021-01-10",
+            749
+          ],
+          [
+            "M",
+            "2021-01-12",
+            756
+          ],
+          [
+            "M",
+            "2021-01-14",
+            758
+          ],
+          [
+            "M",
+            "2021-01-16",
+            762
+          ],
+          [
+            "M",
+            "2021-01-18",
+            768
+          ],
+          [
+            "M",
+            "2021-01-20",
+            769
+          ],
+          [
+            "M",
+            "2021-01-22",
+            772
+          ],
+          [
+            "M",
+            "2021-01-24",
+            777
+          ],
+          [
+            "M",
+            "2021-01-26",
+            784
+          ],
+          [
+            "M",
+            "2021-01-28",
+            786
+          ],
+          [
+            "M",
+            "2021-01-30",
+            790
+          ],
+          [
+            "M",
+            "2021-02-01",
+            796
+          ],
+          [
+            "M",
+            "2021-02-03",
+            797
+          ],
+          [
+            "M",
+            "2021-02-05",
+            800
+          ],
+          [
+            "M",
+            "2021-02-07",
+            805
+          ],
+          [
+            "M",
+            "2021-02-09",
+            812
+          ],
+          [
+            "M",
+            "2021-02-11",
+            814
+          ],
+          [
+            "M",
+            "2021-02-13",
+            818
+          ],
+          [
+            "M",
+            "2021-02-15",
+            824
+          ],
+          [
+            "M",
+            "2021-02-17",
+            825
+          ],
+          [
+            "M",
+            "2021-02-19",
+            828
+          ],
+          [
+            "M",
+            "2021-02-21",
+            833
+          ],
+          [
+            "M",
+            "2021-02-23",
+            840
+          ],
+          [
+            "M",
+            "2021-02-25",
+            842
+          ],
+          [
+            "M",
+            "2021-02-27",
+            846
+          ],
+          [
+            "M",
+            "2021-03-01",
+            852
+          ],
+          [
+            "M",
+            "2021-03-03",
+            853
+          ],
+          [
+            "M",
+            "2021-03-05",
+            856
+          ],
+          [
+            "M",
+            "2021-03-07",
+            861
+          ],
+          [
+            "M",
+            "2021-03-09",
+            868
+          ],
+          [
+            "M",
+            "2021-03-11",
+            870
+          ],
+          [
+            "M",
+            "2021-03-13",
+            874
+          ],
+          [
+            "M",
+            "2021-03-15",
+            880
+          ],
+          [
+            "M",
+            "2021-03-17",
+            881
+          ],
+          [
+            "M",
+            "2021-03-19",
+            884
+          ],
+          [
+            "M",
+            "2021-03-21",
+            889
+          ],
+          [
+            "M",
+            "2021-03-23",
+            896
+          ],
+          [
+            "M",
+            "2021-03-25",
+            898
+          ],
+          [
+            "M",
+            "2021-03-27",
+            902
+          ],
+          [
+            "M",
+            "2021-03-29",
+            908
+          ],
+          [
+            "M",
+            "2021-03-31",
+            909
+          ],
+          [
+            "M",
+            "2021-04-02",
+            912
+          ],
+          [
+            "M",
+            "2021-04-04",
+            917
+          ],
+          [
+            "M",
+            "2021-04-06",
+            924
+          ],
+          [
+            "M",
+            "2021-04-08",
+            926
+          ],
+          [
+            "M",
+            "2021-04-10",
+            930
+          ],
+          [
+            "M",
+            "2021-04-12",
+            936
+          ],
+          [
+            "M",
+            "2021-04-14",
+            937
+          ],
+          [
+            "M",
+            "2021-04-16",
+            940
+          ],
+          [
+            "M",
+            "2021-04-18",
+            945
+          ],
+          [
+            "M",
+            "2021-04-20",
+            952
+          ],
+          [
+            "M",
+            "2021-04-22",
+            954
+          ],
+          [
+            "M",
+            "2021-04-24",
+            958
+          ],
+          [
+            "M",
+            "2021-04-26",
+            964
+          ],
+          [
+            "M",
+            "2021-04-28",
+            965
+          ],
+          [
+            "M",
+            "2021-04-30",
+            968
+          ],
+          [
+            "M",
+            "2021-05-02",
+            973
+          ],
+          [
+            "M",
+            "2021-05-04",
+            980
+          ],
+          [
+            "M",
+            "2021-05-06",
+            982
+          ],
+          [
+            "M",
+            "2021-05-08",
+            986
+          ],
+          [
+            "M",
+            "2021-05-10",
+            992
+          ],
+          [
+            "M",
+            "2021-05-12",
+            993
+          ],
+          [
+            "M",
+            "2021-05-14",
+            996
+          ],
+          [
+            "M",
+            "2021-05-16",
+            1001
+          ],
+          [
+            "M",
+            "2021-05-18",
+            1008
+          ],
+          [
+            "M",
+            "2021-05-20",
+            1010
+          ],
+          [
+            "M",
+            "2021-05-22",
+            1014
+          ],
+          [
+            "M",
+            "2021-05-24",
+            1020
+          ],
+          [
+            "M",
+            "2021-05-26",
+            1021
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "running-total"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3116",
+  "cases": [
+    {
+      "id": "benchmark-rank-256",
+      "name": "benchmark: four independent streams at k=256",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": { "coins": [13, 17, 19, 23], "k": 256 },
+      "expected": 1197,
+      "tags": ["benchmark", "scaling", "rank", "binary-search"]
+    },
+    {
+      "id": "benchmark-rank-1024",
+      "name": "benchmark: four independent streams at k=1024",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1024,
+      "input": { "coins": [13, 17, 19, 23], "k": 1024 },
+      "expected": 4823,
+      "tags": ["benchmark", "scaling", "rank", "binary-search"]
+    },
+    {
+      "id": "benchmark-rank-8192",
+      "name": "benchmark: four independent streams at k=8192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8192,
+      "input": { "coins": [13, 17, 19, 23], "k": 8192 },
+      "expected": 38506,
+      "tags": ["benchmark", "scaling", "rank", "binary-search"]
+    }
+  ]
+}

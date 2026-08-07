@@ -1,0 +1,4798 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3252",
+  "measurement_note": "The team count t is the workload size. Deterministic repeated point totals exercise competition ranks and tier-boundary ties; window ranking sorts once, while a correlated higher-score count rescans the league for every team.",
+  "cases": [
+    {
+      "id": "benchmark-tier-ranking-scale-1",
+      "name": "benchmark: 16 teams with repeated point totals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Team 001",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 2,
+              "team_name": "Team 002",
+              "matches_played": 10,
+              "wins": 6,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 3,
+              "team_name": "Team 003",
+              "matches_played": 17,
+              "wins": 13,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 4,
+              "team_name": "Team 004",
+              "matches_played": 20,
+              "wins": 20,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "Team 005",
+              "matches_played": 29,
+              "wins": 26,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 6,
+              "team_name": "Team 006",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 7,
+              "team_name": "Team 007",
+              "matches_played": 7,
+              "wins": 2,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 8,
+              "team_name": "Team 008",
+              "matches_played": 10,
+              "wins": 9,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 9,
+              "team_name": "Team 009",
+              "matches_played": 17,
+              "wins": 16,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 10,
+              "team_name": "Team 010",
+              "matches_played": 26,
+              "wins": 22,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 11,
+              "team_name": "Team 011",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 12,
+              "team_name": "Team 012",
+              "matches_played": 31,
+              "wins": 31,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 13,
+              "team_name": "Team 013",
+              "matches_played": 7,
+              "wins": 5,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 14,
+              "team_name": "Team 014",
+              "matches_played": 14,
+              "wins": 12,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 15,
+              "team_name": "Team 015",
+              "matches_played": 23,
+              "wins": 18,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 16,
+              "team_name": "Team 016",
+              "matches_played": 21,
+              "wins": 20,
+              "draws": 1,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Team 012",
+            93,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Team 006",
+            85,
+            2,
+            "Tier 1"
+          ],
+          [
+            "Team 005",
+            80,
+            3,
+            "Tier 1"
+          ],
+          [
+            "Team 011",
+            73,
+            4,
+            "Tier 1"
+          ],
+          [
+            "Team 010",
+            68,
+            5,
+            "Tier 1"
+          ],
+          [
+            "Team 016",
+            61,
+            6,
+            "Tier 1"
+          ],
+          [
+            "Team 004",
+            60,
+            7,
+            "Tier 2"
+          ],
+          [
+            "Team 015",
+            56,
+            8,
+            "Tier 2"
+          ],
+          [
+            "Team 009",
+            48,
+            9,
+            "Tier 2"
+          ],
+          [
+            "Team 003",
+            40,
+            10,
+            "Tier 2"
+          ],
+          [
+            "Team 014",
+            36,
+            11,
+            "Tier 2"
+          ],
+          [
+            "Team 008",
+            28,
+            12,
+            "Tier 3"
+          ],
+          [
+            "Team 002",
+            20,
+            13,
+            "Tier 3"
+          ],
+          [
+            "Team 013",
+            16,
+            14,
+            "Tier 3"
+          ],
+          [
+            "Team 007",
+            8,
+            15,
+            "Tier 3"
+          ],
+          [
+            "Team 001",
+            0,
+            16,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "ranking",
+        "tiers",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-tier-ranking-scale-2",
+      "name": "benchmark: 64 teams with repeated point totals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Team 001",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 2,
+              "team_name": "Team 002",
+              "matches_played": 10,
+              "wins": 6,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 3,
+              "team_name": "Team 003",
+              "matches_played": 17,
+              "wins": 13,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 4,
+              "team_name": "Team 004",
+              "matches_played": 20,
+              "wins": 20,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "Team 005",
+              "matches_played": 29,
+              "wins": 26,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 6,
+              "team_name": "Team 006",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 7,
+              "team_name": "Team 007",
+              "matches_played": 7,
+              "wins": 2,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 8,
+              "team_name": "Team 008",
+              "matches_played": 10,
+              "wins": 9,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 9,
+              "team_name": "Team 009",
+              "matches_played": 17,
+              "wins": 16,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 10,
+              "team_name": "Team 010",
+              "matches_played": 26,
+              "wins": 22,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 11,
+              "team_name": "Team 011",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 12,
+              "team_name": "Team 012",
+              "matches_played": 31,
+              "wins": 31,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 13,
+              "team_name": "Team 013",
+              "matches_played": 7,
+              "wins": 5,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 14,
+              "team_name": "Team 014",
+              "matches_played": 14,
+              "wins": 12,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 15,
+              "team_name": "Team 015",
+              "matches_played": 23,
+              "wins": 18,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 16,
+              "team_name": "Team 016",
+              "matches_played": 21,
+              "wins": 20,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 17,
+              "team_name": "Team 017",
+              "matches_played": 28,
+              "wins": 27,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 18,
+              "team_name": "Team 018",
+              "matches_played": 4,
+              "wins": 1,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 19,
+              "team_name": "Team 019",
+              "matches_played": 11,
+              "wins": 8,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 20,
+              "team_name": "Team 020",
+              "matches_played": 16,
+              "wins": 14,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 21,
+              "team_name": "Team 021",
+              "matches_played": 18,
+              "wins": 16,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 22,
+              "team_name": "Team 022",
+              "matches_played": 25,
+              "wins": 23,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 23,
+              "team_name": "Team 023",
+              "matches_played": 34,
+              "wins": 29,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 24,
+              "team_name": "Team 024",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 25,
+              "team_name": "Team 025",
+              "matches_played": 13,
+              "wins": 10,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 26,
+              "team_name": "Team 026",
+              "matches_played": 15,
+              "wins": 12,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 27,
+              "team_name": "Team 027",
+              "matches_played": 22,
+              "wins": 19,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 28,
+              "team_name": "Team 028",
+              "matches_played": 27,
+              "wins": 25,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 29,
+              "team_name": "Team 029",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 30,
+              "team_name": "Team 030",
+              "matches_played": 10,
+              "wins": 6,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 31,
+              "team_name": "Team 031",
+              "matches_played": 12,
+              "wins": 8,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 32,
+              "team_name": "Team 032",
+              "matches_played": 15,
+              "wins": 15,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 33,
+              "team_name": "Team 033",
+              "matches_played": 24,
+              "wins": 21,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 34,
+              "team_name": "Team 034",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 35,
+              "team_name": "Team 035",
+              "matches_played": 7,
+              "wins": 2,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 36,
+              "team_name": "Team 036",
+              "matches_played": 5,
+              "wins": 4,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 37,
+              "team_name": "Team 037",
+              "matches_played": 12,
+              "wins": 11,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 38,
+              "team_name": "Team 038",
+              "matches_played": 21,
+              "wins": 17,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 39,
+              "team_name": "Team 039",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 40,
+              "team_name": "Team 040",
+              "matches_played": 31,
+              "wins": 31,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 41,
+              "team_name": "Team 041",
+              "matches_played": 2,
+              "wins": 0,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 42,
+              "team_name": "Team 042",
+              "matches_played": 9,
+              "wins": 7,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 43,
+              "team_name": "Team 043",
+              "matches_played": 18,
+              "wins": 13,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 44,
+              "team_name": "Team 044",
+              "matches_played": 21,
+              "wins": 20,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 45,
+              "team_name": "Team 045",
+              "matches_played": 28,
+              "wins": 27,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 46,
+              "team_name": "Team 046",
+              "matches_played": 32,
+              "wins": 28,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 47,
+              "team_name": "Team 047",
+              "matches_played": 6,
+              "wins": 3,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 48,
+              "team_name": "Team 048",
+              "matches_played": 11,
+              "wins": 9,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 49,
+              "team_name": "Team 049",
+              "matches_played": 18,
+              "wins": 16,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 50,
+              "team_name": "Team 050",
+              "matches_played": 25,
+              "wins": 23,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 51,
+              "team_name": "Team 051",
+              "matches_played": 29,
+              "wins": 24,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 52,
+              "team_name": "Team 052",
+              "matches_played": 32,
+              "wins": 31,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 53,
+              "team_name": "Team 053",
+              "matches_played": 8,
+              "wins": 5,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 54,
+              "team_name": "Team 054",
+              "matches_played": 15,
+              "wins": 12,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 55,
+              "team_name": "Team 055",
+              "matches_played": 22,
+              "wins": 19,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 56,
+              "team_name": "Team 056",
+              "matches_played": 22,
+              "wins": 20,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 57,
+              "team_name": "Team 057",
+              "matches_played": 29,
+              "wins": 27,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 58,
+              "team_name": "Team 058",
+              "matches_played": 5,
+              "wins": 1,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 59,
+              "team_name": "Team 059",
+              "matches_played": 12,
+              "wins": 8,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 60,
+              "team_name": "Team 060",
+              "matches_played": 15,
+              "wins": 15,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 61,
+              "team_name": "Team 061",
+              "matches_played": 19,
+              "wins": 16,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 62,
+              "team_name": "Team 062",
+              "matches_played": 26,
+              "wins": 23,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 63,
+              "team_name": "Team 063",
+              "matches_played": 33,
+              "wins": 30,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 64,
+              "team_name": "Team 064",
+              "matches_played": 5,
+              "wins": 4,
+              "draws": 1,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Team 052",
+            94,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Team 012",
+            93,
+            2,
+            "Tier 1"
+          ],
+          [
+            "Team 040",
+            93,
+            2,
+            "Tier 1"
+          ],
+          [
+            "Team 063",
+            90,
+            4,
+            "Tier 1"
+          ],
+          [
+            "Team 023",
+            89,
+            5,
+            "Tier 1"
+          ],
+          [
+            "Team 046",
+            86,
+            6,
+            "Tier 1"
+          ],
+          [
+            "Team 006",
+            85,
+            7,
+            "Tier 1"
+          ],
+          [
+            "Team 034",
+            85,
+            7,
+            "Tier 1"
+          ],
+          [
+            "Team 057",
+            82,
+            9,
+            "Tier 1"
+          ],
+          [
+            "Team 017",
+            81,
+            10,
+            "Tier 1"
+          ],
+          [
+            "Team 045",
+            81,
+            10,
+            "Tier 1"
+          ],
+          [
+            "Team 005",
+            80,
+            12,
+            "Tier 1"
+          ],
+          [
+            "Team 028",
+            77,
+            13,
+            "Tier 1"
+          ],
+          [
+            "Team 051",
+            74,
+            14,
+            "Tier 1"
+          ],
+          [
+            "Team 011",
+            73,
+            15,
+            "Tier 1"
+          ],
+          [
+            "Team 039",
+            73,
+            15,
+            "Tier 1"
+          ],
+          [
+            "Team 062",
+            70,
+            17,
+            "Tier 1"
+          ],
+          [
+            "Team 022",
+            69,
+            18,
+            "Tier 1"
+          ],
+          [
+            "Team 050",
+            69,
+            18,
+            "Tier 1"
+          ],
+          [
+            "Team 010",
+            68,
+            20,
+            "Tier 1"
+          ],
+          [
+            "Team 033",
+            65,
+            21,
+            "Tier 1"
+          ],
+          [
+            "Team 056",
+            62,
+            22,
+            "Tier 1"
+          ],
+          [
+            "Team 016",
+            61,
+            23,
+            "Tier 2"
+          ],
+          [
+            "Team 044",
+            61,
+            23,
+            "Tier 2"
+          ],
+          [
+            "Team 004",
+            60,
+            25,
+            "Tier 2"
+          ],
+          [
+            "Team 027",
+            57,
+            26,
+            "Tier 2"
+          ],
+          [
+            "Team 055",
+            57,
+            26,
+            "Tier 2"
+          ],
+          [
+            "Team 015",
+            56,
+            28,
+            "Tier 2"
+          ],
+          [
+            "Team 038",
+            53,
+            29,
+            "Tier 2"
+          ],
+          [
+            "Team 061",
+            50,
+            30,
+            "Tier 2"
+          ],
+          [
+            "Team 021",
+            49,
+            31,
+            "Tier 2"
+          ],
+          [
+            "Team 049",
+            49,
+            31,
+            "Tier 2"
+          ],
+          [
+            "Team 009",
+            48,
+            33,
+            "Tier 2"
+          ],
+          [
+            "Team 032",
+            45,
+            34,
+            "Tier 2"
+          ],
+          [
+            "Team 060",
+            45,
+            34,
+            "Tier 2"
+          ],
+          [
+            "Team 020",
+            44,
+            36,
+            "Tier 2"
+          ],
+          [
+            "Team 043",
+            41,
+            37,
+            "Tier 2"
+          ],
+          [
+            "Team 003",
+            40,
+            38,
+            "Tier 2"
+          ],
+          [
+            "Team 026",
+            37,
+            39,
+            "Tier 2"
+          ],
+          [
+            "Team 054",
+            37,
+            39,
+            "Tier 2"
+          ],
+          [
+            "Team 014",
+            36,
+            41,
+            "Tier 2"
+          ],
+          [
+            "Team 037",
+            33,
+            42,
+            "Tier 2"
+          ],
+          [
+            "Team 025",
+            32,
+            43,
+            "Tier 2"
+          ],
+          [
+            "Team 048",
+            29,
+            44,
+            "Tier 3"
+          ],
+          [
+            "Team 008",
+            28,
+            45,
+            "Tier 3"
+          ],
+          [
+            "Team 031",
+            25,
+            46,
+            "Tier 3"
+          ],
+          [
+            "Team 059",
+            25,
+            46,
+            "Tier 3"
+          ],
+          [
+            "Team 019",
+            24,
+            48,
+            "Tier 3"
+          ],
+          [
+            "Team 042",
+            21,
+            49,
+            "Tier 3"
+          ],
+          [
+            "Team 002",
+            20,
+            50,
+            "Tier 3"
+          ],
+          [
+            "Team 030",
+            20,
+            50,
+            "Tier 3"
+          ],
+          [
+            "Team 053",
+            17,
+            52,
+            "Tier 3"
+          ],
+          [
+            "Team 013",
+            16,
+            53,
+            "Tier 3"
+          ],
+          [
+            "Team 036",
+            13,
+            54,
+            "Tier 3"
+          ],
+          [
+            "Team 064",
+            13,
+            54,
+            "Tier 3"
+          ],
+          [
+            "Team 024",
+            12,
+            56,
+            "Tier 3"
+          ],
+          [
+            "Team 047",
+            9,
+            57,
+            "Tier 3"
+          ],
+          [
+            "Team 007",
+            8,
+            58,
+            "Tier 3"
+          ],
+          [
+            "Team 035",
+            8,
+            58,
+            "Tier 3"
+          ],
+          [
+            "Team 058",
+            5,
+            60,
+            "Tier 3"
+          ],
+          [
+            "Team 018",
+            4,
+            61,
+            "Tier 3"
+          ],
+          [
+            "Team 041",
+            1,
+            62,
+            "Tier 3"
+          ],
+          [
+            "Team 001",
+            0,
+            63,
+            "Tier 3"
+          ],
+          [
+            "Team 029",
+            0,
+            63,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "ranking",
+        "tiers",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-tier-ranking-scale-3",
+      "name": "benchmark: 256 teams with repeated point totals",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "tables": {
+          "TeamStats": [
+            {
+              "team_id": 1,
+              "team_name": "Team 001",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 2,
+              "team_name": "Team 002",
+              "matches_played": 10,
+              "wins": 6,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 3,
+              "team_name": "Team 003",
+              "matches_played": 17,
+              "wins": 13,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 4,
+              "team_name": "Team 004",
+              "matches_played": 20,
+              "wins": 20,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 5,
+              "team_name": "Team 005",
+              "matches_played": 29,
+              "wins": 26,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 6,
+              "team_name": "Team 006",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 7,
+              "team_name": "Team 007",
+              "matches_played": 7,
+              "wins": 2,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 8,
+              "team_name": "Team 008",
+              "matches_played": 10,
+              "wins": 9,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 9,
+              "team_name": "Team 009",
+              "matches_played": 17,
+              "wins": 16,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 10,
+              "team_name": "Team 010",
+              "matches_played": 26,
+              "wins": 22,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 11,
+              "team_name": "Team 011",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 12,
+              "team_name": "Team 012",
+              "matches_played": 31,
+              "wins": 31,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 13,
+              "team_name": "Team 013",
+              "matches_played": 7,
+              "wins": 5,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 14,
+              "team_name": "Team 014",
+              "matches_played": 14,
+              "wins": 12,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 15,
+              "team_name": "Team 015",
+              "matches_played": 23,
+              "wins": 18,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 16,
+              "team_name": "Team 016",
+              "matches_played": 21,
+              "wins": 20,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 17,
+              "team_name": "Team 017",
+              "matches_played": 28,
+              "wins": 27,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 18,
+              "team_name": "Team 018",
+              "matches_played": 4,
+              "wins": 1,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 19,
+              "team_name": "Team 019",
+              "matches_played": 11,
+              "wins": 8,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 20,
+              "team_name": "Team 020",
+              "matches_played": 16,
+              "wins": 14,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 21,
+              "team_name": "Team 021",
+              "matches_played": 18,
+              "wins": 16,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 22,
+              "team_name": "Team 022",
+              "matches_played": 25,
+              "wins": 23,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 23,
+              "team_name": "Team 023",
+              "matches_played": 34,
+              "wins": 29,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 24,
+              "team_name": "Team 024",
+              "matches_played": 4,
+              "wins": 4,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 25,
+              "team_name": "Team 025",
+              "matches_played": 13,
+              "wins": 10,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 26,
+              "team_name": "Team 026",
+              "matches_played": 15,
+              "wins": 12,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 27,
+              "team_name": "Team 027",
+              "matches_played": 22,
+              "wins": 19,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 28,
+              "team_name": "Team 028",
+              "matches_played": 27,
+              "wins": 25,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 29,
+              "team_name": "Team 029",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 30,
+              "team_name": "Team 030",
+              "matches_played": 10,
+              "wins": 6,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 31,
+              "team_name": "Team 031",
+              "matches_played": 12,
+              "wins": 8,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 32,
+              "team_name": "Team 032",
+              "matches_played": 15,
+              "wins": 15,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 33,
+              "team_name": "Team 033",
+              "matches_played": 24,
+              "wins": 21,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 34,
+              "team_name": "Team 034",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 35,
+              "team_name": "Team 035",
+              "matches_played": 7,
+              "wins": 2,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 36,
+              "team_name": "Team 036",
+              "matches_played": 5,
+              "wins": 4,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 37,
+              "team_name": "Team 037",
+              "matches_played": 12,
+              "wins": 11,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 38,
+              "team_name": "Team 038",
+              "matches_played": 21,
+              "wins": 17,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 39,
+              "team_name": "Team 039",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 40,
+              "team_name": "Team 040",
+              "matches_played": 31,
+              "wins": 31,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 41,
+              "team_name": "Team 041",
+              "matches_played": 2,
+              "wins": 0,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 42,
+              "team_name": "Team 042",
+              "matches_played": 9,
+              "wins": 7,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 43,
+              "team_name": "Team 043",
+              "matches_played": 18,
+              "wins": 13,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 44,
+              "team_name": "Team 044",
+              "matches_played": 21,
+              "wins": 20,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 45,
+              "team_name": "Team 045",
+              "matches_played": 28,
+              "wins": 27,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 46,
+              "team_name": "Team 046",
+              "matches_played": 32,
+              "wins": 28,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 47,
+              "team_name": "Team 047",
+              "matches_played": 6,
+              "wins": 3,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 48,
+              "team_name": "Team 048",
+              "matches_played": 11,
+              "wins": 9,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 49,
+              "team_name": "Team 049",
+              "matches_played": 18,
+              "wins": 16,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 50,
+              "team_name": "Team 050",
+              "matches_played": 25,
+              "wins": 23,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 51,
+              "team_name": "Team 051",
+              "matches_played": 29,
+              "wins": 24,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 52,
+              "team_name": "Team 052",
+              "matches_played": 32,
+              "wins": 31,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 53,
+              "team_name": "Team 053",
+              "matches_played": 8,
+              "wins": 5,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 54,
+              "team_name": "Team 054",
+              "matches_played": 15,
+              "wins": 12,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 55,
+              "team_name": "Team 055",
+              "matches_played": 22,
+              "wins": 19,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 56,
+              "team_name": "Team 056",
+              "matches_played": 22,
+              "wins": 20,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 57,
+              "team_name": "Team 057",
+              "matches_played": 29,
+              "wins": 27,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 58,
+              "team_name": "Team 058",
+              "matches_played": 5,
+              "wins": 1,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 59,
+              "team_name": "Team 059",
+              "matches_played": 12,
+              "wins": 8,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 60,
+              "team_name": "Team 060",
+              "matches_played": 15,
+              "wins": 15,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 61,
+              "team_name": "Team 061",
+              "matches_played": 19,
+              "wins": 16,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 62,
+              "team_name": "Team 062",
+              "matches_played": 26,
+              "wins": 23,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 63,
+              "team_name": "Team 063",
+              "matches_played": 33,
+              "wins": 30,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 64,
+              "team_name": "Team 064",
+              "matches_played": 5,
+              "wins": 4,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 65,
+              "team_name": "Team 065",
+              "matches_played": 12,
+              "wins": 11,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 66,
+              "team_name": "Team 066",
+              "matches_played": 16,
+              "wins": 12,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 67,
+              "team_name": "Team 067",
+              "matches_played": 23,
+              "wins": 19,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 68,
+              "team_name": "Team 068",
+              "matches_played": 26,
+              "wins": 26,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 69,
+              "team_name": "Team 069",
+              "matches_played": 2,
+              "wins": 0,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 70,
+              "team_name": "Team 070",
+              "matches_played": 9,
+              "wins": 7,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 71,
+              "team_name": "Team 071",
+              "matches_played": 13,
+              "wins": 8,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 72,
+              "team_name": "Team 072",
+              "matches_played": 16,
+              "wins": 15,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 73,
+              "team_name": "Team 073",
+              "matches_played": 23,
+              "wins": 22,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 74,
+              "team_name": "Team 074",
+              "matches_played": 32,
+              "wins": 28,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 75,
+              "team_name": "Team 075",
+              "matches_played": 6,
+              "wins": 3,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 76,
+              "team_name": "Team 076",
+              "matches_played": 6,
+              "wins": 4,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 77,
+              "team_name": "Team 077",
+              "matches_played": 13,
+              "wins": 11,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 78,
+              "team_name": "Team 078",
+              "matches_played": 20,
+              "wins": 18,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 79,
+              "team_name": "Team 079",
+              "matches_played": 29,
+              "wins": 24,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 80,
+              "team_name": "Team 080",
+              "matches_played": 32,
+              "wins": 31,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 81,
+              "team_name": "Team 081",
+              "matches_played": 3,
+              "wins": 0,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 82,
+              "team_name": "Team 082",
+              "matches_played": 10,
+              "wins": 7,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 83,
+              "team_name": "Team 083",
+              "matches_played": 17,
+              "wins": 14,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 84,
+              "team_name": "Team 084",
+              "matches_played": 22,
+              "wins": 20,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 85,
+              "team_name": "Team 085",
+              "matches_played": 29,
+              "wins": 27,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 86,
+              "team_name": "Team 086",
+              "matches_played": 31,
+              "wins": 29,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 87,
+              "team_name": "Team 087",
+              "matches_played": 7,
+              "wins": 3,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 88,
+              "team_name": "Team 088",
+              "matches_played": 10,
+              "wins": 10,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 89,
+              "team_name": "Team 089",
+              "matches_played": 19,
+              "wins": 16,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 90,
+              "team_name": "Team 090",
+              "matches_played": 26,
+              "wins": 23,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 91,
+              "team_name": "Team 091",
+              "matches_played": 28,
+              "wins": 25,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 92,
+              "team_name": "Team 092",
+              "matches_played": 33,
+              "wins": 31,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 93,
+              "team_name": "Team 093",
+              "matches_played": 7,
+              "wins": 6,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 94,
+              "team_name": "Team 094",
+              "matches_played": 16,
+              "wins": 12,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 95,
+              "team_name": "Team 095",
+              "matches_played": 23,
+              "wins": 19,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 96,
+              "team_name": "Team 096",
+              "matches_played": 21,
+              "wins": 21,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 97,
+              "team_name": "Team 097",
+              "matches_played": 30,
+              "wins": 27,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 98,
+              "team_name": "Team 098",
+              "matches_played": 4,
+              "wins": 2,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 99,
+              "team_name": "Team 099",
+              "matches_played": 13,
+              "wins": 8,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 100,
+              "team_name": "Team 100",
+              "matches_played": 16,
+              "wins": 15,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 101,
+              "team_name": "Team 101",
+              "matches_played": 18,
+              "wins": 17,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 102,
+              "team_name": "Team 102",
+              "matches_played": 27,
+              "wins": 23,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 103,
+              "team_name": "Team 103",
+              "matches_played": 34,
+              "wins": 30,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 104,
+              "team_name": "Team 104",
+              "matches_played": 6,
+              "wins": 4,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 105,
+              "team_name": "Team 105",
+              "matches_played": 13,
+              "wins": 11,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 106,
+              "team_name": "Team 106",
+              "matches_played": 15,
+              "wins": 13,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 107,
+              "team_name": "Team 107",
+              "matches_played": 24,
+              "wins": 19,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 108,
+              "team_name": "Team 108",
+              "matches_played": 27,
+              "wins": 26,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 109,
+              "team_name": "Team 109",
+              "matches_played": 3,
+              "wins": 0,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 110,
+              "team_name": "Team 110",
+              "matches_played": 10,
+              "wins": 7,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 111,
+              "team_name": "Team 111",
+              "matches_played": 12,
+              "wins": 9,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 112,
+              "team_name": "Team 112",
+              "matches_played": 17,
+              "wins": 15,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 113,
+              "team_name": "Team 113",
+              "matches_played": 24,
+              "wins": 22,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 114,
+              "team_name": "Team 114",
+              "matches_played": 31,
+              "wins": 29,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 115,
+              "team_name": "Team 115",
+              "matches_played": 7,
+              "wins": 3,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 116,
+              "team_name": "Team 116",
+              "matches_played": 5,
+              "wins": 5,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 117,
+              "team_name": "Team 117",
+              "matches_played": 14,
+              "wins": 11,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 118,
+              "team_name": "Team 118",
+              "matches_played": 21,
+              "wins": 18,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 119,
+              "team_name": "Team 119",
+              "matches_played": 28,
+              "wins": 25,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 120,
+              "team_name": "Team 120",
+              "matches_played": 33,
+              "wins": 31,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 121,
+              "team_name": "Team 121",
+              "matches_played": 2,
+              "wins": 1,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 122,
+              "team_name": "Team 122",
+              "matches_played": 11,
+              "wins": 7,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 123,
+              "team_name": "Team 123",
+              "matches_played": 18,
+              "wins": 14,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 124,
+              "team_name": "Team 124",
+              "matches_played": 21,
+              "wins": 21,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 125,
+              "team_name": "Team 125",
+              "matches_played": 30,
+              "wins": 27,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 126,
+              "team_name": "Team 126",
+              "matches_played": 32,
+              "wins": 29,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 127,
+              "team_name": "Team 127",
+              "matches_played": 8,
+              "wins": 3,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 128,
+              "team_name": "Team 128",
+              "matches_played": 11,
+              "wins": 10,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 129,
+              "team_name": "Team 129",
+              "matches_played": 18,
+              "wins": 17,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 130,
+              "team_name": "Team 130",
+              "matches_played": 27,
+              "wins": 23,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 131,
+              "team_name": "Team 131",
+              "matches_played": 29,
+              "wins": 25,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 132,
+              "team_name": "Team 132",
+              "matches_played": 32,
+              "wins": 32,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 133,
+              "team_name": "Team 133",
+              "matches_played": 8,
+              "wins": 6,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 134,
+              "team_name": "Team 134",
+              "matches_played": 15,
+              "wins": 13,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 135,
+              "team_name": "Team 135",
+              "matches_played": 24,
+              "wins": 19,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 136,
+              "team_name": "Team 136",
+              "matches_played": 22,
+              "wins": 21,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 137,
+              "team_name": "Team 137",
+              "matches_played": 29,
+              "wins": 28,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 138,
+              "team_name": "Team 138",
+              "matches_played": 5,
+              "wins": 2,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 139,
+              "team_name": "Team 139",
+              "matches_played": 12,
+              "wins": 9,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 140,
+              "team_name": "Team 140",
+              "matches_played": 17,
+              "wins": 15,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 141,
+              "team_name": "Team 141",
+              "matches_played": 19,
+              "wins": 17,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 142,
+              "team_name": "Team 142",
+              "matches_played": 26,
+              "wins": 24,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 143,
+              "team_name": "Team 143",
+              "matches_played": 35,
+              "wins": 30,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 144,
+              "team_name": "Team 144",
+              "matches_played": 5,
+              "wins": 5,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 145,
+              "team_name": "Team 145",
+              "matches_played": 14,
+              "wins": 11,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 146,
+              "team_name": "Team 146",
+              "matches_played": 16,
+              "wins": 13,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 147,
+              "team_name": "Team 147",
+              "matches_played": 23,
+              "wins": 20,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 148,
+              "team_name": "Team 148",
+              "matches_played": 28,
+              "wins": 26,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 149,
+              "team_name": "Team 149",
+              "matches_played": 2,
+              "wins": 1,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 150,
+              "team_name": "Team 150",
+              "matches_played": 11,
+              "wins": 7,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 151,
+              "team_name": "Team 151",
+              "matches_played": 13,
+              "wins": 9,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 152,
+              "team_name": "Team 152",
+              "matches_played": 16,
+              "wins": 16,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 153,
+              "team_name": "Team 153",
+              "matches_played": 25,
+              "wins": 22,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 154,
+              "team_name": "Team 154",
+              "matches_played": 32,
+              "wins": 29,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 155,
+              "team_name": "Team 155",
+              "matches_played": 8,
+              "wins": 3,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 156,
+              "team_name": "Team 156",
+              "matches_played": 6,
+              "wins": 5,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 157,
+              "team_name": "Team 157",
+              "matches_played": 13,
+              "wins": 12,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 158,
+              "team_name": "Team 158",
+              "matches_played": 22,
+              "wins": 18,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 159,
+              "team_name": "Team 159",
+              "matches_played": 29,
+              "wins": 25,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 160,
+              "team_name": "Team 160",
+              "matches_played": 32,
+              "wins": 32,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 161,
+              "team_name": "Team 161",
+              "matches_played": 3,
+              "wins": 1,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 162,
+              "team_name": "Team 162",
+              "matches_played": 10,
+              "wins": 8,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 163,
+              "team_name": "Team 163",
+              "matches_played": 19,
+              "wins": 14,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 164,
+              "team_name": "Team 164",
+              "matches_played": 22,
+              "wins": 21,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 165,
+              "team_name": "Team 165",
+              "matches_played": 29,
+              "wins": 28,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 166,
+              "team_name": "Team 166",
+              "matches_played": 33,
+              "wins": 29,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 167,
+              "team_name": "Team 167",
+              "matches_played": 7,
+              "wins": 4,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 168,
+              "team_name": "Team 168",
+              "matches_played": 12,
+              "wins": 10,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 169,
+              "team_name": "Team 169",
+              "matches_played": 19,
+              "wins": 17,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 170,
+              "team_name": "Team 170",
+              "matches_played": 26,
+              "wins": 24,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 171,
+              "team_name": "Team 171",
+              "matches_played": 30,
+              "wins": 25,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 172,
+              "team_name": "Team 172",
+              "matches_played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 173,
+              "team_name": "Team 173",
+              "matches_played": 9,
+              "wins": 6,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 174,
+              "team_name": "Team 174",
+              "matches_played": 16,
+              "wins": 13,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 175,
+              "team_name": "Team 175",
+              "matches_played": 23,
+              "wins": 20,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 176,
+              "team_name": "Team 176",
+              "matches_played": 23,
+              "wins": 21,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 177,
+              "team_name": "Team 177",
+              "matches_played": 30,
+              "wins": 28,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 178,
+              "team_name": "Team 178",
+              "matches_played": 6,
+              "wins": 2,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 179,
+              "team_name": "Team 179",
+              "matches_played": 13,
+              "wins": 9,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 180,
+              "team_name": "Team 180",
+              "matches_played": 16,
+              "wins": 16,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 181,
+              "team_name": "Team 181",
+              "matches_played": 20,
+              "wins": 17,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 182,
+              "team_name": "Team 182",
+              "matches_played": 27,
+              "wins": 24,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 183,
+              "team_name": "Team 183",
+              "matches_played": 34,
+              "wins": 31,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 184,
+              "team_name": "Team 184",
+              "matches_played": 6,
+              "wins": 5,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 185,
+              "team_name": "Team 185",
+              "matches_played": 13,
+              "wins": 12,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 186,
+              "team_name": "Team 186",
+              "matches_played": 17,
+              "wins": 13,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 187,
+              "team_name": "Team 187",
+              "matches_played": 24,
+              "wins": 20,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 188,
+              "team_name": "Team 188",
+              "matches_played": 27,
+              "wins": 27,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 189,
+              "team_name": "Team 189",
+              "matches_played": 3,
+              "wins": 1,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 190,
+              "team_name": "Team 190",
+              "matches_played": 10,
+              "wins": 8,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 191,
+              "team_name": "Team 191",
+              "matches_played": 14,
+              "wins": 9,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 192,
+              "team_name": "Team 192",
+              "matches_played": 17,
+              "wins": 16,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 193,
+              "team_name": "Team 193",
+              "matches_played": 24,
+              "wins": 23,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 194,
+              "team_name": "Team 194",
+              "matches_played": 33,
+              "wins": 29,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 195,
+              "team_name": "Team 195",
+              "matches_played": 7,
+              "wins": 4,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 196,
+              "team_name": "Team 196",
+              "matches_played": 7,
+              "wins": 5,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 197,
+              "team_name": "Team 197",
+              "matches_played": 14,
+              "wins": 12,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 198,
+              "team_name": "Team 198",
+              "matches_played": 21,
+              "wins": 19,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 199,
+              "team_name": "Team 199",
+              "matches_played": 30,
+              "wins": 25,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 200,
+              "team_name": "Team 200",
+              "matches_played": 0,
+              "wins": 0,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 201,
+              "team_name": "Team 201",
+              "matches_played": 4,
+              "wins": 1,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 202,
+              "team_name": "Team 202",
+              "matches_played": 11,
+              "wins": 8,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 203,
+              "team_name": "Team 203",
+              "matches_played": 18,
+              "wins": 15,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 204,
+              "team_name": "Team 204",
+              "matches_played": 23,
+              "wins": 21,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 205,
+              "team_name": "Team 205",
+              "matches_played": 30,
+              "wins": 28,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 206,
+              "team_name": "Team 206",
+              "matches_played": 32,
+              "wins": 30,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 207,
+              "team_name": "Team 207",
+              "matches_played": 8,
+              "wins": 4,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 208,
+              "team_name": "Team 208",
+              "matches_played": 11,
+              "wins": 11,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 209,
+              "team_name": "Team 209",
+              "matches_played": 20,
+              "wins": 17,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 210,
+              "team_name": "Team 210",
+              "matches_played": 27,
+              "wins": 24,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 211,
+              "team_name": "Team 211",
+              "matches_played": 29,
+              "wins": 26,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 212,
+              "team_name": "Team 212",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 213,
+              "team_name": "Team 213",
+              "matches_played": 8,
+              "wins": 7,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 214,
+              "team_name": "Team 214",
+              "matches_played": 17,
+              "wins": 13,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 215,
+              "team_name": "Team 215",
+              "matches_played": 24,
+              "wins": 20,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 216,
+              "team_name": "Team 216",
+              "matches_played": 22,
+              "wins": 22,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 217,
+              "team_name": "Team 217",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 218,
+              "team_name": "Team 218",
+              "matches_played": 5,
+              "wins": 3,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 219,
+              "team_name": "Team 219",
+              "matches_played": 14,
+              "wins": 9,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 220,
+              "team_name": "Team 220",
+              "matches_played": 17,
+              "wins": 16,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 221,
+              "team_name": "Team 221",
+              "matches_played": 19,
+              "wins": 18,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 222,
+              "team_name": "Team 222",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 223,
+              "team_name": "Team 223",
+              "matches_played": 35,
+              "wins": 31,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 224,
+              "team_name": "Team 224",
+              "matches_played": 7,
+              "wins": 5,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 225,
+              "team_name": "Team 225",
+              "matches_played": 14,
+              "wins": 12,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 226,
+              "team_name": "Team 226",
+              "matches_played": 16,
+              "wins": 14,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 227,
+              "team_name": "Team 227",
+              "matches_played": 25,
+              "wins": 20,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 228,
+              "team_name": "Team 228",
+              "matches_played": 28,
+              "wins": 27,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 229,
+              "team_name": "Team 229",
+              "matches_played": 4,
+              "wins": 1,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 230,
+              "team_name": "Team 230",
+              "matches_played": 11,
+              "wins": 8,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 231,
+              "team_name": "Team 231",
+              "matches_played": 13,
+              "wins": 10,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 232,
+              "team_name": "Team 232",
+              "matches_played": 18,
+              "wins": 16,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 233,
+              "team_name": "Team 233",
+              "matches_played": 25,
+              "wins": 23,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 234,
+              "team_name": "Team 234",
+              "matches_played": 32,
+              "wins": 30,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 235,
+              "team_name": "Team 235",
+              "matches_played": 8,
+              "wins": 4,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 236,
+              "team_name": "Team 236",
+              "matches_played": 6,
+              "wins": 6,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 237,
+              "team_name": "Team 237",
+              "matches_played": 15,
+              "wins": 12,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 238,
+              "team_name": "Team 238",
+              "matches_played": 22,
+              "wins": 19,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 239,
+              "team_name": "Team 239",
+              "matches_played": 29,
+              "wins": 26,
+              "draws": 0,
+              "losses": 3
+            },
+            {
+              "team_id": 240,
+              "team_name": "Team 240",
+              "matches_played": 1,
+              "wins": 0,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 241,
+              "team_name": "Team 241",
+              "matches_played": 3,
+              "wins": 2,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 242,
+              "team_name": "Team 242",
+              "matches_played": 12,
+              "wins": 8,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 243,
+              "team_name": "Team 243",
+              "matches_played": 19,
+              "wins": 15,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 244,
+              "team_name": "Team 244",
+              "matches_played": 22,
+              "wins": 22,
+              "draws": 0,
+              "losses": 0
+            },
+            {
+              "team_id": 245,
+              "team_name": "Team 245",
+              "matches_played": 31,
+              "wins": 28,
+              "draws": 2,
+              "losses": 1
+            },
+            {
+              "team_id": 246,
+              "team_name": "Team 246",
+              "matches_played": 33,
+              "wins": 30,
+              "draws": 1,
+              "losses": 2
+            },
+            {
+              "team_id": 247,
+              "team_name": "Team 247",
+              "matches_played": 9,
+              "wins": 4,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 248,
+              "team_name": "Team 248",
+              "matches_played": 12,
+              "wins": 11,
+              "draws": 1,
+              "losses": 0
+            },
+            {
+              "team_id": 249,
+              "team_name": "Team 249",
+              "matches_played": 19,
+              "wins": 18,
+              "draws": 0,
+              "losses": 1
+            },
+            {
+              "team_id": 250,
+              "team_name": "Team 250",
+              "matches_played": 28,
+              "wins": 24,
+              "draws": 2,
+              "losses": 2
+            },
+            {
+              "team_id": 251,
+              "team_name": "Team 251",
+              "matches_played": 30,
+              "wins": 26,
+              "draws": 1,
+              "losses": 3
+            },
+            {
+              "team_id": 252,
+              "team_name": "Team 252",
+              "matches_played": 2,
+              "wins": 0,
+              "draws": 2,
+              "losses": 0
+            },
+            {
+              "team_id": 253,
+              "team_name": "Team 253",
+              "matches_played": 9,
+              "wins": 7,
+              "draws": 1,
+              "losses": 1
+            },
+            {
+              "team_id": 254,
+              "team_name": "Team 254",
+              "matches_played": 16,
+              "wins": 14,
+              "draws": 0,
+              "losses": 2
+            },
+            {
+              "team_id": 255,
+              "team_name": "Team 255",
+              "matches_played": 25,
+              "wins": 20,
+              "draws": 2,
+              "losses": 3
+            },
+            {
+              "team_id": 256,
+              "team_name": "Team 256",
+              "matches_played": 23,
+              "wins": 22,
+              "draws": 1,
+              "losses": 0
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "team_name",
+          "points",
+          "position",
+          "tier"
+        ],
+        "rows": [
+          [
+            "Team 132",
+            96,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Team 160",
+            96,
+            1,
+            "Tier 1"
+          ],
+          [
+            "Team 092",
+            95,
+            3,
+            "Tier 1"
+          ],
+          [
+            "Team 120",
+            95,
+            3,
+            "Tier 1"
+          ],
+          [
+            "Team 052",
+            94,
+            5,
+            "Tier 1"
+          ],
+          [
+            "Team 080",
+            94,
+            5,
+            "Tier 1"
+          ],
+          [
+            "Team 223",
+            94,
+            5,
+            "Tier 1"
+          ],
+          [
+            "Team 012",
+            93,
+            8,
+            "Tier 1"
+          ],
+          [
+            "Team 040",
+            93,
+            8,
+            "Tier 1"
+          ],
+          [
+            "Team 183",
+            93,
+            8,
+            "Tier 1"
+          ],
+          [
+            "Team 143",
+            92,
+            11,
+            "Tier 1"
+          ],
+          [
+            "Team 103",
+            91,
+            12,
+            "Tier 1"
+          ],
+          [
+            "Team 246",
+            91,
+            12,
+            "Tier 1"
+          ],
+          [
+            "Team 063",
+            90,
+            14,
+            "Tier 1"
+          ],
+          [
+            "Team 206",
+            90,
+            14,
+            "Tier 1"
+          ],
+          [
+            "Team 234",
+            90,
+            14,
+            "Tier 1"
+          ],
+          [
+            "Team 023",
+            89,
+            17,
+            "Tier 1"
+          ],
+          [
+            "Team 166",
+            89,
+            17,
+            "Tier 1"
+          ],
+          [
+            "Team 194",
+            89,
+            17,
+            "Tier 1"
+          ],
+          [
+            "Team 126",
+            88,
+            20,
+            "Tier 1"
+          ],
+          [
+            "Team 154",
+            88,
+            20,
+            "Tier 1"
+          ],
+          [
+            "Team 086",
+            87,
+            22,
+            "Tier 1"
+          ],
+          [
+            "Team 114",
+            87,
+            22,
+            "Tier 1"
+          ],
+          [
+            "Team 046",
+            86,
+            24,
+            "Tier 1"
+          ],
+          [
+            "Team 074",
+            86,
+            24,
+            "Tier 1"
+          ],
+          [
+            "Team 217",
+            86,
+            24,
+            "Tier 1"
+          ],
+          [
+            "Team 245",
+            86,
+            24,
+            "Tier 1"
+          ],
+          [
+            "Team 006",
+            85,
+            28,
+            "Tier 1"
+          ],
+          [
+            "Team 034",
+            85,
+            28,
+            "Tier 1"
+          ],
+          [
+            "Team 177",
+            85,
+            28,
+            "Tier 1"
+          ],
+          [
+            "Team 205",
+            85,
+            28,
+            "Tier 1"
+          ],
+          [
+            "Team 137",
+            84,
+            32,
+            "Tier 1"
+          ],
+          [
+            "Team 165",
+            84,
+            32,
+            "Tier 1"
+          ],
+          [
+            "Team 097",
+            83,
+            34,
+            "Tier 1"
+          ],
+          [
+            "Team 125",
+            83,
+            34,
+            "Tier 1"
+          ],
+          [
+            "Team 057",
+            82,
+            36,
+            "Tier 1"
+          ],
+          [
+            "Team 085",
+            82,
+            36,
+            "Tier 1"
+          ],
+          [
+            "Team 228",
+            82,
+            36,
+            "Tier 1"
+          ],
+          [
+            "Team 017",
+            81,
+            39,
+            "Tier 1"
+          ],
+          [
+            "Team 045",
+            81,
+            39,
+            "Tier 1"
+          ],
+          [
+            "Team 188",
+            81,
+            39,
+            "Tier 1"
+          ],
+          [
+            "Team 005",
+            80,
+            42,
+            "Tier 1"
+          ],
+          [
+            "Team 148",
+            80,
+            42,
+            "Tier 1"
+          ],
+          [
+            "Team 108",
+            79,
+            44,
+            "Tier 1"
+          ],
+          [
+            "Team 251",
+            79,
+            44,
+            "Tier 1"
+          ],
+          [
+            "Team 068",
+            78,
+            46,
+            "Tier 1"
+          ],
+          [
+            "Team 211",
+            78,
+            46,
+            "Tier 1"
+          ],
+          [
+            "Team 239",
+            78,
+            46,
+            "Tier 1"
+          ],
+          [
+            "Team 028",
+            77,
+            49,
+            "Tier 1"
+          ],
+          [
+            "Team 171",
+            77,
+            49,
+            "Tier 1"
+          ],
+          [
+            "Team 199",
+            77,
+            49,
+            "Tier 1"
+          ],
+          [
+            "Team 131",
+            76,
+            52,
+            "Tier 1"
+          ],
+          [
+            "Team 159",
+            76,
+            52,
+            "Tier 1"
+          ],
+          [
+            "Team 091",
+            75,
+            54,
+            "Tier 1"
+          ],
+          [
+            "Team 119",
+            75,
+            54,
+            "Tier 1"
+          ],
+          [
+            "Team 051",
+            74,
+            56,
+            "Tier 1"
+          ],
+          [
+            "Team 079",
+            74,
+            56,
+            "Tier 1"
+          ],
+          [
+            "Team 222",
+            74,
+            56,
+            "Tier 1"
+          ],
+          [
+            "Team 250",
+            74,
+            56,
+            "Tier 1"
+          ],
+          [
+            "Team 011",
+            73,
+            60,
+            "Tier 1"
+          ],
+          [
+            "Team 039",
+            73,
+            60,
+            "Tier 1"
+          ],
+          [
+            "Team 182",
+            73,
+            60,
+            "Tier 1"
+          ],
+          [
+            "Team 210",
+            73,
+            60,
+            "Tier 1"
+          ],
+          [
+            "Team 142",
+            72,
+            64,
+            "Tier 1"
+          ],
+          [
+            "Team 170",
+            72,
+            64,
+            "Tier 1"
+          ],
+          [
+            "Team 102",
+            71,
+            66,
+            "Tier 1"
+          ],
+          [
+            "Team 130",
+            71,
+            66,
+            "Tier 1"
+          ],
+          [
+            "Team 062",
+            70,
+            68,
+            "Tier 1"
+          ],
+          [
+            "Team 090",
+            70,
+            68,
+            "Tier 1"
+          ],
+          [
+            "Team 233",
+            70,
+            68,
+            "Tier 1"
+          ],
+          [
+            "Team 022",
+            69,
+            71,
+            "Tier 1"
+          ],
+          [
+            "Team 050",
+            69,
+            71,
+            "Tier 1"
+          ],
+          [
+            "Team 193",
+            69,
+            71,
+            "Tier 1"
+          ],
+          [
+            "Team 010",
+            68,
+            74,
+            "Tier 1"
+          ],
+          [
+            "Team 153",
+            68,
+            74,
+            "Tier 1"
+          ],
+          [
+            "Team 113",
+            67,
+            76,
+            "Tier 1"
+          ],
+          [
+            "Team 256",
+            67,
+            76,
+            "Tier 1"
+          ],
+          [
+            "Team 073",
+            66,
+            78,
+            "Tier 1"
+          ],
+          [
+            "Team 216",
+            66,
+            78,
+            "Tier 1"
+          ],
+          [
+            "Team 244",
+            66,
+            78,
+            "Tier 1"
+          ],
+          [
+            "Team 033",
+            65,
+            81,
+            "Tier 1"
+          ],
+          [
+            "Team 176",
+            65,
+            81,
+            "Tier 1"
+          ],
+          [
+            "Team 204",
+            65,
+            81,
+            "Tier 1"
+          ],
+          [
+            "Team 136",
+            64,
+            84,
+            "Tier 1"
+          ],
+          [
+            "Team 164",
+            64,
+            84,
+            "Tier 1"
+          ],
+          [
+            "Team 096",
+            63,
+            86,
+            "Tier 2"
+          ],
+          [
+            "Team 124",
+            63,
+            86,
+            "Tier 2"
+          ],
+          [
+            "Team 056",
+            62,
+            88,
+            "Tier 2"
+          ],
+          [
+            "Team 084",
+            62,
+            88,
+            "Tier 2"
+          ],
+          [
+            "Team 227",
+            62,
+            88,
+            "Tier 2"
+          ],
+          [
+            "Team 255",
+            62,
+            88,
+            "Tier 2"
+          ],
+          [
+            "Team 016",
+            61,
+            92,
+            "Tier 2"
+          ],
+          [
+            "Team 044",
+            61,
+            92,
+            "Tier 2"
+          ],
+          [
+            "Team 187",
+            61,
+            92,
+            "Tier 2"
+          ],
+          [
+            "Team 215",
+            61,
+            92,
+            "Tier 2"
+          ],
+          [
+            "Team 004",
+            60,
+            96,
+            "Tier 2"
+          ],
+          [
+            "Team 147",
+            60,
+            96,
+            "Tier 2"
+          ],
+          [
+            "Team 175",
+            60,
+            96,
+            "Tier 2"
+          ],
+          [
+            "Team 107",
+            59,
+            99,
+            "Tier 2"
+          ],
+          [
+            "Team 135",
+            59,
+            99,
+            "Tier 2"
+          ],
+          [
+            "Team 067",
+            58,
+            101,
+            "Tier 2"
+          ],
+          [
+            "Team 095",
+            58,
+            101,
+            "Tier 2"
+          ],
+          [
+            "Team 238",
+            58,
+            101,
+            "Tier 2"
+          ],
+          [
+            "Team 027",
+            57,
+            104,
+            "Tier 2"
+          ],
+          [
+            "Team 055",
+            57,
+            104,
+            "Tier 2"
+          ],
+          [
+            "Team 198",
+            57,
+            104,
+            "Tier 2"
+          ],
+          [
+            "Team 015",
+            56,
+            107,
+            "Tier 2"
+          ],
+          [
+            "Team 158",
+            56,
+            107,
+            "Tier 2"
+          ],
+          [
+            "Team 118",
+            55,
+            109,
+            "Tier 2"
+          ],
+          [
+            "Team 078",
+            54,
+            110,
+            "Tier 2"
+          ],
+          [
+            "Team 221",
+            54,
+            110,
+            "Tier 2"
+          ],
+          [
+            "Team 249",
+            54,
+            110,
+            "Tier 2"
+          ],
+          [
+            "Team 038",
+            53,
+            113,
+            "Tier 2"
+          ],
+          [
+            "Team 181",
+            53,
+            113,
+            "Tier 2"
+          ],
+          [
+            "Team 209",
+            53,
+            113,
+            "Tier 2"
+          ],
+          [
+            "Team 141",
+            52,
+            116,
+            "Tier 2"
+          ],
+          [
+            "Team 169",
+            52,
+            116,
+            "Tier 2"
+          ],
+          [
+            "Team 101",
+            51,
+            118,
+            "Tier 2"
+          ],
+          [
+            "Team 129",
+            51,
+            118,
+            "Tier 2"
+          ],
+          [
+            "Team 061",
+            50,
+            120,
+            "Tier 2"
+          ],
+          [
+            "Team 089",
+            50,
+            120,
+            "Tier 2"
+          ],
+          [
+            "Team 232",
+            50,
+            120,
+            "Tier 2"
+          ],
+          [
+            "Team 021",
+            49,
+            123,
+            "Tier 2"
+          ],
+          [
+            "Team 049",
+            49,
+            123,
+            "Tier 2"
+          ],
+          [
+            "Team 192",
+            49,
+            123,
+            "Tier 2"
+          ],
+          [
+            "Team 220",
+            49,
+            123,
+            "Tier 2"
+          ],
+          [
+            "Team 009",
+            48,
+            127,
+            "Tier 2"
+          ],
+          [
+            "Team 152",
+            48,
+            127,
+            "Tier 2"
+          ],
+          [
+            "Team 180",
+            48,
+            127,
+            "Tier 2"
+          ],
+          [
+            "Team 112",
+            47,
+            130,
+            "Tier 2"
+          ],
+          [
+            "Team 140",
+            47,
+            130,
+            "Tier 2"
+          ],
+          [
+            "Team 072",
+            46,
+            132,
+            "Tier 2"
+          ],
+          [
+            "Team 100",
+            46,
+            132,
+            "Tier 2"
+          ],
+          [
+            "Team 243",
+            46,
+            132,
+            "Tier 2"
+          ],
+          [
+            "Team 032",
+            45,
+            135,
+            "Tier 2"
+          ],
+          [
+            "Team 060",
+            45,
+            135,
+            "Tier 2"
+          ],
+          [
+            "Team 203",
+            45,
+            135,
+            "Tier 2"
+          ],
+          [
+            "Team 020",
+            44,
+            138,
+            "Tier 2"
+          ],
+          [
+            "Team 163",
+            44,
+            138,
+            "Tier 2"
+          ],
+          [
+            "Team 123",
+            43,
+            140,
+            "Tier 2"
+          ],
+          [
+            "Team 083",
+            42,
+            141,
+            "Tier 2"
+          ],
+          [
+            "Team 226",
+            42,
+            141,
+            "Tier 2"
+          ],
+          [
+            "Team 254",
+            42,
+            141,
+            "Tier 2"
+          ],
+          [
+            "Team 043",
+            41,
+            144,
+            "Tier 2"
+          ],
+          [
+            "Team 186",
+            41,
+            144,
+            "Tier 2"
+          ],
+          [
+            "Team 214",
+            41,
+            144,
+            "Tier 2"
+          ],
+          [
+            "Team 003",
+            40,
+            147,
+            "Tier 2"
+          ],
+          [
+            "Team 146",
+            40,
+            147,
+            "Tier 2"
+          ],
+          [
+            "Team 174",
+            40,
+            147,
+            "Tier 2"
+          ],
+          [
+            "Team 106",
+            39,
+            150,
+            "Tier 2"
+          ],
+          [
+            "Team 134",
+            39,
+            150,
+            "Tier 2"
+          ],
+          [
+            "Team 066",
+            38,
+            152,
+            "Tier 2"
+          ],
+          [
+            "Team 094",
+            38,
+            152,
+            "Tier 2"
+          ],
+          [
+            "Team 237",
+            38,
+            152,
+            "Tier 2"
+          ],
+          [
+            "Team 026",
+            37,
+            155,
+            "Tier 2"
+          ],
+          [
+            "Team 054",
+            37,
+            155,
+            "Tier 2"
+          ],
+          [
+            "Team 197",
+            37,
+            155,
+            "Tier 2"
+          ],
+          [
+            "Team 225",
+            37,
+            155,
+            "Tier 2"
+          ],
+          [
+            "Team 014",
+            36,
+            159,
+            "Tier 2"
+          ],
+          [
+            "Team 157",
+            36,
+            159,
+            "Tier 2"
+          ],
+          [
+            "Team 185",
+            36,
+            159,
+            "Tier 2"
+          ],
+          [
+            "Team 117",
+            35,
+            162,
+            "Tier 2"
+          ],
+          [
+            "Team 145",
+            35,
+            162,
+            "Tier 2"
+          ],
+          [
+            "Team 077",
+            34,
+            164,
+            "Tier 2"
+          ],
+          [
+            "Team 105",
+            34,
+            164,
+            "Tier 2"
+          ],
+          [
+            "Team 248",
+            34,
+            164,
+            "Tier 2"
+          ],
+          [
+            "Team 037",
+            33,
+            167,
+            "Tier 2"
+          ],
+          [
+            "Team 065",
+            33,
+            167,
+            "Tier 2"
+          ],
+          [
+            "Team 208",
+            33,
+            167,
+            "Tier 2"
+          ],
+          [
+            "Team 025",
+            32,
+            170,
+            "Tier 3"
+          ],
+          [
+            "Team 168",
+            32,
+            170,
+            "Tier 3"
+          ],
+          [
+            "Team 128",
+            31,
+            172,
+            "Tier 3"
+          ],
+          [
+            "Team 088",
+            30,
+            173,
+            "Tier 3"
+          ],
+          [
+            "Team 231",
+            30,
+            173,
+            "Tier 3"
+          ],
+          [
+            "Team 048",
+            29,
+            175,
+            "Tier 3"
+          ],
+          [
+            "Team 191",
+            29,
+            175,
+            "Tier 3"
+          ],
+          [
+            "Team 219",
+            29,
+            175,
+            "Tier 3"
+          ],
+          [
+            "Team 008",
+            28,
+            178,
+            "Tier 3"
+          ],
+          [
+            "Team 151",
+            28,
+            178,
+            "Tier 3"
+          ],
+          [
+            "Team 179",
+            28,
+            178,
+            "Tier 3"
+          ],
+          [
+            "Team 111",
+            27,
+            181,
+            "Tier 3"
+          ],
+          [
+            "Team 139",
+            27,
+            181,
+            "Tier 3"
+          ],
+          [
+            "Team 071",
+            26,
+            183,
+            "Tier 3"
+          ],
+          [
+            "Team 099",
+            26,
+            183,
+            "Tier 3"
+          ],
+          [
+            "Team 242",
+            26,
+            183,
+            "Tier 3"
+          ],
+          [
+            "Team 031",
+            25,
+            186,
+            "Tier 3"
+          ],
+          [
+            "Team 059",
+            25,
+            186,
+            "Tier 3"
+          ],
+          [
+            "Team 202",
+            25,
+            186,
+            "Tier 3"
+          ],
+          [
+            "Team 230",
+            25,
+            186,
+            "Tier 3"
+          ],
+          [
+            "Team 019",
+            24,
+            190,
+            "Tier 3"
+          ],
+          [
+            "Team 162",
+            24,
+            190,
+            "Tier 3"
+          ],
+          [
+            "Team 190",
+            24,
+            190,
+            "Tier 3"
+          ],
+          [
+            "Team 122",
+            23,
+            193,
+            "Tier 3"
+          ],
+          [
+            "Team 150",
+            23,
+            193,
+            "Tier 3"
+          ],
+          [
+            "Team 082",
+            22,
+            195,
+            "Tier 3"
+          ],
+          [
+            "Team 110",
+            22,
+            195,
+            "Tier 3"
+          ],
+          [
+            "Team 253",
+            22,
+            195,
+            "Tier 3"
+          ],
+          [
+            "Team 042",
+            21,
+            198,
+            "Tier 3"
+          ],
+          [
+            "Team 070",
+            21,
+            198,
+            "Tier 3"
+          ],
+          [
+            "Team 213",
+            21,
+            198,
+            "Tier 3"
+          ],
+          [
+            "Team 002",
+            20,
+            201,
+            "Tier 3"
+          ],
+          [
+            "Team 030",
+            20,
+            201,
+            "Tier 3"
+          ],
+          [
+            "Team 173",
+            20,
+            201,
+            "Tier 3"
+          ],
+          [
+            "Team 133",
+            19,
+            204,
+            "Tier 3"
+          ],
+          [
+            "Team 093",
+            18,
+            205,
+            "Tier 3"
+          ],
+          [
+            "Team 236",
+            18,
+            205,
+            "Tier 3"
+          ],
+          [
+            "Team 053",
+            17,
+            207,
+            "Tier 3"
+          ],
+          [
+            "Team 196",
+            17,
+            207,
+            "Tier 3"
+          ],
+          [
+            "Team 224",
+            17,
+            207,
+            "Tier 3"
+          ],
+          [
+            "Team 013",
+            16,
+            210,
+            "Tier 3"
+          ],
+          [
+            "Team 156",
+            16,
+            210,
+            "Tier 3"
+          ],
+          [
+            "Team 184",
+            16,
+            210,
+            "Tier 3"
+          ],
+          [
+            "Team 116",
+            15,
+            213,
+            "Tier 3"
+          ],
+          [
+            "Team 144",
+            15,
+            213,
+            "Tier 3"
+          ],
+          [
+            "Team 076",
+            14,
+            215,
+            "Tier 3"
+          ],
+          [
+            "Team 104",
+            14,
+            215,
+            "Tier 3"
+          ],
+          [
+            "Team 247",
+            14,
+            215,
+            "Tier 3"
+          ],
+          [
+            "Team 036",
+            13,
+            218,
+            "Tier 3"
+          ],
+          [
+            "Team 064",
+            13,
+            218,
+            "Tier 3"
+          ],
+          [
+            "Team 207",
+            13,
+            218,
+            "Tier 3"
+          ],
+          [
+            "Team 235",
+            13,
+            218,
+            "Tier 3"
+          ],
+          [
+            "Team 024",
+            12,
+            222,
+            "Tier 3"
+          ],
+          [
+            "Team 167",
+            12,
+            222,
+            "Tier 3"
+          ],
+          [
+            "Team 195",
+            12,
+            222,
+            "Tier 3"
+          ],
+          [
+            "Team 127",
+            11,
+            225,
+            "Tier 3"
+          ],
+          [
+            "Team 155",
+            11,
+            225,
+            "Tier 3"
+          ],
+          [
+            "Team 087",
+            10,
+            227,
+            "Tier 3"
+          ],
+          [
+            "Team 115",
+            10,
+            227,
+            "Tier 3"
+          ],
+          [
+            "Team 047",
+            9,
+            229,
+            "Tier 3"
+          ],
+          [
+            "Team 075",
+            9,
+            229,
+            "Tier 3"
+          ],
+          [
+            "Team 218",
+            9,
+            229,
+            "Tier 3"
+          ],
+          [
+            "Team 007",
+            8,
+            232,
+            "Tier 3"
+          ],
+          [
+            "Team 035",
+            8,
+            232,
+            "Tier 3"
+          ],
+          [
+            "Team 178",
+            8,
+            232,
+            "Tier 3"
+          ],
+          [
+            "Team 138",
+            7,
+            235,
+            "Tier 3"
+          ],
+          [
+            "Team 098",
+            6,
+            236,
+            "Tier 3"
+          ],
+          [
+            "Team 241",
+            6,
+            236,
+            "Tier 3"
+          ],
+          [
+            "Team 058",
+            5,
+            238,
+            "Tier 3"
+          ],
+          [
+            "Team 201",
+            5,
+            238,
+            "Tier 3"
+          ],
+          [
+            "Team 229",
+            5,
+            238,
+            "Tier 3"
+          ],
+          [
+            "Team 018",
+            4,
+            241,
+            "Tier 3"
+          ],
+          [
+            "Team 161",
+            4,
+            241,
+            "Tier 3"
+          ],
+          [
+            "Team 189",
+            4,
+            241,
+            "Tier 3"
+          ],
+          [
+            "Team 121",
+            3,
+            244,
+            "Tier 3"
+          ],
+          [
+            "Team 149",
+            3,
+            244,
+            "Tier 3"
+          ],
+          [
+            "Team 081",
+            2,
+            246,
+            "Tier 3"
+          ],
+          [
+            "Team 109",
+            2,
+            246,
+            "Tier 3"
+          ],
+          [
+            "Team 252",
+            2,
+            246,
+            "Tier 3"
+          ],
+          [
+            "Team 041",
+            1,
+            249,
+            "Tier 3"
+          ],
+          [
+            "Team 069",
+            1,
+            249,
+            "Tier 3"
+          ],
+          [
+            "Team 212",
+            1,
+            249,
+            "Tier 3"
+          ],
+          [
+            "Team 240",
+            1,
+            249,
+            "Tier 3"
+          ],
+          [
+            "Team 001",
+            0,
+            253,
+            "Tier 3"
+          ],
+          [
+            "Team 029",
+            0,
+            253,
+            "Tier 3"
+          ],
+          [
+            "Team 172",
+            0,
+            253,
+            "Tier 3"
+          ],
+          [
+            "Team 200",
+            0,
+            253,
+            "Tier 3"
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "ranking",
+        "tiers",
+        "scale-3"
+      ]
+    }
+  ]
+}

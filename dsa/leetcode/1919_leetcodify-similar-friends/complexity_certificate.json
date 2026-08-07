@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1919",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(L^2 + F)",
+  "summary": "A dense friendship relation among users sharing three songs has quadratic input and output size, and the friendship-driven shared-listening join matches that worst-case bound.",
+  "optimality": {
+    "symbol": "L",
+    "lower_bound": "Omega(L^2 + F)",
+    "upper_bound": "O(L^2 + F)",
+    "argument": "Let U users all listen to the same three songs on one day and let Friendship contain every unordered user pair. Then L = 3U, F = U(U-1)/2 = Theta(L^2), and all F rows must be returned. The query scans the friendship relation and processes at most O(L^2) logical pairs of listening facts before grouping and deduplication."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Three universally shared songs and a complete friendship relation force Theta(U^2) output rows from L = 3U distinct listening facts and F = Theta(U^2) friendship rows."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "The shared-listening join has at most one logical combination per pair of distinct listening facts after deduplication, while friendship access contributes linear work in F."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover exactly two versus three songs, duplicate logs, songs split across dates, nonfriends, repeated qualification across dates, independent qualifying pairs, and empty activity."
+    }
+  ]
+}

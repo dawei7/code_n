@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2600",
+  "measurement_note": "Size is m, the total number of items. All three item counts grow equally and k equals m. The formula remains constant time, while a correct selection simulation performs one iteration per item. The tiers stay inside the complete legal domain where each category count is at most 50.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: twelve total items",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": { "numOnes": 4, "numZeros": 4, "numNegOnes": 4, "k": 12 },
+      "expected": 0,
+      "tags": ["benchmark", "scale-small", "full-bag"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: forty-eight total items",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": { "numOnes": 16, "numZeros": 16, "numNegOnes": 16, "k": 48 },
+      "expected": 0,
+      "tags": ["benchmark", "scale-medium", "full-bag"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: one hundred fifty total items",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 150,
+      "input": { "numOnes": 50, "numZeros": 50, "numNegOnes": 50, "k": 150 },
+      "expected": 0,
+      "tags": ["benchmark", "scale-large", "full-bag"]
+    }
+  ]
+}

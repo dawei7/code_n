@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1553",
+  "measurement_note": "Size is n, the initial orange count. The legal 127/2047/32767 values span more than 258x and have all low binary bits set, producing overlapping divide-by-two and divide-by-three recursion. The remotely Accepted memoized recurrence is O((log n)^2), and an independently structured cached recurrence also passes. The same correct recurrence without memoization completes every tier and is rejected only by its repeated-state scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: quotient recurrence for n = 127",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {
+        "n": 127
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "memoization",
+        "n-127"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: quotient recurrence for n = 2047",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2047,
+      "input": {
+        "n": 2047
+      },
+      "expected": 13,
+      "tags": [
+        "benchmark",
+        "memoization",
+        "n-2047"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: quotient recurrence for n = 32767",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32767,
+      "input": {
+        "n": 32767
+      },
+      "expected": 18,
+      "tags": [
+        "benchmark",
+        "memoization",
+        "n-32767"
+      ]
+    }
+  ]
+}

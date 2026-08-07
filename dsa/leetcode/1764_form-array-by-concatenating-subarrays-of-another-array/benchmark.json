@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1764",
+  "measurement_note": "Size is N, the nums length. Each single group is roughly half as long as nums, consists of ones followed by a two, and never matches an all-one nums array. KMP is O(N+S); a correct candidate-start matcher compares the long repeated prefix at every position, completes all tiers, and is rejected by O(NS) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 values and an 8-value pattern",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"groups": [[1,1,1,1,1,1,1,2]], "nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "repeated-prefix"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 values and a 32-value pattern",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"groups": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]], "nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "repeated-prefix"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 244 values and a 127-value pattern",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 244,
+      "input": {"groups": [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2]], "nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},
+      "expected": false,
+      "tags": ["benchmark", "scaling", "repeated-prefix"]
+    }
+  ]
+}

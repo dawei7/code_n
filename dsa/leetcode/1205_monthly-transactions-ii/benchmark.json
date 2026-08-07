@@ -1,0 +1,5271 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1205",
+  "measurement_note": "Size is both the transaction count, chargeback count, and number of distinct output groups. A unified event stream joins and aggregates once, while a redundant cross-product aggregation preserves the result but expands the event stream quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-16",
+      "name": "benchmark: 16 distinct month-country groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "id": 1,
+              "country": "C001",
+              "state": "approved",
+              "amount": 1,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 2,
+              "country": "C002",
+              "state": "approved",
+              "amount": 2,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 3,
+              "country": "C003",
+              "state": "approved",
+              "amount": 3,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 4,
+              "country": "C004",
+              "state": "approved",
+              "amount": 4,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 5,
+              "country": "C005",
+              "state": "approved",
+              "amount": 5,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 6,
+              "country": "C006",
+              "state": "approved",
+              "amount": 6,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 7,
+              "country": "C007",
+              "state": "approved",
+              "amount": 7,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 8,
+              "country": "C008",
+              "state": "approved",
+              "amount": 8,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 9,
+              "country": "C009",
+              "state": "approved",
+              "amount": 9,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 10,
+              "country": "C010",
+              "state": "approved",
+              "amount": 10,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 11,
+              "country": "C011",
+              "state": "approved",
+              "amount": 11,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 12,
+              "country": "C012",
+              "state": "approved",
+              "amount": 12,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 13,
+              "country": "C013",
+              "state": "approved",
+              "amount": 13,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 14,
+              "country": "C014",
+              "state": "approved",
+              "amount": 14,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 15,
+              "country": "C015",
+              "state": "approved",
+              "amount": 15,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 16,
+              "country": "C016",
+              "state": "approved",
+              "amount": 16,
+              "trans_date": "2020-01-15"
+            }
+          ],
+          "Chargebacks": [
+            {
+              "trans_id": 1,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 2,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 3,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 4,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 5,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 6,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 7,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 8,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 9,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 10,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 11,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 12,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 13,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 14,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 15,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 16,
+              "trans_date": "2020-01-20"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "country",
+          "approved_count",
+          "approved_amount",
+          "chargeback_count",
+          "chargeback_amount"
+        ],
+        "rows": [
+          [
+            "2020-01",
+            "C001",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            "2020-01",
+            "C002",
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            "2020-01",
+            "C003",
+            1,
+            3,
+            1,
+            3
+          ],
+          [
+            "2020-01",
+            "C004",
+            1,
+            4,
+            1,
+            4
+          ],
+          [
+            "2020-01",
+            "C005",
+            1,
+            5,
+            1,
+            5
+          ],
+          [
+            "2020-01",
+            "C006",
+            1,
+            6,
+            1,
+            6
+          ],
+          [
+            "2020-01",
+            "C007",
+            1,
+            7,
+            1,
+            7
+          ],
+          [
+            "2020-01",
+            "C008",
+            1,
+            8,
+            1,
+            8
+          ],
+          [
+            "2020-01",
+            "C009",
+            1,
+            9,
+            1,
+            9
+          ],
+          [
+            "2020-01",
+            "C010",
+            1,
+            10,
+            1,
+            10
+          ],
+          [
+            "2020-01",
+            "C011",
+            1,
+            11,
+            1,
+            11
+          ],
+          [
+            "2020-01",
+            "C012",
+            1,
+            12,
+            1,
+            12
+          ],
+          [
+            "2020-01",
+            "C013",
+            1,
+            13,
+            1,
+            13
+          ],
+          [
+            "2020-01",
+            "C014",
+            1,
+            14,
+            1,
+            14
+          ],
+          [
+            "2020-01",
+            "C015",
+            1,
+            15,
+            1,
+            15
+          ],
+          [
+            "2020-01",
+            "C016",
+            1,
+            16,
+            1,
+            16
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "distinct-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-64",
+      "name": "benchmark: 64 distinct month-country groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "id": 1,
+              "country": "C001",
+              "state": "approved",
+              "amount": 1,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 2,
+              "country": "C002",
+              "state": "approved",
+              "amount": 2,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 3,
+              "country": "C003",
+              "state": "approved",
+              "amount": 3,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 4,
+              "country": "C004",
+              "state": "approved",
+              "amount": 4,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 5,
+              "country": "C005",
+              "state": "approved",
+              "amount": 5,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 6,
+              "country": "C006",
+              "state": "approved",
+              "amount": 6,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 7,
+              "country": "C007",
+              "state": "approved",
+              "amount": 7,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 8,
+              "country": "C008",
+              "state": "approved",
+              "amount": 8,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 9,
+              "country": "C009",
+              "state": "approved",
+              "amount": 9,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 10,
+              "country": "C010",
+              "state": "approved",
+              "amount": 10,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 11,
+              "country": "C011",
+              "state": "approved",
+              "amount": 11,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 12,
+              "country": "C012",
+              "state": "approved",
+              "amount": 12,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 13,
+              "country": "C013",
+              "state": "approved",
+              "amount": 13,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 14,
+              "country": "C014",
+              "state": "approved",
+              "amount": 14,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 15,
+              "country": "C015",
+              "state": "approved",
+              "amount": 15,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 16,
+              "country": "C016",
+              "state": "approved",
+              "amount": 16,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 17,
+              "country": "C017",
+              "state": "approved",
+              "amount": 17,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 18,
+              "country": "C018",
+              "state": "approved",
+              "amount": 18,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 19,
+              "country": "C019",
+              "state": "approved",
+              "amount": 19,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 20,
+              "country": "C020",
+              "state": "approved",
+              "amount": 20,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 21,
+              "country": "C021",
+              "state": "approved",
+              "amount": 21,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 22,
+              "country": "C022",
+              "state": "approved",
+              "amount": 22,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 23,
+              "country": "C023",
+              "state": "approved",
+              "amount": 23,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 24,
+              "country": "C024",
+              "state": "approved",
+              "amount": 24,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 25,
+              "country": "C025",
+              "state": "approved",
+              "amount": 25,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 26,
+              "country": "C026",
+              "state": "approved",
+              "amount": 26,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 27,
+              "country": "C027",
+              "state": "approved",
+              "amount": 27,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 28,
+              "country": "C028",
+              "state": "approved",
+              "amount": 28,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 29,
+              "country": "C029",
+              "state": "approved",
+              "amount": 29,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 30,
+              "country": "C030",
+              "state": "approved",
+              "amount": 30,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 31,
+              "country": "C031",
+              "state": "approved",
+              "amount": 31,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 32,
+              "country": "C032",
+              "state": "approved",
+              "amount": 32,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 33,
+              "country": "C033",
+              "state": "approved",
+              "amount": 33,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 34,
+              "country": "C034",
+              "state": "approved",
+              "amount": 34,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 35,
+              "country": "C035",
+              "state": "approved",
+              "amount": 35,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 36,
+              "country": "C036",
+              "state": "approved",
+              "amount": 36,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 37,
+              "country": "C037",
+              "state": "approved",
+              "amount": 37,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 38,
+              "country": "C038",
+              "state": "approved",
+              "amount": 38,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 39,
+              "country": "C039",
+              "state": "approved",
+              "amount": 39,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 40,
+              "country": "C040",
+              "state": "approved",
+              "amount": 40,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 41,
+              "country": "C041",
+              "state": "approved",
+              "amount": 41,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 42,
+              "country": "C042",
+              "state": "approved",
+              "amount": 42,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 43,
+              "country": "C043",
+              "state": "approved",
+              "amount": 43,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 44,
+              "country": "C044",
+              "state": "approved",
+              "amount": 44,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 45,
+              "country": "C045",
+              "state": "approved",
+              "amount": 45,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 46,
+              "country": "C046",
+              "state": "approved",
+              "amount": 46,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 47,
+              "country": "C047",
+              "state": "approved",
+              "amount": 47,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 48,
+              "country": "C048",
+              "state": "approved",
+              "amount": 48,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 49,
+              "country": "C049",
+              "state": "approved",
+              "amount": 49,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 50,
+              "country": "C050",
+              "state": "approved",
+              "amount": 50,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 51,
+              "country": "C051",
+              "state": "approved",
+              "amount": 51,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 52,
+              "country": "C052",
+              "state": "approved",
+              "amount": 52,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 53,
+              "country": "C053",
+              "state": "approved",
+              "amount": 53,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 54,
+              "country": "C054",
+              "state": "approved",
+              "amount": 54,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 55,
+              "country": "C055",
+              "state": "approved",
+              "amount": 55,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 56,
+              "country": "C056",
+              "state": "approved",
+              "amount": 56,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 57,
+              "country": "C057",
+              "state": "approved",
+              "amount": 57,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 58,
+              "country": "C058",
+              "state": "approved",
+              "amount": 58,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 59,
+              "country": "C059",
+              "state": "approved",
+              "amount": 59,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 60,
+              "country": "C060",
+              "state": "approved",
+              "amount": 60,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 61,
+              "country": "C061",
+              "state": "approved",
+              "amount": 61,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 62,
+              "country": "C062",
+              "state": "approved",
+              "amount": 62,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 63,
+              "country": "C063",
+              "state": "approved",
+              "amount": 63,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 64,
+              "country": "C064",
+              "state": "approved",
+              "amount": 64,
+              "trans_date": "2020-01-15"
+            }
+          ],
+          "Chargebacks": [
+            {
+              "trans_id": 1,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 2,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 3,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 4,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 5,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 6,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 7,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 8,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 9,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 10,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 11,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 12,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 13,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 14,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 15,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 16,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 17,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 18,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 19,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 20,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 21,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 22,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 23,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 24,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 25,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 26,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 27,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 28,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 29,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 30,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 31,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 32,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 33,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 34,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 35,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 36,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 37,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 38,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 39,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 40,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 41,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 42,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 43,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 44,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 45,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 46,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 47,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 48,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 49,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 50,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 51,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 52,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 53,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 54,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 55,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 56,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 57,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 58,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 59,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 60,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 61,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 62,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 63,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 64,
+              "trans_date": "2020-01-20"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "country",
+          "approved_count",
+          "approved_amount",
+          "chargeback_count",
+          "chargeback_amount"
+        ],
+        "rows": [
+          [
+            "2020-01",
+            "C001",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            "2020-01",
+            "C002",
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            "2020-01",
+            "C003",
+            1,
+            3,
+            1,
+            3
+          ],
+          [
+            "2020-01",
+            "C004",
+            1,
+            4,
+            1,
+            4
+          ],
+          [
+            "2020-01",
+            "C005",
+            1,
+            5,
+            1,
+            5
+          ],
+          [
+            "2020-01",
+            "C006",
+            1,
+            6,
+            1,
+            6
+          ],
+          [
+            "2020-01",
+            "C007",
+            1,
+            7,
+            1,
+            7
+          ],
+          [
+            "2020-01",
+            "C008",
+            1,
+            8,
+            1,
+            8
+          ],
+          [
+            "2020-01",
+            "C009",
+            1,
+            9,
+            1,
+            9
+          ],
+          [
+            "2020-01",
+            "C010",
+            1,
+            10,
+            1,
+            10
+          ],
+          [
+            "2020-01",
+            "C011",
+            1,
+            11,
+            1,
+            11
+          ],
+          [
+            "2020-01",
+            "C012",
+            1,
+            12,
+            1,
+            12
+          ],
+          [
+            "2020-01",
+            "C013",
+            1,
+            13,
+            1,
+            13
+          ],
+          [
+            "2020-01",
+            "C014",
+            1,
+            14,
+            1,
+            14
+          ],
+          [
+            "2020-01",
+            "C015",
+            1,
+            15,
+            1,
+            15
+          ],
+          [
+            "2020-01",
+            "C016",
+            1,
+            16,
+            1,
+            16
+          ],
+          [
+            "2020-01",
+            "C017",
+            1,
+            17,
+            1,
+            17
+          ],
+          [
+            "2020-01",
+            "C018",
+            1,
+            18,
+            1,
+            18
+          ],
+          [
+            "2020-01",
+            "C019",
+            1,
+            19,
+            1,
+            19
+          ],
+          [
+            "2020-01",
+            "C020",
+            1,
+            20,
+            1,
+            20
+          ],
+          [
+            "2020-01",
+            "C021",
+            1,
+            21,
+            1,
+            21
+          ],
+          [
+            "2020-01",
+            "C022",
+            1,
+            22,
+            1,
+            22
+          ],
+          [
+            "2020-01",
+            "C023",
+            1,
+            23,
+            1,
+            23
+          ],
+          [
+            "2020-01",
+            "C024",
+            1,
+            24,
+            1,
+            24
+          ],
+          [
+            "2020-01",
+            "C025",
+            1,
+            25,
+            1,
+            25
+          ],
+          [
+            "2020-01",
+            "C026",
+            1,
+            26,
+            1,
+            26
+          ],
+          [
+            "2020-01",
+            "C027",
+            1,
+            27,
+            1,
+            27
+          ],
+          [
+            "2020-01",
+            "C028",
+            1,
+            28,
+            1,
+            28
+          ],
+          [
+            "2020-01",
+            "C029",
+            1,
+            29,
+            1,
+            29
+          ],
+          [
+            "2020-01",
+            "C030",
+            1,
+            30,
+            1,
+            30
+          ],
+          [
+            "2020-01",
+            "C031",
+            1,
+            31,
+            1,
+            31
+          ],
+          [
+            "2020-01",
+            "C032",
+            1,
+            32,
+            1,
+            32
+          ],
+          [
+            "2020-01",
+            "C033",
+            1,
+            33,
+            1,
+            33
+          ],
+          [
+            "2020-01",
+            "C034",
+            1,
+            34,
+            1,
+            34
+          ],
+          [
+            "2020-01",
+            "C035",
+            1,
+            35,
+            1,
+            35
+          ],
+          [
+            "2020-01",
+            "C036",
+            1,
+            36,
+            1,
+            36
+          ],
+          [
+            "2020-01",
+            "C037",
+            1,
+            37,
+            1,
+            37
+          ],
+          [
+            "2020-01",
+            "C038",
+            1,
+            38,
+            1,
+            38
+          ],
+          [
+            "2020-01",
+            "C039",
+            1,
+            39,
+            1,
+            39
+          ],
+          [
+            "2020-01",
+            "C040",
+            1,
+            40,
+            1,
+            40
+          ],
+          [
+            "2020-01",
+            "C041",
+            1,
+            41,
+            1,
+            41
+          ],
+          [
+            "2020-01",
+            "C042",
+            1,
+            42,
+            1,
+            42
+          ],
+          [
+            "2020-01",
+            "C043",
+            1,
+            43,
+            1,
+            43
+          ],
+          [
+            "2020-01",
+            "C044",
+            1,
+            44,
+            1,
+            44
+          ],
+          [
+            "2020-01",
+            "C045",
+            1,
+            45,
+            1,
+            45
+          ],
+          [
+            "2020-01",
+            "C046",
+            1,
+            46,
+            1,
+            46
+          ],
+          [
+            "2020-01",
+            "C047",
+            1,
+            47,
+            1,
+            47
+          ],
+          [
+            "2020-01",
+            "C048",
+            1,
+            48,
+            1,
+            48
+          ],
+          [
+            "2020-01",
+            "C049",
+            1,
+            49,
+            1,
+            49
+          ],
+          [
+            "2020-01",
+            "C050",
+            1,
+            50,
+            1,
+            50
+          ],
+          [
+            "2020-01",
+            "C051",
+            1,
+            51,
+            1,
+            51
+          ],
+          [
+            "2020-01",
+            "C052",
+            1,
+            52,
+            1,
+            52
+          ],
+          [
+            "2020-01",
+            "C053",
+            1,
+            53,
+            1,
+            53
+          ],
+          [
+            "2020-01",
+            "C054",
+            1,
+            54,
+            1,
+            54
+          ],
+          [
+            "2020-01",
+            "C055",
+            1,
+            55,
+            1,
+            55
+          ],
+          [
+            "2020-01",
+            "C056",
+            1,
+            56,
+            1,
+            56
+          ],
+          [
+            "2020-01",
+            "C057",
+            1,
+            57,
+            1,
+            57
+          ],
+          [
+            "2020-01",
+            "C058",
+            1,
+            58,
+            1,
+            58
+          ],
+          [
+            "2020-01",
+            "C059",
+            1,
+            59,
+            1,
+            59
+          ],
+          [
+            "2020-01",
+            "C060",
+            1,
+            60,
+            1,
+            60
+          ],
+          [
+            "2020-01",
+            "C061",
+            1,
+            61,
+            1,
+            61
+          ],
+          [
+            "2020-01",
+            "C062",
+            1,
+            62,
+            1,
+            62
+          ],
+          [
+            "2020-01",
+            "C063",
+            1,
+            63,
+            1,
+            63
+          ],
+          [
+            "2020-01",
+            "C064",
+            1,
+            64,
+            1,
+            64
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "distinct-groups"
+      ]
+    },
+    {
+      "id": "benchmark-scale-192",
+      "name": "benchmark: 192 distinct month-country groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {
+        "tables": {
+          "Transactions": [
+            {
+              "id": 1,
+              "country": "C001",
+              "state": "approved",
+              "amount": 1,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 2,
+              "country": "C002",
+              "state": "approved",
+              "amount": 2,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 3,
+              "country": "C003",
+              "state": "approved",
+              "amount": 3,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 4,
+              "country": "C004",
+              "state": "approved",
+              "amount": 4,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 5,
+              "country": "C005",
+              "state": "approved",
+              "amount": 5,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 6,
+              "country": "C006",
+              "state": "approved",
+              "amount": 6,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 7,
+              "country": "C007",
+              "state": "approved",
+              "amount": 7,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 8,
+              "country": "C008",
+              "state": "approved",
+              "amount": 8,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 9,
+              "country": "C009",
+              "state": "approved",
+              "amount": 9,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 10,
+              "country": "C010",
+              "state": "approved",
+              "amount": 10,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 11,
+              "country": "C011",
+              "state": "approved",
+              "amount": 11,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 12,
+              "country": "C012",
+              "state": "approved",
+              "amount": 12,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 13,
+              "country": "C013",
+              "state": "approved",
+              "amount": 13,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 14,
+              "country": "C014",
+              "state": "approved",
+              "amount": 14,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 15,
+              "country": "C015",
+              "state": "approved",
+              "amount": 15,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 16,
+              "country": "C016",
+              "state": "approved",
+              "amount": 16,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 17,
+              "country": "C017",
+              "state": "approved",
+              "amount": 17,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 18,
+              "country": "C018",
+              "state": "approved",
+              "amount": 18,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 19,
+              "country": "C019",
+              "state": "approved",
+              "amount": 19,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 20,
+              "country": "C020",
+              "state": "approved",
+              "amount": 20,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 21,
+              "country": "C021",
+              "state": "approved",
+              "amount": 21,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 22,
+              "country": "C022",
+              "state": "approved",
+              "amount": 22,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 23,
+              "country": "C023",
+              "state": "approved",
+              "amount": 23,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 24,
+              "country": "C024",
+              "state": "approved",
+              "amount": 24,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 25,
+              "country": "C025",
+              "state": "approved",
+              "amount": 25,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 26,
+              "country": "C026",
+              "state": "approved",
+              "amount": 26,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 27,
+              "country": "C027",
+              "state": "approved",
+              "amount": 27,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 28,
+              "country": "C028",
+              "state": "approved",
+              "amount": 28,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 29,
+              "country": "C029",
+              "state": "approved",
+              "amount": 29,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 30,
+              "country": "C030",
+              "state": "approved",
+              "amount": 30,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 31,
+              "country": "C031",
+              "state": "approved",
+              "amount": 31,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 32,
+              "country": "C032",
+              "state": "approved",
+              "amount": 32,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 33,
+              "country": "C033",
+              "state": "approved",
+              "amount": 33,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 34,
+              "country": "C034",
+              "state": "approved",
+              "amount": 34,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 35,
+              "country": "C035",
+              "state": "approved",
+              "amount": 35,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 36,
+              "country": "C036",
+              "state": "approved",
+              "amount": 36,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 37,
+              "country": "C037",
+              "state": "approved",
+              "amount": 37,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 38,
+              "country": "C038",
+              "state": "approved",
+              "amount": 38,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 39,
+              "country": "C039",
+              "state": "approved",
+              "amount": 39,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 40,
+              "country": "C040",
+              "state": "approved",
+              "amount": 40,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 41,
+              "country": "C041",
+              "state": "approved",
+              "amount": 41,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 42,
+              "country": "C042",
+              "state": "approved",
+              "amount": 42,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 43,
+              "country": "C043",
+              "state": "approved",
+              "amount": 43,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 44,
+              "country": "C044",
+              "state": "approved",
+              "amount": 44,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 45,
+              "country": "C045",
+              "state": "approved",
+              "amount": 45,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 46,
+              "country": "C046",
+              "state": "approved",
+              "amount": 46,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 47,
+              "country": "C047",
+              "state": "approved",
+              "amount": 47,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 48,
+              "country": "C048",
+              "state": "approved",
+              "amount": 48,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 49,
+              "country": "C049",
+              "state": "approved",
+              "amount": 49,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 50,
+              "country": "C050",
+              "state": "approved",
+              "amount": 50,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 51,
+              "country": "C051",
+              "state": "approved",
+              "amount": 51,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 52,
+              "country": "C052",
+              "state": "approved",
+              "amount": 52,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 53,
+              "country": "C053",
+              "state": "approved",
+              "amount": 53,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 54,
+              "country": "C054",
+              "state": "approved",
+              "amount": 54,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 55,
+              "country": "C055",
+              "state": "approved",
+              "amount": 55,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 56,
+              "country": "C056",
+              "state": "approved",
+              "amount": 56,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 57,
+              "country": "C057",
+              "state": "approved",
+              "amount": 57,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 58,
+              "country": "C058",
+              "state": "approved",
+              "amount": 58,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 59,
+              "country": "C059",
+              "state": "approved",
+              "amount": 59,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 60,
+              "country": "C060",
+              "state": "approved",
+              "amount": 60,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 61,
+              "country": "C061",
+              "state": "approved",
+              "amount": 61,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 62,
+              "country": "C062",
+              "state": "approved",
+              "amount": 62,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 63,
+              "country": "C063",
+              "state": "approved",
+              "amount": 63,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 64,
+              "country": "C064",
+              "state": "approved",
+              "amount": 64,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 65,
+              "country": "C065",
+              "state": "approved",
+              "amount": 65,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 66,
+              "country": "C066",
+              "state": "approved",
+              "amount": 66,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 67,
+              "country": "C067",
+              "state": "approved",
+              "amount": 67,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 68,
+              "country": "C068",
+              "state": "approved",
+              "amount": 68,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 69,
+              "country": "C069",
+              "state": "approved",
+              "amount": 69,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 70,
+              "country": "C070",
+              "state": "approved",
+              "amount": 70,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 71,
+              "country": "C071",
+              "state": "approved",
+              "amount": 71,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 72,
+              "country": "C072",
+              "state": "approved",
+              "amount": 72,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 73,
+              "country": "C073",
+              "state": "approved",
+              "amount": 73,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 74,
+              "country": "C074",
+              "state": "approved",
+              "amount": 74,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 75,
+              "country": "C075",
+              "state": "approved",
+              "amount": 75,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 76,
+              "country": "C076",
+              "state": "approved",
+              "amount": 76,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 77,
+              "country": "C077",
+              "state": "approved",
+              "amount": 77,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 78,
+              "country": "C078",
+              "state": "approved",
+              "amount": 78,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 79,
+              "country": "C079",
+              "state": "approved",
+              "amount": 79,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 80,
+              "country": "C080",
+              "state": "approved",
+              "amount": 80,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 81,
+              "country": "C081",
+              "state": "approved",
+              "amount": 81,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 82,
+              "country": "C082",
+              "state": "approved",
+              "amount": 82,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 83,
+              "country": "C083",
+              "state": "approved",
+              "amount": 83,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 84,
+              "country": "C084",
+              "state": "approved",
+              "amount": 84,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 85,
+              "country": "C085",
+              "state": "approved",
+              "amount": 85,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 86,
+              "country": "C086",
+              "state": "approved",
+              "amount": 86,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 87,
+              "country": "C087",
+              "state": "approved",
+              "amount": 87,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 88,
+              "country": "C088",
+              "state": "approved",
+              "amount": 88,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 89,
+              "country": "C089",
+              "state": "approved",
+              "amount": 89,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 90,
+              "country": "C090",
+              "state": "approved",
+              "amount": 90,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 91,
+              "country": "C091",
+              "state": "approved",
+              "amount": 91,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 92,
+              "country": "C092",
+              "state": "approved",
+              "amount": 92,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 93,
+              "country": "C093",
+              "state": "approved",
+              "amount": 93,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 94,
+              "country": "C094",
+              "state": "approved",
+              "amount": 94,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 95,
+              "country": "C095",
+              "state": "approved",
+              "amount": 95,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 96,
+              "country": "C096",
+              "state": "approved",
+              "amount": 96,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 97,
+              "country": "C097",
+              "state": "approved",
+              "amount": 97,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 98,
+              "country": "C098",
+              "state": "approved",
+              "amount": 98,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 99,
+              "country": "C099",
+              "state": "approved",
+              "amount": 99,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 100,
+              "country": "C100",
+              "state": "approved",
+              "amount": 100,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 101,
+              "country": "C101",
+              "state": "approved",
+              "amount": 101,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 102,
+              "country": "C102",
+              "state": "approved",
+              "amount": 102,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 103,
+              "country": "C103",
+              "state": "approved",
+              "amount": 103,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 104,
+              "country": "C104",
+              "state": "approved",
+              "amount": 104,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 105,
+              "country": "C105",
+              "state": "approved",
+              "amount": 105,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 106,
+              "country": "C106",
+              "state": "approved",
+              "amount": 106,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 107,
+              "country": "C107",
+              "state": "approved",
+              "amount": 107,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 108,
+              "country": "C108",
+              "state": "approved",
+              "amount": 108,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 109,
+              "country": "C109",
+              "state": "approved",
+              "amount": 109,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 110,
+              "country": "C110",
+              "state": "approved",
+              "amount": 110,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 111,
+              "country": "C111",
+              "state": "approved",
+              "amount": 111,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 112,
+              "country": "C112",
+              "state": "approved",
+              "amount": 112,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 113,
+              "country": "C113",
+              "state": "approved",
+              "amount": 113,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 114,
+              "country": "C114",
+              "state": "approved",
+              "amount": 114,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 115,
+              "country": "C115",
+              "state": "approved",
+              "amount": 115,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 116,
+              "country": "C116",
+              "state": "approved",
+              "amount": 116,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 117,
+              "country": "C117",
+              "state": "approved",
+              "amount": 117,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 118,
+              "country": "C118",
+              "state": "approved",
+              "amount": 118,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 119,
+              "country": "C119",
+              "state": "approved",
+              "amount": 119,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 120,
+              "country": "C120",
+              "state": "approved",
+              "amount": 120,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 121,
+              "country": "C121",
+              "state": "approved",
+              "amount": 121,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 122,
+              "country": "C122",
+              "state": "approved",
+              "amount": 122,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 123,
+              "country": "C123",
+              "state": "approved",
+              "amount": 123,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 124,
+              "country": "C124",
+              "state": "approved",
+              "amount": 124,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 125,
+              "country": "C125",
+              "state": "approved",
+              "amount": 125,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 126,
+              "country": "C126",
+              "state": "approved",
+              "amount": 126,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 127,
+              "country": "C127",
+              "state": "approved",
+              "amount": 127,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 128,
+              "country": "C128",
+              "state": "approved",
+              "amount": 128,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 129,
+              "country": "C129",
+              "state": "approved",
+              "amount": 129,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 130,
+              "country": "C130",
+              "state": "approved",
+              "amount": 130,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 131,
+              "country": "C131",
+              "state": "approved",
+              "amount": 131,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 132,
+              "country": "C132",
+              "state": "approved",
+              "amount": 132,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 133,
+              "country": "C133",
+              "state": "approved",
+              "amount": 133,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 134,
+              "country": "C134",
+              "state": "approved",
+              "amount": 134,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 135,
+              "country": "C135",
+              "state": "approved",
+              "amount": 135,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 136,
+              "country": "C136",
+              "state": "approved",
+              "amount": 136,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 137,
+              "country": "C137",
+              "state": "approved",
+              "amount": 137,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 138,
+              "country": "C138",
+              "state": "approved",
+              "amount": 138,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 139,
+              "country": "C139",
+              "state": "approved",
+              "amount": 139,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 140,
+              "country": "C140",
+              "state": "approved",
+              "amount": 140,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 141,
+              "country": "C141",
+              "state": "approved",
+              "amount": 141,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 142,
+              "country": "C142",
+              "state": "approved",
+              "amount": 142,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 143,
+              "country": "C143",
+              "state": "approved",
+              "amount": 143,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 144,
+              "country": "C144",
+              "state": "approved",
+              "amount": 144,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 145,
+              "country": "C145",
+              "state": "approved",
+              "amount": 145,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 146,
+              "country": "C146",
+              "state": "approved",
+              "amount": 146,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 147,
+              "country": "C147",
+              "state": "approved",
+              "amount": 147,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 148,
+              "country": "C148",
+              "state": "approved",
+              "amount": 148,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 149,
+              "country": "C149",
+              "state": "approved",
+              "amount": 149,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 150,
+              "country": "C150",
+              "state": "approved",
+              "amount": 150,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 151,
+              "country": "C151",
+              "state": "approved",
+              "amount": 151,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 152,
+              "country": "C152",
+              "state": "approved",
+              "amount": 152,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 153,
+              "country": "C153",
+              "state": "approved",
+              "amount": 153,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 154,
+              "country": "C154",
+              "state": "approved",
+              "amount": 154,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 155,
+              "country": "C155",
+              "state": "approved",
+              "amount": 155,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 156,
+              "country": "C156",
+              "state": "approved",
+              "amount": 156,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 157,
+              "country": "C157",
+              "state": "approved",
+              "amount": 157,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 158,
+              "country": "C158",
+              "state": "approved",
+              "amount": 158,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 159,
+              "country": "C159",
+              "state": "approved",
+              "amount": 159,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 160,
+              "country": "C160",
+              "state": "approved",
+              "amount": 160,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 161,
+              "country": "C161",
+              "state": "approved",
+              "amount": 161,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 162,
+              "country": "C162",
+              "state": "approved",
+              "amount": 162,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 163,
+              "country": "C163",
+              "state": "approved",
+              "amount": 163,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 164,
+              "country": "C164",
+              "state": "approved",
+              "amount": 164,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 165,
+              "country": "C165",
+              "state": "approved",
+              "amount": 165,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 166,
+              "country": "C166",
+              "state": "approved",
+              "amount": 166,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 167,
+              "country": "C167",
+              "state": "approved",
+              "amount": 167,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 168,
+              "country": "C168",
+              "state": "approved",
+              "amount": 168,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 169,
+              "country": "C169",
+              "state": "approved",
+              "amount": 169,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 170,
+              "country": "C170",
+              "state": "approved",
+              "amount": 170,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 171,
+              "country": "C171",
+              "state": "approved",
+              "amount": 171,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 172,
+              "country": "C172",
+              "state": "approved",
+              "amount": 172,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 173,
+              "country": "C173",
+              "state": "approved",
+              "amount": 173,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 174,
+              "country": "C174",
+              "state": "approved",
+              "amount": 174,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 175,
+              "country": "C175",
+              "state": "approved",
+              "amount": 175,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 176,
+              "country": "C176",
+              "state": "approved",
+              "amount": 176,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 177,
+              "country": "C177",
+              "state": "approved",
+              "amount": 177,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 178,
+              "country": "C178",
+              "state": "approved",
+              "amount": 178,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 179,
+              "country": "C179",
+              "state": "approved",
+              "amount": 179,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 180,
+              "country": "C180",
+              "state": "approved",
+              "amount": 180,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 181,
+              "country": "C181",
+              "state": "approved",
+              "amount": 181,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 182,
+              "country": "C182",
+              "state": "approved",
+              "amount": 182,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 183,
+              "country": "C183",
+              "state": "approved",
+              "amount": 183,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 184,
+              "country": "C184",
+              "state": "approved",
+              "amount": 184,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 185,
+              "country": "C185",
+              "state": "approved",
+              "amount": 185,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 186,
+              "country": "C186",
+              "state": "approved",
+              "amount": 186,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 187,
+              "country": "C187",
+              "state": "approved",
+              "amount": 187,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 188,
+              "country": "C188",
+              "state": "approved",
+              "amount": 188,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 189,
+              "country": "C189",
+              "state": "approved",
+              "amount": 189,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 190,
+              "country": "C190",
+              "state": "approved",
+              "amount": 190,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 191,
+              "country": "C191",
+              "state": "approved",
+              "amount": 191,
+              "trans_date": "2020-01-15"
+            },
+            {
+              "id": 192,
+              "country": "C192",
+              "state": "approved",
+              "amount": 192,
+              "trans_date": "2020-01-15"
+            }
+          ],
+          "Chargebacks": [
+            {
+              "trans_id": 1,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 2,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 3,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 4,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 5,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 6,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 7,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 8,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 9,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 10,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 11,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 12,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 13,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 14,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 15,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 16,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 17,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 18,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 19,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 20,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 21,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 22,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 23,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 24,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 25,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 26,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 27,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 28,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 29,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 30,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 31,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 32,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 33,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 34,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 35,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 36,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 37,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 38,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 39,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 40,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 41,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 42,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 43,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 44,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 45,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 46,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 47,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 48,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 49,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 50,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 51,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 52,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 53,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 54,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 55,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 56,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 57,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 58,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 59,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 60,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 61,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 62,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 63,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 64,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 65,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 66,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 67,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 68,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 69,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 70,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 71,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 72,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 73,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 74,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 75,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 76,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 77,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 78,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 79,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 80,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 81,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 82,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 83,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 84,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 85,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 86,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 87,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 88,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 89,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 90,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 91,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 92,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 93,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 94,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 95,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 96,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 97,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 98,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 99,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 100,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 101,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 102,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 103,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 104,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 105,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 106,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 107,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 108,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 109,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 110,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 111,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 112,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 113,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 114,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 115,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 116,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 117,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 118,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 119,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 120,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 121,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 122,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 123,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 124,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 125,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 126,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 127,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 128,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 129,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 130,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 131,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 132,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 133,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 134,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 135,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 136,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 137,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 138,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 139,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 140,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 141,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 142,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 143,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 144,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 145,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 146,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 147,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 148,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 149,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 150,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 151,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 152,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 153,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 154,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 155,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 156,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 157,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 158,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 159,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 160,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 161,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 162,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 163,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 164,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 165,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 166,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 167,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 168,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 169,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 170,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 171,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 172,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 173,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 174,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 175,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 176,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 177,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 178,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 179,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 180,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 181,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 182,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 183,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 184,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 185,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 186,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 187,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 188,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 189,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 190,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 191,
+              "trans_date": "2020-01-20"
+            },
+            {
+              "trans_id": 192,
+              "trans_date": "2020-01-20"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "month",
+          "country",
+          "approved_count",
+          "approved_amount",
+          "chargeback_count",
+          "chargeback_amount"
+        ],
+        "rows": [
+          [
+            "2020-01",
+            "C001",
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            "2020-01",
+            "C002",
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            "2020-01",
+            "C003",
+            1,
+            3,
+            1,
+            3
+          ],
+          [
+            "2020-01",
+            "C004",
+            1,
+            4,
+            1,
+            4
+          ],
+          [
+            "2020-01",
+            "C005",
+            1,
+            5,
+            1,
+            5
+          ],
+          [
+            "2020-01",
+            "C006",
+            1,
+            6,
+            1,
+            6
+          ],
+          [
+            "2020-01",
+            "C007",
+            1,
+            7,
+            1,
+            7
+          ],
+          [
+            "2020-01",
+            "C008",
+            1,
+            8,
+            1,
+            8
+          ],
+          [
+            "2020-01",
+            "C009",
+            1,
+            9,
+            1,
+            9
+          ],
+          [
+            "2020-01",
+            "C010",
+            1,
+            10,
+            1,
+            10
+          ],
+          [
+            "2020-01",
+            "C011",
+            1,
+            11,
+            1,
+            11
+          ],
+          [
+            "2020-01",
+            "C012",
+            1,
+            12,
+            1,
+            12
+          ],
+          [
+            "2020-01",
+            "C013",
+            1,
+            13,
+            1,
+            13
+          ],
+          [
+            "2020-01",
+            "C014",
+            1,
+            14,
+            1,
+            14
+          ],
+          [
+            "2020-01",
+            "C015",
+            1,
+            15,
+            1,
+            15
+          ],
+          [
+            "2020-01",
+            "C016",
+            1,
+            16,
+            1,
+            16
+          ],
+          [
+            "2020-01",
+            "C017",
+            1,
+            17,
+            1,
+            17
+          ],
+          [
+            "2020-01",
+            "C018",
+            1,
+            18,
+            1,
+            18
+          ],
+          [
+            "2020-01",
+            "C019",
+            1,
+            19,
+            1,
+            19
+          ],
+          [
+            "2020-01",
+            "C020",
+            1,
+            20,
+            1,
+            20
+          ],
+          [
+            "2020-01",
+            "C021",
+            1,
+            21,
+            1,
+            21
+          ],
+          [
+            "2020-01",
+            "C022",
+            1,
+            22,
+            1,
+            22
+          ],
+          [
+            "2020-01",
+            "C023",
+            1,
+            23,
+            1,
+            23
+          ],
+          [
+            "2020-01",
+            "C024",
+            1,
+            24,
+            1,
+            24
+          ],
+          [
+            "2020-01",
+            "C025",
+            1,
+            25,
+            1,
+            25
+          ],
+          [
+            "2020-01",
+            "C026",
+            1,
+            26,
+            1,
+            26
+          ],
+          [
+            "2020-01",
+            "C027",
+            1,
+            27,
+            1,
+            27
+          ],
+          [
+            "2020-01",
+            "C028",
+            1,
+            28,
+            1,
+            28
+          ],
+          [
+            "2020-01",
+            "C029",
+            1,
+            29,
+            1,
+            29
+          ],
+          [
+            "2020-01",
+            "C030",
+            1,
+            30,
+            1,
+            30
+          ],
+          [
+            "2020-01",
+            "C031",
+            1,
+            31,
+            1,
+            31
+          ],
+          [
+            "2020-01",
+            "C032",
+            1,
+            32,
+            1,
+            32
+          ],
+          [
+            "2020-01",
+            "C033",
+            1,
+            33,
+            1,
+            33
+          ],
+          [
+            "2020-01",
+            "C034",
+            1,
+            34,
+            1,
+            34
+          ],
+          [
+            "2020-01",
+            "C035",
+            1,
+            35,
+            1,
+            35
+          ],
+          [
+            "2020-01",
+            "C036",
+            1,
+            36,
+            1,
+            36
+          ],
+          [
+            "2020-01",
+            "C037",
+            1,
+            37,
+            1,
+            37
+          ],
+          [
+            "2020-01",
+            "C038",
+            1,
+            38,
+            1,
+            38
+          ],
+          [
+            "2020-01",
+            "C039",
+            1,
+            39,
+            1,
+            39
+          ],
+          [
+            "2020-01",
+            "C040",
+            1,
+            40,
+            1,
+            40
+          ],
+          [
+            "2020-01",
+            "C041",
+            1,
+            41,
+            1,
+            41
+          ],
+          [
+            "2020-01",
+            "C042",
+            1,
+            42,
+            1,
+            42
+          ],
+          [
+            "2020-01",
+            "C043",
+            1,
+            43,
+            1,
+            43
+          ],
+          [
+            "2020-01",
+            "C044",
+            1,
+            44,
+            1,
+            44
+          ],
+          [
+            "2020-01",
+            "C045",
+            1,
+            45,
+            1,
+            45
+          ],
+          [
+            "2020-01",
+            "C046",
+            1,
+            46,
+            1,
+            46
+          ],
+          [
+            "2020-01",
+            "C047",
+            1,
+            47,
+            1,
+            47
+          ],
+          [
+            "2020-01",
+            "C048",
+            1,
+            48,
+            1,
+            48
+          ],
+          [
+            "2020-01",
+            "C049",
+            1,
+            49,
+            1,
+            49
+          ],
+          [
+            "2020-01",
+            "C050",
+            1,
+            50,
+            1,
+            50
+          ],
+          [
+            "2020-01",
+            "C051",
+            1,
+            51,
+            1,
+            51
+          ],
+          [
+            "2020-01",
+            "C052",
+            1,
+            52,
+            1,
+            52
+          ],
+          [
+            "2020-01",
+            "C053",
+            1,
+            53,
+            1,
+            53
+          ],
+          [
+            "2020-01",
+            "C054",
+            1,
+            54,
+            1,
+            54
+          ],
+          [
+            "2020-01",
+            "C055",
+            1,
+            55,
+            1,
+            55
+          ],
+          [
+            "2020-01",
+            "C056",
+            1,
+            56,
+            1,
+            56
+          ],
+          [
+            "2020-01",
+            "C057",
+            1,
+            57,
+            1,
+            57
+          ],
+          [
+            "2020-01",
+            "C058",
+            1,
+            58,
+            1,
+            58
+          ],
+          [
+            "2020-01",
+            "C059",
+            1,
+            59,
+            1,
+            59
+          ],
+          [
+            "2020-01",
+            "C060",
+            1,
+            60,
+            1,
+            60
+          ],
+          [
+            "2020-01",
+            "C061",
+            1,
+            61,
+            1,
+            61
+          ],
+          [
+            "2020-01",
+            "C062",
+            1,
+            62,
+            1,
+            62
+          ],
+          [
+            "2020-01",
+            "C063",
+            1,
+            63,
+            1,
+            63
+          ],
+          [
+            "2020-01",
+            "C064",
+            1,
+            64,
+            1,
+            64
+          ],
+          [
+            "2020-01",
+            "C065",
+            1,
+            65,
+            1,
+            65
+          ],
+          [
+            "2020-01",
+            "C066",
+            1,
+            66,
+            1,
+            66
+          ],
+          [
+            "2020-01",
+            "C067",
+            1,
+            67,
+            1,
+            67
+          ],
+          [
+            "2020-01",
+            "C068",
+            1,
+            68,
+            1,
+            68
+          ],
+          [
+            "2020-01",
+            "C069",
+            1,
+            69,
+            1,
+            69
+          ],
+          [
+            "2020-01",
+            "C070",
+            1,
+            70,
+            1,
+            70
+          ],
+          [
+            "2020-01",
+            "C071",
+            1,
+            71,
+            1,
+            71
+          ],
+          [
+            "2020-01",
+            "C072",
+            1,
+            72,
+            1,
+            72
+          ],
+          [
+            "2020-01",
+            "C073",
+            1,
+            73,
+            1,
+            73
+          ],
+          [
+            "2020-01",
+            "C074",
+            1,
+            74,
+            1,
+            74
+          ],
+          [
+            "2020-01",
+            "C075",
+            1,
+            75,
+            1,
+            75
+          ],
+          [
+            "2020-01",
+            "C076",
+            1,
+            76,
+            1,
+            76
+          ],
+          [
+            "2020-01",
+            "C077",
+            1,
+            77,
+            1,
+            77
+          ],
+          [
+            "2020-01",
+            "C078",
+            1,
+            78,
+            1,
+            78
+          ],
+          [
+            "2020-01",
+            "C079",
+            1,
+            79,
+            1,
+            79
+          ],
+          [
+            "2020-01",
+            "C080",
+            1,
+            80,
+            1,
+            80
+          ],
+          [
+            "2020-01",
+            "C081",
+            1,
+            81,
+            1,
+            81
+          ],
+          [
+            "2020-01",
+            "C082",
+            1,
+            82,
+            1,
+            82
+          ],
+          [
+            "2020-01",
+            "C083",
+            1,
+            83,
+            1,
+            83
+          ],
+          [
+            "2020-01",
+            "C084",
+            1,
+            84,
+            1,
+            84
+          ],
+          [
+            "2020-01",
+            "C085",
+            1,
+            85,
+            1,
+            85
+          ],
+          [
+            "2020-01",
+            "C086",
+            1,
+            86,
+            1,
+            86
+          ],
+          [
+            "2020-01",
+            "C087",
+            1,
+            87,
+            1,
+            87
+          ],
+          [
+            "2020-01",
+            "C088",
+            1,
+            88,
+            1,
+            88
+          ],
+          [
+            "2020-01",
+            "C089",
+            1,
+            89,
+            1,
+            89
+          ],
+          [
+            "2020-01",
+            "C090",
+            1,
+            90,
+            1,
+            90
+          ],
+          [
+            "2020-01",
+            "C091",
+            1,
+            91,
+            1,
+            91
+          ],
+          [
+            "2020-01",
+            "C092",
+            1,
+            92,
+            1,
+            92
+          ],
+          [
+            "2020-01",
+            "C093",
+            1,
+            93,
+            1,
+            93
+          ],
+          [
+            "2020-01",
+            "C094",
+            1,
+            94,
+            1,
+            94
+          ],
+          [
+            "2020-01",
+            "C095",
+            1,
+            95,
+            1,
+            95
+          ],
+          [
+            "2020-01",
+            "C096",
+            1,
+            96,
+            1,
+            96
+          ],
+          [
+            "2020-01",
+            "C097",
+            1,
+            97,
+            1,
+            97
+          ],
+          [
+            "2020-01",
+            "C098",
+            1,
+            98,
+            1,
+            98
+          ],
+          [
+            "2020-01",
+            "C099",
+            1,
+            99,
+            1,
+            99
+          ],
+          [
+            "2020-01",
+            "C100",
+            1,
+            100,
+            1,
+            100
+          ],
+          [
+            "2020-01",
+            "C101",
+            1,
+            101,
+            1,
+            101
+          ],
+          [
+            "2020-01",
+            "C102",
+            1,
+            102,
+            1,
+            102
+          ],
+          [
+            "2020-01",
+            "C103",
+            1,
+            103,
+            1,
+            103
+          ],
+          [
+            "2020-01",
+            "C104",
+            1,
+            104,
+            1,
+            104
+          ],
+          [
+            "2020-01",
+            "C105",
+            1,
+            105,
+            1,
+            105
+          ],
+          [
+            "2020-01",
+            "C106",
+            1,
+            106,
+            1,
+            106
+          ],
+          [
+            "2020-01",
+            "C107",
+            1,
+            107,
+            1,
+            107
+          ],
+          [
+            "2020-01",
+            "C108",
+            1,
+            108,
+            1,
+            108
+          ],
+          [
+            "2020-01",
+            "C109",
+            1,
+            109,
+            1,
+            109
+          ],
+          [
+            "2020-01",
+            "C110",
+            1,
+            110,
+            1,
+            110
+          ],
+          [
+            "2020-01",
+            "C111",
+            1,
+            111,
+            1,
+            111
+          ],
+          [
+            "2020-01",
+            "C112",
+            1,
+            112,
+            1,
+            112
+          ],
+          [
+            "2020-01",
+            "C113",
+            1,
+            113,
+            1,
+            113
+          ],
+          [
+            "2020-01",
+            "C114",
+            1,
+            114,
+            1,
+            114
+          ],
+          [
+            "2020-01",
+            "C115",
+            1,
+            115,
+            1,
+            115
+          ],
+          [
+            "2020-01",
+            "C116",
+            1,
+            116,
+            1,
+            116
+          ],
+          [
+            "2020-01",
+            "C117",
+            1,
+            117,
+            1,
+            117
+          ],
+          [
+            "2020-01",
+            "C118",
+            1,
+            118,
+            1,
+            118
+          ],
+          [
+            "2020-01",
+            "C119",
+            1,
+            119,
+            1,
+            119
+          ],
+          [
+            "2020-01",
+            "C120",
+            1,
+            120,
+            1,
+            120
+          ],
+          [
+            "2020-01",
+            "C121",
+            1,
+            121,
+            1,
+            121
+          ],
+          [
+            "2020-01",
+            "C122",
+            1,
+            122,
+            1,
+            122
+          ],
+          [
+            "2020-01",
+            "C123",
+            1,
+            123,
+            1,
+            123
+          ],
+          [
+            "2020-01",
+            "C124",
+            1,
+            124,
+            1,
+            124
+          ],
+          [
+            "2020-01",
+            "C125",
+            1,
+            125,
+            1,
+            125
+          ],
+          [
+            "2020-01",
+            "C126",
+            1,
+            126,
+            1,
+            126
+          ],
+          [
+            "2020-01",
+            "C127",
+            1,
+            127,
+            1,
+            127
+          ],
+          [
+            "2020-01",
+            "C128",
+            1,
+            128,
+            1,
+            128
+          ],
+          [
+            "2020-01",
+            "C129",
+            1,
+            129,
+            1,
+            129
+          ],
+          [
+            "2020-01",
+            "C130",
+            1,
+            130,
+            1,
+            130
+          ],
+          [
+            "2020-01",
+            "C131",
+            1,
+            131,
+            1,
+            131
+          ],
+          [
+            "2020-01",
+            "C132",
+            1,
+            132,
+            1,
+            132
+          ],
+          [
+            "2020-01",
+            "C133",
+            1,
+            133,
+            1,
+            133
+          ],
+          [
+            "2020-01",
+            "C134",
+            1,
+            134,
+            1,
+            134
+          ],
+          [
+            "2020-01",
+            "C135",
+            1,
+            135,
+            1,
+            135
+          ],
+          [
+            "2020-01",
+            "C136",
+            1,
+            136,
+            1,
+            136
+          ],
+          [
+            "2020-01",
+            "C137",
+            1,
+            137,
+            1,
+            137
+          ],
+          [
+            "2020-01",
+            "C138",
+            1,
+            138,
+            1,
+            138
+          ],
+          [
+            "2020-01",
+            "C139",
+            1,
+            139,
+            1,
+            139
+          ],
+          [
+            "2020-01",
+            "C140",
+            1,
+            140,
+            1,
+            140
+          ],
+          [
+            "2020-01",
+            "C141",
+            1,
+            141,
+            1,
+            141
+          ],
+          [
+            "2020-01",
+            "C142",
+            1,
+            142,
+            1,
+            142
+          ],
+          [
+            "2020-01",
+            "C143",
+            1,
+            143,
+            1,
+            143
+          ],
+          [
+            "2020-01",
+            "C144",
+            1,
+            144,
+            1,
+            144
+          ],
+          [
+            "2020-01",
+            "C145",
+            1,
+            145,
+            1,
+            145
+          ],
+          [
+            "2020-01",
+            "C146",
+            1,
+            146,
+            1,
+            146
+          ],
+          [
+            "2020-01",
+            "C147",
+            1,
+            147,
+            1,
+            147
+          ],
+          [
+            "2020-01",
+            "C148",
+            1,
+            148,
+            1,
+            148
+          ],
+          [
+            "2020-01",
+            "C149",
+            1,
+            149,
+            1,
+            149
+          ],
+          [
+            "2020-01",
+            "C150",
+            1,
+            150,
+            1,
+            150
+          ],
+          [
+            "2020-01",
+            "C151",
+            1,
+            151,
+            1,
+            151
+          ],
+          [
+            "2020-01",
+            "C152",
+            1,
+            152,
+            1,
+            152
+          ],
+          [
+            "2020-01",
+            "C153",
+            1,
+            153,
+            1,
+            153
+          ],
+          [
+            "2020-01",
+            "C154",
+            1,
+            154,
+            1,
+            154
+          ],
+          [
+            "2020-01",
+            "C155",
+            1,
+            155,
+            1,
+            155
+          ],
+          [
+            "2020-01",
+            "C156",
+            1,
+            156,
+            1,
+            156
+          ],
+          [
+            "2020-01",
+            "C157",
+            1,
+            157,
+            1,
+            157
+          ],
+          [
+            "2020-01",
+            "C158",
+            1,
+            158,
+            1,
+            158
+          ],
+          [
+            "2020-01",
+            "C159",
+            1,
+            159,
+            1,
+            159
+          ],
+          [
+            "2020-01",
+            "C160",
+            1,
+            160,
+            1,
+            160
+          ],
+          [
+            "2020-01",
+            "C161",
+            1,
+            161,
+            1,
+            161
+          ],
+          [
+            "2020-01",
+            "C162",
+            1,
+            162,
+            1,
+            162
+          ],
+          [
+            "2020-01",
+            "C163",
+            1,
+            163,
+            1,
+            163
+          ],
+          [
+            "2020-01",
+            "C164",
+            1,
+            164,
+            1,
+            164
+          ],
+          [
+            "2020-01",
+            "C165",
+            1,
+            165,
+            1,
+            165
+          ],
+          [
+            "2020-01",
+            "C166",
+            1,
+            166,
+            1,
+            166
+          ],
+          [
+            "2020-01",
+            "C167",
+            1,
+            167,
+            1,
+            167
+          ],
+          [
+            "2020-01",
+            "C168",
+            1,
+            168,
+            1,
+            168
+          ],
+          [
+            "2020-01",
+            "C169",
+            1,
+            169,
+            1,
+            169
+          ],
+          [
+            "2020-01",
+            "C170",
+            1,
+            170,
+            1,
+            170
+          ],
+          [
+            "2020-01",
+            "C171",
+            1,
+            171,
+            1,
+            171
+          ],
+          [
+            "2020-01",
+            "C172",
+            1,
+            172,
+            1,
+            172
+          ],
+          [
+            "2020-01",
+            "C173",
+            1,
+            173,
+            1,
+            173
+          ],
+          [
+            "2020-01",
+            "C174",
+            1,
+            174,
+            1,
+            174
+          ],
+          [
+            "2020-01",
+            "C175",
+            1,
+            175,
+            1,
+            175
+          ],
+          [
+            "2020-01",
+            "C176",
+            1,
+            176,
+            1,
+            176
+          ],
+          [
+            "2020-01",
+            "C177",
+            1,
+            177,
+            1,
+            177
+          ],
+          [
+            "2020-01",
+            "C178",
+            1,
+            178,
+            1,
+            178
+          ],
+          [
+            "2020-01",
+            "C179",
+            1,
+            179,
+            1,
+            179
+          ],
+          [
+            "2020-01",
+            "C180",
+            1,
+            180,
+            1,
+            180
+          ],
+          [
+            "2020-01",
+            "C181",
+            1,
+            181,
+            1,
+            181
+          ],
+          [
+            "2020-01",
+            "C182",
+            1,
+            182,
+            1,
+            182
+          ],
+          [
+            "2020-01",
+            "C183",
+            1,
+            183,
+            1,
+            183
+          ],
+          [
+            "2020-01",
+            "C184",
+            1,
+            184,
+            1,
+            184
+          ],
+          [
+            "2020-01",
+            "C185",
+            1,
+            185,
+            1,
+            185
+          ],
+          [
+            "2020-01",
+            "C186",
+            1,
+            186,
+            1,
+            186
+          ],
+          [
+            "2020-01",
+            "C187",
+            1,
+            187,
+            1,
+            187
+          ],
+          [
+            "2020-01",
+            "C188",
+            1,
+            188,
+            1,
+            188
+          ],
+          [
+            "2020-01",
+            "C189",
+            1,
+            189,
+            1,
+            189
+          ],
+          [
+            "2020-01",
+            "C190",
+            1,
+            190,
+            1,
+            190
+          ],
+          [
+            "2020-01",
+            "C191",
+            1,
+            191,
+            1,
+            191
+          ],
+          [
+            "2020-01",
+            "C192",
+            1,
+            192,
+            1,
+            192
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "distinct-groups"
+      ]
+    }
+  ]
+}

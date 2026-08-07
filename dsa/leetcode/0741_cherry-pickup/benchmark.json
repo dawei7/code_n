@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_741",
+  "measurement_note": "Size is n cubed, proportional to the synchronized dynamic-programming state work. Full cherry grids maximize the number of valid monotone paths. Layered two-walker DP is linear in this size; enumerating every pair of complete paths grows combinatorially.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: full 3 by 3 grid", "kind": "benchmark", "visible": false, "size": 27, "input": {"grid": [[1,1,1],[1,1,1],[1,1,1]]}, "expected": 8, "tags": ["benchmark", "scaling", "path-pairs"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: full 4 by 4 grid", "kind": "benchmark", "visible": false, "size": 64, "input": {"grid": [[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]}, "expected": 12, "tags": ["benchmark", "scaling", "path-pairs"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: full 5 by 5 grid", "kind": "benchmark", "visible": false, "size": 125, "input": {"grid": [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]}, "expected": 16, "tags": ["benchmark", "scaling", "path-pairs"]}
+  ]
+}

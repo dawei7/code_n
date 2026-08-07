@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1392",
+  "measurement_note": "Size is n, the string length. Every tier consists of n - 1 copies of 'a' followed by 'b', so every candidate border comparison reaches its final character before failing. The 32/80/160-character tiers span 5x. KMP processes them in O(n); a correct implementation that explicitly compares every proper prefix and suffix performs O(n^2) character comparisons and completes normally.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 32-character late mismatches", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"}, "expected": "", "tags": ["benchmark", "scale-small", "late-mismatch"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 80-character late mismatches", "kind": "benchmark", "visible": false, "size": 80, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"}, "expected": "", "tags": ["benchmark", "scale-medium", "late-mismatch"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 160-character late mismatches", "kind": "benchmark", "visible": false, "size": 160, "input": {"s": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab"}, "expected": "", "tags": ["benchmark", "scale-large", "late-mismatch"]}
+  ]
+}

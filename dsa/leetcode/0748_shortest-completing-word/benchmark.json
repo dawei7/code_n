@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_748",
+  "measurement_note": "Size is the number of fixed-length candidate words, so total candidate characters are proportional to size. Every word completes the plate, but the unique shortest word is last. A single best-so-far scan is linear; repeatedly proving each earlier candidate globally shortest revisits the list quadratically.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 2 completing words", "kind": "benchmark", "visible": false, "size": 2, "input": {"licensePlate": "abc", "words": ["abcaaaaaaaaaaaa", "abc"]}, "expected": "abc", "tags": ["benchmark", "scaling", "late-shortest"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 8 completing words", "kind": "benchmark", "visible": false, "size": 8, "input": {"licensePlate": "abc", "words": ["abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abc"]}, "expected": "abc", "tags": ["benchmark", "scaling", "late-shortest"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 32 completing words", "kind": "benchmark", "visible": false, "size": 32, "input": {"licensePlate": "abc", "words": ["abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abcaaaaaaaaaaaa", "abc"]}, "expected": "abc", "tags": ["benchmark", "scaling", "late-shortest"]}
+  ]
+}

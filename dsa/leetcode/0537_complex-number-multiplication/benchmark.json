@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_537",
+  "measurement_note": "Size is the common absolute component magnitude, within the official bound of 100. Direct integer multiplication is constant-work under the contract, while multiplication simulated by repeated addition grows with this magnitude.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: magnitude 1","kind":"benchmark","visible":false,"size":1,"input":{"num1":"1+1i","num2":"1+1i"},"expected":"0+2i","tags":["benchmark","scaling","magnitude"]},
+    {"id":"benchmark-scale-2","name":"benchmark: magnitude 10","kind":"benchmark","visible":false,"size":10,"input":{"num1":"10+10i","num2":"10+10i"},"expected":"0+200i","tags":["benchmark","scaling","magnitude"]},
+    {"id":"benchmark-scale-3","name":"benchmark: magnitude 100","kind":"benchmark","visible":false,"size":100,"input":{"num1":"100+100i","num2":"100+100i"},"expected":"0+20000i","tags":["benchmark","scaling","magnitude"]}
+  ]
+}

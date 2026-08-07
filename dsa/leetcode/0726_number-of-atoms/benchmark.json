@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_726",
+  "measurement_note": "Size is formula length. Each tier nests one group containing many distinct atom names, with both depth and distinct-count growing. The reverse multiplier parser is linear before final sorting; repeatedly merging a full frequency map at every closing parenthesis performs depth times distinct-count work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 12 atoms at depth 12",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "formula": "((((((((((((AaAbAcAdAeAfAgAhAiAjAkAl))))))))))))"
+      },
+      "expected": "AaAbAcAdAeAfAgAhAiAjAkAl",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "nested-distinct-atoms"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 50 atoms at depth 50",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 224,
+      "input": {
+        "formula": "((((((((((((((((((((((((((((((((((((((((((((((((((AaAbAcAdAeAfAgAhAiAjAkAlAmAnAoApAqArAsAtAuAvAwAxAyAzAaaAabAacAadAaeAafAagAahAaiAajAakAalAamAanAaoAapAaqAarAasAatAauAavAawAax))))))))))))))))))))))))))))))))))))))))))))))))))"
+      },
+      "expected": "AaAaaAabAacAadAaeAafAagAahAaiAajAakAalAamAanAaoAapAaqAarAasAatAauAavAawAaxAbAcAdAeAfAgAhAiAjAkAlAmAnAoApAqArAsAtAuAvAwAxAyAz",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "nested-distinct-atoms"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 150 atoms at depth 150",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 724,
+      "input": {
+        "formula": "((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((((AaAbAcAdAeAfAgAhAiAjAkAlAmAnAoApAqArAsAtAuAvAwAxAyAzAaaAabAacAadAaeAafAagAahAaiAajAakAalAamAanAaoAapAaqAarAasAatAauAavAawAaxAayAazAbaAbbAbcAbdAbeAbfAbgAbhAbiAbjAbkAblAbmAbnAboAbpAbqAbrAbsAbtAbuAbvAbwAbxAbyAbzAcaAcbAccAcdAceAcfAcgAchAciAcjAckAclAcmAcnAcoAcpAcqAcrAcsActAcuAcvAcwAcxAcyAczAdaAdbAdcAddAdeAdfAdgAdhAdiAdjAdkAdlAdmAdnAdoAdpAdqAdrAdsAdtAduAdvAdwAdxAdyAdzAeaAebAecAedAeeAefAegAehAeiAejAekAelAemAenAeoAepAeqAerAesAet))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"
+      },
+      "expected": "AaAaaAabAacAadAaeAafAagAahAaiAajAakAalAamAanAaoAapAaqAarAasAatAauAavAawAaxAayAazAbAbaAbbAbcAbdAbeAbfAbgAbhAbiAbjAbkAblAbmAbnAboAbpAbqAbrAbsAbtAbuAbvAbwAbxAbyAbzAcAcaAcbAccAcdAceAcfAcgAchAciAcjAckAclAcmAcnAcoAcpAcqAcrAcsActAcuAcvAcwAcxAcyAczAdAdaAdbAdcAddAdeAdfAdgAdhAdiAdjAdkAdlAdmAdnAdoAdpAdqAdrAdsAdtAduAdvAdwAdxAdyAdzAeAeaAebAecAedAeeAefAegAehAeiAejAekAelAemAenAeoAepAeqAerAesAetAfAgAhAiAjAkAlAmAnAoApAqArAsAtAuAvAwAxAyAz",
+      "tags": [
+        "benchmark",
+        "scaling",
+        "nested-distinct-atoms"
+      ]
+    }
+  ]
+}

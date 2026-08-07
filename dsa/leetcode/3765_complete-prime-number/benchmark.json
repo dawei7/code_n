@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3765",
+  "cases": [
+    {
+      "id": "benchmark-prime-10007",
+      "name": "benchmark: test prime 10007 before its prefix failure",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10007,
+      "input": {"num": 10007},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "numeric-magnitude", "prime-full-value"]
+    },
+    {
+      "id": "benchmark-prime-1000003",
+      "name": "benchmark: test prime 1000003 before its prefix failure",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000003,
+      "input": {"num": 1000003},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "numeric-magnitude", "prime-full-value"]
+    },
+    {
+      "id": "benchmark-prime-10000019",
+      "name": "benchmark: test prime 10000019 before its prefix failure",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10000019,
+      "input": {"num": 10000019},
+      "expected": false,
+      "validator": {"kind": "exact"},
+      "tags": ["benchmark", "numeric-magnitude", "prime-full-value"]
+    }
+  ]
+}

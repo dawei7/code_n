@@ -1,0 +1,3139 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1336",
+  "measurement_note": "Size is N = V + T, the total visit and transaction rows, with one matching transaction per visit. A grouped left join plus count-series generation takes O(N log N) time in the general model. A correct slower query uses a correlated full Transactions scan for every visit, taking O(V times T) time; all three tiers complete and return the same buckets.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 16 visits and matching transactions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "user_id": 1,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 2,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 3,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 4,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 5,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 6,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 7,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 8,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 9,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 10,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 11,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 12,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 13,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 14,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 15,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 16,
+              "visit_date": "2021-01-17"
+            }
+          ],
+          "Transactions": [
+            {
+              "user_id": 1,
+              "transaction_date": "2021-01-02",
+              "amount": 1
+            },
+            {
+              "user_id": 2,
+              "transaction_date": "2021-01-03",
+              "amount": 2
+            },
+            {
+              "user_id": 3,
+              "transaction_date": "2021-01-04",
+              "amount": 3
+            },
+            {
+              "user_id": 4,
+              "transaction_date": "2021-01-05",
+              "amount": 4
+            },
+            {
+              "user_id": 5,
+              "transaction_date": "2021-01-06",
+              "amount": 5
+            },
+            {
+              "user_id": 6,
+              "transaction_date": "2021-01-07",
+              "amount": 6
+            },
+            {
+              "user_id": 7,
+              "transaction_date": "2021-01-08",
+              "amount": 7
+            },
+            {
+              "user_id": 8,
+              "transaction_date": "2021-01-09",
+              "amount": 8
+            },
+            {
+              "user_id": 9,
+              "transaction_date": "2021-01-10",
+              "amount": 9
+            },
+            {
+              "user_id": 10,
+              "transaction_date": "2021-01-11",
+              "amount": 10
+            },
+            {
+              "user_id": 11,
+              "transaction_date": "2021-01-12",
+              "amount": 11
+            },
+            {
+              "user_id": 12,
+              "transaction_date": "2021-01-13",
+              "amount": 12
+            },
+            {
+              "user_id": 13,
+              "transaction_date": "2021-01-14",
+              "amount": 13
+            },
+            {
+              "user_id": 14,
+              "transaction_date": "2021-01-15",
+              "amount": 14
+            },
+            {
+              "user_id": 15,
+              "transaction_date": "2021-01-16",
+              "amount": 15
+            },
+            {
+              "user_id": 16,
+              "transaction_date": "2021-01-17",
+              "amount": 16
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transactions_count",
+          "visits_count"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            16
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "matching-transactions"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 64 visits and matching transactions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "user_id": 1,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 2,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 3,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 4,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 5,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 6,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 7,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 8,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 9,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 10,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 11,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 12,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 13,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 14,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 15,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 16,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 17,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 18,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 19,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 20,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 21,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 22,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 23,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 24,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 25,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 26,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 27,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 28,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 29,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 30,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 31,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 32,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 33,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 34,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 35,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 36,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 37,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 38,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 39,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 40,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 41,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 42,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 43,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 44,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 45,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 46,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 47,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 48,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 49,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 50,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 51,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 52,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 53,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 54,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 55,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 56,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 57,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 58,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 59,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 60,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 61,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 62,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 63,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 64,
+              "visit_date": "2021-01-09"
+            }
+          ],
+          "Transactions": [
+            {
+              "user_id": 1,
+              "transaction_date": "2021-01-02",
+              "amount": 1
+            },
+            {
+              "user_id": 2,
+              "transaction_date": "2021-01-03",
+              "amount": 2
+            },
+            {
+              "user_id": 3,
+              "transaction_date": "2021-01-04",
+              "amount": 3
+            },
+            {
+              "user_id": 4,
+              "transaction_date": "2021-01-05",
+              "amount": 4
+            },
+            {
+              "user_id": 5,
+              "transaction_date": "2021-01-06",
+              "amount": 5
+            },
+            {
+              "user_id": 6,
+              "transaction_date": "2021-01-07",
+              "amount": 6
+            },
+            {
+              "user_id": 7,
+              "transaction_date": "2021-01-08",
+              "amount": 7
+            },
+            {
+              "user_id": 8,
+              "transaction_date": "2021-01-09",
+              "amount": 8
+            },
+            {
+              "user_id": 9,
+              "transaction_date": "2021-01-10",
+              "amount": 9
+            },
+            {
+              "user_id": 10,
+              "transaction_date": "2021-01-11",
+              "amount": 10
+            },
+            {
+              "user_id": 11,
+              "transaction_date": "2021-01-12",
+              "amount": 11
+            },
+            {
+              "user_id": 12,
+              "transaction_date": "2021-01-13",
+              "amount": 12
+            },
+            {
+              "user_id": 13,
+              "transaction_date": "2021-01-14",
+              "amount": 13
+            },
+            {
+              "user_id": 14,
+              "transaction_date": "2021-01-15",
+              "amount": 14
+            },
+            {
+              "user_id": 15,
+              "transaction_date": "2021-01-16",
+              "amount": 15
+            },
+            {
+              "user_id": 16,
+              "transaction_date": "2021-01-17",
+              "amount": 16
+            },
+            {
+              "user_id": 17,
+              "transaction_date": "2021-01-18",
+              "amount": 17
+            },
+            {
+              "user_id": 18,
+              "transaction_date": "2021-01-19",
+              "amount": 18
+            },
+            {
+              "user_id": 19,
+              "transaction_date": "2021-01-20",
+              "amount": 19
+            },
+            {
+              "user_id": 20,
+              "transaction_date": "2021-01-21",
+              "amount": 20
+            },
+            {
+              "user_id": 21,
+              "transaction_date": "2021-01-22",
+              "amount": 21
+            },
+            {
+              "user_id": 22,
+              "transaction_date": "2021-01-23",
+              "amount": 22
+            },
+            {
+              "user_id": 23,
+              "transaction_date": "2021-01-24",
+              "amount": 23
+            },
+            {
+              "user_id": 24,
+              "transaction_date": "2021-01-25",
+              "amount": 24
+            },
+            {
+              "user_id": 25,
+              "transaction_date": "2021-01-26",
+              "amount": 25
+            },
+            {
+              "user_id": 26,
+              "transaction_date": "2021-01-27",
+              "amount": 26
+            },
+            {
+              "user_id": 27,
+              "transaction_date": "2021-01-28",
+              "amount": 27
+            },
+            {
+              "user_id": 28,
+              "transaction_date": "2021-01-01",
+              "amount": 28
+            },
+            {
+              "user_id": 29,
+              "transaction_date": "2021-01-02",
+              "amount": 29
+            },
+            {
+              "user_id": 30,
+              "transaction_date": "2021-01-03",
+              "amount": 30
+            },
+            {
+              "user_id": 31,
+              "transaction_date": "2021-01-04",
+              "amount": 31
+            },
+            {
+              "user_id": 32,
+              "transaction_date": "2021-01-05",
+              "amount": 32
+            },
+            {
+              "user_id": 33,
+              "transaction_date": "2021-01-06",
+              "amount": 33
+            },
+            {
+              "user_id": 34,
+              "transaction_date": "2021-01-07",
+              "amount": 34
+            },
+            {
+              "user_id": 35,
+              "transaction_date": "2021-01-08",
+              "amount": 35
+            },
+            {
+              "user_id": 36,
+              "transaction_date": "2021-01-09",
+              "amount": 36
+            },
+            {
+              "user_id": 37,
+              "transaction_date": "2021-01-10",
+              "amount": 37
+            },
+            {
+              "user_id": 38,
+              "transaction_date": "2021-01-11",
+              "amount": 38
+            },
+            {
+              "user_id": 39,
+              "transaction_date": "2021-01-12",
+              "amount": 39
+            },
+            {
+              "user_id": 40,
+              "transaction_date": "2021-01-13",
+              "amount": 40
+            },
+            {
+              "user_id": 41,
+              "transaction_date": "2021-01-14",
+              "amount": 41
+            },
+            {
+              "user_id": 42,
+              "transaction_date": "2021-01-15",
+              "amount": 42
+            },
+            {
+              "user_id": 43,
+              "transaction_date": "2021-01-16",
+              "amount": 43
+            },
+            {
+              "user_id": 44,
+              "transaction_date": "2021-01-17",
+              "amount": 44
+            },
+            {
+              "user_id": 45,
+              "transaction_date": "2021-01-18",
+              "amount": 45
+            },
+            {
+              "user_id": 46,
+              "transaction_date": "2021-01-19",
+              "amount": 46
+            },
+            {
+              "user_id": 47,
+              "transaction_date": "2021-01-20",
+              "amount": 47
+            },
+            {
+              "user_id": 48,
+              "transaction_date": "2021-01-21",
+              "amount": 48
+            },
+            {
+              "user_id": 49,
+              "transaction_date": "2021-01-22",
+              "amount": 49
+            },
+            {
+              "user_id": 50,
+              "transaction_date": "2021-01-23",
+              "amount": 50
+            },
+            {
+              "user_id": 51,
+              "transaction_date": "2021-01-24",
+              "amount": 51
+            },
+            {
+              "user_id": 52,
+              "transaction_date": "2021-01-25",
+              "amount": 52
+            },
+            {
+              "user_id": 53,
+              "transaction_date": "2021-01-26",
+              "amount": 53
+            },
+            {
+              "user_id": 54,
+              "transaction_date": "2021-01-27",
+              "amount": 54
+            },
+            {
+              "user_id": 55,
+              "transaction_date": "2021-01-28",
+              "amount": 55
+            },
+            {
+              "user_id": 56,
+              "transaction_date": "2021-01-01",
+              "amount": 56
+            },
+            {
+              "user_id": 57,
+              "transaction_date": "2021-01-02",
+              "amount": 57
+            },
+            {
+              "user_id": 58,
+              "transaction_date": "2021-01-03",
+              "amount": 58
+            },
+            {
+              "user_id": 59,
+              "transaction_date": "2021-01-04",
+              "amount": 59
+            },
+            {
+              "user_id": 60,
+              "transaction_date": "2021-01-05",
+              "amount": 60
+            },
+            {
+              "user_id": 61,
+              "transaction_date": "2021-01-06",
+              "amount": 61
+            },
+            {
+              "user_id": 62,
+              "transaction_date": "2021-01-07",
+              "amount": 62
+            },
+            {
+              "user_id": 63,
+              "transaction_date": "2021-01-08",
+              "amount": 63
+            },
+            {
+              "user_id": 64,
+              "transaction_date": "2021-01-09",
+              "amount": 64
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transactions_count",
+          "visits_count"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            64
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "matching-transactions"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 visits and matching transactions",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Visits": [
+            {
+              "user_id": 1,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 2,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 3,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 4,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 5,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 6,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 7,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 8,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 9,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 10,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 11,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 12,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 13,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 14,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 15,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 16,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 17,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 18,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 19,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 20,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 21,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 22,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 23,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 24,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 25,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 26,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 27,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 28,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 29,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 30,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 31,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 32,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 33,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 34,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 35,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 36,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 37,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 38,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 39,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 40,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 41,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 42,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 43,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 44,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 45,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 46,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 47,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 48,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 49,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 50,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 51,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 52,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 53,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 54,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 55,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 56,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 57,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 58,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 59,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 60,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 61,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 62,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 63,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 64,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 65,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 66,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 67,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 68,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 69,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 70,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 71,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 72,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 73,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 74,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 75,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 76,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 77,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 78,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 79,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 80,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 81,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 82,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 83,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 84,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 85,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 86,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 87,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 88,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 89,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 90,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 91,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 92,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 93,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 94,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 95,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 96,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 97,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 98,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 99,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 100,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 101,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 102,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 103,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 104,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 105,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 106,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 107,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 108,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 109,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 110,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 111,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 112,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 113,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 114,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 115,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 116,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 117,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 118,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 119,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 120,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 121,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 122,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 123,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 124,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 125,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 126,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 127,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 128,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 129,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 130,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 131,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 132,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 133,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 134,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 135,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 136,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 137,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 138,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 139,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 140,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 141,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 142,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 143,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 144,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 145,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 146,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 147,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 148,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 149,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 150,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 151,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 152,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 153,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 154,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 155,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 156,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 157,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 158,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 159,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 160,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 161,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 162,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 163,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 164,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 165,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 166,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 167,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 168,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 169,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 170,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 171,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 172,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 173,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 174,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 175,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 176,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 177,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 178,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 179,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 180,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 181,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 182,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 183,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 184,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 185,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 186,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 187,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 188,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 189,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 190,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 191,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 192,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 193,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 194,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 195,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 196,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 197,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 198,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 199,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 200,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 201,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 202,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 203,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 204,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 205,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 206,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 207,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 208,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 209,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 210,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 211,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 212,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 213,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 214,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 215,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 216,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 217,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 218,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 219,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 220,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 221,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 222,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 223,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 224,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 225,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 226,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 227,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 228,
+              "visit_date": "2021-01-05"
+            },
+            {
+              "user_id": 229,
+              "visit_date": "2021-01-06"
+            },
+            {
+              "user_id": 230,
+              "visit_date": "2021-01-07"
+            },
+            {
+              "user_id": 231,
+              "visit_date": "2021-01-08"
+            },
+            {
+              "user_id": 232,
+              "visit_date": "2021-01-09"
+            },
+            {
+              "user_id": 233,
+              "visit_date": "2021-01-10"
+            },
+            {
+              "user_id": 234,
+              "visit_date": "2021-01-11"
+            },
+            {
+              "user_id": 235,
+              "visit_date": "2021-01-12"
+            },
+            {
+              "user_id": 236,
+              "visit_date": "2021-01-13"
+            },
+            {
+              "user_id": 237,
+              "visit_date": "2021-01-14"
+            },
+            {
+              "user_id": 238,
+              "visit_date": "2021-01-15"
+            },
+            {
+              "user_id": 239,
+              "visit_date": "2021-01-16"
+            },
+            {
+              "user_id": 240,
+              "visit_date": "2021-01-17"
+            },
+            {
+              "user_id": 241,
+              "visit_date": "2021-01-18"
+            },
+            {
+              "user_id": 242,
+              "visit_date": "2021-01-19"
+            },
+            {
+              "user_id": 243,
+              "visit_date": "2021-01-20"
+            },
+            {
+              "user_id": 244,
+              "visit_date": "2021-01-21"
+            },
+            {
+              "user_id": 245,
+              "visit_date": "2021-01-22"
+            },
+            {
+              "user_id": 246,
+              "visit_date": "2021-01-23"
+            },
+            {
+              "user_id": 247,
+              "visit_date": "2021-01-24"
+            },
+            {
+              "user_id": 248,
+              "visit_date": "2021-01-25"
+            },
+            {
+              "user_id": 249,
+              "visit_date": "2021-01-26"
+            },
+            {
+              "user_id": 250,
+              "visit_date": "2021-01-27"
+            },
+            {
+              "user_id": 251,
+              "visit_date": "2021-01-28"
+            },
+            {
+              "user_id": 252,
+              "visit_date": "2021-01-01"
+            },
+            {
+              "user_id": 253,
+              "visit_date": "2021-01-02"
+            },
+            {
+              "user_id": 254,
+              "visit_date": "2021-01-03"
+            },
+            {
+              "user_id": 255,
+              "visit_date": "2021-01-04"
+            },
+            {
+              "user_id": 256,
+              "visit_date": "2021-01-05"
+            }
+          ],
+          "Transactions": [
+            {
+              "user_id": 1,
+              "transaction_date": "2021-01-02",
+              "amount": 1
+            },
+            {
+              "user_id": 2,
+              "transaction_date": "2021-01-03",
+              "amount": 2
+            },
+            {
+              "user_id": 3,
+              "transaction_date": "2021-01-04",
+              "amount": 3
+            },
+            {
+              "user_id": 4,
+              "transaction_date": "2021-01-05",
+              "amount": 4
+            },
+            {
+              "user_id": 5,
+              "transaction_date": "2021-01-06",
+              "amount": 5
+            },
+            {
+              "user_id": 6,
+              "transaction_date": "2021-01-07",
+              "amount": 6
+            },
+            {
+              "user_id": 7,
+              "transaction_date": "2021-01-08",
+              "amount": 7
+            },
+            {
+              "user_id": 8,
+              "transaction_date": "2021-01-09",
+              "amount": 8
+            },
+            {
+              "user_id": 9,
+              "transaction_date": "2021-01-10",
+              "amount": 9
+            },
+            {
+              "user_id": 10,
+              "transaction_date": "2021-01-11",
+              "amount": 10
+            },
+            {
+              "user_id": 11,
+              "transaction_date": "2021-01-12",
+              "amount": 11
+            },
+            {
+              "user_id": 12,
+              "transaction_date": "2021-01-13",
+              "amount": 12
+            },
+            {
+              "user_id": 13,
+              "transaction_date": "2021-01-14",
+              "amount": 13
+            },
+            {
+              "user_id": 14,
+              "transaction_date": "2021-01-15",
+              "amount": 14
+            },
+            {
+              "user_id": 15,
+              "transaction_date": "2021-01-16",
+              "amount": 15
+            },
+            {
+              "user_id": 16,
+              "transaction_date": "2021-01-17",
+              "amount": 16
+            },
+            {
+              "user_id": 17,
+              "transaction_date": "2021-01-18",
+              "amount": 17
+            },
+            {
+              "user_id": 18,
+              "transaction_date": "2021-01-19",
+              "amount": 18
+            },
+            {
+              "user_id": 19,
+              "transaction_date": "2021-01-20",
+              "amount": 19
+            },
+            {
+              "user_id": 20,
+              "transaction_date": "2021-01-21",
+              "amount": 20
+            },
+            {
+              "user_id": 21,
+              "transaction_date": "2021-01-22",
+              "amount": 21
+            },
+            {
+              "user_id": 22,
+              "transaction_date": "2021-01-23",
+              "amount": 22
+            },
+            {
+              "user_id": 23,
+              "transaction_date": "2021-01-24",
+              "amount": 23
+            },
+            {
+              "user_id": 24,
+              "transaction_date": "2021-01-25",
+              "amount": 24
+            },
+            {
+              "user_id": 25,
+              "transaction_date": "2021-01-26",
+              "amount": 25
+            },
+            {
+              "user_id": 26,
+              "transaction_date": "2021-01-27",
+              "amount": 26
+            },
+            {
+              "user_id": 27,
+              "transaction_date": "2021-01-28",
+              "amount": 27
+            },
+            {
+              "user_id": 28,
+              "transaction_date": "2021-01-01",
+              "amount": 28
+            },
+            {
+              "user_id": 29,
+              "transaction_date": "2021-01-02",
+              "amount": 29
+            },
+            {
+              "user_id": 30,
+              "transaction_date": "2021-01-03",
+              "amount": 30
+            },
+            {
+              "user_id": 31,
+              "transaction_date": "2021-01-04",
+              "amount": 31
+            },
+            {
+              "user_id": 32,
+              "transaction_date": "2021-01-05",
+              "amount": 32
+            },
+            {
+              "user_id": 33,
+              "transaction_date": "2021-01-06",
+              "amount": 33
+            },
+            {
+              "user_id": 34,
+              "transaction_date": "2021-01-07",
+              "amount": 34
+            },
+            {
+              "user_id": 35,
+              "transaction_date": "2021-01-08",
+              "amount": 35
+            },
+            {
+              "user_id": 36,
+              "transaction_date": "2021-01-09",
+              "amount": 36
+            },
+            {
+              "user_id": 37,
+              "transaction_date": "2021-01-10",
+              "amount": 37
+            },
+            {
+              "user_id": 38,
+              "transaction_date": "2021-01-11",
+              "amount": 38
+            },
+            {
+              "user_id": 39,
+              "transaction_date": "2021-01-12",
+              "amount": 39
+            },
+            {
+              "user_id": 40,
+              "transaction_date": "2021-01-13",
+              "amount": 40
+            },
+            {
+              "user_id": 41,
+              "transaction_date": "2021-01-14",
+              "amount": 41
+            },
+            {
+              "user_id": 42,
+              "transaction_date": "2021-01-15",
+              "amount": 42
+            },
+            {
+              "user_id": 43,
+              "transaction_date": "2021-01-16",
+              "amount": 43
+            },
+            {
+              "user_id": 44,
+              "transaction_date": "2021-01-17",
+              "amount": 44
+            },
+            {
+              "user_id": 45,
+              "transaction_date": "2021-01-18",
+              "amount": 45
+            },
+            {
+              "user_id": 46,
+              "transaction_date": "2021-01-19",
+              "amount": 46
+            },
+            {
+              "user_id": 47,
+              "transaction_date": "2021-01-20",
+              "amount": 47
+            },
+            {
+              "user_id": 48,
+              "transaction_date": "2021-01-21",
+              "amount": 48
+            },
+            {
+              "user_id": 49,
+              "transaction_date": "2021-01-22",
+              "amount": 49
+            },
+            {
+              "user_id": 50,
+              "transaction_date": "2021-01-23",
+              "amount": 50
+            },
+            {
+              "user_id": 51,
+              "transaction_date": "2021-01-24",
+              "amount": 51
+            },
+            {
+              "user_id": 52,
+              "transaction_date": "2021-01-25",
+              "amount": 52
+            },
+            {
+              "user_id": 53,
+              "transaction_date": "2021-01-26",
+              "amount": 53
+            },
+            {
+              "user_id": 54,
+              "transaction_date": "2021-01-27",
+              "amount": 54
+            },
+            {
+              "user_id": 55,
+              "transaction_date": "2021-01-28",
+              "amount": 55
+            },
+            {
+              "user_id": 56,
+              "transaction_date": "2021-01-01",
+              "amount": 56
+            },
+            {
+              "user_id": 57,
+              "transaction_date": "2021-01-02",
+              "amount": 57
+            },
+            {
+              "user_id": 58,
+              "transaction_date": "2021-01-03",
+              "amount": 58
+            },
+            {
+              "user_id": 59,
+              "transaction_date": "2021-01-04",
+              "amount": 59
+            },
+            {
+              "user_id": 60,
+              "transaction_date": "2021-01-05",
+              "amount": 60
+            },
+            {
+              "user_id": 61,
+              "transaction_date": "2021-01-06",
+              "amount": 61
+            },
+            {
+              "user_id": 62,
+              "transaction_date": "2021-01-07",
+              "amount": 62
+            },
+            {
+              "user_id": 63,
+              "transaction_date": "2021-01-08",
+              "amount": 63
+            },
+            {
+              "user_id": 64,
+              "transaction_date": "2021-01-09",
+              "amount": 64
+            },
+            {
+              "user_id": 65,
+              "transaction_date": "2021-01-10",
+              "amount": 65
+            },
+            {
+              "user_id": 66,
+              "transaction_date": "2021-01-11",
+              "amount": 66
+            },
+            {
+              "user_id": 67,
+              "transaction_date": "2021-01-12",
+              "amount": 67
+            },
+            {
+              "user_id": 68,
+              "transaction_date": "2021-01-13",
+              "amount": 68
+            },
+            {
+              "user_id": 69,
+              "transaction_date": "2021-01-14",
+              "amount": 69
+            },
+            {
+              "user_id": 70,
+              "transaction_date": "2021-01-15",
+              "amount": 70
+            },
+            {
+              "user_id": 71,
+              "transaction_date": "2021-01-16",
+              "amount": 71
+            },
+            {
+              "user_id": 72,
+              "transaction_date": "2021-01-17",
+              "amount": 72
+            },
+            {
+              "user_id": 73,
+              "transaction_date": "2021-01-18",
+              "amount": 73
+            },
+            {
+              "user_id": 74,
+              "transaction_date": "2021-01-19",
+              "amount": 74
+            },
+            {
+              "user_id": 75,
+              "transaction_date": "2021-01-20",
+              "amount": 75
+            },
+            {
+              "user_id": 76,
+              "transaction_date": "2021-01-21",
+              "amount": 76
+            },
+            {
+              "user_id": 77,
+              "transaction_date": "2021-01-22",
+              "amount": 77
+            },
+            {
+              "user_id": 78,
+              "transaction_date": "2021-01-23",
+              "amount": 78
+            },
+            {
+              "user_id": 79,
+              "transaction_date": "2021-01-24",
+              "amount": 79
+            },
+            {
+              "user_id": 80,
+              "transaction_date": "2021-01-25",
+              "amount": 80
+            },
+            {
+              "user_id": 81,
+              "transaction_date": "2021-01-26",
+              "amount": 81
+            },
+            {
+              "user_id": 82,
+              "transaction_date": "2021-01-27",
+              "amount": 82
+            },
+            {
+              "user_id": 83,
+              "transaction_date": "2021-01-28",
+              "amount": 83
+            },
+            {
+              "user_id": 84,
+              "transaction_date": "2021-01-01",
+              "amount": 84
+            },
+            {
+              "user_id": 85,
+              "transaction_date": "2021-01-02",
+              "amount": 85
+            },
+            {
+              "user_id": 86,
+              "transaction_date": "2021-01-03",
+              "amount": 86
+            },
+            {
+              "user_id": 87,
+              "transaction_date": "2021-01-04",
+              "amount": 87
+            },
+            {
+              "user_id": 88,
+              "transaction_date": "2021-01-05",
+              "amount": 88
+            },
+            {
+              "user_id": 89,
+              "transaction_date": "2021-01-06",
+              "amount": 89
+            },
+            {
+              "user_id": 90,
+              "transaction_date": "2021-01-07",
+              "amount": 90
+            },
+            {
+              "user_id": 91,
+              "transaction_date": "2021-01-08",
+              "amount": 91
+            },
+            {
+              "user_id": 92,
+              "transaction_date": "2021-01-09",
+              "amount": 92
+            },
+            {
+              "user_id": 93,
+              "transaction_date": "2021-01-10",
+              "amount": 93
+            },
+            {
+              "user_id": 94,
+              "transaction_date": "2021-01-11",
+              "amount": 94
+            },
+            {
+              "user_id": 95,
+              "transaction_date": "2021-01-12",
+              "amount": 95
+            },
+            {
+              "user_id": 96,
+              "transaction_date": "2021-01-13",
+              "amount": 96
+            },
+            {
+              "user_id": 97,
+              "transaction_date": "2021-01-14",
+              "amount": 97
+            },
+            {
+              "user_id": 98,
+              "transaction_date": "2021-01-15",
+              "amount": 98
+            },
+            {
+              "user_id": 99,
+              "transaction_date": "2021-01-16",
+              "amount": 99
+            },
+            {
+              "user_id": 100,
+              "transaction_date": "2021-01-17",
+              "amount": 100
+            },
+            {
+              "user_id": 101,
+              "transaction_date": "2021-01-18",
+              "amount": 101
+            },
+            {
+              "user_id": 102,
+              "transaction_date": "2021-01-19",
+              "amount": 102
+            },
+            {
+              "user_id": 103,
+              "transaction_date": "2021-01-20",
+              "amount": 103
+            },
+            {
+              "user_id": 104,
+              "transaction_date": "2021-01-21",
+              "amount": 104
+            },
+            {
+              "user_id": 105,
+              "transaction_date": "2021-01-22",
+              "amount": 105
+            },
+            {
+              "user_id": 106,
+              "transaction_date": "2021-01-23",
+              "amount": 106
+            },
+            {
+              "user_id": 107,
+              "transaction_date": "2021-01-24",
+              "amount": 107
+            },
+            {
+              "user_id": 108,
+              "transaction_date": "2021-01-25",
+              "amount": 108
+            },
+            {
+              "user_id": 109,
+              "transaction_date": "2021-01-26",
+              "amount": 109
+            },
+            {
+              "user_id": 110,
+              "transaction_date": "2021-01-27",
+              "amount": 110
+            },
+            {
+              "user_id": 111,
+              "transaction_date": "2021-01-28",
+              "amount": 111
+            },
+            {
+              "user_id": 112,
+              "transaction_date": "2021-01-01",
+              "amount": 112
+            },
+            {
+              "user_id": 113,
+              "transaction_date": "2021-01-02",
+              "amount": 113
+            },
+            {
+              "user_id": 114,
+              "transaction_date": "2021-01-03",
+              "amount": 114
+            },
+            {
+              "user_id": 115,
+              "transaction_date": "2021-01-04",
+              "amount": 115
+            },
+            {
+              "user_id": 116,
+              "transaction_date": "2021-01-05",
+              "amount": 116
+            },
+            {
+              "user_id": 117,
+              "transaction_date": "2021-01-06",
+              "amount": 117
+            },
+            {
+              "user_id": 118,
+              "transaction_date": "2021-01-07",
+              "amount": 118
+            },
+            {
+              "user_id": 119,
+              "transaction_date": "2021-01-08",
+              "amount": 119
+            },
+            {
+              "user_id": 120,
+              "transaction_date": "2021-01-09",
+              "amount": 120
+            },
+            {
+              "user_id": 121,
+              "transaction_date": "2021-01-10",
+              "amount": 121
+            },
+            {
+              "user_id": 122,
+              "transaction_date": "2021-01-11",
+              "amount": 122
+            },
+            {
+              "user_id": 123,
+              "transaction_date": "2021-01-12",
+              "amount": 123
+            },
+            {
+              "user_id": 124,
+              "transaction_date": "2021-01-13",
+              "amount": 124
+            },
+            {
+              "user_id": 125,
+              "transaction_date": "2021-01-14",
+              "amount": 125
+            },
+            {
+              "user_id": 126,
+              "transaction_date": "2021-01-15",
+              "amount": 126
+            },
+            {
+              "user_id": 127,
+              "transaction_date": "2021-01-16",
+              "amount": 127
+            },
+            {
+              "user_id": 128,
+              "transaction_date": "2021-01-17",
+              "amount": 128
+            },
+            {
+              "user_id": 129,
+              "transaction_date": "2021-01-18",
+              "amount": 129
+            },
+            {
+              "user_id": 130,
+              "transaction_date": "2021-01-19",
+              "amount": 130
+            },
+            {
+              "user_id": 131,
+              "transaction_date": "2021-01-20",
+              "amount": 131
+            },
+            {
+              "user_id": 132,
+              "transaction_date": "2021-01-21",
+              "amount": 132
+            },
+            {
+              "user_id": 133,
+              "transaction_date": "2021-01-22",
+              "amount": 133
+            },
+            {
+              "user_id": 134,
+              "transaction_date": "2021-01-23",
+              "amount": 134
+            },
+            {
+              "user_id": 135,
+              "transaction_date": "2021-01-24",
+              "amount": 135
+            },
+            {
+              "user_id": 136,
+              "transaction_date": "2021-01-25",
+              "amount": 136
+            },
+            {
+              "user_id": 137,
+              "transaction_date": "2021-01-26",
+              "amount": 137
+            },
+            {
+              "user_id": 138,
+              "transaction_date": "2021-01-27",
+              "amount": 138
+            },
+            {
+              "user_id": 139,
+              "transaction_date": "2021-01-28",
+              "amount": 139
+            },
+            {
+              "user_id": 140,
+              "transaction_date": "2021-01-01",
+              "amount": 140
+            },
+            {
+              "user_id": 141,
+              "transaction_date": "2021-01-02",
+              "amount": 141
+            },
+            {
+              "user_id": 142,
+              "transaction_date": "2021-01-03",
+              "amount": 142
+            },
+            {
+              "user_id": 143,
+              "transaction_date": "2021-01-04",
+              "amount": 143
+            },
+            {
+              "user_id": 144,
+              "transaction_date": "2021-01-05",
+              "amount": 144
+            },
+            {
+              "user_id": 145,
+              "transaction_date": "2021-01-06",
+              "amount": 145
+            },
+            {
+              "user_id": 146,
+              "transaction_date": "2021-01-07",
+              "amount": 146
+            },
+            {
+              "user_id": 147,
+              "transaction_date": "2021-01-08",
+              "amount": 147
+            },
+            {
+              "user_id": 148,
+              "transaction_date": "2021-01-09",
+              "amount": 148
+            },
+            {
+              "user_id": 149,
+              "transaction_date": "2021-01-10",
+              "amount": 149
+            },
+            {
+              "user_id": 150,
+              "transaction_date": "2021-01-11",
+              "amount": 150
+            },
+            {
+              "user_id": 151,
+              "transaction_date": "2021-01-12",
+              "amount": 151
+            },
+            {
+              "user_id": 152,
+              "transaction_date": "2021-01-13",
+              "amount": 152
+            },
+            {
+              "user_id": 153,
+              "transaction_date": "2021-01-14",
+              "amount": 153
+            },
+            {
+              "user_id": 154,
+              "transaction_date": "2021-01-15",
+              "amount": 154
+            },
+            {
+              "user_id": 155,
+              "transaction_date": "2021-01-16",
+              "amount": 155
+            },
+            {
+              "user_id": 156,
+              "transaction_date": "2021-01-17",
+              "amount": 156
+            },
+            {
+              "user_id": 157,
+              "transaction_date": "2021-01-18",
+              "amount": 157
+            },
+            {
+              "user_id": 158,
+              "transaction_date": "2021-01-19",
+              "amount": 158
+            },
+            {
+              "user_id": 159,
+              "transaction_date": "2021-01-20",
+              "amount": 159
+            },
+            {
+              "user_id": 160,
+              "transaction_date": "2021-01-21",
+              "amount": 160
+            },
+            {
+              "user_id": 161,
+              "transaction_date": "2021-01-22",
+              "amount": 161
+            },
+            {
+              "user_id": 162,
+              "transaction_date": "2021-01-23",
+              "amount": 162
+            },
+            {
+              "user_id": 163,
+              "transaction_date": "2021-01-24",
+              "amount": 163
+            },
+            {
+              "user_id": 164,
+              "transaction_date": "2021-01-25",
+              "amount": 164
+            },
+            {
+              "user_id": 165,
+              "transaction_date": "2021-01-26",
+              "amount": 165
+            },
+            {
+              "user_id": 166,
+              "transaction_date": "2021-01-27",
+              "amount": 166
+            },
+            {
+              "user_id": 167,
+              "transaction_date": "2021-01-28",
+              "amount": 167
+            },
+            {
+              "user_id": 168,
+              "transaction_date": "2021-01-01",
+              "amount": 168
+            },
+            {
+              "user_id": 169,
+              "transaction_date": "2021-01-02",
+              "amount": 169
+            },
+            {
+              "user_id": 170,
+              "transaction_date": "2021-01-03",
+              "amount": 170
+            },
+            {
+              "user_id": 171,
+              "transaction_date": "2021-01-04",
+              "amount": 171
+            },
+            {
+              "user_id": 172,
+              "transaction_date": "2021-01-05",
+              "amount": 172
+            },
+            {
+              "user_id": 173,
+              "transaction_date": "2021-01-06",
+              "amount": 173
+            },
+            {
+              "user_id": 174,
+              "transaction_date": "2021-01-07",
+              "amount": 174
+            },
+            {
+              "user_id": 175,
+              "transaction_date": "2021-01-08",
+              "amount": 175
+            },
+            {
+              "user_id": 176,
+              "transaction_date": "2021-01-09",
+              "amount": 176
+            },
+            {
+              "user_id": 177,
+              "transaction_date": "2021-01-10",
+              "amount": 177
+            },
+            {
+              "user_id": 178,
+              "transaction_date": "2021-01-11",
+              "amount": 178
+            },
+            {
+              "user_id": 179,
+              "transaction_date": "2021-01-12",
+              "amount": 179
+            },
+            {
+              "user_id": 180,
+              "transaction_date": "2021-01-13",
+              "amount": 180
+            },
+            {
+              "user_id": 181,
+              "transaction_date": "2021-01-14",
+              "amount": 181
+            },
+            {
+              "user_id": 182,
+              "transaction_date": "2021-01-15",
+              "amount": 182
+            },
+            {
+              "user_id": 183,
+              "transaction_date": "2021-01-16",
+              "amount": 183
+            },
+            {
+              "user_id": 184,
+              "transaction_date": "2021-01-17",
+              "amount": 184
+            },
+            {
+              "user_id": 185,
+              "transaction_date": "2021-01-18",
+              "amount": 185
+            },
+            {
+              "user_id": 186,
+              "transaction_date": "2021-01-19",
+              "amount": 186
+            },
+            {
+              "user_id": 187,
+              "transaction_date": "2021-01-20",
+              "amount": 187
+            },
+            {
+              "user_id": 188,
+              "transaction_date": "2021-01-21",
+              "amount": 188
+            },
+            {
+              "user_id": 189,
+              "transaction_date": "2021-01-22",
+              "amount": 189
+            },
+            {
+              "user_id": 190,
+              "transaction_date": "2021-01-23",
+              "amount": 190
+            },
+            {
+              "user_id": 191,
+              "transaction_date": "2021-01-24",
+              "amount": 191
+            },
+            {
+              "user_id": 192,
+              "transaction_date": "2021-01-25",
+              "amount": 192
+            },
+            {
+              "user_id": 193,
+              "transaction_date": "2021-01-26",
+              "amount": 193
+            },
+            {
+              "user_id": 194,
+              "transaction_date": "2021-01-27",
+              "amount": 194
+            },
+            {
+              "user_id": 195,
+              "transaction_date": "2021-01-28",
+              "amount": 195
+            },
+            {
+              "user_id": 196,
+              "transaction_date": "2021-01-01",
+              "amount": 196
+            },
+            {
+              "user_id": 197,
+              "transaction_date": "2021-01-02",
+              "amount": 197
+            },
+            {
+              "user_id": 198,
+              "transaction_date": "2021-01-03",
+              "amount": 198
+            },
+            {
+              "user_id": 199,
+              "transaction_date": "2021-01-04",
+              "amount": 199
+            },
+            {
+              "user_id": 200,
+              "transaction_date": "2021-01-05",
+              "amount": 200
+            },
+            {
+              "user_id": 201,
+              "transaction_date": "2021-01-06",
+              "amount": 201
+            },
+            {
+              "user_id": 202,
+              "transaction_date": "2021-01-07",
+              "amount": 202
+            },
+            {
+              "user_id": 203,
+              "transaction_date": "2021-01-08",
+              "amount": 203
+            },
+            {
+              "user_id": 204,
+              "transaction_date": "2021-01-09",
+              "amount": 204
+            },
+            {
+              "user_id": 205,
+              "transaction_date": "2021-01-10",
+              "amount": 205
+            },
+            {
+              "user_id": 206,
+              "transaction_date": "2021-01-11",
+              "amount": 206
+            },
+            {
+              "user_id": 207,
+              "transaction_date": "2021-01-12",
+              "amount": 207
+            },
+            {
+              "user_id": 208,
+              "transaction_date": "2021-01-13",
+              "amount": 208
+            },
+            {
+              "user_id": 209,
+              "transaction_date": "2021-01-14",
+              "amount": 209
+            },
+            {
+              "user_id": 210,
+              "transaction_date": "2021-01-15",
+              "amount": 210
+            },
+            {
+              "user_id": 211,
+              "transaction_date": "2021-01-16",
+              "amount": 211
+            },
+            {
+              "user_id": 212,
+              "transaction_date": "2021-01-17",
+              "amount": 212
+            },
+            {
+              "user_id": 213,
+              "transaction_date": "2021-01-18",
+              "amount": 213
+            },
+            {
+              "user_id": 214,
+              "transaction_date": "2021-01-19",
+              "amount": 214
+            },
+            {
+              "user_id": 215,
+              "transaction_date": "2021-01-20",
+              "amount": 215
+            },
+            {
+              "user_id": 216,
+              "transaction_date": "2021-01-21",
+              "amount": 216
+            },
+            {
+              "user_id": 217,
+              "transaction_date": "2021-01-22",
+              "amount": 217
+            },
+            {
+              "user_id": 218,
+              "transaction_date": "2021-01-23",
+              "amount": 218
+            },
+            {
+              "user_id": 219,
+              "transaction_date": "2021-01-24",
+              "amount": 219
+            },
+            {
+              "user_id": 220,
+              "transaction_date": "2021-01-25",
+              "amount": 220
+            },
+            {
+              "user_id": 221,
+              "transaction_date": "2021-01-26",
+              "amount": 221
+            },
+            {
+              "user_id": 222,
+              "transaction_date": "2021-01-27",
+              "amount": 222
+            },
+            {
+              "user_id": 223,
+              "transaction_date": "2021-01-28",
+              "amount": 223
+            },
+            {
+              "user_id": 224,
+              "transaction_date": "2021-01-01",
+              "amount": 224
+            },
+            {
+              "user_id": 225,
+              "transaction_date": "2021-01-02",
+              "amount": 225
+            },
+            {
+              "user_id": 226,
+              "transaction_date": "2021-01-03",
+              "amount": 226
+            },
+            {
+              "user_id": 227,
+              "transaction_date": "2021-01-04",
+              "amount": 227
+            },
+            {
+              "user_id": 228,
+              "transaction_date": "2021-01-05",
+              "amount": 228
+            },
+            {
+              "user_id": 229,
+              "transaction_date": "2021-01-06",
+              "amount": 229
+            },
+            {
+              "user_id": 230,
+              "transaction_date": "2021-01-07",
+              "amount": 230
+            },
+            {
+              "user_id": 231,
+              "transaction_date": "2021-01-08",
+              "amount": 231
+            },
+            {
+              "user_id": 232,
+              "transaction_date": "2021-01-09",
+              "amount": 232
+            },
+            {
+              "user_id": 233,
+              "transaction_date": "2021-01-10",
+              "amount": 233
+            },
+            {
+              "user_id": 234,
+              "transaction_date": "2021-01-11",
+              "amount": 234
+            },
+            {
+              "user_id": 235,
+              "transaction_date": "2021-01-12",
+              "amount": 235
+            },
+            {
+              "user_id": 236,
+              "transaction_date": "2021-01-13",
+              "amount": 236
+            },
+            {
+              "user_id": 237,
+              "transaction_date": "2021-01-14",
+              "amount": 237
+            },
+            {
+              "user_id": 238,
+              "transaction_date": "2021-01-15",
+              "amount": 238
+            },
+            {
+              "user_id": 239,
+              "transaction_date": "2021-01-16",
+              "amount": 239
+            },
+            {
+              "user_id": 240,
+              "transaction_date": "2021-01-17",
+              "amount": 240
+            },
+            {
+              "user_id": 241,
+              "transaction_date": "2021-01-18",
+              "amount": 241
+            },
+            {
+              "user_id": 242,
+              "transaction_date": "2021-01-19",
+              "amount": 242
+            },
+            {
+              "user_id": 243,
+              "transaction_date": "2021-01-20",
+              "amount": 243
+            },
+            {
+              "user_id": 244,
+              "transaction_date": "2021-01-21",
+              "amount": 244
+            },
+            {
+              "user_id": 245,
+              "transaction_date": "2021-01-22",
+              "amount": 245
+            },
+            {
+              "user_id": 246,
+              "transaction_date": "2021-01-23",
+              "amount": 246
+            },
+            {
+              "user_id": 247,
+              "transaction_date": "2021-01-24",
+              "amount": 247
+            },
+            {
+              "user_id": 248,
+              "transaction_date": "2021-01-25",
+              "amount": 248
+            },
+            {
+              "user_id": 249,
+              "transaction_date": "2021-01-26",
+              "amount": 249
+            },
+            {
+              "user_id": 250,
+              "transaction_date": "2021-01-27",
+              "amount": 250
+            },
+            {
+              "user_id": 251,
+              "transaction_date": "2021-01-28",
+              "amount": 251
+            },
+            {
+              "user_id": 252,
+              "transaction_date": "2021-01-01",
+              "amount": 252
+            },
+            {
+              "user_id": 253,
+              "transaction_date": "2021-01-02",
+              "amount": 253
+            },
+            {
+              "user_id": 254,
+              "transaction_date": "2021-01-03",
+              "amount": 254
+            },
+            {
+              "user_id": 255,
+              "transaction_date": "2021-01-04",
+              "amount": 255
+            },
+            {
+              "user_id": 256,
+              "transaction_date": "2021-01-05",
+              "amount": 256
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "transactions_count",
+          "visits_count"
+        ],
+        "rows": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            256
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "matching-transactions"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "challenge_id": "lc_940",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: repeated letter at n=16","kind":"benchmark","visible":false,"size":16,"input":{"s":"aaaaaaaaaaaaaaaa"},"expected":16,"tags":["benchmark","scale-small"]},
+    {"id":"benchmark-scale-2","name":"benchmark: repeated letter at n=64","kind":"benchmark","visible":false,"size":64,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":64,"tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-scale-3","name":"benchmark: repeated letter at n=256","kind":"benchmark","visible":false,"size":256,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":256,"tags":["benchmark","scale-large"]}
+  ]
+}

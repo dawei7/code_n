@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2090",
+  "measurement_note": "Size is n, the array length. Every tier contains only ones and uses k = n/4, so half the centers have a complete window of length proportional to n. Sliding sums are linear. A correct implementation that explicitly visits every element in every complete window completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 values with radius 2",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"nums": [1, 1, 1, 1, 1, 1, 1, 1], "k": 2},
+      "expected": [-1, -1, 1, 1, 1, 1, -1, -1],
+      "tags": ["benchmark", "scale-small", "proportional-radius"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 values with radius 8",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "k": 8
+      },
+      "expected": [-1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1],
+      "tags": ["benchmark", "scale-medium", "proportional-radius"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 127 values with radius 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 127,
+      "input": {
+        "nums": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        "k": 32
+      },
+      "expected": [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1],
+      "tags": ["benchmark", "scale-large", "proportional-radius"]
+    }
+  ]
+}

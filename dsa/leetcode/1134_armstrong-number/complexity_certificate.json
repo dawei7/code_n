@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1134",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The largest legal input has nine decimal digits, so both digit counting and powered-digit accumulation have a fixed maximum that cannot yield a stable scaling verdict.",
+  "workload_bound": {
+    "symbol": "D",
+    "maximum": 9,
+    "unit": "decimal digits",
+    "source_constraint": "n is an integer from 1 through 100000000"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "The arithmetic reference performs at most two passes over nine decimal digits."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover one through nine digits, Armstrong values, non-Armstrong values, and the maximum input."}
+  ]
+}

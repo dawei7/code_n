@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2632",
+  "measurement_note": "Size is n, the function arity and number of one-argument curry calls. Linked immutable chunks make each partial call constant-time and flatten all arguments once at completion. A correct branching-safe implementation that copies the complete accumulated array into every returned closure performs quadratic total copying while still finishing these legal workloads.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 one-argument calls",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"fnName": "sum", "arity": 64, "inputs": null, "inputPlan": {"kind": "oneByOneRange", "count": 64}},
+      "expected": 2016,
+      "tags": ["benchmark", "scale-small"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 256 one-argument calls",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"fnName": "sum", "arity": 256, "inputs": null, "inputPlan": {"kind": "oneByOneRange", "count": 256}},
+      "expected": 32640,
+      "tags": ["benchmark", "scale-medium"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1000 one-argument calls",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {"fnName": "sum", "arity": 1000, "inputs": null, "inputPlan": {"kind": "oneByOneRange", "count": 1000}},
+      "expected": 499500,
+      "tags": ["benchmark", "scale-large"]
+    }
+  ]
+}

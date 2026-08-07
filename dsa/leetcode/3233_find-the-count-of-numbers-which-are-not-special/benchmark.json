@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3233",
+  "cases": [
+    {
+      "id": "benchmark-prime-roots-scale-1",
+      "name": "benchmark: classify roots through 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "l": 1,
+        "r": 1024
+      },
+      "expected": 1013,
+      "tags": [
+        "benchmark",
+        "prime-roots",
+        "scale-1"
+      ]
+    },
+    {
+      "id": "benchmark-prime-roots-scale-2",
+      "name": "benchmark: classify roots through 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "l": 1,
+        "r": 16384
+      },
+      "expected": 16353,
+      "tags": [
+        "benchmark",
+        "prime-roots",
+        "scale-2"
+      ]
+    },
+    {
+      "id": "benchmark-prime-roots-scale-3",
+      "name": "benchmark: classify roots through 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "l": 1,
+        "r": 262144
+      },
+      "expected": 262047,
+      "tags": [
+        "benchmark",
+        "prime-roots",
+        "scale-3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_788",
+  "measurement_note": "Size is the inclusive upper bound. Digit DP uses O(log size) states; checking every integer through the bound takes O(size log size).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: bound 16", "kind": "benchmark", "visible": false, "size": 16, "input": {"n": 16}, "expected": 7, "tags": ["benchmark", "scaling", "enumeration-bound"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: bound 64", "kind": "benchmark", "visible": false, "size": 64, "input": {"n": 64}, "expected": 25, "tags": ["benchmark", "scaling", "enumeration-bound"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: bound 128", "kind": "benchmark", "visible": false, "size": 128, "input": {"n": 128}, "expected": 54, "tags": ["benchmark", "scaling", "enumeration-bound"]}
+  ]
+}

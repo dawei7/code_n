@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1995",
+  "measurement_note": "Each tier repeats a legal value pattern that creates matches across many index boundaries. Pair-sum/difference counting is quadratic, while enumerating every first, second, and third index with suffix counts grows cubically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 repeated bounded values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10
+        ]
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 20 repeated bounded values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 20,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15,
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15
+        ]
+      },
+      "expected": 238,
+      "tags": [
+        "benchmark",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 50 repeated bounded values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 50,
+      "input": {
+        "nums": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15,
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15,
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15,
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15,
+          1,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          10,
+          12,
+          15
+        ]
+      },
+      "expected": 6710,
+      "tags": [
+        "benchmark",
+        "scale-large"
+      ]
+    }
+  ]
+}

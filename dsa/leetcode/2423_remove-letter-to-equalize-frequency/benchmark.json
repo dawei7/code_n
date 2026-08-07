@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2423",
+  "measurement_note": "Size is n, the word length. Each word contains n/4 copies of a and 3n/4 copies of b, so no deletion works. Counting once and trying the bounded alphabet takes O(n) time, while deleting every position and recounting the whole candidate string takes O(n^2) time.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8-character unequal frequency groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "word": "aabbbbbb"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "no-valid-removal",
+        "recounting"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32-character unequal frequency groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "word": "aaaaaaaabbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "no-valid-removal",
+        "recounting"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 96-character unequal frequency groups",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "word": "aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "no-valid-removal",
+        "recounting"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "challenge_id": "lc_3193",
+  "cases": [
+    {
+      "id": "benchmark-n12-c16",
+      "name": "benchmark: n=12 and C=16",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {"n": 12, "requirements": [[11, 16]]},
+      "expected": 1726701,
+      "tags": ["benchmark", "scale-small", "inversion-dp"]
+    },
+    {
+      "id": "benchmark-n24-c32",
+      "name": "benchmark: n=24 and C=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 768,
+      "input": {"n": 24, "requirements": [[23, 32]]},
+      "expected": 672296749,
+      "tags": ["benchmark", "scale-medium", "inversion-dp"]
+    },
+    {
+      "id": "benchmark-n48-c64",
+      "name": "benchmark: n=48 and C=64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 3072,
+      "input": {"n": 48, "requirements": [[47, 64]]},
+      "expected": 439197773,
+      "tags": ["benchmark", "scale-large", "inversion-dp"]
+    }
+  ]
+}

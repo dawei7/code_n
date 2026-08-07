@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1864",
+  "measurement_note": "Size is n, the binary string length. Each workload has one block of n/2 zeros followed by n/2 ones. Direct mismatch counting takes O(n) time. A correct slower implementation that repairs mismatches by repeatedly scanning for an opposite misplaced partner takes O(n^2), completes every tier, and fails only the measured scaling verdict.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: balanced zero/one blocks of length 32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "00000000000000001111111111111111"
+      },
+      "expected": 8,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced-blocks"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: balanced zero/one blocks of length 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": 32,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced-blocks"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: balanced zero/one blocks of length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "s": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+      },
+      "expected": 128,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "scaling",
+        "balanced-blocks"
+      ]
+    }
+  ]
+}

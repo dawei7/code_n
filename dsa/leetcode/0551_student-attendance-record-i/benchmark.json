@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_551",
+  "measurement_note": "Size is the attendance-record length. All-present records force a full scan; maintaining counters is linear, while revalidating the complete prefix after every day is quadratic.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 present days",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "s": "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-present"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 present days",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "s": "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-present"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 present days",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "s": "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "all-present"
+      ]
+    }
+  ]
+}
+

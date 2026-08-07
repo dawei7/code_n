@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2153",
+  "measurement_note": "Size N is the number of buses; each tier has 2N passengers and capacity one per bus, so backlog grows throughout. The event-stream query sorts 3N rows and carries cumulative boarding through one recursive bus pass. A correct range-join comparison materializes redundant passenger-bus pairs while recounting cumulative arrivals for every bus, completes each tier, and fails only by its worse join scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 capacity-one buses with growing backlog",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"tables": {"Buses": [{"bus_id":1,"arrival_time":2,"capacity":1},{"bus_id":2,"arrival_time":4,"capacity":1},{"bus_id":3,"arrival_time":6,"capacity":1},{"bus_id":4,"arrival_time":8,"capacity":1}], "Passengers": [{"passenger_id":1,"arrival_time":2},{"passenger_id":2,"arrival_time":2},{"passenger_id":3,"arrival_time":4},{"passenger_id":4,"arrival_time":4},{"passenger_id":5,"arrival_time":6},{"passenger_id":6,"arrival_time":6},{"passenger_id":7,"arrival_time":8},{"passenger_id":8,"arrival_time":8}]}},
+      "expected": {"columns": ["bus_id", "passengers_cnt"], "rows": [[1,1],[2,1],[3,1],[4,1]]},
+      "tags": ["benchmark", "scale-small", "backlog"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 8 capacity-one buses with growing backlog",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"tables": {"Buses": [{"bus_id":1,"arrival_time":2,"capacity":1},{"bus_id":2,"arrival_time":4,"capacity":1},{"bus_id":3,"arrival_time":6,"capacity":1},{"bus_id":4,"arrival_time":8,"capacity":1},{"bus_id":5,"arrival_time":10,"capacity":1},{"bus_id":6,"arrival_time":12,"capacity":1},{"bus_id":7,"arrival_time":14,"capacity":1},{"bus_id":8,"arrival_time":16,"capacity":1}], "Passengers": [{"passenger_id":1,"arrival_time":2},{"passenger_id":2,"arrival_time":2},{"passenger_id":3,"arrival_time":4},{"passenger_id":4,"arrival_time":4},{"passenger_id":5,"arrival_time":6},{"passenger_id":6,"arrival_time":6},{"passenger_id":7,"arrival_time":8},{"passenger_id":8,"arrival_time":8},{"passenger_id":9,"arrival_time":10},{"passenger_id":10,"arrival_time":10},{"passenger_id":11,"arrival_time":12},{"passenger_id":12,"arrival_time":12},{"passenger_id":13,"arrival_time":14},{"passenger_id":14,"arrival_time":14},{"passenger_id":15,"arrival_time":16},{"passenger_id":16,"arrival_time":16}]}},
+      "expected": {"columns": ["bus_id", "passengers_cnt"], "rows": [[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1]]},
+      "tags": ["benchmark", "scale-medium", "backlog"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 16 capacity-one buses with growing backlog",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"tables": {"Buses": [{"bus_id":1,"arrival_time":2,"capacity":1},{"bus_id":2,"arrival_time":4,"capacity":1},{"bus_id":3,"arrival_time":6,"capacity":1},{"bus_id":4,"arrival_time":8,"capacity":1},{"bus_id":5,"arrival_time":10,"capacity":1},{"bus_id":6,"arrival_time":12,"capacity":1},{"bus_id":7,"arrival_time":14,"capacity":1},{"bus_id":8,"arrival_time":16,"capacity":1},{"bus_id":9,"arrival_time":18,"capacity":1},{"bus_id":10,"arrival_time":20,"capacity":1},{"bus_id":11,"arrival_time":22,"capacity":1},{"bus_id":12,"arrival_time":24,"capacity":1},{"bus_id":13,"arrival_time":26,"capacity":1},{"bus_id":14,"arrival_time":28,"capacity":1},{"bus_id":15,"arrival_time":30,"capacity":1},{"bus_id":16,"arrival_time":32,"capacity":1}], "Passengers": [{"passenger_id":1,"arrival_time":2},{"passenger_id":2,"arrival_time":2},{"passenger_id":3,"arrival_time":4},{"passenger_id":4,"arrival_time":4},{"passenger_id":5,"arrival_time":6},{"passenger_id":6,"arrival_time":6},{"passenger_id":7,"arrival_time":8},{"passenger_id":8,"arrival_time":8},{"passenger_id":9,"arrival_time":10},{"passenger_id":10,"arrival_time":10},{"passenger_id":11,"arrival_time":12},{"passenger_id":12,"arrival_time":12},{"passenger_id":13,"arrival_time":14},{"passenger_id":14,"arrival_time":14},{"passenger_id":15,"arrival_time":16},{"passenger_id":16,"arrival_time":16},{"passenger_id":17,"arrival_time":18},{"passenger_id":18,"arrival_time":18},{"passenger_id":19,"arrival_time":20},{"passenger_id":20,"arrival_time":20},{"passenger_id":21,"arrival_time":22},{"passenger_id":22,"arrival_time":22},{"passenger_id":23,"arrival_time":24},{"passenger_id":24,"arrival_time":24},{"passenger_id":25,"arrival_time":26},{"passenger_id":26,"arrival_time":26},{"passenger_id":27,"arrival_time":28},{"passenger_id":28,"arrival_time":28},{"passenger_id":29,"arrival_time":30},{"passenger_id":30,"arrival_time":30},{"passenger_id":31,"arrival_time":32},{"passenger_id":32,"arrival_time":32}]}},
+      "expected": {"columns": ["bus_id", "passengers_cnt"], "rows": [[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1],[9,1],[10,1],[11,1],[12,1],[13,1],[14,1],[15,1],[16,1]]},
+      "tags": ["benchmark", "scale-large", "backlog"]
+    }
+  ]
+}

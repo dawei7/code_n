@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1957",
+  "measurement_note": "Size is N, the input string length governing the required linear scan. Every tier is one run of the same character and therefore reduces to two characters. The reference processes the run once. A correct slower implementation rebuilds the fancy result independently for every growing prefix, completes all tiers, and fails by scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: run of thirty-two characters","kind":"benchmark","visible":false,"size":32,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aa","tags":["benchmark","scale-small","single-run"]},
+    {"id":"benchmark-scale-2","name":"benchmark: run of one hundred twenty-eight characters","kind":"benchmark","visible":false,"size":128,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aa","tags":["benchmark","scale-medium","single-run"]},
+    {"id":"benchmark-scale-3","name":"benchmark: run of five hundred twelve characters","kind":"benchmark","visible":false,"size":512,"input":{"s":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aa","tags":["benchmark","scale-large","single-run"]}
+  ]
+}

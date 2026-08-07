@@ -1,0 +1,1954 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1364",
+  "measurement_note": "Size is N = C + K + I, the total Customers, Contacts, and Invoices rows. The grouped join computes owner summaries once and then joins them to invoices in O(N log N) time in the general database model. A correct slower query runs de-indexed correlated contact counts for every invoice and scans Customers to establish trust. The 4/16/64-row-per-table tiers force the trusted email match to the final customer and complete normally.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 customers, contacts, and invoices",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Customer 001",
+              "email": "customer001@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Customer 002",
+              "email": "customer002@shop.com"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Customer 003",
+              "email": "customer003@shop.com"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer 004",
+              "email": "customer004@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer004@shop.com"
+            },
+            {
+              "user_id": 2,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer004@shop.com"
+            },
+            {
+              "user_id": 3,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer004@shop.com"
+            },
+            {
+              "user_id": 4,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer004@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 1,
+              "price": 10,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 2,
+              "price": 20,
+              "user_id": 2
+            },
+            {
+              "invoice_id": 3,
+              "price": 30,
+              "user_id": 3
+            },
+            {
+              "invoice_id": 4,
+              "price": 40,
+              "user_id": 4
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            "Customer 001",
+            10,
+            1,
+            1
+          ],
+          [
+            2,
+            "Customer 002",
+            20,
+            1,
+            1
+          ],
+          [
+            3,
+            "Customer 003",
+            30,
+            1,
+            1
+          ],
+          [
+            4,
+            "Customer 004",
+            40,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "trusted-contact"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 customers, contacts, and invoices",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Customer 001",
+              "email": "customer001@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Customer 002",
+              "email": "customer002@shop.com"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Customer 003",
+              "email": "customer003@shop.com"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer 004",
+              "email": "customer004@shop.com"
+            },
+            {
+              "customer_id": 5,
+              "customer_name": "Customer 005",
+              "email": "customer005@shop.com"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer 006",
+              "email": "customer006@shop.com"
+            },
+            {
+              "customer_id": 7,
+              "customer_name": "Customer 007",
+              "email": "customer007@shop.com"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer 008",
+              "email": "customer008@shop.com"
+            },
+            {
+              "customer_id": 9,
+              "customer_name": "Customer 009",
+              "email": "customer009@shop.com"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer 010",
+              "email": "customer010@shop.com"
+            },
+            {
+              "customer_id": 11,
+              "customer_name": "Customer 011",
+              "email": "customer011@shop.com"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer 012",
+              "email": "customer012@shop.com"
+            },
+            {
+              "customer_id": 13,
+              "customer_name": "Customer 013",
+              "email": "customer013@shop.com"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer 014",
+              "email": "customer014@shop.com"
+            },
+            {
+              "customer_id": 15,
+              "customer_name": "Customer 015",
+              "email": "customer015@shop.com"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer 016",
+              "email": "customer016@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 2,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 3,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 4,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 5,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 6,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 7,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 8,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 9,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 10,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 11,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 12,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 13,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 14,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 15,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            },
+            {
+              "user_id": 16,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer016@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 1,
+              "price": 10,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 2,
+              "price": 20,
+              "user_id": 2
+            },
+            {
+              "invoice_id": 3,
+              "price": 30,
+              "user_id": 3
+            },
+            {
+              "invoice_id": 4,
+              "price": 40,
+              "user_id": 4
+            },
+            {
+              "invoice_id": 5,
+              "price": 50,
+              "user_id": 5
+            },
+            {
+              "invoice_id": 6,
+              "price": 60,
+              "user_id": 6
+            },
+            {
+              "invoice_id": 7,
+              "price": 70,
+              "user_id": 7
+            },
+            {
+              "invoice_id": 8,
+              "price": 80,
+              "user_id": 8
+            },
+            {
+              "invoice_id": 9,
+              "price": 90,
+              "user_id": 9
+            },
+            {
+              "invoice_id": 10,
+              "price": 100,
+              "user_id": 10
+            },
+            {
+              "invoice_id": 11,
+              "price": 110,
+              "user_id": 11
+            },
+            {
+              "invoice_id": 12,
+              "price": 120,
+              "user_id": 12
+            },
+            {
+              "invoice_id": 13,
+              "price": 130,
+              "user_id": 13
+            },
+            {
+              "invoice_id": 14,
+              "price": 140,
+              "user_id": 14
+            },
+            {
+              "invoice_id": 15,
+              "price": 150,
+              "user_id": 15
+            },
+            {
+              "invoice_id": 16,
+              "price": 160,
+              "user_id": 16
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            "Customer 001",
+            10,
+            1,
+            1
+          ],
+          [
+            2,
+            "Customer 002",
+            20,
+            1,
+            1
+          ],
+          [
+            3,
+            "Customer 003",
+            30,
+            1,
+            1
+          ],
+          [
+            4,
+            "Customer 004",
+            40,
+            1,
+            1
+          ],
+          [
+            5,
+            "Customer 005",
+            50,
+            1,
+            1
+          ],
+          [
+            6,
+            "Customer 006",
+            60,
+            1,
+            1
+          ],
+          [
+            7,
+            "Customer 007",
+            70,
+            1,
+            1
+          ],
+          [
+            8,
+            "Customer 008",
+            80,
+            1,
+            1
+          ],
+          [
+            9,
+            "Customer 009",
+            90,
+            1,
+            1
+          ],
+          [
+            10,
+            "Customer 010",
+            100,
+            1,
+            1
+          ],
+          [
+            11,
+            "Customer 011",
+            110,
+            1,
+            1
+          ],
+          [
+            12,
+            "Customer 012",
+            120,
+            1,
+            1
+          ],
+          [
+            13,
+            "Customer 013",
+            130,
+            1,
+            1
+          ],
+          [
+            14,
+            "Customer 014",
+            140,
+            1,
+            1
+          ],
+          [
+            15,
+            "Customer 015",
+            150,
+            1,
+            1
+          ],
+          [
+            16,
+            "Customer 016",
+            160,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "trusted-contact"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 customers, contacts, and invoices",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {
+        "tables": {
+          "Customers": [
+            {
+              "customer_id": 1,
+              "customer_name": "Customer 001",
+              "email": "customer001@shop.com"
+            },
+            {
+              "customer_id": 2,
+              "customer_name": "Customer 002",
+              "email": "customer002@shop.com"
+            },
+            {
+              "customer_id": 3,
+              "customer_name": "Customer 003",
+              "email": "customer003@shop.com"
+            },
+            {
+              "customer_id": 4,
+              "customer_name": "Customer 004",
+              "email": "customer004@shop.com"
+            },
+            {
+              "customer_id": 5,
+              "customer_name": "Customer 005",
+              "email": "customer005@shop.com"
+            },
+            {
+              "customer_id": 6,
+              "customer_name": "Customer 006",
+              "email": "customer006@shop.com"
+            },
+            {
+              "customer_id": 7,
+              "customer_name": "Customer 007",
+              "email": "customer007@shop.com"
+            },
+            {
+              "customer_id": 8,
+              "customer_name": "Customer 008",
+              "email": "customer008@shop.com"
+            },
+            {
+              "customer_id": 9,
+              "customer_name": "Customer 009",
+              "email": "customer009@shop.com"
+            },
+            {
+              "customer_id": 10,
+              "customer_name": "Customer 010",
+              "email": "customer010@shop.com"
+            },
+            {
+              "customer_id": 11,
+              "customer_name": "Customer 011",
+              "email": "customer011@shop.com"
+            },
+            {
+              "customer_id": 12,
+              "customer_name": "Customer 012",
+              "email": "customer012@shop.com"
+            },
+            {
+              "customer_id": 13,
+              "customer_name": "Customer 013",
+              "email": "customer013@shop.com"
+            },
+            {
+              "customer_id": 14,
+              "customer_name": "Customer 014",
+              "email": "customer014@shop.com"
+            },
+            {
+              "customer_id": 15,
+              "customer_name": "Customer 015",
+              "email": "customer015@shop.com"
+            },
+            {
+              "customer_id": 16,
+              "customer_name": "Customer 016",
+              "email": "customer016@shop.com"
+            },
+            {
+              "customer_id": 17,
+              "customer_name": "Customer 017",
+              "email": "customer017@shop.com"
+            },
+            {
+              "customer_id": 18,
+              "customer_name": "Customer 018",
+              "email": "customer018@shop.com"
+            },
+            {
+              "customer_id": 19,
+              "customer_name": "Customer 019",
+              "email": "customer019@shop.com"
+            },
+            {
+              "customer_id": 20,
+              "customer_name": "Customer 020",
+              "email": "customer020@shop.com"
+            },
+            {
+              "customer_id": 21,
+              "customer_name": "Customer 021",
+              "email": "customer021@shop.com"
+            },
+            {
+              "customer_id": 22,
+              "customer_name": "Customer 022",
+              "email": "customer022@shop.com"
+            },
+            {
+              "customer_id": 23,
+              "customer_name": "Customer 023",
+              "email": "customer023@shop.com"
+            },
+            {
+              "customer_id": 24,
+              "customer_name": "Customer 024",
+              "email": "customer024@shop.com"
+            },
+            {
+              "customer_id": 25,
+              "customer_name": "Customer 025",
+              "email": "customer025@shop.com"
+            },
+            {
+              "customer_id": 26,
+              "customer_name": "Customer 026",
+              "email": "customer026@shop.com"
+            },
+            {
+              "customer_id": 27,
+              "customer_name": "Customer 027",
+              "email": "customer027@shop.com"
+            },
+            {
+              "customer_id": 28,
+              "customer_name": "Customer 028",
+              "email": "customer028@shop.com"
+            },
+            {
+              "customer_id": 29,
+              "customer_name": "Customer 029",
+              "email": "customer029@shop.com"
+            },
+            {
+              "customer_id": 30,
+              "customer_name": "Customer 030",
+              "email": "customer030@shop.com"
+            },
+            {
+              "customer_id": 31,
+              "customer_name": "Customer 031",
+              "email": "customer031@shop.com"
+            },
+            {
+              "customer_id": 32,
+              "customer_name": "Customer 032",
+              "email": "customer032@shop.com"
+            },
+            {
+              "customer_id": 33,
+              "customer_name": "Customer 033",
+              "email": "customer033@shop.com"
+            },
+            {
+              "customer_id": 34,
+              "customer_name": "Customer 034",
+              "email": "customer034@shop.com"
+            },
+            {
+              "customer_id": 35,
+              "customer_name": "Customer 035",
+              "email": "customer035@shop.com"
+            },
+            {
+              "customer_id": 36,
+              "customer_name": "Customer 036",
+              "email": "customer036@shop.com"
+            },
+            {
+              "customer_id": 37,
+              "customer_name": "Customer 037",
+              "email": "customer037@shop.com"
+            },
+            {
+              "customer_id": 38,
+              "customer_name": "Customer 038",
+              "email": "customer038@shop.com"
+            },
+            {
+              "customer_id": 39,
+              "customer_name": "Customer 039",
+              "email": "customer039@shop.com"
+            },
+            {
+              "customer_id": 40,
+              "customer_name": "Customer 040",
+              "email": "customer040@shop.com"
+            },
+            {
+              "customer_id": 41,
+              "customer_name": "Customer 041",
+              "email": "customer041@shop.com"
+            },
+            {
+              "customer_id": 42,
+              "customer_name": "Customer 042",
+              "email": "customer042@shop.com"
+            },
+            {
+              "customer_id": 43,
+              "customer_name": "Customer 043",
+              "email": "customer043@shop.com"
+            },
+            {
+              "customer_id": 44,
+              "customer_name": "Customer 044",
+              "email": "customer044@shop.com"
+            },
+            {
+              "customer_id": 45,
+              "customer_name": "Customer 045",
+              "email": "customer045@shop.com"
+            },
+            {
+              "customer_id": 46,
+              "customer_name": "Customer 046",
+              "email": "customer046@shop.com"
+            },
+            {
+              "customer_id": 47,
+              "customer_name": "Customer 047",
+              "email": "customer047@shop.com"
+            },
+            {
+              "customer_id": 48,
+              "customer_name": "Customer 048",
+              "email": "customer048@shop.com"
+            },
+            {
+              "customer_id": 49,
+              "customer_name": "Customer 049",
+              "email": "customer049@shop.com"
+            },
+            {
+              "customer_id": 50,
+              "customer_name": "Customer 050",
+              "email": "customer050@shop.com"
+            },
+            {
+              "customer_id": 51,
+              "customer_name": "Customer 051",
+              "email": "customer051@shop.com"
+            },
+            {
+              "customer_id": 52,
+              "customer_name": "Customer 052",
+              "email": "customer052@shop.com"
+            },
+            {
+              "customer_id": 53,
+              "customer_name": "Customer 053",
+              "email": "customer053@shop.com"
+            },
+            {
+              "customer_id": 54,
+              "customer_name": "Customer 054",
+              "email": "customer054@shop.com"
+            },
+            {
+              "customer_id": 55,
+              "customer_name": "Customer 055",
+              "email": "customer055@shop.com"
+            },
+            {
+              "customer_id": 56,
+              "customer_name": "Customer 056",
+              "email": "customer056@shop.com"
+            },
+            {
+              "customer_id": 57,
+              "customer_name": "Customer 057",
+              "email": "customer057@shop.com"
+            },
+            {
+              "customer_id": 58,
+              "customer_name": "Customer 058",
+              "email": "customer058@shop.com"
+            },
+            {
+              "customer_id": 59,
+              "customer_name": "Customer 059",
+              "email": "customer059@shop.com"
+            },
+            {
+              "customer_id": 60,
+              "customer_name": "Customer 060",
+              "email": "customer060@shop.com"
+            },
+            {
+              "customer_id": 61,
+              "customer_name": "Customer 061",
+              "email": "customer061@shop.com"
+            },
+            {
+              "customer_id": 62,
+              "customer_name": "Customer 062",
+              "email": "customer062@shop.com"
+            },
+            {
+              "customer_id": 63,
+              "customer_name": "Customer 063",
+              "email": "customer063@shop.com"
+            },
+            {
+              "customer_id": 64,
+              "customer_name": "Customer 064",
+              "email": "customer064@shop.com"
+            }
+          ],
+          "Contacts": [
+            {
+              "user_id": 1,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 2,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 3,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 4,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 5,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 6,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 7,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 8,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 9,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 10,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 11,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 12,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 13,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 14,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 15,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 16,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 17,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 18,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 19,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 20,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 21,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 22,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 23,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 24,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 25,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 26,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 27,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 28,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 29,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 30,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 31,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 32,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 33,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 34,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 35,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 36,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 37,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 38,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 39,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 40,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 41,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 42,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 43,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 44,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 45,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 46,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 47,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 48,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 49,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 50,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 51,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 52,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 53,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 54,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 55,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 56,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 57,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 58,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 59,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 60,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 61,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 62,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 63,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            },
+            {
+              "user_id": 64,
+              "contact_name": "Trusted Last",
+              "contact_email": "customer064@shop.com"
+            }
+          ],
+          "Invoices": [
+            {
+              "invoice_id": 1,
+              "price": 10,
+              "user_id": 1
+            },
+            {
+              "invoice_id": 2,
+              "price": 20,
+              "user_id": 2
+            },
+            {
+              "invoice_id": 3,
+              "price": 30,
+              "user_id": 3
+            },
+            {
+              "invoice_id": 4,
+              "price": 40,
+              "user_id": 4
+            },
+            {
+              "invoice_id": 5,
+              "price": 50,
+              "user_id": 5
+            },
+            {
+              "invoice_id": 6,
+              "price": 60,
+              "user_id": 6
+            },
+            {
+              "invoice_id": 7,
+              "price": 70,
+              "user_id": 7
+            },
+            {
+              "invoice_id": 8,
+              "price": 80,
+              "user_id": 8
+            },
+            {
+              "invoice_id": 9,
+              "price": 90,
+              "user_id": 9
+            },
+            {
+              "invoice_id": 10,
+              "price": 100,
+              "user_id": 10
+            },
+            {
+              "invoice_id": 11,
+              "price": 110,
+              "user_id": 11
+            },
+            {
+              "invoice_id": 12,
+              "price": 120,
+              "user_id": 12
+            },
+            {
+              "invoice_id": 13,
+              "price": 130,
+              "user_id": 13
+            },
+            {
+              "invoice_id": 14,
+              "price": 140,
+              "user_id": 14
+            },
+            {
+              "invoice_id": 15,
+              "price": 150,
+              "user_id": 15
+            },
+            {
+              "invoice_id": 16,
+              "price": 160,
+              "user_id": 16
+            },
+            {
+              "invoice_id": 17,
+              "price": 170,
+              "user_id": 17
+            },
+            {
+              "invoice_id": 18,
+              "price": 180,
+              "user_id": 18
+            },
+            {
+              "invoice_id": 19,
+              "price": 190,
+              "user_id": 19
+            },
+            {
+              "invoice_id": 20,
+              "price": 200,
+              "user_id": 20
+            },
+            {
+              "invoice_id": 21,
+              "price": 210,
+              "user_id": 21
+            },
+            {
+              "invoice_id": 22,
+              "price": 220,
+              "user_id": 22
+            },
+            {
+              "invoice_id": 23,
+              "price": 230,
+              "user_id": 23
+            },
+            {
+              "invoice_id": 24,
+              "price": 240,
+              "user_id": 24
+            },
+            {
+              "invoice_id": 25,
+              "price": 250,
+              "user_id": 25
+            },
+            {
+              "invoice_id": 26,
+              "price": 260,
+              "user_id": 26
+            },
+            {
+              "invoice_id": 27,
+              "price": 270,
+              "user_id": 27
+            },
+            {
+              "invoice_id": 28,
+              "price": 280,
+              "user_id": 28
+            },
+            {
+              "invoice_id": 29,
+              "price": 290,
+              "user_id": 29
+            },
+            {
+              "invoice_id": 30,
+              "price": 300,
+              "user_id": 30
+            },
+            {
+              "invoice_id": 31,
+              "price": 310,
+              "user_id": 31
+            },
+            {
+              "invoice_id": 32,
+              "price": 320,
+              "user_id": 32
+            },
+            {
+              "invoice_id": 33,
+              "price": 330,
+              "user_id": 33
+            },
+            {
+              "invoice_id": 34,
+              "price": 340,
+              "user_id": 34
+            },
+            {
+              "invoice_id": 35,
+              "price": 350,
+              "user_id": 35
+            },
+            {
+              "invoice_id": 36,
+              "price": 360,
+              "user_id": 36
+            },
+            {
+              "invoice_id": 37,
+              "price": 370,
+              "user_id": 37
+            },
+            {
+              "invoice_id": 38,
+              "price": 380,
+              "user_id": 38
+            },
+            {
+              "invoice_id": 39,
+              "price": 390,
+              "user_id": 39
+            },
+            {
+              "invoice_id": 40,
+              "price": 400,
+              "user_id": 40
+            },
+            {
+              "invoice_id": 41,
+              "price": 410,
+              "user_id": 41
+            },
+            {
+              "invoice_id": 42,
+              "price": 420,
+              "user_id": 42
+            },
+            {
+              "invoice_id": 43,
+              "price": 430,
+              "user_id": 43
+            },
+            {
+              "invoice_id": 44,
+              "price": 440,
+              "user_id": 44
+            },
+            {
+              "invoice_id": 45,
+              "price": 450,
+              "user_id": 45
+            },
+            {
+              "invoice_id": 46,
+              "price": 460,
+              "user_id": 46
+            },
+            {
+              "invoice_id": 47,
+              "price": 470,
+              "user_id": 47
+            },
+            {
+              "invoice_id": 48,
+              "price": 480,
+              "user_id": 48
+            },
+            {
+              "invoice_id": 49,
+              "price": 490,
+              "user_id": 49
+            },
+            {
+              "invoice_id": 50,
+              "price": 500,
+              "user_id": 50
+            },
+            {
+              "invoice_id": 51,
+              "price": 510,
+              "user_id": 51
+            },
+            {
+              "invoice_id": 52,
+              "price": 520,
+              "user_id": 52
+            },
+            {
+              "invoice_id": 53,
+              "price": 530,
+              "user_id": 53
+            },
+            {
+              "invoice_id": 54,
+              "price": 540,
+              "user_id": 54
+            },
+            {
+              "invoice_id": 55,
+              "price": 550,
+              "user_id": 55
+            },
+            {
+              "invoice_id": 56,
+              "price": 560,
+              "user_id": 56
+            },
+            {
+              "invoice_id": 57,
+              "price": 570,
+              "user_id": 57
+            },
+            {
+              "invoice_id": 58,
+              "price": 580,
+              "user_id": 58
+            },
+            {
+              "invoice_id": 59,
+              "price": 590,
+              "user_id": 59
+            },
+            {
+              "invoice_id": 60,
+              "price": 600,
+              "user_id": 60
+            },
+            {
+              "invoice_id": 61,
+              "price": 610,
+              "user_id": 61
+            },
+            {
+              "invoice_id": 62,
+              "price": 620,
+              "user_id": 62
+            },
+            {
+              "invoice_id": 63,
+              "price": 630,
+              "user_id": 63
+            },
+            {
+              "invoice_id": 64,
+              "price": 640,
+              "user_id": 64
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "invoice_id",
+          "customer_name",
+          "price",
+          "contacts_cnt",
+          "trusted_contacts_cnt"
+        ],
+        "rows": [
+          [
+            1,
+            "Customer 001",
+            10,
+            1,
+            1
+          ],
+          [
+            2,
+            "Customer 002",
+            20,
+            1,
+            1
+          ],
+          [
+            3,
+            "Customer 003",
+            30,
+            1,
+            1
+          ],
+          [
+            4,
+            "Customer 004",
+            40,
+            1,
+            1
+          ],
+          [
+            5,
+            "Customer 005",
+            50,
+            1,
+            1
+          ],
+          [
+            6,
+            "Customer 006",
+            60,
+            1,
+            1
+          ],
+          [
+            7,
+            "Customer 007",
+            70,
+            1,
+            1
+          ],
+          [
+            8,
+            "Customer 008",
+            80,
+            1,
+            1
+          ],
+          [
+            9,
+            "Customer 009",
+            90,
+            1,
+            1
+          ],
+          [
+            10,
+            "Customer 010",
+            100,
+            1,
+            1
+          ],
+          [
+            11,
+            "Customer 011",
+            110,
+            1,
+            1
+          ],
+          [
+            12,
+            "Customer 012",
+            120,
+            1,
+            1
+          ],
+          [
+            13,
+            "Customer 013",
+            130,
+            1,
+            1
+          ],
+          [
+            14,
+            "Customer 014",
+            140,
+            1,
+            1
+          ],
+          [
+            15,
+            "Customer 015",
+            150,
+            1,
+            1
+          ],
+          [
+            16,
+            "Customer 016",
+            160,
+            1,
+            1
+          ],
+          [
+            17,
+            "Customer 017",
+            170,
+            1,
+            1
+          ],
+          [
+            18,
+            "Customer 018",
+            180,
+            1,
+            1
+          ],
+          [
+            19,
+            "Customer 019",
+            190,
+            1,
+            1
+          ],
+          [
+            20,
+            "Customer 020",
+            200,
+            1,
+            1
+          ],
+          [
+            21,
+            "Customer 021",
+            210,
+            1,
+            1
+          ],
+          [
+            22,
+            "Customer 022",
+            220,
+            1,
+            1
+          ],
+          [
+            23,
+            "Customer 023",
+            230,
+            1,
+            1
+          ],
+          [
+            24,
+            "Customer 024",
+            240,
+            1,
+            1
+          ],
+          [
+            25,
+            "Customer 025",
+            250,
+            1,
+            1
+          ],
+          [
+            26,
+            "Customer 026",
+            260,
+            1,
+            1
+          ],
+          [
+            27,
+            "Customer 027",
+            270,
+            1,
+            1
+          ],
+          [
+            28,
+            "Customer 028",
+            280,
+            1,
+            1
+          ],
+          [
+            29,
+            "Customer 029",
+            290,
+            1,
+            1
+          ],
+          [
+            30,
+            "Customer 030",
+            300,
+            1,
+            1
+          ],
+          [
+            31,
+            "Customer 031",
+            310,
+            1,
+            1
+          ],
+          [
+            32,
+            "Customer 032",
+            320,
+            1,
+            1
+          ],
+          [
+            33,
+            "Customer 033",
+            330,
+            1,
+            1
+          ],
+          [
+            34,
+            "Customer 034",
+            340,
+            1,
+            1
+          ],
+          [
+            35,
+            "Customer 035",
+            350,
+            1,
+            1
+          ],
+          [
+            36,
+            "Customer 036",
+            360,
+            1,
+            1
+          ],
+          [
+            37,
+            "Customer 037",
+            370,
+            1,
+            1
+          ],
+          [
+            38,
+            "Customer 038",
+            380,
+            1,
+            1
+          ],
+          [
+            39,
+            "Customer 039",
+            390,
+            1,
+            1
+          ],
+          [
+            40,
+            "Customer 040",
+            400,
+            1,
+            1
+          ],
+          [
+            41,
+            "Customer 041",
+            410,
+            1,
+            1
+          ],
+          [
+            42,
+            "Customer 042",
+            420,
+            1,
+            1
+          ],
+          [
+            43,
+            "Customer 043",
+            430,
+            1,
+            1
+          ],
+          [
+            44,
+            "Customer 044",
+            440,
+            1,
+            1
+          ],
+          [
+            45,
+            "Customer 045",
+            450,
+            1,
+            1
+          ],
+          [
+            46,
+            "Customer 046",
+            460,
+            1,
+            1
+          ],
+          [
+            47,
+            "Customer 047",
+            470,
+            1,
+            1
+          ],
+          [
+            48,
+            "Customer 048",
+            480,
+            1,
+            1
+          ],
+          [
+            49,
+            "Customer 049",
+            490,
+            1,
+            1
+          ],
+          [
+            50,
+            "Customer 050",
+            500,
+            1,
+            1
+          ],
+          [
+            51,
+            "Customer 051",
+            510,
+            1,
+            1
+          ],
+          [
+            52,
+            "Customer 052",
+            520,
+            1,
+            1
+          ],
+          [
+            53,
+            "Customer 053",
+            530,
+            1,
+            1
+          ],
+          [
+            54,
+            "Customer 054",
+            540,
+            1,
+            1
+          ],
+          [
+            55,
+            "Customer 055",
+            550,
+            1,
+            1
+          ],
+          [
+            56,
+            "Customer 056",
+            560,
+            1,
+            1
+          ],
+          [
+            57,
+            "Customer 057",
+            570,
+            1,
+            1
+          ],
+          [
+            58,
+            "Customer 058",
+            580,
+            1,
+            1
+          ],
+          [
+            59,
+            "Customer 059",
+            590,
+            1,
+            1
+          ],
+          [
+            60,
+            "Customer 060",
+            600,
+            1,
+            1
+          ],
+          [
+            61,
+            "Customer 061",
+            610,
+            1,
+            1
+          ],
+          [
+            62,
+            "Customer 062",
+            620,
+            1,
+            1
+          ],
+          [
+            63,
+            "Customer 063",
+            630,
+            1,
+            1
+          ],
+          [
+            64,
+            "Customer 064",
+            640,
+            1,
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "trusted-contact"
+      ]
+    }
+  ]
+}

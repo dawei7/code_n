@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_756",
+  "measurement_note": "Size is the branching factor for pair GG. A six-block G bottom generates size^5 first upper rows; all converge to the same failing EEEE suffix. Row memoization evaluates that suffix once, while uncached backtracking repeats it for every branch.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: branching factor 1", "kind": "benchmark", "visible": false, "size": 1, "input": {"bottom": "GGGGGG", "allowed": ["GGA", "AAE", "EEF"]}, "expected": false, "tags": ["benchmark", "scaling", "convergent-failure"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: branching factor 2", "kind": "benchmark", "visible": false, "size": 2, "input": {"bottom": "GGGGGG", "allowed": ["GGA", "GGB", "AAE", "ABE", "BAE", "BBE", "EEF"]}, "expected": false, "tags": ["benchmark", "scaling", "convergent-failure"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: branching factor 4", "kind": "benchmark", "visible": false, "size": 4, "input": {"bottom": "GGGGGG", "allowed": ["GGA", "GGB", "GGC", "GGD", "AAE", "ABE", "ACE", "ADE", "BAE", "BBE", "BCE", "BDE", "CAE", "CBE", "CCE", "CDE", "DAE", "DBE", "DCE", "DDE", "EEF"]}, "expected": false, "tags": ["benchmark", "scaling", "convergent-failure"]}
+  ]
+}

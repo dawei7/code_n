@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3784",
+  "measurement_note": "Size is the common string and cost-array length N. One aggregation scan is O(N), while independently repricing the deletions for every position takes O(N^2) on the repeated-alphabet inputs.",
+  "cases": [
+    {
+      "id": "benchmark-reprice-16",
+      "name": "benchmark: reprice 16 character candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {
+        "s": "abcdefghijklmnop",
+        "cost": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+      },
+      "expected": 15,
+      "validator": {"kind":"exact"},
+      "tags": ["benchmark","repeated-repricing","scale-small"]
+    },
+    {
+      "id": "benchmark-reprice-64",
+      "name": "benchmark: reprice 64 character candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl",
+        "cost": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+      },
+      "expected": 61,
+      "validator": {"kind":"exact"},
+      "tags": ["benchmark","repeated-repricing","scale-medium"]
+    },
+    {
+      "id": "benchmark-reprice-253",
+      "name": "benchmark: reprice 253 character candidates",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 253,
+      "input": {
+        "s": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrs",
+        "cost": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+      },
+      "expected": 243,
+      "validator": {"kind":"exact"},
+      "tags": ["benchmark","repeated-repricing","scale-large"]
+    }
+  ]
+}

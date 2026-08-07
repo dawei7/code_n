@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_150",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "In a valid postfix sum, changing any operand token changes the result, so every operand—and therefore a linear fraction of all tokens—must be inspected. The stack evaluator matches this Omega(n) bound.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "Consider a valid left-associated postfix sum of m operands, represented by 2m - 1 tokens. Each operand can independently change from 1 to 2 while preserving validity and changing the final result. A correct evaluator must inspect all m operands in the worst case, which is Omega(n) token work. The current scan performs constant stack and arithmetic work per token, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every operand in a valid long postfix sum contributes to the answer, so skipping one cannot distinguish two expressions with different results."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each token is read once and causes either one push or two pops, one arithmetic operation, and one push."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover all four operators, nesting, negative operands, and truncating division; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

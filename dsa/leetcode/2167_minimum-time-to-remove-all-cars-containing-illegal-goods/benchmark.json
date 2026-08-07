@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2167",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: repeated mixed pattern at n=32",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s": "10110010101100101011001010110010"},
+      "expected": 30,
+      "tags": ["benchmark", "scale-small", "mixed-pattern"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: repeated mixed pattern at n=128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s": "10110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010"},
+      "expected": 126,
+      "tags": ["benchmark", "scale-medium", "mixed-pattern"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: repeated mixed pattern at n=488",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 488,
+      "input": {"s": "10110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010101100101011001010110010"},
+      "expected": 486,
+      "tags": ["benchmark", "scale-large", "mixed-pattern"]
+    }
+  ]
+}

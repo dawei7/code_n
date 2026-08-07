@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2082",
+  "measurement_note": "Size is B, the Store row count. Every row has a distinct customer and amount 501, so all rows qualify and distinct aggregation must account for every identity. The reference scans and aggregates once. A correct query that cross-joins Store with itself before the same distinct count completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 8 qualifying bills",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 1, "customer_id": 1, "amount": 501},
+            {"bill_id": 2, "customer_id": 2, "amount": 501},
+            {"bill_id": 3, "customer_id": 3, "amount": 501},
+            {"bill_id": 4, "customer_id": 4, "amount": 501},
+            {"bill_id": 5, "customer_id": 5, "amount": 501},
+            {"bill_id": 6, "customer_id": 6, "amount": 501},
+            {"bill_id": 7, "customer_id": 7, "amount": 501},
+            {"bill_id": 8, "customer_id": 8, "amount": 501}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[8]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["benchmark", "scale-small", "redundant-self-cross"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 qualifying bills",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 1, "customer_id": 1, "amount": 501}, {"bill_id": 2, "customer_id": 2, "amount": 501}, {"bill_id": 3, "customer_id": 3, "amount": 501}, {"bill_id": 4, "customer_id": 4, "amount": 501},
+            {"bill_id": 5, "customer_id": 5, "amount": 501}, {"bill_id": 6, "customer_id": 6, "amount": 501}, {"bill_id": 7, "customer_id": 7, "amount": 501}, {"bill_id": 8, "customer_id": 8, "amount": 501},
+            {"bill_id": 9, "customer_id": 9, "amount": 501}, {"bill_id": 10, "customer_id": 10, "amount": 501}, {"bill_id": 11, "customer_id": 11, "amount": 501}, {"bill_id": 12, "customer_id": 12, "amount": 501},
+            {"bill_id": 13, "customer_id": 13, "amount": 501}, {"bill_id": 14, "customer_id": 14, "amount": 501}, {"bill_id": 15, "customer_id": 15, "amount": 501}, {"bill_id": 16, "customer_id": 16, "amount": 501},
+            {"bill_id": 17, "customer_id": 17, "amount": 501}, {"bill_id": 18, "customer_id": 18, "amount": 501}, {"bill_id": 19, "customer_id": 19, "amount": 501}, {"bill_id": 20, "customer_id": 20, "amount": 501},
+            {"bill_id": 21, "customer_id": 21, "amount": 501}, {"bill_id": 22, "customer_id": 22, "amount": 501}, {"bill_id": 23, "customer_id": 23, "amount": 501}, {"bill_id": 24, "customer_id": 24, "amount": 501},
+            {"bill_id": 25, "customer_id": 25, "amount": 501}, {"bill_id": 26, "customer_id": 26, "amount": 501}, {"bill_id": 27, "customer_id": 27, "amount": 501}, {"bill_id": 28, "customer_id": 28, "amount": 501},
+            {"bill_id": 29, "customer_id": 29, "amount": 501}, {"bill_id": 30, "customer_id": 30, "amount": 501}, {"bill_id": 31, "customer_id": 31, "amount": 501}, {"bill_id": 32, "customer_id": 32, "amount": 501}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[32]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["benchmark", "scale-medium", "redundant-self-cross"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 128 qualifying bills",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Store": [
+            {"bill_id": 1, "customer_id": 1, "amount": 501}, {"bill_id": 2, "customer_id": 2, "amount": 501}, {"bill_id": 3, "customer_id": 3, "amount": 501}, {"bill_id": 4, "customer_id": 4, "amount": 501}, {"bill_id": 5, "customer_id": 5, "amount": 501}, {"bill_id": 6, "customer_id": 6, "amount": 501}, {"bill_id": 7, "customer_id": 7, "amount": 501}, {"bill_id": 8, "customer_id": 8, "amount": 501},
+            {"bill_id": 9, "customer_id": 9, "amount": 501}, {"bill_id": 10, "customer_id": 10, "amount": 501}, {"bill_id": 11, "customer_id": 11, "amount": 501}, {"bill_id": 12, "customer_id": 12, "amount": 501}, {"bill_id": 13, "customer_id": 13, "amount": 501}, {"bill_id": 14, "customer_id": 14, "amount": 501}, {"bill_id": 15, "customer_id": 15, "amount": 501}, {"bill_id": 16, "customer_id": 16, "amount": 501},
+            {"bill_id": 17, "customer_id": 17, "amount": 501}, {"bill_id": 18, "customer_id": 18, "amount": 501}, {"bill_id": 19, "customer_id": 19, "amount": 501}, {"bill_id": 20, "customer_id": 20, "amount": 501}, {"bill_id": 21, "customer_id": 21, "amount": 501}, {"bill_id": 22, "customer_id": 22, "amount": 501}, {"bill_id": 23, "customer_id": 23, "amount": 501}, {"bill_id": 24, "customer_id": 24, "amount": 501},
+            {"bill_id": 25, "customer_id": 25, "amount": 501}, {"bill_id": 26, "customer_id": 26, "amount": 501}, {"bill_id": 27, "customer_id": 27, "amount": 501}, {"bill_id": 28, "customer_id": 28, "amount": 501}, {"bill_id": 29, "customer_id": 29, "amount": 501}, {"bill_id": 30, "customer_id": 30, "amount": 501}, {"bill_id": 31, "customer_id": 31, "amount": 501}, {"bill_id": 32, "customer_id": 32, "amount": 501},
+            {"bill_id": 33, "customer_id": 33, "amount": 501}, {"bill_id": 34, "customer_id": 34, "amount": 501}, {"bill_id": 35, "customer_id": 35, "amount": 501}, {"bill_id": 36, "customer_id": 36, "amount": 501}, {"bill_id": 37, "customer_id": 37, "amount": 501}, {"bill_id": 38, "customer_id": 38, "amount": 501}, {"bill_id": 39, "customer_id": 39, "amount": 501}, {"bill_id": 40, "customer_id": 40, "amount": 501},
+            {"bill_id": 41, "customer_id": 41, "amount": 501}, {"bill_id": 42, "customer_id": 42, "amount": 501}, {"bill_id": 43, "customer_id": 43, "amount": 501}, {"bill_id": 44, "customer_id": 44, "amount": 501}, {"bill_id": 45, "customer_id": 45, "amount": 501}, {"bill_id": 46, "customer_id": 46, "amount": 501}, {"bill_id": 47, "customer_id": 47, "amount": 501}, {"bill_id": 48, "customer_id": 48, "amount": 501},
+            {"bill_id": 49, "customer_id": 49, "amount": 501}, {"bill_id": 50, "customer_id": 50, "amount": 501}, {"bill_id": 51, "customer_id": 51, "amount": 501}, {"bill_id": 52, "customer_id": 52, "amount": 501}, {"bill_id": 53, "customer_id": 53, "amount": 501}, {"bill_id": 54, "customer_id": 54, "amount": 501}, {"bill_id": 55, "customer_id": 55, "amount": 501}, {"bill_id": 56, "customer_id": 56, "amount": 501},
+            {"bill_id": 57, "customer_id": 57, "amount": 501}, {"bill_id": 58, "customer_id": 58, "amount": 501}, {"bill_id": 59, "customer_id": 59, "amount": 501}, {"bill_id": 60, "customer_id": 60, "amount": 501}, {"bill_id": 61, "customer_id": 61, "amount": 501}, {"bill_id": 62, "customer_id": 62, "amount": 501}, {"bill_id": 63, "customer_id": 63, "amount": 501}, {"bill_id": 64, "customer_id": 64, "amount": 501},
+            {"bill_id": 65, "customer_id": 65, "amount": 501}, {"bill_id": 66, "customer_id": 66, "amount": 501}, {"bill_id": 67, "customer_id": 67, "amount": 501}, {"bill_id": 68, "customer_id": 68, "amount": 501}, {"bill_id": 69, "customer_id": 69, "amount": 501}, {"bill_id": 70, "customer_id": 70, "amount": 501}, {"bill_id": 71, "customer_id": 71, "amount": 501}, {"bill_id": 72, "customer_id": 72, "amount": 501},
+            {"bill_id": 73, "customer_id": 73, "amount": 501}, {"bill_id": 74, "customer_id": 74, "amount": 501}, {"bill_id": 75, "customer_id": 75, "amount": 501}, {"bill_id": 76, "customer_id": 76, "amount": 501}, {"bill_id": 77, "customer_id": 77, "amount": 501}, {"bill_id": 78, "customer_id": 78, "amount": 501}, {"bill_id": 79, "customer_id": 79, "amount": 501}, {"bill_id": 80, "customer_id": 80, "amount": 501},
+            {"bill_id": 81, "customer_id": 81, "amount": 501}, {"bill_id": 82, "customer_id": 82, "amount": 501}, {"bill_id": 83, "customer_id": 83, "amount": 501}, {"bill_id": 84, "customer_id": 84, "amount": 501}, {"bill_id": 85, "customer_id": 85, "amount": 501}, {"bill_id": 86, "customer_id": 86, "amount": 501}, {"bill_id": 87, "customer_id": 87, "amount": 501}, {"bill_id": 88, "customer_id": 88, "amount": 501},
+            {"bill_id": 89, "customer_id": 89, "amount": 501}, {"bill_id": 90, "customer_id": 90, "amount": 501}, {"bill_id": 91, "customer_id": 91, "amount": 501}, {"bill_id": 92, "customer_id": 92, "amount": 501}, {"bill_id": 93, "customer_id": 93, "amount": 501}, {"bill_id": 94, "customer_id": 94, "amount": 501}, {"bill_id": 95, "customer_id": 95, "amount": 501}, {"bill_id": 96, "customer_id": 96, "amount": 501},
+            {"bill_id": 97, "customer_id": 97, "amount": 501}, {"bill_id": 98, "customer_id": 98, "amount": 501}, {"bill_id": 99, "customer_id": 99, "amount": 501}, {"bill_id": 100, "customer_id": 100, "amount": 501}, {"bill_id": 101, "customer_id": 101, "amount": 501}, {"bill_id": 102, "customer_id": 102, "amount": 501}, {"bill_id": 103, "customer_id": 103, "amount": 501}, {"bill_id": 104, "customer_id": 104, "amount": 501},
+            {"bill_id": 105, "customer_id": 105, "amount": 501}, {"bill_id": 106, "customer_id": 106, "amount": 501}, {"bill_id": 107, "customer_id": 107, "amount": 501}, {"bill_id": 108, "customer_id": 108, "amount": 501}, {"bill_id": 109, "customer_id": 109, "amount": 501}, {"bill_id": 110, "customer_id": 110, "amount": 501}, {"bill_id": 111, "customer_id": 111, "amount": 501}, {"bill_id": 112, "customer_id": 112, "amount": 501},
+            {"bill_id": 113, "customer_id": 113, "amount": 501}, {"bill_id": 114, "customer_id": 114, "amount": 501}, {"bill_id": 115, "customer_id": 115, "amount": 501}, {"bill_id": 116, "customer_id": 116, "amount": 501}, {"bill_id": 117, "customer_id": 117, "amount": 501}, {"bill_id": 118, "customer_id": 118, "amount": 501}, {"bill_id": 119, "customer_id": 119, "amount": 501}, {"bill_id": 120, "customer_id": 120, "amount": 501},
+            {"bill_id": 121, "customer_id": 121, "amount": 501}, {"bill_id": 122, "customer_id": 122, "amount": 501}, {"bill_id": 123, "customer_id": 123, "amount": 501}, {"bill_id": 124, "customer_id": 124, "amount": 501}, {"bill_id": 125, "customer_id": 125, "amount": 501}, {"bill_id": 126, "customer_id": 126, "amount": 501}, {"bill_id": 127, "customer_id": 127, "amount": 501}, {"bill_id": 128, "customer_id": 128, "amount": 501}
+          ]
+        }
+      },
+      "expected": {"columns": ["rich_count"], "rows": [[128]]},
+      "validator": {"kind": "unordered_table"},
+      "tags": ["benchmark", "scale-large", "redundant-self-cross"]
+    }
+  ]
+}

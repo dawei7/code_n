@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_145",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(n)",
+  "summary": "The result contains one value for every tree node, imposing an Omega(n) output-size lower bound. The iterative postorder traversal visits each node a constant number of times and matches it.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n)",
+    "upper_bound": "O(n)",
+    "argument": "A correct postorder result for an n-node tree has exactly n entries, including duplicates at distinct nodes, so producing the output requires Omega(n) work. The current traversal pushes each node once, performs only constant inspections around its child transitions, and pops and appends it once, giving O(n) time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Every node contributes one position to the returned postorder sequence, so no node can be omitted from output construction."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each node enters the stack once and leaves it once; last_visited prevents any right subtree from being entered twice."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "The source-fidelity-verified examples cover sparse and branching trees, an empty tree, and a singleton; black-box real-test execution verifies every existing ordinary check without inspecting its definition."
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_424",
+  "measurement_note": "Size is the string length. A sliding window processes each boundary a constant number of times, while enumerating every substring examines a quadratic number of character extensions when the replacement budget keeps all candidates feasible.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: transform an alternating string of length 64",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"s": "ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD", "k": 64},
+      "expected": 64,
+      "tags": ["benchmark", "scaling", "full-budget"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: transform an alternating string of length 192",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 192,
+      "input": {"s": "ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD", "k": 192},
+      "expected": 192,
+      "tags": ["benchmark", "scaling", "full-budget"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: transform an alternating string of length 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {"s": "ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD", "k": 512},
+      "expected": 512,
+      "tags": ["benchmark", "scaling", "full-budget"]
+    }
+  ]
+}

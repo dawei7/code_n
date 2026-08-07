@@ -1,0 +1,36 @@
+{
+  "challenge_id": "lc_2521",
+  "measurement_note": "Size is M, the repeated prime value and therefore the maximum value in nums; n is held at 32. Trial division uses O(n sqrt M) work, while an exhaustive divisor scan uses O(n M) work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 copies of prime 53",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 53,
+      "input": {"nums": [53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53, 53]},
+      "expected": 1,
+      "tags": ["benchmark", "prime", "scale-small", "exhaustive-scan-contrast"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 32 copies of prime 251",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 251,
+      "input": {"nums": [251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251, 251]},
+      "expected": 1,
+      "tags": ["benchmark", "prime", "scale-medium", "exhaustive-scan-contrast"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 32 copies of prime 997",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 997,
+      "input": {"nums": [997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997, 997]},
+      "expected": 1,
+      "tags": ["benchmark", "prime", "scale-large", "exhaustive-scan-contrast"]
+    }
+  ]
+}

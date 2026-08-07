@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1709",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every visit can change a user's consecutive or terminal maximum gap, so an exact report has a linear inspection lower bound; one scan in the table's composite primary-key order matches it.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing any uninspected visit date can split one gap, create a larger consecutive gap, or change the terminal gap, so all R rows must be inspected. The declared (user_id, visit_date) primary-key order supplies each user's dates chronologically; LEAD and a per-user maximum can then be evaluated in O(1) amortized work per row and O(R) total time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"An adversary can place a gap-changing visit at any uninspected row, altering that user's required biggest_window."},
+    {"kind":"upper_bound_proof","evidence":"An ordered composite-key scan attaches each next date once, substitutes 2021-01-01 once per user, and updates one maximum for every row."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, unsorted rows, a single final-day visit, an internal year-scale gap, a winning terminal gap, multiple users, and leap-day arithmetic."}
+  ]
+}

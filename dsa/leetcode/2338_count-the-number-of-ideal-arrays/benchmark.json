@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2338",
+  "measurement_note": "Size is M = maxValue, with n fixed at its legal maximum of 10000. The smallest-prime-factor method sieves and factors every possible final value within O(M log M). A correct implementation that trial-divides each final value independently completes all tiers but has O(M sqrt M) worst-case growth.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: final values through 64","kind":"benchmark","visible":false,"size":64,"input":{"n":10000,"maxValue":64},"expected":197633754},
+    {"id":"benchmark-scale-2","name":"benchmark: final values through 256","kind":"benchmark","visible":false,"size":256,"input":{"n":10000,"maxValue":256},"expected":521521482},
+    {"id":"benchmark-scale-3","name":"benchmark: final values through 1024","kind":"benchmark","visible":false,"size":1024,"input":{"n":10000,"maxValue":1024},"expected":250386220}
+  ]
+}

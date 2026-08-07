@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1794",
+  "measurement_note": "Size is n + m, the total length of the two strings; each tier uses equal lengths and many shared repeated characters. Extreme-occurrence scans take O(n + m). A correct implementation that checks every cross-string character pair completes all tiers and is rejected only by O(nm) scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: two 16-character strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "firstString": "abcdefghijklmnop",
+        "secondString": "zyxwvutsrqponmlk"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-alphabet",
+        "shared-characters"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: two 64-character strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "firstString": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijkl",
+        "secondString": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqpo"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-alphabet",
+        "shared-characters"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: two 256-character strings",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "firstString": "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv",
+        "secondString": "zyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfe"
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "repeated-alphabet",
+        "largest-tier"
+      ]
+    }
+  ]
+}

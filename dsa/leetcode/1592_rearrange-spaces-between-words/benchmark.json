@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1592",
+  "measurement_note": "Size is L, the legal text length. Each even-length input alternates one-letter words and spaces and already matches the required distribution. The Accepted split/count/join method and an independent formulation deriving the space count from text length minus joined-word length use O(L) time. A correct slower builder explicitly copies its entire accumulated prefix for each emitted character, takes O(L^2) time, completes all legal 8/32/100 tiers, and is rejected only by scaling. A Python-level manual tokenizer draft was discarded because interpreter loop overhead did not calibrate as same-class against the C-level string primitives.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: redistribute 8-character alternating text",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "text": "a a a a "
+      },
+      "expected": "a a a a ",
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "many-words",
+        "repeated-copy-stress"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: redistribute 32-character alternating text",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "text": "a a a a a a a a a a a a a a a a "
+      },
+      "expected": "a a a a a a a a a a a a a a a a ",
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "many-words",
+        "repeated-copy-stress"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: redistribute 100-character alternating text",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "text": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a "
+      },
+      "expected": "a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a ",
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "many-words",
+        "repeated-copy-stress"
+      ]
+    }
+  ]
+}

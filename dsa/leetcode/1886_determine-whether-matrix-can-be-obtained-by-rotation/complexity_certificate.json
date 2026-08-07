@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1886",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(N^2)",
+  "summary": "Matrix equality under a constant four rotations has a worst-case lower bound of inspecting all n squared target cells, and the coordinate-mapping reference matches that bound without constructing rotations.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(n^2)",
+    "upper_bound": "O(n^2)",
+    "argument": "Against an all-zero source and target, changing any one uninspected target cell to one changes the answer from true to false, so a correct worst-case algorithm must inspect all n squared cells. The reference performs four constant-time mapped comparisons per cell."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "An adversary can place the sole target mismatch at the last cell inspected; no rotation of an all-zero source can match it."},
+    {"kind": "upper_bound_proof", "evidence": "The reference visits every coordinate once and maintains four rotation possibilities with constant work and constant storage."},
+    {"kind": "boundary_property_cases", "evidence": "Authored cases cover all four orientations, one-cell matrices, symmetry, equal cell counts without equality, and impossible targets."}
+  ]
+}

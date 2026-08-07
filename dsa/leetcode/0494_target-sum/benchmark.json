@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_494",
+  "measurement_note": "Size is the number of values. Dynamic programming groups assignments by their partial sum, while uncached recursion explores every plus-minus choice on the all-one tiers.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: count balanced signs for 4 ones", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums": [1,1,1,1], "target": 0}, "expected": 6, "tags": ["benchmark", "scaling", "all-ones"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: count balanced signs for 8 ones", "kind": "benchmark", "visible": false, "size": 8, "input": {"nums": [1,1,1,1,1,1,1,1], "target": 0}, "expected": 70, "tags": ["benchmark", "scaling", "all-ones"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: count balanced signs for 16 ones", "kind": "benchmark", "visible": false, "size": 16, "input": {"nums": [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], "target": 0}, "expected": 12870, "tags": ["benchmark", "scaling", "all-ones"]}
+  ]
+}

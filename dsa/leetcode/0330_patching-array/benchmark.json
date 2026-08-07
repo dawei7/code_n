@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_330",
+  "measurement_note": "A single legal input value above every target leaves each gap to patches; explicit subset-sum tracking materializes every covered total while optimal coverage doubles. Size is the target upper bound.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: deferred input covering through 2^8-1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 255,
+      "input": {
+        "nums": [
+          10000
+        ],
+        "n": 255
+      },
+      "expected": 8,
+      "tags": [
+        "benchmark",
+        "scale-small",
+        "deferred-input"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: deferred input covering through 2^10-1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1023,
+      "input": {
+        "nums": [
+          10000
+        ],
+        "n": 1023
+      },
+      "expected": 10,
+      "tags": [
+        "benchmark",
+        "scale-medium",
+        "deferred-input"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: deferred input covering through 2^12-1",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4095,
+      "input": {
+        "nums": [
+          10000
+        ],
+        "n": 4095
+      },
+      "expected": 12,
+      "tags": [
+        "benchmark",
+        "scale-large",
+        "deferred-input"
+      ]
+    }
+  ]
+}

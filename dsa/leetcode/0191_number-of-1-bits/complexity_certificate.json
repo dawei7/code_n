@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_191",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source contract bounds n by 2^31 - 1, so every legal input contains at most 31 set bits and no honest asymptotic runtime-scaling dimension exists.",
+  "workload_bound": {
+    "symbol": "b",
+    "maximum": 31,
+    "unit": "set bits",
+    "source_constraint": "The source-fidelity-verified constraint 1 <= n <= 2^31 - 1 limits the positive integer representation to at most 31 set bit positions."
+  },
+  "replacement_checks": [
+    {
+      "kind": "bounded_work_proof",
+      "evidence": "Each loop iteration applies n & (n - 1), which clears exactly one set bit, and increments the result once. The loop therefore runs exactly b times with b <= 31, proving O(1) time and O(1) auxiliary space under the bounded source domain."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Black-box real-test execution verifies every existing ordinary check without inspecting its definition, including the integer input and population-count return path."
+    }
+  ]
+}

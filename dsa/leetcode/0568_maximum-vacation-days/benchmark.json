@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_568",
+  "measurement_note": "Size is the week count with three fully connected cities. Weekly city DP is linear in k for fixed n, while enumerating every possible itinerary explores 3^k schedules.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 2 fully connected weeks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {
+        "flights": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "days": [
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 14,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "itineraries"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 4 fully connected weeks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {
+        "flights": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "days": [
+          [
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            7,
+            7,
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 28,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "itineraries"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 8 fully connected weeks",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "flights": [
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0
+          ]
+        ],
+        "days": [
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          [
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7,
+            7
+          ]
+        ]
+      },
+      "expected": 56,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "itineraries"
+      ]
+    }
+  ]
+}
+

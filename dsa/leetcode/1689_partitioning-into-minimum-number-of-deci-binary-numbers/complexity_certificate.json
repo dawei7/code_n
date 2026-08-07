@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1689",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(L)",
+  "summary": "The answer is the maximum decimal digit, and an adversary may place the unique maximum at any uninspected position; one full character scan matches the resulting linear lower bound.",
+  "optimality": {
+    "symbol": "L",
+    "lower_bound": "Omega(L)",
+    "upper_bound": "O(L)",
+    "argument": "Consider two length-L inputs that agree everywhere already inspected, with all remaining digits one in the first input and a nine at the last uninspected position in the second. Their required answers differ, so a worst-case exact algorithm must inspect every position. Tracking the maximum during one scan takes O(L) time."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"The unique answer-determining maximum can occur at any position, so skipping one character cannot distinguish otherwise identical inputs with different answers."},
+    {"kind":"upper_bound_proof","evidence":"A single left-to-right scan converts each digit and updates one running maximum, using constant auxiliary storage."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover all-one deci-binary inputs, zero digits, uniform digits, an internal maximum, digit nine, a far-right maximum, and a long decimal string."}
+  ]
+}

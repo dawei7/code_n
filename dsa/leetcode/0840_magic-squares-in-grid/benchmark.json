@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_840",
+  "measurement_note": "Size is grid area r times c. Checking the fixed nine cells at each candidate top-left takes O(size) time. Rescanning the entire grid to extract each candidate takes O(size squared) time on these square all-five grids, where every center passes the first filter.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: all-five 3 by 3 grid", "kind": "benchmark", "visible": false, "size": 9, "input": {"grid": [[5, 5, 5], [5, 5, 5], [5, 5, 5]]}, "expected": 0, "tags": ["benchmark", "scale-small", "full-check"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: all-five 6 by 6 grid", "kind": "benchmark", "visible": false, "size": 36, "input": {"grid": [[5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5]]}, "expected": 0, "tags": ["benchmark", "scale-medium", "full-check"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: all-five 10 by 10 grid", "kind": "benchmark", "visible": false, "size": 100, "input": {"grid": [[5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5], [5, 5, 5, 5, 5, 5, 5, 5, 5, 5]]}, "expected": 0, "tags": ["benchmark", "scale-large", "full-check"]}
+  ]
+}

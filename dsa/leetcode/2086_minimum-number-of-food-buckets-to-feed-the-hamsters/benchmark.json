@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2086",
+  "measurement_note": "Size is B, the number of independent '.H.H.' blocks; the street length is 5B. Each block needs exactly one shared bucket. The constant-space greedy scans the street once. A correct implementation that rebuilds the complete street layout while resolving every hamster completes all tiers and fails only by quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 4 independent hamster pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"hamsters": ".H.H..H.H..H.H..H.H."},
+      "expected": 4,
+      "tags": ["benchmark", "scale-small", "shared-buckets"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 16 independent hamster pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"hamsters": ".H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H."},
+      "expected": 16,
+      "tags": ["benchmark", "scale-medium", "shared-buckets"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 64 independent hamster pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {"hamsters": ".H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H..H.H."},
+      "expected": 64,
+      "tags": ["benchmark", "scale-large", "shared-buckets"]
+    }
+  ]
+}

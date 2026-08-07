@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3836",
+  "measurement_note": "Size is W = N M K, the number of DP states up to a constant factor. Each tier uses square all-one arrays, so every legal selection scores K. The accepted rolling prefix DP is O(W); an endpoint DP that rescans all predecessor pairs has a principal extra factor.",
+  "cases": [
+    {
+      "id": "benchmark-6-by-6-k-3",
+      "name": "benchmark: 6 by 6 arrays with 3 pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 3
+      },
+      "expected": 3,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "all-ones",
+        "exact-count"
+      ],
+      "size": 108
+    },
+    {
+      "id": "benchmark-12-by-12-k-6",
+      "name": "benchmark: 12 by 12 arrays with 6 pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 6
+      },
+      "expected": 6,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "all-ones",
+        "exact-count"
+      ],
+      "size": 864
+    },
+    {
+      "id": "benchmark-24-by-24-k-12",
+      "name": "benchmark: 24 by 24 arrays with 12 pairs",
+      "kind": "benchmark",
+      "visible": false,
+      "input": {
+        "nums1": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "nums2": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "k": 12
+      },
+      "expected": 12,
+      "validator": {
+        "kind": "exact"
+      },
+      "tags": [
+        "benchmark",
+        "all-ones",
+        "exact-count"
+      ],
+      "size": 6912
+    }
+  ]
+}
+

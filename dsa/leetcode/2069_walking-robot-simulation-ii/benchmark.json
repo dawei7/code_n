@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2069",
+  "measurement_note": "Size is S, the requested step count in one instruction on a 10 by 10 perimeter. The required implementation updates a perimeter index in constant time, independent of S. A correct implementation that moves one cell per requested step completes all tiers and fails by linear-in-S scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 8 requested steps","kind":"benchmark","visible":false,"size":8,"input":{"operations":["Robot","step","getPos","getDir"],"arguments":[[10,10],[8],[],[]]},"expected":[null,null,[8,0],"East"],"tags":["benchmark","scale-small","unit-simulation"]},
+    {"id":"benchmark-scale-2","name":"benchmark: 256 requested steps","kind":"benchmark","visible":false,"size":256,"input":{"operations":["Robot","step","getPos","getDir"],"arguments":[[10,10],[256],[],[]]},"expected":[null,null,[4,0],"East"],"tags":["benchmark","scale-medium","unit-simulation"]},
+    {"id":"benchmark-scale-3","name":"benchmark: 4096 requested steps","kind":"benchmark","visible":false,"size":4096,"input":{"operations":["Robot","step","getPos","getDir"],"arguments":[[10,10],[4096],[],[]]},"expected":[null,null,[0,8],"South"],"tags":["benchmark","scale-large","unit-simulation"]}
+  ]
+}

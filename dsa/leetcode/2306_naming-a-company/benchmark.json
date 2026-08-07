@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2306",
+  "measurement_note": "Size is n, the number of ideas. Each tier splits distinct suffixes evenly between initials a and b with no overlap, so every cross-group ordered pair is valid. Hash-set grouping is linear in the compact input. Correct direct ordered-pair construction completes all tiers and fails through quadratic scaling.",
+  "cases": [
+    {"id":"benchmark-scale-1","name":"benchmark: 8 ideas in two disjoint groups","kind":"benchmark","visible":false,"size":8,"input":{"ideas":["aaa","aab","aac","aad","bae","baf","bag","bah"]},"expected":32},
+    {"id":"benchmark-scale-2","name":"benchmark: 32 ideas in two disjoint groups","kind":"benchmark","visible":false,"size":32,"input":{"ideas":["aaa","aab","aac","aad","aae","aaf","aag","aah","aai","aaj","aak","aal","aam","aan","aao","aap","baq","bar","bas","bat","bau","bav","baw","bax","bay","baz","bba","bbb","bbc","bbd","bbe","bbf"]},"expected":512},
+    {"id":"benchmark-scale-3","name":"benchmark: 96 ideas in two disjoint groups","kind":"benchmark","visible":false,"size":96,"input":{"ideas":["aaa","aab","aac","aad","aae","aaf","aag","aah","aai","aaj","aak","aal","aam","aan","aao","aap","aaq","aar","aas","aat","aau","aav","aaw","aax","aay","aaz","aba","abb","abc","abd","abe","abf","abg","abh","abi","abj","abk","abl","abm","abn","abo","abp","abq","abr","abs","abt","abu","abv","bcw","bcx","bcy","bcz","bda","bdb","bdc","bdd","bde","bdf","bdg","bdh","bdi","bdj","bdk","bdl","bdm","bdn","bdo","bdp","bdq","bdr","bds","bdt","bdu","bdv","bdw","bdx","bdy","bdz","bea","beb","bec","bed","bee","bef","beg","beh","bei","bej","bek","bel","bem","ben","beo","bep","beq","ber"]},"expected":4608}
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1510",
+  "measurement_note": "Size is n, the initial pile size. The legal 128/512/4096 tiers span 32x and require dynamic-programming classification of every smaller state. Enumerating only square removals costs O(n sqrt(n)) time and O(n) space. A correct implementation that materializes every possible removal count before filtering for squares completes at n = 4096 but is rejected by its quadratic scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: classify piles through 128",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "n": 128
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: classify piles through 512",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "n": 512
+      },
+      "expected": false,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dynamic-programming",
+        "losing-state"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: classify piles through 4096",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4096,
+      "input": {
+        "n": 4096
+      },
+      "expected": true,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "dynamic-programming"
+      ]
+    }
+  ]
+}

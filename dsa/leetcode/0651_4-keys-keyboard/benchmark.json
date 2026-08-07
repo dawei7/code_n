@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_651",
+  "measurement_note": "Size is the keypress budget n. The optimized recurrence checks four useful copy-paste multipliers per state, while the conventional breakpoint dynamic program considers every earlier copy position for each budget and grows quadratically.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 12 keypresses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 12,
+      "input": {
+        "n": 12
+      },
+      "expected": 36,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "keypress-budget"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 24 keypresses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "n": 24
+      },
+      "expected": 1024,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "keypress-budget"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 48 keypresses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 48,
+      "input": {
+        "n": 48
+      },
+      "expected": 786432,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "keypress-budget"
+      ]
+    }
+  ]
+}

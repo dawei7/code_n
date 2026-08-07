@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1661",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(R)",
+  "summary": "Every activity row can change one process duration and therefore its machine's exact average; pairing and grouping the start/end streams matches this linear worst-case input lower bound.",
+  "optimality": {
+    "symbol": "R",
+    "lower_bound": "Omega(R)",
+    "upper_bound": "O(R)",
+    "argument": "Changing the timestamp in any one of the R start or end rows can change a required processing_time value, so an exact algorithm has an Omega(R) worst-case input lower bound. A keyed join followed by grouped averaging processes the two event streams in O(R) expected work."
+  },
+  "replacement_checks": [
+    {"kind":"lower_bound_proof","evidence":"Any activity timestamp may alter its process duration and its machine's returned average, establishing a linear worst-case input lower bound."},
+    {"kind":"upper_bound_proof","evidence":"Filtering, joining on the composite machine-process key, and grouped aggregation require O(R) expected work with standard indexed or hash-based execution."},
+    {"kind":"boundary_property_cases","evidence":"Authored fixtures cover the public sample, one-process machines, shared process IDs across machines, post-average rounding, nonconsecutive identifiers, and input row-order independence."}
+  ]
+}

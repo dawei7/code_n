@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_866",
+  "measurement_note": "Size is P*floor(sqrt(A)), matching the authored O(P*sqrt(A)) trial-division workload for returned answer A. Starting from n requires only 11, 4, and 4 palindrome candidates; a correct slower generator that restarts prefixes at 1 redundantly constructs 103, 1003, and 10003 candidates before reaching the same answers.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 11 candidates through 10301", "kind": "benchmark", "visible": false, "size": 1111, "input": {"n": 930}, "expected": 10301, "tags": ["benchmark", "scale-small", "gap-scan"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 4 candidates through 1003001", "kind": "benchmark", "visible": false, "size": 4004, "input": {"n": 995001}, "expected": 1003001, "tags": ["benchmark", "scale-medium", "gap-scan"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 4 candidates through 100030001", "kind": "benchmark", "visible": false, "size": 40004, "input": {"n": 100000000}, "expected": 100030001, "tags": ["benchmark", "scale-large", "gap-scan"]}
+  ]
+}

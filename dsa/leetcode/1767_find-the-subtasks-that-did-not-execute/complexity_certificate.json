@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1767",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(T)",
+  "summary": "The missing-pair output can contain every one of the T valid subtasks, giving a linear output lower bound; recursive enumeration plus indexed anti-join matches it.",
+  "optimality": {
+    "symbol": "T",
+    "lower_bound": "Omega(T)",
+    "upper_bound": "O(T)",
+    "argument": "When Executed is empty, all T legal task-subtask pairs must be emitted, so any exact query requires Omega(T) output work. The recursive CTE generates every legal pair once and performs one composite-key anti-join probe per pair, for O(T) total time."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "An empty Executed table forces the result to contain all T possible task-subtask pairs."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each recursive row increments one task-local subtask identifier, producing exactly T rows, and each row receives one indexed NOT EXISTS probe."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Authored fixtures cover mixed completion, empty executions, full execution, noncontiguous gaps, independent task ranges, unsorted source rows, and a missing final subtask."
+    }
+  ]
+}

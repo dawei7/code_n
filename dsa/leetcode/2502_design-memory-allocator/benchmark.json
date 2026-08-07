@@ -1,0 +1,315 @@
+{
+  "challenge_id": "lc_2502",
+  "measurement_note": "Size is n, the memory-array length; the number and shape of operations stay fixed. After filling memory, each half-memory request must fail. A single linear scan is O(n) per request, while copying every candidate slice performs O(n^2) work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 64 occupied units and 12 failed half-memory requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 64,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            64
+          ],
+          [
+            64,
+            1
+          ],
+          [
+            32,
+            2
+          ],
+          [
+            32,
+            3
+          ],
+          [
+            32,
+            4
+          ],
+          [
+            32,
+            5
+          ],
+          [
+            32,
+            6
+          ],
+          [
+            32,
+            7
+          ],
+          [
+            32,
+            8
+          ],
+          [
+            32,
+            9
+          ],
+          [
+            32,
+            10
+          ],
+          [
+            32,
+            11
+          ],
+          [
+            32,
+            12
+          ],
+          [
+            32,
+            13
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "benchmark",
+        "failed-allocation",
+        "candidate-slices"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 256 occupied units and 12 failed half-memory requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            256
+          ],
+          [
+            256,
+            1
+          ],
+          [
+            128,
+            2
+          ],
+          [
+            128,
+            3
+          ],
+          [
+            128,
+            4
+          ],
+          [
+            128,
+            5
+          ],
+          [
+            128,
+            6
+          ],
+          [
+            128,
+            7
+          ],
+          [
+            128,
+            8
+          ],
+          [
+            128,
+            9
+          ],
+          [
+            128,
+            10
+          ],
+          [
+            128,
+            11
+          ],
+          [
+            128,
+            12
+          ],
+          [
+            128,
+            13
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "benchmark",
+        "failed-allocation",
+        "candidate-slices"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 1000 occupied units and 12 failed half-memory requests",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 1000,
+      "input": {
+        "commands": [
+          "Allocator",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate",
+          "allocate"
+        ],
+        "inputs": [
+          [
+            1000
+          ],
+          [
+            1000,
+            1
+          ],
+          [
+            500,
+            2
+          ],
+          [
+            500,
+            3
+          ],
+          [
+            500,
+            4
+          ],
+          [
+            500,
+            5
+          ],
+          [
+            500,
+            6
+          ],
+          [
+            500,
+            7
+          ],
+          [
+            500,
+            8
+          ],
+          [
+            500,
+            9
+          ],
+          [
+            500,
+            10
+          ],
+          [
+            500,
+            11
+          ],
+          [
+            500,
+            12
+          ],
+          [
+            500,
+            13
+          ]
+        ]
+      },
+      "expected": [
+        null,
+        0,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "tags": [
+        "benchmark",
+        "failed-allocation",
+        "candidate-slices"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1492",
+  "measurement_note": "Size is n, the positive integer being factored. The legal prime sizes 61/251/997 span more than 16x, and k = n forces a missing-rank verdict after the full search. The reference examines divisor pairs only through sqrt(n), while a correct baseline that checks every candidate through n takes O(n), completes normally at n = 997, and is rejected by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: prime n = 61 with missing rank",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 61,
+      "input": {
+        "n": 61,
+        "k": 61
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "prime",
+        "missing-rank"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: prime n = 251 with missing rank",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 251,
+      "input": {
+        "n": 251,
+        "k": 251
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "prime",
+        "missing-rank"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: prime n = 997 with missing rank",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 997,
+      "input": {
+        "n": 997,
+        "k": 997
+      },
+      "expected": -1,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "prime",
+        "missing-rank"
+      ]
+    }
+  ]
+}

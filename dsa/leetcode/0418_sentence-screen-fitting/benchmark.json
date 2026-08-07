@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_418",
+  "measurement_note": "Size is both rows and columns for a one-letter sentence. Row-start cycle detection processes one transition and skips repeated rows, while direct word placement emits proportionally many words per row and performs quadratic work.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: fit one-letter sentence on 32 by 32 screen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "sentence": [
+          "a"
+        ],
+        "rows": 32,
+        "cols": 32
+      },
+      "expected": 512,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cycle"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: fit one-letter sentence on 96 by 96 screen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "sentence": [
+          "a"
+        ],
+        "rows": 96,
+        "cols": 96
+      },
+      "expected": 4608,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cycle"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: fit one-letter sentence on 256 by 256 screen",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {
+        "sentence": [
+          "a"
+        ],
+        "rows": 256,
+        "cols": 256
+      },
+      "expected": 32768,
+      "tags": [
+        "benchmark",
+        "scaling",
+        "cycle"
+      ]
+    }
+  ]
+}

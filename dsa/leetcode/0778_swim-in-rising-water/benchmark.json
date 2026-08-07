@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_778",
+  "measurement_note": "Size is the total cell count. Heap frontier expansion takes O(size log size); trying every water level with a fresh reachability search takes O(size^2) on these low-destination grids with a late unavoidable barrier.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 cells behind a late barrier", "kind": "benchmark", "visible": false, "size": 4, "input": {"grid": [[0, 3], [2, 1]]}, "expected": 2, "tags": ["benchmark", "scaling", "barrier"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 9 cells behind a late barrier", "kind": "benchmark", "visible": false, "size": 9, "input": {"grid": [[0, 2, 3], [4, 5, 7], [6, 8, 1]]}, "expected": 7, "tags": ["benchmark", "scaling", "barrier"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 25 cells behind a late barrier", "kind": "benchmark", "visible": false, "size": 25, "input": {"grid": [[0, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 23], [20, 21, 22, 24, 1]]}, "expected": 23, "tags": ["benchmark", "scaling", "barrier"]}
+  ]
+}

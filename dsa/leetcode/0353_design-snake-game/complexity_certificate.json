@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_353",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(q)",
+  "summary": "The app adapter must return one result for each of q moves, while the protected deque and occupancy-set design performs expected constant work per move.",
+  "optimality": {
+    "symbol": "q",
+    "lower_bound": "Omega(q)",
+    "upper_bound": "O(q)",
+    "argument": "Reading q directions and returning q results requires linear work, and the protected implementation matches that lower bound with expected constant work for each move."
+  },
+  "replacement_checks": [
+    {
+      "kind": "lower_bound_proof",
+      "evidence": "Any correct app-local solution must read all q requested directions and emit q score or game-over results, establishing an Omega(q) time lower bound."
+    },
+    {
+      "kind": "upper_bound_proof",
+      "evidence": "Each protected move performs a fixed number of coordinate, food, deque, and expected constant-time hash-set operations. Across q calls this proves expected O(q) time and O(f) state, where the snake can grow at most once for each food item."
+    },
+    {
+      "kind": "boundary_property_cases",
+      "evidence": "Independent direct checks verify the complete source example, repeated length-one tail movement, growth through all food, collision with a non-tail body cell, legal entry into a departing tail cell, and persistent -1 results after game over."
+    }
+  ]
+}

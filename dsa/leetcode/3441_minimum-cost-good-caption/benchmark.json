@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3441",
+  "measurement_note": "Size is n, the legal caption length. Tiers 4, 16, and 64 span 16x and use an already-good single-character caption, while the algorithm must still establish global optimality and lexicographic minimality. The fixed-alphabet state DP is linear; enumerating every legal run length from every position must fail only scaling.",
+  "cases": [
+    {"id":"benchmark-a-4","name":"benchmark: four characters","kind":"benchmark","visible":false,"size":4,"input":{"caption":"aaaa"},"expected":"aaaa","tags":["benchmark","scale-small"]},
+    {"id":"benchmark-a-16","name":"benchmark: sixteen characters","kind":"benchmark","visible":false,"size":16,"input":{"caption":"aaaaaaaaaaaaaaaa"},"expected":"aaaaaaaaaaaaaaaa","tags":["benchmark","scale-medium"]},
+    {"id":"benchmark-a-64","name":"benchmark: sixty-four characters","kind":"benchmark","visible":false,"size":64,"input":{"caption":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},"expected":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","tags":["benchmark","scale-large"]}
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1982",
+  "measurement_note": "Size is the recovered length N. Each tier comes from N copies of -1, forcing a sign-guessing implementation that validates complete candidates to reach the final sign mask and regenerate 2^N subset sums for each of 2^N masks, while multiset partitioning processes the supplied 2^N values directly.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: recover two negative unit values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 2,
+      "input": {"n": 2, "sums": [-2, -1, -1, 0]},
+      "expected": [-1, -1],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["benchmark", "scale-small", "sign-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: recover four negative unit values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"n": 4, "sums": [-4, -3, -3, -3, -3, -2, -2, -2, -2, -2, -2, -1, -1, -1, -1, 0]},
+      "expected": [-1, -1, -1, -1],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["benchmark", "scale-medium", "sign-enumeration"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: recover eight negative unit values",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {
+        "n": 8,
+        "sums": [-8, -7, -7, -7, -7, -7, -7, -7, -7, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -6, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -5, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -2, -1, -1, -1, -1, -1, -1, -1, -1, 0]
+      },
+      "expected": [-1, -1, -1, -1, -1, -1, -1, -1],
+      "validator": {"kind": "subset_sums_reconstruction"},
+      "tags": ["benchmark", "scale-large", "sign-enumeration"]
+    }
+  ]
+}

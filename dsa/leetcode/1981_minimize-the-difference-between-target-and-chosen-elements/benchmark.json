@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1981",
+  "measurement_note": "Size is the row count M. Every row contains [1, 2] and target is 3M/2, so the dynamic program groups the 2^M row-choice combinations into only M + 1 distinct sums while exhaustive enumeration must visit every combination.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: exact midpoint across 4 binary-choice rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 4,
+      "input": {"mat": [[1, 2], [1, 2], [1, 2], [1, 2]], "target": 6},
+      "expected": 0,
+      "tags": ["benchmark", "scale-small", "exhaustive-row-choices"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: exact midpoint across 8 binary-choice rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 8,
+      "input": {"mat": [[1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2]], "target": 12},
+      "expected": 0,
+      "tags": ["benchmark", "scale-medium", "exhaustive-row-choices"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: exact midpoint across 16 binary-choice rows",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 16,
+      "input": {"mat": [[1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2], [1, 2]], "target": 24},
+      "expected": 0,
+      "tags": ["benchmark", "scale-large", "exhaustive-row-choices"]
+    }
+  ]
+}

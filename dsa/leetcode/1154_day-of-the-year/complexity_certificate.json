@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1154",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "Every legal date is a fixed ten-character Gregorian value and the algorithm sums at most twelve month lengths, so no scalable input dimension exists.",
+  "workload_bound": {
+    "symbol": "M",
+    "maximum": 12,
+    "unit": "calendar months",
+    "source_constraint": "date ranges from 1900-01-01 through 2019-12-31"
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Parsing has fixed width and the month-prefix sum visits no more than twelve entries."},
+    {"kind": "exhaustive_domain", "evidence": "The certificate regression checks every valid date in the complete 1900 through 2019 range."}
+  ]
+}

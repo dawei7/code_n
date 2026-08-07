@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3552",
+  "measurement_note": "Size is the number of matrix cells. Legal one-row tiers 24, 96, and 384 span 16x. Every cell except the non-portal destination carries one portal letter, so the accepted 0-1 BFS expands the group once in O(size) time. A correct baseline that rescans the group from every finalized portal takes O(size^2) time before it can enter the final cell and must fail only scaling.",
+  "cases": [
+    {
+      "id": "benchmark-one-portal-group-24",
+      "name": "benchmark: repeated portal group before target across 24 cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 24,
+      "input": {
+        "matrix": [
+          "AAAAAAAAAAAAAAAAAAAAAAA."
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "portal-group",
+        "scale-small"
+      ]
+    },
+    {
+      "id": "benchmark-one-portal-group-96",
+      "name": "benchmark: repeated portal group before target across 96 cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 96,
+      "input": {
+        "matrix": [
+          "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA."
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "portal-group",
+        "scale-medium"
+      ]
+    },
+    {
+      "id": "benchmark-one-portal-group-384",
+      "name": "benchmark: repeated portal group before target across 384 cells",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 384,
+      "input": {
+        "matrix": [
+          "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA."
+        ]
+      },
+      "expected": 1,
+      "tags": [
+        "benchmark",
+        "portal-group",
+        "scale-large"
+      ]
+    }
+  ]
+}

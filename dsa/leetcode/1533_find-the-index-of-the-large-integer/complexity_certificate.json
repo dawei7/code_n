@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1533",
+  "status": "verified",
+  "method": "asymptotic_optimality",
+  "required_time": "O(\\log n)",
+  "summary": "A constant-outcome sum-comparison oracle must distinguish one exceptional index among n candidates, giving a logarithmic information lower bound, while equal-half binary search matches it and the 20-query contract excludes a genuine slower legal query class.",
+  "optimality": {
+    "symbol": "n",
+    "lower_bound": "Omega(log n)",
+    "upper_bound": "O(log n)",
+    "argument": "Each compareSub call has only three possible outcomes and therefore supplies constant information; distinguishing n possible exceptional positions requires Omega(log n) calls. The accepted algorithm halves the candidate interval after every nonterminal call and uses at most ceil(log2(n)) calls."
+  },
+  "replacement_checks": [
+    {"kind": "lower_bound_proof", "evidence": "A decision tree with constant branching factor needs logarithmic depth to distinguish n possible large-value indices."},
+    {"kind": "upper_bound_proof", "evidence": "Equal-size half comparisons cancel the common values and reduce the candidate interval by at least half, using at most 19 calls for n <= 500000."},
+    {"kind": "boundary_property_cases", "evidence": "Regression checks every exceptional position through length 128, randomized larger arrays, odd leftovers, both endpoints, and the 500000-element maximum under the 20-call cap."}
+  ]
+}

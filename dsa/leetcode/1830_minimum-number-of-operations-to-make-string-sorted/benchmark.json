@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1830",
+  "measurement_note": "Size is n, the string length. Each workload alternates b and a, so it has many duplicate characters and is far from ascending. Maintaining one frequency table and its inverse-factorial denominator takes O(n) because the alphabet is fixed. A correct slower implementation that rebuilds the remaining suffix frequencies at every position takes O(n^2), completes all tiers, and fails only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 alternating characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {"s":"babababababababababababababababa"},
+      "expected": 405187825,
+      "tags": ["benchmark","scale-small","duplicates"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 alternating characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {"s":"babababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababa"},
+      "expected": 775331863,
+      "tags": ["benchmark","scale-medium","duplicates"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 256 alternating characters",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 256,
+      "input": {"s":"babababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababa"},
+      "expected": 586467264,
+      "tags": ["benchmark","scale-large","duplicates"]
+    }
+  ]
+}

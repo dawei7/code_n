@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_90",
+  "measurement_note": "All-equal inputs span the legal length and have only n+1 unique subsets; depth-local duplicate skipping avoids generating all 2^n index subsets before deduplication.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: one equal value", "kind": "benchmark", "visible": false, "size": 1, "input": {"nums": [1]}, "expected": null, "validator": {"kind": "unordered_nested_list"}, "tags": ["benchmark", "scale-small"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: four equal values", "kind": "benchmark", "visible": false, "size": 4, "input": {"nums": [1,1,1,1]}, "expected": null, "validator": {"kind": "unordered_nested_list"}, "tags": ["benchmark", "scale-medium"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: ten equal values", "kind": "benchmark", "visible": false, "size": 10, "input": {"nums": [1,1,1,1,1,1,1,1,1,1]}, "expected": null, "validator": {"kind": "unordered_nested_list"}, "tags": ["benchmark", "scale-large"]}
+  ]
+}

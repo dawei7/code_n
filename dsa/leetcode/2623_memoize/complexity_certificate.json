@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2623",
+  "status": "verified",
+  "method": "bounded_domain",
+  "required_time": "O(1)",
+  "summary": "The source contract permits only one or two bounded integer arguments, so serialization has constant bounded work and each wrapper call performs one expected constant-time map lookup, with source evaluation occurring only on a cache miss.",
+  "workload_bound": {
+    "symbol": "r",
+    "maximum": 2,
+    "unit": "numeric arguments per wrapper call",
+    "source_constraint": "The supported factorial and fib functions take one integer, while sum takes exactly two bounded integers."
+  },
+  "replacement_checks": [
+    {"kind": "bounded_work_proof", "evidence": "Every legal tuple contains at most two bounded integers, so JSON key construction and one expected map access require constant bounded work."},
+    {"kind": "boundary_property_cases", "evidence": "Cases cover both arities, swapped ordered pairs, zero-valued results, numeric boundaries, repeated expensive calls, and several distinct cache entries."}
+  ]
+}

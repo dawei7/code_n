@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_814",
+  "measurement_note": "Size is the number of nodes in a left-skewed tree whose final leaf is one. One postorder traversal takes O(size); rescanning each retained subtree for a one takes O(size^2).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4-node retained chain", "kind": "benchmark", "visible": false, "size": 4, "input": {"root": [0, 0, null, 0, null, 1]}, "expected": [0, 0, null, 0, null, 1], "tags": ["benchmark", "scaling", "skewed"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16-node retained chain", "kind": "benchmark", "visible": false, "size": 16, "input": {"root": [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 1]}, "expected": [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 1], "tags": ["benchmark", "scaling", "skewed"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 24-node retained chain", "kind": "benchmark", "visible": false, "size": 24, "input": {"root": [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 1]}, "expected": [0, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 0, null, 1], "tags": ["benchmark", "scaling", "skewed"]}
+  ]
+}

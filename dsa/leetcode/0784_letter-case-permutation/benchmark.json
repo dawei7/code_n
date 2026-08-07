@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_784",
+  "measurement_note": "Size is the required permutation count 2^l. Direct branching emits the results in O(size log size) for these all-letter strings; linearly searching prior outputs before every insertion takes O(size^2 log size).",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: 4 case permutations", "kind": "benchmark", "visible": false, "size": 4, "input": {"s": "ab"}, "expected": ["ab", "aB", "Ab", "AB"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "letters-only"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: 16 case permutations", "kind": "benchmark", "visible": false, "size": 16, "input": {"s": "abcd"}, "expected": ["abcd", "abcD", "abCd", "abCD", "aBcd", "aBcD", "aBCd", "aBCD", "Abcd", "AbcD", "AbCd", "AbCD", "ABcd", "ABcD", "ABCd", "ABCD"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "letters-only"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: 32 case permutations", "kind": "benchmark", "visible": false, "size": 32, "input": {"s": "abcde"}, "expected": ["abcde", "abcdE", "abcDe", "abcDE", "abCde", "abCdE", "abCDe", "abCDE", "aBcde", "aBcdE", "aBcDe", "aBcDE", "aBCde", "aBCdE", "aBCDe", "aBCDE", "Abcde", "AbcdE", "AbcDe", "AbcDE", "AbCde", "AbCdE", "AbCDe", "AbCDE", "ABcde", "ABcdE", "ABcDe", "ABcDE", "ABCde", "ABCdE", "ABCDe", "ABCDE"], "validator": {"kind": "unordered_list"}, "tags": ["benchmark", "scaling", "letters-only"]}
+  ]
+}

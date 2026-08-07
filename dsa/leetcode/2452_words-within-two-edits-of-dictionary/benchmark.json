@@ -1,0 +1,39 @@
+{
+  "challenge_id": "lc_2452",
+  "measurement_note": "Size is n, the shared word length, with one query and one dictionary word differing only in their final two positions. A direct Hamming scan is O(n), while recomputing the complete prefix distance at every position is O(n^2).",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: length ten with two trailing mismatches",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 10,
+      "input": {"queries": ["aaaaaaaaaa"], "dictionary": ["aaaaaaaabb"]},
+      "expected": ["aaaaaaaaaa"],
+      "tags": ["benchmark", "prefix-recomputation"]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: length forty with two trailing mismatches",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 40,
+      "input": {"queries": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"], "dictionary": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"]},
+      "expected": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],
+      "tags": ["benchmark", "prefix-recomputation"]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: length one hundred with two trailing mismatches",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 100,
+      "input": {
+        "queries": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],
+        "dictionary": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabb"]
+      },
+      "expected": ["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],
+      "tags": ["benchmark", "prefix-recomputation"]
+    }
+  ]
+}

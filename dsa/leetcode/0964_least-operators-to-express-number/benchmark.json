@@ -1,0 +1,5 @@
+{"challenge_id":"lc_964","cases":[
+{"id":"benchmark-scale-1","name":"benchmark: four binary digits","kind":"benchmark","visible":false,"size":4,"input":{"x":2,"target":15},"expected":5,"tags":["benchmark","scale-small"]},
+{"id":"benchmark-scale-2","name":"benchmark: twelve binary digits","kind":"benchmark","visible":false,"size":12,"input":{"x":2,"target":4095},"expected":13,"tags":["benchmark","scale-medium"]},
+{"id":"benchmark-scale-3","name":"benchmark: twenty-seven binary digits","kind":"benchmark","visible":false,"size":27,"input":{"x":2,"target":134217727},"expected":28,"tags":["benchmark","scale-large"]}
+]}

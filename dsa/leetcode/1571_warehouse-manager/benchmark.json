@@ -1,0 +1,6163 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_1571",
+  "measurement_note": "Size is W, the Warehouse inventory row count. The legal 32/128/512 tiers give every row a distinct warehouse name and the same unit-volume product, so all W groups must be emitted. The remotely Accepted join-and-group query and an independent precomputed-unit-volume aggregation have an O(W log W) portable upper bound. A correct query that derives each warehouse and uses a correlated subquery to rescan all inventory rows performs O(W^2) work, completes every tier, and is rejected only by scaling.",
+  "cases": [
+    {
+      "id": "benchmark-scale-1",
+      "name": "benchmark: 32 single-row warehouses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 32,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "W0001",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0002",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0003",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0004",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0005",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0006",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0007",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0008",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0009",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0010",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0011",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0012",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0013",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0014",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0015",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0016",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0017",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0018",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0019",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0020",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0021",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0022",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0023",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0024",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0025",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0026",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0027",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0028",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0029",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0030",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0031",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0032",
+              "product_id": 1,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "unit",
+              "Width": 1,
+              "Length": 1,
+              "Height": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "W0001",
+            1
+          ],
+          [
+            "W0002",
+            1
+          ],
+          [
+            "W0003",
+            1
+          ],
+          [
+            "W0004",
+            1
+          ],
+          [
+            "W0005",
+            1
+          ],
+          [
+            "W0006",
+            1
+          ],
+          [
+            "W0007",
+            1
+          ],
+          [
+            "W0008",
+            1
+          ],
+          [
+            "W0009",
+            1
+          ],
+          [
+            "W0010",
+            1
+          ],
+          [
+            "W0011",
+            1
+          ],
+          [
+            "W0012",
+            1
+          ],
+          [
+            "W0013",
+            1
+          ],
+          [
+            "W0014",
+            1
+          ],
+          [
+            "W0015",
+            1
+          ],
+          [
+            "W0016",
+            1
+          ],
+          [
+            "W0017",
+            1
+          ],
+          [
+            "W0018",
+            1
+          ],
+          [
+            "W0019",
+            1
+          ],
+          [
+            "W0020",
+            1
+          ],
+          [
+            "W0021",
+            1
+          ],
+          [
+            "W0022",
+            1
+          ],
+          [
+            "W0023",
+            1
+          ],
+          [
+            "W0024",
+            1
+          ],
+          [
+            "W0025",
+            1
+          ],
+          [
+            "W0026",
+            1
+          ],
+          [
+            "W0027",
+            1
+          ],
+          [
+            "W0028",
+            1
+          ],
+          [
+            "W0029",
+            1
+          ],
+          [
+            "W0030",
+            1
+          ],
+          [
+            "W0031",
+            1
+          ],
+          [
+            "W0032",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "distinct-warehouses",
+        "correlated-rescan",
+        "rows-32"
+      ]
+    },
+    {
+      "id": "benchmark-scale-2",
+      "name": "benchmark: 128 single-row warehouses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 128,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "W0001",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0002",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0003",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0004",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0005",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0006",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0007",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0008",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0009",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0010",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0011",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0012",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0013",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0014",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0015",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0016",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0017",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0018",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0019",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0020",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0021",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0022",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0023",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0024",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0025",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0026",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0027",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0028",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0029",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0030",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0031",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0032",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0033",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0034",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0035",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0036",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0037",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0038",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0039",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0040",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0041",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0042",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0043",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0044",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0045",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0046",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0047",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0048",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0049",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0050",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0051",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0052",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0053",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0054",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0055",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0056",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0057",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0058",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0059",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0060",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0061",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0062",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0063",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0064",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0065",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0066",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0067",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0068",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0069",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0070",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0071",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0072",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0073",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0074",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0075",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0076",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0077",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0078",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0079",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0080",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0081",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0082",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0083",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0084",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0085",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0086",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0087",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0088",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0089",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0090",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0091",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0092",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0093",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0094",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0095",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0096",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0097",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0098",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0099",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0100",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0101",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0102",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0103",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0104",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0105",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0106",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0107",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0108",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0109",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0110",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0111",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0112",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0113",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0114",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0115",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0116",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0117",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0118",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0119",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0120",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0121",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0122",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0123",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0124",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0125",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0126",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0127",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0128",
+              "product_id": 1,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "unit",
+              "Width": 1,
+              "Length": 1,
+              "Height": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "W0001",
+            1
+          ],
+          [
+            "W0002",
+            1
+          ],
+          [
+            "W0003",
+            1
+          ],
+          [
+            "W0004",
+            1
+          ],
+          [
+            "W0005",
+            1
+          ],
+          [
+            "W0006",
+            1
+          ],
+          [
+            "W0007",
+            1
+          ],
+          [
+            "W0008",
+            1
+          ],
+          [
+            "W0009",
+            1
+          ],
+          [
+            "W0010",
+            1
+          ],
+          [
+            "W0011",
+            1
+          ],
+          [
+            "W0012",
+            1
+          ],
+          [
+            "W0013",
+            1
+          ],
+          [
+            "W0014",
+            1
+          ],
+          [
+            "W0015",
+            1
+          ],
+          [
+            "W0016",
+            1
+          ],
+          [
+            "W0017",
+            1
+          ],
+          [
+            "W0018",
+            1
+          ],
+          [
+            "W0019",
+            1
+          ],
+          [
+            "W0020",
+            1
+          ],
+          [
+            "W0021",
+            1
+          ],
+          [
+            "W0022",
+            1
+          ],
+          [
+            "W0023",
+            1
+          ],
+          [
+            "W0024",
+            1
+          ],
+          [
+            "W0025",
+            1
+          ],
+          [
+            "W0026",
+            1
+          ],
+          [
+            "W0027",
+            1
+          ],
+          [
+            "W0028",
+            1
+          ],
+          [
+            "W0029",
+            1
+          ],
+          [
+            "W0030",
+            1
+          ],
+          [
+            "W0031",
+            1
+          ],
+          [
+            "W0032",
+            1
+          ],
+          [
+            "W0033",
+            1
+          ],
+          [
+            "W0034",
+            1
+          ],
+          [
+            "W0035",
+            1
+          ],
+          [
+            "W0036",
+            1
+          ],
+          [
+            "W0037",
+            1
+          ],
+          [
+            "W0038",
+            1
+          ],
+          [
+            "W0039",
+            1
+          ],
+          [
+            "W0040",
+            1
+          ],
+          [
+            "W0041",
+            1
+          ],
+          [
+            "W0042",
+            1
+          ],
+          [
+            "W0043",
+            1
+          ],
+          [
+            "W0044",
+            1
+          ],
+          [
+            "W0045",
+            1
+          ],
+          [
+            "W0046",
+            1
+          ],
+          [
+            "W0047",
+            1
+          ],
+          [
+            "W0048",
+            1
+          ],
+          [
+            "W0049",
+            1
+          ],
+          [
+            "W0050",
+            1
+          ],
+          [
+            "W0051",
+            1
+          ],
+          [
+            "W0052",
+            1
+          ],
+          [
+            "W0053",
+            1
+          ],
+          [
+            "W0054",
+            1
+          ],
+          [
+            "W0055",
+            1
+          ],
+          [
+            "W0056",
+            1
+          ],
+          [
+            "W0057",
+            1
+          ],
+          [
+            "W0058",
+            1
+          ],
+          [
+            "W0059",
+            1
+          ],
+          [
+            "W0060",
+            1
+          ],
+          [
+            "W0061",
+            1
+          ],
+          [
+            "W0062",
+            1
+          ],
+          [
+            "W0063",
+            1
+          ],
+          [
+            "W0064",
+            1
+          ],
+          [
+            "W0065",
+            1
+          ],
+          [
+            "W0066",
+            1
+          ],
+          [
+            "W0067",
+            1
+          ],
+          [
+            "W0068",
+            1
+          ],
+          [
+            "W0069",
+            1
+          ],
+          [
+            "W0070",
+            1
+          ],
+          [
+            "W0071",
+            1
+          ],
+          [
+            "W0072",
+            1
+          ],
+          [
+            "W0073",
+            1
+          ],
+          [
+            "W0074",
+            1
+          ],
+          [
+            "W0075",
+            1
+          ],
+          [
+            "W0076",
+            1
+          ],
+          [
+            "W0077",
+            1
+          ],
+          [
+            "W0078",
+            1
+          ],
+          [
+            "W0079",
+            1
+          ],
+          [
+            "W0080",
+            1
+          ],
+          [
+            "W0081",
+            1
+          ],
+          [
+            "W0082",
+            1
+          ],
+          [
+            "W0083",
+            1
+          ],
+          [
+            "W0084",
+            1
+          ],
+          [
+            "W0085",
+            1
+          ],
+          [
+            "W0086",
+            1
+          ],
+          [
+            "W0087",
+            1
+          ],
+          [
+            "W0088",
+            1
+          ],
+          [
+            "W0089",
+            1
+          ],
+          [
+            "W0090",
+            1
+          ],
+          [
+            "W0091",
+            1
+          ],
+          [
+            "W0092",
+            1
+          ],
+          [
+            "W0093",
+            1
+          ],
+          [
+            "W0094",
+            1
+          ],
+          [
+            "W0095",
+            1
+          ],
+          [
+            "W0096",
+            1
+          ],
+          [
+            "W0097",
+            1
+          ],
+          [
+            "W0098",
+            1
+          ],
+          [
+            "W0099",
+            1
+          ],
+          [
+            "W0100",
+            1
+          ],
+          [
+            "W0101",
+            1
+          ],
+          [
+            "W0102",
+            1
+          ],
+          [
+            "W0103",
+            1
+          ],
+          [
+            "W0104",
+            1
+          ],
+          [
+            "W0105",
+            1
+          ],
+          [
+            "W0106",
+            1
+          ],
+          [
+            "W0107",
+            1
+          ],
+          [
+            "W0108",
+            1
+          ],
+          [
+            "W0109",
+            1
+          ],
+          [
+            "W0110",
+            1
+          ],
+          [
+            "W0111",
+            1
+          ],
+          [
+            "W0112",
+            1
+          ],
+          [
+            "W0113",
+            1
+          ],
+          [
+            "W0114",
+            1
+          ],
+          [
+            "W0115",
+            1
+          ],
+          [
+            "W0116",
+            1
+          ],
+          [
+            "W0117",
+            1
+          ],
+          [
+            "W0118",
+            1
+          ],
+          [
+            "W0119",
+            1
+          ],
+          [
+            "W0120",
+            1
+          ],
+          [
+            "W0121",
+            1
+          ],
+          [
+            "W0122",
+            1
+          ],
+          [
+            "W0123",
+            1
+          ],
+          [
+            "W0124",
+            1
+          ],
+          [
+            "W0125",
+            1
+          ],
+          [
+            "W0126",
+            1
+          ],
+          [
+            "W0127",
+            1
+          ],
+          [
+            "W0128",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "distinct-warehouses",
+        "correlated-rescan",
+        "rows-128"
+      ]
+    },
+    {
+      "id": "benchmark-scale-3",
+      "name": "benchmark: 512 single-row warehouses",
+      "kind": "benchmark",
+      "visible": false,
+      "size": 512,
+      "input": {
+        "tables": {
+          "Warehouse": [
+            {
+              "name": "W0001",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0002",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0003",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0004",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0005",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0006",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0007",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0008",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0009",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0010",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0011",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0012",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0013",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0014",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0015",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0016",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0017",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0018",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0019",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0020",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0021",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0022",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0023",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0024",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0025",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0026",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0027",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0028",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0029",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0030",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0031",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0032",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0033",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0034",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0035",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0036",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0037",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0038",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0039",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0040",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0041",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0042",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0043",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0044",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0045",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0046",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0047",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0048",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0049",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0050",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0051",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0052",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0053",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0054",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0055",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0056",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0057",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0058",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0059",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0060",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0061",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0062",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0063",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0064",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0065",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0066",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0067",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0068",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0069",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0070",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0071",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0072",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0073",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0074",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0075",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0076",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0077",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0078",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0079",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0080",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0081",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0082",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0083",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0084",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0085",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0086",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0087",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0088",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0089",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0090",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0091",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0092",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0093",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0094",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0095",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0096",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0097",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0098",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0099",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0100",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0101",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0102",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0103",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0104",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0105",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0106",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0107",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0108",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0109",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0110",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0111",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0112",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0113",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0114",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0115",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0116",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0117",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0118",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0119",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0120",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0121",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0122",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0123",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0124",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0125",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0126",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0127",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0128",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0129",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0130",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0131",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0132",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0133",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0134",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0135",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0136",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0137",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0138",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0139",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0140",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0141",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0142",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0143",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0144",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0145",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0146",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0147",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0148",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0149",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0150",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0151",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0152",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0153",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0154",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0155",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0156",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0157",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0158",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0159",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0160",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0161",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0162",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0163",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0164",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0165",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0166",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0167",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0168",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0169",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0170",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0171",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0172",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0173",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0174",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0175",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0176",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0177",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0178",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0179",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0180",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0181",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0182",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0183",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0184",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0185",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0186",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0187",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0188",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0189",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0190",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0191",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0192",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0193",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0194",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0195",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0196",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0197",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0198",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0199",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0200",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0201",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0202",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0203",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0204",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0205",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0206",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0207",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0208",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0209",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0210",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0211",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0212",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0213",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0214",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0215",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0216",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0217",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0218",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0219",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0220",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0221",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0222",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0223",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0224",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0225",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0226",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0227",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0228",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0229",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0230",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0231",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0232",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0233",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0234",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0235",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0236",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0237",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0238",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0239",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0240",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0241",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0242",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0243",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0244",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0245",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0246",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0247",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0248",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0249",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0250",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0251",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0252",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0253",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0254",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0255",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0256",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0257",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0258",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0259",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0260",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0261",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0262",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0263",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0264",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0265",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0266",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0267",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0268",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0269",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0270",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0271",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0272",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0273",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0274",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0275",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0276",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0277",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0278",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0279",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0280",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0281",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0282",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0283",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0284",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0285",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0286",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0287",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0288",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0289",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0290",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0291",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0292",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0293",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0294",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0295",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0296",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0297",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0298",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0299",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0300",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0301",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0302",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0303",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0304",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0305",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0306",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0307",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0308",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0309",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0310",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0311",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0312",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0313",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0314",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0315",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0316",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0317",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0318",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0319",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0320",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0321",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0322",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0323",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0324",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0325",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0326",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0327",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0328",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0329",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0330",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0331",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0332",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0333",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0334",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0335",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0336",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0337",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0338",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0339",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0340",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0341",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0342",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0343",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0344",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0345",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0346",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0347",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0348",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0349",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0350",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0351",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0352",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0353",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0354",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0355",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0356",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0357",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0358",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0359",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0360",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0361",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0362",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0363",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0364",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0365",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0366",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0367",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0368",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0369",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0370",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0371",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0372",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0373",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0374",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0375",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0376",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0377",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0378",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0379",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0380",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0381",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0382",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0383",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0384",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0385",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0386",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0387",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0388",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0389",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0390",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0391",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0392",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0393",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0394",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0395",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0396",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0397",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0398",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0399",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0400",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0401",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0402",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0403",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0404",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0405",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0406",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0407",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0408",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0409",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0410",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0411",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0412",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0413",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0414",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0415",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0416",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0417",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0418",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0419",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0420",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0421",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0422",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0423",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0424",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0425",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0426",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0427",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0428",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0429",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0430",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0431",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0432",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0433",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0434",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0435",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0436",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0437",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0438",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0439",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0440",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0441",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0442",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0443",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0444",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0445",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0446",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0447",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0448",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0449",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0450",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0451",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0452",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0453",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0454",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0455",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0456",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0457",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0458",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0459",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0460",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0461",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0462",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0463",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0464",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0465",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0466",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0467",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0468",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0469",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0470",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0471",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0472",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0473",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0474",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0475",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0476",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0477",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0478",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0479",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0480",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0481",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0482",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0483",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0484",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0485",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0486",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0487",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0488",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0489",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0490",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0491",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0492",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0493",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0494",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0495",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0496",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0497",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0498",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0499",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0500",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0501",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0502",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0503",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0504",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0505",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0506",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0507",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0508",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0509",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0510",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0511",
+              "product_id": 1,
+              "units": 1
+            },
+            {
+              "name": "W0512",
+              "product_id": 1,
+              "units": 1
+            }
+          ],
+          "Products": [
+            {
+              "product_id": 1,
+              "product_name": "unit",
+              "Width": 1,
+              "Length": 1,
+              "Height": 1
+            }
+          ]
+        }
+      },
+      "expected": {
+        "columns": [
+          "warehouse_name",
+          "volume"
+        ],
+        "rows": [
+          [
+            "W0001",
+            1
+          ],
+          [
+            "W0002",
+            1
+          ],
+          [
+            "W0003",
+            1
+          ],
+          [
+            "W0004",
+            1
+          ],
+          [
+            "W0005",
+            1
+          ],
+          [
+            "W0006",
+            1
+          ],
+          [
+            "W0007",
+            1
+          ],
+          [
+            "W0008",
+            1
+          ],
+          [
+            "W0009",
+            1
+          ],
+          [
+            "W0010",
+            1
+          ],
+          [
+            "W0011",
+            1
+          ],
+          [
+            "W0012",
+            1
+          ],
+          [
+            "W0013",
+            1
+          ],
+          [
+            "W0014",
+            1
+          ],
+          [
+            "W0015",
+            1
+          ],
+          [
+            "W0016",
+            1
+          ],
+          [
+            "W0017",
+            1
+          ],
+          [
+            "W0018",
+            1
+          ],
+          [
+            "W0019",
+            1
+          ],
+          [
+            "W0020",
+            1
+          ],
+          [
+            "W0021",
+            1
+          ],
+          [
+            "W0022",
+            1
+          ],
+          [
+            "W0023",
+            1
+          ],
+          [
+            "W0024",
+            1
+          ],
+          [
+            "W0025",
+            1
+          ],
+          [
+            "W0026",
+            1
+          ],
+          [
+            "W0027",
+            1
+          ],
+          [
+            "W0028",
+            1
+          ],
+          [
+            "W0029",
+            1
+          ],
+          [
+            "W0030",
+            1
+          ],
+          [
+            "W0031",
+            1
+          ],
+          [
+            "W0032",
+            1
+          ],
+          [
+            "W0033",
+            1
+          ],
+          [
+            "W0034",
+            1
+          ],
+          [
+            "W0035",
+            1
+          ],
+          [
+            "W0036",
+            1
+          ],
+          [
+            "W0037",
+            1
+          ],
+          [
+            "W0038",
+            1
+          ],
+          [
+            "W0039",
+            1
+          ],
+          [
+            "W0040",
+            1
+          ],
+          [
+            "W0041",
+            1
+          ],
+          [
+            "W0042",
+            1
+          ],
+          [
+            "W0043",
+            1
+          ],
+          [
+            "W0044",
+            1
+          ],
+          [
+            "W0045",
+            1
+          ],
+          [
+            "W0046",
+            1
+          ],
+          [
+            "W0047",
+            1
+          ],
+          [
+            "W0048",
+            1
+          ],
+          [
+            "W0049",
+            1
+          ],
+          [
+            "W0050",
+            1
+          ],
+          [
+            "W0051",
+            1
+          ],
+          [
+            "W0052",
+            1
+          ],
+          [
+            "W0053",
+            1
+          ],
+          [
+            "W0054",
+            1
+          ],
+          [
+            "W0055",
+            1
+          ],
+          [
+            "W0056",
+            1
+          ],
+          [
+            "W0057",
+            1
+          ],
+          [
+            "W0058",
+            1
+          ],
+          [
+            "W0059",
+            1
+          ],
+          [
+            "W0060",
+            1
+          ],
+          [
+            "W0061",
+            1
+          ],
+          [
+            "W0062",
+            1
+          ],
+          [
+            "W0063",
+            1
+          ],
+          [
+            "W0064",
+            1
+          ],
+          [
+            "W0065",
+            1
+          ],
+          [
+            "W0066",
+            1
+          ],
+          [
+            "W0067",
+            1
+          ],
+          [
+            "W0068",
+            1
+          ],
+          [
+            "W0069",
+            1
+          ],
+          [
+            "W0070",
+            1
+          ],
+          [
+            "W0071",
+            1
+          ],
+          [
+            "W0072",
+            1
+          ],
+          [
+            "W0073",
+            1
+          ],
+          [
+            "W0074",
+            1
+          ],
+          [
+            "W0075",
+            1
+          ],
+          [
+            "W0076",
+            1
+          ],
+          [
+            "W0077",
+            1
+          ],
+          [
+            "W0078",
+            1
+          ],
+          [
+            "W0079",
+            1
+          ],
+          [
+            "W0080",
+            1
+          ],
+          [
+            "W0081",
+            1
+          ],
+          [
+            "W0082",
+            1
+          ],
+          [
+            "W0083",
+            1
+          ],
+          [
+            "W0084",
+            1
+          ],
+          [
+            "W0085",
+            1
+          ],
+          [
+            "W0086",
+            1
+          ],
+          [
+            "W0087",
+            1
+          ],
+          [
+            "W0088",
+            1
+          ],
+          [
+            "W0089",
+            1
+          ],
+          [
+            "W0090",
+            1
+          ],
+          [
+            "W0091",
+            1
+          ],
+          [
+            "W0092",
+            1
+          ],
+          [
+            "W0093",
+            1
+          ],
+          [
+            "W0094",
+            1
+          ],
+          [
+            "W0095",
+            1
+          ],
+          [
+            "W0096",
+            1
+          ],
+          [
+            "W0097",
+            1
+          ],
+          [
+            "W0098",
+            1
+          ],
+          [
+            "W0099",
+            1
+          ],
+          [
+            "W0100",
+            1
+          ],
+          [
+            "W0101",
+            1
+          ],
+          [
+            "W0102",
+            1
+          ],
+          [
+            "W0103",
+            1
+          ],
+          [
+            "W0104",
+            1
+          ],
+          [
+            "W0105",
+            1
+          ],
+          [
+            "W0106",
+            1
+          ],
+          [
+            "W0107",
+            1
+          ],
+          [
+            "W0108",
+            1
+          ],
+          [
+            "W0109",
+            1
+          ],
+          [
+            "W0110",
+            1
+          ],
+          [
+            "W0111",
+            1
+          ],
+          [
+            "W0112",
+            1
+          ],
+          [
+            "W0113",
+            1
+          ],
+          [
+            "W0114",
+            1
+          ],
+          [
+            "W0115",
+            1
+          ],
+          [
+            "W0116",
+            1
+          ],
+          [
+            "W0117",
+            1
+          ],
+          [
+            "W0118",
+            1
+          ],
+          [
+            "W0119",
+            1
+          ],
+          [
+            "W0120",
+            1
+          ],
+          [
+            "W0121",
+            1
+          ],
+          [
+            "W0122",
+            1
+          ],
+          [
+            "W0123",
+            1
+          ],
+          [
+            "W0124",
+            1
+          ],
+          [
+            "W0125",
+            1
+          ],
+          [
+            "W0126",
+            1
+          ],
+          [
+            "W0127",
+            1
+          ],
+          [
+            "W0128",
+            1
+          ],
+          [
+            "W0129",
+            1
+          ],
+          [
+            "W0130",
+            1
+          ],
+          [
+            "W0131",
+            1
+          ],
+          [
+            "W0132",
+            1
+          ],
+          [
+            "W0133",
+            1
+          ],
+          [
+            "W0134",
+            1
+          ],
+          [
+            "W0135",
+            1
+          ],
+          [
+            "W0136",
+            1
+          ],
+          [
+            "W0137",
+            1
+          ],
+          [
+            "W0138",
+            1
+          ],
+          [
+            "W0139",
+            1
+          ],
+          [
+            "W0140",
+            1
+          ],
+          [
+            "W0141",
+            1
+          ],
+          [
+            "W0142",
+            1
+          ],
+          [
+            "W0143",
+            1
+          ],
+          [
+            "W0144",
+            1
+          ],
+          [
+            "W0145",
+            1
+          ],
+          [
+            "W0146",
+            1
+          ],
+          [
+            "W0147",
+            1
+          ],
+          [
+            "W0148",
+            1
+          ],
+          [
+            "W0149",
+            1
+          ],
+          [
+            "W0150",
+            1
+          ],
+          [
+            "W0151",
+            1
+          ],
+          [
+            "W0152",
+            1
+          ],
+          [
+            "W0153",
+            1
+          ],
+          [
+            "W0154",
+            1
+          ],
+          [
+            "W0155",
+            1
+          ],
+          [
+            "W0156",
+            1
+          ],
+          [
+            "W0157",
+            1
+          ],
+          [
+            "W0158",
+            1
+          ],
+          [
+            "W0159",
+            1
+          ],
+          [
+            "W0160",
+            1
+          ],
+          [
+            "W0161",
+            1
+          ],
+          [
+            "W0162",
+            1
+          ],
+          [
+            "W0163",
+            1
+          ],
+          [
+            "W0164",
+            1
+          ],
+          [
+            "W0165",
+            1
+          ],
+          [
+            "W0166",
+            1
+          ],
+          [
+            "W0167",
+            1
+          ],
+          [
+            "W0168",
+            1
+          ],
+          [
+            "W0169",
+            1
+          ],
+          [
+            "W0170",
+            1
+          ],
+          [
+            "W0171",
+            1
+          ],
+          [
+            "W0172",
+            1
+          ],
+          [
+            "W0173",
+            1
+          ],
+          [
+            "W0174",
+            1
+          ],
+          [
+            "W0175",
+            1
+          ],
+          [
+            "W0176",
+            1
+          ],
+          [
+            "W0177",
+            1
+          ],
+          [
+            "W0178",
+            1
+          ],
+          [
+            "W0179",
+            1
+          ],
+          [
+            "W0180",
+            1
+          ],
+          [
+            "W0181",
+            1
+          ],
+          [
+            "W0182",
+            1
+          ],
+          [
+            "W0183",
+            1
+          ],
+          [
+            "W0184",
+            1
+          ],
+          [
+            "W0185",
+            1
+          ],
+          [
+            "W0186",
+            1
+          ],
+          [
+            "W0187",
+            1
+          ],
+          [
+            "W0188",
+            1
+          ],
+          [
+            "W0189",
+            1
+          ],
+          [
+            "W0190",
+            1
+          ],
+          [
+            "W0191",
+            1
+          ],
+          [
+            "W0192",
+            1
+          ],
+          [
+            "W0193",
+            1
+          ],
+          [
+            "W0194",
+            1
+          ],
+          [
+            "W0195",
+            1
+          ],
+          [
+            "W0196",
+            1
+          ],
+          [
+            "W0197",
+            1
+          ],
+          [
+            "W0198",
+            1
+          ],
+          [
+            "W0199",
+            1
+          ],
+          [
+            "W0200",
+            1
+          ],
+          [
+            "W0201",
+            1
+          ],
+          [
+            "W0202",
+            1
+          ],
+          [
+            "W0203",
+            1
+          ],
+          [
+            "W0204",
+            1
+          ],
+          [
+            "W0205",
+            1
+          ],
+          [
+            "W0206",
+            1
+          ],
+          [
+            "W0207",
+            1
+          ],
+          [
+            "W0208",
+            1
+          ],
+          [
+            "W0209",
+            1
+          ],
+          [
+            "W0210",
+            1
+          ],
+          [
+            "W0211",
+            1
+          ],
+          [
+            "W0212",
+            1
+          ],
+          [
+            "W0213",
+            1
+          ],
+          [
+            "W0214",
+            1
+          ],
+          [
+            "W0215",
+            1
+          ],
+          [
+            "W0216",
+            1
+          ],
+          [
+            "W0217",
+            1
+          ],
+          [
+            "W0218",
+            1
+          ],
+          [
+            "W0219",
+            1
+          ],
+          [
+            "W0220",
+            1
+          ],
+          [
+            "W0221",
+            1
+          ],
+          [
+            "W0222",
+            1
+          ],
+          [
+            "W0223",
+            1
+          ],
+          [
+            "W0224",
+            1
+          ],
+          [
+            "W0225",
+            1
+          ],
+          [
+            "W0226",
+            1
+          ],
+          [
+            "W0227",
+            1
+          ],
+          [
+            "W0228",
+            1
+          ],
+          [
+            "W0229",
+            1
+          ],
+          [
+            "W0230",
+            1
+          ],
+          [
+            "W0231",
+            1
+          ],
+          [
+            "W0232",
+            1
+          ],
+          [
+            "W0233",
+            1
+          ],
+          [
+            "W0234",
+            1
+          ],
+          [
+            "W0235",
+            1
+          ],
+          [
+            "W0236",
+            1
+          ],
+          [
+            "W0237",
+            1
+          ],
+          [
+            "W0238",
+            1
+          ],
+          [
+            "W0239",
+            1
+          ],
+          [
+            "W0240",
+            1
+          ],
+          [
+            "W0241",
+            1
+          ],
+          [
+            "W0242",
+            1
+          ],
+          [
+            "W0243",
+            1
+          ],
+          [
+            "W0244",
+            1
+          ],
+          [
+            "W0245",
+            1
+          ],
+          [
+            "W0246",
+            1
+          ],
+          [
+            "W0247",
+            1
+          ],
+          [
+            "W0248",
+            1
+          ],
+          [
+            "W0249",
+            1
+          ],
+          [
+            "W0250",
+            1
+          ],
+          [
+            "W0251",
+            1
+          ],
+          [
+            "W0252",
+            1
+          ],
+          [
+            "W0253",
+            1
+          ],
+          [
+            "W0254",
+            1
+          ],
+          [
+            "W0255",
+            1
+          ],
+          [
+            "W0256",
+            1
+          ],
+          [
+            "W0257",
+            1
+          ],
+          [
+            "W0258",
+            1
+          ],
+          [
+            "W0259",
+            1
+          ],
+          [
+            "W0260",
+            1
+          ],
+          [
+            "W0261",
+            1
+          ],
+          [
+            "W0262",
+            1
+          ],
+          [
+            "W0263",
+            1
+          ],
+          [
+            "W0264",
+            1
+          ],
+          [
+            "W0265",
+            1
+          ],
+          [
+            "W0266",
+            1
+          ],
+          [
+            "W0267",
+            1
+          ],
+          [
+            "W0268",
+            1
+          ],
+          [
+            "W0269",
+            1
+          ],
+          [
+            "W0270",
+            1
+          ],
+          [
+            "W0271",
+            1
+          ],
+          [
+            "W0272",
+            1
+          ],
+          [
+            "W0273",
+            1
+          ],
+          [
+            "W0274",
+            1
+          ],
+          [
+            "W0275",
+            1
+          ],
+          [
+            "W0276",
+            1
+          ],
+          [
+            "W0277",
+            1
+          ],
+          [
+            "W0278",
+            1
+          ],
+          [
+            "W0279",
+            1
+          ],
+          [
+            "W0280",
+            1
+          ],
+          [
+            "W0281",
+            1
+          ],
+          [
+            "W0282",
+            1
+          ],
+          [
+            "W0283",
+            1
+          ],
+          [
+            "W0284",
+            1
+          ],
+          [
+            "W0285",
+            1
+          ],
+          [
+            "W0286",
+            1
+          ],
+          [
+            "W0287",
+            1
+          ],
+          [
+            "W0288",
+            1
+          ],
+          [
+            "W0289",
+            1
+          ],
+          [
+            "W0290",
+            1
+          ],
+          [
+            "W0291",
+            1
+          ],
+          [
+            "W0292",
+            1
+          ],
+          [
+            "W0293",
+            1
+          ],
+          [
+            "W0294",
+            1
+          ],
+          [
+            "W0295",
+            1
+          ],
+          [
+            "W0296",
+            1
+          ],
+          [
+            "W0297",
+            1
+          ],
+          [
+            "W0298",
+            1
+          ],
+          [
+            "W0299",
+            1
+          ],
+          [
+            "W0300",
+            1
+          ],
+          [
+            "W0301",
+            1
+          ],
+          [
+            "W0302",
+            1
+          ],
+          [
+            "W0303",
+            1
+          ],
+          [
+            "W0304",
+            1
+          ],
+          [
+            "W0305",
+            1
+          ],
+          [
+            "W0306",
+            1
+          ],
+          [
+            "W0307",
+            1
+          ],
+          [
+            "W0308",
+            1
+          ],
+          [
+            "W0309",
+            1
+          ],
+          [
+            "W0310",
+            1
+          ],
+          [
+            "W0311",
+            1
+          ],
+          [
+            "W0312",
+            1
+          ],
+          [
+            "W0313",
+            1
+          ],
+          [
+            "W0314",
+            1
+          ],
+          [
+            "W0315",
+            1
+          ],
+          [
+            "W0316",
+            1
+          ],
+          [
+            "W0317",
+            1
+          ],
+          [
+            "W0318",
+            1
+          ],
+          [
+            "W0319",
+            1
+          ],
+          [
+            "W0320",
+            1
+          ],
+          [
+            "W0321",
+            1
+          ],
+          [
+            "W0322",
+            1
+          ],
+          [
+            "W0323",
+            1
+          ],
+          [
+            "W0324",
+            1
+          ],
+          [
+            "W0325",
+            1
+          ],
+          [
+            "W0326",
+            1
+          ],
+          [
+            "W0327",
+            1
+          ],
+          [
+            "W0328",
+            1
+          ],
+          [
+            "W0329",
+            1
+          ],
+          [
+            "W0330",
+            1
+          ],
+          [
+            "W0331",
+            1
+          ],
+          [
+            "W0332",
+            1
+          ],
+          [
+            "W0333",
+            1
+          ],
+          [
+            "W0334",
+            1
+          ],
+          [
+            "W0335",
+            1
+          ],
+          [
+            "W0336",
+            1
+          ],
+          [
+            "W0337",
+            1
+          ],
+          [
+            "W0338",
+            1
+          ],
+          [
+            "W0339",
+            1
+          ],
+          [
+            "W0340",
+            1
+          ],
+          [
+            "W0341",
+            1
+          ],
+          [
+            "W0342",
+            1
+          ],
+          [
+            "W0343",
+            1
+          ],
+          [
+            "W0344",
+            1
+          ],
+          [
+            "W0345",
+            1
+          ],
+          [
+            "W0346",
+            1
+          ],
+          [
+            "W0347",
+            1
+          ],
+          [
+            "W0348",
+            1
+          ],
+          [
+            "W0349",
+            1
+          ],
+          [
+            "W0350",
+            1
+          ],
+          [
+            "W0351",
+            1
+          ],
+          [
+            "W0352",
+            1
+          ],
+          [
+            "W0353",
+            1
+          ],
+          [
+            "W0354",
+            1
+          ],
+          [
+            "W0355",
+            1
+          ],
+          [
+            "W0356",
+            1
+          ],
+          [
+            "W0357",
+            1
+          ],
+          [
+            "W0358",
+            1
+          ],
+          [
+            "W0359",
+            1
+          ],
+          [
+            "W0360",
+            1
+          ],
+          [
+            "W0361",
+            1
+          ],
+          [
+            "W0362",
+            1
+          ],
+          [
+            "W0363",
+            1
+          ],
+          [
+            "W0364",
+            1
+          ],
+          [
+            "W0365",
+            1
+          ],
+          [
+            "W0366",
+            1
+          ],
+          [
+            "W0367",
+            1
+          ],
+          [
+            "W0368",
+            1
+          ],
+          [
+            "W0369",
+            1
+          ],
+          [
+            "W0370",
+            1
+          ],
+          [
+            "W0371",
+            1
+          ],
+          [
+            "W0372",
+            1
+          ],
+          [
+            "W0373",
+            1
+          ],
+          [
+            "W0374",
+            1
+          ],
+          [
+            "W0375",
+            1
+          ],
+          [
+            "W0376",
+            1
+          ],
+          [
+            "W0377",
+            1
+          ],
+          [
+            "W0378",
+            1
+          ],
+          [
+            "W0379",
+            1
+          ],
+          [
+            "W0380",
+            1
+          ],
+          [
+            "W0381",
+            1
+          ],
+          [
+            "W0382",
+            1
+          ],
+          [
+            "W0383",
+            1
+          ],
+          [
+            "W0384",
+            1
+          ],
+          [
+            "W0385",
+            1
+          ],
+          [
+            "W0386",
+            1
+          ],
+          [
+            "W0387",
+            1
+          ],
+          [
+            "W0388",
+            1
+          ],
+          [
+            "W0389",
+            1
+          ],
+          [
+            "W0390",
+            1
+          ],
+          [
+            "W0391",
+            1
+          ],
+          [
+            "W0392",
+            1
+          ],
+          [
+            "W0393",
+            1
+          ],
+          [
+            "W0394",
+            1
+          ],
+          [
+            "W0395",
+            1
+          ],
+          [
+            "W0396",
+            1
+          ],
+          [
+            "W0397",
+            1
+          ],
+          [
+            "W0398",
+            1
+          ],
+          [
+            "W0399",
+            1
+          ],
+          [
+            "W0400",
+            1
+          ],
+          [
+            "W0401",
+            1
+          ],
+          [
+            "W0402",
+            1
+          ],
+          [
+            "W0403",
+            1
+          ],
+          [
+            "W0404",
+            1
+          ],
+          [
+            "W0405",
+            1
+          ],
+          [
+            "W0406",
+            1
+          ],
+          [
+            "W0407",
+            1
+          ],
+          [
+            "W0408",
+            1
+          ],
+          [
+            "W0409",
+            1
+          ],
+          [
+            "W0410",
+            1
+          ],
+          [
+            "W0411",
+            1
+          ],
+          [
+            "W0412",
+            1
+          ],
+          [
+            "W0413",
+            1
+          ],
+          [
+            "W0414",
+            1
+          ],
+          [
+            "W0415",
+            1
+          ],
+          [
+            "W0416",
+            1
+          ],
+          [
+            "W0417",
+            1
+          ],
+          [
+            "W0418",
+            1
+          ],
+          [
+            "W0419",
+            1
+          ],
+          [
+            "W0420",
+            1
+          ],
+          [
+            "W0421",
+            1
+          ],
+          [
+            "W0422",
+            1
+          ],
+          [
+            "W0423",
+            1
+          ],
+          [
+            "W0424",
+            1
+          ],
+          [
+            "W0425",
+            1
+          ],
+          [
+            "W0426",
+            1
+          ],
+          [
+            "W0427",
+            1
+          ],
+          [
+            "W0428",
+            1
+          ],
+          [
+            "W0429",
+            1
+          ],
+          [
+            "W0430",
+            1
+          ],
+          [
+            "W0431",
+            1
+          ],
+          [
+            "W0432",
+            1
+          ],
+          [
+            "W0433",
+            1
+          ],
+          [
+            "W0434",
+            1
+          ],
+          [
+            "W0435",
+            1
+          ],
+          [
+            "W0436",
+            1
+          ],
+          [
+            "W0437",
+            1
+          ],
+          [
+            "W0438",
+            1
+          ],
+          [
+            "W0439",
+            1
+          ],
+          [
+            "W0440",
+            1
+          ],
+          [
+            "W0441",
+            1
+          ],
+          [
+            "W0442",
+            1
+          ],
+          [
+            "W0443",
+            1
+          ],
+          [
+            "W0444",
+            1
+          ],
+          [
+            "W0445",
+            1
+          ],
+          [
+            "W0446",
+            1
+          ],
+          [
+            "W0447",
+            1
+          ],
+          [
+            "W0448",
+            1
+          ],
+          [
+            "W0449",
+            1
+          ],
+          [
+            "W0450",
+            1
+          ],
+          [
+            "W0451",
+            1
+          ],
+          [
+            "W0452",
+            1
+          ],
+          [
+            "W0453",
+            1
+          ],
+          [
+            "W0454",
+            1
+          ],
+          [
+            "W0455",
+            1
+          ],
+          [
+            "W0456",
+            1
+          ],
+          [
+            "W0457",
+            1
+          ],
+          [
+            "W0458",
+            1
+          ],
+          [
+            "W0459",
+            1
+          ],
+          [
+            "W0460",
+            1
+          ],
+          [
+            "W0461",
+            1
+          ],
+          [
+            "W0462",
+            1
+          ],
+          [
+            "W0463",
+            1
+          ],
+          [
+            "W0464",
+            1
+          ],
+          [
+            "W0465",
+            1
+          ],
+          [
+            "W0466",
+            1
+          ],
+          [
+            "W0467",
+            1
+          ],
+          [
+            "W0468",
+            1
+          ],
+          [
+            "W0469",
+            1
+          ],
+          [
+            "W0470",
+            1
+          ],
+          [
+            "W0471",
+            1
+          ],
+          [
+            "W0472",
+            1
+          ],
+          [
+            "W0473",
+            1
+          ],
+          [
+            "W0474",
+            1
+          ],
+          [
+            "W0475",
+            1
+          ],
+          [
+            "W0476",
+            1
+          ],
+          [
+            "W0477",
+            1
+          ],
+          [
+            "W0478",
+            1
+          ],
+          [
+            "W0479",
+            1
+          ],
+          [
+            "W0480",
+            1
+          ],
+          [
+            "W0481",
+            1
+          ],
+          [
+            "W0482",
+            1
+          ],
+          [
+            "W0483",
+            1
+          ],
+          [
+            "W0484",
+            1
+          ],
+          [
+            "W0485",
+            1
+          ],
+          [
+            "W0486",
+            1
+          ],
+          [
+            "W0487",
+            1
+          ],
+          [
+            "W0488",
+            1
+          ],
+          [
+            "W0489",
+            1
+          ],
+          [
+            "W0490",
+            1
+          ],
+          [
+            "W0491",
+            1
+          ],
+          [
+            "W0492",
+            1
+          ],
+          [
+            "W0493",
+            1
+          ],
+          [
+            "W0494",
+            1
+          ],
+          [
+            "W0495",
+            1
+          ],
+          [
+            "W0496",
+            1
+          ],
+          [
+            "W0497",
+            1
+          ],
+          [
+            "W0498",
+            1
+          ],
+          [
+            "W0499",
+            1
+          ],
+          [
+            "W0500",
+            1
+          ],
+          [
+            "W0501",
+            1
+          ],
+          [
+            "W0502",
+            1
+          ],
+          [
+            "W0503",
+            1
+          ],
+          [
+            "W0504",
+            1
+          ],
+          [
+            "W0505",
+            1
+          ],
+          [
+            "W0506",
+            1
+          ],
+          [
+            "W0507",
+            1
+          ],
+          [
+            "W0508",
+            1
+          ],
+          [
+            "W0509",
+            1
+          ],
+          [
+            "W0510",
+            1
+          ],
+          [
+            "W0511",
+            1
+          ],
+          [
+            "W0512",
+            1
+          ]
+        ]
+      },
+      "tags": [
+        "benchmark",
+        "distinct-warehouses",
+        "correlated-rescan",
+        "rows-512"
+      ]
+    }
+  ]
+}

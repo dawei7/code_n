@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "challenge_id": "lc_818",
+  "measurement_note": "Size is the target distance. Bottom-up dynamic programming computes every smaller distance once; applying the same recurrence without memoization repeatedly solves overlapping gaps.",
+  "cases": [
+    {"id": "benchmark-scale-1", "name": "benchmark: target 20", "kind": "benchmark", "visible": false, "size": 20, "input": {"target": 20}, "expected": 12, "tags": ["benchmark", "scaling", "overlapping-subproblems"]},
+    {"id": "benchmark-scale-2", "name": "benchmark: target 80", "kind": "benchmark", "visible": false, "size": 80, "input": {"target": 80}, "expected": 17, "tags": ["benchmark", "scaling", "overlapping-subproblems"]},
+    {"id": "benchmark-scale-3", "name": "benchmark: target 160", "kind": "benchmark", "visible": false, "size": 160, "input": {"target": 160}, "expected": 19, "tags": ["benchmark", "scaling", "overlapping-subproblems"]}
+  ]
+}
