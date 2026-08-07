@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Unique Orders and Customers Per Month**
-
-The query executes a structured relational pipeline for **Unique Orders and Customers Per Month**. It uses `GROUP BY` aggregation with PostgreSQL standard functions (`COALESCE`, `STRING_AGG`).
-
-**Why This Approach Was Chosen:**
-Sourced for PostgreSQL standard compliance. It avoids non-standard vendor extensions (e.g. replacing SQLite `IFNULL` with ANSI `COALESCE` and `GROUP_CONCAT` with `STRING_AGG`), ensuring portable, high-performance database execution.
+Executes a SQL query for **Unique Orders and Customers Per Month** using GROUP BY aggregations (`COALESCE`, `STRING_AGG`).
 
 ## Complexity detail
-- **Time Complexity**: $O(r \log r)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(r \log r)$ — Operation count bound.
 - **Space Complexity**: $O(r)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **PostgreSQL Standards:** Strict alignment with ANSI/PostgreSQL syntax.
-- **Readable CTE Design:** Breaks complex multi-stage relational logic into maintainable, self-documenting subqueries.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

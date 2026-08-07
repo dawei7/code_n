@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Sort the Students by Their Kth Score**
-
-The solution implements an direct algorithm tailored for Sort the Students by Their Kth Score.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `sortTheStudents`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Implements the competitive micro-optimized algorithm for **Sort the Students by Their Kth Score**.
 
 ## Complexity detail
-- **Time Complexity**: $O(m log m)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(m log m)$ — Operation count bound.
 - **Space Complexity**: $O(m)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

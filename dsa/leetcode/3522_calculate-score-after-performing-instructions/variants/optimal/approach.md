@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Calculate Score After Performing Instructions**
-
-The solution implements an direct algorithm tailored for Calculate Score After Performing Instructions.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `calculateScore`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Implements the optimal algorithm for **Calculate Score After Performing Instructions**.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

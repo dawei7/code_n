@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — The Number of Full Rounds You Have Played**
-
-The solution implements an direct algorithm tailored for The Number of Full Rounds You Have Played.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `numberOfRounds`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Implements the optimal algorithm for **The Number of Full Rounds You Have Played**.
 
 ## Complexity detail
-- **Time Complexity**: $O(1)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(1)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

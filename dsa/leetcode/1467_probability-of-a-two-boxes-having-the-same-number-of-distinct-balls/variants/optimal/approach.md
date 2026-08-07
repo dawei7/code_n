@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Probability of a Two Boxes Having The Same Number of Distinct Balls**
-
-The solution employs Depth-First Search (DFS) / Backtracking to recursively explore state choices. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `getProbability`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Uses depth-first search / backtracking recursion. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
 
 ## Complexity detail
-- **Time Complexity**: $O(K^2nB)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(K^2nB)$ — Operation count bound.
 - **Space Complexity**: $O(Kn)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Maximum Number of K-Divisible Components**
-
-The solution employs Breadth-First Search (BFS) using queue-based level-order traversal. It utilizes Dynamic Programming table / Memoization store to reuse intermediate subproblem results to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `maxKDivisibleComponents`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Uses breadth-first search queue traversal. Maintains dynamic programming memoization store.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

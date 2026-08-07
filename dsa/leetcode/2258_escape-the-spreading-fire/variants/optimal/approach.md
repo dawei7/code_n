@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Escape the Spreading Fire**
-
-The solution employs Two-Pointer technique iterating from opposing ends or maintaining a sliding window bound. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking, Double-ended queue (`collections.deque`) for efficient $O(1)$ element insertion and removal to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `maximumMinutes`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Uses two-pointer iteration. Maintains hash map (`dict`) for $O(1)$ average lookup, double-ended queue (`deque`) for $O(1)$ operations. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
 
 ## Complexity detail
-- **Time Complexity**: $O(m n log 10^9)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(m n log 10^9)$ — Operation count bound.
 - **Space Complexity**: $O(m n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

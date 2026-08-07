@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Maximum Frequency Stack**
-
-The solution implements an direct algorithm tailored for Maximum Frequency Stack. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking, Priority Queue / Min-Heap (`heapq`) for dynamic minimum/maximum extraction to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `__init__`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Maintains hash map (`dict`) for $O(1)$ average lookup, priority queue (`heapq`) for dynamic minimum/maximum tracking.
 
 ## Complexity detail
-- **Time Complexity**: $O(1)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(1)$ — Operation count bound.
 - **Space Complexity**: $O(q)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

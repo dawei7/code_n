@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Maximum Number of Non-overlapping Palindrome Substrings**
-
-The solution employs Depth-First Search (DFS) / Backtracking to recursively explore state choices. It utilizes Dynamic Programming table / Memoization store to reuse intermediate subproblem results to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `maxPalindromes`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Uses depth-first search / backtracking recursion. Maintains dynamic programming memoization store.
 
 ## Complexity detail
-- **Time Complexity**: $O(nk)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(nk)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

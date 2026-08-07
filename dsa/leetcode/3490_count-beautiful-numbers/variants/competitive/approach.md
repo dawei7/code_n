@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Count Beautiful Numbers**
-
-The solution employs Two-Pointer technique iterating from opposing ends or maintaining a sliding window bound. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking, Dynamic Programming table / Memoization store to reuse intermediate subproblem results to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates, Functional Python iterators (`zip`, `map`, `filter`) for concise element pair evaluation.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `beautifulNumbers`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Uses two-pointer iteration. Maintains hash map (`dict`) for $O(1)$ average lookup, dynamic programming memoization store. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
 
 ## Complexity detail
-- **Time Complexity**: $O(D^4)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(D^4)$ — Operation count bound.
 - **Space Complexity**: $O(D^3)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Populating Next Right Pointers in Each Node II**
-
-The solution employs Two-Pointer technique iterating from opposing ends or maintaining a sliding window bound. It utilizes Double-ended queue (`collections.deque`) for efficient $O(1)$ element insertion and removal to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `__init__`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Uses two-pointer iteration. Maintains double-ended queue (`deque`) for $O(1)$ operations.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

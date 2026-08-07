@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Maximize Score After N Operations**
-
-The solution employs Sequential iteration scanning input elements and dynamically updating state. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates, Walrus operator (`:=`) for inline assignment and conditional testing in Python 3.8+.
-
-**Why This Approach Was Chosen:**
-Sourced from `doocs/leetcode` (or refined to expert standard) in method `maxScore`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
+Uses single-pass sequential iteration. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`), walrus operator (`:=`) inline assignment.
 
 ## Complexity detail
-- **Time Complexity**: $O(m^2 2^m)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(m^2 2^m)$ — Operation count bound.
 - **Space Complexity**: $O(m^2 + 2^m)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
-- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

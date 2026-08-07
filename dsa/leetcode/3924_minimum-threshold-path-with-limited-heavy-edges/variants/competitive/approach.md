@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Minimum Threshold Path With Limited Heavy Edges**
-
-The solution employs Binary Search over a sorted range or search space, continuously halving the candidate window. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking, Double-ended queue (`collections.deque`) for efficient $O(1)$ element insertion and removal to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `minimumThreshold`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Uses binary search over search space. Maintains hash map (`dict`) for $O(1)$ average lookup, double-ended queue (`deque`) for $O(1)$ operations.
 
 ## Complexity detail
-- **Time Complexity**: $O(n log m + m log m)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n log m + m log m)$ — Operation count bound.
 - **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

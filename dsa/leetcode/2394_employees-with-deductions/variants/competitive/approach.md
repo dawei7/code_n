@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Employees With Deductions**
-
-The query executes a structured relational pipeline for **Employees With Deductions**. It uses Relational JOIN operations to correlate records across tables, `GROUP BY` aggregation with PostgreSQL standard functions (`COALESCE`, `STRING_AGG`).
-
-**Why This Approach Was Chosen:**
-Sourced for PostgreSQL standard compliance. It avoids non-standard vendor extensions (e.g. replacing SQLite `IFNULL` with ANSI `COALESCE` and `GROUP_CONCAT` with `STRING_AGG`), ensuring portable, high-performance database execution.
+Executes a SQL query for **Employees With Deductions** using relational JOINs, GROUP BY aggregations (`COALESCE`, `STRING_AGG`).
 
 ## Complexity detail
-- **Time Complexity**: $O((E + L)\log(E + L))$ — Operation count proportional to input scale.
+- **Time Complexity**: $O((E + L)\log(E + L))$ — Operation count bound.
 - **Space Complexity**: $O(E + L)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **PostgreSQL Standards:** Strict alignment with ANSI/PostgreSQL syntax.
-- **Readable CTE Design:** Breaks complex multi-stage relational logic into maintainable, self-documenting subqueries.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

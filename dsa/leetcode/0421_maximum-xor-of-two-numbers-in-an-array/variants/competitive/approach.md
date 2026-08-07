@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Maximum XOR of Two Numbers in an Array**
-
-The solution employs Sequential iteration scanning input elements and dynamically updating state. It utilizes Hash Set for $O(1)$ existence checks and duplicate elimination to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `findMaximumXOR`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Uses single-pass sequential iteration. Maintains hash set (`set`) for $O(1)$ existence checks. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

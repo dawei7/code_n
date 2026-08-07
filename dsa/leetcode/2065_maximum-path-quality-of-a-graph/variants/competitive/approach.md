@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Maximum Path Quality of a Graph**
-
-The solution employs Depth-First Search (DFS) / Backtracking to recursively explore state choices. It utilizes Hash Set for $O(1)$ existence checks and duplicate elimination to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `maximalPathQuality`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Uses depth-first search / backtracking recursion. Maintains hash set (`set`) for $O(1)$ existence checks. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
 
 ## Complexity detail
-- **Time Complexity**: $O(n+e+4^L)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n+e+4^L)$ — Operation count bound.
 - **Space Complexity**: $O(n+e+L)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

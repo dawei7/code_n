@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Group By**
-
-The JavaScript solution solves **Group By** using Imperative loop structures for tight iteration control.
-
-**Why This Approach Was Chosen:**
-Written using modern ES6+ features with strict type safety and high-efficiency execution in V8 environment.
+Implements the JavaScript solution for **Group By**.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **ES6+ Best Practices:** Clean array manipulations and efficient memory usage.
-- **Type Safety:** Well-defined parameters and predictable return contracts.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

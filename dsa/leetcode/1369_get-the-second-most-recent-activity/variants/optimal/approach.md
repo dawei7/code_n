@@ -1,15 +1,10 @@
 ## General
-**Optimal Approach — Get the Second Most Recent Activity**
-
-The query executes a structured relational pipeline for **Get the Second Most Recent Activity**. It uses PostgreSQL window functions for analytical ranking and offset calculations.
-
-**Why This Approach Was Chosen:**
-Sourced for PostgreSQL standard compliance. It avoids non-standard vendor extensions (e.g. replacing SQLite `IFNULL` with ANSI `COALESCE` and `GROUP_CONCAT` with `STRING_AGG`), ensuring portable, high-performance database execution.
+Executes a SQL query for **Get the Second Most Recent Activity** using window functions.
 
 ## Complexity detail
-- **Time Complexity**: $O(A\log A)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(A\log A)$ — Operation count bound.
 - **Space Complexity**: $O(A)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **PostgreSQL Standards:** Strict alignment with ANSI/PostgreSQL syntax.
-- **Readable CTE Design:** Breaks complex multi-stage relational logic into maintainable, self-documenting subqueries.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

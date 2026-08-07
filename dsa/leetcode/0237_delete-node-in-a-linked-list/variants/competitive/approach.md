@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Delete Node in a Linked List**
-
-The solution implements an direct algorithm tailored for Delete Node in a Linked List. It utilizes Singly-linked list node operations (`val`, `next`) to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `deleteNode`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Maintains linked list nodes (`val`, `next`).
 
 ## Complexity detail
-- **Time Complexity**: $O(1)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(1)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

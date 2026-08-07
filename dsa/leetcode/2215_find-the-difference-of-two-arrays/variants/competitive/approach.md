@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Find the Difference of Two Arrays**
-
-The solution implements an direct algorithm tailored for Find the Difference of Two Arrays. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `findDifference`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Implements the competitive micro-optimized algorithm for **Find the Difference of Two Arrays**.
 
 ## Complexity detail
-- **Time Complexity**: $O(n + m)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n + m)$ — Operation count bound.
 - **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,15 +1,10 @@
 ## General
-**Competitive Approach — Insert Greatest Common Divisors in Linked List**
-
-The solution implements an direct algorithm tailored for Insert Greatest Common Divisors in Linked List. It utilizes Singly-linked list node operations (`val`, `next`) to maintain optimal runtime bounds.
-
-**Why This Approach Was Chosen:**
-Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `insertGreatestCommonDivisors`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
+Maintains linked list nodes (`val`, `next`).
 
 ## Complexity detail
-- **Time Complexity**: $O(n \log V)$ — Operation count proportional to input scale.
+- **Time Complexity**: $O(n \log V)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
-- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.
+- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
+- **Complexity bounds:** Declares the precise time and space complexity guarantees.
