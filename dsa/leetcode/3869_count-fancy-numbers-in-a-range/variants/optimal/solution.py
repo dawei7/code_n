@@ -1,62 +1,47 @@
-from bisect import bisect_left, bisect_right
-from functools import cache
-from itertools import combinations
-
-
 class Solution:
     def countFancy(self, l: int, r: int) -> int:
-        def is_good(value: int) -> bool:
-            digits = str(value)
-            return (
-                len(digits) == 1
-                or all(digits[index] < digits[index + 1] for index in range(len(digits) - 1))
-                or all(digits[index] > digits[index + 1] for index in range(len(digits) - 1))
-            )
+        def check(s: int) -> bool:
+            if s < 100:
+                return s % 11 != 0
+            return 1 < s // 10 % 10 < s % 10
 
-        good_sums = {value for value in range(1, 145) if is_good(value)}
+        @cache
+        def dfs(pos: int, s: int, prev: int, st: int, lim: bool) -> int:
+            if pos >= len(num):
+                if st != 3:
+                    return 1
+                return int(check(s))
+            up = int(num[pos]) if lim else 9
+            res = 0
+            for i in range(up + 1):
+                nxt_st = st
+                if st == 0:
+                    if prev == 0:
+                        nxt_st = 0
+                    elif i > prev:
+                        nxt_st = 1
+                    elif i < prev:
+                        nxt_st = 2
+                    else:
+                        nxt_st = 3
+                elif st == 1:
+                    if i > prev:
+                        nxt_st = 1
+                    else:
+                        nxt_st = 3
+                elif st == 2:
+                    if i < prev:
+                        nxt_st = 2
+                    else:
+                        nxt_st = 3
+                else:
+                    nxt_st = 3
+                res += dfs(pos + 1, s + i, i, nxt_st, lim and i == up)
+            return res
 
-        good_numbers: set[int] = set()
-        increasing_digits = "123456789"
-        for length in range(1, len(increasing_digits) + 1):
-            for chosen in combinations(increasing_digits, length):
-                good_numbers.add(int("".join(chosen)))
-
-        decreasing_digits = "0123456789"
-        for length in range(1, len(decreasing_digits) + 1):
-            for chosen in combinations(decreasing_digits, length):
-                value = int("".join(reversed(chosen)))
-                if value:
-                    good_numbers.add(value)
-
-        ordered_good = sorted(good_numbers)
-        ordered_overlap = sorted(value for value in good_numbers if sum(map(int, str(value))) in good_sums)
-
-        def count_sum_good(bound: int) -> int:
-            if bound <= 0:
-                return 0
-
-            digits = tuple(map(int, str(bound)))
-
-            @cache
-            def digit_dp(index: int, tight: bool, digit_sum: int) -> int:
-                if index == len(digits):
-                    return int(digit_sum in good_sums)
-
-                limit = digits[index] if tight else 9
-                total = 0
-                for digit in range(limit + 1):
-                    total += digit_dp(
-                        index + 1,
-                        tight and digit == limit,
-                        digit_sum + digit,
-                    )
-                return total
-
-            return digit_dp(0, True, 0)
-
-        def count_in_range(values: list[int]) -> int:
-            return bisect_right(values, r) - bisect_left(values, l)
-
-        return (
-            count_sum_good(r) - count_sum_good(l - 1) + count_in_range(ordered_good) - count_in_range(ordered_overlap)
-        )
+        num = str(l - 1)
+        a = dfs(0, 0, 0, 0, True)
+        dfs.cache_clear()
+        num = str(r)
+        b = dfs(0, 0, 0, 0, True)
+        return b - a

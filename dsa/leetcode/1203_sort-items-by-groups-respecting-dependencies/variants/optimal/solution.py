@@ -1,56 +1,49 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def sortItems(
-        self,
-        n: int,
-        m: int,
-        group: List[int],
-        beforeItems: List[List[int]],
+        self, n: int, m: int, group: List[int], beforeItems: List[List[int]]
     ) -> List[int]:
-        assigned_group = group[:]
-        group_count = m
-        for item in range(n):
-            if assigned_group[item] == -1:
-                assigned_group[item] = group_count
-                group_count += 1
+        def topo_sort(degree, graph, items):
+            q = deque(i for _, i in enumerate(items) if degree[i] == 0)
+            res = []
+            while q:
+                i = q.popleft()
+                res.append(i)
+                for j in graph[i]:
+                    degree[j] -= 1
+                    if degree[j] == 0:
+                        q.append(j)
+            return res if len(res) == len(items) else []
 
+        idx = m
+        group_items = [[] for _ in range(n + m)]
+        for i, g in enumerate(group):
+            if g == -1:
+                group[i] = idx
+                idx += 1
+            group_items[group[i]].append(i)
+
+        item_degree = [0] * n
+        group_degree = [0] * (n + m)
         item_graph = [[] for _ in range(n)]
-        item_indegree = [0] * n
-        group_graph = [[] for _ in range(group_count)]
-        group_indegree = [0] * group_count
+        group_graph = [[] for _ in range(n + m)]
+        for i, gi in enumerate(group):
+            for j in beforeItems[i]:
+                gj = group[j]
+                if gi == gj:
+                    item_degree[i] += 1
+                    item_graph[j].append(i)
+                else:
+                    group_degree[gi] += 1
+                    group_graph[gj].append(gi)
 
-        for current in range(n):
-            for previous in beforeItems[current]:
-                item_graph[previous].append(current)
-                item_indegree[current] += 1
-                previous_group = assigned_group[previous]
-                current_group = assigned_group[current]
-                if previous_group != current_group:
-                    group_graph[previous_group].append(current_group)
-                    group_indegree[current_group] += 1
-
-        def topological_order(graph: List[List[int]], indegree: List[int]) -> List[int]:
-            ready = deque(index for index, degree in enumerate(indegree) if degree == 0)
-            order = []
-            while ready:
-                node = ready.popleft()
-                order.append(node)
-                for neighbor in graph[node]:
-                    indegree[neighbor] -= 1
-                    if indegree[neighbor] == 0:
-                        ready.append(neighbor)
-            return order if len(order) == len(graph) else []
-
-        item_order = topological_order(item_graph, item_indegree)
-        group_order = topological_order(group_graph, group_indegree)
-        if not item_order or not group_order:
+        group_order = topo_sort(group_degree, group_graph, range(n + m))
+        if not group_order:
             return []
-
-        items_by_group = [[] for _ in range(group_count)]
-        for item in item_order:
-            items_by_group[assigned_group[item]].append(item)
-
-        return [item for group_id in group_order for item in items_by_group[group_id]]
+        ans = []
+        for gi in group_order:
+            items = group_items[gi]
+            item_order = topo_sort(item_degree, item_graph, items)
+            if len(items) != len(item_order):
+                return []
+            ans.extend(item_order)
+        return ans

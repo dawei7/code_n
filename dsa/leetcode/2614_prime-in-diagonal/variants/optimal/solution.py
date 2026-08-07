@@ -1,28 +1,15 @@
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def diagonalPrime(self, nums: List[List[int]]) -> int:
-        def is_prime(value: int) -> bool:
-            if value < 2:
+        def is_prime(x: int) -> bool:
+            if x < 2:
                 return False
-            if value == 2:
-                return True
-            if value % 2 == 0:
-                return False
-            limit = isqrt(value)
-            divisor = 3
-            while divisor <= limit:
-                if value % divisor == 0:
-                    return False
-                divisor += 2
-            return True
+            return all(x % i for i in range(2, int(sqrt(x)) + 1))
 
         n = len(nums)
-        answer = 0
-        for i in range(n):
-            for value in (nums[i][i], nums[i][n - 1 - i]):
-                if value > answer and is_prime(value):
-                    answer = value
-        return answer
+        ans = 0
+        for i, row in enumerate(nums):
+            if is_prime(row[i]):
+                ans = max(ans, row[i])
+            if is_prime(row[n - i - 1]):
+                ans = max(ans, row[n - i - 1])
+        return ans

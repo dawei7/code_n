@@ -1,28 +1,27 @@
-from typing import List
-
-
-def _generate_abbreviations(word: str) -> List[str]:
-    length = len(word)
-    result = []
-
-    for mask in range(1 << length):
-        pieces = []
-        abbreviated = 0
-        for index, letter in enumerate(word):
-            if mask & (1 << index):
-                abbreviated += 1
-                continue
-            if abbreviated:
-                pieces.append(str(abbreviated))
-                abbreviated = 0
-            pieces.append(letter)
-        if abbreviated:
-            pieces.append(str(abbreviated))
-        result.append("".join(pieces))
-
-    return result
-
+# Time:  O(n * 2^n)
+# Space: O(n)
 
 class Solution:
-    def generateAbbreviations(self, word: str) -> List[str]:
-        return _generate_abbreviations(word)
+    def generateAbbreviations(self, word):
+        """
+        :type word: str
+        :rtype: List[str]
+        """
+        def generateAbbreviationsHelper(word, i, cur, res):
+            if i == len(word):
+                res.append("".join(cur))
+                return
+            cur.append(word[i])
+            generateAbbreviationsHelper(word, i + 1, cur, res)
+            cur.pop()
+            if not cur or not cur[-1][-1].isdigit():
+                for l in range(1, len(word) - i + 1):
+                    cur.append(str(l))
+                    generateAbbreviationsHelper(word, i + l, cur, res)
+                    cur.pop()
+
+        res, cur = [], []
+        generateAbbreviationsHelper(word, 0, cur, res)
+        return res
+
+

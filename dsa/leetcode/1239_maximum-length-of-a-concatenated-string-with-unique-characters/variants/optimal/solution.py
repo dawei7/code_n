@@ -1,24 +1,13 @@
-from typing import List
-
-
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
-        masks = [0]
-        best = 0
-        for word in arr:
-            word_mask = 0
-            for character in word:
-                bit = 1 << (ord(character) - ord("a"))
-                if word_mask & bit:
-                    word_mask = 0
+        s = [0]
+        for t in arr:
+            x = 0
+            for b in map(lambda c: ord(c) - 97, t):
+                if x >> b & 1:
+                    x = 0
                     break
-                word_mask |= bit
-            if word_mask == 0:
-                continue
-
-            for existing in masks[:]:
-                if existing & word_mask == 0:
-                    combined = existing | word_mask
-                    masks.append(combined)
-                    best = max(best, combined.bit_count())
-        return best
+                x |= 1 << b
+            if x:
+                s.extend((x | y) for y in s if (x & y) == 0)
+        return max(x.bit_count() for x in s)

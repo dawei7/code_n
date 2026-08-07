@@ -1,32 +1,70 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
-
+# Bellman-Ford Algorithm
 class Solution:
-    def maxAmount(
-        self,
-        initialCurrency: str,
-        pairs1: List[List[str]],
-        rates1: List[float],
-        pairs2: List[List[str]],
-        rates2: List[float],
-    ) -> float:
-        def rates_from(pairs: List[List[str]], rates: List[float]) -> dict[str, float]:
-            graph = defaultdict(list)
-            for (source, target), rate in zip(pairs, rates):
-                graph[source].append((target, rate))
-                graph[target].append((source, 1.0 / rate))
+    def maxAmount(self, initialCurrency, pairs1, rates1, pairs2, rates2):
+        """
+        :type initialCurrency: str
+        :type pairs1: List[List[str]]
+        :type rates1: List[float]
+        :type pairs2: List[List[str]]
+        :type rates2: List[float]
+        :rtype: float
+        """
+        def BellmanFord(dist, pairs, rates):
+            for _ in range(len(pairs)):
+                for i in range(len(pairs)):
+                    dist[pairs[i][1]] = max(dist[pairs[i][1]], dist[pairs[i][0]]*rates[i])
+                    dist[pairs[i][0]] = max(dist[pairs[i][0]], dist[pairs[i][1]]*(1/rates[i]))
+        
+        dist = collections.defaultdict(int)
+        dist[initialCurrency] = 1.0
+        BellmanFord(dist, pairs1, rates1)
+        BellmanFord(dist, pairs2, rates2)
+        return dist[initialCurrency]
+                
 
-            converted = {initialCurrency: 1.0}
-            stack = [initialCurrency]
-            while stack:
-                currency = stack.pop()
-                for neighbor, rate in graph[currency]:
-                    if neighbor not in converted:
-                        converted[neighbor] = converted[currency] * rate
-                        stack.append(neighbor)
-            return converted
+# Time:  O(n^2)
+# Space: O(n)
+import collections
 
-        day1 = rates_from(pairs1, rates1)
-        day2 = rates_from(pairs2, rates2)
-        return max(amount / day2[currency] for currency, amount in day1.items() if currency in day2)
+
+# bfs
+class Solution2(object):
+    def maxAmount(self, initialCurrency, pairs1, rates1, pairs2, rates2):
+        """
+        :type initialCurrency: str
+        :type pairs1: List[List[str]]
+        :type rates1: List[float]
+        :type pairs2: List[List[str]]
+        :type rates2: List[float]
+        :rtype: float
+        """
+        def find_adj(pairs, rates):
+            adj = collections.defaultdict(list)
+            for i in range(len(pairs)):
+                adj[pairs[i][0]].append((pairs[i][1], rates[i]))
+                adj[pairs[i][1]].append((pairs[i][0], 1/rates[i]))
+            return adj
+
+        def bfs(dist, adj):
+            q = dist.keys()
+            while q:
+                new_q = []
+                for u in q:
+                    for v, w in adj[u]:
+                        if not w*dist[u] > dist[v]:
+                            continue
+                        dist[v] = w*dist[u]
+                        new_q.append(v)
+                q = new_q
+            return dist
+    
+        dist = collections.defaultdict(int)
+        dist[initialCurrency] = 1.0
+        adj1 = find_adj(pairs1, rates1)
+        bfs(dist, adj1)  # Time: O(n)
+        adj2 = find_adj(pairs2, rates2)
+        bfs(dist, adj2)  # Time: O(n^2)
+        return dist[initialCurrency]

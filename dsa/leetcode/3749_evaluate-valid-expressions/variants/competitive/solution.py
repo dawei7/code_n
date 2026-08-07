@@ -1,36 +1,36 @@
+# Time:  O(n)
+# Space: O(n)
+
+# stack
 class Solution:
-    def evaluateExpression(self, expression: str) -> int:
-        values = []
-        operators = []
-        index = 0
+    def evaluateExpression(self, expression):
+        """
+        :type expression: str
+        :rtype: int
+        """
+        LOOKUP = {
+            "add":lambda a, b: a+b,
+            "sub":lambda a, b: a-b,
+            "mul":lambda a, b: a*b,
+            "div":lambda a, b: a//b
+        }
 
-        while index < len(expression):
-            character = expression[index]
+        SYMBOLS = "(,)"
 
-            if character.isalpha():
-                operators.append(expression[index : index + 3])
-                index += 3
-            elif character == "-" or character.isdigit():
-                end = index + (character == "-")
-                while end < len(expression) and expression[end].isdigit():
-                    end += 1
-                values.append(int(expression[index:end]))
-                index = end
-            elif character == ")":
-                right = values.pop()
-                left = values.pop()
-                operator = operators.pop()
-
-                if operator == "add":
-                    values.append(left + right)
-                elif operator == "sub":
-                    values.append(left - right)
-                elif operator == "mul":
-                    values.append(left * right)
-                else:
-                    values.append(left // right)
-                index += 1
-            else:
-                index += 1
-
-        return values[0]
+        stk, curr = [[]], []
+        for x in expression:
+            if x not in SYMBOLS:
+                curr.append(x)
+                continue
+            if x == '(':
+                stk.append(["".join(curr)])
+                curr = []
+                continue
+            if curr:
+                stk[-1].append(int("".join(curr)))
+                curr = []
+            if x != ')':
+                continue
+            op, a, b = stk.pop()
+            stk[-1].append(LOOKUP[op](a, b))
+        return stk[0][0] if stk[0] else int("".join(curr))

@@ -1,19 +1,10 @@
-from typing import List
-
-
 class Solution:
     def minNumber(self, nums1: List[int], nums2: List[int]) -> int:
-        present = [False] * 10
-        for digit in nums1:
-            present[digit] = True
-
-        common = 10
-        for digit in nums2:
-            if present[digit]:
-                common = min(common, digit)
-        if common < 10:
-            return common
-
-        first = min(nums1)
-        second = min(nums2)
-        return min(10 * first + second, 10 * second + first)
+        ans = 100
+        for a in nums1:
+            for b in nums2:
+                if a == b:
+                    ans = min(ans, a)
+                else:
+                    ans = min(ans, 10 * a + b, 10 * b + a)
+        return ans

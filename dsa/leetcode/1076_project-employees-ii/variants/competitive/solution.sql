@@ -1,9 +1,12 @@
-WITH project_counts AS (
-    SELECT project_id, COUNT(*) AS employee_count
-    FROM Project
-    GROUP BY project_id
-)
-SELECT project_id
-FROM project_counts
-WHERE employee_count = (SELECT MAX(employee_count) FROM project_counts)
-ORDER BY project_id;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT project_id 
+FROM   project 
+GROUP  BY project_id 
+HAVING Count(employee_id) = (SELECT Count(employee_id) 
+                             FROM   project 
+                             GROUP  BY project_id 
+                             ORDER  BY Count(employee_id) DESC 
+                             LIMIT  1) 
+ORDER  BY NULL 

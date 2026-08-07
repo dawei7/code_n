@@ -1,22 +1,56 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
 class Solution:
-    def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for start, end in connections:
-            graph[start].append((end, 1))
-            graph[end].append((start, 0))
-
-        reversals = 0
-        visited = [False] * n
-        visited[0] = True
-        stack = [0]
-
-        while stack:
-            city = stack.pop()
-            for neighbor, cost in graph[city]:
-                if visited[neighbor]:
+    def minReorder(self, n, connections):
+        """
+        :type n: int
+        :type connections: List[List[int]]
+        :rtype: int
+        """
+        lookup, graph = set(), collections.defaultdict(list)
+        for u, v in connections:
+            lookup.add(u*n+v)
+            graph[v].append(u)
+            graph[u].append(v) 
+        result = 0
+        stk = [(-1, 0)]
+        while stk:
+            parent, u = stk.pop()
+            result += (parent*n+u in lookup)
+            for v in reversed(graph[u]):
+                if v == parent:
                     continue
-                visited[neighbor] = True
-                reversals += cost
-                stack.append(neighbor)
+                stk.append((u, v))
+        return result
 
-        return reversals
+
+# Time:  O(n)
+# Space: O(n)
+import collections
+
+
+class Solution2(object):
+    def minReorder(self, n, connections):
+        """
+        :type n: int
+        :type connections: List[List[int]]
+        :rtype: int
+        """
+        def dfs(n, lookup, graph, parent, u):
+            result = (parent*n+u in lookup)
+            for v in graph[u]:
+                if v == parent:
+                    continue
+                result += dfs(n, lookup, graph, u, v)  
+            return result
+
+        lookup, graph = set(), collections.defaultdict(list)
+        for u, v in connections:
+            lookup.add(u*n+v)
+            graph[v].append(u)
+            graph[u].append(v) 
+        return dfs(n, lookup, graph, -1, 0)

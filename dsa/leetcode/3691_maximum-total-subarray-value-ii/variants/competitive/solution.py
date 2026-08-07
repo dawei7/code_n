@@ -1,54 +1,143 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O((n + k) * logn)
+# Space: O(n + k)
+
+import heapq
 
 
+# heap, sort, two pointers
 class Solution:
-    def maxTotalValue(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        size = 1 << (n - 1).bit_length()
-        minimum = [10**30] * (2 * size)
-        maximum = [-1] * (2 * size)
-        for index, value in enumerate(nums):
-            minimum[size + index] = value
-            maximum[size + index] = value
-        for index in range(size - 1, 0, -1):
-            minimum[index] = min(minimum[2 * index], minimum[2 * index + 1])
-            maximum[index] = max(maximum[2 * index], maximum[2 * index + 1])
+    def maxTotalValue(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def nxt(left, right, i, j):
+            while not (left <= idxs[i] <= right):
+                i += 1
+            while not (left <= idxs[j] <= right):
+                j -= 1
+            return (i, j)
+            
+        idxs = range(len(nums))
+        idxs.sort(key=lambda x: (nums[x], x))
+        lookup = {(0, len(nums)-1):(0, len(idxs)-1)}
+        max_heap = [(-(nums[idxs[len(idxs)-1]]-nums[idxs[0]]), (0, len(idxs)-1))]
+        result = 0
+        while k:
+            v, (l, r) = heapq.heappop(max_heap)
+            i, j = lookup[(l, r)]
+            nl, nr = min(idxs[i], idxs[j]), max(idxs[i], idxs[j])
+            c = min((nl-l+1)*(r-nr+1), k)
+            k -= c
+            result += c*(-v)
+            if nl+1 <= r and (nl+1, r) not in lookup:
+                lookup[(nl+1, r)] = (ni, nj) = nxt(nl+1, r, i, j)
+                heapq.heappush(max_heap, (-(nums[idxs[nj]]-nums[idxs[ni]]), (nl+1, r)))
+            if l <= nr-1 and (l, nr-1) not in lookup:
+                lookup[(l, nr-1)] = (ni, nj) = nxt(l, nr-1, i, j)
+                heapq.heappush(max_heap, (-(nums[idxs[nj]]-nums[idxs[ni]]), (l, nr-1)))
+        return result
 
-        def subarray_value(left: int, right: int) -> int:
-            left += size
-            right += size + 1
-            low = 10**30
-            high = -1
-            while left < right:
-                if left & 1:
-                    low = min(low, minimum[left])
-                    high = max(high, maximum[left])
-                    left += 1
-                if right & 1:
-                    right -= 1
-                    low = min(low, minimum[right])
-                    high = max(high, maximum[right])
-                left //= 2
-                right //= 2
-            return high - low
 
-        suffix_low = [0] * n
-        suffix_high = [0] * n
-        suffix_low[-1] = suffix_high[-1] = nums[-1]
-        for index in range(n - 2, -1, -1):
-            suffix_low[index] = min(nums[index], suffix_low[index + 1])
-            suffix_high[index] = max(nums[index], suffix_high[index + 1])
+# Time:  O((n + k) * logn)
+# Space: O(nlogn)
+import heapq
 
-        heap = [(-(suffix_high[left] - suffix_low[left]), left, n - 1) for left in range(n)]
-        heapify(heap)
-        answer = 0
 
+# heap, rmq, sparse table
+class Solution2(object):
+    def maxTotalValue(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        # RMQ - Sparse Table
+        # Template: https://github.com/kamyu104/GoogleCodeJam-Farewell-Rounds/blob/main/Round%20D/genetic_sequences2.py3
+        # Time:  ctor:  O(NlogN) * O(fn)
+        #        query: O(fn)
+        # Space: O(NlogN)
+        class SparseTable(object):
+            def __init__(self, arr, fn):
+                self.fn = fn
+                self.bit_length = [0]
+                n = len(arr)
+                k = n.bit_length()-1  # log2_floor(n)
+                for i in range(k+1):
+                    self.bit_length.extend(i+1 for _ in range(min(1<<i, (n+1)-len(self.bit_length))))
+                self.st = [[0]*n for _ in range(k+1)]
+                self.st[0] = arr[:]
+                for i in range(1, k+1):  # Time: O(NlogN) * O(fn)
+                    for j in range((n-(1<<i))+1):
+                        self.st[i][j] = fn(self.st[i-1][j], self.st[i-1][j+(1<<(i-1))])
+        
+            def query(self, L, R):  # Time: O(fn)
+                i = self.bit_length[R-L+1]-1  # log2_floor(R-L+1)
+                return self.fn(self.st[i][L], self.st[i][R-(1<<i)+1])
+        
+        rmq_min = SparseTable(nums, min)
+        rmq_max = SparseTable(nums, max)
+        max_heap = [(-(rmq_max.query(i, len(nums)-1)-rmq_min.query(i, len(nums)-1)), (i, len(nums)-1)) for i in range(len(nums))]
+        heapq.heapify(max_heap)
+        result = 0
         for _ in range(k):
-            negative_value, left, right = heappop(heap)
-            answer -= negative_value
-            if right > left:
-                right -= 1
-                heappush(heap, (-subarray_value(left, right), left, right))
+            v, (i, j) = heappop(max_heap)
+            result += -v
+            if i <= j-1:
+                heapq.heappush(max_heap, (-(rmq_max.query(i, j-1)-rmq_min.query(i, j-1)), (i, j-1)))
+        return result
 
-        return answer
+
+# Time:  O((n + k) * logn)
+# Space: O(n)
+import heapq
+
+
+# heap, segment tree
+class Solution3(object):
+    def maxTotalValue(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        class SegmentTree(object):
+            def __init__(self, N, build_fn, query_fn):
+                self.tree = [None]*(1<<((N-1).bit_length()+1))
+                self.base = len(self.tree)>>1
+                self.query_fn = query_fn
+                for i in range(self.base, self.base+N):
+                    self.tree[i] = build_fn(i-self.base)
+                for i in reversed(range(1, self.base)):
+                    self.tree[i] = query_fn(self.tree[i<<1], self.tree[(i<<1)+1])
+
+            def query(self, L, R):
+                if L > R:
+                    return None
+                L += self.base
+                R += self.base
+                left = right = None
+                while L <= R:
+                    if L & 1:
+                        left = self.query_fn(left, self.tree[L])
+                        L += 1
+                    if R & 1 == 0:
+                        right = self.query_fn(self.tree[R], right)
+                        R -= 1
+                    L >>= 1
+                    R >>= 1
+                return self.query_fn(left, right)
+
+    
+        st_min = SegmentTree(len(nums), build_fn=lambda x: nums[x], query_fn=lambda x, y: y if x is None else x if y is None else min(x, y))
+        st_max = SegmentTree(len(nums), build_fn=lambda x: nums[x], query_fn=lambda x, y: y if x is None else x if y is None else max(x, y))
+        max_heap = [(-(st_max.query(i, len(nums)-1)-st_min.query(i, len(nums)-1)), (i, len(nums)-1)) for i in range(len(nums))]
+        heapq.heapify(max_heap)
+        result = 0
+        for _ in range(k):
+            v, (i, j) = heappop(max_heap)
+            result += -v
+            if i <= j-1:
+                heapq.heappush(max_heap, (-(st_max.query(i, j-1)-st_min.query(i, j-1)), (i, j-1)))
+        return result

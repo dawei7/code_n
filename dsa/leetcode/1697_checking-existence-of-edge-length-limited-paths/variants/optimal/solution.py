@@ -1,41 +1,20 @@
-from typing import List
-
-
 class Solution:
     def distanceLimitedPathsExist(
-        self,
-        n: int,
-        edgeList: List[List[int]],
-        queries: List[List[int]],
+        self, n: int, edgeList: List[List[int]], queries: List[List[int]]
     ) -> List[bool]:
-        parent = list(range(n))
-        size = [1] * n
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(first: int, second: int) -> None:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if size[first_root] < size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            size[first_root] += size[second_root]
-
-        edges = sorted(edgeList, key=lambda edge: edge[2])
-        ordered_queries = sorted((limit, first, second, index) for index, (first, second, limit) in enumerate(queries))
-        answers = [False] * len(queries)
-        edge_index = 0
-
-        for limit, first, second, query_index in ordered_queries:
-            while edge_index < len(edges) and edges[edge_index][2] < limit:
-                union(edges[edge_index][0], edges[edge_index][1])
-                edge_index += 1
-            answers[query_index] = find(first) == find(second)
-
-        return answers
+        p = list(range(n))
+        edgeList.sort(key=lambda x: x[2])
+        j = 0
+        ans = [False] * len(queries)
+        for i, (a, b, limit) in sorted(enumerate(queries), key=lambda x: x[1][2]):
+            while j < len(edgeList) and edgeList[j][2] < limit:
+                u, v, _ = edgeList[j]
+                p[find(u)] = find(v)
+                j += 1
+            ans[i] = find(a) == find(b)
+        return ans

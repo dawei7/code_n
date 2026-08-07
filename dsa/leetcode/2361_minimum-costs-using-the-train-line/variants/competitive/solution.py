@@ -1,14 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
+# dp
 class Solution:
-    def minimumCosts(self, regular: List[int], express: List[int], expressCost: int) -> List[int]:
-        regular_cost = 0
-        express_cost = expressCost
-        answer = []
-        for regular_segment, express_segment in zip(regular, express):
-            next_regular = min(regular_cost, express_cost) + regular_segment
-            next_express = min(express_cost, regular_cost + expressCost) + express_segment
-            regular_cost, express_cost = next_regular, next_express
-            answer.append(min(regular_cost, express_cost))
-        return answer
+    def minimumCosts(self, regular, express, expressCost):
+        """
+        :type regular: List[int]
+        :type express: List[int]
+        :type expressCost: int
+        :rtype: List[int]
+        """
+        result = []
+        dp = [0, expressCost]  # dp[0]: min cost of regular route to curr stop, dp[1]: min cost of express route to curr stop
+        for r, e in itertools.izip(regular, express):
+            dp = [min(dp[0]+r, dp[1]+e), min(dp[0]+(r+expressCost), dp[1]+e)]
+            result.append(min(dp[0], dp[1]))
+        return result

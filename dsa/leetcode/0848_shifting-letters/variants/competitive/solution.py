@@ -1,14 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def shiftingLetters(self, s: str, shifts: List[int]) -> str:
-        characters = list(s)
-        total_shift = 0
+    def shiftingLetters(self, S, shifts):
+        """
+        :type S: str
+        :type shifts: List[int]
+        :rtype: str
+        """
+        result = []
+        times = sum(shifts) % 26
+        for i, c in enumerate(S):
+            index = ord(c) - ord('a')
+            result.append(chr(ord('a') + (index+times) % 26))
+            times = (times-shifts[i]) % 26
+        return "".join(result)
 
-        for index in range(len(s) - 1, -1, -1):
-            total_shift = (total_shift + shifts[index]) % 26
-            alphabet_index = ord(s[index]) - ord("a")
-            characters[index] = chr((alphabet_index + total_shift) % 26 + ord("a"))
-
-        return "".join(characters)

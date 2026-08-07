@@ -1,7 +1,9 @@
-SELECT
-    event_day AS day,
-    emp_id,
-    SUM(out_time - in_time) AS total_time
-FROM Employees
-GROUP BY event_day, emp_id
-ORDER BY day ASC, emp_id ASC;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT event_day               AS day,
+       emp_id,
+       Sum(out_time - in_time) AS total_time
+FROM   employees
+GROUP  BY 1, 2
+ORDER  BY 1, 2;

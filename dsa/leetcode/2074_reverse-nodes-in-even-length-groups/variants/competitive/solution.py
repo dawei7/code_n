@@ -1,33 +1,32 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
 class Solution:
-    def reverseEvenLengthGroups(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        group_tail = head
-        target_length = 2
-
-        while group_tail is not None and group_tail.next is not None:
-            actual_length = 0
-            after_group = group_tail.next
-            while actual_length < target_length and after_group is not None:
-                actual_length += 1
-                after_group = after_group.next
-
-            if actual_length % 2 == 0:
-                old_head = group_tail.next
-                current = old_head
-                previous = after_group
-                for _ in range(actual_length):
-                    following = current.next
-                    current.next = previous
-                    previous = current
-                    current = following
-                group_tail.next = previous
-                group_tail = old_head
-            else:
-                for _ in range(actual_length):
-                    group_tail = group_tail.next
-
-            target_length += 1
-
+    def reverseEvenLengthGroups(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        prev, l = head, 2
+        while prev.next:
+            curr, cnt = prev, 0
+            for _ in range(l):
+                if not curr.next:
+                    break
+                cnt += 1
+                curr = curr.next
+            l += 1
+            if cnt%2:
+                prev = curr
+                continue
+            curr, last = prev.next, None
+            for _ in range(cnt):
+                curr.next, curr, last = last, curr.next, curr
+            prev.next.next, prev.next, prev = curr, last, prev.next
         return head

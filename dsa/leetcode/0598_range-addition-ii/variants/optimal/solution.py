@@ -1,15 +1,6 @@
 class Solution:
-    def maxCount(
-        self,
-        m: int,
-        n: int,
-        ops: list[list[int]],
-    ) -> int:
-        common_rows = m
-        common_columns = n
-
-        for rows, columns in ops:
-            common_rows = min(common_rows, rows)
-            common_columns = min(common_columns, columns)
-
-        return common_rows * common_columns
+    def maxCount(self, m: int, n: int, ops: List[List[int]]) -> int:
+        for a, b in ops:
+            m = min(m, a)
+            n = min(n, b)
+        return m * n

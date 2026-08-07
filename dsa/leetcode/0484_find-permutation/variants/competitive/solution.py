@@ -1,20 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findPermutation(self, s: str) -> List[int]:
-        permutation = list(range(1, len(s) + 2))
-        run_start = 0
+    def findPermutation(self, s):
+        """
+        :type s: str
+        :rtype: List[int]
+        """
+        result = []
+        for i in range(len(s)+1):
+            if i == len(s) or s[i] == 'I':
+                result += range(i+1, len(result), -1)
+        return result
 
-        for boundary in range(len(s) + 1):
-            if boundary < len(s) and s[boundary] == "D":
-                continue
-            left = run_start
-            right = boundary
-            while left < right:
-                permutation[left], permutation[right] = permutation[right], permutation[left]
-                left += 1
-                right -= 1
-            run_start = boundary + 1
-
-        return permutation

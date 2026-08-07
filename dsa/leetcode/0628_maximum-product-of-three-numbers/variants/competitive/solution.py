@@ -1,27 +1,31 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maximumProduct(self, nums: List[int]) -> int:
-        largest1 = largest2 = largest3 = float("-inf")
-        smallest1 = smallest2 = float("inf")
+    def maximumProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        min1, min2 = float("inf"), float("inf")
+        max1, max2, max3 = float("-inf"), float("-inf"), float("-inf")
 
-        for value in nums:
-            if value >= largest1:
-                largest1, largest2, largest3 = value, largest1, largest2
-            elif value >= largest2:
-                largest2, largest3 = value, largest2
-            elif value > largest3:
-                largest3 = value
+        for n in nums:
+            if n <= min1:
+                min2 = min1
+                min1 = n
+            elif n <= min2:
+                min2 = n
 
-            if value <= smallest1:
-                smallest1, smallest2 = value, smallest1
-            elif value < smallest2:
-                smallest2 = value
+            if n >= max1:
+                max3 = max2
+                max2 = max1
+                max1 = n
+            elif n >= max2:
+                max3 = max2
+                max2 = n
+            elif n >= max3:
+                max3 = n
 
-        return int(
-            max(
-                largest1 * largest2 * largest3,
-                largest1 * smallest1 * smallest2,
-            )
-        )
+        return max(min1 * min2 * max1, max1 * max2 * max3)
+

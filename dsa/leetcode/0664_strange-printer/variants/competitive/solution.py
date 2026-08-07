@@ -1,18 +1,23 @@
-from functools import lru_cache
-
+# Time:  O(n^3)
+# Space: O(n^2)
 
 class Solution:
-    def strangePrinter(self, s: str) -> int:
-        compressed = "".join(character for index, character in enumerate(s) if index == 0 or character != s[index - 1])
-
-        @lru_cache(None)
-        def turns(left, right):
-            if left > right:
+    def strangePrinter(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def dp(s, i, j, lookup):
+            if i > j:
                 return 0
-            answer = 1 + turns(left + 1, right)
-            for middle in range(left + 1, right + 1):
-                if compressed[middle] == compressed[left]:
-                    answer = min(answer, turns(left + 1, middle - 1) + turns(middle, right))
-            return answer
+            if (i, j) not in lookup:
+                lookup[(i, j)]  = dp(s, i, j-1, lookup) + 1
+                for k in range(i, j):
+                    if s[k] == s[j]:
+                        lookup[(i, j)] = min(lookup[(i, j)], \
+                                             dp(s, i, k, lookup) + dp(s, k+1, j-1, lookup))
+            return lookup[(i, j)]
 
-        return turns(0, len(compressed) - 1)
+        lookup = {}
+        return dp(s, 0, len(s)-1, lookup)
+

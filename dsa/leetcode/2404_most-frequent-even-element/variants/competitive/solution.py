@@ -1,10 +1,15 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def mostFrequentEven(self, nums: List[int]) -> int:
-        counts = Counter(value for value in nums if value % 2 == 0)
-        if not counts:
-            return -1
-        return min(counts, key=lambda value: (-counts[value], value))
+    def mostFrequentEven(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        cnt = collections.Counter(x for x in nums if x%2 == 0)
+        return max(cnt.keys(), key=lambda x: (cnt[x], -x)) if cnt else -1

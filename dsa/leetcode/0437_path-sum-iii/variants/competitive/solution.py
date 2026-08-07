@@ -1,21 +1,56 @@
-from collections import defaultdict
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+import collections
 
 
 class Solution:
-    def pathSum(self, root: Optional["TreeNode"], targetSum: int) -> int:
-        prefix_counts = defaultdict(int)
-        prefix_counts[0] = 1
-
-        def count_paths(node: Optional["TreeNode"], current_sum: int) -> int:
-            if node is None:
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        def pathSumHelper(root, curr, sum, lookup):
+            if root is None:
                 return 0
-            current_sum += node.val
-            total = prefix_counts[current_sum - targetSum]
-            prefix_counts[current_sum] += 1
-            total += count_paths(node.left, current_sum)
-            total += count_paths(node.right, current_sum)
-            prefix_counts[current_sum] -= 1
-            return total
+            curr += root.val
+            result = lookup[curr-sum] if curr-sum in lookup else 0
+            lookup[curr] += 1
+            result += pathSumHelper(root.left, curr, sum, lookup) + \
+                      pathSumHelper(root.right, curr, sum, lookup)
+            lookup[curr] -= 1
+            if lookup[curr] == 0:
+                del lookup[curr]
+            return result
 
-        return count_paths(root, 0)
+        lookup = collections.defaultdict(int)
+        lookup[0] = 1
+        return pathSumHelper(root, 0, sum, lookup)
+
+
+# Time:  O(n^2)
+# Space: O(h)
+class Solution2(object):
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: int
+        """
+        def pathSumHelper(root, prev, sum):
+            if root is None:
+                return 0
+
+            curr = prev + root.val
+            return int(curr == sum) + \
+                   pathSumHelper(root.left, curr, sum) + \
+                   pathSumHelper(root.right, curr, sum)
+
+        if root is None:
+            return 0
+
+        return pathSumHelper(root, 0, sum) + \
+               self.pathSum(root.left, sum) + \
+               self.pathSum(root.right, sum)
+

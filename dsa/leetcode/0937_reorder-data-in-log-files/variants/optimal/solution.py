@@ -1,15 +1,7 @@
-from typing import List
-
-
 class Solution:
     def reorderLogFiles(self, logs: List[str]) -> List[str]:
-        letters = []
-        digits = []
-        for log in logs:
-            identifier, content = log.split(" ", 1)
-            if content[0].isdigit():
-                digits.append(log)
-            else:
-                letters.append((content, identifier, log))
-        letters.sort(key=lambda record: (record[0], record[1]))
-        return [record[2] for record in letters] + digits
+        def f(log: str):
+            id_, rest = log.split(" ", 1)
+            return (0, rest, id_) if rest[0].isalpha() else (1,)
+
+        return sorted(logs, key=f)

@@ -1,25 +1,26 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import itertools
+import heapq
 
 
 class Solution:
-    def maxPerformance(
-        self,
-        n: int,
-        speed: List[int],
-        efficiency: List[int],
-        k: int,
-    ) -> int:
-        engineers = sorted(zip(efficiency, speed), reverse=True)
-        speed_heap = []
-        speed_sum = 0
-        best = 0
-
-        for engineer_efficiency, engineer_speed in engineers:
-            heappush(speed_heap, engineer_speed)
-            speed_sum += engineer_speed
-            if len(speed_heap) > k:
-                speed_sum -= heappop(speed_heap)
-            best = max(best, speed_sum * engineer_efficiency)
-
-        return best % 1_000_000_007
+    def maxPerformance(self, n, speed, efficiency, k):
+        """
+        :type n: int
+        :type speed: List[int]
+        :type efficiency: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9 + 7
+        result, s_sum = 0, 0
+        min_heap = []
+        for e, s in sorted(itertools.izip(efficiency, speed), reverse=True):
+            s_sum += s
+            heapq.heappush(min_heap, s)
+            if len(min_heap) > k:
+                s_sum -= heapq.heappop(min_heap)
+            result = max(result, s_sum*e)
+        return result % MOD

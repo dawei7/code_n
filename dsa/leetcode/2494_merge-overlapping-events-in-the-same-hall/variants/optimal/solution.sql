@@ -1,33 +1,38 @@
-WITH marked AS (
-    SELECT
-        hall_id,
-        start_day,
-        end_day,
-        CASE
-            WHEN start_day > MAX(end_day) OVER (
+# Write your MySQL query statement below
+WITH
+    S AS (
+        SELECT
+            hall_id,
+            start_day,
+            end_day,
+            MAX(end_day) OVER (
                 PARTITION BY hall_id
-                ORDER BY start_day, end_day
-                ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING
-            ) THEN 1
-            ELSE 0
-        END AS starts_group
-    FROM HallEvents
-),
-grouped AS (
-    SELECT
-        hall_id,
-        start_day,
-        end_day,
-        SUM(starts_group) OVER (
-            PARTITION BY hall_id
-            ORDER BY start_day, end_day
-            ROWS UNBOUNDED PRECEDING
-        ) AS group_id
-    FROM marked
-)
-SELECT
-    hall_id,
-    MIN(start_day) AS start_day,
-    MAX(end_day) AS end_day
-FROM grouped
-GROUP BY hall_id, group_id;
+                ORDER BY start_day
+            ) AS cur_max_end_day
+        FROM HallEvents
+    ),
+    T AS (
+        SELECT
+            *,
+            IF(
+                start_day <= LAG(cur_max_end_day) OVER (
+                    PARTITION BY hall_id
+                    ORDER BY start_day
+                ),
+                0,
+                1
+            ) AS start
+        FROM S
+    ),
+    P AS (
+        SELECT
+            *,
+            SUM(start) OVER (
+                PARTITION BY hall_id
+                ORDER BY start_day
+            ) AS gid
+        FROM T
+    )
+SELECT hall_id, MIN(start_day) AS start_day, MAX(end_day) AS end_day
+FROM P
+GROUP BY hall_id, gid;

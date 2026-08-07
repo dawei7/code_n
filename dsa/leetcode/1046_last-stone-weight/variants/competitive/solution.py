@@ -1,16 +1,18 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def lastStoneWeight(self, stones: List[int]) -> int:
-        heap = [-stone for stone in stones]
-        heapify(heap)
-
-        while len(heap) > 1:
-            heaviest = -heappop(heap)
-            second_heaviest = -heappop(heap)
-            if heaviest != second_heaviest:
-                heappush(heap, -(heaviest - second_heaviest))
-
-        return -heap[0] if heap else 0
+    def lastStoneWeight(self, stones):
+        """
+        :type stones: List[int]
+        :rtype: int
+        """
+        max_heap = [-x for x in stones]
+        heapq.heapify(max_heap)
+        for i in range(len(stones)-1):
+            x, y = -heapq.heappop(max_heap), -heapq.heappop(max_heap)
+            heapq.heappush(max_heap, -abs(x-y))
+        return -max_heap[0]

@@ -1,29 +1,24 @@
 class Solution:
     def minimumBeautifulSubstrings(self, s: str) -> int:
+        @cache
+        def dfs(i: int) -> int:
+            if i >= n:
+                return 0
+            if s[i] == "0":
+                return inf
+            x = 0
+            ans = inf
+            for j in range(i, n):
+                x = x << 1 | int(s[j])
+                if x in ss:
+                    ans = min(ans, 1 + dfs(j + 1))
+            return ans
+
         n = len(s)
-        powers = set()
-        value = 1
-
-        while value < 1 << n:
-            powers.add(value)
-            value *= 5
-
-        unreachable = n + 1
-        minimum_parts = [unreachable] * (n + 1)
-        minimum_parts[0] = 0
-
-        for start in range(n):
-            if minimum_parts[start] == unreachable or s[start] == "0":
-                continue
-
-            value = 0
-            for end in range(start, n):
-                value = value * 2 + int(s[end])
-
-                if value in powers:
-                    minimum_parts[end + 1] = min(
-                        minimum_parts[end + 1],
-                        minimum_parts[start] + 1,
-                    )
-
-        return minimum_parts[n] if minimum_parts[n] != unreachable else -1
+        x = 1
+        ss = {x}
+        for i in range(n):
+            x *= 5
+            ss.add(x)
+        ans = dfs(0)
+        return -1 if ans == inf else ans

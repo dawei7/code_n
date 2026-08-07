@@ -1,4 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def countVowels(self, word: str) -> int:
-        length = len(word)
-        return sum((index + 1) * (length - index) for index, character in enumerate(word) if character in "aeiou")
+    def countVowels(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        VOWELS = set("aeiou")
+        return sum((i-0+1) * ((len(word)-1)-i+1) for i, c in enumerate(word) if c in VOWELS)

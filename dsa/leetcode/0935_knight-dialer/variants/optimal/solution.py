@@ -1,32 +1,16 @@
 class Solution:
     def knightDialer(self, n: int) -> int:
-        modulus = 1_000_000_007
-        moves = ((4, 6), (6, 8), (7, 9), (4, 8), (0, 3, 9), (), (0, 1, 7), (2, 6), (1, 3), (2, 4))
-        transition = [[0] * 10 for _ in range(10)]
-        for source, destinations in enumerate(moves):
-            for destination in destinations:
-                transition[destination][source] = 1
-
-        def multiply(left, right):
-            product = [[0] * 10 for _ in range(10)]
-            for row in range(10):
-                for middle in range(10):
-                    if left[row][middle] == 0:
-                        continue
-                    for column in range(10):
-                        product[row][column] = (
-                            product[row][column] + left[row][middle] * right[middle][column]
-                        ) % modulus
-            return product
-
-        def apply(matrix, vector):
-            return [sum(matrix[row][column] * vector[column] for column in range(10)) % modulus for row in range(10)]
-
-        counts = [1] * 10
-        exponent = n - 1
-        while exponent:
-            if exponent & 1:
-                counts = apply(transition, counts)
-            transition = multiply(transition, transition)
-            exponent //= 2
-        return sum(counts) % modulus
+        f = [1] * 10
+        for _ in range(n - 1):
+            g = [0] * 10
+            g[0] = f[4] + f[6]
+            g[1] = f[6] + f[8]
+            g[2] = f[7] + f[9]
+            g[3] = f[4] + f[8]
+            g[4] = f[0] + f[3] + f[9]
+            g[6] = f[0] + f[1] + f[7]
+            g[7] = f[2] + f[6]
+            g[8] = f[1] + f[3]
+            g[9] = f[2] + f[4]
+            f = g
+        return sum(f) % (10**9 + 7)

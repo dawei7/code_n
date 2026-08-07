@@ -1,16 +1,17 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        changes = [0] * 1001
-        for passengers, start, end in trips:
-            changes[start] += passengers
-            changes[end] -= passengers
-
-        passengers_aboard = 0
-        for change in changes:
-            passengers_aboard += change
-            if passengers_aboard > capacity:
+    def carPooling(self, trips, capacity):
+        """
+        :type trips: List[List[int]]
+        :type capacity: int
+        :rtype: bool
+        """
+        line = [x for num, start, end in trips for x in [[start, num], [end, -num]]]
+        line.sort()
+        for _, num in line:
+            capacity -= num
+            if capacity < 0:
                 return False
         return True

@@ -1,11 +1,7 @@
-SELECT ROUND(
-    MIN(SQRT(
-        (first_point.x - second_point.x) * (first_point.x - second_point.x)
-        + (first_point.y - second_point.y) * (first_point.y - second_point.y)
-    )),
-    2
-) AS shortest
-FROM Point2D AS first_point
-JOIN Point2D AS second_point
-    ON first_point.x < second_point.x
-    OR (first_point.x = second_point.x AND first_point.y < second_point.y);
+# Write your MySQL query statement below
+SELECT ROUND(SQRT(POW(p1.x - p2.x, 2) + POW(p1.y - p2.y, 2)), 2) AS shortest
+FROM
+    Point2D AS p1
+    JOIN Point2D AS p2 ON p1.x != p2.x OR p1.y != p2.y
+ORDER BY 1
+LIMIT 1;

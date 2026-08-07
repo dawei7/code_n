@@ -8,26 +8,15 @@ class Solution:
         stock: List[int],
         cost: List[int],
     ) -> int:
-        answer = 0
-
-        for recipe in composition:
-            low = 0
-            high = min((stock[metal] + budget // cost[metal]) // recipe[metal] for metal in range(n))
-
-            while low <= high:
-                alloys = (low + high) // 2
-                expense = 0
-
-                for metal in range(n):
-                    missing = max(0, recipe[metal] * alloys - stock[metal])
-                    expense += missing * cost[metal]
-                    if expense > budget:
-                        break
-
-                if expense <= budget:
-                    answer = max(answer, alloys)
-                    low = alloys + 1
+        ans = 0
+        for c in composition:
+            l, r = 0, budget + stock[0]
+            while l < r:
+                mid = (l + r + 1) >> 1
+                s = sum(max(0, mid * x - y) * z for x, y, z in zip(c, stock, cost))
+                if s <= budget:
+                    l = mid
                 else:
-                    high = alloys - 1
-
-        return answer
+                    r = mid - 1
+            ans = max(ans, l)
+        return ans

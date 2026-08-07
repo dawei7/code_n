@@ -1,7 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def escapeGhosts(self, ghosts: List[List[int]], target: List[int]) -> bool:
-        player_distance = abs(target[0]) + abs(target[1])
-        return all(abs(ghost[0] - target[0]) + abs(ghost[1] - target[1]) > player_distance for ghost in ghosts)
+    def escapeGhosts(self, ghosts, target):
+        """
+        :type ghosts: List[List[int]]
+        :type target: List[int]
+        :rtype: bool
+        """
+        total = abs(target[0])+abs(target[1])
+        return all(total < abs(target[0]-i)+abs(target[1]-j) for i, j in ghosts)
+

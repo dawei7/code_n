@@ -1,59 +1,69 @@
-from itertools import combinations
-from typing import List
+# Time:  O(n + k^2 * 2^k), k = len(indegree) <= 16
+# Space: O(k^2)
+
+import collections
 
 
+# bitmasks, topological sort
 class Solution:
-    def supersequences(self, words: List[str]) -> List[List[int]]:
-        letters = sorted({letter for word in words for letter in word})
-        index = {letter: i for i, letter in enumerate(letters)}
-        m = len(letters)
-        outgoing = [0] * m
-        for first, second in words:
-            outgoing[index[first]] |= 1 << index[second]
+    def supersequences(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[int]]
+        """
+        def f(x):
+            x = ord(x)-ord('a')
+            if char_to_int[x] == -1:
+                int_to_char[len(indegree)] = x
+                char_to_int[x] = len(indegree)
+                indegree.append(0)
+            return char_to_int[x]
+                
+        def topological_sort(cnt):
+            total = sum(cnt)
+            if total > ans[0]:
+                return
+            new_cnt = cnt[:]
+            new_indgree = indegree[:]
+            lookup = [False]*len(cnt)
+            q = []
+            for u in range(len(indegree)):
+                if not new_indgree[u] or new_cnt[u] == 2:
+                    new_cnt[u] -= 1
+                    lookup[u] = True
+                    q.append(u)
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        new_indgree[v] -= 1
+                        if new_indgree[v]:
+                            continue
+                        new_cnt[v] -= 1
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+            if any(new_cnt):
+                return
+            if total < ans[0]:
+                ans[0] = total
+                ans[1][:] = []
+            ans[1].append(cnt)
 
-        full = (1 << m) - 1
-        for doubled_count in range(m + 1):
-            answers: list[list[int]] = []
-            for vertices in combinations(range(m), doubled_count):
-                doubled = sum(1 << vertex for vertex in vertices)
-                remaining = full ^ doubled
-                indegree = [0] * m
-                for source in range(m):
-                    if remaining >> source & 1:
-                        targets = outgoing[source] & remaining
-                        while targets:
-                            bit = targets & -targets
-                            indegree[bit.bit_length() - 1] += 1
-                            targets ^= bit
-
-                ready = 0
-                for vertex in range(m):
-                    if remaining >> vertex & 1 and indegree[vertex] == 0:
-                        ready |= 1 << vertex
-
-                visited = 0
-                while ready:
-                    bit = ready & -ready
-                    ready ^= bit
-                    source = bit.bit_length() - 1
-                    visited |= bit
-                    targets = outgoing[source] & remaining
-                    while targets:
-                        target_bit = targets & -targets
-                        target = target_bit.bit_length() - 1
-                        indegree[target] -= 1
-                        if indegree[target] == 0:
-                            ready |= target_bit
-                        targets ^= target_bit
-
-                if visited != remaining:
-                    continue
-                frequencies = [0] * 26
-                for letter, vertex in index.items():
-                    frequencies[ord(letter) - ord("a")] = 1 + (doubled >> vertex & 1)
-                answers.append(frequencies)
-
-            if answers:
-                return answers
-
-        return []
+        adj = [[] for _ in range(26)]
+        char_to_int, int_to_char, indegree = [-1]*26, [0]*26, []
+        for w in words:
+            adj[f(w[0])].append(f(w[1]))
+            indegree[f(w[1])] += 1
+        ans = [float("inf"), []]
+        for mask in range(1<<len(indegree)):
+            topological_sort([2 if mask&(1<<i) else 1 for i in range(len(indegree))])
+        result = []
+        for cnt in ans[1]:
+            new_cnt = [0]*26
+            for i, x in enumerate(cnt):
+                new_cnt[int_to_char[i]] = x
+            result.append(new_cnt)
+        return result

@@ -1,21 +1,16 @@
-from typing import List
-
-
 class Solution:
     def bestRotation(self, nums: List[int]) -> int:
         n = len(nums)
-        score = sum(value <= index for index, value in enumerate(nums))
-        changes = [0] * n
-
-        for index, value in enumerate(nums):
-            changes[(index - value + 1) % n] -= 1
-            changes[(index + 1) % n] += 1
-
-        best_rotation = 0
-        best_score = score
-        for rotation in range(1, n):
-            score += changes[rotation]
-            if score > best_score:
-                best_score = score
-                best_rotation = rotation
-        return best_rotation
+        mx, ans = -1, n
+        d = [0] * n
+        for i, v in enumerate(nums):
+            l, r = (i + 1) % n, (n + i + 1 - v) % n
+            d[l] += 1
+            d[r] -= 1
+        s = 0
+        for k, t in enumerate(d):
+            s += t
+            if s > mx:
+                mx = s
+                ans = k
+        return ans

@@ -1,7 +1,4 @@
-SELECT country, gold_medals, silver_medals, bronze_medals
+# Write your MySQL query statement below
+SELECT *
 FROM Olympic
-ORDER BY
-    gold_medals DESC,
-    silver_medals DESC,
-    bronze_medals DESC,
-    country ASC;
+ORDER BY 2 DESC, 3 DESC, 4 DESC, 1;

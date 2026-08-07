@@ -1,16 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def getSmallestString(self, s: str, k: int) -> str:
-        characters = list(s)
-
-        for index, character in enumerate(characters):
-            value = ord(character) - ord("a")
-            distance_to_a = min(value, 26 - value)
-
-            if distance_to_a <= k:
-                characters[index] = "a"
-                k -= distance_to_a
-            else:
-                characters[index] = chr(ord(character) - k)
+    def getSmallestString(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        result = map(lambda x: ord(x)-ord('a'), s)
+        for i in range(len(result)):
+            d = min(result[i]-0, 26-result[i])
+            result[i] = 0 if d <= k else result[i]-k
+            k -= min(d, k)
+            if k == 0:
                 break
-
-        return "".join(characters)
+        return "".join(map(lambda x: chr(x+ord('a')), result))

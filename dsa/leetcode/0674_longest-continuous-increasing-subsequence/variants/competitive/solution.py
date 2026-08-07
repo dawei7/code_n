@@ -1,11 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def findLengthOfLCIS(self, nums: list[int]) -> int:
-        current = 1
-        longest = 1
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                current += 1
+    def findLengthOfLCIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, count = 0, 0
+        for i in range(len(nums)):
+            if i == 0 or nums[i-1] < nums[i]:
+                count += 1
+                result = max(result, count)
             else:
-                current = 1
-            longest = max(longest, current)
-        return longest
+                count = 1
+        return result
+

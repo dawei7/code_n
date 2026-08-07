@@ -1,33 +1,31 @@
+# Time:  O(n)
+# Space: O(n)
+
+# mono stack
 class Solution:
-    def maximumSumOfHeights(self, maxHeights: List[int]) -> int:
-        n = len(maxHeights)
-        left = [0] * n
-        stack = []
-
-        for i, height in enumerate(maxHeights):
-            while stack and maxHeights[stack[-1]] > height:
-                stack.pop()
-            if stack:
-                previous = stack[-1]
-                left[i] = left[previous] + (i - previous) * height
-            else:
-                left[i] = (i + 1) * height
-            stack.append(i)
-
-        right = [0] * n
-        stack.clear()
-        answer = 0
-
-        for i in range(n - 1, -1, -1):
-            height = maxHeights[i]
-            while stack and maxHeights[stack[-1]] > height:
-                stack.pop()
-            if stack:
-                next_index = stack[-1]
-                right[i] = right[next_index] + (next_index - i) * height
-            else:
-                right[i] = (n - i) * height
-            answer = max(answer, left[i] + right[i] - height)
-            stack.append(i)
-
-        return answer
+    def maximumSumOfHeights(self, maxHeights):
+        """
+        :type maxHeights: List[int]
+        :rtype: int
+        """
+        left = [0]*len(maxHeights)
+        stk = [-1]
+        curr = 0
+        for i in range(len(maxHeights)):
+            while stk[-1] != stk[0] and maxHeights[stk[-1]] >= maxHeights[i]:
+                j = stk.pop()
+                curr -= (j-stk[-1])*maxHeights[j]
+            curr += (i-stk[-1])*maxHeights[i]
+            stk.append(i)
+            left[i] = curr
+        stk = [len(maxHeights)]
+        result = right = curr = 0
+        for i in reversed(range(len(maxHeights))):
+            while stk[-1] != stk[0] and maxHeights[stk[-1]] >= maxHeights[i]:
+                j = stk.pop()
+                curr -= (stk[-1]-j)*maxHeights[j]
+            curr += (stk[-1]-i)*maxHeights[i]
+            stk.append(i)
+            right = curr
+            result = max(result, left[i]+right-maxHeights[i])
+        return result

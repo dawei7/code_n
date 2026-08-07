@@ -1,24 +1,27 @@
-from typing import List
-
+# Time:  O(nlogr)
+# Space: O(1)
 
 class Solution:
-    def shipWithinDays(self, weights: List[int], days: int) -> int:
-        def can_ship(capacity: int) -> bool:
-            used_days = 1
-            load = 0
-            for weight in weights:
-                if load + weight > capacity:
-                    used_days += 1
-                    load = 0
-                load += weight
-            return used_days <= days
-
-        low = max(weights)
-        high = sum(weights)
-        while low < high:
-            middle = (low + high) // 2
-            if can_ship(middle):
-                high = middle
+    def shipWithinDays(self, weights, D):
+        """
+        :type weights: List[int]
+        :type D: int
+        :rtype: int
+        """
+        def possible(weights, D, mid):
+            result, curr = 1, 0
+            for w in weights:
+                if curr+w > mid:
+                    result += 1
+                    curr = 0
+                curr += w
+            return result <= D
+    
+        left, right = max(weights), sum(weights)
+        while left <= right:
+            mid = left + (right-left)//2
+            if possible(weights, D, mid):
+                right = mid-1
             else:
-                low = middle + 1
-        return low
+                left = mid+1
+        return left

@@ -1,42 +1,24 @@
+# Time:  O(n + k^2)
+# Space: O(n + k)
+
+# dp, prefix sum
 class Solution:
-    def possibleStringCount(self, word: str, k: int) -> int:
-        modulus = 1_000_000_007
-        short_run_lengths = []
-        run_count = 0
-        run_length = 1
-        total = 1
-
-        for index in range(1, len(word)):
-            if word[index] == word[index - 1]:
-                run_length += 1
-            else:
-                total = total * run_length % modulus
-                run_count += 1
-                if run_count < k:
-                    short_run_lengths.append(run_length)
-                run_length = 1
-
-        total = total * run_length % modulus
-        run_count += 1
-        if run_count < k:
-            short_run_lengths.append(run_length)
-
-        if run_count >= k:
-            return total
-
-        counts = [0] * k
-        counts[0] = 1
-
-        for length in short_run_lengths:
-            next_counts = [0] * k
-            window = 0
-            for original_length in range(1, k):
-                window += counts[original_length - 1]
-                removed = original_length - length - 1
-                if removed >= 0:
-                    window -= counts[removed]
-                next_counts[original_length] = window % modulus
-            counts = next_counts
-
-        invalid = sum(counts) % modulus
-        return (total - invalid) % modulus
+    def possibleStringCount(self, word, k):
+        MOD = 10**9+7
+        cnt = [0]
+        for i in range(len(word)):
+            cnt[-1] += 1
+            if i+1 == len(word) or word[i+1] != word[i]:
+                cnt.append(0)
+        cnt.pop()
+        result = reduce(lambda accu, x: accu*x%MOD, cnt, 1)
+        if k <= len(cnt):
+            return result
+        dp = [0]*(k-len(cnt))
+        dp[0] = 1
+        for l in cnt:
+            for i in range(len(dp)-1):
+                dp[i+1] = (dp[i+1]+dp[i])%MOD
+            for i in reversed(range(l, len(dp))):
+                dp[i] = (dp[i]-dp[i-l])%MOD
+        return reduce(lambda accu, x: (accu-x)%MOD, dp, result)

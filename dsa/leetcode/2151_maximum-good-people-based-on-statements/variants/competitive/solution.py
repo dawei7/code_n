@@ -1,23 +1,27 @@
-from typing import List
+# Time:  O(n^2 * 2^n)
+# Space: O(1)
 
-
+# brute force, bitmask
 class Solution:
-    def maximumGood(self, statements: List[List[int]]) -> int:
-        people = len(statements)
-        maximum = 0
+    def maximumGood(self, statements):
+        """
+        :type statements: List[List[int]]
+        :rtype: int
+        """
+        def check(mask):
+            return all(((mask>>j)&1) == statements[i][j]
+                       for i in range(len(statements)) if (mask>>i)&1 
+                       for j in range(len(statements[i])) if statements[i][j] != 2)
 
-        for mask in range(1 << people):
-            consistent = True
-            for person in range(people):
-                if not (mask >> person) & 1:
-                    continue
-                for target, statement in enumerate(statements[person]):
-                    if statement != 2 and statement != ((mask >> target) & 1):
-                        consistent = False
-                        break
-                if not consistent:
-                    break
-            if consistent:
-                maximum = max(maximum, mask.bit_count())
+        def popcount(x):
+            result = 0
+            while x:
+                x &= x-1
+                result += 1
+            return result
 
-        return maximum
+        result = 0
+        for mask in range(1<<len(statements)):
+            if check(mask):
+                result = max(result, popcount(mask))
+        return result

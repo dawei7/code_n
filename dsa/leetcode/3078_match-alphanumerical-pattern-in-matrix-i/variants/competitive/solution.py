@@ -1,43 +1,34 @@
+# Time:  O(n * m * r * c)
+# Space: O(1)
+
+# brute force, hash table
 class Solution:
-    def findPattern(self, board: List[List[int]], pattern: List[str]) -> List[int]:
-        board_rows = len(board)
-        board_columns = len(board[0])
-        pattern_rows = len(pattern)
-        pattern_columns = len(pattern[0])
-
-        if pattern_rows > board_rows or pattern_columns > board_columns:
-            return [-1, -1]
-
-        for top in range(board_rows - pattern_rows + 1):
-            for left in range(board_columns - pattern_columns + 1):
-                symbol_to_digit = {}
-                digit_to_symbol = {}
-                matches = True
-
-                for row in range(pattern_rows):
-                    for column in range(pattern_columns):
-                        symbol = pattern[row][column]
-                        digit = board[top + row][left + column]
-
-                        if symbol.isdigit():
-                            if digit != int(symbol):
-                                matches = False
-                                break
-                            continue
-                        if symbol in symbol_to_digit and symbol_to_digit[symbol] != digit:
-                            matches = False
-                            break
-                        if digit in digit_to_symbol and digit_to_symbol[digit] != symbol:
-                            matches = False
-                            break
-
-                        symbol_to_digit[symbol] = digit
-                        digit_to_symbol[digit] = symbol
-
-                    if not matches:
-                        break
-
-                if matches:
-                    return [top, left]
-
-        return [-1, -1]
+    def findPattern(self, board, pattern):
+        """
+        :type board: List[List[int]]
+        :type pattern: List[str]
+        :rtype: List[int]
+        """
+        def check(i, j):
+            lookup = [-1]*26
+            lookup2 = [False]*10
+            for r in range(len(pattern)):
+                for c in range(len(pattern[0])):
+                    y = board[i+r][j+c]
+                    if pattern[r][c].isdigit():
+                        if int(pattern[r][c]) != y:
+                            return False
+                        continue
+                    x = ord(pattern[r][c])-ord('a')
+                    if lookup[x] == -1:
+                        if lookup2[y]:
+                            return False
+                        lookup2[y] = True
+                        lookup[x] = y
+                        continue
+                    if lookup[x] != y:
+                        return False
+            return True
+                    
+        return next(([i, j] for i in range(len(board)-len(pattern)+1) for j in range(len(board[0])-len(pattern[0])+1) if check(i, j)), [-1, -1])
+    

@@ -1,24 +1,15 @@
-from typing import List
-
-
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
-        characters = list(s)
-        permutations = []
-
-        def generate(index: int) -> None:
-            if index == len(characters):
-                permutations.append("".join(characters))
+        def dfs(i: int) -> None:
+            if i >= len(t):
+                ans.append("".join(t))
                 return
-            if characters[index].isalpha():
-                original = characters[index]
-                characters[index] = original.lower()
-                generate(index + 1)
-                characters[index] = original.upper()
-                generate(index + 1)
-                characters[index] = original
-            else:
-                generate(index + 1)
+            dfs(i + 1)
+            if t[i].isalpha():
+                t[i] = chr(ord(t[i]) ^ 32)
+                dfs(i + 1)
 
-        generate(0)
-        return permutations
+        t = list(s)
+        ans = []
+        dfs(0)
+        return ans

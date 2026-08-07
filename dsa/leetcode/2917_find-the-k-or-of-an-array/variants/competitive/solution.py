@@ -1,14 +1,12 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(1)
 
-
+# bit manipulation
 class Solution:
-    def findKOr(self, nums: List[int], k: int) -> int:
-        answer = 0
-
-        for bit in range(31):
-            mask = 1 << bit
-            count = sum(1 for value in nums if value & mask)
-            if count >= k:
-                answer |= mask
-
-        return answer
+    def findKOr(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        return sum(1<<i for i in range(max(nums).bit_length()) if sum((x&(1<<i)) != 0 for x in nums) >= k)

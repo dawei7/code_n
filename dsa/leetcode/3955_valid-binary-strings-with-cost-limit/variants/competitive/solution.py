@@ -1,21 +1,39 @@
+# Time:  O(n * 2^n)
+# Space: O(n)
+
+# backtracking
 class Solution:
-    def generateValidStrings(self, n: int, k: int) -> list[str]:
-        valid_strings = []
-        path = []
-
-        def backtrack(index: int, cost: int, previous_one: bool) -> None:
-            if index == n:
-                valid_strings.append("".join(path))
+    def generateValidStrings(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[str]
+        """
+        def backtracking(total):
+            if len(curr) == n:
+                result.append("".join(curr))
                 return
+            curr.append('0')
+            backtracking(total)
+            curr.pop()
+            if (not curr or curr[-1] == '0') and total+len(curr) <= k:
+                curr.append('1')
+                backtracking(total+(len(curr)-1))
+                curr.pop()
 
-            path.append("0")
-            backtrack(index + 1, cost, False)
-            path.pop()
+        result, curr = [], []
+        backtracking(0)
+        return result
 
-            if not previous_one and cost + index <= k:
-                path.append("1")
-                backtrack(index + 1, cost + index, True)
-                path.pop()
 
-        backtrack(0, 0, False)
-        return valid_strings
+# Time:  O(n * 2^n)
+# Space: O(n)
+# bitmasks
+class Solution2(object):
+    def generateValidStrings(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: List[str]
+        """
+        return ["".join('1' if mask&(1<<i) else '0' for i in range(n)) for mask in range(1<<n) if mask&(mask>>1) == 0 and sum(i for i in range(n) if mask&(1<<i)) <= k]

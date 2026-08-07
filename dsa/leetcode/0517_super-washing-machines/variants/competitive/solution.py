@@ -1,17 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findMinMoves(self, machines: List[int]) -> int:
+    def findMinMoves(self, machines):
+        """
+        :type machines: List[int]
+        :rtype: int
+        """
         total = sum(machines)
-        if total % len(machines) != 0:
-            return -1
+        if total % len(machines): return -1
 
-        target = total // len(machines)
-        prefix_balance = 0
-        moves = 0
-        for load in machines:
-            excess = load - target
-            prefix_balance += excess
-            moves = max(moves, excess, abs(prefix_balance))
-        return moves
+        result, target, curr = 0, total / len(machines), 0
+        for n in machines:
+            curr += n - target
+            result = max(result, max(n - target, abs(curr)))
+        return result
+

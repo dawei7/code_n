@@ -1,13 +1,15 @@
 class Solution:
     def concatHex36(self, n: int) -> str:
-        digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        def f(x: int, k: int) -> str:
+            res = []
+            while x:
+                v = x % k
+                if v <= 9:
+                    res.append(str(v))
+                else:
+                    res.append(chr(ord("A") + v - 10))
+                x //= k
+            return "".join(res[::-1])
 
-        def convert(value: int, base: int) -> str:
-            encoded = []
-            while value:
-                value, remainder = divmod(value, base)
-                encoded.append(digits[remainder])
-            return "".join(reversed(encoded)) or "0"
-
-        square = n * n
-        return convert(square, 16) + convert(square * n, 36)
+        x, y = n**2, n**3
+        return f(x, 16) + f(y, 36)

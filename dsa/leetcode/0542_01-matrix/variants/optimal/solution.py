@@ -1,27 +1,19 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        rows, cols = len(mat), len(mat[0])
-        distances = [[-1] * cols for _ in range(rows)]
-        queue = deque()
-        for row in range(rows):
-            for col in range(cols):
-                if mat[row][col] == 0:
-                    distances[row][col] = 0
-                    queue.append((row, col))
-
-        while queue:
-            row, col = queue.popleft()
-            for next_row, next_col in (
-                (row - 1, col),
-                (row + 1, col),
-                (row, col - 1),
-                (row, col + 1),
-            ):
-                if 0 <= next_row < rows and 0 <= next_col < cols and distances[next_row][next_col] == -1:
-                    distances[next_row][next_col] = distances[row][col] + 1
-                    queue.append((next_row, next_col))
-        return distances
+        m, n = len(mat), len(mat[0])
+        ans = [[-1] * n for _ in range(m)]
+        q = deque()
+        for i, row in enumerate(mat):
+            for j, x in enumerate(row):
+                if x == 0:
+                    ans[i][j] = 0
+                    q.append((i, j))
+        dirs = (-1, 0, 1, 0, -1)
+        while q:
+            i, j = q.popleft()
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and ans[x][y] == -1:
+                    ans[x][y] = ans[i][j] + 1
+                    q.append((x, y))
+        return ans

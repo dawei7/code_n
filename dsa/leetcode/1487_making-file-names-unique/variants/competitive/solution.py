@@ -1,26 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def getFolderNames(self, names: List[str]) -> List[str]:
-        next_suffix = {}
-        assigned = []
-
+    def getFolderNames(self, names):
+        """
+        :type names: List[str]
+        :rtype: List[str]
+        """
+        count = collections.Counter()
+        result, lookup = [], set()
         for name in names:
-            if name not in next_suffix:
-                next_suffix[name] = 1
-                assigned.append(name)
-                continue
-
-            suffix = next_suffix[name]
-            candidate = f"{name}({suffix})"
-
-            while candidate in next_suffix:
-                suffix += 1
-                candidate = f"{name}({suffix})"
-
-            next_suffix[name] = suffix + 1
-            next_suffix[candidate] = 1
-            assigned.append(candidate)
-
-        return assigned
+            while True:
+                name_with_suffix = "{}({})".format(name, count[name]) if count[name] else name
+                count[name] += 1
+                if name_with_suffix not in lookup:
+                    break
+            result.append(name_with_suffix)
+            lookup.add(name_with_suffix)
+        return result

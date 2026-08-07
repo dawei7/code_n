@@ -1,23 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def alternatingSubarray(self, nums: List[int]) -> int:
-        best = -1
-        length = 1
-        expected = 1
-
-        for index in range(1, len(nums)):
-            difference = nums[index] - nums[index - 1]
-
-            if difference == expected:
-                length += 1
-                expected = -expected
-            elif difference == 1:
-                length = 2
-                expected = -1
+    def alternatingSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = l = -1
+        for i in range(len(nums)-1):
+            if l != -1 and nums[i-1] == nums[i+1]:
+                l += 1
             else:
-                length = 1
-                expected = 1
-
-            if length >= 2:
-                best = max(best, length)
-
-        return best
+                l = 2 if nums[i+1]-nums[i] == 1 else -1
+            result = max(result, l)
+        return result

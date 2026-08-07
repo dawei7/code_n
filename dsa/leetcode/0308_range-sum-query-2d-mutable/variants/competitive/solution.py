@@ -1,42 +1,76 @@
-class NumMatrix:
-    def __init__(self, matrix: list[list[int]]):
-        self.rows = len(matrix)
-        self.columns = len(matrix[0]) if matrix else 0
-        self.values = [row[:] for row in matrix]
-        self.tree = [[0] * (self.columns + 1) for _ in range(self.rows + 1)]
-        for row in range(self.rows):
-            for column in range(self.columns):
-                self._add(row, column, matrix[row][column])
+# Time:  ctor:   O(m * n)
+#        update: O(logm * logn)
+#        query:  O(logm * logn)
+# Space: O(m * n)
 
-    def _add(self, row: int, column: int, delta: int) -> None:
-        row_index = row + 1
-        while row_index <= self.rows:
-            column_index = column + 1
-            while column_index <= self.columns:
-                self.tree[row_index][column_index] += delta
-                column_index += column_index & -column_index
-            row_index += row_index & -row_index
+class NumMatrix(object):
+    def __init__(self, matrix):
+        """
+        initialize your data structure here.
+        :type matrix: List[List[int]]
+        """
+        if not matrix:
+            return
+        self.__matrix = matrix
+        self.__bit = [[0] * (len(self.__matrix[0]) + 1) \
+                      for _ in range(len(self.__matrix) + 1)]
+        for i in range(1, len(self.__bit)):
+            for j in range(1, len(self.__bit[0])):
+                self.__bit[i][j] = matrix[i-1][j-1] + self.__bit[i-1][j] + \
+                                   self.__bit[i][j-1] - self.__bit[i-1][j-1]
+        for i in reversed(range(1, len(self.__bit))):
+            for j in reversed(range(1, len(self.__bit[0]))):
+                last_i, last_j = i - (i & -i), j - (j & -j)
+                self.__bit[i][j] = self.__bit[i][j] - self.__bit[i][last_j] - \
+                                   self.__bit[last_i][j] + self.__bit[last_i][last_j]
 
-    def update(self, row: int, col: int, val: int) -> None:
-        delta = val - self.values[row][col]
-        self.values[row][col] = val
-        self._add(row, col, delta)
+    def update(self, row, col, val):
+        """
+        update the element at matrix[row,col] to val.
+        :type row: int
+        :type col: int
+        :type val: int
+        :rtype: void
+        """
+        if val - self.__matrix[row][col]:
+            self.__add(row, col, val - self.__matrix[row][col])
+            self.__matrix[row][col] = val
 
-    def _prefix_sum(self, row: int, column: int) -> int:
-        total = 0
-        row_index = row + 1
-        while row_index > 0:
-            column_index = column + 1
-            while column_index > 0:
-                total += self.tree[row_index][column_index]
-                column_index -= column_index & -column_index
-            row_index -= row_index & -row_index
-        return total
+    def sumRegion(self, row1, col1, row2, col2):
+        """
+        sum of elements matrix[(row1,col1)..(row2,col2)], inclusive.
+        :type row1: int
+        :type col1: int
+        :type row2: int
+        :type col2: int
+        :rtype: int
+        """
+        return self.__sum(row2, col2) - self.__sum(row2, col1 - 1) - \
+               self.__sum(row1 - 1, col2) + self.__sum(row1 - 1, col1 - 1)
 
-    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        return (
-            self._prefix_sum(row2, col2)
-            - self._prefix_sum(row1 - 1, col2)
-            - self._prefix_sum(row2, col1 - 1)
-            + self._prefix_sum(row1 - 1, col1 - 1)
-        )
+    def __sum(self, row, col):
+        row += 1
+        col += 1
+        ret = 0
+        i = row
+        while i > 0:
+            j = col
+            while j > 0:
+                ret += self.__bit[i][j]
+                j -= (j & -j)
+            i -= (i & -i)
+        return ret
+
+    def __add(self, row, col, val):
+        row += 1
+        col += 1
+        i = row
+        while i <= len(self.__matrix):
+            j = col
+            while j <= len(self.__matrix[0]):
+                self.__bit[i][j] += val
+                j += (j & -j)
+            i += (i & -i)
+
+
+

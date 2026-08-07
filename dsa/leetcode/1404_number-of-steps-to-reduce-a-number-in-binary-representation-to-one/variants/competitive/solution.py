@@ -1,12 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numSteps(self, s: str) -> int:
-        steps = 0
-        carry = 0
-        for bit in reversed(s[1:]):
-            effective_bit = int(bit) + carry
-            if effective_bit == 1:
-                steps += 2
-                carry = 1
+    def numSteps(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, carry = 0, 0
+        for i in reversed(range(1, len(s))):
+            if int(s[i]) + carry == 1:
+                carry = 1  # once it was set, it would keep carrying forever
+                result += 2
             else:
-                steps += 1
-        return steps + carry
+                result += 1
+        return result+carry

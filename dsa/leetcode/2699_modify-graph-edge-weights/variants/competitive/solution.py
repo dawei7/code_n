@@ -1,58 +1,49 @@
-from heapq import heappop, heappush
+# Time:  O((|E| + |V|) * log|V|) = O(|E| * log|V|) by using binary heap,
+#        if we can further to use Fibonacci heap, it would be O(|E| + |V| * log|V|)
+# Space: O(|E| + |V|) = O(|E|)
+
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def modifiedGraphEdges(
-        self, n: int, edges: List[List[int]], source: int, destination: int, target: int
-    ) -> List[List[int]]:
-        edges = [edge[:] for edge in edges]
-        graph = [[] for _ in range(n)]
-        for index, (u, v, _) in enumerate(edges):
-            graph[u].append((v, index))
-            graph[v].append((u, index))
-
-        def minimum_distances(start: int) -> List[int]:
-            distances = [float("inf")] * n
-            distances[start] = 0
-            heap = [(0, start)]
-            while heap:
-                distance, node = heappop(heap)
-                if distance != distances[node]:
+    def modifiedGraphEdges(self, n, edges, source, destination, target):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type source: int
+        :type destination: int
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        def dijkstra(start, x):
+            best = [target+1]*len(adj)
+            best[start] = 0
+            min_heap = [(0, start)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if curr > best[u]:
                     continue
-                for neighbor, index in graph[node]:
-                    weight = edges[index][2]
-                    if weight == -1:
-                        weight = 1
-                    candidate = distance + weight
-                    if candidate < distances[neighbor]:
-                        distances[neighbor] = candidate
-                        heappush(heap, (candidate, neighbor))
-            return distances
-
-        distance_to_destination = minimum_distances(destination)
-        if distance_to_destination[source] > target:
+                for v, w in adj[u]:       
+                    if w == -1:
+                        w = x
+                    if curr+w >= best[v]:
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (best[v], v))
+            return best
+        
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        left = dijkstra(source, 1)
+        if not (left[destination] <= target):
             return []
-
-        distances = [float("inf")] * n
-        distances[source] = 0
-        heap = [(0, source)]
-        while heap:
-            distance, node = heappop(heap)
-            if distance != distances[node]:
-                continue
-            for neighbor, index in graph[node]:
-                weight = edges[index][2]
-                if weight == -1:
-                    weight = max(1, target - distance - distance_to_destination[neighbor])
-                    edges[index][2] = weight
-                candidate = distance + weight
-                if candidate < distances[neighbor]:
-                    distances[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor))
-
-        if distances[destination] != target:
+        right= dijkstra(destination, target+1)
+        if not (right[source] >= target):
             return []
-        for edge in edges:
-            if edge[2] == -1:
-                edge[2] = 2_000_000_000
+        for e in edges:
+            if e[2] == -1:
+                e[2] = max(target-left[e[0]]-right[e[1]], target-left[e[1]]-right[e[0]], 1)
         return edges

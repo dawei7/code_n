@@ -1,29 +1,19 @@
-from typing import List
-
-
 class Solution:
     def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
-        blocked = {tuple(obstacle) for obstacle in obstacles}
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        direction = 0
-        x = 0
-        y = 0
-        best = 0
-
-        for command in commands:
-            if command == -2:
-                direction = (direction - 1) % 4
-            elif command == -1:
-                direction = (direction + 1) % 4
+        dirs = (0, 1, 0, -1, 0)
+        s = {(x, y) for x, y in obstacles}
+        ans = k = 0
+        x = y = 0
+        for c in commands:
+            if c == -2:
+                k = (k + 3) % 4
+            elif c == -1:
+                k = (k + 1) % 4
             else:
-                dx, dy = directions[direction]
-                for _ in range(command):
-                    next_x = x + dx
-                    next_y = y + dy
-                    if (next_x, next_y) in blocked:
+                for _ in range(c):
+                    nx, ny = x + dirs[k], y + dirs[k + 1]
+                    if (nx, ny) in s:
                         break
-                    x = next_x
-                    y = next_y
-                    best = max(best, x * x + y * y)
-
-        return best
+                    x, y = nx, ny
+                    ans = max(ans, x * x + y * y)
+        return ans

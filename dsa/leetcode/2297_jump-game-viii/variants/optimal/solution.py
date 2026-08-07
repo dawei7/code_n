@@ -1,24 +1,26 @@
-from typing import List
-
-
 class Solution:
     def minCost(self, nums: List[int], costs: List[int]) -> int:
         n = len(nums)
-        best = [10**30] * n
-        best[0] = 0
-        nonincreasing = []
-        increasing = []
+        g = defaultdict(list)
+        stk = []
+        for i in range(n - 1, -1, -1):
+            while stk and nums[stk[-1]] < nums[i]:
+                stk.pop()
+            if stk:
+                g[i].append(stk[-1])
+            stk.append(i)
 
-        for index, value in enumerate(nums):
-            while nonincreasing and nums[nonincreasing[-1]] <= value:
-                source = nonincreasing.pop()
-                best[index] = min(best[index], best[source] + costs[index])
+        stk = []
+        for i in range(n - 1, -1, -1):
+            while stk and nums[stk[-1]] >= nums[i]:
+                stk.pop()
+            if stk:
+                g[i].append(stk[-1])
+            stk.append(i)
 
-            while increasing and nums[increasing[-1]] > value:
-                source = increasing.pop()
-                best[index] = min(best[index], best[source] + costs[index])
-
-            nonincreasing.append(index)
-            increasing.append(index)
-
-        return best[-1]
+        f = [inf] * n
+        f[0] = 0
+        for i in range(n):
+            for j in g[i]:
+                f[j] = min(f[j], f[i] + costs[j])
+        return f[n - 1]

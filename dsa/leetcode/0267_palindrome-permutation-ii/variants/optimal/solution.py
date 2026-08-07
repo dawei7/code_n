@@ -1,32 +1,23 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def generatePalindromes(self, s: str) -> List[str]:
-        counts = Counter(s)
-        odd = [character for character, count in counts.items() if count % 2]
-        if len(odd) > 1:
-            return []
-        center = odd[0] if odd else ""
-        half = sorted(character for character, count in counts.items() for _ in range(count // 2))
-        used = [False] * len(half)
-        path = []
-        palindromes = []
-
-        def generate() -> None:
-            if len(path) == len(half):
-                left = "".join(path)
-                palindromes.append(left + center + left[::-1])
+        def dfs(t):
+            if len(t) == len(s):
+                ans.append(t)
                 return
-            for index, character in enumerate(half):
-                if used[index] or (index and half[index - 1] == character and not used[index - 1]):
-                    continue
-                used[index] = True
-                path.append(character)
-                generate()
-                path.pop()
-                used[index] = False
+            for c, v in cnt.items():
+                if v > 1:
+                    cnt[c] -= 2
+                    dfs(c + t + c)
+                    cnt[c] += 2
 
-        generate()
-        return palindromes
+        cnt = Counter(s)
+        mid = ''
+        for c, v in cnt.items():
+            if v & 1:
+                if mid:
+                    return []
+                mid = c
+                cnt[c] -= 1
+        ans = []
+        dfs(mid)
+        return ans

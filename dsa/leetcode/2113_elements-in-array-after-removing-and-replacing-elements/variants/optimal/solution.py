@@ -1,19 +1,11 @@
-from typing import List
-
-
 class Solution:
     def elementInNums(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        size = len(nums)
-        period = 2 * size
-        answers: List[int] = []
-
-        for time, index in queries:
-            phase = time % period
-            if phase < size:
-                shifted_index = phase + index
-                answers.append(nums[shifted_index] if shifted_index < size else -1)
-            else:
-                restored_length = phase - size
-                answers.append(nums[index] if index < restored_length else -1)
-
-        return answers
+        n, m = len(nums), len(queries)
+        ans = [-1] * m
+        for j, (t, i) in enumerate(queries):
+            t %= 2 * n
+            if t < n and i < n - t:
+                ans[j] = nums[i + t]
+            elif t > n and i < t - n:
+                ans[j] = nums[i]
+        return ans

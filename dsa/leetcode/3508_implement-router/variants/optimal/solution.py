@@ -1,41 +1,44 @@
-from bisect import bisect_left, bisect_right
-from collections import defaultdict, deque
-from typing import List
-
-
 class Router:
+
     def __init__(self, memoryLimit: int):
-        self.limit = memoryLimit
-        self.queue = deque()
-        self.packets = set()
-        self.timestamps = defaultdict(list)
-        self.left_index = defaultdict(int)
+        self.lim = memoryLimit
+        self.vis = set()
+        self.q = deque()
+        self.idx = defaultdict(int)
+        self.d = defaultdict(list)
 
     def addPacket(self, source: int, destination: int, timestamp: int) -> bool:
-        packet = (source, destination, timestamp)
-        if packet in self.packets:
+        x = self.f(source, destination, timestamp)
+        if x in self.vis:
             return False
-
-        if len(self.queue) == self.limit:
-            self._remove_oldest()
-
-        self.queue.append(packet)
-        self.packets.add(packet)
-        self.timestamps[destination].append(timestamp)
+        self.vis.add(x)
+        if len(self.q) >= self.lim:
+            self.forwardPacket()
+        self.q.append((source, destination, timestamp))
+        self.d[destination].append(timestamp)
         return True
 
     def forwardPacket(self) -> List[int]:
-        if not self.queue:
+        if not self.q:
             return []
-        return list(self._remove_oldest())
+        s, d, t = self.q.popleft()
+        self.vis.remove(self.f(s, d, t))
+        self.idx[d] += 1
+        return [s, d, t]
+
+    def f(self, a: int, b: int, c: int) -> int:
+        return a << 46 | b << 29 | c
 
     def getCount(self, destination: int, startTime: int, endTime: int) -> int:
-        values = self.timestamps.get(destination, [])
-        left = self.left_index.get(destination, 0)
-        return bisect_right(values, endTime, lo=left) - bisect_left(values, startTime, lo=left)
+        ls = self.d[destination]
+        k = self.idx[destination]
+        i = bisect_left(ls, startTime, k)
+        j = bisect_left(ls, endTime + 1, k)
+        return j - i
 
-    def _remove_oldest(self):
-        packet = self.queue.popleft()
-        self.packets.remove(packet)
-        self.left_index[packet[1]] += 1
-        return packet
+
+# Your Router object will be instantiated and called as such:
+# obj = Router(memoryLimit)
+# param_1 = obj.addPacket(source,destination,timestamp)
+# param_2 = obj.forwardPacket()
+# param_3 = obj.getCount(destination,startTime,endTime)

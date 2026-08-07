@@ -1,14 +1,18 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def smallestRangeII(self, nums: List[int], k: int) -> int:
-        values = sorted(nums)
-        best = values[-1] - values[0]
+    def smallestRangeII(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: int
+        """
+        A.sort()
+        result = A[-1]-A[0]
+        for i in range(len(A)-1):
+            result = min(result,
+                         max(A[-1]-K, A[i]+K) -
+                         min(A[0]+K, A[i+1]-K))
+        return result
 
-        for index in range(len(values) - 1):
-            high = max(values[index] + k, values[-1] - k)
-            low = min(values[0] + k, values[index + 1] - k)
-            best = min(best, high - low)
-
-        return best

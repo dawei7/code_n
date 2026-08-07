@@ -1,16 +1,11 @@
-from typing import List
-
-
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
-        best = 2
-        current = 2
-
-        for index in range(2, len(nums)):
-            if nums[index] == nums[index - 1] + nums[index - 2]:
-                current += 1
-                best = max(best, current)
+        n = len(nums)
+        ans = f = 2
+        for i in range(2, n):
+            if nums[i] == nums[i - 1] + nums[i - 2]:
+                f = f + 1
+                ans = max(ans, f)
             else:
-                current = 2
-
-        return best
+                f = 2
+        return ans

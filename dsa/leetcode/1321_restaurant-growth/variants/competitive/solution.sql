@@ -1,23 +1,17 @@
-WITH daily AS (
-    SELECT visited_on, SUM(amount) AS amount
-    FROM Customer
-    GROUP BY visited_on
-),
-rolling AS (
-    SELECT
-        visited_on,
-        SUM(amount) OVER (
-            ORDER BY visited_on
-            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-        ) AS amount,
-        ROUND(AVG(amount) OVER (
-            ORDER BY visited_on
-            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
-        ), 2) AS average_amount,
-        ROW_NUMBER() OVER (ORDER BY visited_on) AS day_number
-    FROM daily
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH total_cte AS
+(
+  SELECT DISTINCT visited_on, 
+         SUM(amount) OVER (ORDER BY visited_on
+                           RANGE BETWEEN INTERVAL 6 DAY PRECEDING
+                           AND CURRENT ROW) AS amount
+  FROM Customer
 )
-SELECT visited_on, amount, average_amount
-FROM rolling
-WHERE day_number >= 7
-ORDER BY visited_on;
+
+SELECT visited_on, amount, ROUND(amount/7, 2) AS average_amount
+FROM total_cte AS a
+INNER JOIN
+(SELECT MIN(visited_on) AS min_visited_on FROM total_cte) AS b
+ON DATEDIFF(visited_on, min_visited_on) >= 6;

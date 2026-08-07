@@ -1,19 +1,33 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# bfs
 class Solution:
-    def reachableNodes(self, n: int, edges: List[List[int]], restricted: List[int]) -> int:
-        blocked = set(restricted)
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-        seen = {0}
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            for neighbor in graph[node]:
-                if neighbor not in blocked and neighbor not in seen:
-                    seen.add(neighbor)
-                    stack.append(neighbor)
-        return len(seen)
+    def reachableNodes(self, n, edges, restricted):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type restricted: List[int]
+        :rtype: int
+        """
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        result = 0
+        lookup = [False]*n
+        for x in restricted:
+            lookup[x] = True
+        q = [0]
+        lookup[0] = True
+        while q:
+            new_q = []
+            for u in q:
+                result += 1
+                for v in adj[u]:
+                    if lookup[v]:
+                        continue
+                    lookup[v] = True
+                    new_q.append(v)
+            q = new_q
+        return result

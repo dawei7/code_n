@@ -1,23 +1,36 @@
-class MyQueue:
+# Time:  O(1), amortized
+# Space: O(n)
+
+class MyQueue(object):
+
     def __init__(self):
-        self.incoming = []
-        self.outgoing = []
+        self.A, self.B = [], []
 
-    def push(self, x: int) -> None:
-        self.incoming.append(x)
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.A.append(x)
 
-    def _prepare_front(self) -> None:
-        if not self.outgoing:
-            while self.incoming:
-                self.outgoing.append(self.incoming.pop())
+    def pop(self):
+        """
+        :rtype: int
+        """
+        self.peek()
+        return self.B.pop()
 
-    def pop(self) -> int:
-        self._prepare_front()
-        return self.outgoing.pop()
+    def peek(self):
+        """
+        :rtype: int
+        """
+        if not self.B:
+            while self.A:
+                self.B.append(self.A.pop())
+        return self.B[-1]
 
-    def peek(self) -> int:
-        self._prepare_front()
-        return self.outgoing[-1]
-
-    def empty(self) -> bool:
-        return not self.incoming and not self.outgoing
+    def empty(self):
+        """
+        :rtype: bool
+        """
+        return not self.A and not self.B

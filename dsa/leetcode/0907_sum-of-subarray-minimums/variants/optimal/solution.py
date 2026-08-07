@@ -1,18 +1,22 @@
-from typing import List
-
-
 class Solution:
     def sumSubarrayMins(self, arr: List[int]) -> int:
-        modulus = 1_000_000_007
-        stack = []
-        total = 0
+        n = len(arr)
+        left = [-1] * n
+        right = [n] * n
+        stk = []
+        for i, v in enumerate(arr):
+            while stk and arr[stk[-1]] >= v:
+                stk.pop()
+            if stk:
+                left[i] = stk[-1]
+            stk.append(i)
 
-        for right in range(len(arr) + 1):
-            current = arr[right] if right < len(arr) else -1
-            while stack and arr[stack[-1]] >= current:
-                middle = stack.pop()
-                left = stack[-1] if stack else -1
-                total += arr[middle] * (middle - left) * (right - middle)
-            stack.append(right)
-
-        return total % modulus
+        stk = []
+        for i in range(n - 1, -1, -1):
+            while stk and arr[stk[-1]] > arr[i]:
+                stk.pop()
+            if stk:
+                right[i] = stk[-1]
+            stk.append(i)
+        mod = 10**9 + 7
+        return sum((i - left[i]) * (right[i] - i) * v for i, v in enumerate(arr)) % mod

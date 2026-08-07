@@ -1,17 +1,20 @@
-from typing import List
-
+# Time:  O((d * l) * logd), l is the average length of words
+# Space: O(1)
 
 class Solution:
-    def findLongestWord(self, s: str, dictionary: List[str]) -> str:
-        def is_subsequence(word: str) -> bool:
-            index = 0
-            for character in s:
-                if index < len(word) and word[index] == character:
-                    index += 1
-            return index == len(word)
+    def findLongestWord(self, s, d):
+        """
+        :type s: str
+        :type d: List[str]
+        :rtype: str
+        """
+        d.sort(key = lambda x: (-len(x), x))
+        for word in d:
+            i = 0
+            for c in s:
+                if i < len(word) and word[i] == c:
+                    i += 1
+            if i == len(word):
+                return word
+        return ""
 
-        answer = ""
-        for word in dictionary:
-            if is_subsequence(word) and (len(word) > len(answer) or (len(word) == len(answer) and word < answer)):
-                answer = word
-        return answer

@@ -1,11 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def isIdealPermutation(self, nums: List[int]) -> bool:
-        prefix_maximum = nums[0]
-        for right in range(2, len(nums)):
-            prefix_maximum = max(prefix_maximum, nums[right - 2])
-            if prefix_maximum > nums[right]:
-                return False
-        return True
+    def isIdealPermutation(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        return all(abs(v-i) <= 1 for i,v in enumerate(A))
+
+

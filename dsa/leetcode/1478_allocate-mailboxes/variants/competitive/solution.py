@@ -1,34 +1,23 @@
-from typing import List
-
+# Time:  O(m * n^2)
+# Space: O(n)
 
 class Solution:
-    def minDistance(self, houses: List[int], k: int) -> int:
-        positions = sorted(houses)
-        house_count = len(positions)
+    def minDistance(self, houses, k):
+        """
+        :type houses: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def cost(prefix, i, j):
+            return (prefix[j+1]-prefix[(i+j+1)//2])-(prefix[(i+j)//2+1]-prefix[i])
 
-        interval_cost = [[0] * house_count for _ in range(house_count)]
-        for length in range(2, house_count + 1):
-            for left in range(house_count - length + 1):
-                right = left + length - 1
-                inner_cost = 0
-                if left + 1 <= right - 1:
-                    inner_cost = interval_cost[left + 1][right - 1]
-                interval_cost[left][right] = inner_cost + positions[right] - positions[left]
-
-        infinity = 10**18
-        previous = [infinity] * (house_count + 1)
-        previous[0] = 0
-
-        for boxes in range(1, k + 1):
-            current = [infinity] * (house_count + 1)
-
-            for end in range(boxes, house_count + 1):
-                for start in range(boxes - 1, end):
-                    current[end] = min(
-                        current[end],
-                        previous[start] + interval_cost[start][end - 1],
-                    )
-
-            previous = current
-
-        return previous[house_count]
+        houses.sort()
+        prefix = [0]*(len(houses)+1)
+        for i, h in enumerate(houses):
+            prefix[i+1] = prefix[i]+h
+        dp = [cost(prefix, 0, j) for j in range(len(houses))]
+        for m in range(1, k):
+            for j in reversed(range(m, len(houses))):
+                for i in range(m, j+1):
+                    dp[j] = min(dp[j], dp[i-1]+cost(prefix, i, j))
+        return dp[-1]

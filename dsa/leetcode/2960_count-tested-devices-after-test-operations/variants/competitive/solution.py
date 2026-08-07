@@ -1,10 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# simulation
 class Solution:
-    def countTestedDevices(self, batteryPercentages: List[int]) -> int:
-        tested = 0
-        for battery in batteryPercentages:
-            if battery > tested:
-                tested += 1
-        return tested
+    def countTestedDevices(self, batteryPercentages):
+        """
+        :type batteryPercentages: List[int]
+        :rtype: int
+        """
+        result = 0
+        for x in batteryPercentages:
+            if x > result:
+                result += 1
+        return result

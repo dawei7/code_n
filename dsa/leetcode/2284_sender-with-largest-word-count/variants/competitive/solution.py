@@ -1,11 +1,19 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n * l)
+# Space: O(n)
+
+import collections
+import itertools
 
 
+# freq table
 class Solution:
-    def largestWordCount(self, messages: List[str], senders: List[str]) -> str:
-        totals = defaultdict(int)
-        for message, sender in zip(messages, senders):
-            totals[sender] += message.count(" ") + 1
-
-        return max(totals, key=lambda sender: (totals[sender], sender))
+    def largestWordCount(self, messages, senders):
+        """
+        :type messages: List[str]
+        :type senders: List[str]
+        :rtype: str
+        """
+        cnt = collections.Counter()
+        for m, s in itertools.izip(messages, senders):
+            cnt[s] += m.count(' ')+1
+        return max((k for k in cnt.keys()), key=lambda x: (cnt[x], x))

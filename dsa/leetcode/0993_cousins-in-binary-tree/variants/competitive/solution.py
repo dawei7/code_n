@@ -1,37 +1,43 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
-        queue = [(root, None)]
-        head = 0
-
-        while head < len(queue):
-            level_end = len(queue)
-            parent_x = parent_y = None
-            found_x = found_y = False
-
-            while head < level_end:
-                node, parent = queue[head]
-                head += 1
-                if node.val == x:
-                    parent_x = parent
-                    found_x = True
-                elif node.val == y:
-                    parent_y = parent
-                    found_y = True
-                if node.left is not None:
-                    queue.append((node.left, node))
-                if node.right is not None:
-                    queue.append((node.right, node))
-
-            if found_x or found_y:
-                return found_x and found_y and parent_x is not parent_y
-
-        return False
+    def isCousins(self, root, x, y):
+        """
+        :type root: TreeNode
+        :type x: int
+        :type y: int
+        :rtype: bool
+        """
+        def dfs(root, x, depth, parent):
+            if not root:
+                return False
+            if root.val == x:
+                return True
+            depth[0] += 1
+            prev_parent, parent[0] = parent[0], root
+            if dfs(root.left, x, depth, parent):
+                return True
+            parent[0] = root
+            if dfs(root.right, x, depth, parent):
+                return True
+            parent[0] = prev_parent
+            depth[0] -= 1
+            return False
+        
+        depth_x, depth_y = [0], [0]
+        parent_x, parent_y = [None], [None]
+        return dfs(root, x, depth_x, parent_x) and \
+               dfs(root, y, depth_y, parent_y) and \
+               depth_x[0] == depth_y[0] and \
+               parent_x[0] != parent_y[0]
+                
+        

@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
     def countNicePairs(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        frequencies = {}
-        answer = 0
+        def rev(x):
+            y = 0
+            while x:
+                y = y * 10 + x % 10
+                x //= 10
+            return y
 
-        for value in nums:
-            key = value - int(str(value)[::-1])
-            answer = (answer + frequencies.get(key, 0)) % modulus
-            frequencies[key] = frequencies.get(key, 0) + 1
-
-        return answer
+        cnt = Counter(x - rev(x) for x in nums)
+        mod = 10**9 + 7
+        return sum(v * (v - 1) // 2 for v in cnt.values()) % mod

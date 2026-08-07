@@ -1,11 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def repeatedNTimes(self, nums: List[int]) -> int:
-        seen = set()
-        for value in nums:
-            if value in seen:
-                return value
-            seen.add(value)
-        raise ValueError("input does not contain the promised repeated value")
+    def repeatedNTimes(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        for i in range(2, len(A)):
+            if A[i-1] == A[i] or A[i-2] == A[i]:
+                return A[i]
+        return A[0]

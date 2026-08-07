@@ -1,37 +1,30 @@
-from math import log10
-
-
 class Solution:
     def abbreviateProduct(self, left: int, right: int) -> str:
-        modulus = 10**12
-        suffix = 1
-        leading = 1.0
-        zeros = 0
-        logarithm = 0.0
-        compensation = 0.0
-
-        for value in range(left, right + 1):
-            increment = log10(value) - compensation
-            updated = logarithm + increment
-            compensation = (updated - logarithm) - increment
-            logarithm = updated
-
-            leading *= value
-            while leading >= modulus:
-                leading /= 10
-
-            suffix *= value
-            while suffix % 10 == 0:
-                suffix //= 10
-                zeros += 1
-            suffix %= modulus
-
-        significant_log = logarithm - zeros
-
-        if significant_log < 10:
-            return f"{suffix}e{zeros}"
-
-        while leading >= 100000:
-            leading /= 10
-        prefix = int(leading)
-        return f"{prefix}...{suffix % 100000:05d}e{zeros}"
+        cnt2 = cnt5 = 0
+        for x in range(left, right + 1):
+            while x % 2 == 0:
+                cnt2 += 1
+                x //= 2
+            while x % 5 == 0:
+                cnt5 += 1
+                x //= 5
+        c = cnt2 = cnt5 = min(cnt2, cnt5)
+        pre = suf = 1
+        gt = False
+        for x in range(left, right + 1):
+            suf *= x
+            while cnt2 and suf % 2 == 0:
+                suf //= 2
+                cnt2 -= 1
+            while cnt5 and suf % 5 == 0:
+                suf //= 5
+                cnt5 -= 1
+            if suf >= 1e10:
+                gt = True
+                suf %= int(1e10)
+            pre *= x
+            while pre > 1e5:
+                pre /= 10
+        if gt:
+            return str(int(pre)) + "..." + str(suf % int(1e5)).zfill(5) + "e" + str(c)
+        return str(suf) + "e" + str(c)

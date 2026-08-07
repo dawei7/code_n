@@ -1,13 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minimizeArrayValue(self, nums: List[int]) -> int:
-        prefix_sum = 0
-        answer = 0
+    def minimizeArrayValue(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        for index, value in enumerate(nums):
-            prefix_sum += value
-            answer = max(answer, (prefix_sum + index) // (index + 1))
-
-        return answer
+        result = curr = 0
+        for i, x in enumerate(nums):
+            curr += x
+            result = max(result, ceil_divide(curr, i+1))
+        return result

@@ -1,17 +1,14 @@
 class Solution:
     def reformat(self, s: str) -> str:
-        letters = [character for character in s if character.isalpha()]
-        digits = [character for character in s if character.isdigit()]
-        if abs(len(letters) - len(digits)) > 1:
-            return ""
-        if len(digits) >= len(letters):
-            first, second = digits, letters
-        else:
-            first, second = letters, digits
-
-        reformatted = []
-        for index, character in enumerate(first):
-            reformatted.append(character)
-            if index < len(second):
-                reformatted.append(second[index])
-        return "".join(reformatted)
+        a = [c for c in s if c.islower()]
+        b = [c for c in s if c.isdigit()]
+        if abs(len(a) - len(b)) > 1:
+            return ''
+        if len(a) < len(b):
+            a, b = b, a
+        ans = []
+        for x, y in zip(a, b):
+            ans.append(x + y)
+        if len(a) > len(b):
+            ans.append(a[-1])
+        return ''.join(ans)

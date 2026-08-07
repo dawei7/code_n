@@ -1,10 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def sumOfUnique(self, nums: List[int]) -> int:
-        frequency = [0] * 101
-        for value in nums:
-            frequency[value] += 1
-
-        return sum(value for value in range(1, 101) if frequency[value] == 1)
+    def sumOfUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(x for x, c in collections.Counter(nums).iteritems() if c == 1)

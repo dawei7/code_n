@@ -1,4 +1,8 @@
 class Solution:
     def minimumSum(self, num: int) -> int:
-        digits = sorted(int(digit) for digit in str(num))
-        return 10 * (digits[0] + digits[1]) + digits[2] + digits[3]
+        nums = []
+        while num:
+            nums.append(num % 10)
+            num //= 10
+        nums.sort()
+        return 10 * (nums[0] + nums[1]) + nums[2] + nums[3]

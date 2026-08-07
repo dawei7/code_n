@@ -1,14 +1,12 @@
 class Solution:
     def isZeroArray(self, nums: List[int], queries: List[List[int]]) -> bool:
-        difference = [0] * (len(nums) + 1)
-        for left, right in queries:
-            difference[left] += 1
-            difference[right + 1] -= 1
-
-        coverage = 0
-        for value, change in zip(nums, difference):
-            coverage += change
-            if coverage < value:
+        d = [0] * (len(nums) + 1)
+        for l, r in queries:
+            d[l] += 1
+            d[r + 1] -= 1
+        s = 0
+        for x, y in zip(nums, d):
+            s += y
+            if x > s:
                 return False
-
         return True

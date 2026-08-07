@@ -1,25 +1,32 @@
 class TodoList:
     def __init__(self):
-        self.next_task_id = 1
-        self.tasks = {}
+        self.i = 1
+        self.tasks = defaultdict(SortedList)
 
-    def addTask(self, userId: int, taskDescription: str, dueDate: int, tags: List[str]) -> int:
-        task_id = self.next_task_id
-        self.next_task_id += 1
-        self.tasks[task_id] = [userId, taskDescription, dueDate, set(tags), False]
-        return task_id
+    def addTask(
+        self, userId: int, taskDescription: str, dueDate: int, tags: List[str]
+    ) -> int:
+        taskId = self.i
+        self.i += 1
+        self.tasks[userId].add([dueDate, taskDescription, set(tags), taskId, False])
+        return taskId
 
     def getAllTasks(self, userId: int) -> List[str]:
-        pending = [task for task in self.tasks.values() if task[0] == userId and not task[4]]
-        pending.sort(key=lambda task: task[2])
-        return [task[1] for task in pending]
+        return [x[1] for x in self.tasks[userId] if not x[4]]
 
     def getTasksForTag(self, userId: int, tag: str) -> List[str]:
-        pending = [task for task in self.tasks.values() if task[0] == userId and not task[4] and tag in task[3]]
-        pending.sort(key=lambda task: task[2])
-        return [task[1] for task in pending]
+        return [x[1] for x in self.tasks[userId] if not x[4] and tag in x[2]]
 
     def completeTask(self, userId: int, taskId: int) -> None:
-        task = self.tasks.get(taskId)
-        if task is not None and task[0] == userId and not task[4]:
-            task[4] = True
+        for task in self.tasks[userId]:
+            if task[3] == taskId:
+                task[4] = True
+                break
+
+
+# Your TodoList object will be instantiated and called as such:
+# obj = TodoList()
+# param_1 = obj.addTask(userId,taskDescription,dueDate,tags)
+# param_2 = obj.getAllTasks(userId)
+# param_3 = obj.getTasksForTag(userId,tag)
+# obj.completeTask(userId,taskId)

@@ -1,23 +1,41 @@
+class Trie:
+    def __init__(self):
+        self.children = [None] * 26
+        self.is_end = False
+
+
 class WordDictionary:
     def __init__(self):
-        self.root = {}
+        self.trie = Trie()
 
     def addWord(self, word: str) -> None:
-        node = self.root
-        for character in word:
-            node = node.setdefault(character, {})
-        node[None] = {}
+        node = self.trie
+        for c in word:
+            idx = ord(c) - ord('a')
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+        node.is_end = True
 
     def search(self, word: str) -> bool:
-        states = [self.root]
-        for character in word:
-            next_states = []
-            for node in states:
-                if character == ".":
-                    next_states.extend(child for key, child in node.items() if key is not None)
-                elif character in node:
-                    next_states.append(node[character])
-            states = next_states
-            if not states:
-                return False
-        return any(None in node for node in states)
+        def search(word, node):
+            for i in range(len(word)):
+                c = word[i]
+                idx = ord(c) - ord('a')
+                if c != '.' and node.children[idx] is None:
+                    return False
+                if c == '.':
+                    for child in node.children:
+                        if child is not None and search(word[i + 1 :], child):
+                            return True
+                    return False
+                node = node.children[idx]
+            return node.is_end
+
+        return search(word, self.trie)
+
+
+# Your WordDictionary object will be instantiated and called as such:
+# obj = WordDictionary()
+# obj.addWord(word)
+# param_2 = obj.search(word)

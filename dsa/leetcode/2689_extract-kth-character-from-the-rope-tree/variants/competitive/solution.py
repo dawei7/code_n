@@ -1,22 +1,25 @@
+# Time:  O(h)
+# Space: O(1)
+
+# Definition for a rope tree node.
+class RopeTreeNode(object):
+    def __init__(self, len=0, val="", left=None, right=None):
+        pass
+
+
+# binary search tree
 class Solution:
-    def getKthCharacter(self, root: Optional[object], k: int) -> str:
+    def getKthCharacter(self, root, k):
         """
         :type root: Optional[RopeTreeNode]
+        :type k: int
+        :rtype: str
         """
-        node = root
-
-        while node.val == "":
-            if node.left is None:
-                left_length = 0
-            elif node.left.len > 0:
-                left_length = node.left.len
+        while root.len:
+            l = max(root.left.len, len(root.left.val)) if root.left else 0
+            if k <= l:
+                root = root.left
             else:
-                left_length = len(node.left.val)
-
-            if k <= left_length:
-                node = node.left
-            else:
-                k -= left_length
-                node = node.right
-
-        return node.val[k - 1]
+                k -= l
+                root = root.right
+        return root.val[k-1]

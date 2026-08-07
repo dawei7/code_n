@@ -1,7 +1,20 @@
-class Solution:
-    def maxSumOfSquares(self, num: int, sum: int) -> str:
-        if sum > 9 * num:
-            return ""
+# Time:  O(n)
+# Space: O(1)
 
-        nines, remainder = divmod(sum, 9)
-        return "9" * nines + (str(remainder) if remainder else "") + "0" * (num - nines - (remainder > 0))
+# greedy
+class Solution:
+    def maxSumOfSquares(self, num, sum):
+        """
+        :type num: int
+        :type sum: int
+        :rtype: str
+        """
+        if num*9 < sum:
+            return ""
+        q, r = divmod(sum, 9)
+        result = ['0']*num
+        for i in range(q):
+            result[i] = '9'
+        if r:
+            result[q] = str(r)
+        return "".join(result)

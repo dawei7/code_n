@@ -1,17 +1,15 @@
 class Solution:
     def goodSubsetofBinaryMatrix(self, grid: List[List[int]]) -> List[int]:
-        seen = {}
-
-        for index, row in enumerate(grid):
-            mask = sum(bit << column for column, bit in enumerate(row))
+        g = {}
+        for i, row in enumerate(grid):
+            mask = 0
+            for j, x in enumerate(row):
+                mask |= x << j
             if mask == 0:
-                return [index]
-
-            for other_mask, other_index in seen.items():
-                if mask & other_mask == 0:
-                    return [other_index, index]
-
-            if mask not in seen:
-                seen[mask] = index
-
+                return [i]
+            g[mask] = i
+        for a, i in g.items():
+            for b, j in g.items():
+                if (a & b) == 0:
+                    return sorted([i, j])
         return []

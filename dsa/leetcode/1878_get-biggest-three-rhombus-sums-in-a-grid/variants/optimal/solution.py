@@ -1,46 +1,25 @@
-from typing import List
-
-
 class Solution:
     def getBiggestThree(self, grid: List[List[int]]) -> List[int]:
-        rows, columns = len(grid), len(grid[0])
-        down_right = [[0] * (columns + 2) for _ in range(rows + 1)]
-        down_left = [[0] * (columns + 2) for _ in range(rows + 1)]
-
-        for row, values in enumerate(grid, 1):
-            for column, value in enumerate(values, 1):
-                down_right[row][column] = down_right[row - 1][column - 1] + value
-                down_left[row][column] = down_left[row - 1][column + 1] + value
-
-        biggest = set()
-
-        def retain(value: int) -> None:
-            biggest.add(value)
-            if len(biggest) > 3:
-                biggest.remove(min(biggest))
-
-        for row, values in enumerate(grid, 1):
-            for column, value in enumerate(values, 1):
-                retain(value)
-                max_radius = min(
-                    row - 1,
-                    rows - row,
-                    column - 1,
-                    columns - column,
-                )
-                for radius in range(1, max_radius + 1):
-                    lower_left = down_right[row + radius][column] - down_right[row][column - radius]
-                    upper_right = down_right[row][column + radius] - down_right[row - radius][column]
-                    upper_left = down_left[row][column - radius] - down_left[row - radius][column]
-                    lower_right = down_left[row + radius][column] - down_left[row][column + radius]
-                    border_sum = (
-                        lower_left
-                        + upper_right
-                        + upper_left
-                        + lower_right
-                        - grid[row + radius - 1][column - 1]
-                        + grid[row - radius - 1][column - 1]
+        m, n = len(grid), len(grid[0])
+        s1 = [[0] * (n + 2) for _ in range(m + 1)]
+        s2 = [[0] * (n + 2) for _ in range(m + 1)]
+        for i, row in enumerate(grid, 1):
+            for j, x in enumerate(row, 1):
+                s1[i][j] = s1[i - 1][j - 1] + x
+                s2[i][j] = s2[i - 1][j + 1] + x
+        ss = SortedSet()
+        for i, row in enumerate(grid, 1):
+            for j, x in enumerate(row, 1):
+                l = min(i - 1, m - i, j - 1, n - j)
+                ss.add(x)
+                for k in range(1, l + 1):
+                    a = s1[i + k][j] - s1[i][j - k]
+                    b = s1[i][j + k] - s1[i - k][j]
+                    c = s2[i][j - k] - s2[i - k][j]
+                    d = s2[i + k][j] - s2[i][j + k]
+                    ss.add(
+                        a + b + c + d - grid[i + k - 1][j - 1] + grid[i - k - 1][j - 1]
                     )
-                    retain(border_sum)
-
-        return sorted(biggest, reverse=True)
+                while len(ss) > 3:
+                    ss.remove(ss[0])
+        return list(ss)[::-1]

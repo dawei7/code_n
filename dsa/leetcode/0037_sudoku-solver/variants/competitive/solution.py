@@ -1,62 +1,39 @@
-from typing import List
-
+# Time:  ((9!)^9)
+# Space: (1)
 
 class Solution:
-    def solveSudoku(self, board: List[List[str]]) -> None:
-        full = (1 << 9) - 1
-        rows = [0] * 9
-        columns = [0] * 9
-        boxes = [0] * 9
-        empty = []
+    # @param board, a 9x9 2D array
+    # Solve the Sudoku by modifying the input board in-place.
+    # Do not return any value.
+    def solveSudoku(self, board):
+        def isValid(board, x, y):
+            for i in range(9):
+                if i != x and board[i][y] == board[x][y]:
+                    return False
+            for j in range(9):
+                if j != y and board[x][j] == board[x][y]:
+                    return False
+            i = 3 * (x / 3)
+            while i < 3 * (x / 3 + 1):
+                j = 3 * (y / 3)
+                while j < 3 * (y / 3 + 1):
+                    if (i != x or j != y) and board[i][j] == board[x][y]:
+                        return False
+                    j += 1
+                i += 1
+            return True
 
-        for row in range(9):
-            for column in range(9):
-                value = board[row][column]
-                if value == ".":
-                    empty.append((row, column))
-                    continue
-                bit = 1 << (int(value) - 1)
-                box = (row // 3) * 3 + column // 3
-                rows[row] |= bit
-                columns[column] |= bit
-                boxes[box] |= bit
+        def solver(board):
+            for i in range(len(board)):
+                for j in range(len(board[0])):
+                    if(board[i][j] == '.'):
+                        for k in range(9):
+                            board[i][j] = chr(ord('1') + k)
+                            if isValid(board, i, j) and solver(board):
+                                return True
+                            board[i][j] = '.'
+                        return False
+            return True
 
-        def fill(position: int) -> bool:
-            if position == len(empty):
-                return True
+        solver(board)
 
-            best = position
-            best_candidates = full
-            for index in range(position, len(empty)):
-                row, column = empty[index]
-                box = (row // 3) * 3 + column // 3
-                candidates = full & ~(rows[row] | columns[column] | boxes[box])
-                if candidates.bit_count() < best_candidates.bit_count():
-                    best = index
-                    best_candidates = candidates
-                    if candidates.bit_count() <= 1:
-                        break
-            if best_candidates == 0:
-                return False
-
-            empty[position], empty[best] = empty[best], empty[position]
-            row, column = empty[position]
-            box = (row // 3) * 3 + column // 3
-            candidates = full & ~(rows[row] | columns[column] | boxes[box])
-            while candidates:
-                bit = candidates & -candidates
-                candidates ^= bit
-                board[row][column] = str(bit.bit_length())
-                rows[row] |= bit
-                columns[column] |= bit
-                boxes[box] |= bit
-                if fill(position + 1):
-                    return True
-                rows[row] ^= bit
-                columns[column] ^= bit
-                boxes[box] ^= bit
-                board[row][column] = "."
-            empty[position], empty[best] = empty[best], empty[position]
-            return False
-
-        fill(0)

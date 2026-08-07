@@ -1,23 +1,17 @@
-from collections import Counter
-from math import comb
-
-
 class Solution:
     def countKSubsequencesWithMaxBeauty(self, s: str, k: int) -> int:
-        modulo = 1_000_000_007
-        frequencies = sorted(Counter(s).values(), reverse=True)
-        if len(frequencies) < k:
+        f = Counter(s)
+        if len(f) < k:
             return 0
-
-        cutoff = frequencies[k - 1]
-        higher_count = sum(frequency > cutoff for frequency in frequencies)
-        tied_count = sum(frequency == cutoff for frequency in frequencies)
-        tied_needed = k - higher_count
-
-        answer = 1
-        for frequency in frequencies[:higher_count]:
-            answer = answer * frequency % modulo
-
-        answer = answer * pow(cutoff, tied_needed, modulo) % modulo
-        answer = answer * comb(tied_count, tied_needed) % modulo
-        return answer
+        mod = 10**9 + 7
+        vs = sorted(f.values(), reverse=True)
+        val = vs[k - 1]
+        x = vs.count(val)
+        ans = 1
+        for v in vs:
+            if v == val:
+                break
+            k -= 1
+            ans = ans * v % mod
+        ans = ans * comb(x, k) * pow(val, k, mod) % mod
+        return ans

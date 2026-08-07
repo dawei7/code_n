@@ -1,27 +1,18 @@
-from typing import List
-
-
 class Solution:
-    def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:
-        result = [[rStart, cStart]]
-        target = rows * cols
-        if target == 1:
-            return result
-
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        row, column = rStart, cStart
-        direction = 0
-        segment_length = 1
-
+    def spiralMatrixIII(
+        self, rows: int, cols: int, rStart: int, cStart: int
+    ) -> List[List[int]]:
+        ans = [[rStart, cStart]]
+        if rows * cols == 1:
+            return ans
+        k = 1
         while True:
-            for _ in range(2):
-                row_step, column_step = directions[direction]
-                for _ in range(segment_length):
-                    row += row_step
-                    column += column_step
-                    if 0 <= row < rows and 0 <= column < cols:
-                        result.append([row, column])
-                        if len(result) == target:
-                            return result
-                direction = (direction + 1) % 4
-            segment_length += 1
+            for dr, dc, dk in [[0, 1, k], [1, 0, k], [0, -1, k + 1], [-1, 0, k + 1]]:
+                for _ in range(dk):
+                    rStart += dr
+                    cStart += dc
+                    if 0 <= rStart < rows and 0 <= cStart < cols:
+                        ans.append([rStart, cStart])
+                        if len(ans) == rows * cols:
+                            return ans
+            k += 2

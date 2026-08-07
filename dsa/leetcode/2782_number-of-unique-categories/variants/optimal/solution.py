@@ -2,17 +2,18 @@
 # class CategoryHandler:
 #     def haveSameCategory(self, a: int, b: int) -> bool:
 #         pass
-
-
 class Solution:
-    def numberOfCategories(self, n: int, categoryHandler: Optional["CategoryHandler"]) -> int:
-        categories = 0
+    def numberOfCategories(
+        self, n: int, categoryHandler: Optional['CategoryHandler']
+    ) -> int:
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        for i in range(n):
-            for j in range(i):
-                if categoryHandler.haveSameCategory(i, j):
-                    break
-            else:
-                categories += 1
-
-        return categories
+        p = list(range(n))
+        for a in range(n):
+            for b in range(a + 1, n):
+                if categoryHandler.haveSameCategory(a, b):
+                    p[find(a)] = find(b)
+        return sum(i == x for i, x in enumerate(p))

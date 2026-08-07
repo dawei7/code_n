@@ -1,15 +1,14 @@
-class Solution:
-    def sumOfMultiples(self, n: int) -> int:
-        def sum_divisible_by(divisor: int) -> int:
-            count = n // divisor
-            return divisor * count * (count + 1) // 2
+# Time:  O(1)
+# Space: O(1)
 
-        return (
-            sum_divisible_by(3)
-            + sum_divisible_by(5)
-            + sum_divisible_by(7)
-            - sum_divisible_by(15)
-            - sum_divisible_by(21)
-            - sum_divisible_by(35)
-            + sum_divisible_by(105)
-        )
+# math, principle of inclusion and exclusion
+class Solution:
+    def sumOfMultiples(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def f(d):
+            return d*((1+(n//d))*(n//d)//2)
+        
+        return (f(3)+f(5)+f(7))-(f(3*5)+f(5*7)+f(7*3))+f(3*5*7)

@@ -1,21 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# prefix sum
 class Solution:
-    def minimumAverageDifference(self, nums: List[int]) -> int:
+    def minimumAverageDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         total = sum(nums)
+        mn, idx = float("inf"), -1
         prefix = 0
-        best_index = 0
-        best_difference = float("inf")
-
-        for index, value in enumerate(nums):
-            prefix += value
-            left_average = prefix // (index + 1)
-            remaining = len(nums) - index - 1
-            right_average = (total - prefix) // remaining if remaining else 0
-            difference = abs(left_average - right_average)
-            if difference < best_difference:
-                best_difference = difference
-                best_index = index
-
-        return best_index
+        for i, x in enumerate(nums):
+            prefix += x
+            a = prefix//(i+1)
+            b = (total-prefix)//(len(nums)-(i+1)) if i+1 < len(nums) else 0
+            diff = abs(a-b)
+            if diff < mn:
+                mn, idx = diff, i
+        return idx

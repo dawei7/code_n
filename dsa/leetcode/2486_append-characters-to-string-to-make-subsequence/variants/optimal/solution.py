@@ -1,9 +1,7 @@
 class Solution:
     def appendCharacters(self, s: str, t: str) -> int:
-        matched = 0
-
-        for char in s:
-            if matched < len(t) and char == t[matched]:
-                matched += 1
-
-        return len(t) - matched
+        n, j = len(t), 0
+        for c in s:
+            if j < n and c == t[j]:
+                j += 1
+        return n - j

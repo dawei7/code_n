@@ -1,25 +1,46 @@
+# Time:  O(n * (a + n))), a = len(set(s))
+# Space: O(a)
+
+import collections
+
+
+# freq table
 class Solution:
-    def longestBalanced(self, s: str) -> int:
-        n = len(s)
-        best = 1
+    def longestBalanced(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(s)):
+            cnt = collections.defaultdict(int)
+            mx = 0
+            for j in range(i, len(s)):
+                cnt[s[j]] += 1
+                mx = max(mx, cnt[s[j]])
+                if (j-i+1)%len(cnt) == 0 and (j-i+1)//len(cnt) == mx:
+                    result = max(result, j-i+1)
+        return result
 
-        for left in range(n):
-            if n - left <= best:
-                break
 
-            counts = [0] * 26
-            distinct = 0
-            maximum = 0
-
-            for right in range(left, n):
-                index = ord(s[right]) - ord("a")
-                if counts[index] == 0:
-                    distinct += 1
-                counts[index] += 1
-                maximum = max(maximum, counts[index])
-
-                length = right - left + 1
-                if length == distinct * maximum:
-                    best = max(best, length)
-
-        return best
+# Time:  O(n * (26 + n))
+# Space: O(26)
+# freq table
+class Solution2(object):
+    def longestBalanced(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(s)):
+            cnt = [0]*26
+            mx = unique = 0
+            for j in range(i, len(s)):
+                if cnt[ord(s[j])-ord('a')] == 0:
+                    unique += 1
+                cnt[ord(s[j])-ord('a')] += 1
+                mx = max(mx, cnt[ord(s[j])-ord('a')])
+                if (j-i+1)%unique == 0 and (j-i+1)//unique == mx:
+                    result = max(result, j-i+1)
+        return result

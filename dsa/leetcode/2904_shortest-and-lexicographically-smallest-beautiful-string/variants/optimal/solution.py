@@ -1,23 +1,12 @@
 class Solution:
     def shortestBeautifulSubstring(self, s: str, k: int) -> str:
-        left = 0
-        ones = 0
-        best = ""
-
-        for right, char in enumerate(s):
-            if char == "1":
-                ones += 1
-
-            while ones > k:
-                if s[left] == "1":
-                    ones -= 1
-                left += 1
-
-            if ones == k:
-                while left < right and s[left] == "0":
-                    left += 1
-                candidate = s[left : right + 1]
-                if not best or (len(candidate), candidate) < (len(best), best):
-                    best = candidate
-
-        return best
+        n = len(s)
+        ans = ""
+        for i in range(n):
+            for j in range(i + k, n + 1):
+                t = s[i:j]
+                if t.count("1") == k and (
+                    not ans or j - i < len(ans) or (j - i == len(ans) and t < ans)
+                ):
+                    ans = t
+        return ans

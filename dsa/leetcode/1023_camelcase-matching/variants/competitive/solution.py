@@ -1,15 +1,24 @@
-from typing import List
-
+# Time:  O(n * l), n is number of quries
+#                , l is length of query
+# Space: O(1)
 
 class Solution:
-    def camelMatch(self, queries: List[str], pattern: str) -> List[bool]:
-        def matches(query: str) -> bool:
-            pattern_index = 0
-            for character in query:
-                if pattern_index < len(pattern) and character == pattern[pattern_index]:
-                    pattern_index += 1
-                elif character.isupper():
+    def camelMatch(self, queries, pattern):
+        """
+        :type queries: List[str]
+        :type pattern: str
+        :rtype: List[bool]
+        """
+        def is_matched(query, pattern):
+            i = 0
+            for c in query:
+                if i < len(pattern) and pattern[i] == c:
+                    i += 1
+                elif c.isupper():
                     return False
-            return pattern_index == len(pattern)
-
-        return [matches(query) for query in queries]
+            return i == len(pattern)
+        
+        result = []
+        for query in queries:
+            result.append(is_matched(query, pattern))
+        return result

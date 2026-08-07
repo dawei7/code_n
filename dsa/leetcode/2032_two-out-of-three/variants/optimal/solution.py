@@ -1,11 +1,6 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
-    def twoOutOfThree(self, nums1: List[int], nums2: List[int], nums3: List[int]) -> List[int]:
-        appearances = Counter()
-        for values in (nums1, nums2, nums3):
-            for value in set(values):
-                appearances[value] += 1
-        return [value for value, count in appearances.items() if count >= 2]
+    def twoOutOfThree(
+        self, nums1: List[int], nums2: List[int], nums3: List[int]
+    ) -> List[int]:
+        s1, s2, s3 = set(nums1), set(nums2), set(nums3)
+        return [i for i in range(1, 101) if (i in s1) + (i in s2) + (i in s3) > 1]

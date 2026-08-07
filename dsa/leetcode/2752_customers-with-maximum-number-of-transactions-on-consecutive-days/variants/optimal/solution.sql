@@ -1,26 +1,23 @@
-WITH dated AS (
-    SELECT
-        customer_id,
-        CAST(julianday(transaction_date) AS INTEGER)
-            - ROW_NUMBER() OVER (
-                PARTITION BY customer_id
-                ORDER BY transaction_date
-            ) AS island_key
-    FROM Transactions
-),
-streaks AS (
-    SELECT customer_id, COUNT(*) AS streak_length
-    FROM dated
-    GROUP BY customer_id, island_key
-),
-ranked AS (
-    SELECT
-        customer_id,
-        DENSE_RANK() OVER (ORDER BY streak_length DESC) AS streak_rank
-    FROM streaks
-)
+# Write your MySQL query statement below
+WITH
+    s AS (
+        SELECT
+            customer_id,
+            DATE_SUB(
+                transaction_date,
+                INTERVAL ROW_NUMBER() OVER (
+                    PARTITION BY customer_id
+                    ORDER BY transaction_date
+                ) DAY
+            ) AS transaction_date
+        FROM Transactions
+    ),
+    t AS (
+        SELECT customer_id, transaction_date, COUNT(1) AS cnt
+        FROM s
+        GROUP BY 1, 2
+    )
 SELECT customer_id
-FROM ranked
-WHERE streak_rank = 1
-ORDER BY customer_id
-
+FROM t
+WHERE cnt = (SELECT MAX(cnt) FROM t)
+ORDER BY customer_id;

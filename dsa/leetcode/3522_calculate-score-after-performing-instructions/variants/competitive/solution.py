@@ -1,15 +1,24 @@
+# Time:  O(n)
+# Space: O(n)
+
+# simulation
 class Solution:
-    def calculateScore(self, instructions: List[str], values: List[int]) -> int:
-        score = 0
-        index = 0
-        visited = set()
-
-        while 0 <= index < len(instructions) and index not in visited:
-            visited.add(index)
-            if instructions[index] == "add":
-                score += values[index]
-                index += 1
+    def calculateScore(self, instructions, values):
+        """
+        :type instructions: List[str]
+        :type values: List[int]
+        :rtype: int
+        """
+        result = 0
+        lookup = [False]*len(instructions)
+        i = 0
+        while 0 <= i < len(instructions):
+            if lookup[i]:
+                break
+            lookup[i] = True
+            if instructions[i] == "add":
+                result += values[i]
+                i += 1
             else:
-                index += values[index]
-
-        return score
+                i += values[i]
+        return result

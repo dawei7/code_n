@@ -1,24 +1,17 @@
 class Solution:
     def canWin(self, currentState: str) -> bool:
-        runs = []
-        run_length = 0
-        for symbol in currentState + "-":
-            if symbol == "+":
-                run_length += 1
-            elif run_length:
-                runs.append(run_length)
-                run_length = 0
+        @cache
+        def dfs(mask):
+            for i in range(n - 1):
+                if (mask & (1 << i)) == 0 or (mask & (1 << (i + 1)) == 0):
+                    continue
+                if dfs(mask ^ (1 << i) ^ (1 << (i + 1))):
+                    continue
+                return True
+            return False
 
-        maximum = max(runs, default=0)
-        grundy = [0] * (maximum + 1)
-        for length in range(2, maximum + 1):
-            reachable = {grundy[left] ^ grundy[length - left - 2] for left in range(length - 1)}
-            mex = 0
-            while mex in reachable:
-                mex += 1
-            grundy[length] = mex
-
-        position = 0
-        for length in runs:
-            position ^= grundy[length]
-        return position != 0
+        mask, n = 0, len(currentState)
+        for i, c in enumerate(currentState):
+            if c == '+':
+                mask |= 1 << i
+        return dfs(mask)

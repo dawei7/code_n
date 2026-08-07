@@ -1,6 +1,16 @@
-SELECT
-    ABS(
-        MAX(CASE WHEN department = 'Marketing' THEN salary END) -
-        MAX(CASE WHEN department = 'Engineering' THEN salary END)
-    ) AS salary_difference
-FROM Salaries;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT ABS(
+    (
+        SELECT MAX(salary)
+        FROM Salaries
+        WHERE DEPARTMENT = "Marketing"
+    )
+    - 
+    (
+        SELECT MAX(salary)
+        FROM Salaries
+        WHERE DEPARTMENT = "Engineering"
+    )
+) AS salary_difference;

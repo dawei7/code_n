@@ -1,34 +1,26 @@
-from collections import Counter
-from typing import List, Optional
+# Time:  O(n)
+# Space: O(n)
 
-
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+import collections
 
 
 class Solution:
-    def findFrequentTreeSum(self, root: Optional[TreeNode]) -> List[int]:
-        subtree_sum = {}
-        frequencies = Counter()
-        maximum_frequency = 0
-        stack = [(root, False)]
+    def findFrequentTreeSum(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        def countSubtreeSumHelper(root, counts):
+            if not root:
+                return 0
+            total = root.val + \
+                    countSubtreeSumHelper(root.left, counts) + \
+                    countSubtreeSumHelper(root.right, counts)
+            counts[total] += 1
+            return total
 
-        while stack:
-            node, expanded = stack.pop()
-            if node is None:
-                continue
-            if not expanded:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-                continue
+        counts = collections.defaultdict(int)
+        countSubtreeSumHelper(root, counts)
+        max_count = max(counts.values()) if counts else 0
+        return [total for total, count in counts.items() if count == max_count]
 
-            total = node.val + subtree_sum.get(node.left, 0) + subtree_sum.get(node.right, 0)
-            subtree_sum[node] = total
-            frequencies[total] += 1
-            maximum_frequency = max(maximum_frequency, frequencies[total])
-
-        return [total for total, count in frequencies.items() if count == maximum_frequency]

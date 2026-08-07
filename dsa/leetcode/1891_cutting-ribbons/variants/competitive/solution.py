@@ -1,22 +1,21 @@
-from typing import List
-
+# Time:  O(nlogr), r is sum(ribbons)/k
+# Space: O(1)
 
 class Solution:
-    def maxLength(self, ribbons: List[int], k: int) -> int:
-        lower = 0
-        upper = min(max(ribbons), sum(ribbons) // k)
+    def maxLength(self, ribbons, k):
+        """
+        :type ribbons: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(ribbons, k, s):
+            return reduce(lambda total,x: total+x//s, ribbons, 0) >= k
 
-        while lower < upper:
-            length = (lower + upper + 1) // 2
-            pieces = 0
-            for ribbon in ribbons:
-                pieces += ribbon // length
-                if pieces >= k:
-                    break
-
-            if pieces >= k:
-                lower = length
+        left, right = 1, sum(ribbons)//k
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(ribbons, k, mid):
+                right = mid-1
             else:
-                upper = length - 1
-
-        return lower
+                left = mid+1
+        return right

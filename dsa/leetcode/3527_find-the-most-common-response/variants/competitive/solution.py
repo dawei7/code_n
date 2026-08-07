@@ -1,9 +1,18 @@
+# Time:  O(n * l)
+# Space: O(n * l)
+
+import collections
+
+
+# hash table, freq table
 class Solution:
-    def findCommonResponse(self, responses: List[List[str]]) -> str:
-        frequency = {}
-
-        for day in responses:
-            for response in set(day):
-                frequency[response] = frequency.get(response, 0) + 1
-
-        return min(frequency, key=lambda response: (-frequency[response], response))
+    def findCommonResponse(self, responses):
+        """
+        :type responses: List[List[str]]
+        :rtype: str
+        """
+        cnt = collections.defaultdict(int)
+        for r in responses:
+            for x in set(r):
+                cnt[x] += 1
+        return min((-c, x) for x, c in cnt.items())[1]

@@ -1,18 +1,22 @@
+# Time:  O(n^(2/3) * logn)
+# Space: O(n^(2/3))
+
+import collections
+
+
+# brute force, freq table, sort
 class Solution:
-    def findGoodIntegers(self, n: int) -> list[int]:
-        cubes = []
-        value = 1
-        while value * value * value + 1 <= n:
-            cubes.append(value * value * value)
-            value += 1
-
-        representations = {}
-        for right in range(len(cubes)):
-            right_cube = cubes[right]
-            for left in range(right + 1):
-                total = cubes[left] + right_cube
-                if total > n:
+    def findGoodIntegers(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        cnt = collections.defaultdict(int)
+        for i in range(1, n+1):
+            if i**3 > n:
+                break
+            for j in range(i, (n-i**3)+1):
+                if j**3 > n-i**3:
                     break
-                representations[total] = representations.get(total, 0) + 1
-
-        return sorted(total for total, count in representations.items() if count >= 2)
+                cnt[i**3+j**3] += 1
+        return sorted(k for k, v in cnt.items() if v >= 2)

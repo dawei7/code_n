@@ -1,62 +1,45 @@
-from typing import List
-
+# Time:  O((m * n) * log(m * n))
+# Space: O(m * n)
 
 class Solution:
-    def numDistinctIslands2(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        visited = set()
-        shapes = set()
+    def numDistinctIslands2(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-        def canonical(points):
-            transformed = [[] for _ in range(8)]
-            for x, y in points:
-                variants = (
-                    (x, y),
-                    (x, -y),
-                    (-x, y),
-                    (-x, -y),
-                    (y, x),
-                    (y, -x),
-                    (-y, x),
-                    (-y, -x),
-                )
-                for index, point in enumerate(variants):
-                    transformed[index].append(point)
+        def dfs(i, j, grid, island):
+            if not (0 <= i < len(grid) and \
+                    0 <= j < len(grid[0]) and \
+                    grid[i][j] > 0):
+                return False
+            grid[i][j] *= -1
+            island.append((i, j))
+            for d in directions:
+                dfs(i+d[0], j+d[1], grid, island)
+            return True
 
-            normalized = []
-            for orientation in transformed:
-                minimum_x = min(x for x, _ in orientation)
-                minimum_y = min(y for _, y in orientation)
-                normalized.append(frozenset((x - minimum_x, y - minimum_y) for x, y in orientation))
-            return frozenset(normalized)
+        def normalize(island):
+            shapes = [[] for _ in range(8)]
+            for x, y in island:
+                rotations_and_reflections = [[ x,  y], [ x, -y], [-x, y], [-x, -y],
+                                             [ y,  x], [ y, -x], [-y, x], [-y, -x]]
+                for i in range(len(rotations_and_reflections)):
+                    shapes[i].append(rotations_and_reflections[i])
+            for shape in shapes:
+                shape.sort()  # Time: O(ilogi), i is the size of the island, the max would be (m * n)
+                origin = list(shape[0])
+                for p in shape:
+                    p[0] -= origin[0]
+                    p[1] -= origin[1]
+            return min(shapes)
 
-        for start_row in range(rows):
-            for start_column in range(columns):
-                start = (start_row, start_column)
-                if grid[start_row][start_column] == 0 or start in visited:
-                    continue
+        islands = set()
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                island = []
+                if dfs(i, j, grid, island):
+                    islands.add(str(normalize(island)))
+        return len(islands)
 
-                visited.add(start)
-                stack = [start]
-                points = []
-
-                while stack:
-                    row, column = stack.pop()
-                    points.append((row - start_row, column - start_column))
-                    for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_column = column + column_step
-                        neighbor = (next_row, next_column)
-                        if (
-                            0 <= next_row < rows
-                            and 0 <= next_column < columns
-                            and grid[next_row][next_column] == 1
-                            and neighbor not in visited
-                        ):
-                            visited.add(neighbor)
-                            stack.append(neighbor)
-
-                shapes.add(canonical(points))
-
-        return len(shapes)

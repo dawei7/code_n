@@ -1,15 +1,25 @@
-from math import isqrt
+# Time:  O(n)
+# Space: O(n)
 
-
+# number theory
 class Solution:
-    def findPrimePairs(self, n: int) -> List[List[int]]:
-        is_prime = bytearray(b"\x01") * (n + 1)
-        is_prime[:2] = b"\x00\x00"
+    def findPrimePairs(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        def linear_sieve_of_eratosthenes(n):
+            primes = []
+            spf = [-1]*(n+1)  # the smallest prime factor
+            for i in range(2, n+1):
+                if spf[i] == -1:
+                    spf[i] = i
+                    primes.append(i)
+                for p in primes:
+                    if i*p > n or p > spf[i]:
+                        break
+                    spf[i*p] = p
+            return spf  # len(primes) = O(n/(logn-1)), reference: https://math.stackexchange.com/questions/264544/how-to-find-number-of-prime-numbers-up-to-to-n
 
-        for candidate in range(2, isqrt(n) + 1):
-            if is_prime[candidate]:
-                start = candidate * candidate
-                count = (n - start) // candidate + 1
-                is_prime[start : n + 1 : candidate] = b"\x00" * count
-
-        return [[first, n - first] for first in range(2, n // 2 + 1) if is_prime[first] and is_prime[n - first]]
+        spf = linear_sieve_of_eratosthenes(n)
+        return [[i, n-i] for i in range(2, n//2+1) if spf[i] == i and spf[n-i] == n-i]

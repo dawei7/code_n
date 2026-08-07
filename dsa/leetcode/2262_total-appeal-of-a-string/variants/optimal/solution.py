@@ -1,13 +1,10 @@
 class Solution:
     def appealSum(self, s: str) -> int:
-        last_index = [-1] * 26
-        ending_appeal = 0
-        total = 0
-
-        for index, character in enumerate(s):
-            letter = ord(character) - ord("a")
-            ending_appeal += index - last_index[letter]
-            total += ending_appeal
-            last_index[letter] = index
-
-        return total
+        ans = t = 0
+        pos = [-1] * 26
+        for i, c in enumerate(s):
+            c = ord(c) - ord('a')
+            t += i - pos[c]
+            ans += t
+            pos[c] = i
+        return ans

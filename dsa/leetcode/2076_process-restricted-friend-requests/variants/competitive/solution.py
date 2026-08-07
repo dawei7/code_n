@@ -1,44 +1,51 @@
-from typing import List
+# Time:  O(n * (alpha(n) + r)) = O(n * r)
+# Space: O(n)
+
+class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+    def __init__(self, n):
+        self.set = range(n)
+        self.rank = [0]*n
+
+    def find_set(self, x):
+        stk = []
+        while self.set[x] != x:  # path compression
+            stk.append(x)
+            x = self.set[x]
+        while stk:
+            self.set[stk.pop()] = x
+        return x
+
+    def union_set(self, x, y):
+        x, y = self.find_set(x), self.find_set(y)
+        if x == y:
+            return False
+        if self.rank[x] > self.rank[y]:  # union by rank
+            x, y = y, x
+        self.set[x] = self.set[y]
+        if self.rank[x] == self.rank[y]:
+            self.rank[y] += 1
+        return True
 
 
 class Solution:
-    def friendRequests(
-        self,
-        n: int,
-        restrictions: List[List[int]],
-        requests: List[List[int]],
-    ) -> List[bool]:
-        parent = list(range(n))
-        size = [1] * n
-
-        def find(person: int) -> int:
-            while person != parent[person]:
-                parent[person] = parent[parent[person]]
-                person = parent[person]
-            return person
-
+    def friendRequests(self, n, restrictions, requests):
+        """
+        :type n: int
+        :type restrictions: List[List[int]]
+        :type requests: List[List[int]]
+        :rtype: List[bool]
+        """
         result = []
-        for first, second in requests:
-            first_root = find(first)
-            second_root = find(second)
-            allowed = True
-
-            if first_root != second_root:
-                for restricted_first, restricted_second in restrictions:
-                    restricted_first_root = find(restricted_first)
-                    restricted_second_root = find(restricted_second)
-                    if (restricted_first_root == first_root and restricted_second_root == second_root) or (
-                        restricted_first_root == second_root and restricted_second_root == first_root
-                    ):
-                        allowed = False
-                        break
-
-                if allowed:
-                    if size[first_root] < size[second_root]:
-                        first_root, second_root = second_root, first_root
-                    parent[second_root] = first_root
-                    size[first_root] += size[second_root]
-
-            result.append(allowed)
-
+        uf = UnionFind(n)
+        for u, v in requests:
+            pu, pv = uf.find_set(u), uf.find_set(v)
+            ok = True
+            for x, y in restrictions:
+                px, py = uf.find_set(x), uf.find_set(y)
+                if {px, py} == {pu, pv}:
+                    ok = False
+                    break
+            result.append(ok)
+            if ok:
+                uf.union_set(u, v) 
         return result

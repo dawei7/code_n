@@ -1,42 +1,138 @@
+# Time:  O(nlogn + nlogr) = O(nlogr), r = max(nums)
+# Space: O(t)
+
+# bit manipulation, greedy, trie, sort, two pointers
 class Solution:
-    def maximumStrongPairXor(self, nums: list[int]) -> int:
+    def maximumStrongPairXor(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        class Trie(object):
+            def __init__(self, bit_length):
+                self.__nodes = []
+                self.__cnts = []
+                self.__new_node()
+                self.__bit_length = bit_length
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*2)
+                self.__cnts.append(0)
+                return len(self.__nodes)-1
+
+            def update(self, num, d):
+                curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    x = num>>i
+                    if self.__nodes[curr][x&1] == -1:
+                        self.__nodes[curr][x&1] = self.__new_node()
+                    curr = self.__nodes[curr][x&1]
+                    self.__cnts[curr] += d
+                        
+            def query(self, num):
+                result = curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    result <<= 1
+                    x = num>>i
+                    if self.__nodes[curr][1^(x&1)] != -1 and self.__cnts[self.__nodes[curr][1^(x&1)]]:
+                        curr = self.__nodes[curr][1^(x&1)]
+                        result |= 1
+                    else:
+                        curr = self.__nodes[curr][x&1]
+                return result
+    
         nums.sort()
-        children = [[-1, -1]]
-        counts = [0]
+        trie = Trie(nums[-1].bit_length())
+        result = j = 0
+        for i, num in enumerate(nums):
+            trie.update(num, +1)
+            while not (nums[i] <= 2*nums[j]) :
+                trie.update(nums[j], -1)
+                j += 1
+            result = max(result, trie.query(num))
+        return result
 
-        def add(value: int, delta: int) -> None:
-            node = 0
-            for bit in range(19, -1, -1):
-                branch = (value >> bit) & 1
-                next_node = children[node][branch]
-                if next_node == -1:
-                    next_node = len(children)
-                    children[node][branch] = next_node
-                    children.append([-1, -1])
-                    counts.append(0)
-                node = next_node
-                counts[node] += delta
 
-        def maximum_xor(value: int) -> int:
-            node = 0
-            result = 0
-            for bit in range(19, -1, -1):
-                branch = (value >> bit) & 1
-                preferred = children[node][branch ^ 1]
-                if preferred != -1 and counts[preferred] > 0:
-                    result |= 1 << bit
-                    node = preferred
-                else:
-                    node = children[node][branch]
-            return result
+# Time:  O(nlogr), r = max(nums)
+# Space: O(t)
+# bit manipulation, greedy, trie, dp
+class Solution2(object):
+    def maximumStrongPairXor(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        class Trie(object):
+            def __init__(self, bit_length):
+                self.__nodes = []
+                self.__mins = []
+                self.__maxs = []
+                self.__new_node()
+                self.__bit_length = bit_length
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*2)
+                self.__mins.append(float("inf"))
+                self.__maxs.append(float("-inf"))
+                return len(self.__nodes)-1
 
-        answer = 0
-        left = 0
-        for value in nums:
-            add(value, 1)
-            while nums[left] * 2 < value:
-                add(nums[left], -1)
-                left += 1
-            answer = max(answer, maximum_xor(value))
+            def insert(self, num):
+                curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    x = num>>i
+                    if self.__nodes[curr][x&1] == -1:
+                        self.__nodes[curr][x&1] = self.__new_node()
+                    curr = self.__nodes[curr][x&1]
+                    self.__mins[curr] = min(self.__mins[curr], num)
+                    self.__maxs[curr] = max(self.__maxs[curr], num)
+                        
+            def query(self, num):
+                result = curr = 0
+                for i in reversed(range(self.__bit_length)):
+                    result <<= 1
+                    x = num>>i
+                    y = (result|1)^x
+                    assert(x != y) 
+                    if (self.__nodes[curr][y&1] != -1 and
+                        ((x > y and num <= 2*self.__maxs[self.__nodes[curr][y&1]]) or
+                         (x < y and self.__mins[self.__nodes[curr][y&1]] <= 2*num))):
+                        result |= 1
+                        curr = self.__nodes[curr][y&1]
+                    else:
+                        curr = self.__nodes[curr][1^(y&1)]
+                return result
+    
+        trie = Trie(max(nums).bit_length())
+        result = 0
+        for num in nums:
+            trie.insert(num)
+            result = max(result, trie.query(num))
+        return result
 
-        return answer
+
+# Time:  O(nlogr), r = max(nums)
+# Space: O(n)
+# bit manipulation, greedy, dp
+class Solution3(object):
+    def maximumStrongPairXor(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in reversed(range(max(nums).bit_length())):
+            prefix_min, prefix_max = {}, {}
+            for x in nums:
+                y = x>>i
+                if y not in prefix_min:
+                    prefix_min[y] = prefix_max[y] = x
+                prefix_min[y] = min(prefix_min[y], x)
+                prefix_max[y] = max(prefix_max[y], x)
+            result <<= 1
+            for x in prefix_min.keys():
+                y = (result|1)^x
+                assert(x != y)
+                if y in prefix_max and prefix_min[max(x, y)] <= 2*prefix_max[min(x, y)]:
+                    result |= 1
+                    break
+        return result

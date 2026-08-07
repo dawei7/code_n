@@ -1,16 +1,15 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val=None, children=None):
+        self.val = val
+        self.children = children if children is not None else []
+"""
+
+
 class Solution:
-    def cloneTree(self, root: "Node") -> "Node":
+    def cloneTree(self, root: 'Node') -> 'Node':
         if root is None:
             return None
-
-        cloned_root = Node(root.val, [])
-        stack = [(root, cloned_root)]
-
-        while stack:
-            original, cloned = stack.pop()
-            for child in original.children:
-                child_clone = Node(child.val, [])
-                cloned.children.append(child_clone)
-                stack.append((child, child_clone))
-
-        return cloned_root
+        children = [self.cloneTree(child) for child in root.children]
+        return Node(root.val, children)

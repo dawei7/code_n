@@ -1,22 +1,16 @@
-from typing import List
-
-
 class Solution:
     def countDistinct(self, nums: List[int], k: int, p: int) -> int:
-        root = {}
-        distinct = 0
-
-        for left in range(len(nums)):
-            node = root
-            divisible = 0
-            for right in range(left, len(nums)):
-                divisible += nums[right] % p == 0
-                if divisible > k:
+        s = set()
+        n = len(nums)
+        base1, base2 = 131, 13331
+        mod1, mod2 = 10**9 + 7, 10**9 + 9
+        for i in range(n):
+            h1 = h2 = cnt = 0
+            for j in range(i, n):
+                cnt += nums[j] % p == 0
+                if cnt > k:
                     break
-                value = nums[right]
-                if value not in node:
-                    node[value] = {}
-                    distinct += 1
-                node = node[value]
-
-        return distinct
+                h1 = (h1 * base1 + nums[j]) % mod1
+                h2 = (h2 * base2 + nums[j]) % mod2
+                s.add(h1 << 32 | h2)
+        return len(s)

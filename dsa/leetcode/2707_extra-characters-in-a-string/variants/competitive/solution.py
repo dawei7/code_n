@@ -1,24 +1,30 @@
+# Time:  O((n + m) * l), l is max(len(w) for w in dictionary)
+# Space: O(n + t)
+
+import collections
+
+
+# trie, dp
 class Solution:
-    def minExtraChar(self, s: str, dictionary: List[str]) -> int:
-        trie = {}
+    def minExtraChar(self, s, dictionary):
+        """
+        :type s: str
+        :type dictionary: List[str]
+        :rtype: int
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
         for word in dictionary:
-            node = trie
-            for character in reversed(word):
-                node = node.setdefault(character, {})
-            node["#"] = True
-
-        minimum_extra = [0] + [len(s)] * len(s)
-
-        for end in range(1, len(s) + 1):
-            minimum_extra[end] = minimum_extra[end - 1] + 1
-            node = trie
-
-            for start in range(end - 1, -1, -1):
-                character = s[start]
-                if character not in node:
+            reduce(dict.__getitem__, word, trie).setdefault("_end")
+        dp = [float("inf")]*(len(s)+1)
+        dp[0] = 0
+        for i in range(len(s)):
+            dp[i+1] = min(dp[i+1], dp[i]+1)
+            curr = trie
+            for j in range(i, len(s)):
+                if s[j] not in curr:
                     break
-                node = node[character]
-                if "#" in node:
-                    minimum_extra[end] = min(minimum_extra[end], minimum_extra[start])
-
-        return minimum_extra[len(s)]
+                curr = curr[s[j]]
+                if "_end" in curr:
+                    dp[j+1] = min(dp[j+1], dp[i])
+        return dp[-1]

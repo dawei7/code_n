@@ -1,18 +1,41 @@
+# Time:  O(n)
+# Space: O(p), p is the number of paths
+
+import collections
+
+
 class Solution:
     def pathSum(self, nums):
-        values = {(number // 100, (number // 10) % 10): number % 10 for number in nums}
-        total = 0
-        stack = [(1, 1, 0)]
-        while stack:
-            depth, position, path_sum = stack.pop()
-            path_sum += values[(depth, position)]
-            left = (depth + 1, position * 2 - 1)
-            right = (depth + 1, position * 2)
-            if left not in values and right not in values:
-                total += path_sum
-            else:
-                if left in values:
-                    stack.append((*left, path_sum))
-                if right in values:
-                    stack.append((*right, path_sum))
-        return total
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        class Node(object):
+            def __init__(self, num):
+                self.level = num/100 - 1
+                self.i = (num%100)/10 - 1
+                self.val = num%10
+                self.leaf = True
+
+            def isParent(self, other):
+                return self.level == other.level-1 and \
+                       self.i == other.i/2
+
+        if not nums:
+            return 0
+        result = 0
+        q = collections.deque()
+        dummy = Node(10)
+        parent = dummy
+        for num in nums:
+            child = Node(num)
+            while not parent.isParent(child):
+                result += parent.val if parent.leaf else 0
+                parent = q.popleft()
+            parent.leaf = False
+            child.val += parent.val
+            q.append(child)
+        while q:
+            result += q.pop().val
+        return result
+

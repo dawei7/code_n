@@ -1,28 +1,17 @@
 CREATE PROCEDURE PivotProducts()
 BEGIN
-    SET SESSION group_concat_max_len = 1000000;
-
-    SELECT GROUP_CONCAT(
-        DISTINCT CONCAT(
-            'MAX(CASE WHEN store = ',
-            QUOTE(store),
-            ' THEN price END) AS `',
-            REPLACE(store, '`', '``'),
-            '`'
-        )
-        ORDER BY store
-        SEPARATOR ', '
-    )
-    INTO @store_columns
+	# Write your MySQL query statement below.
+	SET group_concat_max_len = 5000;
+    SELECT GROUP_CONCAT(DISTINCT 'MAX(CASE WHEN store = \'',
+               store,
+               '\' THEN price ELSE NULL END) AS ',
+               store
+               ORDER BY store) INTO @sql
     FROM Products;
-
-    SET @pivot_query = CONCAT(
-        'SELECT product_id, ',
-        @store_columns,
-        ' FROM Products GROUP BY product_id'
-    );
-
-    PREPARE pivot_statement FROM @pivot_query;
-    EXECUTE pivot_statement;
-    DEALLOCATE PREPARE pivot_statement;
+    SET @sql =  CONCAT('SELECT product_id, ',
+                    @sql,
+                    ' FROM Products GROUP BY product_id');
+    PREPARE stmt FROM @sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
 END

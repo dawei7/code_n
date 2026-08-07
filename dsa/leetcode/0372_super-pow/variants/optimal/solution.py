@@ -1,12 +1,8 @@
-from typing import List
-
-
 class Solution:
     def superPow(self, a: int, b: List[int]) -> int:
-        modulus = 1337
-        base = a % modulus
-        result = 1
-
-        for digit in b:
-            result = pow(result, 10, modulus) * pow(base, digit, modulus) % modulus
-        return result
+        mod = 1337
+        ans = 1
+        for e in b[::-1]:
+            ans = ans * pow(a, e, mod) % mod
+            a = pow(a, 10, mod)
+        return ans

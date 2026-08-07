@@ -1,14 +1,11 @@
-from typing import List
-
-
 class Solution:
     def verifyPreorder(self, preorder: List[int]) -> bool:
-        lower_bound = float("-inf")
-        stack = []
-        for value in preorder:
-            if value < lower_bound:
+        stk = []
+        last = -inf
+        for x in preorder:
+            if x < last:
                 return False
-            while stack and value > stack[-1]:
-                lower_bound = stack.pop()
-            stack.append(value)
+            while stk and stk[-1] < x:
+                last = stk.pop()
+            stk.append(x)
         return True

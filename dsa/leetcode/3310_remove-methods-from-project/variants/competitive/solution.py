@@ -1,22 +1,32 @@
+# Time:  O(n + e)
+# Space: O(n + e)
+
+# bfs
 class Solution:
-    def remainingMethods(self, n: int, k: int, invocations: List[List[int]]) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for source, target in invocations:
-            graph[source].append(target)
+    def remainingMethods(self, n, k, invocations):
+        """
+        :type n: int
+        :type k: int
+        :type invocations: List[List[int]]
+        :rtype: List[int]
+        """
+        def bfs():
+            lookup = [False]*n
+            lookup[k] = True
+            q = [k]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+            return lookup
 
-        suspicious = [False] * n
-        suspicious[k] = True
-        stack = [k]
-
-        while stack:
-            method = stack.pop()
-            for target in graph[method]:
-                if not suspicious[target]:
-                    suspicious[target] = True
-                    stack.append(target)
-
-        for source, target in invocations:
-            if not suspicious[source] and suspicious[target]:
-                return list(range(n))
-
-        return [method for method in range(n) if not suspicious[method]]
+        adj = [[] for _ in range(n)]
+        for u, v in invocations:
+            adj[u].append(v)
+        lookup = bfs()
+        return [u for u in range(n) if not lookup[u]] if all(lookup[u] == lookup[v] for u, v in invocations) else range(n)

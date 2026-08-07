@@ -1,19 +1,26 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+import collections
 
 
 class Solution:
-    def subtreeWithAllDeepest(self, root: Optional["TreeNode"]) -> Optional["TreeNode"]:
-        def summarize(node):
-            if node is None:
-                return 0, None
+    def subtreeWithAllDeepest(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        Result = collections.namedtuple("Result", ("node", "depth"))
 
-            left_height, left_answer = summarize(node.left)
-            right_height, right_answer = summarize(node.right)
+        def dfs(node):
+            if not node:
+                return Result(None, 0)
+            left, right = dfs(node.left), dfs(node.right)
+            if left.depth > right.depth:
+                return Result(left.node, left.depth+1)
+            if left.depth < right.depth:
+                return Result(right.node, right.depth+1)
+            return Result(node, left.depth+1)
 
-            if left_height > right_height:
-                return left_height + 1, left_answer
-            if right_height > left_height:
-                return right_height + 1, right_answer
-            return left_height + 1, node
+        return dfs(root).node
 
-        return summarize(root)[1]

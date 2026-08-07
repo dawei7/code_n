@@ -1,49 +1,92 @@
-class _Node:
-    def __init__(self, key: int = 0, value: int = 0):
-        self.key = key
-        self.value = value
-        self.previous = None
-        self.next = None
+# Time:  O(1), per operation.
+# Space: O(k), k is the capacity of cache.
+
+import collections
 
 
-class LRUCache:
-    def __init__(self, capacity: int):
+# using OrderedDict
+class LRUCache(object):
+    def __init__(self, capacity):
+        self.cache = collections.OrderedDict()
         self.capacity = capacity
-        self.nodes = {}
-        self.least = _Node()
-        self.most = _Node()
-        self.least.next = self.most
-        self.most.previous = self.least
 
-    def _remove(self, node: _Node) -> None:
-        node.previous.next = node.next
-        node.next.previous = node.previous
-
-    def _append_most_recent(self, node: _Node) -> None:
-        previous = self.most.previous
-        previous.next = node
-        node.previous = previous
-        node.next = self.most
-        self.most.previous = node
-
-    def get(self, key: int) -> int:
-        node = self.nodes.get(key)
-        if node is None:
+    def get(self, key):
+        if key not in self.cache:
             return -1
-        self._remove(node)
-        self._append_most_recent(node)
-        return node.value
+        val = self.cache[key]
+        self.__update(key, val)
+        return val
 
-    def put(self, key: int, value: int) -> None:
-        existing = self.nodes.get(key)
-        if existing is not None:
-            self._remove(existing)
+    def put(self, key, val):
+        if key not in self.cache and len(self.cache) == self.capacity:
+            self.cache.popitem(last=False)
+        self.__update(key, val)
+    
+    def __update(self, key, val):
+        if key in self.cache:
+            del self.cache[key]
+        self.cache[key] = val
 
-        node = _Node(key, value)
-        self.nodes[key] = node
-        self._append_most_recent(node)
 
-        if len(self.nodes) > self.capacity:
-            oldest = self.least.next
-            self._remove(oldest)
-            del self.nodes[oldest.key]
+# Time:  O(1), per operation.
+# Space: O(k), k is the capacity of cache.
+
+
+class ListNode(object):
+    def __init__(self, key, val):
+        self.val = val
+        self.key = key
+        self.next = None
+        self.prev = None
+
+class LinkedList(object):
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def insert(self, node):
+        node.next, node.prev = None, None  # avoid dirty node
+        if self.head is None:
+            self.head = node
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+        self.tail = node
+
+    def delete(self, node):
+        if node.prev:
+            node.prev.next = node.next
+        else:
+            self.head = node.next
+        if node.next:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev
+        node.next, node.prev = None, None  # make node clean
+
+class LRUCache2(object):
+
+    def __init__(self, capacity):
+        self.list = LinkedList()
+        self.dict = {}
+        self.capacity = capacity
+
+    def get(self, key):
+        if key not in self.dict:
+            return -1
+        val = self.dict[key].val
+        self.__update(key, val)
+        return val
+
+    def put(self, key, val):
+        if key not in self.dict and len(self.dict) == self.capacity:
+            del self.dict[self.list.head.key]
+            self.list.delete(self.list.head)
+        self.__update(key, val)
+
+    def __update(self, key, val):
+        if key in self.dict:
+            self.list.delete(self.dict[key])
+        node = ListNode(key, val)
+        self.list.insert(node)
+        self.dict[key] = node

@@ -1,25 +1,23 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def sumEvenGrandparent(self, root: Optional[TreeNode]) -> int:
-        total = 0
-        stack = [(root, None, None)]
+    def sumEvenGrandparent(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def sumEvenGrandparentHelper(root, p, gp):
+            return sumEvenGrandparentHelper(root.left, root.val, p) + \
+                   sumEvenGrandparentHelper(root.right, root.val, p) + \
+                   (root.val if gp is not None and gp % 2 == 0 else 0) if root else 0
 
-        while stack:
-            node, parent_value, grandparent_value = stack.pop()
-            if grandparent_value is not None and grandparent_value % 2 == 0:
-                total += node.val
-
-            if node.left is not None:
-                stack.append((node.left, node.val, parent_value))
-            if node.right is not None:
-                stack.append((node.right, node.val, parent_value))
-
-        return total
+        return sumEvenGrandparentHelper(root, None, None)

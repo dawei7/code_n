@@ -1,68 +1,53 @@
-from collections import deque
+# Time:  precompute: O(r), r = max(nums)
+#        runtime:    O(n)
+# Space: O(r)
+
+import collections
 
 
+# number theory, mono deque, two pointers, sliding window
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return spf
+
+
+MAX_NUMS = 5*10**4
+SPF = linear_sieve_of_eratosthenes(MAX_NUMS)
 class Solution:
-    def primeSubarray(self, nums: List[int], k: int) -> int:
-        limit = max(nums)
-        is_prime = [True] * (limit + 1)
-        is_prime[0] = is_prime[1] = False
-
-        factor = 2
-        while factor * factor <= limit:
-            if is_prime[factor]:
-                for multiple in range(factor * factor, limit + 1, factor):
-                    is_prime[multiple] = False
-            factor += 1
-
-        zelmoricad = (nums, k)
-
-        prime_positions = []
-        prime_values = []
-        for index, value in enumerate(nums):
-            if is_prime[value]:
-                prime_positions.append(index)
-                prime_values.append(value)
-
-        prime_count = len(prime_positions)
-        if prime_count < 2:
-            return 0
-
-        left_gaps = []
-        previous = -1
-        for position in prime_positions:
-            left_gaps.append(position - previous)
-            previous = position
-
-        prefix_left = [0]
-        for gap in left_gaps:
-            prefix_left.append(prefix_left[-1] + gap)
-
-        minimum_queue = deque()
-        maximum_queue = deque()
-        left = 0
-        answer = 0
-        n = len(nums)
-
-        for right, value in enumerate(prime_values):
-            while minimum_queue and prime_values[minimum_queue[-1]] >= value:
-                minimum_queue.pop()
-            minimum_queue.append(right)
-
-            while maximum_queue and prime_values[maximum_queue[-1]] <= value:
-                maximum_queue.pop()
-            maximum_queue.append(right)
-
-            while prime_values[maximum_queue[0]] - prime_values[minimum_queue[0]] > k:
-                if minimum_queue[0] == left:
-                    minimum_queue.popleft()
-                if maximum_queue[0] == left:
-                    maximum_queue.popleft()
-                left += 1
-
-            if left < right:
-                next_position = prime_positions[right + 1] if right + 1 < prime_count else n
-                right_gap = next_position - prime_positions[right]
-                left_choices = prefix_left[right] - prefix_left[left]
-                answer += left_choices * right_gap
-
-        return answer
+    def primeSubarray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        idxs, max_dq, min_dq = collections.deque(), collections.deque(), collections.deque()
+        result = left = 0
+        for right in range(len(nums)):
+            if SPF[nums[right]] == nums[right]:
+                idxs.append(right)
+                while max_dq and nums[max_dq[-1]] <= nums[right]:
+                    max_dq.pop()
+                max_dq.append(right)
+                while min_dq and nums[min_dq[-1]] >= nums[right]:
+                    min_dq.pop()
+                min_dq.append(right)
+                while nums[max_dq[0]]-nums[min_dq[0]] > k:
+                    if min_dq[0] == left:
+                        min_dq.popleft()
+                    if max_dq[0] == left:
+                        max_dq.popleft()
+                    if idxs[0] == left:
+                        idxs.popleft()
+                    left += 1
+            if len(idxs) >= 2:
+                result += idxs[-2]-left+1
+        return result

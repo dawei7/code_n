@@ -1,17 +1,42 @@
-class PeekingIterator:
+# Time:  O(1) per peek(), next(), hasNext()
+# Space: O(1)
+
+class PeekingIterator(object):
     def __init__(self, iterator):
+        """
+        Initialize your data structure here.
+        :type iterator: Iterator
+        """
         self.iterator = iterator
-        self.has_next = iterator.hasNext()
-        self.cached = iterator.next() if self.has_next else None
+        self.val_ = None
+        self.has_next_ = iterator.hasNext()
+        self.has_peeked_ = False
+
 
     def peek(self):
-        return self.cached
+        """
+        Returns the next element in the iteration without advancing the iterator.
+        :rtype: int
+        """
+        if not self.has_peeked_:
+            self.has_peeked_ = True
+            self.val_ = self.iterator.next()
+        return self.val_
 
     def next(self):
-        value = self.cached
-        self.has_next = self.iterator.hasNext()
-        self.cached = self.iterator.next() if self.has_next else None
-        return value
+        """
+        :rtype: int
+        """
+        self.val_ = self.peek()
+        self.has_peeked_ = False
+        self.has_next_ = self.iterator.hasNext()
+        return self.val_
 
     def hasNext(self):
-        return self.has_next
+        """
+        :rtype: bool
+        """
+        return self.has_next_
+
+
+

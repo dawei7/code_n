@@ -1,52 +1,34 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# prefix sum, manacher's algorithm
 class Solution:
-    def getSum(self, nums: List[int]) -> int:
-        n = len(nums)
-        prefix = [0]
-        for value in nums:
-            prefix.append(prefix[-1] + value)
+    def getSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def manacher(s):
+            ret = [-1]
+            for x in s:
+                ret.append(-2)
+                ret.append(x)
+            ret.append(-2)
+            ret.append(-3)
+            P = [0]*len(ret)
+            C, R = 0, 0
+            for i in range(1, len(ret)-1):
+                i_mirror = 2*C-i
+                if R > i:
+                    P[i] = min(R-i, P[i_mirror])
+                while ret[i+1+P[i]] == ret[i-1-P[i]]:
+                    P[i] += 1
+                if i+P[i] > R:
+                    C, R = i, i+P[i]
+            return P
 
-        best = 0
-        odd = [0] * n
-        left = 0
-        right = -1
-
-        for center in range(n):
-            radius = 1 if center > right else min(odd[left + right - center], right - center + 1)
-            while center - radius >= 0 and center + radius < n and nums[center - radius] == nums[center + radius]:
-                radius += 1
-
-            odd[center] = radius
-            start = center - radius + 1
-            end = center + radius
-            best = max(best, prefix[end] - prefix[start])
-
-            if center + radius - 1 > right:
-                left = center - radius + 1
-                right = center + radius - 1
-
-        even = [0] * n
-        left = 0
-        right = -1
-
-        for center in range(n):
-            radius = 0 if center > right else min(even[left + right - center + 1], right - center + 1)
-            while (
-                center - radius - 1 >= 0 and center + radius < n and nums[center - radius - 1] == nums[center + radius]
-            ):
-                radius += 1
-
-            even[center] = radius
-            if radius:
-                best = max(
-                    best,
-                    prefix[center + radius] - prefix[center - radius],
-                )
-
-            if center + radius - 1 > right:
-                left = center - radius
-                right = center + radius - 1
-
-        return best
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        p = manacher(nums)
+        return max(prefix[(i+p[i])//2]-prefix[(i-p[i])//2] for i in range(1, len(p)-1))

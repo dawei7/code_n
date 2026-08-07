@@ -1,3 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        return sum(nums[i] != nums[i + 1] for i in range(len(nums) - 1))
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(nums[i] != nums[i+1] for i in range(len(nums)-1))

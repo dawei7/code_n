@@ -1,10 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def divisibilityArray(self, word: str, m: int) -> List[int]:
-        remainder = 0
-        answer = []
-
-        for digit in word:
-            remainder = (remainder * 10 + ord(digit) - ord("0")) % m
-            answer.append(int(remainder == 0))
-
-        return answer
+    def divisibilityArray(self, word, m):
+        """
+        :type word: str
+        :type m: int
+        :rtype: List[int]
+        """
+        result = []
+        curr = 0
+        for c in word:
+            curr = (curr*10+(ord(c)-ord('0')))%m
+            result.append(int(curr == 0))
+        return result

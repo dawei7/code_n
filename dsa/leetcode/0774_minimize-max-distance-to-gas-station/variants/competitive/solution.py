@@ -1,21 +1,25 @@
+# Time:  O(nlogr)
+# Space: O(1)
+
 import math
-from typing import List
 
 
 class Solution:
-    def minmaxGasDist(self, stations: List[int], k: int) -> float:
-        low = 0.0
-        high = max(right - left for left, right in zip(stations, stations[1:]))
+    def minmaxGasDist(self, stations, K):
+        """
+        :type stations: List[int]
+        :type K: int
+        :rtype: float
+        """
+        def check(x):
+            return sum(int(math.ceil((stations[i+1]-stations[i])/x))-1 for i in range(len(stations)-1)) <= K
 
-        for _ in range(70):
-            maximum_distance = (low + high) / 2
-            required = 0
-            for left, right in zip(stations, stations[1:]):
-                required += math.ceil((right - left) / maximum_distance) - 1
-                if required > k:
-                    break
-            if required <= k:
-                high = maximum_distance
+        left, right = 0, stations[-1]-stations[0]
+        while right-left > 1e-6:
+            mid = left + (right-left)/2.0
+            if check(mid):
+                right = mid
             else:
-                low = maximum_distance
-        return high
+                left = mid
+        return left
+

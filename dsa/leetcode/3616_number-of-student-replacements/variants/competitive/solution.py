@@ -1,14 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# simulation
 class Solution:
-    def totalReplacements(self, ranks: List[int]) -> int:
-        best_rank = ranks[0]
-        replacements = 0
-
-        for rank in ranks:
-            if rank < best_rank:
-                best_rank = rank
-                replacements += 1
-
-        return replacements
+    def totalReplacements(self, ranks):
+        """
+        :type ranks: List[int]
+        :rtype: int
+        """
+        result = -1
+        mn = float("inf")
+        for x in ranks:
+            if x >= mn:
+                continue
+            mn = x
+            result += 1
+        return result

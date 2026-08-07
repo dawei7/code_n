@@ -1,32 +1,25 @@
-from typing import List
-
-
 class Solution:
     def removeComments(self, source: List[str]) -> List[str]:
-        answer = []
-        current = []
-        in_block = False
-
-        for line in source:
-            index = 0
-            while index < len(line):
-                if in_block:
-                    if index + 1 < len(line) and line[index : index + 2] == "*/":
-                        in_block = False
-                        index += 2
-                    else:
-                        index += 1
-                elif index + 1 < len(line) and line[index : index + 2] == "//":
-                    break
-                elif index + 1 < len(line) and line[index : index + 2] == "/*":
-                    in_block = True
-                    index += 2
+        ans = []
+        t = []
+        block_comment = False
+        for s in source:
+            i, m = 0, len(s)
+            while i < m:
+                if block_comment:
+                    if i + 1 < m and s[i : i + 2] == "*/":
+                        block_comment = False
+                        i += 1
                 else:
-                    current.append(line[index])
-                    index += 1
-
-            if not in_block and current:
-                answer.append("".join(current))
-                current = []
-
-        return answer
+                    if i + 1 < m and s[i : i + 2] == "/*":
+                        block_comment = True
+                        i += 1
+                    elif i + 1 < m and s[i : i + 2] == "//":
+                        break
+                    else:
+                        t.append(s[i])
+                i += 1
+            if not block_comment and t:
+                ans.append("".join(t))
+                t.clear()
+        return ans

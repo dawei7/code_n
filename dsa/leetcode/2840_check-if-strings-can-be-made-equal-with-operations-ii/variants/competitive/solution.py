@@ -1,10 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
+# freq table
 class Solution:
-    def checkStrings(self, s1: str, s2: str) -> bool:
-        balance = [0] * 52
-
-        for index, (left, right) in enumerate(zip(s1, s2)):
-            offset = 26 * (index & 1)
-            balance[offset + ord(left) - ord("a")] += 1
-            balance[offset + ord(right) - ord("a")] -= 1
-
-        return not any(balance)
+    def checkStrings(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        return all(collections.Counter(s1[j] for j in range(i, len(s1), 2)) == collections.Counter(s2[j] for j in range(i, len(s2), 2)) for i in range(2))

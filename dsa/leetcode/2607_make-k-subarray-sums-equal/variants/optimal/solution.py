@@ -1,15 +1,10 @@
-from math import gcd
-from typing import List
-
-
 class Solution:
     def makeSubKSumEqual(self, arr: List[int], k: int) -> int:
-        group_count = gcd(len(arr), k)
-        operations = 0
-
-        for start in range(group_count):
-            group = sorted(arr[start::group_count])
-            median = group[len(group) // 2]
-            operations += sum(abs(value - median) for value in group)
-
-        return operations
+        n = len(arr)
+        g = gcd(n, k)
+        ans = 0
+        for i in range(g):
+            t = sorted(arr[i:n:g])
+            mid = t[len(t) >> 1]
+            ans += sum(abs(x - mid) for x in t)
+        return ans

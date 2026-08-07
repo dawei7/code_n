@@ -1,18 +1,43 @@
-class TimeMap:
+# Time:  set: O(1)
+#        get: O(logn)
+# Space: O(n)
+
+import collections
+import bisect
+
+
+class TimeMap(object):
+
     def __init__(self):
-        self.history = {}
+        """
+        Initialize your data structure here.
+        """
+        self.lookup = collections.defaultdict(list)
 
-    def set(self, key: str, value: str, timestamp: int) -> None:
-        self.history.setdefault(key, []).append((timestamp, value))
+    def set(self, key, value, timestamp):
+        """
+        :type key: str
+        :type value: str
+        :type timestamp: int
+        :rtype: None
+        """
+        self.lookup[key].append((timestamp, value))
+        
 
-    def get(self, key: str, timestamp: int) -> str:
-        entries = self.history.get(key, [])
-        left = 0
-        right = len(entries)
-        while left < right:
-            middle = (left + right) // 2
-            if entries[middle][0] <= timestamp:
-                left = middle + 1
-            else:
-                right = middle
-        return entries[left - 1][1] if left else ""
+    def get(self, key, timestamp):
+        """
+        :type key: str
+        :type timestamp: int
+        :rtype: str
+        """
+        A = self.lookup.get(key, None)
+        if A is None:
+            return ""
+        i = bisect.bisect_right(A, (timestamp+1, 0))
+        return A[i-1][1] if i else ""
+
+
+# Your TimeMap object will be instantiated and called as such:
+# obj = TimeMap()
+# obj.set(key,value,timestamp)
+# param_2 = obj.get(key,timestamp)

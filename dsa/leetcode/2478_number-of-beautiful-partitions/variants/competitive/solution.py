@@ -1,31 +1,28 @@
+# Time:  O(n * k)
+# Space: O(n)
+
+# dp
 class Solution:
-    def beautifulPartitions(self, s: str, k: int, minLength: int) -> int:
-        modulo = 10**9 + 7
-        prime_digits = set("2357")
-        length = len(s)
-
-        if s[0] not in prime_digits or s[-1] in prime_digits or k * minLength > length:
-            return 0
-
-        def is_boundary(index: int) -> bool:
-            return index == 0 or index == length or (s[index - 1] not in prime_digits and s[index] in prime_digits)
-
-        ways = [0] * (length + 1)
-        ways[0] = 1
-
-        for partition_count in range(1, k + 1):
-            next_ways = [0] * (length + 1)
-            running_sum = 0
-            earliest_end = partition_count * minLength
-            latest_end = length - (k - partition_count) * minLength
-
-            for end in range(earliest_end, latest_end + 1):
-                previous_end = end - minLength
-                if is_boundary(previous_end):
-                    running_sum = (running_sum + ways[previous_end]) % modulo
-                if is_boundary(end):
-                    next_ways[end] = running_sum
-
-            ways = next_ways
-
-        return ways[length]
+    def beautifulPartitions(self, s, k, minLength):
+        """
+        :type s: str
+        :type k: int
+        :type minLength: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        PRIMES = {'2', '3', '5', '7'}
+        dp = [0]*len(s)  # dp[i] at j : number of j beautiful partitions in s[:i+1] 
+        for i in range(minLength-1, len(s)):
+            if s[0] in PRIMES and s[i] not in PRIMES:
+                dp[i] = 1
+        for j in range(2, k+1):
+            new_dp = [0]*len(s)
+            curr = int(j == 1)
+            for i in range(j*minLength-1, len(s)):
+                if s[i-minLength+1] in PRIMES:
+                    curr = (curr+dp[i-minLength])%MOD
+                if s[i] not in PRIMES:
+                    new_dp[i] = curr
+            dp = new_dp
+        return dp[-1]

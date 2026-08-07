@@ -1,19 +1,35 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# simulation, optimized from solution2
 class Solution:
-    def minMaxGame(self, nums: List[int]) -> int:
-        current = nums
+    def minMaxGame(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        while n != 1:
+            new_q = []
+            for i in range(n//2):
+                nums[i] = min(nums[2*i], nums[2*i+1]) if i%2 == 0 else max(nums[2*i], nums[2*i+1])
+            n //= 2
+        return nums[0]
 
-        while len(current) > 1:
-            next_values = []
-            for index in range(len(current) // 2):
-                first = current[2 * index]
-                second = current[2 * index + 1]
-                if index % 2 == 0:
-                    next_values.append(min(first, second))
-                else:
-                    next_values.append(max(first, second))
-            current = next_values
 
-        return current[0]
+# Time:  O(n)
+# Space: O(n)
+# simulation
+class Solution2(object):
+    def minMaxGame(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        q = nums[:]
+        while len(q) != 1:
+            new_q = []
+            for i in range(len(q)//2):
+                new_q.append(min(q[2*i], q[2*i+1]) if i%2 == 0 else max(q[2*i], q[2*i+1]))
+            q = new_q
+        return q[0]

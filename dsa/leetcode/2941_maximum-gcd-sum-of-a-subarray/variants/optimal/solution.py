@@ -1,26 +1,17 @@
-from math import gcd
-from typing import List
-
-
 class Solution:
     def maxGcdSum(self, nums: List[int], k: int) -> int:
-        states = {}
-        answer = 0
-
-        for right, value in enumerate(nums):
-            next_states = {value: (right, value)}
-
-            for current_gcd, (left, total) in states.items():
-                extended_gcd = gcd(current_gcd, value)
-                extended_total = total + value
-                previous = next_states.get(extended_gcd)
-                if previous is None or left < previous[0]:
-                    next_states[extended_gcd] = (left, extended_total)
-
-            for current_gcd, (left, total) in next_states.items():
-                if right - left + 1 >= k:
-                    answer = max(answer, current_gcd * total)
-
-            states = next_states
-
-        return answer
+        s = list(accumulate(nums, initial=0))
+        f = []
+        ans = 0
+        for i, v in enumerate(nums):
+            g = []
+            for j, x in f:
+                y = gcd(x, v)
+                if not g or g[-1][1] != y:
+                    g.append((j, y))
+            f = g
+            f.append((i, v))
+            for j, x in f:
+                if i - j + 1 >= k:
+                    ans = max(ans, (s[i + 1] - s[j]) * x)
+        return ans

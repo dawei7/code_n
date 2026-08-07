@@ -1,30 +1,67 @@
-from typing import List
+# Time:  O(|V|^2 + |V| * |E|)
+# Space: O(|V| + |E|)
 
-
+# bfs solution
 class Solution:
-    def maximumDetonation(self, bombs: List[List[int]]) -> int:
-        n = len(bombs)
-        adjacency = [[] for _ in range(n)]
-
-        for source, (x_source, y_source, radius) in enumerate(bombs):
-            radius_squared = radius * radius
-            for target, (x_target, y_target, _) in enumerate(bombs):
-                if source == target:
+    def maximumDetonation(self, bombs):
+        """
+        :type bombs: List[List[int]]
+        :rtype: int
+        """        
+        adj = [[] for _ in range(len(bombs))]
+        for i, (xi, yi, ri) in enumerate(bombs):
+            for j, (xj, yj, _) in enumerate(bombs):
+                if j == i:
                     continue
-                dx = x_source - x_target
-                dy = y_source - y_target
-                if dx * dx + dy * dy <= radius_squared:
-                    adjacency[source].append(target)
+                if (xi-xj)**2+(yi-yj)**2 <= ri**2:
+                    adj[i].append(j)
+        result = 0
+        for i in range(len(bombs)):
+            q = [i]
+            lookup = {i}
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if v in lookup:
+                            continue
+                        lookup.add(v)
+                        new_q.append(v)
+                q = new_q
+            result = max(result, len(lookup))
+            if result == len(bombs):
+                break
+        return result
 
-        maximum = 1
-        for start in range(n):
-            seen = {start}
-            stack = [start]
-            while stack:
-                bomb = stack.pop()
-                for neighbor in adjacency[bomb]:
-                    if neighbor not in seen:
-                        seen.add(neighbor)
-                        stack.append(neighbor)
-            maximum = max(maximum, len(seen))
-        return maximum
+
+# Time:  O(|V|^2 + |V| * |E|)
+# Space: O(|V| + |E|)
+# dfs solution
+class Solution2(object):
+    def maximumDetonation(self, bombs):
+        """
+        :type bombs: List[List[int]]
+        :rtype: int
+        """        
+        adj = [[] for _ in range(len(bombs))]
+        for i, (xi, yi, ri) in enumerate(bombs):
+            for j, (xj, yj, _) in enumerate(bombs):
+                if j == i:
+                    continue
+                if (xi-xj)**2+(yi-yj)**2 <= ri**2:
+                    adj[i].append(j)
+        result = 0
+        for i in range(len(bombs)):
+            stk = [i]
+            lookup = {i}
+            while stk:
+                u = stk.pop()
+                for v in adj[u]:
+                    if v in lookup:
+                        continue
+                    lookup.add(v)
+                    stk.append(v)
+            result = max(result, len(lookup))
+            if result == len(bombs):
+                break
+        return result

@@ -1,7 +1,4 @@
-from typing import List
-
-
 class Solution:
     def minimumCost(self, cost: List[int]) -> int:
-        ordered = sorted(cost, reverse=True)
-        return sum(price for index, price in enumerate(ordered) if index % 3 != 2)
+        cost.sort(reverse=True)
+        return sum(cost) - sum(cost[2::3])

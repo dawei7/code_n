@@ -1,32 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minimizeMax(self, nums: List[int], p: int) -> int:
-        if p == 0:
-            return 0
-
-        values = sorted(nums)
-
-        def feasible(limit: int) -> bool:
-            pairs = 0
-            i = 0
-            while i + 1 < len(values):
-                if values[i + 1] - values[i] <= limit:
-                    pairs += 1
+        def check(diff: int) -> bool:
+            cnt = i = 0
+            while i < len(nums) - 1:
+                if nums[i + 1] - nums[i] <= diff:
+                    cnt += 1
                     i += 2
-                    if pairs == p:
-                        return True
                 else:
                     i += 1
-            return False
+            return cnt >= p
 
-        low = 0
-        high = values[-1] - values[0]
-        while low < high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                high = middle
-            else:
-                low = middle + 1
-        return low
+        nums.sort()
+        return bisect_left(range(nums[-1] - nums[0] + 1), True, key=check)

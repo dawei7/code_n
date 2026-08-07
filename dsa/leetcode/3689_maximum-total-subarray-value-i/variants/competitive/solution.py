@@ -1,6 +1,12 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def maxTotalValue(self, nums: List[int], k: int) -> int:
-        return (max(nums) - min(nums)) * k
+    def maxTotalValue(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        return k*(max(nums)-min(nums))

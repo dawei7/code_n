@@ -1,18 +1,16 @@
-from typing import List
+# Time:  O(nlogr), r = max(nums)
+# Space: O(1)
 
-
+# bitmasks, greedy
 class Solution:
-    def minimumOR(self, grid: List[List[int]]) -> int:
-        forbidden_bits = 0
+    def minimumOR(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        mx = max(x for row in grid for x in row)
         result = 0
-        highest_bit = max(max(row) for row in grid).bit_length() - 1
-
-        for bit in range(highest_bit, -1, -1):
-            candidate_forbidden = forbidden_bits | (1 << bit)
-
-            if all(any((value & candidate_forbidden) == 0 for value in row) for row in grid):
-                forbidden_bits = candidate_forbidden
-            else:
-                result |= 1 << bit
-
+        for i in reversed(range(mx.bit_length())):
+            if any(all(x&(result|((1<<i)-1)) != x for x in row) for row in grid):
+                result |= 1<<i
         return result

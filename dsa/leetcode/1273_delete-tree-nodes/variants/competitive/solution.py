@@ -1,26 +1,45 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def deleteTreeNodes(self, nodes: int, parent: List[int], value: List[int]) -> int:
-        children = [[] for _ in range(nodes)]
-        for node in range(1, nodes):
-            children[parent[node]].append(node)
+    def deleteTreeNodes(self, nodes, parent, value):
+        """
+        :type nodes: int
+        :type parent: List[int]
+        :type value: List[int]
+        :rtype: int
+        """
+        def dfs(value, children, x):
+            total, count = value[x], 1
+            for y in children[x]:
+                t, c = dfs(value, children, y)
+                total += t
+                count += c if t else 0
+            return total, count if total else 0
 
-        order = []
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            order.append(node)
-            stack.extend(children[node])
+        children = collections.defaultdict(list)
+        for i, p in enumerate(parent):
+            if i:
+                children[p].append(i)
+        return dfs(value, children, 0)[1]
 
-        subtree_sum = list(value)
-        retained = [1] * nodes
-        for node in reversed(order):
-            for child in children[node]:
-                subtree_sum[node] += subtree_sum[child]
-                retained[node] += retained[child]
-            if subtree_sum[node] == 0:
-                retained[node] = 0
 
-        return retained[0]
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def deleteTreeNodes(self, nodes, parent, value):
+        """
+        :type nodes: int
+        :type parent: List[int]
+        :type value: List[int]
+        :rtype: int
+        """
+        # assuming parent[i] < i for all i > 0
+        result = [1]*nodes
+        for i in reversed(range(1, nodes)):
+            value[parent[i]] += value[i]
+            result[parent[i]] += result[i] if value[i] else 0
+        return result[0]

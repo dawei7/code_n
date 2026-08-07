@@ -1,43 +1,33 @@
-from functools import lru_cache
+# Time:  O(logn)
+# Space: O(logn)
 
-
+# constructive algorithms, greedy
 class Solution:
-    def closestFair(self, n: int) -> int:
-        target = str(n)
-        if len(target) % 2 == 1:
-            target = "1" + "0" * len(target)
-
-        digit_count = len(target)
-        required_even = digit_count // 2
-
-        @lru_cache(maxsize=None)
-        def build(position: int, even_used: int, tight: bool):
-            if position == digit_count:
-                return "" if even_used == required_even else None
-
-            lower = int(target[position]) if tight else 0
-            if position == 0:
-                lower = max(lower, 1)
-
-            for digit in range(lower, 10):
-                next_even = even_used + (digit % 2 == 0)
-                remaining = digit_count - position - 1
-                if next_even > required_even or next_even + remaining < required_even:
+    def closestFair(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        digits = map(int, str(n))
+        result = []
+        if len(digits)%2 == 0:            
+            left = [0]*2
+            for d in digits:
+                left[d%2] += 1
+            if left[0] == len(digits)//2:
+                return n
+            for i in reversed(range(len(digits)//2, len(digits))):
+                left[digits[i]%2] -= 1
+                right = [len(digits)//2-left[0], len(digits)//2-left[1]]
+                if any(x < 0 for x in right):
                     continue
-                suffix = build(
-                    position + 1,
-                    next_even,
-                    tight and digit == int(target[position]),
-                )
-                if suffix is not None:
-                    return str(digit) + suffix
-            return None
-
-        result = build(0, 0, True)
-        if result is None:
-            digit_count += 2
-            required_even = digit_count // 2
-            target = "1" + "0" * (digit_count - 1)
-            build.cache_clear()
-            result = build(0, 0, True)
-        return int(result)
+                d = digits[i]+1 if right[(digits[i]+1)%2]-1 >= 0 else digits[i]+2
+                if d > 9:
+                    continue
+                right[d%2] -= 1
+                result = digits[:i]+[d]+[0]*right[0]+[1]*right[1]
+                break
+        if not result:
+            l = len(digits)//2+1
+            result = [1]+[0]*l+[1]*(l-1)
+        return int("".join(map(str, result)))

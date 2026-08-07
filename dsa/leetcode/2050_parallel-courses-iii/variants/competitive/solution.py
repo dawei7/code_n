@@ -1,34 +1,28 @@
-from collections import deque
-from typing import List
-
+# Time:  O(|V| + |E|)
+# Space: O(|E|)
 
 class Solution:
-    def minimumTime(
-        self,
-        n: int,
-        relations: List[List[int]],
-        time: List[int],
-    ) -> int:
-        graph = [[] for _ in range(n)]
-        indegree = [0] * n
-        for prerequisite, course in relations:
-            prerequisite -= 1
-            course -= 1
-            graph[prerequisite].append(course)
-            indegree[course] += 1
-
-        finish = time.copy()
-        queue = deque(course for course in range(n) if indegree[course] == 0)
-
-        while queue:
-            course = queue.popleft()
-            for next_course in graph[course]:
-                finish[next_course] = max(
-                    finish[next_course],
-                    finish[course] + time[next_course],
-                )
-                indegree[next_course] -= 1
-                if indegree[next_course] == 0:
-                    queue.append(next_course)
-
-        return max(finish)
+    def minimumTime(self, n, relations, time):
+        """
+        :type n: int
+        :type relations: List[List[int]]
+        :type time: List[int]
+        :rtype: int
+        """
+        adj = [[] for _ in range(n)]
+        in_degree = [0]*n
+        for prev, nxt in relations:
+            adj[prev-1].append(nxt-1)
+            in_degree[nxt-1] += 1
+        q = [u for u in range(n) if not in_degree[u]]
+        dist = [time[u] if not in_degree[u] else 0 for u in range(n)] 
+        while q:
+            new_q = []
+            for u in q:
+                for v in adj[u]:
+                    dist[v] = max(dist[v], dist[u]+time[v])
+                    in_degree[v] -= 1
+                    if not in_degree[v]:
+                        new_q.append(v)
+            q = new_q
+        return max(dist)

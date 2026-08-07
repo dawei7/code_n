@@ -1,24 +1,24 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def exclusiveTime(self, n: int, logs: List[str]) -> List[int]:
-        exclusive = [0] * n
-        stack = []
-        previous = 0
-
+    def exclusiveTime(self, n, logs):
+        """
+        :type n: int
+        :type logs: List[str]
+        :rtype: List[int]
+        """
+        result = [0] * n
+        stk, prev = [], 0
         for log in logs:
-            identifier_text, event, timestamp_text = log.split(":")
-            identifier = int(identifier_text)
-            timestamp = int(timestamp_text)
-
-            if event == "start":
-                if stack:
-                    exclusive[stack[-1]] += timestamp - previous
-                stack.append(identifier)
-                previous = timestamp
+            tokens = log.split(":")
+            if tokens[1] == "start":
+                if stk:
+                    result[stk[-1]] += int(tokens[2]) - prev
+                stk.append(int(tokens[0]))
+                prev = int(tokens[2])
             else:
-                exclusive[stack.pop()] += timestamp - previous + 1
-                previous = timestamp + 1
+                result[stk.pop()] += int(tokens[2]) - prev + 1
+                prev = int(tokens[2]) + 1
+        return result
 
-        return exclusive

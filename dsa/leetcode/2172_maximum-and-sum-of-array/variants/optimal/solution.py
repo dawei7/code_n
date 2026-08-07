@@ -1,23 +1,13 @@
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def maximumANDSum(self, nums: List[int], numSlots: int) -> int:
-        powers = [3**slot for slot in range(numSlots)]
-
-        @lru_cache(None)
-        def best(index: int, mask: int) -> int:
-            if index == len(nums):
-                return 0
-
-            answer = 0
-            for slot, power in enumerate(powers, start=1):
-                if (mask // power) % 3 < 2:
-                    answer = max(
-                        answer,
-                        (nums[index] & slot) + best(index + 1, mask + power),
-                    )
-            return answer
-
-        return best(0, 0)
+        n = len(nums)
+        m = numSlots << 1
+        f = [0] * (1 << m)
+        for i in range(1 << m):
+            cnt = i.bit_count()
+            if cnt > n:
+                continue
+            for j in range(m):
+                if i >> j & 1:
+                    f[i] = max(f[i], f[i ^ (1 << j)] + (nums[cnt - 1] & (j // 2 + 1)))
+        return max(f)

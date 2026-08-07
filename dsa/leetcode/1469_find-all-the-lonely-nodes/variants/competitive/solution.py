@@ -1,18 +1,53 @@
+# Time:  O(n)
+# Space: O(h)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
-    def getLonelyNodes(self, root: TreeNode) -> List[int]:
-        lonely = []
-        stack = [root]
+    def getLonelyNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        stk = [root]
+        while stk:
+            node = stk.pop()
+            if not node:
+                continue
+            if node.left and not node.right:
+                result.append(node.left.val)
+            elif node.right and not node.left:
+                result.append(node.right.val)
+            stk.append(node.right)
+            stk.append(node.left)
+        return result
 
-        while stack:
-            node = stack.pop()
-            if node.left is None and node.right is not None:
-                lonely.append(node.right.val)
-            elif node.right is None and node.left is not None:
-                lonely.append(node.left.val)
 
-            if node.left is not None:
-                stack.append(node.left)
-            if node.right is not None:
-                stack.append(node.right)
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def getLonelyNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        def dfs(node, result):
+            if not node:
+                return
+            if node.left and not node.right:
+                result.append(node.left.val)
+            elif node.right and not node.left:
+                result.append(node.right.val)
+            dfs(node.left, result)
+            dfs(node.right, result)
 
-        return lonely
+        result = []
+        dfs(root, result)
+        return result

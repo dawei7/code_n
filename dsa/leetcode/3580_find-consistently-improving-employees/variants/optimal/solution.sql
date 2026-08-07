@@ -1,26 +1,28 @@
-WITH ranked_reviews AS (
-    SELECT
-        employee_id,
-        rating,
-        ROW_NUMBER() OVER (
-            PARTITION BY employee_id
-            ORDER BY review_date DESC
-        ) AS review_rank
-    FROM performance_reviews
-)
+WITH
+    recent AS (
+        SELECT
+            employee_id,
+            review_date,
+            ROW_NUMBER() OVER (
+                PARTITION BY employee_id
+                ORDER BY review_date DESC
+            ) AS rn,
+            (
+                LAG(rating) OVER (
+                    PARTITION BY employee_id
+                    ORDER BY review_date DESC
+                ) - rating
+            ) AS delta
+        FROM performance_reviews
+    )
 SELECT
-    e.employee_id,
-    e.name,
-    MAX(CASE WHEN r.review_rank = 1 THEN r.rating END)
-      - MAX(CASE WHEN r.review_rank = 3 THEN r.rating END) AS improvement_score
-FROM employees AS e
-JOIN ranked_reviews AS r
-  ON r.employee_id = e.employee_id
-WHERE r.review_rank <= 3
-GROUP BY e.employee_id, e.name
-HAVING COUNT(*) = 3
-   AND MAX(CASE WHEN r.review_rank = 1 THEN r.rating END)
-       > MAX(CASE WHEN r.review_rank = 2 THEN r.rating END)
-   AND MAX(CASE WHEN r.review_rank = 2 THEN r.rating END)
-       > MAX(CASE WHEN r.review_rank = 3 THEN r.rating END)
-ORDER BY improvement_score DESC, e.name ASC;
+    employee_id,
+    name,
+    SUM(delta) AS improvement_score
+FROM
+    recent
+    JOIN employees USING (employee_id)
+WHERE rn > 1 AND rn <= 3
+GROUP BY 1
+HAVING COUNT(*) = 2 AND MIN(delta) > 0
+ORDER BY 3 DESC, 2;

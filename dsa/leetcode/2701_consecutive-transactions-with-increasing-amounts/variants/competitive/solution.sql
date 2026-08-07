@@ -1,46 +1,32 @@
-WITH ordered_transactions AS (
-    SELECT
-        customer_id,
-        transaction_date,
-        amount,
-        LAG(transaction_date) OVER (
-            PARTITION BY customer_id
-            ORDER BY transaction_date
-        ) AS previous_date,
-        LAG(amount) OVER (
-            PARTITION BY customer_id
-            ORDER BY transaction_date
-        ) AS previous_amount
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH date_group_cte AS (
+    SELECT *, 
+           TO_DAYS(transaction_date) - ROW_NUMBER() OVER (PARTITION BY customer_id 
+                                                          ORDER BY transaction_date
+           ) AS date_group
     FROM Transactions
+), 
+increasing_date_group_cte AS (
+    SELECT  *, 
+            (
+                CASE WHEN amount <= LAG(amount, 1, amount) OVER (PARTITION BY customer_id, date_group 
+                                                                 ORDER BY transaction_date
+                ) THEN 1 ELSE 0 END
+            ) start 
+    FROM date_group_cte
 ),
-marked_transactions AS (
-    SELECT
-        customer_id,
-        transaction_date,
-        CASE
-            WHEN julianday(transaction_date) - julianday(previous_date) = 1
-                 AND amount > previous_amount
-            THEN 0
-            ELSE 1
-        END AS starts_new_sequence
-    FROM ordered_transactions
-),
-grouped_transactions AS (
-    SELECT
-        customer_id,
-        transaction_date,
-        SUM(starts_new_sequence) OVER (
-            PARTITION BY customer_id
-            ORDER BY transaction_date
-            ROWS UNBOUNDED PRECEDING
-        ) AS sequence_id
-    FROM marked_transactions
+group_cte AS (
+    SELECT *,
+           SUM(start) OVER (PARTITION BY customer_id ORDER BY transaction_date) AS group_id 
+    FROM increasing_date_group_cte
 )
-SELECT
-    customer_id,
-    MIN(transaction_date) AS consecutive_start,
-    MAX(transaction_date) AS consecutive_end
-FROM grouped_transactions
-GROUP BY customer_id, sequence_id
+
+SELECT customer_id,
+       MIN(transaction_date) AS consecutive_start,
+       MAX(transaction_date) AS consecutive_end
+FROM group_cte
+GROUP BY customer_id, group_id
 HAVING COUNT(*) >= 3
-ORDER BY customer_id, consecutive_start, consecutive_end;
+ORDER BY customer_id;

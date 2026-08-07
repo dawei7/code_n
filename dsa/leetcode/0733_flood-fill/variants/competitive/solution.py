@@ -1,34 +1,29 @@
-from collections import deque
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m * n)
 
 class Solution:
-    def floodFill(
-        self,
-        image: List[List[int]],
-        sr: int,
-        sc: int,
-        color: int,
-    ) -> List[List[int]]:
-        original = image[sr][sc]
-        if original == color:
-            return image
+    def floodFill(self, image, sr, sc, newColor):
+        """
+        :type image: List[List[int]]
+        :type sr: int
+        :type sc: int
+        :type newColor: int
+        :rtype: List[List[int]]
+        """
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-        rows = len(image)
-        columns = len(image[0])
-        image[sr][sc] = color
-        queue = deque([(sr, sc)])
+        def dfs(image, r, c, newColor, color):
+            if not (0 <= r < len(image) and \
+                    0 <= c < len(image[0]) and \
+                    image[r][c] == color):
+                return
 
-        while queue:
-            row, column = queue.popleft()
-            for next_row, next_column in (
-                (row - 1, column),
-                (row + 1, column),
-                (row, column - 1),
-                (row, column + 1),
-            ):
-                if 0 <= next_row < rows and 0 <= next_column < columns and image[next_row][next_column] == original:
-                    image[next_row][next_column] = color
-                    queue.append((next_row, next_column))
+            image[r][c] = newColor
+            for d in directions:
+                dfs(image, r+d[0], c+d[1], newColor, color)
 
+        color = image[sr][sc]
+        if color == newColor: return image
+        dfs(image, sr, sc, newColor, color)
         return image
+

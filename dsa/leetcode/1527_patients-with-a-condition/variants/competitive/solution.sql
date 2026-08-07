@@ -1,4 +1,6 @@
-SELECT patient_id, patient_name, conditions
-FROM Patients
-WHERE conditions LIKE 'DIAB1%'
-   OR conditions LIKE '% DIAB1%';
+# Time:  O(n)
+# Space: O(n)
+
+SELECT * 
+FROM Patients AS p
+WHERE p.conditions REGEXP '^DIAB1| DIAB1';

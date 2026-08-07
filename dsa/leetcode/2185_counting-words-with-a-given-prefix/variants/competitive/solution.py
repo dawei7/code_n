@@ -1,6 +1,12 @@
-from typing import List
+# Time:  O(n * p)
+# Space: O(1)
 
-
+# string
 class Solution:
-    def prefixCount(self, words: List[str], pref: str) -> int:
-        return sum(word.startswith(pref) for word in words)
+    def prefixCount(self, words, pref):
+        """
+        :type words: List[str]
+        :type pref: str
+        :rtype: int
+        """
+        return sum(x.startswith(pref) for x in words)

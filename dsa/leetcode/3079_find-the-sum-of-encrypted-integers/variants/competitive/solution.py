@@ -1,19 +1,19 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def sumOfEncryptedInt(self, nums: List[int]) -> int:
-        total = 0
+    def sumOfEncryptedInt(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def f(x):
+            mx = base = 0
+            while x:
+                mx = max(mx, x%10)
+                x //= 10
+                base = 10*base+1
+            return mx*base
 
-        for number in nums:
-            largest_digit = 0
-            repeated_ones = 0
-
-            while number:
-                largest_digit = max(largest_digit, number % 10)
-                repeated_ones = repeated_ones * 10 + 1
-                number //= 10
-
-            total += largest_digit * repeated_ones
-
-        return total
+        return sum(f(x) for x in nums)

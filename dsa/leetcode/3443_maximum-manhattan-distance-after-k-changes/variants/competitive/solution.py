@@ -1,19 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maxDistance(self, s: str, k: int) -> int:
-        x = 0
-        y = 0
-        answer = 0
-
-        for length, direction in enumerate(s, 1):
-            if direction == "N":
-                y += 1
-            elif direction == "S":
-                y -= 1
-            elif direction == "E":
+    def maxDistance(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        result = x = y = 0
+        for i, c in enumerate(s, 1):
+            if c == 'E':
                 x += 1
-            else:
+            elif c == 'W':
                 x -= 1
-
-            answer = max(answer, min(length, abs(x) + abs(y) + 2 * k))
-
-        return answer
+            elif c == 'N':
+                y += 1
+            elif c == 'S':
+                y -= 1
+            result = max(result, min(abs(x)+abs(y)+2*k, i))
+        return result

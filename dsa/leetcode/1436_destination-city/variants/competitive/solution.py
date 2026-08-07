@@ -1,10 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import itertools
 
 
 class Solution:
-    def destCity(self, paths: List[List[str]]) -> str:
-        starting_cities = {source for source, _ in paths}
-        for _, destination in paths:
-            if destination not in starting_cities:
-                return destination
-        raise ValueError("valid paths must contain a destination city")
+    def destCity(self, paths):
+        """
+        :type paths: List[List[str]]
+        :rtype: str
+        """
+        A, B = map(set, itertools.izip(*paths))
+        return (B-A).pop()

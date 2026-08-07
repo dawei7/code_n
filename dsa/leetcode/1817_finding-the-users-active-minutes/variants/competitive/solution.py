@@ -1,14 +1,20 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -> List[int]:
-        minutes_by_user = defaultdict(set)
-        for user_id, minute in logs:
-            minutes_by_user[user_id].add(minute)
-
-        answer = [0] * k
-        for minutes in minutes_by_user.values():
-            answer[len(minutes) - 1] += 1
-        return answer
+    def findingUsersActiveMinutes(self, logs, k):
+        """
+        :type logs: List[List[int]]
+        :type k: int
+        :rtype: List[int]
+        """
+        lookup = collections.defaultdict(set)
+        for u, t in logs:
+            lookup[u].add(t)
+        result = [0]*k
+        for _, ts in lookup.items():
+            result[len(ts)-1] += 1
+        return result

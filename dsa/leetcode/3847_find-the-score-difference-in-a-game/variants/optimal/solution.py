@@ -1,20 +1,10 @@
-from typing import List
-
-
 class Solution:
     def scoreDifference(self, nums: List[int]) -> int:
-        first_player_active = True
-        difference = 0
-
-        for index, points in enumerate(nums):
-            if points % 2 == 1:
-                first_player_active = not first_player_active
-            if (index + 1) % 6 == 0:
-                first_player_active = not first_player_active
-
-            if first_player_active:
-                difference += points
-            else:
-                difference -= points
-
-        return difference
+        ans, k = 0, 1
+        for i, x in enumerate(nums):
+            if x % 2:
+                k *= -1
+            if i % 6 == 5:
+                k *= -1
+            ans += k * x
+        return ans

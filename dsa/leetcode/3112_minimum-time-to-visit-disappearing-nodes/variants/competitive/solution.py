@@ -1,27 +1,37 @@
+# Time:  O((|E| + |V|) * log|V|) = O(|E| * log|V|) by using binary heap,
+#        if we can further to use Fibonacci heap, it would be O(|E| + |V| * log|V|)
+# Space: O(|E| + |V|) = O(|E|)
+
 import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def minimumTime(self, n: int, edges: List[List[int]], disappear: List[int]) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for u, v, length in edges:
-            graph[u].append((v, length))
-            graph[v].append((u, length))
-
-        infinity = float("inf")
-        distances = [infinity] * n
-        distances[0] = 0
-        heap = [(0, 0)]
-
-        while heap:
-            time, node = heapq.heappop(heap)
-            if time != distances[node]:
-                continue
-
-            for neighbor, length in graph[node]:
-                arrival = time + length
-                if arrival < distances[neighbor] and arrival < disappear[neighbor]:
-                    distances[neighbor] = arrival
-                    heapq.heappush(heap, (arrival, neighbor))
-
-        return [-1 if distance == infinity else distance for distance in distances]
+    def minimumTime(self, n, edges, disappear):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type disappear: List[int]
+        :rtype: List[int]
+        """
+        INF = float("inf")
+        def modified_dijkstra(start):
+            best = [-1]*n
+            best[start] = 0
+            min_heap = [(best[start], start)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if curr != best[u]:
+                    continue
+                for v, w in adj[u]: 
+                    if not curr+w < min(best[v] if best[v] != -1 else INF, disappear[v]):  # modified
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (best[v], v))
+            return best
+        
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        return modified_dijkstra(0)

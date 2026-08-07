@@ -1,20 +1,23 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+import itertools
 
 
+# hash table
 class Solution:
-    def mostPopularCreator(self, creators: List[str], ids: List[str], views: List[int]) -> List[List[str]]:
-        totals = defaultdict(int)
-        best = {}
-
-        for creator, video_id, view_count in zip(creators, ids, views):
-            totals[creator] += view_count
-            if (
-                creator not in best
-                or view_count > best[creator][0]
-                or (view_count == best[creator][0] and video_id < best[creator][1])
-            ):
-                best[creator] = (view_count, video_id)
-
-        maximum = max(totals.values())
-        return [[creator, best[creator][1]] for creator, total in totals.items() if total == maximum]
+    def mostPopularCreator(self, creators, ids, views):
+        """
+        :type creators: List[str]
+        :type ids: List[str]
+        :type views: List[int]
+        :rtype: List[List[str]]
+        """
+        cnt = collections.Counter()
+        lookup = collections.defaultdict(lambda: (float("inf"), float("inf")))
+        for c, i, v in itertools.izip(creators, ids, views):
+            cnt[c] += v
+            lookup[c] = min(lookup[c], (-v, i))
+        mx = max(cnt.values())
+        return [[k, lookup[k][1]] for k, v in cnt.items() if v == mx]

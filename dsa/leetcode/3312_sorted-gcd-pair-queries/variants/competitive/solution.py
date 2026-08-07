@@ -1,27 +1,24 @@
-from bisect import bisect_right
+# Time:  O(rlogr + qlogr), r = max(nums)
+# Space: O(r)
+
+import collections
+import bisect
 
 
+# number theory, freq table, prefix sum, binary search
 class Solution:
-    def gcdValues(self, nums: List[int], queries: List[int]) -> List[int]:
-        limit = max(nums)
-        frequency = [0] * (limit + 1)
-        for number in nums:
-            frequency[number] += 1
-
-        exact_pairs = [0] * (limit + 1)
-
-        for divisor in range(limit, 0, -1):
-            divisible = 0
-            for multiple in range(divisor, limit + 1, divisor):
-                divisible += frequency[multiple]
-
-            pairs = divisible * (divisible - 1) // 2
-            for multiple in range(divisor * 2, limit + 1, divisor):
-                pairs -= exact_pairs[multiple]
-            exact_pairs[divisor] = pairs
-
-        cumulative = [0] * (limit + 1)
-        for divisor in range(1, limit + 1):
-            cumulative[divisor] = cumulative[divisor - 1] + exact_pairs[divisor]
-
-        return [bisect_right(cumulative, query) for query in queries]
+    def gcdValues(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        cnt1 = collections.Counter(nums)
+        cnt2 = [0]*(max(nums)+1)
+        for g in reversed(range(1, len(cnt2))):
+            c = sum(cnt1[ng] for ng in range(g, len(cnt2), g))
+            cnt2[g] = c*(c-1)//2-sum(cnt2[ng] for ng in range(g+g, len(cnt2), g))
+        prefix = [0]*(len(cnt2)+1)
+        for i in range(len(prefix)-1):
+            prefix[i+1] = prefix[i]+cnt2[i]
+        return [bisect.bisect_right(prefix, q)-1 for q in queries]

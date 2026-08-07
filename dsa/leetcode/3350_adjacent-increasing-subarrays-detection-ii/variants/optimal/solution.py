@@ -1,23 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxIncreasingSubarrays(self, nums: List[int]) -> int:
-        previous_run = 0
-        current_run = 1
-        answer = 0
-
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                current_run += 1
-            else:
-                previous_run = current_run
-                current_run = 1
-
-            answer = max(
-                answer,
-                current_run // 2,
-                min(previous_run, current_run),
-            )
-
-        return answer
+        ans = pre = cur = 0
+        for i, x in enumerate(nums):
+            cur += 1
+            if i == len(nums) - 1 or x >= nums[i + 1]:
+                ans = max(ans, cur // 2, min(pre, cur))
+                pre, cur = cur, 0
+        return ans

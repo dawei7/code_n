@@ -1,19 +1,10 @@
 class Solution:
     def findTheArrayConcVal(self, nums: List[int]) -> int:
-        left = 0
-        right = len(nums) - 1
-        total = 0
-
-        while left < right:
-            multiplier = 10
-            while multiplier <= nums[right]:
-                multiplier *= 10
-
-            total += nums[left] * multiplier + nums[right]
-            left += 1
-            right -= 1
-
-        if left == right:
-            total += nums[left]
-
-        return total
+        ans = 0
+        i, j = 0, len(nums) - 1
+        while i < j:
+            ans += int(str(nums[i]) + str(nums[j]))
+            i, j = i + 1, j - 1
+        if i == j:
+            ans += nums[i]
+        return ans

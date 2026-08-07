@@ -1,14 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# difference array
 class Solution:
-    def subarraySum(self, nums: List[int]) -> int:
-        prefix = [0]
-        for value in nums:
-            prefix.append(prefix[-1] + value)
-
-        total = 0
-        for i, value in enumerate(nums):
-            start = max(0, i - value)
-            total += prefix[i + 1] - prefix[start]
-        return total
+    def subarraySum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        diff = [0]*(len(nums)+1)
+        for i, x in enumerate(nums):
+            diff[max(i-x, 0)] += 1
+            diff[i+1] -= 1
+        for i in range(len(nums)):
+            diff[i+1] += diff[i]
+        return sum(nums[i]*diff[i] for i in range(len(nums)))

@@ -1,9 +1,11 @@
+# Time:  O(n * l)
+# Space: O(1)
+
+# string
 class Solution:
-    def maximumValue(self, strs: List[str]) -> int:
-        answer = 0
-
-        for text in strs:
-            value = int(text) if text.isdigit() else len(text)
-            answer = max(answer, value)
-
-        return answer
+    def maximumValue(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: int
+        """
+        return max(int(s) if s.isdigit() else len(s) for s in strs)

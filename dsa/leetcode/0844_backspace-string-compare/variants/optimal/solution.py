@@ -1,28 +1,29 @@
 class Solution:
     def backspaceCompare(self, s: str, t: str) -> bool:
-        def next_visible(text: str, index: int) -> int:
-            skipped = 0
-            while index >= 0:
-                if text[index] == "#":
-                    skipped += 1
-                elif skipped > 0:
-                    skipped -= 1
+        i, j, skip1, skip2 = len(s) - 1, len(t) - 1, 0, 0
+        while i >= 0 or j >= 0:
+            while i >= 0:
+                if s[i] == '#':
+                    skip1 += 1
+                    i -= 1
+                elif skip1:
+                    skip1 -= 1
+                    i -= 1
                 else:
                     break
-                index -= 1
-            return index
-
-        left = len(s) - 1
-        right = len(t) - 1
-
-        while left >= 0 or right >= 0:
-            left = next_visible(s, left)
-            right = next_visible(t, right)
-            if left < 0 or right < 0:
-                return left == right
-            if s[left] != t[right]:
+            while j >= 0:
+                if t[j] == '#':
+                    skip2 += 1
+                    j -= 1
+                elif skip2:
+                    skip2 -= 1
+                    j -= 1
+                else:
+                    break
+            if i >= 0 and j >= 0:
+                if s[i] != t[j]:
+                    return False
+            elif i >= 0 or j >= 0:
                 return False
-            left -= 1
-            right -= 1
-
+            i, j = i - 1, j - 1
         return True

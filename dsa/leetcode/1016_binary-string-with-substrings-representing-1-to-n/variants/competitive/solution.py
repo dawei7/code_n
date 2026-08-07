@@ -1,16 +1,14 @@
+# Time:  O(n^2), n is the length of S
+# Space: O(1)
+
 class Solution:
-    def queryString(self, s: str, n: int) -> bool:
-        maximum_length = n.bit_length()
-        found = set()
-
-        for start, character in enumerate(s):
-            if character == "0":
-                continue
-            value = 0
-            for end in range(start, min(len(s), start + maximum_length)):
-                value = value * 2 + int(s[end])
-                if value > n:
-                    break
-                found.add(value)
-
-        return len(found) == n
+    def queryString(self, S, N):
+        """
+        :type S: str
+        :type N: int
+        :rtype: bool
+        """
+        # since S with length n has at most different n-k+1 k-digit numbers
+        # => given S with length n, valid N is at most 2(n-k+1)
+        # => valid N <= 2(n-k+1) < 2n = 2 * S.length
+        return all(bin(i)[2:] in S for i in reversed(range(N//2, N+1)))

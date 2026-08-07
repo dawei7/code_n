@@ -1,98 +1,36 @@
-from collections import deque
-
-
 class Solution:
     def minOperations(self, grid: list[list[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        start_columns = columns - k + 1
+        m, n = len(grid), len(grid[0])
+        mx = max(max(row) for row in grid)
 
-        base_columns = [0] * start_columns
-        coefficient_columns = [0] * start_columns
-        recent_rows = deque()
+        def check(target: int) -> int:
+            diff = [[0] * (n + 2) for _ in range(m + 2)]
+            total_ops = 0
 
-        lower_bound = max(max(row) for row in grid)
-        upper_bound = None
-        forced_target = None
-        base_total = 0
-        coefficient_total = 0
+            for i, row in enumerate(grid, 1):
+                for j, val in enumerate(row, 1):
+                    diff[i][j] += diff[i - 1][j] + diff[i][j - 1] - diff[i - 1][j - 1]
 
-        def require_nonnegative(coefficient: int, base: int) -> bool:
-            nonlocal lower_bound, upper_bound
+                    cur_val = val + diff[i][j]
 
-            if coefficient > 0:
-                lower_bound = max(lower_bound, -(base // coefficient))
-            elif coefficient < 0:
-                bound = (-base) // coefficient
-                upper_bound = bound if upper_bound is None else min(upper_bound, bound)
-            elif base < 0:
-                return False
-
-            return True
-
-        def require_zero(coefficient: int, base: int) -> bool:
-            nonlocal forced_target
-
-            if coefficient == 0:
-                return base == 0
-            if (-base) % coefficient != 0:
-                return False
-
-            target = (-base) // coefficient
-            if forced_target is not None and forced_target != target:
-                return False
-            forced_target = target
-            return True
-
-        for row in range(rows):
-            if len(recent_rows) == k:
-                expired_bases, expired_coefficients = recent_rows.popleft()
-                for column in range(start_columns):
-                    base_columns[column] -= expired_bases[column]
-                    coefficient_columns[column] -= expired_coefficients[column]
-
-            row_bases = [0] * start_columns
-            row_coefficients = [0] * start_columns
-            base_window = 0
-            coefficient_window = 0
-
-            for column in range(columns):
-                if column < start_columns:
-                    base_window += base_columns[column]
-                    coefficient_window += coefficient_columns[column]
-
-                expired_column = column - k
-                if 0 <= expired_column < start_columns:
-                    base_window -= base_columns[expired_column]
-                    coefficient_window -= coefficient_columns[expired_column]
-
-                current_base = grid[row][column] + base_window
-                current_coefficient = coefficient_window
-
-                if row + k <= rows and column + k <= columns:
-                    operation_base = -current_base
-                    operation_coefficient = 1 - current_coefficient
-
-                    if not require_nonnegative(operation_coefficient, operation_base):
+                    if cur_val > target:
                         return -1
 
-                    row_bases[column] = operation_base
-                    row_coefficients[column] = operation_coefficient
-                    base_columns[column] += operation_base
-                    coefficient_columns[column] += operation_coefficient
-                    base_window += operation_base
-                    coefficient_window += operation_coefficient
-                    base_total += operation_base
-                    coefficient_total += operation_coefficient
-                elif not require_zero(current_coefficient - 1, current_base):
-                    return -1
+                    if cur_val < target:
+                        if i + k - 1 > m or j + k - 1 > n:
+                            return -1
 
-            recent_rows.append((row_bases, row_coefficients))
+                        needed = target - cur_val
+                        total_ops += needed
+                        diff[i][j] += needed
+                        diff[i + k][j] -= needed
+                        diff[i][j + k] -= needed
+                        diff[i + k][j + k] += needed
+            return total_ops
 
-        target = lower_bound if forced_target is None else forced_target
-        if target < lower_bound:
-            return -1
-        if upper_bound is not None and target > upper_bound:
-            return -1
+        for t in range(mx, mx + 2):
+            res = check(t)
+            if res != -1:
+                return res
 
-        return coefficient_total * target + base_total
+        return -1

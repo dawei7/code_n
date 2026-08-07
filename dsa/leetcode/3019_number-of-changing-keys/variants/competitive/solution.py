@@ -1,3 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def countKeyChanges(self, s: str) -> int:
-        return sum(left.lower() != right.lower() for left, right in zip(s, s[1:]))
+    def countKeyChanges(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return sum(s[i].lower() != s[i+1].lower() for i in range(len(s)-1))

@@ -1,66 +1,63 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2)
+
+MAX_N = 1000
+MOD = 10**9+7
+dp = [[0]*MAX_N for _ in range(MAX_N)]
+for i in range(len(dp)):
+    dp[i][0] = 1
+    for j in range(1, i+1):
+        dp[i][j] = (dp[i-1][j-1] + dp[i-1][j])%MOD
 
 
 class Solution:
-    def numOfWays(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        size = len(nums)
+    def numOfWays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def iter_dfs(nums):
+            result = [0]
+            stk = [[1, [nums, result]]]
+            while stk:
+                step, params = stk.pop()
+                if step == 1:
+                    nums, ret = params
+                    if len(nums) <= 2:
+                        ret[0] = 1
+                        continue
+                    left = [v for v in nums if v < nums[0]]
+                    right = [v for v in nums if v > nums[0]]
+                    ret[0] = dp[len(left)+len(right)][len(left)]
+                    ret1, ret2 = [0], [0]
+                    stk.append([2, [ret1, ret2, ret]])
+                    stk.append([1, [right, ret2]])
+                    stk.append([1, [left, ret1]])
+                elif step == 2:
+                    ret1, ret2, ret = params
+                    ret[0] = ret[0]*ret1[0] % MOD
+                    ret[0] = ret[0]*ret2[0] % MOD
+            return result[0]
 
-        factorial = [1] * (size + 1)
-        for value in range(1, size + 1):
-            factorial[value] = factorial[value - 1] * value % modulus
+        return (iter_dfs(nums)-1)%MOD
 
-        inverse_factorial = [1] * (size + 1)
-        inverse_factorial[size] = pow(factorial[size], modulus - 2, modulus)
-        for value in range(size, 0, -1):
-            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
 
-        insertion_time = [0] * size
-        for time, key in enumerate(nums):
-            insertion_time[key - 1] = time
+# Time:  O(n^2)
+# Space: O(n^2)
+class Solution:
+    def numOfWays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def dfs(nums):
+            if len(nums) <= 2:
+                return 1
+            left = [v for v in nums if v < nums[0]]
+            right = [v for v in nums if v > nums[0]]
+            result = dp[len(left)+len(right)][len(left)]
+            result = result*dfs(left) % MOD
+            result = result*dfs(right) % MOD
+            return result
 
-        left_child = [-1] * size
-        right_child = [-1] * size
-        stack: List[int] = []
-
-        for key in range(size):
-            last_popped = -1
-            while stack and insertion_time[stack[-1]] > insertion_time[key]:
-                last_popped = stack.pop()
-            if stack:
-                right_child[stack[-1]] = key
-            if last_popped != -1:
-                left_child[key] = last_popped
-            stack.append(key)
-
-        root = stack[0]
-        traversal = [root]
-        order: List[int] = []
-        while traversal:
-            node = traversal.pop()
-            order.append(node)
-            if left_child[node] != -1:
-                traversal.append(left_child[node])
-            if right_child[node] != -1:
-                traversal.append(right_child[node])
-
-        subtree_size = [0] * size
-        ways = [1] * size
-
-        for node in reversed(order):
-            left = left_child[node]
-            right = right_child[node]
-            left_size = subtree_size[left] if left != -1 else 0
-            right_size = subtree_size[right] if right != -1 else 0
-            interleavings = (
-                factorial[left_size + right_size] * inverse_factorial[left_size] * inverse_factorial[right_size]
-            ) % modulus
-
-            subtree_size[node] = left_size + right_size + 1
-            ways[node] = interleavings
-            if left != -1:
-                ways[node] = ways[node] * ways[left] % modulus
-            if right != -1:
-                ways[node] = ways[node] * ways[right] % modulus
-
-        return (ways[root] - 1) % modulus
+        return (dfs(nums)-1)%MOD

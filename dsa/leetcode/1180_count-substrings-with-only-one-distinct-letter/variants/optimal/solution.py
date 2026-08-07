@@ -1,15 +1,11 @@
 class Solution:
     def countLetters(self, s: str) -> int:
-        total = 0
-        run_length = 0
-        previous = ""
-
-        for character in s:
-            if character == previous:
-                run_length += 1
-            else:
-                previous = character
-                run_length = 1
-            total += run_length
-
-        return total
+        n = len(s)
+        i = ans = 0
+        while i < n:
+            j = i
+            while j < n and s[j] == s[i]:
+                j += 1
+            ans += (1 + j - i) * (j - i) // 2
+            i = j
+        return ans

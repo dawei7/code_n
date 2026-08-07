@@ -1,4 +1,26 @@
+# Time:  O(n)
+# Space: O(1)
+
+# math
 class Solution:
-    def largestEven(self, s: str) -> str:
-        last_two = s.rfind("2")
-        return s[: last_two + 1] if last_two >= 0 else ""
+    def largestEven(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = list(s)
+        while result and result[-1] == '1':
+            result.pop()
+        return "".join(result)
+
+
+# Time:  O(n)
+# Space: O(1)
+# math
+class Solution2(object):
+    def largestEven(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        return s.rstrip('1')

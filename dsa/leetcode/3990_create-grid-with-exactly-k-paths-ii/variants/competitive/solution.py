@@ -1,25 +1,23 @@
+# Time:  O((logk)^2)
+# Space: O(1)
+
+# constructive algorithms
 class Solution:
-    def createGrid(self, k: int) -> list[str]:
-        rows = 20
-        columns = 13
-        grid = [["#"] * columns for _ in range(rows)]
-
-        for bit in range(10):
-            row = 2 * bit
-            column = bit
-            grid[row][column] = "."
-            grid[row][column + 1] = "."
-
-            if bit < 9:
-                grid[row + 1][column] = "."
-                grid[row + 1][column + 1] = "."
-                grid[row + 2][column + 1] = "."
-
-            if k & (1 << bit):
-                for next_column in range(column + 1, columns):
-                    grid[row][next_column] = "."
-
-        for row in range(rows):
-            grid[row][columns - 1] = "."
-
-        return ["".join(row) for row in grid]
+    def createGrid(self, k):
+        """
+        :type k: int
+        :rtype: List[str]
+        """
+        l = k.bit_length()
+        m, n = 2*l, l+3
+        result = [['#']*n for _ in range(m)]
+        for i in range(l):
+            r = 2*i
+            result[r][i] = result[r][i+1] = result[r+1][i] = result[r+1][i+1] = '.'
+            if not (k&(1<<i)):
+                continue
+            for c in range(i+2, n):
+                result[r][c] = '.'
+        for r in range(m):
+            result[r][n-1] = '.'
+        return ["".join(row) for row in result]

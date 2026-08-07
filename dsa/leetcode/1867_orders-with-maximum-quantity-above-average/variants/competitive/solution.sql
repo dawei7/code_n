@@ -1,14 +1,16 @@
-WITH order_totals AS (
-    SELECT
-        order_id,
-        AVG(quantity) AS average_quantity,
-        MAX(quantity) AS maximum_quantity
-    FROM OrdersDetails
-    GROUP BY order_id
-)
+# Time:  O(n)
+# Space: O(n)
+
+WITH cte AS
+  (SELECT order_id,
+          AVG(quantity) AS avg_quantity,
+          MAX(quantity) AS max_quantity
+   FROM OrdersDetails
+   GROUP BY order_id
+   ORDER BY NULL)
+  
 SELECT order_id
-FROM order_totals
-WHERE maximum_quantity > (
-    SELECT MAX(average_quantity)
-    FROM order_totals
-);
+FROM cte
+WHERE max_quantity >
+    (SELECT MAX(avg_quantity) AS max_avg_quantity
+     FROM cte);

@@ -1,16 +1,26 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogr)
+# Space: O(logr)
+
+import collections
 
 
+# dp, lc3171
 class Solution:
-    def countSubarrays(self, nums: List[int], k: int) -> int:
-        ending_counts: dict[int, int] = {}
-        answer = 0
-        for number in nums:
-            next_counts: dict[int, int] = defaultdict(int)
-            next_counts[number] += 1
-            for value, count in ending_counts.items():
-                next_counts[value & number] += count
-            answer += next_counts.get(k, 0)
-            ending_counts = next_counts
-        return answer
+    def countSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        dp = collections.defaultdict(int)
+        for x in nums:
+            new_dp = collections.defaultdict(int)
+            if x&k == k:
+                new_dp[x] += 1
+                for y, c in dp.items():
+                    new_dp[y&x] += c
+                if k in new_dp:
+                    result += new_dp[k]                
+            dp = new_dp
+        return result

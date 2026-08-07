@@ -1,17 +1,17 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def sumNumbers(self, root: Optional["TreeNode"]) -> int:
-        total = 0
-        stack = [(root, root.val)]
-        while stack:
-            node, value = stack.pop()
-            if node.left is None and node.right is None:
-                total += value
-                continue
-            if node.right is not None:
-                stack.append((node.right, value * 10 + node.right.val))
-            if node.left is not None:
-                stack.append((node.left, value * 10 + node.left.val))
-        return total
+    def sumNumbers(self, root: Optional[TreeNode]) -> int:
+        def dfs(root, s):
+            if root is None:
+                return 0
+            s = s * 10 + root.val
+            if root.left is None and root.right is None:
+                return s
+            return dfs(root.left, s) + dfs(root.right, s)
+
+        return dfs(root, 0)

@@ -1,7 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def countConsistentStrings(self, allowed: str, words: List[str]) -> int:
-        allowed_letters = set(allowed)
-        return sum(all(character in allowed_letters for character in word) for word in words)
+    def countConsistentStrings(self, allowed, words):
+        """
+        :type allowed: str
+        :type words: List[str]
+        :rtype: int
+        """
+        lookup = [False]*26
+        for c in allowed:
+            lookup[ord(c)-ord('a')] = True
+        result = len(words)
+        for word in words:
+            for c in word:
+                if not lookup[ord(c)-ord('a')]:
+                    result -= 1
+                    break
+        return result

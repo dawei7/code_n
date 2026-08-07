@@ -1,42 +1,124 @@
-from collections import defaultdict
-from heapq import heappop, heappush
-from typing import List
+# Time:  ctor:    O(1)
+#        join:    O(logu + c), u is the number of total joined users
+#        leave:   O(logu + c), c is the number of chunks
+#        request: O(u)
+# Space: O(u * c)
+
+import heapq
 
 
-class FileSharing:
-    def __init__(self, m: int):
-        self.next_id = 1
-        self.available_ids = []
-        self.user_chunks = {}
-        self.chunk_users = defaultdict(set)
+# "u ~= n" solution, n is the average number of users who own the chunk
+class FileSharing(object):
 
-    def join(self, ownedChunks: List[int]) -> int:
-        if self.available_ids:
-            user_id = heappop(self.available_ids)
+    def __init__(self, m):
+        """
+        :type m: int
+        """
+        self.__users = []
+        self.__lookup = set()
+        self.__min_heap = []
+
+    def join(self, ownedChunks):
+        """
+        :type ownedChunks: List[int]
+        :rtype: int
+        """
+        if self.__min_heap:
+            userID = heapq.heappop(self.__min_heap)
         else:
-            user_id = self.next_id
-            self.next_id += 1
+            userID = len(self.__users)+1
+            self.__users.append(set())
+        self.__users[userID-1] = set(ownedChunks)
+        self.__lookup.add(userID)
+        return userID
 
-        chunks = set(ownedChunks)
-        self.user_chunks[user_id] = chunks
-        for chunk_id in chunks:
-            self.chunk_users[chunk_id].add(user_id)
-        return user_id
+    def leave(self, userID):
+        """
+        :type userID: int
+        :rtype: None
+        """
+        if userID not in self.__lookup:
+            return
+        self.__lookup.remove(userID)
+        self.__users[userID-1] = []
+        heapq.heappush(self.__min_heap, userID)
 
-    def leave(self, userID: int) -> None:
-        for chunk_id in self.user_chunks.pop(userID):
-            owners = self.chunk_users[chunk_id]
-            owners.remove(userID)
-            if not owners:
-                del self.chunk_users[chunk_id]
-        heappush(self.available_ids, userID)
+    def request(self, userID, chunkID):
+        """
+        :type userID: int
+        :type chunkID: int
+        :rtype: List[int]
+        """
+        result = []
+        for u, chunks in enumerate(self.__users, 1):
+            if chunkID not in chunks:
+                continue
+            result.append(u)
+        if not result:
+            return
+        self.__users[userID-1].add(chunkID)
+        return result
 
-    def request(self, userID: int, chunkID: int) -> List[int]:
-        owners = self.chunk_users.get(chunkID)
-        if not owners:
-            return []
 
-        result = sorted(owners)
-        owners.add(userID)
-        self.user_chunks[userID].add(chunkID)
+# Time:  ctor:    O(1)
+#        join:    O(logu + c), u is the number of total joined users
+#        leave:   O(logu + c), c is the number of chunks
+#        request: O(nlogn)   , n is the average number of users who own the chunk
+# Space: O(u * c + m), m is the total number of unique chunks
+import collections
+import heapq
+
+
+# "u >> n" solution
+class FileSharing2(object):
+
+    def __init__(self, m):
+        """
+        :type m: int
+        """
+        self.__users = []
+        self.__lookup = set() 
+        self.__chunks = collections.defaultdict(set)
+        self.__min_heap = []
+
+    def join(self, ownedChunks):
+        """
+        :type ownedChunks: List[int]
+        :rtype: int
+        """
+        if self.__min_heap:
+            userID = heapq.heappop(self.__min_heap)
+        else:
+            userID = len(self.__users)+1
+            self.__users.append(set())
+        self.__users[userID-1] = set(ownedChunks)
+        self.__lookup.add(userID)
+        for c in ownedChunks:
+            self.__chunks[c].add(userID)
+        return userID
+
+    def leave(self, userID):
+        """
+        :type userID: int
+        :rtype: None
+        """
+        if userID not in self.__lookup:
+            return
+        for c in self.__users[userID-1]:
+            self.__chunks[c].remove(userID)
+        self.__lookup.remove(userID)
+        self.__users[userID-1] = []
+        heapq.heappush(self.__min_heap, userID)
+
+    def request(self, userID, chunkID):
+        """
+        :type userID: int
+        :type chunkID: int
+        :rtype: List[int]
+        """
+        result = sorted(self.__chunks[chunkID])
+        if not result:
+            return
+        self.__users[userID-1].add(chunkID)
+        self.__chunks[chunkID].add(userID)
         return result

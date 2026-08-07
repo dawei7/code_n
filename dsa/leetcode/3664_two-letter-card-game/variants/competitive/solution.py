@@ -1,27 +1,23 @@
-from collections import Counter
-from typing import List
+# Time:  O(n + 26)
+# Space: O(26)
 
-
+# freq table, math
 class Solution:
-    def score(self, cards: List[str], x: str) -> int:
-        first = Counter()
-        second = Counter()
-        centers = 0
-
-        for card in cards:
-            if card[0] == x and card[1] == x:
-                centers += 1
-            elif card[0] == x:
-                first[card[1]] += 1
-            elif card[1] == x:
-                second[card[0]] += 1
-
-        def side_score(counts: Counter[str], allocated: int) -> int:
-            side_total = sum(counts.values())
-            total = side_total + allocated
-            largest = max([allocated, *counts.values()])
-            return min(total // 2, total - largest)
-
-        return max(
-            side_score(first, allocated) + side_score(second, centers - allocated) for allocated in range(centers + 1)
-        )
+    def score(self, cards, x):
+        cnt1 = [0]*26
+        cnt2 = [0]*26
+        cnt3 = 0
+        for s in cards:
+            if x not in s:
+                continue
+            if s[0] == x == s[1]:
+                cnt3 += 1
+            elif s[0] == x:
+                cnt1[ord(s[1])-ord('a')] += 1
+            elif s[1] == x:
+                cnt2[ord(s[0])-ord('a')] += 1
+        total1, total2 = sum(cnt1), sum(cnt2)
+        mx1, mx2 = max(cnt1), max(cnt2)
+        pair1, pair2 = min(total1-mx1, total1//2), min(total2-mx2, total2//2)
+        pair3 = min((total1-2*pair1)+(total2-2*pair2), cnt3)
+        return (pair1+pair2)+pair3+min(pair1+pair2, (cnt3-pair3)//2)

@@ -1,21 +1,13 @@
-from typing import List
-
-
 class Solution:
     def maxBalancedSubarray(self, nums: List[int]) -> int:
-        first_index = {(0, 0): -1}
-        prefix_xor = 0
-        balance = 0
-        longest = 0
-
-        for index, value in enumerate(nums):
-            prefix_xor ^= value
-            balance += 1 if value % 2 == 0 else -1
-            state = (prefix_xor, balance)
-
-            if state in first_index:
-                longest = max(longest, index - first_index[state])
+        d = {(0, 0): -1}
+        a = b = 0
+        ans = 0
+        for i, x in enumerate(nums):
+            a ^= x
+            b += 1 if x % 2 == 0 else -1
+            if (a, b) in d:
+                ans = max(ans, i - d[(a, b)])
             else:
-                first_index[state] = index
-
-        return longest
+                d[(a, b)] = i
+        return ans

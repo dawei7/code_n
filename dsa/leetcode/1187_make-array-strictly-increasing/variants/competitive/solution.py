@@ -1,31 +1,29 @@
-from bisect import bisect_right
-from typing import List
+# Time:  O(n^2 * logn)
+# Space: O(n)
+
+import collections
+import bisect
 
 
 class Solution:
-    def makeArrayIncreasing(self, arr1: List[int], arr2: List[int]) -> int:
-        candidates = sorted(set(arr2))
-        states = {-1: 0}
-
-        for value in arr1:
-            next_states = {}
-            for previous, operations in states.items():
-                if value > previous:
-                    next_states[value] = min(next_states.get(value, float("inf")), operations)
-
-                replacement_index = bisect_right(candidates, previous)
-                if replacement_index < len(candidates):
-                    replacement = candidates[replacement_index]
-                    next_states[replacement] = min(next_states.get(replacement, float("inf")), operations + 1)
-
-            best_cost = float("inf")
-            states = {}
-            for previous, operations in sorted(next_states.items()):
-                if operations < best_cost:
-                    states[previous] = operations
-                    best_cost = operations
-
-            if not states:
+    def makeArrayIncreasing(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: int
+        """
+        arr2 = sorted(set(arr2))
+        dp = {0: -1}  # dp[min_cost] = end_with_val
+        for val1 in arr1:
+            next_dp = collections.defaultdict(lambda: float("inf"))
+            for cost, val in dp.items():
+                if val < val1:
+                    next_dp[cost] = min(next_dp[cost], val1)
+                k = bisect.bisect_right(arr2, val)
+                if k == len(arr2):
+                    continue
+                next_dp[cost+1] = min(next_dp[cost+1], arr2[k])
+            dp = next_dp
+            if not dp:
                 return -1
-
-        return min(states.values())
+        return min(dp.keys())

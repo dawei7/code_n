@@ -1,13 +1,20 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
+# hash, sort
 class Solution:
-    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
-        losses = {}
-        for winner, loser in matches:
-            losses.setdefault(winner, 0)
-            losses[loser] = losses.get(loser, 0) + 1
-        return [
-            sorted(player for player, count in losses.items() if count == 0),
-            sorted(player for player, count in losses.items() if count == 1),
-        ]
+    def findWinners(self, matches):
+        """
+        :type matches: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        lose = collections.defaultdict(int)
+        players_set = set()
+        for x, y in matches:
+            lose[y] += 1
+            players_set.add(x)
+            players_set.add(y)
+        return [[x for x in sorted(players_set) if lose[x] == i] for i in range(2)]

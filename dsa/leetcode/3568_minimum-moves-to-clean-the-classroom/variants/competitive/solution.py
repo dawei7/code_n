@@ -1,42 +1,50 @@
-from collections import deque
+# Time:  O(m * n * 2^l)
+# Space: O(m * n * 2^l)
 
-
+# bfs, bitmasks
 class Solution:
-    def minMoves(self, classroom: list[str], energy: int) -> int:
-        rows = len(classroom)
-        columns = len(classroom[0])
-        litter_bits: dict[tuple[int, int], int] = {}
-        litter_count = 0
-        start = (0, 0)
-        for row in range(rows):
-            for column in range(columns):
-                cell = classroom[row][column]
-                if cell == "S":
-                    start = (row, column)
-                elif cell == "L":
-                    litter_bits[row, column] = 1 << litter_count
-                    litter_count += 1
-        full_mask = (1 << litter_count) - 1
-        queue = deque([(start[0], start[1], 0, energy, 0)])
-        best_energy = {(start[0], start[1], 0): energy}
-        while queue:
-            row, column, mask, remaining, moves = queue.popleft()
-            if mask == full_mask:
-                return moves
-            if remaining < best_energy[row, column, mask]:
-                continue
-            if remaining == 0:
-                continue
-            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
+    def minMoves(self, classroom, energy):
+        """
+        :type classroom: List[str]
+        :type energy: int
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        m, n = len(classroom), len(classroom[0])
+        lookup = {}
+        r = c = -1
+        for i in range(m):
+            for j in range(len(classroom[i])):
+                curr = classroom[i][j]
+                if curr == 'S':
+                    r, c = i, j
+                elif curr == 'L':
+                    lookup[(i, j)] = len(lookup)
+        lookup2 = [[[-1]*(1<<len(lookup)) for _ in range(n)] for _ in range(m)]
+        lookup2[r][c][0] = energy
+        q = [(r, c, 0, energy)]
+        result = 0
+        while q:
+            new_q = []
+            for i, j, mask, e in q:
+                if lookup2[i][j][mask] != e:
                     continue
-                cell = classroom[next_row][next_column]
-                if cell == "X":
-                    continue
-                next_mask = mask | litter_bits.get((next_row, next_column), 0)
-                next_energy = energy if cell == "R" else remaining - 1
-                key = (next_row, next_column, next_mask)
-                if next_energy > best_energy.get(key, -1):
-                    best_energy[key] = next_energy
-                    queue.append((next_row, next_column, next_mask, next_energy, moves + 1))
+                if mask == (1<<len(lookup))-1:
+                    return result
+                for di, dj in DIRECTIONS:
+                    ni, nj = i+di, j+dj
+                    ne = e-1
+                    if not (0 <= ni < m and 0 <= nj < n and classroom[ni][nj] != 'X' and ne >= 0):
+                        continue
+                    new_mask = mask
+                    if classroom[ni][nj] == 'R':
+                        ne = energy
+                    elif classroom[ni][nj] == 'L':
+                        new_mask |= 1<<lookup[(ni, nj)]
+                    if ne <= lookup2[ni][nj][new_mask]:
+                        continue
+                    lookup2[ni][nj][new_mask] = ne
+                    new_q.append((ni, nj, new_mask, ne))
+            q = new_q
+            result += 1
         return -1

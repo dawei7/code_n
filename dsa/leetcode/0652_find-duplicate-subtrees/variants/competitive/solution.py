@@ -1,21 +1,53 @@
-from collections import defaultdict
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
     def findDuplicateSubtrees(self, root):
-        structure_ids = {}
-        frequencies = defaultdict(int)
-        duplicates = []
+        """
+        :type root: TreeNode
+        :rtype: List[TreeNode]
+        """
+        def getid(root, lookup, trees):
+            if not root:
+                return -1
+            node_id = lookup[root.val,
+                             getid(root.left, lookup, trees),
+                             getid(root.right, lookup, trees)]
+            trees[node_id].append(root)
+            return node_id
 
-        def identify(node):
-            if node is None:
-                return 0
-            key = (node.val, identify(node.left), identify(node.right))
-            structure_id = structure_ids.setdefault(key, len(structure_ids) + 1)
-            frequencies[structure_id] += 1
-            if frequencies[structure_id] == 2:
-                duplicates.append(node)
-            return structure_id
+        trees = collections.defaultdict(list)
+        lookup = collections.defaultdict()
+        lookup.default_factory = lookup.__len__
+        getid(root, lookup, trees)
+        return [roots[0] for roots in trees.values() if len(roots) > 1]
 
-        identify(root)
-        return duplicates
+
+# Time:  O(n * h)
+# Space: O(n * h)
+class Solution2(object):
+    def findDuplicateSubtrees(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[TreeNode]
+        """
+        def postOrderTraversal(node, lookup, result):
+            if not node:
+                return ""
+            s = "(" + postOrderTraversal(node.left, lookup, result) + \
+                str(node.val) + \
+                postOrderTraversal(node.right, lookup, result) + \
+                ")"
+            if lookup[s] == 1:
+                result.append(node)
+            lookup[s] += 1
+            return s
+
+        lookup = collections.defaultdict(int)
+        result = []
+        postOrderTraversal(root, lookup, result)
+        return result
+

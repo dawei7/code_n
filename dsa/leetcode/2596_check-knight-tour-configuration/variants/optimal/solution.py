@@ -1,19 +1,15 @@
 class Solution:
     def checkValidGrid(self, grid: List[List[int]]) -> bool:
-        n = len(grid)
-        positions = [None] * (n * n)
-
-        for row in range(n):
-            for col in range(n):
-                positions[grid[row][col]] = (row, col)
-
-        if positions[0] != (0, 0):
+        if grid[0][0]:
             return False
-
-        for previous, current in zip(positions, positions[1:]):
-            row_change = abs(previous[0] - current[0])
-            col_change = abs(previous[1] - current[1])
-            if sorted((row_change, col_change)) != [1, 2]:
+        n = len(grid)
+        pos = [None] * (n * n)
+        for i in range(n):
+            for j in range(n):
+                pos[grid[i][j]] = (i, j)
+        for (x1, y1), (x2, y2) in pairwise(pos):
+            dx, dy = abs(x1 - x2), abs(y1 - y2)
+            ok = (dx == 1 and dy == 2) or (dx == 2 and dy == 1)
+            if not ok:
                 return False
-
         return True

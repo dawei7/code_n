@@ -1,33 +1,72 @@
-from typing import List
+# Time:  O(r + 2^n * n^2)
+# Space: O(n^3)
 
-
+# graph, bitmasks, Floyd-Warshall algorithm, backtracking
 class Solution:
-    def numberOfSets(self, n: int, maxDistance: int, roads: List[List[int]]) -> int:
-        infinity = 10**15
-        valid = 0
+    def numberOfSets(self, n, maxDistance, roads):
+        """
+        :type n: int
+        :type maxDistance: int
+        :type roads: List[List[int]]
+        :rtype: int
+        """
+        def check(mask, dist):
+            return all(dist[i][j] <= maxDistance for i in range(n) if mask&(1<<i) for j in range(i+1, n) if mask&(1<<j))
 
-        for mask in range(1 << n):
-            distance = [[infinity] * n for _ in range(n)]
-            for branch in range(n):
-                if mask >> branch & 1:
-                    distance[branch][branch] = 0
+        def floydWarshall(dist, k):
+            for i in range(len(dist)):
+                for j in range(i+1, len(dist[i])):
+                    dist[j][i] = dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j])
 
-            for first, second, length in roads:
-                if mask >> first & 1 and mask >> second & 1:
-                    if length < distance[first][second]:
-                        distance[first][second] = length
-                        distance[second][first] = length
+        def backtracking(i, mask, dist):
+            if i == n:
+                result[0] += check(mask, dist)
+                return
+            for j in range(2):
+                new_dist = [d[:] for d in dist]
+                if j:
+                    floydWarshall(new_dist, i)
+                backtracking(i+1, mask|(j<<i), new_dist)
+    
+        dist = [[0 if u == v else float("inf") for v in range(n)] for u in range(n)]
+        for u, v, w in roads:
+            dist[u][v] = min(dist[u][v], w)
+            dist[v][u] = min(dist[v][u], w)
+        result = [0]
+        backtracking(0, 0, [d[:] for d in dist])
+        return result[0]
+    
 
-            active = [branch for branch in range(n) if mask >> branch & 1]
-            for middle in active:
-                for first in active:
-                    through_middle = distance[first][middle]
-                    for second in active:
-                        candidate = through_middle + distance[middle][second]
-                        if candidate < distance[first][second]:
-                            distance[first][second] = candidate
+# Time:  O(r + 2^n * n^3)
+# Space: O(n^2)
+# bitmasks, Floyd-Warshall algorithm
+class Solution2(object):
+    def numberOfSets(self, n, maxDistance, roads):
+        """
+        :type n: int
+        :type maxDistance: int
+        :type roads: List[List[int]]
+        :rtype: int
+        """
+        def check(mask, dist):
+            return all(dist[i][j] <= maxDistance for i in range(n) if mask&(1<<i) for j in range(i+1, n) if mask&(1<<j))
 
-            if all(distance[first][second] <= maxDistance for first in active for second in active):
-                valid += 1
+        def floydWarshall(mask, dist):
+            for k in range(len(dist[0])):
+                if mask&(1<<k) == 0:
+                    continue
+                for i in range(len(dist)):
+                    if mask&(1<<i) == 0:  # optional, to speed up performance
+                        continue
+                    for j in range(i+1, len(dist[i])):
+                        if mask&(1<<j) == 0:  # optional, to speed up performance
+                             continue
+                        dist[j][i] = dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j])
+            return check(mask, dist)
 
-        return valid
+        dist = [[0 if u == v else float("inf") for v in range(n)] for u in range(n)]
+        for u, v, w in roads:
+            dist[u][v] = min(dist[u][v], w)
+            dist[v][u] = min(dist[v][u], w)
+        return sum(floydWarshall(mask, [d[:] for d in dist]) for mask in range(1<<n))
+    

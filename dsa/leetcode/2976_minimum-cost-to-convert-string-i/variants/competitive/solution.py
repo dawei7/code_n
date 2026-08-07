@@ -1,40 +1,83 @@
-from typing import List
+# Time:  O(o + k * eloge + n), k = len(set(original)), e is the number of edges reachable from a given node u
+# Space: O(o + k * v), v is the number of nodes reachable from a given node u
+
+import heapq
 
 
+# dijkstra's algorithm, memoization
 class Solution:
-    def minimumCost(
-        self,
-        source: str,
-        target: str,
-        original: List[str],
-        changed: List[str],
-        cost: List[int],
-    ) -> int:
-        alphabet = 26
-        infinity = 10**30
-        distance = [[infinity] * alphabet for _ in range(alphabet)]
-        for letter in range(alphabet):
-            distance[letter][letter] = 0
-
-        for start, end, price in zip(original, changed, cost):
-            first = ord(start) - ord("a")
-            second = ord(end) - ord("a")
-            distance[first][second] = min(distance[first][second], price)
-
-        for middle in range(alphabet):
-            for first in range(alphabet):
-                through_middle = distance[first][middle]
-                if through_middle == infinity:
+    def minimumCost(self, source, target, original, changed, cost):
+        """
+        :type source: str
+        :type target: str
+        :type original: List[str]
+        :type changed: List[str]
+        :type cost: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        def dijkstra(start):
+            best = {start:0}
+            min_heap = [(0, start)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if curr > best[u]:
                     continue
-                for second in range(alphabet):
-                    candidate = through_middle + distance[middle][second]
-                    if candidate < distance[first][second]:
-                        distance[first][second] = candidate
+                if u not in dist:
+                    continue
+                for v, w in dist[u].iteritems():     
+                    if v in best and best[v] <= curr+w:
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (best[v], v))
+            return best
 
-        answer = 0
-        for start, end in zip(source, target):
-            price = distance[ord(start) - ord("a")][ord(end) - ord("a")]
-            if price == infinity:
-                return -1
-            answer += price
-        return answer
+        memo = {}
+        def memoization(u, v):
+            if u not in memo:
+                memo[u] = dijkstra(u)
+            return memo[u][v] if v in memo[u] else INF
+
+        dist = {}
+        for i in range(len(original)):
+            u, v = ord(original[i])-ord('a'), ord(changed[i])-ord('a')
+            if u not in dist:
+                dist[u] = {v:INF}
+            if v not in dist[u]:
+                dist[u][v] = INF
+            dist[u][v] = min(dist[u][v], cost[i])
+        result = sum(memoization(ord(source[i])-ord('a'), ord(target[i])-ord('a')) for i in range(len(source)))
+        return result if result != INF else -1
+
+
+# Time:  O(o + 26^3 + n)
+# Space: O(o + 26^2)
+# Floyd-Warshall algorithm 
+class Solution2(object):
+    def minimumCost(self, source, target, original, changed, cost):
+        """
+        :type source: str
+        :type target: str
+        :type original: List[str]
+        :type changed: List[str]
+        :type cost: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        def floydWarshall(dist):
+            for k in range(len(dist)):
+                for i in range(len(dist)):
+                    if dist[i][k] == INF:
+                        continue
+                    for j in range(len(dist[i])):
+                        if dist[k][j] == INF:
+                            continue
+                        dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j])
+
+        dist = [[0 if u == v else INF for v in range(26)] for u in range(26)]
+        for i in range(len(original)):
+            u, v = ord(original[i])-ord('a'), ord(changed[i])-ord('a')
+            dist[u][v] = min(dist[u][v], cost[i])
+        floydWarshall(dist)
+        result = sum(dist[ord(source[i])-ord('a')][ord(target[i])-ord('a')] for i in range(len(source)))
+        return result if result != INF else -1

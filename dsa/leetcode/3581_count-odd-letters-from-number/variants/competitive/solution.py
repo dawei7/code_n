@@ -1,22 +1,17 @@
+# Time:  O(logn)
+# Space: O(26)
+
+# freq table
 class Solution:
-    def countOddLetters(self, n: int) -> int:
-        words = (
-            "zero",
-            "one",
-            "two",
-            "three",
-            "four",
-            "five",
-            "six",
-            "seven",
-            "eight",
-            "nine",
-        )
-        parity = 0
-
+    def countOddLetters(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        lookup = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+        cnt = [0]*26
         while n:
-            for letter in words[n % 10]:
-                parity ^= 1 << (ord(letter) - ord("a"))
-            n //= 10
-
-        return parity.bit_count()
+            n, d = divmod(n, 10)
+            for x in lookup[d]:
+                cnt[ord(x)-ord('a')] += 1
+        return sum(v%2 for v in cnt)

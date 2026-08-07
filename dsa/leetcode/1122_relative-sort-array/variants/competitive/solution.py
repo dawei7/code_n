@@ -1,17 +1,12 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        counts = [0] * 1001
-        for value in arr1:
-            counts[value] += 1
-
-        answer: List[int] = []
-        for value in arr2:
-            answer.extend([value] * counts[value])
-            counts[value] = 0
-
-        for value, frequency in enumerate(counts):
-            answer.extend([value] * frequency)
-        return answer
+    def relativeSortArray(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: List[int]
+        """
+        lookup = {v: i for i, v in enumerate(arr2)}
+        return sorted(arr1, key=lambda i: lookup.get(i, len(arr2)+i))

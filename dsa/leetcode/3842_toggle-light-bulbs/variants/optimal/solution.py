@@ -1,8 +1,6 @@
 class Solution:
     def toggleLightBulbs(self, bulbs: list[int]) -> list[int]:
-        is_on = [False] * 101
-
-        for bulb in bulbs:
-            is_on[bulb] = not is_on[bulb]
-
-        return [bulb for bulb in range(1, 101) if is_on[bulb]]
+        st = [0] * 101
+        for x in bulbs:
+            st[x] ^= 1
+        return [i for i, x in enumerate(st) if x]

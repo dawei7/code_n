@@ -1,17 +1,17 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def isBalanced(self, root: Optional["TreeNode"]) -> bool:
-        def height(node):
-            if node is None:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def height(root):
+            if root is None:
                 return 0
-            left_height = height(node.left)
-            if left_height < 0:
+            l, r = height(root.left), height(root.right)
+            if l == -1 or r == -1 or abs(l - r) > 1:
                 return -1
-            right_height = height(node.right)
-            if right_height < 0 or abs(left_height - right_height) > 1:
-                return -1
-            return 1 + max(left_height, right_height)
+            return 1 + max(l, r)
 
         return height(root) >= 0

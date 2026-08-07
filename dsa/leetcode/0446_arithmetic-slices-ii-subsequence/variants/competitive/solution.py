@@ -1,15 +1,23 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n * d)
+
+import collections
 
 
 class Solution:
-    def numberOfArithmeticSlices(self, nums: List[int]) -> int:
-        endings = [{} for _ in nums]
-        answer = 0
+    def numberOfArithmeticSlices(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result = 0
+        dp = [collections.defaultdict(int) for i in range(len(A))]
+        for i in range(1, len(A)):
+            for j in range(i):
+                diff = A[i]-A[j]
+                dp[i][diff] += 1
+                if diff in dp[j]:
+                    dp[i][diff] += dp[j][diff]
+                    result += dp[j][diff]
+        return result
 
-        for right in range(len(nums)):
-            for left in range(right):
-                difference = nums[right] - nums[left]
-                extensions = endings[left].get(difference, 0)
-                answer += extensions
-                endings[right][difference] = endings[right].get(difference, 0) + extensions + 1
-        return answer

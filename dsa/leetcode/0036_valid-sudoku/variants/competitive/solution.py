@@ -1,20 +1,25 @@
-from typing import List
-
+# Time:  O(9^2)
+# Space: O(9)
 
 class Solution:
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
-        rows = [set() for _ in range(9)]
-        columns = [set() for _ in range(9)]
-        boxes = [set() for _ in range(9)]
-        for row in range(9):
-            for column in range(9):
-                digit = board[row][column]
-                if digit == ".":
-                    continue
-                box = (row // 3) * 3 + column // 3
-                if digit in rows[row] or digit in columns[column] or digit in boxes[box]:
+    def isValidSudoku(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: bool
+        """
+        for i in range(9):
+            if not self.isValidList([board[i][j] for j in range(9)]) or \
+               not self.isValidList([board[j][i] for j in range(9)]):
+                return False
+        for i in range(3):
+            for j in range(3):
+                if not self.isValidList([board[m][n] for n in range(3 * j, 3 * j + 3) \
+                                                     for m in range(3 * i, 3 * i + 3)]):
                     return False
-                rows[row].add(digit)
-                columns[column].add(digit)
-                boxes[box].add(digit)
         return True
+
+    def isValidList(self, xs):
+        xs = filter(lambda x: x != '.', xs)
+        return len(set(xs)) == len(xs)
+
+

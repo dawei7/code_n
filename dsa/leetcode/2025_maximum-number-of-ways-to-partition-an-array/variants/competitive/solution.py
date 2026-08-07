@@ -1,29 +1,28 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def waysToPartition(self, nums: List[int], k: int) -> int:
+    def waysToPartition(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         total = sum(nums)
-        right = Counter()
+        right = collections.Counter()
         prefix = 0
-
-        for pivot in range(1, len(nums)):
-            prefix += nums[pivot - 1]
-            right[2 * prefix - total] += 1
-
-        answer = right[0]
-        left = Counter()
+        for i in range(len(nums)-1):
+            prefix += nums[i]
+            right[prefix-(total-prefix)] += 1
+        result = right[0]
+        left = collections.Counter()
         prefix = 0
-
-        for index, value in enumerate(nums):
-            if index > 0:
-                prefix += nums[index - 1]
-                balance = 2 * prefix - total
-                right[balance] -= 1
-                left[balance] += 1
-
-            change = k - value
-            answer = max(answer, left[change] + right[-change])
-
-        return answer
+        for x in nums:
+            result = max(result, left[k-x]+right[-(k-x)])
+            prefix += x
+            left[prefix-(total-prefix)] += 1
+            right[prefix-(total-prefix)] -= 1
+        return result

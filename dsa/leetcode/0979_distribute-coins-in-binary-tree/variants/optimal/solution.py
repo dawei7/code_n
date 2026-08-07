@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,16 +6,14 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def distributeCoins(self, root: Optional[TreeNode]) -> int:
-        moves = 0
-
-        def balance(node):
-            nonlocal moves
-            if node is None:
+        def dfs(root):
+            if root is None:
                 return 0
-            left = balance(node.left)
-            right = balance(node.right)
-            moves += abs(left) + abs(right)
-            return node.val + left + right - 1
+            left, right = dfs(root.left), dfs(root.right)
+            nonlocal ans
+            ans += abs(left) + abs(right)
+            return left + right + root.val - 1
 
-        balance(root)
-        return moves
+        ans = 0
+        dfs(root)
+        return ans

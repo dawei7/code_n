@@ -1,17 +1,20 @@
-from collections import Counter
+# Time:  O(n * l + nlogn)
+# Space: O(n)
 
-
+# freq table, greedy, sort
 class Solution:
-    def maxPalindromesAfterOperations(self, words: List[str]) -> int:
-        frequencies = Counter(character for word in words for character in word)
-        available_pairs = sum(count // 2 for count in frequencies.values())
-
-        answer = 0
-        for length in sorted(map(len, words)):
-            required_pairs = length // 2
-            if required_pairs > available_pairs:
-                break
-            available_pairs -= required_pairs
-            answer += 1
-
-        return answer
+    def maxPalindromesAfterOperations(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        cnt = [0]*26
+        for w in words:
+            for c in w:
+                cnt[ord(c)-ord('a')] += 1
+        curr = sum(x//2 for x in cnt)
+        for i, l in enumerate(sorted(map(len, words))):
+            curr -= l//2
+            if curr < 0:
+                return i
+        return len(words)

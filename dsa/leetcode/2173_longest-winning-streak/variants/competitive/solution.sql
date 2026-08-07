@@ -1,30 +1,27 @@
-WITH marked_matches AS (
-    SELECT
-        player_id,
-        result,
-        SUM(result <> 'Win') OVER (
-            PARTITION BY player_id
-            ORDER BY match_day
-        ) AS segment_id
-    FROM Matches
-),
-winning_streaks AS (
-    SELECT
-        player_id,
-        segment_id,
-        COUNT(*) AS streak_length
-    FROM marked_matches
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH player_match_seq_cte AS (
+    SELECT player_id, match_day, result,
+           ROW_NUMBER() OVER (PARTITION BY player_id ORDER BY match_day) AS seq
+    FROM matches),
+player_match_group_id_cte AS (
+    SELECT player_id,
+           seq - ROW_NUMBER() OVER(PARTITION BY player_id ORDER BY match_day) AS group_id
+    FROM player_match_seq_cte
     WHERE result = 'Win'
-    GROUP BY player_id, segment_id
 ),
-players AS (
-    SELECT DISTINCT player_id
-    FROM Matches
+player_match_group_cte AS (
+    SELECT player_id, group_id, COUNT(*) as cnt
+    FROM player_match_group_id_cte
+    GROUP BY 1, 2
+    ORDER BY NULL
 )
-SELECT
-    players.player_id,
-    COALESCE(MAX(winning_streaks.streak_length), 0) AS longest_streak
-FROM players
-LEFT JOIN winning_streaks
-  ON winning_streaks.player_id = players.player_id
-GROUP BY players.player_id;
+
+SELECT a.player_id, IFNULL(MAX(b.cnt), 0) as longest_streak
+FROM (SELECT DISTINCT player_id FROM matches) a
+     LEFT JOIN
+     player_match_group_cte b
+     ON a.player_id = b.player_id
+GROUP BY 1
+ORDER BY NULL;

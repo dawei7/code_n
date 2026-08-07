@@ -1,10 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def isCircularSentence(self, sentence: str) -> bool:
-        if sentence[0] != sentence[-1]:
-            return False
-
-        for index, character in enumerate(sentence):
-            if character == " " and sentence[index - 1] != sentence[index + 1]:
-                return False
-
-        return True
+    def isCircularSentence(self, sentence):
+        """
+        :type sentence: str
+        :rtype: bool
+        """
+        return sentence[0] == sentence[-1] and all(sentence[i-1] == sentence[i+1]for i in range(len(sentence)) if sentence[i] == ' ')

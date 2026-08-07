@@ -1,20 +1,22 @@
+# Time:  O(d * n)
+# Space: O(n)
+
+import collections
+
+
+# prefix sum, freq table
 class Solution:
-    def countDivisibleSubstrings(self, word: str) -> int:
-        value = {}
-        for digit, letters in enumerate(
-            ("ab", "cde", "fgh", "ijk", "lmn", "opq", "rst", "uvw", "xyz"),
-            start=1,
-        ):
-            for letter in letters:
-                value[letter] = digit
-
-        answer = 0
-        for average in range(1, 10):
-            balance = 0
-            frequency = {0: 1}
-            for character in word:
-                balance += value[character] - average
-                answer += frequency.get(balance, 0)
-                frequency[balance] = frequency.get(balance, 0) + 1
-
-        return answer
+    def countDivisibleSubstrings(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        result = 0
+        for d in range(1, 10):
+            prefix = 0
+            cnt = collections.Counter([0+d*(-1+1)])
+            for i, x in enumerate(word):
+                prefix += (ord(x)-ord('a')+1)//3+1
+                result += cnt[prefix-d*(i+1)]
+                cnt[prefix-d*(i+1)] += 1
+        return result

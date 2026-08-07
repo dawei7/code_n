@@ -1,27 +1,56 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n^4)
+# Space: O(n)
+
+import collections
 
 
+# sort, brute force, hash table
 class Solution:
-    def wordSquares(self, words: List[str]) -> List[List[str]]:
-        ordered = sorted(words)
-        by_first = defaultdict(list)
-        by_corners = defaultdict(list)
-
-        for word in ordered:
-            by_first[word[0]].append(word)
-            by_corners[(word[0], word[3])].append(word)
-
-        squares = []
-        for top in ordered:
-            for left in by_first[top[0]]:
-                if left == top:
+    def wordSquares(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[str]]
+        """
+        words.sort()
+        lookup = collections.defaultdict(list)
+        for i, w in enumerate(words):
+            lookup[w[0]].append(i)
+            lookup[w[0], w[3]].append(i)
+        result = []
+        for i in range(len(words)):
+            for j in lookup[words[i][0]]:
+                if j == i:
                     continue
-                for right in by_first[top[3]]:
-                    if right == top or right == left:
+                for k in lookup[words[i][3]]:
+                    if k in (i, j):
                         continue
-                    for bottom in by_corners[(left[3], right[3])]:
-                        if bottom != top and bottom != left and bottom != right:
-                            squares.append([top, left, right, bottom])
+                    for l in lookup[words[j][3], words[k][3]]:
+                        if l in (i, j, k):
+                            continue
+                        result.append([words[i], words[j], words[k], words[l]])
+        return result
 
-        return squares
+
+# Time:  O(n^4)
+# Space: O(1)
+# sort, brute force
+class Solution2(object):
+    def wordSquares(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[List[str]]
+        """
+        words.sort()
+        result = []
+        for i in range(len(words)):
+            for j in range(len(words)):
+                if j == i or words[j][0] != words[i][0]:
+                    continue
+                for k in range(len(words)):
+                    if k in (i, j) or words[k][0] != words[i][3]:
+                        continue
+                    for l in range(len(words)):
+                        if l in (i, j, k) or words[l][0] != words[j][3] or words[l][3] != words[k][3]:
+                            continue
+                        result.append([words[i], words[j], words[k], words[l]])
+        return result

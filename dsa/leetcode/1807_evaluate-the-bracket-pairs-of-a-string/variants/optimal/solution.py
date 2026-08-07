@@ -1,21 +1,14 @@
-from typing import List
-
-
 class Solution:
     def evaluate(self, s: str, knowledge: List[List[str]]) -> str:
-        values = dict(knowledge)
-        result = []
-        index = 0
-
-        while index < len(s):
-            if s[index] != "(":
-                result.append(s[index])
-                index += 1
-                continue
-
-            closing = s.find(")", index + 1)
-            key = s[index + 1 : closing]
-            result.append(values.get(key, "?"))
-            index = closing + 1
-
-        return "".join(result)
+        d = {a: b for a, b in knowledge}
+        i, n = 0, len(s)
+        ans = []
+        while i < n:
+            if s[i] == '(':
+                j = s.find(')', i + 1)
+                ans.append(d.get(s[i + 1 : j], '?'))
+                i = j
+            else:
+                ans.append(s[i])
+            i += 1
+        return ''.join(ans)

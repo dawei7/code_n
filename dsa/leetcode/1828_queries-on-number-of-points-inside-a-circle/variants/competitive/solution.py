@@ -1,16 +1,17 @@
-from typing import List
-
+# Time:  O(q * n)
+# Space: O(1)
 
 class Solution:
-    def countPoints(self, points: List[List[int]], queries: List[List[int]]) -> List[int]:
-        answer = []
-        for center_x, center_y, radius in queries:
-            radius_squared = radius * radius
-            count = 0
-            for point_x, point_y in points:
-                delta_x = point_x - center_x
-                delta_y = point_y - center_y
-                if delta_x * delta_x + delta_y * delta_y <= radius_squared:
-                    count += 1
-            answer.append(count)
-        return answer
+    def countPoints(self, points, queries):
+        """
+        :type points: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        result = []
+        for i, j, r in queries:
+            result.append(0)
+            for x, y in points:
+                if (x-i)**2+(y-j)**2 <= r**2:
+                    result[-1] += 1
+        return result

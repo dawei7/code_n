@@ -1,30 +1,16 @@
-from typing import List
-
-
 class Solution:
     def latestTimeCatchTheBus(
-        self,
-        buses: List[int],
-        passengers: List[int],
-        capacity: int,
+        self, buses: List[int], passengers: List[int], capacity: int
     ) -> int:
         buses.sort()
         passengers.sort()
-        occupied = set(passengers)
-        passenger_index = 0
-        boarded = 0
-
-        for bus in buses:
-            boarded = 0
-            while boarded < capacity and passenger_index < len(passengers) and passengers[passenger_index] <= bus:
-                passenger_index += 1
-                boarded += 1
-
-        if boarded < capacity:
-            candidate = buses[-1]
-        else:
-            candidate = passengers[passenger_index - 1] - 1
-
-        while candidate in occupied:
-            candidate -= 1
-        return candidate
+        j = 0
+        for t in buses:
+            c = capacity
+            while c and j < len(passengers) and passengers[j] <= t:
+                c, j = c - 1, j + 1
+        j -= 1
+        ans = buses[-1] if c else passengers[j]
+        while ~j and passengers[j] == ans:
+            ans, j = ans - 1, j - 1
+        return ans

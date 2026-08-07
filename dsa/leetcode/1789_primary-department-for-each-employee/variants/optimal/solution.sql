@@ -1,8 +1,9 @@
-SELECT
-    employee_id,
-    COALESCE(
-        MAX(CASE WHEN primary_flag = 'Y' THEN department_id END),
-        MAX(department_id)
-    ) AS department_id
+# Write your MySQL query statement below
+SELECT employee_id, department_id
 FROM Employee
-GROUP BY employee_id;
+WHERE primary_flag = 'Y'
+UNION
+SELECT employee_id, department_id
+FROM Employee
+GROUP BY 1
+HAVING COUNT(1) = 1;

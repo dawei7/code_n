@@ -1,32 +1,17 @@
+# Time:  O(n)
+# Space: O(h)
+
 class Solution:
-    def tree2str(self, root: "TreeNode") -> str:
-        if root is None:
-            return ""
+    def tree2str(self, t):
+        """
+        :type t: TreeNode
+        :rtype: str
+        """
+        if not t: return ""
+        s = str(t.val)
+        if t.left or t.right:
+            s += "(" + self.tree2str(t.left) + ")"
+        if t.right:
+            s += "(" + self.tree2str(t.right) + ")"
+        return s
 
-        tokens = []
-        actions = [("node", root)]
-
-        while actions:
-            action, value = actions.pop()
-            if action == "text":
-                tokens.append(value)
-                continue
-
-            node = value
-            tokens.append(str(node.val))
-
-            if node.right is not None:
-                actions.append(("text", ")"))
-                actions.append(("node", node.right))
-                actions.append(("text", "("))
-
-                actions.append(("text", ")"))
-                if node.left is not None:
-                    actions.append(("node", node.left))
-                actions.append(("text", "("))
-            elif node.left is not None:
-                actions.append(("text", ")"))
-                actions.append(("node", node.left))
-                actions.append(("text", "("))
-
-        return "".join(tokens)

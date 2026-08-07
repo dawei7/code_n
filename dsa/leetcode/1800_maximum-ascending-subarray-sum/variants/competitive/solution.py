@@ -1,12 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxAscendingSum(self, nums: list[int]) -> int:
-        best = current = nums[0]
-
-        for previous, value in zip(nums, nums[1:]):
-            if value > previous:
-                current += value
-            else:
-                current = value
-            best = max(best, current)
-
-        return best
+    def maxAscendingSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for i in range(len(nums)): 
+            if not (i and nums[i-1] < nums[i]):
+                curr = 0
+            curr += nums[i]
+            result = max(result, curr)
+        return result

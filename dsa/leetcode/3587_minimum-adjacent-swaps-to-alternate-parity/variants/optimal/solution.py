@@ -1,24 +1,15 @@
 class Solution:
     def minSwaps(self, nums: List[int]) -> int:
-        even_count = sum(value % 2 == 0 for value in nums)
-        odd_count = len(nums) - even_count
+        def calc(k: int) -> int:
+            return sum(abs(i - j) for i, j in zip(range(0, len(nums), 2), pos[k]))
 
-        if abs(even_count - odd_count) > 1:
+        pos = [[], []]
+        for i, x in enumerate(nums):
+            pos[x & 1].append(i)
+        if abs(len(pos[0]) - len(pos[1])) > 1:
             return -1
-
-        def cost(start_with_even: bool) -> int:
-            target = 0 if start_with_even else 1
-            swaps = 0
-
-            for index, value in enumerate(nums):
-                if value % 2 == 0:
-                    swaps += abs(index - target)
-                    target += 2
-
-            return swaps
-
-        if even_count > odd_count:
-            return cost(True)
-        if odd_count > even_count:
-            return cost(False)
-        return min(cost(True), cost(False))
+        if len(pos[0]) > len(pos[1]):
+            return calc(0)
+        if len(pos[0]) < len(pos[1]):
+            return calc(1)
+        return min(calc(0), calc(1))

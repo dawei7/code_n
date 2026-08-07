@@ -1,30 +1,21 @@
-WITH salary_rows AS (
-    SELECT
-        strftime('%Y-%m', salary.pay_date) AS pay_month,
-        employee.department_id,
-        salary.amount,
-        AVG(salary.amount) OVER (
-            PARTITION BY strftime('%Y-%m', salary.pay_date)
-        ) AS company_average
-    FROM Salary AS salary
-    JOIN Employee AS employee
-        ON employee.employee_id = salary.employee_id
-), department_averages AS (
-    SELECT
-        pay_month,
-        department_id,
-        AVG(amount) AS department_average,
-        MAX(company_average) AS company_average
-    FROM salary_rows
-    GROUP BY pay_month, department_id
-)
-SELECT
+# Write your MySQL query statement below
+WITH
+    t AS (
+        SELECT
+            DATE_FORMAT(pay_date, '%Y-%m') AS pay_month,
+            department_id,
+            AVG(amount) OVER (PARTITION BY pay_date) AS company_avg_amount,
+            AVG(amount) OVER (PARTITION BY pay_date, department_id) AS department_avg_amount
+        FROM
+            Salary AS s
+            JOIN Employee AS e ON s.employee_id = e.employee_id
+    )
+SELECT DISTINCT
     pay_month,
     department_id,
     CASE
-        WHEN department_average > company_average THEN 'higher'
-        WHEN department_average < company_average THEN 'lower'
-        ELSE 'same'
+        WHEN company_avg_amount = department_avg_amount THEN 'same'
+        WHEN company_avg_amount < department_avg_amount THEN 'higher'
+        ELSE 'lower'
     END AS comparison
-FROM department_averages
-ORDER BY pay_month, department_id;
+FROM t;

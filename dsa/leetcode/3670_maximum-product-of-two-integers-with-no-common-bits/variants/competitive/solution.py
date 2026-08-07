@@ -1,23 +1,50 @@
-from typing import List
+# Time:  O(n + rlogr), r = max(nums)
+# Space: O(r)
 
-
+# dp, bitmasks
 class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
-        bits = max(nums).bit_length()
-        size = 1 << bits
-        best_submask = [0] * size
-        for value in nums:
-            best_submask[value] = value
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        l = max(nums).bit_length()
+        dp = [0]*(1<<l)
+        for x in nums:
+            dp[x] = x
+        for i in range(l):
+            for j in range(0, 1<<l, 1<<(i+1)):
+                for k in range(j, j+(1<<i)):
+                    if dp[k] > dp[k+(1<<i)]:
+                        dp[k+(1<<i)] = dp[k]
+        result = 0
+        for x in nums:
+            if x*dp[((1<<l)-1)^x] > result:
+                result = x*dp[((1<<l)-1)^x]
+        return result
 
-        for bit in range(bits):
-            half = 1 << bit
-            block = half << 1
-            for start in range(0, size, block):
-                for offset in range(half):
-                    lower = start + offset
-                    upper = lower + half
-                    if best_submask[lower] > best_submask[upper]:
-                        best_submask[upper] = best_submask[lower]
 
-        full_mask = size - 1
-        return max(value * best_submask[full_mask ^ value] for value in nums)
+# Time:  O(n + rlogr), r = max(nums)
+# Space: O(r)
+# dp, bitmasks
+class Solution2(object):
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        l = max(nums).bit_length()
+        dp = [0]*(1<<l)
+        for x in nums:
+            dp[x] = x
+        for i in range(l):
+            for mask in range(1<<l):
+                if mask&(1<<i):
+                    continue
+                if dp[mask] > dp[mask|(1<<i)]:
+                    dp[mask|(1<<i)] = dp[mask]
+        result = 0
+        for x in nums:
+            if x*dp[((1<<l)-1)^x] > result:
+                result = x*dp[((1<<l)-1)^x]
+        return result

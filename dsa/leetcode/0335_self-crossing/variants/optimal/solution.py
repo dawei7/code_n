@@ -1,23 +1,17 @@
-from typing import List
-
-
 class Solution:
     def isSelfCrossing(self, distance: List[int]) -> bool:
-        for index in range(3, len(distance)):
-            if distance[index] >= distance[index - 2] and distance[index - 1] <= distance[index - 3]:
+        d = distance
+        for i in range(3, len(d)):
+            if d[i] >= d[i - 2] and d[i - 1] <= d[i - 3]:
+                return True
+            if i >= 4 and d[i - 1] == d[i - 3] and d[i] + d[i - 4] >= d[i - 2]:
                 return True
             if (
-                index >= 4
-                and distance[index - 1] == distance[index - 3]
-                and distance[index] + distance[index - 4] >= distance[index - 2]
-            ):
-                return True
-            if (
-                index >= 5
-                and distance[index - 2] >= distance[index - 4]
-                and distance[index] + distance[index - 4] >= distance[index - 2]
-                and distance[index - 1] <= distance[index - 3]
-                and distance[index - 1] + distance[index - 5] >= distance[index - 3]
+                i >= 5
+                and d[i - 2] >= d[i - 4]
+                and d[i - 1] <= d[i - 3]
+                and d[i] >= d[i - 2] - d[i - 4]
+                and d[i - 1] + d[i - 5] >= d[i - 3]
             ):
                 return True
         return False

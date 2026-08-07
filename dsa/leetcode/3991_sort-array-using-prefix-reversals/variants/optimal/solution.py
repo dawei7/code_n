@@ -1,24 +1,23 @@
-from collections import deque
-
-
 class Solution:
     def sortArray(self, nums: List[int], pre: List[int]) -> int:
+        n = len(nums)
+        target = tuple(range(n))
         start = tuple(nums)
-        target = tuple(range(len(nums)))
+
         if start == target:
             return 0
 
-        queue = deque([(start, 0)])
-        seen = {start}
+        vis = {start}
+        q = deque([(start, 0)])
 
-        while queue:
-            current, distance = queue.popleft()
-            for length in pre:
-                next_state = current[:length][::-1] + current[length:]
-                if next_state == target:
-                    return distance + 1
-                if next_state not in seen:
-                    seen.add(next_state)
-                    queue.append((next_state, distance + 1))
-
+        while q:
+            state, dist = q.popleft()
+            nd = dist + 1
+            for x in pre:
+                nxt = state[:x][::-1] + state[x:]
+                if nxt == target:
+                    return nd
+                if nxt not in vis:
+                    vis.add(nxt)
+                    q.append((nxt, nd))
         return -1

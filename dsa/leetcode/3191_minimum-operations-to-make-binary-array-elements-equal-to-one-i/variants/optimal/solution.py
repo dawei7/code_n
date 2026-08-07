@@ -1,10 +1,11 @@
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        for i in range(len(nums) - 2):
-            if nums[i] == 0:
-                nums[i] ^= 1
+        ans = 0
+        for i, x in enumerate(nums):
+            if x == 0:
+                if i + 2 >= len(nums):
+                    return -1
                 nums[i + 1] ^= 1
                 nums[i + 2] ^= 1
-                operations += 1
-        return operations if nums[-2] == nums[-1] == 1 else -1
+                ans += 1
+        return ans

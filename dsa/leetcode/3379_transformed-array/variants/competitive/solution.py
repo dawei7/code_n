@@ -1,7 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def constructTransformedArray(self, nums: List[int]) -> List[int]:
-        length = len(nums)
-        return [nums[(index + offset) % length] for index, offset in enumerate(nums)]
+    def constructTransformedArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        return [nums[(i+nums[i])%len(nums)] for i in range(len(nums))]

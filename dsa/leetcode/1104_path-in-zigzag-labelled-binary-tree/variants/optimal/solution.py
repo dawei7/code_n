@@ -1,13 +1,12 @@
-from typing import List
-
-
 class Solution:
     def pathInZigZagTree(self, label: int) -> List[int]:
-        reversed_path = []
-        while label:
-            reversed_path.append(label)
-            depth = label.bit_length() - 1
-            start = 1 << depth
-            end = (1 << (depth + 1)) - 1
-            label = (start + end - label) // 2
-        return reversed_path[::-1]
+        x = i = 1
+        while (x << 1) <= label:
+            x <<= 1
+            i += 1
+        ans = [0] * i
+        while i:
+            ans[i - 1] = label
+            label = ((1 << (i - 1)) + (1 << i) - 1 - label) >> 1
+            i -= 1
+        return ans

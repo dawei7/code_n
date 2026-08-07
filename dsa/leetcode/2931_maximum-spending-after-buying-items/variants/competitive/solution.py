@@ -1,20 +1,23 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(m * n * logm)
+# Space: O(m)
+
+import heapq
 
 
+# greedy, heap
 class Solution:
-    def maxSpending(self, values: List[List[int]]) -> int:
-        columns = len(values[0])
-        heap = [(row[-1], shop, columns - 1) for shop, row in enumerate(values)]
-        heapify(heap)
-
-        spending = 0
-        day = 1
-        while heap:
-            value, shop, column = heappop(heap)
-            spending += day * value
-            day += 1
-            if column > 0:
-                heappush(heap, (values[shop][column - 1], shop, column - 1))
-
-        return spending
+    def maxSpending(self, values):
+        """
+        :type values: List[List[int]]
+        :rtype: int
+        """
+        m, n = len(values), len(values[0])
+        min_heap = [(values[i].pop(), i) for i in range(m)]
+        heapq.heapify(min_heap)
+        result = 0
+        for d in range(1, m*n+1):
+            x, i = heapq.heappop(min_heap)
+            result += x*d
+            if values[i]:
+                heapq.heappush(min_heap, (values[i].pop(), i))
+        return result

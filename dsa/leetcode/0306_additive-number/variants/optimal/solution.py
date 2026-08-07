@@ -1,29 +1,23 @@
-def _is_additive(num: str) -> bool:
-    length = len(num)
-    for first_end in range(1, length - 1):
-        if num[0] == "0" and first_end > 1:
-            break
-        first = int(num[:first_end])
-        for second_end in range(first_end + 1, length):
-            if num[first_end] == "0" and second_end - first_end > 1:
-                break
-            second = int(num[first_end:second_end])
-            index = second_end
-            terms = 2
-            left = first
-            right = second
-            while index < length:
-                next_text = str(left + right)
-                if not num.startswith(next_text, index):
-                    break
-                index += len(next_text)
-                left, right = right, left + right
-                terms += 1
-            if index == length and terms >= 3:
-                return True
-    return False
-
-
 class Solution:
     def isAdditiveNumber(self, num: str) -> bool:
-        return _is_additive(num)
+        def dfs(a, b, num):
+            if not num:
+                return True
+            if a + b > 0 and num[0] == '0':
+                return False
+            for i in range(1, len(num) + 1):
+                if a + b == int(num[:i]):
+                    if dfs(b, a + b, num[i:]):
+                        return True
+            return False
+
+        n = len(num)
+        for i in range(1, n - 1):
+            for j in range(i + 1, n):
+                if i > 1 and num[0] == '0':
+                    break
+                if j - i > 1 and num[i] == '0':
+                    continue
+                if dfs(int(num[:i]), int(num[i:j]), num[j:]):
+                    return True
+        return False

@@ -1,48 +1,26 @@
-from typing import List
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa != pb:
+            self.p[pa] = pb
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
 
 
 class Solution:
     def largestComponentSize(self, nums: List[int]) -> int:
-        parent = list(range(len(nums)))
-        size = [1] * len(nums)
-
-        def find(node):
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(first, second):
-            first = find(first)
-            second = find(second)
-            if first == second:
-                return
-            if size[first] < size[second]:
-                first, second = second, first
-            parent[second] = first
-            size[first] += size[second]
-
-        owner = {}
-        for index, number in enumerate(nums):
-            remaining = number
-            factor = 2
-            while factor * factor <= remaining:
-                if remaining % factor == 0:
-                    if factor in owner:
-                        union(index, owner[factor])
-                    else:
-                        owner[factor] = index
-                    while remaining % factor == 0:
-                        remaining //= factor
-                factor += 1
-            if remaining > 1:
-                if remaining in owner:
-                    union(index, owner[remaining])
-                else:
-                    owner[remaining] = index
-
-        counts = {}
-        for index in range(len(nums)):
-            root = find(index)
-            counts[root] = counts.get(root, 0) + 1
-        return max(counts.values())
+        uf = UnionFind(max(nums) + 1)
+        for v in nums:
+            i = 2
+            while i <= v // i:
+                if v % i == 0:
+                    uf.union(v, i)
+                    uf.union(v, v // i)
+                i += 1
+        return max(Counter(uf.find(v) for v in nums).values())

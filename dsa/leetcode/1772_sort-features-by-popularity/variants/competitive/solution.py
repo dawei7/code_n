@@ -1,17 +1,22 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def sortFeatures(self, features: List[str], responses: List[str]) -> List[str]:
-        original_index = {feature: index for index, feature in enumerate(features)}
-        popularity = {feature: 0 for feature in features}
-
-        for response in responses:
-            for word in set(response.split()):
-                if word in popularity:
-                    popularity[word] += 1
-
-        return sorted(
-            features,
-            key=lambda feature: (-popularity[feature], original_index[feature]),
-        )
+    def sortFeatures(self, features, responses):
+        """
+        :type features: List[str]
+        :type responses: List[str]
+        :rtype: List[str]
+        """
+        features_set = set(features)
+        order = {word: i for i, word in enumerate(features)}
+        freq = collections.defaultdict(int)
+        for r in responses:
+            for word in set(r.split(' ')):
+                if word in features_set:
+                    freq[word] += 1
+        features.sort(key=lambda x: (-freq[x], order[x]))
+        return features

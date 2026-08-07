@@ -1,25 +1,24 @@
-from typing import List
-
+# Time:  O(k * C(n, k))
+# Space: O(k)
 
 class Solution:
-    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        candidates.sort()
+    # @param candidates, a list of integers
+    # @param target, integer
+    # @return a list of lists of integers
+    def combinationSum2(self, candidates, target):
         result = []
-        path = []
-
-        def search(start: int, remaining: int) -> None:
-            if remaining == 0:
-                result.append(path[:])
-                return
-            for index in range(start, len(candidates)):
-                if index > start and candidates[index] == candidates[index - 1]:
-                    continue
-                value = candidates[index]
-                if value > remaining:
-                    break
-                path.append(value)
-                search(index + 1, remaining - value)
-                path.pop()
-
-        search(0, target)
+        self.combinationSumRecu(sorted(candidates), result, 0, [], target)
         return result
+
+    def combinationSumRecu(self, candidates, result, start, intermediate, target):
+        if target == 0:
+            result.append(list(intermediate))
+        prev = 0
+        while start < len(candidates) and candidates[start] <= target:
+            if prev != candidates[start]:
+                intermediate.append(candidates[start])
+                self.combinationSumRecu(candidates, result, start + 1, intermediate, target - candidates[start])
+                intermediate.pop()
+                prev = candidates[start]
+            start += 1
+

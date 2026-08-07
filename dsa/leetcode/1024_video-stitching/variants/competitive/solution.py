@@ -1,24 +1,25 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def videoStitching(self, clips: List[List[int]], time: int) -> int:
-        farthest_from_start = [0] * (time + 1)
-        for start, end in clips:
-            if start <= time:
-                farthest_from_start[start] = max(farthest_from_start[start], end)
-
-        used = 0
-        current_end = 0
-        farthest = 0
-        for position in range(time):
-            farthest = max(farthest, farthest_from_start[position])
-            if farthest <= position:
-                return -1
-            if position == current_end:
-                used += 1
-                current_end = farthest
-                if current_end >= time:
-                    return used
-
-        return used
+    def videoStitching(self, clips, T):
+        """
+        :type clips: List[List[int]]
+        :type T: int
+        :rtype: int
+        """
+        if T == 0:
+            return 0
+        result = 1
+        curr_reachable, reachable = 0, 0
+        clips.sort()
+        for left, right in clips:
+            if left > reachable:
+                break
+            elif left > curr_reachable:
+                curr_reachable = reachable
+                result += 1
+            reachable = max(reachable, right)
+            if reachable >= T:
+                return result
+        return -1

@@ -1,15 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def maxWidthRamp(self, nums: List[int]) -> int:
-        candidates = []
-        for index, value in enumerate(nums):
-            if not candidates or value < nums[candidates[-1]]:
-                candidates.append(index)
-
-        maximum = 0
-        for right in range(len(nums) - 1, -1, -1):
-            while candidates and nums[candidates[-1]] <= nums[right]:
-                maximum = max(maximum, right - candidates.pop())
-        return maximum
+    def maxWidthRamp(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result = 0
+        s = []
+        for i in A:
+            if not s or A[s[-1]] > A[i]:
+                s.append(i)
+        for j in reversed(range(len(A))):
+            while s and A[s[-1]] <= A[j]:
+                result = max(result, j-s.pop())
+        return result

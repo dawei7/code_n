@@ -1,23 +1,23 @@
-WITH hourly_calls AS (
-    SELECT
-        city,
-        CAST(strftime('%H', call_time) AS INTEGER) AS peak_calling_hour,
-        COUNT(*) AS number_of_calls
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH call_by_hour_cte AS (
+    SELECT city, 
+           HOUR(call_time) AS calling_hour,
+           COUNT(*) AS number_of_calls
     FROM Calls
-    GROUP BY city, CAST(strftime('%H', call_time) AS INTEGER)
+    GROUP BY 1, 2
+    ORDER BY NULL
 ),
-ranked_hours AS (
-    SELECT
-        city,
-        peak_calling_hour,
-        number_of_calls,
-        DENSE_RANK() OVER (
-            PARTITION BY city
-            ORDER BY number_of_calls DESC
-        ) AS calling_rank
-    FROM hourly_calls
+rank_calling_hour_cte AS (
+    SELECT *,
+           DENSE_RANK() OVER (PARTITION BY city ORDER BY number_of_calls DESC) AS rnk
+    FROM call_by_hour_cte
 )
-SELECT city, peak_calling_hour, number_of_calls
-FROM ranked_hours
-WHERE calling_rank = 1
-ORDER BY peak_calling_hour DESC, city DESC;
+
+SELECT city, 
+       calling_hour AS peak_calling_hour,
+       number_of_calls
+FROM rank_calling_hour_cte
+WHERE rnk = 1
+ORDER BY 2 DESC, 1 DESC;

@@ -1,10 +1,10 @@
 class Solution:
     def isStrobogrammatic(self, num: str) -> bool:
-        rotated = {"0": "0", "1": "1", "6": "9", "8": "8", "9": "6"}
-        left, right = 0, len(num) - 1
-        while left <= right:
-            if rotated.get(num[left]) != num[right]:
+        d = [0, 1, -1, -1, -1, -1, 9, -1, 8, 6]
+        i, j = 0, len(num) - 1
+        while i <= j:
+            a, b = int(num[i]), int(num[j])
+            if d[a] != b:
                 return False
-            left += 1
-            right -= 1
+            i, j = i + 1, j - 1
         return True

@@ -1,25 +1,18 @@
-from functools import lru_cache
-
-
 class Solution:
     def soupServings(self, n: int) -> float:
-        if n >= 4800:
-            return 1.0
-        units = (n + 24) // 25
-
-        @lru_cache(maxsize=None)
-        def probability(soup_a: int, soup_b: int) -> float:
-            if soup_a <= 0 and soup_b <= 0:
+        @cache
+        def dfs(i: int, j: int) -> float:
+            if i <= 0 and j <= 0:
                 return 0.5
-            if soup_a <= 0:
-                return 1.0
-            if soup_b <= 0:
-                return 0.0
+            if i <= 0:
+                return 1
+            if j <= 0:
+                return 0
             return 0.25 * (
-                probability(soup_a - 4, soup_b)
-                + probability(soup_a - 3, soup_b - 1)
-                + probability(soup_a - 2, soup_b - 2)
-                + probability(soup_a - 1, soup_b - 3)
+                dfs(i - 4, j)
+                + dfs(i - 3, j - 1)
+                + dfs(i - 2, j - 2)
+                + dfs(i - 1, j - 3)
             )
 
-        return probability(units, units)
+        return 1 if n > 4800 else dfs((n + 24) // 25, (n + 24) // 25)

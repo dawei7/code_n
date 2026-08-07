@@ -1,12 +1,11 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def findChampion(self, grid: List[List[int]]) -> int:
-        candidate = 0
-
-        for team in range(1, len(grid)):
-            if grid[team][candidate] == 1:
-                candidate = team
-
-        return candidate
+    def findChampion(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        return next(u for u in range(len(grid)) if sum(grid[u]) == len(grid)-1)

@@ -1,22 +1,23 @@
+# Time:  O(n)
+# Space: O(n)
+
+# array
 class Solution:
-    def countCoveredBuildings(self, n: int, buildings: List[List[int]]) -> int:
-        row_bounds = {}
-        column_bounds = {}
-
+    def countCoveredBuildings(self, n, buildings):
+        """
+        :type n: int
+        :type buildings: List[List[int]]
+        :rtype: int
+        """
+        left = [n]*n
+        right = [-1]*n
+        up = [-1]*n
+        down = [n]*n
         for x, y in buildings:
-            if x in row_bounds:
-                row_bounds[x][0] = min(row_bounds[x][0], y)
-                row_bounds[x][1] = max(row_bounds[x][1], y)
-            else:
-                row_bounds[x] = [y, y]
-
-            if y in column_bounds:
-                column_bounds[y][0] = min(column_bounds[y][0], x)
-                column_bounds[y][1] = max(column_bounds[y][1], x)
-            else:
-                column_bounds[y] = [x, x]
-
-        return sum(
-            row_bounds[x][0] < y < row_bounds[x][1] and column_bounds[y][0] < x < column_bounds[y][1]
-            for x, y in buildings
-        )
+            x -= 1
+            y -= 1
+            left[y] = min(left[y], x)
+            right[y] = max(right[y], x)
+            up[x] = max(up[x], y)
+            down[x] = min(down[x], y) 
+        return sum(left[y-1] < x-1 < right[y-1] and down[x-1] < y-1 < up[x-1] for x, y in buildings)

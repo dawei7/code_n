@@ -1,16 +1,8 @@
-from typing import List
-
-
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        left = 0
-        right = len(numbers) - 1
-        while left < right:
-            total = numbers[left] + numbers[right]
-            if total == target:
-                return [left + 1, right + 1]
-            if total < target:
-                left += 1
-            else:
-                right -= 1
-        return []
+        n = len(numbers)
+        for i in range(n - 1):
+            x = target - numbers[i]
+            j = bisect_left(numbers, x, lo=i + 1)
+            if j < n and numbers[j] == x:
+                return [i + 1, j + 1]

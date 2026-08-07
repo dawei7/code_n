@@ -1,7 +1,14 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
 class Solution:
-    def maximumElementAfterDecrementingAndRearranging(self, arr: list[int]) -> int:
+    def maximumElementAfterDecrementingAndRearranging(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
         arr.sort()
-        maximum = 0
-        for value in arr:
-            maximum = min(value, maximum + 1)
-        return maximum
+        result = 1
+        for i in range(1, len(arr)):
+            result = min(result+1, arr[i])
+        return result

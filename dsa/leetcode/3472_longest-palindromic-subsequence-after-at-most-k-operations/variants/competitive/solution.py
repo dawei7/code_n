@@ -1,25 +1,24 @@
+# Time:  O(n^2 * k)
+# Space: O(n^2 * k)
+
+# dp
 class Solution:
-    def longestPalindromicSubsequence(self, s: str, k: int) -> int:
-        n = len(s)
-        dp = [[1] * (k + 1) for _ in range(n)]
-
-        for left in range(n - 2, -1, -1):
-            diagonal = [0] * (k + 1)
-            for right in range(left + 1, n):
-                without_left = dp[right]
-                without_right = dp[right - 1]
-                current = [0] * (k + 1)
-
-                difference = abs(ord(s[left]) - ord(s[right]))
-                pair_cost = min(difference, 26 - difference)
-
-                for budget in range(k + 1):
-                    best = max(without_left[budget], without_right[budget])
-                    if pair_cost <= budget:
-                        best = max(best, diagonal[budget - pair_cost] + 2)
-                    current[budget] = best
-
-                diagonal = without_left
-                dp[right] = current
-
-        return dp[n - 1][k]
+    def longestPalindromicSubsequence(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        dp = [[[1 if i == j else 0 for _ in range(k+1)] for j in range(len(s))] for i in range(len(s))]
+        for i in reversed(range(len(s)-1)):
+            for j in range(i+1, len(s)):
+                for x in range(k+1):
+                    if s[i] == s[j]:
+                        dp[i][j][x] = dp[i+1][j-1][x]+2
+                    else:
+                        dp[i][j][x] = max(dp[i+1][j][x], dp[i][j-1][x])
+                        diff = abs(ord(s[i])-ord(s[j]))
+                        c = min(diff, 26-diff)
+                        if x >= c:
+                            dp[i][j][x] = max(dp[i][j][x], dp[i+1][j-1][x-c]+2)
+        return dp[0][-1][k]

@@ -1,19 +1,24 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def minMovesToCaptureTheQueen(
-        self,
-        a: int,
-        b: int,
-        c: int,
-        d: int,
-        e: int,
-        f: int,
-    ) -> int:
-        def between(left: int, middle: int, right: int) -> bool:
-            return min(left, right) < middle < max(left, right)
-
-        rook_attacks = (a == e and not (c == a and between(b, d, f))) or (b == f and not (d == b and between(a, c, e)))
-
-        bishop_line = abs(c - e) == abs(d - f)
-        rook_blocks_bishop = bishop_line and between(c, a, e) and (c - d == e - f == a - b or c + d == e + f == a + b)
-
-        return 1 if rook_attacks or (bishop_line and not rook_blocks_bishop) else 2
+    def minMovesToCaptureTheQueen(self, a, b, c, d, e, f):
+        """
+        :type a: int
+        :type b: int
+        :type c: int
+        :type d: int
+        :type e: int
+        :type f: int
+        :rtype: int
+        """
+        if a == e and not (a == c and (b-d)*(f-d) < 0):
+            return 1
+        if b == f and not (b == d and (a-c)*(e-c) < 0):
+            return 1
+        if c+d == e+f and not (c+d == a+b and (c-a)*(e-a) < 0):
+            return 1
+        if c-d == e-f and not (c-d == a-b and (d-b)*(f-b) < 0):
+            return 1
+        return 2

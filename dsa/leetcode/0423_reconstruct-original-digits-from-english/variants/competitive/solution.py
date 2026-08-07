@@ -1,20 +1,33 @@
+# Time:  O(n)
+# Space: O(1)
+
 from collections import Counter
 
-
 class Solution:
-    def originalDigits(self, s: str) -> str:
-        letters = Counter(s)
-        counts = [0] * 10
+    def originalDigits(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        # The count of each char in each number string.
+        cnts = [Counter(_) for _ in ["zero", "one", "two", "three", \
+                                     "four", "five", "six", "seven", \
+                                     "eight", "nine"]]
 
-        counts[0] = letters["z"]
-        counts[2] = letters["w"]
-        counts[4] = letters["u"]
-        counts[6] = letters["x"]
-        counts[8] = letters["g"]
-        counts[3] = letters["h"] - counts[8]
-        counts[5] = letters["f"] - counts[4]
-        counts[7] = letters["s"] - counts[6]
-        counts[1] = letters["o"] - counts[0] - counts[2] - counts[4]
-        counts[9] = letters["i"] - counts[5] - counts[6] - counts[8]
+        # The order for greedy method.
+        order = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
 
-        return "".join(str(digit) * count for digit, count in enumerate(counts))
+        # The unique char in the order.
+        unique_chars = ['z', 'o', 'w', 't', 'u', \
+                        'f', 'x', 's', 'g', 'n']
+
+        cnt = Counter(list(s))
+        res = []
+        for i in order:
+            while cnt[unique_chars[i]] > 0:
+                cnt -= cnts[i]
+                res.append(i)
+        res.sort()
+
+        return "".join(map(str, res))
+

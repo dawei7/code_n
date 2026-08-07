@@ -1,26 +1,27 @@
-from typing import List
-
+# Time:  O(nlogm), m is the max of inventory, n is the size of inventory
+# Space: O(1)
 
 class Solution:
-    def maxProfit(self, inventory: List[int], orders: int) -> int:
-        modulus = 1_000_000_007
-        levels = sorted(inventory, reverse=True) + [0]
-        profit = 0
+    def maxProfit(self, inventory, orders):
+        """
+        :type inventory: List[int]
+        :type orders: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def check(inventory, orders, x):
+            return count(inventory, x) > orders
+        
+        def count(inventory, x):
+            return sum(count-x+1 for count in inventory if count >= x)
 
-        for index in range(len(inventory)):
-            colors = index + 1
-            high = levels[index]
-            low = levels[index + 1]
-            band_size = (high - low) * colors
-
-            if orders >= band_size:
-                profit += colors * (high + low + 1) * (high - low) // 2
-                orders -= band_size
+        left, right = 1, max(inventory)
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(inventory, orders, mid):
+                right = mid-1
             else:
-                full_levels, remainder = divmod(orders, colors)
-                cutoff = high - full_levels
-                profit += colors * (high + cutoff + 1) * full_levels // 2
-                profit += remainder * cutoff
-                break
-
-        return profit % modulus
+                left = mid+1
+        # assert(orders-count(inventory, left) >= 0)
+        return (sum((left+cnt)*(cnt-left+1)//2 for cnt in inventory if cnt >= left) +
+                (left-1)*(orders-count(inventory, left)))% MOD

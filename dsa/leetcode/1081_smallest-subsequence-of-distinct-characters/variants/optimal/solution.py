@@ -1,15 +1,13 @@
 class Solution:
     def smallestSubsequence(self, s: str) -> str:
-        last_index = {character: index for index, character in enumerate(s)}
-        stack = []
-        included = set()
-
-        for index, character in enumerate(s):
-            if character in included:
+        last = {c: i for i, c in enumerate(s)}
+        stk = []
+        vis = set()
+        for i, c in enumerate(s):
+            if c in vis:
                 continue
-            while stack and stack[-1] > character and last_index[stack[-1]] > index:
-                included.remove(stack.pop())
-            stack.append(character)
-            included.add(character)
-
-        return "".join(stack)
+            while stk and stk[-1] > c and last[stk[-1]] > i:
+                vis.remove(stk.pop())
+            stk.append(c)
+            vis.add(c)
+        return "".join(stk)

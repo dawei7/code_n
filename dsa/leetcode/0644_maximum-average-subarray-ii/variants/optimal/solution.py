@@ -1,29 +1,24 @@
-from typing import List
-
-
 class Solution:
     def findMaxAverage(self, nums: List[int], k: int) -> float:
-        def feasible(average):
-            current_prefix = sum(value - average for value in nums[:k])
-            if current_prefix >= 0:
+        def check(v: float) -> bool:
+            s = sum(nums[:k]) - k * v
+            if s >= 0:
                 return True
-
-            eligible_prefix = 0.0
-            minimum_prefix = 0.0
-            for right in range(k, len(nums)):
-                current_prefix += nums[right] - average
-                eligible_prefix += nums[right - k] - average
-                minimum_prefix = min(minimum_prefix, eligible_prefix)
-                if current_prefix - minimum_prefix >= 0:
+            t = mi = 0
+            for i in range(k, len(nums)):
+                s += nums[i] - v
+                t += nums[i - k] - v
+                mi = min(mi, t)
+                if s >= mi:
                     return True
             return False
 
-        lower = float(min(nums))
-        upper = float(max(nums))
-        for _ in range(60):
-            middle = (lower + upper) / 2
-            if feasible(middle):
-                lower = middle
+        eps = 1e-5
+        l, r = min(nums), max(nums)
+        while r - l >= eps:
+            mid = (l + r) / 2
+            if check(mid):
+                l = mid
             else:
-                upper = middle
-        return lower
+                r = mid
+        return l

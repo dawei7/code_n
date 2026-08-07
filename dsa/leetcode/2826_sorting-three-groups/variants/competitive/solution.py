@@ -1,12 +1,18 @@
-from typing import List
+# Time:  O(k * n) = O(n)
+# Space: O(k) = O(1)
 
-
+# dp
 class Solution:
-    def minimumOperations(self, nums: List[int]) -> int:
-        longest = [0, 0, 0]
+    def minimumOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        k = 3
 
-        for value in nums:
-            index = value - 1
-            longest[index] = 1 + max(longest[: index + 1])
-
-        return len(nums) - max(longest)
+        dp = [0]*k
+        for x in nums:
+            dp[x-1] += 1
+            for i in range(x, len(dp)):
+                dp[i] = max(dp[i], dp[i-1])
+        return len(nums)-dp[-1]

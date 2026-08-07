@@ -1,21 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        present = set()
-        left = 0
-        current_sum = 0
-        best = 0
-
-        for value in nums:
-            while value in present:
-                removed = nums[left]
-                present.remove(removed)
-                current_sum -= removed
-                left += 1
-            present.add(value)
-            current_sum += value
-            best = max(best, current_sum)
-
-        return best
+    def maximumUniqueSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lookup = {}
+        prefix = [0]*(len(nums)+1)
+        result, left = 0, 0
+        for right, num in enumerate(nums):
+            prefix[right+1] = prefix[right]+num
+            if num in lookup:
+                left = max(left, lookup[num]+1)
+            lookup[num] = right
+            result = max(result, prefix[right+1]-prefix[left])
+        return result

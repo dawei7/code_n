@@ -1,42 +1,48 @@
+class Trie:
+    __slots__ = ("children", "cnt")
+
+    def __init__(self):
+        self.children: List[Trie | None] = [None, None]
+        self.cnt = 0
+
+    def insert(self, x: int):
+        node = self
+        for i in range(20, -1, -1):
+            v = x >> i & 1
+            if node.children[v] is None:
+                node.children[v] = Trie()
+            node = node.children[v]
+            node.cnt += 1
+
+    def search(self, x: int) -> int:
+        node = self
+        ans = 0
+        for i in range(20, -1, -1):
+            v = x >> i & 1
+            if node.children[v ^ 1] and node.children[v ^ 1].cnt:
+                ans |= 1 << i
+                node = node.children[v ^ 1]
+            else:
+                node = node.children[v]
+        return ans
+
+    def remove(self, x: int):
+        node = self
+        for i in range(20, -1, -1):
+            v = x >> i & 1
+            node = node.children[v]
+            node.cnt -= 1
+
+
 class Solution:
-    def maximumStrongPairXor(self, nums: list[int]) -> int:
+    def maximumStrongPairXor(self, nums: List[int]) -> int:
         nums.sort()
-        children = [[-1, -1]]
-        counts = [0]
-
-        def add(value: int, delta: int) -> None:
-            node = 0
-            for bit in range(19, -1, -1):
-                branch = (value >> bit) & 1
-                next_node = children[node][branch]
-                if next_node == -1:
-                    next_node = len(children)
-                    children[node][branch] = next_node
-                    children.append([-1, -1])
-                    counts.append(0)
-                node = next_node
-                counts[node] += delta
-
-        def maximum_xor(value: int) -> int:
-            node = 0
-            result = 0
-            for bit in range(19, -1, -1):
-                branch = (value >> bit) & 1
-                preferred = children[node][branch ^ 1]
-                if preferred != -1 and counts[preferred] > 0:
-                    result |= 1 << bit
-                    node = preferred
-                else:
-                    node = children[node][branch]
-            return result
-
-        answer = 0
-        left = 0
-        for value in nums:
-            add(value, 1)
-            while nums[left] * 2 < value:
-                add(nums[left], -1)
-                left += 1
-            answer = max(answer, maximum_xor(value))
-
-        return answer
+        tree = Trie()
+        ans = i = 0
+        for y in nums:
+            tree.insert(y)
+            while y > nums[i] * 2:
+                tree.remove(nums[i])
+                i += 1
+            ans = max(ans, tree.search(y))
+        return ans

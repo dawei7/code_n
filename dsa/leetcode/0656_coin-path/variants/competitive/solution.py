@@ -1,27 +1,31 @@
+# Time:  O(n * B)
+# Space: O(n)
+
 class Solution:
-    def cheapestJump(self, coins, maxJump):
-        size = len(coins)
-        unreachable = float("inf")
-        cost = [unreachable] * size
-        next_index = [-1] * size
-        if coins[-1] != -1:
-            cost[-1] = coins[-1]
-
-        for index in range(size - 2, -1, -1):
-            if coins[index] == -1:
+    def cheapestJump(self, A, B):
+        """
+        :type A: List[int]
+        :type B: int
+        :rtype: List[int]
+        """
+        result = []
+        if not A or A[-1] == -1:
+            return result
+        n = len(A)
+        dp, next_pos = [float("inf")] * n, [-1] * n
+        dp[n-1] = A[n-1]
+        for i in reversed(range(n-1)):
+            if A[i] == -1:
                 continue
-            stop = min(size, index + maxJump + 1)
-            for following in range(index + 1, stop):
-                candidate = coins[index] + cost[following]
-                if candidate < cost[index]:
-                    cost[index] = candidate
-                    next_index[index] = following
+            for j in range(i+1, min(i+B+1,n)):
+                if A[i] + dp[j] < dp[i]:
+                    dp[i] = A[i] + dp[j]
+                    next_pos[i] = j
+        if dp[0] == float("inf"):
+            return result
+        k = 0
+        while k != -1:
+            result.append(k+1)
+            k = next_pos[k]
+        return result
 
-        if cost[0] == unreachable:
-            return []
-        path = []
-        index = 0
-        while index != -1:
-            path.append(index + 1)
-            index = next_index[index]
-        return path

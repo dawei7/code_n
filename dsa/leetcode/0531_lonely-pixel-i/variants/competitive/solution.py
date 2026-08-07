@@ -1,18 +1,34 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m + n)
 
 class Solution:
-    def findLonelyPixel(self, picture: List[List[str]]) -> int:
-        rows, cols = len(picture), len(picture[0])
-        row_counts = [0] * rows
-        col_counts = [0] * cols
-        for row in range(rows):
-            for col in range(cols):
-                if picture[row][col] == "B":
-                    row_counts[row] += 1
-                    col_counts[col] += 1
-        return sum(
-            picture[row][col] == "B" and row_counts[row] == 1 and col_counts[col] == 1
-            for row in range(rows)
-            for col in range(cols)
-        )
+    def findLonelyPixel(self, picture):
+        """
+        :type picture: List[List[str]]
+        :rtype: int
+        """
+        rows, cols = [0] * len(picture),  [0] * len(picture[0])
+        for i in range(len(picture)):
+            for j in range(len(picture[0])):
+                if picture[i][j] == 'B':
+                    rows[i] += 1
+                    cols[j] += 1
+
+        result = 0
+        for i in range(len(picture)):
+            if rows[i] == 1:
+                for j in range(len(picture[0])):
+                     result += picture[i][j] == 'B' and cols[j] == 1
+        return result
+
+
+class Solution2(object):
+    def findLonelyPixel(self, picture):
+        """
+        :type picture: List[List[str]]
+        :type N: int
+        :rtype: int
+        """
+        return sum(col.count('B') == 1 == picture[col.index('B')].count('B') \
+               for col in zip(*picture))
+

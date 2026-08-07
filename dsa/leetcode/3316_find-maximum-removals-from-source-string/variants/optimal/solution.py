@@ -1,22 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maxRemovals(self, source: str, pattern: str, targetIndices: List[int]) -> int:
-        removable = [False] * len(source)
-        for index in targetIndices:
-            removable[index] = True
-
-        infinity = len(targetIndices) + 1
-        minimum_kept = [infinity] * (len(pattern) + 1)
-        minimum_kept[0] = 0
-
-        for index, character in enumerate(source):
-            for matched in range(len(pattern) - 1, -1, -1):
-                if character == pattern[matched]:
-                    minimum_kept[matched + 1] = min(
-                        minimum_kept[matched + 1],
-                        minimum_kept[matched] + removable[index],
-                    )
-
-        return len(targetIndices) - minimum_kept[-1]
+        m, n = len(source), len(pattern)
+        f = [[-inf] * (n + 1) for _ in range(m + 1)]
+        f[0][0] = 0
+        s = set(targetIndices)
+        for i, c in enumerate(source, 1):
+            for j in range(n + 1):
+                f[i][j] = f[i - 1][j] + int((i - 1) in s)
+                if j and c == pattern[j - 1]:
+                    f[i][j] = max(f[i][j], f[i - 1][j - 1])
+        return f[m][n]

@@ -1,13 +1,14 @@
 class Solution:
     def canMakeEqual(self, nums: List[int], k: int) -> bool:
-        def operations(target: int) -> int:
-            count = 0
-            flipped = False
-            for value in nums[:-1]:
-                effective = -value if flipped else value
-                flipped = effective != target
-                count += flipped
-            last = -nums[-1] if flipped else nums[-1]
-            return count if last == target else k + 1
+        def check(target: int, k: int) -> bool:
+            cnt, sign = 0, 1
+            for i in range(len(nums) - 1):
+                x = nums[i] * sign
+                if x == target:
+                    sign = 1
+                else:
+                    sign = -1
+                    cnt += 1
+            return cnt <= k and nums[-1] * sign == target
 
-        return min(operations(1), operations(-1)) <= k
+        return check(nums[0], k) or check(-nums[0], k)

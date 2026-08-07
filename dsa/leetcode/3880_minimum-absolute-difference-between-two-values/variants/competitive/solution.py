@@ -1,17 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def minAbsoluteDifference(self, nums: list[int]) -> int:
-        last_one = -1
-        last_two = -1
-        answer = len(nums) + 1
-
-        for index, value in enumerate(nums):
-            if value == 1:
-                if last_two >= 0:
-                    answer = min(answer, index - last_two)
-                last_one = index
-            elif value == 2:
-                if last_one >= 0:
-                    answer = min(answer, index - last_one)
-                last_two = index
-
-        return -1 if answer > len(nums) else answer
+    def minAbsoluteDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
+        result = INF
+        i = j = -1
+        for k in range(len(nums)):
+            if nums[k] == 0:
+                continue
+            if nums[k] == 1:
+                i = k
+            else:
+                j = k
+            if i != -1 != j:
+                result = min(result, abs(i-j))
+        return result if result is not INF else -1

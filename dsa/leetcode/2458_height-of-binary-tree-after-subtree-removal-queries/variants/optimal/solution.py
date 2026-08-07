@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -8,49 +5,24 @@ from typing import List, Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def treeQueries(
-        self,
-        root: Optional[TreeNode],
-        queries: List[int],  # noqa: F821
-    ) -> List[int]:
-        heights = {}
-        stack = [(root, False)]
-        while stack:
-            node, expanded = stack.pop()
-            if node is None:
-                continue
-            if expanded:
-                left_height = heights[node.left.val] if node.left else -1
-                right_height = heights[node.right.val] if node.right else -1
-                heights[node.val] = 1 + max(left_height, right_height)
-            else:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
+    def treeQueries(self, root: Optional[TreeNode], queries: List[int]) -> List[int]:
+        def f(root):
+            if root is None:
+                return 0
+            l, r = f(root.left), f(root.right)
+            d[root] = 1 + max(l, r)
+            return d[root]
 
-        answer_by_value = {}
-        stack = [(root, 0, 0)]
-        while stack:
-            node, depth, outside_height = stack.pop()
-            answer_by_value[node.val] = outside_height
-            left_height = heights[node.left.val] if node.left else -1
-            right_height = heights[node.right.val] if node.right else -1
+        def dfs(root, depth, rest):
+            if root is None:
+                return
+            depth += 1
+            res[root.val] = rest
+            dfs(root.left, depth, max(rest, depth + d[root.right]))
+            dfs(root.right, depth, max(rest, depth + d[root.left]))
 
-            if node.left:
-                stack.append(
-                    (
-                        node.left,
-                        depth + 1,
-                        max(outside_height, depth + 1 + right_height),
-                    )
-                )
-            if node.right:
-                stack.append(
-                    (
-                        node.right,
-                        depth + 1,
-                        max(outside_height, depth + 1 + left_height),
-                    )
-                )
-
-        return [answer_by_value[value] for value in queries]
+        d = defaultdict(int)
+        f(root)
+        res = [0] * (len(d) + 1)
+        dfs(root, -1, 0)
+        return [res[v] for v in queries]

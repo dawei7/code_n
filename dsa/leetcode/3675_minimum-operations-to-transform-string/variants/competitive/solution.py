@@ -1,7 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minOperations(self, s: str) -> int:
-        smallest = 26
-        for character in s:
-            if character != "a":
-                smallest = min(smallest, ord(character) - ord("a"))
-        return 0 if smallest == 26 else 26 - smallest
+    def minOperations(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return max((26-(ord(x)-ord('a')))%26 for x in s)

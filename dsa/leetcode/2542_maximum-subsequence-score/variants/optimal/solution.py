@@ -1,21 +1,12 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        selected = []
-        selected_sum = 0
-        answer = 0
-
-        for second, first in sorted(zip(nums2, nums1), reverse=True):
-            heapq.heappush(selected, first)
-            selected_sum += first
-
-            if len(selected) > k:
-                selected_sum -= heapq.heappop(selected)
-
-            if len(selected) == k:
-                answer = max(answer, selected_sum * second)
-
-        return answer
+        nums = sorted(zip(nums2, nums1), reverse=True)
+        q = []
+        ans = s = 0
+        for a, b in nums:
+            s += b
+            heappush(q, b)
+            if len(q) == k:
+                ans = max(ans, s * a)
+                s -= heappop(q)
+        return ans

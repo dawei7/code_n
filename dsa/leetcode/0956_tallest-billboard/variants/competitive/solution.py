@@ -1,17 +1,23 @@
-from typing import List
+# Time:  O(n * 3^(n/2))
+# Space: O(3^(n/2))
+
+import collections
 
 
 class Solution:
-    def tallestBillboard(self, rods: List[int]) -> int:
-        best_shorter = {0: 0}
-        for rod in rods:
-            updated = dict(best_shorter)
-            for difference, shorter in best_shorter.items():
-                taller_difference = difference + rod
-                updated[taller_difference] = max(updated.get(taller_difference, -1), shorter)
+    def tallestBillboard(self, rods):
+        """
+        :type rods: List[int]
+        :rtype: int
+        """
+        def dp(A):
+            lookup = collections.defaultdict(int)
+            lookup[0] = 0
+            for x in A:
+                for d, y in lookup.items():
+                    lookup[d+x] = max(lookup[d+x], y)
+                    lookup[abs(d-x)] = max(lookup[abs(d-x)], y + min(d, x))
+            return lookup
 
-                balanced_difference = abs(difference - rod)
-                balanced_shorter = shorter + min(difference, rod)
-                updated[balanced_difference] = max(updated.get(balanced_difference, -1), balanced_shorter)
-            best_shorter = updated
-        return best_shorter[0]
+        left, right = dp(rods[:len(rods)//2]), dp(rods[len(rods)//2:])
+        return max(left[d]+right[d]+d for d in left if d in right)

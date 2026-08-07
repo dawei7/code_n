@@ -1,10 +1,9 @@
 class Solution:
     def beautySum(self, s: str) -> int:
-        total = 0
-        for start in range(len(s)):
-            frequencies = [0] * 26
-            for end in range(start, len(s)):
-                frequencies[ord(s[end]) - ord("a")] += 1
-                minimum = min(frequency for frequency in frequencies if frequency > 0)
-                total += max(frequencies) - minimum
-        return total
+        ans, n = 0, len(s)
+        for i in range(n):
+            cnt = Counter()
+            for j in range(i, n):
+                cnt[s[j]] += 1
+                ans += max(cnt.values()) - min(cnt.values())
+        return ans

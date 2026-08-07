@@ -1,9 +1,8 @@
 class Solution:
     def findContestMatch(self, n: int) -> str:
-        groups = [str(seed) for seed in range(1, n + 1)]
-
-        while len(groups) > 1:
-            count = len(groups)
-            groups = [f"({groups[index]},{groups[count - 1 - index]})" for index in range(count // 2)]
-
-        return groups[0]
+        s = [str(i + 1) for i in range(n)]
+        while n > 1:
+            for i in range(n >> 1):
+                s[i] = f"({s[i]},{s[n - i - 1]})"
+            n >>= 1
+        return s[0]

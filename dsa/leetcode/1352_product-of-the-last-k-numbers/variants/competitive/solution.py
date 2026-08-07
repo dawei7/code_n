@@ -1,14 +1,28 @@
-class ProductOfNumbers:
+# Time:  ctor: O(1)
+#        add : O(1)
+#        get : O(1)
+# Space: O(n)
+
+class ProductOfNumbers(object):
+
     def __init__(self):
-        self.prefix = [1]
+        self.__accu = [1]
 
-    def add(self, num: int) -> None:
-        if num == 0:
-            self.prefix = [1]
-        else:
-            self.prefix.append(self.prefix[-1] * num)
+    def add(self, num):
+        """
+        :type num: int
+        :rtype: None
+        """
+        if not num:
+            self.__accu = [1]
+            return
+        self.__accu.append(self.__accu[-1]*num)             
 
-    def getProduct(self, k: int) -> int:
-        if k >= len(self.prefix):
+    def getProduct(self, k):
+        """
+        :type k: int
+        :rtype: int
+        """
+        if len(self.__accu) <= k:
             return 0
-        return self.prefix[-1] // self.prefix[-1 - k]
+        return self.__accu[-1] // self.__accu[-1-k]

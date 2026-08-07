@@ -1,9 +1,14 @@
-from bisect import bisect_left, bisect_right
-from typing import List
+# Time:  O(logn)
+# Space: O(1)
+
+import bisect
 
 
+# binary search
 class Solution:
-    def maximumCount(self, nums: List[int]) -> int:
-        negative = bisect_left(nums, 0)
-        positive = len(nums) - bisect_right(nums, 0)
-        return max(negative, positive)
+    def maximumCount(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return max(bisect.bisect_left(nums, 0)-0, len(nums)-bisect.bisect_left(nums, 1))

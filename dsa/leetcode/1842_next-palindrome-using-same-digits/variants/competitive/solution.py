@@ -1,20 +1,39 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def nextPalindrome(self, num: str) -> str:
-        digits = list(num)
-        half = len(digits) // 2
+    def nextPalindrome(self, num):
+        """
+        :type num: str
+        :rtype: str
+        """
+        def next_permutation(nums, begin, end):
+            def reverse(nums, begin, end):
+                left, right = begin, end-1
+                while left < right:
+                    nums[left], nums[right] = nums[right], nums[left]
+                    left += 1
+                    right -= 1
 
-        pivot = half - 2
-        while pivot >= 0 and digits[pivot] >= digits[pivot + 1]:
-            pivot -= 1
-        if pivot < 0:
+            k, l = begin-1, begin
+            for i in reversed(range(begin, end-1)):
+                if nums[i] < nums[i+1]:
+                    k = i
+                    break
+            else:
+                reverse(nums, begin, end)
+                return False
+            for i in reversed(range(k+1, end)):
+                if nums[i] > nums[k]:
+                    l = i
+                    break
+            nums[k], nums[l] = nums[l], nums[k]
+            reverse(nums, k+1, end)
+            return True
+        
+        nums = list(num)
+        if not next_permutation(nums, 0, len(nums)//2):
             return ""
-
-        successor = half - 1
-        while digits[successor] <= digits[pivot]:
-            successor -= 1
-        digits[pivot], digits[successor] = digits[successor], digits[pivot]
-        digits[pivot + 1 : half] = reversed(digits[pivot + 1 : half])
-
-        for index in range(half):
-            digits[-1 - index] = digits[index]
-        return "".join(digits)
+        for i in range(len(nums)//2):
+            nums[-1-i] = nums[i]
+        return "".join(nums)

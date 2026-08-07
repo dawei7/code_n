@@ -1,24 +1,27 @@
+# Time:  O(n^2)
+# Space: O(n)
+
+import collections
+
+
+# dp
 class Solution:
-    def minCost(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        dp = [0] + [float("inf")] * n
-
-        for right in range(n):
-            frequency = [0] * n
-            trimmed_length = 0
-
-            for left in range(right, -1, -1):
-                value = nums[left]
-                frequency[value] += 1
-
-                if frequency[value] == 2:
-                    trimmed_length += 2
-                elif frequency[value] > 2:
-                    trimmed_length += 1
-
-                dp[right + 1] = min(
-                    dp[right + 1],
-                    dp[left] + k + trimmed_length,
-                )
-
-        return dp[n]
+    def minCost(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        dp = [float("inf")]*(len(nums)+1)
+        dp[0] = 0
+        for i in range(len(dp)-1):
+            cnt = [0]*len(nums)
+            d = 0
+            for j in range(i+1, len(dp)):
+                cnt[nums[j-1]] += 1
+                if cnt[nums[j-1]] == 1:
+                    d += 1
+                elif cnt[nums[j-1]] == 2:
+                    d -= 1
+                dp[j] = min(dp[j], dp[i]+k+((j-i)-d))
+        return dp[-1]

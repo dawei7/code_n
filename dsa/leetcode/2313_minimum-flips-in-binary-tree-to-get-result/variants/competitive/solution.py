@@ -1,46 +1,89 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+# Time:  O(n)
+# Space: O(h)
+
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
+
+
+import collections
+
+
+# tree dp with stack
 class Solution:
-    def minimumFlips(self, root: Optional[TreeNode], result: bool) -> int:
-        costs = {}
-        stack = [(root, False)]
+    def minimumFlips(self, root, result):
+        """
+        :type root: Optional[TreeNode]
+        :type result: bool
+        :rtype: int
+        """
+        INF = float("inf")
+        OP = {
+            2: lambda x, y: x or y,
+            3: lambda x, y: x and y,
+            4: lambda x, y: x^y ,
+            5: lambda x, y: not x if x is not None else not y
+        }
+        
+        def iter_dfs(root, result):
+            ret = collections.defaultdict(lambda: INF)
+            stk = [(1, (root, ret))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    node, ret = args
+                    if not node:
+                        ret[None] = 0 # null object pattern
+                        continue
+                    if node.left == node.right:
+                        ret[True] = node.val^1
+                        ret[False] = node.val^0
+                        continue
+                    ret1 = collections.defaultdict(lambda: INF)
+                    ret2 = collections.defaultdict(lambda: INF)
+                    stk.append((2, (node, ret1, ret2, ret)))
+                    stk.append((1, (node.right, ret2)))
+                    stk.append((1, (node.left, ret1)))
+                elif step == 2:
+                    node, ret1, ret2, ret = args
+                    for k1, v1 in ret1.items():
+                        for k2, v2 in ret2.items():
+                            ret[OP[node.val](k1, k2)] = min(ret[OP[node.val](k1, k2)], v1+v2)
+            return ret[result]
 
-        while stack:
-            node, visited = stack.pop()
-            if not visited:
-                stack.append((node, True))
-                if node.left:
-                    stack.append((node.left, False))
-                if node.right:
-                    stack.append((node.right, False))
-                continue
+        return iter_dfs(root, result)
 
-            if not node.left and not node.right:
-                costs[node] = (0, 1) if node.val == 0 else (1, 0)
-            elif node.val == 5:
-                child = node.left or node.right
-                false_cost, true_cost = costs[child]
-                costs[node] = (true_cost, false_cost)
-            else:
-                left_costs = costs[node.left]
-                right_costs = costs[node.right]
-                best = [10**9, 10**9]
-                for left_value in (0, 1):
-                    for right_value in (0, 1):
-                        if node.val == 2:
-                            value = left_value | right_value
-                        elif node.val == 3:
-                            value = left_value & right_value
-                        else:
-                            value = left_value ^ right_value
-                        best[value] = min(
-                            best[value],
-                            left_costs[left_value] + right_costs[right_value],
-                        )
-                costs[node] = tuple(best)
 
-        return costs[root][result]
+import collections
+
+
+# tree dp with recursion
+class Solution2(object):
+    def minimumFlips(self, root, result):
+        """
+        :type root: Optional[TreeNode]
+        :type result: bool
+        :rtype: int
+        """
+        INF = float("inf")
+        OP = {
+            2: lambda x, y: x or y,
+            3: lambda x, y: x and y,
+            4: lambda x, y: x^y ,
+            5: lambda x, y: not x if x is not None else not y
+        }
+        
+        def dfs(node):
+            if not node:
+                return {None: 0}  # null object pattern
+            if node.left == node.right:
+                return {True: node.val^1, False: node.val^0}
+            left = dfs(node.left)
+            right = dfs(node.right)
+            dp = collections.defaultdict(lambda: INF)
+            for k1, v1 in left.items():
+                for k2, v2 in right.items():
+                    dp[OP[node.val](k1, k2)] = min(dp[OP[node.val](k1, k2)], v1+v2)
+            return dp
+
+        return dfs(root)[result]

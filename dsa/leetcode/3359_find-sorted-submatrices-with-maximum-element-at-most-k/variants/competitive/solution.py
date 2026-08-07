@@ -1,36 +1,58 @@
+# Time:  O(m * n)
+# Space: O(m)
+
+# mono stack
 class Solution:
-    def countSubmatrices(self, grid: List[List[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        widths = [[0] * columns for _ in range(rows)]
+    def countSubmatrices(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def count(heights):
+            result = curr = 0
+            stk = []
+            for i in range(len(heights)):
+                while stk and heights[stk[-1]] >= heights[i]:
+                    j = stk.pop()
+                    curr -= (heights[j]-heights[i])*(j-(stk[-1] if stk else -1))
+                stk.append(i)
+                curr += heights[i]
+                result += curr
+            return result
 
-        for row_index, row in enumerate(grid):
-            run = 0
-            for column, value in enumerate(row):
-                if value > k:
-                    run = 0
-                elif column > 0 and row[column - 1] <= k and row[column - 1] >= value:
-                    run += 1
-                else:
-                    run = 1
-                widths[row_index][column] = run
+        result = 0
+        heights = [0]*len(grid)
+        for j in reversed(range(len(grid[0]))):
+            for i in range(len(grid)):
+                heights[i] = 0 if grid[i][j] > k else heights[i]+1 if j+1 < len(grid[0]) and grid[i][j] >= grid[i][j+1] else 1
+            result += count(heights)
+        return result
 
-        answer = 0
-        for column in range(columns):
-            stack = []
-            ending_sum = 0
 
-            for row in range(rows):
-                width = widths[row][column]
-                count = 1
+# Time:  O(m * n)
+# Space: O(m)
+# mono stack, dp
+class Solution2(object):
+    def countSubmatrices(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def count(heights):
+            dp, stk = [0]*len(heights), []
+            for i in range(len(heights)):
+                while stk and heights[stk[-1]] >= heights[i]:
+                    stk.pop()
+                dp[i] = dp[stk[-1]] + heights[i]*(i-stk[-1]) if stk else heights[i]*(i-(-1))
+                stk.append(i)
+            return sum(dp)
 
-                while stack and stack[-1][0] >= width:
-                    previous_width, previous_count = stack.pop()
-                    ending_sum -= previous_width * previous_count
-                    count += previous_count
-
-                stack.append((width, count))
-                ending_sum += width * count
-                answer += ending_sum
-
-        return answer
+        result = 0
+        heights = [0]*len(grid)
+        for j in reversed(range(len(grid[0]))):
+            for i in range(len(grid)):
+                heights[i] = 0 if grid[i][j] > k else heights[i]+1 if j+1 < len(grid[0]) and grid[i][j] >= grid[i][j+1] else 1
+            result += count(heights)
+        return result

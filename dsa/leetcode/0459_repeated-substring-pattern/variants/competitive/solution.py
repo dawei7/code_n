@@ -1,13 +1,35 @@
-class Solution:
-    def repeatedSubstringPattern(self, s: str) -> bool:
-        prefix = [0] * len(s)
-        border = 0
-        for index in range(1, len(s)):
-            while border and s[index] != s[border]:
-                border = prefix[border - 1]
-            if s[index] == s[border]:
-                border += 1
-            prefix[index] = border
+# Time:  O(n)
+# Space: O(n)
 
-        period = len(s) - prefix[-1]
-        return prefix[-1] > 0 and len(s) % period == 0
+class Solution:
+    def repeatedSubstringPattern(self, str):
+        """
+        :type str: str
+        :rtype: bool
+        """
+        def getPrefix(pattern):
+            prefix = [-1] * len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j > -1 and pattern[j + 1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j + 1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+
+        prefix = getPrefix(str)
+        return prefix[-1] != -1 and \
+               (prefix[-1] + 1) % (len(str) - prefix[-1] - 1) == 0
+
+    def repeatedSubstringPattern2(self, str):
+        """
+        :type str: str
+        :rtype: bool
+        """
+        if not str:
+            return False
+
+        ss = (str + str)[1:-1]
+        return ss.find(str) != -1
+

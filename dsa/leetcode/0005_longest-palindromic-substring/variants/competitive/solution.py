@@ -1,23 +1,63 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        transformed = [(2, None), (0, None)]
-        for char in s:
-            transformed.extend(((1, char), (0, None)))
-        transformed.append((3, None))
-        radius = [0] * len(transformed)
-        center = right = 0
-        best_center = best_length = 0
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def preProcess(s):
+            if not s:
+                return ['^', '$']
+            T = ['^']
+            for c in s:
+                T +=  ['#', c]
+            T += ['#', '$']
+            return T
 
-        for i in range(1, len(transformed) - 1):
-            mirror = 2 * center - i
-            if i < right:
-                radius[i] = min(right - i, radius[mirror])
-            while transformed[i + radius[i] + 1] == transformed[i - radius[i] - 1]:
-                radius[i] += 1
-            if i + radius[i] > right:
-                center, right = i, i + radius[i]
-            if radius[i] > best_length:
-                best_center, best_length = i, radius[i]
+        T = preProcess(s)
+        P = [0] * len(T)
+        center, right = 0, 0
+        for i in range(1, len(T) - 1):
+            i_mirror = 2 * center - i
+            if right > i:
+                P[i] = min(right - i, P[i_mirror])
+            else:
+                P[i] = 0
 
-        start = (best_center - best_length) // 2
-        return s[start : start + best_length]
+            while T[i + 1 + P[i]] == T[i - 1 - P[i]]:
+                P[i] += 1
+
+            if i + P[i] > right:
+                center, right = i, i + P[i]
+
+        max_i = 0
+        for i in range(1, len(T) - 1):
+            if P[i] > P[max_i]:
+                max_i = i
+        start = (max_i - 1 - P[max_i]) // 2
+        return s[start : start + P[max_i]]
+
+
+# Time:  O(n^2)
+# Space: O(1)
+class Solution2(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def expand(s, left, right):
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+            return (right-left+1)-2
+        
+        left, right = -1, -2
+        for i in range(len(s)):
+            l = max(expand(s, i, i), expand(s, i, i+1))
+            if l > right-left+1:
+                right = i+l//2
+                left = right-l+1
+        return s[left:right+1] if left >= 0 else ""

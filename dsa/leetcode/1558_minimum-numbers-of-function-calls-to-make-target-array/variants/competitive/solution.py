@@ -1,8 +1,21 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        increments = sum(value.bit_count() for value in nums)
-        doubles = max(0, max(nums).bit_length() - 1)
-        return increments + doubles
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def popcount(n):
+            result = 0
+            while n:
+                n &= n-1
+                result += 1
+            return result
+
+        result, max_len = 0, 1
+        for num in nums:
+            result += popcount(num)
+            max_len = max(max_len, num.bit_length())
+        return result + (max_len-1)

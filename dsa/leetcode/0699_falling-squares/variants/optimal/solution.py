@@ -1,109 +1,74 @@
-from typing import List
+class Node:
+    def __init__(self, l, r):
+        self.left = None
+        self.right = None
+        self.l = l
+        self.r = r
+        self.mid = (l + r) >> 1
+        self.v = 0
+        self.add = 0
+
+
+class SegmentTree:
+    def __init__(self):
+        self.root = Node(1, int(1e9))
+
+    def modify(self, l, r, v, node=None):
+        if l > r:
+            return
+        if node is None:
+            node = self.root
+        if node.l >= l and node.r <= r:
+            node.v = v
+            node.add = v
+            return
+        self.pushdown(node)
+        if l <= node.mid:
+            self.modify(l, r, v, node.left)
+        if r > node.mid:
+            self.modify(l, r, v, node.right)
+        self.pushup(node)
+
+    def query(self, l, r, node=None):
+        if l > r:
+            return 0
+        if node is None:
+            node = self.root
+        if node.l >= l and node.r <= r:
+            return node.v
+        self.pushdown(node)
+        v = 0
+        if l <= node.mid:
+            v = max(v, self.query(l, r, node.left))
+        if r > node.mid:
+            v = max(v, self.query(l, r, node.right))
+        return v
+
+    def pushup(self, node):
+        node.v = max(node.left.v, node.right.v)
+
+    def pushdown(self, node):
+        if node.left is None:
+            node.left = Node(node.l, node.mid)
+        if node.right is None:
+            node.right = Node(node.mid + 1, node.r)
+        if node.add:
+            node.left.v = node.add
+            node.right.v = node.add
+            node.left.add = node.add
+            node.right.add = node.add
+            node.add = 0
 
 
 class Solution:
     def fallingSquares(self, positions: List[List[int]]) -> List[int]:
-        coordinates = sorted({coordinate for left, side in positions for coordinate in (left, left + side)})
-        coordinate_index = {coordinate: index for index, coordinate in enumerate(coordinates)}
-        segment_count = len(coordinates) - 1
-        tree = [0] * (4 * segment_count)
-        lazy = [None] * (4 * segment_count)
-
-        def push(node: int) -> None:
-            assigned = lazy[node]
-            if assigned is None:
-                return
-            for child in (node * 2, node * 2 + 1):
-                tree[child] = assigned
-                lazy[child] = assigned
-            lazy[node] = None
-
-        def query(node, segment_left, segment_right, query_left, query_right):
-            if query_left <= segment_left and segment_right <= query_right:
-                return tree[node]
-            push(node)
-            middle = (segment_left + segment_right) // 2
-            maximum = 0
-            if query_left <= middle:
-                maximum = query(
-                    node * 2,
-                    segment_left,
-                    middle,
-                    query_left,
-                    query_right,
-                )
-            if query_right > middle:
-                maximum = max(
-                    maximum,
-                    query(
-                        node * 2 + 1,
-                        middle + 1,
-                        segment_right,
-                        query_left,
-                        query_right,
-                    ),
-                )
-            return maximum
-
-        def assign(
-            node,
-            segment_left,
-            segment_right,
-            query_left,
-            query_right,
-            height,
-        ):
-            if query_left <= segment_left and segment_right <= query_right:
-                tree[node] = height
-                lazy[node] = height
-                return
-            push(node)
-            middle = (segment_left + segment_right) // 2
-            if query_left <= middle:
-                assign(
-                    node * 2,
-                    segment_left,
-                    middle,
-                    query_left,
-                    query_right,
-                    height,
-                )
-            if query_right > middle:
-                assign(
-                    node * 2 + 1,
-                    middle + 1,
-                    segment_right,
-                    query_left,
-                    query_right,
-                    height,
-                )
-            tree[node] = max(tree[node * 2], tree[node * 2 + 1])
-
-        answer = []
-        global_maximum = 0
-
-        for left, side in positions:
-            query_left = coordinate_index[left]
-            query_right = coordinate_index[left + side] - 1
-            top = (
-                query(
-                    1,
-                    0,
-                    segment_count - 1,
-                    query_left,
-                    query_right,
-                )
-                + side
-            )
-            assign(
-                1,
-                0,
-                segment_count - 1,
-                query_left,
-                query_right,
-                top,
-            )
-            global_maximum = max(global_maximum, top)
-            answer.append(global_maximum)
-
-        return answer
+        ans = []
+        mx = 0
+        tree = SegmentTree()
+        for l, w in positions:
+            r = l + w - 1
+            h = tree.query(l, r) + w
+            mx = max(mx, h)
+            ans.append(mx)
+            tree.modify(l, r, h)
+        return ans

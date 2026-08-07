@@ -1,18 +1,37 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy solution
 class Solution:
-    def minSideJumps(self, obstacles: List[int]) -> int:
-        costs = [1, 0, 1]
-        infinity = len(obstacles) + 1
+    def minSideJumps(self, obstacles):
+        """
+        :type obstacles: List[int]
+        :rtype: int
+        """
+        result, lanes = 0, set([2])
+        for i in range(len(obstacles)-1):
+            lanes.discard(obstacles[i+1])
+            if lanes:
+                continue
+            result += 1
+            lanes = set(j for j in range(1, 4) if j not in [obstacles[i], obstacles[i+1]])
+        return result
 
-        for obstacle in obstacles[1:]:
-            if obstacle:
-                costs[obstacle - 1] = infinity
-
-            best = min(costs)
-            for lane in range(3):
-                if lane != obstacle - 1:
-                    costs[lane] = min(costs[lane], best + 1)
-
-        return min(costs)
+        
+# Time:  O(n)
+# Space: O(1)
+# dp solution
+class Solution2(object):
+    def minSideJumps(self, obstacles):
+        """
+        :type obstacles: List[int]
+        :rtype: int
+        """
+        dp = [1, 0, 1]        
+        for i in obstacles:
+            if i:
+                dp[i-1] = float("inf")
+            for j in range(3):
+                if j+1 != i:
+                    dp[j] = min(dp[0]+(j != 0), dp[1]+(j != 1), dp[2]+(j != 2))
+        return min(dp)

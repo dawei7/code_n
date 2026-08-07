@@ -1,23 +1,27 @@
+# Time:  O((m + n) * l), m is the size of list1, n is the size of list2
+# Space: O(m * l), l is the average length of string
+
 class Solution:
-    def findRestaurant(
-        self,
-        list1: list[str],
-        list2: list[str],
-    ) -> list[str]:
-        first_indices = {value: index for index, value in enumerate(list1)}
-        best_sum = float("inf")
-        answers = []
+    def findRestaurant(self, list1, list2):
+        """
+        :type list1: List[str]
+        :type list2: List[str]
+        :rtype: List[str]
+        """
+        lookup = {}
+        for i, s in enumerate(list1):
+            lookup[s] = i
 
-        for second_index, value in enumerate(list2):
-            first_index = first_indices.get(value)
-            if first_index is None:
-                continue
+        result = []
+        min_sum = float("inf")
+        for j, s in enumerate(list2):
+            if j > min_sum:
+                break
+            if s in lookup:
+                if j + lookup[s] < min_sum:
+                    result = [s]
+                    min_sum = j + lookup[s]
+                elif j + lookup[s] == min_sum:
+                    result.append(s)
+        return result
 
-            index_sum = first_index + second_index
-            if index_sum < best_sum:
-                best_sum = index_sum
-                answers = [value]
-            elif index_sum == best_sum:
-                answers.append(value)
-
-        return answers

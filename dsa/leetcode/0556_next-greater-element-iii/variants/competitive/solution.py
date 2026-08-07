@@ -1,23 +1,29 @@
+# Time:  O(logn) = O(1)
+# Space: O(logn) = O(1)
+
+
 class Solution:
-    def nextGreaterElement(self, n: int) -> int:
-        digits = list(str(n))
+    def nextGreaterElement(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        digits = map(int, list(str(n)))
+        k, l = -1, 0
+        for i in range(len(digits) - 1):
+            if digits[i] < digits[i + 1]:
+                k = i
 
-        pivot = len(digits) - 2
-        while pivot >= 0 and digits[pivot] >= digits[pivot + 1]:
-            pivot -= 1
-
-        if pivot < 0:
+        if k == -1:
+            digits.reverse()
             return -1
 
-        successor = len(digits) - 1
-        while digits[successor] <= digits[pivot]:
-            successor -= 1
+        for i in range(k + 1, len(digits)):
+            if digits[i] > digits[k]:
+                l = i
 
-        digits[pivot], digits[successor] = (
-            digits[successor],
-            digits[pivot],
-        )
-        digits[pivot + 1 :] = reversed(digits[pivot + 1 :])
+        digits[k], digits[l] = digits[l], digits[k]
+        digits[k + 1:] = digits[:k:-1]
+        result = int("".join(map(str, digits)))
+        return -1 if result >= 0x7FFFFFFF else result
 
-        result = int("".join(digits))
-        return result if result <= 2_147_483_647 else -1

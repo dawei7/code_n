@@ -1,24 +1,25 @@
-WITH ranked_orders AS (
-    SELECT
-        order_id,
-        order_date,
-        customer_id,
-        ROW_NUMBER() OVER (
-            PARTITION BY customer_id
-            ORDER BY order_date DESC
-        ) AS recency_rank
-    FROM Orders
-)
-SELECT
-    customers.name AS customer_name,
-    customers.customer_id,
-    ranked_orders.order_id,
-    ranked_orders.order_date
-FROM Customers AS customers
-JOIN ranked_orders
-  ON ranked_orders.customer_id = customers.customer_id
-WHERE ranked_orders.recency_rank <= 3
-ORDER BY
-    customer_name ASC,
-    customers.customer_id ASC,
-    ranked_orders.order_date DESC;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT customer_name,
+       customer_id,
+       order_id,
+       order_date
+FROM
+  (SELECT @accu := (CASE
+                        WHEN co.customer_id = @prev THEN @accu + 1
+                        ELSE 1
+                    END) AS n,
+          @prev := co.customer_id AS customer_id,
+          co.name AS customer_name,
+          co.order_id AS order_id,
+          co.order_date AS order_date
+   FROM
+     (SELECT @accu := 0, @prev := 0) AS init,
+     (SELECT c.name, c.customer_id, o.order_id, o.order_date FROM
+      Customers c
+      INNER JOIN Orders o
+      ON c.customer_id = o.customer_id
+      ORDER BY c.name ASC, c.customer_id ASC, o.order_date DESC) AS co
+  ) AS tmp
+WHERE n < 4;

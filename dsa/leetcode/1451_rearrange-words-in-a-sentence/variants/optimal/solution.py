@@ -1,6 +1,7 @@
 class Solution:
     def arrangeWords(self, text: str) -> str:
-        words = text.lower().split()
+        words = text.split()
+        words[0] = words[0].lower()
         words.sort(key=len)
-        arranged = " ".join(words)
-        return arranged[0].upper() + arranged[1:]
+        words[0] = words[0].title()
+        return " ".join(words)

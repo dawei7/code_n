@@ -1,24 +1,29 @@
 class Solution:
     def validIPAddress(self, queryIP: str) -> str:
-        if "." in queryIP:
-            parts = queryIP.split(".")
-            if len(parts) == 4 and all(
-                part
-                and len(part) <= 3
-                and part.isascii()
-                and part.isdigit()
-                and (len(part) == 1 or part[0] != "0")
-                and int(part) <= 255
-                for part in parts
-            ):
-                return "IPv4"
-            return "Neither"
+        def is_ipv4(s: str) -> bool:
+            ss = s.split(".")
+            if len(ss) != 4:
+                return False
+            for t in ss:
+                if len(t) > 1 and t[0] == "0":
+                    return False
+                if not t.isdigit() or not 0 <= int(t) <= 255:
+                    return False
+            return True
 
-        if ":" in queryIP:
-            parts = queryIP.split(":")
-            hexadecimal = set("0123456789abcdefABCDEF")
-            if len(parts) == 8 and all(
-                1 <= len(part) <= 4 and all(character in hexadecimal for character in part) for part in parts
-            ):
-                return "IPv6"
+        def is_ipv6(s: str) -> bool:
+            ss = s.split(":")
+            if len(ss) != 8:
+                return False
+            for t in ss:
+                if not 1 <= len(t) <= 4:
+                    return False
+                if not all(c in "0123456789abcdefABCDEF" for c in t):
+                    return False
+            return True
+
+        if is_ipv4(queryIP):
+            return "IPv4"
+        if is_ipv6(queryIP):
+            return "IPv6"
         return "Neither"

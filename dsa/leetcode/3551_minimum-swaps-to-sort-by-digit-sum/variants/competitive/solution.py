@@ -1,14 +1,33 @@
+# Time:  O(nlogr + nlogn)
+# Space: O(n)
+
+# sort
 class Solution:
-    def minSwaps(self, nums: List[int]) -> int:
-        key = lambda x: (sum(map(int, str(x))), x)
-        target = sorted(nums, key=key)
-        position = {x: i for i, x in enumerate(nums)}
-        swaps = 0
-        for i, x in enumerate(target):
-            j = position[x]
-            if i != j:
-                y = nums[i]
-                nums[i], nums[j] = nums[j], y
-                position[x], position[y] = i, j
-                swaps += 1
-        return swaps
+    def minSwaps(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def total(x):
+            result = 0
+            while x:
+                result += x%10
+                x //= 10
+            return result
+
+        totals = map(total, nums)
+        idxs = range(len(nums))
+        idxs.sort(key=lambda i: (totals[i], nums[i]))
+        i_to_idx = [-1]*len(idxs)
+        for idx, x in enumerate(idxs):
+            i_to_idx[x] = idx
+        result = 0
+        lookup = [False]*len(nums)
+        for i in range(len(nums)):
+            l = 0
+            while not lookup[i]:
+                lookup[i] = True
+                l += 1
+                i = i_to_idx[i]
+            result += max(l-1, 0)
+        return result

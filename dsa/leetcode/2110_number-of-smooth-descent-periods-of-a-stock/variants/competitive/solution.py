@@ -1,16 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def getDescentPeriods(self, prices: List[int]) -> int:
-        ending_here = 1
-        total = 1
-
-        for index in range(1, len(prices)):
-            if prices[index - 1] - prices[index] == 1:
-                ending_here += 1
-            else:
-                ending_here = 1
-            total += ending_here
-
-        return total
+    def getDescentPeriods(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        result = l = 0
+        for i in range(len(prices)):
+            l += 1
+            if i+1 == len(prices) or prices[i]-1 != prices[i+1]:
+                result += l*(l+1)//2
+                l = 0
+        return result

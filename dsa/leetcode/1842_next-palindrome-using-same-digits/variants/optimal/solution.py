@@ -1,20 +1,23 @@
 class Solution:
     def nextPalindrome(self, num: str) -> str:
-        digits = list(num)
-        half = len(digits) // 2
+        def next_permutation(nums: List[str]) -> bool:
+            n = len(nums) // 2
+            i = n - 2
+            while i >= 0 and nums[i] >= nums[i + 1]:
+                i -= 1
+            if i < 0:
+                return False
+            j = n - 1
+            while j >= 0 and nums[j] <= nums[i]:
+                j -= 1
+            nums[i], nums[j] = nums[j], nums[i]
+            nums[i + 1 : n] = nums[i + 1 : n][::-1]
+            return True
 
-        pivot = half - 2
-        while pivot >= 0 and digits[pivot] >= digits[pivot + 1]:
-            pivot -= 1
-        if pivot < 0:
+        nums = list(num)
+        if not next_permutation(nums):
             return ""
-
-        successor = half - 1
-        while digits[successor] <= digits[pivot]:
-            successor -= 1
-        digits[pivot], digits[successor] = digits[successor], digits[pivot]
-        digits[pivot + 1 : half] = reversed(digits[pivot + 1 : half])
-
-        for index in range(half):
-            digits[-1 - index] = digits[index]
-        return "".join(digits)
+        n = len(nums)
+        for i in range(n // 2):
+            nums[n - i - 1] = nums[i]
+        return "".join(nums)

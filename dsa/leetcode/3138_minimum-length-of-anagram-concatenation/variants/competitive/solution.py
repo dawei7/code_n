@@ -1,25 +1,31 @@
+# Time:  O(sqrt(n) * n + (26 * sum(n/i for i in range(1, n+1) if n%i == 0))) < O(sqrt(n) * n + 26 * sum(n/i for i in range(1, n+1)) = O(sqrt(n) * n + 26 * nlogn)
+# Space: O(26)
+
+# number theory, freq table
 class Solution:
-    def minAnagramLength(self, s: str) -> int:
-        n = len(s)
-
-        for length in range(1, n + 1):
-            if n % length != 0:
-                continue
-
-            target = [0] * 26
-            for index in range(length):
-                target[ord(s[index]) - ord("a")] += 1
-
-            valid = True
-            for start in range(length, n, length):
-                counts = [0] * 26
-                for index in range(start, start + length):
-                    counts[ord(s[index]) - ord("a")] += 1
-                if counts != target:
-                    valid = False
+    def minAnagramLength(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def factors(n):
+            for i in range(1, n+1):
+                if i*i > n:
                     break
+                if n%i:
+                    continue
+                yield i
+                if n//i != i:
+                    yield n//i
+                    
+        def check(l):
+            def count(i):
+                cnt = [0]*26
+                for j in range(i, i+l):
+                    cnt[ord(s[j])-ord('a')] += 1
+                return cnt
+    
+            cnt = count(0)
+            return all(count(i) == cnt for i in range(l, len(s), l))
 
-            if valid:
-                return length
-
-        return n
+        return min(l for l in factors(len(s)) if check(l))

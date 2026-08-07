@@ -1,27 +1,26 @@
-from typing import List
-
-
 class Solution:
     def waysToBuildRooms(self, prevRoom: List[int]) -> int:
-        modulus = 1_000_000_007
-        room_count = len(prevRoom)
-        children = [[] for _ in range(room_count)]
-        for room in range(1, room_count):
-            children[prevRoom[room]].append(room)
+        modulo = 10**9 + 7
+        ingoing = defaultdict(set)
+        outgoing = defaultdict(set)
 
-        order = [0]
-        for room in order:
-            order.extend(children[room])
+        for i in range(1, len(prevRoom)):
+            ingoing[i].add(prevRoom[i])
+            outgoing[prevRoom[i]].add(i)
+        ans = [1]
 
-        subtree_size = [1] * room_count
-        for room in reversed(order[1:]):
-            subtree_size[prevRoom[room]] += subtree_size[room]
+        def recurse(i):
+            if len(outgoing[i]) == 0:
+                return 1
 
-        factorial = 1
-        subtree_product = 1
-        for value in range(1, room_count + 1):
-            factorial = factorial * value % modulus
-        for size in subtree_size:
-            subtree_product = subtree_product * size % modulus
+            nodes_in_tree = 0
+            for v in outgoing[i]:
+                cn = recurse(v)
+                if nodes_in_tree != 0:
+                    ans[0] *= comb(nodes_in_tree + cn, cn)
+                    ans[0] %= modulo
+                nodes_in_tree += cn
+            return nodes_in_tree + 1
 
-        return factorial * pow(subtree_product, modulus - 2, modulus) % modulus
+        recurse(0)
+        return ans[0] % modulo

@@ -1,14 +1,27 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n * S)
+# Space: O(S)
+
+import collections
 
 
 class Solution:
-    def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        ways = {0: 1}
-        for value in nums:
-            next_ways = defaultdict(int)
-            for current_sum, count in ways.items():
-                next_ways[current_sum + value] += count
-                next_ways[current_sum - value] += count
-            ways = next_ways
-        return ways.get(target, 0)
+    def findTargetSumWays(self, nums, S):
+        """
+        :type nums: List[int]
+        :type S: int
+        :rtype: int
+        """
+        def subsetSum(nums, S):
+            dp = collections.defaultdict(int)
+            dp[0] = 1
+            for n in nums:
+                for i in reversed(range(n, S+1)):
+                    if i-n in dp:
+                        dp[i] += dp[i-n]
+            return dp[S]
+
+        total = sum(nums)
+        if total < S or (S + total) % 2: return 0
+        P = (S + total) // 2
+        return subsetSum(nums, P)
+

@@ -1,9 +1,6 @@
 class Solution:
     def checkAlmostEquivalent(self, word1: str, word2: str) -> bool:
-        differences = [0] * 26
-
-        for first, second in zip(word1, word2):
-            differences[ord(first) - ord("a")] += 1
-            differences[ord(second) - ord("a")] -= 1
-
-        return all(abs(difference) <= 3 for difference in differences)
+        cnt = Counter(word1)
+        for c in word2:
+            cnt[c] -= 1
+        return all(abs(x) <= 3 for x in cnt.values())

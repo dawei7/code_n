@@ -1,33 +1,36 @@
+# Time:  O(n)
+# Space: O(n)
+
+# bfs
 class Solution:
-    def countCompleteComponents(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for a, b in edges:
-            graph[a].append(b)
-            graph[b].append(a)
+    def countCompleteComponents(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def bfs(u):
+            if lookup[u]:
+                return False
+            v_cnt = e_cnt = 0
+            lookup[u] = True
+            q = [u]
+            while q:
+                new_q = []
+                v_cnt += len(q)
+                for u in q:
+                    e_cnt += len(adj[u])
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+            return v_cnt*(v_cnt-1) == e_cnt
 
-        seen = [False] * n
-        answer = 0
-
-        for start in range(n):
-            if seen[start]:
-                continue
-
-            stack = [start]
-            seen[start] = True
-            vertices = 0
-            degree_sum = 0
-
-            while stack:
-                node = stack.pop()
-                vertices += 1
-                degree_sum += len(graph[node])
-
-                for neighbor in graph[node]:
-                    if not seen[neighbor]:
-                        seen[neighbor] = True
-                        stack.append(neighbor)
-
-            if degree_sum == vertices * (vertices - 1):
-                answer += 1
-
-        return answer
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        lookup = [False]*n
+        return sum(bfs(u) for u in range(n) if not lookup[u])

@@ -1,25 +1,28 @@
-from itertools import product
-
-
 class Solution:
     def nextClosestTime(self, time: str) -> str:
-        allowed = set(time.replace(":", ""))
-        start = int(time[:2]) * 60 + int(time[3:])
-        best_distance = 1441
-        best_time = time
+        def check(t):
+            h, m = int(t[:2]), int(t[2:])
+            return 0 <= h < 24 and 0 <= m < 60
 
-        for first, second, third, fourth in product(allowed, repeat=4):
-            hour = int(first + second)
-            minute = int(third + fourth)
-            if hour >= 24 or minute >= 60:
-                continue
+        def dfs(curr):
+            if len(curr) == 4:
+                if not check(curr):
+                    return
+                nonlocal ans, d
+                p = int(curr[:2]) * 60 + int(curr[2:])
+                if t < p < t + d:
+                    d = p - t
+                    ans = curr[:2] + ':' + curr[2:]
+                return
+            for c in s:
+                dfs(curr + c)
 
-            candidate = hour * 60 + minute
-            distance = (candidate - start) % 1440
-            if distance == 0:
-                distance = 1440
-            if distance < best_distance:
-                best_distance = distance
-                best_time = f"{hour:02d}:{minute:02d}"
-
-        return best_time
+        s = {c for c in time if c != ':'}
+        t = int(time[:2]) * 60 + int(time[3:])
+        d = inf
+        ans = None
+        dfs('')
+        if ans is None:
+            mi = min(int(c) for c in s)
+            ans = f'{mi}{mi}:{mi}{mi}'
+        return ans

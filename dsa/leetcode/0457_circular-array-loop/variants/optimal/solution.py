@@ -1,39 +1,22 @@
-from typing import List
-
-
 class Solution:
     def circularArrayLoop(self, nums: List[int]) -> bool:
-        length = len(nums)
+        n = len(nums)
 
-        def advance(index: int, forward: bool) -> int:
-            if nums[index] == 0 or (nums[index] > 0) != forward:
-                return -1
-            following = (index + nums[index]) % length
-            if following == index:
-                return -1
-            return following
+        def next(i):
+            return (i + nums[i] % n + n) % n
 
-        for start in range(length):
-            if nums[start] == 0:
+        for i in range(n):
+            if nums[i] == 0:
                 continue
-            forward = nums[start] > 0
-            slow = fast = start
-            while True:
-                slow = advance(slow, forward)
-                if slow == -1:
-                    break
-                fast = advance(fast, forward)
-                if fast == -1:
-                    break
-                fast = advance(fast, forward)
-                if fast == -1:
-                    break
+            slow, fast = i, next(i)
+            while nums[slow] * nums[fast] > 0 and nums[slow] * nums[next(fast)] > 0:
                 if slow == fast:
-                    return True
-
-            index = start
-            while nums[index] != 0 and (nums[index] > 0) == forward:
-                following = (index + nums[index]) % length
-                nums[index] = 0
-                index = following
+                    if slow != next(slow):
+                        return True
+                    break
+                slow, fast = next(slow), next(next(fast))
+            j = i
+            while nums[j] * nums[next(j)] > 0:
+                nums[j] = 0
+                j = next(j)
         return False

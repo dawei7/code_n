@@ -1,12 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def arraySign(self, nums: List[int]) -> int:
-        sign = 1
-        for value in nums:
-            if value == 0:
+    def arraySign(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        flag = 0
+        for x in nums:
+            if not x:
                 return 0
-            if value < 0:
-                sign = -sign
-        return sign
+            if x < 0:
+                flag ^= 1
+        return -1 if flag else 1

@@ -1,56 +1,75 @@
-from collections import deque
-from typing import List
+# Time:  O(n + e)
+# Space: O(n + e)
+
+import collections
+
+
+class Topo(object):
+    def __init__(self):
+        self.__nodes = set()
+        self.__in_degree = collections.defaultdict(set)
+        self.__out_degree = collections.defaultdict(set)
+        
+    def add_node(self, node):
+        self.__nodes.add(node)
+    
+    def add_edge(self, src, dst):
+        self.add_node(src), self.add_node(dst)
+        self.__in_degree[dst].add(src)
+        self.__out_degree[src].add(dst)
+    
+    def sort(self):
+        q = collections.deque()
+        result = []
+        for node in self.__nodes:
+            if node not in self.__in_degree:
+                q.append(node)
+        while q:
+            node = q.popleft()
+            result.append(node)
+            for nei in self.__out_degree[node]:
+                self.__in_degree[nei].remove(node)
+                if not self.__in_degree[nei]:
+                    self.__in_degree.pop(nei)
+                    q.append(nei)
+        if len(result) < len(self.__nodes):
+            return
+        return result
 
 
 class Solution:
-    def sortItems(
-        self,
-        n: int,
-        m: int,
-        group: List[int],
-        beforeItems: List[List[int]],
-    ) -> List[int]:
-        assigned_group = group[:]
-        group_count = m
-        for item in range(n):
-            if assigned_group[item] == -1:
-                assigned_group[item] = group_count
-                group_count += 1
-
-        item_graph = [[] for _ in range(n)]
-        item_indegree = [0] * n
-        group_graph = [[] for _ in range(group_count)]
-        group_indegree = [0] * group_count
-
-        for current in range(n):
-            for previous in beforeItems[current]:
-                item_graph[previous].append(current)
-                item_indegree[current] += 1
-                previous_group = assigned_group[previous]
-                current_group = assigned_group[current]
-                if previous_group != current_group:
-                    group_graph[previous_group].append(current_group)
-                    group_indegree[current_group] += 1
-
-        def topological_order(graph: List[List[int]], indegree: List[int]) -> List[int]:
-            ready = deque(index for index, degree in enumerate(indegree) if degree == 0)
-            order = []
-            while ready:
-                node = ready.popleft()
-                order.append(node)
-                for neighbor in graph[node]:
-                    indegree[neighbor] -= 1
-                    if indegree[neighbor] == 0:
-                        ready.append(neighbor)
-            return order if len(order) == len(graph) else []
-
-        item_order = topological_order(item_graph, item_indegree)
-        group_order = topological_order(group_graph, group_indegree)
-        if not item_order or not group_order:
+    def sortItems(self, n, m, group, beforeItems):
+        """
+        :type n: int
+        :type m: int
+        :type group: List[int]
+        :type beforeItems: List[List[int]]
+        :rtype: List[int]
+        """
+        for i in range(n):
+            if group[i] == -1:
+                group[i] = m
+                m += 1    
+        global_group = Topo()
+        for i in range(m):
+            global_group.add_node(i)
+        local_groups = collections.defaultdict(Topo)
+        for i in range(n):
+            local_groups[group[i]].add_node(i)
+        for i in range(n):
+            for j in beforeItems[i]:
+                if group[i] == group[j]:
+                    local_groups[group[i]].add_edge(j, i)
+                else:
+                    global_group.add_edge(group[j], group[i])
+        result = []
+        global_order = global_group.sort()
+        if global_order is None:
             return []
-
-        items_by_group = [[] for _ in range(group_count)]
-        for item in item_order:
-            items_by_group[assigned_group[item]].append(item)
-
-        return [item for group_id in group_order for item in items_by_group[group_id]]
+        for i in global_order:
+            local_order = local_groups[i].sort()
+            if local_order is None:
+                return []
+            for x in local_order:
+                result.append(x)
+        return result

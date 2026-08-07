@@ -1,27 +1,22 @@
-from typing import List
+# Time:  O(m * n * r)
+# Space: O(n * r)
 
-
+# dp
 class Solution:
-    def countPathsWithXorValue(self, grid: List[List[int]], k: int) -> int:
-        modulus = 1_000_000_007
-        rows = len(grid)
-        columns = len(grid[0])
-        dp = [[0] * 16 for _ in range(columns)]
-
-        for row in range(rows):
-            for column in range(columns):
-                value = grid[row][column]
-                current = [0] * 16
-
-                if row == 0 and column == 0:
-                    current[value] = 1
-                else:
-                    for xor_value in range(16):
-                        if row > 0:
-                            current[xor_value ^ value] += dp[column][xor_value]
-                        if column > 0:
-                            current[xor_value ^ value] += dp[column - 1][xor_value]
-
-                dp[column] = [count % modulus for count in current]
-
+    def countPathsWithXorValue(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        MAX_R = 16
+        dp = [[0]*MAX_R for _ in range(len(grid[0]))]
+        dp[0][0] = 1
+        for i in range(len(grid)):
+            new_dp = [[0]*MAX_R for _ in range(len(grid[0]))]
+            for j in range(len(grid[0])):
+                for v in range(MAX_R):
+                    new_dp[j][grid[i][j]^v] = (dp[j][v]+(new_dp[j-1][v] if j-1 >= 0 else 0)) % MOD
+            dp = new_dp
         return dp[-1][k]

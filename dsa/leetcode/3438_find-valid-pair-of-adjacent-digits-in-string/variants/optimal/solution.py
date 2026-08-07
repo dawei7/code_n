@@ -1,10 +1,9 @@
-from collections import Counter
-
-
 class Solution:
     def findValidPair(self, s: str) -> str:
-        counts = Counter(s)
-        for left, right in zip(s, s[1:]):
-            if left != right and counts[left] == int(left) and counts[right] == int(right):
-                return left + right
+        cnt = [0] * 10
+        for x in map(int, s):
+            cnt[x] += 1
+        for x, y in pairwise(map(int, s)):
+            if x != y and cnt[x] == x and cnt[y] == y:
+                return f"{x}{y}"
         return ""

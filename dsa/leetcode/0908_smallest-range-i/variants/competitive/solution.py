@@ -1,6 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def smallestRangeI(self, nums: List[int], k: int) -> int:
-        return max(0, max(nums) - min(nums) - 2 * k)
+    def smallestRangeI(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: int
+        """
+        return max(0, max(A) - min(A) - 2*K)
+

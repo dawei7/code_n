@@ -1,16 +1,22 @@
+# Time:  O(n + 26)
+# Space: O(n + 26)
+
+# greedy, hash table, stack
 class Solution:
-    def clearStars(self, s: str) -> str:
-        positions = [[] for _ in range(26)]
-        removed = [False] * len(s)
-
-        for index, character in enumerate(s):
-            if character == "*":
-                removed[index] = True
-                for bucket in positions:
-                    if bucket:
-                        removed[bucket.pop()] = True
-                        break
-            else:
-                positions[ord(character) - ord("a")].append(index)
-
-        return "".join(character for index, character in enumerate(s) if not removed[index])
+    def clearStars(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = list(s)
+        lookup = [[] for _ in range(26)]
+        for i, x in enumerate(s):
+            if x != '*':
+                lookup[ord(x)-ord('a')].append(i)
+                continue
+            for stk in lookup:
+                if not stk:
+                    continue
+                result[stk.pop()] = '*'
+                break
+        return "".join(x for x in result if x != '*')

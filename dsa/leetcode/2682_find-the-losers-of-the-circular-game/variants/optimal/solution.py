@@ -1,12 +1,9 @@
 class Solution:
     def circularGameLosers(self, n: int, k: int) -> List[int]:
-        visited = [False] * n
-        current = 0
-        turn = 1
-
-        while not visited[current]:
-            visited[current] = True
-            current = (current + turn * k) % n
-            turn += 1
-
-        return [index + 1 for index, received in enumerate(visited) if not received]
+        vis = [False] * n
+        i, p = 0, 1
+        while not vis[i]:
+            vis[i] = True
+            i = (i + p * k) % n
+            p += 1
+        return [i + 1 for i in range(n) if not vis[i]]

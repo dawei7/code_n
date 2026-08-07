@@ -1,16 +1,22 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
+# sort, line sweep
 class Solution:
-    def minGroups(self, intervals: List[List[int]]) -> int:
-        active_ends = []
-        maximum_overlap = 0
-
-        for left, right in sorted(intervals):
-            while active_ends and active_ends[0] < left:
-                heappop(active_ends)
-            heappush(active_ends, right)
-            maximum_overlap = max(maximum_overlap, len(active_ends))
-
-        return maximum_overlap
+    def minGroups(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        events = collections.Counter()
+        for l, r in intervals:
+            events[l] += 1
+            events[r+1] -= 1
+        result = curr = 0
+        for t in sorted(events.keys()):
+            curr += events[t]
+            result = max(result, curr)
+        return result

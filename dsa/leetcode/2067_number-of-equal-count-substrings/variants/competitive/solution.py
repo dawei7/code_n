@@ -1,33 +1,21 @@
+# Time:  O(26 * n) = O(n)
+# Space: O(26) = O(1)
+
 class Solution:
-    def equalCountSubstrings(self, s: str, count: int) -> int:
-        answer = 0
-        length = len(s)
-
-        for distinct in range(1, 27):
-            window_size = distinct * count
-            if window_size > length:
-                break
-
-            frequencies = [0] * 26
-            exact_count = 0
-
-            for right, character in enumerate(s):
-                index = ord(character) - ord("a")
-                if frequencies[index] == count:
-                    exact_count -= 1
-                frequencies[index] += 1
-                if frequencies[index] == count:
-                    exact_count += 1
-
-                if right >= window_size:
-                    left_index = ord(s[right - window_size]) - ord("a")
-                    if frequencies[left_index] == count:
-                        exact_count -= 1
-                    frequencies[left_index] -= 1
-                    if frequencies[left_index] == count:
-                        exact_count += 1
-
-                if right + 1 >= window_size and exact_count == distinct:
-                    answer += 1
-
-        return answer
+    def equalCountSubstrings(self, s, count):
+        """
+        :type s: str
+        :type count: int
+        :rtype: int
+        """
+        result = 0
+        for l in range(1, min(len(set(s)), len(s)//count)+1):
+            cnt, equal_cnt = collections.Counter(), 0
+            for i, c in enumerate(s):
+                cnt[c] += 1
+                equal_cnt += (cnt[c] == count)
+                if i >= count*l:
+                    equal_cnt -= (cnt[s[i-count*l]] == count)
+                    cnt[s[i-count*l]] -= 1
+                result += (equal_cnt == l)
+        return result

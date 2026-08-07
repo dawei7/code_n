@@ -1,34 +1,24 @@
-# """
-# This is ArrayReader's API interface.
-# You should not implement it, or speculate about its implementation.
-# """
-# class ArrayReader:
-#     def compareSub(self, l: int, r: int, x: int, y: int) -> int:
-#         ...
-#
-#     def length(self) -> int:
-#         ...
+# Time:  O(logn)
+# Space: O(1)
 
+class ArrayReader(object):
+   def compareSub(self, l, r, x, y):
+       pass
+
+   def length(self):
+       pass
 
 class Solution:
-    def getIndex(self, reader: "ArrayReader") -> int:
-        left = 0
-        right = reader.length() - 1
-
+    def getIndex(self, reader):
+        """
+        :type reader: ArrayReader
+        :rtype: integer
+        """
+        left, right = 0, reader.length()-1
         while left < right:
-            length = right - left + 1
-            half = length // 2
-            left_end = left + half - 1
-            right_start = left + half
-            right_end = right if length % 2 == 0 else right - 1
-            comparison = reader.compareSub(left, left_end, right_start, right_end)
-
-            if comparison > 0:
-                right = left_end
-            elif comparison < 0:
-                left = right_start
-                right = right_end
+            mid = left + (right-left)//2
+            if reader.compareSub(left, mid, mid if (right-left+1)%2 else mid+1, right) >= 0:
+                right = mid
             else:
-                return right
-
+                left = mid+1
         return left

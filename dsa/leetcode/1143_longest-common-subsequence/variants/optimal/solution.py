@@ -1,15 +1,11 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
-        if len(text1) < len(text2):
-            text1, text2 = text2, text1
-
-        previous = [0] * (len(text2) + 1)
-        for first in text1:
-            current = [0] * (len(text2) + 1)
-            for column, second in enumerate(text2, start=1):
-                if first == second:
-                    current[column] = previous[column - 1] + 1
+        m, n = len(text1), len(text2)
+        f = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if text1[i - 1] == text2[j - 1]:
+                    f[i][j] = f[i - 1][j - 1] + 1
                 else:
-                    current[column] = max(previous[column], current[column - 1])
-            previous = current
-        return previous[-1]
+                    f[i][j] = max(f[i - 1][j], f[i][j - 1])
+        return f[m][n]

@@ -1,14 +1,22 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
 
+import collections
+import string
 
 class Solution:
-    def minDeletions(self, s: str) -> int:
-        used = set()
-        deletions = 0
-        for frequency in Counter(s).values():
-            while frequency > 0 and frequency in used:
-                frequency -= 1
-                deletions += 1
-            if frequency > 0:
-                used.add(frequency)
-        return deletions
+    def minDeletions(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        count = collections.Counter(s)
+        result = 0
+        lookup = set()
+        for c in string.ascii_lowercase:
+            for i in reversed(range(1, count[c]+1)):
+                if i not in lookup:
+                    lookup.add(i)
+                    break
+                result += 1
+        return result

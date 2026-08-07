@@ -1,18 +1,12 @@
-from typing import List
-
-
 class Solution:
     def countPairs(self, nums1: List[int], nums2: List[int]) -> int:
-        differences = sorted(a - b for a, b in zip(nums1, nums2))
-        left = 0
-        right = len(differences) - 1
-        pairs = 0
-
-        while left < right:
-            if differences[left] + differences[right] > 0:
-                pairs += right - left
-                right -= 1
-            else:
-                left += 1
-
-        return pairs
+        nums = [a - b for a, b in zip(nums1, nums2)]
+        nums.sort()
+        l, r = 0, len(nums) - 1
+        ans = 0
+        while l < r:
+            while l < r and nums[l] + nums[r] <= 0:
+                l += 1
+            ans += r - l
+            r -= 1
+        return ans

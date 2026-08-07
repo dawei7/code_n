@@ -1,9 +1,48 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
         if len(s) != len(t):
             return False
-        counts = [0] * 26
-        for left, right in zip(s, t):
-            counts[ord(left) - ord("a")] += 1
-            counts[ord(right) - ord("a")] -= 1
-        return all(count == 0 for count in counts)
+        count = collections.defaultdict(int)
+        for c in s:
+            count[c] += 1
+        for c in t:
+            count[c] -= 1
+            if count[c] < 0:
+                return False
+        return True
+
+
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        return collections.Counter(s) == collections.Counter(t)
+
+
+# Time:  O(nlogn)
+# Space: O(n)
+class Solution3(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        return sorted(s) == sorted(t)
+

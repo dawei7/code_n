@@ -1,19 +1,13 @@
-from typing import List
-
-
 class Solution:
     def diStringMatch(self, s: str) -> List[int]:
-        low = 0
-        high = len(s)
-        permutation = []
-
-        for character in s:
-            if character == "I":
-                permutation.append(low)
+        low, high = 0, len(s)
+        ans = []
+        for c in s:
+            if c == "I":
+                ans.append(low)
                 low += 1
             else:
-                permutation.append(high)
+                ans.append(high)
                 high -= 1
-
-        permutation.append(low)
-        return permutation
+        ans.append(low)
+        return ans

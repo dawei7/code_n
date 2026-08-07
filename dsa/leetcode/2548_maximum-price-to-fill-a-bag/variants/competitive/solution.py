@@ -1,15 +1,18 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# greedy, sort
 class Solution:
-    def maxPrice(self, items: List[List[int]], capacity: int) -> float:
-        if sum(weight for _, weight in items) < capacity:
-            return -1
-
-        items.sort(key=lambda item: item[0] / item[1], reverse=True)
-        answer = 0.0
-
-        for price, weight in items:
-            taken = min(capacity, weight)
-            answer += price * taken / weight
-            capacity -= taken
-
-            if capacity == 0:
-                return answer
+    def maxPrice(self, items, capacity):
+        """
+        :type items: List[List[int]]
+        :type capacity: int
+        :rtype: float
+        """
+        result = 0
+        items.sort(key=lambda x: float(x[0])/x[1], reverse=True)
+        for p, c in items:
+            cnt = min(c, capacity)
+            capacity -= cnt
+            result += (float(p)/c)*cnt
+        return result if capacity == 0 else -1

@@ -1,22 +1,24 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def isPathCrossing(self, path: str) -> bool:
-        x = 0
-        y = 0
-        visited = {(0, 0)}
-
-        for move in path:
-            if move == "N":
-                y += 1
-            elif move == "S":
-                y -= 1
-            elif move == "E":
+    def isPathCrossing(self, path):
+        """
+        :type path: str
+        :rtype: bool
+        """
+        x = y = 0
+        lookup = {(0, 0)}
+        for c in path:
+            if c == 'E':
                 x += 1
-            else:
+            elif c == 'W':
                 x -= 1
-
-            position = (x, y)
-            if position in visited:
+            elif c == 'N':
+                y += 1
+            elif c == 'S':
+                y -= 1
+            if (x, y) in lookup:
                 return True
-            visited.add(position)
-
+            lookup.add((x, y))
         return False

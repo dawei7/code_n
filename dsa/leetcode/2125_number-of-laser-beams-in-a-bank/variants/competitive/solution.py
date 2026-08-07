@@ -1,15 +1,17 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def numberOfBeams(self, bank: List[str]) -> int:
-        previous_devices = 0
-        beams = 0
-
-        for row in bank:
-            devices = row.count("1")
-            if devices:
-                beams += previous_devices * devices
-                previous_devices = devices
-
-        return beams
+    def numberOfBeams(self, bank):
+        """
+        :type bank: List[str]
+        :rtype: int
+        """
+        result = prev = 0
+        for x in bank:
+            cnt = x.count('1')
+            if not cnt:
+                continue
+            result += prev*cnt
+            prev = cnt
+        return result

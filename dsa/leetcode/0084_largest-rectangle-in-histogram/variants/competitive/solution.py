@@ -1,14 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def largestRectangleArea(self, heights: List[int]) -> int:
-        stack = []
-        best = 0
-        for index, height in enumerate(heights + [0]):
-            start = index
-            while stack and stack[-1][1] > height:
-                start, previous_height = stack.pop()
-                best = max(best, previous_height * (index - start))
-            stack.append((start, height))
-        return best
+    def largestRectangleArea(self, heights):
+        """
+        :type heights: List[int]
+        :rtype: int
+        """
+        stk, result = [-1], 0
+        for i in range(len(heights)+1):
+            while stk[-1] != -1 and (i == len(heights) or heights[stk[-1]] >= heights[i]):
+                result = max(result, heights[stk.pop()]*((i-1)-stk[-1]))
+            stk.append(i) 
+        return result

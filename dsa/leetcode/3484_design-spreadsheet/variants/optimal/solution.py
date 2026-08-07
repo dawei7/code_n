@@ -1,18 +1,22 @@
 class Spreadsheet:
     def __init__(self, rows: int):
-        self.cells: dict[str, int] = {}
+        self.d = {}
 
     def setCell(self, cell: str, value: int) -> None:
-        self.cells[cell] = value
+        self.d[cell] = value
 
     def resetCell(self, cell: str) -> None:
-        self.cells.pop(cell, None)
+        self.d.pop(cell, None)
 
     def getValue(self, formula: str) -> int:
-        left, right = formula[1:].split("+")
-        return self._value(left) + self._value(right)
+        ans = 0
+        for cell in formula[1:].split("+"):
+            ans += int(cell) if cell[0].isdigit() else self.d.get(cell, 0)
+        return ans
 
-    def _value(self, token: str) -> int:
-        if token[0].isdigit():
-            return int(token)
-        return self.cells.get(token, 0)
+
+# Your Spreadsheet object will be instantiated and called as such:
+# obj = Spreadsheet(rows)
+# obj.setCell(cell,value)
+# obj.resetCell(cell)
+# param_3 = obj.getValue(formula)

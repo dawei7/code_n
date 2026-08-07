@@ -1,7 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def numberOfEmployeesWhoMetTarget(self, hours: List[int], target: int) -> int:
-        count = 0
-        for worked in hours:
-            if worked >= target:
-                count += 1
-        return count
+    def numberOfEmployeesWhoMetTarget(self, hours, target):
+        """
+        :type hours: List[int]
+        :type target: int
+        :rtype: int
+        """
+        return sum(x >= target for x in hours)

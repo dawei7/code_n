@@ -1,23 +1,28 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findAnagrams(self, s: str, p: str) -> List[int]:
-        window_length = len(p)
-        if window_length > len(s):
-            return []
+    def findAnagrams(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: List[int]
+        """
+        result = []
 
-        pattern_counts = [0] * 26
-        window_counts = [0] * 26
-        for index in range(window_length):
-            pattern_counts[ord(p[index]) - ord("a")] += 1
-            window_counts[ord(s[index]) - ord("a")] += 1
+        cnts = [0] * 26
+        for c in p:
+            cnts[ord(c) - ord('a')] += 1
 
-        answer = [0] if window_counts == pattern_counts else []
-        for right in range(window_length, len(s)):
-            left = right - window_length
-            window_counts[ord(s[left]) - ord("a")] -= 1
-            window_counts[ord(s[right]) - ord("a")] += 1
-            if window_counts == pattern_counts:
-                answer.append(left + 1)
-        return answer
+        left, right = 0, 0
+        while right < len(s):
+            cnts[ord(s[right]) - ord('a')] -= 1
+            while left <= right and cnts[ord(s[right]) - ord('a')] < 0:
+                cnts[ord(s[left]) - ord('a')] += 1
+                left += 1
+            if right - left + 1 == len(p):
+                result.append(left)
+            right += 1
+
+        return result
+

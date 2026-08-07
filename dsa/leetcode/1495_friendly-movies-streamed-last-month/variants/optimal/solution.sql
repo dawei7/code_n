@@ -1,11 +1,9 @@
-SELECT DISTINCT
-    c.title
-FROM Content AS c
-INNER JOIN TVProgram AS p
-    ON p.content_id = c.content_id
-WHERE c.Kids_content = 'Y'
-  AND c.content_type = 'Movies'
-  AND p.program_date >= '2020-06-01'
-  AND p.program_date < '2020-07-01'
-ORDER BY c.title;
-
+# Write your MySQL query statement below
+SELECT DISTINCT title
+FROM
+    TVProgram
+    JOIN Content USING (content_id)
+WHERE
+    DATE_FORMAT(program_date, '%Y%m') = '202006'
+    AND kids_content = 'Y'
+    AND content_type = 'Movies';

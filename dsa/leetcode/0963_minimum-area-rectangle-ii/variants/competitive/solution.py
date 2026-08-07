@@ -1,26 +1,25 @@
-from math import sqrt
-from typing import List
+# Time:  O(n^2) ~ O(n^3)
+# Space: O(n^2)
+
+import collections
+import itertools
 
 
 class Solution:
-    def minAreaFreeRect(self, points: List[List[int]]) -> float:
-        coordinates = {tuple(point) for point in points}
-        minimum = float("inf")
+    def minAreaFreeRect(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: float
+        """
+        points.sort()
+        points = [complex(*z) for z in points]
+        lookup = collections.defaultdict(list)
+        for P, Q in itertools.combinations(points, 2):
+            lookup[P-Q].append((P+Q) / 2)
 
-        for ax, ay in coordinates:
-            for bx, by in coordinates:
-                if (ax, ay) == (bx, by):
-                    continue
-                abx, aby = bx - ax, by - ay
-                for cx, cy in coordinates:
-                    if (ax, ay) == (cx, cy) or (bx, by) == (cx, cy):
-                        continue
-                    acx, acy = cx - ax, cy - ay
-                    if abx * acx + aby * acy != 0:
-                        continue
-                    if (bx + cx - ax, by + cy - ay) not in coordinates:
-                        continue
-                    area = sqrt((abx * abx + aby * aby) * (acx * acx + acy * acy))
-                    minimum = min(minimum, area)
-
-        return 0.0 if minimum == float("inf") else minimum
+        result = float("inf")
+        for A, candidates in lookup.items():
+            for P, Q in itertools.combinations(candidates, 2):
+                if A.real * (P-Q).real + A.imag * (P-Q).imag == 0.0:
+                    result = min(result, abs(A) * abs(P-Q))
+        return result if result < float("inf") else 0.0

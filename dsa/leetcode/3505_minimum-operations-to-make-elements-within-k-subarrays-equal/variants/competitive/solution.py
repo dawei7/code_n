@@ -1,74 +1,189 @@
-from bisect import bisect_left
+# Time:  O(nlogx + k * n)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
-class Fenwick:
-    def __init__(self, size: int):
-        self.tree = [0] * (size + 1)
-
-    def add(self, index: int, delta: int) -> None:
-        index += 1
-        while index < len(self.tree):
-            self.tree[index] += delta
-            index += index & -index
-
-    def sum(self, index: int) -> int:
-        total = 0
-        index += 1
-        while index > 0:
-            total += self.tree[index]
-            index -= index & -index
-        return total
-
-    def kth(self, target: int) -> int:
-        index = 0
-        bit = 1 << (len(self.tree).bit_length() - 1)
-        while bit:
-            next_index = index + bit
-            if next_index < len(self.tree) and self.tree[next_index] < target:
-                target -= self.tree[next_index]
-                index = next_index
-            bit //= 2
-        return index
-
-
+# two sorted lists, dp
 class Solution:
-    def minOperations(self, nums: List[int], x: int, k: int) -> int:
-        n = len(nums)
-        values = sorted(set(nums))
-        compressed = [bisect_left(values, value) for value in nums]
-        count_tree = Fenwick(len(values))
-        sum_tree = Fenwick(len(values))
-        window_cost = [0] * (n - x + 1)
+    def minOperations(self, nums, x, k):
+        """
+        :type nums: List[int]
+        :type x: int
+        :type k: int
+        :rtype: int
+        """
+        class SlidingWindow(object):
+            def __init__(self):
+                self.left = SortedList()
+                self.right = SortedList()
+                self.total1 = self.total2 = 0
 
-        for right, (value, index) in enumerate(zip(nums, compressed)):
-            count_tree.add(index, 1)
-            sum_tree.add(index, value)
-            if right >= x:
-                old_index = compressed[right - x]
-                old_value = nums[right - x]
-                count_tree.add(old_index, -1)
-                sum_tree.add(old_index, -old_value)
-            if right >= x - 1:
-                median_index = count_tree.kth((x + 1) // 2)
-                median = values[median_index]
-                left_count = count_tree.sum(median_index)
-                left_sum = sum_tree.sum(median_index)
-                total_sum = sum_tree.sum(len(values) - 1)
-                right_count = x - left_count
-                right_sum = total_sum - left_sum
-                window_cost[right - x + 1] = median * left_count - left_sum + right_sum - median * right_count
+            def add(self, val):
+                if not self.left or val <= self.left[-1]:
+                    self.left.add(val)
+                    self.total1 += val
+                else:
+                    self.right.add(val)
+                    self.total2 += val
+                self.rebalance()
 
-        infinity = 10**30
-        previous = [0] * (n + 1)
-        for _ in range(k):
-            current = [infinity] * (n + 1)
-            for length in range(1, n + 1):
-                current[length] = current[length - 1]
-                if length >= x and previous[length - x] < infinity:
-                    current[length] = min(
-                        current[length],
-                        previous[length - x] + window_cost[length - x],
-                    )
-            previous = current
+            def remove(self, val):
+                if val <= self.left[-1]:
+                    self.left.remove(val)
+                    self.total1 -= val
+                else:
+                    self.right.remove(val)
+                    self.total2 -= val
+                self.rebalance()
 
-        return previous[n]
+            def rebalance(self):
+                if len(self.left) < len(self.right):
+                    self.total2 -= self.right[0]
+                    self.total1 += self.right[0]
+                    self.left.add(self.right[0])
+                    self.right.pop(0)
+                elif len(self.left) > len(self.right)+1:
+                    self.total1 -= self.left[-1]
+                    self.total2 += self.left[-1]
+                    self.right.add(self.left[-1])
+                    self.left.pop()
+
+            def median(self):
+                return self.left[-1]
+
+
+        INF = float("inf")
+        sw = SlidingWindow()
+        cost = [INF]*(len(nums)+1)
+        for i in range(len(nums)):
+            if i-x >= 0:
+                sw.remove(nums[i-x])
+            sw.add(nums[i])
+            if i >= x-1:
+                cost[i+1] = (sw.median()*len(sw.left)-sw.total1) + (sw.total2-sw.median()*len(sw.right))
+        dp = [0]*(len(nums)+1)
+        for i in range(k):
+            new_dp = [INF]*(len(nums)+1)
+            for j in range((i+1)*x, len(nums)+1):
+                new_dp[j] = min(new_dp[j-1], dp[j-x]+cost[j])
+            dp = new_dp
+        return dp[-1]
+
+
+# Time:  O(nlogx + k * n)
+# Space: O(n)
+import heapq
+import collections
+
+
+# two heaps, dp
+class Solution2(object):
+    def minOperations(self, nums, x, k):
+        """
+        :type nums: List[int]
+        :type x: int
+        :type k: int
+        :rtype: int
+        """
+        class LazyHeap(object):
+            def __init__(self, sign):
+                self.heap = []
+                self.to_remove = collections.defaultdict(int)
+                self.cnt = 0
+                self.sign = sign
+
+            def push(self, val):
+                heapq.heappush(self.heap, self.sign*val)
+
+            def full_remove(self):
+                result = []
+                for x in self.heap:
+                    if x not in self.to_remove:
+                        result.append(x)
+                        continue
+                    self.to_remove[x] -= 1
+                    if not self.to_remove[x]:
+                        del self.to_remove[x]
+                self.heap[:] = result
+                heapq.heapify(self.heap)
+    
+            def remove(self, val):
+                self.to_remove[self.sign*val] += 1
+                self.cnt += 1
+                if self.cnt > len(self.heap)-self.cnt:
+                    self.full_remove()
+                    self.cnt = 0
+
+            def pop(self):
+                self.remove(self.top())
+
+            def top(self):
+                while self.heap and self.heap[0] in self.to_remove:
+                    self.to_remove[self.heap[0]] -= 1
+                    self.cnt -= 1
+                    if self.to_remove[self.heap[0]] == 0:
+                        del self.to_remove[self.heap[0]]
+                    heapq.heappop(self.heap)
+                return self.sign*self.heap[0]
+
+            def __len__(self):
+                return len(self.heap)-self.cnt
+
+
+        class SlidingWindow(object):
+            def __init__(self):
+                self.left = LazyHeap(-1)   # max heap
+                self.right = LazyHeap(+1)  # min heap
+                self.total1 = self.total2 = 0
+
+            def add(self, val):
+                if not self.left or val <= self.left.top():
+                    self.left.push(val)
+                    self.total1 += val
+                else:
+                    self.right.push(val)
+                    self.total2 += val
+                self.rebalance()
+
+            def remove(self, val):
+                if val <= self.left.top():
+                    self.left.remove(val)
+                    self.total1 -= val
+                else:
+                    self.right.remove(val)
+                    self.total2 -= val
+                self.rebalance()
+
+            def rebalance(self):
+                if len(self.left) < len(self.right):
+                    self.total2 -= self.right.top()
+                    self.total1 += self.right.top()
+                    self.left.push(self.right.top())
+                    self.right.pop()
+                elif len(self.left) > len(self.right)+1:
+                    self.total1 -= self.left.top()
+                    self.total2 += self.left.top()
+                    self.right.push(self.left.top())
+                    self.left.pop()
+
+            def median(self):
+                return self.left.top()
+
+
+        INF = float("inf")
+        sw = SlidingWindow()
+        cost = [INF]*(len(nums)+1)
+        for i in range(len(nums)):
+            if i-x >= 0:
+                sw.remove(nums[i-x])
+            sw.add(nums[i])
+            if i >= x-1:
+                cost[i+1] = (sw.median()*len(sw.left)-sw.total1) + (sw.total2-sw.median()*len(sw.right))
+        dp = [0]*(len(nums)+1)
+        for i in range(k):
+            new_dp = [INF]*(len(nums)+1)
+            for j in range((i+1)*x, len(nums)+1):
+                new_dp[j] = min(new_dp[j-1], dp[j-x]+cost[j])
+            dp = new_dp
+        return dp[-1]

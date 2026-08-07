@@ -1,31 +1,29 @@
+"""
 # Definition for a Node.
-# class Node:
-#     def __init__(self, val):
-#         self.val = val
-#         self.left = None
-#         self.right = None
-#         self.parent = None
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+        self.parent = None
+"""
 
 
 class Solution:
     def flipBinaryTree(self, root: "Node", leaf: "Node") -> "Node":
-        current = leaf
-        parent = current.parent
-
-        while current is not root:
-            grandparent = parent.parent
-            if current.left is not None:
-                current.right = current.left
-            current.left = parent
-            parent.parent = current
-
-            if parent.left is current:
-                parent.left = None
-            else:
-                parent.right = None
-
-            current = parent
-            parent = grandparent
-
+        cur = leaf
+        p = cur.parent
+        while cur != root:
+            gp = p.parent
+            if cur.left:
+                cur.right = cur.left
+            cur.left = p
+            p.parent = cur
+            if p.left == cur:
+                p.left = None
+            elif p.right == cur:
+                p.right = None
+            cur = p
+            p = gp
         leaf.parent = None
         return leaf

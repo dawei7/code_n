@@ -1,33 +1,28 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def countPaths(self, n: int, roads: List[List[int]]) -> int:
-        modulus = 1_000_000_007
-        adjacency = [[] for _ in range(n)]
-        for left, right, travel_time in roads:
-            adjacency[left].append((right, travel_time))
-            adjacency[right].append((left, travel_time))
-
-        distances = [float("inf")] * n
-        ways = [0] * n
-        distances[0] = 0
-        ways[0] = 1
-        queue = [(0, 0)]
-
-        while queue:
-            distance, node = heapq.heappop(queue)
-            if distance != distances[node]:
-                continue
-
-            for neighbor, travel_time in adjacency[node]:
-                candidate = distance + travel_time
-                if candidate < distances[neighbor]:
-                    distances[neighbor] = candidate
-                    ways[neighbor] = ways[node]
-                    heapq.heappush(queue, (candidate, neighbor))
-                elif candidate == distances[neighbor]:
-                    ways[neighbor] = (ways[neighbor] + ways[node]) % modulus
-
-        return ways[n - 1]
+        g = [[inf] * n for _ in range(n)]
+        for u, v, t in roads:
+            g[u][v] = g[v][u] = t
+        g[0][0] = 0
+        dist = [inf] * n
+        dist[0] = 0
+        f = [0] * n
+        f[0] = 1
+        vis = [False] * n
+        for _ in range(n):
+            t = -1
+            for j in range(n):
+                if not vis[j] and (t == -1 or dist[j] < dist[t]):
+                    t = j
+            vis[t] = True
+            for j in range(n):
+                if j == t:
+                    continue
+                ne = dist[t] + g[t][j]
+                if dist[j] > ne:
+                    dist[j] = ne
+                    f[j] = f[t]
+                elif dist[j] == ne:
+                    f[j] += f[t]
+        mod = 10**9 + 7
+        return f[-1] % mod

@@ -1,17 +1,19 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
-
+# dp
 class Solution:
-    def maximumJumps(self, nums: List[int], target: int) -> int:
-        maximum_jumps = [-1] * len(nums)
-        maximum_jumps[0] = 0
-
-        for destination in range(1, len(nums)):
-            for source in range(destination):
-                if maximum_jumps[source] != -1 and abs(nums[destination] - nums[source]) <= target:
-                    maximum_jumps[destination] = max(
-                        maximum_jumps[destination],
-                        maximum_jumps[source] + 1,
-                    )
-
-        return maximum_jumps[-1]
+    def maximumJumps(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        dp = [-1]*len(nums)
+        dp[0] = 0
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if abs(nums[i]-nums[j]) <= target:
+                    if dp[j] != -1:
+                        dp[i] = max(dp[i], dp[j]+1)
+        return dp[-1]

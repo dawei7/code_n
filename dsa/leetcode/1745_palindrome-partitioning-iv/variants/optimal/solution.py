@@ -1,17 +1,12 @@
 class Solution:
     def checkPartitioning(self, s: str) -> bool:
-        length = len(s)
-        palindrome = [[False] * length for _ in range(length)]
-
-        for left in range(length - 1, -1, -1):
-            for right in range(left, length):
-                palindrome[left][right] = s[left] == s[right] and (right - left < 2 or palindrome[left + 1][right - 1])
-
-        for first in range(length - 2):
-            if not palindrome[0][first]:
-                continue
-            for second in range(first + 1, length - 1):
-                if palindrome[first + 1][second] and palindrome[second + 1][length - 1]:
+        n = len(s)
+        f = [[True] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                f[i][j] = s[i] == s[j] and (i + 1 == j or f[i + 1][j - 1])
+        for i in range(n - 2):
+            for j in range(i + 1, n - 1):
+                if f[0][i] and f[i + 1][j] and f[j + 1][-1]:
                     return True
-
         return False

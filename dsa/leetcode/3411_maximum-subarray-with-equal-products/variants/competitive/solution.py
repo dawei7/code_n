@@ -1,19 +1,45 @@
-from typing import List
+# Time:  precompute: O(r * log(logr)), r = MAX_NUM
+#        runtime:    O(n * log(logr))
+# Space: O(r * log(logr))
+
+import collections
 
 
+# number theory, hash table
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return primes  # len(primes) = O(n/(logn-1)), reference: https://math.stackexchange.com/questions/264544/how-to-find-number-of-prime-numbers-up-to-to-n
+
+def prime_divisors(n):
+    result = [[] for _ in range(n+1)]
+    for p in linear_sieve_of_eratosthenes(n):  # Time: O(nlog(logn))
+        for i in range(p, n+1, p):
+            result[i].append(p)
+    return result
+
+MAX_NUM = 10
+PRIME_DIVISORS = prime_divisors(MAX_NUM)
 class Solution:
-    def maxLength(self, nums: List[int]) -> int:
-        factor_mask = [0, 0, 1, 2, 1, 4, 3, 8, 1, 2, 5]
+    def maxLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 2
+        lookup = collections.defaultdict(int)
         left = 0
-        used_factors = 0
-        answer = 2
-
-        for right, value in enumerate(nums):
-            mask = factor_mask[value]
-            while used_factors & mask:
-                used_factors ^= factor_mask[nums[left]]
-                left += 1
-            used_factors |= mask
-            answer = max(answer, right - left + 1)
-
-        return answer
+        for right, x in enumerate(nums):
+            for p in PRIME_DIVISORS[x]:
+                left = max(left, lookup[p])
+                lookup[p] = right+1
+            result = max(result, right-left+1)
+        return result

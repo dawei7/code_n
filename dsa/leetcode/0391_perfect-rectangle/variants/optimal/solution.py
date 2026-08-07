@@ -1,28 +1,32 @@
 class Solution:
     def isRectangleCover(self, rectangles: List[List[int]]) -> bool:
-        min_x = min_y = float("inf")
-        max_x = max_y = float("-inf")
-        total_area = 0
-        unmatched = set()
+        area = 0
+        minX, minY = rectangles[0][0], rectangles[0][1]
+        maxX, maxY = rectangles[0][2], rectangles[0][3]
+        cnt = defaultdict(int)
 
-        for x1, y1, x2, y2 in rectangles:
-            min_x = min(min_x, x1)
-            min_y = min(min_y, y1)
-            max_x = max(max_x, x2)
-            max_y = max(max_y, y2)
-            total_area += (x2 - x1) * (y2 - y1)
+        for r in rectangles:
+            area += (r[2] - r[0]) * (r[3] - r[1])
 
-            for corner in ((x1, y1), (x1, y2), (x2, y1), (x2, y2)):
-                if corner in unmatched:
-                    unmatched.remove(corner)
-                else:
-                    unmatched.add(corner)
+            minX = min(minX, r[0])
+            minY = min(minY, r[1])
+            maxX = max(maxX, r[2])
+            maxY = max(maxY, r[3])
 
-        outer_corners = {
-            (min_x, min_y),
-            (min_x, max_y),
-            (max_x, min_y),
-            (max_x, max_y),
-        }
-        outer_area = (max_x - min_x) * (max_y - min_y)
-        return total_area == outer_area and unmatched == outer_corners
+            cnt[(r[0], r[1])] += 1
+            cnt[(r[0], r[3])] += 1
+            cnt[(r[2], r[3])] += 1
+            cnt[(r[2], r[1])] += 1
+
+        if (
+            area != (maxX - minX) * (maxY - minY)
+            or cnt[(minX, minY)] != 1
+            or cnt[(minX, maxY)] != 1
+            or cnt[(maxX, maxY)] != 1
+            or cnt[(maxX, minY)] != 1
+        ):
+            return False
+
+        del cnt[(minX, minY)], cnt[(minX, maxY)], cnt[(maxX, maxY)], cnt[(maxX, minY)]
+
+        return all(c == 2 or c == 4 for c in cnt.values())

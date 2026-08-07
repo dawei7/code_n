@@ -1,14 +1,6 @@
 class Solution:
     def largestCombination(self, candidates: List[int]) -> int:
-        answer = 0
-        bit = 1
-        maximum = max(candidates)
-
-        while bit <= maximum:
-            answer = max(
-                answer,
-                sum(1 for value in candidates if value & bit),
-            )
-            bit <<= 1
-
-        return answer
+        ans = 0
+        for i in range(max(candidates).bit_length()):
+            ans = max(ans, sum(x >> i & 1 for x in candidates))
+        return ans

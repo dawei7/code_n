@@ -1,18 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def reverseVowels(self, s: str) -> str:
-        vowels = set("aeiouAEIOU")
-        characters = list(s)
-        left = 0
-        right = len(characters) - 1
+    def reverseVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        vowels = "aeiou"
+        string = list(s)
+        i, j = 0, len(s) - 1
+        while i < j:
+            if string[i].lower() not in vowels:
+                i += 1
+            elif string[j].lower() not in vowels:
+                j -= 1
+            else:
+                string[i], string[j] = string[j], string[i]
+                i += 1
+                j -= 1
+        return "".join(string)
 
-        while left < right:
-            while left < right and characters[left] not in vowels:
-                left += 1
-            while left < right and characters[right] not in vowels:
-                right -= 1
-            if left < right:
-                characters[left], characters[right] = characters[right], characters[left]
-                left += 1
-                right -= 1
-
-        return "".join(characters)

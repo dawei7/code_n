@@ -1,23 +1,17 @@
 class Solution:
     def maximumProfit(self, prices: List[int], k: int) -> int:
-        neg = -(10**30)
-        flat = [neg] * (k + 1)
-        long = [neg] * k
-        short = [neg] * k
-        flat[0] = 0
-
-        for price in prices:
-            next_flat = flat[:]
-            next_long = long[:]
-            next_short = short[:]
-            for done in range(k):
-                next_long[done] = max(long[done], flat[done] - price)
-                next_short[done] = max(short[done], flat[done] + price)
-                next_flat[done + 1] = max(
-                    flat[done + 1],
-                    long[done] + price,
-                    short[done] - price,
+        n = len(prices)
+        f = [[[0] * 3 for _ in range(k + 1)] for _ in range(n)]
+        for j in range(1, k + 1):
+            f[0][j][1] = -prices[0]
+            f[0][j][2] = prices[0]
+        for i in range(1, n):
+            for j in range(1, k + 1):
+                f[i][j][0] = max(
+                    f[i - 1][j][0],
+                    f[i - 1][j][1] + prices[i],
+                    f[i - 1][j][2] - prices[i],
                 )
-            flat, long, short = next_flat, next_long, next_short
-
-        return max(flat)
+                f[i][j][1] = max(f[i - 1][j][1], f[i - 1][j - 1][0] - prices[i])
+                f[i][j][2] = max(f[i - 1][j][2], f[i - 1][j - 1][0] + prices[i])
+        return f[n - 1][k][0]

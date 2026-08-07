@@ -1,22 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers, sliding window
 class Solution:
-    def maxProfit(self, prices: List[int], strategy: List[int], k: int) -> int:
-        original = sum(action * price for action, price in zip(strategy, prices))
-        half = k // 2
-        gain = sum(-strategy[index] * prices[index] for index in range(half)) + sum(
-            (1 - strategy[index]) * prices[index] for index in range(half, k)
-        )
-        best_gain = max(0, gain)
-
-        for left in range(1, len(prices) - k + 1):
-            outgoing = left - 1
-            midpoint = outgoing + half
-            entering = outgoing + k
-            gain += strategy[outgoing] * prices[outgoing]
-            gain -= prices[midpoint]
-            gain += (1 - strategy[entering]) * prices[entering]
-            best_gain = max(best_gain, gain)
-
-        return original + best_gain
+    def maxProfit(self, prices, strategy, k):
+        """
+        :type prices: List[int]
+        :type strategy: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = curr = 0
+        for i in range(len(prices)):
+            curr += prices[i]*(0 if i < k//2 else 1) if i < k else prices[i]*strategy[i]
+            result += prices[i]*strategy[i]
+        result = max(result, curr)
+        for i in range(k, len(prices)):
+            curr += (prices[i-k]*strategy[i-k])+(prices[i]-prices[i-k//2])-(prices[i]*strategy[i])
+            result = max(result, curr)
+        return result

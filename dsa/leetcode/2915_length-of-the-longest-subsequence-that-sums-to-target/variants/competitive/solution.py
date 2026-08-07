@@ -1,16 +1,18 @@
-from typing import List
+# Time:  O(n * t)
+# Space: O(t)
 
-
+# knapsack dp
 class Solution:
-    def lengthOfLongestSubsequence(self, nums: List[int], target: int) -> int:
-        unreachable = -1
-        best_length = [unreachable] * (target + 1)
-        best_length[0] = 0
-
-        for value in nums:
-            for total in range(target, value - 1, -1):
-                previous = best_length[total - value]
-                if previous != unreachable:
-                    best_length[total] = max(best_length[total], previous + 1)
-
-        return best_length[target]
+    def lengthOfLongestSubsequence(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        dp = [-1]*(target+1)
+        dp[0] = 0
+        for x in nums:
+            for i in reversed(range(x, len(dp))):
+                if dp[i-x] != -1:
+                    dp[i] = max(dp[i], dp[i-x]+1)
+        return dp[-1]

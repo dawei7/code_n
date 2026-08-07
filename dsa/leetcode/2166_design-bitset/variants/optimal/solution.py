@@ -1,31 +1,44 @@
 class Bitset:
     def __init__(self, size: int):
-        self.bits = [0] * size
-        self.flipped = 0
-        self.ones = 0
+        self.a = ['0'] * size
+        self.b = ['1'] * size
+        self.cnt = 0
 
     def fix(self, idx: int) -> None:
-        if self.bits[idx] ^ self.flipped == 0:
-            self.bits[idx] = 1 ^ self.flipped
-            self.ones += 1
+        if self.a[idx] == '0':
+            self.a[idx] = '1'
+            self.cnt += 1
+        self.b[idx] = '0'
 
     def unfix(self, idx: int) -> None:
-        if self.bits[idx] ^ self.flipped == 1:
-            self.bits[idx] = self.flipped
-            self.ones -= 1
+        if self.a[idx] == '1':
+            self.a[idx] = '0'
+            self.cnt -= 1
+        self.b[idx] = '1'
 
     def flip(self) -> None:
-        self.flipped ^= 1
-        self.ones = len(self.bits) - self.ones
+        self.a, self.b = self.b, self.a
+        self.cnt = len(self.a) - self.cnt
 
     def all(self) -> bool:
-        return self.ones == len(self.bits)
+        return self.cnt == len(self.a)
 
     def one(self) -> bool:
-        return self.ones > 0
+        return self.cnt > 0
 
     def count(self) -> int:
-        return self.ones
+        return self.cnt
 
     def toString(self) -> str:
-        return "".join(str(bit ^ self.flipped) for bit in self.bits)
+        return ''.join(self.a)
+
+
+# Your Bitset object will be instantiated and called as such:
+# obj = Bitset(size)
+# obj.fix(idx)
+# obj.unfix(idx)
+# obj.flip()
+# param_4 = obj.all()
+# param_5 = obj.one()
+# param_6 = obj.count()
+# param_7 = obj.toString()

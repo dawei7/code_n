@@ -1,33 +1,41 @@
-from typing import List
+class DSU:
+    def __init__(self, n):
+        self.parent = {i: i for i in range(n)}
+        self.rank = {i: 0 for i in range(n)}
+
+    def make_set(self, v):
+        self.parent[v] = v
+        self.rank[v] = 1
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union_set(self, u, v):
+        u = self.find(u)
+        v = self.find(v)
+        if u != v:
+            if self.rank[u] < self.rank[v]:
+                u, v = v, u
+            self.parent[v] = u
+            if self.rank[u] == self.rank[v]:
+                self.rank[u] += 1
 
 
 class Solution:
-    def countComponents(self, nums: List[int], threshold: int) -> int:
-        parent = list(range(threshold + 1))
+    def countComponents(self, nums, threshold):
+        dsu = DSU(threshold + 1)
 
-        def find(value: int) -> int:
-            while parent[value] != value:
-                parent[value] = parent[parent[value]]
-                value = parent[value]
-            return value
+        for num in nums:
+            for j in range(num, threshold + 1, num):
+                dsu.union_set(num, j)
 
-        def union(a: int, b: int) -> None:
-            root_a = find(a)
-            root_b = find(b)
-            if root_a != root_b:
-                parent[root_b] = root_a
+        unique_parents = set()
+        for num in nums:
+            if num > threshold:
+                unique_parents.add(num)
+            else:
+                unique_parents.add(dsu.find(num))
 
-        representative = [0] * (threshold + 1)
-
-        for value in nums:
-            if value > threshold:
-                continue
-            for multiple in range(value, threshold + 1, value):
-                if representative[multiple] == 0:
-                    representative[multiple] = value
-                else:
-                    union(value, representative[multiple])
-
-        components = sum(1 for value in nums if value > threshold)
-        roots = {find(value) for value in nums if value <= threshold}
-        return components + len(roots)
+        return len(unique_parents)

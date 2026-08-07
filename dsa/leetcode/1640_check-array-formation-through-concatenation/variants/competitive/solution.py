@@ -1,15 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def canFormArray(self, arr: List[int], pieces: List[List[int]]) -> bool:
-        piece_by_first = {piece[0]: piece for piece in pieces}
-        index = 0
-
-        while index < len(arr):
-            piece = piece_by_first.get(arr[index])
-            if piece is None or arr[index : index + len(piece)] != piece:
+    def canFormArray(self, arr, pieces):
+        """
+        :type arr: List[int]
+        :type pieces: List[List[int]]
+        :rtype: bool
+        """
+        lookup = {x[0]: i for i, x in enumerate(pieces)}
+        i = 0
+        while i < len(arr): 
+            if arr[i] not in lookup:
                 return False
-            index += len(piece)
-
-        return True
+            for c in pieces[lookup[arr[i]]]:
+                if i == len(arr) or arr[i] != c:
+                    return False
+                i += 1
+        return True 

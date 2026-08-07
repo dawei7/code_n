@@ -1,16 +1,21 @@
+class Node:
+    __slots__ = ["children", "cnt"]
+
+    def __init__(self):
+        self.children = {}
+        self.cnt = 0
+
+
 class Solution:
     def countPrefixSuffixPairs(self, words: List[str]) -> int:
-        root = {}
-        pairs = 0
-
-        for word in words:
-            node = root
-
-            for index in range(len(word)):
-                character_pair = (word[index], word[-1 - index])
-                node = node.setdefault(character_pair, {})
-                pairs += node.get(None, 0)
-
-            node[None] = node.get(None, 0) + 1
-
-        return pairs
+        ans = 0
+        trie = Node()
+        for s in words:
+            node = trie
+            for p in zip(s, reversed(s)):
+                if p not in node.children:
+                    node.children[p] = Node()
+                node = node.children[p]
+                ans += node.cnt
+            node.cnt += 1
+        return ans

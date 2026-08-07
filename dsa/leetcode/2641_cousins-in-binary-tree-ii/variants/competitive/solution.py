@@ -1,37 +1,29 @@
+# Time:  O(n)
+# Space: O(w)
+
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
+
+
+# bfs
 class Solution:
-    def replaceValueInTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        root.val = 0
-        level = [root]
-
-        while level:
-            next_level = []
-            next_sum = 0
-
-            for node in level:
+    def replaceValueInTree(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: Optional[TreeNode]
+        """
+        q = [(root, root.val)]
+        while q:
+            new_q = []
+            total = sum(node.val for node, _ in q)
+            for node, x in q:
+                node.val = total-x
+                x = (node.left.val if node.left else 0) + (node.right.val if node.right else 0)
                 if node.left:
-                    next_level.append(node.left)
-                    next_sum += node.left.val
+                    new_q.append((node.left, x))
                 if node.right:
-                    next_level.append(node.right)
-                    next_sum += node.right.val
-
-            for node in level:
-                sibling_sum = 0
-                if node.left:
-                    sibling_sum += node.left.val
-                if node.right:
-                    sibling_sum += node.right.val
-                if node.left:
-                    node.left.val = next_sum - sibling_sum
-                if node.right:
-                    node.right.val = next_sum - sibling_sum
-
-            level = next_level
-
+                    new_q.append((node.right, x))
+            q = new_q
         return root

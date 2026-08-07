@@ -1,27 +1,27 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def splitArray(self, nums: List[int]) -> bool:
-        length = len(nums)
-        prefix = [0] * (length + 1)
+    def splitArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        if len(nums) < 7:
+            return False
 
-        for index, value in enumerate(nums):
-            prefix[index + 1] = prefix[index] + value
-
-        for middle in range(3, length - 3):
-            left_sums = set()
-
-            for left in range(1, middle - 1):
-                first = prefix[left]
-                second = prefix[middle] - prefix[left + 1]
-                if first == second:
-                    left_sums.add(first)
-
-            for right in range(middle + 2, length - 1):
-                third = prefix[right] - prefix[middle + 1]
-                fourth = prefix[length] - prefix[right + 1]
-                if third == fourth and third in left_sums:
+        accumulated_sum = [0] * len(nums)
+        accumulated_sum[0] = nums[0]
+        for i in range(1, len(nums)):
+            accumulated_sum[i] = accumulated_sum[i-1] + nums[i]
+        for j in range(3, len(nums)-3):
+            lookup = set()
+            for i in range(1, j-1):
+                if accumulated_sum[i-1] == accumulated_sum[j-1] - accumulated_sum[i]:
+                    lookup.add(accumulated_sum[i-1])
+            for k in range(j+2, len(nums)-1):
+                if accumulated_sum[-1] - accumulated_sum[k] == accumulated_sum[k-1] - accumulated_sum[j] and \
+                   accumulated_sum[k - 1] - accumulated_sum[j] in lookup:
                     return True
-
         return False
+

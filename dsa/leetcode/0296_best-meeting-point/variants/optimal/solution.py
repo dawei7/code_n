@@ -1,10 +1,15 @@
-from typing import List
-
-
 class Solution:
     def minTotalDistance(self, grid: List[List[int]]) -> int:
-        rows = [row for row in range(len(grid)) for column in range(len(grid[0])) if grid[row][column] == 1]
-        columns = [column for column in range(len(grid[0])) for row in range(len(grid)) if grid[row][column] == 1]
-        meeting_row = rows[len(rows) // 2]
-        meeting_column = columns[len(columns) // 2]
-        return sum(abs(row - meeting_row) for row in rows) + sum(abs(column - meeting_column) for column in columns)
+        def f(arr, x):
+            return sum(abs(v - x) for v in arr)
+
+        rows, cols = [], []
+        for i, row in enumerate(grid):
+            for j, v in enumerate(row):
+                if v:
+                    rows.append(i)
+                    cols.append(j)
+        cols.sort()
+        i = rows[len(rows) >> 1]
+        j = cols[len(cols) >> 1]
+        return f(rows, i) + f(cols, j)

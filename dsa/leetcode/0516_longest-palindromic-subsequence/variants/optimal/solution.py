@@ -1,15 +1,13 @@
 class Solution:
     def longestPalindromeSubseq(self, s: str) -> int:
-        size = len(s)
-        dp = [0] * size
-        for left in range(size - 1, -1, -1):
-            dp[left] = 1
-            diagonal = 0
-            for right in range(left + 1, size):
-                previous_row = dp[right]
-                if s[left] == s[right]:
-                    dp[right] = diagonal + 2
+        n = len(s)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = 1
+        for j in range(1, n):
+            for i in range(j - 1, -1, -1):
+                if s[i] == s[j]:
+                    dp[i][j] = dp[i + 1][j - 1] + 2
                 else:
-                    dp[right] = max(dp[right], dp[right - 1])
-                diagonal = previous_row
-        return dp[-1]
+                    dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+        return dp[0][-1]

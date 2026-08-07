@@ -1,17 +1,13 @@
-from typing import List
-
-
 class Solution:
     def centeredSubarrays(self, nums: List[int]) -> int:
-        centered = 0
-
-        for left in range(len(nums)):
-            total = 0
-            values = set()
-            for right in range(left, len(nums)):
-                total += nums[right]
-                values.add(nums[right])
-                if total in values:
-                    centered += 1
-
-        return centered
+        n = len(nums)
+        ans = 0
+        for i in range(n):
+            st = set()
+            s = 0
+            for j in range(i, n):
+                s += nums[j]
+                st.add(nums[j])
+                if s in st:
+                    ans += 1
+        return ans

@@ -1,64 +1,58 @@
-from typing import List
-
+# Time:  O((m * n)^(4/3)), days = O((m * n)^(1/3))
+# Space: O(m * n)
 
 class Solution:
-    def containVirus(self, isInfected: List[List[int]]) -> int:
-        rows = len(isInfected)
-        columns = len(isInfected[0])
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        walls_built = 0
+    def containVirus(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
 
-        while True:
-            seen = set()
-            regions = []
-            frontiers = []
-            wall_counts = []
-
-            for row in range(rows):
-                for column in range(columns):
-                    if isInfected[row][column] != 1 or (row, column) in seen:
-                        continue
-
-                    region = []
-                    frontier = set()
-                    wall_count = 0
-                    stack = [(row, column)]
-                    seen.add((row, column))
-
-                    while stack:
-                        current_row, current_column = stack.pop()
-                        region.append((current_row, current_column))
-                        for row_delta, column_delta in directions:
-                            next_row = current_row + row_delta
-                            next_column = current_column + column_delta
-                            if not (0 <= next_row < rows and 0 <= next_column < columns):
-                                continue
-                            if isInfected[next_row][next_column] == 0:
-                                frontier.add((next_row, next_column))
-                                wall_count += 1
-                            elif isInfected[next_row][next_column] == 1 and (next_row, next_column) not in seen:
-                                seen.add((next_row, next_column))
-                                stack.append((next_row, next_column))
-
-                    regions.append(region)
-                    frontiers.append(frontier)
-                    wall_counts.append(wall_count)
-
-            if not regions:
-                break
-
-            quarantine = max(range(len(regions)), key=lambda index: len(frontiers[index]))
-            if not frontiers[quarantine]:
-                break
-
-            walls_built += wall_counts[quarantine]
-            for row, column in regions[quarantine]:
-                isInfected[row][column] = -1
-
-            for index, frontier in enumerate(frontiers):
-                if index == quarantine:
+        def dfs(grid, r, c, lookup, regions, frontiers, perimeters):
+            if (r, c) in lookup:
+                return
+            lookup.add((r, c))
+            regions[-1].add((r, c))
+            for d in directions:
+                nr, nc = r+d[0], c+d[1]
+                if not (0 <= nr < len(grid) and \
+                        0 <= nc < len(grid[r])):
                     continue
-                for row, column in frontier:
-                    isInfected[row][column] = 1
+                if grid[nr][nc] == 1:
+                    dfs(grid, nr, nc, lookup, regions, frontiers, perimeters)
+                elif grid[nr][nc] == 0:
+                    frontiers[-1].add((nr, nc))
+                    perimeters[-1] += 1
 
-        return walls_built
+        result = 0
+        while True:
+            lookup, regions, frontiers, perimeters = set(), [], [], []
+            for r, row in enumerate(grid):
+                for c, val in enumerate(row):
+                    if val == 1 and (r, c) not in lookup:
+                        regions.append(set())
+                        frontiers.append(set())
+                        perimeters.append(0)
+                        dfs(grid, r, c, lookup, regions, frontiers, perimeters)
+
+            if not regions: break
+
+            triage_idx = frontiers.index(max(frontiers, key = len))
+            for i, region in enumerate(regions):
+                if i == triage_idx:
+                    result += perimeters[i]
+                    for r, c in region:
+                        grid[r][c] = -1
+                    continue
+                for r, c in region:
+                    for d in directions:
+                        nr, nc = r+d[0], c+d[1]
+                        if not (0 <= nr < len(grid) and \
+                                0 <= nc < len(grid[r])):
+                            continue
+                        if grid[nr][nc] == 0:
+                            grid[nr][nc] = 1
+
+        return result
+

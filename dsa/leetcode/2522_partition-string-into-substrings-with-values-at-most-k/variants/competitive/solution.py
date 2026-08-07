@@ -1,18 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minimumPartition(self, s: str, k: int) -> int:
-        parts = 0
-        value = 0
-
-        for character in s:
-            digit = int(character)
-            if digit > k:
+    def minimumPartition(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        result = 1
+        curr = 0
+        for c in s:
+            if int(c) > k:
                 return -1
-
-            extended = value * 10 + digit
-            if extended > k:
-                parts += 1
-                value = digit
-            else:
-                value = extended
-
-        return parts + 1
+            if curr*10+int(c) > k:
+                result += 1
+                curr = 0
+            curr = curr*10+int(c)
+        return result

@@ -1,14 +1,10 @@
-from typing import List
-
-
 class Solution:
     def maxDistance(self, arrays: List[List[int]]) -> int:
-        minimum = arrays[0][0]
-        maximum = arrays[0][-1]
-        answer = 0
-
-        for array in arrays[1:]:
-            answer = max(answer, array[-1] - minimum, maximum - array[0])
-            minimum = min(minimum, array[0])
-            maximum = max(maximum, array[-1])
-        return answer
+        ans = 0
+        mi, mx = arrays[0][0], arrays[0][-1]
+        for arr in arrays[1:]:
+            a, b = abs(arr[0] - mx), abs(arr[-1] - mi)
+            ans = max(ans, a, b)
+            mi = min(mi, arr[0])
+            mx = max(mx, arr[-1])
+        return ans

@@ -1,26 +1,37 @@
+# Time:  O((|E| + |V|) * log|V|) = O(|E| * log|V|) by using binary heap,
+#        if we can further to use Fibonacci heap, it would be O(|E| + |V| * log|V|)
+# Space: O(|E| + |V|) = O(|E|)
+
+import collections
 import heapq
-from typing import List
 
-
+# Dijkstra's algorithm
 class Solution:
-    def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
-        graph = [[] for _ in range(n + 1)]
-        for source, destination, travel_time in times:
-            graph[source].append((destination, travel_time))
+    def networkDelayTime(self, times, N, K):
+        """
+        :type times: List[List[int]]
+        :type N: int
+        :type K: int
+        :rtype: int
+        """
+        adj = [[] for _ in range(N)]
+        for u, v, w in times:
+            adj[u-1].append((v-1, w))
 
-        distances = [float("inf")] * (n + 1)
-        distances[k] = 0
-        queue = [(0, k)]
-
-        while queue:
-            distance, node = heapq.heappop(queue)
-            if distance != distances[node]:
+        result = 0
+        lookup = set()
+        best = collections.defaultdict(lambda: float("inf"))
+        best[K-1] = 0
+        min_heap = [(0, K-1)]
+        while min_heap and len(lookup) != N:
+            result, u = heapq.heappop(min_heap)
+            lookup.add(u)
+            if best[u] < result:
                 continue
-            for neighbor, weight in graph[node]:
-                candidate = distance + weight
-                if candidate < distances[neighbor]:
-                    distances[neighbor] = candidate
-                    heapq.heappush(queue, (candidate, neighbor))
+            for v, w in adj[u]:
+                if v in lookup: continue
+                if result+w < best[v]:
+                    best[v] = result+w
+                    heapq.heappush(min_heap, (result+w, v))
+        return result if len(lookup) == N else -1
 
-        delay = max(distances[1:])
-        return -1 if delay == float("inf") else delay

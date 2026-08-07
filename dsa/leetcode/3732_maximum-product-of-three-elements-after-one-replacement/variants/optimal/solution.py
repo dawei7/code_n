@@ -1,13 +1,7 @@
 class Solution:
-    def maxProduct(self, nums: list[int]) -> int:
-        largest = 0
-        second_largest = 0
-        for value in nums:
-            magnitude = abs(value)
-            if magnitude >= largest:
-                second_largest = largest
-                largest = magnitude
-            elif magnitude > second_largest:
-                second_largest = magnitude
-
-        return 100000 * largest * second_largest
+    def maxProduct(self, nums: List[int]) -> int:
+        nums.sort()
+        a, b = nums[0], nums[1]
+        c, d = nums[-2], nums[-1]
+        x = 10**5
+        return max(a * b * x, c * d * x, a * d * -x)

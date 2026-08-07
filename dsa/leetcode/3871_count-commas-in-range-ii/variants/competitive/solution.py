@@ -1,10 +1,19 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def countCommas(self, n: int) -> int:
-        total = 0
-        threshold = 1000
-
-        while threshold <= n:
-            total += n - threshold + 1
-            threshold *= 1000
-
-        return total
+    def countCommas(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        cnt, base = 0, 1
+        while base*1000 <= n:
+            base *= 1000
+            cnt += 1
+        result, base = 0, 1
+        for i in range(cnt):
+            base *= 1000
+            result += n-base+1
+        return result

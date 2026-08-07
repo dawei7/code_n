@@ -1,28 +1,12 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def findMaximumLength(self, nums: List[int]) -> int:
-        length = len(nums)
-        prefix = [0] * (length + 1)
-        groups = [0] * (length + 1)
-        last_sum = [0] * (length + 1)
-        candidates = deque([0])
-
-        for end, value in enumerate(nums, start=1):
-            prefix[end] = prefix[end - 1] + value
-
-            while len(candidates) > 1 and prefix[candidates[1]] + last_sum[candidates[1]] <= prefix[end]:
-                candidates.popleft()
-
-            previous = candidates[0]
-            groups[end] = groups[previous] + 1
-            last_sum[end] = prefix[end] - prefix[previous]
-            threshold = prefix[end] + last_sum[end]
-
-            while candidates and prefix[candidates[-1]] + last_sum[candidates[-1]] >= threshold:
-                candidates.pop()
-            candidates.append(end)
-
-        return groups[length]
+        n = len(nums)
+        s = list(accumulate(nums, initial=0))
+        f = [0] * (n + 1)
+        pre = [0] * (n + 2)
+        for i in range(1, n + 1):
+            pre[i] = max(pre[i], pre[i - 1])
+            f[i] = f[pre[i]] + 1
+            j = bisect_left(s, s[i] * 2 - s[pre[i]])
+            pre[j] = i
+        return f[n]

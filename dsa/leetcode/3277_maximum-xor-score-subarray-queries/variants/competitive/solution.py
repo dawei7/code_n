@@ -1,26 +1,39 @@
-from typing import List
+# Time:  O(n^2 + q)
+# Space: O(n^2)
 
-
+# dp
 class Solution:
-    def maximumSubarrayXor(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        length = len(nums)
-        best = [[0] * length for _ in range(length)]
+    def maximumSubarrayXor(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        dp = [[nums[i] if j == 0 else 0 for j in range(len(nums)-i)] for i in range(len(nums))]
+        for i in reversed(range(len(nums))):
+            for l in range(1, len(nums)-i):
+                dp[i][l] = dp[i][l-1]^dp[i+1][l-1]
+        for i in reversed(range(len(nums))):
+            for l in range(1, len(nums)-i):
+                dp[i][l] = max(dp[i][l], dp[i][l-1], dp[i+1][l-1])
+        return [dp[i][j-i] for i, j in queries]
 
-        for index, value in enumerate(nums):
-            best[index][index] = value
 
-        scores = nums[:]
-        for width in range(2, length + 1):
-            next_scores = [scores[start] ^ scores[start + 1] for start in range(length - width + 1)]
-
-            for start, score in enumerate(next_scores):
-                end = start + width - 1
-                best[start][end] = max(
-                    score,
-                    best[start][end - 1],
-                    best[start + 1][end],
-                )
-
-            scores = next_scores
-
-        return [best[left][right] for left, right in queries]
+# Time:  O(n^2 + q)
+# Space: O(n^2)
+# dp
+class Solution2(object):
+    def maximumSubarrayXor(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        dp = [[nums[i] if i == j else 0 for j in range(len(nums))] for i in range(len(nums))]
+        for i in reversed(range(len(nums))):
+            for j in range(i+1, len(nums)):
+                dp[i][j] = dp[i][j-1]^dp[i+1][j]
+        for i in reversed(range(len(nums))):
+            for j in range(i+1, len(nums)):
+                dp[i][j] = max(dp[i][j], dp[i][j-1], dp[i+1][j])
+        return [dp[i][j] for i, j in queries]

@@ -1,13 +1,37 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# prefix sum, math
 class Solution:
-    def maximumSumScore(self, nums: List[int]) -> int:
-        left = 0
-        right = sum(nums)
-        answer = -(10**30)
-        for value in nums:
-            left += value
-            answer = max(answer, left, right)
-            right -= value
-        return answer
+    def maximumSumScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        prefix = suffix = 0
+        result = float("-inf")
+        right = len(nums)-1
+        for left in range(len(nums)):
+            prefix += nums[left]
+            suffix += nums[right]
+            right -= 1
+            result = max(result, prefix, suffix)
+        return result
+
+    
+# Time:  O(n)
+# Space: O(1)
+# prefix sum
+class Solution2(object):
+    def maximumSumScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total = sum(nums)
+        prefix = 0
+        result = float("-inf")
+        for x in nums:
+            prefix += x
+            result = max(result, prefix, total-prefix+x)
+        return result

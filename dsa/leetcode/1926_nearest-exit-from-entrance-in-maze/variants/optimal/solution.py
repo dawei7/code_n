@@ -1,27 +1,19 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
-        rows = len(maze)
-        columns = len(maze[0])
-        start_row, start_column = entrance
-        queue = deque([(start_row, start_column, 0)])
-        maze[start_row][start_column] = "+"
-
-        while queue:
-            row, column, distance = queue.popleft()
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
-                    continue
-                if maze[next_row][next_column] != ".":
-                    continue
-                if next_row == 0 or next_row == rows - 1 or next_column == 0 or next_column == columns - 1:
-                    return distance + 1
-                maze[next_row][next_column] = "+"
-                queue.append((next_row, next_column, distance + 1))
-
+        m, n = len(maze), len(maze[0])
+        i, j = entrance
+        q = deque([(i, j)])
+        maze[i][j] = "+"
+        ans = 0
+        while q:
+            ans += 1
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                for a, b in [[0, -1], [0, 1], [-1, 0], [1, 0]]:
+                    x, y = i + a, j + b
+                    if 0 <= x < m and 0 <= y < n and maze[x][y] == ".":
+                        if x == 0 or x == m - 1 or y == 0 or y == n - 1:
+                            return ans
+                        q.append((x, y))
+                        maze[x][y] = "+"
         return -1

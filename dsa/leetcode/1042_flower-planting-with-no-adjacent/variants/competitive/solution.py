@@ -1,21 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def gardenNoAdj(self, n: int, paths: List[List[int]]) -> List[int]:
-        neighbors = [[] for _ in range(n)]
-        for first, second in paths:
-            first -= 1
-            second -= 1
-            neighbors[first].append(second)
-            neighbors[second].append(first)
-
-        flowers = [0] * n
-        for garden in range(n):
-            unavailable = {flowers[neighbor] for neighbor in neighbors[garden]}
-            for flower_type in range(1, 5):
-                if flower_type not in unavailable:
-                    flowers[garden] = flower_type
-                    break
-
-        return flowers
+    def gardenNoAdj(self, N, paths):
+        """
+        :type N: int
+        :type paths: List[List[int]]
+        :rtype: List[int]
+        """
+        result = [0]*N
+        G = [[] for i in range(N)]
+        for x, y in paths:
+            G[x-1].append(y-1)
+            G[y-1].append(x-1)
+        for i in range(N):
+            result[i] = ({1, 2, 3, 4} - {result[j] for j in G[i]}).pop()
+        return result

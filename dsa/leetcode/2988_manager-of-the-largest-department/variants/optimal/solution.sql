@@ -1,16 +1,13 @@
-WITH ranked_departments AS (
-    SELECT
-        dep_id,
-        DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS department_rank
-    FROM Employees
-    GROUP BY dep_id
-)
-SELECT
-    employee.emp_name AS manager_name,
-    employee.dep_id
-FROM Employees AS employee
-INNER JOIN ranked_departments AS department
-    ON department.dep_id = employee.dep_id
-WHERE department.department_rank = 1
-  AND employee.position = 'Manager'
-ORDER BY employee.dep_id;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT dep_id, COUNT(1) AS cnt
+        FROM Employees
+        GROUP BY 1
+    )
+SELECT emp_name AS manager_name, t.dep_id
+FROM
+    T AS t
+    JOIN Employees AS e ON t.dep_id = e.dep_id AND e.position = 'Manager'
+WHERE cnt = (SELECT MAX(cnt) FROM T)
+ORDER BY 2;

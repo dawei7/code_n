@@ -1,25 +1,21 @@
+# Time:  O(n + m)
+# Space: O(1)
+
+# dp
 class Solution:
-    def canMakeSubsequence(self, s: str, t: str) -> bool:
-        if len(s) > len(t):
-            return False
-
-        exact = 0
-        changed = -1
-        target_length = len(s)
-
-        for character in t:
-            previous_exact = exact
-            previous_changed = changed
-
-            if previous_changed >= 0 and previous_changed < target_length and s[previous_changed] == character:
-                changed = previous_changed + 1
-
-            if previous_exact < target_length:
-                changed = max(changed, previous_exact + 1)
-                if s[previous_exact] == character:
-                    exact = previous_exact + 1
-
-            if exact == target_length or changed == target_length:
+    def canMakeSubsequence(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        dp = [0]*2
+        for x in t:
+            if s[dp[1]] == x:
+                dp[1] += 1
+            dp[1] = max(dp[1], dp[0]+1)
+            if dp[1] == len(s):
                 return True
-
+            if s[dp[0]] == x:
+                dp[0] += 1
         return False

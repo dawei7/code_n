@@ -1,36 +1,130 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def minTime(
-        self,
-        n: int,
-        edges: List[List[int]],
-        hasApple: List[bool],
-    ) -> int:
-        adjacency = [[] for _ in range(n)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
+    def minTime(self, n, edges, hasApple):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type hasApple: List[bool]
+        :rtype: int
+        """
+        graph = collections.defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        
+        result = [0, 0]
+        s = [(1, (-1, 0, result))]
+        while s:
+            step, params = s.pop()
+            if step == 1:
+                par, node, ret = params
+                ret[:] = [0, int(hasApple[node])]
+                for nei in reversed(graph[node]):
+                    if nei == par:
+                        continue
+                    new_ret = [0, 0]
+                    s.append((2, (new_ret, ret)))
+                    s.append((1, (node, nei, new_ret)))
+            else:
+                new_ret, ret = params
+                ret[0] += new_ret[0]+new_ret[1]
+                ret[1] |= bool(new_ret[0]+new_ret[1])
+        return 2*result[0]
 
-        parent = [-2] * n
-        parent[0] = -1
-        order = []
-        stack = [0]
 
-        while stack:
-            node = stack.pop()
-            order.append(node)
-            for neighbor in adjacency[node]:
-                if parent[neighbor] == -2:
-                    parent[neighbor] = node
-                    stack.append(neighbor)
+# Time:  O(n)
+# Space: O(n)
+class Solution_Recu(object):
+    def minTime(self, n, edges, hasApple):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type hasApple: List[bool]
+        :rtype: int
+        """
+        def dfs(graph, par, node, hasApple):
+            result, extra = 0, int(hasApple[node])
+            for nei in graph[node]:
+                if nei == par:
+                    continue
+                count, found = dfs(graph, node, nei, hasApple)
+                result += count+found
+                extra |= bool(count+found)
+            return result, extra
+        
+        graph = collections.defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        return 2*dfs(graph, -1, 0, hasApple)[0]
 
-        needed = list(hasApple)
-        total_time = 0
-        for node in reversed(order[1:]):
-            if needed[node]:
-                total_time += 2
-                needed[parent[node]] = True
 
-        return total_time
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def minTime(self, n, edges, hasApple):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type hasApple: List[bool]
+        :rtype: int
+        """
+        graph = collections.defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        
+        result = [0]
+        s = [(1, (-1, 0, result))]
+        while s:
+            step, params = s.pop()
+            if step == 1:
+                par, node, ret = params
+                tmp = [int(hasApple[node])]
+                s.append((3, (tmp, ret)))
+                for nei in reversed(graph[node]):
+                    if nei == par:
+                        continue
+                    new_ret = [0]
+                    s.append((2, (new_ret, tmp, ret)))
+                    s.append((1, (node, nei, new_ret)))
+            elif step == 2:
+                new_ret, tmp, ret = params
+                ret[0] += new_ret[0]
+                tmp[0] |= bool(new_ret[0])
+            else:
+                tmp, ret = params
+                ret[0] += tmp[0]
+        return 2*max(result[0]-1, 0)
+
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2_Recu(object):
+    def minTime(self, n, edges, hasApple):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type hasApple: List[bool]
+        :rtype: int
+        """
+        def dfs(graph, par, node, has_subtree):
+            result, extra = 0, int(hasApple[node])
+            for nei in graph[node]:
+                if nei == par:
+                    continue
+                count = dfs(graph, node, nei, hasApple)
+                result += count
+                extra |= bool(count)
+            return result+extra
+        
+        graph = collections.defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        return 2*max(dfs(graph, -1, 0, hasApple)-1, 0)

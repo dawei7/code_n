@@ -1,28 +1,28 @@
-from collections import deque
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def findClosestLeaf(self, root, k: int) -> int:
-        parent = {root: None}
-        target = None
-        stack = [root]
+    def findClosestLeaf(self, root: Optional[TreeNode], k: int) -> int:
+        def dfs(root: Optional[TreeNode], fa: Optional[TreeNode]):
+            if root:
+                g[root].append(fa)
+                g[fa].append(root)
+                dfs(root.left, root)
+                dfs(root.right, root)
 
-        while stack:
-            node = stack.pop()
-            if node.val == k:
-                target = node
-            for child in (node.left, node.right):
-                if child is not None:
-                    parent[child] = node
-                    stack.append(child)
-
-        queue = deque([target])
-        seen = {target}
-        while queue:
-            node = queue.popleft()
-            if node.left is None and node.right is None:
-                return node.val
-            for neighbor in (node.left, node.right, parent[node]):
-                if neighbor is not None and neighbor not in seen:
-                    seen.add(neighbor)
-                    queue.append(neighbor)
+        g = defaultdict(list)
+        dfs(root, None)
+        q = deque(node for node in g if node and node.val == k)
+        vis = set(q)
+        while 1:
+            node = q.popleft()
+            if node:
+                if node.left == node.right:
+                    return node.val
+                for nxt in g[node]:
+                    if nxt not in vis:
+                        vis.add(nxt)
+                        q.append(nxt)

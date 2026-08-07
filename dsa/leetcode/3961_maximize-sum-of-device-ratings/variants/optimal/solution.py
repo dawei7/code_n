@@ -1,26 +1,15 @@
-from typing import List
-
-
 class Solution:
     def maxRatings(self, units: List[List[int]]) -> int:
-        if len(units[0]) == 1:
-            return sum(row[0] for row in units)
+        n = len(units[0])
+        if n == 1:
+            return sum(x[0] for x in units)
 
-        global_minimum = float("inf")
-        minimum_second = float("inf")
-        second_sum = 0
-
-        for row in units:
-            first = float("inf")
-            second = float("inf")
-            for value in row:
-                if value < first:
-                    first, second = value, first
-                elif value < second:
-                    second = value
-
-            global_minimum = min(global_minimum, first)
-            minimum_second = min(minimum_second, second)
-            second_sum += second
-
-        return int(global_minimum + second_sum - minimum_second)
+        ans = 0
+        mn = mn2 = inf
+        for x in units:
+            x.sort()
+            ans += x[1]
+            mn2 = min(mn2, x[1])
+            mn = min(mn, x[0])
+        ans -= mn2 - mn
+        return ans

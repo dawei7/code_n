@@ -1,27 +1,33 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def maxFreeTime(self, eventTime: int, startTime: List[int], endTime: List[int]) -> int:
-        n = len(startTime)
-        gaps = [startTime[0]]
-        gaps.extend(startTime[i] - endTime[i - 1] for i in range(1, n))
-        gaps.append(eventTime - endTime[-1])
+    def maxFreeTime(self, eventTime, startTime, endTime):
+        """
+        :type eventTime: int
+        :type startTime: List[int]
+        :type endTime: List[int]
+        :rtype: int
+        """
+        def topk(a, k):  # Time: O(k * n)
+            result = [[float("-inf")]*2 for _ in range(k)]
+            for x in a:
+                for i in range(len(result)):
+                    if x > result[i]:
+                        result[i], x = x, result[i]
+            return result
 
-        prefix = gaps.copy()
-        for i in range(1, n + 1):
-            prefix[i] = max(prefix[i], prefix[i - 1])
-
-        suffix = gaps.copy()
-        for i in range(n - 1, -1, -1):
-            suffix[i] = max(suffix[i], suffix[i + 1])
-
-        best = 0
-        for i in range(n):
-            duration = endTime[i] - startTime[i]
-            other_gap = max(prefix[i - 1] if i else 0, suffix[i + 2] if i + 2 <= n else 0)
-            merged = gaps[i] + gaps[i + 1]
-            if other_gap >= duration:
-                merged += duration
-            best = max(best, merged)
-        return best
+        result = 0
+        startTime.append(eventTime)
+        endTime.insert(0, 0)
+        diffs = ([startTime[i]-endTime[i], endTime[i]] for i in range(len(startTime)))
+        top3 = topk(diffs, 3)
+        for i in range(len(startTime)-1):
+            for mx, e in top3:
+                if e not in (endTime[i], endTime[i+1]) and endTime[i+1]-startTime[i] <= mx:
+                    result = max(result, (startTime[i]-endTime[i])+(startTime[i+1]-endTime[i+1])+(endTime[i+1]-startTime[i]))
+                    break
+            else:
+                result = max(result, (startTime[i]-endTime[i])+(startTime[i+1]-endTime[i+1]))
+        return result

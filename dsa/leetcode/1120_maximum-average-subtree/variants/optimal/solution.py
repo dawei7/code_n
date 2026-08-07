@@ -6,18 +6,17 @@
 #         self.right = right
 class Solution:
     def maximumAverageSubtree(self, root: Optional[TreeNode]) -> float:
-        best = 0.0
-
-        def summarize(node):
-            nonlocal best
-            if node is None:
+        def dfs(root):
+            if root is None:
                 return 0, 0
-            left_sum, left_count = summarize(node.left)
-            right_sum, right_count = summarize(node.right)
-            total = node.val + left_sum + right_sum
-            count = 1 + left_count + right_count
-            best = max(best, total / count)
-            return total, count
+            ls, ln = dfs(root.left)
+            rs, rn = dfs(root.right)
+            s = root.val + ls + rs
+            n = 1 + ln + rn
+            nonlocal ans
+            ans = max(ans, s / n)
+            return s, n
 
-        summarize(root)
-        return best
+        ans = 0
+        dfs(root)
+        return ans

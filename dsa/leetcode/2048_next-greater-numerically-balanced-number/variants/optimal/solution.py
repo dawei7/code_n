@@ -1,15 +1,10 @@
-from bisect import bisect_right
-from itertools import permutations
-
-
 class Solution:
     def nextBeautifulNumber(self, n: int) -> int:
-        values = set()
-
-        for mask in range(1, 1 << 7):
-            digits = "".join(str(digit) * digit for digit in range(1, 8) if mask & (1 << (digit - 1)))
-            if len(digits) <= 7:
-                values.update(int("".join(order)) for order in permutations(digits))
-
-        balanced = sorted(values)
-        return balanced[bisect_right(balanced, n)]
+        for x in count(n + 1):
+            y = x
+            cnt = [0] * 10
+            while y:
+                y, v = divmod(y, 10)
+                cnt[v] += 1
+            if all(v == 0 or i == v for i, v in enumerate(cnt)):
+                return x

@@ -1,36 +1,21 @@
-from typing import List
-
-
 class Solution:
     def maximumPoints(self, edges: List[List[int]], coins: List[int], k: int) -> int:
+        @cache
+        def dfs(i: int, fa: int, j: int) -> int:
+            a = (coins[i] >> j) - k
+            b = coins[i] >> (j + 1)
+            for c in g[i]:
+                if c != fa:
+                    a += dfs(c, i, j)
+                    if j < 14:
+                        b += dfs(c, i, j + 1)
+            return max(a, b)
+
         n = len(coins)
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        parent = [-2] * n
-        parent[0] = -1
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor != parent[node]:
-                    parent[neighbor] = node
-                    order.append(neighbor)
-
-        maximum_shift = 14
-        dp = [[0] * (maximum_shift + 1) for _ in range(n)]
-
-        for node in reversed(order):
-            for shift in range(maximum_shift - 1, -1, -1):
-                keep_shift = (coins[node] >> shift) - k
-                add_shift = coins[node] >> (shift + 1)
-
-                for neighbor in graph[node]:
-                    if parent[neighbor] == node:
-                        keep_shift += dp[neighbor][shift]
-                        add_shift += dp[neighbor][shift + 1]
-
-                dp[node][shift] = max(keep_shift, add_shift)
-
-        return dp[0][0]
+        g = [[] for _ in range(n)]
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        ans = dfs(0, -1, 0)
+        dfs.cache_clear()
+        return ans

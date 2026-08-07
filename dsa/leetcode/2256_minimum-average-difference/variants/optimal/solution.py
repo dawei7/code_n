@@ -1,21 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minimumAverageDifference(self, nums: List[int]) -> int:
-        total = sum(nums)
-        prefix = 0
-        best_index = 0
-        best_difference = float("inf")
-
-        for index, value in enumerate(nums):
-            prefix += value
-            left_average = prefix // (index + 1)
-            remaining = len(nums) - index - 1
-            right_average = (total - prefix) // remaining if remaining else 0
-            difference = abs(left_average - right_average)
-            if difference < best_difference:
-                best_difference = difference
-                best_index = index
-
-        return best_index
+        pre, suf = 0, sum(nums)
+        n = len(nums)
+        ans, mi = 0, inf
+        for i, x in enumerate(nums):
+            pre += x
+            suf -= x
+            a = pre // (i + 1)
+            b = 0 if n - i - 1 == 0 else suf // (n - i - 1)
+            if (t := abs(a - b)) < mi:
+                ans = i
+                mi = t
+        return ans

@@ -1,12 +1,10 @@
-from typing import List
-
-
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        matched = [False, False, False]
-        for triplet in triplets:
-            if all(value <= limit for value, limit in zip(triplet, target)):
-                for coordinate in range(3):
-                    if triplet[coordinate] == target[coordinate]:
-                        matched[coordinate] = True
-        return all(matched)
+        x, y, z = target
+        d = e = f = 0
+        for a, b, c in triplets:
+            if a <= x and b <= y and c <= z:
+                d = max(d, a)
+                e = max(e, b)
+                f = max(f, c)
+        return [d, e, f] == target

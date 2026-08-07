@@ -1,24 +1,29 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
-        word_index = 0
-        abbr_index = 0
-
-        while abbr_index < len(abbr):
-            character = abbr[abbr_index]
-            if character.isdigit():
-                if character == "0":
+    def validWordAbbreviation(self, word, abbr):
+        """
+        :type word: str
+        :type abbr: str
+        :rtype: bool
+        """
+        i , digit = 0, 0
+        for c in abbr:
+            if c.isdigit():
+                if digit == 0 and c == '0':
                     return False
-                skip = 0
-                while abbr_index < len(abbr) and abbr[abbr_index].isdigit():
-                    skip = skip * 10 + int(abbr[abbr_index])
-                    abbr_index += 1
-                word_index += skip
-                if word_index > len(word):
-                    return False
+                digit *= 10
+                digit += int(c)
             else:
-                if word_index >= len(word) or word[word_index] != character:
+                if digit:
+                    i += digit
+                    digit = 0
+                if i >= len(word) or word[i] != c:
                     return False
-                word_index += 1
-                abbr_index += 1
+                i += 1
+        if digit:
+            i += digit
 
-        return word_index == len(word)
+        return i == len(word)
+

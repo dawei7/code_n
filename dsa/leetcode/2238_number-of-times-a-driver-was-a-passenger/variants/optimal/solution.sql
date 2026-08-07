@@ -1,8 +1,7 @@
-SELECT drivers.driver_id, COUNT(rides.passenger_id) AS cnt
-FROM (
-    SELECT DISTINCT driver_id
-    FROM Rides
-) AS drivers
-LEFT JOIN Rides AS rides
-    ON rides.passenger_id = drivers.driver_id
-GROUP BY drivers.driver_id;
+# Write your MySQL query statement below
+WITH T AS (SELECT DISTINCT driver_id FROM Rides)
+SELECT t.driver_id, COUNT(passenger_id) AS cnt
+FROM
+    T AS t
+    LEFT JOIN Rides AS r ON t.driver_id = r.passenger_id
+GROUP BY 1;

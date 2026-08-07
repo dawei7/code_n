@@ -1,16 +1,23 @@
+# Time:  O(n)
+# Space: O(k)
+
 from collections import deque
 
 
 class Solution:
-    def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
-        candidates = deque()
-        answer = []
-        for index, value in enumerate(nums):
-            while candidates and candidates[0] <= index - k:
-                candidates.popleft()
-            while candidates and nums[candidates[-1]] <= value:
-                candidates.pop()
-            candidates.append(index)
-            if index >= k - 1:
-                answer.append(nums[candidates[0]])
-        return answer
+    def maxSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        result, dq = [], deque()
+        for i in range(len(nums)):
+            if dq and i-dq[0] == k:
+                dq.popleft()
+            while dq and nums[dq[-1]] <= nums[i]:
+                dq.pop()
+            dq.append(i)
+            if i >= k-1:
+                result.append(nums[dq[0]])
+        return result

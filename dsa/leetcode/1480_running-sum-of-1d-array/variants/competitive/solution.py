@@ -1,13 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def runningSum(self, nums: List[int]) -> List[int]:
-        total = 0
-        result = []
-
-        for value in nums:
-            total += value
-            result.append(total)
-
-        return result
+    def runningSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        for i in range(len(nums)-1):
+            nums[i+1] += nums[i]
+        return nums

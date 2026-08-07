@@ -1,45 +1,26 @@
+# Time:  O(m * n * k)
+# Space: O(m * n * k)
+
+# dp
 class Solution:
-    def maxPathScore(self, grid: List[List[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        maximum_cost = rows + columns - 2
-
-        if k >= maximum_cost:
-            best = [-1] * columns
-            for row in range(rows):
-                for column in range(columns):
-                    if row == 0 and column == 0:
-                        best[column] = 0
-                    else:
-                        previous = max(
-                            best[column] if row > 0 else -1,
-                            best[column - 1] if column > 0 else -1,
-                        )
-                        best[column] = previous + grid[row][column]
-            return best[-1]
-
-        limit = min(k, maximum_cost)
-        best = [[-1] * (limit + 1) for _ in range(columns)]
-
-        for row in range(rows):
-            for column in range(columns):
-                value = grid[row][column]
-                cell_cost = 0 if value == 0 else 1
-                from_above = best[column]
-                from_left = best[column - 1] if column > 0 else None
-                current = [-1] * (limit + 1)
-
-                if row == 0 and column == 0:
-                    current[0] = 0
-                else:
-                    for used in range(cell_cost, min(limit, row + column) + 1):
-                        previous_cost = used - cell_cost
-                        previous = from_above[previous_cost] if row > 0 else -1
-                        if from_left is not None:
-                            previous = max(previous, from_left[previous_cost])
-                        if previous >= 0:
-                            current[used] = previous + value
-
-                best[column] = current
-
-        return max(best[-1])
+    def maxPathScore(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1))
+        dp = [[[-1]*(k+1) for _ in range(len(grid[0]))] for _ in range(len(grid))]
+        dp[0][0][0] = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                for c in range(k+1):
+                    if dp[i][j][c] == -1:
+                        continue
+                    for di, dj in DIRECTIONS:
+                        ni, nj = i+di, j+dj
+                        if not (0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and c+(1 if grid[ni][nj] else 0) <= k):
+                            continue
+                        nc = c+(1 if grid[ni][nj] else 0)
+                        dp[ni][nj][nc] = max(dp[ni][nj][nc] , dp[i][j][c]+grid[ni][nj])
+        return max(dp[-1][-1])

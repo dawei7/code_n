@@ -1,9 +1,3 @@
+# Write your MySQL query statement below
 DELETE FROM Person
-WHERE EXISTS (
-    SELECT 1
-    FROM Person AS keeper
-    WHERE keeper.email = Person.email
-      AND keeper.id < Person.id
-);
-SELECT id, email
-FROM Person;
+WHERE id NOT IN (SELECT MIN(id) FROM (SELECT * FROM Person) AS p GROUP BY email);

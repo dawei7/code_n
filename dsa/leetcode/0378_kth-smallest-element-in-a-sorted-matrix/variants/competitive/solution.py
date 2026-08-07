@@ -1,28 +1,33 @@
-from typing import List
+# Time:  O(k * log(min(n, m, k))), with n x m matrix
+# Space: O(min(n, m, k))
 
+from heapq import heappush, heappop
 
 class Solution:
-    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        size = len(matrix)
-        low = matrix[0][0]
-        high = matrix[-1][-1]
+    def kthSmallest(self, matrix, k):
+        """
+        :type matrix: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        kth_smallest = 0
+        min_heap = []
 
-        def count_at_most(limit: int) -> int:
-            row = size - 1
-            col = 0
-            count = 0
-            while row >= 0 and col < size:
-                if matrix[row][col] <= limit:
-                    count += row + 1
-                    col += 1
-                else:
-                    row -= 1
-            return count
-
-        while low < high:
-            middle = low + (high - low) // 2
-            if count_at_most(middle) >= k:
-                high = middle
+        def push(i, j):
+            if len(matrix) > len(matrix[0]):
+                if i < len(matrix[0]) and j < len(matrix):
+                    heappush(min_heap, [matrix[j][i], i, j])
             else:
-                low = middle + 1
-        return low
+                if i < len(matrix) and j < len(matrix[0]):
+                    heappush(min_heap, [matrix[i][j], i, j])
+
+        push(0, 0)
+        while min_heap and k > 0:
+            kth_smallest, i, j = heappop(min_heap)
+            push(i, j + 1)
+            if j == 0:
+                push(i + 1, 0)
+            k -= 1
+
+        return kth_smallest
+

@@ -1,42 +1,34 @@
-from typing import List
-
+# Time:  O(n^3)
+# Space: O(n^2)
 
 class Solution:
-    def cherryPickup(self, grid: List[List[int]]) -> int:
-        size = len(grid)
-        unreachable = -(10**9)
-        previous = [[unreachable] * size for _ in range(size)]
-        previous[0][0] = grid[0][0]
-
-        for step in range(1, 2 * size - 1):
-            current = [[unreachable] * size for _ in range(size)]
-            row_start = max(0, step - size + 1)
-            row_end = min(size - 1, step)
-
-            for first_row in range(row_start, row_end + 1):
-                first_column = step - first_row
-                if grid[first_row][first_column] == -1:
-                    continue
-                for second_row in range(row_start, row_end + 1):
-                    second_column = step - second_row
-                    if grid[second_row][second_column] == -1:
+    def cherryPickup(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        # dp holds the max # of cherries two k-length paths can pickup.
+        # The two k-length paths arrive at (i, k - i) and (j, k - j),
+        # respectively.
+        n = len(grid)
+        dp = [[-1 for _ in range(n)] for _ in range(n)]
+        dp[0][0] = grid[0][0]
+        max_len = 2 * (n-1)
+        directions = [(0, 0), (-1, 0), (0, -1), (-1, -1)]
+        for k in range(1, max_len+1):
+            for i in reversed(range(max(0, k-n+1), min(k+1, n))):  # 0 <= i < n, 0 <= k-i < n
+                for j in reversed(range(i, min(k+1, n))):          # i <= j < n, 0 <= k-j < n
+                    if grid[i][k-i] == -1 or grid[j][k-j] == -1:
+                        dp[i][j] = -1
                         continue
+                    cnt = grid[i][k-i]
+                    if i != j:
+                        cnt += grid[j][k-j]
+                    max_cnt = -1
+                    for direction in directions:
+                        ii, jj = i+direction[0], j+direction[1]
+                        if ii >= 0 and jj >= 0 and dp[ii][jj] >= 0:
+                            max_cnt = max(max_cnt, dp[ii][jj]+cnt)
+                    dp[i][j] = max_cnt
+        return max(dp[n-1][n-1], 0)
 
-                    best = previous[first_row][second_row]
-                    if first_row > 0:
-                        best = max(best, previous[first_row - 1][second_row])
-                    if second_row > 0:
-                        best = max(best, previous[first_row][second_row - 1])
-                    if first_row > 0 and second_row > 0:
-                        best = max(best, previous[first_row - 1][second_row - 1])
-                    if best == unreachable:
-                        continue
-
-                    cherries = grid[first_row][first_column]
-                    if first_row != second_row:
-                        cherries += grid[second_row][second_column]
-                    current[first_row][second_row] = best + cherries
-
-            previous = current
-
-        return max(0, previous[size - 1][size - 1])

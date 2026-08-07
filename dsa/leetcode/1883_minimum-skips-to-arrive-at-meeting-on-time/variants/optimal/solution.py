@@ -1,28 +1,16 @@
-from typing import List
-
-
 class Solution:
     def minSkips(self, dist: List[int], speed: int, hoursBefore: int) -> int:
-        limit = hoursBefore * speed
-        if sum(dist) > limit:
-            return -1
-
-        road_count = len(dist)
-        infinity = limit + speed * road_count + 1
-        best = [infinity] * road_count
-        best[0] = 0
-
-        for road_index, distance in enumerate(dist[:-1]):
-            next_best = [infinity] * road_count
-            for skips in range(road_index + 1):
-                elapsed = best[skips] + distance
-                rounded = ((elapsed + speed - 1) // speed) * speed
-                next_best[skips] = min(next_best[skips], rounded)
-                next_best[skips + 1] = min(next_best[skips + 1], elapsed)
-            best = next_best
-
-        final_distance = dist[-1]
-        for skips in range(road_count):
-            if best[skips] + final_distance <= limit:
-                return skips
+        n = len(dist)
+        f = [[inf] * (n + 1) for _ in range(n + 1)]
+        f[0][0] = 0
+        eps = 1e-8
+        for i, x in enumerate(dist, 1):
+            for j in range(i + 1):
+                if j < i:
+                    f[i][j] = min(f[i][j], ceil(f[i - 1][j] + x / speed - eps))
+                if j:
+                    f[i][j] = min(f[i][j], f[i - 1][j - 1] + x / speed)
+        for j in range(n + 1):
+            if f[n][j] <= hoursBefore + eps:
+                return j
         return -1

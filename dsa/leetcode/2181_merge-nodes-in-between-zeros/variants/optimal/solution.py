@@ -4,21 +4,16 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def mergeNodes(self, head):
-        read = head.next
-        write = head
-
-        while read:
-            segment_sum = 0
-            while read.val != 0:
-                segment_sum += read.val
-                read = read.next
-
-            write.val = segment_sum
-            read = read.next
-            if read:
-                write = write.next
+    def mergeNodes(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = tail = ListNode()
+        s = 0
+        cur = head.next
+        while cur:
+            if cur.val:
+                s += cur.val
             else:
-                write.next = None
-
-        return head
+                tail.next = ListNode(s)
+                tail = tail.next
+                s = 0
+            cur = cur.next
+        return dummy.next

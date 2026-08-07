@@ -1,36 +1,27 @@
-from math import isqrt
-
-
 class Solution:
     def findValidSplit(self, nums: List[int]) -> int:
-        if len(nums) < 2:
-            return -1
-
-        limit = max(nums)
-        smallest = list(range(limit + 1))
-        for prime in range(2, isqrt(limit) + 1):
-            if smallest[prime] == prime:
-                for multiple in range(prime * prime, limit + 1, prime):
-                    if smallest[multiple] == multiple:
-                        smallest[multiple] = prime
-
-        def prime_factors(value):
-            while value > 1:
-                prime = smallest[value]
-                yield prime
-                while value % prime == 0:
-                    value //= prime
-
-        last = {}
-        for index, value in enumerate(nums):
-            for prime in prime_factors(value):
-                last[prime] = index
-
-        rightmost = 0
-        for index in range(len(nums) - 1):
-            for prime in prime_factors(nums[index]):
-                rightmost = max(rightmost, last[prime])
-            if rightmost == index:
-                return index
-
+        first = {}
+        n = len(nums)
+        last = list(range(n))
+        for i, x in enumerate(nums):
+            j = 2
+            while j <= x // j:
+                if x % j == 0:
+                    if j in first:
+                        last[first[j]] = i
+                    else:
+                        first[j] = i
+                    while x % j == 0:
+                        x //= j
+                j += 1
+            if x > 1:
+                if x in first:
+                    last[first[x]] = i
+                else:
+                    first[x] = i
+        mx = last[0]
+        for i, x in enumerate(last):
+            if mx < i:
+                return mx
+            mx = max(mx, x)
         return -1

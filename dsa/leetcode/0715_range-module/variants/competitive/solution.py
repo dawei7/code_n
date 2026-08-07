@@ -1,61 +1,69 @@
-class _Node:
-    def __init__(self, state: int = 0):
-        self.state = state
-        self.left = None
-        self.right = None
+# Time:  addRange:    O(n)
+#        removeRange: O(n)
+#        queryRange:  O(logn)
+# Space: O(n)
+
+import bisect
 
 
-class RangeModule:
-    DOMAIN_LEFT = 1
-    DOMAIN_RIGHT = 10**9
+class RangeModule(object):
 
     def __init__(self):
-        self.root = _Node()
+        self.__intervals = []
 
-    @staticmethod
-    def _children(node: _Node) -> None:
-        if node.left is None:
-            node.left = _Node(node.state)
-            node.right = _Node(node.state)
+    def addRange(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: void
+        """
+        tmp = []
+        i = 0
+        for interval in self.__intervals:
+            if right < interval[0]:
+                tmp.append((left, right))
+                break
+            elif interval[1] < left:
+                tmp.append(interval)
+            else:
+                left = min(left, interval[0])
+                right = max(right, interval[1])
+            i += 1
+        if i == len(self.__intervals):
+            tmp.append((left, right))
+        while i < len(self.__intervals):
+            tmp.append(self.__intervals[i])
+            i += 1
+        self.__intervals = tmp
 
-    def _assign(self, node, left, right, query_left, query_right, state):
-        if query_left <= left and right <= query_right:
-            node.state = state
-            node.left = None
-            node.right = None
-            return
-        self._children(node)
-        middle = (left + right) // 2
-        if query_left <= middle:
-            self._assign(node.left, left, middle, query_left, query_right, state)
-        if query_right > middle:
-            self._assign(node.right, middle + 1, right, query_left, query_right, state)
-        if node.left.state == node.right.state and node.left.state != -1:
-            node.state = node.left.state
-            node.left = None
-            node.right = None
-        else:
-            node.state = -1
+    def queryRange(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: bool
+        """
+        i = bisect.bisect_left(self.__intervals, (left, float("inf")))
+        if i: i -= 1
+        return bool(self.__intervals) and \
+               self.__intervals[i][0] <= left and \
+               right <= self.__intervals[i][1]
 
-    def _query(self, node, left, right, query_left, query_right):
-        if node.state != -1:
-            return node.state == 1
-        if query_left <= left and right <= query_right:
-            return False
-        middle = (left + right) // 2
-        if query_right <= middle:
-            return self._query(node.left, left, middle, query_left, query_right)
-        if query_left > middle:
-            return self._query(node.right, middle + 1, right, query_left, query_right)
-        return self._query(node.left, left, middle, query_left, query_right) and self._query(
-            node.right, middle + 1, right, query_left, query_right
-        )
+    def removeRange(self, left, right):
+        """
+        :type left: int
+        :type right: int
+        :rtype: void
+        """
+        tmp = []
+        for interval in self.__intervals:
+            if interval[1] <= left or interval[0] >= right:
+                tmp.append(interval)
+            else:
+                if interval[0] < left:
+                    tmp.append((interval[0], left))
+                if right < interval[1]:
+                    tmp.append((right, interval[1]))
+        self.__intervals = tmp
 
-    def addRange(self, left: int, right: int) -> None:
-        self._assign(self.root, self.DOMAIN_LEFT, self.DOMAIN_RIGHT, left, right - 1, 1)
 
-    def queryRange(self, left: int, right: int) -> bool:
-        return self._query(self.root, self.DOMAIN_LEFT, self.DOMAIN_RIGHT, left, right - 1)
 
-    def removeRange(self, left: int, right: int) -> None:
-        self._assign(self.root, self.DOMAIN_LEFT, self.DOMAIN_RIGHT, left, right - 1, 0)

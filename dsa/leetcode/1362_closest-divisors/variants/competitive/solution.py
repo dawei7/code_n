@@ -1,17 +1,35 @@
-from math import isqrt
-from typing import List
-
+# Time:  O(sqrt(n))
+# Space: O(1)
 
 class Solution:
-    def closestDivisors(self, num: int) -> List[int]:
-        def closest_pair(value: int) -> List[int]:
-            divisor = isqrt(value)
-            while value % divisor:
-                divisor -= 1
-            return [divisor, value // divisor]
+    def closestDivisors(self, num):
+        """
+        :type num: int
+        :rtype: List[int]
+        """
+        def divisors(n):
+            for d in reversed(range(1, int(n**0.5)+1)):
+                if n % d == 0:
+                    return d, n//d
+            return 1, n
 
-        first = closest_pair(num + 1)
-        second = closest_pair(num + 2)
-        if second[1] - second[0] < first[1] - first[0]:
-            return second
-        return first
+        return min([divisors(num+1), divisors(num+2)], key=lambda x: x[1]-x[0])
+
+
+
+# Time:  O(sqrt(n))
+# Space: O(1)
+class Solution2(object):
+    def closestDivisors(self, num):
+        """
+        :type num: int
+        :rtype: List[int]
+        """
+        result, d = [1, num+1], 1
+        while d*d <= num+2:
+            if (num+2) % d == 0:
+                result = [d, (num+2)//d]
+            if (num+1) % d == 0:
+                result = [d, (num+1)//d]
+            d += 1
+        return result

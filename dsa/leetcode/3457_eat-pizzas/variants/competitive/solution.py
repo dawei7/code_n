@@ -1,22 +1,13 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, greedy
 class Solution:
-    def maxWeight(self, pizzas: List[int]) -> int:
-        pizzas.sort()
-        days = len(pizzas) // 4
-        odd_days = (days + 1) // 2
-        even_days = days // 2
-
-        total = 0
-        index = len(pizzas) - 1
-        for _ in range(odd_days):
-            total += pizzas[index]
-            index -= 1
-
-        for _ in range(even_days):
-            index -= 1
-            total += pizzas[index]
-            index -= 1
-
-        return total
+    def maxWeight(self, pizzas):
+        """
+        :type pizzas: List[int]
+        :rtype: int
+        """
+        l = len(pizzas)//4
+        pizzas.sort(reverse=True)
+        return sum(pizzas[i] for i in range((l+1)//2))+sum(pizzas[i] for i in range((l+1)//2+1, ((l+1)//2+1)+(l//2)*2, 2))

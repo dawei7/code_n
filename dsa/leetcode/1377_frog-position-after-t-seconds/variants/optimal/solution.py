@@ -1,35 +1,23 @@
-from typing import List
-
-
 class Solution:
     def frogPosition(
-        self,
-        n: int,
-        edges: List[List[int]],
-        t: int,
-        target: int,
+        self, n: int, edges: List[List[int]], t: int, target: int
     ) -> float:
-        neighbors = [[] for _ in range(n + 1)]
-        for first, second in edges:
-            neighbors[first].append(second)
-            neighbors[second].append(first)
-
-        stack = [(1, 0, 0, 1.0)]
-        while stack:
-            node, parent, elapsed, probability = stack.pop()
-            children = len(neighbors[node]) - (parent != 0)
-
-            if node == target:
-                if elapsed == t or children == 0:
-                    return probability
-                return 0.0
-
-            if elapsed == t or children == 0:
-                continue
-
-            next_probability = probability / children
-            for adjacent in neighbors[node]:
-                if adjacent != parent:
-                    stack.append((adjacent, node, elapsed + 1, next_probability))
-
-        return 0.0
+        g = defaultdict(list)
+        for u, v in edges:
+            g[u].append(v)
+            g[v].append(u)
+        q = deque([(1, 1.0)])
+        vis = [False] * (n + 1)
+        vis[1] = True
+        while q and t >= 0:
+            for _ in range(len(q)):
+                u, p = q.popleft()
+                cnt = len(g[u]) - int(u != 1)
+                if u == target:
+                    return p if cnt * t == 0 else 0
+                for v in g[u]:
+                    if not vis[v]:
+                        vis[v] = True
+                        q.append((v, p / cnt))
+            t -= 1
+        return 0

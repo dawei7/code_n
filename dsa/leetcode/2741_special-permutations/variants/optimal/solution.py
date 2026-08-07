@@ -1,21 +1,17 @@
 class Solution:
     def specialPerm(self, nums: List[int]) -> int:
-        modulo = 10**9 + 7
+        mod = 10**9 + 7
         n = len(nums)
-        dp = [[0] * n for _ in range(1 << n)]
-        for index in range(n):
-            dp[1 << index][index] = 1
-
-        for mask in range(1 << n):
-            for last in range(n):
-                ways = dp[mask][last]
-                if ways == 0:
-                    continue
-                for nxt in range(n):
-                    if mask & (1 << nxt):
+        m = 1 << n
+        f = [[0] * n for _ in range(m)]
+        for i in range(1, m):
+            for j, x in enumerate(nums):
+                if i >> j & 1:
+                    ii = i ^ (1 << j)
+                    if ii == 0:
+                        f[i][j] = 1
                         continue
-                    if nums[last] % nums[nxt] == 0 or nums[nxt] % nums[last] == 0:
-                        next_mask = mask | (1 << nxt)
-                        dp[next_mask][nxt] = (dp[next_mask][nxt] + ways) % modulo
-
-        return sum(dp[-1]) % modulo
+                    for k, y in enumerate(nums):
+                        if x % y == 0 or y % x == 0:
+                            f[i][j] = (f[i][j] + f[ii][k]) % mod
+        return sum(f[-1]) % mod

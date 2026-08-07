@@ -1,25 +1,44 @@
-class CustomStack:
-    def __init__(self, maxSize: int):
-        self.max_size = maxSize
-        self.values = []
-        self.increments = []
+# Time:  cotr:      O(1)
+#        push:      O(1)
+#        pop:       O(1)
+#        increment: O(1)
+# Space: O(n)
 
-    def push(self, x: int) -> None:
-        if len(self.values) < self.max_size:
-            self.values.append(x)
-            self.increments.append(0)
+class CustomStack(object):
 
-    def pop(self) -> int:
-        if not self.values:
+    def __init__(self, maxSize):
+        """
+        :type maxSize: int
+        """
+        self.__max_size = maxSize
+        self.__stk = []
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        if len(self.__stk) == self.__max_size:
+            return
+        self.__stk.append([x, 0])
+
+    def pop(self):
+        """
+        :rtype: int
+        """
+        if not self.__stk:
             return -1
+        x, inc = self.__stk.pop()
+        if self.__stk:
+            self.__stk[-1][1] += inc
+        return x + inc
 
-        index = len(self.values) - 1
-        increment = self.increments.pop()
-        if index > 0:
-            self.increments[index - 1] += increment
-        return self.values.pop() + increment
-
-    def increment(self, k: int, val: int) -> None:
-        if self.values:
-            index = min(k, len(self.values)) - 1
-            self.increments[index] += val
+    def increment(self, k, val):
+        """
+        :type k: int
+        :type val: int
+        :rtype: None
+        """
+        i = min(len(self.__stk), k)-1
+        if i >= 0:
+            self.__stk[i][1] += val

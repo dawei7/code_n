@@ -1,51 +1,43 @@
-from functools import lru_cache
-from typing import List
-
+# Time:  O(m * n * 2^(m * n))
+# Space: O(m * n * 2^(m * n))
 
 class Solution:
-    def uniquePathsIII(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        cells = []
-        start = -1
-        end = -1
+    def uniquePathsIII(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        
+        def index(grid, r, c):
+            return 1 << (r*len(grid[0])+c)
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == -1:
-                    continue
-                index = len(cells)
-                cells.append((row, column))
-                if grid[row][column] == 1:
-                    start = index
-                elif grid[row][column] == 2:
-                    end = index
+        def dp(grid, src, dst, todo, lookup):
+            if src == dst:
+                return int(todo == 0)
+            key = (src, todo)
+            if key in lookup:
+                return lookup[key]
 
-        index_by_cell = {cell: index for index, cell in enumerate(cells)}
-        neighbors = []
-        for row, column in cells:
-            adjacent = []
-            for candidate in (
-                (row + 1, column),
-                (row - 1, column),
-                (row, column + 1),
-                (row, column - 1),
-            ):
-                if candidate in index_by_cell:
-                    adjacent.append(index_by_cell[candidate])
-            neighbors.append(adjacent)
+            result = 0
+            for d in directions:
+                r, c = src[0]+d[0], src[1]+d[1]
+                if 0 <= r < len(grid) and 0 <= c < len(grid[0]) and \
+                   grid[r][c] % 2 == 0 and \
+                   todo & index(grid, r, c):
+                    result += dp(grid, (r, c), dst, todo ^ index(grid, r, c), lookup)
 
-        full_mask = (1 << len(cells)) - 1
+            lookup[key] = result
+            return lookup[key]
 
-        @lru_cache(maxsize=None)
-        def count(position, visited):
-            if position == end:
-                return int(visited == full_mask)
-            total = 0
-            for neighbor in neighbors[position]:
-                bit = 1 << neighbor
-                if visited & bit == 0:
-                    total += count(neighbor, visited | bit)
-            return total
-
-        return count(start, 1 << start)
+        todo = 0
+        src, dst = None, None
+        for r, row in enumerate(grid):
+            for c, val in enumerate(row):
+                if val % 2 == 0:
+                    todo |= index(grid, r, c)
+                if val == 1:
+                    src = (r, c)
+                elif val == 2:
+                    dst = (r, c)
+        return dp(grid, src, dst, todo, {})

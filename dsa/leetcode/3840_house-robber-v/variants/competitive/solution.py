@@ -1,17 +1,31 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp
 class Solution:
-    def rob(self, nums: List[int], colors: List[int]) -> int:
-        best_two_back = 0
-        best_one_back = 0
+    def rob(self, nums, colors):
+        """
+        :type nums: List[int]
+        :type colors: List[int]
+        :rtype: int
+        """
+        dp = [0]*2
+        for i in range(len(nums)):
+            dp[i%2] = max(dp[(i-2)%2]+nums[i], dp[(i-1)%2]) if i-1 >= 0 and colors[i-1] == colors[i] else dp[(i-1)%2]+nums[i]
+        return dp[(len(nums)-1)%2]
 
-        for index, money in enumerate(nums):
-            if index > 0 and colors[index] != colors[index - 1]:
-                take = best_one_back + money
-            else:
-                take = best_two_back + money
 
-            best_two_back, best_one_back = best_one_back, max(best_one_back, take)
-
-        return best_one_back
+# Time:  O(n)
+# Space: O(1)
+# dp
+class Solution2(object):
+    def rob(self, nums, colors):
+        """
+        :type nums: List[int]
+        :type colors: List[int]
+        :rtype: int
+        """
+        dp = [0]*2
+        for i in range(len(nums)):
+            dp[0], dp[1] = max(dp[0], dp[1]), (dp[0] if i-1 >= 0 and colors[i-1] == colors[i] else max(dp[0], dp[1]))+nums[i]
+        return max(dp[0], dp[1])

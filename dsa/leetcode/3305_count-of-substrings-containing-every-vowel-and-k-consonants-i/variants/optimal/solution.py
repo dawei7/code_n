@@ -1,22 +1,23 @@
 class Solution:
     def countOfSubstrings(self, word: str, k: int) -> int:
-        vowels = set("aeiou")
-        answer = 0
-
-        for left in range(len(word)):
-            frequencies = {}
-            consonants = 0
-
-            for right in range(left, len(word)):
-                character = word[right]
-                if character in vowels:
-                    frequencies[character] = frequencies.get(character, 0) + 1
+        def f(k: int) -> int:
+            cnt = Counter()
+            ans = l = x = 0
+            for c in word:
+                if c in "aeiou":
+                    cnt[c] += 1
                 else:
-                    consonants += 1
+                    x += 1
+                while x >= k and len(cnt) == 5:
+                    d = word[l]
+                    if d in "aeiou":
+                        cnt[d] -= 1
+                        if cnt[d] == 0:
+                            cnt.pop(d)
+                    else:
+                        x -= 1
+                    l += 1
+                ans += l
+            return ans
 
-                if consonants > k:
-                    break
-                if consonants == k and len(frequencies) == 5:
-                    answer += 1
-
-        return answer
+        return f(k) - f(k + 1)

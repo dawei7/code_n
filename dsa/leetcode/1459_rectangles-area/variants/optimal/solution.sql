@@ -1,11 +1,10 @@
+# Write your MySQL query statement below
 SELECT
-    first_point.id AS p1,
-    second_point.id AS p2,
-    ABS(first_point.x_value - second_point.x_value)
-        * ABS(first_point.y_value - second_point.y_value) AS area
-FROM Points AS first_point
-JOIN Points AS second_point
-    ON first_point.id < second_point.id
-    AND first_point.x_value <> second_point.x_value
-    AND first_point.y_value <> second_point.y_value
+    p1.id AS p1,
+    p2.id AS p2,
+    ABS(p1.x_value - p2.x_value) * ABS(p1.y_value - p2.y_value) AS area
+FROM
+    Points AS p1
+    JOIN Points AS p2 ON p1.id < p2.id
+WHERE p1.x_value != p2.x_value AND p1.y_value != p2.y_value
 ORDER BY area DESC, p1, p2;

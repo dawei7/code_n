@@ -1,33 +1,41 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def canChoose(self, groups: List[List[int]], nums: List[int]) -> bool:
-        def find_end(pattern: List[int], start: int) -> int:
-            prefix = [0] * len(pattern)
-            matched = 0
-            for index in range(1, len(pattern)):
-                while matched and pattern[index] != pattern[matched]:
-                    matched = prefix[matched - 1]
-                if pattern[index] == pattern[matched]:
-                    matched += 1
-                prefix[index] = matched
-
-            matched = 0
-            for index in range(start, len(nums)):
-                while matched and nums[index] != pattern[matched]:
-                    matched = prefix[matched - 1]
-                if nums[index] == pattern[matched]:
-                    matched += 1
-                if matched == len(pattern):
-                    return index + 1
-
+    def canChoose(self, groups, nums):
+        """
+        :type groups: List[List[int]]
+        :type nums: List[int]
+        :rtype: bool
+        """
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j+1 > 0 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+        
+        def KMP(text, pattern, start):
+            prefix = getPrefix(pattern)
+            j = -1
+            for i in range(start, len(text)):
+                while j+1 > 0 and pattern[j+1] != text[i]:
+                    j = prefix[j]
+                if pattern[j+1] == text[i]:
+                    j += 1
+                if j+1 == len(pattern):
+                    return i-j
             return -1
 
-        position = 0
+        pos = 0
         for group in groups:
-            position = find_end(group, position)
-            if position == -1:
+            pos = KMP(nums, group, pos)
+            if pos == -1:
                 return False
-
+            pos += len(group)
         return True
+

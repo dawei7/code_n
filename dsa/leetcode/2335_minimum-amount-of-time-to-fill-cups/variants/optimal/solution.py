@@ -1,7 +1,9 @@
-from typing import List
-
-
 class Solution:
     def fillCups(self, amount: List[int]) -> int:
-        total = sum(amount)
-        return max(max(amount), (total + 1) // 2)
+        ans = 0
+        while sum(amount):
+            amount.sort()
+            ans += 1
+            amount[2] -= 1
+            amount[1] = max(0, amount[1] - 1)
+        return ans

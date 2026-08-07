@@ -1,23 +1,20 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
-        neighbors = defaultdict(list)
-        for left, right in adjacentPairs:
-            neighbors[left].append(right)
-            neighbors[right].append(left)
-
-        current = next(value for value, adjacent in neighbors.items() if len(adjacent) == 1)
-        restored = [current]
-        previous = None
-
-        while len(restored) < len(neighbors):
-            for candidate in neighbors[current]:
-                if candidate != previous:
-                    restored.append(candidate)
-                    previous, current = current, candidate
-                    break
-
-        return restored
+    def restoreArray(self, adjacentPairs):
+        """
+        :type adjacentPairs: List[List[int]]
+        :rtype: List[int]
+        """
+        adj = collections.defaultdict(list)
+        for u, v in adjacentPairs: 
+            adj[u].append(v)
+            adj[v].append(u)
+        result = next([x, adj[x][0]] for x in adj if len(adj[x]) == 1)
+        while len(result) != len(adjacentPairs)+1:
+            result.append(adj[result[-1]][adj[result[-1]][0] == result[-2]])
+        return result

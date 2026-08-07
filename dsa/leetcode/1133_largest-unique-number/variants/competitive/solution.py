@@ -1,12 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def largestUniqueNumber(self, nums: List[int]) -> int:
-        counts = [0] * 1001
-        for value in nums:
-            counts[value] += 1
-        for value in range(1000, -1, -1):
-            if counts[value] == 1:
-                return value
-        return -1
+    def largestUniqueNumber(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        A.append(-1)
+        return max(k for k,v in collections.Counter(A).items() if v == 1)

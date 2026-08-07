@@ -1,10 +1,10 @@
-from typing import List
-
-
 class Solution:
     def zeroFilledSubarray(self, nums: List[int]) -> int:
-        answer = run = 0
-        for value in nums:
-            run = run + 1 if value == 0 else 0
-            answer += run
-        return answer
+        ans = cnt = 0
+        for x in nums:
+            if x == 0:
+                cnt += 1
+                ans += cnt
+            else:
+                cnt = 0
+        return ans

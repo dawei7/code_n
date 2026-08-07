@@ -1,7 +1,4 @@
 class Solution:
     def countSubstrings(self, s: str, c: str) -> int:
-        occurrences = 0
-        for char in s:
-            if char == c:
-                occurrences += 1
-        return occurrences * (occurrences + 1) // 2
+        cnt = s.count(c)
+        return cnt + cnt * (cnt - 1) // 2

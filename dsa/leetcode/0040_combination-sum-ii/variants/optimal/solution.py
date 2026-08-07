@@ -1,25 +1,20 @@
-from typing import List
-
-
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        candidates.sort()
-        result = []
-        path = []
-
-        def search(start: int, remaining: int) -> None:
-            if remaining == 0:
-                result.append(path[:])
+        def dfs(i: int, s: int):
+            if s == 0:
+                ans.append(t[:])
                 return
-            for index in range(start, len(candidates)):
-                if index > start and candidates[index] == candidates[index - 1]:
+            if i >= len(candidates) or s < candidates[i]:
+                return
+            for j in range(i, len(candidates)):
+                if j > i and candidates[j] == candidates[j - 1]:
                     continue
-                value = candidates[index]
-                if value > remaining:
-                    break
-                path.append(value)
-                search(index + 1, remaining - value)
-                path.pop()
+                t.append(candidates[j])
+                dfs(j + 1, s - candidates[j])
+                t.pop()
 
-        search(0, target)
-        return result
+        candidates.sort()
+        ans = []
+        t = []
+        dfs(0, target)
+        return ans

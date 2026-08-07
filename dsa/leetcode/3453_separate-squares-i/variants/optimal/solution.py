@@ -1,22 +1,19 @@
-from typing import List
-
-
 class Solution:
     def separateSquares(self, squares: List[List[int]]) -> float:
-        total_area = sum(side * side for _, _, side in squares)
-        low = min(y for _, y, _ in squares)
-        high = max(y + side for _, y, side in squares)
+        def check(y1: float) -> bool:
+            t = 0
+            for _, y, l in squares:
+                if y < y1:
+                    t += l * min(y1 - y, l)
+            return t >= s / 2
 
-        for _ in range(60):
-            middle = (low + high) / 2.0
-            area_below = 0.0
-            for _, y, side in squares:
-                height = min(max(middle - y, 0.0), side)
-                area_below += height * side
-
-            if area_below * 2.0 < total_area:
-                low = middle
+        s = sum(a[2] * a[2] for a in squares)
+        l, r = 0, max(a[1] + a[2] for a in squares)
+        eps = 1e-5
+        while r - l > eps:
+            mid = (l + r) / 2
+            if check(mid):
+                r = mid
             else:
-                high = middle
-
-        return high
+                l = mid
+        return r

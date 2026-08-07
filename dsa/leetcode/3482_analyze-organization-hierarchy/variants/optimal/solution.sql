@@ -1,47 +1,33 @@
+# Write your MySQL query statement below
 WITH RECURSIVE
-employee_levels AS (
-    SELECT employee_id, employee_name, 1 AS level
-    FROM Employees
-    WHERE manager_id IS NULL
-
-    UNION ALL
-
-    SELECT employee.employee_id, employee.employee_name, manager.level + 1
-    FROM Employees AS employee
-    INNER JOIN employee_levels AS manager
-        ON employee.manager_id = manager.employee_id
-),
-reporting_tree AS (
-    SELECT
-        employee_id AS manager_id,
-        employee_id AS member_id,
-        salary
-    FROM Employees
-
-    UNION ALL
-
-    SELECT
-        reporting_tree.manager_id,
-        employee.employee_id,
-        employee.salary
-    FROM reporting_tree
-    INNER JOIN Employees AS employee
-        ON employee.manager_id = reporting_tree.member_id
-)
+    level_cte AS (
+        SELECT employee_id, manager_id, 1 AS level, salary FROM Employees
+        UNION ALL
+        SELECT a.employee_id, b.manager_id, level + 1, a.salary
+        FROM
+            level_cte a
+            JOIN Employees b ON b.employee_id = a.manager_id
+    ),
+    employee_with_level AS (
+        SELECT a.employee_id, a.employee_name, a.salary, b.level
+        FROM
+            Employees a,
+            (SELECT employee_id, level FROM level_cte WHERE manager_id IS NULL) b
+        WHERE a.employee_id = b.employee_id
+    )
 SELECT
-    employee_levels.employee_id,
-    employee_levels.employee_name,
-    employee_levels.level,
-    COUNT(reporting_tree.member_id) - 1 AS team_size,
-    SUM(reporting_tree.salary) AS budget
-FROM employee_levels
-INNER JOIN reporting_tree
-    ON reporting_tree.manager_id = employee_levels.employee_id
-GROUP BY
-    employee_levels.employee_id,
-    employee_levels.employee_name,
-    employee_levels.level
-ORDER BY
-    employee_levels.level ASC,
-    budget DESC,
-    employee_levels.employee_name ASC;
+    a.employee_id,
+    a.employee_name,
+    a.level,
+    COALESCE(b.team_size, 0) AS team_size,
+    a.salary + COALESCE(b.budget, 0) AS budget
+FROM
+    employee_with_level a
+    LEFT JOIN (
+        SELECT manager_id AS employee_id, COUNT(*) AS team_size, SUM(salary) AS budget
+        FROM level_cte
+        WHERE manager_id IS NOT NULL
+        GROUP BY manager_id
+    ) b
+        ON a.employee_id = b.employee_id
+ORDER BY level, budget DESC, employee_name;

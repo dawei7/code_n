@@ -1,13 +1,14 @@
-from typing import List
+# Time:  O(n + m)
+# Space: O(m)
 
-
+# hash table
 class Solution:
-    def reportSpam(self, message: List[str], bannedWords: List[str]) -> bool:
-        banned = set(bannedWords)
-        matches = 0
-        for word in message:
-            if word in banned:
-                matches += 1
-                if matches == 2:
-                    return True
-        return False
+    def reportSpam(self, message, bannedWords):
+        """
+        :type message: List[str]
+        :type bannedWords: List[str]
+        :rtype: bool
+        """
+        THRESHOLD = 2
+        lookup = set(bannedWords)
+        return sum(m in lookup for m in message) >= THRESHOLD

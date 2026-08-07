@@ -1,15 +1,12 @@
 class Solution:
     def longestSquareStreak(self, nums: List[int]) -> int:
-        values = set(nums)
-        answer = -1
-
-        for start in values:
-            length = 0
-            current = start
-            while current in values:
-                length += 1
-                current *= current
-            if length >= 2:
-                answer = max(answer, length)
-
-        return answer
+        s = set(nums)
+        ans = -1
+        for x in nums:
+            t = 0
+            while x in s:
+                x *= x
+                t += 1
+            if t > 1:
+                ans = max(ans, t)
+        return ans

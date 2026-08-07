@@ -1,17 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def delayedCount(self, nums: List[int], k: int) -> List[int]:
-        n = len(nums)
-        frequencies: dict[int, int] = {}
-        answer = [0] * n
-
-        for i in range(n - 1, -1, -1):
-            exposed = i + k + 1
-            if exposed < n:
-                value = nums[exposed]
-                frequencies[value] = frequencies.get(value, 0) + 1
-            answer[i] = frequencies.get(nums[i], 0)
-
-        return answer
+    def delayedCount(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        result = [0]*len(nums)
+        cnt = collections.defaultdict(int)
+        for i in reversed(range(len(nums)-k)):
+            result[i] = cnt[nums[i]]
+            cnt[nums[i+k]] += 1
+        return result

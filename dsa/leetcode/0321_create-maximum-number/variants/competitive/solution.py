@@ -1,46 +1,46 @@
-from typing import List
-
-
-def _maximum_subsequence(nums: List[int], length: int) -> List[int]:
-    drops = len(nums) - length
-    stack = []
-    for digit in nums:
-        while drops and stack and stack[-1] < digit:
-            stack.pop()
-            drops -= 1
-        stack.append(digit)
-    return stack[:length]
-
-
-def _suffix_is_greater(left: List[int], left_index: int, right: List[int], right_index: int) -> bool:
-    while left_index < len(left) and right_index < len(right) and left[left_index] == right[right_index]:
-        left_index += 1
-        right_index += 1
-    return right_index == len(right) or (left_index < len(left) and left[left_index] > right[right_index])
-
-
-def _merge_maximum(left: List[int], right: List[int]) -> List[int]:
-    merged = []
-    left_index = right_index = 0
-    while left_index < len(left) or right_index < len(right):
-        if _suffix_is_greater(left, left_index, right, right_index):
-            merged.append(left[left_index])
-            left_index += 1
-        else:
-            merged.append(right[right_index])
-            right_index += 1
-    return merged
-
+# Time:  O(k * (m + n + k)) ~ O(k * (m + n + k^2))
+# Space: O(m + n + k^2)
 
 class Solution:
-    def maxNumber(self, nums1: List[int], nums2: List[int], k: int) -> List[int]:
-        best = []
-        first_minimum = max(0, k - len(nums2))
-        first_maximum = min(k, len(nums1))
-        for take_from_first in range(first_minimum, first_maximum + 1):
-            left = _maximum_subsequence(nums1, take_from_first)
-            right = _maximum_subsequence(nums2, k - take_from_first)
-            candidate = _merge_maximum(left, right)
-            if candidate > best:
-                best = candidate
-        return best
+    def maxNumber(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        def get_max_digits(nums, start, end, max_digits):
+            max_digits[end] = max_digit(nums, end)
+            for i in reversed(range(start, end)):
+                max_digits[i] = delete_digit(max_digits[i + 1])
+
+        def max_digit(nums, k):
+            drop = len(nums) - k
+            res = []
+            for num in nums:
+                while drop and res and res[-1] < num:
+                    res.pop()
+                    drop -= 1
+                res.append(num)
+            return res[:k]
+
+        def delete_digit(nums):
+            res = list(nums)
+            for i in range(len(res)):
+                if i == len(res) - 1 or res[i] < res[i + 1]:
+                    res = res[:i] + res[i+1:]
+                    break
+            return res
+
+        def merge(a, b):
+            return [max(a, b).pop(0) for _ in range(len(a)+len(b))]
+
+        m, n = len(nums1), len(nums2)
+
+        max_digits1, max_digits2 = [[] for _ in range(k + 1)], [[] for _ in range(k + 1)]
+        get_max_digits(nums1, max(0, k - n), min(k, m), max_digits1)
+        get_max_digits(nums2, max(0, k - m), min(k, n), max_digits2)
+
+        return max(merge(max_digits1[i], max_digits2[k-i]) \
+                   for i in range(max(0, k - n), min(k, m) + 1))
+

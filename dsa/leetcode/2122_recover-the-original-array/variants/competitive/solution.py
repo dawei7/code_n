@@ -1,33 +1,34 @@
-from collections import Counter
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def recoverArray(self, nums: List[int]) -> List[int]:
-        numbers = sorted(nums)
-        target_length = len(numbers) // 2
-
-        for candidate in numbers[1:]:
-            difference = candidate - numbers[0]
-            if difference <= 0 or difference % 2:
-                continue
-
-            remaining = Counter(numbers)
-            recovered: List[int] = []
-
-            for lower in numbers:
-                if remaining[lower] == 0:
+    def recoverArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def check(k, cnt, result):
+            for x in nums:
+                if cnt[x] == 0:
                     continue
-
-                higher = lower + difference
-                if remaining[higher] == 0:
-                    break
-
-                remaining[lower] -= 1
-                remaining[higher] -= 1
-                recovered.append(lower + difference // 2)
-
-            if len(recovered) == target_length:
-                return recovered
-
+                if cnt[x+2*k] == 0:
+                    return False
+                cnt[x] -= 1
+                cnt[x+2*k] -= 1
+                result.append(x+k)
+            return True
+            
+        nums.sort()
+        cnt = collections.Counter(nums)
+        for i in range(1, len(nums)//2+1):
+            k = nums[i]-nums[0]
+            if k == 0 or k%2:
+                continue
+            k //= 2
+            result = []
+            if check(k, collections.Counter(cnt), result):
+                return result
         return []

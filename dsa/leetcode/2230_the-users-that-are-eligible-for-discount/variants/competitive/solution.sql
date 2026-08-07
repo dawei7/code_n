@@ -1,6 +1,10 @@
-SELECT DISTINCT p.user_id
-FROM Purchases AS p
-CROSS JOIN Parameters AS bounds
-WHERE p.time_stamp BETWEEN bounds.startDate AND bounds.endDate
-  AND p.amount >= bounds.minAmount
-ORDER BY p.user_id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+CREATE PROCEDURE getUserIDs(startDate DATE, endDate DATE, minAmount INT)
+BEGIN
+    SELECT DISTINCT user_id
+    FROM Purchases
+    WHERE time_stamp >= startDate AND time_stamp <= endDate AND amount >= minAmount
+    ORDER BY user_id;
+END

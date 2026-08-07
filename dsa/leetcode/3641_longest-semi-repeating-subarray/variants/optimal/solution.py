@@ -1,26 +1,13 @@
-from typing import List
-
-
 class Solution:
     def longestSubarray(self, nums: List[int], k: int) -> int:
-        frequencies = {}
-        repeating_values = 0
-        left = 0
-        longest = 0
-
-        for right, value in enumerate(nums):
-            frequency = frequencies.get(value, 0) + 1
-            frequencies[value] = frequency
-            if frequency == 2:
-                repeating_values += 1
-
-            while repeating_values > k:
-                left_value = nums[left]
-                if frequencies[left_value] == 2:
-                    repeating_values -= 1
-                frequencies[left_value] -= 1
-                left += 1
-
-            longest = max(longest, right - left + 1)
-
-        return longest
+        cnt = defaultdict(int)
+        ans = cur = l = 0
+        for r, x in enumerate(nums):
+            cnt[x] += 1
+            cur += cnt[x] == 2
+            while cur > k:
+                cnt[nums[l]] -= 1
+                cur -= cnt[nums[l]] == 1
+                l += 1
+            ans = max(ans, r - l + 1)
+        return ans

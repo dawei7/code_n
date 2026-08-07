@@ -1,13 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxSumDivThree(self, nums: List[int]) -> int:
-        dp = [0, float("-inf"), float("-inf")]
-        for value in nums:
-            current = dp[:]
-            for residue in range(3):
-                destination = (residue + value) % 3
-                current[destination] = max(current[destination], dp[residue] + value)
-            dp = current
-        return dp[0]
+        n = len(nums)
+        f = [[-inf] * 3 for _ in range(n + 1)]
+        f[0][0] = 0
+        for i, x in enumerate(nums, 1):
+            for j in range(3):
+                f[i][j] = max(f[i - 1][j], f[i - 1][(j - x) % 3] + x)
+        return f[n][0]

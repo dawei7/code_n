@@ -1,30 +1,19 @@
-from typing import List
-
-
 class Solution:
     def findReplaceString(
-        self,
-        s: str,
-        indices: List[int],
-        sources: List[str],
-        targets: List[str],
+        self, s: str, indices: List[int], sources: List[str], targets: List[str]
     ) -> str:
-        replacements = {}
-        for index, source, target in zip(indices, sources, targets):
-            if s.startswith(source, index):
-                replacements[index] = (source, target)
-
-        pieces = []
-        cursor = 0
-        while cursor < len(s):
-            replacement = replacements.get(cursor)
-            if replacement is None:
-                pieces.append(s[cursor])
-                cursor += 1
-                continue
-
-            source, target = replacement
-            pieces.append(target)
-            cursor += len(source)
-
-        return "".join(pieces)
+        n = len(s)
+        d = [-1] * n
+        for k, (i, src) in enumerate(zip(indices, sources)):
+            if s.startswith(src, i):
+                d[i] = k
+        ans = []
+        i = 0
+        while i < n:
+            if ~d[i]:
+                ans.append(targets[d[i]])
+                i += len(sources[d[i]])
+            else:
+                ans.append(s[i])
+                i += 1
+        return "".join(ans)

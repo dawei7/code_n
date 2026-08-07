@@ -1,11 +1,18 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def maxNumberOfApples(self, weight: List[int]) -> int:
-        total = 0
-        for count, apple_weight in enumerate(sorted(weight)):
-            if total + apple_weight > 5000:
-                return count
-            total += apple_weight
-        return len(weight)
+    def maxNumberOfApples(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        LIMIT = 5000
+        arr.sort()
+        result, total = 0, 0
+        for x in arr:
+            if total+x > LIMIT:
+                break
+            total += x
+            result += 1
+        return result

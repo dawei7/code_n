@@ -1,10 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxLengthBetweenEqualCharacters(self, s: str) -> int:
-        first = {}
-        longest = -1
-        for index, character in enumerate(s):
-            if character in first:
-                longest = max(longest, index - first[character] - 1)
-            else:
-                first[character] = index
-        return longest
+    def maxLengthBetweenEqualCharacters(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, lookup = -1, {}
+        for i, c in enumerate(s):
+            result = max(result, i-lookup.setdefault(c, i)-1)
+        return result

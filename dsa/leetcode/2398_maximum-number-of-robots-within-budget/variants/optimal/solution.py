@@ -1,34 +1,18 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def maximumRobots(
-        self,
-        chargeTimes: List[int],
-        runningCosts: List[int],
-        budget: int,
+        self, chargeTimes: List[int], runningCosts: List[int], budget: int
     ) -> int:
-        maximum_charge_indices = deque()
-        running_sum = 0
-        left = 0
-        best = 0
-
-        for right, charge_time in enumerate(chargeTimes):
-            running_sum += runningCosts[right]
-            while maximum_charge_indices and chargeTimes[maximum_charge_indices[-1]] <= charge_time:
-                maximum_charge_indices.pop()
-            maximum_charge_indices.append(right)
-
-            while (
-                maximum_charge_indices
-                and chargeTimes[maximum_charge_indices[0]] + (right - left + 1) * running_sum > budget
-            ):
-                if maximum_charge_indices[0] == left:
-                    maximum_charge_indices.popleft()
-                running_sum -= runningCosts[left]
-                left += 1
-
-            best = max(best, right - left + 1)
-
-        return best
+        q = deque()
+        ans = s = l = 0
+        for r, (t, c) in enumerate(zip(chargeTimes, runningCosts)):
+            s += c
+            while q and chargeTimes[q[-1]] <= t:
+                q.pop()
+            q.append(r)
+            while q and (r - l + 1) * s + chargeTimes[q[0]] > budget:
+                if q[0] == l:
+                    q.popleft()
+                s -= runningCosts[l]
+                l += 1
+            ans = max(ans, r - l + 1)
+        return ans

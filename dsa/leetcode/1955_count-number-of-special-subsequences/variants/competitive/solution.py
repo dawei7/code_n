@@ -1,17 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def countSpecialSubsequences(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        zero = one = two = 0
-
-        for value in nums:
-            if value == 0:
-                zero = (2 * zero + 1) % modulus
-            elif value == 1:
-                one = (2 * one + zero) % modulus
-            else:
-                two = (2 * two + one) % modulus
-
-        return two
+    def countSpecialSubsequences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [0]*3
+        for x in nums:
+            dp[x] = ((dp[x]+dp[x])%MOD+(dp[x-1] if x-1 >= 0 else 1))%MOD
+        return dp[-1]

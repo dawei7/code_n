@@ -1,50 +1,45 @@
-from collections import deque
-
-
 class Solution:
     def constructGridLayout(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        minimum_degree = min(map(len, graph))
-        corners = {node for node in range(n) if len(graph[node]) == minimum_degree}
-        start = next(iter(corners))
-
-        parent = [-1] * n
-        parent[start] = start
-        queue = deque([start])
-        end = start
-
-        while queue:
-            node = queue.popleft()
-            if node != start and node in corners:
-                end = node
-                break
-            for neighbor in graph[node]:
-                if parent[neighbor] == -1:
-                    parent[neighbor] = node
-                    queue.append(neighbor)
-
-        first_row = []
-        while end != start:
-            first_row.append(end)
-            end = parent[end]
-        first_row.append(start)
-        first_row.reverse()
-
-        layout = [first_row]
-        used = set(first_row)
-
-        while len(used) < n:
-            next_row = []
-            for node in layout[-1]:
-                for neighbor in graph[node]:
-                    if neighbor not in used:
-                        used.add(neighbor)
-                        next_row.append(neighbor)
+        g = [[] for _ in range(n)]
+        for u, v in edges:
+            g[u].append(v)
+            g[v].append(u)
+        deg = [-1] * 5
+        for x, ys in enumerate(g):
+            deg[len(ys)] = x
+        if deg[1] != -1:
+            row = [deg[1]]
+        elif deg[4] == -1:
+            x = deg[2]
+            for y in g[x]:
+                if len(g[y]) == 2:
+                    row = [x, y]
+                    break
+        else:
+            x = deg[2]
+            row = [x]
+            pre = x
+            x = g[x][0]
+            while len(g[x]) > 2:
+                row.append(x)
+                for y in g[x]:
+                    if y != pre and len(g[y]) < 4:
+                        pre = x
+                        x = y
                         break
-            layout.append(next_row)
+            row.append(x)
 
-        return layout
+        ans = [row]
+        vis = [False] * n
+        for _ in range(n // len(row) - 1):
+            for x in row:
+                vis[x] = True
+            nxt = []
+            for x in row:
+                for y in g[x]:
+                    if not vis[y]:
+                        nxt.append(y)
+                        break
+            ans.append(nxt)
+            row = nxt
+        return ans

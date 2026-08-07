@@ -1,34 +1,24 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def updateBoard(self, board: List[List[str]], click: List[int]) -> List[List[str]]:
-        start_row, start_col = click
-        if board[start_row][start_col] == "M":
-            board[start_row][start_col] = "X"
-            return board
+        def dfs(i: int, j: int):
+            cnt = 0
+            for x in range(i - 1, i + 2):
+                for y in range(j - 1, j + 2):
+                    if 0 <= x < m and 0 <= y < n and board[x][y] == "M":
+                        cnt += 1
+            if cnt:
+                board[i][j] = str(cnt)
+            else:
+                board[i][j] = "B"
+                for x in range(i - 1, i + 2):
+                    for y in range(j - 1, j + 2):
+                        if 0 <= x < m and 0 <= y < n and board[x][y] == "E":
+                            dfs(x, y)
 
-        rows, cols = len(board), len(board[0])
-        queue = deque([(start_row, start_col)])
-        board[start_row][start_col] = "B"
-
-        while queue:
-            row, col = queue.popleft()
-            neighbors = [
-                (next_row, next_col)
-                for next_row in range(max(0, row - 1), min(rows, row + 2))
-                for next_col in range(max(0, col - 1), min(cols, col + 2))
-                if (next_row, next_col) != (row, col)
-            ]
-            mines = sum(board[next_row][next_col] == "M" for next_row, next_col in neighbors)
-            if mines:
-                board[row][col] = str(mines)
-                continue
-
-            for next_row, next_col in neighbors:
-                if board[next_row][next_col] == "E":
-                    board[next_row][next_col] = "B"
-                    queue.append((next_row, next_col))
-
+        m, n = len(board), len(board[0])
+        i, j = click
+        if board[i][j] == "M":
+            board[i][j] = "X"
+        else:
+            dfs(i, j)
         return board

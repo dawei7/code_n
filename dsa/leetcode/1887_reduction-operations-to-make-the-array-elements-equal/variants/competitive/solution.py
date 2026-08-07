@@ -1,15 +1,16 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def reductionOperations(self, nums: List[int]) -> int:
-        ordered = sorted(nums)
-        smaller_levels = 0
-        operations = 0
-
-        for index in range(1, len(ordered)):
-            if ordered[index] != ordered[index - 1]:
-                smaller_levels += 1
-            operations += smaller_levels
-
-        return operations
+    def reductionOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        result = curr = 0
+        for i in range(1, len(nums)): 
+            if nums[i-1] < nums[i]:
+                curr += 1
+            result += curr
+        return result

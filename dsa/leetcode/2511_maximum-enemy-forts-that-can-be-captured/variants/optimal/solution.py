@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     def captureForts(self, forts: List[int]) -> int:
-        best = 0
-        previous = -1
-
-        for index, value in enumerate(forts):
-            if value == 0:
-                continue
-            if previous != -1 and value != forts[previous]:
-                best = max(best, index - previous - 1)
-            previous = index
-
-        return best
+        n = len(forts)
+        i = ans = 0
+        while i < n:
+            j = i + 1
+            if forts[i]:
+                while j < n and forts[j] == 0:
+                    j += 1
+                if j < n and forts[i] + forts[j] == 0:
+                    ans = max(ans, j - i - 1)
+            i = j
+        return ans

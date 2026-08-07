@@ -1,16 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxArea(self, height: List[int]) -> int:
-        left = 0
-        right = len(height) - 1
-        best = 0
-
-        while left < right:
-            best = max(best, (right - left) * min(height[left], height[right]))
-            if height[left] < height[right]:
-                left += 1
+    # @return an integer
+    def maxArea(self, height):
+        max_area, i, j = 0, 0, len(height) - 1
+        while i < j:
+            max_area = max(max_area, min(height[i], height[j]) * (j - i))
+            if height[i] < height[j]:
+                i += 1
             else:
-                right -= 1
-        return best
+                j -= 1
+        return max_area
+

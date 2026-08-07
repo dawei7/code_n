@@ -1,32 +1,26 @@
-from collections import Counter, defaultdict
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+import operator
 
 
+# combinatorics, dp
 class Solution:
-    def beautifulSubsets(self, nums: List[int], k: int) -> int:
-        groups = defaultdict(list)
-        for value, frequency in Counter(nums).items():
-            groups[value % k].append((value, frequency))
+    def beautifulSubsets(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def count(x):
+            y = x
+            while y-k in cnt:
+                y -= k
+            dp = [1, 0]  # dp[0]: count without i, dp[1]: count with i
+            for i in range(y, x+1, k):
+                dp = [dp[0]+dp[1], dp[0]*((1<<cnt[i])-1)]
+            return sum(dp)
 
-        answer = 1
-        for group in groups.values():
-            group.sort()
-            not_taken = 1
-            taken = 0
-            previous_value = -k
-
-            for value, frequency in group:
-                choices = (1 << frequency) - 1
-                total = not_taken + taken
-
-                if value - previous_value == k:
-                    next_taken = not_taken * choices
-                else:
-                    next_taken = total * choices
-
-                not_taken = total
-                taken = next_taken
-                previous_value = value
-
-            answer *= not_taken + taken
-
-        return answer - 1
+        cnt = collections.Counter(nums)
+        return reduce(operator.mul, (count(i) for i in cnt.keys() if i+k not in cnt))-1

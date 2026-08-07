@@ -1,10 +1,17 @@
-from math import isqrt
-from typing import List
+# Time:  O(1)
+# Space: O(1)
+
+import math
 
 
 class Solution:
-    def constructRectangle(self, area: int) -> List[int]:
-        width = isqrt(area)
-        while area % width != 0:
-            width -= 1
-        return [area // width, width]
+    def constructRectangle(self, area):
+        """
+        :type area: int
+        :rtype: List[int]
+        """
+        w = int(math.sqrt(area))
+        while area % w:
+            w -= 1
+        return [area // w, w]
+

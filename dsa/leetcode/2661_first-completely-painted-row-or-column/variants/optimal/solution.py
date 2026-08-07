@@ -1,24 +1,15 @@
-from typing import List
-
-
 class Solution:
     def firstCompleteIndex(self, arr: List[int], mat: List[List[int]]) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        position = [(-1, -1)] * (rows * columns + 1)
-
-        for row in range(rows):
-            for column in range(columns):
-                position[mat[row][column]] = (row, column)
-
-        painted_in_row = [0] * rows
-        painted_in_column = [0] * columns
-
-        for index, value in enumerate(arr):
-            row, column = position[value]
-            painted_in_row[row] += 1
-            painted_in_column[column] += 1
-            if painted_in_row[row] == columns or painted_in_column[column] == rows:
-                return index
-
-        return -1
+        m, n = len(mat), len(mat[0])
+        idx = {}
+        for i in range(m):
+            for j in range(n):
+                idx[mat[i][j]] = (i, j)
+        row = [0] * m
+        col = [0] * n
+        for k in range(len(arr)):
+            i, j = idx[arr[k]]
+            row[i] += 1
+            col[j] += 1
+            if row[i] == n or col[j] == m:
+                return k

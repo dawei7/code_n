@@ -1,17 +1,14 @@
-from typing import List
-
-
 class Solution:
     def kthPalindrome(self, queries: List[int], intLength: int) -> List[int]:
-        half_length = (intLength + 1) // 2
-        first_half = 10 ** (half_length - 1)
-        limit = 10**half_length
-        answers = []
-        for query in queries:
-            prefix = first_half + query - 1
-            if prefix >= limit:
-                answers.append(-1)
+        l = (intLength + 1) >> 1
+        start, end = 10 ** (l - 1), 10**l - 1
+        ans = []
+        for q in queries:
+            v = start + q - 1
+            if v > end:
+                ans.append(-1)
                 continue
-            text = str(prefix)
-            answers.append(int(text + text[-1 - intLength % 2 :: -1]))
-        return answers
+            s = str(v)
+            s += s[::-1][intLength % 2 :]
+            ans.append(int(s))
+        return ans

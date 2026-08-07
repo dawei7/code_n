@@ -1,23 +1,13 @@
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        transformed = [(2, None), (0, None)]
-        for char in s:
-            transformed.extend(((1, char), (0, None)))
-        transformed.append((3, None))
-        radius = [0] * len(transformed)
-        center = right = 0
-        best_center = best_length = 0
-
-        for i in range(1, len(transformed) - 1):
-            mirror = 2 * center - i
-            if i < right:
-                radius[i] = min(right - i, radius[mirror])
-            while transformed[i + radius[i] + 1] == transformed[i - radius[i] - 1]:
-                radius[i] += 1
-            if i + radius[i] > right:
-                center, right = i, i + radius[i]
-            if radius[i] > best_length:
-                best_center, best_length = i, radius[i]
-
-        start = (best_center - best_length) // 2
-        return s[start : start + best_length]
+        n = len(s)
+        f = [[True] * n for _ in range(n)]
+        k, mx = 0, 1
+        for i in range(n - 2, -1, -1):
+            for j in range(i + 1, n):
+                f[i][j] = False
+                if s[i] == s[j]:
+                    f[i][j] = f[i + 1][j - 1]
+                    if f[i][j] and mx < j - i + 1:
+                        k, mx = i, j - i + 1
+        return s[k : k + mx]

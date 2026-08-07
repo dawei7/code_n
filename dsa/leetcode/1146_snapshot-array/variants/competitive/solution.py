@@ -1,24 +1,46 @@
-from bisect import bisect_right
+# Time:  set: O(1)
+#        get: O(logn), n is the total number of set
+# Space: O(n)
+
+import collections
+import bisect
 
 
-class SnapshotArray:
-    def __init__(self, length: int):
-        self.histories = [[[0, 0]] for _ in range(length)]
-        self.next_snap_id = 0
+class SnapshotArray(object):
 
-    def set(self, index: int, val: int) -> None:
-        history = self.histories[index]
-        if history[-1][0] == self.next_snap_id:
-            history[-1][1] = val
+    def __init__(self, length):
+        """
+        :type length: int
+        """
+        self.__A = collections.defaultdict(lambda: [[0, 0]])
+        self.__snap_id = 0
+
+
+    def set(self, index, val):
+        """
+        :type index: int
+        :type val: int
+        :rtype: None
+        """
+        if self.__A[index][-1][0] == self.__snap_id:
+            self.__A[index][-1][1] = val
         else:
-            history.append([self.next_snap_id, val])
+            self.__A[index].append([self.__snap_id, val])
 
-    def snap(self) -> int:
-        snap_id = self.next_snap_id
-        self.next_snap_id += 1
-        return snap_id
 
-    def get(self, index: int, snap_id: int) -> int:
-        history = self.histories[index]
-        position = bisect_right(history, [snap_id, float("inf")]) - 1
-        return history[position][1]
+    def snap(self):
+        """
+        :rtype: int
+        """
+        self.__snap_id += 1
+        return self.__snap_id - 1
+
+
+    def get(self, index, snap_id):
+        """
+        :type index: int
+        :type snap_id: int
+        :rtype: int
+        """
+        i = bisect.bisect_left(self.__A[index], [snap_id+1, float("-inf")]) - 1
+        return self.__A[index][i][1]   

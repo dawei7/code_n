@@ -1,11 +1,34 @@
-from typing import List
+# Time:  O(n)
+# Space: O(r), r = max(nums)
 
-
+# freq table
 class Solution:
-    def numberOfPairs(self, nums: List[int]) -> List[int]:
-        counts = [0] * 101
-        for value in nums:
-            counts[value] += 1
+    def numberOfPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        cnt = [0]*(max(nums)+1)
+        pair_cnt = 0
+        for x in nums:
+            cnt[x] ^= 1
+            if not cnt[x]:
+                pair_cnt += 1
+        return [pair_cnt, len(nums)-2*pair_cnt]
 
-        pairs = sum(count // 2 for count in counts)
-        return [pairs, len(nums) - 2 * pairs]
+
+# Time:  O(n)
+# Space: O(r), r = max(nums)
+import collections
+
+
+# freq table
+class Solution2(object):
+    def numberOfPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        cnt = collections.Counter(nums)
+        pair_cnt = sum(x//2 for x in cnt.values())
+        return [pair_cnt, len(nums)-2*pair_cnt]

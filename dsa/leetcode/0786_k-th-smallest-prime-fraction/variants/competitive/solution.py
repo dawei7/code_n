@@ -1,36 +1,40 @@
-import heapq
-from typing import List
-
-
-class _FractionEntry:
-    __slots__ = ("numerator", "denominator", "values")
-
-    def __init__(self, numerator: int, denominator: int, values: List[int]):
-        self.numerator = numerator
-        self.denominator = denominator
-        self.values = values
-
-    def __lt__(self, other: "_FractionEntry") -> bool:
-        return (
-            self.values[self.numerator] * self.values[other.denominator]
-            < self.values[other.numerator] * self.values[self.denominator]
-        )
-
+# Time:  O(nlogr)
+# Space: O(1)
 
 class Solution:
-    def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
-        last = len(arr) - 1
-        heap = [_FractionEntry(index, last, arr) for index in range(last)]
-        heapq.heapify(heap)
+    def kthSmallestPrimeFraction(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: List[int]
+        """
+        def check(mid, A, K, result):
+            tmp = [0]*2
+            count = 0
+            j = 0
+            for i in range(len(A)):
+                while j < len(A):
+                    if i < j and A[i] < A[j]*mid:
+                        if tmp[0] == 0 or \
+                           tmp[0]*A[j] < tmp[1]*A[i]:
+                            tmp[0] = A[i]
+                            tmp[1] = A[j]
+                        break
+                    j += 1
+                count += len(A)-j
+            if count == K:
+                result[:] = tmp
+            return count >= K
 
-        entry = heap[0]
-        for _ in range(k):
-            entry = heapq.heappop(heap)
-            next_denominator = entry.denominator - 1
-            if next_denominator > entry.numerator:
-                heapq.heappush(
-                    heap,
-                    _FractionEntry(entry.numerator, next_denominator, arr),
-                )
+        result = []
+        left, right = 0.0, 1.0
+        while right-left > 1e-8:
+            mid = left + (right-left) / 2.0
+            if check(mid, A, K, result):
+                right = mid
+            else:
+                left = mid
+            if result:
+                break
+        return result
 
-        return [arr[entry.numerator], arr[entry.denominator]]

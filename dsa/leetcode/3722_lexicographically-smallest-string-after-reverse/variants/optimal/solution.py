@@ -1,9 +1,8 @@
 class Solution:
     def lexSmallest(self, s: str) -> str:
-        smallest = s
-
-        for length in range(2, len(s) + 1):
-            smallest = min(smallest, s[:length][::-1] + s[length:])
-            smallest = min(smallest, s[:-length] + s[-length:][::-1])
-
-        return smallest
+        ans = s
+        for k in range(1, len(s) + 1):
+            t1 = s[:k][::-1] + s[k:]
+            t2 = s[:-k] + s[-k:][::-1]
+            ans = min(ans, t1, t2)
+        return ans

@@ -1,14 +1,6 @@
-from typing import List
-
-
 class Solution:
     def findDuplicates(self, nums: List[int]) -> List[int]:
-        duplicates = []
-        for number in nums:
-            value = abs(number)
-            marker = value - 1
-            if nums[marker] < 0:
-                duplicates.append(value)
-            else:
-                nums[marker] = -nums[marker]
-        return duplicates
+        for i in range(len(nums)):
+            while nums[i] != nums[nums[i] - 1]:
+                nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+        return [v for i, v in enumerate(nums) if v != i + 1]

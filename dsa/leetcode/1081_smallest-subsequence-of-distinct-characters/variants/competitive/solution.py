@@ -1,15 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def smallestSubsequence(self, s: str) -> str:
-        last_index = {character: index for index, character in enumerate(s)}
-        stack = []
-        included = set()
+    def smallestSubsequence(self, text):
+        """
+        :type text: str
+        :rtype: str
+        """
+        count = collections.Counter(text)
 
-        for index, character in enumerate(s):
-            if character in included:
-                continue
-            while stack and stack[-1] > character and last_index[stack[-1]] > index:
-                included.remove(stack.pop())
-            stack.append(character)
-            included.add(character)
-
-        return "".join(stack)
+        lookup, stk = set(), []
+        for c in text:
+            if c not in lookup:
+                while stk and stk[-1] > c and count[stk[-1]]:
+                    lookup.remove(stk.pop())
+                stk += c
+                lookup.add(c)
+            count[c] -= 1
+        return "".join(stk)

@@ -1,14 +1,39 @@
-class Solution:
-    def isUnivalTree(self, root) -> bool:
-        expected = root.val
-        stack = [root]
+# Time:  O(n)
+# Space: O(h)
 
-        while stack:
-            node = stack.pop()
-            if node.val != expected:
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+    def isUnivalTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        s = [root]
+        while s:
+            node = s.pop()
+            if not node:
+                continue
+            if node.val != root.val:
                 return False
-            if node.left is not None:
-                stack.append(node.left)
-            if node.right is not None:
-                stack.append(node.right)
+            s.append(node.left)
+            s.append(node.right)
         return True
+    
+
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def isUnivalTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return (not root.left or (root.left.val == root.val and self.isUnivalTree(root.left))) and \
+               (not root.right or (root.right.val == root.val and self.isUnivalTree(root.right)))

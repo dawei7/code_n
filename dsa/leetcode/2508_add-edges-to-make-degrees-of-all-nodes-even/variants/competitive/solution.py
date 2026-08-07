@@ -1,32 +1,25 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# graph
 class Solution:
-    def isPossible(self, n: int, edges: List[List[int]]) -> bool:
-        graph = [set() for _ in range(n + 1)]
-        for a, b in edges:
-            graph[a].add(b)
-            graph[b].add(a)
-
-        odd = [node for node in range(1, n + 1) if len(graph[node]) % 2]
-        if not odd:
+    def isPossible(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: bool
+        """
+        adj = [set() for _ in range(n)]
+        for u, v in edges:
+            adj[u-1].add(v-1)
+            adj[v-1].add(u-1)
+        odds = [u for u in range(n) if len(adj[u])%2]
+        if len(odds) == 0:
             return True
-
-        if len(odd) == 2:
-            a, b = odd
-            if b not in graph[a]:
-                return True
-            for middle in range(1, n + 1):
-                if middle != a and middle != b and middle not in graph[a] and middle not in graph[b]:
-                    return True
-            return False
-
-        if len(odd) == 4:
-            a, b, c, d = odd
-            return (
-                (b not in graph[a] and d not in graph[c])
-                or (c not in graph[a] and d not in graph[b])
-                or (d not in graph[a] and c not in graph[b])
-            )
-
+        if len(odds) == 2:
+            return any(odds[0] not in adj[u] and odds[1] not in adj[u] for u in range(n))
+        if len(odds) == 4:
+            return ((odds[0] not in adj[odds[1]] and odds[2] not in adj[odds[3]]) or
+                    (odds[0] not in adj[odds[2]] and odds[1] not in adj[odds[3]]) or
+                    (odds[0] not in adj[odds[3]] and odds[1] not in adj[odds[2]]))
         return False

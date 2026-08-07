@@ -1,10 +1,7 @@
 class Solution:
     def minimumCost(self, s: str) -> int:
-        length = len(s)
-        cost = 0
-
-        for index in range(1, length):
-            if s[index] != s[index - 1]:
-                cost += min(index, length - index)
-
-        return cost
+        ans, n = 0, len(s)
+        for i in range(1, n):
+            if s[i] != s[i - 1]:
+                ans += min(i, n - i)
+        return ans

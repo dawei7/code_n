@@ -1,51 +1,46 @@
-from collections import Counter
-from typing import List
-
-
-class Node:
-    def __init__(self) -> None:
-        self.children = {}
-        self.signature_id = 0
+class Trie:
+    def __init__(self):
+        self.children: Dict[str, "Trie"] = defaultdict(Trie)
+        self.deleted: bool = False
 
 
 class Solution:
-    def deleteDuplicateFolder(
-        self,
-        paths: List[List[str]],
-    ) -> List[List[str]]:
-        root = Node()
+    def deleteDuplicateFolder(self, paths: List[List[str]]) -> List[List[str]]:
+        root = Trie()
         for path in paths:
-            node = root
+            cur = root
             for name in path:
-                node = node.children.setdefault(name, Node())
+                if cur.children[name] is None:
+                    cur.children[name] = Trie()
+                cur = cur.children[name]
 
-        signature_ids = {}
-        frequencies = Counter()
+        g: Dict[str, Trie] = {}
 
-        def encode(node: Node, is_root: bool = False) -> int:
-            signature = tuple((name, encode(child)) for name, child in sorted(node.children.items()))
-            if signature:
-                signature_id = signature_ids.setdefault(
-                    signature,
-                    len(signature_ids) + 1,
-                )
-                node.signature_id = signature_id
-                if not is_root:
-                    frequencies[signature_id] += 1
-            return node.signature_id
+        def dfs(node: Trie) -> str:
+            if not node.children:
+                return ""
+            subs: List[str] = []
+            for name, child in node.children.items():
+                subs.append(f"{name}({dfs(child)})")
+            s = "".join(sorted(subs))
+            if s in g:
+                node.deleted = g[s].deleted = True
+            else:
+                g[s] = node
+            return s
 
-        encode(root, True)
-
-        answer = []
-
-        def collect(node: Node, path: List[str]) -> None:
-            for name, child in sorted(node.children.items()):
-                if child.signature_id and frequencies[child.signature_id] > 1:
-                    continue
+        def dfs2(node: Trie) -> None:
+            if node.deleted:
+                return
+            if path:
+                ans.append(path[:])
+            for name, child in node.children.items():
                 path.append(name)
-                answer.append(path.copy())
-                collect(child, path)
+                dfs2(child)
                 path.pop()
 
-        collect(root, [])
-        return answer
+        dfs(root)
+        ans: List[List[str]] = []
+        path: List[str] = []
+        dfs2(root)
+        return ans

@@ -1,29 +1,36 @@
-from collections import defaultdict
-from heapq import heappop, heappush
-
-
 class AuctionSystem:
+
     def __init__(self):
-        self.bids = {}
-        self.heaps = defaultdict(list)
+        self.items = defaultdict(SortedList)
+        self.users = {}
 
     def addBid(self, userId: int, itemId: int, bidAmount: int) -> None:
-        self.bids[(itemId, userId)] = bidAmount
-        heappush(self.heaps[itemId], (-bidAmount, -userId))
+        if userId not in self.users:
+            self.users[userId] = {}
+        if itemId in self.users[userId]:
+            self.removeBid(userId, itemId)
+        self.users[userId][itemId] = bidAmount
+        self.items[itemId].add((bidAmount, userId))
 
     def updateBid(self, userId: int, itemId: int, newAmount: int) -> None:
-        self.addBid(userId, itemId, newAmount)
+        oldAmount = self.users[userId][itemId]
+        self.items[itemId].remove((oldAmount, userId))
+        self.items[itemId].add((newAmount, userId))
+        self.users[userId][itemId] = newAmount
 
     def removeBid(self, userId: int, itemId: int) -> None:
-        del self.bids[(itemId, userId)]
+        oldAmount = self.users[userId][itemId]
+        self.items[itemId].remove((oldAmount, userId))
+        self.users[userId].pop(itemId)
 
     def getHighestBidder(self, itemId: int) -> int:
-        heap = self.heaps[itemId]
-        while heap:
-            negative_amount, negative_user = heap[0]
-            amount = -negative_amount
-            user_id = -negative_user
-            if self.bids.get((itemId, user_id)) == amount:
-                return user_id
-            heappop(heap)
-        return -1
+        ls = self.items[itemId]
+        return -1 if not ls else ls[-1][1]
+
+
+# Your AuctionSystem object will be instantiated and called as such:
+# obj = AuctionSystem()
+# obj.addBid(userId,itemId,bidAmount)
+# obj.updateBid(userId,itemId,newAmount)
+# obj.removeBid(userId,itemId)
+# param_4 = obj.getHighestBidder(itemId)

@@ -1,19 +1,12 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def longestPalindrome(self, words: List[str]) -> int:
-        unmatched = Counter()
-        length = 0
-        for word in words:
-            reverse = word[::-1]
-            if unmatched[reverse]:
-                unmatched[reverse] -= 1
-                length += 4
+        cnt = Counter(words)
+        ans = x = 0
+        for k, v in cnt.items():
+            if k[0] == k[1]:
+                x += v & 1
+                ans += v // 2 * 2 * 2
             else:
-                unmatched[word] += 1
-
-        if any(word[0] == word[1] and count for word, count in unmatched.items()):
-            length += 2
-        return length
+                ans += min(v, cnt[k[::-1]]) * 2
+        ans += 2 if x else 0
+        return ans

@@ -1,18 +1,27 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
+# sort, two pointers, sliding window
 class Solution:
-    def findHighAccessEmployees(self, access_times: List[List[str]]) -> List[str]:
-        minutes_by_employee = defaultdict(list)
-        for name, timestamp in access_times:
-            minute = int(timestamp[:2]) * 60 + int(timestamp[2:])
-            minutes_by_employee[name].append(minute)
-
-        high_access = []
-        for name, minutes in minutes_by_employee.items():
-            minutes.sort()
-            if any(minutes[index + 2] - minutes[index] < 60 for index in range(len(minutes) - 2)):
-                high_access.append(name)
-
-        return high_access
+    def findHighAccessEmployees(self, access_times):
+        """
+        :type access_times: List[List[str]]
+        :rtype: List[str]
+        """
+        LIMIT_COUNT = 2
+        LIMIT_MINUTE = 60
+        def to_minute(x):
+            return int(x[:2])*60+int(x[2:])
+    
+        lookup = collections.defaultdict(list)
+        for x, t in access_times:
+            lookup[x].append(to_minute(t))
+        result = []
+        for x, ts in lookup.items():
+            ts.sort()
+            if not all(ts[i]+LIMIT_MINUTE <= ts[i+LIMIT_COUNT] for i in range(len(ts)-LIMIT_COUNT)):
+                result.append(x)
+        return result

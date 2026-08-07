@@ -1,32 +1,34 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# bfs, tree dp
 class Solution:
-    def maxSubgraphScore(self, n: int, edges: List[List[int]], good: List[int]) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        parent = [-1] * n
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor == parent[node]:
+    def maxSubgraphScore(self, n, edges, good):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type good: List[int]
+        :rtype: List[int]
+        """
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        parent = [-1]*n
+        q = [0]
+        for u in q:
+            for v in adj[u]:
+                if v == parent[u]:
                     continue
-                parent[neighbor] = node
-                order.append(neighbor)
-
-        downward = [1 if value else -1 for value in good]
-        for node in reversed(order[1:]):
-            downward[parent[node]] += max(0, downward[node])
-
-        answer = downward[:]
-        for node in order:
-            for neighbor in graph[node]:
-                if parent[neighbor] != node:
-                    continue
-                parent_side = answer[node] - max(0, downward[neighbor])
-                answer[neighbor] += max(0, parent_side)
-
-        return answer
+                parent[v] = u
+                q.append(v)
+        dp = [1 if x else -1 for x in good]
+        for u in reversed(q):
+            if parent[u] == -1:
+                continue
+            dp[parent[u]] += max(dp[u], 0)
+        for u in q:
+            if parent[u] == -1:
+                continue
+            dp[u] += max(dp[parent[u]]-max(dp[u], 0), 0)
+        return dp

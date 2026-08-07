@@ -1,11 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        flipped = 0
-
-        for num in nums:
-            if (num ^ flipped) == 0:
-                operations += 1
-                flipped ^= 1
-
-        return operations
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for x in nums:
+            if x^(result&1):
+                continue
+            result += 1
+        return result

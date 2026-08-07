@@ -1,53 +1,27 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def movesToStamp(self, stamp: str, target: str) -> List[int]:
-        stamp_length = len(stamp)
-        target_length = len(target)
-        window_count = target_length - stamp_length + 1
-        made_positions = []
-        unresolved = []
-        dependents = [[] for _ in range(target_length)]
-
-        for start in range(window_count):
-            made = []
-            todo = set()
-            for offset, stamp_character in enumerate(stamp):
-                position = start + offset
-                if target[position] == stamp_character:
-                    made.append(position)
+        m, n = len(stamp), len(target)
+        indeg = [m] * (n - m + 1)
+        q = deque()
+        g = [[] for _ in range(n)]
+        for i in range(n - m + 1):
+            for j, c in enumerate(stamp):
+                if target[i + j] == c:
+                    indeg[i] -= 1
+                    if indeg[i] == 0:
+                        q.append(i)
                 else:
-                    todo.add(position)
-                    dependents[position].append(start)
-            made_positions.append(made)
-            unresolved.append(todo)
-
-        erased = [False] * target_length
-        used_window = [False] * window_count
-        queue = deque()
-        reverse_moves = []
-
-        def use_window(start):
-            used_window[start] = True
-            reverse_moves.append(start)
-            for position in made_positions[start]:
-                if not erased[position]:
-                    erased[position] = True
-                    queue.append(position)
-
-        for start in range(window_count):
-            if not unresolved[start]:
-                use_window(start)
-
-        while queue:
-            position = queue.popleft()
-            for start in dependents[position]:
-                unresolved[start].discard(position)
-                if not unresolved[start] and not used_window[start]:
-                    use_window(start)
-
-        if not all(erased):
-            return []
-        return reverse_moves[::-1]
+                    g[i + j].append(i)
+        ans = []
+        vis = [False] * n
+        while q:
+            i = q.popleft()
+            ans.append(i)
+            for j in range(m):
+                if not vis[i + j]:
+                    vis[i + j] = True
+                    for k in g[i + j]:
+                        indeg[k] -= 1
+                        if indeg[k] == 0:
+                            q.append(k)
+        return ans[::-1] if all(vis) else []

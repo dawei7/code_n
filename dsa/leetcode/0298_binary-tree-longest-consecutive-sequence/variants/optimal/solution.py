@@ -1,18 +1,25 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def longestConsecutive(self, root: Optional["TreeNode"]) -> int:
-        if root is None:
-            return 0
-        best = 0
-        stack = [(root, None, 0)]
-        while stack:
-            node, parent_value, parent_length = stack.pop()
-            length = parent_length + 1 if parent_value is not None and node.val == parent_value + 1 else 1
-            best = max(best, length)
-            if node.right is not None:
-                stack.append((node.right, node.val, length))
-            if node.left is not None:
-                stack.append((node.left, node.val, length))
-        return best
+    def longestConsecutive(self, root: Optional[TreeNode]) -> int:
+        def dfs(root: Optional[TreeNode]) -> int:
+            if root is None:
+                return 0
+            l = dfs(root.left) + 1
+            r = dfs(root.right) + 1
+            if root.left and root.left.val - root.val != 1:
+                l = 1
+            if root.right and root.right.val - root.val != 1:
+                r = 1
+            t = max(l, r)
+            nonlocal ans
+            ans = max(ans, t)
+            return t
+
+        ans = 0
+        dfs(root)
+        return ans

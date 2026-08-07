@@ -1,42 +1,39 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# tree, bfs
 class Solution:
-    def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -> int:
+    def collectTheCoins(self, coins, edges):
+        """
+        :type coins: List[int]
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        DISTANCE = 2
+
+        adj = [set() for _ in range(len(coins))]
+        for u, v in edges:
+            adj[u].add(v)
+            adj[v].add(u)
         n = len(coins)
-        graph = [[] for _ in range(n)]
-        degree = [0] * n
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-            degree[first] += 1
-            degree[second] += 1
-
-        remaining_edges = n - 1
-        leaves = deque(node for node in range(n) if degree[node] == 1 and coins[node] == 0)
-        while leaves:
-            leaf = leaves.popleft()
-            degree[leaf] = 0
-            for neighbor in graph[leaf]:
-                if degree[neighbor] == 0:
-                    continue
-                degree[neighbor] -= 1
-                remaining_edges -= 1
-                if degree[neighbor] == 1 and coins[neighbor] == 0:
-                    leaves.append(neighbor)
-
-        leaves = deque(node for node in range(n) if degree[node] == 1)
-        for _ in range(2):
-            for _ in range(len(leaves)):
-                leaf = leaves.popleft()
-                degree[leaf] = 0
-                for neighbor in graph[leaf]:
-                    if degree[neighbor] == 0:
-                        continue
-                    degree[neighbor] -= 1
-                    remaining_edges -= 1
-                    if degree[neighbor] == 1:
-                        leaves.append(neighbor)
-
-        return max(0, 2 * remaining_edges)
+        q = []
+        for u in range(len(coins)):
+            while len(adj[u]) == 1 and not coins[u]:
+                v = adj[u].pop()
+                adj[v].remove(u)
+                n -= 1
+                u = v
+        q = [u for u in range(len(coins)) if len(adj[u]) == 1]
+        for _ in range(DISTANCE):
+            new_q = []
+            for u in q:
+                if not adj[u]:
+                    assert(n == 1)
+                    break
+                v = adj[u].pop()
+                adj[v].remove(u)
+                n -= 1
+                if len(adj[v]) == 1:
+                    new_q.append(v)
+            q = new_q
+        return (n-1)*2

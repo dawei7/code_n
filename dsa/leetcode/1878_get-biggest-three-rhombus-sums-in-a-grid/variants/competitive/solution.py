@@ -1,46 +1,36 @@
-from typing import List
+# Time:  O(m * n * min(m, n))
+# Space: O(m * n)
+
+import heapq
 
 
 class Solution:
-    def getBiggestThree(self, grid: List[List[int]]) -> List[int]:
-        rows, columns = len(grid), len(grid[0])
-        down_right = [[0] * (columns + 2) for _ in range(rows + 1)]
-        down_left = [[0] * (columns + 2) for _ in range(rows + 1)]
-
-        for row, values in enumerate(grid, 1):
-            for column, value in enumerate(values, 1):
-                down_right[row][column] = down_right[row - 1][column - 1] + value
-                down_left[row][column] = down_left[row - 1][column + 1] + value
-
-        biggest = set()
-
-        def retain(value: int) -> None:
-            biggest.add(value)
-            if len(biggest) > 3:
-                biggest.remove(min(biggest))
-
-        for row, values in enumerate(grid, 1):
-            for column, value in enumerate(values, 1):
-                retain(value)
-                max_radius = min(
-                    row - 1,
-                    rows - row,
-                    column - 1,
-                    columns - column,
-                )
-                for radius in range(1, max_radius + 1):
-                    lower_left = down_right[row + radius][column] - down_right[row][column - radius]
-                    upper_right = down_right[row][column + radius] - down_right[row - radius][column]
-                    upper_left = down_left[row][column - radius] - down_left[row - radius][column]
-                    lower_right = down_left[row + radius][column] - down_left[row][column + radius]
-                    border_sum = (
-                        lower_left
-                        + upper_right
-                        + upper_left
-                        + lower_right
-                        - grid[row + radius - 1][column - 1]
-                        + grid[row - radius - 1][column - 1]
-                    )
-                    retain(border_sum)
-
-        return sorted(biggest, reverse=True)
+    def getBiggestThree(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[int]
+        """	
+        K = 3
+        left = [[grid[i][j] for j in range(len(grid[i]))] for i in range(len(grid))]
+        right = [[grid[i][j] for j in range(len(grid[i]))] for i in range(len(grid))]
+        for i in range(1, len(grid)):
+            for j in range(len(grid[0])-1):
+                left[i][j] += left[i-1][j+1]
+        for i in range(1, len(grid)):
+            for j in range(1, len(grid[0])):
+                right[i][j] += right[i-1][j-1]
+        min_heap = []
+        lookup = set()
+        for k in range((min(len(grid), len(grid[0]))+1)//2):
+            for i in range(k, len(grid)-k):
+                for j in range(k, len(grid[0])-k):
+                    total = (((left[i][j-k]-left[i-k][j])+(right[i][j+k]-right[i-k][j])+grid[i-k][j]) +  
+                             ((left[i+k][j]-left[i][j+k])+(right[i+k][j]-right[i][j-k])-grid[i+k][j])) if k else grid[i][j]
+                    if total in lookup:
+                        continue
+                    lookup.add(total)
+                    heapq.heappush(min_heap, total)
+                    if len(min_heap) == K+1:                        
+                        lookup.remove(heapq.heappop(min_heap))
+        min_heap.sort(reverse=True)
+        return min_heap

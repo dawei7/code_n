@@ -1,13 +1,14 @@
 class Solution:
     def canCross(self, stones: List[int]) -> bool:
-        reachable = {position: set() for position in stones}
-        reachable[0].add(0)
+        @cache
+        def dfs(i, k):
+            if i == n - 1:
+                return True
+            for j in range(k - 1, k + 2):
+                if j > 0 and stones[i] + j in pos and dfs(pos[stones[i] + j], j):
+                    return True
+            return False
 
-        for position in stones:
-            for last_jump in reachable[position]:
-                for next_jump in (last_jump - 1, last_jump, last_jump + 1):
-                    next_position = position + next_jump
-                    if next_jump > 0 and next_position in reachable:
-                        reachable[next_position].add(next_jump)
-
-        return bool(reachable[stones[-1]])
+        n = len(stones)
+        pos = {s: i for i, s in enumerate(stones)}
+        return dfs(0, 0)

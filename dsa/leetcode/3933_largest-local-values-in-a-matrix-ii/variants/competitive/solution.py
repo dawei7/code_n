@@ -1,55 +1,65 @@
+# Time:  O(n * m * logn * logm)
+# Space: O(n * m * logn * logm)
+
+# 2d sparse table
 class Solution:
-    def countLocalMaximums(self, matrix: list[list[int]]) -> int:
-        rows, columns = len(matrix), len(matrix[0])
-        positions = [[] for _ in range(201)]
+    def countLocalMaximums(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        # RMQ - 2D Sparse Table
+        # Time:  ctor:  O(N * M * logN * logM) * O(fn)
+        #        query: O(fn)
+        # Space: O(N * M * logN * logM)
+        class SparseTable2D(object):
+            def __init__(self, matrix, fn):
+                self.fn = fn
+                n = len(matrix)
+                m = len(matrix[0])
+                logn = n.bit_length()-1  # log2_floor(n)
+                logm = m.bit_length()-1  # log2_floor(m)
+                self.bit_length = [0]
+                for i in range(max(logn, logm)+1):
+                    self.bit_length.extend(i+1 for _ in range(min(1<<i, (max(n, m)+1)-len(self.bit_length))))
+                self.st = [[[[0]*m for _ in range(n)] for _ in range(logm+1)] for _ in range(logn+1)]
+                for r in range(n):
+                    for c in range(m):
+                        self.st[0][0][r][c] = matrix[r][c]
+                for j in range(1, logm+1):
+                    for r in range(n):
+                        for c in range((m-(1<<j))+1):
+                            self.st[0][j][r][c] = fn(self.st[0][j-1][r][c], self.st[0][j-1][r][c+(1<<(j-1))])
+                for i in range(1, logn+1):
+                    for j in range(logm+1):
+                        for r in range((n-(1<<i))+1):
+                            for c in range((m-(1<<j))+1):
+                                self.st[i][j][r][c] = fn(self.st[i-1][j][r][c], self.st[i-1][j][r+(1<<(i-1))][c])
 
-        for row in range(rows):
-            for column in range(columns):
-                value = matrix[row][column]
-                if value:
-                    positions[value].append((row, column))
+            def query(self, r1, c1, r2, c2):  # Time: O(fn)
+                i = self.bit_length[r2-r1+1]-1  # log2_floor(r2-r1+1)
+                j = self.bit_length[c2-c1+1]-1  # log2_floor(c2-c1+1)
+                return self.fn(
+                    self.fn(self.st[i][j][r1][c1], self.st[i][j][r1][c2-(1<<j)+1]),
+                    self.fn(self.st[i][j][r2-(1<<i)+1][c1], self.st[i][j][r2-(1<<i)+1][c2-(1<<j)+1])
+                )
 
-        greater = [[0] * columns for _ in range(rows)]
-        answer = 0
-
-        for value in range(200, 0, -1):
-            cells = positions[value]
-            if cells:
-                prefix = [[0] * (columns + 1) for _ in range(rows + 1)]
-                for row in range(rows):
-                    running = 0
-                    above = prefix[row]
-                    current = prefix[row + 1]
-                    flags = greater[row]
-                    for column in range(columns):
-                        running += flags[column]
-                        current[column + 1] = above[column + 1] + running
-
-                for row, column in cells:
-                    top = max(0, row - value)
-                    bottom = min(rows - 1, row + value)
-                    left = max(0, column - value)
-                    right = min(columns - 1, column + value)
-                    larger = (
-                        prefix[bottom + 1][right + 1]
-                        - prefix[top][right + 1]
-                        - prefix[bottom + 1][left]
-                        + prefix[top][left]
-                    )
-
-                    for corner_row in (row - value, row + value):
-                        if 0 <= corner_row < rows:
-                            for corner_column in (
-                                column - value,
-                                column + value,
-                            ):
-                                if 0 <= corner_column < columns and matrix[corner_row][corner_column] > value:
-                                    larger -= 1
-
-                    if larger == 0:
-                        answer += 1
-
-            for row, column in cells:
-                greater[row][column] = 1
-
-        return answer
+        n, m = len(matrix), len(matrix[0])
+        st = SparseTable2D(matrix, max)
+        result = 0
+        for r in range(n):
+            row = matrix[r]
+            for c in range(m):
+                x = row[c]
+                if x == 0:
+                    continue
+                r1, r2 = max(0, r-x), min(n-1, r+x)
+                c1, c2 = max(0, c-x), min(m-1, c+x)
+                tl = r-x >= 0 and c-x >= 0
+                tr = r-x >= 0 and c+x <= m-1
+                bl = r+x <= n-1 and c-x >= 0
+                br = r+x <= n-1 and c+x <= m-1
+                if max(st.query(r1, c1+(1 if tl or bl else 0), r2, c2-(1 if tr or br else 0)),
+                       st.query(r1+(1 if tl or tr else 0), c1, r2-(1 if bl or br else 0), c2)) <= x:
+                    result += 1
+        return result

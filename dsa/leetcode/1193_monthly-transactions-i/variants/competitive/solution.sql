@@ -1,10 +1,13 @@
-SELECT
-    substr(trans_date, 1, 7) AS month,
-    country,
-    COUNT(*) AS trans_count,
-    SUM(CASE WHEN state = 'approved' THEN 1 ELSE 0 END) AS approved_count,
-    SUM(amount) AS trans_total_amount,
-    SUM(CASE WHEN state = 'approved' THEN amount ELSE 0 END) AS approved_total_amount
-FROM Transactions
-GROUP BY substr(trans_date, 1, 7), country
-ORDER BY month, country;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT Date_format(trans_date, '%Y-%m')       AS month, 
+       country, 
+       Count(id)                              AS trans_count, 
+       Count(IF(state = 'approved', 1, NULL)) AS approved_count, 
+       SUM(amount)                            AS trans_total_amount, 
+       SUM(IF(state = 'approved', amount, 0)) AS approved_total_amount 
+FROM   transactions 
+GROUP  BY Date_format(trans_date, '%Y-%m'), 
+          country 
+ORDER BY NULL

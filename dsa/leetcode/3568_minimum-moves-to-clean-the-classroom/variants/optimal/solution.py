@@ -1,42 +1,44 @@
-from collections import deque
-
-
 class Solution:
-    def minMoves(self, classroom: list[str], energy: int) -> int:
-        rows = len(classroom)
-        columns = len(classroom[0])
-        litter_bits: dict[tuple[int, int], int] = {}
-        litter_count = 0
-        start = (0, 0)
-        for row in range(rows):
-            for column in range(columns):
-                cell = classroom[row][column]
-                if cell == "S":
-                    start = (row, column)
-                elif cell == "L":
-                    litter_bits[row, column] = 1 << litter_count
-                    litter_count += 1
-        full_mask = (1 << litter_count) - 1
-        queue = deque([(start[0], start[1], 0, energy, 0)])
-        best_energy = {(start[0], start[1], 0): energy}
-        while queue:
-            row, column, mask, remaining, moves = queue.popleft()
-            if mask == full_mask:
-                return moves
-            if remaining < best_energy[row, column, mask]:
-                continue
-            if remaining == 0:
-                continue
-            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
+    def minMoves(self, classroom: List[str], energy: int) -> int:
+        m, n = len(classroom), len(classroom[0])
+        d = [[0] * n for _ in range(m)]
+        x = y = cnt = 0
+        for i, row in enumerate(classroom):
+            for j, c in enumerate(row):
+                if c == "S":
+                    x, y = i, j
+                elif c == "L":
+                    d[i][j] = cnt
+                    cnt += 1
+        if cnt == 0:
+            return 0
+        vis = [
+            [[[False] * (1 << cnt) for _ in range(energy + 1)] for _ in range(n)]
+            for _ in range(m)
+        ]
+        q = [(x, y, energy, (1 << cnt) - 1)]
+        vis[x][y][energy][(1 << cnt) - 1] = True
+        dirs = (-1, 0, 1, 0, -1)
+        ans = 0
+        while q:
+            t = q
+            q = []
+            for i, j, cur_energy, mask in t:
+                if mask == 0:
+                    return ans
+                if cur_energy <= 0:
                     continue
-                cell = classroom[next_row][next_column]
-                if cell == "X":
-                    continue
-                next_mask = mask | litter_bits.get((next_row, next_column), 0)
-                next_energy = energy if cell == "R" else remaining - 1
-                key = (next_row, next_column, next_mask)
-                if next_energy > best_energy.get(key, -1):
-                    best_energy[key] = next_energy
-                    queue.append((next_row, next_column, next_mask, next_energy, moves + 1))
+                for k in range(4):
+                    x, y = i + dirs[k], j + dirs[k + 1]
+                    if 0 <= x < m and 0 <= y < n and classroom[x][y] != "X":
+                        nxt_energy = (
+                            energy if classroom[x][y] == "R" else cur_energy - 1
+                        )
+                        nxt_mask = mask
+                        if classroom[x][y] == "L":
+                            nxt_mask &= ~(1 << d[x][y])
+                        if not vis[x][y][nxt_energy][nxt_mask]:
+                            vis[x][y][nxt_energy][nxt_mask] = True
+                            q.append((x, y, nxt_energy, nxt_mask))
+            ans += 1
         return -1

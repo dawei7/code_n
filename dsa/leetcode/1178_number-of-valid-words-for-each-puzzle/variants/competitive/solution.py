@@ -1,31 +1,75 @@
-from collections import Counter
-from typing import List
-
+# Time:  O(n*l + m*L), m is the number of puzzles, L is the length of puzzles
+#                    , n is the number of words, l is the max length of words
+# Space: O(L!)
 
 class Solution:
-    def findNumOfValidWords(self, words: List[str], puzzles: List[str]) -> List[int]:
-        counts = Counter()
+    def findNumOfValidWords(self, words, puzzles):
+        """
+        :type words: List[str]
+        :type puzzles: List[str]
+        :rtype: List[int]
+        """
+        L = 7
+        def search(node, puzzle, start, first, met_first):
+            result = 0
+            if "_end" in node and met_first:
+                result += node["_end"]
+            for i in range(start, len(puzzle)):
+                if puzzle[i] not in node:
+                    continue
+                result += search(node[puzzle[i]], puzzle, i+1,
+                                 first, met_first or (puzzle[i] == first))
+            return result
+
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
         for word in words:
-            mask = 0
-            for character in set(word):
-                mask |= 1 << (ord(character) - ord("a"))
-            if mask.bit_count() <= 7:
-                counts[mask] += 1
-
-        answers = []
+            count = set(word)
+            if len(count) > L:
+                continue
+            word = sorted(count)
+            end = reduce(dict.__getitem__, word, trie)
+            end["_end"] = end["_end"]+1 if "_end" in end else 1
+        result = []
         for puzzle in puzzles:
-            required = 1 << (ord(puzzle[0]) - ord("a"))
-            optional = 0
-            for character in puzzle[1:]:
-                optional |= 1 << (ord(character) - ord("a"))
+            first = puzzle[0]
+            result.append(search(trie, sorted(puzzle), 0, first, False))
+        return result
 
-            total = 0
-            submask = optional
-            while True:
-                total += counts[submask | required]
-                if submask == 0:
-                    break
-                submask = (submask - 1) & optional
-            answers.append(total)
 
-        return answers
+# Time:  O(m*2^(L-1) + n*(l+m)), m is the number of puzzles, L is the length of puzzles
+#                              , n is the number of words, l is the max length of words
+# Space: O(m*2^(L-1))
+import collections
+
+
+class Solution2(object):
+    def findNumOfValidWords(self, words, puzzles):
+        """
+        :type words: List[str]
+        :type puzzles: List[str]
+        :rtype: List[int]
+        """
+        L = 7
+        lookup = collections.defaultdict(list)
+        for i in range(len(puzzles)):
+            bits = []
+            base = 1 << (ord(puzzles[i][0])-ord('a'))
+            for j in range(1, L):
+                bits.append(ord(puzzles[i][j])-ord('a'))
+            for k in range(2**len(bits)):
+                bitset = base
+                for j in range(len(bits)):
+                    if k & (1<<j):
+                        bitset |= 1<<bits[j]
+                lookup[bitset].append(i)
+        result = [0]*len(puzzles)
+        for word in words:
+            bitset = 0
+            for c in word:
+                bitset |= 1<<(ord(c)-ord('a'))
+            if bitset not in lookup:
+                continue
+            for i in lookup[bitset]:
+                result[i] += 1
+        return result

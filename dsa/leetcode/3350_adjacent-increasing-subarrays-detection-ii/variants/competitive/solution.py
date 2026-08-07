@@ -1,23 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def maxIncreasingSubarrays(self, nums: List[int]) -> int:
-        previous_run = 0
-        current_run = 1
-        answer = 0
-
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                current_run += 1
+    def maxIncreasingSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        curr, prev = 1, 0
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                curr += 1
             else:
-                previous_run = current_run
-                current_run = 1
-
-            answer = max(
-                answer,
-                current_run // 2,
-                min(previous_run, current_run),
-            )
-
-        return answer
+                prev = curr
+                curr = 1
+            result = max(result, curr//2, min(prev, curr))
+        return result

@@ -1,19 +1,17 @@
 class Solution:
     def minimumOperationsToWriteY(self, grid: List[List[int]]) -> int:
         n = len(grid)
-        middle = n // 2
-        counts = [[0, 0, 0], [0, 0, 0]]
-
-        for row in range(n):
-            for column in range(n):
-                belongs_to_y = (row <= middle and (column == row or column == n - 1 - row)) or (
-                    row >= middle and column == middle
-                )
-                counts[belongs_to_y][grid[row][column]] += 1
-
+        cnt1 = Counter()
+        cnt2 = Counter()
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                a = i == j and i <= n // 2
+                b = i + j == n - 1 and i <= n // 2
+                c = j == n // 2 and i >= n // 2
+                if a or b or c:
+                    cnt1[x] += 1
+                else:
+                    cnt2[x] += 1
         return min(
-            n * n - counts[True][y_value] - counts[False][background_value]
-            for y_value in range(3)
-            for background_value in range(3)
-            if y_value != background_value
+            n * n - cnt1[i] - cnt2[j] for i in range(3) for j in range(3) if i != j
         )

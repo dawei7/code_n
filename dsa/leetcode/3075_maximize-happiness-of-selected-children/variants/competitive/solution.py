@@ -1,12 +1,13 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, greedy
 class Solution:
-    def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
-        ordered_happiness = sorted(happiness, reverse=True)
-        total = 0
-
-        for turn in range(k):
-            contribution = ordered_happiness[turn] - turn
-            if contribution <= 0:
-                break
-            total += contribution
-
-        return total
+    def maximumHappinessSum(self, happiness, k):
+        """
+        :type happiness: List[int]
+        :type k: int
+        :rtype: int
+        """
+        happiness.sort(reverse=True)
+        return sum(max(happiness[i]-i, 0) for i in range(k))

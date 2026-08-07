@@ -1,39 +1,46 @@
-from typing import List
+# Time:  O(n^3)
+# Space: O(n)
 
 
 class Solution:
-    def splitIntoFibonacci(self, num: str) -> List[int]:
-        limit = 2**31 - 1
-        length = len(num)
-
-        for first_end in range(1, min(10, length - 2) + 1):
-            if num[0] == "0" and first_end > 1:
-                break
-            first = int(num[:first_end])
-            if first > limit:
-                break
-
-            max_second_end = min(first_end + 10, length - 1)
-            for second_end in range(first_end + 1, max_second_end + 1):
-                if num[first_end] == "0" and second_end > first_end + 1:
+    def splitIntoFibonacci(self, S):
+        """
+        :type S: str
+        :rtype: List[int]
+        """
+        def startswith(S, k, x):
+            y = 0
+            for i in range(k, len(S)):
+                y = 10*y + int(S[i])
+                if y == x:
+                    return i-k+1
+                elif y > x:
                     break
-                second = int(num[first_end:second_end])
-                if second > limit:
+            return 0
+
+        MAX_INT = 2**31-1
+        a = 0
+        for i in range(len(S)-2):
+            a = 10*a + int(S[i])
+            b = 0
+            for j in range(i+1, len(S)-1):
+                b = 10*b + int(S[j])
+                fib = [a, b]
+                k = j+1
+                while k < len(S):
+                    if fib[-2] > MAX_INT-fib[-1]:
+                        break
+                    c = fib[-2]+fib[-1]
+                    length = startswith(S, k, c)
+                    if length == 0:
+                        break
+                    fib.append(c)
+                    k += length
+                else:
+                    return fib
+                if b == 0:
                     break
-
-                sequence = [first, second]
-                position = second_end
-                while position < length:
-                    next_value = sequence[-2] + sequence[-1]
-                    if next_value > limit:
-                        break
-                    token = str(next_value)
-                    if not num.startswith(token, position):
-                        break
-                    sequence.append(next_value)
-                    position += len(token)
-
-                if position == length and len(sequence) >= 3:
-                    return sequence
-
+            if a == 0:
+                break
         return []
+

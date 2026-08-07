@@ -1,9 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# two pointers, greedy
 class Solution:
-    def appendCharacters(self, s: str, t: str) -> int:
-        matched = 0
-
-        for char in s:
-            if matched < len(t) and char == t[matched]:
-                matched += 1
-
-        return len(t) - matched
+    def appendCharacters(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        i = -1
+        for j, c in enumerate(t):
+            for i in range(i+1, len(s)):
+                if s[i] == c:
+                    break
+            else:
+                return len(t)-j
+        return 0

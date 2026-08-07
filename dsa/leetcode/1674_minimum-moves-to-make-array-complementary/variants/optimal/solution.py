@@ -1,26 +1,16 @@
-from typing import List
-
-
 class Solution:
     def minMoves(self, nums: List[int], limit: int) -> int:
-        difference = [0] * (2 * limit + 2)
-
-        for index in range(len(nums) // 2):
-            first = nums[index]
-            second = nums[-1 - index]
-            low = 1 + min(first, second)
-            exact = first + second
-            high = limit + max(first, second)
-
-            difference[2] += 2
-            difference[low] -= 1
-            difference[exact] -= 1
-            difference[exact + 1] += 1
-            difference[high + 1] += 1
-
-        answer = len(nums)
-        moves = 0
-        for target in range(2, 2 * limit + 1):
-            moves += difference[target]
-            answer = min(answer, moves)
-        return answer
+        d = [0] * (2 * limit + 2)
+        n = len(nums)
+        for i in range(n // 2):
+            x, y = nums[i], nums[-i - 1]
+            if x > y:
+                x, y = y, x
+            d[2] += 2
+            d[x + 1] -= 2
+            d[x + 1] += 1
+            d[x + y] -= 1
+            d[x + y + 1] += 1
+            d[y + limit + 1] -= 1
+            d[y + limit + 1] += 2
+        return min(accumulate(d[2:]))

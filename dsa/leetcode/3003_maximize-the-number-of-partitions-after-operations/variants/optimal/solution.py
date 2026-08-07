@@ -1,26 +1,23 @@
 class Solution:
     def maxPartitionsAfterOperations(self, s: str, k: int) -> int:
-        states = {(0, False): 0}
-
-        for character in s:
-            original = ord(character) - ord("a")
-            next_states = {}
-
-            for (mask, changed), partitions in states.items():
-                choices = (original,) if changed else range(26)
-                for letter in choices:
-                    merged = mask | (1 << letter)
-                    next_changed = changed or letter != original
-
-                    if merged.bit_count() > k:
-                        key = (1 << letter, next_changed)
-                        score = partitions + 1
+        @cache
+        def dfs(i: int, cur: int, t: int) -> int:
+            if i >= n:
+                return 1
+            v = 1 << (ord(s[i]) - ord("a"))
+            nxt = cur | v
+            if nxt.bit_count() > k:
+                ans = dfs(i + 1, v, t) + 1
+            else:
+                ans = dfs(i + 1, nxt, t)
+            if t:
+                for j in range(26):
+                    nxt = cur | (1 << j)
+                    if nxt.bit_count() > k:
+                        ans = max(ans, dfs(i + 1, 1 << j, 0) + 1)
                     else:
-                        key = (merged, next_changed)
-                        score = partitions
+                        ans = max(ans, dfs(i + 1, nxt, 0))
+            return ans
 
-                    next_states[key] = max(next_states.get(key, -1), score)
-
-            states = next_states
-
-        return max(states.values()) + 1
+        n = len(s)
+        return dfs(0, 0, 1)

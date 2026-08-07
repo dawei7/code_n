@@ -1,12 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import itertools
 
 
 class Solution:
-    def printVertically(self, s: str) -> List[str]:
-        words = s.split()
-        height = max(map(len, words))
-        rows = []
-        for row in range(height):
-            characters = [word[row] if row < len(word) else " " for word in words]
-            rows.append("".join(characters).rstrip())
-        return rows
+    def printVertically(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        return ["".join(c).rstrip() for c in itertools.izip_longest(*s.split(), fillvalue=' ')]

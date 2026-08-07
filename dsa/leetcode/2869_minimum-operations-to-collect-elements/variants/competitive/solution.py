@@ -1,8 +1,20 @@
+# Time:  O(n)
+# Space: O(k)
+
+# hash table
 class Solution:
-    def minOperations(self, nums: List[int], k: int) -> int:
-        seen = set()
-        for operations, value in enumerate(reversed(nums), 1):
-            if value <= k:
-                seen.add(value)
-            if len(seen) == k:
-                return operations
+    def minOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        lookup = [False]*k
+        for i in reversed(range(len(nums))):
+            if nums[i] > len(lookup) or lookup[nums[i]-1]:
+                continue
+            lookup[nums[i]-1] = True
+            k -= 1
+            if not k:
+                break
+        return len(nums)-i

@@ -1,9 +1,7 @@
 class Solution:
     def digitFrequencyScore(self, n: int) -> int:
-        score = 0
-
+        ans = 0
         while n:
-            n, digit = divmod(n, 10)
-            score += digit
-
-        return score
+            n, x = divmod(n, 10)
+            ans += x
+        return ans

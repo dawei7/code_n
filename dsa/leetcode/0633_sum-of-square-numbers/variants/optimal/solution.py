@@ -1,17 +1,12 @@
-from math import isqrt
-
-
 class Solution:
     def judgeSquareSum(self, c: int) -> bool:
-        left = 0
-        right = isqrt(c)
-
-        while left <= right:
-            square_sum = left * left + right * right
-            if square_sum == c:
+        a, b = 0, int(sqrt(c))
+        while a <= b:
+            s = a**2 + b**2
+            if s == c:
                 return True
-            if square_sum < c:
-                left += 1
+            if s < c:
+                a += 1
             else:
-                right -= 1
+                b -= 1
         return False

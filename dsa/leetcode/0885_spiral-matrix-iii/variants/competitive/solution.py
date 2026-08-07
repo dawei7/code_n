@@ -1,27 +1,23 @@
-from typing import List
-
+# Time:  O(max(m, n)^2)
+# Space: O(1)
 
 class Solution:
-    def spiralMatrixIII(self, rows: int, cols: int, rStart: int, cStart: int) -> List[List[int]]:
-        result = [[rStart, cStart]]
-        target = rows * cols
-        if target == 1:
-            return result
+    def spiralMatrixIII(self, R, C, r0, c0):
+        """
+        :type R: int
+        :type C: int
+        :type r0: int
+        :type c0: int
+        :rtype: List[List[int]]
+        """
+        r, c = r0, c0
+        result = [[r, c]]
+        x, y, n, i = 0, 1, 0, 0
+        while len(result) < R*C:
+            r, c, i = r+x, c+y, i+1
+            if 0 <= r < R and 0 <= c < C:
+                result.append([r, c])
+            if i == n//2+1:
+                x, y, n, i = y, -x, n+1, 0
+        return result
 
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        row, column = rStart, cStart
-        direction = 0
-        segment_length = 1
-
-        while True:
-            for _ in range(2):
-                row_step, column_step = directions[direction]
-                for _ in range(segment_length):
-                    row += row_step
-                    column += column_step
-                    if 0 <= row < rows and 0 <= column < cols:
-                        result.append([row, column])
-                        if len(result) == target:
-                            return result
-                direction = (direction + 1) % 4
-            segment_length += 1

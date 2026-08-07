@@ -1,27 +1,38 @@
-class StringIterator:
-    def __init__(self, compressedString: str):
-        self.compressed = compressedString
-        self.index = 0
-        self.character = " "
-        self.remaining = 0
+# Time:  O(1)
+# Space: O(1)
 
-    def _load_run(self):
-        self.character = self.compressed[self.index]
-        self.index += 1
+import re
 
-        count = 0
-        while self.index < len(self.compressed) and self.compressed[self.index].isdigit():
-            count = count * 10 + int(self.compressed[self.index])
-            self.index += 1
-        self.remaining = count
 
-    def next(self) -> str:
+class StringIterator(object):
+
+    def __init__(self, compressedString):
+        """
+        :type compressedString: str
+        """
+        self.__result = re.findall(r"([a-zA-Z])(\d+)", compressedString)
+        self.__index, self.__num, self.__ch = 0, 0, ' '
+
+    def next(self):
+        """
+        :rtype: str
+        """
         if not self.hasNext():
-            return " "
-        if self.remaining == 0:
-            self._load_run()
-        self.remaining -= 1
-        return self.character
+            return ' '
+        if self.__num == 0:
+            self.__ch = self.__result[self.__index][0]
+            self.__num = int(self.__result[self.__index][1])
+            self.__index += 1
+        self.__num -= 1
+        return self.__ch
 
-    def hasNext(self) -> bool:
-        return self.remaining > 0 or self.index < len(self.compressed)
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self.__index != len(self.__result) or self.__num != 0
+
+
+
+

@@ -1,44 +1,44 @@
-from typing import List
+# Time:  ctor:       O(t * max_m), t is the number of tables, max_m is the max number of columns in all tables
+#        insertRow:  O(m), m is the number of columns
+#        deleteRow:  O(1)
+#        selectCell: O(m)
+# Space: O(d), d is the total size of data
+
+import itertools
 
 
-class SQL:
-    def __init__(self, names: List[str], columns: List[int]):
-        self.tables = {
-            name: {
-                "columns": column_count,
-                "next_id": 1,
-                "rows": {},
-            }
-            for name, column_count in zip(names, columns)
-        }
+# hash table
+class SQL(object):
 
-    def ins(self, name: str, row: List[str]) -> bool:
-        table = self.tables.get(name)
-        if table is None or len(row) != table["columns"]:
-            return False
+    def __init__(self, names, columns):
+        """
+        :type names: List[str]
+        :type columns: List[int]
+        """
+        self.__table = {name:[column] for name, column in itertools.izip(names, columns)}
 
-        row_id = table["next_id"]
-        table["next_id"] += 1
-        table["rows"][row_id] = list(row)
-        return True
+    def insertRow(self, name, row):
+        """
+        :type name: str
+        :type row: List[str]
+        :rtype: None
+        """
+        row.append("")  # soft delete
+        self.__table[name].append(row)
 
-    def rmv(self, name: str, rowId: int) -> None:
-        table = self.tables.get(name)
-        if table is not None:
-            table["rows"].pop(rowId, None)
+    def deleteRow(self, name, rowId):
+        """
+        :type name: str
+        :type rowId: int
+        :rtype: None
+        """
+        self.__table[name][rowId][-1] = "deleted"  # soft delete
 
-    def sel(self, name: str, rowId: int, columnId: int) -> str:
-        table = self.tables.get(name)
-        if table is None:
-            return "<null>"
-
-        row = table["rows"].get(rowId)
-        if row is None or not 1 <= columnId <= table["columns"]:
-            return "<null>"
-        return row[columnId - 1]
-
-    def exp(self, name: str) -> List[str]:
-        table = self.tables.get(name)
-        if table is None:
-            return []
-        return [f"{row_id}," + ",".join(row) for row_id, row in table["rows"].items()]
+    def selectCell(self, name, rowId, columnId):
+        """
+        :type name: str
+        :type rowId: int
+        :type columnId: int
+        :rtype: str
+        """
+        return self.__table[name][rowId][columnId-1] if self.__table[name][rowId][-1] == "" else ""

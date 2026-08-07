@@ -1,39 +1,28 @@
 class Solution:
     def minimumScore(self, s: str, t: str) -> int:
-        n = len(s)
-        m = len(t)
+        def check(x):
+            for k in range(n):
+                i, j = k - 1, k + x
+                l = f[i] if i >= 0 else -1
+                r = g[j] if j < n else m + 1
+                if l < r:
+                    return True
+            return False
 
-        suffix_start = [-1] * (m + 1)
-        suffix_start[m] = n
-        s_index = n - 1
+        m, n = len(s), len(t)
+        f = [inf] * n
+        g = [-1] * n
+        i, j = 0, 0
+        while i < m and j < n:
+            if s[i] == t[j]:
+                f[j] = i
+                j += 1
+            i += 1
+        i, j = m - 1, n - 1
+        while i >= 0 and j >= 0:
+            if s[i] == t[j]:
+                g[j] = i
+                j -= 1
+            i -= 1
 
-        for t_index in range(m - 1, -1, -1):
-            while s_index >= 0 and s[s_index] != t[t_index]:
-                s_index -= 1
-            if s_index < 0:
-                break
-            suffix_start[t_index] = s_index
-            s_index -= 1
-
-        answer = m
-        suffix_index = 0
-        prefix_end = -1
-        s_index = 0
-
-        for prefix_length in range(m + 1):
-            if suffix_index < prefix_length:
-                suffix_index = prefix_length
-            while suffix_index < m and suffix_start[suffix_index] <= prefix_end:
-                suffix_index += 1
-            answer = min(answer, suffix_index - prefix_length)
-
-            if prefix_length == m:
-                break
-            while s_index < n and s[s_index] != t[prefix_length]:
-                s_index += 1
-            if s_index == n:
-                break
-            prefix_end = s_index
-            s_index += 1
-
-        return answer
+        return bisect_left(range(n + 1), True, key=check)

@@ -1,22 +1,49 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# sort, math
 class Solution:
-    def maximumSum(self, nums: List[int]) -> int:
-        best = [[-1, -1, -1] for _ in range(4)]
-        best[0][0] = 0
+    def maximumSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def add(arr, x):
+            for i in range(len(arr)):
+                if x > arr[i]:
+                    arr[i], x = x, arr[i]
+            if len(arr) != 3:
+                arr.append(x)
 
-        for value in nums:
-            remainder = value % 3
-            for chosen in range(2, -1, -1):
-                for current_remainder in range(3):
-                    current = best[chosen][current_remainder]
-                    if current < 0:
-                        continue
-                    next_remainder = (current_remainder + remainder) % 3
-                    best[chosen + 1][next_remainder] = max(
-                        best[chosen + 1][next_remainder],
-                        current + value,
-                    )
+        group = [[] for _ in range(3)]
+        for x in nums:
+            add(group[x%3], x)
+        result = 0
+        for g in group:
+            if len(g) == 3:
+                result = max(result, sum(g))
+        if group[0] and group[1] and group[2]:
+            result = max(result, group[0][0]+group[1][0]+group[2][0])
+        return result
 
-        return max(0, best[3][0])
+
+# Time:  O(nlogn)
+# Space: O(n)
+# sort, math
+class Solution2(object):
+    def maximumSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        group = [[] for _ in range(3)]
+        for x in nums:
+            group[x%3].append(x)
+        result = 0
+        for g in group:
+            g.sort(reverse=True)
+            if len(g) >= 3:
+                result = max(result, sum(g[i] for i in range(3)))
+        if group[0] and group[1] and group[2]:
+            result = max(result, group[0][0]+group[1][0]+group[2][0])
+        return result

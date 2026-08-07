@@ -1,18 +1,32 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def missingNumber(self, arr: List[int]) -> int:
-        difference = (arr[-1] - arr[0]) // len(arr)
-        if difference == 0:
-            return arr[0]
+    def missingNumber(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        def check(arr, d, x):
+            return arr[x] != arr[0] + d*x
 
-        left, right = 0, len(arr) - 1
-        while left < right:
-            middle = (left + right) // 2
-            expected = arr[0] + middle * difference
-            if arr[middle] == expected:
-                left = middle + 1
+        d = (arr[-1]-arr[0])//len(arr)
+        left, right = 0, len(arr)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(arr, d, mid):
+                right = mid-1
             else:
-                right = middle
-        return arr[0] + left * difference
+                left = mid+1
+        return arr[0] + d*left
+
+
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def missingNumber(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        return (min(arr)+max(arr))*(len(arr)+1)//2 - sum(arr)

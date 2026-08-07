@@ -1,93 +1,54 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.count = n
 
-class DisjointSet:
-    def __init__(self, size: int):
-        self.parent = list(range(size))
-        self.rank = [0] * size
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
 
-    def find(self, node: int) -> int:
-        while self.parent[node] != node:
-            self.parent[node] = self.parent[self.parent[node]]
-            node = self.parent[node]
-        return node
-
-    def union(self, first: int, second: int) -> bool:
-        first_root = self.find(first)
-        second_root = self.find(second)
-        if first_root == second_root:
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
             return False
-
-        if self.rank[first_root] < self.rank[second_root]:
-            first_root, second_root = second_root, first_root
-        self.parent[second_root] = first_root
-        if self.rank[first_root] == self.rank[second_root]:
-            self.rank[first_root] += 1
+        self.set[max(x_root, y_root)] = min(x_root, y_root)
+        self.count -= 1
         return True
 
 
 class Solution:
-    def findCriticalAndPseudoCriticalEdges(self, n: int, edges: List[List[int]]) -> List[List[int]]:
-        indexed = sorted((weight, first, second, index) for index, (first, second, weight) in enumerate(edges))
-        components = DisjointSet(n)
-        critical = []
-        pseudo_critical = []
-        cursor = 0
-
-        while cursor < len(indexed):
-            end = cursor + 1
-            weight = indexed[cursor][0]
-            while end < len(indexed) and indexed[end][0] == weight:
-                end += 1
-
-            adjacency = {}
-            candidates = []
-
-            for _, first, second, index in indexed[cursor:end]:
-                first_root = components.find(first)
-                second_root = components.find(second)
-                if first_root == second_root:
+    def findCriticalAndPseudoCriticalEdges(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        def MST(n, edges, unused=None, used=None):
+            union_find = UnionFind(n)
+            weight = 0
+            if used is not None:
+                u, v, w, _ = edges[used]
+                if union_find.union_set(u, v):
+                    weight += w
+            for i, (u, v, w, _) in enumerate(edges):
+                if i == unused:
                     continue
-
-                candidates.append((first_root, second_root, index))
-                adjacency.setdefault(first_root, []).append((second_root, index))
-                adjacency.setdefault(second_root, []).append((first_root, index))
-
-            discovery = {}
-            low = {}
-            bridges = set()
-            timestamp = 0
-
-            def find_bridges(node: int, parent_edge: int) -> None:
-                nonlocal timestamp
-                discovery[node] = timestamp
-                low[node] = timestamp
-                timestamp += 1
-
-                for neighbor, edge_index in adjacency[node]:
-                    if edge_index == parent_edge:
-                        continue
-                    if neighbor not in discovery:
-                        find_bridges(neighbor, edge_index)
-                        low[node] = min(low[node], low[neighbor])
-                        if low[neighbor] > discovery[node]:
-                            bridges.add(edge_index)
-                    else:
-                        low[node] = min(low[node], discovery[neighbor])
-
-            for node in adjacency:
-                if node not in discovery:
-                    find_bridges(node, -1)
-
-            for _, _, index in candidates:
-                if index in bridges:
-                    critical.append(index)
-                else:
-                    pseudo_critical.append(index)
-
-            for _, first, second, _ in indexed[cursor:end]:
-                components.union(first, second)
-
-            cursor = end
-
-        return [critical, pseudo_critical]
+                if union_find.union_set(u, v):
+                    weight += w
+            return weight if union_find.count == 1 else float("inf")
+        
+        for i, edge in enumerate(edges):
+            edge.append(i)
+        edges.sort(key=lambda x: x[2])
+        mst = MST(n, edges)
+        result = [[], []]
+        for i, edge in enumerate(edges):
+            if mst < MST(n, edges, unused=i):
+                result[0].append(edge[3])
+            elif mst == MST(n, edges, used=i):
+                result[1].append(edge[3])
+        return result

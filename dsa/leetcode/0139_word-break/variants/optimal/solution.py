@@ -1,14 +1,8 @@
-from typing import List
-
-
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         words = set(wordDict)
-        reachable = [False] * (len(s) + 1)
-        reachable[0] = True
-        for end in range(1, len(s) + 1):
-            for start in range(end):
-                if reachable[start] and s[start:end] in words:
-                    reachable[end] = True
-                    break
-        return reachable[-1]
+        n = len(s)
+        f = [True] + [False] * n
+        for i in range(1, n + 1):
+            f[i] = any(f[j] and s[j:i] in words for j in range(i))
+        return f[n]

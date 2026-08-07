@@ -1,17 +1,14 @@
 class Solution:
     def maxSumRangeQuery(self, nums: List[int], requests: List[List[int]]) -> int:
-        length = len(nums)
-        difference = [0] * (length + 1)
-        for left, right in requests:
-            difference[left] += 1
-            difference[right + 1] -= 1
-
-        coverage = []
-        active = 0
-        for index in range(length):
-            active += difference[index]
-            coverage.append(active)
-
+        n = len(nums)
+        d = [0] * n
+        for l, r in requests:
+            d[l] += 1
+            if r + 1 < n:
+                d[r + 1] -= 1
+        for i in range(1, n):
+            d[i] += d[i - 1]
         nums.sort()
-        coverage.sort()
-        return sum(value * count for value, count in zip(nums, coverage)) % 1_000_000_007
+        d.sort()
+        mod = 10**9 + 7
+        return sum(a * b for a, b in zip(nums, d)) % mod

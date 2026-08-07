@@ -1,17 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# sliding window, two pointers
 class Solution:
-    def countSubarrays(self, nums: List[int], k: int) -> int:
-        answer = 0
-        window_sum = 0
-        left = 0
-
+    def countSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = total = left = 0
         for right in range(len(nums)):
-            window_sum += nums[right]
-            while window_sum * (right - left + 1) >= k:
-                window_sum -= nums[left]
+            total += nums[right]
+            while total*(right-left+1) >= k:
+                total -= nums[left]
                 left += 1
-            answer += right - left + 1
-
-        return answer
+            result += right-left+1
+        return result

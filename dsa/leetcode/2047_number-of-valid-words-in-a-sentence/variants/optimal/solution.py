@@ -1,28 +1,19 @@
 class Solution:
     def countValidWords(self, sentence: str) -> int:
-        def valid(token: str) -> bool:
-            hyphens = 0
-            punctuation = 0
-
-            for index, character in enumerate(token):
-                if character.isdigit():
+        def check(s: str) -> bool:
+            st = False
+            for i, c in enumerate(s):
+                if c.isdigit() or (c in "!.," and i < len(s) - 1):
                     return False
-
-                if character == "-":
-                    hyphens += 1
+                if c == "-":
                     if (
-                        hyphens > 1
-                        or index == 0
-                        or index == len(token) - 1
-                        or not token[index - 1].islower()
-                        or not token[index + 1].islower()
+                        st
+                        or i in (0, len(s) - 1)
+                        or not s[i - 1].isalpha()
+                        or not s[i + 1].isalpha()
                     ):
                         return False
-                elif character in "!.,":
-                    punctuation += 1
-                    if punctuation > 1 or index != len(token) - 1:
-                        return False
-
+                    st = True
             return True
 
-        return sum(valid(token) for token in sentence.split())
+        return sum(check(s) for s in sentence.split())

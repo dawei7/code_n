@@ -1,36 +1,32 @@
-from fractions import Fraction
-from functools import lru_cache
-
-
 class Solution:
-    def judgePoint24(self, cards: list[int]) -> bool:
-        @lru_cache(maxsize=None)
-        def can_make(values):
-            if len(values) == 1:
-                return values[0] == 24
+    def judgePoint24(self, cards: List[int]) -> bool:
+        def dfs(nums: List[float]):
+            n = len(nums)
+            if n == 1:
+                if abs(nums[0] - 24) < 1e-6:
+                    return True
+                return False
+            ok = False
+            for i in range(n):
+                for j in range(n):
+                    if i != j:
+                        nxt = [nums[k] for k in range(n) if k != i and k != j]
+                        for op in ops:
+                            match op:
+                                case "/":
+                                    if nums[j] == 0:
+                                        continue
+                                    ok |= dfs(nxt + [nums[i] / nums[j]])
+                                case "*":
+                                    ok |= dfs(nxt + [nums[i] * nums[j]])
+                                case "+":
+                                    ok |= dfs(nxt + [nums[i] + nums[j]])
+                                case "-":
+                                    ok |= dfs(nxt + [nums[i] - nums[j]])
+                            if ok:
+                                return True
+            return ok
 
-            for left_index in range(len(values)):
-                for right_index in range(left_index + 1, len(values)):
-                    left = values[left_index]
-                    right = values[right_index]
-                    remaining = [
-                        values[index] for index in range(len(values)) if index not in (left_index, right_index)
-                    ]
-                    results = {
-                        left + right,
-                        left - right,
-                        right - left,
-                        left * right,
-                    }
-                    if right != 0:
-                        results.add(left / right)
-                    if left != 0:
-                        results.add(right / left)
-
-                    for result in results:
-                        next_values = tuple(sorted([*remaining, result]))
-                        if can_make(next_values):
-                            return True
-            return False
-
-        return can_make(tuple(sorted(Fraction(card) for card in cards)))
+        ops = ("+", "-", "*", "/")
+        nums = [float(x) for x in cards]
+        return dfs(nums)

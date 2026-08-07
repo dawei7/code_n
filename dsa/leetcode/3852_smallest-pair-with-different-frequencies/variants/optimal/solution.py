@@ -1,14 +1,9 @@
 class Solution:
     def minDistinctFreqPair(self, nums: list[int]) -> list[int]:
-        frequencies = [0] * 101
-
-        for value in nums:
-            frequencies[value] += 1
-
-        x = next(value for value in range(1, 101) if frequencies[value] > 0)
-
-        for y in range(x + 1, 101):
-            if frequencies[y] > 0 and frequencies[y] != frequencies[x]:
-                return [x, y]
-
-        return [-1, -1]
+        cnt = Counter(nums)
+        x = min(cnt.keys())
+        min_y = inf
+        for y in cnt.keys():
+            if y < min_y and cnt[x] != cnt[y]:
+                min_y = y
+        return [-1, -1] if min_y == inf else [x, min_y]

@@ -6,18 +6,17 @@
 #         self.right = right
 class Solution:
     def countDominantNodes(self, root: TreeNode | None) -> int:
-        answer = 0
-
-        def subtree_max(node):
-            nonlocal answer
+        def dfs(node: TreeNode | None) -> int:
             if node is None:
-                return float("-inf")
+                return -inf
+            l = dfs(node.left)
+            r = dfs(node.right)
+            mx = max(l, r, node.val)
+            if mx == node.val:
+                nonlocal ans
+                ans += 1
+            return mx
 
-            left_max = subtree_max(node.left)
-            right_max = subtree_max(node.right)
-            if node.val >= left_max and node.val >= right_max:
-                answer += 1
-            return max(node.val, left_max, right_max)
-
-        subtree_max(root)
-        return answer
+        ans = 0
+        dfs(root)
+        return ans

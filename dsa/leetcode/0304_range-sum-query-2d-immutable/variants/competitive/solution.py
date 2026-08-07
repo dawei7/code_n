@@ -1,21 +1,34 @@
-class NumMatrix:
-    def __init__(self, matrix: list[list[int]]):
-        rows = len(matrix)
-        columns = len(matrix[0])
-        self.prefix = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for row in range(rows):
-            for column in range(columns):
-                self.prefix[row + 1][column + 1] = (
-                    matrix[row][column]
-                    + self.prefix[row][column + 1]
-                    + self.prefix[row + 1][column]
-                    - self.prefix[row][column]
-                )
+# Time:  ctor:   O(m * n),
+#        lookup: O(1)
+# Space: O(m * n)
 
-    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        return (
-            self.prefix[row2 + 1][col2 + 1]
-            - self.prefix[row1][col2 + 1]
-            - self.prefix[row2 + 1][col1]
-            + self.prefix[row1][col1]
-        )
+class NumMatrix(object):
+    def __init__(self, matrix):
+        """
+        initialize your data structure here.
+        :type matrix: List[List[int]]
+        """
+        if not matrix:
+            return
+
+        m, n = len(matrix), len(matrix[0])
+        self.__sums = [[0 for _ in range(n+1)] for _ in range(m+1)]
+        for i in range(1, m+1):
+            for j in range(1, n+1):
+                self.__sums[i][j] = self.__sums[i][j-1] + self.__sums[i-1][j] - \
+                                    self.__sums[i-1][j-1] + matrix[i-1][j-1]
+
+    def sumRegion(self, row1, col1, row2, col2):
+        """
+        sum of elements matrix[(row1,col1)..(row2,col2)], inclusive.
+        :type row1: int
+        :type col1: int
+        :type row2: int
+        :type col2: int
+        :rtype: int
+        """
+        return self.__sums[row2+1][col2+1] - self.__sums[row2+1][col1] - \
+               self.__sums[row1][col2+1] + self.__sums[row1][col1]
+
+
+

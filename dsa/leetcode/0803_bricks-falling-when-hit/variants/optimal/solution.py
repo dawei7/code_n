@@ -1,61 +1,46 @@
-from typing import List
-
-
 class Solution:
     def hitBricks(self, grid: List[List[int]], hits: List[List[int]]) -> List[int]:
-        rows, cols = len(grid), len(grid[0])
-        roof = rows * cols
-        parent = list(range(roof + 1))
-        component_size = [1] * (roof + 1)
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
+        def union(a, b):
+            pa, pb = find(a), find(b)
+            if pa != pb:
+                size[pb] += size[pa]
+                p[pa] = pb
 
-        def union(first: int, second: int) -> None:
-            first_root, second_root = find(first), find(second)
-            if first_root == second_root:
-                return
-            if component_size[first_root] < component_size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            component_size[first_root] += component_size[second_root]
-
-        state = [row[:] for row in grid]
-        removed = []
-        for row, col in hits:
-            removed.append(state[row][col] == 1)
-            state[row][col] = 0
-
-        for row in range(rows):
-            for col in range(cols):
-                if state[row][col] == 0:
+        m, n = len(grid), len(grid[0])
+        p = list(range(m * n + 1))
+        size = [1] * len(p)
+        g = deepcopy(grid)
+        for i, j in hits:
+            g[i][j] = 0
+        for j in range(n):
+            if g[0][j] == 1:
+                union(j, m * n)
+        for i in range(1, m):
+            for j in range(n):
+                if g[i][j] == 0:
                     continue
-                index = row * cols + col
-                if row == 0:
-                    union(index, roof)
-                if row and state[row - 1][col]:
-                    union(index, index - cols)
-                if col and state[row][col - 1]:
-                    union(index, index - 1)
-
-        answer = [0] * len(hits)
-        for hit_index in range(len(hits) - 1, -1, -1):
-            if not removed[hit_index]:
+                if g[i - 1][j] == 1:
+                    union(i * n + j, (i - 1) * n + j)
+                if j > 0 and g[i][j - 1] == 1:
+                    union(i * n + j, i * n + j - 1)
+        ans = []
+        for i, j in hits[::-1]:
+            if grid[i][j] == 0:
+                ans.append(0)
                 continue
-            row, col = hits[hit_index]
-            before = component_size[find(roof)]
-            state[row][col] = 1
-            index = row * cols + col
-            if row == 0:
-                union(index, roof)
-            for row_delta, col_delta in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-                next_row, next_col = row + row_delta, col + col_delta
-                if 0 <= next_row < rows and 0 <= next_col < cols and state[next_row][next_col]:
-                    union(index, next_row * cols + next_col)
-            after = component_size[find(roof)]
-            answer[hit_index] = max(0, after - before - 1)
-
-        return answer
+            g[i][j] = 1
+            prev = size[find(m * n)]
+            if i == 0:
+                union(j, m * n)
+            for a, b in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and g[x][y] == 1:
+                    union(i * n + j, x * n + y)
+            curr = size[find(m * n)]
+            ans.append(max(0, curr - prev - 1))
+        return ans[::-1]

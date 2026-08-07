@@ -1,19 +1,32 @@
-from collections import Counter
-from typing import List
+# Time:  O(min(cnt.values()) * n/min(cnt.values())) = O(n)
+# Space: O(n)
+
+import collections
 
 
+# linear search, greedy, math
 class Solution:
-    def minGroupsForValidAssignment(self, balls: List[int]) -> int:
-        frequencies = list(Counter(balls).values())
+    def minGroupsForValidAssignment(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        INF = float("inf")
 
-        for smaller_size in range(min(frequencies), 0, -1):
-            total_groups = 0
-            for frequency in frequencies:
-                groups = (frequency + smaller_size) // (smaller_size + 1)
-                if groups * smaller_size > frequency:
-                    break
-                total_groups += groups
-            else:
-                return total_groups
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+    
+        def count(x):
+            result = 0
+            for c in cnt.values():
+                if c%x > c//x:
+                    return INF
+                result += ceil_divide(c, x+1)
+            return result
 
-        return len(balls)
+        cnt = collections.Counter(nums)
+        for i in reversed(range(1, min(cnt.values())+1)):
+            c = count(i)
+            if c != INF:
+                return c
+        return 0

@@ -1,50 +1,124 @@
-from collections import deque
+# Time:  O(m * n)
+# Space: O(m * n)
+
+class GridMaster(object):
+    def canMove(self, direction):
+        pass
+
+    def move(self, direction):
+        pass
+
+    def isTarget(self):
+        pass
+
+
+import collections
 
 
 class Solution:
-    def findShortestPath(self, master: "GridMaster") -> int:
-        directions = (
-            ("U", -1, 0, "D"),
-            ("R", 0, 1, "L"),
-            ("D", 1, 0, "U"),
-            ("L", 0, -1, "R"),
-        )
-        reachable = {(0, 0)}
-        target = (0, 0) if master.isTarget() else None
-        stack = [[0, 0, 0, None]]
+    def findShortestPath(self, master):
+        """
+        :type master: GridMaster
+        :rtype: int
+        """
+        directions = {'L': (0, -1), 'R': (0, 1), 'U': (-1, 0), 'D': (1, 0)}
+        rollback = {'L': 'R', 'R': 'L', 'U': 'D', 'D': 'U'}
 
-        while stack:
-            row, column, next_direction, back_direction = stack[-1]
-            if next_direction == len(directions):
-                stack.pop()
-                if back_direction is not None:
-                    master.move(back_direction)
-                continue
-
-            direction, row_delta, column_delta, opposite = directions[next_direction]
-            stack[-1][2] += 1
-            neighbor = (row + row_delta, column + column_delta)
-            if neighbor in reachable or not master.canMove(direction):
-                continue
-
-            master.move(direction)
-            reachable.add(neighbor)
-            if master.isTarget():
-                target = neighbor
-            stack.append([neighbor[0], neighbor[1], 0, opposite])
-
-        if target is None:
+        def dfs(pos, target, master, lookup, adj):
+            if target[0] is None and master.isTarget():
+                target[0] = pos
+            lookup.add(pos)
+            for d, (di, dj) in directions.items():
+                if not master.canMove(d):
+                    continue
+                nei = (pos[0]+di, pos[1]+dj)
+                adj[pos].add(nei)
+                adj[nei].add(pos)
+                if nei in lookup:
+                    continue
+                master.move(d)
+                dfs(nei, target, master, lookup, adj)
+                master.move(rollback[d])
+                        
+        def bi_bfs(adj, start, target):
+            left, right = {start}, {target}
+            lookup = set()
+            steps = 0
+            while left:
+                for pos in left:
+                    lookup.add(pos)
+                new_left = set()
+                for pos in left:
+                    if pos in right: 
+                        return steps
+                    for nei in adj[pos]:
+                        if nei in lookup:
+                            continue
+                        new_left.add(nei)
+                left = new_left
+                steps += 1
+                if len(left) > len(right): 
+                    left, right = right, left
+            return -1         
+        
+        start = (0, 0)
+        target = [None]
+        adj = collections.defaultdict(set)
+        dfs(start, target, master, set(), adj)
+        if not target[0]:
             return -1
+        return bi_bfs(adj, start, target[0])
 
-        queue = deque([((0, 0), 0)])
-        seen = {(0, 0)}
-        while queue:
-            (row, column), distance = queue.popleft()
-            if (row, column) == target:
-                return distance
-            for _, row_delta, column_delta, _ in directions:
-                neighbor = (row + row_delta, column + column_delta)
-                if neighbor in reachable and neighbor not in seen:
-                    seen.add(neighbor)
-                    queue.append((neighbor, distance + 1))
-        return -1
+
+# Time:  O(m * n)
+# Space: O(m * n)
+class Solution2(object):
+    def findShortestPath(self, master):
+        """
+        :type master: GridMaster
+        :rtype: int
+        """
+        directions = {'L': (0, -1), 'R': (0, 1), 'U': (-1, 0), 'D': (1, 0)}
+        rollback = {'L': 'R', 'R': 'L', 'U': 'D', 'D': 'U'}
+
+        def dfs(pos, target, master, lookup, adj):
+            if target[0] is None and master.isTarget():
+                target[0] = pos
+            lookup.add(pos)
+            for d, (di, dj) in directions.items():
+                if not master.canMove(d):
+                    continue
+                nei = (pos[0]+di, pos[1]+dj)
+                adj[pos].add(nei)
+                adj[nei].add(pos)
+                if nei in lookup:
+                    continue
+                master.move(d)
+                dfs(nei, target, master, lookup, adj)
+                master.move(rollback[d])
+                        
+        def bfs(adj, start, target):
+            q = [start]
+            lookup = set(q)
+            steps = 0
+            while q:
+                new_q = []
+                for pos in q:
+                    if pos == target:
+                        return steps
+                    for nei in adj[pos]:
+                        if nei in lookup:
+                            continue
+                        lookup.add(nei)
+                        new_q.append(nei)
+                q = new_q
+                steps += 1
+            return -1  
+        
+        start = (0, 0)
+        target = [None]
+        adj = collections.defaultdict(set)
+        dfs(start, target, master, set(), adj)
+        if not target[0]:
+            return -1
+        return bfs(adj, start, target[0])

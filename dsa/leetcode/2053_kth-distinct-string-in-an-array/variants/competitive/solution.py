@@ -1,13 +1,16 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def kthDistinct(self, arr: List[str], k: int) -> str:
-        counts = Counter(arr)
-        for value in arr:
-            if counts[value] == 1:
-                k -= 1
-                if k == 0:
-                    return value
-        return ""
+    def kthDistinct(self, arr, k):
+        """
+        :type arr: List[str]
+        :type k: int
+        :rtype: str
+        """
+        count = collections.Counter(arr)
+        arr = [x for x in arr if count[x] == 1]
+        return arr[k-1] if k-1 < len(arr) else ""

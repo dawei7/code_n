@@ -1,6 +1,3 @@
 class Solution:
     def isAdjacentDiffAtMostTwo(self, s: str) -> bool:
-        for left, right in zip(s, s[1:]):
-            if abs(ord(left) - ord(right)) > 2:
-                return False
-        return True
+        return all(abs(x - y) <= 2 for x, y in pairwise(map(int, list(s))))

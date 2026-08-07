@@ -1,17 +1,19 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        fleets = 0
-        fleet_distance = -1
-        fleet_speed = 1
+    def carFleet(self, target, position, speed):
+        """
+        :type target: int
+        :type position: List[int]
+        :type speed: List[int]
+        :rtype: int
+        """
+        times = [float(target-p)/s for p, s in sorted(zip(position, speed))]
+        result, curr = 0, 0
+        for t in reversed(times):
+            if t > curr:
+                result += 1
+                curr = t
+        return result
 
-        for car_position, car_speed in sorted(zip(position, speed), reverse=True):
-            distance = target - car_position
-            if fleet_distance < 0 or distance * fleet_speed > fleet_distance * car_speed:
-                fleets += 1
-                fleet_distance = distance
-                fleet_speed = car_speed
-
-        return fleets

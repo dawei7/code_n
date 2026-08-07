@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        write = 0
-        for value in nums:
-            if write < 2 or value != nums[write - 2]:
-                nums[write] = value
-                write += 1
-        return write
+        k = 0
+        for x in nums:
+            if k < 2 or x != nums[k - 2]:
+                nums[k] = x
+                k += 1
+        return k

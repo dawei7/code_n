@@ -1,18 +1,17 @@
-from typing import List
-
-
 class Solution:
     def minimumOR(self, grid: List[List[int]]) -> int:
-        forbidden_bits = 0
-        result = 0
-        highest_bit = max(max(row) for row in grid).bit_length() - 1
-
-        for bit in range(highest_bit, -1, -1):
-            candidate_forbidden = forbidden_bits | (1 << bit)
-
-            if all(any((value & candidate_forbidden) == 0 for value in row) for row in grid):
-                forbidden_bits = candidate_forbidden
-            else:
-                result |= 1 << bit
-
-        return result
+        mx = max(map(max, grid))
+        m = mx.bit_length()
+        ans = 0
+        for i in range(m - 1, -1, -1):
+            mask = ans | ((1 << i) - 1)
+            for row in grid:
+                found = False
+                for x in row:
+                    if (x | mask) == mask:
+                        found = True
+                        break
+                if not found:
+                    ans |= 1 << i
+                    break
+        return ans

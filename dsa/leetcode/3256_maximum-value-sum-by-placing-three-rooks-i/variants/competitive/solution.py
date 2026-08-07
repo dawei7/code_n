@@ -1,38 +1,53 @@
+# Time:  O(m * n * logk + nCr((k-1)*(2*k-1)+1), k) * k) = O(m * n)
+# Space: O(k * (m + n)) = O(m + n)
+
 import heapq
-from typing import List
+import itertools
 
 
+# heap, brute force
 class Solution:
-    def maximumValueSum(self, board: List[List[int]]) -> int:
-        row_count = len(board)
-        column_count = len(board[0])
+    def maximumValueSum(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: int
+        """
+        k = 3
+        min_heaps = [[] for _ in range(len(board[0]))]
+        for i in range(len(board)):
+            min_heap = []
+            for j in range(len(board[0])):
+                heapq.heappush(min_heap, (board[i][j], i, j))
+                if len(min_heap) == k+1:
+                    heapq.heappop(min_heap)
+            for v, i, j in min_heap:
+                heapq.heappush(min_heaps[j], (v, i, j))
+                if len(min_heaps[j]) == k+1:
+                    heapq.heappop(min_heaps[j])
+        min_heap = []
+        for h in min_heaps:
+            for x in h:
+                heapq.heappush(min_heap, x)
+                if len(min_heap) == ((k-1)*(2*k-1)+1)+1:  # each choice excludes at most 2k-1 candidates, we should have at least (k-1)*(2k-1)+1 candidates
+                    heapq.heappop(min_heap)
+        return max(sum(x[0] for x in c) for c in itertools.combinations(min_heap, k) if len({x[1] for x in c}) == k == len({x[2] for x in c}))
 
-        def build_summaries(row_order):
-            best_by_column = [-float("inf")] * column_count
-            summaries = [None] * row_count
-            for row in row_order:
-                for column, value in enumerate(board[row]):
-                    best_by_column[column] = max(best_by_column[column], value)
-                summaries[row] = heapq.nlargest(
-                    3,
-                    ((value, column) for column, value in enumerate(best_by_column)),
-                )
-            return summaries
 
-        prefix = build_summaries(range(row_count))
-        suffix = build_summaries(range(row_count - 1, -1, -1))
+# Time:  O(m * n * logk + nCr((k-1)*(2*k-1)+1), k) * k) = O(m * n)
+# Space: O(k * (m + n)) = O(m + n)
+import heapq
+import itertools
 
-        answer = -float("inf")
-        for middle_row in range(1, row_count - 1):
-            for middle_column, middle_value in enumerate(board[middle_row]):
-                for upper_value, upper_column in prefix[middle_row - 1]:
-                    if upper_column == middle_column:
-                        continue
-                    for lower_value, lower_column in suffix[middle_row + 1]:
-                        if lower_column not in (middle_column, upper_column):
-                            answer = max(
-                                answer,
-                                upper_value + middle_value + lower_value,
-                            )
 
-        return answer
+# heap, brute force
+class Solution2(object):
+    def maximumValueSum(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: int
+        """
+        k = 3
+        rows = [heapq.nlargest(k, [(board[i][j], i, j) for j in range(len(board[0]))]) for i in range(len(board))]
+        cols = [heapq.nlargest(k, [(board[i][j], i, j) for i in range(len(board))]) for j in range(len(board[0]))]
+        min_heap = heapq.nlargest((k-1)*(2*k-1)+1, set(itertools.chain(*rows)) & set(itertools.chain(*cols)))  # each choice excludes at most 2k-1 candidates, we should have at least (k-1)*(2k-1)+1 candidates
+        return max(sum(x[0] for x in c) for c in itertools.combinations(min_heap, k) if len({x[1] for x in c}) == k == len({x[2] for x in c}))

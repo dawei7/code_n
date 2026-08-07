@@ -1,15 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
+# greedy, kadane's algorithm
 class Solution:
-    def maximumCostSubstring(self, s: str, chars: str, vals: List[int]) -> int:
-        values = {character: value for character, value in zip(chars, vals)}
-        best = 0
-        current = 0
+    def maximumCostSubstring(self, s, chars, vals):
+        """
+        :type s: str
+        :type chars: str
+        :type vals: List[int]
+        :rtype: int
+        """
+        def kadane(s):
+            result = curr = 0
+            for c in s:
+                curr = max(curr+(lookup[c] if c in lookup else ord(c)-ord('a')+1), 0)
+                result = max(result, curr)
+            return result
 
-        for character in s:
-            value = values.get(character, ord(character) - ord("a") + 1)
-            current = max(0, current + value)
-            best = max(best, current)
-
-        return best
+        lookup = {}
+        for c, v in itertools.izip(chars, vals):
+            lookup[c] = v
+        return kadane(s)

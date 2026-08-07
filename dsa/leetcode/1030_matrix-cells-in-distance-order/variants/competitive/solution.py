@@ -1,12 +1,24 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def allCellsDistOrder(self, rows: int, cols: int, rCenter: int, cCenter: int) -> List[List[int]]:
-        buckets = [[] for _ in range(rows + cols - 1)]
-        for row in range(rows):
-            for col in range(cols):
-                distance = abs(row - rCenter) + abs(col - cCenter)
-                buckets[distance].append([row, col])
-
-        return [cell for bucket in buckets for cell in bucket]
+    def allCellsDistOrder(self, R, C, r0, c0):
+        """
+        :type R: int
+        :type C: int
+        :type r0: int
+        :type c0: int
+        :rtype: List[List[int]]
+        """
+        def append(R, C, r, c, result):
+            if 0 <= r < R and 0 <= c < C:
+                result.append([r, c])
+            
+        result = [[r0, c0]]
+        for d in range(1, R+C):
+            append(R, C, r0-d, c0, result)
+            for x in range(-d+1, d):
+                append(R, C, r0+x, c0+abs(x)-d, result)
+                append(R, C, r0+x, c0+d-abs(x), result)
+            append(R, C, r0+d, c0, result)
+        return result

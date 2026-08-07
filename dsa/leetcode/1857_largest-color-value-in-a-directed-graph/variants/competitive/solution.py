@@ -1,33 +1,35 @@
-from collections import deque
-from typing import List
-
+# Time:  O(n + m)
+# Space: O(n + m)
 
 class Solution:
-    def largestPathValue(self, colors: str, edges: List[List[int]]) -> int:
-        node_count = len(colors)
-        graph = [[] for _ in range(node_count)]
-        indegree = [0] * node_count
-        for source, target in edges:
-            graph[source].append(target)
-            indegree[target] += 1
-
-        queue = deque(node for node, degree in enumerate(indegree) if degree == 0)
-        counts = [[0] * 26 for _ in range(node_count)]
-        processed = 0
-        answer = 0
-
-        while queue:
-            node = queue.popleft()
-            processed += 1
-            color = ord(colors[node]) - ord("a")
-            counts[node][color] += 1
-            answer = max(answer, counts[node][color])
-
-            for neighbor in graph[node]:
-                for index in range(26):
-                    counts[neighbor][index] = max(counts[neighbor][index], counts[node][index])
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 0:
-                    queue.append(neighbor)
-
-        return answer if processed == node_count else -1
+    def largestPathValue(self, colors, edges):
+        """
+        :type colors: str
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        adj = [[] for _ in range(len(colors))]
+        in_degree = [0]*len(colors)
+        for u, v in edges:
+            adj[u].append(v)
+            in_degree[v] += 1
+        q = []
+        for u in range(len(colors)):
+            if not in_degree[u]:
+                q.append(u)
+        dp = [[0]*26 for _ in range(len(colors))]
+        result, cnt = -1, 0
+        while q:
+            new_q = []
+            for u in q:
+                cnt += 1
+                dp[u][ord(colors[u])-ord('a')] += 1
+                result = max(result, dp[u][ord(colors[u])-ord('a')])
+                for v in adj[u]:
+                    for c in range(26):
+                        dp[v][c] = max(dp[v][c], dp[u][c])
+                    in_degree[v] -= 1
+                    if not in_degree[v]:
+                        new_q.append(v)
+            q = new_q
+        return result if cnt == len(colors) else -1

@@ -1,11 +1,12 @@
 class Solution:
     def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
-        row = [float(poured)]
-        for _ in range(query_row):
-            next_row = [0.0] * (len(row) + 1)
-            for glass, amount in enumerate(row):
-                overflow = max(0.0, amount - 1.0) / 2.0
-                next_row[glass] += overflow
-                next_row[glass + 1] += overflow
-            row = next_row
-        return min(1.0, row[query_glass])
+        f = [[0] * 101 for _ in range(101)]
+        f[0][0] = poured
+        for i in range(query_row + 1):
+            for j in range(i + 1):
+                if f[i][j] > 1:
+                    half = (f[i][j] - 1) / 2
+                    f[i][j] = 1
+                    f[i + 1][j] += half
+                    f[i + 1][j + 1] += half
+        return f[query_row][query_glass]

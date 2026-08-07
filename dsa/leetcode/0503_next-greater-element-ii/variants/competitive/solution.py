@@ -1,15 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def nextGreaterElements(self, nums: List[int]) -> List[int]:
-        size = len(nums)
-        answer = [-1] * size
-        stack = []
-        for scan_index in range(2 * size):
-            index = scan_index % size
-            while stack and nums[stack[-1]] < nums[index]:
-                answer[stack.pop()] = nums[index]
-            if scan_index < size:
-                stack.append(index)
-        return answer
+    def nextGreaterElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result, stk = [0] * len(nums), []
+        for i in reversed(range(2*len(nums))):
+            while stk and stk[-1] <= nums[i % len(nums)]:
+                stk.pop()
+            result[i % len(nums)] = stk[-1] if stk else -1
+            stk.append(nums[i % len(nums)])
+        return result
+

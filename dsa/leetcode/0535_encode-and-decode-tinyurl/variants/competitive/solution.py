@@ -1,23 +1,69 @@
-class Codec:
+# Time:  O(1)
+# Space: O(n)
+
+import random
+
+
+class Codec(object):
     def __init__(self):
-        self.prefix = "https://tinyurl.com/"
-        self.next_code = 0
-        self.short_to_long = {}
-        self.long_to_short = {}
+        self.__random_length = 6
+        self.__tiny_url = "http://tinyurl.com/"
+        self.__alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.__lookup = {}
 
-    def encode(self, longUrl: str) -> str:
-        if longUrl in self.long_to_short:
-            return self.long_to_short[longUrl]
-        shortUrl = f"{self.prefix}{self.next_code}"
-        self.next_code += 1
-        self.long_to_short[longUrl] = shortUrl
-        self.short_to_long[shortUrl] = longUrl
-        return shortUrl
+    def encode(self, longUrl):
+        """Encodes a URL to a shortened URL.
 
-    def decode(self, shortUrl: str) -> str:
-        return self.short_to_long[shortUrl]
+        :type longUrl: str
+        :rtype: str
+        """
+        def getRand():
+            rand = []
+            for _ in range(self.__random_length):
+                rand += self.__alphabet[random.randint(0, len(self.__alphabet)-1)]
+            return "".join(rand)
+
+        key = getRand()
+        while key in self.__lookup:
+            key = getRand()
+        self.__lookup[key] = longUrl
+        return self.__tiny_url + key
+
+    def decode(self, shortUrl):
+        """Decodes a shortened URL to its original URL.
+
+        :type shortUrl: str
+        :rtype: str
+        """
+        return self.__lookup[shortUrl[len(self.__tiny_url):]]
 
 
-# Your Codec object will be instantiated and called as such:
-# codec = Codec()
-# codec.decode(codec.encode(url))
+from hashlib import sha256
+
+
+class Codec2(object):
+
+    def __init__(self):
+        self._cache = {}
+        self.url = 'http://tinyurl.com/'
+
+    def encode(self, long_url):
+        """Encodes a URL to a shortened URL.
+
+        :type long_url: str
+        :rtype: str
+        """
+        key = sha256(long_url.encode()).hexdigest()[:6]
+        self._cache[key] = long_url
+        return self.url + key
+
+    def decode(self, short_url):
+        """Decodes a shortened URL to its original URL.
+
+        :type short_url: str
+        :rtype: str
+        """
+        key = short_url.replace(self.url, '')
+        return self._cache[key]
+
+

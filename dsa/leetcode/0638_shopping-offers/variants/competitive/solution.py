@@ -1,28 +1,25 @@
-from functools import lru_cache
-from typing import List
-
+# Time:  O(n * 2^n)
+# Space: O(n)
 
 class Solution:
-    def shoppingOffers(
-        self,
-        price: List[int],
-        special: List[List[int]],
-        needs: List[int],
-    ) -> int:
-        item_count = len(price)
-        useful_offers = [
-            offer
-            for offer in special
-            if any(offer[:item_count]) and offer[-1] < sum(quantity * unit for quantity, unit in zip(offer, price))
-        ]
+    def shoppingOffers(self, price, special, needs):
+        """
+        :type price: List[int]
+        :type special: List[List[int]]
+        :type needs: List[int]
+        :rtype: int
+        """
+        def shoppingOffersHelper(price, special, needs, i):
+            if i == len(special):
+                return sum(map(lambda x, y: x*y, price, needs))
+            result = shoppingOffersHelper(price, special, needs, i+1)
+            for j in range(len(needs)):
+                needs[j] -= special[i][j]
+            if all(need >= 0 for need in needs):
+                result = min(result, special[i][-1] + shoppingOffersHelper(price, special, needs, i))
+            for j in range(len(needs)):
+                needs[j] += special[i][j]
+            return result
 
-        @lru_cache(None)
-        def minimum_cost(remaining):
-            best = sum(quantity * unit for quantity, unit in zip(remaining, price))
-            for offer in useful_offers:
-                if all(offer[index] <= remaining[index] for index in range(item_count)):
-                    next_remaining = tuple(remaining[index] - offer[index] for index in range(item_count))
-                    best = min(best, offer[-1] + minimum_cost(next_remaining))
-            return best
+        return shoppingOffersHelper(price, special, needs, 0)
 
-        return minimum_cost(tuple(needs))

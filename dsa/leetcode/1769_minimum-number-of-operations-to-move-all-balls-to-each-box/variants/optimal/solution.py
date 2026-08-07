@@ -1,22 +1,16 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, boxes: str) -> List[int]:
-        answer = [0] * len(boxes)
-
-        balls = 0
-        moves = 0
-        for index in range(len(boxes)):
-            answer[index] += moves
-            balls += boxes[index] == "1"
-            moves += balls
-
-        balls = 0
-        moves = 0
-        for index in range(len(boxes) - 1, -1, -1):
-            answer[index] += moves
-            balls += boxes[index] == "1"
-            moves += balls
-
-        return answer
+        n = len(boxes)
+        left = [0] * n
+        right = [0] * n
+        cnt = 0
+        for i in range(1, n):
+            if boxes[i - 1] == '1':
+                cnt += 1
+            left[i] = left[i - 1] + cnt
+        cnt = 0
+        for i in range(n - 2, -1, -1):
+            if boxes[i + 1] == '1':
+                cnt += 1
+            right[i] = right[i + 1] + cnt
+        return [a + b for a, b in zip(left, right)]

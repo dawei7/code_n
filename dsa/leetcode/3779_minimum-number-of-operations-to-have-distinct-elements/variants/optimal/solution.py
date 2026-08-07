@@ -1,11 +1,8 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        suffix_values = set()
-        for index in range(len(nums) - 1, -1, -1):
-            if nums[index] in suffix_values:
-                return index // 3 + 1
-            suffix_values.add(nums[index])
+        st = set()
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] in st:
+                return i // 3 + 1
+            st.add(nums[i])
         return 0

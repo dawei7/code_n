@@ -1,39 +1,49 @@
-from typing import List
-
-
 class Solution:
     def beautifulIndices(self, s: str, a: str, b: str, k: int) -> List[int]:
-        def occurrences(pattern: str) -> List[int]:
-            failure = [0] * len(pattern)
-            matched = 0
-            for index in range(1, len(pattern)):
-                while matched and pattern[matched] != pattern[index]:
-                    matched = failure[matched - 1]
-                if pattern[matched] == pattern[index]:
-                    matched += 1
-                failure[index] = matched
+        def build_prefix_function(pattern):
+            prefix_function = [0] * len(pattern)
+            j = 0
+            for i in range(1, len(pattern)):
+                while j > 0 and pattern[i] != pattern[j]:
+                    j = prefix_function[j - 1]
+                if pattern[i] == pattern[j]:
+                    j += 1
+                prefix_function[i] = j
+            return prefix_function
 
-            result = []
-            matched = 0
-            for index, character in enumerate(s):
-                while matched and pattern[matched] != character:
-                    matched = failure[matched - 1]
-                if pattern[matched] == character:
-                    matched += 1
-                if matched == len(pattern):
-                    result.append(index - len(pattern) + 1)
-                    matched = failure[matched - 1]
-            return result
+        def kmp_search(pattern, text, prefix_function):
+            occurrences = []
+            j = 0
+            for i in range(len(text)):
+                while j > 0 and text[i] != pattern[j]:
+                    j = prefix_function[j - 1]
+                if text[i] == pattern[j]:
+                    j += 1
+                if j == len(pattern):
+                    occurrences.append(i - j + 1)
+                    j = prefix_function[j - 1]
+            return occurrences
 
-        first = occurrences(a)
-        second = occurrences(b)
-        answer = []
-        second_index = 0
+        prefix_a = build_prefix_function(a)
+        prefix_b = build_prefix_function(b)
 
-        for index in first:
-            while second_index < len(second) and second[second_index] < index - k:
-                second_index += 1
-            if second_index < len(second) and second[second_index] <= index + k:
-                answer.append(index)
+        resa = kmp_search(a, s, prefix_a)
+        resb = kmp_search(b, s, prefix_b)
 
-        return answer
+        res = []
+        print(resa, resb)
+        i = 0
+        j = 0
+        while i < len(resa):
+            while j < len(resb):
+                if abs(resb[j] - resa[i]) <= k:
+                    res.append(resa[i])
+                    break
+                elif j + 1 < len(resb) and abs(resb[j + 1] - resa[i]) < abs(
+                    resb[j] - resa[i]
+                ):
+                    j += 1
+                else:
+                    break
+            i += 1
+        return res

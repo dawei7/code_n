@@ -1,31 +1,23 @@
-from math import isqrt
+MX = 200000
+is_prime = [True] * (MX + 1)
+is_prime[0] = is_prime[1] = False
+
+for i in range(2, int(MX**0.5) + 1):
+    if is_prime[i]:
+        for j in range(i * i, MX + 1, i):
+            is_prime[j] = False
+
+primes = [i for i in range(2, MX + 1) if is_prime[i]]
 
 
 class Solution:
     def minOperations(self, nums: list[int]) -> int:
-        maximum = max(nums)
-        limit = max(4, 2 * maximum + 2)
-
-        is_prime = bytearray(b"\x01") * (limit + 1)
-        is_prime[0:2] = b"\x00\x00"
-        for prime in range(2, isqrt(limit) + 1):
-            if is_prime[prime]:
-                start = prime * prime
-                count = (limit - start) // prime + 1
-                is_prime[start : limit + 1 : prime] = b"\x00" * count
-
-        next_prime = [0] * (maximum + 1)
-        nearest = 0
-        for value in range(limit, -1, -1):
-            if is_prime[value]:
-                nearest = value
-            if value <= maximum:
-                next_prime[value] = nearest
-
-        operations = 0
-        for index, value in enumerate(nums):
-            if index % 2 == 0:
-                operations += next_prime[value] - value
-            elif is_prime[value]:
-                operations += 2 if value == 2 else 1
-        return operations
+        ans = 0
+        for i, x in enumerate(nums):
+            if i % 2 == 0:
+                j = bisect_left(primes, x)
+                ans += primes[j] - x
+            else:
+                if is_prime[x]:
+                    ans += 2 if x == 2 else 1
+        return ans

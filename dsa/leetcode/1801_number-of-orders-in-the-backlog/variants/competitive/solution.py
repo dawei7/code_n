@@ -1,31 +1,30 @@
-from heapq import heappop, heappush
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def getNumberOfBacklogOrders(self, orders: list[list[int]]) -> int:
-        buys: list[tuple[int, int]] = []
-        sells: list[tuple[int, int]] = []
-
-        for price, amount, order_type in orders:
-            if order_type == 0:
-                while amount and sells and sells[0][0] <= price:
-                    sell_price, sell_amount = heappop(sells)
-                    traded = min(amount, sell_amount)
-                    amount -= traded
-                    sell_amount -= traded
-                    if sell_amount:
-                        heappush(sells, (sell_price, sell_amount))
-                if amount:
-                    heappush(buys, (-price, amount))
+    def getNumberOfBacklogOrders(self, orders):
+        """
+        :type orders: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9 + 7
+        buy, sell  = [], []  # max_heap, min_heap
+        for p, a, t in orders:
+            if t == 0:
+                heapq.heappush(buy, [-p, a])
             else:
-                while amount and buys and -buys[0][0] >= price:
-                    negative_buy_price, buy_amount = heappop(buys)
-                    traded = min(amount, buy_amount)
-                    amount -= traded
-                    buy_amount -= traded
-                    if buy_amount:
-                        heappush(buys, (negative_buy_price, buy_amount))
-                if amount:
-                    heappush(sells, (price, amount))
-
-        return (sum(amount for _, amount in buys) + sum(amount for _, amount in sells)) % 1_000_000_007
+                heapq.heappush(sell, [p, a])
+            while sell and buy and sell[0][0] <= -buy[0][0]:
+                k = min(buy[0][1], sell[0][1])
+                tmp = heapq.heappop(buy)
+                tmp[1] -= k
+                if tmp[1]:
+                    heapq.heappush(buy, tmp)
+                tmp = heapq.heappop(sell)
+                tmp[1] -= k
+                if tmp[1]:
+                    heapq.heappush(sell, tmp)
+        return reduce(lambda x, y: (x+y) % MOD, (a for _, a in buy + sell))

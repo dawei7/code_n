@@ -1,29 +1,62 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def maxNumberOfFamilies(
-        self,
-        n: int,
-        reservedSeats: List[List[int]],
-    ) -> int:
-        occupied = defaultdict(int)
-        for row, seat in reservedSeats:
-            if 2 <= seat <= 9:
-                occupied[row] |= 1 << seat
+    def maxNumberOfFamilies(self, n, reservedSeats):
+        """
+        :type n: int
+        :type reservedSeats: List[List[int]]
+        :rtype: int
+        """
+        lookup = collections.defaultdict(lambda: [False]*3)
+        for r, c in reservedSeats:
+            if 2 <= c <= 5:
+                lookup[r][0] = True
+            if 4 <= c <= 7:
+                lookup[r][1] = True
+            if 6 <= c <= 9:
+                lookup[r][2] = True
+        result = 2*n
+        for a, b, c in lookup.values():
+            if not a and not c:
+                continue
+            if not a or not b or not c:
+                result -= 1
+                continue
+            result -= 2
+        return result
 
-        left_block = sum(1 << seat for seat in range(2, 6))
-        middle_block = sum(1 << seat for seat in range(4, 8))
-        right_block = sum(1 << seat for seat in range(6, 10))
 
-        families = 2 * (n - len(occupied))
-        for mask in occupied.values():
-            left_free = mask & left_block == 0
-            right_free = mask & right_block == 0
-            if left_free and right_free:
-                families += 2
-            elif left_free or right_free or mask & middle_block == 0:
-                families += 1
-
-        return families
+# Time:  O(nlogn)
+# Space: O(1)
+class Solution2(object):
+    def maxNumberOfFamilies(self, n, reservedSeats):
+        """
+        :type n: int
+        :type reservedSeats: List[List[int]]
+        :rtype: int
+        """
+        reservedSeats.sort()
+        result, i = 2*n, 0
+        while i < len(reservedSeats):
+            reserved = [False]*3
+            curr = reservedSeats[i][0]
+            while i < len(reservedSeats) and reservedSeats[i][0] == curr:
+                _, c  = reservedSeats[i]
+                if 2 <= c <= 5:
+                    reserved[0] = True
+                if 4 <= c <= 7:
+                    reserved[1] = True
+                if 6 <= c <= 9:
+                    reserved[2] = True
+                i += 1
+            if not reserved[0] and not reserved[2]:
+                continue
+            if not all(reserved):
+                result -= 1
+                continue
+            result -= 2
+        return result

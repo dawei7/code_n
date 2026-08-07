@@ -1,18 +1,29 @@
-from collections import Counter
+# Time:  O(m * n)
+# Space: O(m + n)
+
+import collections
 
 
 class Solution:
-    def numTriplets(self, nums1: List[int], nums2: List[int]) -> int:
-        def pair_products(values: List[int]) -> Counter[int]:
-            products: Counter[int] = Counter()
-            for left in range(len(values)):
-                for right in range(left + 1, len(values)):
-                    products[values[left] * values[right]] += 1
-            return products
-
-        products1 = pair_products(nums1)
-        products2 = pair_products(nums2)
-
-        total = sum(products2[value * value] for value in nums1)
-        total += sum(products1[value * value] for value in nums2)
-        return total
+    def numTriplets(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        def two_product(nums, i):
+            count = 0
+            lookup = collections.defaultdict(int)
+            for num in nums:
+                if i%num:
+                    continue
+                count += lookup[i//num]
+                lookup[num] += 1
+            return count
+        
+        result = 0
+        for num in nums1:
+            result += two_product(nums2, num**2)
+        for num in nums2:
+            result += two_product(nums1, num**2)
+        return result

@@ -1,34 +1,22 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
-        if not board or not board[0]:
-            return
-        rows = len(board)
-        columns = len(board[0])
-        queue = deque()
+        def dfs(i: int, j: int):
+            if not (0 <= i < m and 0 <= j < n and board[i][j] == "O"):
+                return
+            board[i][j] = "."
+            for a, b in pairwise((-1, 0, 1, 0, -1)):
+                dfs(i + a, j + b)
 
-        def preserve(row, column):
-            if 0 <= row < rows and 0 <= column < columns and board[row][column] == "O":
-                board[row][column] = "#"
-                queue.append((row, column))
-
-        for row in range(rows):
-            preserve(row, 0)
-            preserve(row, columns - 1)
-        for column in range(columns):
-            preserve(0, column)
-            preserve(rows - 1, column)
-
-        while queue:
-            row, column = queue.popleft()
-            preserve(row + 1, column)
-            preserve(row - 1, column)
-            preserve(row, column + 1)
-            preserve(row, column - 1)
-
-        for row in range(rows):
-            for column in range(columns):
-                board[row][column] = "O" if board[row][column] == "#" else "X"
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            dfs(i, 0)
+            dfs(i, n - 1)
+        for j in range(n):
+            dfs(0, j)
+            dfs(m - 1, j)
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == ".":
+                    board[i][j] = "O"
+                elif board[i][j] == "O":
+                    board[i][j] = "X"

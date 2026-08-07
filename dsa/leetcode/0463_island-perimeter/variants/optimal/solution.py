@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     def islandPerimeter(self, grid: List[List[int]]) -> int:
-        perimeter = 0
-        for row in range(len(grid)):
-            for column in range(len(grid[0])):
-                if grid[row][column] == 0:
-                    continue
-                perimeter += 4
-                if row > 0 and grid[row - 1][column] == 1:
-                    perimeter -= 2
-                if column > 0 and grid[row][column - 1] == 1:
-                    perimeter -= 2
-        return perimeter
+        m, n = len(grid), len(grid[0])
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == 1:
+                    ans += 4
+                    if i < m - 1 and grid[i + 1][j] == 1:
+                        ans -= 2
+                    if j < n - 1 and grid[i][j + 1] == 1:
+                        ans -= 2
+        return ans

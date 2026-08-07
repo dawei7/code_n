@@ -1,6 +1,12 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def passThePillow(self, n: int, time: int) -> int:
-        traversals, offset = divmod(time, n - 1)
-        if traversals % 2 == 0:
-            return offset + 1
-        return n - offset
+    def passThePillow(self, n, time):
+        """
+        :type n: int
+        :type time: int
+        :rtype: int
+        """
+        return n-abs((n-1)-(time%(2*(n-1))))

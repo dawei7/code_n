@@ -1,36 +1,18 @@
-from typing import List, Set
+ps = []
+for i in range(1, 10**5 + 1):
+    s = str(i)
+    t1 = s[::-1]
+    t2 = s[:-1][::-1]
+    ps.append(int(s + t1))
+    ps.append(int(s + t2))
+ps.sort()
 
 
 class Solution:
     def minimumCost(self, nums: List[int]) -> int:
-        ordered = sorted(nums)
-        median = ordered[len(ordered) // 2]
-        candidates = self._nearby_palindromes(median)
-        return min(sum(abs(value - target) for value in ordered) for target in candidates)
+        def f(x: int) -> int:
+            return sum(abs(v - x) for v in nums)
 
-    def _nearby_palindromes(self, value: int) -> Set[int]:
-        text = str(value)
-        length = len(text)
-        prefix_length = (length + 1) // 2
-        prefix = int(text[:prefix_length])
-        candidates = {1, 999_999_999}
-
-        lower_boundary = 10 ** (length - 1) - 1
-        upper_boundary = 10**length + 1
-        if lower_boundary > 0:
-            candidates.add(lower_boundary)
-        if upper_boundary < 1_000_000_000:
-            candidates.add(upper_boundary)
-
-        for candidate_prefix in range(prefix - 2, prefix + 3):
-            if candidate_prefix <= 0:
-                continue
-            left = str(candidate_prefix)
-            if length % 2:
-                palindrome = int(left + left[-2::-1])
-            else:
-                palindrome = int(left + left[::-1])
-            if 0 < palindrome < 1_000_000_000:
-                candidates.add(palindrome)
-
-        return candidates
+        nums.sort()
+        i = bisect_left(ps, nums[len(nums) // 2])
+        return min(f(ps[j]) for j in range(i - 1, i + 2) if 0 <= j < len(ps))

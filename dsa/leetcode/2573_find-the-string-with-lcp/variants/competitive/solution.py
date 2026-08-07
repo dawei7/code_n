@@ -1,28 +1,26 @@
+# Time:  O(n^2)
+# Space: O(1)
+
+# constructive algorithms, greedy, dp
 class Solution:
-    def findTheString(self, lcp: List[List[int]]) -> str:
-        n = len(lcp)
-        letters = [""] * n
-        next_letter = ord("a")
-
-        for i in range(n):
-            if letters[i]:
+    def findTheString(self, lcp):
+        """
+        :type lcp: List[List[int]]
+        :rtype: str
+        """
+        result = [-1]*len(lcp)
+        curr = 0
+        for i in range(len(lcp)):
+            if result[i] != -1:
                 continue
-            if next_letter > ord("z"):
+            if curr == 26:
                 return ""
-            letter = chr(next_letter)
-            next_letter += 1
-            for j in range(i, n):
-                if lcp[i][j] > 0:
-                    letters[j] = letter
-
-        for i in range(n - 1, -1, -1):
-            for j in range(n - 1, -1, -1):
-                expected = 0
-                if letters[i] == letters[j]:
-                    expected = 1
-                    if i + 1 < n and j + 1 < n:
-                        expected += lcp[i + 1][j + 1]
-                if lcp[i][j] != expected:
-                    return ""
-
-        return "".join(letters)
+            for j in range(i, len(lcp[0])):
+                if lcp[i][j]:
+                    result[j] = curr
+            curr += 1
+        for i in reversed(range(len(lcp))):
+            for j in reversed(range(len(lcp[0]))):
+                if lcp[i][j] != ((lcp[i+1][j+1]+1 if i+1 < len(lcp) and j+1 < len(lcp[0]) else 1) if result[i] == result[j] else 0):
+                    return ''
+        return "".join(map(lambda x: chr(ord('a')+x), result))

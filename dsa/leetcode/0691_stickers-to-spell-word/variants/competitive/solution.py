@@ -1,34 +1,36 @@
-from collections import Counter
-from functools import lru_cache
+# Time:  O(T * S^T)
+# Space: O(T * S^T)
+
+import collections
 
 
 class Solution:
-    def minStickers(self, stickers: list[str], target: str) -> int:
-        sticker_counts = [Counter(sticker) for sticker in stickers]
-        impossible = len(target) + 1
-
-        @lru_cache(maxsize=None)
-        def minimum(remaining: str) -> int:
-            if not remaining:
-                return 0
-
-            needed = Counter(remaining)
-            required_letter = remaining[0]
-            best = impossible
-
-            for sticker in sticker_counts:
-                if sticker[required_letter] == 0:
+    def minStickers(self, stickers, target):
+        """
+        :type stickers: List[str]
+        :type target: str
+        :rtype: int
+        """
+        def minStickersHelper(sticker_counts, target, dp):
+            if "".join(target) in dp:
+                return dp["".join(target)]
+            target_count = collections.Counter(target)
+            result = float("inf")
+            for sticker_count in sticker_counts:
+                if sticker_count[target[0]] == 0:
                     continue
+                new_target = []
+                for k in target_count.keys():
+                    if target_count[k] > sticker_count[k]:
+                       new_target += [k]*(target_count[k] - sticker_count[k])
+                if len(new_target) != len(target):
+                    num = minStickersHelper(sticker_counts, new_target, dp)
+                    if num != -1:
+                        result = min(result, 1+num)
+            dp["".join(target)] = -1 if result == float("inf") else result
+            return dp["".join(target)]
 
-                next_remaining = []
-                for letter, count in needed.items():
-                    next_remaining.extend(letter * max(0, count - sticker[letter]))
-                canonical = "".join(sorted(next_remaining))
-                residual = minimum(canonical)
-                if residual != impossible:
-                    best = min(best, residual + 1)
+        sticker_counts = map(collections.Counter, stickers)
+        dp = { "":0 }
+        return minStickersHelper(sticker_counts, target, dp)
 
-            return best
-
-        answer = minimum("".join(sorted(target)))
-        return -1 if answer == impossible else answer

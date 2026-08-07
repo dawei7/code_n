@@ -1,13 +1,34 @@
+# Time:  O(k)
+# Space: O(1)
+
+# Definition for a street.
+class Street:
+    def openDoor(self):
+        pass
+    def closeDoor(self):
+        pass
+    def isDoorOpen(self):
+        pass
+    def moveRight(self):
+        pass
+    def moveLeft(self):
+        pass
+
+
+# constructive algorithms
 class Solution:
-    def houseCount(self, street: Optional["Street"], k: int) -> int:
+    def houseCount(self, street, k):
+        """
+        :type street: Street
+        :type k: int
+        :rtype: int
+        """
         for _ in range(k):
             street.closeDoor()
             street.moveRight()
-
-        street.openDoor()
-        houses = 0
-        while True:
-            street.moveRight()
-            houses += 1
+        for result in range(k+1):
             if street.isDoorOpen():
-                return houses
+                break
+            street.openDoor()
+            street.moveRight()
+        return result

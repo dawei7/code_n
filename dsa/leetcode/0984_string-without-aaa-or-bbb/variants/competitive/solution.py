@@ -1,19 +1,25 @@
+# Time:  O(a + b)
+# Space: O(1)
+
 class Solution:
-    def strWithout3a3b(self, a: int, b: int) -> str:
-        answer = []
-        while a or b:
-            if len(answer) >= 2 and answer[-1] == answer[-2]:
-                character = "b" if answer[-1] == "a" else "a"
+    def strWithout3a3b(self, A, B):
+        """
+        :type A: int
+        :type B: int
+        :rtype: str
+        """
+        result = []
+        put_A = None
+        while A or B:
+            if len(result) >= 2 and result[-1] == result[-2]:
+                put_A = result[-1] == 'b'
             else:
-                character = "a" if a >= b else "b"
+                put_A = A >= B
 
-            if (a if character == "a" else b) == 0:
-                character = "b" if character == "a" else "a"
-
-            answer.append(character)
-            if character == "a":
-                a -= 1
+            if put_A:
+                A -= 1
+                result.append('a')
             else:
-                b -= 1
-
-        return "".join(answer)
+                B -= 1
+                result.append('b')
+        return "".join(result)

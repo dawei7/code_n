@@ -1,35 +1,52 @@
-from collections import deque
-
+# Time:  O(n^3)
+# Space: O(n^2)
 
 class Solution:
-    def checkIfPrerequisite(
-        self,
-        numCourses: int,
-        prerequisites: List[List[int]],
-        queries: List[List[int]],
-    ) -> List[bool]:
-        graph = [[] for _ in range(numCourses)]
-        indegree = [0] * numCourses
+    def checkIfPrerequisite(self, n, prerequisites, queries):
+        """
+        :type n: int
+        :type prerequisites: List[List[int]]
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        def floydWarshall(n, graph): 
+            reachable = set(map(lambda x: x[0]*n+x[1], graph)) 
+            for k in range(n): 
+                for i in range(n): 
+                    for j in range(n): 
+                        if i*n+j not in reachable and (i*n+k in reachable and k*n+j in reachable):
+                            reachable.add(i*n+j)
+            return reachable
 
-        for prerequisite, course in prerequisites:
-            graph[prerequisite].append(course)
-            indegree[course] += 1
+        reachable = floydWarshall(n, prerequisites)
+        return [i*n+j in reachable for i, j in queries]
 
-        queue = deque(course for course in range(numCourses) if indegree[course] == 0)
-        order = []
 
-        while queue:
-            prerequisite = queue.popleft()
-            order.append(prerequisite)
-            for course in graph[prerequisite]:
-                indegree[course] -= 1
-                if indegree[course] == 0:
-                    queue.append(course)
+# Time:  O(n * q)
+# Space: O(p + n)
+import collections
 
-        reachable = [set() for _ in range(numCourses)]
-        for prerequisite in reversed(order):
-            for course in graph[prerequisite]:
-                reachable[prerequisite].add(course)
-                reachable[prerequisite].update(reachable[course])
 
-        return [course in reachable[prerequisite] for prerequisite, course in queries]
+class Solution2(object):
+    def checkIfPrerequisite(self, n, prerequisites, queries):
+        """
+        :type n: int
+        :type prerequisites: List[List[int]]
+        :type queries: List[List[int]]
+        :rtyp
+        """
+        graph = collections.defaultdict(list)
+        for u, v in prerequisites:
+            graph[u].append(v)
+        result = []
+        for i, j in queries:
+            stk, lookup = [i], set([i])
+            while stk:
+                node = stk.pop()
+                for nei in graph[node]:
+                    if nei in lookup:
+                        continue
+                    stk.append(nei)
+                    lookup.add(nei)
+            result.append(j in lookup)
+        return result

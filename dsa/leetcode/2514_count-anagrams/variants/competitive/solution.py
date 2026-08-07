@@ -1,26 +1,47 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# combinatorics
 class Solution:
-    def countAnagrams(self, s: str) -> int:
-        modulus = 1_000_000_007
-        words = s.split()
-        maximum_length = max(map(len, words))
+    def countAnagrams(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def lazy_init(n):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
 
-        factorial = [1] * (maximum_length + 1)
-        for value in range(1, maximum_length + 1):
-            factorial[value] = factorial[value - 1] * value % modulus
+        def factorial(n):
+            lazy_init(n)
+            return fact[n]
 
-        inverse_factorial = [1] * (maximum_length + 1)
-        inverse_factorial[maximum_length] = pow(factorial[maximum_length], modulus - 2, modulus)
-        for value in range(maximum_length, 0, -1):
-            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
+        def inv_factorial(n):
+            lazy_init(n)
+            return inv_fact[n]
 
-        answer = 1
-        for word in words:
-            ways = factorial[len(word)]
-            for frequency in Counter(word).values():
-                ways = ways * inverse_factorial[frequency] % modulus
-            answer = answer * ways % modulus
+        def count(j, i):
+            result = 1
+            cnt = collections.Counter()
+            for k in  range(j, i+1):
+                cnt[s[k]] += 1
+            result = factorial(sum(cnt.values()))
+            for c in cnt.values():
+                result = (result*inv_factorial(c))%MOD
+            return result
 
-        return answer
+        result = 1
+        j = 0
+        for i in range(len(s)):
+            if i+1 != len(s) and s[i+1] != ' ':
+                continue
+            result = (result*count(j, i))%MOD
+            j = i+2
+        return result

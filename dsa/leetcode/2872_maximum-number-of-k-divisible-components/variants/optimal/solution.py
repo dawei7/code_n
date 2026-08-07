@@ -1,31 +1,20 @@
 class Solution:
     def maxKDivisibleComponents(
-        self,
-        n: int,
-        edges: List[List[int]],
-        values: List[int],
-        k: int,
+        self, n: int, edges: List[List[int]], values: List[int], k: int
     ) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+        def dfs(i: int, fa: int) -> int:
+            s = values[i]
+            for j in g[i]:
+                if j != fa:
+                    s += dfs(j, i)
+            nonlocal ans
+            ans += s % k == 0
+            return s
 
-        parent = [-1] * n
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor != parent[node]:
-                    parent[neighbor] = node
-                    order.append(neighbor)
-
-        remainders = [value % k for value in values]
-        components = 0
-
-        for node in reversed(order):
-            if remainders[node] == 0:
-                components += 1
-            elif parent[node] != -1:
-                remainders[parent[node]] = (remainders[parent[node]] + remainders[node]) % k
-
-        return components
+        g = [[] for _ in range(n)]
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        ans = 0
+        dfs(0, -1)
+        return ans

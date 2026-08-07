@@ -1,27 +1,26 @@
-from typing import List
-
+# Time:  O(m + n)
+# Space: O(1)
 
 class Solution:
-    def maxSum(self, nums1: List[int], nums2: List[int]) -> int:
-        i = 0
-        j = 0
-        score1 = 0
-        score2 = 0
-
-        while i < len(nums1) and j < len(nums2):
-            if nums1[i] < nums2[j]:
-                score1 += nums1[i]
+    def maxSum(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        i, j = 0, 0
+        result, sum1, sum2 = 0, 0, 0,
+        while i != len(nums1) or j != len(nums2):
+            if i != len(nums1) and (j == len(nums2) or nums1[i] < nums2[j]):
+                sum1 += nums1[i]
                 i += 1
-            elif nums1[i] > nums2[j]:
-                score2 += nums2[j]
+            elif j != len(nums2) and (i == len(nums1) or nums1[i] > nums2[j]):
+                sum2 += nums2[j]
                 j += 1
             else:
-                best = max(score1, score2) + nums1[i]
-                score1 = best
-                score2 = best
+                result = (result + (max(sum1, sum2) + nums1[i])) % MOD
+                sum1, sum2 = 0, 0
                 i += 1
                 j += 1
-
-        score1 += sum(nums1[i:])
-        score2 += sum(nums2[j:])
-        return max(score1, score2) % 1_000_000_007
+        return (result + max(sum1, sum2)) % MOD

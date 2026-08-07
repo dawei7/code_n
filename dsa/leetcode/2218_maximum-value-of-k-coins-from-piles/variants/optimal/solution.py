@@ -1,16 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maxValueOfCoins(self, piles: List[List[int]], k: int) -> int:
-        impossible = -(10**30)
-        best = [0] + [impossible] * k
-        for pile in piles:
-            updated = best[:]
-            prefix = 0
-            for taken, value in enumerate(pile[:k], start=1):
-                prefix += value
-                for previous in range(k - taken + 1):
-                    updated[previous + taken] = max(updated[previous + taken], best[previous] + prefix)
-            best = updated
-        return best[k]
+        n = len(piles)
+        f = [[0] * (k + 1) for _ in range(n + 1)]
+        for i, nums in enumerate(piles, 1):
+            s = list(accumulate(nums, initial=0))
+            for j in range(k + 1):
+                for h, w in enumerate(s):
+                    if j < h:
+                        break
+                    f[i][j] = max(f[i][j], f[i - 1][j - h] + w)
+        return f[n][k]

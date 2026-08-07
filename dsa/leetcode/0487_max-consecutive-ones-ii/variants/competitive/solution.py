@@ -1,19 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
-        left = 0
-        zero_count = 0
-        best = 0
+    def findMaxConsecutiveOnes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, prev, curr = 0, 0, 0
+        for n in nums:
+            if n == 0:
+                result = max(result, prev+curr+1)
+                prev, curr = curr, 0
+            else:
+                curr += 1
+        return min(max(result, prev+curr+1), len(nums))
 
-        for right, value in enumerate(nums):
-            if value == 0:
-                zero_count += 1
-            while zero_count > 1:
-                if nums[left] == 0:
-                    zero_count -= 1
-                left += 1
-            best = max(best, right - left + 1)
-
-        return best

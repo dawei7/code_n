@@ -1,21 +1,11 @@
-from typing import List
-
-
 class Solution:
     def minimumLines(self, stockPrices: List[List[int]]) -> int:
-        if len(stockPrices) == 1:
-            return 0
-
         stockPrices.sort()
-        lines = 1
-
-        for index in range(2, len(stockPrices)):
-            previous_day_change = stockPrices[index - 1][0] - stockPrices[index - 2][0]
-            previous_price_change = stockPrices[index - 1][1] - stockPrices[index - 2][1]
-            current_day_change = stockPrices[index][0] - stockPrices[index - 1][0]
-            current_price_change = stockPrices[index][1] - stockPrices[index - 1][1]
-
-            if previous_price_change * current_day_change != current_price_change * previous_day_change:
-                lines += 1
-
-        return lines
+        dx, dy = 0, 1
+        ans = 0
+        for (x, y), (x1, y1) in pairwise(stockPrices):
+            dx1, dy1 = x1 - x, y1 - y
+            if dy * dx1 != dx * dy1:
+                ans += 1
+            dx, dy = dx1, dy1
+        return ans

@@ -1,32 +1,78 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
+
+
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        self.set[max(x_root, y_root)] = min(x_root, y_root)
+        return True
 
 
 class Solution:
-    def smallestStringWithSwaps(self, s: str, pairs: List[List[int]]) -> str:
-        parent = list(range(len(s)))
-        size = [1] * len(s)
+    def smallestStringWithSwaps(self, s, pairs):
+        """
+        :type s: str
+        :type pairs: List[List[int]]
+        :rtype: str
+        """
+        union_find = UnionFind(len(s))
+        for x,y in pairs: 
+            union_find.union_set(x, y)
+        components = collections.defaultdict(list)
+        for i in range(len(s)): 
+            components[union_find.find_set(i)].append(s[i])
+        for i in components.keys(): 
+            components[i].sort(reverse=True)
+        result = []
+        for i in range(len(s)): 
+            result.append(components[union_find.find_set(i)].pop())
+        return "".join(result)
 
-        def find(index: int) -> int:
-            while parent[index] != index:
-                parent[index] = parent[parent[index]]
-                index = parent[index]
-            return index
 
-        for first, second in pairs:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
+# Time:  O(nlogn)
+# Space: O(n)
+import itertools
+class Solution2(object):
+    def smallestStringWithSwaps(self, s, pairs):
+        """
+        :type s: str
+        :type pairs: List[List[int]]
+        :rtype: str
+        """
+        def dfs(i, adj, lookup, component):
+            lookup.add(i)
+            component.append(i)
+            for j in adj[i]:
+                if j in lookup:
+                    continue
+                dfs(j, adj, lookup, component)
+            
+        adj = collections.defaultdict(list)
+        for i, j in pairs:
+            adj[i].append(j)
+            adj[j].append(i)
+        lookup = set()
+        result = list(s)
+        for i in range(len(s)):
+            if i in lookup:
                 continue
-            if size[first_root] < size[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            size[first_root] += size[second_root]
-
-        characters = defaultdict(list)
-        for index, character in enumerate(s):
-            characters[find(index)].append(character)
-        for group in characters.values():
-            group.sort(reverse=True)
-
-        return "".join(characters[find(index)].pop() for index in range(len(s)))
+            component = []
+            dfs(i, adj, lookup, component)
+            component.sort()
+            chars = sorted(result[k] for k in component)
+            for comp, char in itertools.izip(component, chars):
+                result[comp] = char
+        return "".join(result)

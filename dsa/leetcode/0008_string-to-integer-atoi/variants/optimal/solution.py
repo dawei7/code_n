@@ -1,20 +1,28 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
-        index = 0
-        while index < len(s) and s[index] == " ":
-            index += 1
-
-        sign = 1
-        if index < len(s) and s[index] in "+-":
-            sign = -1 if s[index] == "-" else 1
-            index += 1
-
-        limit = 2**31 if sign < 0 else 2**31 - 1
-        value = 0
-        while index < len(s) and "0" <= s[index] <= "9":
-            digit = ord(s[index]) - ord("0")
-            if value > (limit - digit) // 10:
-                return -limit if sign < 0 else limit
-            value = value * 10 + digit
-            index += 1
-        return sign * value
+        if not s:
+            return 0
+        n = len(s)
+        if n == 0:
+            return 0
+        i = 0
+        while s[i] == ' ':
+            i += 1
+            # 仅包含空格
+            if i == n:
+                return 0
+        sign = -1 if s[i] == '-' else 1
+        if s[i] in ['-', '+']:
+            i += 1
+        res, flag = 0, (2**31 - 1) // 10
+        while i < n:
+            # 非数字，跳出循环体
+            if not s[i].isdigit():
+                break
+            c = int(s[i])
+            # 溢出判断
+            if res > flag or (res == flag and c > 7):
+                return 2**31 - 1 if sign > 0 else -(2**31)
+            res = res * 10 + c
+            i += 1
+        return sign * res

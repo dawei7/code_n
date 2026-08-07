@@ -1,22 +1,17 @@
-from typing import List
-
-
 class Solution:
     def incremovableSubarrayCount(self, nums: List[int]) -> int:
-        n = len(nums)
-        left = 0
-        while left + 1 < n and nums[left] < nums[left + 1]:
-            left += 1
-
-        if left == n - 1:
+        i, n = 0, len(nums)
+        while i + 1 < n and nums[i] < nums[i + 1]:
+            i += 1
+        if i == n - 1:
             return n * (n + 1) // 2
-
-        answer = left + 2
-        right = n - 1
-        while right == n - 1 or nums[right] < nums[right + 1]:
-            while left >= 0 and nums[left] >= nums[right]:
-                left -= 1
-            answer += left + 2
-            right -= 1
-
-        return answer
+        ans = i + 2
+        j = n - 1
+        while j:
+            while i >= 0 and nums[i] >= nums[j]:
+                i -= 1
+            ans += i + 2
+            if nums[j - 1] >= nums[j]:
+                break
+            j -= 1
+        return ans

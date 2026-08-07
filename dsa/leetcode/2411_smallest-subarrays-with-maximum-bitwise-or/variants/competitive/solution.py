@@ -1,19 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# bitmasks, hash table
 class Solution:
-    def smallestSubarrays(self, nums: List[int]) -> List[int]:
-        nearest = [-1] * 30
-        answer = [1] * len(nums)
-
-        for index in range(len(nums) - 1, -1, -1):
-            for bit in range(30):
-                if nums[index] & (1 << bit):
-                    nearest[bit] = index
-
-            furthest = index
-            for position in nearest:
-                furthest = max(furthest, position)
-            answer[index] = furthest - index + 1
-
-        return answer
+    def smallestSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result = [0]*len(nums)
+        lookup = [-1]*max(max(nums).bit_length(), 1)
+        for i in reversed(range(len(nums))):
+            for bit in range(len(lookup)):
+                if nums[i]&(1<<bit):
+                    lookup[bit] = i
+            result[i] = max(max(lookup)-i+1, 1)
+        return result

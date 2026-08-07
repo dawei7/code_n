@@ -1,20 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maximumPopulation(self, logs: List[List[int]]) -> int:
-        changes = [0] * 101
-        for birth, death in logs:
-            changes[birth - 1950] += 1
-            changes[death - 1950] -= 1
-
-        population = 0
-        largest = 0
-        answer = 1950
-        for offset, change in enumerate(changes):
-            population += change
-            if population > largest:
-                largest = population
-                answer = 1950 + offset
-
-        return answer
+    def maximumPopulation(self, logs):
+        """
+        :type logs: List[List[int]]
+        :rtype: int
+        """
+        MIN_YEAR, MAX_YEAR = 1950, 2050
+        years = [0]*(MAX_YEAR-MIN_YEAR+1)
+        for s, e in logs:
+            years[s-MIN_YEAR] += 1
+            years[e-MIN_YEAR] -= 1
+        result = 0
+        for i in range(len(years)):
+            if i:
+                years[i] += years[i-1]
+            if years[i] > years[result]:
+                result = i
+        return result+MIN_YEAR

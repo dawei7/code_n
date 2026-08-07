@@ -1,16 +1,11 @@
-SELECT
-    ag.age_bucket,
-    ROUND(
-        100.0 * SUM(CASE WHEN a.activity_type = 'send' THEN a.time_spent ELSE 0 END)
-        / SUM(a.time_spent),
-        2
-    ) AS send_perc,
-    ROUND(
-        100.0 * SUM(CASE WHEN a.activity_type = 'open' THEN a.time_spent ELSE 0 END)
-        / SUM(a.time_spent),
-        2
-    ) AS open_perc
-FROM Activities AS a
-JOIN Age AS ag
-    ON ag.user_id = a.user_id
-GROUP BY ag.age_bucket;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT age_bucket, 
+       ROUND(SUM(CASE WHEN activity_type = 'send' THEN time_spent ELSE 0 END)/SUM(time_spent)*100, 2) AS send_perc,
+       ROUND(SUM(CASE WHEN activity_type = 'open' THEN time_spent ELSE 0 END)/SUM(time_spent)*100, 2) AS open_perc
+FROM Activities a1
+LEFT JOIN Age a2
+ON a1.user_id = a2.user_id
+GROUP BY 1
+ORDER BY NULL;

@@ -1,20 +1,24 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def kEmptySlots(self, bulbs: list[int], k: int) -> int:
-        days = [0] * len(bulbs)
-        for day, position in enumerate(bulbs, 1):
-            days[position - 1] = day
-
-        answer = len(bulbs) + 1
-        left = 0
-        right = k + 1
-        index = 1
-
+    def kEmptySlots(self, flowers, k):
+        """
+        :type flowers: List[int]
+        :type k: int
+        :rtype: int
+        """
+        days = [0] * len(flowers)
+        for i in range(len(flowers)):
+            days[flowers[i]-1] = i
+        result = float("inf")
+        i, left, right = 0, 0, k+1
         while right < len(days):
-            if days[index] < days[left] or days[index] <= days[right]:
-                if index == right:
-                    answer = min(answer, max(days[left], days[right]))
-                left = index
-                right = left + k + 1
-            index += 1
+            if days[i] < days[left] or days[i] <= days[right]:
+                if i == right:
+                    result = min(result, max(days[left], days[right]))
+                left, right = i, k+1+i
+            i += 1
+        return -1 if result == float("inf") else result+1
 
-        return -1 if answer > len(bulbs) else answer
+

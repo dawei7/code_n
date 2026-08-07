@@ -1,19 +1,86 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+import itertools
 
 
 class Solution:
-    def findSecretWord(self, words: List[str], master: "Master") -> None:
-        def matches(first: str, second: str) -> int:
-            return sum(left == right for left, right in zip(first, second))
+    def findSecretWord(self, wordlist, master):
+        """
+        :type wordlist: List[Str]
+        :type master: Master
+        :rtype: None
+        """
+        possible = range(len(wordlist))
+        n = 0
+        while n < 6:
+            count = [collections.Counter(w[i] for w in wordlist) for i in range(6)]
+            guess = max(possible, key=lambda x: sum(count[i][c] for i, c in enumerate(wordlist[x])))
+            n = master.guess(wordlist[guess])
+            possible = [j for j in possible if sum(a == b for a, b in itertools.izip(wordlist[guess], wordlist[j])) == n]
 
-        candidates = list(words)
-        while candidates:
-            guess = min(
-                candidates,
-                key=lambda word: max(Counter(matches(word, candidate) for candidate in candidates).values()),
-            )
-            score = master.guess(guess)
-            if score == 6:
-                return
-            candidates = [candidate for candidate in candidates if matches(guess, candidate) == score]
+
+# Time:  O(n^2)
+# Space: O(n)
+class Solution2(object):
+    def findSecretWord(self, wordlist, master):
+        """
+        :type wordlist: List[Str]
+        :type master: Master
+        :rtype: None
+        """
+        def solve(H, possible):
+            min_max_group, best_guess = possible, None
+            for guess in possible:
+                groups = [[] for _ in range(7)]
+                for j in possible:
+                    if j != guess:
+                        groups[H[guess][j]].append(j)
+                max_group = max(groups, key=len)
+                if len(max_group) < len(min_max_group):
+                    min_max_group, best_guess = max_group, guess
+            return best_guess
+
+        H = [[sum(a == b for a, b in itertools.izip(wordlist[i], wordlist[j]))
+                  for j in range(len(wordlist))]
+                  for i in range(len(wordlist))]
+        possible = range(len(wordlist))
+        n = 0
+        while n < 6:
+            guess = solve(H, possible)
+            n = master.guess(wordlist[guess])
+            possible = [j for j in possible if H[guess][j] == n]
+
+
+# Time:  O(n^2)
+# Space: O(n)
+class Solution3(object):
+    def findSecretWord(self, wordlist, master):
+        """
+        :type wordlist: List[Str]
+        :type master: Master
+        :rtype: None
+        """
+        def solve(H, possible):
+            min_max_group, best_guess = possible, None
+            for guess in possible:
+                groups = [[] for _ in range(7)]
+                for j in possible:
+                    if j != guess:
+                        groups[H[guess][j]].append(j)
+                max_group = groups[0]
+                if len(max_group) < len(min_max_group):
+                    min_max_group, best_guess = max_group, guess
+            return best_guess
+
+        H = [[sum(a == b for a, b in itertools.izip(wordlist[i], wordlist[j]))
+                  for j in range(len(wordlist))]
+                  for i in range(len(wordlist))]
+        possible = range(len(wordlist))
+        n = 0
+        while n < 6:
+            guess = solve(H, possible)
+            n = master.guess(wordlist[guess])
+            possible = [j for j in possible if H[guess][j] == n]
+

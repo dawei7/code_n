@@ -1,30 +1,23 @@
-WITH RECURSIVE words AS (
-    SELECT
-        tweet_id,
-        TRIM(tweet) || ' ' AS remaining,
-        '' AS word
+# Time:  O(n * l^2 + (n * l) * log(n * l))
+# Space: O(n * l^2)
+
+# recursive cte
+WITH RECURSIVE hashtag_cte AS (
+    SELECT CONCAT('#', SUBSTRING_INDEX(SUBSTRING_INDEX(tweet, '#', -1), ' ', 1)) AS hashtag,
+           SUBSTRING(tweet, 1, LENGTH(tweet) - LOCATE('#', REVERSE(tweet))) AS remain,
+           tweet_date
     FROM Tweets
-    WHERE tweet_date >= '2024-02-01'
-      AND tweet_date < '2024-03-01'
-
     UNION ALL
-
-    SELECT
-        tweet_id,
-        LTRIM(SUBSTR(remaining, INSTR(remaining, ' ') + 1)),
-        SUBSTR(remaining, 1, INSTR(remaining, ' ') - 1)
-    FROM words
-    WHERE remaining <> ''
-),
-hashtags AS (
-    SELECT word AS hashtag
-    FROM words
-    WHERE word LIKE '#%'
+    SELECT CONCAT('#', SUBSTRING_INDEX(SUBSTRING_INDEX(remain, '#', -1), ' ', 1)) AS hashtag,
+           SUBSTRING(remain, 1, LENGTH(remain) - LOCATE('#', REVERSE(remain))) AS remain,
+           tweet_date
+    FROM hashtag_cte
+    WHERE LOCATE('#', remain) > 0
 )
-SELECT
-    hashtag,
-    COUNT(*) AS count
-FROM hashtags
+
+SELECT hashtag, COUNT(*) AS count
+FROM hashtag_cte
+WHERE tweet_date BETWEEN "2024-02-01" AND "2024-02-29"
 GROUP BY hashtag
-ORDER BY count DESC, hashtag DESC
+ORDER BY 2 DESC, 1 DESC
 LIMIT 3;

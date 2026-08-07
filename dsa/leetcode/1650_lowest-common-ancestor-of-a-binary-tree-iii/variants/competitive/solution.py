@@ -1,18 +1,47 @@
-"""
+# Time:  O(h)
+# Space: O(1)
+
 # Definition for a Node.
 class Node:
-    def __init__(self, val=0, left=None, right=None, parent=None):
-        self.val = val
-        self.left = left
-        self.right = right
-        self.parent = parent
-"""
-
+    def __init__(self, val):
+        pass
 
 class Solution:
-    def lowestCommonAncestor(self, p: "Node", q: "Node") -> "Node":
-        first, second = p, q
-        while first is not second:
-            first = first.parent if first is not None else q
-            second = second.parent if second is not None else p
-        return first
+    def lowestCommonAncestor(self, p, q):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        a, b = p, q
+        while a != b:
+            a = a.parent if a else q
+            b = b.parent if b else p
+        return a
+
+
+# Time:  O(h)
+# Space: O(1)
+class Solution2(object):
+    def lowestCommonAncestor(self, p, q):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        def depth(node):
+            d = 0
+            while node:
+                node = node.parent
+                d += 1
+            return d
+        
+        p_d, q_d = depth(p), depth(q)
+        while p_d > q_d:
+            p = p.parent
+            p_d -= 1
+        while p_d < q_d:
+            q = q.parent
+            q_d -= 1
+        while p != q:
+            p = p.parent
+            q = q.parent
+        return p

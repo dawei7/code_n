@@ -1,7 +1,4 @@
 class Solution:
     def minimumLength(self, s: str) -> int:
-        frequencies = [0] * 26
-        for character in s:
-            frequencies[ord(character) - ord("a")] += 1
-
-        return sum(1 if frequency % 2 == 1 else 2 for frequency in frequencies if frequency > 0)
+        cnt = Counter(s)
+        return sum(1 if x & 1 else 2 for x in cnt.values())

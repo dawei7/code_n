@@ -1,10 +1,9 @@
 class Solution:
     def numOfWays(self, n: int) -> int:
-        modulus = 1_000_000_007
-        aba = abc = 6
-        for _ in range(1, n):
-            aba, abc = (
-                (3 * aba + 2 * abc) % modulus,
-                (2 * aba + 2 * abc) % modulus,
-            )
-        return (aba + abc) % modulus
+        mod = 10**9 + 7
+        f0 = f1 = 6
+        for _ in range(n - 1):
+            g0 = (3 * f0 + 2 * f1) % mod
+            g1 = (2 * f0 + 2 * f1) % mod
+            f0, f1 = g0, g1
+        return (f0 + f1) % mod

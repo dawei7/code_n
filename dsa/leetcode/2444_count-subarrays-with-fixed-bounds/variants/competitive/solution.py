@@ -1,21 +1,24 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers
 class Solution:
-    def countSubarrays(self, nums: List[int], minK: int, maxK: int) -> int:
-        last_invalid = -1
-        last_minimum = -1
-        last_maximum = -1
-        answer = 0
-
-        for index, value in enumerate(nums):
-            if value < minK or value > maxK:
-                last_invalid = index
-            if value == minK:
-                last_minimum = index
-            if value == maxK:
-                last_maximum = index
-
-            answer += max(0, min(last_minimum, last_maximum) - last_invalid)
-
-        return answer
+    def countSubarrays(self, nums, minK, maxK):
+        """
+        :type nums: List[int]
+        :type minK: int
+        :type maxK: int
+        :rtype: int
+        """
+        result = left = 0
+        right = [-1]*2
+        for i, x in enumerate(nums):
+            if not (minK <= x <= maxK):
+                left = i+1
+                continue
+            if x == minK:
+                right[0] = i
+            if x == maxK:
+                right[1] = i
+            result += max(min(right)-left+1, 0)
+        return result

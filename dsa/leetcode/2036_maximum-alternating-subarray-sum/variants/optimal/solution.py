@@ -1,16 +1,7 @@
-from typing import List
-
-
 class Solution:
     def maximumAlternatingSubarraySum(self, nums: List[int]) -> int:
-        add = nums[0]
-        subtract = float("-inf")
-        answer = add
-
-        for value in nums[1:]:
-            next_add = max(value, subtract + value)
-            next_subtract = add - value
-            add, subtract = next_add, next_subtract
-            answer = max(answer, add, subtract)
-
-        return int(answer)
+        ans = f = g = -inf
+        for x in nums:
+            f, g = max(g, 0) + x, f - x
+            ans = max(ans, f, g)
+        return ans

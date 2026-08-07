@@ -1,16 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def maxBalancedShipments(self, weight: List[int]) -> int:
-        shipments = 0
-        maximum = 0
-
-        for value in weight:
-            if value < maximum:
-                shipments += 1
-                maximum = 0
+    def maxBalancedShipments(self, weight):
+        """
+        :type weight: List[int]
+        :rtype: int
+        """
+        result = mx = 0
+        for x in weight:
+            if x < mx:
+                mx = 0
+                result += 1
             else:
-                maximum = value
-
-        return shipments
+                mx = x
+        return result

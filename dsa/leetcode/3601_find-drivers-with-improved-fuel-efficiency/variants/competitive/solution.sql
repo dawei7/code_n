@@ -1,31 +1,30 @@
-WITH half_year_efficiency AS (
-    SELECT
-        driver_id,
-        AVG(
-            CASE
-                WHEN CAST(strftime('%m', trip_date) AS INTEGER) BETWEEN 1 AND 6
-                THEN distance_km / fuel_consumed
-            END
-        ) AS first_half_avg,
-        AVG(
-            CASE
-                WHEN CAST(strftime('%m', trip_date) AS INTEGER) BETWEEN 7 AND 12
-                THEN distance_km / fuel_consumed
-            END
-        ) AS second_half_avg
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH first_cte AS (
+    SELECT driver_id,
+           AVG(distance_km / fuel_consumed) AS avg
     FROM trips
+    WHERE trip_date BETWEEN '2023-01-01' AND '2023-06-30'
     GROUP BY driver_id
+    ORDER bY NULL
+),
+second_cte AS (
+    SELECT driver_id,
+           AVG(distance_km / fuel_consumed) AS avg
+    FROM trips
+    WHERE trip_date BETWEEN '2023-07-01' AND '2023-12-31'
+    GROUP BY driver_id
+    ORDER bY NULL
 )
-SELECT
-    d.driver_id,
-    d.driver_name,
-    ROUND(h.first_half_avg, 2) AS first_half_avg,
-    ROUND(h.second_half_avg, 2) AS second_half_avg,
-    ROUND(h.second_half_avg - h.first_half_avg, 2) AS efficiency_improvement
-FROM half_year_efficiency AS h
-JOIN drivers AS d
-    ON d.driver_id = h.driver_id
-WHERE h.first_half_avg IS NOT NULL
-  AND h.second_half_avg IS NOT NULL
-  AND h.second_half_avg > h.first_half_avg
-ORDER BY efficiency_improvement DESC, d.driver_name ASC;
+
+SELECT f.driver_id,
+       d.driver_name,
+       ROUND(f.avg, 2) AS first_half_avg,
+       ROUND(s.avg, 2) AS second_half_avg,
+       ROUND(s.avg - f.avg, 2) AS efficiency_improvement
+FROM first_cte f
+INNER JOIN second_cte s ON f.driver_id = s.driver_id
+INNER JOIN drivers d ON f.driver_id = d.driver_id
+WHERE f.avg < s.avg
+ORDER BY 5 DESC, 2 ASC;

@@ -1,41 +1,34 @@
-from typing import List
-
-
 class Solution:
     def smallestMissingValueSubtree(
-        self,
-        parents: List[int],
-        nums: List[int],
+        self, parents: List[int], nums: List[int]
     ) -> List[int]:
-        length = len(parents)
-        answer = [1] * length
+        def dfs(i: int):
+            if vis[i]:
+                return
+            vis[i] = True
+            if nums[i] < len(has):
+                has[nums[i]] = True
+            for j in g[i]:
+                dfs(j)
 
-        try:
-            current = nums.index(1)
-        except ValueError:
-            return answer
-
-        children = [[] for _ in range(length)]
-        for node in range(1, length):
-            children[parents[node]].append(node)
-
-        visited = [False] * length
-        present = set()
-        missing = 1
-
-        while current != -1:
-            stack = [current]
-            while stack:
-                node = stack.pop()
-                if visited[node]:
-                    continue
-                visited[node] = True
-                present.add(nums[node])
-                stack.extend(children[node])
-
-            while missing in present:
-                missing += 1
-            answer[current] = missing
-            current = parents[current]
-
-        return answer
+        n = len(nums)
+        ans = [1] * n
+        g = [[] for _ in range(n)]
+        idx = -1
+        for i, p in enumerate(parents):
+            if i:
+                g[p].append(i)
+            if nums[i] == 1:
+                idx = i
+        if idx == -1:
+            return ans
+        vis = [False] * n
+        has = [False] * (n + 2)
+        i = 2
+        while idx != -1:
+            dfs(idx)
+            while has[i]:
+                i += 1
+            ans[idx] = i
+            idx = parents[idx]
+        return ans

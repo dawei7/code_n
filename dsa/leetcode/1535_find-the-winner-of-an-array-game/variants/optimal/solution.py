@@ -1,16 +1,13 @@
-from typing import List
-
-
 class Solution:
     def getWinner(self, arr: List[int], k: int) -> int:
-        champion = arr[0]
-        streak = 0
-        for challenger in arr[1:]:
-            if champion > challenger:
-                streak += 1
+        mx = arr[0]
+        cnt = 0
+        for x in arr[1:]:
+            if mx < x:
+                mx = x
+                cnt = 1
             else:
-                champion = challenger
-                streak = 1
-            if streak == k:
-                return champion
-        return champion
+                cnt += 1
+            if cnt == k:
+                break
+        return mx

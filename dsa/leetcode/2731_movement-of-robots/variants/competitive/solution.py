@@ -1,11 +1,17 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, math
 class Solution:
-    def sumDistance(self, nums: List[int], s: str, d: int) -> int:
-        positions = sorted(position + d if direction == "R" else position - d for position, direction in zip(nums, s))
-
-        total = 0
-        prefix = 0
-        for index, position in enumerate(positions):
-            total += index * position - prefix
-            prefix += position
-
-        return total % 1_000_000_007
+    def sumDistance(self, nums, s, d):
+        """
+        :type nums: List[int]
+        :type s: str
+        :type d: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        for i in range(len(nums)):
+            nums[i] += d if s[i] == 'R' else -d
+        nums.sort()
+        return reduce(lambda x, y: (x+y)%MOD, ((i-(len(nums)-(i+1)))*x for i, x in enumerate(nums)))

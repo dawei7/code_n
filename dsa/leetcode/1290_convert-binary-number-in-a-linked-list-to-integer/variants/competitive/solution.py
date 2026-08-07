@@ -1,13 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
 # Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
 class Solution:
-    def getDecimalValue(self, head: Optional[ListNode]) -> int:
-        value = 0
-        current = head
-        while current is not None:
-            value = value * 2 + current.val
-            current = current.next
-        return value
+    def getDecimalValue(self, head):
+        """
+        :type head: ListNode
+        :rtype: int
+        """
+        result = 0
+        while head: 
+            result = result*2 + head.val 
+            head = head.next 
+        return result

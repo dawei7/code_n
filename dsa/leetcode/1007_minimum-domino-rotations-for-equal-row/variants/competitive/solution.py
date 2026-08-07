@@ -1,22 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:
-        def rotations(target: int):
-            top_moves = 0
-            bottom_moves = 0
-
-            for top, bottom in zip(tops, bottoms):
-                if top != target and bottom != target:
-                    return None
-                if top != target:
-                    top_moves += 1
-                if bottom != target:
-                    bottom_moves += 1
-
-            return min(top_moves, bottom_moves)
-
-        results = (rotations(tops[0]), rotations(bottoms[0]))
-        feasible = [result for result in results if result is not None]
-        return min(feasible) if feasible else -1
+    def minDominoRotations(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: int
+        """
+        intersect = reduce(set.__and__, [set(d) for d in itertools.izip(A, B)])
+        if not intersect:
+            return -1
+        x = intersect.pop()
+        return min(len(A)-A.count(x), len(B)-B.count(x))

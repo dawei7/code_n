@@ -1,29 +1,40 @@
-from collections import deque
-from typing import List, Optional
-
-
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def largestValues(self, root: Optional[TreeNode]) -> List[int]:
-        if root is None:
-            return []
+    def largestValues(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        def largestValuesHelper(root, depth, result):
+            if not root:
+                return
+            if depth == len(result):
+                result.append(root.val)
+            else:
+                result[depth] = max(result[depth], root.val)
+            largestValuesHelper(root.left, depth+1, result)
+            largestValuesHelper(root.right, depth+1, result)
 
-        answer = []
-        queue = deque([root])
-        while queue:
-            row_maximum = queue[0].val
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                row_maximum = max(row_maximum, node.val)
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-            answer.append(row_maximum)
-        return answer
+        result = []
+        largestValuesHelper(root, 0, result)
+        return result
+
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def largestValues(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        curr = [root]
+        while any(curr):
+            result.append(max(node.val for node in curr))
+            curr = [child for node in curr for child in (node.left, node.right) if child]
+        return result
+
+

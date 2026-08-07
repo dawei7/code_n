@@ -1,29 +1,29 @@
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    def update(self, x: int, v: int):
+        while x <= self.n:
+            self.c[x] += v
+            x += x & -x
+
+    def query(self, x: int) -> int:
+        s = 0
+        while x:
+            s += self.c[x]
+            x -= x & -x
+        return s
 
 
 class Solution:
     def createSortedArray(self, instructions: List[int]) -> int:
-        modulus = 1_000_000_007
-        maximum = max(instructions)
-        tree = [0] * (maximum + 1)
-
-        def prefix_sum(index: int) -> int:
-            total = 0
-            while index > 0:
-                total += tree[index]
-                index -= index & -index
-            return total
-
-        def add(index: int) -> None:
-            while index <= maximum:
-                tree[index] += 1
-                index += index & -index
-
-        cost = 0
-        for inserted, value in enumerate(instructions):
-            less = prefix_sum(value - 1)
-            greater = inserted - prefix_sum(value)
-            cost += min(less, greater)
-            add(value)
-
-        return cost % modulus
+        m = max(instructions)
+        tree = BinaryIndexedTree(m)
+        ans = 0
+        mod = 10**9 + 7
+        for i, x in enumerate(instructions):
+            cost = min(tree.query(x - 1), i - tree.query(x))
+            ans += cost
+            tree.update(x, 1)
+        return ans % mod

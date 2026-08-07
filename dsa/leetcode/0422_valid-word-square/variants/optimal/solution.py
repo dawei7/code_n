@@ -1,12 +1,8 @@
-from typing import List
-
-
 class Solution:
     def validWordSquare(self, words: List[str]) -> bool:
-        for row, word in enumerate(words):
-            for column, character in enumerate(word):
-                if column >= len(words) or row >= len(words[column]):
-                    return False
-                if words[column][row] != character:
+        m = len(words)
+        for i, w in enumerate(words):
+            for j, c in enumerate(w):
+                if j >= m or i >= len(words[j]) or c != words[j][i]:
                     return False
         return True

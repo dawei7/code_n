@@ -1,21 +1,39 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
-        rows = len(mat)
-        cols = len(mat[0])
-        answer = []
+    def findDiagonalOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix or not matrix[0]:
+            return []
 
-        for diagonal_index in range(rows + cols - 1):
-            row = max(0, diagonal_index - cols + 1)
-            col = diagonal_index - row
-            diagonal = []
-            while row < rows and col >= 0:
-                diagonal.append(mat[row][col])
-                row += 1
-                col -= 1
-            if diagonal_index % 2 == 0:
-                diagonal.reverse()
-            answer.extend(diagonal)
-        return answer
+        result = []
+        row, col, d = 0, 0, 0
+        dirs = [(-1, 1), (1, -1)]
+
+        for i in range(len(matrix) * len(matrix[0])):
+            result.append(matrix[row][col])
+            row += dirs[d][0]
+            col += dirs[d][1]
+
+            if row >= len(matrix):
+                row = len(matrix) - 1
+                col += 2
+                d = 1 - d
+            elif col >= len(matrix[0]):
+                col = len(matrix[0]) - 1
+                row += 2
+                d = 1 - d
+            elif row < 0:
+                row = 0
+                d = 1 - d
+            elif col < 0:
+                col = 0
+                d = 1 - d
+
+        return result
+
+

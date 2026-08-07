@@ -1,10 +1,12 @@
-SELECT
-    seller.seller_name
-FROM Seller AS seller
-WHERE NOT EXISTS (
+# Time:  O(nlogm)
+# Space: O(n + m)
+
+SELECT seller_name
+FROM seller s
+WHERE NOT EXISTS
+  (
     SELECT 1
-    FROM Orders AS orders
-    WHERE orders.seller_id = seller.seller_id
-      AND orders.sale_date BETWEEN '2020-01-01' AND '2020-12-31'
-)
-ORDER BY seller.seller_name;
+    FROM orders o
+    WHERE s.seller_id = o.seller_id AND o.sale_date >= '2020-01-01'
+  )
+ORDER BY 1;

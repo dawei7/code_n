@@ -1,62 +1,77 @@
-from collections import Counter
+# Time:  precompute: O(10^MAX_N_M)
+#        runtime:    O(n * m * (n + m))
+# Space: O(10^MAX_N_M + n * m * (n + m))
+
+import collections
 
 
+# number theory, freq table
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return spf
+
+
+MAX_M_N = 6
+SPF = linear_sieve_of_eratosthenes(10**MAX_M_N-1)
 class Solution:
-    def mostFrequentPrime(self, mat: List[List[int]]) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        directions = (
-            (-1, -1),
-            (-1, 0),
-            (-1, 1),
-            (0, -1),
-            (0, 1),
-            (1, -1),
-            (1, 0),
-            (1, 1),
-        )
-        prime_cache = {}
+    def mostFrequentPrime(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1))
+        def numbers(i, j, di, dj):
+            curr = 0
+            while 0 <= i < len(mat) and 0 <= j < len(mat[0]):
+                curr = curr*10+mat[i][j]
+                yield curr
+                i, j = i+di, j+dj
 
-        def is_prime(value: int) -> bool:
-            if value in prime_cache:
-                return prime_cache[value]
+        cnt = collections.Counter(x for i in range(len(mat)) for j in range(len(mat[0])) for di, dj in DIRECTIONS for x in numbers(i, j, di, dj) if x > 10 and SPF[x] == x)
+        cnt[-1] = 0
+        return max(cnt.keys(), key=lambda x: (cnt[x], x))
 
-            if value < 2:
-                result = False
-            elif value == 2:
-                result = True
-            elif value % 2 == 0:
-                result = False
-            else:
-                result = True
-                divisor = 3
-                while divisor * divisor <= value:
-                    if value % divisor == 0:
-                        result = False
-                        break
-                    divisor += 2
 
-            prime_cache[value] = result
-            return result
+# Time:  O(n * m * (n + m) * sqrt(10^MAX_N_M))
+# Space: O(n * m * (n + m))
+import collections
 
-        frequencies = Counter()
 
-        for start_row in range(rows):
-            for start_column in range(columns):
-                for row_step, column_step in directions:
-                    row = start_row
-                    column = start_column
-                    value = 0
+# number theory, freq table
+def is_prime(n):
+    if n%2 == 0 or n%3 == 0:
+        return False
+    for i in range(5, n, 6):
+        if i*i > n:
+            break
+        if n%i == 0 or n%(i+2) == 0:
+            return False
+    return True  
 
-                    while 0 <= row < rows and 0 <= column < columns:
-                        value = value * 10 + mat[row][column]
-                        if value > 10 and is_prime(value):
-                            frequencies[value] += 1
 
-                        row += row_step
-                        column += column_step
+class Solution2(object):
+    def mostFrequentPrime(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1), (1, 1), (1, -1), (-1, 1), (-1, -1))
+        def numbers(i, j, di, dj):
+            curr = 0
+            while 0 <= i < len(mat) and 0 <= j < len(mat[0]):
+                curr = curr*10+mat[i][j]
+                yield curr
+                i, j = i+di, j+dj
 
-        if not frequencies:
-            return -1
-
-        return max(frequencies, key=lambda value: (frequencies[value], value))
+        cnt = collections.Counter(x for i in range(len(mat)) for j in range(len(mat[0])) for di, dj in DIRECTIONS for x in numbers(i, j, di, dj) if x > 10)
+        cnt[-1] = 0
+        return max((p for p in cnt.keys() if is_prime(p) or p == -1), key=lambda x: (cnt[x], x))

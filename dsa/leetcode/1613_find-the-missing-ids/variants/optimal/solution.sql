@@ -1,14 +1,25 @@
-WITH RECURSIVE candidate_ids (ids) AS (
-    SELECT 1
-    UNION ALL
-    SELECT ids + 1
-    FROM candidate_ids
-    WHERE ids < (SELECT MAX(customer_id) FROM Customers)
-)
+# Write your MySQL query statement below
+WITH RECURSIVE
+    t AS (
+        SELECT
+            1 AS n
+        UNION ALL
+        SELECT
+            n + 1
+        FROM t
+        WHERE n < 100
+    )
 SELECT
-    candidate_ids.ids
-FROM candidate_ids
-LEFT JOIN Customers
-  ON Customers.customer_id = candidate_ids.ids
-WHERE Customers.customer_id IS NULL
-ORDER BY candidate_ids.ids;
+    n AS ids
+FROM t
+WHERE
+    n < (
+        SELECT
+            MAX(customer_id)
+        FROM Customers
+    )
+    AND n NOT IN (
+        SELECT
+            customer_id
+        FROM Customers
+    );

@@ -1,11 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy, case works
 class Solution:
-    def minFlips(self, s: str) -> int:
-        n = len(s)
-        ones = s.count("1")
-
-        answer = min(max(0, ones - 1), n - ones)
-        if n >= 2:
-            endpoint_pattern = (s[0] == "0") + (s[-1] == "0") + s[1:-1].count("1")
-            answer = min(answer, endpoint_pattern)
-
-        return answer
+    def minFlips(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cnt0 = s.count('0')
+        cnt1 = len(s)-cnt0
+        return min(cnt0, max(cnt1-1, 0), max(cnt1-(s[0] == '1')-(s[-1] == '1'), 0))

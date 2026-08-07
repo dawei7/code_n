@@ -1,8 +1,6 @@
-from collections import Counter
-
-
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
-        first = Counter(word1)
-        second = Counter(word2)
-        return first.keys() == second.keys() and sorted(first.values()) == sorted(second.values())
+        cnt1, cnt2 = Counter(word1), Counter(word2)
+        return sorted(cnt1.values()) == sorted(cnt2.values()) and set(
+            cnt1.keys()
+        ) == set(cnt2.keys())

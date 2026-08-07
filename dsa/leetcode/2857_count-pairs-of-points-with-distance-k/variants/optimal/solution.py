@@ -1,12 +1,11 @@
 class Solution:
     def countPairs(self, coordinates: List[List[int]], k: int) -> int:
-        answer = 0
-        seen = {}
-
-        for x, y in coordinates:
-            for x_distance in range(k + 1):
-                partner = (x ^ x_distance, y ^ (k - x_distance))
-                answer += seen.get(partner, 0)
-            seen[(x, y)] = seen.get((x, y), 0) + 1
-
-        return answer
+        cnt = Counter()
+        ans = 0
+        for x2, y2 in coordinates:
+            for a in range(k + 1):
+                b = k - a
+                x1, y1 = a ^ x2, b ^ y2
+                ans += cnt[(x1, y1)]
+            cnt[(x2, y2)] += 1
+        return ans

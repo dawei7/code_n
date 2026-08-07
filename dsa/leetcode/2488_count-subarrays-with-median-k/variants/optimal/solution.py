@@ -1,24 +1,16 @@
-from typing import List
-
-
 class Solution:
     def countSubarrays(self, nums: List[int], k: int) -> int:
-        pivot = nums.index(k)
-
-        left_counts = {0: 1}
-        balance = 0
-        for index in range(pivot - 1, -1, -1):
-            balance += 1 if nums[index] > k else -1
-            left_counts[balance] = left_counts.get(balance, 0) + 1
-
-        answer = 0
-        balance = 0
-        for index in range(pivot, len(nums)):
-            if nums[index] > k:
-                balance += 1
-            elif nums[index] < k:
-                balance -= 1
-            answer += left_counts.get(-balance, 0)
-            answer += left_counts.get(1 - balance, 0)
-
-        return answer
+        i = nums.index(k)
+        cnt = Counter()
+        ans = 1
+        x = 0
+        for v in nums[i + 1 :]:
+            x += 1 if v > k else -1
+            ans += 0 <= x <= 1
+            cnt[x] += 1
+        x = 0
+        for j in range(i - 1, -1, -1):
+            x += 1 if nums[j] > k else -1
+            ans += 0 <= x <= 1
+            ans += cnt[-x] + cnt[-x + 1]
+        return ans

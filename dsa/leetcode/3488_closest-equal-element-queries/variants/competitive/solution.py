@@ -1,25 +1,29 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def solveQueries(self, nums: List[int], queries: List[int]) -> List[int]:
-        length = len(nums)
-        positions: dict[int, list[int]] = defaultdict(list)
-        for index, value in enumerate(nums):
-            positions[value].append(index)
-
-        closest = [-1] * length
-        for same_value in positions.values():
-            count = len(same_value)
-            if count < 2:
-                continue
-            for offset, index in enumerate(same_value):
-                previous_index = same_value[offset - 1]
-                next_index = same_value[(offset + 1) % count]
-                closest[index] = min(
-                    (index - previous_index) % length,
-                    (next_index - index) % length,
-                )
-
-        return [closest[query] for query in queries]
+    def solveQueries(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
+        dist = [len(nums)]*len(nums)
+        left = {}
+        for i in range(2*len(nums)-1):
+            x = nums[i%len(nums)]
+            if x in left:
+                dist[i%len(dist)] = min(dist[i%len(dist)], i-left[x])
+            left[x] = i
+        right = {}
+        for i in reversed(range(2*len(nums)-1)):
+            x = nums[i%len(nums)]
+            if x in right:
+                dist[i%len(dist)] = min(dist[i%len(dist)], right[x]-i)
+            right[x] = i
+        result = [-1]*len(queries)
+        for i, x in enumerate(queries):
+            if dist[x] < len(nums):
+                result[i] = dist[x]
+        return result

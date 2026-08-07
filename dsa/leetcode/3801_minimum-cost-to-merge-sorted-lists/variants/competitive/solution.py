@@ -1,46 +1,58 @@
-from typing import List
+# Time:  O(l * nlogn + 2^n * log(n * l) * n * logl + 3^n), n = len(lists), l = max(len(list) for list in lists)
+# Space: O(n * l + 2^n)
+
+import heapq
+import bisect
 
 
+# dp, sort, heap, binary search, submask enumeration
 class Solution:
-    def minMergeCost(self, lists: List[List[int]]) -> int:
-        list_count = len(lists)
-        mask_count = 1 << list_count
+    def minMergeCost(self, lists):
+        """
+        :type lists: List[List[int]]
+        :rtype: int
+        """
+        INF = float("inf")
+        def merge(lists):
+            result = []
+            min_heap = [(lists[i][0], i, 0) for i in range(len(lists))]
+            heapq.heapify(min_heap)
+            while min_heap:
+                x, i, j = heapq.heappop(min_heap)
+                result.append(x)
+                if j+1 < len(lists[i]):
+                    heapq.heappush(min_heap, (lists[i][j+1], i, j+1))
+            return result
 
-        sizes = [0] * mask_count
-        for mask in range(1, mask_count):
-            lowest_bit = mask & -mask
-            owner = lowest_bit.bit_length() - 1
-            sizes[mask] = sizes[mask ^ lowest_bit] + len(lists[owner])
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        ordered = sorted((value, owner) for owner, values in enumerate(lists) for value in values)
-        medians = [0] * mask_count
-        for mask in range(1, mask_count):
-            target = (sizes[mask] - 1) // 2
-            seen = 0
-            for value, owner in ordered:
-                if mask & (1 << owner):
-                    if seen == target:
-                        medians[mask] = value
-                        break
-                    seen += 1
+        def check(x):
+            return sum(bisect.bisect_right(lists[i], sorted_vals[x]) for i in range(len(lists)) if mask&(1<<i)) >= (dp1[mask]+1)//2
 
-        dp = [0] * mask_count
-        infinity = 10**30
-        for mask in range(1, mask_count):
-            if (mask & (mask - 1)) == 0:
+        dp1 = [0]*(1<<len(lists))
+        for i in range(len(lists)):  # Time: O(2^n)
+            dp1[1<<i] = len(lists[i])
+        for mask in range(1, len(dp1)):  # Time: O(2^n)
+            dp1[mask] = dp1[mask^(mask&-mask)]+dp1[mask&-mask]
+        sorted_vals = merge(lists)  # Time: O(l * nlogn)
+        sorted_vals = [sorted_vals[i] for i in range(len(sorted_vals)) if i+1 == len(sorted_vals) or sorted_vals[i+1] != sorted_vals[i]]
+        dp2 = [0]*(1<<len(lists))
+        for mask in range(1, len(dp2)):  # Time: O(2^n * log(n * l) * n * logl)
+            dp2[mask] = sorted_vals[binary_search(0, len(sorted_vals)-1, check)]
+        dp3 = [0]*(1<<len(lists))
+        for mask in range(1, len(dp3)):  # Time: O(3^n)
+            if mask&(mask-1) == 0:
                 continue
-
-            best = infinity
-            anchor = mask & -mask
-            left = (mask - 1) & mask
-            while left:
-                right = mask ^ left
-                if right and left & anchor:
-                    best = min(
-                        best,
-                        dp[left] + dp[right] + sizes[mask] + abs(medians[left] - medians[right]),
-                    )
-                left = (left - 1) & mask
-            dp[mask] = best
-
-        return dp[-1]
+            dp3[mask] = INF
+            submask = (mask-1)&mask
+            while submask > mask^submask:
+                dp3[mask] = min(dp3[mask], dp3[submask]+dp3[mask^submask]+abs(dp2[submask]-dp2[mask^submask])+dp1[mask])
+                submask = (submask-1)&mask
+        return dp3[-1]

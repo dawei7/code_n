@@ -1,31 +1,22 @@
 class Solution:
     def repeatLimitedString(self, s: str, repeatLimit: int) -> str:
-        counts = [0] * 26
-        for character in s:
-            counts[ord(character) - ord("a")] += 1
-
-        pieces = []
-        largest = 25
-
-        while largest >= 0:
-            if counts[largest] == 0:
-                largest -= 1
-                continue
-
-            take = min(counts[largest], repeatLimit)
-            pieces.append(chr(ord("a") + largest) * take)
-            counts[largest] -= take
-
-            if counts[largest] == 0:
-                continue
-
-            separator = largest - 1
-            while separator >= 0 and counts[separator] == 0:
-                separator -= 1
-            if separator < 0:
-                break
-
-            pieces.append(chr(ord("a") + separator))
-            counts[separator] -= 1
-
-        return "".join(pieces)
+        cnt = [0] * 26
+        for c in s:
+            cnt[ord(c) - ord("a")] += 1
+        ans = []
+        j = 24
+        for i in range(25, -1, -1):
+            j = min(i - 1, j)
+            while 1:
+                x = min(repeatLimit, cnt[i])
+                cnt[i] -= x
+                ans.append(ascii_lowercase[i] * x)
+                if cnt[i] == 0:
+                    break
+                while j >= 0 and cnt[j] == 0:
+                    j -= 1
+                if j < 0:
+                    break
+                cnt[j] -= 1
+                ans.append(ascii_lowercase[j])
+        return "".join(ans)

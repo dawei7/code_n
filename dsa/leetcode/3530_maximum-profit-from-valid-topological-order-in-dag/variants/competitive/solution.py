@@ -1,25 +1,30 @@
+# Time:  O(n * 2^n)
+# Space: O(2^n)
+
+# dp, bitmasks
 class Solution:
-    def maxProfit(self, n: int, edges: List[List[int]], score: List[int]) -> int:
-        prerequisites = [0] * n
-        for source, target in edges:
-            prerequisites[target] |= 1 << source
+    def maxProfit(self, n, edges, score):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type score: List[int]
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
 
-        dp = [-1] * (1 << n)
-        dp[0] = 0
-        valid_masks = [0]
-
-        for placed in range(n):
-            next_valid_masks = []
-            for mask in valid_masks:
-                for node in range(n):
-                    bit = 1 << node
-                    if not mask & bit and mask & prerequisites[node] == prerequisites[node]:
-                        next_mask = mask | bit
-                        if dp[next_mask] == -1:
-                            next_valid_masks.append(next_mask)
-                        candidate = dp[mask] + (placed + 1) * score[node]
-                        if candidate > dp[next_mask]:
-                            dp[next_mask] = candidate
-            valid_masks = next_valid_masks
-
+        adj = [0]*n
+        for i, j in edges:
+            adj[j] |= 1<<i
+        dp = [-1]*(1<<n)
+        dp[0] = 0 
+        for mask in range(1<<n):
+            if dp[mask] == -1:
+                continue
+            l = popcount(mask)+1
+            for i in range(n):
+                if mask&(1<<i):
+                    continue
+                if (mask & adj[i]) == adj[i]: 
+                    dp[mask|(1<<i)] = max(dp[mask|(1<<i)], dp[mask]+l*score[i])
         return dp[-1]

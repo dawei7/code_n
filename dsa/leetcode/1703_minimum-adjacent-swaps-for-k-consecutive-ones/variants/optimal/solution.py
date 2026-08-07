@@ -1,24 +1,15 @@
-from typing import List
-
-
 class Solution:
     def minMoves(self, nums: List[int], k: int) -> int:
-        adjusted = []
-        for index, value in enumerate(nums):
-            if value == 1:
-                adjusted.append(index - len(adjusted))
-
-        prefix = [0]
-        for position in adjusted:
-            prefix.append(prefix[-1] + position)
-
-        answer = float("inf")
-        for left in range(len(adjusted) - k + 1):
-            right = left + k
-            middle = left + k // 2
-            median = adjusted[middle]
-            left_cost = median * (middle - left) - (prefix[middle] - prefix[left])
-            right_cost = (prefix[right] - prefix[middle + 1]) - median * (right - middle - 1)
-            answer = min(answer, left_cost + right_cost)
-
-        return int(answer)
+        arr = [i for i, x in enumerate(nums) if x]
+        s = list(accumulate(arr, initial=0))
+        ans = inf
+        x = (k + 1) // 2
+        y = k - x
+        for i in range(x - 1, len(arr) - y):
+            j = arr[i]
+            ls = s[i + 1] - s[i + 1 - x]
+            rs = s[i + 1 + y] - s[i + 1]
+            a = (j + j - x + 1) * x // 2 - ls
+            b = rs - (j + 1 + j + y) * y // 2
+            ans = min(ans, a + b)
+        return ans

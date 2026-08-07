@@ -1,13 +1,24 @@
-from string import ascii_lowercase
+# Time:  O(n + m)
+# Space: O(1)
+
+import itertools
 
 
+# string, hash table
 class Solution:
-    def decodeMessage(self, key: str, message: str) -> str:
-        substitution = {" ": " "}
-        next_letter = 0
-        for character in key:
-            if character not in substitution:
-                substitution[character] = ascii_lowercase[next_letter]
-                next_letter += 1
-
-        return "".join(substitution[character] for character in message)
+    def decodeMessage(self, key, message):
+        """
+        :type key: str
+        :type message: str
+        :rtype: str
+        """
+        f = lambda x: ord(x)-ord('a')
+        lookup = [-1]*26
+        i = 0
+        for x in itertools.imap(f, key):
+            if x < 0 or lookup[x] != -1:
+                continue
+            lookup[x] = i
+            i += 1
+        return "".join(itertools.imap(lambda x: chr(ord('a')+x), (lookup[x] if x >= 0 else x for x in itertools.imap(f, message))))
+    

@@ -1,15 +1,20 @@
-from math import gcd
+# Time:  O(n)
+# Space: O(1)
 
-
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+# linked list
 class Solution:
-    def insertGreatestCommonDivisors(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        current = head
-        while current.next:
-            current.next = ListNode(gcd(current.val, current.next.val), current.next)
-            current = current.next.next
+    def insertGreatestCommonDivisors(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+
+        curr = head
+        while curr.next:
+            curr.next = ListNode(gcd(curr.val, curr.next.val), curr.next)
+            curr = curr.next.next
         return head

@@ -1,13 +1,10 @@
-SELECT prices.product_id,
-       ROUND(
-           COALESCE(
-               SUM(prices.price * sales.units) * 1.0 / SUM(sales.units),
-               0
-           ),
-           2
-       ) AS average_price
-FROM Prices AS prices
-LEFT JOIN UnitsSold AS sales
-       ON sales.product_id = prices.product_id
-      AND sales.purchase_date BETWEEN prices.start_date AND prices.end_date
-GROUP BY prices.product_id;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT b.product_id, 
+       ROUND(SUM(a.units * b.price) / SUM(a.units), 2) AS average_price 
+FROM   UnitsSold AS a 
+       INNER JOIN Prices AS b 
+               ON a.product_id = b.product_id 
+WHERE  a.purchase_date BETWEEN b.start_date AND b.end_date 
+GROUP  BY product_id; 

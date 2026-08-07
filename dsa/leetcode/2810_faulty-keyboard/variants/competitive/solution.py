@@ -1,19 +1,23 @@
-from collections import deque
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# deque
 class Solution:
-    def finalString(self, s: str) -> str:
-        text = deque()
-        reversed_order = False
-
-        for character in s:
-            if character == "i":
-                reversed_order = not reversed_order
-            elif reversed_order:
-                text.appendleft(character)
+    def finalString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        dq = collections.deque()
+        parity = 0
+        for x in s:
+            if x == 'i':
+                parity ^= 1
             else:
-                text.append(character)
-
-        if reversed_order:
-            text.reverse()
-        return "".join(text)
+                dq.appendleft(x) if parity else dq.append(x)
+        if parity:
+            dq.reverse()
+        return "".join(dq)

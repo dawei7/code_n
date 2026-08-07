@@ -1,30 +1,43 @@
-from collections import defaultdict, deque
+# Time:  O(m * n)
+# Space: O(m * n)
+
+import collections
 
 
+# 0-1 bfs
 class Solution:
-    def minMoves(self, matrix: list[str]) -> int:
-        rows, columns = (len(matrix), len(matrix[0]))
-        portals: dict[str, list[tuple[int, int]]] = defaultdict(list)
-        for row in range(rows):
-            for column in range(columns):
-                cell = matrix[row][column]
-                if cell.isalpha():
-                    portals[cell].append((row, column))
-        queue = deque([(0, 0, 0)])
-        finalized: set[tuple[int, int]] = set()
-        while queue:
-            row, column, distance = queue.popleft()
-            position = (row, column)
-            if position in finalized:
+    def minMoves(self, matrix):
+        """
+        :type matrix: List[str]
+        :rtype: int
+        """
+        DIRECTIONS = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        m, n = len(matrix), len(matrix[0])
+        lookup = [[] for _ in range(26)]
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] in ".#":
+                    continue
+                lookup[ord(matrix[i][j])-ord('A')].append((i, j))
+        lookup2 = [[False]*len(matrix[0]) for _ in range(m)]
+        dq = collections.deque([(0, 0, 0)])
+        while dq:
+            step, i, j = dq.popleft()
+            if lookup2[i][j]:
                 continue
-            finalized.add(position)
-            if position == (rows - 1, columns - 1):
-                return distance
-            cell = matrix[row][column]
-            if cell.isalpha():
-                for portal_row, portal_column in portals.pop(cell, []):
-                    queue.appendleft((portal_row, portal_column, distance))
-            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
-                if 0 <= next_row < rows and 0 <= next_column < columns and (matrix[next_row][next_column] != "#"):
-                    queue.append((next_row, next_column, distance + 1))
+            lookup2[i][j] = True
+            if (i, j) == (m-1, n-1):
+                return step
+            for di, dj in DIRECTIONS:
+                ni, nj = i+di, j+dj
+                if not (0 <= ni < m and 0 <= nj < n and matrix[ni][nj] != '#' and not lookup2[ni][nj]):
+                    continue
+                dq.append((step+1, ni, nj))
+            if matrix[i][j] == '.':
+                continue
+            for ni, nj in lookup[ord(matrix[i][j])-ord('A')]:
+                if lookup2[ni][nj]:
+                    continue
+                dq.appendleft((step, ni, nj))
+            lookup[ord(matrix[i][j])-ord('A')] = []
         return -1

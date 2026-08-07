@@ -1,29 +1,21 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def minCost(self, grid: List[List[int]]) -> int:
-        directions = ((0, 1), (0, -1), (1, 0), (-1, 0))
-        rows, cols = len(grid), len(grid[0])
-        distance = [[10**9] * cols for _ in range(rows)]
-        distance[0][0] = 0
-        queue = deque([(0, 0)])
-
-        while queue:
-            row, col = queue.popleft()
-            for code, (dr, dc) in enumerate(directions, start=1):
-                next_row, next_col = row + dr, col + dc
-                if not (0 <= next_row < rows and 0 <= next_col < cols):
-                    continue
-                weight = 0 if grid[row][col] == code else 1
-                candidate = distance[row][col] + weight
-                if candidate >= distance[next_row][next_col]:
-                    continue
-                distance[next_row][next_col] = candidate
-                if weight == 0:
-                    queue.appendleft((next_row, next_col))
-                else:
-                    queue.append((next_row, next_col))
-
-        return distance[-1][-1]
+        m, n = len(grid), len(grid[0])
+        dirs = [[0, 0], [0, 1], [0, -1], [1, 0], [-1, 0]]
+        q = deque([(0, 0, 0)])
+        vis = set()
+        while q:
+            i, j, d = q.popleft()
+            if (i, j) in vis:
+                continue
+            vis.add((i, j))
+            if i == m - 1 and j == n - 1:
+                return d
+            for k in range(1, 5):
+                x, y = i + dirs[k][0], j + dirs[k][1]
+                if 0 <= x < m and 0 <= y < n:
+                    if grid[i][j] == k:
+                        q.appendleft((x, y, d))
+                    else:
+                        q.append((x, y, d + 1))
+        return -1

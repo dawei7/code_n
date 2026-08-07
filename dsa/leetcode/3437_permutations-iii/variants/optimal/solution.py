@@ -1,31 +1,19 @@
-from typing import List
-
-
 class Solution:
     def permute(self, n: int) -> List[List[int]]:
-        odd = list(range(1, n + 1, 2))
-        even = list(range(2, n + 1, 2))
-        answers: list[list[int]] = []
-        path: list[int] = []
-
-        def generate(used: int) -> None:
-            if len(path) == n:
-                answers.append(path.copy())
+        def dfs(i: int) -> None:
+            if i >= n:
+                ans.append(t[:])
                 return
+            for j in range(1, n + 1):
+                if not vis[j] and (i == 0 or t[-1] % 2 != j % 2):
+                    t.append(j)
+                    vis[j] = True
+                    dfs(i + 1)
+                    vis[j] = False
+                    t.pop()
 
-            if not path:
-                candidates = odd if n % 2 else range(1, n + 1)
-            elif path[-1] % 2:
-                candidates = even
-            else:
-                candidates = odd
-
-            for value in candidates:
-                bit = 1 << (value - 1)
-                if used & bit == 0:
-                    path.append(value)
-                    generate(used | bit)
-                    path.pop()
-
-        generate(0)
-        return answers
+        ans = []
+        t = []
+        vis = [False] * (n + 1)
+        dfs(0)
+        return ans

@@ -1,16 +1,19 @@
-from typing import List
-
+# Time:  O(n + mlogm), m is the number of rides
+# Space: O(n)
 
 class Solution:
-    def maxTaxiEarnings(self, n: int, rides: List[List[int]]) -> int:
-        rides_by_end = [[] for _ in range(n + 1)]
-        for start, end, tip in rides:
-            rides_by_end[end].append((start, end - start + tip))
-
-        best = [0] * (n + 1)
-        for point in range(1, n + 1):
-            best[point] = best[point - 1]
-            for start, earnings in rides_by_end[point]:
-                best[point] = max(best[point], best[start] + earnings)
-
-        return best[n]
+    def maxTaxiEarnings(self, n, rides):
+        """
+        :type n: int
+        :type rides: List[List[int]]
+        :rtype: int
+        """
+        rides.sort()
+        dp = [0]*(n+1)
+        j = 0
+        for i in range(1, n+1):
+            dp[i] = max(dp[i], dp[i-1])
+            while j < len(rides) and rides[j][0] == i:
+                dp[rides[j][1]] = max(dp[rides[j][1]], dp[i]+rides[j][1]-rides[j][0]+rides[j][2])
+                j += 1
+        return dp[-1]

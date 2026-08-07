@@ -1,35 +1,29 @@
+# Time:  O(logn)
+# Space: O(logn)
+
+# combinatorics
 class Solution:
-    def countSpecialNumbers(self, n: int) -> int:
-        def permutations(available: int, slots: int) -> int:
+    def countSpecialNumbers(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def P(m, n):
             result = 1
-            for offset in range(slots):
-                result *= available - offset
+            for _ in range(n):
+                result *= m
+                m -= 1
             return result
 
-        digits = str(n)
-        length = len(digits)
-        answer = 0
-
-        for shorter_length in range(1, length):
-            answer += 9 * permutations(9, shorter_length - 1)
-
-        used = set()
-        for index, char in enumerate(digits):
-            current = int(char)
-            first_candidate = 1 if index == 0 else 0
-            remaining_slots = length - index - 1
-
-            for candidate in range(first_candidate, current):
-                if candidate not in used:
-                    answer += permutations(
-                        10 - (index + 1),
-                        remaining_slots,
-                    )
-
-            if current in used:
+        digits = map(int, str(n+1))
+        result = sum(P(9, 1)*P(9, i-1) for i in range(1, len(digits)))
+        lookup = set()
+        for i, x in enumerate(digits):
+            for y in range(int(i == 0), x):
+                if y in lookup:
+                    continue
+                result += P(9-i, len(digits)-i-1)
+            if x in lookup:
                 break
-            used.add(current)
-        else:
-            answer += 1
-
-        return answer
+            lookup.add(x)
+        return result

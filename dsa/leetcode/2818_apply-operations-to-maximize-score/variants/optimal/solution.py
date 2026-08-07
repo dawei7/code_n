@@ -1,35 +1,49 @@
+def primeFactors(n):
+    i = 2
+    ans = set()
+    while i * i <= n:
+        while n % i == 0:
+            ans.add(i)
+            n //= i
+        i += 1
+    if n > 1:
+        ans.add(n)
+    return len(ans)
+
+
 class Solution:
     def maximumScore(self, nums: List[int], k: int) -> int:
-        limit = max(nums)
-        prime_scores = [0] * (limit + 1)
+        mod = 10**9 + 7
+        arr = [(i, primeFactors(x), x) for i, x in enumerate(nums)]
+        n = len(nums)
 
-        for prime in range(2, limit + 1):
-            if prime_scores[prime] == 0:
-                for multiple in range(prime, limit + 1, prime):
-                    prime_scores[multiple] += 1
+        left = [-1] * n
+        right = [n] * n
+        stk = []
+        for i, f, x in arr:
+            while stk and stk[-1][0] < f:
+                stk.pop()
+            if stk:
+                left[i] = stk[-1][1]
+            stk.append((f, i))
 
-        scores = [prime_scores[value] for value in nums]
-        length = len(nums)
-        left = [-1] * length
-        right = [length] * length
-        stack = []
+        stk = []
+        for i, f, x in arr[::-1]:
+            while stk and stk[-1][0] <= f:
+                stk.pop()
+            if stk:
+                right[i] = stk[-1][1]
+            stk.append((f, i))
 
-        for index, score in enumerate(scores):
-            while stack and scores[stack[-1]] < score:
-                right[stack.pop()] = index
-            if stack:
-                left[index] = stack[-1]
-            stack.append(index)
-
-        answer = 1
-        modulus = 1_000_000_007
-
-        for index in sorted(range(length), key=lambda i: nums[i], reverse=True):
-            choices = (index - left[index]) * (right[index] - index)
-            uses = min(k, choices)
-            answer = answer * pow(nums[index], uses, modulus) % modulus
-            k -= uses
-            if k == 0:
+        arr.sort(key=lambda x: -x[2])
+        ans = 1
+        for i, f, x in arr:
+            l, r = left[i], right[i]
+            cnt = (i - l) * (r - i)
+            if cnt <= k:
+                ans = ans * pow(x, cnt, mod) % mod
+                k -= cnt
+            else:
+                ans = ans * pow(x, k, mod) % mod
                 break
-
-        return answer
+        return ans

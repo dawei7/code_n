@@ -1,25 +1,31 @@
-WITH first_positive AS (
-    SELECT patient_id, MIN(test_date) AS positive_date
-    FROM covid_tests
-    WHERE result = 'Positive'
-    GROUP BY patient_id
-),
-first_recovery AS (
-    SELECT fp.patient_id,
-           fp.positive_date,
-           MIN(ct.test_date) AS negative_date
-    FROM first_positive AS fp
-    JOIN covid_tests AS ct
-      ON ct.patient_id = fp.patient_id
-     AND ct.result = 'Negative'
-     AND ct.test_date > fp.positive_date
-    GROUP BY fp.patient_id, fp.positive_date
-)
-SELECT p.patient_id,
-       p.patient_name,
-       p.age,
-       CAST(julianday(fr.negative_date) - julianday(fr.positive_date) AS INTEGER) AS recovery_time
-FROM first_recovery AS fr
-JOIN patients AS p
-  ON p.patient_id = fr.patient_id
-ORDER BY recovery_time ASC, p.patient_name ASC;
+# Write your MySQL query statement below
+WITH
+    first_positive AS (
+        SELECT
+            patient_id,
+            MIN(test_date) AS first_positive_date
+        FROM covid_tests
+        WHERE result = 'Positive'
+        GROUP BY patient_id
+    ),
+    first_negative_after_positive AS (
+        SELECT
+            t.patient_id,
+            MIN(t.test_date) AS first_negative_date
+        FROM
+            covid_tests t
+            JOIN first_positive p
+                ON t.patient_id = p.patient_id AND t.test_date > p.first_positive_date
+        WHERE t.result = 'Negative'
+        GROUP BY t.patient_id
+    )
+SELECT
+    p.patient_id,
+    p.patient_name,
+    p.age,
+    DATEDIFF(n.first_negative_date, f.first_positive_date) AS recovery_time
+FROM
+    first_positive f
+    JOIN first_negative_after_positive n ON f.patient_id = n.patient_id
+    JOIN patients p ON p.patient_id = f.patient_id
+ORDER BY recovery_time ASC, patient_name ASC;

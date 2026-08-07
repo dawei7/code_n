@@ -1,62 +1,37 @@
-from collections import deque
-from typing import List
+# Time:  O(max(r, c) * w)
+# Space: O(w)
+
+import collections
 
 
 class Solution:
-    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
-        rows = len(maze)
-        cols = len(maze[0])
-        left_stop = [[-1] * cols for _ in range(rows)]
-        right_stop = [[-1] * cols for _ in range(rows)]
-        top_stop = [[-1] * cols for _ in range(rows)]
-        bottom_stop = [[-1] * cols for _ in range(rows)]
+    def hasPath(self, maze, start, destination):
+        """
+        :type maze: List[List[int]]
+        :type start: List[int]
+        :type destination: List[int]
+        :rtype: bool
+        """
+        def neighbors(maze, node):
+            for i, j in [(-1, 0), (0, 1), (0, -1), (1, 0)]:
+                x, y = node
+                while 0 <= x + i < len(maze) and \
+                      0 <= y + j < len(maze[0]) and \
+                      not maze[x+i][y+j]:
+                    x += i
+                    y += j
+                yield x, y
 
-        for row in range(rows):
-            col = 0
-            while col < cols:
-                if maze[row][col] == 1:
-                    col += 1
-                    continue
-                segment_start = col
-                while col < cols and maze[row][col] == 0:
-                    col += 1
-                segment_end = col - 1
-                for member in range(segment_start, col):
-                    left_stop[row][member] = segment_start
-                    right_stop[row][member] = segment_end
-
-        for col in range(cols):
-            row = 0
-            while row < rows:
-                if maze[row][col] == 1:
-                    row += 1
-                    continue
-                segment_start = row
-                while row < rows and maze[row][col] == 0:
-                    row += 1
-                segment_end = row - 1
-                for member in range(segment_start, row):
-                    top_stop[member][col] = segment_start
-                    bottom_stop[member][col] = segment_end
-
-        start_cell = (start[0], start[1])
-        target = (destination[0], destination[1])
-        queue = deque([start_cell])
-        visited = {start_cell}
-
+        start, destination = tuple(start), tuple(destination)
+        queue = collections.deque([start])
+        visited = set()
         while queue:
-            row, col = queue.popleft()
-            if (row, col) == target:
+            node = queue.popleft()
+            if node in visited: continue
+            if node == destination:
                 return True
-            neighbors = (
-                (row, left_stop[row][col]),
-                (row, right_stop[row][col]),
-                (top_stop[row][col], col),
-                (bottom_stop[row][col], col),
-            )
-            for neighbor in neighbors:
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    queue.append(neighbor)
+            visited.add(node)
+            for neighbor in neighbors(maze, node):
+                queue.append(neighbor)
 
         return False

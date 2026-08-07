@@ -1,31 +1,27 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(|V| + |E|)
+# Space: O(|V| + |E|)
+
+import collections
 
 
+# Hierholzer Algorithm
 class Solution:
-    def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
-        adjacency = defaultdict(list)
-        balance = defaultdict(int)
-
-        for start, end in pairs:
-            adjacency[start].append(end)
-            balance[start] += 1
-            balance[end] -= 1
-
-        trail_start = pairs[0][0]
-        for vertex, difference in balance.items():
-            if difference == 1:
-                trail_start = vertex
-                break
-
-        stack = [trail_start]
-        reversed_vertices = []
-        while stack:
-            vertex = stack[-1]
-            if adjacency[vertex]:
-                stack.append(adjacency[vertex].pop())
-            else:
-                reversed_vertices.append(stack.pop())
-
-        vertices = reversed_vertices[::-1]
-        return [[vertices[index], vertices[index + 1]] for index in range(len(pairs))]
+    def validArrangement(self, pairs):
+        """
+        :type pairs: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        adj = collections.defaultdict(list)
+        degree = collections.defaultdict(int)
+        for u, v in pairs: 
+            adj[u].append(v)
+            degree[u] += 1
+            degree[v] -= 1       
+        result = []
+        stk = [next((u for u, c in degree.items() if c == 1), next(degree.keys()))]
+        while stk:
+            while adj[stk[-1]]: 
+                stk.append(adj[stk[-1]].pop())
+            result.append(stk.pop())
+        result.reverse()
+        return [[result[i], result[i+1]] for i in range(len(result)-1)]

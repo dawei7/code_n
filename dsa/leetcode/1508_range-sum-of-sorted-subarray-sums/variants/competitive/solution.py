@@ -1,36 +1,81 @@
-from typing import List
+# Time:  O(nlog(sum(nums)))
+# Space: O(n)
 
-
+# binary search + sliding window solution
 class Solution:
-    def rangeSum(self, nums: List[int], n: int, left: int, right: int) -> int:
-        prefix = [0] * (n + 1)
-        prefix_of_prefix = [0] * (n + 1)
-        for index, value in enumerate(nums):
-            prefix[index + 1] = prefix[index] + value
-            prefix_of_prefix[index + 1] = prefix_of_prefix[index] + prefix[index]
-
-        def count_and_sum(limit: int) -> tuple[int, int]:
-            count = 0
-            total = 0
-            start = 0
-            for end in range(n):
-                while prefix[end + 1] - prefix[start] > limit:
-                    start += 1
-                ending_count = end - start + 1
-                count += ending_count
-                total += ending_count * prefix[end + 1] - (prefix_of_prefix[end + 1] - prefix_of_prefix[start])
-            return count, total
-
-        def first_k_sum(k: int) -> int:
-            low, high = 0, prefix[-1]
-            while low < high:
-                middle = (low + high) // 2
-                count, _ = count_and_sum(middle)
-                if count >= k:
-                    high = middle
+    def rangeSum(self, nums, n, left, right):
+        """
+        :type nums: List[int]
+        :type n: int
+        :type left: int
+        :type right: int
+        :rtype: int
+        """
+        def countUntil(nums, target):
+            result, curr, left = 0, 0, 0
+            for right in range(len(nums)):
+                curr += nums[right]
+                while curr > target:
+                    curr -= nums[left]
+                    left += 1
+                result += right-left+1
+            return result
+        
+        def sumUntil(nums, prefix, target):
+            result, curr, total, left = 0, 0, 0, 0
+            for right in range(len(nums)):
+                curr += nums[right]
+                total += nums[right]*(right-left+1)
+                while curr > target:
+                    curr -= nums[left]
+                    total -= prefix[right+1]-prefix[(left-1)+1]
+                    left += 1
+                result += total
+            return result
+            
+        def sumLessOrEqualTo(prefix, nums, left, right, count):
+            while left <= right:
+                mid = left + (right-left)//2
+                if countUntil(nums, mid)-count >= 0:
+                    right = mid-1
                 else:
-                    low = middle + 1
-            count, total = count_and_sum(low)
-            return total - (count - k) * low
+                    left = mid+1
+            return sumUntil(nums, prefix, left)-left*(countUntil(nums, left)-count)
+    
+        MOD = 10**9+7
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        m, M = min(nums), sum(nums)
+        return (sumLessOrEqualTo(prefix, nums, m, M, right) -
+                sumLessOrEqualTo(prefix, nums, m, M, left-1))%MOD
+    
 
-        return (first_k_sum(right) - first_k_sum(left - 1)) % 1_000_000_007
+    
+# Time:  O(rlogr), worst: O(n^2 * logn)
+# Space: O(n)
+import heapq
+
+
+# heap solution
+class Solution2(object):
+    def rangeSum(self, nums, n, left, right):
+        """
+        :type nums: List[int]
+        :type n: int
+        :type left: int
+        :type right: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        min_heap = []
+        for i, num in enumerate(nums, 1):
+            heapq.heappush(min_heap, (num, i))
+        result = 0
+        for i in range(1, right+1):
+            total, j = heapq.heappop(min_heap)
+            if i >= left:
+                result = (result+total)%MOD
+            if j+1 <= n:
+                heapq.heappush(min_heap, (total+nums[j], j+1))
+        return result

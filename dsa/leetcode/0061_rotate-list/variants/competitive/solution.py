@@ -1,25 +1,37 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, repr(self.next))
 
 class Solution:
-    def rotateRight(self, head: Optional["ListNode"], k: int) -> Optional["ListNode"]:
-        if head is None or head.next is None:
+    def rotateRight(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: ListNode
+        """
+        if not head or not head.next:
             return head
 
-        length = 1
-        tail = head
-        while tail.next is not None:
-            tail = tail.next
-            length += 1
+        n, cur = 1, head
+        while cur.next:
+            cur = cur.next
+            n += 1
+        cur.next = head
 
-        rotation = k % length
-        if rotation == 0:
-            return head
+        cur, tail = head, cur
+        for _ in range(n - k % n):
+            tail = cur
+            cur = cur.next
+        tail.next = None
 
-        tail.next = head
-        new_tail = head
-        for _ in range(length - rotation - 1):
-            new_tail = new_tail.next
-        new_head = new_tail.next
-        new_tail.next = None
-        return new_head
+        return cur
+
+

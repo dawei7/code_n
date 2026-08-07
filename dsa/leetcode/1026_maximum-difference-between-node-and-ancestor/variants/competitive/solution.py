@@ -1,19 +1,52 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
+# iterative stack solution
 class Solution:
-    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
-        answer = 0
-        stack = [(root, root.val, root.val)]
-
+    def maxAncestorDiff(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        result = 0
+        stack = [(root, 0, float("inf"))]
         while stack:
-            node, path_min, path_max = stack.pop()
-            answer = max(answer, node.val - path_min, path_max - node.val)
-            next_min = min(path_min, node.val)
-            next_max = max(path_max, node.val)
-            if node.left is not None:
-                stack.append((node.left, next_min, next_max))
-            if node.right is not None:
-                stack.append((node.right, next_min, next_max))
+            node, mx, mn = stack.pop()
+            if not node:
+                continue
+            result = max(result, mx-node.val, node.val-mn)
+            mx = max(mx, node.val)
+            mn = min(mn, node.val)
+            stack.append((node.left, mx, mn))
+            stack.append((node.right, mx, mn))
+        return result
 
-        return answer
+
+# Time:  O(n)
+# Space: O(h)
+# recursive solution
+class Solution2(object):
+    def maxAncestorDiff(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def maxAncestorDiffHelper(node, mx, mn): 
+            if not node:
+                return 0
+            result = max(mx-node.val, node.val-mn)
+            mx = max(mx, node.val)
+            mn = min(mn, node.val)
+            result = max(result, maxAncestorDiffHelper(node.left, mx, mn))
+            result = max(result, maxAncestorDiffHelper(node.right, mx, mn))
+            return result
+
+        return maxAncestorDiffHelper(root, 0, float("inf"))

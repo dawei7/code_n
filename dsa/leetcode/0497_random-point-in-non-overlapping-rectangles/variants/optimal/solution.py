@@ -1,23 +1,17 @@
-from bisect import bisect_right
-from random import randrange
-from typing import List
-
-
 class Solution:
     def __init__(self, rects: List[List[int]]):
         self.rects = rects
-        self.prefix = []
-        total = 0
-        for x1, y1, x2, y2 in rects:
-            total += (x2 - x1 + 1) * (y2 - y1 + 1)
-            self.prefix.append(total)
-        self.total = total
+        self.s = [0] * len(rects)
+        for i, (x1, y1, x2, y2) in enumerate(rects):
+            self.s[i] = self.s[i - 1] + (x2 - x1 + 1) * (y2 - y1 + 1)
 
     def pick(self) -> List[int]:
-        ticket = randrange(self.total)
-        rectangle_index = bisect_right(self.prefix, ticket)
-        previous_total = self.prefix[rectangle_index - 1] if rectangle_index else 0
-        offset = ticket - previous_total
-        x1, y1, x2, _ = self.rects[rectangle_index]
-        width = x2 - x1 + 1
-        return [x1 + offset % width, y1 + offset // width]
+        v = random.randint(1, self.s[-1])
+        idx = bisect_left(self.s, v)
+        x1, y1, x2, y2 = self.rects[idx]
+        return [random.randint(x1, x2), random.randint(y1, y2)]
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(rects)
+# param_1 = obj.pick()

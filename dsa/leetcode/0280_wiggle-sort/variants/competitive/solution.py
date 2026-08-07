@@ -1,11 +1,27 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def wiggleSort(self, nums: List[int]) -> None:
-        for index in range(1, len(nums)):
-            should_swap = (index % 2 == 1 and nums[index - 1] > nums[index]) or (
-                index % 2 == 0 and nums[index - 1] < nums[index]
-            )
-            if should_swap:
-                nums[index - 1], nums[index] = nums[index], nums[index - 1]
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        for i in range(1, len(nums)):
+            if ((i % 2) and nums[i - 1] > nums[i]) or \
+                (not (i % 2) and nums[i - 1] < nums[i]):
+                # Swap unordered elements.
+                nums[i - 1], nums[i] = nums[i], nums[i - 1]
+
+
+# time: O(nlogn)
+# space: O(n)
+class Solution2(object):
+    def wiggleSort(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        nums.sort()
+        med = (len(nums) - 1) // 2
+        nums[::2], nums[1::2] = nums[med::-1], nums[:med:-1]

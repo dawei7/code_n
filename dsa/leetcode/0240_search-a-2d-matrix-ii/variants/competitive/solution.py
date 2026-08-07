@@ -1,14 +1,27 @@
+# Time:  O(m + n)
+# Space: O(1)
+
 class Solution:
-    def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
-        if not matrix or not matrix[0]:
+    # @param {integer[][]} matrix
+    # @param {integer} target
+    # @return {boolean}
+    def searchMatrix(self, matrix, target):
+        m = len(matrix)
+        if m == 0:
             return False
-        row, column = 0, len(matrix[0]) - 1
-        while row < len(matrix) and column >= 0:
-            value = matrix[row][column]
-            if value == target:
+
+        n = len(matrix[0])
+        if n == 0:
+            return False
+
+        i, j = 0, n - 1
+        while i < m and j >= 0:
+            if matrix[i][j] == target:
                 return True
-            if value > target:
-                column -= 1
+            elif matrix[i][j] > target:
+                j -= 1
             else:
-                row += 1
+                i += 1
+
         return False
+

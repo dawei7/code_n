@@ -1,10 +1,17 @@
+# Time:  O(n + q)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def pathExistenceQueries(self, n: int, nums: List[int], maxDiff: int, queries: List[List[int]]) -> List[bool]:
-        component = [0] * n
-
-        for index in range(1, n):
-            component[index] = component[index - 1]
-            if nums[index] - nums[index - 1] > maxDiff:
-                component[index] += 1
-
-        return [component[source] == component[target] for source, target in queries]
+    def pathExistenceQueries(self, n, nums, maxDiff, queries):
+        """
+        :type n: int
+        :type nums: List[int]
+        :type maxDiff: int
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        prefix = [0]*n
+        for i in range(n-1):
+            prefix[i+1] = prefix[i]+int(nums[i+1]-nums[i] > maxDiff)
+        return [prefix[i] == prefix[j] for i, j in queries]

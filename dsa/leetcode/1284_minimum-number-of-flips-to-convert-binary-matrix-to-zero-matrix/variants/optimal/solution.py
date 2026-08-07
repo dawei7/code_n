@@ -1,41 +1,29 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def minFlips(self, mat: List[List[int]]) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        start = 0
-        for row in range(rows):
-            for column in range(columns):
-                if mat[row][column]:
-                    start |= 1 << (row * columns + column)
-
-        if start == 0:
-            return 0
-
-        flip_masks = []
-        for row in range(rows):
-            for column in range(columns):
-                flip_mask = 0
-                for row_delta, column_delta in ((0, 0), (1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_delta
-                    next_column = column + column_delta
-                    if 0 <= next_row < rows and 0 <= next_column < columns:
-                        flip_mask ^= 1 << (next_row * columns + next_column)
-                flip_masks.append(flip_mask)
-
-        queue = deque([(start, 0)])
-        seen = {start}
-        while queue:
-            state, steps = queue.popleft()
-            for flip_mask in flip_masks:
-                next_state = state ^ flip_mask
-                if next_state == 0:
-                    return steps + 1
-                if next_state not in seen:
-                    seen.add(next_state)
-                    queue.append((next_state, steps + 1))
-
+        m, n = len(mat), len(mat[0])
+        state = sum(1 << (i * n + j) for i in range(m) for j in range(n) if mat[i][j])
+        q = deque([state])
+        vis = {state}
+        ans = 0
+        dirs = [0, -1, 0, 1, 0, 0]
+        while q:
+            for _ in range(len(q)):
+                state = q.popleft()
+                if state == 0:
+                    return ans
+                for i in range(m):
+                    for j in range(n):
+                        nxt = state
+                        for k in range(5):
+                            x, y = i + dirs[k], j + dirs[k + 1]
+                            if not 0 <= x < m or not 0 <= y < n:
+                                continue
+                            if nxt & (1 << (x * n + y)):
+                                nxt -= 1 << (x * n + y)
+                            else:
+                                nxt |= 1 << (x * n + y)
+                        if nxt not in vis:
+                            vis.add(nxt)
+                            q.append(nxt)
+            ans += 1
         return -1

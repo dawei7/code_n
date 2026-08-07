@@ -1,14 +1,18 @@
-from typing import List
-
+# Time:  O(t + n)
+# Space: O(n)
 
 class Solution:
-    def findJudge(self, n: int, trust: List[List[int]]) -> int:
-        score = [0] * (n + 1)
-        for trusting, trusted in trust:
-            score[trusting] -= 1
-            score[trusted] += 1
-
-        for person in range(1, n + 1):
-            if score[person] == n - 1:
-                return person
+    def findJudge(self, N, trust):
+        """
+        :type N: int
+        :type trust: List[List[int]]
+        :rtype: int
+        """
+        degrees = [0]*N
+        for i, j in trust:
+            degrees[i-1] -= 1
+            degrees[j-1] += 1
+        for i in range(len(degrees)):
+            if degrees[i] == N-1:
+                return i+1
         return -1

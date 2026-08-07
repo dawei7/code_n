@@ -1,9 +1,10 @@
-SELECT customer_id
-FROM Customer
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_key) = (
-    SELECT COUNT(*)
-    FROM Product
-)
-ORDER BY customer_id;
+# Time:  O(n + k), n is number of customer, k is number of product
+# Space: O(n + k)
 
+SELECT customer_id
+FROM customer
+GROUP BY customer_id
+HAVING count(DISTINCT product_key)=
+  (SELECT count(DISTINCT product_key)
+   FROM product)
+ORDER BY NULL

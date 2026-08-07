@@ -1,27 +1,56 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(n)
 
-
+# mono stack
 class Solution:
-    def numSubmat(self, mat: List[List[int]]) -> int:
-        columns = len(mat[0])
-        heights = [0] * columns
-        answer = 0
+    def numSubmat(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        def count(heights):
+            result = curr = 0
+            stk = []
+            for i in range(len(heights)):
+                while stk and heights[stk[-1]] >= heights[i]:
+                    j = stk.pop()
+                    curr -= (heights[j]-heights[i])*(j-(stk[-1] if stk else -1))
+                stk.append(i)
+                curr += heights[i]
+                result += curr
+            return result
 
-        for row in mat:
-            stack = []
-            ending_here = 0
+        result = 0
+        heights = [0]*len(mat[0])
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                heights[j] = heights[j]+1 if mat[i][j] == 1 else 0
+            result += count(heights)
+        return result
 
-            for column, value in enumerate(row):
-                heights[column] = heights[column] + 1 if value else 0
-                width = 1
 
-                while stack and stack[-1][0] >= heights[column]:
-                    height, previous_width = stack.pop()
-                    ending_here -= height * previous_width
-                    width += previous_width
+# Time:  O(m * n)
+# Space: O(n)
+# mono stack, dp
+class Solution2(object):
+    def numSubmat(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        def count(heights):
+            dp, stk = [0]*len(heights), []
+            for i in range(len(heights)):
+                while stk and heights[stk[-1]] >= heights[i]:
+                    stk.pop()
+                dp[i] = dp[stk[-1]] + heights[i]*(i-stk[-1]) if stk else heights[i]*(i-(-1))
+                stk.append(i)
+            return sum(dp)
 
-                stack.append((heights[column], width))
-                ending_here += heights[column] * width
-                answer += ending_here
-
-        return answer
+        result = 0
+        heights = [0]*len(mat[0])
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                heights[j] = heights[j]+1 if mat[i][j] == 1 else 0
+            result += count(heights)
+        return result

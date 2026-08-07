@@ -1,18 +1,24 @@
-from math import gcd
-from typing import List
+# Time:  O(nlogm), m is the max of nums
+# Space: O(1)
 
-
+# math, stack
 class Solution:
-    def replaceNonCoprimes(self, nums: List[int]) -> List[int]:
-        stack = []
+    def replaceNonCoprimes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def gcd(a, b):  # Time: O(log(min(a, b)))
+            while b:
+                a, b = b, a%b
+            return a
 
-        for value in nums:
-            stack.append(value)
-            while len(stack) >= 2:
-                common = gcd(stack[-2], stack[-1])
-                if common == 1:
+        result = []
+        for x in nums:
+            while True:
+                g = gcd(result[-1] if result else 1, x)
+                if g == 1:
                     break
-                right = stack.pop()
-                stack[-1] = stack[-1] // common * right
-
-        return stack
+                x *= result.pop()//g
+            result.append(x)
+        return result

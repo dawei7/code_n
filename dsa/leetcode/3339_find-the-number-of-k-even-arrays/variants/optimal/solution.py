@@ -1,26 +1,18 @@
 class Solution:
     def countOfArrays(self, n: int, m: int, k: int) -> int:
-        mod = 1_000_000_007
-        even_values = m // 2
-        odd_values = m - even_values
+        @cache
+        def dfs(i: int, j: int, k: int) -> int:
+            if j < 0:
+                return 0
+            if i >= n:
+                return int(j == 0)
+            return (
+                cnt1 * dfs(i + 1, j, 1) + cnt0 * dfs(i + 1, j - (k & 1 ^ 1), 0)
+            ) % mod
 
-        end_even = [0] * (k + 1)
-        end_odd = [0] * (k + 1)
-        end_even[0] = even_values
-        end_odd[0] = odd_values
-
-        for _ in range(n - 1):
-            next_even = [0] * (k + 1)
-            next_odd = [0] * (k + 1)
-
-            for even_pairs in range(k + 1):
-                next_odd[even_pairs] = ((end_even[even_pairs] + end_odd[even_pairs]) * odd_values) % mod
-
-                next_even[even_pairs] = (end_odd[even_pairs] * even_values) % mod
-                if even_pairs > 0:
-                    next_even[even_pairs] = (next_even[even_pairs] + end_even[even_pairs - 1] * even_values) % mod
-
-            end_even = next_even
-            end_odd = next_odd
-
-        return (end_even[k] + end_odd[k]) % mod
+        cnt0 = m // 2
+        cnt1 = m - cnt0
+        mod = 10**9 + 7
+        ans = dfs(0, k, 1)
+        dfs.cache_clear()
+        return ans

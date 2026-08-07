@@ -1,15 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# math
 class Solution:
-    def maximizeExpressionOfThree(self, nums: List[int]) -> int:
-        smallest = nums[0]
-        largest = -101
-        second_largest = -101
-
-        for value in nums:
-            smallest = min(smallest, value)
-            if value >= largest:
-                second_largest = largest
-                largest = value
-            elif value > second_largest:
-                second_largest = value
-
-        return largest + second_largest - smallest
+    def maximizeExpressionOfThree(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        i = max(range(len(nums)), key=lambda x: nums[x])
+        nums[i], nums[-1] = nums[-1], nums[i]
+        j = max(range(len(nums)-1), key=lambda x: nums[x])
+        nums[j], nums[-2] = nums[-2], nums[j]
+        k = min(range(len(nums)-2), key=lambda x: nums[x])
+        nums[k], nums[0] = nums[0], nums[k]
+        return nums[-1]+nums[-2]-nums[0]
+    

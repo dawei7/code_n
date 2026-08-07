@@ -1,3 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def reversePrefix(self, s: str, k: int) -> str:
-        return s[:k][::-1] + s[k:]
+    def reversePrefix(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        def reverse(arr, left, right):
+            while left < right:
+                arr[left], arr[right] = arr[right], arr[left]
+                left += 1
+                right -=1
+            return arr
+
+        return "".join(reverse(list(s), 0, k-1))

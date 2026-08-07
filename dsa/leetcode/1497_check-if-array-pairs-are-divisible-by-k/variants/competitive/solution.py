@@ -1,17 +1,16 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(k)
+
+import collections
 
 
 class Solution:
-    def canArrange(self, arr: List[int], k: int) -> bool:
-        counts = Counter(value % k for value in arr)
-
-        for remainder, count in counts.items():
-            complement = (-remainder) % k
-            if remainder == complement:
-                if count % 2 != 0:
-                    return False
-            elif count != counts[complement]:
-                return False
-
-        return True
+    def canArrange(self, arr, k):
+        """
+        :type arr: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        count = collections.Counter(i%k for i in arr)
+        return (0 not in count or not count[0]%2) and \
+                all(k-i in count and count[i] == count[k-i] for i in range(1, k) if i in count)

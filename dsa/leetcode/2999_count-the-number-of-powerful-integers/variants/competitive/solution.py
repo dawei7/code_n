@@ -1,29 +1,69 @@
+# Time:  O(logf)
+# Space: O(1)
+
+# math, combinatorics
 class Solution:
-    def numberOfPowerfulInt(
-        self,
-        start: int,
-        finish: int,
-        limit: int,
-        s: str,
-    ) -> int:
-        suffix = int(s)
-        place = 10 ** len(s)
+    def numberOfPowerfulInt(self, start, finish, limit, s):
+        """
+        :type start: int
+        :type finish: int
+        :type limit: int
+        :type s: str
+        :rtype: int
+        """
+        def count(x):
+            def length(x):
+                result = 0
+                while x:
+                    x //= 10
+                    result += 1
+                return result
 
-        def count(bound: int) -> int:
-            if bound < suffix:
-                return 0
+            result = 0
+            n = length(x)
+            base = 10**n
+            l = n-len(s)
+            cnt = (limit+1)**l
+            for i in range(l):
+                base //= 10
+                curr = x//base%10
+                cnt //= limit+1
+                result += (min(curr-1, limit)-0+1)*cnt
+                if curr > limit:
+                    break
+            else:
+                if x%base >= int(s):
+                    result += 1
+            return result
 
-            maximum_prefix = (bound - suffix) // place
-            digits = str(maximum_prefix)
-            total = 0
+        return count(finish)-count(start-1)
 
-            for index, character in enumerate(digits):
-                digit = int(character)
-                remaining = len(digits) - index - 1
-                total += min(digit, limit + 1) * (limit + 1) ** remaining
-                if digit > limit:
-                    return total
 
-            return total + 1
+# Time:  O(logf)
+# Space: O(logf)
+# math, combinatorics
+class Solution2(object):
+    def numberOfPowerfulInt(self, start, finish, limit, s):
+        """
+        :type start: int
+        :type finish: int
+        :type limit: int
+        :type s: str
+        :rtype: int
+        """
+        def count(x):
+            result = 0
+            str_x = str(x)
+            l = len(str_x)-len(s)
+            cnt = (limit+1)**l
+            for i in range(l):
+                cnt //= limit+1
+                result += (min(int(str_x[i])-1, limit)-0+1)*cnt
+                if int(str_x[i]) > limit:
+                    break
+            else:
+                if int(str_x[-len(s):]) >= int(s):
+                    result += 1
+            return result
 
-        return count(finish) - count(start - 1)
+        return count(finish)-count(start-1)

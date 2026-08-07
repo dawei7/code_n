@@ -1,27 +1,23 @@
 class Solution:
     def nearestPalindromic(self, n: str) -> str:
-        length = len(n)
-        value = int(n)
-        prefix_length = (length + 1) // 2
-        prefix = int(n[:prefix_length])
+        x = int(n)
+        l = len(n)
+        res = {10 ** (l - 1) - 1, 10**l + 1}
+        left = int(n[: (l + 1) >> 1])
+        for i in range(left - 1, left + 2):
+            j = i if l % 2 == 0 else i // 10
+            while j:
+                i = i * 10 + j % 10
+                j //= 10
+            res.add(i)
+        res.discard(x)
 
-        candidates = {
-            10 ** (length - 1) - 1,
-            10**length + 1,
-        }
-
-        for nearby_prefix in (prefix - 1, prefix, prefix + 1):
-            text = str(nearby_prefix)
-            if length % 2:
-                palindrome = text + text[-2::-1]
-            else:
-                palindrome = text + text[::-1]
-            candidates.add(int(palindrome))
-
-        candidates.discard(value)
-        candidates = {candidate for candidate in candidates if candidate >= 0}
-        best = min(
-            candidates,
-            key=lambda candidate: (abs(candidate - value), candidate),
-        )
-        return str(best)
+        ans = -1
+        for t in res:
+            if (
+                ans == -1
+                or abs(t - x) < abs(ans - x)
+                or (abs(t - x) == abs(ans - x) and t < ans)
+            ):
+                ans = t
+        return str(ans)

@@ -1,22 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxTurbulenceSize(self, arr: List[int]) -> int:
-        up = 1
-        down = 1
-        best = 1
-
-        for i in range(1, len(arr)):
-            if arr[i] > arr[i - 1]:
-                up = down + 1
-                down = 1
-            elif arr[i] < arr[i - 1]:
-                down = up + 1
-                up = 1
-            else:
-                up = 1
-                down = 1
-            best = max(best, up, down)
-
-        return best
+    def maxTurbulenceSize(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result = 1
+        start = 0
+        for i in range(1, len(A)):
+            if i == len(A)-1 or \
+               cmp(A[i-1], A[i]) * cmp(A[i], A[i+1]) != -1:
+                result = max(result, i-start+1)
+                start = i
+        return result

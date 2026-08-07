@@ -1,19 +1,20 @@
-from typing import List
+# Time:  O(n * m)
+# Space: O(1)
 
-
+# prefix sum, greedy
 class Solution:
-    def minTime(self, skill: List[int], mana: List[int]) -> int:
-        prefix = [0]
-        for value in skill:
-            prefix.append(prefix[-1] + value)
-
-        start = 0
-        previous_mana = mana[0]
-        for current_mana in mana[1:]:
-            start = max(
-                start + previous_mana * prefix[wizard + 1] - current_mana * prefix[wizard]
-                for wizard in range(len(skill))
-            )
-            previous_mana = current_mana
-
-        return start + previous_mana * prefix[-1]
+    def minTime(self, skill, mana):
+        """
+        :type skill: List[int]
+        :type mana: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in range(1, len(mana)):
+            prefix = mx = 0
+            for x in skill:
+                prefix += x
+                mx = max(mx, mana[i-1]*prefix-mana[i]*(prefix-x))
+            result += mx
+        result += mana[-1]*sum(skill)
+        return result

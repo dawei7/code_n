@@ -1,30 +1,34 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, repr(self.next))
 
 class Solution:
-    def partition(self, head: Optional["ListNode"], x: int) -> Optional["ListNode"]:
-        lower_head = lower_tail = None
-        upper_head = upper_tail = None
-        current = head
+    # @param head, a ListNode
+    # @param x, an integer
+    # @return a ListNode
+    def partition(self, head, x):
+        dummySmaller, dummyGreater = ListNode(-1), ListNode(-1)
+        smaller, greater = dummySmaller, dummyGreater
 
-        while current is not None:
-            next_node = current.next
-            current.next = None
-            if current.val < x:
-                if lower_head is None:
-                    lower_head = current
-                else:
-                    lower_tail.next = current
-                lower_tail = current
+        while head:
+            if head.val < x:
+                smaller.next = head
+                smaller = smaller.next
             else:
-                if upper_head is None:
-                    upper_head = current
-                else:
-                    upper_tail.next = current
-                upper_tail = current
-            current = next_node
+                greater.next = head
+                greater = greater.next
+            head = head.next
 
-        if lower_head is None:
-            return upper_head
-        lower_tail.next = upper_head
-        return lower_head
+        smaller.next = dummyGreater.next
+        greater.next = None
+
+        return dummySmaller.next
+

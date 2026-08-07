@@ -1,9 +1,8 @@
 class Solution:
     def poorPigs(self, buckets: int, minutesToDie: int, minutesToTest: int) -> int:
-        states = minutesToTest // minutesToDie + 1
-        pigs = 0
-        capacity = 1
-        while capacity < buckets:
-            capacity *= states
-            pigs += 1
-        return pigs
+        base = minutesToTest // minutesToDie + 1
+        res, p = 0, 1
+        while p < buckets:
+            p *= base
+            res += 1
+        return res

@@ -1,66 +1,113 @@
-from collections import Counter
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogk)
+# Space: O(k)
+
+from sortedcontainers import SortedList
 
 
 class Solution:
-    def medianSlidingWindow(self, nums: List[int], k: int) -> List[float]:
-        small, large = [], []
-        delayed = Counter()
-        small_size = large_size = 0
+    def medianSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[float]
+        """
+        sl = SortedList(float(nums[i])for i in range(k))
+        result = [(sl[k//2]+sl[k//2-(1-k%2)])/2]
+        for i in range(k, len(nums)):
+            sl.add(float(nums[i]))
+            sl.remove(nums[i-k])
+            result.append((sl[k//2]+sl[k//2-(1-k%2)])/2)
+        return result
 
-        def prune(heap, lower):
-            while heap:
-                value = -heap[0] if lower else heap[0]
-                if delayed[value] == 0:
-                    break
-                heappop(heap)
-                delayed[value] -= 1
 
-        def balance():
-            nonlocal small_size, large_size
-            if small_size > large_size + 1:
-                heappush(large, -heappop(small))
-                small_size -= 1
-                large_size += 1
-                prune(small, True)
-            elif small_size < large_size:
-                heappush(small, -heappop(large))
-                small_size += 1
-                large_size -= 1
-                prune(large, False)
+# Time:  O(nlogk)
+# Space: O(k)
+import collections
+import heapq
 
-        def insert(value):
-            nonlocal small_size, large_size
-            if not small or value <= -small[0]:
-                heappush(small, -value)
-                small_size += 1
+
+class Solution2(object):
+    def medianSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[float]
+        """
+        def lazy_delete(heap, to_remove, sign):
+            while heap and sign*heap[0] in to_remove:
+                to_remove[sign*heap[0]] -= 1
+                if not to_remove[sign*heap[0]]:
+                    del to_remove[sign*heap[0]]
+                heapq.heappop(heap)
+
+        def full_delete(heap, to_remove, sign):  # Time: O(k), Space: O(k)
+            result = []
+            for x in heap:
+                if sign*x not in to_remove:
+                    result.append(x)
+                    continue
+                to_remove[sign*x] -= 1
+                if not to_remove[sign*x]:
+                    del to_remove[sign*x]
+            heap[:] = result
+            heapq.heapify(heap)
+
+        min_heap, max_heap = [], []
+        for i in range(k):
+            if i%2 == 0:
+                heapq.heappush(min_heap, -heapq.heappushpop(max_heap, -nums[i]))
             else:
-                heappush(large, value)
-                large_size += 1
-            balance()
+                heapq.heappush(max_heap, -heapq.heappushpop(min_heap, nums[i]))
+        result = [float(min_heap[0])] if k%2 else [(min_heap[0]-max_heap[0])/2.0]
+        to_remove = collections.defaultdict(int)
+        for i in range(k, len(nums)):
+            heapq.heappush(max_heap, -heapq.heappushpop(min_heap, nums[i]))
+            if nums[i-k] > -max_heap[0]:
+                heapq.heappush(min_heap, -heapq.heappop(max_heap))
+            to_remove[nums[i-k]] += 1
+            lazy_delete(max_heap, to_remove, -1)
+            lazy_delete(min_heap, to_remove, 1)
+            if len(min_heap)+len(max_heap) > 2*k:
+                full_delete(max_heap, to_remove, -1)
+                full_delete(min_heap, to_remove, 1)
+            result.append(float(min_heap[0]) if k%2 else (min_heap[0]-max_heap[0])/2.0)
+        return result
 
-        def erase(value):
-            nonlocal small_size, large_size
-            delayed[value] += 1
-            if value <= -small[0]:
-                small_size -= 1
-                if value == -small[0]:
-                    prune(small, True)
+
+# Time:  O(nlogn) due to lazy delete
+# Space: O(n)
+import collections
+import heapq
+
+
+class Solution3(object):
+    def medianSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[float]
+        """
+        def lazy_delete(heap, to_remove, sign):
+            while heap and sign*heap[0] in to_remove:
+                to_remove[sign*heap[0]] -= 1
+                if not to_remove[sign*heap[0]]:
+                    del to_remove[sign*heap[0]]
+                heapq.heappop(heap)
+
+        min_heap, max_heap = [], []
+        for i in range(k):
+            if i%2 == 0:
+                heapq.heappush(min_heap, -heapq.heappushpop(max_heap, -nums[i]))
             else:
-                large_size -= 1
-                if large and value == large[0]:
-                    prune(large, False)
-            balance()
-
-        def median():
-            return float(-small[0]) if k % 2 else (-small[0] + large[0]) / 2.0
-
-        for value in nums[:k]:
-            insert(value)
-        answer = [median()]
-        for index in range(k, len(nums)):
-            insert(nums[index])
-            erase(nums[index - k])
-            answer.append(median())
-        return answer
+                heapq.heappush(max_heap, -heapq.heappushpop(min_heap, nums[i]))
+        result = [float(min_heap[0])] if k%2 else [(min_heap[0]-max_heap[0])/2.0]
+        to_remove = collections.defaultdict(int)
+        for i in range(k, len(nums)):
+            heapq.heappush(max_heap, -heapq.heappushpop(min_heap, nums[i]))
+            if nums[i-k] > -max_heap[0]:
+                heapq.heappush(min_heap, -heapq.heappop(max_heap))
+            to_remove[nums[i-k]] += 1
+            lazy_delete(max_heap, to_remove, -1)
+            lazy_delete(min_heap, to_remove, 1)
+            result.append(float(min_heap[0]) if k%2 else (min_heap[0]-max_heap[0])/2.0)
+        return result

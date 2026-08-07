@@ -1,31 +1,34 @@
-from collections import defaultdict, deque
-from typing import List
+# Time:  O(|E|)
+# Space: O(|E|)
 
+import collections
+import itertools
 
 class Solution:
-    def findAllRecipes(
-        self,
-        recipes: List[str],
-        ingredients: List[List[str]],
-        supplies: List[str],
-    ) -> List[str]:
-        dependents = defaultdict(list)
-        missing = {}
-
-        for recipe, required in zip(recipes, ingredients):
-            missing[recipe] = len(required)
-            for ingredient in required:
-                dependents[ingredient].append(recipe)
-
-        available = deque(supplies)
-        possible = []
-
-        while available:
-            item = available.popleft()
-            for recipe in dependents[item]:
-                missing[recipe] -= 1
-                if missing[recipe] == 0:
-                    possible.append(recipe)
-                    available.append(recipe)
-
-        return possible
+    def findAllRecipes(self, recipes, ingredients, supplies):
+        """
+        :type recipes: List[str]
+        :type ingredients: List[List[str]]
+        :type supplies: List[str]
+        :rtype: List[str]
+        """
+        indegree = collections.defaultdict(int)
+        adj = collections.defaultdict(list)
+        for r, ingredient in itertools.izip(recipes, ingredients): 
+            indegree[r] = len(ingredient)
+            for ing in ingredient:
+                adj[ing].append(r)
+        result = []
+        recipes = set(recipes)
+        q = supplies
+        while q: 
+            new_q = []
+            for u in q:
+                if u in recipes:
+                    result.append(u)
+                for v in adj[u]:
+                    indegree[v] -= 1
+                    if not indegree[v]:
+                        new_q.append(v)
+            q = new_q
+        return result 

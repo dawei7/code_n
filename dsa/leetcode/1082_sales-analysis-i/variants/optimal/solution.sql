@@ -1,9 +1,10 @@
-WITH seller_totals AS (
-    SELECT seller_id, SUM(price) AS total_price
-    FROM Sales
-    GROUP BY seller_id
-)
+# Write your MySQL query statement below
 SELECT seller_id
-FROM seller_totals
-WHERE total_price = (SELECT MAX(total_price) FROM seller_totals)
-ORDER BY seller_id;
+FROM Sales
+GROUP BY seller_id
+HAVING
+    SUM(price) >= ALL (
+        SELECT SUM(price)
+        FROM Sales
+        GROUP BY seller_id
+    );

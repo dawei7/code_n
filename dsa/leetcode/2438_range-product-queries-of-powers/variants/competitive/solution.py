@@ -1,16 +1,19 @@
-from typing import List
+# Time:  O(logn + qlogr), r = MOD
+# Space: O(logn)
 
-
+# prefix sum
 class Solution:
-    def productQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        exponent_prefix = [0]
-        bit_index = 0
-
-        while n:
-            if n & 1:
-                exponent_prefix.append(exponent_prefix[-1] + bit_index)
-            n >>= 1
-            bit_index += 1
-
-        modulo = 1_000_000_007
-        return [pow(2, exponent_prefix[right + 1] - exponent_prefix[left], modulo) for left, right in queries]
+    def productQueries(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        MOD = 10**9+7
+        prefix = [0]
+        i = 0
+        while (1<<i) <= n:
+            if n&(1<<i):
+                prefix.append(prefix[-1]+i)
+            i += 1
+        return [pow(2, prefix[r+1]-prefix[l], MOD) for l, r in queries]

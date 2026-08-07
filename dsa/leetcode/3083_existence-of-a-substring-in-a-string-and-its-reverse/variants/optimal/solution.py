@@ -1,4 +1,4 @@
 class Solution:
     def isSubstringPresent(self, s: str) -> bool:
-        pairs = {s[i : i + 2] for i in range(len(s) - 1)}
-        return any(pair[::-1] in pairs for pair in pairs)
+        st = {(a, b) for a, b in pairwise(s[::-1])}
+        return any((a, b) in st for a, b in pairwise(s))

@@ -1,27 +1,20 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def numMovesStonesII(self, stones: List[int]) -> List[int]:
-        positions = sorted(stones)
-        stone_count = len(positions)
-
-        maximum_moves = max(
-            positions[-1] - positions[1] - (stone_count - 2),
-            positions[-2] - positions[0] - (stone_count - 2),
-        )
-
-        minimum_moves = stone_count
-        left = 0
-        for right, position in enumerate(positions):
-            while position - positions[left] + 1 > stone_count:
+    def numMovesStonesII(self, stones):
+        """
+        :type stones: List[int]
+        :rtype: List[int]
+        """
+        stones.sort()
+        left, min_moves = 0, float("inf")
+        max_moves = max(stones[-1]-stones[1], stones[-2]-stones[0]) - (len(stones)-2)
+        for right in range(len(stones)):
+            while stones[right]-stones[left]+1 > len(stones): # find window size <= len(stones)
                 left += 1
-
-            stones_in_window = right - left + 1
-            consecutive_span = position - positions[left] + 1
-            if stones_in_window == stone_count - 1 and consecutive_span == stone_count - 1:
-                minimum_moves = min(minimum_moves, 2)
+            if len(stones)-(right-left+1) == 1 and stones[right]-stones[left]+1 == len(stones)-1:
+                min_moves = min(min_moves, 2)  # case (1, 2, 3, 4), 7
             else:
-                minimum_moves = min(minimum_moves, stone_count - stones_in_window)
-
-        return [minimum_moves, maximum_moves]
+                min_moves = min(min_moves, len(stones)-(right-left+1))  # move stones not in this window
+        return [min_moves, max_moves]

@@ -1,37 +1,33 @@
-from collections import deque
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def minimumMoves(self, grid: List[List[int]]) -> int:
-        n = len(grid)
-        target = (n - 1, n - 2, 0)
-        queue = deque([(0, 0, 0, 0)])
-        seen = {(0, 0, 0)}
-        while queue:
-            row, column, orientation, moves = queue.popleft()
-            if (row, column, orientation) == target:
-                return moves
-            if orientation == 0:
-                if column + 2 < n and grid[row][column + 2] == 0:
-                    state = (row, column + 1, 0)
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((*state, moves + 1))
-                if row + 1 < n and grid[row + 1][column] == 0 and grid[row + 1][column + 1] == 0:
-                    for state in ((row + 1, column, 0), (row, column, 1)):
-                        if state not in seen:
-                            seen.add(state)
-                            queue.append((*state, moves + 1))
-            else:
-                if row + 2 < n and grid[row + 2][column] == 0:
-                    state = (row + 1, column, 1)
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((*state, moves + 1))
-                if column + 1 < n and grid[row][column + 1] == 0 and grid[row + 1][column + 1] == 0:
-                    for state in ((row, column + 1, 1), (row, column, 0)):
-                        if state not in seen:
-                            seen.add(state)
-                            queue.append((*state, moves + 1))
+    def minimumMoves(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        level, q, lookup = 0, [(0, 0, False)], set()
+        while q:
+            next_q = []
+            for r, c, is_vertical in q:
+                if (r, c, is_vertical) in lookup:
+                    continue
+                if (r, c, is_vertical) == (len(grid)-1, len(grid)-2, False):
+                    return level
+                lookup.add((r, c, is_vertical))
+                if not is_vertical:
+                    if c+2 != len(grid[0]) and grid[r][c+2] == 0:
+                        next_q.append((r, c+1, is_vertical))
+                    if r+1 != len(grid) and grid[r+1][c] == 0 and grid[r+1][c+1] == 0:
+                        next_q.append((r+1, c, is_vertical))
+                        next_q.append((r, c, not is_vertical))
+                else:
+                    if r+2 != len(grid) and grid[r+2][c] == 0:
+                        next_q.append((r+1, c, is_vertical))
+                    if c+1 != len(grid) and grid[r][c+1] == 0 and grid[r+1][c+1] == 0:
+                        next_q.append((r, c+1, is_vertical))
+                        next_q.append((r, c, not is_vertical))
+            q = next_q
+            level += 1
         return -1

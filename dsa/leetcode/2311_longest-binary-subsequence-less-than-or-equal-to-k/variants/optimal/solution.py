@@ -1,16 +1,10 @@
 class Solution:
     def longestSubsequence(self, s: str, k: int) -> int:
-        answer = 0
-        number = 0
-        weight = 1
-
-        for character in s[::-1]:
-            if character == "0":
-                answer += 1
-                weight *= 2
-            elif number + weight <= k:
-                number += weight
-                answer += 1
-                weight *= 2
-
-        return answer
+        ans = v = 0
+        for c in s[::-1]:
+            if c == "0":
+                ans += 1
+            elif ans < 30 and (v | 1 << ans) <= k:
+                v |= 1 << ans
+                ans += 1
+        return ans

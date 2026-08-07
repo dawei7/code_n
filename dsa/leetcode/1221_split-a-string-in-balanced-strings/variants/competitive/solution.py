@@ -1,9 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def balancedStringSplit(self, s: str) -> int:
-        balance = 0
-        pieces = 0
-        for character in s:
-            balance += 1 if character == "L" else -1
-            if balance == 0:
-                pieces += 1
-        return pieces
+    def balancedStringSplit(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, count = 0, 0      
+        for c in s:
+            count += 1 if c == 'L' else -1            
+            if count == 0:
+                result += 1
+        return result

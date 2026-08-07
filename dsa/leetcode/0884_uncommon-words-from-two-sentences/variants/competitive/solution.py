@@ -1,9 +1,17 @@
-from collections import Counter
-from typing import List
+# Time:  O(m + n)
+# Space: O(m + n)
 
+import collections
 
+    
 class Solution:
-    def uncommonFromSentences(self, s1: str, s2: str) -> List[str]:
-        frequencies = Counter(s1.split())
-        frequencies.update(s2.split())
-        return [word for word, count in frequencies.items() if count == 1]
+    def uncommonFromSentences(self, A, B):
+        """
+        :type A: str
+        :type B: str
+        :rtype: List[str]
+        """
+        count = collections.Counter(A.split())
+        count += collections.Counter(B.split())
+        return [word for word in count if count[word] == 1]
+

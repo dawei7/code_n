@@ -1,13 +1,7 @@
 class Solution:
     def maxA(self, n: int) -> int:
-        best = [0] * (n + 1)
-        for presses in range(1, n + 1):
-            best[presses] = best[presses - 1] + 1
-            for multiplier in range(2, 6):
-                phase_cost = multiplier + 1
-                if phase_cost <= presses:
-                    best[presses] = max(
-                        best[presses],
-                        best[presses - phase_cost] * multiplier,
-                    )
-        return best[n]
+        dp = list(range(n + 1))
+        for i in range(3, n + 1):
+            for j in range(2, i - 1):
+                dp[i] = max(dp[i], dp[j - 1] * (i - j))
+        return dp[-1]

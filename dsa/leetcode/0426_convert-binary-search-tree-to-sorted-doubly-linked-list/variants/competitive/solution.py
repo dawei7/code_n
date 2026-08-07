@@ -1,29 +1,30 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+class Node(object):
+    def __init__(self, val, left, right):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 class Solution:
-    def treeToDoublyList(self, root: "Optional[Node]") -> "Optional[Node]":
-        if root is None:
+    def treeToDoublyList(self, root):
+        """
+        :type root: Node
+        :rtype: Node
+        """
+        if not root:
             return None
+        left_head, left_tail, right_head, right_tail = root, root, root, root
+        if root.left:
+            left_head = self.treeToDoublyList(root.left)
+            left_tail = left_head.left
+        if root.right:
+            right_head = self.treeToDoublyList(root.right)
+            right_tail = right_head.left
+        left_tail.right, right_head.left = root, root
+        root.left, root.right = left_tail, right_head
+        left_head.left, right_tail.right = right_tail, left_head
+        return left_head
 
-        first = None
-        previous = None
-
-        def inorder(node: "Optional[Node]") -> None:
-            nonlocal first, previous
-            if node is None:
-                return
-
-            inorder(node.left)
-            if previous is None:
-                first = node
-            else:
-                previous.right = node
-                node.left = previous
-            previous = node
-            inorder(node.right)
-
-        inorder(root)
-        first.left = previous
-        previous.right = first
-        return first

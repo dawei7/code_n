@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def minScoreTriangulation(self, values: List[int]) -> int:
-        vertex_count = len(values)
-        dp = [[0] * vertex_count for _ in range(vertex_count)]
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i + 1 == j:
+                return 0
+            return min(
+                dfs(i, k) + dfs(k, j) + values[i] * values[k] * values[j]
+                for k in range(i + 1, j)
+            )
 
-        for length in range(3, vertex_count + 1):
-            for left in range(vertex_count - length + 1):
-                right = left + length - 1
-                dp[left][right] = min(
-                    dp[left][middle] + dp[middle][right] + values[left] * values[middle] * values[right]
-                    for middle in range(left + 1, right)
-                )
-
-        return dp[0][vertex_count - 1]
+        return dfs(0, len(values) - 1)

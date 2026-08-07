@@ -1,12 +1,13 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def maximumWealth(self, accounts: List[List[int]]) -> int:
-        richest = 0
-        for customer in accounts:
-            wealth = 0
-            for balance in customer:
-                wealth += balance
-            richest = max(richest, wealth)
-        return richest
+    def maximumWealth(self, accounts):
+        """
+        :type accounts: List[List[int]]
+        :rtype: int
+        """
+        return max(itertools.imap(sum, accounts))

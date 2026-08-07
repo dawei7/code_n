@@ -1,28 +1,37 @@
+# Time:  O(n + m)
+# Space: O(n + m)
+
+# kmp solution
 class Solution:
-    def removeOccurrences(self, s: str, part: str) -> str:
-        prefix = [0] * len(part)
-        matched = 0
-        for index in range(1, len(part)):
-            while matched and part[index] != part[matched]:
-                matched = prefix[matched - 1]
-            if part[index] == part[matched]:
-                matched += 1
-            prefix[index] = matched
-
-        result: list[str] = []
-        states: list[int] = []
-        matched = 0
-        for character in s:
-            while matched and character != part[matched]:
-                matched = prefix[matched - 1]
-            if character == part[matched]:
-                matched += 1
-
-            result.append(character)
-            states.append(matched)
-            if matched == len(part):
-                del result[-len(part) :]
-                del states[-len(part) :]
-                matched = states[-1] if states else 0
-
+    def removeOccurrences(self, s, part):
+        """
+        :type s: str
+        :type part: str
+        :rtype: str
+        """
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j != -1 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+        
+        prefix = getPrefix(part)
+        result, lookup = [], []
+        i = -1
+        for c in s:
+            while i != -1 and part[i+1] != c:
+                i = prefix[i]
+            if part[i+1] == c:
+                i += 1
+            result.append(c)
+            lookup.append(i)
+            if i == len(part)-1:
+                result[len(result)-len(part):] = []
+                lookup[len(lookup)-len(part):] = []
+                i = lookup[-1] if lookup else -1
         return "".join(result)

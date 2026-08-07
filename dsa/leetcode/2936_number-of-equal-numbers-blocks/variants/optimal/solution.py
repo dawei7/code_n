@@ -1,27 +1,18 @@
-class Solution(object):
-    def countBlocks(self, nums):
-        length = nums.size()
-        blocks = 0
-        start = 0
-
-        while start < length:
-            blocks += 1
-            value = nums.at(start)
-            equal = start
-            step = 1
-
-            while start + step < length and nums.at(start + step) == value:
-                equal = start + step
-                step *= 2
-
-            different = min(length, start + step)
-            while equal + 1 < different:
-                middle = (equal + different) // 2
-                if nums.at(middle) == value:
-                    equal = middle
-                else:
-                    different = middle
-
-            start = different
-
-        return blocks
+# Definition for BigArray.
+# class BigArray:
+#     def at(self, index: long) -> int:
+#         pass
+#     def size(self) -> long:
+#         pass
+class Solution:
+    def countBlocks(self, nums: Optional["BigArray"]) -> int:
+        i, n = 0, nums.size()
+        ans = 0
+        while i < n:
+            ans += 1
+            x = nums.at(i)
+            if i + 1 < n and nums.at(i + 1) != x:
+                i += 1
+            else:
+                i += bisect_left(range(i, n), True, key=lambda j: nums.at(j) != x)
+        return ans

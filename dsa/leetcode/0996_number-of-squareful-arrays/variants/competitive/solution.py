@@ -1,33 +1,29 @@
-from collections import Counter
-from math import isqrt
-from typing import List
+# Time:  O(n!)
+# Space: O(n^2)
+
+import collections
 
 
 class Solution:
-    def numSquarefulPerms(self, nums: List[int]) -> int:
-        remaining = Counter(nums)
-        values = list(remaining)
-        neighbors = {value: [] for value in values}
+    def numSquarefulPerms(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        def dfs(candidate, x, left, count, result):
+            count[x] -= 1
+            if left == 0:
+                result[0] += 1
+            for y in candidate[x]:
+                if count[y]:
+                    dfs(candidate, y, left-1, count, result)
+            count[x] += 1
 
-        for left in values:
-            for right in values:
-                total = left + right
-                root = isqrt(total)
-                if root * root == total:
-                    neighbors[left].append(right)
+        count = collections.Counter(A)
+        candidate = {i: {j for j in count if int((i+j)**0.5) ** 2 == i+j} 
+                           for i in count}
 
-        def count(previous, unused):
-            if unused == 0:
-                return 1
-
-            total = 0
-            candidates = values if previous is None else neighbors[previous]
-            for value in candidates:
-                if remaining[value] == 0:
-                    continue
-                remaining[value] -= 1
-                total += count(value, unused - 1)
-                remaining[value] += 1
-            return total
-
-        return count(None, len(nums))
+        result = [0]
+        for x in count:
+            dfs(candidate, x, len(A)-1, count, result)
+        return result[0]

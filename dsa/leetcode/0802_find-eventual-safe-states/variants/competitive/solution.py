@@ -1,23 +1,22 @@
-from collections import deque
-from typing import List
-
+# Time:  O(|V| + |E|)
+# Space: O(|V|)
 
 class Solution:
-    def eventualSafeNodes(self, graph: List[List[int]]) -> List[int]:
-        reverse_graph = [[] for _ in graph]
-        remaining = [len(neighbors) for neighbors in graph]
-        for node, neighbors in enumerate(graph):
-            for neighbor in neighbors:
-                reverse_graph[neighbor].append(node)
+    def eventualSafeNodes(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: List[int]
+        """
+        WHITE, GRAY, BLACK = range(3)
 
-        queue = deque(node for node, degree in enumerate(remaining) if degree == 0)
-        safe = [False] * len(graph)
-        while queue:
-            node = queue.popleft()
-            safe[node] = True
-            for predecessor in reverse_graph[node]:
-                remaining[predecessor] -= 1
-                if remaining[predecessor] == 0:
-                    queue.append(predecessor)
+        def dfs(graph, node, lookup):
+            if lookup[node] != WHITE:
+                return lookup[node] == BLACK
+            lookup[node] = GRAY
+            if any(not dfs(graph, child, lookup) for child in graph[node]):
+                return False
+            lookup[node] = BLACK
+            return True
 
-        return [node for node, is_safe in enumerate(safe) if is_safe]
+        lookup = [WHITE]*len(graph)
+        return filter(lambda node: dfs(graph, node, lookup), range(len(graph)))

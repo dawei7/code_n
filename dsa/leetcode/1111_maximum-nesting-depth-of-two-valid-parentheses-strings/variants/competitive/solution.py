@@ -1,15 +1,31 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxDepthAfterSplit(self, seq: str) -> List[int]:
-        answer = []
-        depth = 0
-        for character in seq:
-            if character == "(":
-                depth += 1
-                answer.append(depth % 2)
+    def maxDepthAfterSplit(self, seq):
+        """
+        :type seq: str
+        :rtype: List[int]
+        """
+        return [(i & 1) ^ (seq[i] == '(') for i, c in enumerate(seq)]
+
+
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def maxDepthAfterSplit(self, seq):
+        """
+        :type seq: str
+        :rtype: List[int]
+        """
+        A, B = 0, 0
+        result = [0]*len(seq)
+        for i, c in enumerate(seq):
+            point = 1 if c == '(' else -1
+            if (point == 1 and A <= B) or \
+               (point == -1 and A >= B):
+                A += point
             else:
-                answer.append(depth % 2)
-                depth -= 1
-        return answer
+                B += point
+                result[i] = 1
+        return result

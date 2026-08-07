@@ -1,21 +1,21 @@
-from collections import Counter
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
-    def deleteDuplicatesUnsorted(self, head: Optional["ListNode"]) -> Optional["ListNode"]:
-        frequencies = Counter()
-        current = head
-        while current is not None:
-            frequencies[current.val] += 1
-            current = current.next
-
+    def deleteDuplicatesUnsorted(self, head: ListNode) -> ListNode:
+        cnt = Counter()
+        cur = head
+        while cur:
+            cnt[cur.val] += 1
+            cur = cur.next
         dummy = ListNode(0, head)
-        current = dummy
-        while current.next is not None:
-            if frequencies[current.next.val] > 1:
-                current.next = current.next.next
+        pre, cur = dummy, head
+        while cur:
+            if cnt[cur.val] > 1:
+                pre.next = cur.next
             else:
-                current = current.next
-
+                pre = cur
+            cur = cur.next
         return dummy.next

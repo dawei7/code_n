@@ -1,19 +1,10 @@
-from typing import List
-
-
 class Solution:
     def maxTotal(self, value: List[int], limit: List[int]) -> int:
-        elements = sorted(zip(limit, value), key=lambda item: (item[0], -item[1]))
-        total = 0
-        current_limit = -1
-        selected = 0
-
-        for element_limit, element_value in elements:
-            if element_limit != current_limit:
-                current_limit = element_limit
-                selected = 0
-            if selected < element_limit:
-                total += element_value
-                selected += 1
-
-        return total
+        g = defaultdict(list)
+        for v, lim in zip(value, limit):
+            g[lim].append(v)
+        ans = 0
+        for lim, vs in g.items():
+            vs.sort()
+            ans += sum(vs[-lim:])
+        return ans

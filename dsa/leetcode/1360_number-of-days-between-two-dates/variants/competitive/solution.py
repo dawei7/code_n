@@ -1,14 +1,36 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def daysBetweenDates(self, date1: str, date2: str) -> int:
-        days_before_month = (0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334)
+    def __init__(self):
+        def dayOfMonth(M):
+            return (28 if (M == 2) else 31-(M-1)%7%2)
 
-        def ordinal(date: str) -> int:
-            year, month, day = map(int, date.split("-"))
-            previous_year = year - 1
-            days = 365 * previous_year + previous_year // 4 - previous_year // 100 + previous_year // 400
-            days += days_before_month[month] + day
-            if month > 2 and (year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)):
-                days += 1
-            return days
+        self.__lookup = [0]*12
+        for M in range(1, len(self.__lookup)):
+            self.__lookup[M] += self.__lookup[M-1]+dayOfMonth(M)
 
-        return abs(ordinal(date1) - ordinal(date2))
+    def daysBetweenDates(self, date1, date2):
+        """
+        :type date1: str
+        :type date2: str
+        :rtype: int
+        """
+        def num_days(date):
+            Y, M, D = map(int, date.split("-"))
+            leap = 1 if M > 2 and (((Y % 4 == 0) and (Y % 100 != 0)) or (Y % 400 == 0)) else 0
+            return (Y-1)*365 + ((Y-1)//4 - (Y-1)//100 + (Y-1)//400) + self.__lookup[M-1]+D+leap
+     
+        return abs(num_days(date1) - num_days(date2))
+
+
+# Time:  O(1)
+# Space: O(1)
+import datetime
+
+
+class Solution2(object):
+    def daysBetweenDates(self, date1, date2):        
+        delta = datetime.datetime.strptime(date1, "%Y-%m-%d")
+        delta -= datetime.datetime.strptime(date2, "%Y-%m-%d")
+        return abs(delta.days)

@@ -1,33 +1,55 @@
-from functools import lru_cache
-from typing import List
+# Time:  O(n^2 + n*2^n) = O(n*2^n)
+# Space: O(n^2)
+
+import collections
 
 
+# math, hash table, bitmasks
 class Solution:
-    def minimumLines(self, points: List[List[int]]) -> int:
-        count = len(points)
-        all_covered = (1 << count) - 1
-        line_masks = [[0] * count for _ in range(count)]
+    def minimumLines(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        def gcd(a, b):  # Time: O(log(a + b))
+            while b:
+                a, b = b, a % b
+            return abs(a)
 
-        for first in range(count):
-            for second in range(first + 1, count):
-                x1, y1 = points[first]
-                x2, y2 = points[second]
-                mask = 0
-                for index, (x, y) in enumerate(points):
-                    if (x - x1) * (y2 - y1) == (y - y1) * (x2 - x1):
-                        mask |= 1 << index
-                line_masks[first][second] = mask
+        def popcount(x):
+            result = 0
+            while x:
+                x &= (x-1)
+                result += 1
+            return result
 
-        @lru_cache(maxsize=None)
-        def minimum_lines(covered: int) -> int:
-            if covered == all_covered:
-                return 0
-
-            first = next(index for index in range(count) if not (covered >> index) & 1)
-            others = [index for index in range(first + 1, count) if not (covered >> index) & 1]
-            if not others:
-                return 1
-
-            return 1 + min(minimum_lines(covered | line_masks[first][second]) for second in others)
-
-        return minimum_lines(0)
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+        
+        lookup = collections.defaultdict(set)               
+        for i, (x1, y1) in enumerate(points):
+            for j in range(i+1, len(points)):
+                x2, y2 = points[j]
+                # (x-x1)/(x2-x1) = (y-y1)/(y2-y1)
+                # => (y2-y1)x - (x2-x1)y = x1(y2-y1) - y1(x2-x1)
+                dx, dy = x2-x1, y2-y1
+                g = gcd(dx, dy)
+                a, b = dx//g, dy//g
+                if a < 0 or (a == 0 and b < 0):
+                    a, b = -a, -b
+                c = b*x1-a*y1
+                lookup[(a, b, c)].add((x1, y1))
+                lookup[(a, b, c)].add((x2, y2))
+        lines = [l for l, p in lookup.items() if len(p) > 2]  # filter to improve complexity
+        assert(len(lines) <= (len(points))//2)  # 1 extra colinear point per 2 points
+        result = float("inf")
+        for mask in range(1<<len(lines)):
+            covered = set()
+            bit, i = 1, 0
+            while bit <= mask:
+                if mask&bit:
+                    covered.update(lookup[lines[i]])
+                bit <<= 1                        
+                i += 1
+            result = min(result, popcount(mask) + ceil_divide(len(points)-len(covered), 2))
+        return result

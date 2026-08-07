@@ -1,32 +1,29 @@
-from typing import List
+# Time:  O(nlogn + nlogr), r = max(nums)-min(nums)
+# Space: O(1)
 
-
+# sort, binary search, greedy
 class Solution:
-    def minimizeMax(self, nums: List[int], p: int) -> int:
-        if p == 0:
-            return 0
-
-        values = sorted(nums)
-
-        def feasible(limit: int) -> bool:
-            pairs = 0
-            i = 0
-            while i + 1 < len(values):
-                if values[i + 1] - values[i] <= limit:
-                    pairs += 1
-                    i += 2
-                    if pairs == p:
-                        return True
-                else:
+    def minimizeMax(self, nums, p):
+        """
+        :type nums: List[int]
+        :type p: int
+        :rtype: int
+        """
+        def check(x):
+            i = cnt = 0
+            while i+1 < len(nums) and cnt < p:
+                if nums[i+1]-nums[i] <= x:
                     i += 1
-            return False
+                    cnt += 1
+                i += 1
+            return cnt == p
 
-        low = 0
-        high = values[-1] - values[0]
-        while low < high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                high = middle
+        nums.sort()
+        left, right = 0, nums[-1]-nums[0]
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                low = middle + 1
-        return low
+                left = mid+1
+        return left

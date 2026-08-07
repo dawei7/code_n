@@ -1,27 +1,18 @@
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def removeBoxes(self, boxes: List[int]) -> int:
-        @lru_cache(maxsize=None)
-        def best(left: int, right: int, carried: int) -> int:
-            if left > right:
+        @cache
+        def dfs(i, j, k):
+            if i > j:
                 return 0
+            while i < j and boxes[j] == boxes[j - 1]:
+                j, k = j - 1, k + 1
+            ans = dfs(i, j - 1, 0) + (k + 1) * (k + 1)
+            for h in range(i, j):
+                if boxes[h] == boxes[j]:
+                    ans = max(ans, dfs(h + 1, j - 1, 0) + dfs(i, h, k + 1))
+            return ans
 
-            while right > left and boxes[right] == boxes[right - 1]:
-                right -= 1
-                carried += 1
-
-            answer = best(left, right - 1, 0) + (carried + 1) ** 2
-
-            for index in range(left, right):
-                if boxes[index] == boxes[right]:
-                    answer = max(
-                        answer,
-                        best(left, index, carried + 1) + best(index + 1, right - 1, 0),
-                    )
-
-            return answer
-
-        return best(0, len(boxes) - 1, 0)
+        n = len(boxes)
+        ans = dfs(0, n - 1, 0)
+        dfs.cache_clear()
+        return ans

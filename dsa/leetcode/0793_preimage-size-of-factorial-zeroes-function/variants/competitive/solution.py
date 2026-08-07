@@ -1,18 +1,26 @@
-class Solution:
-    def preimageSizeFZF(self, k: int) -> int:
-        def trailing_zeroes(value: int) -> int:
-            total = 0
-            while value:
-                value //= 5
-                total += value
-            return total
+# Time:  O((logn)^2)
+# Space: O(1)
 
-        low = 0
-        high = 5 * k + 5
-        while low < high:
-            middle = (low + high) // 2
-            if trailing_zeroes(middle) < k:
-                low = middle + 1
+class Solution:
+    def preimageSizeFZF(self, K):
+        """
+        :type K: int
+        :rtype: int
+        """
+        def count_of_factorial_primes(n, p):
+            cnt = 0
+            while n > 0:
+                cnt += n//p
+                n //= p
+            return cnt
+
+        p = 5
+        left, right = 0, p*K
+        while left <= right:
+            mid = left + (right-left)//2
+            if count_of_factorial_primes(mid, p) >= K:
+                right = mid-1
             else:
-                high = middle
-        return 5 if trailing_zeroes(low) == k else 0
+                left = mid+1
+        return p if count_of_factorial_primes(left, p) == K else 0
+

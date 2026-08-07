@@ -1,56 +1,40 @@
-from typing import List
-
-
 class Solution:
     def canReachCorner(
-        self,
-        xCorner: int,
-        yCorner: int,
-        circles: List[List[int]],
+        self, xCorner: int, yCorner: int, circles: List[List[int]]
     ) -> bool:
-        count = len(circles)
-        top_or_left = count
-        bottom_or_right = count + 1
-        parent = list(range(count + 2))
+        def in_circle(x: int, y: int, cx: int, cy: int, r: int) -> int:
+            return (x - cx) ** 2 + (y - cy) ** 2 <= r**2
 
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
+        def cross_left_top(cx: int, cy: int, r: int) -> bool:
+            a = abs(cx) <= r and 0 <= cy <= yCorner
+            b = abs(cy - yCorner) <= r and 0 <= cx <= xCorner
+            return a or b
 
-        def union(first: int, second: int) -> None:
-            first_root = find(first)
-            second_root = find(second)
-            if first_root != second_root:
-                parent[first_root] = second_root
+        def cross_right_bottom(cx: int, cy: int, r: int) -> bool:
+            a = abs(cx - xCorner) <= r and 0 <= cy <= yCorner
+            b = abs(cy) <= r and 0 <= cx <= xCorner
+            return a or b
 
-        for index, (x, y, radius) in enumerate(circles):
-            radius_squared = radius * radius
-            above = max(0, y - yCorner)
-            right = max(0, x - xCorner)
-
-            touches_left = x * x + above * above <= radius_squared
-            touches_top = right * right + (y - yCorner) ** 2 <= radius_squared
-            touches_right = (x - xCorner) ** 2 + above * above <= radius_squared
-            touches_bottom = right * right + y * y <= radius_squared
-
-            if touches_left or touches_top:
-                union(index, top_or_left)
-            if touches_bottom or touches_right:
-                union(index, bottom_or_right)
-
-            for other in range(index):
-                other_x, other_y, other_radius = circles[other]
-                radius_sum = radius + other_radius
+        def dfs(i: int) -> bool:
+            x1, y1, r1 = circles[i]
+            if cross_right_bottom(x1, y1, r1):
+                return True
+            vis[i] = True
+            for j, (x2, y2, r2) in enumerate(circles):
+                if vis[j] or not ((x1 - x2) ** 2 + (y1 - y2) ** 2 <= (r1 + r2) ** 2):
+                    continue
                 if (
-                    (x - other_x) ** 2 + (y - other_y) ** 2 <= radius_sum * radius_sum
-                    and x * other_radius + other_x * radius < xCorner * radius_sum
-                    and y * other_radius + other_y * radius < yCorner * radius_sum
+                    (x1 * r2 + x2 * r1 < (r1 + r2) * xCorner)
+                    and (y1 * r2 + y2 * r1 < (r1 + r2) * yCorner)
+                    and dfs(j)
                 ):
-                    union(index, other)
+                    return True
+            return False
 
-            if find(top_or_left) == find(bottom_or_right):
+        vis = [False] * len(circles)
+        for i, (x, y, r) in enumerate(circles):
+            if in_circle(0, 0, x, y, r) or in_circle(xCorner, yCorner, x, y, r):
                 return False
-
+            if (not vis[i]) and cross_left_top(x, y, r) and dfs(i):
+                return False
         return True

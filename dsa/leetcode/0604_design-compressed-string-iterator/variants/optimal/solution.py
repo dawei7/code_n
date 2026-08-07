@@ -1,27 +1,32 @@
 class StringIterator:
     def __init__(self, compressedString: str):
-        self.compressed = compressedString
-        self.index = 0
-        self.character = " "
-        self.remaining = 0
-
-    def _load_run(self):
-        self.character = self.compressed[self.index]
-        self.index += 1
-
-        count = 0
-        while self.index < len(self.compressed) and self.compressed[self.index].isdigit():
-            count = count * 10 + int(self.compressed[self.index])
-            self.index += 1
-        self.remaining = count
+        self.d = []
+        self.p = 0
+        n = len(compressedString)
+        i = 0
+        while i < n:
+            c = compressedString[i]
+            x = 0
+            i += 1
+            while i < n and compressedString[i].isdigit():
+                x = x * 10 + int(compressedString[i])
+                i += 1
+            self.d.append([c, x])
 
     def next(self) -> str:
         if not self.hasNext():
-            return " "
-        if self.remaining == 0:
-            self._load_run()
-        self.remaining -= 1
-        return self.character
+            return ' '
+        ans = self.d[self.p][0]
+        self.d[self.p][1] -= 1
+        if self.d[self.p][1] == 0:
+            self.p += 1
+        return ans
 
     def hasNext(self) -> bool:
-        return self.remaining > 0 or self.index < len(self.compressed)
+        return self.p < len(self.d) and self.d[self.p][1] > 0
+
+
+# Your StringIterator object will be instantiated and called as such:
+# obj = StringIterator(compressedString)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()

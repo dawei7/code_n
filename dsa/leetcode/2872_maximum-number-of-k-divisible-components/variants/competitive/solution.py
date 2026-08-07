@@ -1,31 +1,36 @@
+# Time:  O(n)
+# Space: O(n)
+
+# bfs, greedy
 class Solution:
-    def maxKDivisibleComponents(
-        self,
-        n: int,
-        edges: List[List[int]],
-        values: List[int],
-        k: int,
-    ) -> int:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+    def maxKDivisibleComponents(self, n, edges, values, k):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type values: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def bfs():
+            result = 0
+            dp = [x%k for x in values]
+            cnt = [len(adj[u]) for u in range(len(adj))]
+            q = [u for u in range(n) if cnt[u] == 1]
+            while q:
+                new_q = []
+                for u in q:
+                    if not dp[u]:
+                        result += 1
+                    for v in adj[u]:
+                        dp[v] = (dp[v]+dp[u])%k
+                        cnt[v] -= 1
+                        if cnt[v] == 1:
+                            new_q.append(v)
+                q = new_q
+            return max(result, 1)
 
-        parent = [-1] * n
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor != parent[node]:
-                    parent[neighbor] = node
-                    order.append(neighbor)
-
-        remainders = [value % k for value in values]
-        components = 0
-
-        for node in reversed(order):
-            if remainders[node] == 0:
-                components += 1
-            elif parent[node] != -1:
-                remainders[parent[node]] = (remainders[parent[node]] + remainders[node]) % k
-
-        return components
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        return bfs()

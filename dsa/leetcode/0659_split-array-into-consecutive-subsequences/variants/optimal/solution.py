@@ -1,21 +1,9 @@
-from collections import Counter
-
-
 class Solution:
-    def isPossible(self, nums):
-        unused = Counter(nums)
-        endings = Counter()
-        for value in nums:
-            if unused[value] == 0:
-                continue
-            unused[value] -= 1
-            if endings[value - 1] > 0:
-                endings[value - 1] -= 1
-                endings[value] += 1
-            elif unused[value + 1] > 0 and unused[value + 2] > 0:
-                unused[value + 1] -= 1
-                unused[value + 2] -= 1
-                endings[value + 2] += 1
+    def isPossible(self, nums: List[int]) -> bool:
+        d = defaultdict(list)
+        for v in nums:
+            if h := d[v - 1]:
+                heappush(d[v], heappop(h) + 1)
             else:
-                return False
-        return True
+                heappush(d[v], 1)
+        return all(not v or v and v[0] > 2 for v in d.values())

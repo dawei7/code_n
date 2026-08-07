@@ -1,16 +1,44 @@
+# Time:  O(logn) = O(1)
+# Space: O(1)
+
 class Solution:
-    def divide(self, dividend: int, divisor: int) -> int:
-        negative = (dividend < 0) != (divisor < 0)
-        remainder = abs(dividend)
-        divisor_magnitude = abs(divisor)
-        quotient = 0
+    def divide(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        result, dvd, dvs = 0, abs(dividend), abs(divisor)
+        while dvd >= dvs:
+            inc = dvs
+            i = 0
+            while dvd >= inc:
+                dvd -= inc
+                result += 1 << i
+                inc <<= 1
+                i += 1
+        if dividend > 0 and divisor < 0 or dividend < 0 and divisor > 0:
+            return -result
+        else:
+            return result
 
-        for shift in range(max(0, remainder.bit_length() - divisor_magnitude.bit_length()), -1, -1):
-            shifted = divisor_magnitude << shift
-            if shifted <= remainder:
-                remainder -= shifted
-                quotient |= 1 << shift
+    def divide2(self, dividend, divisor):
+        """
+        :type dividend: int
+        :type divisor: int
+        :rtype: int
+        """
+        positive = (dividend < 0) is (divisor < 0)
+        dividend, divisor = abs(dividend), abs(divisor)
+        res = 0
+        while dividend >= divisor:
+            temp, i = divisor, 1
+            while dividend >= temp:
+                dividend -= temp
+                res += i
+                i <<= 1
+                temp <<= 1
+        if not positive:
+            res = -res
+        return min(max(-2147483648, res), 2147483647)
 
-        if negative:
-            quotient = -quotient
-        return min(2**31 - 1, max(-(2**31), quotient))

@@ -1,31 +1,21 @@
-from bisect import bisect_right
-from typing import List
-
-
 class Solution:
     def makeArrayIncreasing(self, arr1: List[int], arr2: List[int]) -> int:
-        candidates = sorted(set(arr2))
-        states = {-1: 0}
-
-        for value in arr1:
-            next_states = {}
-            for previous, operations in states.items():
-                if value > previous:
-                    next_states[value] = min(next_states.get(value, float("inf")), operations)
-
-                replacement_index = bisect_right(candidates, previous)
-                if replacement_index < len(candidates):
-                    replacement = candidates[replacement_index]
-                    next_states[replacement] = min(next_states.get(replacement, float("inf")), operations + 1)
-
-            best_cost = float("inf")
-            states = {}
-            for previous, operations in sorted(next_states.items()):
-                if operations < best_cost:
-                    states[previous] = operations
-                    best_cost = operations
-
-            if not states:
-                return -1
-
-        return min(states.values())
+        arr2.sort()
+        m = 0
+        for x in arr2:
+            if m == 0 or x != arr2[m - 1]:
+                arr2[m] = x
+                m += 1
+        arr2 = arr2[:m]
+        arr = [-inf] + arr1 + [inf]
+        n = len(arr)
+        f = [inf] * n
+        f[0] = 0
+        for i in range(1, n):
+            if arr[i - 1] < arr[i]:
+                f[i] = f[i - 1]
+            j = bisect_left(arr2, arr[i])
+            for k in range(1, min(i - 1, j) + 1):
+                if arr[i - k - 1] < arr2[j - k]:
+                    f[i] = min(f[i], f[i - k - 1] + k)
+        return -1 if f[n - 1] >= inf else f[n - 1]

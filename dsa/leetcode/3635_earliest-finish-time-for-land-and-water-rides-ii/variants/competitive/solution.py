@@ -1,21 +1,17 @@
-from typing import List
+# Time:   O(n)
+# Spacee: O(1)
 
-
+# greedy
 class Solution:
-    def earliestFinishTime(
-        self,
-        landStartTime: List[int],
-        landDuration: List[int],
-        waterStartTime: List[int],
-        waterDuration: List[int],
-    ) -> int:
-        earliest_land_finish = min(start + duration for start, duration in zip(landStartTime, landDuration))
-        earliest_water_finish = min(start + duration for start, duration in zip(waterStartTime, waterDuration))
-
-        land_then_water = min(
-            max(earliest_land_finish, start) + duration for start, duration in zip(waterStartTime, waterDuration)
-        )
-        water_then_land = min(
-            max(earliest_water_finish, start) + duration for start, duration in zip(landStartTime, landDuration)
-        )
-        return min(land_then_water, water_then_land)
+    def earliestFinishTime(self, landStartTime, landDuration, waterStartTime, waterDuration):
+        """
+        :type landStartTime: List[int]
+        :type landDuration: List[int]
+        :type waterStartTime: List[int]
+        :type waterDuration: List[int]
+        :rtype: int
+        """
+        mn_land = min(landStartTime[i]+landDuration[i] for i in range(len(landStartTime)))
+        mn_water = min(waterStartTime[i]+waterDuration[i] for i in range(len(waterStartTime)))
+        return min(min(max(landStartTime[i], mn_water)+landDuration[i] for i in range(len(landStartTime))), 
+                   min(max(waterStartTime[i], mn_land)+waterDuration[i] for i in range(len(waterStartTime))))

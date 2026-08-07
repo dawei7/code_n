@@ -1,21 +1,32 @@
+# Time:  O(h * 2^h)
+# Space: O(h * 2^h)
+
 class Solution:
     def printTree(self, root):
-        def height(node):
-            if node is None:
+        """
+        :type root: TreeNode
+        :rtype: List[List[str]]
+        """
+        def getWidth(root):
+            if not root:
                 return 0
-            return 1 + max(height(node.left), height(node.right))
+            return 2 * max(getWidth(root.left), getWidth(root.right)) + 1
 
-        rows = height(root)
-        columns = (1 << rows) - 1
-        result = [[""] * columns for _ in range(rows)]
+        def getHeight(root):
+            if not root:
+                return 0
+            return max(getHeight(root.left), getHeight(root.right)) + 1
 
-        def place(node, row, left, right):
-            if node is None:
+        def preorderTraversal(root, level, left, right, result):
+            if not root:
                 return
-            middle = (left + right) // 2
-            result[row][middle] = str(node.val)
-            place(node.left, row + 1, left, middle - 1)
-            place(node.right, row + 1, middle + 1, right)
+            mid = left + (right-left)/2
+            result[level][mid] = str(root.val)
+            preorderTraversal(root.left, level+1, left, mid-1, result)
+            preorderTraversal(root.right, level+1, mid+1, right, result)
 
-        place(root, 0, 0, columns - 1)
+        h, w = getHeight(root), getWidth(root)
+        result = [[""] * w for _ in range(h)]
+        preorderTraversal(root, 0, 0, w-1, result)
         return result
+

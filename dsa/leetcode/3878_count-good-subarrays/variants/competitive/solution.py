@@ -1,34 +1,62 @@
+# Time:  O(n)
+# Space: O(n)
+
+# combinatorics, mono stack
 class Solution:
-    def countGoodSubarrays(self, nums: list[int]) -> int:
-        bit_count = 30
-        last_with_bit = [-1] * bit_count
-        left_blocker = [-1] * len(nums)
+    def countGoodSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def is_proper_subset(a, b):
+            return a != b and a|b == b
 
-        for index, value in enumerate(nums):
-            blocker = -1
-            for bit in range(bit_count):
-                if value & (1 << bit) == 0:
-                    blocker = max(blocker, last_with_bit[bit])
-                else:
-                    last_with_bit[bit] = index
-            left_blocker[index] = blocker
+        def is_subset(a, b):
+            return a|b == b
+        
+        right = [len(nums)]*len(nums)
+        stk = []
+        for i in reversed(range(len(nums))):
+            while stk and is_subset(nums[stk[-1]], nums[i]):
+                stk.pop()
+            right[i] = stk[-1] if stk else len(nums)
+            stk.append(i)
+        result, left = 0, -1
+        stk = []
+        for i in range(len(nums)):
+            while stk and is_proper_subset(nums[stk[-1]], nums[i]):
+                stk.pop()
+            left = stk[-1] if stk else -1
+            stk.append(i)
+            result += (i-left)*(right[i]-i)
+        return result
 
-        next_with_bit = [len(nums)] * bit_count
-        next_equal = {}
-        answer = 0
 
-        for index in range(len(nums) - 1, -1, -1):
-            value = nums[index]
-            blocker = len(nums)
+# Time:  O(n)
+# Space: O(n)
+# combinatorics, mono stack
+class Solution2(object):
+    def countGoodSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def is_proper_subset(a, b):
+            return a != b and a|b == b
 
-            for bit in range(bit_count):
-                if value & (1 << bit) == 0:
-                    blocker = min(blocker, next_with_bit[bit])
-                else:
-                    next_with_bit[bit] = index
+        def is_subset(a, b):
+            return a|b == b
 
-            right_limit = min(blocker, next_equal.get(value, len(nums)))
-            answer += (index - left_blocker[index]) * (right_limit - index)
-            next_equal[value] = index
-
-        return answer
+        left = [-1]*len(nums)
+        stk = []
+        for i in reversed(range(len(nums))):
+            while stk and not is_proper_subset(nums[i], nums[stk[-1]]):
+                left[stk.pop()] = i
+            stk.append(i)
+        right = [len(nums)]*len(nums)
+        stk = []
+        for i in range(len(nums)):
+            while stk and not is_subset(nums[i], nums[stk[-1]]):
+                right[stk.pop()] = i
+            stk.append(i)
+        return sum((i-left[i])*(right[i]-i) for i in range(len(nums)))

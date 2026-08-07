@@ -1,15 +1,19 @@
+# Time:  O(n + klogn)
+# Space: O(1)
+
 import heapq
-from typing import List
 
 
 class Solution:
-    def minStoneSum(self, piles: List[int], k: int) -> int:
-        largest_first = [-pile for pile in piles]
-        heapq.heapify(largest_first)
-
-        for _ in range(k):
-            largest = -heapq.heappop(largest_first)
-            remaining = largest - largest // 2
-            heapq.heappush(largest_first, -remaining)
-
-        return -sum(largest_first)
+    def minStoneSum(self, piles, k):
+        """
+        :type piles: List[int]
+        :type k: int
+        :rtype: int
+        """
+        for i, x in enumerate(piles):
+            piles[i] = -x
+        heapq.heapify(piles)
+        for i in range(k):
+            heapq.heappush(piles, heapq.heappop(piles)//2)
+        return -sum(piles)

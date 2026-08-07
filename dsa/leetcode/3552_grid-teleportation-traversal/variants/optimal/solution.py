@@ -1,30 +1,35 @@
-from collections import defaultdict, deque
-
-
 class Solution:
-    def minMoves(self, matrix: list[str]) -> int:
-        rows, columns = (len(matrix), len(matrix[0]))
-        portals: dict[str, list[tuple[int, int]]] = defaultdict(list)
-        for row in range(rows):
-            for column in range(columns):
-                cell = matrix[row][column]
-                if cell.isalpha():
-                    portals[cell].append((row, column))
-        queue = deque([(0, 0, 0)])
-        finalized: set[tuple[int, int]] = set()
-        while queue:
-            row, column, distance = queue.popleft()
-            position = (row, column)
-            if position in finalized:
-                continue
-            finalized.add(position)
-            if position == (rows - 1, columns - 1):
-                return distance
-            cell = matrix[row][column]
-            if cell.isalpha():
-                for portal_row, portal_column in portals.pop(cell, []):
-                    queue.appendleft((portal_row, portal_column, distance))
-            for next_row, next_column in ((row - 1, column), (row + 1, column), (row, column - 1), (row, column + 1)):
-                if 0 <= next_row < rows and 0 <= next_column < columns and (matrix[next_row][next_column] != "#"):
-                    queue.append((next_row, next_column, distance + 1))
+    def minMoves(self, matrix: List[str]) -> int:
+        m, n = len(matrix), len(matrix[0])
+        g = defaultdict(list)
+        for i, row in enumerate(matrix):
+            for j, c in enumerate(row):
+                if c.isalpha():
+                    g[c].append((i, j))
+        dirs = (-1, 0, 1, 0, -1)
+        dist = [[inf] * n for _ in range(m)]
+        dist[0][0] = 0
+        q = deque([(0, 0)])
+        while q:
+            i, j = q.popleft()
+            d = dist[i][j]
+            if i == m - 1 and j == n - 1:
+                return d
+            c = matrix[i][j]
+            if c in g:
+                for x, y in g[c]:
+                    if d < dist[x][y]:
+                        dist[x][y] = d
+                        q.appendleft((x, y))
+                del g[c]
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if (
+                    0 <= x < m
+                    and 0 <= y < n
+                    and matrix[x][y] != "#"
+                    and d + 1 < dist[x][y]
+                ):
+                    dist[x][y] = d + 1
+                    q.append((x, y))
         return -1

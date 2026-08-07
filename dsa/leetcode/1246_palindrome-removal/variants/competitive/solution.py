@@ -1,24 +1,23 @@
-from typing import List
-
+# Time:  O(n^3)
+# Space: O(n^2)
 
 class Solution:
-    def minimumMoves(self, arr: List[int]) -> int:
-        length = len(arr)
-        dp = [[0] * length for _ in range(length)]
-        for index in range(length):
-            dp[index][index] = 1
-
-        for width in range(2, length + 1):
-            for left in range(length - width + 1):
-                right = left + width - 1
-                dp[left][right] = 1 + dp[left + 1][right]
-                if arr[left] == arr[left + 1]:
-                    dp[left][right] = min(
-                        dp[left][right],
-                        1 + (dp[left + 2][right] if left + 2 <= right else 0),
-                    )
-                for middle in range(left + 2, right + 1):
-                    if arr[left] == arr[middle]:
-                        suffix = dp[middle + 1][right] if middle < right else 0
-                        dp[left][right] = min(dp[left][right], dp[left + 1][middle - 1] + suffix)
-        return dp[0][length - 1]
+    def minimumMoves(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        dp = [[0 for _ in range(len(arr)+1)] for _ in range(len(arr)+1)]
+        for l in range(1, len(arr)+1):
+            for i in range(len(arr)-l+1):
+                j = i+l-1
+                if l == 1:
+                    dp[i][j] = 1
+                else:
+                    dp[i][j] = 1+dp[i+1][j]
+                    if arr[i] == arr[i+1]:
+                        dp[i][j] = min(dp[i][j], 1+dp[i+2][j])
+                    for k in range(i+2, j+1):
+                        if arr[i] == arr[k]:
+                            dp[i][j] = min(dp[i][j], dp[i+1][k-1] + dp[k+1][j])
+        return dp[0][len(arr)-1]

@@ -1,14 +1,16 @@
 class Solution:
     def minLengthAfterRemovals(self, nums: List[int]) -> int:
-        n = len(nums)
-        max_frequency = 1
-        run_length = 1
-
-        for i in range(1, n):
-            if nums[i] == nums[i - 1]:
-                run_length += 1
-            else:
-                run_length = 1
-            max_frequency = max(max_frequency, run_length)
-
-        return max(n % 2, 2 * max_frequency - n)
+        cnt = Counter(nums)
+        pq = [-x for x in cnt.values()]
+        heapify(pq)
+        ans = len(nums)
+        while len(pq) > 1:
+            x, y = -heappop(pq), -heappop(pq)
+            x -= 1
+            y -= 1
+            if x > 0:
+                heappush(pq, -x)
+            if y > 0:
+                heappush(pq, -y)
+            ans -= 2
+        return ans

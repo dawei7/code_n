@@ -1,12 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def vowelConsonantScore(self, s: str) -> int:
-        vowels = 0
-        consonants = 0
-
-        for char in s:
-            if char in "aeiou":
-                vowels += 1
-            elif "a" <= char <= "z":
-                consonants += 1
-
-        return vowels // consonants if consonants else 0
+    def vowelConsonantScore(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        VOWELS = "aeiou"
+        v = c = 0
+        for x in s:
+            if x in VOWELS:
+                v += 1
+            elif x.isalpha():
+                c += 1
+        return v//c if c else 0

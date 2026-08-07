@@ -1,17 +1,10 @@
-from collections import Counter
-from math import gcd
-from typing import List
-
-
 class Solution:
     def interchangeableRectangles(self, rectangles: List[List[int]]) -> int:
-        frequencies = Counter()
-        pairs = 0
-
-        for width, height in rectangles:
-            divisor = gcd(width, height)
-            ratio = (width // divisor, height // divisor)
-            pairs += frequencies[ratio]
-            frequencies[ratio] += 1
-
-        return pairs
+        ans = 0
+        cnt = Counter()
+        for w, h in rectangles:
+            g = gcd(w, h)
+            w, h = w // g, h // g
+            ans += cnt[(w, h)]
+            cnt[(w, h)] += 1
+        return ans

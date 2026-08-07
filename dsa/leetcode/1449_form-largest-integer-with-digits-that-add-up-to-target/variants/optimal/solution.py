@@ -1,29 +1,24 @@
-from typing import List
-
-
 class Solution:
     def largestNumber(self, cost: List[int], target: int) -> str:
-        unreachable = -(target + 1)
-        maximum_digits = [unreachable] * (target + 1)
-        maximum_digits[0] = 0
-
-        for total in range(1, target + 1):
-            for price in cost:
-                if total >= price:
-                    maximum_digits[total] = max(
-                        maximum_digits[total],
-                        maximum_digits[total - price] + 1,
-                    )
-
-        if maximum_digits[target] < 0:
+        f = [[-inf] * (target + 1) for _ in range(10)]
+        f[0][0] = 0
+        g = [[0] * (target + 1) for _ in range(10)]
+        for i, c in enumerate(cost, 1):
+            for j in range(target + 1):
+                if j < c or f[i][j - c] + 1 < f[i - 1][j]:
+                    f[i][j] = f[i - 1][j]
+                    g[i][j] = j
+                else:
+                    f[i][j] = f[i][j - c] + 1
+                    g[i][j] = j - c
+        if f[9][target] < 0:
             return "0"
-
-        answer = []
-        remaining = target
-        for digit in range(9, 0, -1):
-            price = cost[digit - 1]
-            while remaining >= price and maximum_digits[remaining] == maximum_digits[remaining - price] + 1:
-                answer.append(str(digit))
-                remaining -= price
-
-        return "".join(answer)
+        ans = []
+        i, j = 9, target
+        while i:
+            if j == g[i][j]:
+                i -= 1
+            else:
+                ans.append(str(i))
+                j = g[i][j]
+        return "".join(ans)

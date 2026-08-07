@@ -1,32 +1,30 @@
-class Solution:
-    def completePrime(self, num: int) -> bool:
-        def is_prime(value: int) -> bool:
-            if value < 2:
-                return False
-            if value % 2 == 0:
-                return value == 2
+# Time:  O(logn * sqrt(n))
+# Space: O(1)
 
-            divisor = 3
-            while divisor * divisor <= value:
-                if value % divisor == 0:
+# prefix sum, number theory
+class Solution:
+    def completePrime(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        def is_prime(n):
+            if (n <= 1) or (n != 2 and n%2 == 0):
+                return False
+            for i in range(3, n+1, 2):
+                if i*i > n:
+                    break
+                if n%i == 0:
                     return False
-                divisor += 2
             return True
 
-        prefix = num
-        while prefix:
-            if not is_prime(prefix):
+        suffix, base = 0, 1
+        while num:
+            if not is_prime(num):
                 return False
-            prefix //= 10
-
-        suffix = 0
-        place = 1
-        remaining = num
-        while remaining:
-            suffix = (remaining % 10) * place + suffix
+            suffix += (num%10)*base
             if not is_prime(suffix):
                 return False
-            remaining //= 10
-            place *= 10
-
+            num //= 10
+            base *= 10
         return True

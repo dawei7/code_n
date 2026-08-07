@@ -1,18 +1,13 @@
-from typing import List
-
-
 class Solution:
     def minCost(self, n: int, cuts: List[int]) -> int:
-        points = [0] + sorted(cuts) + [n]
-        count = len(points)
-        cost = [[0] * count for _ in range(count)]
-
-        for width in range(2, count):
-            for left in range(count - width):
-                right = left + width
-                cost[left][right] = min(
-                    cost[left][middle] + cost[middle][right] + points[right] - points[left]
-                    for middle in range(left + 1, right)
-                )
-
-        return cost[0][-1]
+        cuts.extend([0, n])
+        cuts.sort()
+        m = len(cuts)
+        f = [[0] * m for _ in range(m)]
+        for l in range(2, m):
+            for i in range(m - l):
+                j = i + l
+                f[i][j] = inf
+                for k in range(i + 1, j):
+                    f[i][j] = min(f[i][j], f[i][k] + f[k][j] + cuts[j] - cuts[i])
+        return f[0][-1]

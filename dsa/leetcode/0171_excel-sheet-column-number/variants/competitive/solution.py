@@ -1,6 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def titleToNumber(self, columnTitle: str) -> int:
-        total = 0
-        for character in columnTitle:
-            total = total * 26 + ord(character) - ord("A") + 1
-        return total
+    def titleToNumber(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(s)):
+            result *= 26
+            result += ord(s[i]) - ord('A') + 1
+        return result
+
+

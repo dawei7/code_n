@@ -1,10 +1,10 @@
 class Solution:
     def maxFreqSum(self, s: str) -> int:
-        counts = [0] * 26
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
-
-        vowels = {0, 4, 8, 14, 20}
-        max_vowel = max(counts[index] for index in vowels)
-        max_consonant = max(counts[index] for index in range(26) if index not in vowels)
-        return max_vowel + max_consonant
+        cnt = Counter(s)
+        a = b = 0
+        for c, v in cnt.items():
+            if c in "aeiou":
+                a = max(a, v)
+            else:
+                b = max(b, v)
+        return a + b

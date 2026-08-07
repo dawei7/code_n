@@ -1,6 +1,11 @@
-from typing import List
-
+# Time:  O(2^n)
+# Space: O(1)
 
 class Solution:
-    def circularPermutation(self, n: int, start: int) -> List[int]:
-        return [(index ^ (index >> 1)) ^ start for index in range(1 << n)]
+    def circularPermutation(self, n, start):
+        """
+        :type n: int
+        :type start: int
+        :rtype: List[int]
+        """
+        return [start ^ (i>>1) ^ i for i in range(1<<n)]

@@ -1,18 +1,50 @@
-from collections import Counter
-from typing import List
+# Time:  O(n), k is the number of distinct barcodes
+# Space: O(k)
+
+import collections
+import itertools
 
 
 class Solution:
-    def rearrangeBarcodes(self, barcodes: List[int]) -> List[int]:
-        counts = Counter(barcodes)
-        most_common = counts.most_common()
-        n = len(barcodes)
-        res = [0] * n
-        idx = 0
-        for val, count in most_common:
-            for _ in range(count):
-                res[idx] = val
-                idx += 2
-                if idx >= n:
-                    idx = 1
-        return res
+    def rearrangeBarcodes(self, barcodes):
+        """
+        :type barcodes: List[int]
+        :rtype: List[int]
+        """
+        k = 2
+        cnts = collections.Counter(barcodes)
+        bucket_cnt = max(cnts.values())
+        result = [0]*len(barcodes)
+        i = (len(barcodes)-1)%k
+        for c in itertools.chain((c for c, v in cnts.items() if v == bucket_cnt), (c for c, v in cnts.items() if v != bucket_cnt)):
+            for _ in range(cnts[c]):
+                result[i] = c
+                i += k
+                if i >= len(result):
+                    i = (i-1)%k
+        return result
+
+    
+# Time:  O(n + klogk), k is the number of distinct barcodes
+# Space: O(k)
+import collections
+
+
+class Solution2(object):
+    def rearrangeBarcodes(self, barcodes):
+        """
+        :type barcodes: List[int]
+        :rtype: List[int]
+        """
+        cnts = collections.Counter(barcodes)
+        sorted_cnts = [[v, k] for k, v in cnts.items()]
+        sorted_cnts.sort(reverse=True)
+
+        i = 0
+        for v, k in sorted_cnts:
+            for _ in range(v):
+                barcodes[i] = k
+                i += 2
+                if i >= len(barcodes):
+                    i = 1
+        return barcodes

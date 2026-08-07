@@ -1,24 +1,22 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def canBeValid(self, s: str, locked: str) -> bool:
-        if len(s) % 2:
+    def canBeValid(self, s, locked):
+        """
+        :type s: str
+        :type locked: str
+        :rtype: bool
+        """
+        if len(s)%2:
             return False
-
-        minimum_open = 0
-        maximum_open = 0
-
-        for character, state in zip(s, locked):
-            if state == "0":
-                minimum_open -= 1
-                maximum_open += 1
-            elif character == "(":
-                minimum_open += 1
-                maximum_open += 1
-            else:
-                minimum_open -= 1
-                maximum_open -= 1
-
-            if maximum_open < 0:
-                return False
-            minimum_open = max(minimum_open, 0)
-
-        return minimum_open == 0
+        for direction, c in ((lambda x:x, '('), (reversed, ')')):
+            cnt = bal = 0
+            for i in direction(range(len(s))):
+                if locked[i] == '0':
+                    cnt += 1
+                else:
+                    bal += 1 if s[i] == c else -1
+                    if cnt+bal < 0:
+                        return False
+        return True

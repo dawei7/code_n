@@ -1,31 +1,74 @@
+# Time:  O((n + e) * 2^n)
+# Space: O(n + e)
+
+# bitmask, dfs
 class Solution:
-    def evenSumSubgraphs(self, nums: list[int], edges: list[list[int]]) -> int:
-        n = len(nums)
-        adjacency = [0] * n
+    def evenSumSubgraphs(self, nums, edges):
+        """
+        :type nums: List[int]
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def even(mask):
+            def popcount(x):
+                return bin(x).count('1')
+
+            return not popcount(mask&odd_mask)%2
+    
+        def connected(mask):
+            i = next(i for i in range(len(nums)) if mask&(1<<i))
+            mask ^= 1<<i
+            stk = [i]
+            while stk:
+                u = stk.pop()
+                for v in adj[u]:
+                    if not mask&(1<<v):
+                        continue
+                    mask ^= 1<<v
+                    stk.append(v)
+            return not mask
+
+        adj = [[] for _ in range(len(nums))]
         for u, v in edges:
-            adjacency[u] |= 1 << v
-            adjacency[v] |= 1 << u
+            adj[u].append(v)
+            adj[v].append(u)
+        odd_mask = reduce(lambda accu, x: accu|(1<<x), (i for i in range(len(nums)) if nums[i]), 0)
+        return sum(even(mask) and connected(mask) for mask in range(1, 1<<len(nums)))
 
-        one_nodes = 0
-        for node, value in enumerate(nums):
-            if value == 1:
-                one_nodes |= 1 << node
 
-        answer = 0
-        for subset in range(1, 1 << n):
-            if (subset & one_nodes).bit_count() % 2 == 1:
-                continue
+# Time:  O((n + e) * 2^n)
+# Space: O(n + e)
+# bitmask, dfs
+class Solution2(object):
+    def evenSumSubgraphs(self, nums, edges):
+        """
+        :type nums: List[int]
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def even(mask):
+            parity = 0
+            for i in range(len(nums)):
+                if not mask&(1<<i):
+                    continue
+                parity ^= nums[i]
+            return not parity
+    
+        def connected(mask):
+            i = next(i for i in range(len(nums)) if mask&(1<<i))
+            mask ^= 1<<i
+            stk = [i]
+            while stk:
+                u = stk.pop()
+                for v in adj[u]:
+                    if not mask&(1<<v):
+                        continue
+                    mask ^= 1<<v
+                    stk.append(v)
+            return not mask
 
-            reached = 0
-            frontier = subset & -subset
-            while frontier:
-                node_bit = frontier & -frontier
-                frontier ^= node_bit
-                reached |= node_bit
-                node = node_bit.bit_length() - 1
-                frontier |= adjacency[node] & subset & ~reached
-
-            if reached == subset:
-                answer += 1
-
-        return answer
+        adj = [[] for _ in range(len(nums))]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        return sum(even(mask) and connected(mask) for mask in range(1, 1<<len(nums)))

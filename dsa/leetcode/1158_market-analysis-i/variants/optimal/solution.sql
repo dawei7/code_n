@@ -1,11 +1,9 @@
+# Write your MySQL query statement below
 SELECT
     u.user_id AS buyer_id,
     u.join_date,
-    COUNT(o.order_id) AS orders_in_2019
-FROM Users AS u
-LEFT JOIN Orders AS o
-    ON o.buyer_id = u.user_id
-    AND o.order_date >= '2019-01-01'
-    AND o.order_date < '2020-01-01'
-GROUP BY u.user_id, u.join_date
-ORDER BY buyer_id;
+    COUNT(order_id) AS orders_in_2019
+FROM
+    Users AS u
+    LEFT JOIN Orders AS o ON u.user_id = o.buyer_id AND YEAR(order_date) = 2019
+GROUP BY user_id;

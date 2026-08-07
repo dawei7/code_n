@@ -1,7 +1,3 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def maxAmount(
         self,
@@ -11,22 +7,23 @@ class Solution:
         pairs2: List[List[str]],
         rates2: List[float],
     ) -> float:
-        def rates_from(pairs: List[List[str]], rates: List[float]) -> dict[str, float]:
-            graph = defaultdict(list)
-            for (source, target), rate in zip(pairs, rates):
-                graph[source].append((target, rate))
-                graph[target].append((source, 1.0 / rate))
+        d1 = self.build(pairs1, rates1, initialCurrency)
+        d2 = self.build(pairs2, rates2, initialCurrency)
+        return max(d1.get(a, 0) / r2 for a, r2 in d2.items())
 
-            converted = {initialCurrency: 1.0}
-            stack = [initialCurrency]
-            while stack:
-                currency = stack.pop()
-                for neighbor, rate in graph[currency]:
-                    if neighbor not in converted:
-                        converted[neighbor] = converted[currency] * rate
-                        stack.append(neighbor)
-            return converted
+    def build(
+        self, pairs: List[List[str]], rates: List[float], init: str
+    ) -> Dict[str, float]:
+        def dfs(a: str, v: float):
+            d[a] = v
+            for b, r in g[a]:
+                if b not in d:
+                    dfs(b, v * r)
 
-        day1 = rates_from(pairs1, rates1)
-        day2 = rates_from(pairs2, rates2)
-        return max(amount / day2[currency] for currency, amount in day1.items() if currency in day2)
+        g = defaultdict(list)
+        for (a, b), r in zip(pairs, rates):
+            g[a].append((b, r))
+            g[b].append((a, 1 / r))
+        d = {}
+        dfs(init, 1)
+        return d

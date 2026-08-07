@@ -1,17 +1,14 @@
 class Solution:
     def removeSubstring(self, s: str, k: int) -> str:
-        runs: list[list[str | int]] = []
-
-        for character in s:
-            if runs and runs[-1][0] == character:
-                runs[-1][1] += 1
+        stk = []
+        for c in s:
+            if stk and stk[-1][0] == c:
+                stk[-1][1] += 1
             else:
-                runs.append([character, 1])
-
-            if character == ")" and len(runs) >= 2 and runs[-1][1] == k and runs[-2][0] == "(" and runs[-2][1] >= k:
-                runs.pop()
-                runs[-1][1] -= k
-                if runs[-1][1] == 0:
-                    runs.pop()
-
-        return "".join(character * count for character, count in runs)
+                stk.append([c, 1])
+            if c == ")" and len(stk) > 1 and stk[-1][1] == k and stk[-2][1] >= k:
+                stk.pop()
+                stk[-1][1] -= k
+                if stk[-1][1] == 0:
+                    stk.pop()
+        return "".join(c * v for c, v in stk)

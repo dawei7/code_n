@@ -1,16 +1,38 @@
-from random import randrange
+# Time:  O(n)
+# Space: O(n)
+
+import random
 
 
 class Solution:
-    def __init__(self, nums: List[int]):
-        self.original = nums.copy()
 
-    def reset(self) -> List[int]:
-        return self.original.copy()
+    def __init__(self, nums):
+        """
 
-    def shuffle(self) -> List[int]:
-        shuffled = self.original.copy()
-        for index in range(len(shuffled) - 1):
-            swap_index = randrange(index, len(shuffled))
-            shuffled[index], shuffled[swap_index] = shuffled[swap_index], shuffled[index]
-        return shuffled
+        :type nums: List[int]
+        :type size: int
+        """
+        self.__nums = nums
+
+
+    def reset(self):
+        """
+        Resets the array to its original configuration and return it.
+        :rtype: List[int]
+        """
+        return self.__nums
+
+
+    def shuffle(self):
+        """
+        Returns a random shuffling of the array.
+        :rtype: List[int]
+        """
+        nums = list(self.__nums)
+        for i in range(len(nums)):
+            j = random.randint(i, len(nums)-1)
+            nums[i], nums[j] = nums[j], nums[i]
+        return nums
+
+
+

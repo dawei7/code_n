@@ -1,9 +1,22 @@
-class ParkingSystem:
-    def __init__(self, big: int, medium: int, small: int):
-        self.available = [0, big, medium, small]
+# Time:  O(1)
+# Space: O(1)
 
-    def addCar(self, carType: int) -> bool:
-        if self.available[carType] == 0:
-            return False
-        self.available[carType] -= 1
-        return True
+class ParkingSystem(object):
+
+    def __init__(self, big, medium, small):
+        """
+        :type big: int
+        :type medium: int
+        :type small: int
+        """
+        self.__space = [0, big, medium, small]
+
+    def addCar(self, carType):
+        """
+        :type carType: int
+        :rtype: bool
+        """
+        if self.__space[carType] > 0:
+            self.__space[carType] -= 1
+            return True
+        return False

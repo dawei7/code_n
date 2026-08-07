@@ -1,42 +1,43 @@
-from collections import deque
-from typing import List
-
-
 class SnakeGame:
-    MOVES = {"U": (-1, 0), "D": (1, 0), "L": (0, -1), "R": (0, 1)}
-
     def __init__(self, width: int, height: int, food: List[List[int]]):
-        self.width = width
-        self.height = height
+        self.m = height
+        self.n = width
         self.food = food
-        self.food_index = 0
-        self.body = deque([(0, 0)])
-        self.occupied = {(0, 0)}
-        self.game_over = False
+        self.score = 0
+        self.idx = 0
+        self.q = deque([(0, 0)])
+        self.vis = {(0, 0)}
 
     def move(self, direction: str) -> int:
-        if self.game_over:
+        i, j = self.q[0]
+        x, y = i, j
+        match direction:
+            case "U":
+                x -= 1
+            case "D":
+                x += 1
+            case "L":
+                y -= 1
+            case "R":
+                y += 1
+        if x < 0 or x >= self.m or y < 0 or y >= self.n:
             return -1
-
-        row, col = self.body[-1]
-        row_change, col_change = self.MOVES[direction]
-        new_head = (row + row_change, col + col_change)
-        new_row, new_col = new_head
-        if not (0 <= new_row < self.height and 0 <= new_col < self.width):
-            self.game_over = True
+        if (
+            self.idx < len(self.food)
+            and x == self.food[self.idx][0]
+            and y == self.food[self.idx][1]
+        ):
+            self.score += 1
+            self.idx += 1
+        else:
+            self.vis.remove(self.q.pop())
+        if (x, y) in self.vis:
             return -1
+        self.q.appendleft((x, y))
+        self.vis.add((x, y))
+        return self.score
 
-        eating = self.food_index < len(self.food) and self.food[self.food_index] == [new_row, new_col]
-        if not eating:
-            tail = self.body.popleft()
-            self.occupied.remove(tail)
 
-        if new_head in self.occupied:
-            self.game_over = True
-            return -1
-
-        self.body.append(new_head)
-        self.occupied.add(new_head)
-        if eating:
-            self.food_index += 1
-        return self.food_index
+# Your SnakeGame object will be instantiated and called as such:
+# obj = SnakeGame(width, height, food)
+# param_1 = obj.move(direction)

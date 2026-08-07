@@ -1,19 +1,15 @@
+# Time:  O(n^2)
+# Space: O(1)
+
+# array
 class Solution:
-    def minimumOperationsToWriteY(self, grid: List[List[int]]) -> int:
-        n = len(grid)
-        middle = n // 2
-        counts = [[0, 0, 0], [0, 0, 0]]
-
-        for row in range(n):
-            for column in range(n):
-                belongs_to_y = (row <= middle and (column == row or column == n - 1 - row)) or (
-                    row >= middle and column == middle
-                )
-                counts[belongs_to_y][grid[row][column]] += 1
-
-        return min(
-            n * n - counts[True][y_value] - counts[False][background_value]
-            for y_value in range(3)
-            for background_value in range(3)
-            if y_value != background_value
-        )
+    def minimumOperationsToWriteY(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        cnt = [[0]*3 for _ in range(2)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                cnt[(i <= (len(grid[0])-1)//2 and (i-j == 0 or i+j == len(grid[0])-1)) or (i > (len(grid[0])-1)//2 == j)][grid[i][j]] += 1
+        return len(grid)*len(grid[0])-max(cnt[0][i]+cnt[1][j] for i in range(3) for j in range(3) if i != j)

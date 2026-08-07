@@ -1,11 +1,36 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def minimumTime(self, s: str) -> int:
-        prefix_cost = 0
-        answer = len(s)
+    def minimumTime(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        left = 0
+        result = left+(len(s)-0)
+        for i in range(1, len(s)+1):
+            left = min(left+2*(s[i-1] == '1'), i)
+            result = min(result, left+(len(s)-i))
+        return result
 
-        for index, car in enumerate(s):
-            if car == "1":
-                prefix_cost = min(prefix_cost + 2, index + 1)
-            answer = min(answer, prefix_cost + len(s) - index - 1)
 
-        return answer
+# Time:  O(n)
+# Space: O(n)
+# dp
+class Solution2(object):
+    def minimumTime(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, right = len(s), [0]*(len(s)+1)
+        for i in reversed(range(len(s))):
+            right[i] = min(right[i+1]+2*(s[i] == '1'), len(s)-i)
+        left = 0
+        result = left+right[0]
+        for i in range(1, len(s)+1):
+            left = min(left+2*(s[i-1] == '1'), i)     
+            result = min(result, left+right[i])
+        return result

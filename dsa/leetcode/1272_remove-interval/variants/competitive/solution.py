@@ -1,18 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def removeInterval(self, intervals: List[List[int]], toBeRemoved: List[int]) -> List[List[int]]:
-        remove_start, remove_end = toBeRemoved
-        answer = []
-
-        for start, end in intervals:
-            if end <= remove_start or start >= remove_end:
-                answer.append([start, end])
-                continue
-            if start < remove_start:
-                answer.append([start, remove_start])
-            if end > remove_end:
-                answer.append([remove_end, end])
-
-        return answer
+    def removeInterval(self, intervals, toBeRemoved):
+        """
+        :type intervals: List[List[int]]
+        :type toBeRemoved: List[int]
+        :rtype: List[List[int]]
+        """
+        A, B = toBeRemoved
+        return [[x, y] for a, b in intervals
+                for x, y in ((a, min(A, b)), (max(a, B), b))
+                if x < y]

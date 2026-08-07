@@ -1,17 +1,25 @@
-def _max_profit(prices: list[int]) -> int:
-    hold = float("-inf")
-    sold = float("-inf")
-    rest = 0
-    for price in prices:
-        previous_hold = hold
-        previous_sold = sold
-        previous_rest = rest
-        hold = max(previous_hold, previous_rest - price)
-        sold = previous_hold + price
-        rest = max(previous_rest, previous_sold)
-    return int(max(sold, rest))
+# Time:  O(n)
+# Space: O(1)
 
 
 class Solution:
-    def maxProfit(self, prices: list[int]) -> int:
-        return _max_profit(prices)
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not prices:
+            return 0
+        buy, sell, coolDown = [0] * 2, [0] * 2, [0] * 2
+        buy[0] = -prices[0]
+        for i in range(1, len(prices)):
+            # Bought before or buy today.
+            buy[i % 2] = max(buy[(i - 1) % 2],
+                             coolDown[(i - 1) % 2] - prices[i])
+            # Sell today.
+            sell[i % 2] = buy[(i - 1) % 2] + prices[i]
+            # Sold before yesterday or sold yesterday.
+            coolDown[i % 2] = max(coolDown[(i - 1) % 2], sell[(i - 1) % 2])
+        return max(coolDown[(len(prices) - 1) % 2],
+                   sell[(len(prices) - 1) % 2])
+

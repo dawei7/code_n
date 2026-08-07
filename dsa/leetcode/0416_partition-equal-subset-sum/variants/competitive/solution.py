@@ -1,12 +1,21 @@
+# Time:  O(n * s), s is the sum of nums
+# Space: O(s)
+
 class Solution:
-    def canPartition(self, nums: List[int]) -> bool:
-        total = sum(nums)
-        if total % 2:
+    def canPartition(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        s = sum(nums)
+        if s % 2:
             return False
 
-        target = total // 2
-        reachable = 1
-        for value in nums:
-            reachable |= reachable << value
+        dp = [False] * (s/2 + 1)
+        dp[0] = True
+        for num in nums:
+            for i in reversed(range(1, len(dp))):
+                if num <= i:
+                    dp[i] = dp[i] or dp[i - num]
+        return dp[-1]
 
-        return bool(reachable & (1 << target))

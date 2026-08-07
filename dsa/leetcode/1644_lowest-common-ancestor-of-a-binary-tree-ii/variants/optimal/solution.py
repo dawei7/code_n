@@ -7,22 +7,21 @@
 
 
 class Solution:
-    def lowestCommonAncestor(self, root: "TreeNode", p: "TreeNode", q: "TreeNode") -> "TreeNode":
-        def search(node):
-            if node is None:
-                return None, 0
+    def lowestCommonAncestor(
+        self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode'
+    ) -> 'TreeNode':
+        def dfs(root, p, q):
+            if root is None:
+                return False
+            l = dfs(root.left, p, q)
+            r = dfs(root.right, p, q)
+            nonlocal ans
+            if l and r:
+                ans = root
+            if (l or r) and (root.val == p.val or root.val == q.val):
+                ans = root
+            return l or r or root.val == p.val or root.val == q.val
 
-            left_candidate, left_found = search(node.left)
-            right_candidate, right_found = search(node.right)
-            found = left_found + right_found + (node is p) + (node is q)
-
-            if left_candidate is not None and right_candidate is not None:
-                candidate = node
-            elif node is p or node is q:
-                candidate = node
-            else:
-                candidate = left_candidate or right_candidate
-            return candidate, found
-
-        candidate, found = search(root)
-        return candidate if found == 2 else None
+        ans = None
+        dfs(root, p, q)
+        return ans

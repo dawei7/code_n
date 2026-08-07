@@ -1,23 +1,15 @@
 class Solution:
     def nextGreaterElement(self, n: int) -> int:
-        digits = list(str(n))
-
-        pivot = len(digits) - 2
-        while pivot >= 0 and digits[pivot] >= digits[pivot + 1]:
-            pivot -= 1
-
-        if pivot < 0:
+        cs = list(str(n))
+        n = len(cs)
+        i, j = n - 2, n - 1
+        while i >= 0 and cs[i] >= cs[i + 1]:
+            i -= 1
+        if i < 0:
             return -1
-
-        successor = len(digits) - 1
-        while digits[successor] <= digits[pivot]:
-            successor -= 1
-
-        digits[pivot], digits[successor] = (
-            digits[successor],
-            digits[pivot],
-        )
-        digits[pivot + 1 :] = reversed(digits[pivot + 1 :])
-
-        result = int("".join(digits))
-        return result if result <= 2_147_483_647 else -1
+        while cs[i] >= cs[j]:
+            j -= 1
+        cs[i], cs[j] = cs[j], cs[i]
+        cs[i + 1 :] = cs[i + 1 :][::-1]
+        ans = int(''.join(cs))
+        return -1 if ans > 2**31 - 1 else ans

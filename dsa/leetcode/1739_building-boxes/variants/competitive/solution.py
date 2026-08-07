@@ -1,24 +1,21 @@
+# Time:  O(1)
+# Space: O(1)
+
+import math
+
+
 class Solution:
-    def minimumBoxes(self, n: int) -> int:
-        low, high = 0, n
-        while low < high:
-            middle = (low + high + 1) // 2
-            boxes = middle * (middle + 1) * (middle + 2) // 6
-            if boxes <= n:
-                low = middle
-            else:
-                high = middle - 1
-
-        height = low
-        complete = height * (height + 1) * (height + 2) // 6
-        remainder = n - complete
-
-        low, high = 0, height + 1
-        while low < high:
-            middle = (low + high) // 2
-            if middle * (middle + 1) // 2 >= remainder:
-                high = middle
-            else:
-                low = middle + 1
-
-        return height * (height + 1) // 2 + low
+    def minimumBoxes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        # find max h s.t. sum(k*(k+1)//2 for k in range(1, h+1)) <= n
+        # => find max h s.t. h*(h+1)*(h+2)//6 <= n
+        h = int((6*n)**(1.0/3))  
+        if h*(h+1)*(h+2) > 6*n:
+            # (h-1)*h*(h+1) < h^3 <= 6n < h*(h+1)*(h+2) < (h+1)^3
+            h -= 1
+        n -= h*(h+1)*(h+2)//6
+        d = int(math.ceil((-1+(1+8*n)**0.5)/2))  # find min d s.t. d*(d+1)//2 >= n
+        return h*(h+1)//2 + d

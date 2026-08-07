@@ -1,18 +1,15 @@
 class Solution:
     def minimizeResult(self, expression: str) -> str:
-        plus = expression.index("+")
-        best_value = float("inf")
-        best_expression = ""
-
-        for left in range(plus):
-            for right in range(plus + 2, len(expression) + 1):
-                outer_left = int(expression[:left]) if left else 1
-                inner_left = int(expression[left:plus])
-                inner_right = int(expression[plus + 1 : right])
-                outer_right = int(expression[right:]) if right < len(expression) else 1
-                value = outer_left * (inner_left + inner_right) * outer_right
-                if value < best_value:
-                    best_value = value
-                    best_expression = expression[:left] + "(" + expression[left:right] + ")" + expression[right:]
-
-        return best_expression
+        l, r = expression.split("+")
+        m, n = len(l), len(r)
+        mi = inf
+        ans = None
+        for i in range(m):
+            for j in range(n):
+                c = int(l[i:]) + int(r[: j + 1])
+                a = 1 if i == 0 else int(l[:i])
+                b = 1 if j == n - 1 else int(r[j + 1 :])
+                if (t := a * b * c) < mi:
+                    mi = t
+                    ans = f"{l[:i]}({l[i:]}+{r[: j + 1]}){r[j + 1:]}"
+        return ans

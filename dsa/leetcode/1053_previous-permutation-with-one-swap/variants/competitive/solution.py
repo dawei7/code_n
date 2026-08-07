@@ -1,20 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def prevPermOpt1(self, arr: List[int]) -> List[int]:
-        pivot = len(arr) - 2
-        while pivot >= 0 and arr[pivot] <= arr[pivot + 1]:
-            pivot -= 1
-
-        if pivot < 0:
-            return arr
-
-        target = len(arr) - 1
-        while arr[target] >= arr[pivot]:
-            target -= 1
-        while target > pivot + 1 and arr[target] == arr[target - 1]:
-            target -= 1
-
-        arr[pivot], arr[target] = arr[target], arr[pivot]
-        return arr
+    def prevPermOpt1(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        for left in reversed(range(len(A)-1)):
+            if A[left] > A[left+1]:
+                break
+        else:
+            return A
+        right = len(A)-1
+        while A[left] <= A[right]:
+            right -= 1
+        while A[right-1] == A[right]:
+            right -= 1
+        A[left], A[right] = A[right], A[left]
+        return A

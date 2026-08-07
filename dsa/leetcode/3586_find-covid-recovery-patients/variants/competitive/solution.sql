@@ -1,25 +1,12 @@
-WITH first_positive AS (
-    SELECT patient_id, MIN(test_date) AS positive_date
-    FROM covid_tests
-    WHERE result = 'Positive'
-    GROUP BY patient_id
-),
-first_recovery AS (
-    SELECT fp.patient_id,
-           fp.positive_date,
-           MIN(ct.test_date) AS negative_date
-    FROM first_positive AS fp
-    JOIN covid_tests AS ct
-      ON ct.patient_id = fp.patient_id
-     AND ct.result = 'Negative'
-     AND ct.test_date > fp.positive_date
-    GROUP BY fp.patient_id, fp.positive_date
-)
+# Time:  O(n^2)
+# Space: O(n^2)
+
 SELECT p.patient_id,
        p.patient_name,
        p.age,
-       CAST(julianday(fr.negative_date) - julianday(fr.positive_date) AS INTEGER) AS recovery_time
-FROM first_recovery AS fr
-JOIN patients AS p
-  ON p.patient_id = fr.patient_id
-ORDER BY recovery_time ASC, p.patient_name ASC;
+       DATEDIFF(MIN(t2.test_date), MIN(t1.test_date)) AS recovery_time
+FROM covid_tests t1
+INNER JOIN covid_tests t2 ON t1.patient_id = t2.patient_id AND t1.test_date < t2.test_date AND t1.result = 'Positive' AND t2.result = 'Negative'
+INNER JOIN patients p ON t1.patient_id = p.patient_id
+GROUP BY 1
+ORDER BY 4, 2;

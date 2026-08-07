@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maxDepthAfterSplit(self, seq: str) -> List[int]:
-        answer = []
-        depth = 0
-        for character in seq:
-            if character == "(":
-                depth += 1
-                answer.append(depth % 2)
+        ans = [0] * len(seq)
+        x = 0
+        for i, c in enumerate(seq):
+            if c == "(":
+                ans[i] = x & 1
+                x += 1
             else:
-                answer.append(depth % 2)
-                depth -= 1
-        return answer
+                x -= 1
+                ans[i] = x & 1
+        return ans

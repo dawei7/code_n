@@ -1,16 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(k)
+
+import collections
 
 
 class Solution:
-    def subarraysDivByK(self, nums: List[int], k: int) -> int:
-        frequencies = [0] * k
-        frequencies[0] = 1
-        prefix = 0
-        answer = 0
-
-        for value in nums:
-            prefix = (prefix + value) % k
-            answer += frequencies[prefix]
-            frequencies[prefix] += 1
-
-        return answer
+    def subarraysDivByK(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: int
+        """
+        count = collections.defaultdict(int)
+        count[0] = 1
+        result, prefix = 0, 0
+        for a in A:
+            prefix = (prefix+a) % K
+            result += count[prefix]
+            count[prefix] += 1
+        return result

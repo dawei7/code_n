@@ -1,27 +1,21 @@
 class Solution:
-    def cheapestJump(self, coins, maxJump):
-        size = len(coins)
-        unreachable = float("inf")
-        cost = [unreachable] * size
-        next_index = [-1] * size
-        if coins[-1] != -1:
-            cost[-1] = coins[-1]
-
-        for index in range(size - 2, -1, -1):
-            if coins[index] == -1:
-                continue
-            stop = min(size, index + maxJump + 1)
-            for following in range(index + 1, stop):
-                candidate = coins[index] + cost[following]
-                if candidate < cost[index]:
-                    cost[index] = candidate
-                    next_index[index] = following
-
-        if cost[0] == unreachable:
+    def cheapestJump(self, coins: List[int], maxJump: int) -> List[int]:
+        if coins[-1] == -1:
             return []
-        path = []
-        index = 0
-        while index != -1:
-            path.append(index + 1)
-            index = next_index[index]
-        return path
+        n = len(coins)
+        f = [inf] * n
+        f[-1] = coins[-1]
+        for i in range(n - 2, -1, -1):
+            if coins[i] != -1:
+                for j in range(i + 1, min(n, i + maxJump + 1)):
+                    if f[i] > f[j] + coins[i]:
+                        f[i] = f[j] + coins[i]
+        if f[0] == inf:
+            return []
+        ans = []
+        s = f[0]
+        for i in range(n):
+            if f[i] == s:
+                s -= coins[i]
+                ans.append(i + 1)
+        return ans

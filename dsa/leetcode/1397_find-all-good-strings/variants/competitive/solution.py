@@ -1,43 +1,53 @@
-from functools import cache
-
+# Time:  O(m * n)
+# Space: O(m)
 
 class Solution:
-    def findGoodStrings(self, n: int, s1: str, s2: str, evil: str) -> int:
-        modulus = 1_000_000_007
-        evil_length = len(evil)
-        prefix = [0] * evil_length
-        for index in range(1, evil_length):
-            matched = prefix[index - 1]
-            while matched and evil[index] != evil[matched]:
-                matched = prefix[matched - 1]
-            if evil[index] == evil[matched]:
-                matched += 1
-            prefix[index] = matched
-
-        transitions = [[0] * 26 for _ in range(evil_length)]
-        for matched in range(evil_length):
-            for code in range(26):
-                letter = chr(ord("a") + code)
-                next_matched = matched
-                while next_matched and evil[next_matched] != letter:
-                    next_matched = prefix[next_matched - 1]
-                if evil[next_matched] == letter:
-                    next_matched += 1
-                transitions[matched][code] = next_matched
-
-        @cache
-        def count(position, matched, tight_low, tight_high):
-            if position == n:
-                return 1
-            low = ord(s1[position]) if tight_low else ord("a")
-            high = ord(s2[position]) if tight_high else ord("z")
-            total = 0
-            for letter_code in range(low, high + 1):
-                next_matched = transitions[matched][letter_code - ord("a")]
-                if next_matched < evil_length:
-                    total += count(
-                        position + 1, next_matched, tight_low and letter_code == low, tight_high and letter_code == high
-                    )
-            return total % modulus
-
-        return count(0, 0, True, True)
+    def findGoodStrings(self, n, s1, s2, evil):
+        """
+        :type n: int
+        :type s1: str
+        :type s2: str
+        :type evil: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j != -1 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+    
+        prefix = getPrefix(evil)
+        dp = [[[[0]*len(evil) for _ in range(2)] for _ in range(2)] for _ in range(2)]
+        dp[0][0][0][0] = 1
+        for i in range(n):
+            dp[(i+1)%2] = [[[0]*len(evil) for _ in range(2)] for _ in range(2)]
+            for j in range(2):
+                for k in range(2):
+                    min_c = 'a' if j else s1[i]
+                    max_c = 'z' if k else s2[i]
+                    for l in range(len(evil)):
+                        if not dp[i%2][j][k][l]:
+                            continue
+                        for c in range(ord(min_c)-ord('a'), ord(max_c)-ord('a')+1):
+                            c = chr(c+ord('a'))
+                            m = l-1
+                            while m != -1 and evil[m+1] != c:
+                                m = prefix[m]
+                            if evil[m+1] == c:
+                                m += 1
+                            if m+1 == len(evil):
+                                continue
+                            dp[(i+1)%2][j or (s1[i] != c)][k or (s2[i] != c)][m+1] = \
+                                (dp[(i+1)%2][j or (s1[i] != c)][k or (s2[i] != c)][m+1] + dp[i%2][j][k][l]) % MOD
+        result = 0
+        for j in range(2):
+            for k in range(2):
+                for l in range(len(evil)):
+                    result = (result + dp[n%2][j][k][l]) % MOD
+        return result

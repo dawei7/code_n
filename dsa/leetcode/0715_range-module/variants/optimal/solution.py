@@ -1,61 +1,83 @@
-class _Node:
-    def __init__(self, state: int = 0):
-        self.state = state
+class Node:
+    __slots__ = ['left', 'right', 'add', 'v']
+
+    def __init__(self):
         self.left = None
         self.right = None
+        self.add = 0
+        self.v = False
+
+
+class SegmentTree:
+    __slots__ = ['root']
+
+    def __init__(self):
+        self.root = Node()
+
+    def modify(self, left, right, v, l=1, r=int(1e9), node=None):
+        if node is None:
+            node = self.root
+        if l >= left and r <= right:
+            if v == 1:
+                node.add = 1
+                node.v = True
+            else:
+                node.add = -1
+                node.v = False
+            return
+        self.pushdown(node)
+        mid = (l + r) >> 1
+        if left <= mid:
+            self.modify(left, right, v, l, mid, node.left)
+        if right > mid:
+            self.modify(left, right, v, mid + 1, r, node.right)
+        self.pushup(node)
+
+    def query(self, left, right, l=1, r=int(1e9), node=None):
+        if node is None:
+            node = self.root
+        if l >= left and r <= right:
+            return node.v
+        self.pushdown(node)
+        mid = (l + r) >> 1
+        v = True
+        if left <= mid:
+            v = v and self.query(left, right, l, mid, node.left)
+        if right > mid:
+            v = v and self.query(left, right, mid + 1, r, node.right)
+        return v
+
+    def pushup(self, node):
+        node.v = bool(node.left and node.left.v and node.right and node.right.v)
+
+    def pushdown(self, node):
+        if node.left is None:
+            node.left = Node()
+        if node.right is None:
+            node.right = Node()
+        if node.add:
+            node.left.add = node.right.add = node.add
+            node.left.v = node.add == 1
+            node.right.v = node.add == 1
+            node.add = 0
 
 
 class RangeModule:
-    DOMAIN_LEFT = 1
-    DOMAIN_RIGHT = 10**9
-
     def __init__(self):
-        self.root = _Node()
-
-    @staticmethod
-    def _children(node: _Node) -> None:
-        if node.left is None:
-            node.left = _Node(node.state)
-            node.right = _Node(node.state)
-
-    def _assign(self, node, left, right, query_left, query_right, state):
-        if query_left <= left and right <= query_right:
-            node.state = state
-            node.left = None
-            node.right = None
-            return
-        self._children(node)
-        middle = (left + right) // 2
-        if query_left <= middle:
-            self._assign(node.left, left, middle, query_left, query_right, state)
-        if query_right > middle:
-            self._assign(node.right, middle + 1, right, query_left, query_right, state)
-        if node.left.state == node.right.state and node.left.state != -1:
-            node.state = node.left.state
-            node.left = None
-            node.right = None
-        else:
-            node.state = -1
-
-    def _query(self, node, left, right, query_left, query_right):
-        if node.state != -1:
-            return node.state == 1
-        if query_left <= left and right <= query_right:
-            return False
-        middle = (left + right) // 2
-        if query_right <= middle:
-            return self._query(node.left, left, middle, query_left, query_right)
-        if query_left > middle:
-            return self._query(node.right, middle + 1, right, query_left, query_right)
-        return self._query(node.left, left, middle, query_left, query_right) and self._query(
-            node.right, middle + 1, right, query_left, query_right
-        )
+        self.tree = SegmentTree()
 
     def addRange(self, left: int, right: int) -> None:
-        self._assign(self.root, self.DOMAIN_LEFT, self.DOMAIN_RIGHT, left, right - 1, 1)
+        self.tree.modify(left, right - 1, 1)
 
     def queryRange(self, left: int, right: int) -> bool:
-        return self._query(self.root, self.DOMAIN_LEFT, self.DOMAIN_RIGHT, left, right - 1)
+        return self.tree.query(left, right - 1)
 
     def removeRange(self, left: int, right: int) -> None:
-        self._assign(self.root, self.DOMAIN_LEFT, self.DOMAIN_RIGHT, left, right - 1, 0)
+        self.tree.modify(left, right - 1, -1)
+
+
+# Your RangeModule object will be instantiated and called as such:
+# obj = RangeModule()
+# obj.addRange(left,right)
+# param_2 = obj.queryRange(left,right)
+# obj.removeRange(left,right)

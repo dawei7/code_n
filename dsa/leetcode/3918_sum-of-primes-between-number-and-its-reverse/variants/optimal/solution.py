@@ -1,20 +1,15 @@
-from math import isqrt
+limit = 1000
+is_prime = [True] * (limit + 1)
+is_prime[0] = is_prime[1] = False
+for i in range(2, int(limit**0.5) + 1):
+    if is_prime[i]:
+        for j in range(i * i, limit + 1, i):
+            is_prime[j] = False
 
 
 class Solution:
     def sumOfPrimesInRange(self, n: int) -> int:
-        reversed_n = int(str(n)[::-1])
-        lower = min(n, reversed_n)
-        upper = max(n, reversed_n)
-
-        is_prime = [True] * (upper + 1)
-        is_prime[0] = False
-        if upper >= 1:
-            is_prime[1] = False
-
-        for prime in range(2, isqrt(upper) + 1):
-            if is_prime[prime]:
-                for multiple in range(prime * prime, upper + 1, prime):
-                    is_prime[multiple] = False
-
-        return sum(value for value in range(lower, upper + 1) if is_prime[value])
+        r = int(str(n)[::-1])
+        low = min(n, r)
+        high = max(n, r)
+        return sum(x for x in range(low, high + 1) if is_prime[x])

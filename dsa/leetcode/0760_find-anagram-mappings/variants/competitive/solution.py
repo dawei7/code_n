@@ -1,7 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def anagramMappings(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        index_by_value = {value: index for index, value in enumerate(nums2)}
-        return [index_by_value[value] for value in nums1]
+    def anagramMappings(self, A, B):
+        """
+        :type A: List[int]
+        :type B: List[int]
+        :rtype: List[int]
+        """
+        lookup = collections.defaultdict(collections.deque)
+        for i, n in enumerate(B):
+            lookup[n].append(i)
+        result = []
+        for n in A:
+            result.append(lookup[n].popleft())
+        return result
+

@@ -1,29 +1,19 @@
-from functools import cache
-from math import gcd
-
-
 class Solution:
-    def maxScore(self, nums: list[int]) -> int:
-        length = len(nums)
-        pair_gcd = [[gcd(nums[i], nums[j]) for j in range(length)] for i in range(length)]
-
-        @cache
-        def best(mask: int) -> int:
-            operation = mask.bit_count() // 2 + 1
-            answer = 0
-
-            for i in range(length):
-                if mask & (1 << i):
-                    continue
-                for j in range(i + 1, length):
-                    if mask & (1 << j):
-                        continue
-                    next_mask = mask | (1 << i) | (1 << j)
-                    answer = max(
-                        answer,
-                        operation * pair_gcd[i][j] + best(next_mask),
-                    )
-
-            return answer
-
-        return best(0)
+    def maxScore(self, nums: List[int]) -> int:
+        m = len(nums)
+        f = [0] * (1 << m)
+        g = [[0] * m for _ in range(m)]
+        for i in range(m):
+            for j in range(i + 1, m):
+                g[i][j] = gcd(nums[i], nums[j])
+        for k in range(1 << m):
+            if (cnt := k.bit_count()) % 2 == 0:
+                for i in range(m):
+                    if k >> i & 1:
+                        for j in range(i + 1, m):
+                            if k >> j & 1:
+                                f[k] = max(
+                                    f[k],
+                                    f[k ^ (1 << i) ^ (1 << j)] + cnt // 2 * g[i][j],
+                                )
+        return f[-1]

@@ -1,19 +1,21 @@
+# Time:  O(n + q)
+# Space: O(n)
+
+# hash table
 class Solution:
-    def matrixSumQueries(self, n: int, queries: List[List[int]]) -> int:
-        seen_rows = set()
-        seen_columns = set()
-        total = 0
-
-        for query_type, index, value in reversed(queries):
-            if query_type == 0:
-                if index in seen_rows:
-                    continue
-                seen_rows.add(index)
-                total += value * (n - len(seen_columns))
-            else:
-                if index in seen_columns:
-                    continue
-                seen_columns.add(index)
-                total += value * (n - len(seen_rows))
-
-        return total
+    def matrixSumQueries(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: int
+        """
+        lookup = [[False]*n for _ in range(2)]
+        cnt = [0]*2
+        result = 0
+        for t, i, v in reversed(queries):
+            if lookup[t][i]:
+                continue
+            lookup[t][i] = True
+            cnt[t] += 1
+            result += v*(n-cnt[t^1])
+        return result

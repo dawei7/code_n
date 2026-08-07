@@ -1,12 +1,15 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def findPrefixScore(self, nums: List[int]) -> List[int]:
-        maximum = 0
-        score = 0
-        answer = []
-
-        for value in nums:
-            maximum = max(maximum, value)
-            score += value + maximum
-            answer.append(score)
-
-        return answer
+    def findPrefixScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        curr = 0
+        for i in range(len(nums)):
+            curr = max(curr, nums[i])
+            nums[i] += (nums[i-1] if i-1 >= 0 else 0)+curr
+        return nums

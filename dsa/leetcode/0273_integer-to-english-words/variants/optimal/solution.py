@@ -1,53 +1,61 @@
 class Solution:
     def numberToWords(self, num: int) -> str:
-        below_twenty = [
-            "",
-            "One",
-            "Two",
-            "Three",
-            "Four",
-            "Five",
-            "Six",
-            "Seven",
-            "Eight",
-            "Nine",
-            "Ten",
-            "Eleven",
-            "Twelve",
-            "Thirteen",
-            "Fourteen",
-            "Fifteen",
-            "Sixteen",
-            "Seventeen",
-            "Eighteen",
-            "Nineteen",
-        ]
-        tens = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"]
-        scales = ["", "Thousand", "Million", "Billion"]
-
-        def chunk_words(value: int):
-            words = []
-            if value >= 100:
-                words.extend((below_twenty[value // 100], "Hundred"))
-                value %= 100
-            if value >= 20:
-                words.append(tens[value // 10])
-                value %= 10
-            if value:
-                words.append(below_twenty[value])
-            return words
-
         if num == 0:
-            return "Zero"
-        groups = []
-        scale = 0
-        while num:
-            chunk = num % 1000
-            if chunk:
-                words = chunk_words(chunk)
-                if scales[scale]:
-                    words.append(scales[scale])
-                groups.append(words)
-            num //= 1000
-            scale += 1
-        return " ".join(word for group in reversed(groups) for word in group)
+            return 'Zero'
+
+        lt20 = [
+            '',
+            'One',
+            'Two',
+            'Three',
+            'Four',
+            'Five',
+            'Six',
+            'Seven',
+            'Eight',
+            'Nine',
+            'Ten',
+            'Eleven',
+            'Twelve',
+            'Thirteen',
+            'Fourteen',
+            'Fifteen',
+            'Sixteen',
+            'Seventeen',
+            'Eighteen',
+            'Nineteen',
+        ]
+        tens = [
+            '',
+            'Ten',
+            'Twenty',
+            'Thirty',
+            'Forty',
+            'Fifty',
+            'Sixty',
+            'Seventy',
+            'Eighty',
+            'Ninety',
+        ]
+        thousands = ['Billion', 'Million', 'Thousand', '']
+
+        def transfer(num):
+            if num == 0:
+                return ''
+            if num < 20:
+                return lt20[num] + ' '
+            if num < 100:
+                return tens[num // 10] + ' ' + transfer(num % 10)
+            return lt20[num // 100] + ' Hundred ' + transfer(num % 100)
+
+        res = []
+        i, j = 1000000000, 0
+        while i > 0:
+            if num // i != 0:
+                res.append(transfer(num // i))
+                res.append(thousands[j])
+                res.append(' ')
+                num %= i
+            j += 1
+            i //= 1000
+        return ''.join(res).strip()

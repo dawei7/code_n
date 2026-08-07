@@ -1,46 +1,34 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def maxTaskAssign(
-        self,
-        tasks: List[int],
-        workers: List[int],
-        pills: int,
-        strength: int,
+        self, tasks: List[int], workers: List[int], pills: int, strength: int
     ) -> int:
-        tasks.sort()
-        workers.sort()
-
-        def feasible(task_count: int) -> bool:
-            available = deque()
-            task_index = 0
-            pills_left = pills
-
-            for worker in workers[len(workers) - task_count :]:
-                while task_index < task_count and tasks[task_index] <= worker + strength:
-                    available.append(tasks[task_index])
-                    task_index += 1
-
-                if not available:
+        def check(x):
+            i = 0
+            q = deque()
+            p = pills
+            for j in range(m - x, m):
+                while i < x and tasks[i] <= workers[j] + strength:
+                    q.append(tasks[i])
+                    i += 1
+                if not q:
                     return False
-                if available[0] <= worker:
-                    available.popleft()
+                if q[0] <= workers[j]:
+                    q.popleft()
+                elif p == 0:
+                    return False
                 else:
-                    if pills_left == 0:
-                        return False
-                    pills_left -= 1
-                    available.pop()
-
+                    p -= 1
+                    q.pop()
             return True
 
-        low = 0
-        high = min(len(tasks), len(workers))
-        while low < high:
-            middle = (low + high + 1) // 2
-            if feasible(middle):
-                low = middle
+        n, m = len(tasks), len(workers)
+        tasks.sort()
+        workers.sort()
+        left, right = 0, min(n, m)
+        while left < right:
+            mid = (left + right + 1) >> 1
+            if check(mid):
+                left = mid
             else:
-                high = middle - 1
-        return low
+                right = mid - 1
+        return left

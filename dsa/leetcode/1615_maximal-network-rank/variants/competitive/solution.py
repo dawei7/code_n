@@ -1,21 +1,111 @@
-from typing import List
+# Time:  O(m + n + k^2), k is the number of values greater or equal to top2
+# Space: O(m + n)
 
-
+# optimized from Solution2 with counting sort
 class Solution:
-    def maximalNetworkRank(self, n: int, roads: List[List[int]]) -> int:
-        degree = [0] * n
-        connected = [[False] * n for _ in range(n)]
+    def maximalNetworkRank(self, n, roads):
+        """
+        :type n: int
+        :type roads: List[List[int]]
+        :rtype: int
+        """
+        MAX_N = 100
+        MAX_NUM = MAX_N-1
+        def counting_sort(arr, key=lambda x:x, reverse=False):  # Time: O(n), Space: O(n)
+            count = [0]*(MAX_NUM+1)
+            for x in arr:
+                count[key(x)] += 1
+            for i in range(1, len(count)):
+                count[i] += count[i-1]
+            result = [0]*len(arr)
+            if not reverse:
+                for x in reversed(arr):  # stable sort
+                    count[key(x)] -= 1
+                    result[count[key(x)]] = x
+            else:
+                for x in arr:  # stable sort
+                    count[key(x)] -= 1
+                    result[count[key(x)]] = x
+                result.reverse()
+            return result
 
-        for first, second in roads:
-            degree[first] += 1
-            degree[second] += 1
-            connected[first][second] = True
-            connected[second][first] = True
+        degree = [0]*n
+        adj = collections.defaultdict(set)
+        for a, b in roads:
+            degree[a] += 1
+            degree[b] += 1
+            adj[a].add(b)
+            adj[b].add(a)
+        sorted_idx = counting_sort(range(n), key=lambda x:degree[x], reverse=True)
+        m = 2
+        while m < n:
+            if degree[sorted_idx[m]] != degree[sorted_idx[1]]:
+                break
+            m += 1
+        result = degree[sorted_idx[0]] + degree[sorted_idx[1]] - 1  # at least sum(top2 values) - 1
+        for i in range(m-1):  # only need to check pairs of top2 values
+            for j in range(i+1, m):
+                if degree[sorted_idx[i]]+degree[sorted_idx[j]]-int(sorted_idx[i] in adj and sorted_idx[j] in adj[sorted_idx[i]]) > result:  # if equal to ideal sum of top2 values, break
+                    return degree[sorted_idx[i]]+degree[sorted_idx[j]]-int(sorted_idx[i] in adj and sorted_idx[j] in adj[sorted_idx[i]])                                                 
+        return result
 
-        maximum = 0
-        for first in range(n):
-            for second in range(first + 1, n):
-                rank = degree[first] + degree[second] - connected[first][second]
-                maximum = max(maximum, rank)
 
-        return maximum
+# Time:  O(m + nlogn + k^2), k is the number of values greater or equal to top2
+# Space: O(m + n)
+import collections
+
+
+# optimized from Solution3
+class Solution2(object):
+    def maximalNetworkRank(self, n, roads):
+        """
+        :type n: int
+        :type roads: List[List[int]]
+        :rtype: int
+        """
+        degree = [0]*n
+        adj = collections.defaultdict(set)
+        for a, b in roads:
+            degree[a] += 1
+            degree[b] += 1
+            adj[a].add(b)
+            adj[b].add(a)
+        sorted_idx = range(n)
+        sorted_idx.sort(key=lambda x:-degree[x])
+        m = 2
+        while m < n:
+            if degree[sorted_idx[m]] != degree[sorted_idx[1]]:
+                break
+            m += 1
+        result = degree[sorted_idx[0]] + degree[sorted_idx[1]] - 1  # at least sum(top2 values) - 1
+        for i in range(m-1):  # only need to check pairs of top2 values
+            for j in range(i+1, m):
+                if degree[sorted_idx[i]]+degree[sorted_idx[j]]-int(sorted_idx[i] in adj and sorted_idx[j] in adj[sorted_idx[i]]) > result:  # if equal to ideal sum of top2 values, break
+                    return degree[sorted_idx[i]]+degree[sorted_idx[j]]-int(sorted_idx[i] in adj and sorted_idx[j] in adj[sorted_idx[i]])                                                 
+        return result
+
+
+# Time:  O(m + n^2)
+# Space: O(m + n)
+import collections
+
+
+class Solution3(object):
+    def maximalNetworkRank(self, n, roads):
+        """
+        :type n: int
+        :type roads: List[List[int]]
+        :rtype: int
+        """
+        degree = [0]*n
+        adj = collections.defaultdict(set)
+        for a, b in roads:
+            degree[a] += 1
+            degree[b] += 1
+            adj[a].add(b)
+            adj[b].add(a)
+        result = 0
+        for i in range(n-1):
+            for j in range(i+1, n):
+                result = max(result, degree[i]+degree[j]-int(i in adj and j in adj[i]))
+        return result

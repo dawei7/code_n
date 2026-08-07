@@ -1,17 +1,18 @@
+# Definition for a street.
+# class Street:
+#     def closeDoor(self):
+#         pass
+#     def isDoorOpen(self):
+#         pass
+#     def moveRight(self):
+#         pass
 class Solution:
     def houseCount(self, street: Optional["Street"], k: int) -> int:
-        found_first = False
-        first_open_step = 0
-        answer = 0
-
-        for step in range(2 * k):
-            if street.isDoorOpen():
-                if not found_first:
-                    found_first = True
-                    first_open_step = step
-                else:
-                    answer = step - first_open_step
-                    street.closeDoor()
+        while not street.isDoorOpen():
             street.moveRight()
-
-        return answer
+        for i in range(1, k + 1):
+            street.moveRight()
+            if street.isDoorOpen():
+                ans = i
+                street.closeDoor()
+        return ans

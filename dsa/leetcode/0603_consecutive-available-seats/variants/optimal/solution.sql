@@ -1,19 +1,6 @@
-WITH neighbors AS (
-    SELECT
-        seat_id,
-        free,
-        LAG(seat_id) OVER (ORDER BY seat_id) AS previous_id,
-        LAG(free) OVER (ORDER BY seat_id) AS previous_free,
-        LEAD(seat_id) OVER (ORDER BY seat_id) AS next_id,
-        LEAD(free) OVER (ORDER BY seat_id) AS next_free
-    FROM Cinema
-)
-SELECT seat_id
-FROM neighbors
-WHERE free = 1
-  AND (
-      (previous_id = seat_id - 1 AND previous_free = 1)
-      OR (next_id = seat_id + 1 AND next_free = 1)
-  )
-ORDER BY seat_id;
-
+# Write your MySQL query statement below
+SELECT DISTINCT a.seat_id
+FROM
+    Cinema AS a
+    JOIN Cinema AS b ON ABS(a.seat_id - b.seat_id) = 1 AND a.free AND b.free
+ORDER BY 1;

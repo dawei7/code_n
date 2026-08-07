@@ -1,56 +1,46 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2)
 
 
 class Solution:
-    def largestIsland(self, grid: List[List[int]]) -> int:
-        side = len(grid)
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        labels = [[0] * side for _ in range(side)]
-        component_sizes = {}
-        next_label = 2
+    def largestIsland(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
 
-        for row in range(side):
-            for column in range(side):
-                if grid[row][column] != 1 or labels[row][column] != 0:
-                    continue
+        def dfs(r, c, index, grid):
+            if not (0 <= r < len(grid) and
+                    0 <= c < len(grid[0]) and
+                    grid[r][c] == 1):
+                return 0
+            result = 1
+            grid[r][c] = index
+            for d in directions:
+                result += dfs(r+d[0], c+d[1], index, grid)
+            return result
 
-                labels[row][column] = next_label
-                stack = [(row, column)]
-                area = 0
-                while stack:
-                    current_row, current_column = stack.pop()
-                    area += 1
-                    for row_delta, column_delta in directions:
-                        neighbor_row = current_row + row_delta
-                        neighbor_column = current_column + column_delta
-                        if not (0 <= neighbor_row < side and 0 <= neighbor_column < side):
+        area = {}
+        index = 2
+        for r in range(len(grid)):
+            for c in range(len(grid[r])):
+                if grid[r][c] == 1:
+                    area[index] = dfs(r, c, index, grid)
+                    index += 1
+
+        result = max(area.values() or [0])
+        for r in range(len(grid)):
+            for c in range(len(grid[r])):
+                if grid[r][c] == 0:
+                    seen = set()
+                    for d in directions:
+                        nr, nc = r+d[0], c+d[1]
+                        if not (0 <= nr < len(grid) and
+                                0 <= nc < len(grid[0]) and
+                                grid[nr][nc] > 1):
                             continue
-                        if grid[neighbor_row][neighbor_column] != 1:
-                            continue
-                        if labels[neighbor_row][neighbor_column] != 0:
-                            continue
-                        labels[neighbor_row][neighbor_column] = next_label
-                        stack.append((neighbor_row, neighbor_column))
+                        seen.add(grid[nr][nc])
+                    result = max(result, 1 + sum(area[i] for i in seen))
+        return result
 
-                component_sizes[next_label] = area
-                next_label += 1
-
-        largest = max(component_sizes.values(), default=0)
-        for row in range(side):
-            for column in range(side):
-                if grid[row][column] != 0:
-                    continue
-
-                neighboring_labels = set()
-                for row_delta, column_delta in directions:
-                    neighbor_row = row + row_delta
-                    neighbor_column = column + column_delta
-                    if 0 <= neighbor_row < side and 0 <= neighbor_column < side:
-                        label = labels[neighbor_row][neighbor_column]
-                        if label != 0:
-                            neighboring_labels.add(label)
-
-                candidate = 1 + sum(component_sizes[label] for label in neighboring_labels)
-                largest = max(largest, candidate)
-
-        return largest

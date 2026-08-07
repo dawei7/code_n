@@ -1,19 +1,12 @@
-from typing import List
-
-
 class Solution:
-    def simulationResult(
-        self,
-        windows: List[int],
-        queries: List[int],
-    ) -> List[int]:
-        seen = set()
-        result = []
-
-        for window in reversed(queries):
-            if window not in seen:
-                seen.add(window)
-                result.append(window)
-
-        result.extend(window for window in windows if window not in seen)
-        return result
+    def simulationResult(self, windows: List[int], queries: List[int]) -> List[int]:
+        s = set()
+        ans = []
+        for q in queries[::-1]:
+            if q not in s:
+                ans.append(q)
+                s.add(q)
+        for w in windows:
+            if w not in s:
+                ans.append(w)
+        return ans

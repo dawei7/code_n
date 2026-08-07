@@ -1,26 +1,14 @@
-from itertools import combinations
-from typing import List
-
-
 class Solution:
     def maximumRows(self, matrix: List[List[int]], numSelect: int) -> int:
-        column_count = len(matrix[0])
-        row_masks = []
-
+        rows = []
         for row in matrix:
-            row_mask = 0
-            for column, value in enumerate(row):
-                if value:
-                    row_mask |= 1 << column
-            row_masks.append(row_mask)
+            mask = reduce(or_, (1 << j for j, x in enumerate(row) if x), 0)
+            rows.append(mask)
 
-        maximum = 0
-        for selected_columns in combinations(range(column_count), numSelect):
-            selected_mask = 0
-            for column in selected_columns:
-                selected_mask |= 1 << column
-
-            covered = sum(row_mask & selected_mask == row_mask for row_mask in row_masks)
-            maximum = max(maximum, covered)
-
-        return maximum
+        ans = 0
+        for mask in range(1 << len(matrix[0])):
+            if mask.bit_count() != numSelect:
+                continue
+            t = sum((x & mask) == x for x in rows)
+            ans = max(ans, t)
+        return ans

@@ -1,15 +1,26 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, greedy
 class Solution:
-    def minCost(self, nums1: list[int], nums2: list[int]) -> int:
-        count1 = Counter(nums1)
-        count2 = Counter(nums2)
-
-        mismatch_count = 0
-        for value in count1.keys() | count2.keys():
-            if (count1[value] + count2[value]) % 2:
+    def minCost(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        cnt = collections.defaultdict(int)
+        for x in nums1:
+            cnt[x] += 1
+        for x in nums2:
+            cnt[x] -= 1
+        result = 0
+        for c in cnt.values():
+            if c%2:
                 return -1
-            mismatch_count += abs(count1[value] - count2[value])
-
-        return mismatch_count // 4
+            if c//2 > 0:
+                result += c//2 
+        return result

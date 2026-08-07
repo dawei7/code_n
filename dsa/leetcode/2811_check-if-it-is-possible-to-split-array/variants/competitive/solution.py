@@ -1,3 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# constructive algorithms
 class Solution:
-    def canSplitArray(self, nums: List[int], m: int) -> bool:
-        return len(nums) <= 2 or any(left + right >= m for left, right in zip(nums, nums[1:]))
+    def canSplitArray(self, nums, m):
+        """
+        :type nums: List[int]
+        :type m: int
+        :rtype: bool
+        """
+        return len(nums) <= 2 or any(nums[i]+nums[i+1] >= m for i in range(len(nums)-1))

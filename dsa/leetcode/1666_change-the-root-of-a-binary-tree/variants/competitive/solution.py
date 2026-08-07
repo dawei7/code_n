@@ -1,31 +1,30 @@
+# Time:  O(h)
+# Space: O(1)
+
 # Definition for a Node.
-# class Node:
-#     def __init__(self, val):
-#         self.val = val
-#         self.left = None
-#         self.right = None
-#         self.parent = None
+class Node:
+    def __init__(self, val):
+        pass
 
 
 class Solution:
-    def flipBinaryTree(self, root: "Node", leaf: "Node") -> "Node":
-        current = leaf
-        parent = current.parent
-
-        while current is not root:
-            grandparent = parent.parent
-            if current.left is not None:
-                current.right = current.left
-            current.left = parent
-            parent.parent = current
-
-            if parent.left is current:
-                parent.left = None
+    def flipBinaryTree(self, root, leaf):
+        """
+        :type node: Node
+        :rtype: Node
+        """
+        curr, parent = leaf, None
+        while True:
+            child = curr.parent
+            curr.parent = parent
+            if curr.left == parent:
+                curr.left = None
             else:
-                parent.right = None
-
-            current = parent
-            parent = grandparent
-
-        leaf.parent = None
+                curr.right = None
+            if curr == root:
+                break
+            if curr.left:
+                curr.right = curr.left
+            curr.left = child
+            curr, parent = child, curr
         return leaf

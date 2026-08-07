@@ -1,15 +1,18 @@
+# Time:  O(logn) = O(1) due to n is a 32-bit number
+# Space: O(1)
+
 class Solution:
-    def binaryGap(self, n: int) -> int:
-        previous_one = -1
-        position = 0
-        longest_gap = 0
+    def binaryGap(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        result = 0
+        last = None
+        for i in range(32):
+            if (N >> i) & 1:
+                if last is not None:
+                    result = max(result, i-last)
+                last = i
+        return result
 
-        while n:
-            if n & 1:
-                if previous_one >= 0:
-                    longest_gap = max(longest_gap, position - previous_one)
-                previous_one = position
-            position += 1
-            n >>= 1
-
-        return longest_gap

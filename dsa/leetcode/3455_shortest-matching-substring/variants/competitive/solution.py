@@ -1,53 +1,105 @@
+# Time:  O(n + m)
+# Space: O(n + m)
+
+# kmp, two pointers (three pointers)
 class Solution:
-    def shortestMatchingSubstring(self, s: str, p: str) -> int:
-        first, middle, last = p.split("*")
+    def shortestMatchingSubstring(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: int
+        """
+        INF = float("inf")
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j+1 > 0 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
 
-        def occurrences(word: str) -> list[int]:
-            if not word:
-                return list(range(len(s) + 1))
-
-            prefix = [0] * len(word)
-            matched = 0
-            for index in range(1, len(word)):
-                while matched and word[index] != word[matched]:
-                    matched = prefix[matched - 1]
-                if word[index] == word[matched]:
-                    matched += 1
-                prefix[index] = matched
-
-            starts = []
-            matched = 0
-            for index, character in enumerate(s):
-                while matched and character != word[matched]:
-                    matched = prefix[matched - 1]
-                if character == word[matched]:
-                    matched += 1
-                if matched == len(word):
-                    starts.append(index - len(word) + 1)
-                    matched = prefix[matched - 1]
-            return starts
-
-        first_starts = occurrences(first)
-        middle_starts = occurrences(middle)
-        last_starts = occurrences(last)
-
-        answer = len(s) + 1
-        first_index = 0
-        last_index = 0
-        for middle_start in middle_starts:
-            while first_index < len(first_starts) and first_starts[first_index] + len(first) <= middle_start:
-                first_index += 1
-            if first_index == 0:
-                continue
-
-            after_middle = middle_start + len(middle)
-            while last_index < len(last_starts) and last_starts[last_index] < after_middle:
-                last_index += 1
-            if last_index == len(last_starts):
+        def KMP(text, pattern):
+            if not pattern:
+                for i in range(len(text)+1):
+                    yield i
+                return
+            prefix = getPrefix(pattern)
+            j = -1
+            for i in range(len(text)):
+                while j+1 > 0 and pattern[j+1] != text[i]:
+                    j = prefix[j]
+                if pattern[j+1] == text[i]:
+                    j += 1
+                if j+1 == len(pattern):
+                    yield i-j
+                    j = prefix[j]
+        
+        a, b, c = p.split('*')
+        n = len(s)
+        la, lb, lc = len(a), len(b), len(c)
+        result = INF
+        j = k = 0
+        jt = KMP(s, b)
+        kt = KMP(s, c)
+        for i in KMP(s, a):
+            while j != -1 and j < i+la:
+                j = next(jt, -1)
+            if j == -1:
                 break
+            while k != -1 and k < j+lb:
+                k = next(kt, -1)
+            if k == -1:
+                break
+            result = min(result, (k+lc)-i)
+        return result if result != INF else -1 
+            
 
-            start = first_starts[first_index - 1]
-            end = last_starts[last_index] + len(last)
-            answer = min(answer, end - start)
+# Time:  O(n + m)
+# Space: O(n + m)
+# kmp, two pointers (three pointers)
+class Solution2(object):
+    def shortestMatchingSubstring(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: int
+        """
+        INF = float("inf")
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j+1 > 0 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
 
-        return -1 if answer > len(s) else answer
+        a, b, c = p.split('*')
+        n = len(s)
+        la, lb, lc = len(a), len(b), len(c)
+        prefix1 = getPrefix(a+'#'+s)
+        prefix2 = getPrefix(b+'#'+s)
+        prefix3 = getPrefix(c+'#'+s)
+        result = INF
+        i = j = k = 0
+        while i+lb+lc < n:
+            while i < n and prefix1[la+1+i]+1 != la:
+                i += 1
+            if i == n:
+                break
+            while j < n and not (j >= i+lb and prefix2[lb+1+j]+1 == lb):
+                j += 1
+            if j == n:
+                break
+            while k < n and not (k >= j+lc and prefix3[lc+1+k]+1 == lc):
+                k += 1
+            if k == n:
+                break
+            result = min(result, k-(i-la))
+            i += 1
+        return result if result != INF else -1

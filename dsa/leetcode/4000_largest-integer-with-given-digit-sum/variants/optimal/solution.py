@@ -1,12 +1,10 @@
 class Solution:
     def largestInteger(self, n: int, s: int) -> int:
-        if s > 9 * n:
+        if n * 9 < s:
             return -1
-
-        answer = 0
+        ans = 0
         for _ in range(n):
-            digit = min(9, s)
-            answer = answer * 10 + digit
-            s -= digit
-
-        return answer
+            x = min(s, 9)
+            ans = ans * 10 + x
+            s -= x
+        return ans

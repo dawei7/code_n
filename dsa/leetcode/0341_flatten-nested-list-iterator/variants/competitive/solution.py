@@ -1,35 +1,39 @@
-from typing import List
+# Time:  O(n), n is the number of the integers.
+# Space: O(h), h is the depth of the nested lists.
+
+class NestedIterator(object):
+
+    def __init__(self, nestedList):
+        """
+        Initialize your data structure here.
+        :type nestedList: List[NestedInteger]
+        """
+        self.__depth = [[nestedList, 0]]
 
 
-class NestedIterator:
-    def __init__(self, nestedList: List[NestedInteger]):
-        self.stack = [iter(nestedList)]
-        self.cached = None
-        self.ready = False
+    def next(self):
+        """
+        :rtype: int
+        """
+        nestedList, i = self.__depth[-1]
+        self.__depth[-1][1] += 1
+        return nestedList[i].getInteger()
 
-    def next(self) -> int:
-        if not self.hasNext():
-            raise StopIteration
-        value = self.cached
-        self.cached = None
-        self.ready = False
-        return value
 
-    def hasNext(self) -> bool:
-        if self.ready:
-            return True
-
-        while self.stack:
-            try:
-                value = next(self.stack[-1])
-            except StopIteration:
-                self.stack.pop()
-                continue
-
-            if value.isInteger():
-                self.cached = value.getInteger()
-                self.ready = True
-                return True
-            self.stack.append(iter(value.getList()))
-
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        while self.__depth:
+            nestedList, i = self.__depth[-1]
+            if i == len(nestedList):
+                self.__depth.pop()
+            elif nestedList[i].isInteger():
+                    return True
+            else:
+                self.__depth[-1][1] += 1
+                self.__depth.append([nestedList[i].getList(), 0])
         return False
+
+
+

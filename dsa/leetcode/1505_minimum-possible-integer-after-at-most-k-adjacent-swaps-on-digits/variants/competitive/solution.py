@@ -1,44 +1,44 @@
-from collections import deque
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
+
+
+class BIT(object):  # Fenwick Tree, 1-indexed
+    def __init__(self, n):
+        self.__bit = [0] * n
+
+    def add(self, i, val):
+        while i < len(self.__bit):
+            self.__bit[i] += val
+            i += (i & -i)
+
+    def sum(self, i):
+        result = 0
+        while i > 0:
+            result += self.__bit[i]
+            i -= (i & -i)
+        return result
 
 
 class Solution:
-    def minInteger(self, num: str, k: int) -> str:
-        length = len(num)
-        positions = [deque() for _ in range(10)]
-        for index, character in enumerate(num):
-            positions[ord(character) - ord("0")].append(index)
-
-        removed = [0] * (length + 1)
-
-        def removed_through(index: int) -> int:
-            total = 0
-            index += 1
-            while index > 0:
-                total += removed[index]
-                index -= index & -index
-            return total
-
-        def mark_removed(index: int) -> None:
-            index += 1
-            while index <= length:
-                removed[index] += 1
-                index += index & -index
-
-        answer = []
-        for _ in range(length):
-            for digit in range(10):
-                if not positions[digit]:
-                    continue
-
-                original_index = positions[digit][0]
-                swaps = original_index - removed_through(original_index)
-                if swaps > k:
-                    continue
-
-                k -= swaps
-                positions[digit].popleft()
-                mark_removed(original_index)
-                answer.append(chr(ord("0") + digit))
-                break
-
-        return "".join(answer)
+    def minInteger(self, num, k):
+        """
+        :type num: str
+        :type k: int
+        :rtype: str
+        """
+        lookup = collections.defaultdict(list)
+        bit = BIT(len(num)+1)
+        for i in reversed(range(len(num))):
+            bit.add(i+1, 1)
+            lookup[int(num[i])].append(i+1)
+        result = []
+        for _ in range(len(num)):
+            for d in range(10):
+                if lookup[d] and bit.sum(lookup[d][-1]-1) <= k:
+                    k -= bit.sum(lookup[d][-1]-1)
+                    bit.add(lookup[d].pop(), -1)
+                    result.append(d)
+                    break
+        return "".join(map(str, result))

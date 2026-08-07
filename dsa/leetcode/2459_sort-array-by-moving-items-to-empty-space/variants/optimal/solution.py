@@ -1,35 +1,20 @@
-from typing import List
-
-
 class Solution:
     def sortArray(self, nums: List[int]) -> int:
-        n = len(nums)
-        empty_position = nums.index(0)
-
-        def operations(zero_at_start: bool) -> int:
-            seen = [False] * n
-            moves = 0
-
-            for start in range(n):
-                if seen[start]:
+        def f(nums, k):
+            vis = [False] * n
+            cnt = 0
+            for i, v in enumerate(nums):
+                if i == v or vis[i]:
                     continue
+                cnt += 1
+                j = i
+                while not vis[j]:
+                    vis[j] = True
+                    cnt += 1
+                    j = nums[j]
+            return cnt - 2 * (nums[k] != k)
 
-                position = start
-                length = 0
-                contains_empty = False
-                while not seen[position]:
-                    seen[position] = True
-                    length += 1
-                    contains_empty = contains_empty or position == empty_position
-                    value = nums[position]
-                    if zero_at_start:
-                        position = value
-                    else:
-                        position = n - 1 if value == 0 else value - 1
-
-                if length > 1:
-                    moves += length - 1 if contains_empty else length + 1
-
-            return moves
-
-        return min(operations(True), operations(False))
+        n = len(nums)
+        a = f(nums, 0)
+        b = f([(v - 1 + n) % n for v in nums], n - 1)
+        return min(a, b)

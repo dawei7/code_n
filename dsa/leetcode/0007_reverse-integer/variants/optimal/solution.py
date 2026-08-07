@@ -1,13 +1,13 @@
 class Solution:
     def reverse(self, x: int) -> int:
-        sign = -1 if x < 0 else 1
-        value = abs(x)
-        limit = 2**31 if sign < 0 else 2**31 - 1
-        reversed_value = 0
-
-        while value:
-            value, digit = divmod(value, 10)
-            if reversed_value > (limit - digit) // 10:
+        ans = 0
+        mi, mx = -(2**31), 2**31 - 1
+        while x:
+            if ans < mi // 10 + 1 or ans > mx // 10:
                 return 0
-            reversed_value = reversed_value * 10 + digit
-        return sign * reversed_value
+            y = x % 10
+            if x < 0 and y > 0:
+                y -= 10
+            ans = ans * 10 + y
+            x = (x - y) // 10
+        return ans

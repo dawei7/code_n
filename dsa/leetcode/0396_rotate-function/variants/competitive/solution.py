@@ -1,12 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def maxRotateFunction(self, nums: List[int]) -> int:
-        length = len(nums)
-        total = sum(nums)
-        score = sum(index * value for index, value in enumerate(nums))
-        best = score
+    def maxRotateFunction(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        s = sum(A)
+        fi = 0
+        for i in range(len(A)):
+            fi += i * A[i]
 
-        for rotation in range(1, length):
-            score += total - length * nums[length - rotation]
-            best = max(best, score)
+        result = fi
+        for i in range(1, len(A)+1):
+            fi += s - len(A) * A[-i]
+            result = max(result, fi)
+        return result
 
-        return best

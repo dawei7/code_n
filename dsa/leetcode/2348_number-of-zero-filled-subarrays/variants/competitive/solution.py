@@ -1,10 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers, combinatorics
 class Solution:
-    def zeroFilledSubarray(self, nums: List[int]) -> int:
-        answer = run = 0
-        for value in nums:
-            run = run + 1 if value == 0 else 0
-            answer += run
-        return answer
+    def zeroFilledSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        prev = -1
+        for i in range(len(nums)):
+            if nums[i]:
+                prev = i
+                continue
+            result += i-prev
+        return result

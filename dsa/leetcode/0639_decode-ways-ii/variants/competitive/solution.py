@@ -1,28 +1,32 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numDecodings(self, s: str) -> int:
-        modulus = 1_000_000_007
+    def numDecodings(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        M, W = 1000000007, 3
+        dp = [0] * W
+        dp[0] = 1
+        dp[1] = 9 if s[0] == '*' else dp[0] if s[0] != '0' else 0
+        for i in range(1, len(s)):
+            if s[i] == '*':
+                dp[(i + 1) % W] = 9 * dp[i % W]
+                if s[i - 1] == '1':
+                    dp[(i + 1) % W] = (dp[(i + 1) % W] + 9 * dp[(i - 1) % W]) % M
+                elif s[i - 1] == '2':
+                    dp[(i + 1) % W] = (dp[(i + 1) % W] + 6 * dp[(i - 1) % W]) % M
+                elif s[i - 1] == '*':
+                    dp[(i + 1) % W] = (dp[(i + 1) % W] + 15 * dp[(i - 1) % W]) % M
+            else:
+                dp[(i + 1) % W] = dp[i % W] if s[i] != '0' else 0
+                if s[i - 1] == '1':
+                    dp[(i + 1) % W] = (dp[(i + 1) % W] + dp[(i - 1) % W]) % M
+                elif s[i - 1] == '2' and s[i] <= '6':
+                    dp[(i + 1) % W] = (dp[(i + 1) % W] + dp[(i - 1) % W]) % M
+                elif s[i - 1] == '*':
+                    dp[(i + 1) % W] = (dp[(i + 1) % W] + (2 if s[i] <= '6' else 1) * dp[(i - 1) % W]) % M
+        return dp[len(s) % W]
 
-        def single_count(character):
-            if character == "*":
-                return 9
-            return 0 if character == "0" else 1
-
-        def pair_count(first, second):
-            if first == "*" and second == "*":
-                return 15
-            if first == "*":
-                return 2 if second <= "6" else 1
-            if second == "*":
-                if first == "1":
-                    return 9
-                if first == "2":
-                    return 6
-                return 0
-            return int(10 <= int(first + second) <= 26)
-
-        two_back = 1
-        one_back = single_count(s[0])
-        for index in range(1, len(s)):
-            current = (single_count(s[index]) * one_back + pair_count(s[index - 1], s[index]) * two_back) % modulus
-            two_back, one_back = one_back, current
-        return one_back

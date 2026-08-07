@@ -1,41 +1,26 @@
-from typing import List
-
-
 class Solution:
     def minimumTime(self, hens: List[int], grains: List[int]) -> int:
+        def check(t):
+            j = 0
+            for x in hens:
+                if j == m:
+                    return True
+                y = grains[j]
+                if y <= x:
+                    d = x - y
+                    if d > t:
+                        return False
+                    while j < m and grains[j] <= x:
+                        j += 1
+                    while j < m and min(d, grains[j] - x) + grains[j] - y <= t:
+                        j += 1
+                else:
+                    while j < m and grains[j] - x <= t:
+                        j += 1
+            return j == m
+
         hens.sort()
         grains.sort()
-        grain_count = len(grains)
-
-        def can_eat_all(time: int) -> bool:
-            grain = 0
-            for hen in hens:
-                if grain == grain_count:
-                    return True
-
-                if grains[grain] < hen:
-                    left_distance = hen - grains[grain]
-                    if left_distance > time:
-                        return False
-                    right_reach = max(
-                        hen + time - 2 * left_distance,
-                        hen + (time - left_distance) // 2,
-                    )
-                else:
-                    right_reach = hen + time
-
-                while grain < grain_count and grains[grain] <= right_reach:
-                    grain += 1
-
-            return grain == grain_count
-
-        low = -1
-        high = 2 * 10**9
-        while high - low > 1:
-            middle = (low + high) // 2
-            if can_eat_all(middle):
-                high = middle
-            else:
-                low = middle
-
-        return high
+        m = len(grains)
+        r = abs(hens[0] - grains[0]) + grains[-1] - grains[0] + 1
+        return bisect_left(range(r), True, key=check)

@@ -1,27 +1,28 @@
+# Time:  O(n)
+# Space: O(1)
+
+# freq table, sort
 class Solution:
-    def sortVowels(self, s: str) -> str:
-        frequency = {vowel: 0 for vowel in "aeiou"}
-        first_position: dict[str, int] = {}
-
-        for index, character in enumerate(s):
-            if character in frequency:
-                frequency[character] += 1
-                if character not in first_position:
-                    first_position[character] = index
-
-        vowel_order = sorted(
-            first_position,
-            key=lambda vowel: (-frequency[vowel], first_position[vowel]),
-        )
-        sorted_vowels: list[str] = []
-        for vowel in vowel_order:
-            sorted_vowels.extend(vowel * frequency[vowel])
-
+    def sortVowels(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        VOWELS = "aeiou"
+        cnt = {}
+        for i, x in enumerate(s):
+            if x not in VOWELS:
+                continue 
+            if x not in cnt:
+                cnt[x] = [0, i]
+            cnt[x][0] += 1
+        sorted_cnt = sorted(([k, v, i] for k, (v, i) in cnt.items()), key=lambda x: (-x[1], x[2]), reverse=True)
         result = list(s)
-        replacement_index = 0
-        for index, character in enumerate(result):
-            if character in frequency:
-                result[index] = sorted_vowels[replacement_index]
-                replacement_index += 1
-
+        for i in range(len(result)):
+            if result[i] not in VOWELS:
+                continue
+            result[i] = sorted_cnt[-1][0]
+            sorted_cnt[-1][1] -= 1
+            if not sorted_cnt[-1][1]:
+                sorted_cnt.pop()
         return "".join(result)

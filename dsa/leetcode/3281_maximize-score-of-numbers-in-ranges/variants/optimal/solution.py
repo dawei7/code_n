@@ -1,29 +1,19 @@
-from typing import List
-
-
 class Solution:
     def maxPossibleScore(self, start: List[int], d: int) -> int:
-        start.sort()
-
-        def feasible(distance: int) -> bool:
-            previous = start[0]
-            for interval_start in start[1:]:
-                chosen = max(interval_start, previous + distance)
-                if chosen > interval_start + d:
+        def check(mi: int) -> bool:
+            last = -inf
+            for st in start:
+                if last + mi > st + d:
                     return False
-                previous = chosen
+                last = max(st, last + mi)
             return True
 
-        low = 0
-        high = (start[-1] + d - start[0]) // (len(start) - 1)
-        answer = 0
-
-        while low <= high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                answer = middle
-                low = middle + 1
+        start.sort()
+        l, r = 0, start[-1] + d - start[0]
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
             else:
-                high = middle - 1
-
-        return answer
+                r = mid - 1
+        return l

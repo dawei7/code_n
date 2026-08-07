@@ -1,29 +1,35 @@
-from typing import List
+# Time:  O(n)
+# Space: O(m)
 
-
+# kmp
 class Solution:
-    def countMatchingSubarrays(self, nums: List[int], pattern: List[int]) -> int:
-        prefix = [0] * len(pattern)
-        matched = 0
+    def countMatchingSubarrays(self, nums, pattern):
+        """
+        :type nums: List[int]
+        :type pattern: List[int]
+        :rtype: int
+        """
+        def getPrefix(pattern):
+            prefix = [-1]*len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j+1 > 0 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
 
-        for index in range(1, len(pattern)):
-            while matched and pattern[index] != pattern[matched]:
-                matched = prefix[matched - 1]
-            if pattern[index] == pattern[matched]:
-                matched += 1
-            prefix[index] = matched
+        def KMP(text, pattern):
+            prefix = getPrefix(pattern)
+            j = -1
+            for i, x in enumerate(text):
+                while j+1 > 0 and pattern[j+1] != x:
+                    j = prefix[j]
+                if pattern[j+1] == x:
+                    j += 1
+                if j+1 == len(pattern):
+                    yield i-j
+                    j = prefix[j]
 
-        answer = 0
-        matched = 0
-
-        for index in range(len(nums) - 1):
-            relation = (nums[index + 1] > nums[index]) - (nums[index + 1] < nums[index])
-            while matched and relation != pattern[matched]:
-                matched = prefix[matched - 1]
-            if relation == pattern[matched]:
-                matched += 1
-            if matched == len(pattern):
-                answer += 1
-                matched = prefix[matched - 1]
-
-        return answer
+        return sum(1 for _ in KMP((cmp(nums[i+1], nums[i]) for i in range(len(nums)-1)), pattern))

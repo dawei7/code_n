@@ -1,15 +1,13 @@
 class Solution:
     def numberOfUniqueGoodSubsequences(self, binary: str) -> int:
-        modulus = 1_000_000_007
-        ending_zero = 0
-        ending_one = 0
-        has_zero = 0
-
-        for bit in binary:
-            if bit == "1":
-                ending_one = (ending_zero + ending_one + 1) % modulus
+        f = g = 0
+        ans = 0
+        mod = 10**9 + 7
+        for c in binary:
+            if c == "0":
+                g = (g + f) % mod
+                ans = 1
             else:
-                ending_zero = (ending_zero + ending_one) % modulus
-                has_zero = 1
-
-        return (ending_zero + ending_one + has_zero) % modulus
+                f = (f + g + 1) % mod
+        ans = (ans + f + g) % mod
+        return ans

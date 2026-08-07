@@ -2,9 +2,7 @@ class Solution:
     def minimumNumbers(self, num: int, k: int) -> int:
         if num == 0:
             return 0
-
-        for count in range(1, 11):
-            minimum_sum = count * k
-            if minimum_sum <= num and minimum_sum % 10 == num % 10:
-                return count
+        for i in range(1, num + 1):
+            if (t := num - k * i) >= 0 and t % 10 == 0:
+                return i
         return -1

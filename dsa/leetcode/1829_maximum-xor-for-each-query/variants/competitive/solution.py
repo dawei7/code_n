@@ -1,15 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
-        current_xor = 0
-        for value in nums:
-            current_xor ^= value
-
-        mask = (1 << maximumBit) - 1
-        answer = []
-        for value in reversed(nums):
-            answer.append(current_xor ^ mask)
-            current_xor ^= value
-        return answer
+    def getMaximumXor(self, nums, maximumBit):
+        """
+        :type nums: List[int]
+        :type maximumBit: int
+        :rtype: List[int]
+        """
+        result = [0]*len(nums)
+        mask = 2**maximumBit-1
+        for i in range(len(nums)):
+            mask ^= nums[i]
+            result[-1-i] = mask
+        return result

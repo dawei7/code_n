@@ -1,36 +1,55 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# segment tree, binary search
 class Solution:
-    def numOfUnplacedFruits(self, fruits: List[int], baskets: List[int]) -> int:
-        basket_count = len(baskets)
-        leaf_count = 1
-        while leaf_count < basket_count:
-            leaf_count *= 2
+    def numOfUnplacedFruits(self, fruits, baskets):
+        """
+        :type fruits: List[int]
+        :type baskets: List[int]
+        :rtype: int
+        """
+        class SegmentTree(object):
+            def __init__(self, N,
+                        build_fn=lambda _: 0,
+                        query_fn=lambda x, y: y if x is None else x if y is None else max(x, y),
+                        update_fn=lambda x: x):
+                self.tree = [None]*(2*2**((N-1).bit_length()))
+                self.base = len(self.tree)//2
+                self.query_fn = query_fn
+                self.update_fn = update_fn
+                for i in range(self.base, self.base+N):
+                    self.tree[i] = build_fn(i-self.base)
+                for i in reversed(range(1, self.base)):
+                    self.tree[i] = query_fn(self.tree[2*i], self.tree[2*i+1])
 
-        maximum = [0] * (2 * leaf_count)
-        maximum[leaf_count : leaf_count + basket_count] = baskets
-        for node in range(leaf_count - 1, 0, -1):
-            maximum[node] = max(maximum[2 * node], maximum[2 * node + 1])
+            def update(self, i, h):
+                x = self.base+i
+                self.tree[x] = self.update_fn(h)
+                while x > 1:
+                    x //= 2
+                    self.tree[x] = self.query_fn(self.tree[x*2], self.tree[x*2+1])
 
-        unplaced = 0
-        for fruit in fruits:
-            if maximum[1] < fruit:
-                unplaced += 1
-                continue
+            def binary_search(self, x):
+                if self.tree[1] < x:
+                    return -1
+                i = 1
+                while not i >= self.base:
+                    if self.tree[2*i] >= x:
+                        i = 2*i
+                    else:
+                        i = 2*i+1
+                return i-self.base
 
-            node = 1
-            while node < leaf_count:
-                left_child = 2 * node
-                if maximum[left_child] >= fruit:
-                    node = left_child
-                else:
-                    node = left_child + 1
+        def build(i):
+            return baskets[i]
 
-            maximum[node] = 0
-            node //= 2
-            while node:
-                maximum[node] = max(maximum[2 * node], maximum[2 * node + 1])
-                node //= 2
-
-        return unplaced
+        st = SegmentTree(len(baskets), build_fn=build)
+        result = 0
+        for x in fruits:
+            i = st.binary_search(x)
+            if i == -1:
+                result += 1
+            else:
+                st.update(i, 0)
+        return result

@@ -1,17 +1,25 @@
-from collections import Counter
-from typing import List
+# Time:  O(n), is the length of cpdomains (assuming the length of cpdomains[i] is fixed)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def subdomainVisits(self, cpdomains: List[str]) -> List[str]:
-        visits = Counter()
-        for entry in cpdomains:
-            count_text, domain = entry.split()
-            count = int(count_text)
-            while True:
-                visits[domain] += count
-                dot = domain.find(".")
-                if dot == -1:
-                    break
-                domain = domain[dot + 1 :]
-        return [f"{count} {domain}" for domain, count in visits.items()]
+    def subdomainVisits(self, cpdomains):
+        """
+        :type cpdomains: List[str]
+        :rtype: List[str]
+        """
+        result = collections.defaultdict(int)
+        for domain in cpdomains:
+            count, domain = domain.split()
+            count = int(count)
+            frags = domain.split('.')
+            curr = []
+            for i in reversed(range(len(frags))):
+                curr.append(frags[i])
+                result[".".join(reversed(curr))] += count
+
+        return ["{} {}".format(count, domain) \
+                for domain, count in result.items()]
+

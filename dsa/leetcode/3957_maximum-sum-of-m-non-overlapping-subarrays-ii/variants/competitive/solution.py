@@ -1,88 +1,75 @@
-from collections import deque
+# Time:  O(nlogr)
+# Space: O(n)
+
+import collections
 
 
+# prefix sum, dp, mono deque, wqs binary search, alien trick
 class Solution:
-    def maximumSum(self, nums: list[int], m: int, l: int, r: int) -> int:
-        n = len(nums)
-        prefix = [0] * (n + 1)
-        positive_sum = 0
-        for index, value in enumerate(nums):
-            prefix[index + 1] = prefix[index] + value
-            positive_sum += max(value, 0)
+    def maximumSum(self, nums, m, l, r):
+        """
+        :type nums: List[int]
+        :type m: int
+        :type l: int
+        :type r: int
+        :rtype: int
+        """
+        NEG_INF = float("-inf")
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        minimum_prefixes = deque()
-        best_single = -(10**30)
-        for end in range(1, n + 1):
-            start = end - l
-            if start >= 0:
-                while minimum_prefixes and prefix[minimum_prefixes[-1]] >= prefix[start]:
-                    minimum_prefixes.pop()
-                minimum_prefixes.append(start)
+        def best_single():
+            result = NEG_INF
+            dq = collections.deque()
+            for i in range(1, len(nums)+1):
+                j = i-l
+                if j >= 0:
+                    while dq and prefix[dq[-1]] >= prefix[j]:
+                        dq.pop()
+                    dq.append(j)
+                while dq and dq[0] < i-r:
+                    dq.popleft()
+                if dq:
+                    result = max(result, prefix[i]-prefix[dq[0]])
+            return result
 
-            while minimum_prefixes and minimum_prefixes[0] < end - r:
-                minimum_prefixes.popleft()
+        def f(x):
+            def better(v1, c1, v2, c2):
+                return v1 > v2 or (v1 == v2 and c1 < c2)
 
-            if minimum_prefixes:
-                best_single = max(
-                    best_single,
-                    prefix[end] - prefix[minimum_prefixes[0]],
-                )
+            dp = [[0]*2 for _ in range(len(nums)+1)]
+            dq = collections.deque()
+            for i in range(1, len(nums)+1):
+                j = i-l
+                if j >= 0:
+                    while dq and better(dp[j][0]-prefix[j], dp[j][1], dp[dq[-1]][0]-prefix[dq[-1]], dp[dq[-1]][1]):
+                        dq.pop()
+                    dq.append(j)
+                while dq and dq[0] < i-r:
+                    dq.popleft()
+                dp[i] = dp[i-1]
+                if dq:
+                    new_dp = [((dp[dq[0]][0]-prefix[dq[0]])+prefix[i])-x, dp[dq[0]][1]+1]
+                    if better(new_dp[0], new_dp[1], dp[i][0], dp[i][1]):
+                        dp[i] = new_dp
+            return dp[-1]
 
-        def penalized(penalty: int) -> tuple[int, int]:
-            values = [0] * (n + 1)
-            counts = [0] * (n + 1)
-            candidates = deque()
-
-            for end in range(1, n + 1):
-                start = end - l
-                if start >= 0:
-                    new_key = (
-                        values[start] - prefix[start],
-                        -counts[start],
-                    )
-                    while candidates:
-                        previous_start = candidates[-1]
-                        previous_key = (
-                            values[previous_start] - prefix[previous_start],
-                            -counts[previous_start],
-                        )
-                        if previous_key > new_key:
-                            break
-                        candidates.pop()
-                    candidates.append(start)
-
-                while candidates and candidates[0] < end - r:
-                    candidates.popleft()
-
-                values[end] = values[end - 1]
-                counts[end] = counts[end - 1]
-                if candidates:
-                    previous_start = candidates[0]
-                    candidate_value = prefix[end] - penalty + values[previous_start] - prefix[previous_start]
-                    candidate_count = counts[previous_start] + 1
-                    if (candidate_value, -candidate_count) > (
-                        values[end],
-                        -counts[end],
-                    ):
-                        values[end] = candidate_value
-                        counts[end] = candidate_count
-
-            return values[n], counts[n]
-
-        adjusted_value, selected_count = penalized(0)
-        if selected_count <= m:
-            if selected_count == 0:
-                return best_single
-            return adjusted_value
-
-        low = 1
-        high = positive_sum + 1
-        while low < high:
-            penalty = (low + high) // 2
-            if penalized(penalty)[1] <= m:
-                high = penalty
-            else:
-                low = penalty + 1
-
-        adjusted_value, _ = penalized(low)
-        return max(best_single, adjusted_value + low * m)
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        single = best_single()
+        dp, cnt = f(0)
+        if not cnt:
+            return single
+        if cnt <= m:
+            return dp
+        mx = single
+        assert(f(mx)[1] <= m)
+        x = binary_search(1, mx, lambda x: f(x)[1] <= m)
+        return f(x)[0]+m*x

@@ -1,23 +1,17 @@
-from typing import List
-
-
+# """
 # This is BinaryMatrix's API interface.
-# You should not implement it, or speculate about its implementation.
+# You should not implement it, or speculate about its implementation
+# """
 # class BinaryMatrix(object):
-#     def get(self, row: int, col: int) -> int:
-#     def dimensions(self) -> List[int]:
+#    def get(self, row: int, col: int) -> int:
+#    def dimensions(self) -> list[]:
 
 
 class Solution:
     def leftMostColumnWithOne(self, binaryMatrix: "BinaryMatrix") -> int:
-        rows, cols = binaryMatrix.dimensions()
-        row = 0
-        col = cols - 1
-        answer = -1
-        while row < rows and col >= 0:
-            if binaryMatrix.get(row, col) == 1:
-                answer = col
-                col -= 1
-            else:
-                row += 1
-        return answer
+        m, n = binaryMatrix.dimensions()
+        ans = n
+        for i in range(m):
+            j = bisect_left(range(n), 1, key=lambda k: binaryMatrix.get(i, k))
+            ans = min(ans, j)
+        return -1 if ans >= n else ans

@@ -1,22 +1,27 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def subArrayRanges(self, nums: List[int]) -> int:
-        def contribution(as_maximum: bool) -> int:
-            total = 0
-            stack: List[int] = []
-
-            for right in range(len(nums) + 1):
-                while stack and (
-                    right == len(nums)
-                    or (nums[stack[-1]] < nums[right] if as_maximum else nums[stack[-1]] > nums[right])
-                ):
-                    middle = stack.pop()
-                    left = stack[-1] if stack else -1
-                    total += nums[middle] * (middle - left) * (right - middle)
-                stack.append(right)
-
-            return total
-
-        return contribution(True) - contribution(False)
+    def subArrayRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        stk = []
+        for i in range(len(nums)+1):
+            x = nums[i] if i < len(nums) else float("inf")
+            while stk and nums[stk[-1]] <= x:
+                j = stk.pop()
+                k = stk[-1] if stk else -1
+                result += nums[j]*(j-k)*(i-j)
+            stk.append(i)
+        stk = []
+        for i in range(len(nums)+1):
+            x = nums[i] if i < len(nums) else float("-inf")
+            while stk and nums[stk[-1]] >= x:
+                j = stk.pop()
+                k = stk[-1] if stk else -1
+                result -= nums[j]*(j-k)*(i-j)
+            stk.append(i)
+        return result

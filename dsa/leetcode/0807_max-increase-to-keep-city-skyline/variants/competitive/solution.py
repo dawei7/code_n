@@ -1,13 +1,19 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
+
+import itertools
 
 
 class Solution:
-    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
-        row_maxima = [max(row) for row in grid]
-        column_maxima = [max(grid[row][col] for row in range(len(grid))) for col in range(len(grid))]
+    def maxIncreaseKeepingSkyline(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        row_maxes = [max(row) for row in grid]
+        col_maxes = [max(col) for col in itertools.izip(*grid)]
 
-        increase = 0
-        for row in range(len(grid)):
-            for col in range(len(grid)):
-                increase += min(row_maxima[row], column_maxima[col]) - grid[row][col]
-        return increase
+        return sum(min(row_maxes[r], col_maxes[c])-val \
+                   for r, row in enumerate(grid) \
+                   for c, val in enumerate(row))
+

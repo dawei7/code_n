@@ -1,41 +1,32 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def checkWays(self, pairs: List[List[int]]) -> int:
-        neighbors = defaultdict(set)
-        for first, second in pairs:
-            neighbors[first].add(second)
-            neighbors[second].add(first)
-
-        node_count = len(neighbors)
-        root = next(
-            (node for node, adjacent in neighbors.items() if len(adjacent) == node_count - 1),
-            None,
-        )
-        if root is None:
+        g = [[False] * 510 for _ in range(510)]
+        v = defaultdict(list)
+        for x, y in pairs:
+            g[x][y] = g[y][x] = True
+            v[x].append(y)
+            v[y].append(x)
+        nodes = []
+        for i in range(510):
+            if v[i]:
+                nodes.append(i)
+                g[i][i] = True
+        nodes.sort(key=lambda x: len(v[x]))
+        equal = False
+        root = 0
+        for i, x in enumerate(nodes):
+            j = i + 1
+            while j < len(nodes) and not g[x][nodes[j]]:
+                j += 1
+            if j < len(nodes):
+                y = nodes[j]
+                if len(v[x]) == len(v[y]):
+                    equal = True
+                for z in v[x]:
+                    if not g[y][z]:
+                        return 0
+            else:
+                root += 1
+        if root > 1:
             return 0
-
-        result = 1
-        for node, adjacent in neighbors.items():
-            if node == root:
-                continue
-
-            parent = None
-            parent_degree = node_count
-            for candidate in adjacent:
-                candidate_degree = len(neighbors[candidate])
-                if len(adjacent) <= candidate_degree < parent_degree:
-                    parent = candidate
-                    parent_degree = candidate_degree
-
-            if parent is None:
-                return 0
-            for neighbor in adjacent:
-                if neighbor != parent and neighbor not in neighbors[parent]:
-                    return 0
-            if parent_degree == len(adjacent):
-                result = 2
-
-        return result
+        return 2 if equal else 1

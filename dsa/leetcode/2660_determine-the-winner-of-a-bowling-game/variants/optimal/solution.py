@@ -1,17 +1,11 @@
-from typing import List
-
-
 class Solution:
     def isWinner(self, player1: List[int], player2: List[int]) -> int:
-        def score(rolls: List[int]) -> int:
-            total = 0
-            for index, pins in enumerate(rolls):
-                doubled = (index >= 1 and rolls[index - 1] == 10) or (index >= 2 and rolls[index - 2] == 10)
-                total += pins * (2 if doubled else 1)
-            return total
+        def f(arr: List[int]) -> int:
+            s = 0
+            for i, x in enumerate(arr):
+                k = 2 if (i and arr[i - 1] == 10) or (i > 1 and arr[i - 2] == 10) else 1
+                s += k * x
+            return s
 
-        score1 = score(player1)
-        score2 = score(player2)
-        if score1 == score2:
-            return 0
-        return 1 if score1 > score2 else 2
+        a, b = f(player1), f(player2)
+        return 1 if a > b else (2 if b > a else 0)

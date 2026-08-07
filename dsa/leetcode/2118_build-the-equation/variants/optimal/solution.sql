@@ -1,13 +1,22 @@
-SELECT GROUP_CONCAT(term, '') || '=0' AS equation
-FROM (
-    SELECT
-        CASE WHEN factor > 0 THEN '+' ELSE '-' END
-        || ABS(factor)
-        || CASE
-            WHEN power = 0 THEN ''
-            WHEN power = 1 THEN 'X'
-            ELSE 'X^' || power
-        END AS term
-    FROM Terms
-    ORDER BY power DESC
-);
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            power,
+            CASE power
+                WHEN 0 THEN IF(factor > 0, CONCAT('+', factor), factor)
+                WHEN 1 THEN CONCAT(
+                    IF(factor > 0, CONCAT('+', factor), factor),
+                    'X'
+                )
+                ELSE CONCAT(
+                    IF(factor > 0, CONCAT('+', factor), factor),
+                    'X^',
+                    power
+                )
+            END AS it
+        FROM Terms
+    )
+SELECT
+    CONCAT(GROUP_CONCAT(it ORDER BY power DESC SEPARATOR ""), '=0') AS equation
+FROM T;

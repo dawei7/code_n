@@ -1,16 +1,15 @@
 class Solution:
     def clearStars(self, s: str) -> str:
-        positions = [[] for _ in range(26)]
-        removed = [False] * len(s)
-
-        for index, character in enumerate(s):
-            if character == "*":
-                removed[index] = True
-                for bucket in positions:
-                    if bucket:
-                        removed[bucket.pop()] = True
+        g = defaultdict(list)
+        n = len(s)
+        rem = [False] * n
+        for i, c in enumerate(s):
+            if c == "*":
+                rem[i] = True
+                for a in ascii_lowercase:
+                    if g[a]:
+                        rem[g[a].pop()] = True
                         break
             else:
-                positions[ord(character) - ord("a")].append(index)
-
-        return "".join(character for index, character in enumerate(s) if not removed[index])
+                g[c].append(i)
+        return "".join(c for i, c in enumerate(s) if not rem[i])

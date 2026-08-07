@@ -1,28 +1,29 @@
-from typing import List, Optional
-
+# Time:  O(n + k)
+# Space: O(1)
 
 class Solution:
-    def splitListToParts(self, head: Optional[ListNode], k: int) -> List[Optional[ListNode]]:
-        length = 0
-        node = head
-        while node is not None:
-            length += 1
-            node = node.next
+    def splitListToParts(self, root, k):
+        """
+        :type root: ListNode
+        :type k: int
+        :rtype: List[ListNode]
+        """
+        n = 0
+        curr = root
+        while curr:
+            curr = curr.next
+            n += 1
+        width, remainder = divmod(n, k)
 
-        base, extra = divmod(length, k)
-        parts = []
-        current = head
+        result = []
+        curr = root
+        for i in range(k):
+            head = curr
+            for j in range(width-1+int(i < remainder)):
+                if curr:
+                    curr = curr.next
+            if curr:
+                curr.next, curr = None, curr.next
+            result.append(head)
+        return result
 
-        for index in range(k):
-            parts.append(current)
-            part_size = base + (index < extra)
-
-            for _ in range(part_size - 1):
-                current = current.next
-
-            if current is not None:
-                following = current.next
-                current.next = None
-                current = following
-
-        return parts

@@ -1,14 +1,11 @@
 class Solution:
     def minimumDistance(self, nums: List[int]) -> int:
-        n = len(nums)
-        latest = [-1] * (n + 1)
-        second_latest = [-1] * (n + 1)
-        answer = 2 * n + 1
-
-        for index, value in enumerate(nums):
-            if second_latest[value] != -1:
-                answer = min(answer, 2 * (index - second_latest[value]))
-            second_latest[value] = latest[value]
-            latest[value] = index
-
-        return -1 if answer == 2 * n + 1 else answer
+        g = defaultdict(list)
+        for i, x in enumerate(nums):
+            g[x].append(i)
+        ans = inf
+        for ls in g.values():
+            for h in range(len(ls) - 2):
+                i, k = ls[h], ls[h + 2]
+                ans = min(ans, (k - i) * 2)
+        return -1 if ans == inf else ans

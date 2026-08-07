@@ -1,30 +1,34 @@
-from typing import List
+class Trie:
+    __slots__ = "children", "cnt"
 
-
-class TrieNode:
     def __init__(self):
-        self.children = {}
-        self.count = 0
+        self.children = [None] * 26
+        self.cnt = 0
+
+    def insert(self, w):
+        node = self
+        for c in w:
+            idx = ord(c) - ord("a")
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+            node.cnt += 1
+
+    def search(self, w):
+        node = self
+        ans = 0
+        for c in w:
+            idx = ord(c) - ord("a")
+            if node.children[idx] is None:
+                return ans
+            node = node.children[idx]
+            ans += node.cnt
+        return ans
 
 
 class Solution:
     def sumPrefixScores(self, words: List[str]) -> List[int]:
-        root = TrieNode()
-
-        for word in words:
-            node = root
-            for character in word:
-                if character not in node.children:
-                    node.children[character] = TrieNode()
-                node = node.children[character]
-                node.count += 1
-
-        answer = []
-        for word in words:
-            node = root
-            score = 0
-            for character in word:
-                node = node.children[character]
-                score += node.count
-            answer.append(score)
-        return answer
+        trie = Trie()
+        for w in words:
+            trie.insert(w)
+        return [trie.search(w) for w in words]

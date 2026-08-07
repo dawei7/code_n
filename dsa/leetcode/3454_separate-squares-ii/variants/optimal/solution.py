@@ -1,67 +1,77 @@
-from typing import List
+class Node:
+    __slots__ = ("l", "r", "cnt", "length")
+
+    def __init__(self):
+        self.l = self.r = 0
+        self.cnt = self.length = 0
+
+
+class SegmentTree:
+    def __init__(self, nums):
+        n = len(nums) - 1
+        self.nums = nums
+        self.tr = [Node() for _ in range(n << 2)]
+        self.build(1, 0, n - 1)
+
+    def build(self, u, l, r):
+        self.tr[u].l, self.tr[u].r = l, r
+        if l != r:
+            mid = (l + r) >> 1
+            self.build(u << 1, l, mid)
+            self.build(u << 1 | 1, mid + 1, r)
+
+    def modify(self, u, l, r, k):
+        if self.tr[u].l >= l and self.tr[u].r <= r:
+            self.tr[u].cnt += k
+        else:
+            mid = (self.tr[u].l + self.tr[u].r) >> 1
+            if l <= mid:
+                self.modify(u << 1, l, r, k)
+            if r > mid:
+                self.modify(u << 1 | 1, l, r, k)
+        self.pushup(u)
+
+    def pushup(self, u):
+        if self.tr[u].cnt:
+            self.tr[u].length = self.nums[self.tr[u].r + 1] - self.nums[self.tr[u].l]
+        elif self.tr[u].l == self.tr[u].r:
+            self.tr[u].length = 0
+        else:
+            self.tr[u].length = self.tr[u << 1].length + self.tr[u << 1 | 1].length
+
+    @property
+    def length(self):
+        return self.tr[1].length
 
 
 class Solution:
     def separateSquares(self, squares: List[List[int]]) -> float:
-        x_values = sorted({edge for x, _, side in squares for edge in (x, x + side)})
-        x_index = {value: index for index, value in enumerate(x_values)}
-        events = []
-        for x, y, side in squares:
-            left = x_index[x]
-            right = x_index[x + side]
-            events.append((y, 1, left, right))
-            events.append((y + side, -1, left, right))
-        events.sort()
+        xs = set()
+        segs = []
+        for x1, y1, l in squares:
+            x2, y2 = x1 + l, y1 + l
+            xs.update([x1, x2])
+            segs.append((y1, x1, x2, 1))
+            segs.append((y2, x1, x2, -1))
+        segs.sort()
+        st = sorted(xs)
+        tree = SegmentTree(st)
+        d = {x: i for i, x in enumerate(st)}
+        area = 0
+        y0 = 0
+        for y, x1, x2, k in segs:
+            area += (y - y0) * tree.length
+            tree.modify(1, d[x1], d[x2] - 1, k)
+            y0 = y
 
-        cover_count = [0] * (4 * len(x_values))
-        covered_width = [0] * (4 * len(x_values))
-
-        def pull(node: int, left: int, right: int) -> None:
-            if cover_count[node] > 0:
-                covered_width[node] = x_values[right] - x_values[left]
-            elif right - left == 1:
-                covered_width[node] = 0
-            else:
-                covered_width[node] = covered_width[node * 2] + covered_width[node * 2 + 1]
-
-        def update(
-            node: int,
-            left: int,
-            right: int,
-            query_left: int,
-            query_right: int,
-            delta: int,
-        ) -> None:
-            if query_left <= left and right <= query_right:
-                cover_count[node] += delta
-                pull(node, left, right)
-                return
-            middle = (left + right) // 2
-            if query_left < middle:
-                update(node * 2, left, middle, query_left, query_right, delta)
-            if middle < query_right:
-                update(node * 2 + 1, middle, right, query_left, query_right, delta)
-            pull(node, left, right)
-
-        bands = []
-        total_area = 0
-        previous_y = events[0][0]
-        event_index = 0
-        while event_index < len(events):
-            y = events[event_index][0]
-            width = covered_width[1]
-            if y > previous_y and width > 0:
-                bands.append((previous_y, y, width, total_area))
-                total_area += width * (y - previous_y)
-            while event_index < len(events) and events[event_index][0] == y:
-                _, delta, left, right = events[event_index]
-                update(1, 0, len(x_values) - 1, left, right, delta)
-                event_index += 1
-            previous_y = y
-
-        target = total_area / 2.0
-        for bottom, top, width, area_before in bands:
-            band_area = width * (top - bottom)
-            if area_before + band_area >= target:
-                return bottom + (target - area_before) / width
-        return float(events[-1][0])
+        target = area / 2
+        area = 0
+        y0 = 0
+        for y, x1, x2, k in segs:
+            t = (y - y0) * tree.length
+            if area + t >= target:
+                return y0 + (target - area) / tree.length
+            area += t
+            tree.modify(1, d[x1], d[x2] - 1, k)
+            y0 = y
+        return 0

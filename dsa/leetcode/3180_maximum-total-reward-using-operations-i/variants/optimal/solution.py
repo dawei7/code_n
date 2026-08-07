@@ -1,8 +1,12 @@
 class Solution:
     def maxTotalReward(self, rewardValues: List[int]) -> int:
-        reachable = 1
+        @cache
+        def dfs(x: int) -> int:
+            i = bisect_right(rewardValues, x)
+            ans = 0
+            for v in rewardValues[i:]:
+                ans = max(ans, v + dfs(x + v))
+            return ans
 
-        for value in sorted(set(rewardValues)):
-            reachable |= (reachable & ((1 << value) - 1)) << value
-
-        return reachable.bit_length() - 1
+        rewardValues.sort()
+        return dfs(0)

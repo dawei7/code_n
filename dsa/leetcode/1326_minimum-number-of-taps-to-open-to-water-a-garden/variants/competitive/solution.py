@@ -1,22 +1,26 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def minTaps(self, n: int, ranges: List[int]) -> int:
-        farthest = [0] * (n + 1)
-        for position, radius in enumerate(ranges):
-            left = max(0, position - radius)
-            right = min(n, position + radius)
-            farthest[left] = max(farthest[left], right)
-
-        taps = 0
-        current_end = 0
-        next_end = 0
-        for position in range(n):
-            next_end = max(next_end, farthest[position])
-            if position == current_end:
-                if next_end <= position:
+    def minTaps(self, n, ranges):
+        """
+        :type n: int
+        :type ranges: List[int]
+        :rtype: int
+        """
+        def jump_game(A):
+            jump_count, reachable, curr_reachable = 0, 0, 0
+            for i, length in enumerate(A):
+                if i > reachable:
                     return -1
-                taps += 1
-                current_end = next_end
-        return taps
+                if i > curr_reachable:
+                    curr_reachable = reachable
+                    jump_count += 1
+                reachable = max(reachable, i+length)
+            return jump_count
+    
+        max_range = [0]*(n+1)
+        for i, r in enumerate(ranges):
+            left, right = max(i-r, 0), min(i+r, n)
+            max_range[left] = max(max_range[left], right-left)
+        return jump_game(max_range)

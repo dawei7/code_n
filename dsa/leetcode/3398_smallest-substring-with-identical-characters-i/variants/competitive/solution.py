@@ -1,30 +1,70 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# binary search, greedy
 class Solution:
-    def minLength(self, s: str, numOps: int) -> int:
-        runs = []
-        run_length = 1
+    def minLength(self, s, numOps):
+        """
+        :type s: str
+        :type numOps: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        for index in range(1, len(s)):
-            if s[index] == s[index - 1]:
-                run_length += 1
-            else:
-                runs.append(run_length)
-                run_length = 1
-        runs.append(run_length)
+        def lengths():
+            cnt = 0
+            for i in range(len(s)):
+                cnt += 1
+                if i+1 == len(s) or s[i+1] != s[i]:
+                    yield cnt
+                    cnt = 0
+    
+        def check(x):
+            if x == 1:
+                cnt = sum(int(x) != i%2 for i, x in enumerate(s))
+                return min(cnt, len(s)-cnt) <= numOps
+            return sum(l//(x+1) for l in lengths()) <= numOps
+    
+        return binary_search(1, len(s), check)
 
-        def can_limit(longest: int) -> bool:
-            if longest == 1:
-                mismatches = sum(character != ("0" if index % 2 == 0 else "1") for index, character in enumerate(s))
-                return min(mismatches, len(s) - mismatches) <= numOps
 
-            required = sum(length // (longest + 1) for length in runs)
-            return required <= numOps
+# Time:  O(nlogn)
+# Space: O(n)
+# binary search, greedy
+class Solution2(object):
+    def minLength(self, s, numOps):
+        """
+        :type s: str
+        :type numOps: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        low, high = 1, len(s)
-        while low < high:
-            middle = (low + high) // 2
-            if can_limit(middle):
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        def check(x):
+            if x == 1:
+                cnt = sum(int(x) != i%2 for i, x in enumerate(s))
+                return min(cnt, len(s)-cnt) <= numOps
+            return sum(l//(x+1) for l in arr) <= numOps
+    
+        arr = []
+        cnt = 0
+        for i in range(len(s)):
+            cnt += 1
+            if i+1 == len(s) or s[i+1] != s[i]:
+                arr.append(cnt)
+                cnt = 0
+        return binary_search(1, len(s), check)

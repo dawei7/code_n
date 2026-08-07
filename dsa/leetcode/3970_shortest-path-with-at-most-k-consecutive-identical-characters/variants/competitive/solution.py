@@ -1,33 +1,35 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(e * k * log(n * k))
+# Space: O(n * k + e)
+
+import heapq
 
 
+# dijkstra's algorithms
 class Solution:
-    def shortestPath(self, n: int, edges: List[List[int]], labels: str, k: int) -> int:
-        graph = [[] for _ in range(n)]
-        for source, destination, weight in edges:
-            graph[source].append((destination, weight))
-
-        infinity = float("inf")
-        distance = [[infinity] * (k + 1) for _ in range(n)]
-        distance[0][1] = 0
-        heap = [(0, 0, 1)]
-
-        while heap:
-            cost, node, run_length = heappop(heap)
-            if cost != distance[node][run_length]:
+    def shortestPath(self, n, edges, labels, k):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type labels: str
+        :type k: int
+        :rtype: int
+        """
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+        dist = [[float("inf")]*k for _ in range(n)]
+        dist[0][0] = 0
+        min_heap = [(dist[0][0], 0, 0)]
+        while min_heap:
+            d, u, c = heapq.heappop(min_heap)
+            if d > dist[u][c]:
                 continue
-            if node == n - 1:
-                return cost
-
-            for neighbor, weight in graph[node]:
-                next_run = run_length + 1 if labels[node] == labels[neighbor] else 1
-                if next_run > k:
+            if u == n-1:
+                return d
+            for v, w in adj[u]:
+                nc = c+1 if labels[v] == labels[u] else 0
+                if not (nc < k and d+w < dist[v][nc]):
                     continue
-
-                next_cost = cost + weight
-                if next_cost < distance[neighbor][next_run]:
-                    distance[neighbor][next_run] = next_cost
-                    heappush(heap, (next_cost, neighbor, next_run))
-
+                dist[v][nc] = d+w
+                heapq.heappush(min_heap, (dist[v][nc], v, nc))
         return -1

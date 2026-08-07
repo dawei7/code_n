@@ -1,21 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table, prefix sum
 class Solution:
-    def maxBalancedSubarray(self, nums: List[int]) -> int:
-        first_index = {(0, 0): -1}
-        prefix_xor = 0
-        balance = 0
-        longest = 0
-
-        for index, value in enumerate(nums):
-            prefix_xor ^= value
-            balance += 1 if value % 2 == 0 else -1
-            state = (prefix_xor, balance)
-
-            if state in first_index:
-                longest = max(longest, index - first_index[state])
+    def maxBalancedSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = total = bal = 0
+        lookup = collections.defaultdict(int)
+        lookup[(total, bal)] = -1
+        for i, x in enumerate(nums):
+            total ^= x
+            bal += (1 if x%2 else -1)
+            if (total, bal) not in lookup:
+                lookup[total, bal] = i
             else:
-                first_index[state] = index
-
-        return longest
+                result = max(result, i-lookup[total, bal])
+        return result

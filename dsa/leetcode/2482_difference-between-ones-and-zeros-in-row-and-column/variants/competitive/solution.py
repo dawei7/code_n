@@ -1,19 +1,13 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m + n)
 
-
+# array
 class Solution:
-    def onesMinusZeros(self, grid: List[List[int]]) -> List[List[int]]:
-        row_count = len(grid)
-        column_count = len(grid[0])
-        row_balance = [2 * sum(row) - column_count for row in grid]
-        column_ones = [0] * column_count
-
-        for row in grid:
-            for column, value in enumerate(row):
-                column_ones[column] += value
-
-        column_balance = [2 * ones - row_count for ones in column_ones]
-
-        return [
-            [row_balance[row] + column_balance[column] for column in range(column_count)] for row in range(row_count)
-        ]
+    def onesMinusZeros(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        rows = [sum(grid[i][j] for j in range(len(grid[0]))) for i in range(len(grid))]
+        cols = [sum(grid[i][j] for i in range(len(grid))) for j in range(len(grid[0]))]
+        return [[rows[i]+cols[j]-(len(grid)-rows[i])-(len(grid[0])-cols[j]) for j in range(len(grid[0]))] for i in range(len(grid))]

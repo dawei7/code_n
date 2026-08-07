@@ -1,59 +1,53 @@
-from typing import List
-
-
 class Solution:
     def canMakePalindromeQueries(self, s: str, queries: List[List[int]]) -> List[bool]:
-        half = len(s) // 2
-        left = s[:half]
-        right = s[half:][::-1]
+        def count(pre: List[List[int]], i: int, j: int) -> List[int]:
+            return [x - y for x, y in zip(pre[j + 1], pre[i])]
 
-        def build_counts(text: str) -> List[List[int]]:
-            prefix = [[0] * 26]
-            for character in text:
-                row = prefix[-1].copy()
-                row[ord(character) - ord("a")] += 1
-                prefix.append(row)
-            return prefix
+        def sub(cnt1: List[int], cnt2: List[int]) -> List[int]:
+            res = []
+            for x, y in zip(cnt1, cnt2):
+                if x - y < 0:
+                    return []
+                res.append(x - y)
+            return res
 
-        left_counts = build_counts(left)
-        right_counts = build_counts(right)
-        mismatch = [0]
-        for first, second in zip(left, right):
-            mismatch.append(mismatch[-1] + (first != second))
+        def check(
+            pre1: List[List[int]], pre2: List[List[int]], a: int, b: int, c: int, d: int
+        ) -> bool:
+            if diff[a] > 0 or diff[m] - diff[max(b, d) + 1] > 0:
+                return False
+            if d <= b:
+                return count(pre1, a, b) == count(pre2, a, b)
+            if b < c:
+                return (
+                    diff[c] - diff[b + 1] == 0
+                    and count(pre1, a, b) == count(pre2, a, b)
+                    and count(pre1, c, d) == count(pre2, c, d)
+                )
+            cnt1 = sub(count(pre1, a, b), count(pre2, a, c - 1))
+            cnt2 = sub(count(pre2, c, d), count(pre1, b + 1, d))
+            return bool(cnt1) and bool(cnt2) and cnt1 == cnt2
 
-        def counts(prefix: List[List[int]], low: int, high: int) -> List[int]:
-            if low > high:
-                return [0] * 26
-            return [prefix[high + 1][letter] - prefix[low][letter] for letter in range(26)]
-
-        answer = []
-        size = len(s)
-        for first_low, first_high, second_low, second_high in queries:
-            second_low, second_high = size - 1 - second_high, size - 1 - second_low
-            overlap_low = max(first_low, second_low)
-            overlap_high = min(first_high, second_high)
-
-            covered_mismatches = (
-                mismatch[first_high + 1] - mismatch[first_low] + mismatch[second_high + 1] - mismatch[second_low]
+        n = len(s)
+        m = n // 2
+        t = s[m:][::-1]
+        s = s[:m]
+        pre1 = [[0] * 26 for _ in range(m + 1)]
+        pre2 = [[0] * 26 for _ in range(m + 1)]
+        diff = [0] * (m + 1)
+        for i, (c1, c2) in enumerate(zip(s, t), 1):
+            pre1[i] = pre1[i - 1][:]
+            pre2[i] = pre2[i - 1][:]
+            pre1[i][ord(c1) - ord("a")] += 1
+            pre2[i][ord(c2) - ord("a")] += 1
+            diff[i] = diff[i - 1] + int(c1 != c2)
+        ans = []
+        for a, b, c, d in queries:
+            c, d = n - 1 - d, n - 1 - c
+            ok = (
+                check(pre1, pre2, a, b, c, d)
+                if a <= c
+                else check(pre2, pre1, c, d, a, b)
             )
-            if overlap_low <= overlap_high:
-                covered_mismatches -= mismatch[overlap_high + 1] - mismatch[overlap_low]
-            if mismatch[half] != covered_mismatches:
-                answer.append(False)
-                continue
-
-            left_supply = counts(left_counts, first_low, first_high)
-            right_supply = counts(right_counts, second_low, second_high)
-            right_fixed = counts(right_counts, first_low, first_high)
-            left_fixed = counts(left_counts, second_low, second_high)
-            if overlap_low <= overlap_high:
-                right_overlap = counts(right_counts, overlap_low, overlap_high)
-                left_overlap = counts(left_counts, overlap_low, overlap_high)
-                right_fixed = [a - b for a, b in zip(right_fixed, right_overlap)]
-                left_fixed = [a - b for a, b in zip(left_fixed, left_overlap)]
-
-            left_remaining = [a - b for a, b in zip(left_supply, right_fixed)]
-            right_remaining = [a - b for a, b in zip(right_supply, left_fixed)]
-            answer.append(min(left_remaining) >= 0 and min(right_remaining) >= 0 and left_remaining == right_remaining)
-
-        return answer
+            ans.append(ok)
+        return ans

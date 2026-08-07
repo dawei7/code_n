@@ -1,27 +1,21 @@
-SELECT results
-FROM (
-    SELECT top_user.name AS results, 1 AS position
-    FROM (
-        SELECT u.name, COUNT(*) AS rating_count
-        FROM Users AS u
-        JOIN MovieRating AS r ON r.user_id = u.user_id
-        GROUP BY u.user_id, u.name
-        ORDER BY rating_count DESC, u.name
-        LIMIT 1
-    ) AS top_user
-
-    UNION ALL
-
-    SELECT top_movie.title AS results, 2 AS position
-    FROM (
-        SELECT m.title, AVG(r.rating) AS average_rating
-        FROM Movies AS m
-        JOIN MovieRating AS r ON r.movie_id = m.movie_id
-        WHERE r.created_at >= '2020-02-01'
-          AND r.created_at < '2020-03-01'
-        GROUP BY m.movie_id, m.title
-        ORDER BY average_rating DESC, m.title
-        LIMIT 1
-    ) AS top_movie
-) AS winners
-ORDER BY position;
+# Write your MySQL query statement below
+(
+    SELECT name AS results
+    FROM
+        Users
+        JOIN MovieRating USING (user_id)
+    GROUP BY user_id
+    ORDER BY COUNT(1) DESC, name
+    LIMIT 1
+)
+UNION ALL
+(
+    SELECT title
+    FROM
+        MovieRating
+        JOIN Movies USING (movie_id)
+    WHERE DATE_FORMAT(created_at, '%Y-%m') = '2020-02'
+    GROUP BY movie_id
+    ORDER BY AVG(rating) DESC, title
+    LIMIT 1
+);

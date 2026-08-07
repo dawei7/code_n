@@ -1,28 +1,27 @@
-from typing import List
+# Time:  O(c), c = len(coordinates)
+# Space: O(c)
+
+import collections
 
 
+# freq table
 class Solution:
-    def countBlackBlocks(
-        self,
-        m: int,
-        n: int,
-        coordinates: List[List[int]],
-    ) -> List[int]:
-        black_counts = {}
+    def countBlackBlocks(self, m, n, coordinates):
+        """
+        :type m: int
+        :type n: int
+        :type coordinates: List[List[int]]
+        :rtype: List[int]
+        """
+        L = 2
 
-        for row, column in coordinates:
-            for top in (row - 1, row):
-                if not 0 <= top < m - 1:
-                    continue
-
-                for left in (column - 1, column):
-                    if 0 <= left < n - 1:
-                        block = (top, left)
-                        black_counts[block] = black_counts.get(block, 0) + 1
-
-        answer = [0] * 5
-        for count in black_counts.values():
-            answer[count] += 1
-
-        answer[0] = (m - 1) * (n - 1) - len(black_counts)
-        return answer
+        cnt = collections.Counter()
+        for x, y in coordinates:
+            for nx in range(max(x-(L-1), 0), min(x+1, m-(L-1))):
+                for ny in range(max(y-(L-1), 0), min(y+1, n-(L-1))):
+                    cnt[nx, ny] += 1
+        result = [0]*(L**2+1)
+        for c in cnt.values():
+            result[c] += 1
+        result[0] = (m-(L-1))*(n-(L-1))-sum(result[i] for i in range(1, len(result)))
+        return result

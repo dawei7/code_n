@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         cnt = Counter()

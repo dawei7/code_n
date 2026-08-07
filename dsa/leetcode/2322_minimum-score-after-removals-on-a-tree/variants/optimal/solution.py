@@ -1,66 +1,33 @@
-from typing import List
-
-
 class Solution:
     def minimumScore(self, nums: List[int], edges: List[List[int]]) -> int:
+        def dfs(i: int, fa: int) -> int:
+            res = nums[i]
+            for j in g[i]:
+                if j != fa:
+                    res ^= dfs(j, i)
+            return res
+
+        def dfs2(i: int, fa: int) -> int:
+            nonlocal s, s1, ans
+            res = nums[i]
+            for j in g[i]:
+                if j != fa:
+                    s2 = dfs2(j, i)
+                    res ^= s2
+                    mx = max(s ^ s1, s2, s1 ^ s2)
+                    mn = min(s ^ s1, s2, s1 ^ s2)
+                    ans = min(ans, mx - mn)
+            return res
+
+        g = defaultdict(list)
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        s = reduce(lambda x, y: x ^ y, nums)
         n = len(nums)
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
-
-        parent = [-1] * n
-        entered = [0] * n
-        exited = [0] * n
-        order = []
-        timer = 0
-        stack = [(0, -1, False)]
-
-        while stack:
-            node, previous, leaving = stack.pop()
-            if leaving:
-                exited[node] = timer
-                continue
-
-            parent[node] = previous
-            entered[node] = timer
-            timer += 1
-            order.append(node)
-            stack.append((node, previous, True))
-            for neighbor in reversed(graph[node]):
-                if neighbor != previous:
-                    stack.append((neighbor, node, False))
-
-        subtree_xor = nums.copy()
-        for node in reversed(order[1:]):
-            subtree_xor[parent[node]] ^= subtree_xor[node]
-
-        total = subtree_xor[0]
-        answer = float("inf")
-
-        def is_ancestor(first: int, second: int) -> bool:
-            return entered[first] <= entered[second] < exited[first]
-
-        for first in range(1, n):
-            for second in range(first + 1, n):
-                if is_ancestor(first, second):
-                    values = (
-                        subtree_xor[second],
-                        subtree_xor[first] ^ subtree_xor[second],
-                        total ^ subtree_xor[first],
-                    )
-                elif is_ancestor(second, first):
-                    values = (
-                        subtree_xor[first],
-                        subtree_xor[second] ^ subtree_xor[first],
-                        total ^ subtree_xor[second],
-                    )
-                else:
-                    values = (
-                        subtree_xor[first],
-                        subtree_xor[second],
-                        total ^ subtree_xor[first] ^ subtree_xor[second],
-                    )
-                answer = min(answer, max(values) - min(values))
-
-        return int(answer)
+        ans = inf
+        for i in range(n):
+            for j in g[i]:
+                s1 = dfs(i, j)
+                dfs2(i, j)
+        return ans

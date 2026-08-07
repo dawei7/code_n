@@ -1,51 +1,55 @@
+# Time:  O(26 * n)
+# Space: O(26)
+
+# freq table, greedy
 class Solution:
-    def lexPalindromicPermutation(self, s: str, target: str) -> str:
-        frequency = [0] * 26
-        for character in s:
-            frequency[ord(character) - ord("a")] += 1
-
-        odd_characters = [index for index, count in enumerate(frequency) if count % 2]
-        if len(odd_characters) > 1:
+    def lexPalindromicPermutation(self, s, target):
+        """
+        :type s: str
+        :type target: str
+        :rtype: str
+        """
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        if sum(c%2 for c in cnt) > 1:
             return ""
-
-        middle = chr(ord("a") + odd_characters[0]) if odd_characters else ""
-        remaining = [count // 2 for count in frequency]
-        half_length = len(s) // 2
-        matched = []
-
-        position = 0
-        while position < half_length:
-            character = ord(target[position]) - ord("a")
-            if remaining[character] == 0:
+        x = -1
+        if len(target)%2:
+            x = next(x for x, c in enumerate(cnt) if c%2)
+            cnt[x] -= 1
+        result = []
+        for i in range(len(target)//2):
+            cnt[ord(target[i])-ord('a')] -= 2
+            result.append(target[i])
+            if cnt[ord(target[i])-ord('a')] < 0:
                 break
-            remaining[character] -= 1
-            matched.append(character)
-            position += 1
-
-        if position == half_length:
-            half = "".join(chr(ord("a") + value) for value in matched)
-            palindrome = half + middle + half[::-1]
-            if palindrome > target:
-                return palindrome
-            position -= 1
-
-        while position >= 0:
-            if position < len(matched):
-                remaining[matched.pop()] += 1
-
-            target_character = ord(target[position]) - ord("a")
-            replacement = next(
-                (value for value in range(target_character + 1, 26) if remaining[value]),
-                None,
-            )
-            if replacement is not None:
-                remaining[replacement] -= 1
-                suffix = []
-                for value, count in enumerate(remaining):
-                    suffix.extend([chr(ord("a") + value)] * count)
-                half = target[:position] + chr(ord("a") + replacement) + "".join(suffix)
-                return half + middle + half[::-1]
-
-            position -= 1
-
+        else:
+            if len(target)%2:
+                result.append(chr(ord('a')+x))
+            ret = "".join(result)
+            ret += ret[:len(target)//2][::-1]
+            if ret > target:
+                return ret
+            if len(target)%2:
+                result.pop()
+        while result:
+            c = ord(result.pop())-ord('a')
+            cnt[c] += 2
+            for i in range(c+1, len(cnt)):
+                if not cnt[i]:
+                    continue
+                cnt[i] -= 2
+                result.append(chr(ord('a')+i))
+                for j in range(len(cnt)):
+                    if not cnt[j]:
+                        continue
+                    while cnt[j]:
+                        cnt[j] -= 2
+                        result.append(chr(ord('a')+j))
+                if len(target)%2:
+                    result.append(chr(ord('a')+x))
+                ret = "".join(result)
+                ret += ret[:len(target)//2][::-1]
+                return ret
         return ""

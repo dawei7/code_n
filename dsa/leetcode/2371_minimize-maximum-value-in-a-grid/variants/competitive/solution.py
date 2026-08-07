@@ -1,19 +1,16 @@
-from typing import List
+# Time:  O((m * n) * log(m * n))
+# Space: O(m * n)
 
-
+# sort, greedy
 class Solution:
-    def minScore(self, grid: List[List[int]]) -> List[List[int]]:
-        rows = len(grid)
-        cols = len(grid[0])
-        cells = sorted((grid[row][col], row, col) for row in range(rows) for col in range(cols))
-        row_max = [0] * rows
-        col_max = [0] * cols
-        answer = [[0] * cols for _ in range(rows)]
-
-        for _, row, col in cells:
-            score = max(row_max[row], col_max[col]) + 1
-            answer[row][col] = score
-            row_max[row] = score
-            col_max[col] = score
-
-        return answer
+    def minScore(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        idxs = [(i, j) for i in range(len(grid)) for j in range(len(grid[0]))]
+        idxs.sort(key=lambda x: grid[x[0]][x[1]])
+        row_max, col_max = [0]*len(grid), [0]*len(grid[0])
+        for i, j in idxs:
+            grid[i][j] = row_max[i] = col_max[j] = max(row_max[i], col_max[j])+1
+        return grid

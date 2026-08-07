@@ -1,40 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import bisect
 
 
 class Solution:
-    def sampleStats(self, count: List[int]) -> List[float]:
-        total = sum(count)
-        weighted_sum = 0
-        minimum = -1
-        maximum = -1
-        mode = 0
-
-        for value, frequency in enumerate(count):
-            if frequency:
-                if minimum == -1:
-                    minimum = value
-                maximum = value
-                weighted_sum += value * frequency
-            if frequency > count[mode]:
-                mode = value
-
-        left_rank = (total - 1) // 2
-        right_rank = total // 2
-        seen = 0
-        left_value = -1
-        right_value = -1
-        for value, frequency in enumerate(count):
-            seen += frequency
-            if left_value == -1 and seen > left_rank:
-                left_value = value
-            if seen > right_rank:
-                right_value = value
-                break
-
-        return [
-            float(minimum),
-            float(maximum),
-            weighted_sum / total,
-            (left_value + right_value) / 2.0,
-            float(mode),
-        ]
+    def sampleStats(self, count):
+        """
+        :type count: List[int]
+        :rtype: List[float]
+        """
+        n = sum(count)
+        mi = next(i for i in range(len(count)) if count[i]) * 1.0
+        ma = next(i for i in reversed(range(len(count))) if count[i]) * 1.0
+        mean = sum(i * v for i, v in enumerate(count)) * 1.0 / n
+        mode = count.index(max(count)) * 1.0
+        for i in range(1, len(count)):
+            count[i] += count[i-1]
+        median1 = bisect.bisect_left(count, (n+1) // 2)
+        median2 = bisect.bisect_left(count, (n+2) // 2)
+        median = (median1+median2) / 2.0
+        return [mi, ma, mean, median, mode]

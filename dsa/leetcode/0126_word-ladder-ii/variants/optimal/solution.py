@@ -1,43 +1,48 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
-    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
-        unvisited = set(wordList)
-        if endWord not in unvisited:
-            return []
-
-        parents = defaultdict(list)
-        current_level = {beginWord}
-        while current_level and endWord not in current_level:
-            unvisited.difference_update(current_level)
-            next_level = set()
-            for word in current_level:
-                for index, original in enumerate(word):
-                    for replacement in "abcdefghijklmnopqrstuvwxyz":
-                        if replacement == original:
-                            continue
-                        candidate = word[:index] + replacement + word[index + 1 :]
-                        if candidate in unvisited:
-                            parents[candidate].append(word)
-                            next_level.add(candidate)
-            current_level = next_level
-
-        if endWord not in current_level:
-            return []
-
-        result = []
-        reverse_path = [endWord]
-
-        def build(word):
-            if word == beginWord:
-                result.append(reverse_path[::-1])
+    def findLadders(
+        self, beginWord: str, endWord: str, wordList: List[str]
+    ) -> List[List[str]]:
+        def dfs(path, cur):
+            if cur == beginWord:
+                ans.append(path[::-1])
                 return
-            for parent in parents[word]:
-                reverse_path.append(parent)
-                build(parent)
-                reverse_path.pop()
+            for precursor in prev[cur]:
+                path.append(precursor)
+                dfs(path, precursor)
+                path.pop()
 
-        build(endWord)
-        return result
+        ans = []
+        words = set(wordList)
+        if endWord not in words:
+            return ans
+        words.discard(beginWord)
+        dist = {beginWord: 0}
+        prev = defaultdict(set)
+        q = deque([beginWord])
+        found = False
+        step = 0
+        while q and not found:
+            step += 1
+            for i in range(len(q), 0, -1):
+                p = q.popleft()
+                s = list(p)
+                for i in range(len(s)):
+                    ch = s[i]
+                    for j in range(26):
+                        s[i] = chr(ord('a') + j)
+                        t = ''.join(s)
+                        if dist.get(t, 0) == step:
+                            prev[t].add(p)
+                        if t not in words:
+                            continue
+                        prev[t].add(p)
+                        words.discard(t)
+                        q.append(t)
+                        dist[t] = step
+                        if endWord == t:
+                            found = True
+                    s[i] = ch
+        if found:
+            path = [endWord]
+            dfs(path, endWord)
+        return ans

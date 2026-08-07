@@ -1,30 +1,29 @@
-from bisect import bisect_right
-from typing import List
+# Time:  O(mlogm + nlogn + mlogn)
+# Space: O(1)
+
+import bisect
 
 
 class Solution:
-    def minWastedSpace(self, packages: List[int], boxes: List[List[int]]) -> int:
-        modulo = 1_000_000_007
-        ordered_packages = sorted(packages)
-        minimum_capacity = None
+    def minWastedSpace(self, packages, boxes):
+        """
+        :type packages: List[int]
+        :type boxes: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        INF = float("inf")
 
-        for supplier in boxes:
-            ordered_boxes = sorted(supplier)
-            if ordered_boxes[-1] < ordered_packages[-1]:
+        packages.sort()
+        result = INF
+        for box in boxes:
+            box.sort()
+            if box[-1] < packages[-1]:
                 continue
-
-            capacity = 0
-            packed = 0
-            for box_size in ordered_boxes:
-                next_packed = bisect_right(ordered_packages, box_size, lo=packed)
-                capacity += (next_packed - packed) * box_size
-                packed = next_packed
-                if packed == len(ordered_packages):
-                    break
-
-            if minimum_capacity is None or capacity < minimum_capacity:
-                minimum_capacity = capacity
-
-        if minimum_capacity is None:
-            return -1
-        return (minimum_capacity - sum(ordered_packages)) % modulo
+            curr = left = 0
+            for b in box:
+                right = bisect.bisect_right(packages, b, left)
+                curr += b * (right-left)
+                left = right
+            result = min(result, curr)
+        return (result-sum(packages))%MOD if result != INF else -1

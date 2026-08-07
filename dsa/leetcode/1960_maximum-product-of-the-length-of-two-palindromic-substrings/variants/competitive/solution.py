@@ -1,43 +1,93 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
 class Solution:
-    def maxProduct(self, s: str) -> int:
-        length = len(s)
-        radius = [0] * length
-        left = 0
-        right = -1
+    def maxProduct(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def manacher(s):
+            s = '^#' + '#'.join(s) + '#$'
+            P = [0]*len(s)
+            C, R = 0, 0
+            for i in range(1, len(s)-1):
+                i_mirror = 2*C-i
+                if R > i:
+                    P[i] = min(R-i, P[i_mirror])
+                while s[i+1+P[i]] == s[i-1-P[i]]:
+                    P[i] += 1
+                if i+P[i] > R:
+                    C, R = i, i+P[i]
+            return P
 
-        for center in range(length):
-            current = 1 if center > right else min(radius[left + right - center], right - center + 1)
+        P = manacher(s)
+        q = collections.deque()
+        left = [0]
+        for i in range(len(s)):
+            while q and q[0][1] < i:
+                q.popleft()
+            left.append(max(left[-1], 1+2*(i-q[0][0]) if q else 1))
+            q.append((i, i+P[2*i+2]//2))
+        q = collections.deque()
+        result = right = 0
+        for i in reversed(range(len(s))):
+            while q and q[0][1] > i:
+                q.popleft()
+            right = max(right, 1+2*(q[0][0]-i) if q else 1)
+            q.append((i, i-P[2*i+2]//2))
+            result = max(result, left[i]*right)
+        return result
 
-            while center - current >= 0 and center + current < length and s[center - current] == s[center + current]:
-                current += 1
 
-            radius[center] = current
-            if center + current - 1 > right:
-                left = center - current + 1
-                right = center + current - 1
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def maxProduct(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def manacher(s):
+            s = '^#' + '#'.join(s) + '#$'
+            P = [0]*len(s)
+            C, R = 0, 0
+            for i in range(1, len(s)-1):
+                i_mirror = 2*C-i
+                if R > i:
+                    P[i] = min(R-i, P[i_mirror])
+                while s[i+1+P[i]] == s[i-1-P[i]]:
+                    P[i] += 1
+                if i+P[i] > R:
+                    C, R = i, i+P[i]
+            return P
 
-        ending = [0] * length
-        starting = [0] * length
+        import operator
+        def accumulate(iterable, func=operator.add, initial=None):
+            it = iter(iterable)
+            total = initial
+            if initial is None:
+                try:
+                    total = next(it)
+                except StopIteration:
+                    return
+            yield total
+            for element in it:
+                total = func(total, element)
+                yield total
 
-        for center, current in enumerate(radius):
-            palindrome_length = 2 * current - 1
-            ending[center + current - 1] = max(
-                ending[center + current - 1],
-                palindrome_length,
-            )
-            starting[center - current + 1] = max(
-                starting[center - current + 1],
-                palindrome_length,
-            )
-
-        for index in range(length - 2, -1, -1):
-            ending[index] = max(ending[index], ending[index + 1] - 2)
-        for index in range(1, length):
-            ending[index] = max(ending[index], ending[index - 1])
-
-        for index in range(1, length):
-            starting[index] = max(starting[index], starting[index - 1] - 2)
-        for index in range(length - 2, -1, -1):
-            starting[index] = max(starting[index], starting[index + 1])
-
-        return max(ending[index] * starting[index + 1] for index in range(length - 1))
+        def fin_max_len(s):
+            P = manacher(s)
+            intervals = [[(i-2)//2-P[i]//2, (i-2)//2+P[i]//2] for i in range(2,len(P)-2, 2)]
+            dp = [0]*len(s)
+            for l, r in reversed(intervals): 
+                dp[r] = r-l+1
+            for i in reversed(range(len(s)-1)):
+                dp[i] = max(dp[i], dp[i+1]-2)
+            return list(accumulate(dp, max, 0))
+        
+        l1, l2 = fin_max_len(s), fin_max_len(s[::-1])[::-1]
+        return max(x*y for x, y in itertools.izip(l1, l2))

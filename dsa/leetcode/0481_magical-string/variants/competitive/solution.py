@@ -1,12 +1,22 @@
+# Time:  O(n)
+# Space: O(logn)
+
+import itertools
+
+
 class Solution:
-    def magicalString(self, n: int) -> int:
-        if n <= 0:
-            return 0
-        magical = [1, 2, 2]
-        read = 2
-        next_value = 1
-        while len(magical) < n:
-            magical.extend([next_value] * magical[read])
-            next_value = 3 - next_value
-            read += 1
-        return magical[:n].count(1)
+    def magicalString(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def gen():  # see figure 1 on page 3 of http://www.emis.ams.org/journals/JIS/VOL15/Nilsson/nilsson5.pdf
+            for c in 1, 2, 2:
+                yield c
+            for i, c in enumerate(gen()):
+                if i > 1:
+                    for _ in range(c):
+                        yield i % 2 + 1
+
+        return sum(c & 1 for c in itertools.islice(gen(), n))
+

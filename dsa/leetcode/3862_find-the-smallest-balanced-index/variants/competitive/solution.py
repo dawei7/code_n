@@ -1,19 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def smallestBalancedIndex(self, nums: list[int]) -> int:
-        total_sum = sum(nums)
-        left_sum = total_sum
-        right_product = 1
-        overflow_value = total_sum + 1
-        answer = -1
-
-        for index in range(len(nums) - 1, -1, -1):
-            left_sum -= nums[index]
-            if left_sum == right_product:
-                answer = index
-
-            if right_product > total_sum // nums[index]:
-                right_product = overflow_value
-            else:
-                right_product *= nums[index]
-
-        return answer
+    def smallestBalancedIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, right = sum(nums), 1
+        for i in reversed(range(len(nums))):
+            left -= nums[i]
+            if left < right:
+                break
+            if left == right:
+                return i
+            right *= nums[i]
+        return -1

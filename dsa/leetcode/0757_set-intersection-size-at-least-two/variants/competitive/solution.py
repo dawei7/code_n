@@ -1,22 +1,21 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def intersectionSizeTwo(self, intervals: List[List[int]]) -> int:
-        intervals.sort(key=lambda interval: (interval[1], -interval[0]))
+    def intersectionSizeTwo(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        intervals.sort(key = lambda s_e: (s_e[0], -s_e[1]))
+        cnts = [2] * len(intervals)
+        result = 0
+        while intervals:
+            (start, _), cnt = intervals.pop(), cnts.pop()
+            for s in range(start, start+cnt):
+                for i in range(len(intervals)):
+                    if cnts[i] and s <= intervals[i][1]:
+                        cnts[i] -= 1
+            result += cnt
+        return result
 
-        left = -1
-        right = -1
-        selected_count = 0
-
-        for start, end in intervals:
-            if start > right:
-                selected_count += 2
-                left = end - 1
-                right = end
-            elif start > left:
-                selected_count += 1
-                left = right
-                right = end
-
-        return selected_count

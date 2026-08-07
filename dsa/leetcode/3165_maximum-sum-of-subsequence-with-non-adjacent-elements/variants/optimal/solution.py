@@ -1,43 +1,70 @@
+def max(a: int, b: int) -> int:
+    return a if a > b else b
+
+
+class Node:
+    __slots__ = "l", "r", "s00", "s01", "s10", "s11"
+
+    def __init__(self, l: int, r: int):
+        self.l = l
+        self.r = r
+        self.s00 = self.s01 = self.s10 = self.s11 = 0
+
+
+class SegmentTree:
+    __slots__ = "tr"
+
+    def __init__(self, n: int):
+        self.tr: List[Node | None] = [None] * (n << 2)
+        self.build(1, 1, n)
+
+    def build(self, u: int, l: int, r: int):
+        self.tr[u] = Node(l, r)
+        if l == r:
+            return
+        mid = (l + r) >> 1
+        self.build(u << 1, l, mid)
+        self.build(u << 1 | 1, mid + 1, r)
+
+    def query(self, u: int, l: int, r: int) -> int:
+        if self.tr[u].l >= l and self.tr[u].r <= r:
+            return self.tr[u].s11
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        ans = 0
+        if r <= mid:
+            ans = self.query(u << 1, l, r)
+        if l > mid:
+            ans = max(ans, self.query(u << 1 | 1, l, r))
+        return ans
+
+    def pushup(self, u: int):
+        left, right = self.tr[u << 1], self.tr[u << 1 | 1]
+        self.tr[u].s00 = max(left.s00 + right.s10, left.s01 + right.s00)
+        self.tr[u].s01 = max(left.s00 + right.s11, left.s01 + right.s01)
+        self.tr[u].s10 = max(left.s10 + right.s10, left.s11 + right.s00)
+        self.tr[u].s11 = max(left.s10 + right.s11, left.s11 + right.s01)
+
+    def modify(self, u: int, x: int, v: int):
+        if self.tr[u].l == self.tr[u].r:
+            self.tr[u].s11 = max(0, v)
+            return
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        if x <= mid:
+            self.modify(u << 1, x, v)
+        else:
+            self.modify(u << 1 | 1, x, v)
+        self.pushup(u)
+
+
 class Solution:
     def maximumSumSubsequence(self, nums: List[int], queries: List[List[int]]) -> int:
-        mod = 10**9 + 7
         n = len(nums)
-        tree = [(0, 0, 0, 0)] * (4 * n)
-
-        def merge(left, right):
-            l00, l01, l10, l11 = left
-            r00, r01, r10, r11 = right
-            return (
-                max(l00 + r10, l01 + r00),
-                max(l00 + r11, l01 + r01),
-                max(l10 + r10, l11 + r00),
-                max(l10 + r11, l11 + r01),
-            )
-
-        def build(node, low, high):
-            if low == high:
-                tree[node] = (0, 0, 0, max(0, nums[low]))
-                return
-            mid = (low + high) // 2
-            build(node * 2, low, mid)
-            build(node * 2 + 1, mid + 1, high)
-            tree[node] = merge(tree[node * 2], tree[node * 2 + 1])
-
-        def update(node, low, high, index, value):
-            if low == high:
-                tree[node] = (0, 0, 0, max(0, value))
-                return
-            mid = (low + high) // 2
-            if index <= mid:
-                update(node * 2, low, mid, index, value)
-            else:
-                update(node * 2 + 1, mid + 1, high, index, value)
-            tree[node] = merge(tree[node * 2], tree[node * 2 + 1])
-
-        build(1, 0, n - 1)
-        answer = 0
-        for index, value in queries:
-            update(1, 0, n - 1, index, value)
-            answer = (answer + tree[1][3]) % mod
-
-        return answer
+        tree = SegmentTree(n)
+        for i, x in enumerate(nums, 1):
+            tree.modify(1, i, x)
+        ans = 0
+        mod = 10**9 + 7
+        for i, x in queries:
+            tree.modify(1, i + 1, x)
+            ans = (ans + tree.query(1, 1, n)) % mod
+        return ans

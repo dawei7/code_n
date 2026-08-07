@@ -1,17 +1,18 @@
-from collections import deque
-
-
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
-        size = len(senate)
-        radiant = deque(index for index, party in enumerate(senate) if party == "R")
-        dire = deque(index for index, party in enumerate(senate) if party == "D")
-
-        while radiant and dire:
-            radiant_index = radiant.popleft()
-            dire_index = dire.popleft()
-            if radiant_index < dire_index:
-                radiant.append(radiant_index + size)
+        qr = deque()
+        qd = deque()
+        for i, c in enumerate(senate):
+            if c == "R":
+                qr.append(i)
             else:
-                dire.append(dire_index + size)
-        return "Radiant" if radiant else "Dire"
+                qd.append(i)
+        n = len(senate)
+        while qr and qd:
+            if qr[0] < qd[0]:
+                qr.append(qr[0] + n)
+            else:
+                qd.append(qd[0] + n)
+            qr.popleft()
+            qd.popleft()
+        return "Radiant" if qr else "Dire"

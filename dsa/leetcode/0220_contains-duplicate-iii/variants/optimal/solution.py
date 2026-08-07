@@ -1,19 +1,13 @@
-from typing import List
-
-
 class Solution:
-    def containsNearbyAlmostDuplicate(self, nums: List[int], indexDiff: int, valueDiff: int) -> bool:
-        width = valueDiff + 1
-        buckets = {}
-        for index, value in enumerate(nums):
-            bucket = value // width
-            if bucket in buckets:
+    def containsNearbyAlmostDuplicate(
+        self, nums: List[int], indexDiff: int, valueDiff: int
+    ) -> bool:
+        s = SortedSet()
+        for i, v in enumerate(nums):
+            j = s.bisect_left(v - valueDiff)
+            if j < len(s) and s[j] <= v + valueDiff:
                 return True
-            if bucket - 1 in buckets and value - buckets[bucket - 1] <= valueDiff:
-                return True
-            if bucket + 1 in buckets and buckets[bucket + 1] - value <= valueDiff:
-                return True
-            buckets[bucket] = value
-            if index >= indexDiff:
-                buckets.pop(nums[index - indexDiff] // width, None)
+            s.add(v)
+            if i >= indexDiff:
+                s.remove(nums[i - indexDiff])
         return False

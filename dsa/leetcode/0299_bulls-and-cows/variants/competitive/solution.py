@@ -1,13 +1,42 @@
+# Time:  O(n)
+# Space: O(10) = O(1)
+
+import operator
+
+
+# One pass solution.
+from collections import defaultdict, Counter
+from itertools import izip, imap
+
+
 class Solution:
-    def getHint(self, secret: str, guess: str) -> str:
-        bulls = 0
-        secret_counts = [0] * 10
-        guess_counts = [0] * 10
-        for secret_digit, guess_digit in zip(secret, guess):
-            if secret_digit == guess_digit:
-                bulls += 1
+    def getHint(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        A, B = 0, 0
+        lookup = defaultdict(int)
+        for s, g in izip(secret, guess):
+            if s == g:
+                A += 1
             else:
-                secret_counts[ord(secret_digit) - ord("0")] += 1
-                guess_counts[ord(guess_digit) - ord("0")] += 1
-        cows = sum(min(left, right) for left, right in zip(secret_counts, guess_counts))
-        return f"{bulls}A{cows}B"
+                B += int(lookup[s] < 0) + int(lookup[g] > 0)
+                lookup[s] += 1
+                lookup[g] -= 1
+        return "%dA%dB" % (A, B)
+
+
+# Two pass solution.
+class Solution2(object):
+    def getHint(self, secret, guess):
+        """
+        :type secret: str
+        :type guess: str
+        :rtype: str
+        """
+        A = sum(imap(operator.eq, secret, guess))
+        B = sum((Counter(secret) & Counter(guess)).values()) - A
+        return "%dA%dB" % (A, B)
+

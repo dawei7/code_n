@@ -1,38 +1,30 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
-        def transform(value: int) -> int:
-            return a * value * value + b * value + c
+    def sortTransformedArray(self, nums, a, b, c):
+        """
+        :type nums: List[int]
+        :type a: int
+        :type b: int
+        :type c: int
+        :rtype: List[int]
+        """
+        f = lambda x, a, b, c : a * x * x + b * x + c
 
-        result = [0] * len(nums)
-        left = 0
-        right = len(nums) - 1
+        result = []
+        if not nums:
+            return result
 
-        if a >= 0:
-            write = len(nums) - 1
-            while left <= right:
-                left_value = transform(nums[left])
-                right_value = transform(nums[right])
-                if left_value > right_value:
-                    result[write] = left_value
-                    left += 1
-                else:
-                    result[write] = right_value
-                    right -= 1
-                write -= 1
-        else:
-            write = 0
-            while left <= right:
-                left_value = transform(nums[left])
-                right_value = transform(nums[right])
-                if left_value < right_value:
-                    result[write] = left_value
-                    left += 1
-                else:
-                    result[write] = right_value
-                    right -= 1
-                write += 1
+        left, right = 0, len(nums) - 1
+        d = -1 if a > 0 else 1
+        while left <= right:
+            if d * f(nums[left], a, b, c) < d * f(nums[right], a, b, c):
+                result.append(f(nums[left], a, b, c))
+                left += 1
+            else:
+                result.append(f(nums[right], a, b, c))
+                right -= 1
 
-        return result
+        return result[::d]
+

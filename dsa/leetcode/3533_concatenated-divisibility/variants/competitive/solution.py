@@ -1,46 +1,49 @@
+# Time:  O(nlogr + k * n * 2^n)
+# Space: O(logr + k * 2^n)
+
+# dp, backtracing
 class Solution:
-    def concatenatedDivisibility(self, nums: List[int], k: int) -> List[int]:
-        length = len(nums)
-        full_mask = (1 << length) - 1
-        order = sorted(range(length), key=lambda index: nums[index])
-        shifts = [pow(10, len(str(value)), k) for value in nums]
-        memo = bytearray((1 << length) * k)
+    def concatenatedDivisibility(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        def length(x):
+            l = 0
+            while x:
+                l += 1
+                x //= 10
+            return max(l, 1)
 
-        def can_finish(mask, remainder):
-            if mask == full_mask:
-                return remainder == 0
-
-            state = mask * k + remainder
-            if memo[state]:
-                return memo[state] == 2
-
-            for index in order:
-                bit = 1 << index
-                if not mask & bit:
-                    next_remainder = (remainder * shifts[index] + nums[index]) % k
-                    if can_finish(mask | bit, next_remainder):
-                        memo[state] = 2
-                        return True
-
-            memo[state] = 1
-            return False
-
-        if not can_finish(0, 0):
-            return []
-
-        answer = []
-        mask = 0
-        remainder = 0
-
-        while mask != full_mask:
-            for index in order:
-                bit = 1 << index
-                if not mask & bit:
-                    next_remainder = (remainder * shifts[index] + nums[index]) % k
-                    if can_finish(mask | bit, next_remainder):
-                        answer.append(nums[index])
-                        mask |= bit
-                        remainder = next_remainder
+        lookup = [length(x) for x in nums]
+        mx = max(lookup)
+        pow10 = [0]*(mx+1)
+        pow10[0] = 1%k
+        for i in range(len(pow10)-1):
+            pow10[i+1] = (pow10[i]*10)%k
+        dp = [[False]*k for _ in range(1<<len(nums))]
+        dp[-1][0] = True
+        for mask in reversed(range(len(dp)-1)):
+            for r in range(k):
+                for i, l in enumerate(lookup):
+                    if mask&(1<<i):
+                        continue
+                    if dp[mask|(1<<i)][(r*pow10[l]+nums[i])%k]:
+                        dp[mask][r] = True
                         break
-
-        return answer
+        result = []
+        if not dp[0][0]:
+            return result
+        order = sorted((x, i) for i, x in enumerate(nums))
+        mask = r = 0
+        for _ in range(len(nums)):
+            for _, i in order:
+                if mask&(1<<i):
+                    continue
+                if dp[mask|(1<<i)][(r*pow10[lookup[i]]+nums[i])%k]:
+                    result.append(nums[i])
+                    mask |= 1<<i
+                    r = (r*pow10[lookup[i]]+nums[i])%k
+                    break
+        return result

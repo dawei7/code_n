@@ -1,30 +1,19 @@
-from typing import List
-
-
 class Solution:
     def getSubarrayBeauty(self, nums: List[int], k: int, x: int) -> List[int]:
-        negative_counts = [0] * 51
-        beauties = []
+        def f(x: int) -> int:
+            s = 0
+            for i in range(50):
+                s += cnt[i]
+                if s >= x:
+                    return i - 50
+            return 0
 
-        for right, value in enumerate(nums):
-            if value < 0:
-                negative_counts[-value] += 1
-
-            if right >= k:
-                outgoing = nums[right - k]
-                if outgoing < 0:
-                    negative_counts[-outgoing] -= 1
-
-            if right < k - 1:
-                continue
-
-            remaining = x
-            beauty = 0
-            for magnitude in range(50, 0, -1):
-                remaining -= negative_counts[magnitude]
-                if remaining <= 0:
-                    beauty = -magnitude
-                    break
-            beauties.append(beauty)
-
-        return beauties
+        cnt = [0] * 101
+        for v in nums[:k]:
+            cnt[v + 50] += 1
+        ans = [f(x)]
+        for i in range(k, len(nums)):
+            cnt[nums[i] + 50] += 1
+            cnt[nums[i - k] + 50] -= 1
+            ans.append(f(x))
+        return ans

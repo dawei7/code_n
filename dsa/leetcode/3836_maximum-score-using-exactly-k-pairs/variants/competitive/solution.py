@@ -1,28 +1,58 @@
+# Time:  O(n * m * k)
+# Space: O(min(n, m) * k)
+
+# dp
 class Solution:
-    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        left_values = nums1
-        right_values = nums2
-        if len(right_values) > len(left_values):
-            left_values, right_values = right_values, left_values
-
-        width = len(right_values)
-        negative_infinity = -(10**30)
-        previous = [[0] * (width + 1)] + [[negative_infinity] * (width + 1) for _ in range(k)]
-
-        for left_value in left_values:
-            current = [[0] * (width + 1)] + [[negative_infinity] * (width + 1) for _ in range(k)]
-
-            for pair_count in range(1, k + 1):
-                for right_index, right_value in enumerate(right_values, start=1):
-                    best = max(
-                        previous[pair_count][right_index],
-                        current[pair_count][right_index - 1],
+    def maxScore(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+        NEG_INF = float("-inf")
+        if len(nums1) < len(nums2):
+            nums1, nums2 = nums2, nums1
+        dp = [[NEG_INF]*(k+1) for _ in range(len(nums2)+1)]
+        for j in range(len(nums2)+1):
+            dp[j][0] = 0
+        new_dp = [[NEG_INF]*(k+1) for _ in range(len(nums2)+1)]
+        for i in range(len(nums1)):
+            for j in range(len(nums2)+1):
+                new_dp[j][0] = 0
+            for j in range(len(nums2)):
+                score = nums1[i]*nums2[j]
+                for c in range(min(i+1, j+1, k)):
+                    new_dp[j+1][c+1] = max(
+                        new_dp[j][c+1],
+                        dp[j+1][c+1],
+                        dp[j][c]+score
                     )
-                    diagonal = previous[pair_count - 1][right_index - 1]
-                    if diagonal != negative_infinity:
-                        best = max(best, diagonal + left_value * right_value)
-                    current[pair_count][right_index] = best
+            dp, new_dp = new_dp, dp
+        return dp[-1][-1]
 
-            previous = current
 
-        return previous[k][width]
+# Time:  O(n * m * k)
+# Space: O(n * m)
+# dp
+class Solution:
+    def maxScore(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+        NEG_INF = float("-inf")        
+        dp = [[NEG_INF]*len(nums2) for _ in range(len(nums1))]
+        new_dp = [[NEG_INF]*len(nums2) for _ in range(len(nums1))]
+        for c in range(k):
+            for i in range(c, len(nums1)):
+                for j in range(c, len(nums2)):
+                    new_dp[i][j] = max(
+                        new_dp[i][j-1] if j-1 >= c else NEG_INF,
+                        new_dp[i-1][j] if i-1 >= c else NEG_INF,
+                        (dp[i-1][j-1] if c else 0) + nums1[i]*nums2[j]
+                    )
+            dp, new_dp = new_dp, dp
+        return dp[-1][-1]

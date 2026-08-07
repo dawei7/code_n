@@ -1,31 +1,37 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(n + elogn)
+# Space: O(n + e)
+
+import heapq
 
 
+# dijkstra's algorithm
 class Solution:
-    def minTime(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for source, destination, start, end in edges:
-            graph[source].append((destination, start, end))
-
-        infinity = float("inf")
-        earliest = [infinity] * n
-        earliest[0] = 0
-        queue = [(0, 0)]
-
-        while queue:
-            time, node = heappop(queue)
-            if time != earliest[node]:
-                continue
-            if node == n - 1:
-                return time
-
-            for neighbor, start, end in graph[node]:
-                if time > end:
+    def minTime(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def dijkstra():
+            best = [float("inf")]*len(adj)
+            best[0] = 0
+            min_heap = [(best[0], 0)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if curr != best[u]:
                     continue
-                arrival = max(time, start) + 1
-                if arrival < earliest[neighbor]:
-                    earliest[neighbor] = arrival
-                    heappush(queue, (arrival, neighbor))
+                if u == len(adj)-1:
+                    return curr
+                for v, s, e in adj[u]:
+                    if curr > e:
+                        continue
+                    if not (best[v] > max(curr, s)+1):
+                        continue
+                    best[v] = max(curr, s)+1
+                    heapq.heappush(min_heap, (best[v], v))
+            return -1
 
-        return -1
+        adj = [[] for _ in range(n)]
+        for u, v, s, e in edges:
+            adj[u].append((v, s, e))
+        return dijkstra()

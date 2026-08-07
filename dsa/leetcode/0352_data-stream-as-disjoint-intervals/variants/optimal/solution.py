@@ -1,36 +1,33 @@
-from typing import List
-
-
 class SummaryRanges:
     def __init__(self):
-        self.present = set()
-        self.start_to_end = {}
-        self.end_to_start = {}
+        self.mp = SortedDict()
 
-    def addNum(self, value: int) -> None:
-        if value in self.present:
-            return
-        self.present.add(value)
-
-        has_left = value - 1 in self.present
-        has_right = value + 1 in self.present
-
-        if has_left and has_right:
-            start = self.end_to_start.pop(value - 1)
-            end = self.start_to_end.pop(value + 1)
-            self.start_to_end[start] = end
-            self.end_to_start[end] = start
-        elif has_left:
-            start = self.end_to_start.pop(value - 1)
-            self.start_to_end[start] = value
-            self.end_to_start[value] = start
-        elif has_right:
-            end = self.start_to_end.pop(value + 1)
-            self.start_to_end[value] = end
-            self.end_to_start[end] = value
+    def addNum(self, val: int) -> None:
+        n = len(self.mp)
+        ridx = self.mp.bisect_right(val)
+        lidx = n if ridx == 0 else ridx - 1
+        keys = self.mp.keys()
+        values = self.mp.values()
+        if (
+            lidx != n
+            and ridx != n
+            and values[lidx][1] + 1 == val
+            and values[ridx][0] - 1 == val
+        ):
+            self.mp[keys[lidx]][1] = self.mp[keys[ridx]][1]
+            self.mp.pop(keys[ridx])
+        elif lidx != n and val <= values[lidx][1] + 1:
+            self.mp[keys[lidx]][1] = max(val, self.mp[keys[lidx]][1])
+        elif ridx != n and val >= values[ridx][0] - 1:
+            self.mp[keys[ridx]][0] = min(val, self.mp[keys[ridx]][0])
         else:
-            self.start_to_end[value] = value
-            self.end_to_start[value] = value
+            self.mp[val] = [val, val]
 
     def getIntervals(self) -> List[List[int]]:
-        return [[start, self.start_to_end[start]] for start in sorted(self.start_to_end)]
+        return list(self.mp.values())
+
+
+# # Your SummaryRanges object will be instantiated and called as such:
+# # obj = SummaryRanges()
+# # obj.addNum(val)
+# # param_2 = obj.getIntervals()

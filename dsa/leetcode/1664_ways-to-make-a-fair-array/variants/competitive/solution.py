@@ -1,16 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def waysToMakeFair(self, nums: List[int]) -> int:
-        right = [sum(nums[::2]), sum(nums[1::2])]
-        left = [0, 0]
-        answer = 0
-
-        for index, value in enumerate(nums):
-            right[index % 2] -= value
-            if left[0] + right[1] == left[1] + right[0]:
-                answer += 1
-            left[index % 2] += value
-
-        return answer
+    def waysToMakeFair(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        prefix = [0]*2
+        suffix = [sum(nums[i] for i in range(k, len(nums), 2)) for k in range(2)]
+        result = 0
+        for i, num in enumerate(nums):
+            suffix[i%2] -= num
+            result += int(prefix[0]+suffix[1] == prefix[1]+suffix[0])
+            prefix[i%2] += num
+        return result

@@ -1,23 +1,24 @@
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> Optional["TreeNode"]:
-        postorder_index = {value: index for index, value in enumerate(postorder)}
-        preorder_index = 0
-
-        def build(left: int, right: int) -> "TreeNode":
-            nonlocal preorder_index
-            root = TreeNode(preorder[preorder_index])
-            preorder_index += 1
-            if left == right:
+    def constructFromPrePost(
+        self, preorder: List[int], postorder: List[int]
+    ) -> Optional[TreeNode]:
+        def dfs(a: int, b: int, c: int, d: int) -> Optional[TreeNode]:
+            if a > b:
+                return None
+            root = TreeNode(preorder[a])
+            if a == b:
                 return root
-
-            first_child_root = preorder[preorder_index]
-            first_child_end = postorder_index[first_child_root]
-            root.left = build(left, first_child_end)
-            if first_child_end + 1 < right:
-                root.right = build(first_child_end + 1, right - 1)
+            i = pos[preorder[a + 1]]
+            m = i - c + 1
+            root.left = dfs(a + 1, a + m, c, i)
+            root.right = dfs(a + m + 1, b, i + 1, d - 1)
             return root
 
-        return build(0, len(postorder) - 1)
+        pos = {x: i for i, x in enumerate(postorder)}
+        return dfs(0, len(preorder) - 1, 0, len(postorder) - 1)

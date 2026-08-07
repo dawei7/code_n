@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     def smallestEqual(self, nums: List[int]) -> int:
-        for index, value in enumerate(nums):
-            if index % 10 == value:
-                return index
+        for i, x in enumerate(nums):
+            if i % 10 == x:
+                return i
         return -1

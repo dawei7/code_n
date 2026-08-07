@@ -1,33 +1,25 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def recoverArray(self, nums: List[int]) -> List[int]:
-        numbers = sorted(nums)
-        target_length = len(numbers) // 2
-
-        for candidate in numbers[1:]:
-            difference = candidate - numbers[0]
-            if difference <= 0 or difference % 2:
+        nums.sort()
+        n = len(nums)
+        for i in range(1, n):
+            d = nums[i] - nums[0]
+            if d == 0 or d % 2 == 1:
                 continue
-
-            remaining = Counter(numbers)
-            recovered: List[int] = []
-
-            for lower in numbers:
-                if remaining[lower] == 0:
-                    continue
-
-                higher = lower + difference
-                if remaining[higher] == 0:
+            vis = [False] * n
+            vis[i] = True
+            ans = [(nums[0] + nums[i]) >> 1]
+            l, r = 1, i + 1
+            while r < n:
+                while l < n and vis[l]:
+                    l += 1
+                while r < n and nums[r] - nums[l] < d:
+                    r += 1
+                if r == n or nums[r] - nums[l] > d:
                     break
-
-                remaining[lower] -= 1
-                remaining[higher] -= 1
-                recovered.append(lower + difference // 2)
-
-            if len(recovered) == target_length:
-                return recovered
-
+                vis[r] = True
+                ans.append((nums[l] + nums[r]) >> 1)
+                l, r = l + 1, r + 1
+            if len(ans) == (n >> 1):
+                return ans
         return []

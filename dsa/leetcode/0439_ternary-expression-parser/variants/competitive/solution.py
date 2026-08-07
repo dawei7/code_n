@@ -1,13 +1,30 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def parseTernary(self, expression: str) -> str:
+    def parseTernary(self, expression):
+        """
+        :type expression: str
+        :rtype: str
+        """
+        if not expression:
+            return ""
+
         stack = []
-        for character in reversed(expression):
-            if stack and stack[-1] == "?":
-                stack.pop()
-                true_value = stack.pop()
-                stack.pop()
-                false_value = stack.pop()
-                stack.append(true_value if character == "T" else false_value)
+        for c in expression[::-1]:
+            if stack and stack[-1] == '?':
+                stack.pop()  # pop '?'
+                first = stack.pop()
+                stack.pop()  # pop ':'
+                second = stack.pop()
+
+                if c == 'T':
+                    stack.append(first)
+                else:
+                    stack.append(second)
             else:
-                stack.append(character)
-        return stack[-1]
+                stack.append(c)
+
+
+        return str(stack[-1])
+

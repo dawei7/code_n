@@ -1,14 +1,17 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, prefix sum, greedy
 class Solution:
-    def largestPerimeter(self, nums: List[int]) -> int:
-        prefix_sum = 0
-        answer = -1
-
-        for side in sorted(nums):
-            if prefix_sum > side:
-                answer = prefix_sum + side
-            prefix_sum += side
-
-        return answer
+    def largestPerimeter(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        prefix = sum(nums)
+        for i in reversed(range(2, len(nums))):
+            prefix -= nums[i]
+            if prefix > nums[i]:
+                return prefix+nums[i]
+        return -1

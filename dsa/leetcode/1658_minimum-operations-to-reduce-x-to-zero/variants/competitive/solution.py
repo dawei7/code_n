@@ -1,22 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minOperations(self, nums: List[int], x: int) -> int:
-        target = sum(nums) - x
-        if target < 0:
-            return -1
-
-        left = 0
-        window_sum = 0
-        longest = -1
-
-        for right, value in enumerate(nums):
-            window_sum += value
-            while window_sum > target and left <= right:
-                window_sum -= nums[left]
+    def minOperations(self, nums, x):
+        """
+        :type nums: List[int]
+        :type x: int
+        :rtype: int
+        """
+        target = sum(nums)-x
+        result = -1
+        curr = left = 0
+        for right in range(len(nums)):
+            curr += nums[right]
+            while left < len(nums) and curr > target:
+                curr -= nums[left]
                 left += 1
-            if window_sum == target:
-                longest = max(longest, right - left + 1)
-
-        return -1 if longest < 0 else len(nums) - longest
+            if curr == target:
+                result = max(result, right-left+1)
+        return len(nums)-result if result != -1 else -1

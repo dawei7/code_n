@@ -1,11 +1,9 @@
 class Solution:
     def evenOddBit(self, n: int) -> List[int]:
-        counts = [0, 0]
-        index = 0
-
+        ans = [0, 0]
+        i = 0
         while n:
-            counts[index & 1] += n & 1
+            ans[i] += n & 1
+            i ^= 1
             n >>= 1
-            index += 1
-
-        return counts
+        return ans

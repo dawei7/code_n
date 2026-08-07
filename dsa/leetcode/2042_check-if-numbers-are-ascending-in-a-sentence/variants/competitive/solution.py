@@ -1,12 +1,32 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def areNumbersAscending(self, s: str) -> bool:
-        previous = 0
+    def areNumbersAscending(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        prev = curr = -1
+        for i, c in enumerate(s):
+            if c.isdigit():
+                curr = max(curr, 0)*10+int(c)
+                continue
+            if prev != -1 and curr != -1 and prev >= curr:
+                return False
+            if curr != -1:
+                prev = curr
+            curr = -1            
+        return curr == -1 or prev < curr
 
-        for token in s.split():
-            if token.isdigit():
-                current = int(token)
-                if current <= previous:
-                    return False
-                previous = current
 
-        return True
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def areNumbersAscending(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        nums = [int(x) for x in s.split() if x.isdigit()]
+        return all(nums[i] < nums[i+1] for i in range(len(nums)-1))

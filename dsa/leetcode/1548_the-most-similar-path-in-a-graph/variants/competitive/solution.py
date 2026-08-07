@@ -1,35 +1,29 @@
-from typing import List
-
+# Time:  O(n^2 * m), m is the length of targetPath
+# Space: O(n * m)
 
 class Solution:
-    def mostSimilar(
-        self,
-        n: int,
-        roads: List[List[int]],
-        names: List[str],
-        targetPath: List[str],
-    ) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for left, right in roads:
-            graph[left].append(right)
-            graph[right].append(left)
+    def mostSimilar(self, n, roads, names, targetPath):
+        """
+        :type n: int
+        :type roads: List[List[int]]
+        :type names: List[str]
+        :type targetPath: List[str]
+        :rtype: List[int]
+        """
+        adj = [[] for _ in range(n)]
+        for u, v in roads:
+            adj[u].append(v)
+            adj[v].append(u)
 
-        length = len(targetPath)
-        previous = [int(names[city] != targetPath[0]) for city in range(n)]
-        parent = [[-1] * n for _ in range(length)]
+        dp = [[0]*n for _ in range(len(targetPath)+1)]
+        for i in range(1, len(targetPath)+1):
+            for v in range(n):
+                dp[i][v] = (names[v] != targetPath[i-1]) + min(dp[i-1][u] for u in adj[v]) 
 
-        for index in range(1, length):
-            current = [0] * n
-            for city in range(n):
-                predecessor = min(graph[city], key=previous.__getitem__)
-                current[city] = previous[predecessor] + int(names[city] != targetPath[index])
-                parent[index][city] = predecessor
-            previous = current
-
-        city = min(range(n), key=previous.__getitem__)
-        path = [city]
-        for index in range(length - 1, 0, -1):
-            city = parent[index][city]
-            path.append(city)
-
+        path = [dp[-1].index(min(dp[-1]))]
+        for i in reversed(range(2, len(targetPath)+1)):
+            for u in adj[path[-1]]:
+                if dp[i-1][u]+(names[path[-1]] != targetPath[i-1]) == dp[i][path[-1]]:
+                    path.append(u)
+                    break
         return path[::-1]

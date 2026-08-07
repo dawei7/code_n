@@ -1,8 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def countElements(self, nums: List[int]) -> int:
-        minimum = min(nums)
-        maximum = max(nums)
-        return sum(minimum < value < maximum for value in nums)
+    def countElements(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mn = min(nums)
+        mx = max(nums)
+        return sum(mn < x < mx for x in nums)

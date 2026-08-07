@@ -1,39 +1,109 @@
+# Time:  O(n * b)
+# Space: O(n + b)
+
+import collections
+
+
+# iterative dfs, tree dp
 class Solution:
-    def maxProfit(self, n: int, present: list[int], future: list[int], hierarchy: list[list[int]], budget: int) -> int:
-        children: list[list[int]] = [[] for _ in range(n)]
-        for boss, employee in hierarchy:
-            children[boss - 1].append(employee - 1)
-        unreachable = -(10**9)
+    def maxProfit(self, n, present, future, hierarchy, budget):
+        """
+        :type n: int
+        :type present: List[int]
+        :type future: List[int]
+        :type hierarchy: List[List[int]]
+        :type budget: int
+        :rtype: int
+        """
+        def iter_dfs():
+            ret = []
+            stk = [(1, (0, ret))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u, ret = args
+                    ret[:] = [collections.defaultdict(int) for _ in range(2)]
+                    ret[0][0] = ret[1][0] = 0
+                    stk.append((4, (u, ret)))
+                    stk.append((2, (u, 0, ret)))
+                elif step == 2:
+                    u, i, ret = args
+                    if i == len(adj[u]):
+                        continue
+                    v = adj[u][i]
+                    stk.append((2, (u, i+1, ret)))
+                    new_ret = []
+                    stk.append((3, (new_ret, ret)))
+                    stk.append((1, (v, new_ret)))
+                elif step == 3:
+                    new_ret, ret = args
+                    for i in range(2):
+                        for j1, v1 in ret[i].items():
+                            for j2, v2 in new_ret[i].iteritems():
+                                if j1+j2 <= budget:
+                                    ret[i][j1+j2] = max(ret[i][j1+j2], v1+v2)
+                elif step == 4:
+                    u, ret = args
+                    new_ret = [collections.defaultdict(int) for _ in range(2)]
+                    for i in range(2):
+                        for j, v in ret[0].iteritems():
+                            new_ret[i][j] = max(new_ret[i][j], v)
+                        cost = present[u]>>i
+                        if cost > budget:
+                            continue
+                        profit = future[u]-cost
+                        for j, v in ret[1].iteritems():
+                            if j+cost <= budget:
+                                new_ret[i][j+cost] = max(new_ret[i][j+cost], v+profit)
+                    ret[:] = new_ret
+            return max(ret[0].itervalues())
 
-        def merge(left: list[int], right: list[int]) -> list[int]:
-            combined = [unreachable] * (budget + 1)
-            for left_cost, left_profit in enumerate(left):
-                if left_profit == unreachable:
+        adj = [[] for _ in range(n)]
+        for u, v in hierarchy:
+            adj[u-1].append(v-1)
+        return iter_dfs()
+
+
+# Time:  O(n * b)
+# Space: O(n + b)
+import collections
+
+
+# dfs, tree dp
+class Solution2(object):
+    def maxProfit(self, n, present, future, hierarchy, budget):
+        """
+        :type n: int
+        :type present: List[int]
+        :type future: List[int]
+        :type hierarchy: List[List[int]]
+        :type budget: int
+        :rtype: int
+        """
+        def dfs(u):
+            dp = [collections.defaultdict(int) for _ in range(2)]
+            dp[0][0] = dp[1][0] = 0
+            for v in adj[u]:
+                new_dp = dfs(v)
+                for i in range(2):
+                    for j1, v1 in dp[i].items():
+                        for j2, v2 in new_dp[i].iteritems():
+                            if j1+j2 <= budget:
+                                dp[i][j1+j2] = max(dp[i][j1+j2], v1+v2)
+            result = [collections.defaultdict(int) for _ in range(2)]
+            for i in range(2):
+                for j, v in dp[0].iteritems():
+                    result[i][j] = max(result[i][j], v)
+                cost = present[u]>>i
+                if cost > budget:
                     continue
-                for right_cost in range(budget - left_cost + 1):
-                    right_profit = right[right_cost]
-                    if right_profit != unreachable:
-                        total_cost = left_cost + right_cost
-                        combined[total_cost] = max(combined[total_cost], left_profit + right_profit)
-            return combined
+                profit = future[u]-cost
+                for j, v in dp[1].iteritems():
+                    if j+cost <= budget:
+                        result[i][j+cost] = max(result[i][j+cost], v+profit)
+            return result  # result[i][j]: max profit for budget j with i discount
 
-        def visit(employee: int) -> tuple[list[int], list[int]]:
-            skip_children = [0] + [unreachable] * budget
-            buy_children = skip_children.copy()
-            for child in children[employee]:
-                child_without_discount, child_with_discount = visit(child)
-                skip_children = merge(skip_children, child_without_discount)
-                buy_children = merge(buy_children, child_with_discount)
-            results: list[list[int]] = []
-            for price in (present[employee], present[employee] // 2):
-                current = skip_children.copy()
-                for child_cost in range(budget - price + 1):
-                    child_profit = buy_children[child_cost]
-                    if child_profit != unreachable:
-                        total_cost = child_cost + price
-                        current[total_cost] = max(current[total_cost], child_profit + future[employee] - price)
-                results.append(current)
-            return (results[0], results[1])
-
-        root_without_discount, _ = visit(0)
-        return max(root_without_discount)
+        adj = [[] for _ in range(n)]
+        for u, v in hierarchy:
+            adj[u-1].append(v-1)
+        return max(dfs(0)[0].itervalues())

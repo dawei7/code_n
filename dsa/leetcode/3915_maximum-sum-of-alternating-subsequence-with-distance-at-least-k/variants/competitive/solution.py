@@ -1,46 +1,42 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# sort, coordinate compression, fenwick tree, sliding window, dp
+class BIT(object):  # 0-indexed.
+    def __init__(self, n):
+        self.__bit = [0]*(n+1)  # Extra one for dummy node.
+
+    def add(self, i, val):
+        i += 1  # Extra one for dummy node.
+        while i < len(self.__bit):
+            self.__bit[i] = max(self.__bit[i], val)  # modified
+            i += (i & -i)
+
+    def query(self, i):
+        i += 1  # Extra one for dummy node.
+        ret = 0
+        while i > 0:
+            ret = max(ret, self.__bit[i])  # modified
+            i -= (i & -i)
+        return ret
+
+
 class Solution:
-    def maxAlternatingSum(self, nums: list[int], k: int) -> int:
-        values = sorted(set(nums))
-        value_count = len(values)
-        rank_of = {value: rank for rank, value in enumerate(values, 1)}
-        ranks = [rank_of[value] for value in nums]
-
-        smaller_down = [0] * (value_count + 1)
-        larger_up = [0] * (value_count + 1)
-
-        def update(tree: list[int], index: int, score: int) -> None:
-            while index <= value_count:
-                if score > tree[index]:
-                    tree[index] = score
-                index += index & -index
-
-        def query(tree: list[int], index: int) -> int:
-            best = 0
-            while index > 0:
-                if tree[index] > best:
-                    best = tree[index]
-                index -= index & -index
-            return best
-
-        n = len(nums)
-        up = [0] * n
-        down = [0] * n
-        answer = 0
-
-        for index, value in enumerate(nums):
-            eligible = index - k
-            if eligible >= 0:
-                eligible_rank = ranks[eligible]
-                update(smaller_down, eligible_rank, down[eligible])
-                update(
-                    larger_up,
-                    value_count - eligible_rank + 1,
-                    up[eligible],
-                )
-
-            rank = ranks[index]
-            up[index] = value + query(smaller_down, rank - 1)
-            down[index] = value + query(larger_up, value_count - rank)
-            answer = max(answer, up[index], down[index])
-
-        return answer
+    def maxAlternatingSum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        val_to_idx = {x:i for i, x in enumerate(sorted(set(nums)))}
+        bit = [BIT(len(val_to_idx)) for _ in range(2)]
+        dp = [[0]*len(nums) for _ in range(2)]
+        for i in range(len(nums)):
+            if i-k >= 0:
+                idx = val_to_idx[nums[i-k]]
+                bit[0].add(idx, dp[0][i-k])
+                bit[1].add((len(val_to_idx)-1)-idx, dp[1][i-k])
+            idx = val_to_idx[nums[i]]
+            dp[1][i] = bit[0].query(idx-1)+nums[i]
+            dp[0][i] = bit[1].query(((len(val_to_idx)-1)-idx)-1)+nums[i]
+        return max(max(dp[0]), max(dp[1]))

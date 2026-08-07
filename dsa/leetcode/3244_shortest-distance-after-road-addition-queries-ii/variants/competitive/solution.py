@@ -1,18 +1,21 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
+# sorted list
 class Solution:
-    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        next_city = list(range(1, n + 1))
-        distance = n - 1
-        answer = []
-
-        for source, destination in queries:
-            while next_city[source] < destination:
-                successor = next_city[source]
-                next_city[source] = destination
-                source = successor
-                distance -= 1
-            answer.append(distance)
-
-        return answer
+    def shortestDistanceAfterQueries(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        sl = SortedList(range(n))
+        result = []
+        for u, v in queries:
+            for i in reversed(range(sl.bisect_right(u), sl.bisect_left(v))): 
+                sl.pop(i)
+            result.append(len(sl)-1)
+        return result

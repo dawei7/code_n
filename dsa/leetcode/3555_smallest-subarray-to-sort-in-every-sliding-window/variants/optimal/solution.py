@@ -1,22 +1,19 @@
 class Solution:
-    def minSubarraySort(self, nums: list[int], k: int) -> list[int]:
-        answers: list[int] = []
-        for start in range(len(nums) - k + 1):
-            window = nums[start : start + k]
-            left = 0
-            while left + 1 < k and window[left] <= window[left + 1]:
-                left += 1
-            if left == k - 1:
-                answers.append(0)
-                continue
-            right = k - 1
-            while window[right - 1] <= window[right]:
-                right -= 1
-            core_minimum = min(window[left : right + 1])
-            core_maximum = max(window[left : right + 1])
-            while left > 0 and window[left - 1] > core_minimum:
-                left -= 1
-            while right + 1 < k and window[right + 1] < core_maximum:
-                right += 1
-            answers.append(right - left + 1)
-        return answers
+    def minSubarraySort(self, nums: List[int], k: int) -> List[int]:
+        def f(i: int, j: int) -> int:
+            mi, mx = inf, -inf
+            l = r = -1
+            for k in range(i, j + 1):
+                if mx > nums[k]:
+                    r = k
+                else:
+                    mx = nums[k]
+                p = j - k + i
+                if mi < nums[p]:
+                    l = p
+                else:
+                    mi = nums[p]
+            return 0 if r == -1 else r - l + 1
+
+        n = len(nums)
+        return [f(i, i + k - 1) for i in range(n - k + 1)]

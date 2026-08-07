@@ -1,17 +1,20 @@
+# Time:  O(n)
+# Space: O(n)
+
+# mono stack, combinatorics
 class Solution:
-    def numberOfSubarrays(self, nums: List[int]) -> int:
-        stack = []
-        answer = 0
-
-        for value in nums:
-            while stack and stack[-1][0] < value:
-                stack.pop()
-
-            if stack and stack[-1][0] == value:
-                stack[-1][1] += 1
-            else:
-                stack.append([value, 1])
-
-            answer += stack[-1][1]
-
-        return answer
+    def numberOfSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        stk = []
+        for x in nums:
+            while stk and stk[-1][0] < x:
+                stk.pop()
+            if not stk or stk[-1][0] != x:
+                stk.append([x, 0])
+            stk[-1][1] += 1
+            result += stk[-1][1]
+        return result

@@ -1,38 +1,41 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
+class BIT(object):  # Fenwick Tree, 1-indexed
+    def __init__(self, n):
+        self.__bit = [0] * n
 
-class Fenwick:
-    def __init__(self, size):
-        self.tree = [0] * (size + 1)
+    def add(self, i, val):
+        while i < len(self.__bit):
+            self.__bit[i] += val
+            i += (i & -i)
 
-    def add(self, index, delta):
-        while index < len(self.tree):
-            self.tree[index] += delta
-            index += index & -index
-
-    def prefix_sum(self, index):
-        total = 0
-        while index:
-            total += self.tree[index]
-            index -= index & -index
-        return total
+    def sum(self, i):
+        result = 0
+        while i > 0:
+            result += self.__bit[i]
+            i -= (i & -i)
+        return result
 
 
 class Solution:
-    def processQueries(self, queries: List[int], m: int) -> List[int]:
-        q = len(queries)
-        tree = Fenwick(q + m + 1)
-        positions = [0] * (m + 1)
-        for value in range(1, m + 1):
-            positions[value] = q + value
-            tree.add(positions[value], 1)
-        answer = []
-        front = q
-        for value in queries:
-            position = positions[value]
-            answer.append(tree.prefix_sum(position) - 1)
-            tree.add(position, -1)
-            positions[value] = front
-            tree.add(front, 1)
-            front -= 1
-        return answer
+    def processQueries(self, queries, m):
+        """
+        :type queries: List[int]
+        :type m: int
+        :rtype: List[int]
+        """
+        bit = BIT(2*m+1)
+        lookup = {}
+        for i in range(1, m+1):
+            bit.add(m+i, 1)
+            lookup[i] = m+i
+        result, curr = [], m
+        for q in queries:
+            i = lookup.pop(q)
+            result.append(bit.sum(i-1))
+            bit.add(i, -1)
+            lookup[q] = curr
+            bit.add(curr, 1)
+            curr -= 1
+        return result

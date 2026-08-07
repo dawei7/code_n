@@ -1,11 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def minimumPrefixLength(self, nums: List[int]) -> int:
-        suffix_start = len(nums) - 1
-
-        while suffix_start > 0 and nums[suffix_start - 1] < nums[suffix_start]:
-            suffix_start -= 1
-
-        return suffix_start
+    def minimumPrefixLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return next((i+1 for i in reversed(range(len(nums)-1)) if not nums[i] < nums[i+1]), 0)

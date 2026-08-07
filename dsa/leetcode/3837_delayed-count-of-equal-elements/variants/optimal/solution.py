@@ -1,17 +1,9 @@
-from typing import List
-
-
 class Solution:
     def delayedCount(self, nums: List[int], k: int) -> List[int]:
         n = len(nums)
-        frequencies: dict[int, int] = {}
-        answer = [0] * n
-
-        for i in range(n - 1, -1, -1):
-            exposed = i + k + 1
-            if exposed < n:
-                value = nums[exposed]
-                frequencies[value] = frequencies.get(value, 0) + 1
-            answer[i] = frequencies.get(nums[i], 0)
-
-        return answer
+        cnt = Counter()
+        ans = [0] * n
+        for i in range(n - k - 2, -1, -1):
+            cnt[nums[i + k + 1]] += 1
+            ans[i] = cnt[nums[i]]
+        return ans

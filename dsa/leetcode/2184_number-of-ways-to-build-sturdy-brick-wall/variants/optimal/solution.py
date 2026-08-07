@@ -1,26 +1,49 @@
-from typing import List
-
-
 class Solution:
     def buildWall(self, height: int, width: int, bricks: List[int]) -> int:
-        modulus = 1_000_000_007
-        row_masks = []
+        def dfs(v):
+            if v > width:
+                return
+            if v == width:
+                s.append(t[:])
+                return
+            for x in bricks:
+                t.append(x)
+                dfs(v + x)
+                t.pop()
 
-        def build_row(position: int, seams: int) -> None:
-            for brick in bricks:
-                next_position = position + brick
-                if next_position > width:
-                    continue
-                if next_position == width:
-                    row_masks.append(seams)
+        def check(a, b):
+            s1, s2 = a[0], b[0]
+            i = j = 1
+            while i < len(a) and j < len(b):
+                if s1 == s2:
+                    return False
+                if s1 < s2:
+                    s1 += a[i]
+                    i += 1
                 else:
-                    build_row(next_position, seams | (1 << next_position))
+                    s2 += b[j]
+                    j += 1
+            return True
 
-        build_row(0, 0)
-        compatible = [[previous for previous, other in enumerate(row_masks) if mask & other == 0] for mask in row_masks]
-
-        ways = [1] * len(row_masks)
-        for _ in range(1, height):
-            ways = [sum(ways[previous] for previous in predecessors) % modulus for predecessors in compatible]
-
-        return sum(ways) % modulus
+        mod = 10**9 + 7
+        s = []
+        t = []
+        dfs(0)
+        g = defaultdict(list)
+        n = len(s)
+        for i in range(n):
+            if check(s[i], s[i]):
+                g[i].append(i)
+            for j in range(i + 1, n):
+                if check(s[i], s[j]):
+                    g[i].append(j)
+                    g[j].append(i)
+        dp = [[0] * n for _ in range(height)]
+        for j in range(n):
+            dp[0][j] = 1
+        for i in range(1, height):
+            for j in range(n):
+                for k in g[j]:
+                    dp[i][j] += dp[i - 1][k]
+                    dp[i][j] %= mod
+        return sum(dp[-1]) % mod

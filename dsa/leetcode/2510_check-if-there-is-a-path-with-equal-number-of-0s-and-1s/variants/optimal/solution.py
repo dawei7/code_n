@@ -1,28 +1,19 @@
-from typing import List
-
-
 class Solution:
     def isThereAPath(self, grid: List[List[int]]) -> bool:
-        rows = len(grid)
-        cols = len(grid[0])
-        path_length = rows + cols - 1
-        if path_length % 2:
+        @cache
+        def dfs(i, j, k):
+            if i >= m or j >= n:
+                return False
+            k += grid[i][j]
+            if k > s or i + j + 1 - k > s:
+                return False
+            if i == m - 1 and j == n - 1:
+                return k == s
+            return dfs(i + 1, j, k) or dfs(i, j + 1, k)
+
+        m, n = len(grid), len(grid[0])
+        s = m + n - 1
+        if s & 1:
             return False
-
-        target = path_length // 2
-        reachable = [set() for _ in range(cols)]
-
-        for row in range(rows):
-            for col in range(cols):
-                previous = set()
-                if row > 0:
-                    previous.update(reachable[col])
-                if col > 0:
-                    previous.update(reachable[col - 1])
-                if row == 0 and col == 0:
-                    previous.add(0)
-
-                value = grid[row][col]
-                reachable[col] = {ones + value for ones in previous if ones + value <= target}
-
-        return target in reachable[-1]
+        s >>= 1
+        return dfs(0, 0, 0)

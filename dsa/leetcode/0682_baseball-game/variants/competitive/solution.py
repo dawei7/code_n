@@ -1,20 +1,21 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def calPoints(self, operations: list[str]) -> int:
-        scores = []
-        total = 0
-        for operation in operations:
-            if operation == "C":
-                total -= scores.pop()
-            elif operation == "D":
-                score = scores[-1] * 2
-                scores.append(score)
-                total += score
-            elif operation == "+":
-                score = scores[-1] + scores[-2]
-                scores.append(score)
-                total += score
+    def calPoints(self, ops):
+        """
+        :type ops: List[str]
+        :rtype: int
+        """
+        history = []
+        for op in ops:
+            if op == '+':
+                history.append(history[-1] + history[-2])
+            elif op == 'D':
+                history.append(history[-1] * 2)
+            elif op == 'C':
+                history.pop()
             else:
-                score = int(operation)
-                scores.append(score)
-                total += score
-        return total
+                history.append(int(op))
+        return sum(history)
+

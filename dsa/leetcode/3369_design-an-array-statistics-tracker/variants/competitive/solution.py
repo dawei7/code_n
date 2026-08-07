@@ -1,85 +1,82 @@
-from collections import Counter, deque
-from heapq import heappop, heappush
+# Time:  ctor:                   O(1)
+#        addNumber:              O(logn)
+#        removeFirstAddedNumber: O(logn)
+#        getMean:                O(1)
+#        getMedian:              O(1)
+#        getMode:                O(1)
+# Space: O(n)
+
+# deque, freq table, sorted list
+from sortedcontainers import SortedList
+import collections
 
 
-class StatisticsTracker:
+class StatisticsTracker(object):
+
     def __init__(self):
-        self.numbers = deque()
-        self.total = 0
+        self.__total = 0
+        self.__dq = collections.deque()
+        self.__sl1 = SortedList()
+        self.__sl2 = SortedList()
+        self.__num_to_freq = collections.defaultdict(int)
+        self.__sorted_freqs = SortedList()
+        self.__freq_to_nums = collections.defaultdict(SortedList)
 
-        self.lower = []
-        self.upper = []
-        self.lower_size = 0
-        self.upper_size = 0
-        self.delayed = Counter()
-
-        self.frequency = Counter()
-        self.mode_heap = []
-
-    def _prune(self, heap, sign):
-        while heap:
-            value = sign * heap[0]
-            if self.delayed[value] == 0:
-                break
-            heappop(heap)
-            self.delayed[value] -= 1
-
-    def _rebalance(self):
-        if self.upper_size > self.lower_size + 1:
-            self._prune(self.upper, 1)
-            value = heappop(self.upper)
-            self.upper_size -= 1
-            heappush(self.lower, -value)
-            self.lower_size += 1
-            self._prune(self.upper, 1)
-        elif self.lower_size > self.upper_size:
-            self._prune(self.lower, -1)
-            value = -heappop(self.lower)
-            self.lower_size -= 1
-            heappush(self.upper, value)
-            self.upper_size += 1
-            self._prune(self.lower, -1)
-
-    def addNumber(self, number: int) -> None:
-        self.numbers.append(number)
-        self.total += number
-
-        self.frequency[number] += 1
-        heappush(self.mode_heap, (-self.frequency[number], number))
-
-        if not self.upper or number >= self.upper[0]:
-            heappush(self.upper, number)
-            self.upper_size += 1
+    def __update(self, number, d):
+        if number in self.__num_to_freq:
+            self.__freq_to_nums[self.__num_to_freq[number]].remove(number)
+            if not self.__freq_to_nums[self.__num_to_freq[number]]:
+                del self.__freq_to_nums[self.__num_to_freq[number]]
+                self.__sorted_freqs.remove(self.__num_to_freq[number]) 
+        self.__num_to_freq[number] += d
+        if not self.__num_to_freq[number]:
+            del self.__num_to_freq[number]
         else:
-            heappush(self.lower, -number)
-            self.lower_size += 1
-        self._rebalance()
+            if not self.__freq_to_nums[self.__num_to_freq[number]]:
+                self.__sorted_freqs.add(self.__num_to_freq[number])
+            self.__freq_to_nums[self.__num_to_freq[number]].add(number)
 
-    def removeFirstAddedNumber(self) -> None:
-        number = self.numbers.popleft()
-        self.total -= number
+    def __rebalance(self):
+        if len(self.__sl2) == len(self.__sl1)+2:
+            self.__sl1.add(self.__sl2.pop(0))
+        elif len(self.__sl2)+1 == len(self.__sl1):
+            self.__sl2.add(self.__sl1.pop(-1))
+        
+    def addNumber(self, number):
+        """
+        :type number: int
+        :rtype: None
+        """
+        self.__total += number
+        self.__dq.append(number)
+        self.__update(number, +1)
+        (self.__sl2 if not self.__sl2 or self.__sl2[0] <= number else self.__sl1).add(number)
+        self.__rebalance()
 
-        self.frequency[number] -= 1
-        self.delayed[number] += 1
+    def removeFirstAddedNumber(self):
+        """
+        :rtype: None
+        """
+        number = self.__dq.popleft()
+        self.__total -= number
+        self.__update(number, -1)
+        (self.__sl2 if number in self.__sl2 else self.__sl1).remove(number)
+        self.__rebalance()
 
-        if self.upper and number >= self.upper[0]:
-            self.upper_size -= 1
-            if number == self.upper[0]:
-                self._prune(self.upper, 1)
-        else:
-            self.lower_size -= 1
-            if self.lower and number == -self.lower[0]:
-                self._prune(self.lower, -1)
-        self._rebalance()
+    def getMean(self):
+        """
+        :rtype: int
+        """
+        return self.__total//len(self.__dq)
 
-    def getMean(self) -> int:
-        return self.total // len(self.numbers)
+    def getMedian(self):
+        """
+        :rtype: int
+        """
+        return self.__sl2[0]
 
-    def getMedian(self) -> int:
-        self._prune(self.upper, 1)
-        return self.upper[0]
-
-    def getMode(self) -> int:
-        while -self.mode_heap[0][0] != self.frequency[self.mode_heap[0][1]]:
-            heappop(self.mode_heap)
-        return self.mode_heap[0][1]
+    def getMode(self):
+        """
+        :rtype: int
+        """
+        return self.__freq_to_nums[self.__sorted_freqs[-1]][0]

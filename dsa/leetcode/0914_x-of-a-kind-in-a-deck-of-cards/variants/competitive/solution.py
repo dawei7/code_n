@@ -1,13 +1,20 @@
-from collections import Counter
-from math import gcd
-from typing import List
+# Time:  O(n * (logn)^2)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def hasGroupsSizeX(self, deck: List[int]) -> bool:
-        group_size = 0
-        for frequency in Counter(deck).values():
-            group_size = gcd(group_size, frequency)
-            if group_size == 1:
-                return False
-        return group_size > 1
+    def hasGroupsSizeX(self, deck):
+        """
+        :type deck: List[int]
+        :rtype: bool
+        """
+        def gcd(a, b):  # Time: O((logn)^2)
+            while b:
+                a, b = b, a % b
+            return a
+
+        vals = collections.Counter(deck).values()
+        return reduce(gcd, vals) >= 2
+

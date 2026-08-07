@@ -1,59 +1,88 @@
-from typing import List
+# Time:  O(26 + d * n + d * q)
+# Space: O(26 + d * n)
 
-
+# prefix sum, freq table
 class Solution:
-    def canMakePalindromeQueries(self, s: str, queries: List[List[int]]) -> List[bool]:
-        half = len(s) // 2
-        left = s[:half]
-        right = s[half:][::-1]
+    def canMakePalindromeQueries(self, s, queries):
+        """
+        :type s: str
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        def check(left1, right1, left2, right2):
+            def same(left, right):
+                return all(prefixs1[right+1][i]-prefixs1[left][i] == prefixs2[right+1][i]-prefixs2[left][i] for i in range(d))
 
-        def build_counts(text: str) -> List[List[int]]:
-            prefix = [[0] * 26]
-            for character in text:
-                row = prefix[-1].copy()
-                row[ord(character) - ord("a")] += 1
-                prefix.append(row)
-            return prefix
+            min_left, max_left = min(left1, left2), max(left1, left2)
+            min_right, max_right = min(right1, right2), max(right1, right2)
+            if not (prefix[min_left]-prefix[0] == prefix[-1]-prefix[max_right+1] == 0):
+                return False
+            if min_right < max_left:  # non-overlapped
+                return prefix[max_left]-prefix[min_right+1] == 0 and same(min_left, min_right) and same(max_left, max_right)
+            # overlapped
+            if (left1 == min_left) == (right1 == max_right):  # inside another
+                return same(min_left, max_right)
+            # not inside another
+            p1, p2 = (prefixs1, prefixs2) if min_left == left1 else (prefixs2, prefixs1)
+            diff1 = [(p1[min_right+1][i]-p1[min_left][i])-(p2[max_left][i]-p2[min_left][i]) for i in range(d)]
+            diff2 = [(p2[max_right+1][i]-p2[max_left][i])-(p1[max_right+1][i]-p1[min_right+1][i]) for i in range(d)]
+            return diff1 == diff2 and all(x >= 0 for x in diff1)  # test case: s = "aabbba", queries = [[0,1,3,4]]
 
-        left_counts = build_counts(left)
-        right_counts = build_counts(right)
-        mismatch = [0]
-        for first, second in zip(left, right):
-            mismatch.append(mismatch[-1] + (first != second))
-
-        def counts(prefix: List[List[int]], low: int, high: int) -> List[int]:
-            if low > high:
-                return [0] * 26
-            return [prefix[high + 1][letter] - prefix[low][letter] for letter in range(26)]
-
-        answer = []
-        size = len(s)
-        for first_low, first_high, second_low, second_high in queries:
-            second_low, second_high = size - 1 - second_high, size - 1 - second_low
-            overlap_low = max(first_low, second_low)
-            overlap_high = min(first_high, second_high)
-
-            covered_mismatches = (
-                mismatch[first_high + 1] - mismatch[first_low] + mismatch[second_high + 1] - mismatch[second_low]
-            )
-            if overlap_low <= overlap_high:
-                covered_mismatches -= mismatch[overlap_high + 1] - mismatch[overlap_low]
-            if mismatch[half] != covered_mismatches:
-                answer.append(False)
+        lookup = [-1]*26
+        d = 0
+        for x in s:
+            if lookup[ord(x)-ord('a')] != -1:
                 continue
+            lookup[ord(x)-ord('a')] = d
+            d += 1
+        prefix = [0]*(len(s)//2+1)
+        prefixs1 = [[0]*d for _ in range(len(s)//2+1)]
+        prefixs2 = [[0]*d for _ in range(len(s)//2+1)]
+        for i in range(len(s)//2):
+            x, y = lookup[ord(s[i])-ord('a')], lookup[ord(s[~i])-ord('a')]
+            prefix[i+1] = prefix[i]+int(x != y)
+            for j in range(d):
+                prefixs1[i+1][j] = prefixs1[i][j]+int(j == x)
+                prefixs2[i+1][j] = prefixs2[i][j]+int(j == y)
+        return [check(q[0], q[1], (len(s)-1)-q[3], (len(s)-1)-q[2]) for q in queries]
 
-            left_supply = counts(left_counts, first_low, first_high)
-            right_supply = counts(right_counts, second_low, second_high)
-            right_fixed = counts(right_counts, first_low, first_high)
-            left_fixed = counts(left_counts, second_low, second_high)
-            if overlap_low <= overlap_high:
-                right_overlap = counts(right_counts, overlap_low, overlap_high)
-                left_overlap = counts(left_counts, overlap_low, overlap_high)
-                right_fixed = [a - b for a, b in zip(right_fixed, right_overlap)]
-                left_fixed = [a - b for a, b in zip(left_fixed, left_overlap)]
 
-            left_remaining = [a - b for a, b in zip(left_supply, right_fixed)]
-            right_remaining = [a - b for a, b in zip(right_supply, left_fixed)]
-            answer.append(min(left_remaining) >= 0 and min(right_remaining) >= 0 and left_remaining == right_remaining)
+# Time:  O(26 * n + 26 * q)
+# Space: O(26 * n)
+# prefix sum, freq table
+class Solution2(object):
+    def canMakePalindromeQueries(self, s, queries):
+        """
+        :type s: str
+        :type queries: List[List[int]]
+        :rtype: List[bool]
+        """
+        def check(left1, right1, left2, right2):
+            def same(left, right):
+                return all(prefixs1[right+1][i]-prefixs1[left][i] == prefixs2[right+1][i]-prefixs2[left][i] for i in range(26))
 
-        return answer
+            min_left, max_left = min(left1, left2), max(left1, left2)
+            min_right, max_right = min(right1, right2), max(right1, right2)
+            if not (prefix[min_left]-prefix[0] == prefix[-1]-prefix[max_right+1] == 0):
+                return False
+            if min_right < max_left:  # non-overlapped
+                return prefix[max_left]-prefix[min_right+1] == 0 and same(min_left, min_right) and same(max_left, max_right)
+            # overlapped
+            if (left1 == min_left) == (right1 == max_right):  # inside another
+                return same(min_left, max_right)
+            # not inside another
+            p1, p2 = (prefixs1, prefixs2) if min_left == left1 else (prefixs2, prefixs1)
+            diff1 = [(p1[min_right+1][i]-p1[min_left][i])-(p2[max_left][i]-p2[min_left][i]) for i in range(26)]
+            diff2 = [(p2[max_right+1][i]-p2[max_left][i])-(p1[max_right+1][i]-p1[min_right+1][i]) for i in range(26)]
+            return diff1 == diff2 and all(x >= 0 for x in diff1)  # test case: s = "aabbba", queries = [[0,1,3,4]]
+
+        prefix = [0]*(len(s)//2+1)
+        prefixs1 = [[0]*26 for _ in range(len(s)//2+1)]
+        prefixs2 = [[0]*26 for _ in range(len(s)//2+1)]
+        for i in range(len(s)//2):
+            x, y = ord(s[i])-ord('a'), ord(s[~i])-ord('a')
+            prefix[i+1] = prefix[i]+int(x != y)
+            for j in range(26):
+                prefixs1[i+1][j] = prefixs1[i][j]+int(j == x)
+                prefixs2[i+1][j] = prefixs2[i][j]+int(j == y)
+        return [check(q[0], q[1], (len(s)-1)-q[3], (len(s)-1)-q[2]) for q in queries]

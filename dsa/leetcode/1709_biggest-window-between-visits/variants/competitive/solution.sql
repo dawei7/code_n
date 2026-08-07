@@ -1,20 +1,21 @@
-WITH visit_gaps AS (
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT
+    user_id,
+    MAX(DATEDIFF(visit_date_after, visit_date)) AS biggest_window
+FROM (
     SELECT
         user_id,
         visit_date,
-        LEAD(visit_date) OVER (
-            PARTITION BY user_id
-            ORDER BY visit_date
-        ) AS next_visit
+        IFNULL(
+            LEAD(visit_date, 1) OVER (
+                PARTITION BY user_id
+                ORDER BY visit_date
+            ),
+            '2021-1-1'
+        ) AS visit_date_after
     FROM UserVisits
-)
-SELECT
-    user_id,
-    CAST(
-        MAX(
-            julianday(COALESCE(next_visit, '2021-01-01'))
-            - julianday(visit_date)
-        ) AS INTEGER
-    ) AS biggest_window
-FROM visit_gaps
-GROUP BY user_id;
+) tmp
+GROUP BY 1
+ORDER BY NULL;

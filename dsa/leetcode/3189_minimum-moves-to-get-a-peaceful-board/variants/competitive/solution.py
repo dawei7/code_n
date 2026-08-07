@@ -1,5 +1,40 @@
+# Time:  O(n)
+# Space: O(n)
+
+# counting sort, greedy
 class Solution:
-    def minMoves(self, rooks: List[List[int]]) -> int:
-        rows = sorted(x for x, _ in rooks)
-        columns = sorted(y for _, y in rooks)
-        return sum(abs(row - target) + abs(column - target) for target, (row, column) in enumerate(zip(rows, columns)))
+    def minMoves(self, rooks):
+        """
+        :type rooks: List[List[int]]
+        :rtype: int
+        """
+        def count(arr):
+            cnt = [0]*len(arr)
+            for x in arr:
+                cnt[x] += 1
+            return sum(abs(i-x) for i, x in enumerate(x for x, cnt in enumerate(cnt) for _ in range(cnt)))
+
+        return sum(count(arr) for arr in zip(*rooks))
+
+
+# Time:  O(n)
+# Space: O(n)
+# prefix sum, greedy
+class Solution2(object):
+    def minMoves(self, rooks):
+        """
+        :type rooks: List[List[int]]
+        :rtype: int
+        """
+        def count(arr):
+            cnt = [0]*len(arr)
+            for x in arr:
+                cnt[x] += 1
+            result = bal = 0
+            for i in range(len(rooks)):
+                bal += cnt[i]-1
+                result += abs(bal)
+            return result
+
+        return sum(count(arr) for arr in zip(*rooks))
+    

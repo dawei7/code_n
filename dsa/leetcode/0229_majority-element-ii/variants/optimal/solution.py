@@ -1,24 +1,16 @@
 class Solution:
-    def majorityElement(self, nums: list[int]) -> list[int]:
-        candidate_a = candidate_b = None
-        count_a = count_b = 0
-
-        for value in nums:
-            if candidate_a == value:
-                count_a += 1
-            elif candidate_b == value:
-                count_b += 1
-            elif count_a == 0:
-                candidate_a, count_a = value, 1
-            elif count_b == 0:
-                candidate_b, count_b = value, 1
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        n1 = n2 = 0
+        m1, m2 = 0, 1
+        for m in nums:
+            if m == m1:
+                n1 += 1
+            elif m == m2:
+                n2 += 1
+            elif n1 == 0:
+                m1, n1 = m, 1
+            elif n2 == 0:
+                m2, n2 = m, 1
             else:
-                count_a -= 1
-                count_b -= 1
-
-        threshold = len(nums) // 3
-        answer = []
-        for candidate in (candidate_a, candidate_b):
-            if candidate is not None and candidate not in answer and nums.count(candidate) > threshold:
-                answer.append(candidate)
-        return answer
+                n1, n2 = n1 - 1, n2 - 1
+        return [m for m in [m1, m2] if nums.count(m) > len(nums) // 3]

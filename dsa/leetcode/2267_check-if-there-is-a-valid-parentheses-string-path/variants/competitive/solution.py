@@ -1,24 +1,43 @@
+# Time:  O((m * n) * (m + n) / 32)
+# Space: O(n * (m + n) / 32)
+
+# dp with bitsets
 class Solution:
-    def hasValidPath(self, grid: List[List[str]]) -> bool:
-        rows, columns = len(grid), len(grid[0])
-        path_length = rows + columns - 1
-        if path_length % 2 == 1 or grid[0][0] == ")" or grid[-1][-1] == "(":
+    def hasValidPath(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: bool
+        """
+        if (len(grid)+len(grid[0])-1)%2:
             return False
+        dp = [0]*(len(grid[0])+1)
+        for i in range(len(grid)):
+            dp[0] = int(not i)
+            for j in range(len(grid[0])):
+                dp[j+1] = (dp[j]|dp[j+1])<<1 if grid[i][j] == '(' else (dp[j]|dp[j+1])>>1
+        return dp[-1]&1
 
-        states = [set() for _ in range(columns)]
-        for row in range(rows):
-            for column in range(columns):
-                previous = set()
-                if row == 0 and column == 0:
-                    previous.add(0)
+
+# Time:  O(m * n)
+# Space: O(n)
+# dp, optimized from solution1 (wrong answer)
+class Solution_WA(object):
+    def hasValidPath(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: bool
+        """
+        if (len(grid)+len(grid[0])-1)%2:
+            return False
+        dp = [[float("inf"), float("-inf")] for _ in range(len(grid[0])+1)]
+        for i in range(len(grid)):
+            dp[0] = [0, 0] if not i else [float("inf"), float("-inf")]
+            for j in range(len(grid[0])):
+                d = 1 if grid[i][j] == '(' else -1
+                dp[j+1] = [min(dp[j+1][0], dp[j][0])+d, max(dp[j+1][1], dp[j][1])+d]
+                # bitset pattern is like xxx1010101xxxx (in fact, it is not always true in this problem where some paths are invalid)
+                if dp[j+1][1] < 0:
+                    dp[j+1] = [float("inf"), float("-inf")]
                 else:
-                    if row > 0:
-                        previous.update(states[column])
-                    if column > 0:
-                        previous.update(states[column - 1])
-
-                delta = 1 if grid[row][column] == "(" else -1
-                remaining = rows - row - 1 + columns - column - 1
-                states[column] = {balance + delta for balance in previous if 0 <= balance + delta <= remaining}
-
-        return 0 in states[-1]
+                    dp[j+1][0] = max(dp[j+1][0], dp[j+1][1]%2)
+        return dp[-1][0] == 0

@@ -1,11 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        write = 1
-        for read in range(1, len(nums)):
-            if nums[read] != nums[write - 1]:
-                nums[write] = nums[read]
-                write += 1
-        return write
+    # @param a list of integers
+    # @return an integer
+    def removeDuplicates(self, A):
+        if not A:
+            return 0
+
+        last = 0
+        for i in range(len(A)):
+            if A[last] != A[i]:
+                last += 1
+                A[last] = A[i]
+        return last + 1
+

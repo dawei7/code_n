@@ -1,15 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def numPairsDivisibleBy60(self, time: List[int]) -> int:
-        counts = [0] * 60
-        pairs = 0
-
-        for duration in time:
-            remainder = duration % 60
-            complement = (-remainder) % 60
-            pairs += counts[complement]
-            counts[remainder] += 1
-
-        return pairs
+    def numPairsDivisibleBy60(self, time):
+        """
+        :type time: List[int]
+        :rtype: int
+        """
+        result = 0
+        count = collections.Counter()
+        for t in time:
+            result += count[-t%60]
+            count[t%60] += 1
+        return result

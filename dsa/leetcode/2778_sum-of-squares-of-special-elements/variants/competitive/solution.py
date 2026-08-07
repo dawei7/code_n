@@ -1,15 +1,18 @@
+# Time:  O(sqrt(n))
+# Space: O(1)
+
+# number theory
 class Solution:
-    def sumOfSquares(self, nums: List[int]) -> int:
-        n = len(nums)
-        total = 0
-        divisor = 1
-
-        while divisor * divisor <= n:
-            if n % divisor == 0:
-                total += nums[divisor - 1] ** 2
-                paired_divisor = n // divisor
-                if paired_divisor != divisor:
-                    total += nums[paired_divisor - 1] ** 2
-            divisor += 1
-
-        return total
+    def sumOfSquares(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in range(1, int(len(nums)**0.5)+1):
+            if len(nums)%i:
+                continue
+            result += nums[i-1]**2
+            if len(nums)//i != i:
+                result += nums[len(nums)//i-1]**2
+        return result

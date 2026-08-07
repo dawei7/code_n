@@ -1,17 +1,18 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minimumOperations(self, grid: List[List[int]]) -> int:
-        operations = 0
-        rows, columns = len(grid), len(grid[0])
-
-        for column in range(columns):
-            previous = grid[0][column]
-            for row in range(1, rows):
-                current = grid[row][column]
-                required = max(current, previous + 1)
-                operations += required - current
-                previous = required
-
-        return operations
+    def minimumOperations(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(grid)-1):
+            for j in range(len(grid[0])):
+                if grid[i][j]+1 <= grid[i+1][j]:
+                    continue
+                result += (grid[i][j]+1)-grid[i+1][j]
+                grid[i+1][j] = grid[i][j]+1
+        return result

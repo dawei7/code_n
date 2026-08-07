@@ -1,26 +1,21 @@
-from typing import List
-
-
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
-        size = len(s)
-        palindrome = [[False] * size for _ in range(size)]
-        for right in range(size):
-            for left in range(right, -1, -1):
-                palindrome[left][right] = s[left] == s[right] and (right - left < 2 or palindrome[left + 1][right - 1])
-
-        result = []
-        path = []
-
-        def search(start):
-            if start == size:
-                result.append(path.copy())
+        def dfs(i: int):
+            if i == n:
+                ans.append(t[:])
                 return
-            for end in range(start, size):
-                if palindrome[start][end]:
-                    path.append(s[start : end + 1])
-                    search(end + 1)
-                    path.pop()
+            for j in range(i, n):
+                if f[i][j]:
+                    t.append(s[i : j + 1])
+                    dfs(j + 1)
+                    t.pop()
 
-        search(0)
-        return result
+        n = len(s)
+        f = [[True] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                f[i][j] = s[i] == s[j] and f[i + 1][j - 1]
+        ans = []
+        t = []
+        dfs(0)
+        return ans

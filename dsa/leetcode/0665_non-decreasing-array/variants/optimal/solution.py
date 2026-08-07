@@ -1,14 +1,15 @@
 class Solution:
-    def checkPossibility(self, nums):
-        changes = 0
-        for index in range(1, len(nums)):
-            if nums[index - 1] <= nums[index]:
-                continue
-            changes += 1
-            if changes > 1:
-                return False
-            if index == 1 or nums[index - 2] <= nums[index]:
-                nums[index - 1] = nums[index]
-            else:
-                nums[index] = nums[index - 1]
+    def checkPossibility(self, nums: List[int]) -> bool:
+        def is_sorted(nums: List[int]) -> bool:
+            return all(a <= b for a, b in pairwise(nums))
+
+        n = len(nums)
+        for i in range(n - 1):
+            a, b = nums[i], nums[i + 1]
+            if a > b:
+                nums[i] = b
+                if is_sorted(nums):
+                    return True
+                nums[i] = nums[i + 1] = a
+                return is_sorted(nums)
         return True

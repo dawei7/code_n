@@ -1,23 +1,20 @@
 class Solution:
     def findKthNumber(self, n: int, k: int) -> int:
-        def subtree_size(prefix: int) -> int:
-            first = prefix
-            following = prefix + 1
-            size = 0
-            while first <= n:
-                size += min(n + 1, following) - first
-                first *= 10
-                following *= 10
-            return size
+        def count(curr):
+            next, cnt = curr + 1, 0
+            while curr <= n:
+                cnt += min(n - curr + 1, next - curr)
+                next, curr = next * 10, curr * 10
+            return cnt
 
-        prefix = 1
-        remaining = k - 1
-        while remaining:
-            size = subtree_size(prefix)
-            if size <= remaining:
-                prefix += 1
-                remaining -= size
+        curr = 1
+        k -= 1
+        while k:
+            cnt = count(curr)
+            if k >= cnt:
+                k -= cnt
+                curr += 1
             else:
-                prefix *= 10
-                remaining -= 1
-        return prefix
+                k -= 1
+                curr *= 10
+        return curr

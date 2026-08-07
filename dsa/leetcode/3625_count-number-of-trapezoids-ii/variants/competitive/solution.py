@@ -1,41 +1,41 @@
-from collections import defaultdict
-from math import gcd
-from typing import List
+# Time:  O(n^2 * logr), r = max(max(abs(x), abs(y)) for x, y in points)
+# Space: O(n^2)
+
+import collections
 
 
+# freq table, combinatorics
 class Solution:
-    def countTrapezoids(self, points: List[List[int]]) -> int:
-        segments_by_slope = defaultdict(int)
-        segments_by_line = defaultdict(int)
-        diagonals_by_midpoint = defaultdict(int)
-        diagonals_by_midpoint_and_slope = defaultdict(int)
+    def countTrapezoids(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return abs(a)
 
-        for i, (x1, y1) in enumerate(points):
-            for x2, y2 in points[i + 1 :]:
-                dx = x2 - x1
-                dy = y2 - y1
-                divisor = gcd(abs(dx), abs(dy))
-                dx //= divisor
-                dy //= divisor
-                if dx < 0 or (dx == 0 and dy < 0):
-                    dx = -dx
-                    dy = -dy
-
-                slope = (dy, dx)
-                line = (slope, dy * x1 - dx * y1)
-                midpoint = (x1 + x2, y1 + y2)
-
-                segments_by_slope[slope] += 1
-                segments_by_line[line] += 1
-                diagonals_by_midpoint[midpoint] += 1
-                diagonals_by_midpoint_and_slope[(midpoint, slope)] += 1
-
-        parallel_side_pairs = sum(count * (count - 1) // 2 for count in segments_by_slope.values()) - sum(
-            count * (count - 1) // 2 for count in segments_by_line.values()
-        )
-
-        parallelograms = sum(count * (count - 1) // 2 for count in diagonals_by_midpoint.values()) - sum(
-            count * (count - 1) // 2 for count in diagonals_by_midpoint_and_slope.values()
-        )
-
-        return parallel_side_pairs - parallelograms
+        lookup_slope = collections.defaultdict(int)
+        lookup_line = collections.defaultdict(int)
+        lookup_slope_length = collections.defaultdict(int)
+        lookup_line_length = collections.defaultdict(int)
+        result = same = 0
+        for i in range(len(points)):
+            x1, y1 = points[i]
+            for j in range(i):
+                x2, y2 = points[j]
+                dx, dy = x2-x1, y2-y1
+                g = gcd(dx, dy)
+                a, b = dx//g, dy//g
+                if a < 0 or (a == 0 and b < 0):
+                    a, b = -a, -b
+                c = b*x1-a*y1
+                result += lookup_slope[a, b]-lookup_line[a, b, c]
+                lookup_slope[a, b] += 1
+                lookup_line[a, b, c] += 1
+                l = dx**2+dy**2
+                same += lookup_slope_length[a, b, l]-lookup_line_length[a, b, c, l]
+                lookup_slope_length[a, b, l] += 1
+                lookup_line_length[a, b, c, l] += 1
+        return result-same//2

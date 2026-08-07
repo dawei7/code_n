@@ -1,35 +1,29 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# backward simulation, doubly linked list
 class Solution:
-    def minTime(self, s: str, order: List[int], k: int) -> int:
-        n = len(s)
-        total_substrings = n * (n + 1) // 2
-        if total_substrings < k:
+    def minTime(self, s, order, k):
+        """
+        :type s: str
+        :type order: List[int]
+        :type k: int
+        :rtype: int
+        """
+        left = range(-1, len(s)-1)
+        right = range(1, len(s)+1)
+        cnt = (len(s)+1)*len(s)//2
+        if cnt < k:
             return -1
-
-        activation_time = [0] * n
-        for time, index in enumerate(order):
-            activation_time[index] = time
-
-        def is_active(time: int) -> bool:
-            invalid = 0
-            inactive_run = 0
-            for activated_at in activation_time:
-                if activated_at <= time:
-                    invalid += inactive_run * (inactive_run + 1) // 2
-                    inactive_run = 0
-                else:
-                    inactive_run += 1
-            invalid += inactive_run * (inactive_run + 1) // 2
-            return total_substrings - invalid >= k
-
-        left = 0
-        right = n - 1
-        while left < right:
-            middle = (left + right) // 2
-            if is_active(middle):
-                right = middle
-            else:
-                left = middle + 1
-        return left
+        for t in reversed(range(len(order))):
+            i = order[t]
+            l = left[i]
+            r = right[i]
+            cnt -= (i-l)*(r-i)
+            if cnt < k:
+                break
+            if l >= 0:
+                right[l] = r
+            if r < len(left):
+                left[r] = l
+        return t

@@ -1,12 +1,15 @@
-WITH event_activity AS (
-    SELECT
-        business_id,
-        occurrences,
-        AVG(occurrences) OVER (PARTITION BY event_type) AS average_occurrences
-    FROM Events
-)
+# Write your MySQL query statement below
 SELECT business_id
-FROM event_activity
-WHERE occurrences > average_occurrences
+FROM
+    EVENTS AS t1
+    JOIN (
+        SELECT
+            event_type,
+            AVG(occurences) AS occurences
+        FROM EVENTS
+        GROUP BY event_type
+    ) AS t2
+        ON t1.event_type = t2.event_type
+WHERE t1.occurences > t2.occurences
 GROUP BY business_id
-HAVING COUNT(*) > 1;
+HAVING COUNT(1) > 1;

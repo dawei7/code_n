@@ -1,11 +1,9 @@
-SELECT
-    sp.salesperson_id,
-    sp.name,
-    COALESCE(SUM(s.price), 0) AS total
-FROM Salesperson AS sp
-LEFT JOIN Customer AS c
-    ON c.salesperson_id = sp.salesperson_id
-LEFT JOIN Sales AS s
-    ON s.customer_id = c.customer_id
+# Time:  O(sp + c + s)
+# Space: O(sp + c + s)
+
+SELECT sp.salesperson_id, sp.name, SUM(IFNULL(price, 0)) AS total
+FROM Salesperson sp
+LEFT JOIN Customer c ON sp.salesperson_id = c.salesperson_id
+LEFT JOIN Sales s ON c.customer_id = s.customer_id
 GROUP BY sp.salesperson_id, sp.name
-ORDER BY sp.salesperson_id;
+ORDER BY NULL;

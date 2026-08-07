@@ -1,18 +1,23 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: o(n)
+
+import collections
 
 
+# freq table, two pointers, sliding window
 class Solution:
-    def maxSubarrayLength(self, nums: List[int], k: int) -> int:
-        counts = defaultdict(int)
-        left = 0
-        best = 0
-
-        for right, value in enumerate(nums):
-            counts[value] += 1
-            while counts[value] > k:
-                counts[nums[left]] -= 1
+    def maxSubarrayLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        cnt = collections.Counter()
+        result = left = 0
+        for right in range(len(nums)):
+            cnt[nums[right]] += 1
+            while not (cnt[nums[right]] <= k):
+                cnt[nums[left]] -= 1
                 left += 1
-            best = max(best, right - left + 1)
-
-        return best
+            result = max(result, right-left+1)
+        return result

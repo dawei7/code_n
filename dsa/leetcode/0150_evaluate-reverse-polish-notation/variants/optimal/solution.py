@@ -1,23 +1,18 @@
-from typing import List
+import operator
 
 
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+        opt = {
+            "+": operator.add,
+            "-": operator.sub,
+            "*": operator.mul,
+            "/": operator.truediv,
+        }
+        s = []
         for token in tokens:
-            if token not in {"+", "-", "*", "/"}:
-                stack.append(int(token))
-                continue
-
-            right = stack.pop()
-            left = stack.pop()
-            if token == "+":
-                stack.append(left + right)
-            elif token == "-":
-                stack.append(left - right)
-            elif token == "*":
-                stack.append(left * right)
+            if token in opt:
+                s.append(int(opt[token](s.pop(-2), s.pop(-1))))
             else:
-                quotient = abs(left) // abs(right)
-                stack.append(-quotient if (left < 0) != (right < 0) else quotient)
-        return stack[-1]
+                s.append(int(token))
+        return s[0]

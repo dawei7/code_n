@@ -1,76 +1,44 @@
-from typing import List
-
-
 class Solution:
     def minRunesToAdd(
-        self,
-        n: int,
-        crystals: List[int],
-        flowFrom: List[int],
-        flowTo: List[int],
+        self, n: int, crystals: List[int], flowFrom: List[int], flowTo: List[int]
     ) -> int:
-        graph = [[] for _ in range(n)]
-        reverse_graph = [[] for _ in range(n)]
-        for source, target in zip(flowFrom, flowTo):
-            graph[source].append(target)
-            reverse_graph[target].append(source)
+        def bfs(q: Deque[int]):
+            while q:
+                a = q.popleft()
+                for b in g[a]:
+                    if vis[b] == 1:
+                        continue
+                    vis[b] = 1
+                    q.append(b)
 
-        reachable = [False] * n
-        stack = list(crystals)
-        for node in crystals:
-            reachable[node] = True
-        while stack:
-            node = stack.pop()
-            for neighbor in graph[node]:
-                if not reachable[neighbor]:
-                    reachable[neighbor] = True
-                    stack.append(neighbor)
-
-        visited = [False] * n
-        finish_order = []
-        for start in range(n):
-            if visited[start]:
-                continue
-            visited[start] = True
-            stack = [(start, False)]
-            while stack:
-                node, expanded = stack.pop()
-                if expanded:
-                    finish_order.append(node)
+        def dfs(a: int):
+            vis[a] = 2
+            for b in g[a]:
+                if vis[b] > 0:
                     continue
-                stack.append((node, True))
-                for neighbor in graph[node]:
-                    if not visited[neighbor]:
-                        visited[neighbor] = True
-                        stack.append((neighbor, False))
+                dfs(b)
+            seq.append(a)
 
-        component = [-1] * n
-        component_count = 0
-        for start in reversed(finish_order):
-            if component[start] != -1:
-                continue
-            component[start] = component_count
-            stack = [start]
-            while stack:
-                node = stack.pop()
-                for neighbor in reverse_graph[node]:
-                    if component[neighbor] == -1:
-                        component[neighbor] = component_count
-                        stack.append(neighbor)
-            component_count += 1
+        g = [[] for _ in range(n)]
+        for a, b in zip(flowFrom, flowTo):
+            g[a].append(b)
 
-        component_reachable = [False] * component_count
-        for node in range(n):
-            if reachable[node]:
-                component_reachable[component[node]] = True
+        q = deque(crystals)
+        vis = [0] * n
+        for x in crystals:
+            vis[x] = 1
+        bfs(q)
 
-        has_unreachable_incoming = [False] * component_count
-        for source, target in zip(flowFrom, flowTo):
-            source_component = component[source]
-            target_component = component[target]
-            if source_component != target_component and not component_reachable[target_component]:
-                has_unreachable_incoming[target_component] = True
-
-        return sum(
-            not component_reachable[index] and not has_unreachable_incoming[index] for index in range(component_count)
-        )
+        seq = []
+        for i in range(n):
+            if vis[i] == 0:
+                dfs(i)
+        seq.reverse()
+        ans = 0
+        for i in seq:
+            if vis[i] == 2:
+                q = deque([i])
+                vis[i] = 1
+                bfs(q)
+                ans += 1
+        return ans

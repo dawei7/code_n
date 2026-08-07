@@ -1,11 +1,8 @@
 class Solution:
     def canAliceWin(self, n: int) -> bool:
-        required = 10
-        alice_wins = False
-
-        while n >= required:
-            n -= required
-            required -= 1
-            alice_wins = not alice_wins
-
-        return alice_wins
+        x, k = 10, 0
+        while n >= x:
+            n -= x
+            x -= 1
+            k += 1
+        return k % 2 == 1

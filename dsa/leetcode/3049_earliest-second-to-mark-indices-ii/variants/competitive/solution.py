@@ -1,54 +1,42 @@
+# Time:  O((m + nlogn) * logm)
+# Space: O(n)
+
 import heapq
 
 
+# binary search, greedy, heap
 class Solution:
-    def earliestSecondToMarkIndices(
-        self,
-        nums: List[int],
-        changeIndices: List[int],
-    ) -> int:
-        index_count = len(nums)
-        baseline_operations = sum(nums) + index_count
-
-        def can_finish(seconds: int) -> bool:
-            first_occurrence = [-1] * index_count
-            for second in range(seconds - 1, -1, -1):
-                first_occurrence[changeIndices[second] - 1] = second
-
-            selected_resets = []
-            saved_operations = 0
-            free_seconds = 0
-
-            for second in range(seconds - 1, -1, -1):
-                index = changeIndices[second] - 1
-                value = nums[index]
-
-                if second != first_occurrence[index] or value <= 1:
-                    free_seconds += 1
+    def earliestSecondToMarkIndices(self, nums, changeIndices):
+        """
+        :type nums: List[int]
+        :type changeIndices: List[int]
+        :rtype: int
+        """
+        def check(t):
+            min_heap = []
+            cnt = 0
+            for i in reversed(range(t)):
+                if i != lookup[changeIndices[i]-1]:
+                    cnt += 1
                     continue
-
-                heapq.heappush(selected_resets, value)
-                saved_operations += value - 1
-
-                if free_seconds:
-                    free_seconds -= 1
+                heapq.heappush(min_heap, nums[changeIndices[i]-1])
+                if cnt:
+                    cnt -= 1
                 else:
-                    removed = heapq.heappop(selected_resets)
-                    saved_operations -= removed - 1
-                    free_seconds += 1
+                    cnt += 1
+                    heapq.heappop(min_heap)
+            return total-(sum(min_heap)+len(min_heap)) <= cnt
 
-            return baseline_operations - saved_operations <= seconds
-
-        left = 1
-        right = len(changeIndices)
-        answer = -1
-
+        lookup = [-1]*len(nums)
+        for i in reversed(range(len(changeIndices))):
+            if nums[changeIndices[i]-1]:
+                lookup[changeIndices[i]-1] = i
+        total = sum(nums)+len(nums)
+        left, right = sum((1 if lookup[i] != -1 else nums[i]) for i in range(len(nums)))+len(nums), len(changeIndices) 
         while left <= right:
-            middle = (left + right) // 2
-            if can_finish(middle):
-                answer = middle
-                right = middle - 1
+            mid = left+(right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                left = middle + 1
-
-        return answer
+                left = mid+1
+        return left if left <= len(changeIndices) else -1

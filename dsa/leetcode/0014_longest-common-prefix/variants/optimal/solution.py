@@ -1,14 +1,7 @@
-from typing import List
-
-
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        common = len(strs[0])
-        for word in strs[1:]:
-            index = 0
-            while index < common and index < len(word) and strs[0][index] == word[index]:
-                index += 1
-            common = index
-            if common == 0:
-                return ""
-        return strs[0][:common]
+        for i in range(len(strs[0])):
+            for s in strs[1:]:
+                if len(s) <= i or s[i] != strs[0][i]:
+                    return s[:i]
+        return strs[0]

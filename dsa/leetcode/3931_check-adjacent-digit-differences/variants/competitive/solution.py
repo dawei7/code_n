@@ -1,6 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def isAdjacentDiffAtMostTwo(self, s: str) -> bool:
-        for left, right in zip(s, s[1:]):
-            if abs(ord(left) - ord(right)) > 2:
-                return False
-        return True
+    def isAdjacentDiffAtMostTwo(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        return all(abs(ord(s[i])-ord(s[i+1])) <= 2 for i in range(len(s)-1))

@@ -1,35 +1,31 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def threeEqualParts(self, arr: List[int]) -> List[int]:
-        one_count = sum(arr)
-        if one_count == 0:
-            return [0, 2]
-        if one_count % 3:
+    def threeEqualParts(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        total = sum(A)
+        if total % 3 != 0:
             return [-1, -1]
+        if total == 0:
+            return [0, len(A)-1]
 
-        ones_per_part = one_count // 3
-        first = second = third = -1
-        seen = 0
+        count = total//3
+        nums = [0]*3
+        c = 0
+        for i in range(len(A)):
+            if A[i] == 1:
+                if c % count == 0:
+                    nums[c//count] = i
+                c += 1
 
-        for index, bit in enumerate(arr):
-            if bit == 0:
-                continue
-            if seen == 0:
-                first = index
-            elif seen == ones_per_part:
-                second = index
-            elif seen == 2 * ones_per_part:
-                third = index
-            seen += 1
-
-        i, j, k = first, second, third
-        while k < len(arr) and arr[i] == arr[j] == arr[k]:
-            i += 1
-            j += 1
-            k += 1
-
-        if k == len(arr):
-            return [i - 1, j]
-        return [-1, -1]
+        while nums[2] != len(A):
+            if not A[nums[0]] == A[nums[1]] == A[nums[2]]:
+                return [-1, -1]
+            nums[0] += 1
+            nums[1] += 1
+            nums[2] += 1
+        return [nums[0]-1, nums[1]]

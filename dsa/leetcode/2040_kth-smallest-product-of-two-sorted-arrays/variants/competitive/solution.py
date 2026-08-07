@@ -1,35 +1,40 @@
-from bisect import bisect_left, bisect_right
-from typing import List
-
+# Time:  O((m + n) * logr), r is the range size of [min(products), max(products)]
+# Space: O(1)
 
 class Solution:
-    def kthSmallestProduct(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        if len(nums1) > len(nums2):
-            nums1, nums2 = nums2, nums1
+    def kthSmallestProduct(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(nums1, nums2, k, neg_cnt, target):
+            cnt = 0
+            left, right = 0, len(nums2)-1
+            direction = reversed if target >= 0 else lambda x: x
+            for i in direction(range(neg_cnt)):
+                while left < len(nums2) and nums1[i]*nums2[left] > target:
+                    left += 1
+                cnt += (len(nums2)-1)-left+1
+            direction = (lambda x: x) if target >= 0 else reversed
+            for i in direction(range(neg_cnt, len(nums1))): 
+                if nums1[i] == 0: 
+                    if target >= 0:
+                        cnt += len(nums2)
+                    continue
+                while right >= 0 and nums1[i]*nums2[right] > target:
+                    right -= 1
+                cnt += right-0+1
+            return cnt >= k
 
-        def count_at_most(limit: int) -> int:
-            count = 0
-
-            for first in nums1:
-                if first > 0:
-                    count += bisect_right(nums2, limit // first)
-                elif first == 0:
-                    if limit >= 0:
-                        count += len(nums2)
-                else:
-                    threshold = -((-limit) // first)
-                    count += len(nums2) - bisect_left(nums2, threshold)
-
-            return count
-
-        low = -(10**10)
-        high = 10**10
-
-        while low < high:
-            middle = (low + high) // 2
-            if count_at_most(middle) >= k:
-                high = middle
+        neg_cnt = sum(x < 0 for x in nums1)
+        left = min(nums1[i]*nums2[j] for i in (0, -1) for j in (0, -1))
+        right = max(nums1[i]*nums2[j] for i in (0, -1) for j in (0, -1))
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(nums1, nums2, k, neg_cnt, mid):
+                right = mid-1
             else:
-                low = middle + 1
-
-        return low
+                left = mid+1
+        return left

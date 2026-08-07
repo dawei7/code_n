@@ -1,4 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def capitalizeTitle(self, title: str) -> str:
-        words = title.split()
-        return " ".join(word.lower() if len(word) <= 2 else word.capitalize() for word in words)
+    def capitalizeTitle(self, title):
+        """
+        :type title: str
+        :rtype: str
+        """
+        title = list(title)
+        j = 0
+        for i in range(len(title)+1):
+            if i < len(title) and title[i] != ' ':
+                title[i] = title[i].lower()
+                continue
+            if i-j > 2:
+                title[j] = title[j].upper()
+            j = i+1
+        return "".join(title)

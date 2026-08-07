@@ -1,11 +1,13 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def findRelativeRanks(self, score: List[int]) -> List[str]:
-        order = sorted(range(len(score)), key=score.__getitem__, reverse=True)
-        answer = [""] * len(score)
-        medals = ("Gold Medal", "Silver Medal", "Bronze Medal")
-        for rank, index in enumerate(order, start=1):
-            answer[index] = medals[rank - 1] if rank <= 3 else str(rank)
-        return answer
+    def findRelativeRanks(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        sorted_nums = sorted(nums)[::-1]
+        ranks = ["Gold Medal", "Silver Medal", "Bronze Medal"] + map(str, range(4, len(nums) + 1))
+        return map(dict(zip(sorted_nums, ranks)).get, nums)
+

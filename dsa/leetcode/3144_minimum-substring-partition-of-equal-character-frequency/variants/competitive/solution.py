@@ -1,21 +1,25 @@
+# Time:  O(n * (n + 26))
+# Space: O(n + 26)
+
+# dp, freq table
 class Solution:
-    def minimumSubstringsInPartition(self, s: str) -> int:
-        n = len(s)
-        dp = list(range(n + 1))
-
-        for end in range(1, n + 1):
-            counts = [0] * 26
-            distinct = 0
-            maximum = 0
-
-            for start in range(end - 1, -1, -1):
-                index = ord(s[start]) - ord("a")
-                if counts[index] == 0:
-                    distinct += 1
-                counts[index] += 1
-                maximum = max(maximum, counts[index])
-
-                if end - start == distinct * maximum:
-                    dp[end] = min(dp[end], dp[start] + 1)
-
-        return dp[n]
+    def minimumSubstringsInPartition(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        INF = float("inf")
+        dp = [INF]*(len(s)+1)
+        dp[0] = 0
+        for i in range(len(s)):
+            cnt = [0]*26
+            d = mx = 0
+            for j in reversed(range(i+1)):
+                k = ord(s[j])-ord('a')
+                if cnt[k] == 0:
+                    d += 1
+                cnt[k] += 1
+                mx = max(mx, cnt[k])
+                if d*mx == i-j+1:
+                    dp[i+1] = min(dp[i+1], dp[j]+1)
+        return dp[-1]

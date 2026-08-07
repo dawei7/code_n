@@ -1,17 +1,24 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h), h is height of binary tree
 
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 class Solution:
-    def sumNumbers(self, root: Optional["TreeNode"]) -> int:
-        total = 0
-        stack = [(root, root.val)]
-        while stack:
-            node, value = stack.pop()
-            if node.left is None and node.right is None:
-                total += value
-                continue
-            if node.right is not None:
-                stack.append((node.right, value * 10 + node.right.val))
-            if node.left is not None:
-                stack.append((node.left, value * 10 + node.left.val))
-        return total
+    # @param root, a tree node
+    # @return an integer
+    def sumNumbers(self, root):
+        return self.sumNumbersRecu(root, 0)
+
+    def sumNumbersRecu(self, root, num):
+        if root is None:
+            return 0
+
+        if root.left is None and root.right is None:
+            return num * 10 + root.val
+
+        return self.sumNumbersRecu(root.left, num * 10 + root.val) + self.sumNumbersRecu(root.right, num * 10 + root.val)
+

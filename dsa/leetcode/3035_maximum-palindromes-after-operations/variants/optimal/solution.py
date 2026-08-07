@@ -1,17 +1,16 @@
-from collections import Counter
-
-
 class Solution:
     def maxPalindromesAfterOperations(self, words: List[str]) -> int:
-        frequencies = Counter(character for word in words for character in word)
-        available_pairs = sum(count // 2 for count in frequencies.values())
-
-        answer = 0
-        for length in sorted(map(len, words)):
-            required_pairs = length // 2
-            if required_pairs > available_pairs:
+        s = mask = 0
+        for w in words:
+            s += len(w)
+            for c in w:
+                mask ^= 1 << (ord(c) - ord("a"))
+        s -= mask.bit_count()
+        words.sort(key=len)
+        ans = 0
+        for w in words:
+            s -= len(w) // 2 * 2
+            if s < 0:
                 break
-            available_pairs -= required_pairs
-            answer += 1
-
-        return answer
+            ans += 1
+        return ans

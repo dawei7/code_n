@@ -1,30 +1,28 @@
-from bisect import bisect_left
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n: int):
+        self.n = n
+        self.c = [-inf] * (n + 1)
+
+    def update(self, x: int, v: int):
+        while x <= self.n:
+            self.c[x] = max(self.c[x], v)
+            x += x & -x
+
+    def query(self, x: int) -> int:
+        mx = -inf
+        while x:
+            mx = max(mx, self.c[x])
+            x -= x & -x
+        return mx
 
 
 class Solution:
     def maxBalancedSubsequenceSum(self, nums: List[int]) -> int:
-        keys = [value - index for index, value in enumerate(nums)]
-        ordered = sorted(set(keys))
-        tree = [0] * (len(ordered) + 1)
-
-        def query(index: int) -> int:
-            best = 0
-            while index > 0:
-                best = max(best, tree[index])
-                index -= index & -index
-            return best
-
-        def update(index: int, value: int) -> None:
-            while index < len(tree):
-                tree[index] = max(tree[index], value)
-                index += index & -index
-
-        answer = nums[0]
-        for key, value in zip(keys, nums):
-            rank = bisect_left(ordered, key) + 1
-            current = value + query(rank)
-            update(rank, current)
-            answer = max(answer, current)
-
-        return answer
+        arr = [x - i for i, x in enumerate(nums)]
+        s = sorted(set(arr))
+        tree = BinaryIndexedTree(len(s))
+        for i, x in enumerate(nums):
+            j = bisect_left(s, x - i) + 1
+            v = max(tree.query(j), 0) + x
+            tree.update(j, v)
+        return tree.query(len(s))

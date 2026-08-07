@@ -1,24 +1,25 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, prefix sum
 class Solution:
-    def countSubarrays(self, nums: List[int], k: int) -> int:
-        pivot = nums.index(k)
-
-        left_counts = {0: 1}
-        balance = 0
-        for index in range(pivot - 1, -1, -1):
-            balance += 1 if nums[index] > k else -1
-            left_counts[balance] = left_counts.get(balance, 0) + 1
-
-        answer = 0
-        balance = 0
-        for index in range(pivot, len(nums)):
-            if nums[index] > k:
-                balance += 1
-            elif nums[index] < k:
-                balance -= 1
-            answer += left_counts.get(-balance, 0)
-            answer += left_counts.get(1 - balance, 0)
-
-        return answer
+    def countSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        idx = nums.index(k)
+        lookup = collections.Counter()
+        curr = 0
+        for i in reversed(range(idx+1)):
+            curr += 0 if nums[i] == k else -1 if nums[i] < k else +1
+            lookup[curr] += 1
+        result = curr = 0
+        for i in range(idx, len(nums)):
+            curr += 0 if nums[i] == k else -1 if nums[i] < k else +1
+            result += lookup[-curr]+lookup[-(curr-1)]
+        return result

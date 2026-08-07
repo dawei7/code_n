@@ -1,19 +1,18 @@
 class Solution:
     def strWithout3a3b(self, a: int, b: int) -> str:
-        answer = []
-        while a or b:
-            if len(answer) >= 2 and answer[-1] == answer[-2]:
-                character = "b" if answer[-1] == "a" else "a"
+        ans = []
+        while a and b:
+            if a > b:
+                ans.append('aab')
+                a, b = a - 2, b - 1
+            elif a < b:
+                ans.append('bba')
+                a, b = a - 1, b - 2
             else:
-                character = "a" if a >= b else "b"
-
-            if (a if character == "a" else b) == 0:
-                character = "b" if character == "a" else "a"
-
-            answer.append(character)
-            if character == "a":
-                a -= 1
-            else:
-                b -= 1
-
-        return "".join(answer)
+                ans.append('ab')
+                a, b = a - 1, b - 1
+        if a:
+            ans.append('a' * a)
+        if b:
+            ans.append('b' * b)
+        return ''.join(ans)

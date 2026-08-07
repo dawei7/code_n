@@ -1,87 +1,97 @@
-from typing import List
+# Time:  ctor:    O(n)
+#        gather:  O(logn)
+#        scatter: O(logn), amortized
+# Space: O(n)
+
+# Template:
+# https://github.com/kamyu104/LeetCode-Solutions/blob/master/Python/longest-substring-of-one-repeating-character.py
+class SegmentTree(object):
+    def __init__(self, N,
+                 build_fn=lambda _: float("inf"),
+                 query_fn=lambda x, y: y if x is None else x if y is None else min(x, y),
+                 update_fn=lambda x: x):
+        self.tree = [None]*(2*2**((N-1).bit_length()))
+        self.base = len(self.tree)//2
+        self.query_fn = query_fn
+        self.update_fn = update_fn
+        for i in range(self.base, self.base+N):
+            self.tree[i] = build_fn(i-self.base)
+        for i in reversed(range(1, self.base)):
+            self.tree[i] = query_fn(self.tree[2*i], self.tree[2*i+1])
+
+    def update(self, i, h):
+        x = self.base+i
+        self.tree[x] = self.update_fn(h)
+        while x > 1:
+            x //= 2
+            self.tree[x] = self.query_fn(self.tree[x*2], self.tree[x*2+1])
+
+    def query(self, L, R):
+        L += self.base
+        R += self.base
+        left = right = None
+        while L <= R:
+            if L & 1:
+                left = self.query_fn(left, self.tree[L])
+                L += 1
+            if R & 1 == 0:
+                right = self.query_fn(self.tree[R], right)
+                R -= 1
+            L //= 2
+            R //= 2
+        return self.query_fn(left, right)
 
 
-class BookMyShow:
-    def __init__(self, n: int, m: int):
-        self._rows = n
-        self._seats_per_row = m
-        self._remaining = [m] * n
-        self._maximum = [0] * (4 * n)
-        self._total = [0] * (4 * n)
-        self._build(1, 0, n - 1)
+# design, segment tree, binary search
+class BookMyShow(object):
 
-    def gather(self, k: int, maxRow: int) -> List[int]:
-        row = self._first_with_at_least(1, 0, self._rows - 1, maxRow, k)
-        if row == -1:
+    def __init__(self, n, m):
+        """
+        :type n: int
+        :type m: int
+        """
+        self.__st = SegmentTree(n,
+                                build_fn=lambda _: [m]*2,
+                                query_fn=lambda x, y: y if x is None else x if y is None else [max(x[0], y[0]), x[1]+y[1]])
+        self.__m = m
+        self.__i = 0
+
+    def gather(self, k, maxRow):
+        """
+        :type k: int
+        :type maxRow: int
+        :rtype: List[int]
+        """
+        i = 1
+        if k > self.__st.tree[i][0]:
             return []
+        while i < self.__st.base:
+            i = 2*i+int(self.__st.tree[2*i][0] < k)
+        if i-self.__st.base > maxRow:
+            return []
+        cnt = self.__st.tree[i][0]
+        c = self.__m-cnt
+        i -= self.__st.base
+        self.__st.update(i, [cnt-k]*2)
+        return [i, c]
 
-        first_seat = self._seats_per_row - self._remaining[row]
-        self._remaining[row] -= k
-        self._update(1, 0, self._rows - 1, row)
-        return [row, first_seat]
-
-    def scatter(self, k: int, maxRow: int) -> bool:
-        if self._prefix_total(1, 0, self._rows - 1, maxRow) < k:
+    def scatter(self, k, maxRow):
+        """
+        :type k: int
+        :type maxRow: int
+        :rtype: bool
+        """
+        cnt = self.__st.query(self.__i, maxRow)
+        if not cnt or cnt[1] < k:
             return False
-
-        while k:
-            row = self._first_with_at_least(1, 0, self._rows - 1, maxRow, 1)
-            booked = min(k, self._remaining[row])
-            self._remaining[row] -= booked
-            k -= booked
-            self._update(1, 0, self._rows - 1, row)
-
+        for i in range(self.__i, maxRow+1):
+            cnt = self.__st.tree[self.__st.base+i][1]
+            c = min(cnt, k)
+            cnt -= c
+            if not cnt:
+                self.__i += 1
+            self.__st.update(i, [cnt]*2)
+            k -= c
+            if not k:
+                break
         return True
-
-    def _build(self, node: int, left: int, right: int) -> None:
-        if left == right:
-            self._maximum[node] = self._seats_per_row
-            self._total[node] = self._seats_per_row
-            return
-        middle = (left + right) // 2
-        self._build(node * 2, left, middle)
-        self._build(node * 2 + 1, middle + 1, right)
-        self._pull(node)
-
-    def _pull(self, node: int) -> None:
-        self._maximum[node] = max(self._maximum[node * 2], self._maximum[node * 2 + 1])
-        self._total[node] = self._total[node * 2] + self._total[node * 2 + 1]
-
-    def _update(self, node: int, left: int, right: int, index: int) -> None:
-        if left == right:
-            self._maximum[node] = self._remaining[index]
-            self._total[node] = self._remaining[index]
-            return
-        middle = (left + right) // 2
-        if index <= middle:
-            self._update(node * 2, left, middle, index)
-        else:
-            self._update(node * 2 + 1, middle + 1, right, index)
-        self._pull(node)
-
-    def _first_with_at_least(
-        self,
-        node: int,
-        left: int,
-        right: int,
-        max_row: int,
-        needed: int,
-    ) -> int:
-        if left > max_row or self._maximum[node] < needed:
-            return -1
-        if left == right:
-            return left
-        middle = (left + right) // 2
-        result = self._first_with_at_least(node * 2, left, middle, max_row, needed)
-        if result != -1:
-            return result
-        return self._first_with_at_least(node * 2 + 1, middle + 1, right, max_row, needed)
-
-    def _prefix_total(self, node: int, left: int, right: int, max_row: int) -> int:
-        if right <= max_row:
-            return self._total[node]
-        middle = (left + right) // 2
-        total = self._prefix_total(node * 2, left, middle, max_row)
-        if max_row > middle:
-            total += self._prefix_total(node * 2 + 1, middle + 1, right, max_row)
-        return total

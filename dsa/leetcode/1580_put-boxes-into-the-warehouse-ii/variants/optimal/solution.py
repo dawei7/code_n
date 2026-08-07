@@ -1,22 +1,22 @@
 class Solution:
     def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
-        capacities = []
-        left_minimum = float("inf")
-        for height in warehouse:
-            left_minimum = min(left_minimum, height)
-            capacities.append(left_minimum)
-
-        right_minimum = float("inf")
-        for index in range(len(warehouse) - 1, -1, -1):
-            right_minimum = min(right_minimum, warehouse[index])
-            capacities[index] = max(capacities[index], right_minimum)
-
+        n = len(warehouse)
+        left = [0] * n
+        right = [0] * n
+        left[0] = right[-1] = inf
+        for i in range(1, n):
+            left[i] = min(left[i - 1], warehouse[i - 1])
+        for i in range(n - 2, -1, -1):
+            right[i] = min(right[i + 1], warehouse[i + 1])
+        for i in range(n):
+            warehouse[i] = min(warehouse[i], max(left[i], right[i]))
         boxes.sort()
-        capacities.sort()
-        box_index = 0
-
-        for capacity in capacities:
-            if box_index < len(boxes) and boxes[box_index] <= capacity:
-                box_index += 1
-
-        return box_index
+        warehouse.sort()
+        ans = i = 0
+        for x in boxes:
+            while i < n and warehouse[i] < x:
+                i += 1
+            if i == n:
+                break
+            ans, i = ans + 1, i + 1
+        return ans

@@ -1,28 +1,16 @@
-from typing import List
-
-
 class Solution:
     def maxTastiness(
-        self,
-        price: List[int],
-        tastiness: List[int],
-        maxAmount: int,
-        maxCoupons: int,
+        self, price: List[int], tastiness: List[int], maxAmount: int, maxCoupons: int
     ) -> int:
-        best = [[0] * (maxAmount + 1) for _ in range(maxCoupons + 1)]
+        @cache
+        def dfs(i, j, k):
+            if i == len(price):
+                return 0
+            ans = dfs(i + 1, j, k)
+            if j >= price[i]:
+                ans = max(ans, dfs(i + 1, j - price[i], k) + tastiness[i])
+            if j >= price[i] // 2 and k:
+                ans = max(ans, dfs(i + 1, j - price[i] // 2, k - 1) + tastiness[i])
+            return ans
 
-        for cost, value in zip(price, tastiness):
-            discounted = cost // 2
-            for coupons in range(maxCoupons, -1, -1):
-                row = best[coupons]
-                previous = best[coupons - 1] if coupons else None
-                for budget in range(maxAmount, -1, -1):
-                    if budget >= cost:
-                        row[budget] = max(row[budget], row[budget - cost] + value)
-                    if previous is not None and budget >= discounted:
-                        row[budget] = max(
-                            row[budget],
-                            previous[budget - discounted] + value,
-                        )
-
-        return best[maxCoupons][maxAmount]
+        return dfs(0, maxAmount, maxCoupons)

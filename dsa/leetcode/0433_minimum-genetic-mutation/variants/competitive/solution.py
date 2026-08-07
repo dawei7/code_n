@@ -1,27 +1,35 @@
-from collections import deque
-from typing import List
+# Time:  O(n * b), n is the length of gene string, b is size of bank
+# Space: O(b)
 
+from collections import deque
 
 class Solution:
-    def minMutation(self, startGene: str, endGene: str, bank: List[str]) -> int:
-        if startGene == endGene:
-            return 0
-        unvisited = set(bank)
-        if endGene not in unvisited:
-            return -1
+    def minMutation(self, start, end, bank):
+        """
+        :type start: str
+        :type end: str
+        :type bank: List[str]
+        :rtype: int
+        """
+        lookup = {}
+        for b in bank:
+            lookup[b] = False
 
-        queue = deque([(startGene, 0)])
-        alphabet = "ACGT"
-        while queue:
-            gene, distance = queue.popleft()
-            for index, original in enumerate(gene):
-                for replacement in alphabet:
-                    if replacement == original:
+        q = deque([(start, 0)])
+        while q:
+            cur, level = q.popleft()
+            if cur == end:
+                return level
+
+            for i in range(len(cur)):
+                for c in ['A', 'T', 'C', 'G']:
+                    if cur[i] == c:
                         continue
-                    candidate = gene[:index] + replacement + gene[index + 1 :]
-                    if candidate == endGene:
-                        return distance + 1
-                    if candidate in unvisited:
-                        unvisited.remove(candidate)
-                        queue.append((candidate, distance + 1))
+
+                    next_str = cur[:i] + c + cur[i+1:]
+                    if next_str in lookup and lookup[next_str] == False:
+                        q.append((next_str, level+1))
+                        lookup[next_str] = True
+
         return -1
+

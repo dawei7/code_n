@@ -1,8 +1,6 @@
 class Solution:
     def getSmallestString(self, s: str) -> str:
-        digits = list(s)
-        for index in range(len(digits) - 1):
-            if int(digits[index]) % 2 == int(digits[index + 1]) % 2 and digits[index] > digits[index + 1]:
-                digits[index], digits[index + 1] = (digits[index + 1], digits[index])
-                break
-        return "".join(digits)
+        for i, (a, b) in enumerate(pairwise(map(ord, s))):
+            if (a + b) % 2 == 0 and a > b:
+                return s[:i] + s[i + 1] + s[i] + s[i + 2 :]
+        return s

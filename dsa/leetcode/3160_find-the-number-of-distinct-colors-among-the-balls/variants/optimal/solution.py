@@ -1,22 +1,14 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def queryResults(self, limit: int, queries: List[List[int]]) -> List[int]:
-        ball_colors = {}
-        color_counts = defaultdict(int)
-        answer = []
-
-        for ball, color in queries:
-            if ball in ball_colors:
-                previous = ball_colors[ball]
-                color_counts[previous] -= 1
-                if color_counts[previous] == 0:
-                    del color_counts[previous]
-
-            ball_colors[ball] = color
-            color_counts[color] += 1
-            answer.append(len(color_counts))
-
-        return answer
+        g = {}
+        cnt = Counter()
+        ans = []
+        for x, y in queries:
+            cnt[y] += 1
+            if x in g:
+                cnt[g[x]] -= 1
+                if cnt[g[x]] == 0:
+                    cnt.pop(g[x])
+            g[x] = y
+            ans.append(len(cnt))
+        return ans

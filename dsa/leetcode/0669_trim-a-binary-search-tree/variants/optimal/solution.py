@@ -1,12 +1,22 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def trimBST(self, root, low: int, high: int):
-        if root is None:
-            return None
-        if root.val < low:
-            return self.trimBST(root.right, low, high)
-        if root.val > high:
-            return self.trimBST(root.left, low, high)
+    def trimBST(
+        self, root: Optional[TreeNode], low: int, high: int
+    ) -> Optional[TreeNode]:
+        def dfs(root):
+            if root is None:
+                return root
+            if root.val > high:
+                return dfs(root.left)
+            if root.val < low:
+                return dfs(root.right)
+            root.left = dfs(root.left)
+            root.right = dfs(root.right)
+            return root
 
-        root.left = self.trimBST(root.left, low, high)
-        root.right = self.trimBST(root.right, low, high)
-        return root
+        return dfs(root)

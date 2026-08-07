@@ -1,15 +1,60 @@
-SELECT employees.employee_id AS employee_id
-FROM Employees AS employees
-LEFT JOIN Salaries AS salaries
-  ON salaries.employee_id = employees.employee_id
-WHERE salaries.employee_id IS NULL
+# Time:  O(nlogn)
+# Space: O(n)
 
-UNION
+WITH all_employee_info_cte AS
+(
+    SELECT employee_id FROM Employees
+    UNION ALL
+    SELECT employee_id FROM Salaries
+)
 
-SELECT salaries.employee_id AS employee_id
-FROM Salaries AS salaries
-LEFT JOIN Employees AS employees
-  ON employees.employee_id = salaries.employee_id
-WHERE employees.employee_id IS NULL
+SELECT employee_id
+FROM all_employee_info_cte
+GROUP BY employee_id
+HAVING COUNT(*) != 2
+ORDER BY 1;
 
-ORDER BY employee_id;
+# Time:  O(nlogn)
+# Space: O(n)
+WITH all_employee_id_cte AS
+(
+    SELECT employee_id FROM Employees
+    UNION
+    SELECT employee_id FROM Salaries
+),
+complete_employee_id_cte AS
+(
+    SELECT a.employee_id 
+    FROM Employees a
+    INNER JOIN Salaries b
+    ON a.employee_id = b.employee_id
+)
+
+SELECT employee_id
+FROM all_employee_id_cte a
+WHERE NOT EXISTS (SELECT 1 FROM complete_employee_id_cte b WHERE a.employee_id = b.employee_id)
+ORDER BY 1;
+
+# Time:  O(nlogn)
+# Space: O(n)
+WITH all_employee_info_cte AS
+(
+    (
+        SELECT a.employee_id, a.name, b.salary
+        FROM Employees a
+        LEFT JOIN Salaries b 
+        ON a.employee_id = b.employee_id
+    )
+    UNION
+    (
+        SELECT b.employee_id, a.name, b.salary
+        FROM Employees a
+        RIGHT JOIN Salaries b 
+        ON a.employee_id = b.employee_id
+    )
+)
+
+SELECT employee_id
+FROM all_employee_info_cte tmp
+WHERE name IS NULL OR salary IS NULL
+ORDER BY 1;

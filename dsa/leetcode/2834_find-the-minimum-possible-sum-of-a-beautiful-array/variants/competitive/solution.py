@@ -1,10 +1,14 @@
 class Solution:
-    def minimumPossibleSum(self, n: int, target: int) -> int:
-        modulus = 1_000_000_007
-        low_count = min(n, target // 2)
-        high_count = n - low_count
-
-        low_sum = low_count * (low_count + 1) // 2
-        high_sum = high_count * (2 * target + high_count - 1) // 2
-
-        return (low_sum + high_sum) % modulus
+    def minimumPossibleSum(self, n, target):
+        """
+        :type n: int
+        :type target: int
+        :rtype: int
+        """
+        def arithmetic_progression_sum(a, d, n):
+            return (a+(a+(n-1)*d))*n//2
+    
+        a = min(target//2, n)
+        b = n-a
+        return arithmetic_progression_sum(1, 1, a)+arithmetic_progression_sum(target, 1, b)
+    

@@ -1,23 +1,31 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def gameOfLife(self, board: List[List[int]]) -> None:
-        rows = len(board)
-        columns = len(board[0])
-        for row in range(rows):
-            for column in range(columns):
-                neighbors = 0
-                for row_offset in (-1, 0, 1):
-                    for column_offset in (-1, 0, 1):
-                        if row_offset == column_offset == 0:
-                            continue
-                        next_row = row + row_offset
-                        next_column = column + column_offset
-                        if 0 <= next_row < rows and 0 <= next_column < columns and board[next_row][next_column] & 1:
-                            neighbors += 1
-                if neighbors == 3 or (neighbors == 2 and board[row][column] & 1):
-                    board[row][column] |= 2
-        for row in range(rows):
-            for column in range(columns):
-                board[row][column] >>= 1
+    def gameOfLife(self, board):
+        """
+        :type board: List[List[int]]
+        :rtype: void Do not return anything, modify board in-place instead.
+        """
+        m = len(board)
+        n = len(board[0]) if m else 0
+        for i in range(m):
+            for j in range(n):
+                count = 0
+                ## Count live cells in 3x3 block.
+                for I in range(max(i-1, 0), min(i+2, m)):
+                    for J in range(max(j-1, 0), min(j+2, n)):
+                        count += board[I][J] & 1
+
+                # if (count == 4 && board[i][j]) means:
+                #     Any live cell with three live neighbors lives.
+                # if (count == 3) means:
+                #     Any live cell with two live neighbors.
+                #     Any dead cell with exactly three live neighbors lives.
+                if (count == 4 and board[i][j]) or count == 3:
+                    board[i][j] |= 2  # Mark as live.
+
+        for i in range(m):
+            for j in range(n):
+                board[i][j] >>= 1  # Update to the next state.
+

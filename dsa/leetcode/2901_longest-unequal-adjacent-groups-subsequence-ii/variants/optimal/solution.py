@@ -1,37 +1,26 @@
-from typing import List
-
-
 class Solution:
-    def getWordsInLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
-        count = len(words)
-        lengths = [1] * count
-        previous = [-1] * count
-        best_end = 0
+    def getWordsInLongestSubsequence(
+        self, words: List[str], groups: List[int]
+    ) -> List[str]:
+        def check(s: str, t: str) -> bool:
+            return len(s) == len(t) and sum(a != b for a, b in zip(s, t)) == 1
 
-        for end in range(count):
-            for start in range(end):
-                if groups[start] == groups[end]:
-                    continue
-                if len(words[start]) != len(words[end]):
-                    continue
-
-                differences = 0
-                for left, right in zip(words[start], words[end]):
-                    if left != right:
-                        differences += 1
-                        if differences > 1:
-                            break
-
-                if differences == 1 and lengths[start] + 1 > lengths[end]:
-                    lengths[end] = lengths[start] + 1
-                    previous[end] = start
-
-            if lengths[end] > lengths[best_end]:
-                best_end = end
-
-        answer = []
-        while best_end != -1:
-            answer.append(words[best_end])
-            best_end = previous[best_end]
-        answer.reverse()
-        return answer
+        n = len(groups)
+        f = [1] * n
+        g = [-1] * n
+        mx = 1
+        for i, x in enumerate(groups):
+            for j, y in enumerate(groups[:i]):
+                if x != y and f[i] < f[j] + 1 and check(words[i], words[j]):
+                    f[i] = f[j] + 1
+                    g[i] = j
+                    mx = max(mx, f[i])
+        ans = []
+        for i in range(n):
+            if f[i] == mx:
+                j = i
+                while j >= 0:
+                    ans.append(words[j])
+                    j = g[j]
+                break
+        return ans[::-1]

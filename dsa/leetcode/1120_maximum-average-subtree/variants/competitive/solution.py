@@ -1,23 +1,30 @@
+# Time:  O(n)
+# Space: O(h)
+
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def maximumAverageSubtree(self, root: Optional[TreeNode]) -> float:
-        best = 0.0
+    def maximumAverageSubtree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: float
+        """
+        def maximumAverageSubtreeHelper(root, result):
+            if not root:
+                return [0.0, 0]
+            s1, n1 = maximumAverageSubtreeHelper(root.left, result)
+            s2, n2 = maximumAverageSubtreeHelper(root.right, result)
+            s = s1+s2+root.val
+            n = n1+n2+1
+            result[0] = max(result[0], s / n)
+            return [s, n]
 
-        def summarize(node):
-            nonlocal best
-            if node is None:
-                return 0, 0
-            left_sum, left_count = summarize(node.left)
-            right_sum, right_count = summarize(node.right)
-            total = node.val + left_sum + right_sum
-            count = 1 + left_count + right_count
-            best = max(best, total / count)
-            return total, count
-
-        summarize(root)
-        return best
+        result = [0]
+        maximumAverageSubtreeHelper(root, result)
+        return result[0]

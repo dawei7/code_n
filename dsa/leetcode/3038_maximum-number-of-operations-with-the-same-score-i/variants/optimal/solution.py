@@ -1,14 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxOperations(self, nums: List[int]) -> int:
-        score = nums[0] + nums[1]
-        operations = 0
-
-        for index in range(0, len(nums) - 1, 2):
-            if nums[index] + nums[index + 1] != score:
+        s = nums[0] + nums[1]
+        ans, n = 0, len(nums)
+        for i in range(0, n, 2):
+            if i + 1 == n or nums[i] + nums[i + 1] != s:
                 break
-            operations += 1
-
-        return operations
+            ans += 1
+        return ans

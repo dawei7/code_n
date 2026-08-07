@@ -1,14 +1,8 @@
-from typing import List
-
-
 class Solution:
     def minIncrements(self, n: int, cost: List[int]) -> int:
-        increments = 0
-
-        for parent in range(n // 2 - 1, -1, -1):
-            left = 2 * parent + 1
-            right = left + 1
-            increments += abs(cost[left] - cost[right])
-            cost[parent] += max(cost[left], cost[right])
-
-        return increments
+        ans = 0
+        for i in range(n >> 1, 0, -1):
+            l, r = i << 1, i << 1 | 1
+            ans += abs(cost[l - 1] - cost[r - 1])
+            cost[i - 1] += max(cost[l - 1], cost[r - 1])
+        return ans

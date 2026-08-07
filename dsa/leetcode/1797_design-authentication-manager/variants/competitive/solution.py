@@ -1,30 +1,51 @@
-from collections import OrderedDict
+# Time:  ctor:     O(1)
+#        generate: O(1), amortized
+#        renew:    O(1), amortized
+#        count:    O(1), amortized
+# Space: O(n)
+
+import collections
 
 
-class AuthenticationManager:
-    def __init__(self, timeToLive: int):
-        self.time_to_live = timeToLive
-        self.expirations = OrderedDict()
+class AuthenticationManager(object):
 
-    def _discard_expired(self, current_time: int) -> None:
-        while self.expirations:
-            token_id, expiration = next(iter(self.expirations.items()))
-            if expiration > current_time:
-                break
-            self.expirations.popitem(last=False)
+    def __init__(self, timeToLive):
+        """
+        :type timeToLive: int
+        """
+        self.__time = timeToLive
+        self.__lookup = collections.OrderedDict()
 
-    def generate(self, tokenId: str, currentTime: int) -> None:
-        self._discard_expired(currentTime)
-        self.expirations[tokenId] = currentTime + self.time_to_live
+    def __evict(self, currentTime):
+        while self.__lookup and next(self.__lookup.values()) <= currentTime:
+            self.__lookup.popitem(last=False)
 
-    def renew(self, tokenId: str, currentTime: int) -> None:
-        self._discard_expired(currentTime)
-        if tokenId not in self.expirations:
+    def generate(self, tokenId, currentTime):
+        """
+        :type tokenId: str
+        :type currentTime: int
+        :rtype: None
+        """
+        self.__evict(currentTime)
+        self.__lookup[tokenId] = currentTime + self.__time
+
+
+    def renew(self, tokenId, currentTime):
+        """
+        :type tokenId: str
+        :type currentTime: int
+        :rtype: None
+        """
+        self.__evict(currentTime)            
+        if tokenId not in self.__lookup:
             return
+        del self.__lookup[tokenId]
+        self.__lookup[tokenId] = currentTime + self.__time
 
-        self.expirations[tokenId] = currentTime + self.time_to_live
-        self.expirations.move_to_end(tokenId)
-
-    def countUnexpiredTokens(self, currentTime: int) -> int:
-        self._discard_expired(currentTime)
-        return len(self.expirations)
+    def countUnexpiredTokens(self, currentTime):
+        """
+        :type currentTime: int
+        :rtype: int
+        """
+        self.__evict(currentTime)
+        return len(self.__lookup)

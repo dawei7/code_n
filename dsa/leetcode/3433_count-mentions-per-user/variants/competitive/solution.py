@@ -1,39 +1,29 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(eloge + e * n), e = len(events)
+# Space: O(e + n)
 
-
+# simulation
 class Solution:
-    def countMentions(self, numberOfUsers: int, events: List[List[str]]) -> List[int]:
-        events.sort(key=lambda event: (int(event[1]), event[0] == "MESSAGE"))
-
-        direct = [0] * numberOfUsers
-        here_mentions = [0] * numberOfUsers
-        online_since = [0] * numberOfUsers
-        returns: list[tuple[int, int]] = []
-        all_messages = 0
-        here_messages = 0
-
-        for event_type, timestamp_text, payload in events:
-            timestamp = int(timestamp_text)
-            while returns and returns[0][0] <= timestamp:
-                _, user = heappop(returns)
-                online_since[user] = here_messages
-
-            if event_type == "OFFLINE":
-                user = int(payload)
-                here_mentions[user] += here_messages - online_since[user]
-                online_since[user] = -1
-                heappush(returns, (timestamp + 60, user))
-            elif payload == "ALL":
-                all_messages += 1
-            elif payload == "HERE":
-                here_messages += 1
+    def countMentions(self, numberOfUsers, events):
+        """
+        :type numberOfUsers: int
+        :type events: List[List[str]]
+        :rtype: List[int]
+        """
+        result = [0]*numberOfUsers
+        lookup = [1]*numberOfUsers
+        events.sort(key=lambda x: (int(x[1]), x[0] == "MESSAGE"))
+        for m, t, s in events:                  
+            if m == "OFFLINE":
+                lookup[int(s)] = int(t)+60
+                continue
+            if s == "ALL":
+                for i in range(len(lookup)):
+                    result[i] += 1
+            elif s == "HERE":
+                for i in range(len(lookup)):
+                    if lookup[i] <= int(t):
+                        result[i] += 1
             else:
-                for token in payload.split():
-                    direct[int(token[2:])] += 1
-
-        for user in range(numberOfUsers):
-            if online_since[user] != -1:
-                here_mentions[user] += here_messages - online_since[user]
-            direct[user] += all_messages + here_mentions[user]
-        return direct
+                for idx in s.split():
+                    result[int(idx[2:])] += 1
+        return result

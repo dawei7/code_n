@@ -1,18 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers, sliding window
 class Solution:
-    def resultsArray(self, nums: List[int], k: int) -> List[int]:
-        result = []
-        consecutive_length = 0
-
-        for index, value in enumerate(nums):
-            if index > 0 and value == nums[index - 1] + 1:
-                consecutive_length += 1
-            else:
-                consecutive_length = 1
-
-            if index >= k - 1:
-                result.append(value if consecutive_length >= k else -1)
-
+    def resultsArray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        result = [-1]*(len(nums)-k+1)
+        left = 0
+        for right in range(len(nums)):
+            if nums[right]-nums[left] != right-left:
+                left = right
+            if right-left+1 == k:
+                result[left] = nums[right]
+                left += 1
         return result

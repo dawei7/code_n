@@ -1,30 +1,24 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def kthLargestPerfectSubtree(self, root: Optional[TreeNode], k: int) -> int:
-        heights = {}
-        sizes = []
-        stack = [(root, False)]
+        def dfs(root: Optional[TreeNode]) -> int:
+            if root is None:
+                return 0
+            l, r = dfs(root.left), dfs(root.right)
+            if l < 0 or l != r:
+                return -1
+            cnt = l + r + 1
+            nums.append(cnt)
+            return cnt
 
-        while stack:
-            node, visited = stack.pop()
-            if node is None:
-                continue
-            if not visited:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-                continue
-
-            left_height = heights.get(node.left, 0)
-            right_height = heights.get(node.right, 0)
-            if left_height >= 0 and left_height == right_height:
-                height = left_height + 1
-                heights[node] = height
-                sizes.append((1 << height) - 1)
-            else:
-                heights[node] = -1
-
-        sizes.sort(reverse=True)
-        return sizes[k - 1] if k <= len(sizes) else -1
+        nums = []
+        dfs(root)
+        if len(nums) < k:
+            return -1
+        nums.sort(reverse=True)
+        return nums[k - 1]

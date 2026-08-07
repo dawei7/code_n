@@ -1,18 +1,32 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def toHexspeak(self, num: str) -> str:
-        value = int(num)
-        characters = []
-        letters = "ABCDEF"
-
-        while value:
-            value, digit = divmod(value, 16)
-            if digit == 0:
-                characters.append("O")
-            elif digit == 1:
-                characters.append("I")
-            elif 10 <= digit <= 15:
-                characters.append(letters[digit - 10])
-            else:
+    def toHexspeak(self, num):
+        """
+        :type num: str
+        :rtype: str
+        """
+        lookup = {0:'O', 1:'I'}
+        for i in range(6):
+            lookup[10+i] = chr(ord('A')+i)
+        result = []
+        n = int(num)
+        while n:
+            n, r = divmod(n, 16)
+            if r not in lookup:
                 return "ERROR"
+            result.append(lookup[r])
+        return "".join(reversed(result))
 
-        return "".join(reversed(characters))
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def toHexspeak(self, num):
+        """
+        :type num: str
+        :rtype: str
+        """
+        result = hex(int(num)).upper()[2:].replace('0', 'O').replace('1', 'I')
+        return result if all(c in "ABCDEFOI" for c in result) else "ERROR"

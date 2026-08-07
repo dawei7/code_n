@@ -1,7 +1,12 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def minimumDifference(self, nums: List[int], k: int) -> int:
+    def minimumDifference(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         nums.sort()
-        return min(nums[index + k - 1] - nums[index] for index in range(len(nums) - k + 1))
+        return min(nums[i]-nums[i-k+1] for i in range(k-1, len(nums)))

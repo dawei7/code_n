@@ -1,11 +1,11 @@
 class Solution:
     def sumDistance(self, nums: List[int], s: str, d: int) -> int:
-        positions = sorted(position + d if direction == "R" else position - d for position, direction in zip(nums, s))
-
-        total = 0
-        prefix = 0
-        for index, position in enumerate(positions):
-            total += index * position - prefix
-            prefix += position
-
-        return total % 1_000_000_007
+        mod = 10**9 + 7
+        for i, c in enumerate(s):
+            nums[i] += d if c == "R" else -d
+        nums.sort()
+        ans = s = 0
+        for i, x in enumerate(nums):
+            ans += i * x - s
+            s += x
+        return ans % mod

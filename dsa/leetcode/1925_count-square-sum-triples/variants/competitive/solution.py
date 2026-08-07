@@ -1,8 +1,17 @@
+# Time:  O(n^2)
+# Space: O(n)
+
 class Solution:
-    def countTriples(self, n: int) -> int:
-        hypotenuse_squares = {value * value for value in range(1, n + 1)}
-        return sum(
-            first * first + second * second in hypotenuse_squares
-            for first in range(1, n + 1)
-            for second in range(1, n + 1)
-        )
+    def countTriples(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        lookup = set()
+        for i in range(1, n+1):
+            lookup.add(i**2)
+        result = 0
+        for i in range(1, n+1):
+            for j in range(1, n+1):
+                result += int(i**2+j**2 in lookup)
+        return result

@@ -1,18 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def numberOfArrays(self, differences: List[int], lower: int, upper: int) -> int:
-        offset = 0
-        minimum_offset = 0
-        maximum_offset = 0
-
-        for difference in differences:
-            offset += difference
-            minimum_offset = min(minimum_offset, offset)
-            maximum_offset = max(maximum_offset, offset)
-
-        return max(
-            0,
-            upper - lower - (maximum_offset - minimum_offset) + 1,
-        )
+    def numberOfArrays(self, differences, lower, upper):
+        """
+        :type differences: List[int]
+        :type lower: int
+        :type upper: int
+        :rtype: int
+        """
+        total = mn = mx = 0
+        for x in differences:
+            total += x
+            mn = min(mn, total)
+            mx = max(mx, total)
+        return max((upper-lower)-(mx-mn)+1, 0)

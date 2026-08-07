@@ -1,8 +1,24 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def rangeBitwiseAnd(self, left: int, right: int) -> int:
-        shifts = 0
-        while left != right:
-            left >>= 1
-            right >>= 1
-            shifts += 1
-        return left << shifts
+    # @param m, an integer
+    # @param n, an integer
+    # @return an integer
+    def rangeBitwiseAnd(self, m, n):
+        while m < n:
+            n &= n - 1
+        return n
+
+
+class Solution2(object):
+    # @param m, an integer
+    # @param n, an integer
+    # @return an integer
+    def rangeBitwiseAnd(self, m, n):
+        i, diff = 0, n-m
+        while diff:
+            diff >>= 1
+            i += 1
+        return n & m >> i << i
+

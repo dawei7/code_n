@@ -1,20 +1,42 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def maxBoxesInWarehouse(self, boxes: List[int], warehouse: List[int]) -> int:
-        ordered_boxes = sorted(boxes)
-        clearance = []
-        minimum_height = float("inf")
-        for room_height in warehouse:
-            minimum_height = min(minimum_height, room_height)
-            clearance.append(minimum_height)
-
-        box_index = 0
-        for room_height in reversed(clearance):
-            if box_index == len(ordered_boxes):
+    def maxBoxesInWarehouse(self, boxes, warehouse):
+        """
+        :type boxes: List[int]
+        :type warehouse: List[int]
+        :rtype: int
+        """
+        boxes.sort(reverse=True)
+        result = 0
+        for h in boxes:
+            if h > warehouse[result]:
+                continue
+            result += 1
+            if result == len(warehouse):
                 break
-            if ordered_boxes[box_index] <= room_height:
-                box_index += 1
+        return result
 
-        return box_index
+
+# Time:  O(nlogn + m)
+# Space: O(1)
+class Solution2(object):
+    def maxBoxesInWarehouse(self, boxes, warehouse):
+        """
+        :type boxes: List[int]
+        :type warehouse: List[int]
+        :rtype: int
+        """
+        boxes.sort()
+        for i in range(1, len(warehouse)):
+            warehouse[i] = min(warehouse[i], warehouse[i-1])
+        result, curr = 0, 0
+        for h in reversed(warehouse):
+            if boxes[curr] > h:
+                continue
+            result += 1
+            curr += 1
+            if curr == len(boxes):
+                break
+        return result

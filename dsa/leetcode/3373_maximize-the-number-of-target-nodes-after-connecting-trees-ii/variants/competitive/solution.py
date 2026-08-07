@@ -1,32 +1,41 @@
-from typing import List
+# Time:  O(n + m)
+# Space: O(n + m)
 
-
+# bfs
 class Solution:
-    def maxTargetNodes(self, edges1: List[List[int]], edges2: List[List[int]]) -> List[int]:
-        def color_tree(edges: List[List[int]]) -> tuple[List[int], List[int]]:
-            node_count = len(edges) + 1
-            graph = [[] for _ in range(node_count)]
-            for a, b in edges:
-                graph[a].append(b)
-                graph[b].append(a)
+    def maxTargetNodes(self, edges1, edges2):
+        """
+        :type edges1: List[List[int]]
+        :type edges2: List[List[int]]
+        :rtype: List[int]
+        """
+        def bfs(adj):
+            result = [0]*len(adj)
+            parity = 0
+            lookup = [-1]*len(adj)
+            lookup[0] = parity
+            q = [0]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v] != -1:
+                            continue
+                        lookup[v] = parity^1
+                        new_q.append(v)
+                q = new_q
+                parity ^= 1
+            cnt = sum(lookup)
+            return [cnt if lookup[u] else len(adj)-cnt for u in range(len(adj))]
+    
+        def find_adj(edges):
+            adj = [[] for _ in range(len(edges)+1)]
+            for u, v in edges:
+                adj[u].append(v)
+                adj[v].append(u)
+            return adj
 
-            parity = [-1] * node_count
-            parity[0] = 0
-            counts = [1, 0]
-            stack = [0]
-
-            while stack:
-                node = stack.pop()
-                for neighbor in graph[node]:
-                    if parity[neighbor] == -1:
-                        parity[neighbor] = parity[node] ^ 1
-                        counts[parity[neighbor]] += 1
-                        stack.append(neighbor)
-
-            return parity, counts
-
-        parity1, counts1 = color_tree(edges1)
-        _, counts2 = color_tree(edges2)
-        best_second_tree = max(counts2)
-
-        return [counts1[color] + best_second_tree for color in parity1]
+        adj2 = find_adj(edges2)
+        mx = max(bfs(adj2))
+        adj1 = find_adj(edges1)
+        return [mx+x for x in bfs(adj1)]

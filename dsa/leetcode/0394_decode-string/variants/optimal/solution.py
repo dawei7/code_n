@@ -1,22 +1,16 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        stack = []
-        chunks = []
-        repeat = 0
-
-        for character in s:
-            if character.isdigit():
-                repeat = repeat * 10 + int(character)
-            elif character == "[":
-                stack.append((chunks, repeat))
-                chunks = []
-                repeat = 0
-            elif character == "]":
-                decoded_group = "".join(chunks)
-                parent_chunks, group_repeat = stack.pop()
-                parent_chunks.append(decoded_group * group_repeat)
-                chunks = parent_chunks
+        s1, s2 = [], []
+        num, res = 0, ''
+        for c in s:
+            if c.isdigit():
+                num = num * 10 + int(c)
+            elif c == '[':
+                s1.append(num)
+                s2.append(res)
+                num, res = 0, ''
+            elif c == ']':
+                res = s2.pop() + res * s1.pop()
             else:
-                chunks.append(character)
-
-        return "".join(chunks)
+                res += c
+        return res

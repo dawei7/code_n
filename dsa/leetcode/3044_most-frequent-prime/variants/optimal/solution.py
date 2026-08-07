@@ -1,62 +1,27 @@
-from collections import Counter
-
-
 class Solution:
     def mostFrequentPrime(self, mat: List[List[int]]) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        directions = (
-            (-1, -1),
-            (-1, 0),
-            (-1, 1),
-            (0, -1),
-            (0, 1),
-            (1, -1),
-            (1, 0),
-            (1, 1),
-        )
-        prime_cache = {}
+        def is_prime(x: int) -> int:
+            return all(x % i != 0 for i in range(2, isqrt(x) + 1))
 
-        def is_prime(value: int) -> bool:
-            if value in prime_cache:
-                return prime_cache[value]
-
-            if value < 2:
-                result = False
-            elif value == 2:
-                result = True
-            elif value % 2 == 0:
-                result = False
-            else:
-                result = True
-                divisor = 3
-                while divisor * divisor <= value:
-                    if value % divisor == 0:
-                        result = False
-                        break
-                    divisor += 2
-
-            prime_cache[value] = result
-            return result
-
-        frequencies = Counter()
-
-        for start_row in range(rows):
-            for start_column in range(columns):
-                for row_step, column_step in directions:
-                    row = start_row
-                    column = start_column
-                    value = 0
-
-                    while 0 <= row < rows and 0 <= column < columns:
-                        value = value * 10 + mat[row][column]
-                        if value > 10 and is_prime(value):
-                            frequencies[value] += 1
-
-                        row += row_step
-                        column += column_step
-
-        if not frequencies:
-            return -1
-
-        return max(frequencies, key=lambda value: (frequencies[value], value))
+        m, n = len(mat), len(mat[0])
+        cnt = Counter()
+        for i in range(m):
+            for j in range(n):
+                for a in range(-1, 2):
+                    for b in range(-1, 2):
+                        if a == 0 and b == 0:
+                            continue
+                        x, y, v = i + a, j + b, mat[i][j]
+                        while 0 <= x < m and 0 <= y < n:
+                            v = v * 10 + mat[x][y]
+                            if is_prime(v):
+                                cnt[v] += 1
+                            x, y = x + a, y + b
+        ans, mx = -1, 0
+        for v, x in cnt.items():
+            if mx < x:
+                mx = x
+                ans = v
+            elif mx == x:
+                ans = max(ans, v)
+        return ans

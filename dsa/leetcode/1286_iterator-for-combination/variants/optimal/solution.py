@@ -1,21 +1,33 @@
 class CombinationIterator:
     def __init__(self, characters: str, combinationLength: int):
-        self.characters = characters
-        self.indices = list(range(combinationLength))
-        self.available = True
+        def dfs(i):
+            if len(t) == combinationLength:
+                cs.append(''.join(t))
+                return
+            if i == n:
+                return
+            t.append(characters[i])
+            dfs(i + 1)
+            t.pop()
+            dfs(i + 1)
+
+        cs = []
+        n = len(characters)
+        t = []
+        dfs(0)
+        self.cs = cs
+        self.idx = 0
 
     def next(self) -> str:
-        result = "".join(self.characters[index] for index in self.indices)
-        position = len(self.indices) - 1
-        while position >= 0 and self.indices[position] == len(self.characters) - len(self.indices) + position:
-            position -= 1
-        if position < 0:
-            self.available = False
-        else:
-            self.indices[position] += 1
-            for suffix in range(position + 1, len(self.indices)):
-                self.indices[suffix] = self.indices[suffix - 1] + 1
-        return result
+        ans = self.cs[self.idx]
+        self.idx += 1
+        return ans
 
     def hasNext(self) -> bool:
-        return self.available
+        return self.idx < len(self.cs)
+
+
+# Your CombinationIterator object will be instantiated and called as such:
+# obj = CombinationIterator(characters, combinationLength)
+# param_1 = obj.next()
+# param_2 = obj.hasNext()

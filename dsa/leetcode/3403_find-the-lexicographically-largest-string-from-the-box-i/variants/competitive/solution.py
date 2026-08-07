@@ -1,21 +1,44 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def answerString(self, word: str, numFriends: int) -> str:
+    def answerString(self, word, numFriends):
+        """
+        :type word: str
+        :type numFriends: int
+        :rtype: str
+        """
         if numFriends == 1:
             return word
+        idx = l = 0
+        for i in range(1, len(word)):
+            if word[i] == word[idx+l]:
+                l += 1
+            elif word[i] < word[idx+l]:
+                l = 0
+            elif word[i] > word[idx+l]:
+                if word[i-l] >= word[i]:
+                    idx = i-l
+                else:
+                    idx = i
+                l = 0
+        return word[idx:len(word)-max((numFriends-1)-idx, 0)]
 
-        length = len(word)
-        left, right, offset = 0, 1, 0
 
-        while right + offset < length:
-            if word[left + offset] == word[right + offset]:
-                offset += 1
-            elif word[left + offset] < word[right + offset]:
-                left = max(left + offset + 1, right)
-                right = left + 1
-                offset = 0
-            else:
-                right = right + offset + 1
-                offset = 0
 
-        maximum_length = length - numFriends + 1
-        return word[left : left + maximum_length]
+# Time:  O(n * m)
+# Space: O(m)
+# greedy
+class Solution2(object):
+    def answerString(self, word, numFriends):
+        """
+        :type word: str
+        :type numFriends: int
+        :rtype: str
+        """
+        if numFriends == 1:
+            return word
+        m = len(word)-(numFriends-1)
+        c = max(word)
+        return max(word[i:i+m] for i in range(len(word)) if word[i] == c)

@@ -1,17 +1,22 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def sortColors(self, nums: List[int]) -> None:
-        low = current = 0
-        high = len(nums) - 1
-        while current <= high:
-            if nums[current] == 0:
-                nums[low], nums[current] = nums[current], nums[low]
-                low += 1
-                current += 1
-            elif nums[current] == 1:
-                current += 1
-            else:
-                nums[current], nums[high] = nums[high], nums[current]
-                high -= 1
+    def sortColors(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: void Do not return anything, modify nums in-place instead.
+        """
+        def triPartition(nums, target):
+            i, left, right = 0, 0, len(nums)-1
+            while i <= right:
+                if nums[i] > target:
+                    nums[i], nums[right] = nums[right], nums[i]
+                    right -= 1
+                else:
+                    if nums[i] < target:
+                        nums[left], nums[i] = nums[i], nums[left]
+                        left += 1
+                    i += 1
+
+        triPartition(nums, 1)

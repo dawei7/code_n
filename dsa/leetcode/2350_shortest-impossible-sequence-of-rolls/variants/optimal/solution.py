@@ -1,13 +1,10 @@
-from typing import List
-
-
 class Solution:
     def shortestSequence(self, rolls: List[int], k: int) -> int:
-        seen = set()
-        answer = 1
-        for roll in rolls:
-            seen.add(roll)
-            if len(seen) == k:
-                answer += 1
-                seen.clear()
-        return answer
+        ans = 1
+        s = set()
+        for v in rolls:
+            s.add(v)
+            if len(s) == k:
+                ans += 1
+                s.clear()
+        return ans

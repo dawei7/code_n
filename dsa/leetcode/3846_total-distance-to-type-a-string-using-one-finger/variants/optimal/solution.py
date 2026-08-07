@@ -1,20 +1,18 @@
+pos = {}
+keys = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm']
+for i, row in enumerate(keys):
+    for j, key in enumerate(row):
+        pos[key] = (i, j)
+
+
 class Solution:
     def totalDistance(self, s: str) -> int:
-        keyboard = (
-            "qwertyuiop",
-            "asdfghjkl",
-            "zxcvbnm",
-        )
-        positions = {
-            character: (row, column) for row, keys in enumerate(keyboard) for column, character in enumerate(keys)
-        }
-
-        row, column = positions["a"]
-        total = 0
-
-        for character in s:
-            next_row, next_column = positions[character]
-            total += abs(row - next_row) + abs(column - next_column)
-            row, column = next_row, next_column
-
-        return total
+        pre = 'a'
+        ans = 0
+        for cur in s:
+            x1, y1 = pos[pre]
+            x2, y2 = pos[cur]
+            dist = abs(x1 - x2) + abs(y1 - y2)
+            ans += dist
+            pre = cur
+        return ans

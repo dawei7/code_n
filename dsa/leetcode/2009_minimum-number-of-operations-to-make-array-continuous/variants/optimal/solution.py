@@ -1,16 +1,8 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        length = len(nums)
-        values = sorted(set(nums))
-        answer = length
-        right = 0
-
-        for left, minimum in enumerate(values):
-            while right < len(values) and values[right] < minimum + length:
-                right += 1
-            answer = min(answer, length - (right - left))
-
-        return answer
+        ans = n = len(nums)
+        nums = sorted(set(nums))
+        for i, v in enumerate(nums):
+            j = bisect_right(nums, v + n - 1)
+            ans = min(ans, n - (j - i))
+        return ans

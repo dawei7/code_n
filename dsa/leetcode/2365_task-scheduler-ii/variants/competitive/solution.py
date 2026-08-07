@@ -1,11 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# hash table
 class Solution:
-    def taskSchedulerII(self, tasks: List[int], space: int) -> int:
-        last_day = {}
-        day = 0
-        for task in tasks:
-            day = max(day + 1, last_day.get(task, -space) + space + 1)
-            last_day[task] = day
-        return day
+    def taskSchedulerII(self, tasks, space):
+        """
+        :type tasks: List[int]
+        :type space: int
+        :rtype: int
+        """
+        lookup = collections.defaultdict(int)
+        result = 0
+        for t in tasks:
+            result = max(lookup[t], result+1)
+            lookup[t] = result+space+1
+        return result

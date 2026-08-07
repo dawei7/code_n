@@ -1,18 +1,18 @@
 class Solution:
     def numberOfWays(self, corridor: str) -> int:
-        modulo = 1_000_000_007
-        seat_count = 0
-        previous_second_seat = -1
-        ways = 1
+        @cache
+        def dfs(i: int, k: int) -> int:
+            if i >= len(corridor):
+                return int(k == 2)
+            k += int(corridor[i] == "S")
+            if k > 2:
+                return 0
+            ans = dfs(i + 1, k)
+            if k == 2:
+                ans = (ans + dfs(i + 1, 0)) % mod
+            return ans
 
-        for index, cell in enumerate(corridor):
-            if cell != "S":
-                continue
-
-            seat_count += 1
-            if seat_count > 2 and seat_count % 2 == 1:
-                ways = ways * (index - previous_second_seat) % modulo
-            if seat_count % 2 == 0:
-                previous_second_seat = index
-
-        return ways if seat_count > 0 and seat_count % 2 == 0 else 0
+        mod = 10**9 + 7
+        ans = dfs(0, 0)
+        dfs.cache_clear()
+        return ans

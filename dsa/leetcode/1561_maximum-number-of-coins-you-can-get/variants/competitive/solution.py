@@ -1,7 +1,14 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def maxCoins(self, piles: List[int]) -> int:
-        ordered = sorted(piles)
-        return sum(ordered[len(ordered) // 3 :: 2])
+    def maxCoins(self, piles):
+        """
+        :type piles: List[int]
+        :rtype: int
+        """
+        piles.sort()
+        return sum(itertools.islice(piles, len(piles)//3, len(piles), 2))

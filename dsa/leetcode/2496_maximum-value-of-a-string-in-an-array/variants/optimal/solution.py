@@ -1,9 +1,6 @@
 class Solution:
     def maximumValue(self, strs: List[str]) -> int:
-        answer = 0
+        def f(s: str) -> int:
+            return int(s) if all(c.isdigit() for c in s) else len(s)
 
-        for text in strs:
-            value = int(text) if text.isdigit() else len(text)
-            answer = max(answer, value)
-
-        return answer
+        return max(f(s) for s in strs)

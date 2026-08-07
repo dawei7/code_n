@@ -1,32 +1,29 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def smallestChair(
-        self,
-        times: List[List[int]],
-        targetFriend: int,
-    ) -> int:
-        arrivals = sorted((arrival, leaving, friend) for friend, (arrival, leaving) in enumerate(times))
-        available: List[int] = []
-        occupied: List[tuple[int, int]] = []
-        next_chair = 0
+    def smallestChair(self, times, targetFriend):
+        """
+        :type times: List[List[int]]
+        :type targetFriend: int
+        :rtype: int
+        """
+        events = []
+        for i, (s, e) in enumerate(times): 
+            events.append((s, True, i))
+            events.append((e, False, i))
+        events.sort()
 
-        for arrival, leaving, friend in arrivals:
-            while occupied and occupied[0][0] <= arrival:
-                _, chair = heappop(occupied)
-                heappush(available, chair)
-
-            if available:
-                chair = heappop(available)
-            else:
-                chair = next_chair
-                next_chair += 1
-
-            if friend == targetFriend:
-                return chair
-
-            heappush(occupied, (leaving, chair))
-
-        raise RuntimeError("target friend must arrive")
+        lookup = {}
+        min_heap = []
+        for _, arrival, i in events: 
+            if not arrival: 
+                heapq.heappush(min_heap, lookup.pop(i))
+                continue
+            lookup[i] = heapq.heappop(min_heap) if min_heap else len(lookup)
+            if i == targetFriend:
+                break
+        return lookup[targetFriend]

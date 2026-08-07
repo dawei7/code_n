@@ -1,33 +1,58 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+import collections
 
 
-class Codec:
-    def serialize(self, root: Optional["TreeNode"]) -> str:
-        values = []
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-        def preorder(node: Optional["TreeNode"]) -> None:
-            if node is None:
-                return
-            values.append(str(node.val))
-            preorder(node.left)
-            preorder(node.right)
 
-        preorder(root)
-        return " ".join(values)
+class Codec(object):
 
-    def deserialize(self, data: str) -> Optional["TreeNode"]:
-        values = [int(token) for token in data.split()]
-        index = 0
+    def serialize(self, root):
+        """Encodes a tree to a single string.
 
-        def build(lower: float, upper: float) -> Optional["TreeNode"]:
-            nonlocal index
-            if index == len(values) or not lower < values[index] < upper:
+        :type root: TreeNode
+        :rtype: str
+        """
+        def serializeHelper(node, vals):
+            if node:
+                vals.append(node.val)
+                serializeHelper(node.left, vals)
+                serializeHelper(node.right, vals)
+
+        vals = []
+        serializeHelper(root, vals)
+
+        return ' '.join(map(str, vals))
+
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+
+        :type data: str
+        :rtype: TreeNode
+        """
+        def deserializeHelper(minVal, maxVal, vals):
+            if not vals:
                 return None
-            value = values[index]
-            index += 1
-            node = TreeNode(value)
-            node.left = build(lower, value)
-            node.right = build(value, upper)
-            return node
 
-        return build(float("-inf"), float("inf"))
+            if minVal < vals[0] < maxVal:
+                val = vals.popleft()
+                node = TreeNode(val)
+                node.left = deserializeHelper(minVal, val, vals)
+                node.right = deserializeHelper(val, maxVal, vals)
+                return node
+            else:
+                return None
+
+        vals = collections.deque([int(val) for val in data.split()])
+
+        return deserializeHelper(float('-inf'), float('inf'), vals)
+
+
+

@@ -1,26 +1,52 @@
+# Time:  O(n)
+# Space: O(n)
+
+# prefix sum, greedy
 class Solution:
-    def maxPartitionsAfterOperations(self, s: str, k: int) -> int:
-        states = {(0, False): 0}
+    def maxPartitionsAfterOperations(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        def popcount(n):
+            n = (n & 0x55555555) + ((n >> 1) & 0x55555555)
+            n = (n & 0x33333333) + ((n >> 2) & 0x33333333)
+            n = (n & 0x0F0F0F0F) + ((n >> 4) & 0x0F0F0F0F)
+            n = (n & 0x00FF00FF) + ((n >> 8) & 0x00FF00FF)
+            n = (n & 0x0000FFFF) + ((n >> 16) & 0x0000FFFF)
+            return n
 
-        for character in s:
-            original = ord(character) - ord("a")
-            next_states = {}
+        left = [0]*(len(s)+1)
+        left_mask = [0]*(len(s)+1)
+        cnt = mask = 0
+        for i in range(len(s)):
+            mask |= 1<<(ord(s[i])-ord('a'))
+            if popcount(mask) > k:
+                cnt += 1
+                mask = 1<<(ord(s[i])-ord('a'))
+            left[i+1] = cnt
+            left_mask[i+1] = mask
+        right = [0]*(len(s)+1)
+        right_mask = [0]*(len(s)+1)
+        cnt = mask = 0
+        for i in reversed(range(len(s))):
+            mask |= 1<<(ord(s[i])-ord('a'))
+            if popcount(mask) > k:
+                cnt += 1
+                mask = 1<<(ord(s[i])-ord('a'))
+            right[i] = cnt
+            right_mask[i] = mask
 
-            for (mask, changed), partitions in states.items():
-                choices = (original,) if changed else range(26)
-                for letter in choices:
-                    merged = mask | (1 << letter)
-                    next_changed = changed or letter != original
-
-                    if merged.bit_count() > k:
-                        key = (1 << letter, next_changed)
-                        score = partitions + 1
-                    else:
-                        key = (merged, next_changed)
-                        score = partitions
-
-                    next_states[key] = max(next_states.get(key, -1), score)
-
-            states = next_states
-
-        return max(states.values()) + 1
+        result = 0
+        for i in range(len(s)):
+            curr = left[i]+right[i+1]
+            mask = left_mask[i]|right_mask[i+1]
+            if popcount(left_mask[i]) == popcount(right_mask[i+1]) == k and popcount(mask) != 26:
+                curr += 3
+            elif popcount(mask)+int(popcount(mask) != 26) > k:  # test case: s = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz", k = 26
+                curr += 2
+            else:
+                curr += 1
+            result = max(result, curr)
+        return result

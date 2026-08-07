@@ -1,53 +1,121 @@
-from collections import deque
-from typing import List
+# Time:  O(n^3)
+# Space: O(n^2)
+
+import collections
 
 
 class Solution:
-    def catMouseGame(self, graph: List[List[int]]) -> int:
-        DRAW, MOUSE, CAT = 0, 1, 2
-        MOUSE_TURN, CAT_TURN = 0, 1
-        n = len(graph)
-
-        outcome = [[[DRAW, DRAW] for _ in range(n)] for _ in range(n)]
-        degree = [[[0, 0] for _ in range(n)] for _ in range(n)]
-
-        for mouse in range(n):
-            for cat in range(1, n):
-                degree[mouse][cat][MOUSE_TURN] = len(graph[mouse])
-                degree[mouse][cat][CAT_TURN] = sum(neighbor != 0 for neighbor in graph[cat])
-
-        queue = deque()
-        for cat in range(1, n):
-            for turn in (MOUSE_TURN, CAT_TURN):
-                outcome[0][cat][turn] = MOUSE
-                queue.append((0, cat, turn, MOUSE))
-
-        for node in range(1, n):
-            for turn in (MOUSE_TURN, CAT_TURN):
-                outcome[node][node][turn] = CAT
-                queue.append((node, node, turn, CAT))
-
-        while queue:
-            mouse, cat, turn, winner = queue.popleft()
-
-            if turn == MOUSE_TURN:
-                parents = ((mouse, previous_cat, CAT_TURN) for previous_cat in graph[cat] if previous_cat != 0)
+    def catMouseGame(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: int
+        """
+        HOLE, MOUSE_START, CAT_START = range(3)
+        DRAW, MOUSE, CAT = range(3)
+        def parents(m, c, t):
+            if t == CAT:
+                for nm in graph[m]:
+                    yield nm, c, MOUSE^CAT^t
             else:
-                parents = ((previous_mouse, cat, MOUSE_TURN) for previous_mouse in graph[mouse])
+                for nc in graph[c]:
+                    if nc != HOLE:
+                        yield m, nc, MOUSE^CAT^t
 
-            for parent_mouse, parent_cat, parent_turn in parents:
-                if outcome[parent_mouse][parent_cat][parent_turn] != DRAW:
+        degree = {}
+        ignore = set(graph[HOLE])
+        for m in range(len(graph)):
+            for c in range(len(graph)):
+                degree[m, c, MOUSE] = len(graph[m])
+                degree[m, c, CAT] = len(graph[c])-(c in ignore)
+        color = collections.defaultdict(int)
+        q = collections.deque()
+        for i in range(len(graph)):
+            if i == HOLE:
+                continue
+            color[HOLE, i, CAT] = MOUSE
+            q.append((HOLE, i, CAT, MOUSE))
+            for t in [MOUSE, CAT]:
+                color[i, i, t] = CAT
+                q.append((i, i, t, CAT))
+        while q:
+            i, j, t, c = q.popleft()
+            for ni, nj, nt in parents(i, j, t):
+                if color[ni, nj, nt] != DRAW:
                     continue
-
-                player = MOUSE if parent_turn == MOUSE_TURN else CAT
-                if winner == player:
-                    outcome[parent_mouse][parent_cat][parent_turn] = winner
-                    queue.append((parent_mouse, parent_cat, parent_turn, winner))
+                if nt == c:
+                    color[ni, nj, nt] = c
+                    q.append((ni, nj, nt, c))
                     continue
+                degree[ni, nj, nt] -= 1
+                if not degree[ni, nj, nt]:
+                    color[ni, nj, nt] = c
+                    q.append((ni, nj, nt, c))
+        return color[MOUSE_START, CAT_START, MOUSE]
 
-                degree[parent_mouse][parent_cat][parent_turn] -= 1
-                if degree[parent_mouse][parent_cat][parent_turn] == 0:
-                    outcome[parent_mouse][parent_cat][parent_turn] = winner
-                    queue.append((parent_mouse, parent_cat, parent_turn, winner))
+    
+# Time:  O(n^3)
+# Space: O(n^2)
+import collections
 
-        return outcome[1][2][MOUSE_TURN]
+
+class Solution2(object):
+    def catMouseGame(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: int
+        """
+        HOLE, MOUSE_START, CAT_START = range(3)
+        DRAW, MOUSE, CAT = range(3)
+        def parents(m, c, t):
+            if t == CAT:
+                for nm in graph[m]:
+                    yield nm, c, MOUSE^CAT^t
+            else:
+                for nc in graph[c]:
+                    if nc != HOLE:
+                        yield m, nc, MOUSE^CAT^t
+
+        color = collections.defaultdict(int)
+        degree = {}
+        ignore = set(graph[HOLE])
+        for m in range(len(graph)):
+            for c in range(len(graph)):
+                degree[m, c, MOUSE] = len(graph[m])
+                degree[m, c, CAT] = len(graph[c])-(c in ignore)
+        q1 = collections.deque()
+        q2 = collections.deque()
+        for i in range(len(graph)):
+            if i == HOLE:
+                continue
+            color[HOLE, i, CAT] = MOUSE
+            q1.append((HOLE, i, CAT))
+            for t in [MOUSE, CAT]:
+                color[i, i, t] = CAT
+                q2.append((i, i, t))
+        while q1:
+            i, j, t = q1.popleft()
+            for ni, nj, nt in parents(i, j, t):
+                if color[ni, nj, nt] != DRAW:
+                    continue
+                if t == CAT:
+                    color[ni, nj, nt] = MOUSE
+                    q1.append((ni, nj, nt))
+                    continue
+                degree[ni, nj, nt] -= 1
+                if not degree[ni, nj, nt]:
+                    color[ni, nj, nt] = MOUSE
+                    q1.append((ni, nj, nt))
+        while q2:
+            i, j, t = q2.popleft()
+            for ni, nj, nt in parents(i, j, t):
+                if color[ni, nj, nt] != DRAW:
+                    continue
+                if t == MOUSE:
+                    color[ni, nj, nt] = CAT
+                    q2.append((ni, nj, nt))
+                    continue
+                degree[ni, nj, nt] -= 1
+                if not degree[ni, nj, nt]:
+                    color[ni, nj, nt] = CAT
+                    q2.append((ni, nj, nt))
+        return color[MOUSE_START, CAT_START, MOUSE]

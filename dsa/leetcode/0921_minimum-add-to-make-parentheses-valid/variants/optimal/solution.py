@@ -1,14 +1,9 @@
 class Solution:
     def minAddToMakeValid(self, s: str) -> int:
-        open_count = 0
-        additions = 0
-
-        for character in s:
-            if character == "(":
-                open_count += 1
-            elif open_count > 0:
-                open_count -= 1
+        stk = []
+        for c in s:
+            if c == ')' and stk and stk[-1] == '(':
+                stk.pop()
             else:
-                additions += 1
-
-        return additions + open_count
+                stk.append(c)
+        return len(stk)

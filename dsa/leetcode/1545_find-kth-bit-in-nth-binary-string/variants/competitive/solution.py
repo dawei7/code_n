@@ -1,14 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def findKthBit(self, n: int, k: int) -> str:
-        if n == 1:
-            return "0"
-
-        middle = 1 << (n - 1)
-        if k == middle:
-            return "1"
-        if k < middle:
-            return self.findKthBit(n - 1, k)
-
-        mirrored = (1 << n) - k
-        bit = self.findKthBit(n - 1, mirrored)
-        return "1" if bit == "0" else "0"
+    def findKthBit(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: str
+        """
+        flip, l = 0, 2**n-1
+        while k > 1:
+            if k == l//2+1:
+                flip ^= 1
+                break
+            if k > l//2:
+                k = l+1-k
+                flip ^= 1
+            l //= 2
+        return str(flip)

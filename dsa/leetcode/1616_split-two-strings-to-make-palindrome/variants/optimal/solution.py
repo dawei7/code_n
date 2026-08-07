@@ -1,19 +1,12 @@
 class Solution:
     def checkPalindromeFormation(self, a: str, b: str) -> bool:
-        def is_palindrome(value: str, left: int, right: int) -> bool:
-            while left < right:
-                if value[left] != value[right]:
-                    return False
-                left += 1
-                right -= 1
-            return True
+        def check1(a: str, b: str) -> bool:
+            i, j = 0, len(b) - 1
+            while i < j and a[i] == b[j]:
+                i, j = i + 1, j - 1
+            return i >= j or check2(a, i, j) or check2(b, i, j)
 
-        def can_combine(prefix_source: str, suffix_source: str) -> bool:
-            left = 0
-            right = len(prefix_source) - 1
-            while left < right and prefix_source[left] == suffix_source[right]:
-                left += 1
-                right -= 1
-            return is_palindrome(prefix_source, left, right) or is_palindrome(suffix_source, left, right)
+        def check2(a: str, i: int, j: int) -> bool:
+            return a[i : j + 1] == a[i : j + 1][::-1]
 
-        return can_combine(a, b) or can_combine(b, a)
+        return check1(a, b) or check1(b, a)

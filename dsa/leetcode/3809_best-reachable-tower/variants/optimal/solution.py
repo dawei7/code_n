@@ -1,16 +1,17 @@
 class Solution:
-    def bestTower(self, towers: List[List[int]], center: List[int], radius: int) -> List[int]:
+    def bestTower(
+        self, towers: List[List[int]], center: List[int], radius: int
+    ) -> List[int]:
         cx, cy = center
-        best_quality = -1
-        best_coordinates = [-1, -1]
-
-        for x, y, quality in towers:
-            if abs(x - cx) + abs(y - cy) > radius:
+        idx = -1
+        for i, (x, y, q) in enumerate(towers):
+            dist = abs(x - cx) + abs(y - cy)
+            if dist > radius:
                 continue
-
-            coordinates = [x, y]
-            if quality > best_quality or (quality == best_quality and coordinates < best_coordinates):
-                best_quality = quality
-                best_coordinates = coordinates
-
-        return best_coordinates
+            if (
+                idx == -1
+                or towers[idx][2] < q
+                or (towers[idx][2] == q and towers[i][:2] < towers[idx][:2])
+            ):
+                idx = i
+        return [-1, -1] if idx == -1 else towers[idx][:2]

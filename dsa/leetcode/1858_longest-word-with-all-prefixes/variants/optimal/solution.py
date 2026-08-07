@@ -1,33 +1,36 @@
-from typing import List
+class Trie:
+    __slots__ = ["children", "is_end"]
+
+    def __init__(self):
+        self.children: List[Trie | None] = [None] * 26
+        self.is_end: bool = False
+
+    def insert(self, w: str) -> None:
+        node = self
+        for c in w:
+            idx = ord(c) - ord("a")
+            if not node.children[idx]:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+        node.is_end = True
+
+    def search(self, w: str) -> bool:
+        node = self
+        for c in w:
+            idx = ord(c) - ord("a")
+            node = node.children[idx]
+            if not node.is_end:
+                return False
+        return True
 
 
 class Solution:
     def longestWord(self, words: List[str]) -> str:
-        children = [{}]
-        terminal_word = [None]
-
-        for word in words:
-            node = 0
-            for character in word:
-                next_node = children[node].get(character)
-                if next_node is None:
-                    next_node = len(children)
-                    children[node][character] = next_node
-                    children.append({})
-                    terminal_word.append(None)
-                node = next_node
-            terminal_word[node] = word
-
-        answer = ""
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            for next_node in children[node].values():
-                word = terminal_word[next_node]
-                if word is None:
-                    continue
-                if len(word) > len(answer) or (len(word) == len(answer) and word < answer):
-                    answer = word
-                stack.append(next_node)
-
-        return answer
+        trie = Trie()
+        for w in words:
+            trie.insert(w)
+        ans = ""
+        for w in words:
+            if (len(w) > len(ans) or len(w) == len(ans) and w < ans) and trie.search(w):
+                ans = w
+        return ans

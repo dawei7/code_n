@@ -1,44 +1,52 @@
+# Time:  push: O(logn)
+#        pop:  O(1), amortized
+#        popAtStack: O(logn)
+# Space: O(n * c)
+
 import heapq
 
 
-class DinnerPlates:
-    def __init__(self, capacity: int):
-        self.capacity = capacity
-        self.stacks = []
-        self.available = []
+class DinnerPlates(object):
 
-    def push(self, val: int) -> None:
-        while self.available and (
-            self.available[0] >= len(self.stacks) or len(self.stacks[self.available[0]]) == self.capacity
-        ):
-            heapq.heappop(self.available)
+    def __init__(self, capacity):
+        """
+        :type capacity: int
+        """
+        self.__stks = []
+        self.__c = capacity
+        self.__min_heap = []
 
-        if not self.available:
-            index = len(self.stacks)
-            self.stacks.append([])
-            heapq.heappush(self.available, index)
+    def push(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        if self.__min_heap:
+            l = heapq.heappop(self.__min_heap)
+            if l < len(self.__stks):
+                self.__stks[l].append(val)
+                return
+            self.__min_heap = []  # nothing is valid in min heap
+        if not self.__stks or len(self.__stks[-1]) == self.__c:
+            self.__stks.append([])
+        self.__stks[-1].append(val)
 
-        index = self.available[0]
-        self.stacks[index].append(val)
-        if len(self.stacks[index]) == self.capacity:
-            heapq.heappop(self.available)
-
-    def pop(self) -> int:
-        while self.stacks and not self.stacks[-1]:
-            self.stacks.pop()
-        if not self.stacks:
+    def pop(self):
+        """
+        :rtype: int
+        """
+        while self.__stks and not self.__stks[-1]:
+            self.__stks.pop()
+        if not self.__stks:
             return -1
-        return self.popAtStack(len(self.stacks) - 1)
+        return self.__stks[-1].pop()
 
-    def popAtStack(self, index: int) -> int:
-        if index < 0 or index >= len(self.stacks) or not self.stacks[index]:
+    def popAtStack(self, index):
+        """
+        :type index: int
+        :rtype: int
+        """
+        if index >= len(self.__stks) or not self.__stks[index]:
             return -1
-
-        was_full = len(self.stacks[index]) == self.capacity
-        value = self.stacks[index].pop()
-        if was_full:
-            heapq.heappush(self.available, index)
-
-        while self.stacks and not self.stacks[-1]:
-            self.stacks.pop()
-        return value
+        heapq.heappush(self.__min_heap, index)
+        return self.__stks[index].pop()

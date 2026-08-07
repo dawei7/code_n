@@ -1,14 +1,16 @@
-from math import isqrt
-
+# Time:  O(sqrt(n))
+# Space: O(1)
 
 class Solution:
-    def isThree(self, n: int) -> bool:
-        root = isqrt(n)
-        if root * root != n or root < 2:
-            return False
-
-        for divisor in range(2, isqrt(root) + 1):
-            if root % divisor == 0:
-                return False
-
-        return True
+    def isThree(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        cnt = 0
+        i = 1
+        while i*i <= n and cnt <= 3:
+            if n%i == 0:
+                cnt += 1 if i*i == n else 2
+            i += 1
+        return cnt == 3

@@ -1,15 +1,16 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def probabilityOfHeads(self, prob: List[float], target: int) -> float:
-        probabilities = [0.0] * (target + 1)
-        probabilities[0] = 1.0
-
-        for processed, head_probability in enumerate(prob, 1):
-            for heads in range(min(target, processed), 0, -1):
-                probabilities[heads] = (
-                    probabilities[heads] * (1.0 - head_probability) + probabilities[heads - 1] * head_probability
-                )
-            probabilities[0] *= 1.0 - head_probability
-        return probabilities[target]
+    def probabilityOfHeads(self, prob, target):
+        """
+        :type prob: List[float]
+        :type target: int
+        :rtype: float
+        """
+        dp = [0.0]*(target+1)
+        dp[0] = 1.0
+        for p in prob:
+            for i in reversed(range(target+1)):
+                dp[i] = (dp[i-1] if i >= 1 else 0.0)*p + dp[i]*(1-p)
+        return dp[target]

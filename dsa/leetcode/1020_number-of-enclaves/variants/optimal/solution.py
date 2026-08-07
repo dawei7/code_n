@@ -1,32 +1,20 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def numEnclaves(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        queue = deque()
+        def dfs(i: int, j: int):
+            grid[i][j] = 0
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and grid[x][y]:
+                    dfs(x, y)
 
-        def add(row: int, column: int) -> None:
-            if grid[row][column] == 1:
-                grid[row][column] = 0
-                queue.append((row, column))
-
-        for row in range(rows):
-            add(row, 0)
-            add(row, columns - 1)
-        for column in range(columns):
-            add(0, column)
-            add(rows - 1, column)
-
-        while queue:
-            row, column = queue.popleft()
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] == 1:
-                    grid[next_row][next_column] = 0
-                    queue.append((next_row, next_column))
-
+        m, n = len(grid), len(grid[0])
+        dirs = (-1, 0, 1, 0, -1)
+        for j in range(n):
+            for i in (0, m - 1):
+                if grid[i][j]:
+                    dfs(i, j)
+        for i in range(m):
+            for j in (0, n - 1):
+                if grid[i][j]:
+                    dfs(i, j)
         return sum(sum(row) for row in grid)

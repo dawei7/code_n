@@ -1,55 +1,28 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
+
+import itertools
 
 
+# array, simulation
 class Solution:
-    def countUnguarded(
-        self,
-        m: int,
-        n: int,
-        guards: List[List[int]],
-        walls: List[List[int]],
-    ) -> int:
-        empty, guard, wall, watched = 0, 1, 2, 3
-        grid = [[empty] * n for _ in range(m)]
-        for row, column in guards:
-            grid[row][column] = guard
-        for row, column in walls:
-            grid[row][column] = wall
-
-        for row in range(m):
-            visible = False
-            for column in range(n):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-            visible = False
-            for column in range(n - 1, -1, -1):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-
-        for column in range(n):
-            visible = False
-            for row in range(m):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-            visible = False
-            for row in range(m - 1, -1, -1):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-
-        return sum(cell == empty for row in grid for cell in row)
+    def countUnguarded(self, m, n, guards, walls):
+        """
+        :type m: int
+        :type n: int
+        :type guards: List[List[int]]
+        :type walls: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        GREEN, RED, BLOCK = range(3)
+        grid = [[GREEN]*n for _ in range(m)]
+        for r, c in itertools.chain(guards, walls):
+            grid[r][c] = BLOCK
+        for r, c in guards:
+            for dr, dc in DIRECTIONS:
+                nr, nc = r+dr, c+dc
+                while 0 <= nr < m and 0 <= nc < n and grid[nr][nc] != BLOCK:
+                    grid[nr][nc] = RED
+                    nr, nc = nr+dr, nc+dc
+        return sum(grid[r][c] == GREEN for r in range(m) for c in range(n))

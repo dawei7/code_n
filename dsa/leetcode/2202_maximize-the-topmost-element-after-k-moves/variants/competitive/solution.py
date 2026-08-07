@@ -1,17 +1,16 @@
-from typing import List
+# Time:  O(min(n, k))
+# Space: O(1)
 
-
+# constructive algorithms
 class Solution:
-    def maximumTop(self, nums: List[int], k: int) -> int:
-        if k == 0:
-            return nums[0]
-        if len(nums) == 1:
-            return nums[0] if k % 2 == 0 else -1
-
-        answer = -1
-        restored_count = min(len(nums), k - 1)
-        if restored_count > 0:
-            answer = max(nums[:restored_count])
-        if k < len(nums):
-            answer = max(answer, nums[k])
-        return answer
+    def maximumTop(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        if len(nums) == 1 == k%2:
+            return -1
+        if k <= 1:
+            return nums[k]
+        return max(nums[i] for i in range(min(k+1, len(nums))) if i != k-1)

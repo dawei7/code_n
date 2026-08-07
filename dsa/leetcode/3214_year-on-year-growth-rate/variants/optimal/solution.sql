@@ -1,30 +1,18 @@
-WITH yearly_spend AS (
-    SELECT
-        CAST(strftime('%Y', transaction_date) AS INTEGER) AS year,
-        product_id,
-        SUM(spend) AS curr_year_spend
-    FROM user_transactions
-    GROUP BY CAST(strftime('%Y', transaction_date) AS INTEGER), product_id
-),
-with_previous AS (
-    SELECT
-        year,
-        product_id,
-        curr_year_spend,
-        LAG(curr_year_spend) OVER (
-            PARTITION BY product_id
-            ORDER BY year
-        ) AS prev_year_spend
-    FROM yearly_spend
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT product_id, YEAR(transaction_date) year, SUM(spend) curr_year_spend
+        FROM user_transactions
+        GROUP BY 1, 2
+    ),
+    S AS (
+        SELECT t1.year, t1.product_id, t1.curr_year_spend, t2.curr_year_spend prev_year_spend
+        FROM
+            T t1
+            LEFT JOIN T t2 ON t1.product_id = t2.product_id AND t1.year = t2.year + 1
+    )
 SELECT
-    year,
-    product_id,
-    curr_year_spend,
-    prev_year_spend,
-    ROUND(
-        (curr_year_spend - prev_year_spend) * 100.0 / prev_year_spend,
-        2
-    ) AS yoy_rate
-FROM with_previous
-ORDER BY product_id, year;
+    *,
+    ROUND((curr_year_spend - prev_year_spend) / prev_year_spend * 100, 2) yoy_rate
+FROM S
+ORDER BY 2, 1;

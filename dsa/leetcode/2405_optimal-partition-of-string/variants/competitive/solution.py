@@ -1,13 +1,18 @@
+# Time:  O(n)
+# Space: O(n)
+
+# hash table
 class Solution:
-    def partitionString(self, s: str) -> int:
-        partitions = 1
-        used_letters = 0
-
-        for letter in s:
-            letter_bit = 1 << (ord(letter) - ord("a"))
-            if used_letters & letter_bit:
-                partitions += 1
-                used_letters = 0
-            used_letters |= letter_bit
-
-        return partitions
+    def partitionString(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result, left = 1, 0
+        lookup = {}
+        for i, x in enumerate(s):
+            if x in lookup and lookup[x] >= left:
+                left = i
+                result += 1
+            lookup[x] = i
+        return result

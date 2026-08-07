@@ -1,14 +1,18 @@
-class Solution:
-    def licenseKeyFormatting(self, s: str, k: int) -> str:
-        cleaned = []
-        for character in s:
-            if character != "-":
-                cleaned.append(character.upper())
-        if not cleaned:
-            return ""
+# Time:  O(n)
+# Space: O(1)
 
-        first = len(cleaned) % k or k
-        groups = ["".join(cleaned[:first])]
-        for start in range(first, len(cleaned), k):
-            groups.append("".join(cleaned[start : start + k]))
-        return "-".join(groups)
+class Solution:
+    def licenseKeyFormatting(self, S, K):
+        """
+        :type S: str
+        :type K: int
+        :rtype: str
+        """
+        result = []
+        for i in reversed(range(len(S))):
+            if S[i] == '-':
+                continue
+            if len(result) % (K + 1) == K:
+                result += '-'
+            result += S[i].upper()
+        return "".join(reversed(result))

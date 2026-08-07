@@ -1,46 +1,61 @@
-from collections import Counter
-from typing import List
-
-
-class TrieNode:
+class Trie:
     def __init__(self):
-        self.children = {}
-        self.hot = []
+        self.children = [None] * 27
+        self.v = 0
+        self.w = ''
+
+    def insert(self, w, t):
+        node = self
+        for c in w:
+            idx = 26 if c == ' ' else ord(c) - ord('a')
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+        node.v += t
+        node.w = w
+
+    def search(self, pref):
+        node = self
+        for c in pref:
+            idx = 26 if c == ' ' else ord(c) - ord('a')
+            if node.children[idx] is None:
+                return None
+            node = node.children[idx]
+        return node
 
 
 class AutocompleteSystem:
     def __init__(self, sentences: List[str], times: List[int]):
-        self.frequency = Counter()
-        for sentence, count in zip(sentences, times):
-            self.frequency[sentence] += count
-
-        self.root = TrieNode()
-        for sentence in self.frequency:
-            self.insert(sentence)
-        self.current = ""
-        self.node = self.root
-
-    def refresh(self, node, sentence):
-        if sentence not in node.hot:
-            node.hot.append(sentence)
-        node.hot.sort(key=lambda candidate: (-self.frequency[candidate], candidate))
-        del node.hot[3:]
-
-    def insert(self, sentence):
-        node = self.root
-        for character in sentence:
-            node = node.children.setdefault(character, TrieNode())
-            self.refresh(node, sentence)
+        self.trie = Trie()
+        for a, b in zip(sentences, times):
+            self.trie.insert(a, b)
+        self.t = []
 
     def input(self, c: str) -> List[str]:
-        if c == "#":
-            self.frequency[self.current] += 1
-            self.insert(self.current)
-            self.current = ""
-            self.node = self.root
+        def dfs(node):
+            if node is None:
+                return
+            if node.v:
+                res.append((node.v, node.w))
+            for nxt in node.children:
+                dfs(nxt)
+
+        if c == '#':
+            s = ''.join(self.t)
+            self.trie.insert(s, 1)
+            self.t = []
             return []
 
-        self.current += c
-        if self.node is not None:
-            self.node = self.node.children.get(c)
-        return [] if self.node is None else list(self.node.hot)
+        res = []
+        self.t.append(c)
+        node = self.trie.search(''.join(self.t))
+        if node is None:
+            return res
+        dfs(node)
+        res.sort(key=lambda x: (-x[0], x[1]))
+        return [v[1] for v in res[:3]]
+
+
+# Your AutocompleteSystem object will be instantiated and called as such:
+# obj = AutocompleteSystem(sentences, times)
+# param_1 = obj.input(c)

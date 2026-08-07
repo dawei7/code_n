@@ -1,14 +1,16 @@
-from typing import List
-
-
 class Solution:
-    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[List[int]]:
-        ranges = []
-        next_missing = lower
-        for value in nums:
-            if next_missing < value:
-                ranges.append([next_missing, value - 1])
-            next_missing = value + 1
-        if next_missing <= upper:
-            ranges.append([next_missing, upper])
-        return ranges
+    def findMissingRanges(
+        self, nums: List[int], lower: int, upper: int
+    ) -> List[List[int]]:
+        n = len(nums)
+        if n == 0:
+            return [[lower, upper]]
+        ans = []
+        if nums[0] > lower:
+            ans.append([lower, nums[0] - 1])
+        for a, b in pairwise(nums):
+            if b - a > 1:
+                ans.append([a + 1, b - 1])
+        if nums[-1] < upper:
+            ans.append([nums[-1] + 1, upper])
+        return ans

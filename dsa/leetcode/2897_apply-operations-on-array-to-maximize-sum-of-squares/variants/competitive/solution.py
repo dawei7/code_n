@@ -1,22 +1,19 @@
-from typing import List
+# Time:  O(nlogr), r = max(nums)
+# Space: O(logr)
 
-
+# bit manipulation, greedy, freq table
 class Solution:
-    def maxSum(self, nums: List[int], k: int) -> int:
-        modulus = 1_000_000_007
-        bit_counts = [0] * 30
-
-        for value in nums:
-            for bit in range(30):
-                bit_counts[bit] += (value >> bit) & 1
-
-        answer = 0
-        for _ in range(k):
-            value = 0
-            for bit in range(30):
-                if bit_counts[bit]:
-                    value |= 1 << bit
-                    bit_counts[bit] -= 1
-            answer = (answer + value * value) % modulus
-
-        return answer
+    def maxSum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        l = max(nums).bit_length()
+        cnt = [0]*l
+        for i in range(l):
+            for x in nums:
+                if x&(1<<i):
+                    cnt[i] += 1
+        return reduce(lambda x, y: (x+y)%MOD, (sum(1<<i for i in range(l) if cnt[i] >= j)**2 for j in range(1, k+1)))

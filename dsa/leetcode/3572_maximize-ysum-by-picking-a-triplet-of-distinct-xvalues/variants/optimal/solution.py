@@ -1,16 +1,14 @@
 class Solution:
-    def maxSumDistinctTriplet(self, x: list[int], y: list[int]) -> int:
-        best_for_x: dict[int, int] = {}
-        for xi, yi in zip(x, y):
-            best_for_x[xi] = max(best_for_x.get(xi, 0), yi)
-        if len(best_for_x) < 3:
-            return -1
-        first = second = third = 0
-        for value in best_for_x.values():
-            if value > first:
-                first, second, third = (value, first, second)
-            elif value > second:
-                second, third = (value, second)
-            elif value > third:
-                third = value
-        return first + second + third
+    def maxSumDistinctTriplet(self, x: List[int], y: List[int]) -> int:
+        arr = [(a, b) for a, b in zip(x, y)]
+        arr.sort(key=lambda x: -x[1])
+        vis = set()
+        ans = 0
+        for a, b in arr:
+            if a in vis:
+                continue
+            vis.add(a)
+            ans += b
+            if len(vis) == 3:
+                return ans
+        return -1

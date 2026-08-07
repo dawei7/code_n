@@ -1,46 +1,38 @@
-from typing import List
+# Time:  O(n * log(m * r))
+# Space: O(1)
 
-
+# binary search, greedy
 class Solution:
-    def maxScore(self, points: List[int], m: int) -> int:
-        n = len(points)
+    def maxScore(self, points, m):
+        """
+        :type points: List[int]
+        :type m: int
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        def feasible(target: int) -> bool:
-            if target == 0:
-                return True
-
-            moves = 1
-            incoming = 1
-
-            for index in range(n - 1):
-                required = (target + points[index] - 1) // points[index]
-
-                if index == n - 2:
-                    last_required = (target + points[index + 1] - 1) // points[index + 1]
-                    need_current = max(0, required - incoming)
-
-                    continue_moves = moves + 2 * need_current + 1
-                    last_incoming = need_current + 1
-                    continue_moves += 2 * max(0, last_required - last_incoming)
-
-                    stop_moves = moves + 2 * max(need_current, last_required)
-                    return min(continue_moves, stop_moves) <= m
-
-                bounces = max(0, required - incoming)
-                moves += 2 * bounces + 1
-                if moves > m:
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
+        
+        def check(x):
+            cnt = prev = 0
+            for i in range(len(points)):
+                remain = ceil_divide(x, points[i])-prev
+                if remain >= 1:
+                    prev = remain-1
+                    cnt += 2*remain-1
+                elif i != len(points)-1:
+                    prev = 0
+                    cnt += 1
+                if cnt > m:
                     return False
-                incoming = bounces + 1
+            return True
 
-            return False
-
-        low = 0
-        high = min(points) * m
-        while low <= high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                low = middle + 1
-            else:
-                high = middle - 1
-
-        return high
+        return binary_search_right(1, max(points)*m, check)

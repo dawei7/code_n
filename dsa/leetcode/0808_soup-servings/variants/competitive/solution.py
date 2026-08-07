@@ -1,25 +1,30 @@
-from functools import lru_cache
-
+# Time:  O(1)
+# Space: O(1)
 
 class Solution:
-    def soupServings(self, n: int) -> float:
-        if n >= 4800:
-            return 1.0
-        units = (n + 24) // 25
-
-        @lru_cache(maxsize=None)
-        def probability(soup_a: int, soup_b: int) -> float:
-            if soup_a <= 0 and soup_b <= 0:
+    def soupServings(self, N):
+        """
+        :type N: int
+        :rtype: float
+        """
+        def dp(a, b, lookup):
+            if (a, b) in lookup:
+                return lookup[a, b]
+            if a <= 0 and b <= 0:
                 return 0.5
-            if soup_a <= 0:
+            if a <= 0:
                 return 1.0
-            if soup_b <= 0:
+            if b <= 0:
                 return 0.0
-            return 0.25 * (
-                probability(soup_a - 4, soup_b)
-                + probability(soup_a - 3, soup_b - 1)
-                + probability(soup_a - 2, soup_b - 2)
-                + probability(soup_a - 1, soup_b - 3)
-            )
+            lookup[a, b] = 0.25 * (dp(a-4, b, lookup) +
+                                   dp(a-3, b-1, lookup) +
+                                   dp(a-2, b-2, lookup) +
+                                   dp(a-1, b-3, lookup))
+            return lookup[a, b]
 
-        return probability(units, units)
+        if N >= 4800:
+            return 1.0
+        lookup = {}
+        N = (N+24)//25
+        return dp(N, N, lookup)
+

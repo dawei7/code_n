@@ -1,13 +1,21 @@
-class Solution:
-    def productExceptSelf(self, nums: list[int]) -> list[int]:
-        answer = [1] * len(nums)
-        prefix = 1
-        for index, value in enumerate(nums):
-            answer[index] = prefix
-            prefix *= value
+# Time:  O(n)
+# Space: O(1)
 
-        suffix = 1
-        for index in range(len(nums) - 1, -1, -1):
-            answer[index] *= suffix
-            suffix *= nums[index]
-        return answer
+class Solution:
+    # @param {integer[]} nums
+    # @return {integer[]}
+    def productExceptSelf(self, nums):
+        if not nums:
+            return []
+
+        left_product = [1 for _ in range(len(nums))]
+        for i in range(1, len(nums)):
+            left_product[i] = left_product[i - 1] * nums[i - 1]
+
+        right_product = 1
+        for i in range(len(nums) - 2, -1, -1):
+            right_product *= nums[i + 1]
+            left_product[i] = left_product[i] * right_product
+
+        return left_product
+

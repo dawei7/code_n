@@ -1,28 +1,26 @@
 class Solution:
     def findTheString(self, lcp: List[List[int]]) -> str:
         n = len(lcp)
-        letters = [""] * n
-        next_letter = ord("a")
-
-        for i in range(n):
-            if letters[i]:
-                continue
-            if next_letter > ord("z"):
-                return ""
-            letter = chr(next_letter)
-            next_letter += 1
+        s = [""] * n
+        i = 0
+        for c in ascii_lowercase:
+            while i < n and s[i]:
+                i += 1
+            if i == n:
+                break
             for j in range(i, n):
-                if lcp[i][j] > 0:
-                    letters[j] = letter
-
+                if lcp[i][j]:
+                    s[j] = c
+        if "" in s:
+            return ""
         for i in range(n - 1, -1, -1):
             for j in range(n - 1, -1, -1):
-                expected = 0
-                if letters[i] == letters[j]:
-                    expected = 1
-                    if i + 1 < n and j + 1 < n:
-                        expected += lcp[i + 1][j + 1]
-                if lcp[i][j] != expected:
+                if s[i] == s[j]:
+                    if i == n - 1 or j == n - 1:
+                        if lcp[i][j] != 1:
+                            return ""
+                    elif lcp[i][j] != lcp[i + 1][j + 1] + 1:
+                        return ""
+                elif lcp[i][j]:
                     return ""
-
-        return "".join(letters)
+        return "".join(s)

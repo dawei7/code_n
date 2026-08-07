@@ -1,18 +1,19 @@
-from typing import List
+# Time:  O(r * c)
+# Space: O(1)
 
 
 class Solution:
-    def matrixScore(self, grid: List[List[int]]) -> int:
-        row_count = len(grid)
-        column_count = len(grid[0])
-        score = 0
+    def matrixScore(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: int
+        """
+        R, C = len(A), len(A[0])
+        result = 0
+        for c in range(C):
+            col = 0
+            for r in range(R):
+                col += A[r][c] ^ A[r][0]
+            result += max(col, R-col) * 2**(C-1-c)
+        return result
 
-        for column in range(column_count):
-            effective_ones = 0
-            for row in range(row_count):
-                effective_ones += grid[row][column] ^ (1 - grid[row][0])
-
-            best_ones = max(effective_ones, row_count - effective_ones)
-            score += best_ones << (column_count - 1 - column)
-
-        return score

@@ -1,21 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def getAverages(self, nums: List[int], k: int) -> List[int]:
-        length = len(nums)
-        window_length = 2 * k + 1
-        averages = [-1] * length
-
-        if window_length > length:
-            return averages
-
-        window_sum = sum(nums[:window_length])
-        averages[k] = window_sum // window_length
-
-        for center in range(k + 1, length - k):
-            window_sum += nums[center + k]
-            window_sum -= nums[center - k - 1]
-            averages[center] = window_sum // window_length
-
-        return averages
+    def getAverages(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        total, l = 0, 2*k+1
+        result = [-1]*len(nums)
+        for i in range(len(nums)):
+            total += nums[i]
+            if i-l >= 0:
+                total -= nums[i-l]
+            if i >= l-1:
+                result[i-k] = total//l
+        return result

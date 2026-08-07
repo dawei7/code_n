@@ -1,58 +1,123 @@
-from collections import deque
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
 
-
+# iterative dfs, bfs
 class Solution:
-    def magnificentSets(self, n: int, edges: List[List[int]]) -> int:
-        graph = [[] for _ in range(n + 1)]
-        for node_a, node_b in edges:
-            graph[node_a].append(node_b)
-            graph[node_b].append(node_a)
+    def magnificentSets(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def iter_dfs(u):
+            group = []
+            stk = [u]
+            lookup[u] = 0
+            while stk:
+                u = stk.pop()
+                group.append(u)
+                for v in adj[u]:
+                    if lookup[v] != -1:
+                        if lookup[v] == lookup[u]:  # odd-length cycle, not bipartite
+                            return []
+                        continue
+                    lookup[v] = lookup[u]^1
+                    stk.append(v)
+            return group
 
-        color = [0] * (n + 1)
-        components = []
-
-        for start in range(1, n + 1):
-            if color[start] != 0:
+        def bfs(u):
+            result = 0
+            lookup = [False]*n
+            q = [u]
+            lookup[u] = True
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+                result += 1
+            return result
+    
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u-1].append(v-1)
+            adj[v-1].append(u-1)
+        result = 0
+        lookup = [-1]*n
+        for u in range(n):
+            if lookup[u] != -1:
                 continue
+            group = iter_dfs(u)
+            if not group:
+                return -1
+            result += max(bfs(u) for u in group)
+        return result
 
-            color[start] = 1
-            component = []
-            queue = deque([start])
 
-            while queue:
-                node = queue.popleft()
-                component.append(node)
-
-                for neighbor in graph[node]:
-                    if color[neighbor] == 0:
-                        color[neighbor] = -color[node]
-                        queue.append(neighbor)
-                    elif color[neighbor] == color[node]:
-                        return -1
-
-            components.append(component)
-
-        answer = 0
-        for component in components:
-            maximum_groups = 0
-
-            for start in component:
-                distance = [-1] * (n + 1)
-                distance[start] = 0
-                queue = deque([start])
-                farthest = 0
-
-                while queue:
-                    node = queue.popleft()
-                    for neighbor in graph[node]:
-                        if distance[neighbor] == -1:
-                            distance[neighbor] = distance[node] + 1
-                            farthest = max(farthest, distance[neighbor])
-                            queue.append(neighbor)
-
-                maximum_groups = max(maximum_groups, farthest + 1)
-
-            answer += maximum_groups
-
-        return answer
+# Time:  O(n^2)
+# Space: O(n)
+# bfs
+class Solution2(object):
+    def magnificentSets(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        def bfs(u):
+            group = []
+            q = [u]
+            lookup[u] = True
+            while q:
+                new_q = []
+                for u in q:
+                    group.append(u)
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+            return group
+    
+        def bfs2(u):
+            result = 0
+            lookup = [False]*n
+            q = {u}
+            lookup[u] = True
+            while q:
+                new_q = set()
+                for u in q:
+                    for v in adj[u]:
+                        if v in q:
+                            return 0
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.add(v)
+                q = new_q
+                result += 1
+            return result
+    
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u-1].append(v-1)
+            adj[v-1].append(u-1)
+        result = 0
+        lookup = [0]*n
+        for u in range(n):
+            if lookup[u]:
+                continue
+            group = bfs(u)
+            mx = 0
+            for u in group:
+                d = bfs2(u)
+                if d == 0:
+                    return -1
+                mx = max(mx, d)
+            result += mx
+        return result

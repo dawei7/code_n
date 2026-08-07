@@ -1,27 +1,34 @@
-class Solution(object):
+# Time:  O(klogn), k = len(set(nums))
+# Space: O(1)
+
+# Definition for BigArray.
+class BigArray:
+    def at(self, index):
+        pass
+    def size(self):
+        pass
+
+
+# binary search
+class Solution:
     def countBlocks(self, nums):
-        length = nums.size()
-        blocks = 0
-        start = 0
-
-        while start < length:
-            blocks += 1
-            value = nums.at(start)
-            equal = start
-            step = 1
-
-            while start + step < length and nums.at(start + step) == value:
-                equal = start + step
-                step *= 2
-
-            different = min(length, start + step)
-            while equal + 1 < different:
-                middle = (equal + different) // 2
-                if nums.at(middle) == value:
-                    equal = middle
+        """
+        :type nums: BigArray
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
                 else:
-                    different = middle
+                    left = mid+1
+            return right
 
-            start = different
-
-        return blocks
+        n = nums.size()
+        result = left = 0
+        while left != n:
+            target = nums.at(left)
+            left = binary_search_right(left, n-1, lambda x: nums.at(x) == target)+1
+            result += 1
+        return result

@@ -1,13 +1,36 @@
-from typing import List
-
+# Time:  O(n + m)
+# Space: O(n + m)
 
 class Solution:
-    def oddCells(self, m: int, n: int, indices: List[List[int]]) -> int:
-        rows = [0] * m
-        columns = [0] * n
-        for row, column in indices:
-            rows[row] ^= 1
-            columns[column] ^= 1
-        odd_rows = sum(rows)
-        odd_columns = sum(columns)
-        return odd_rows * (n - odd_columns) + (m - odd_rows) * odd_columns
+    def oddCells(self, n, m, indices):
+        """
+        :type n: int
+        :type m: int
+        :type indices: List[List[int]]
+        :rtype: int
+        """
+        row, col = [0]*n, [0]*m
+        for r, c in indices:
+            row[r] ^= 1
+            col[c] ^= 1
+        row_sum, col_sum = sum(row), sum(col)
+        return row_sum*m+col_sum*n-2*row_sum*col_sum
+
+
+# Time:  O(n + m)
+# Space: O(n + m)
+import collections
+import itertools
+
+
+class Solution2(object):
+    def oddCells(self, n, m, indices):
+        """
+        :type n: int
+        :type m: int
+        :type indices: List[List[int]]
+        :rtype: int
+        """
+        fn = lambda x: sum(count&1 for count in collections.Counter(x).itervalues())
+        row_sum, col_sum = map(fn, itertools.izip(*indices))
+        return row_sum*m+col_sum*n-2*row_sum*col_sum

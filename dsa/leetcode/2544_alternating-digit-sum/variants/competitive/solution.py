@@ -1,9 +1,17 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def alternateDigitSum(self, n: int) -> int:
-        answer = 0
-
+    def alternateDigitSum(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        result = 0
+        sign = 1
         while n:
-            answer = n % 10 - answer
+            sign *= -1
+            result += sign*(n%10)
             n //= 10
-
-        return answer
+        return sign*result

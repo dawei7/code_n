@@ -1,40 +1,22 @@
-from typing import List
-
-
 class Solution:
     def numDistinctIslands(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        visited = set()
-        shapes = set()
+        def dfs(i: int, j: int, k: int):
+            grid[i][j] = 0
+            path.append(str(k))
+            dirs = (-1, 0, 1, 0, -1)
+            for h in range(1, 5):
+                x, y = i + dirs[h - 1], j + dirs[h]
+                if 0 <= x < m and 0 <= y < n and grid[x][y]:
+                    dfs(x, y, h)
+            path.append(str(-k))
 
-        for origin_row in range(rows):
-            for origin_column in range(columns):
-                origin = (origin_row, origin_column)
-                if grid[origin_row][origin_column] == 0 or origin in visited:
-                    continue
-
-                visited.add(origin)
-                stack = [origin]
-                offsets = set()
-
-                while stack:
-                    row, column = stack.pop()
-                    offsets.add((row - origin_row, column - origin_column))
-
-                    for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_column = column + column_step
-                        neighbor = (next_row, next_column)
-                        if (
-                            0 <= next_row < rows
-                            and 0 <= next_column < columns
-                            and grid[next_row][next_column] == 1
-                            and neighbor not in visited
-                        ):
-                            visited.add(neighbor)
-                            stack.append(neighbor)
-
-                shapes.add(frozenset(offsets))
-
-        return len(shapes)
+        paths = set()
+        path = []
+        m, n = len(grid), len(grid[0])
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                if x:
+                    dfs(i, j, 0)
+                    paths.add("".join(path))
+                    path.clear()
+        return len(paths)

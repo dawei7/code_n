@@ -1,14 +1,22 @@
+# Time:  O(n * 2^n)
+# Space: O(2^n)
+
 class Solution:
-    def countAndSay(self, n: int) -> str:
-        term = "1"
-        for _ in range(n - 1):
-            described = []
-            index = 0
-            while index < len(term):
-                following = index + 1
-                while following < len(term) and term[following] == term[index]:
-                    following += 1
-                described.extend((str(following - index), term[index]))
-                index = following
-            term = "".join(described)
-        return term
+    # @return a string
+    def countAndSay(self, n):
+        seq = "1"
+        for i in range(n - 1):
+            seq = self.getNext(seq)
+        return seq
+
+    def getNext(self, seq):
+        i, next_seq = 0, ""
+        while i < len(seq):
+            cnt = 1
+            while i < len(seq) - 1 and seq[i] == seq[i + 1]:
+                cnt += 1
+                i += 1
+            next_seq += str(cnt) + seq[i]
+            i += 1
+        return next_seq
+

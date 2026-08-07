@@ -1,12 +1,10 @@
-SELECT emp_id, firstname, lastname, salary, department_id
-FROM (
-    SELECT
-        Salary.*,
-        ROW_NUMBER() OVER (
-            PARTITION BY emp_id
-            ORDER BY CAST(salary AS UNSIGNED) DESC
-        ) AS salary_rank
-    FROM Salary
-) AS ranked_salaries
-WHERE salary_rank = 1
+# Write your MySQL query statement below
+SELECT
+    emp_id,
+    firstname,
+    lastname,
+    MAX(salary) AS salary,
+    department_id
+FROM Salary
+GROUP BY emp_id
 ORDER BY emp_id;

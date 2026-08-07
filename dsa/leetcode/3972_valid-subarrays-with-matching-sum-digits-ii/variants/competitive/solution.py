@@ -1,28 +1,29 @@
+# Time:  O(nlogr)
+# Space: O(n)
+
+# prefix sum, two pointers
 class Solution:
-    def countValidSubarrays(self, nums: list[int], x: int) -> int:
-        prefix = [0]
-        for number in nums:
-            prefix.append(prefix[-1] + number)
-
-        answer = 0
-        power = 1
-        while x * power <= prefix[-1]:
-            lower = x * power
-            upper = (x + 1) * power - 1
-            residue_counts = [0] * 10
-            add = 0
-            remove = 0
-
-            for right in prefix[1:]:
-                while add < len(prefix) and prefix[add] <= right - lower:
-                    residue_counts[prefix[add] % 10] += 1
-                    add += 1
-                while remove < add and prefix[remove] < right - upper:
-                    residue_counts[prefix[remove] % 10] -= 1
-                    remove += 1
-
-                answer += residue_counts[(right - x) % 10]
-
-            power *= 10
-
-        return answer
+    def countValidSubarrays(self, nums, x):
+        """
+        :type nums: List[int]
+        :type x: int
+        :rtype: int
+        """
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        result = 0
+        base = 1
+        while x*base <= prefix[-1]:
+            cnt = [0]*10
+            left = right = 0
+            for i in range(len(nums)):
+                while prefix[right] <= prefix[i+1]-x*base:
+                    cnt[prefix[right]%10] += 1
+                    right += 1
+                while prefix[left] <= prefix[i+1]-(x+1)*base:
+                    cnt[prefix[left]%10] -= 1
+                    left += 1
+                result += cnt[(prefix[i+1]-x)%10]
+            base *= 10
+        return result

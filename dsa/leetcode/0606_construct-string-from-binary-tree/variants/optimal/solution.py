@@ -1,32 +1,18 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def tree2str(self, root: "TreeNode") -> str:
-        if root is None:
-            return ""
+    def tree2str(self, root: Optional[TreeNode]) -> str:
+        def dfs(root):
+            if root is None:
+                return ''
+            if root.left is None and root.right is None:
+                return str(root.val)
+            if root.right is None:
+                return f'{root.val}({dfs(root.left)})'
+            return f'{root.val}({dfs(root.left)})({dfs(root.right)})'
 
-        tokens = []
-        actions = [("node", root)]
-
-        while actions:
-            action, value = actions.pop()
-            if action == "text":
-                tokens.append(value)
-                continue
-
-            node = value
-            tokens.append(str(node.val))
-
-            if node.right is not None:
-                actions.append(("text", ")"))
-                actions.append(("node", node.right))
-                actions.append(("text", "("))
-
-                actions.append(("text", ")"))
-                if node.left is not None:
-                    actions.append(("node", node.left))
-                actions.append(("text", "("))
-            elif node.left is not None:
-                actions.append(("text", ")"))
-                actions.append(("node", node.left))
-                actions.append(("text", "("))
-
-        return "".join(tokens)
+        return dfs(root)

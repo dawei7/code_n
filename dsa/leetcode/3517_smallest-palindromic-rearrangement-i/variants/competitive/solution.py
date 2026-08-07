@@ -1,16 +1,18 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# freq table, counting sort, greedy
 class Solution:
-    def smallestPalindrome(self, s: str) -> str:
-        counts = [0] * 26
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
-
-        left_parts = []
-        middle = ""
-        for index, count in enumerate(counts):
-            char = chr(ord("a") + index)
-            left_parts.append(char * (count // 2))
-            if count % 2:
-                middle = char
-
-        left = "".join(left_parts)
-        return left + middle + left[::-1]
+    def smallestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        cnt = [0]*26
+        for i in range(len(s)//2):
+            cnt[ord(s[i])-ord('a')] += 1
+        result = [chr(ord('a')+i)*c for i, c in enumerate(cnt)]
+        if len(s)%2:
+            result.append(s[len(s)//2])
+        result.extend((result[i] for i in reversed(range(len(result)-len(s)%2))))
+        return "".join(result)

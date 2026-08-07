@@ -1,35 +1,59 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# greedy, sort
 class Solution:
-    def sortArray(self, nums: List[int]) -> int:
-        n = len(nums)
-        empty_position = nums.index(0)
+    def sortArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def min_moves(d):
+            def index(x):
+                return d*(len(nums)-1) if x == 0 else x-d
 
-        def operations(zero_at_start: bool) -> int:
-            seen = [False] * n
-            moves = 0
-
-            for start in range(n):
-                if seen[start]:
+            lookup = [False]*len(nums)
+            result = len(nums)
+            for i in range(len(nums)):
+                if lookup[nums[i]]:
                     continue
+                l = 0
+                while not lookup[nums[i]]:
+                    lookup[nums[i]] = True
+                    l += 1
+                    i = index(nums[i])
+                result -= 1
+                if l >= 2:
+                    result += 2
+            return result-2*int(nums[d*(len(nums)-1)] != 0)
 
-                position = start
-                length = 0
-                contains_empty = False
-                while not seen[position]:
-                    seen[position] = True
-                    length += 1
-                    contains_empty = contains_empty or position == empty_position
-                    value = nums[position]
-                    if zero_at_start:
-                        position = value
-                    else:
-                        position = n - 1 if value == 0 else value - 1
+        return min(min_moves(0), min_moves(1))
 
-                if length > 1:
-                    moves += length - 1 if contains_empty else length + 1
 
-            return moves
+# Time:  O(n)
+# Space: O(n)
+# greedy, sort
+class Solution2(object):
+    def sortArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def min_moves(d):
+            def index(x):
+                return d*(len(nums)-1) if x == 0 else x-d
 
-        return min(operations(True), operations(False))
+            a = nums[:]
+            result = 0
+            for i in range(len(a)):
+                l, has_zero = 1, (a[i] == 0)
+                while index(a[i]) != i:
+                    j = index(a[i])
+                    a[i], a[j] = a[j], a[i]
+                    l += 1
+                    has_zero |= (a[i] == 0)
+                if l >= 2:
+                    result += l-1 if has_zero else l+1
+            return result
+
+        return min(min_moves(0), min_moves(1))

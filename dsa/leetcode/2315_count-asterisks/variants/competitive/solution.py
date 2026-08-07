@@ -1,12 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def countAsterisks(self, s: str) -> int:
-        outside = True
-        answer = 0
-
-        for character in s:
-            if character == "|":
-                outside = not outside
-            elif character == "*" and outside:
-                answer += 1
-
-        return answer
+    def countAsterisks(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = cnt = 0
+        for c in s:
+            if c == '|':
+                cnt = (cnt+1)%2
+                continue
+            if c == '*' and cnt == 0:
+                result += 1
+        return result

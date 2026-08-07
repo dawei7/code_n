@@ -1,7 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minElements(self, nums: List[int], limit: int, goal: int) -> int:
-        difference = abs(goal - sum(nums))
-        return (difference + limit - 1) // limit
+    def minElements(self, nums, limit, goal):
+        """
+        :type nums: List[int]
+        :type limit: int
+        :type goal: int
+        :rtype: int
+        """
+        return (abs(sum(nums)-goal) + (limit-1))//limit

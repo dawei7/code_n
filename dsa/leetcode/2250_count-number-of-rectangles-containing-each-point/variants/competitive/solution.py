@@ -1,20 +1,22 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn + m * max_y * logn), n = len(rectangles), m = len(points)
+# Space: O(n)
+
+import bisect
 
 
+# bucket sort, binary search
 class Solution:
-    def countRectangles(self, rectangles: List[List[int]], points: List[List[int]]) -> List[int]:
-        widths_by_height = [[] for _ in range(101)]
-        for width, height in rectangles:
-            widths_by_height[height].append(width)
-        for widths in widths_by_height:
-            widths.sort()
-
-        answer = []
-        for x, y in points:
-            count = 0
-            for height in range(y, 101):
-                widths = widths_by_height[height]
-                count += len(widths) - bisect_left(widths, x)
-            answer.append(count)
-        return answer
+    def countRectangles(self, rectangles, points):
+        """
+        :type rectangles: List[List[int]]
+        :type points: List[List[int]]
+        :rtype: List[int]
+        """
+        max_y = max(y for _, y in rectangles)
+        buckets = [[] for _ in range(max_y+1)]
+        for x, y in rectangles:
+            buckets[y].append(x)
+        for bucket in buckets:
+            bucket.sort()
+        return [sum(len(buckets[y])-bisect.bisect_left(buckets[y], x) for y in range(y, max_y+1))
+                for x, y in points]

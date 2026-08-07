@@ -1,18 +1,18 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def maxFrequency(self, nums: List[int], k: int) -> int:
-        nums.sort()
+    def maxFrequency(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         left = 0
-        window_sum = 0
-        best = 1
-
-        for right, target in enumerate(nums):
-            window_sum += target
-            while target * (right - left + 1) - window_sum > k:
-                window_sum -= nums[left]
+        nums.sort()
+        for right in range(len(nums)):
+            k += nums[right]
+            if k < nums[right]*(right-left+1):
+                k -= nums[left]
                 left += 1
-            best = max(best, right - left + 1)
-
-        return best
+        return right-left+1

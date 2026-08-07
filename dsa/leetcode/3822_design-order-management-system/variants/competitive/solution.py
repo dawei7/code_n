@@ -1,35 +1,63 @@
-from collections import defaultdict
-from typing import List
+# Time:  ctor:             O(1)
+#        addOrder:         O(1)
+#        modifyOrder:      O(1)
+#        cancelOrder:      O(1)
+#        getOrdersAtPrice: O(n)
+# Space: O(n)
+
+import collections
 
 
-class OrderManagementSystem:
+# hash table
+class OrderManagementSystem(object):
+
     def __init__(self):
-        self.orders = {}
-        self.orders_at_price = defaultdict(set)
+        self.__orders = {}
+        self.__type_price = collections.defaultdict(list)
+        
 
-    def addOrder(self, orderId: int, orderType: str, price: int) -> None:
-        self.orders[orderId] = (orderType, price)
-        self.orders_at_price[(orderType, price)].add(orderId)
+    def addOrder(self, orderId, orderType, price):
+        """
+        :type orderId: int
+        :type orderType: str
+        :type price: int
+        :rtype: None
+        """
+        self.__orders[orderId] = [orderType, price, len(self.__type_price[orderType, price])]
+        self.__type_price[orderType, price].append(orderId)
+        
 
-    def modifyOrder(self, orderId: int, newPrice: int) -> None:
-        order_type, old_price = self.orders[orderId]
-        if old_price == newPrice:
-            return
+    def modifyOrder(self, orderId, newPrice):
+        """
+        :type orderId: int
+        :type newPrice: int
+        :rtype: None
+        """
+        orderType = self.__orders[orderId][0]
+        self.cancelOrder(orderId)
+        self.addOrder(orderId, orderType, newPrice)
+        
 
-        old_bucket = self.orders_at_price[(order_type, old_price)]
-        old_bucket.remove(orderId)
-        if not old_bucket:
-            del self.orders_at_price[(order_type, old_price)]
+    def cancelOrder(self, orderId):
+        """
+        :type orderId: int
+        :rtype: None
+        """
+        orderType, price, i = self.__orders[orderId]
+        arr = self.__type_price[orderType, price]
+        self.__orders[arr[-1]][2] = i
+        arr[i], arr[-1] = arr[-1], arr[i]
+        arr.pop()
+        if not self.__type_price[orderType, price]:
+            del self.__type_price[orderType, price]
+        del self.__orders[orderId]
 
-        self.orders[orderId] = (order_type, newPrice)
-        self.orders_at_price[(order_type, newPrice)].add(orderId)
 
-    def cancelOrder(self, orderId: int) -> None:
-        order_type, price = self.orders.pop(orderId)
-        bucket = self.orders_at_price[(order_type, price)]
-        bucket.remove(orderId)
-        if not bucket:
-            del self.orders_at_price[(order_type, price)]
-
-    def getOrdersAtPrice(self, orderType: str, price: int) -> List[int]:
-        return list(self.orders_at_price.get((orderType, price), ()))
+    def getOrdersAtPrice(self, orderType, price):
+        """
+        :type orderType: str
+        :type price: int
+        :rtype: List[int]
+        """
+        return self.__type_price.get((orderType, price), [])
+  

@@ -1,14 +1,27 @@
-from bisect import bisect_left, bisect_right
-from collections import defaultdict
-from typing import List
+# Time:  ctor:  O(n)
+#        query: O(logn)
+# Space: O(n)
+
+import collections
+import bisect
 
 
-class RangeFreqQuery:
-    def __init__(self, arr: List[int]):
-        self.positions = defaultdict(list)
-        for index, value in enumerate(arr):
-            self.positions[value].append(index)
+class RangeFreqQuery(object):
 
-    def query(self, left: int, right: int, value: int) -> int:
-        positions = self.positions[value]
-        return bisect_right(positions, right) - bisect_left(positions, left)
+    def __init__(self, arr):
+        """
+        :type arr: List[int]
+        """
+        self.__idxs = collections.defaultdict(list)
+        for i, x in enumerate(arr):
+            self.__idxs[x].append(i)
+
+    def query(self, left, right, value):
+        """
+        :type left: int
+        :type right: int
+        :type value: int
+        :rtype: int
+        """
+        return bisect.bisect_right(self.__idxs[value], right) - \
+               bisect.bisect_left(self.__idxs[value], left)

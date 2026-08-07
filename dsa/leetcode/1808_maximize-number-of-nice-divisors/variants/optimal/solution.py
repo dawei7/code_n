@@ -1,12 +1,10 @@
 class Solution:
     def maxNiceDivisors(self, primeFactors: int) -> int:
-        modulus = 1_000_000_007
-        if primeFactors <= 3:
+        mod = 10**9 + 7
+        if primeFactors < 4:
             return primeFactors
-
-        threes, remainder = divmod(primeFactors, 3)
-        if remainder == 0:
-            return pow(3, threes, modulus)
-        if remainder == 1:
-            return pow(3, threes - 1, modulus) * 4 % modulus
-        return pow(3, threes, modulus) * 2 % modulus
+        if primeFactors % 3 == 0:
+            return pow(3, primeFactors // 3, mod) % mod
+        if primeFactors % 3 == 1:
+            return 4 * pow(3, primeFactors // 3 - 1, mod) % mod
+        return 2 * pow(3, primeFactors // 3, mod) % mod

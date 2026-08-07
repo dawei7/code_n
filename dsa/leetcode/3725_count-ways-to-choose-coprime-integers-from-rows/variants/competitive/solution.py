@@ -1,26 +1,74 @@
-from typing import List
+# Time:  O(n * (m + rlogr)), r = max(max(row) for row in mat)
+# Space: O(r)
+
+import collections
 
 
+# dp, number theory, mobius function, principle of inclusion-exclusion, freq table
 class Solution:
-    def countCoprime(self, mat: List[List[int]]) -> int:
-        modulo = 1_000_000_007
-        maximum = max(map(max, mat))
-        divisible_ways = [1] * (maximum + 1)
+    def countCoprime(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+            primes = []
+            spf = [-1]*(n+1)  # the smallest prime factor
+            for i in range(2, n+1):
+                if spf[i] == -1:
+                    spf[i] = i
+                    primes.append(i)
+                for p in primes:
+                    if i*p > n or p > spf[i]:
+                        break
+                    spf[i*p] = p
+            return spf
 
+        # https://www.geeksforgeeks.org/program-for-mobius-function-set-2/
+        def mobius(spf):  # Time: O(n), Space: O(n)
+            mu = [0]*len(spf)
+            for i in range(1, len(mu)):
+                mu[i] = 1 if i == 1 else 0 if spf[i//spf[i]] == spf[i] else -mu[i//spf[i]]
+            return mu
+
+        mx = max(max(row) for row in mat)
+        mu = mobius(linear_sieve_of_eratosthenes(mx))
+        dp = [1]*(mx+1)
         for row in mat:
-            frequency = [0] * (maximum + 1)
-            for value in row:
-                frequency[value] += 1
+            cnt = collections.defaultdict(int)
+            for x in row:
+                cnt[x] += 1
+            for i in range(1, mx+1):
+                dp[i] = (dp[i]*reduce(lambda accu, x: (accu+x)%MOD, (cnt[j] for j in range(i, mx+1, i)), 0))%MOD
+        return reduce(lambda accu, x: (accu+x)%MOD, (dp[i]*mu[i] for i in range(1, mx+1)), 0)
 
-            for divisor in range(1, maximum + 1):
-                divisible_count = sum(frequency[multiple] for multiple in range(divisor, maximum + 1, divisor))
-                divisible_ways[divisor] = (divisible_ways[divisor] * divisible_count) % modulo
 
-        exact_gcd = [0] * (maximum + 1)
-        for divisor in range(maximum, 0, -1):
-            exact_gcd[divisor] = divisible_ways[divisor]
-            for multiple in range(divisor * 2, maximum + 1, divisor):
-                exact_gcd[divisor] -= exact_gcd[multiple]
-            exact_gcd[divisor] %= modulo
+# Time:  O(n * m * rlogr)
+# Space: O(r)
+import collections
 
-        return exact_gcd[1]
+
+# dp, number thoery
+class Solution2(object):
+    def countCoprime(self, mat):
+        """
+        :type mat: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
+
+        dp = collections.defaultdict(int)
+        dp[0] = 1
+        for row in mat:
+            new_dp = collections.defaultdict(int)
+            for x in row:
+                for g, c in dp.items():
+                    ng = gcd(g, x)
+                    new_dp[ng] = (new_dp[ng]+c)%MOD
+            dp = new_dp
+        return dp[1]

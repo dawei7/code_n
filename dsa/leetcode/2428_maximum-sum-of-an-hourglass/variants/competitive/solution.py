@@ -1,23 +1,16 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# brute force
 class Solution:
-    def maxSum(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        answer = 0
+    def maxSum(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def total(i, j):
+            return (grid[i][j]+grid[i][j+1]+grid[i][j+2]+
+                               grid[i+1][j+1]+
+                    grid[i+2][j]+grid[i+2][j+1]+grid[i+2][j+2])
 
-        for row in range(rows - 2):
-            for column in range(columns - 2):
-                current = (
-                    grid[row][column]
-                    + grid[row][column + 1]
-                    + grid[row][column + 2]
-                    + grid[row + 1][column + 1]
-                    + grid[row + 2][column]
-                    + grid[row + 2][column + 1]
-                    + grid[row + 2][column + 2]
-                )
-                answer = max(answer, current)
-
-        return answer
+        return max(total(i, j) for i in range(len(grid)-2) for j in range(len(grid[0])-2))

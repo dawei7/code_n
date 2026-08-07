@@ -1,21 +1,12 @@
-from typing import List
-
-
 class Solution:
-    def digArtifacts(self, n: int, artifacts: List[List[int]], dig: List[List[int]]) -> int:
-        dug = {(row, column) for row, column in dig}
-        extracted = 0
+    def digArtifacts(
+        self, n: int, artifacts: List[List[int]], dig: List[List[int]]
+    ) -> int:
+        def check(a: List[int]) -> bool:
+            x1, y1, x2, y2 = a
+            return all(
+                (x, y) in s for x in range(x1, x2 + 1) for y in range(y1, y2 + 1)
+            )
 
-        for top, left, bottom, right in artifacts:
-            complete = True
-            for row in range(top, bottom + 1):
-                for column in range(left, right + 1):
-                    if (row, column) not in dug:
-                        complete = False
-                        break
-                if not complete:
-                    break
-            if complete:
-                extracted += 1
-
-        return extracted
+        s = {(i, j) for i, j in dig}
+        return sum(check(a) for a in artifacts)

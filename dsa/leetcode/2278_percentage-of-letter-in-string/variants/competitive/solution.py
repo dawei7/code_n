@@ -1,3 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def percentageLetter(self, s: str, letter: str) -> int:
-        return s.count(letter) * 100 // len(s)
+    def percentageLetter(self, s, letter):
+        """
+        :type s: str
+        :type letter: str
+        :rtype: int
+        """
+        return 100*s.count(letter)//len(s)

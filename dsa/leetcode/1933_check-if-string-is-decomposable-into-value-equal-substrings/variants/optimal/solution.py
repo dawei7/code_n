@@ -1,19 +1,15 @@
 class Solution:
     def isDecomposable(self, s: str) -> bool:
-        length_two_groups = 0
-        index = 0
-
-        while index < len(s):
-            end = index + 1
-            while end < len(s) and s[end] == s[index]:
-                end += 1
-
-            remainder = (end - index) % 3
-            if remainder == 1:
+        i, n = 0, len(s)
+        cnt2 = 0
+        while i < n:
+            j = i
+            while j < n and s[j] == s[i]:
+                j += 1
+            if (j - i) % 3 == 1:
                 return False
-            if remainder == 2:
-                length_two_groups += 1
-
-            index = end
-
-        return length_two_groups == 1
+            cnt2 += (j - i) % 3 == 2
+            if cnt2 > 1:
+                return False
+            i = j
+        return cnt2 == 1

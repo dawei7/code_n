@@ -1,40 +1,52 @@
+# Time:  O(4^n)
+# Space: O(1)
+
+# array
 class Solution:
-    def specialGrid(self, n: int) -> List[List[int]]:
-        side = 1 << n
-        grid = [[0] * side for _ in range(side)]
+    def specialGrid(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        def copy(l, r1, c1, r2, c2):
+            for i in range(l):
+                for j in range(l):
+                    result[r2+i][c2+j] = result[r1+i][c1+j]+l*l
+        
+        total = 1<<n
+        result = [[0]*total for _ in range(total)]
+        l = 1
+        for i in range(n):
+            r, c = 0, total-l
+            for dr, dc in ((l, 0), (0, -l), (-l, 0)):
+                nr, nc = r+dr, c+dc
+                copy(l, r, c, nr, nc)
+                r, c = nr, nc
+            l <<= 1
+        return result
 
-        def fill(
-            row: int,
-            column: int,
-            level: int,
-            start: int,
-        ) -> None:
-            if level == 0:
-                grid[row][column] = start
+
+# Time:  O(4^n)
+# Space: O(n)
+# divide and conquer
+class Solution2(object):
+    def specialGrid(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        def divide_and_conquer(l, r, c):
+            if l == 1:
+                result[r][c] = idx[0]
+                idx[0] += 1
                 return
+            l >>= 1
+            for dr, dc in ((0, l), (l, 0), (0, -l), (-l, 0)):
+                r, c = r+dr, c+dc
+                divide_and_conquer(l, r, c)
 
-            half = 1 << (level - 1)
-            block_size = half * half
-
-            fill(row, column + half, level - 1, start)
-            fill(
-                row + half,
-                column + half,
-                level - 1,
-                start + block_size,
-            )
-            fill(
-                row + half,
-                column,
-                level - 1,
-                start + 2 * block_size,
-            )
-            fill(
-                row,
-                column,
-                level - 1,
-                start + 3 * block_size,
-            )
-
-        fill(0, 0, n, 0)
-        return grid
+        total = 1<<n
+        result = [[0]*total for _ in range(total)]
+        idx = [0]
+        divide_and_conquer(total, 0, 0)
+        return result

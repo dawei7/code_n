@@ -1,12 +1,19 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 class Solution:
-    def hasCycle(self, head: Optional["ListNode"]) -> bool:
-        slow = fast = head
-        while fast is not None and fast.next is not None:
-            slow = slow.next
-            fast = fast.next.next
-            if slow is fast:
+    # @param head, a ListNode
+    # @return a boolean
+    def hasCycle(self, head):
+        fast, slow = head, head
+        while fast and fast.next:
+            fast, slow = fast.next.next, slow.next
+            if fast is slow:
                 return True
         return False
+

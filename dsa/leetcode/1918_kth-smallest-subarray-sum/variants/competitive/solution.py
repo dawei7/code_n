@@ -1,29 +1,28 @@
-from typing import List
-
+# Time:  O(nlogr)
+# Space: O(1)
 
 class Solution:
-    def kthSmallestSubarraySum(self, nums: List[int], k: int) -> int:
-        def count_at_most(limit: int) -> int:
-            left = 0
-            window_sum = 0
-            count = 0
-
-            for right, value in enumerate(nums):
-                window_sum += value
-                while window_sum > limit:
-                    window_sum -= nums[left]
+    def kthSmallestSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(nums, k, x):
+            cnt = curr = left = 0
+            for right in range(len(nums)):
+                curr += nums[right]
+                while curr > x:
+                    curr -= nums[left]
                     left += 1
-                count += right - left + 1
+                cnt += right-left+1
+            return cnt >= k
 
-            return count
-
-        low = min(nums)
-        high = sum(nums)
-        while low < high:
-            middle = (low + high) // 2
-            if count_at_most(middle) >= k:
-                high = middle
+        left, right = min(nums), sum(nums)
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(nums, k, mid):
+                right = mid-1
             else:
-                low = middle + 1
-
-        return low
+                left = mid+1
+        return left

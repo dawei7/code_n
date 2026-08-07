@@ -1,8 +1,13 @@
 class Solution:
     def subsequenceSumOr(self, nums: List[int]) -> int:
-        answer = 0
-        prefix_sum = 0
-        for value in nums:
-            prefix_sum += value
-            answer |= value | prefix_sum
-        return answer
+        cnt = [0] * 64
+        ans = 0
+        for v in nums:
+            for i in range(31):
+                if (v >> i) & 1:
+                    cnt[i] += 1
+        for i in range(63):
+            if cnt[i]:
+                ans |= 1 << i
+            cnt[i + 1] += cnt[i] // 2
+        return ans

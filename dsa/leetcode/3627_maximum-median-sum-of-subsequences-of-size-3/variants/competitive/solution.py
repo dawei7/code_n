@@ -1,8 +1,12 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, greedy
 class Solution:
-    def maximumMedianSum(self, nums: List[int]) -> int:
+    def maximumMedianSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         nums.sort()
-        groups = len(nums) // 3
-        return sum(nums[groups::2])
+        return sum(nums[i] for i in range(len(nums)//3, len(nums), 2))

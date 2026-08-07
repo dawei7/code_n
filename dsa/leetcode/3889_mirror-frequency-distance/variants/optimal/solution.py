@@ -1,18 +1,16 @@
 class Solution:
     def mirrorFrequency(self, s: str) -> int:
-        frequencies = [0] * 36
-
-        for character in s:
-            if character <= "9":
-                index = ord(character) - ord("0")
-            else:
-                index = 10 + ord(character) - ord("a")
-            frequencies[index] += 1
-
-        answer = 0
-        for index in range(5):
-            answer += abs(frequencies[index] - frequencies[9 - index])
-        for index in range(13):
-            answer += abs(frequencies[10 + index] - frequencies[35 - index])
-
-        return answer
+        freq = Counter(s)
+        ans = 0
+        vis = set()
+        for c, v in freq.items():
+            m = (
+                chr(ord("a") + 25 - (ord(c) - ord("a")))
+                if c.isalpha()
+                else str(9 - int(c))
+            )
+            if m in vis:
+                continue
+            vis.add(c)
+            ans += abs(v - freq[m])
+        return ans

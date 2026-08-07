@@ -1,6 +1,16 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def minSensors(self, n: int, m: int, k: int) -> int:
-        span = 2 * k + 1
-        row_bands = (n + span - 1) // span
-        column_bands = (m + span - 1) // span
-        return row_bands * column_bands
+    def minSensors(self, n, m, k):
+        """
+        :type n: int
+        :type m: int
+        :type k: int
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+    
+        return ceil_divide(n, 2*k+1)*ceil_divide(m, 2*k+1)

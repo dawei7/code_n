@@ -1,16 +1,17 @@
-from typing import List
-
-
 class Solution:
     def mctFromLeafValues(self, arr: List[int]) -> int:
-        stack = [float("inf")]
-        total = 0
-        for value in arr:
-            while stack[-1] <= value:
-                middle = stack.pop()
-                total += middle * min(stack[-1], value)
-            stack.append(value)
+        @cache
+        def dfs(i: int, j: int) -> Tuple:
+            if i == j:
+                return 0, arr[i]
+            s, mx = inf, -1
+            for k in range(i, j):
+                s1, mx1 = dfs(i, k)
+                s2, mx2 = dfs(k + 1, j)
+                t = s1 + s2 + mx1 * mx2
+                if s > t:
+                    s = t
+                    mx = max(mx1, mx2)
+            return s, mx
 
-        while len(stack) > 2:
-            total += stack.pop() * stack[-1]
-        return total
+        return dfs(0, len(arr) - 1)[0]

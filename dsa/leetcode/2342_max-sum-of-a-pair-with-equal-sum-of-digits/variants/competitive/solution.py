@@ -1,20 +1,28 @@
-from typing import List
+# Time:  O(nlogr), r is max(nums)
+# Space: O(n)
 
-
+# greedy
 class Solution:
-    def maximumSum(self, nums: List[int]) -> int:
-        largest = [-1] * 82
-        answer = -1
+    def maximumSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def sum_digits(x):
+            result = 0
+            while x:
+                result += x%10
+                x //= 10
+            return result
 
-        for value in nums:
-            remaining = value
-            digit_sum = 0
-            while remaining:
-                digit_sum += remaining % 10
-                remaining //= 10
-
-            if largest[digit_sum] != -1:
-                answer = max(answer, largest[digit_sum] + value)
-            largest[digit_sum] = max(largest[digit_sum], value)
-
-        return answer
+        lookup = {}
+        result = -1
+        for x in nums:
+            k = sum_digits(x)
+            if k not in lookup:
+                lookup[k] = x
+                continue
+            result = max(result, lookup[k]+x)
+            if x > lookup[k]:
+                lookup[k] = x
+        return result

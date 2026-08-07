@@ -1,14 +1,16 @@
+# Time:  O(n)
+# Space: O(n)
+
+WITH nyu_cte AS (
+    SELECT COUNT(*) AS cnt FROM NewYork WHERE score >= 90
+), cu_cte AS (
+    SELECT COUNT(*) AS cnt FROM California WHERE score >= 90
+)
+
 SELECT
-    CASE
-        WHEN ny.excellent > ca.excellent THEN 'New York University'
-        WHEN ny.excellent < ca.excellent THEN 'California University'
-        ELSE 'No Winner'
-    END AS winner
-FROM (
-    SELECT COUNT(CASE WHEN score >= 90 THEN 1 END) AS excellent
-    FROM NewYork
-) AS ny
-CROSS JOIN (
-    SELECT COUNT(CASE WHEN score >= 90 THEN 1 END) AS excellent
-    FROM California
-) AS ca;
+    (CASE
+     WHEN N.cnt > C.cnt THEN 'New York University'
+     WHEN N.cnt < C.cnt THEN 'California University'
+     ELSE 'No Winner'
+     END) AS winner
+FROM nyu_cte N, cu_cte C;

@@ -1,17 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(k)
 
-
+# prefix sum, dp
 class Solution:
-    def maxSubarraySum(self, nums: List[int], k: int) -> int:
-        minimum_prefix = [float("inf")] * k
-        minimum_prefix[0] = 0
-        prefix_sum = 0
-        answer = float("-inf")
-
-        for length, value in enumerate(nums, 1):
-            prefix_sum += value
-            remainder = length % k
-            answer = max(answer, prefix_sum - minimum_prefix[remainder])
-            minimum_prefix[remainder] = min(minimum_prefix[remainder], prefix_sum)
-
-        return int(answer)
+    def maxSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        dp = [float("inf")]*k
+        dp[-1] = 0
+        curr = 0
+        result = float("-inf")
+        for i, x in enumerate(nums):
+            curr += x
+            result = max(result, curr-dp[i%k])
+            dp[i%k] = min(dp[i%k], curr)
+        return result

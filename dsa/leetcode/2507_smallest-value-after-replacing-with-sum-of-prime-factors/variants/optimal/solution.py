@@ -1,19 +1,14 @@
 class Solution:
     def smallestValue(self, n: int) -> int:
-        while True:
-            remaining = n
-            factor_sum = 0
-            factor = 2
-
-            while factor * factor <= remaining:
-                while remaining % factor == 0:
-                    factor_sum += factor
-                    remaining //= factor
-                factor += 1
-
-            if remaining > 1:
-                factor_sum += remaining
-
-            if factor_sum == n:
-                return n
-            n = factor_sum
+        while 1:
+            t, s, i = n, 0, 2
+            while i <= n // i:
+                while n % i == 0:
+                    n //= i
+                    s += i
+                i += 1
+            if n > 1:
+                s += n
+            if s == t:
+                return t
+            n = s

@@ -1,68 +1,24 @@
-WITH RECURSIVE
-events AS (
-    SELECT bus_id, arrival_time, capacity, 1 AS event_kind, 0 AS passenger_delta
-    FROM Buses
+# Time:  O(p * b + blogb)
+# Space: O(p * b)
 
-    UNION ALL
-
-    SELECT NULL, arrival_time, NULL, 0, 1
-    FROM Passengers
-),
-running AS (
-    SELECT
-        bus_id,
-        arrival_time,
-        capacity,
-        SUM(passenger_delta) OVER (
-            ORDER BY arrival_time, event_kind
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS arrived_passengers
-    FROM events
-),
-ordered_buses AS (
-    SELECT
-        bus_id,
-        capacity,
-        arrived_passengers,
-        ROW_NUMBER() OVER (ORDER BY arrival_time) AS sequence_number
-    FROM running
-    WHERE bus_id IS NOT NULL
-),
-boarded AS (
-    SELECT
-        sequence_number,
-        bus_id,
-        CASE
-            WHEN capacity < arrived_passengers THEN capacity
-            ELSE arrived_passengers
-        END AS passengers_cnt,
-        CASE
-            WHEN capacity < arrived_passengers THEN capacity
-            ELSE arrived_passengers
-        END AS departed_passengers
-    FROM ordered_buses
-    WHERE sequence_number = 1
-
-    UNION ALL
-
-    SELECT
-        current.sequence_number,
-        current.bus_id,
-        CASE
-            WHEN current.capacity < current.arrived_passengers - previous.departed_passengers
-                THEN current.capacity
-            ELSE current.arrived_passengers - previous.departed_passengers
-        END,
-        previous.departed_passengers
-            + CASE
-                WHEN current.capacity < current.arrived_passengers - previous.departed_passengers
-                    THEN current.capacity
-                ELSE current.arrived_passengers - previous.departed_passengers
-              END
-    FROM boarded AS previous
-    JOIN ordered_buses AS current
-      ON current.sequence_number = previous.sequence_number + 1
+WITH arrival_time_cte AS
+(
+    SELECT bus_id, b.arrival_time, capacity, count(passenger_id) AS prefix_sum
+    FROM Buses b
+    LEFT JOIN Passengers p
+    ON p.arrival_time <= b.arrival_time
+    GROUP BY bus_id
+    ORDER BY arrival_time
 )
+
 SELECT bus_id, passengers_cnt
-FROM boarded
+FROM
+(
+    SELECT bus_id, capacity, prefix_sum,
+           @passengers_cnt := LEAST(capacity, prefix_sum-@accum) as passengers_cnt, 
+           @accum := @accum + @passengers_cnt
+    FROM arrival_time_cte,
+         (SELECT @accum := 0,
+                 @passengers_cnt := 0) init
+) t
 ORDER BY bus_id;

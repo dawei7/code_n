@@ -1,68 +1,110 @@
-class Solution:
-    def goodSubtreeSum(self, vals: List[int], par: List[int]) -> int:
-        full = (1 << 10) - 1
-        mod = 1_000_000_007
-        n = len(vals)
+# Time:  O(n * (2^10)^2)
+# Space: O(2^10)
 
-        def digit_mask(value: int) -> int:
+import collections
+
+
+# bitmasks, iterative dfs, tree dp
+class Solution:
+    def goodSubtreeSum(self, vals, par):
+        """
+        :type vals: List[int]
+        :type par: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def get_mask(x):
             mask = 0
-            while value:
-                bit = 1 << (value % 10)
-                if mask & bit:
+            while x:
+                x, d = divmod(x, 10)
+                if mask&(1<<d):
                     return -1
-                mask |= bit
-                value //= 10
+                mask |= 1<<d
             return mask
 
-        children = [[] for _ in range(n)]
-        for node in range(1, n):
-            children[par[node]].append(node)
+        def iter_dfs():
+            result = 0
+            ret = collections.defaultdict(int)
+            stk = [(1, (0, ret))]
+            while stk:
+                step, args = stk.pop()
+                if step == 1:
+                    u, ret = args
+                    ret[0] = 0
+                    mask = get_mask(vals[u])
+                    if mask != -1:
+                        ret[mask] = vals[u]
+                    stk.append((4, (u, ret)))
+                    stk.append((2, (u, 0, ret)))
+                elif step == 2:
+                    u, i, ret = args
+                    if i == len(adj[u]):
+                        continue
+                    v = adj[u][i]
+                    stk.append((2, (u, i+1, ret)))
+                    new_ret = collections.defaultdict(int)
+                    stk.append((3, (new_ret, ret)))
+                    stk.append((1, (v, new_ret)))
+                elif step == 3:
+                    new_ret, ret = args
+                    for m1, v1 in ret.items():
+                        for m2, v2 in new_ret.items():
+                            if m1&m2:
+                                continue
+                            ret[m1|m2] =  max(ret[m1|m2], v1+v2)
+                elif step == 4:
+                    u, ret = args
+                    result = (result+max(ret.values()))%MOD
+            return result
 
-        order = [0]
-        for node in order:
-            order.extend(children[node])
+        adj = [[] for _ in range(len(vals))]
+        for u in range(1, len(par)):
+            adj[par[u]].append(u)
+        return iter_dfs()
 
-        states = [None] * n
-        total = 0
-        for node in reversed(order):
-            dp = [-1] * 1024
+
+# Time:  O(n * (2^10)^2)
+# Space: O(2^10)
+import collections
+
+
+# bitmasks, dfs, tree dp
+class Solution2(object):
+    def goodSubtreeSum(self, vals, par):
+        """
+        :type vals: List[int]
+        :type par: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def get_mask(x):
+            mask = 0
+            while x:
+                x, d = divmod(x, 10)
+                if mask&(1<<d):
+                    return -1
+                mask |= 1<<d
+            return mask
+
+        def dfs(u):
+            dp = collections.defaultdict(int)
             dp[0] = 0
-            mask = digit_mask(vals[node])
-            if mask >= 0:
-                dp[mask] = vals[node]
+            mask = get_mask(vals[u])
+            if mask != -1:
+                dp[mask] = vals[u]
+            for v in adj[u]:
+                new_dp = dfs(v)
+                for m1, v1 in dp.items():
+                    for m2, v2 in new_dp.items():
+                        if m1&m2:
+                            continue
+                        dp[m1|m2] =  max(dp[m1|m2], v1+v2)
+            result[0] = (result[0]+max(dp.values()))%MOD
+            return dp
 
-            for child_node in children[node]:
-                child = states[child_node]
-                merged = [-1] * 1024
-                left_masks = [mask for mask, score in enumerate(dp) if score >= 0]
-                right_masks = [mask for mask, score in enumerate(child) if score >= 0]
-                submask_cost = sum(1 << (10 - mask.bit_count()) for mask in left_masks)
-                if len(left_masks) * len(right_masks) <= submask_cost:
-                    for left_mask in left_masks:
-                        for right_mask in right_masks:
-                            if left_mask & right_mask == 0:
-                                combined = left_mask | right_mask
-                                merged[combined] = max(
-                                    merged[combined],
-                                    dp[left_mask] + child[right_mask],
-                                )
-                else:
-                    for left_mask in left_masks:
-                        available = full ^ left_mask
-                        right_mask = available
-                        while True:
-                            if child[right_mask] >= 0:
-                                combined = left_mask | right_mask
-                                merged[combined] = max(
-                                    merged[combined],
-                                    dp[left_mask] + child[right_mask],
-                                )
-                            if right_mask == 0:
-                                break
-                            right_mask = (right_mask - 1) & available
-                dp = merged
-
-            states[node] = dp
-            total += max(dp)
-
-        return total % mod
+        adj = [[] for _ in range(len(vals))]
+        for u in range(1, len(par)):
+            adj[par[u]].append(u)
+        result = [0]
+        dfs(0)
+        return result[0]

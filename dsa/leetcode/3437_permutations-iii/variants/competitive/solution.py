@@ -1,31 +1,24 @@
-from typing import List
+# Time:  O(n * n!)
+# Space: O(n)
 
-
+# backtracking, bitmasks
 class Solution:
-    def permute(self, n: int) -> List[List[int]]:
-        odd = list(range(1, n + 1, 2))
-        even = list(range(2, n + 1, 2))
-        answers: list[list[int]] = []
-        path: list[int] = []
-
-        def generate(used: int) -> None:
-            if len(path) == n:
-                answers.append(path.copy())
+    def permute(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        def backtracking(lookup):
+            if len(curr) == n:
+                result.append(curr[:])
                 return
-
-            if not path:
-                candidates = odd if n % 2 else range(1, n + 1)
-            elif path[-1] % 2:
-                candidates = even
-            else:
-                candidates = odd
-
-            for value in candidates:
-                bit = 1 << (value - 1)
-                if used & bit == 0:
-                    path.append(value)
-                    generate(used | bit)
-                    path.pop()
-
-        generate(0)
-        return answers
+            for i in range(1, n+1):
+                if lookup&(1<<(i-1)) or (curr and curr[-1]%2 == i%2):
+                    continue
+                curr.append(i)
+                backtracking(lookup^(1<<(i-1)))
+                curr.pop()
+    
+        result, curr = [], []
+        backtracking(0)
+        return result

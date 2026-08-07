@@ -1,29 +1,17 @@
-from typing import List
-
-
 class Solution:
-    def finishTime(
-        self,
-        n: int,
-        edges: List[List[int]],
-        baseTime: List[int],
-    ) -> int:
-        children = [[] for _ in range(n)]
-        for parent, child in edges:
-            children[parent].append(child)
+    def finishTime(self, n: int, edges: List[List[int]], baseTime: List[int]) -> int:
+        def dfs(i: int) -> int:
+            if not g[i]:
+                return baseTime[i]
+            earliest, latest = inf, -inf
+            for j in g[i]:
+                a = dfs(j)
+                earliest = min(earliest, a)
+                latest = max(latest, a)
+            own_duration = (latest - earliest) + baseTime[i]
+            return latest + own_duration
 
-        order = [0]
-        for task in order:
-            order.extend(children[task])
-
-        finish = [0] * n
-        for task in reversed(order):
-            if not children[task]:
-                finish[task] = baseTime[task]
-                continue
-
-            earliest = min(finish[child] for child in children[task])
-            latest = max(finish[child] for child in children[task])
-            finish[task] = 2 * latest - earliest + baseTime[task]
-
-        return finish[0]
+        g = [[] for _ in range(n)]
+        for u, v in edges:
+            g[u].append(v)
+        return dfs(0)

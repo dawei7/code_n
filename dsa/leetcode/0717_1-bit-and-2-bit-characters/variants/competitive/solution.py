@@ -1,11 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
 
 class Solution:
-    def isOneBitCharacter(self, bits: List[int]) -> bool:
-        index = 0
+    def isOneBitCharacter(self, bits):
+        """
+        :type bits: List[int]
+        :rtype: bool
+        """
+        parity = 0
+        for i in reversed(range(len(bits)-1)):
+            if bits[i] == 0:
+                break
+            parity ^= bits[i]
+        return parity == 0
 
-        while index < len(bits) - 1:
-            index += bits[index] + 1
-
-        return index == len(bits) - 1

@@ -1,28 +1,29 @@
 class Solution:
     def isNumber(self, s: str) -> bool:
-        seen_digit = False
-        seen_point = False
-        seen_exponent = False
-        digit_after_exponent = True
-
-        for index, character in enumerate(s):
-            if character.isdigit():
-                seen_digit = True
-                if seen_exponent:
-                    digit_after_exponent = True
-            elif character in "+-":
-                if index > 0 and s[index - 1] not in "eE":
+        n = len(s)
+        i = 0
+        if s[i] in '+-':
+            i += 1
+        if i == n:
+            return False
+        if s[i] == '.' and (i + 1 == n or s[i + 1] in 'eE'):
+            return False
+        dot = e = 0
+        j = i
+        while j < n:
+            if s[j] == '.':
+                if e or dot:
                     return False
-            elif character == ".":
-                if seen_point or seen_exponent:
+                dot += 1
+            elif s[j] in 'eE':
+                if e or j == i or j == n - 1:
                     return False
-                seen_point = True
-            elif character in "eE":
-                if seen_exponent or not seen_digit:
-                    return False
-                seen_exponent = True
-                digit_after_exponent = False
-            else:
+                e += 1
+                if s[j + 1] in '+-':
+                    j += 1
+                    if j == n - 1:
+                        return False
+            elif not s[j].isnumeric():
                 return False
-
-        return seen_digit and digit_after_exponent
+            j += 1
+        return True

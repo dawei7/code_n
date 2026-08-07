@@ -1,16 +1,12 @@
-from typing import List
-
-
 class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
-        best = [[0] * (n + 1) for _ in range(m + 1)]
-        for string in strs:
-            zeros = string.count("0")
-            ones = len(string) - zeros
-            for zero_budget in range(m, zeros - 1, -1):
-                for one_budget in range(n, ones - 1, -1):
-                    best[zero_budget][one_budget] = max(
-                        best[zero_budget][one_budget],
-                        1 + best[zero_budget - zeros][one_budget - ones],
-                    )
-        return best[m][n]
+        sz = len(strs)
+        f = [[[0] * (n + 1) for _ in range(m + 1)] for _ in range(sz + 1)]
+        for i, s in enumerate(strs, 1):
+            a, b = s.count("0"), s.count("1")
+            for j in range(m + 1):
+                for k in range(n + 1):
+                    f[i][j][k] = f[i - 1][j][k]
+                    if j >= a and k >= b:
+                        f[i][j][k] = max(f[i][j][k], f[i - 1][j - a][k - b] + 1)
+        return f[sz][m][n]

@@ -1,11 +1,12 @@
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
-        if len(t) > len(s):
-            return 0
-        dp = [0] * (len(t) + 1)
-        dp[0] = 1
-        for source_character in s:
-            for target_length in range(len(t), 0, -1):
-                if source_character == t[target_length - 1]:
-                    dp[target_length] += dp[target_length - 1]
-        return dp[-1]
+        m, n = len(s), len(t)
+        f = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m + 1):
+            f[i][0] = 1
+        for i, a in enumerate(s, 1):
+            for j, b in enumerate(t, 1):
+                f[i][j] = f[i - 1][j]
+                if a == b:
+                    f[i][j] += f[i - 1][j - 1]
+        return f[m][n]

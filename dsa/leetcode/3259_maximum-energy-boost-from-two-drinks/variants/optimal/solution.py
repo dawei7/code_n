@@ -1,21 +1,10 @@
-from typing import List
-
-
 class Solution:
-    def maxEnergyBoost(
-        self,
-        energyDrinkA: List[int],
-        energyDrinkB: List[int],
-    ) -> int:
-        a_two_back = energyDrinkA[0]
-        b_two_back = energyDrinkB[0]
-        a_one_back = energyDrinkA[0] + energyDrinkA[1]
-        b_one_back = energyDrinkB[0] + energyDrinkB[1]
-
-        for hour in range(2, len(energyDrinkA)):
-            current_a = energyDrinkA[hour] + max(a_one_back, b_two_back)
-            current_b = energyDrinkB[hour] + max(b_one_back, a_two_back)
-            a_two_back, a_one_back = a_one_back, current_a
-            b_two_back, b_one_back = b_one_back, current_b
-
-        return max(a_one_back, b_one_back)
+    def maxEnergyBoost(self, energyDrinkA: List[int], energyDrinkB: List[int]) -> int:
+        n = len(energyDrinkA)
+        f = [[0] * 2 for _ in range(n)]
+        f[0][0] = energyDrinkA[0]
+        f[0][1] = energyDrinkB[0]
+        for i in range(1, n):
+            f[i][0] = max(f[i - 1][0] + energyDrinkA[i], f[i - 1][1])
+            f[i][1] = max(f[i - 1][1] + energyDrinkB[i], f[i - 1][0])
+        return max(f[n - 1])

@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     def earliestFinishTime(
         self,
@@ -9,13 +6,10 @@ class Solution:
         waterStartTime: List[int],
         waterDuration: List[int],
     ) -> int:
-        earliest_land_finish = min(start + duration for start, duration in zip(landStartTime, landDuration))
-        earliest_water_finish = min(start + duration for start, duration in zip(waterStartTime, waterDuration))
+        def calc(a1, t1, a2, t2):
+            min_end = min(a + t for a, t in zip(a1, t1))
+            return min(max(a, min_end) + t for a, t in zip(a2, t2))
 
-        land_then_water = min(
-            max(earliest_land_finish, start) + duration for start, duration in zip(waterStartTime, waterDuration)
-        )
-        water_then_land = min(
-            max(earliest_water_finish, start) + duration for start, duration in zip(landStartTime, landDuration)
-        )
-        return min(land_then_water, water_then_land)
+        x = calc(landStartTime, landDuration, waterStartTime, waterDuration)
+        y = calc(waterStartTime, waterDuration, landStartTime, landDuration)
+        return min(x, y)

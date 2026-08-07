@@ -1,10 +1,20 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def isValid(self, s: str) -> bool:
+    def isValid(self, S):
+        """
+        :type S: str
+        :rtype: bool
+        """
         stack = []
-        for character in s:
-            stack.append(character)
-            if len(stack) >= 3 and stack[-3] == "a" and stack[-2] == "b" and stack[-1] == "c":
-                stack.pop()
-                stack.pop()
-                stack.pop()
+        for i in S:
+            if i == 'c':
+                if stack[-2:] == ['a', 'b']:
+                    stack.pop()
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(i)
         return not stack

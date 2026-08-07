@@ -1,22 +1,16 @@
-from typing import List
-
-
 class Solution:
     def minTaps(self, n: int, ranges: List[int]) -> int:
-        farthest = [0] * (n + 1)
-        for position, radius in enumerate(ranges):
-            left = max(0, position - radius)
-            right = min(n, position + radius)
-            farthest[left] = max(farthest[left], right)
+        last = [0] * (n + 1)
+        for i, x in enumerate(ranges):
+            l, r = max(0, i - x), i + x
+            last[l] = max(last[l], r)
 
-        taps = 0
-        current_end = 0
-        next_end = 0
-        for position in range(n):
-            next_end = max(next_end, farthest[position])
-            if position == current_end:
-                if next_end <= position:
-                    return -1
-                taps += 1
-                current_end = next_end
-        return taps
+        ans = mx = pre = 0
+        for i in range(n):
+            mx = max(mx, last[i])
+            if mx <= i:
+                return -1
+            if pre == i:
+                ans += 1
+                pre = mx
+        return ans

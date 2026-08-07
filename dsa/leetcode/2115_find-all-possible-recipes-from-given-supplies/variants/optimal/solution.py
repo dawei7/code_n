@@ -1,31 +1,19 @@
-from collections import defaultdict, deque
-from typing import List
-
-
 class Solution:
     def findAllRecipes(
-        self,
-        recipes: List[str],
-        ingredients: List[List[str]],
-        supplies: List[str],
+        self, recipes: List[str], ingredients: List[List[str]], supplies: List[str]
     ) -> List[str]:
-        dependents = defaultdict(list)
-        missing = {}
-
-        for recipe, required in zip(recipes, ingredients):
-            missing[recipe] = len(required)
-            for ingredient in required:
-                dependents[ingredient].append(recipe)
-
-        available = deque(supplies)
-        possible = []
-
-        while available:
-            item = available.popleft()
-            for recipe in dependents[item]:
-                missing[recipe] -= 1
-                if missing[recipe] == 0:
-                    possible.append(recipe)
-                    available.append(recipe)
-
-        return possible
+        g = defaultdict(list)
+        indeg = defaultdict(int)
+        for a, b in zip(recipes, ingredients):
+            for v in b:
+                g[v].append(a)
+            indeg[a] += len(b)
+        q = supplies
+        ans = []
+        for i in q:
+            for j in g[i]:
+                indeg[j] -= 1
+                if indeg[j] == 0:
+                    ans.append(j)
+                    q.append(j)
+        return ans

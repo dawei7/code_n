@@ -1,14 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# combinatorics
 class Solution:
-    def countPermutations(self, complexity: List[int]) -> int:
-        MODULUS = 1_000_000_007
-        root = complexity[0]
-        if any(value <= root for value in complexity[1:]):
-            return 0
+    def countPermutations(self, complexity):
+        """
+        :type complexity: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def factorial(n):
+            return reduce(lambda accu, x: (accu*x)%MOD, range(1, n+1), 1)
 
-        answer = 1
-        for factor in range(2, len(complexity)):
-            answer = answer * factor % MODULUS
-        return answer
+        return factorial(len(complexity)-1) if all(complexity[0] < complexity[i] for i in range(1, len(complexity))) else 0

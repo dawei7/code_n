@@ -1,25 +1,21 @@
-from typing import List
+# Time:  O(a^2 + n), a is the number of ages,
+#                    n is the number of people
+# Space: O(a)
+
+import collections
 
 
 class Solution:
-    def numFriendRequests(self, ages: List[int]) -> int:
-        max_age = 120
-        counts = [0] * (max_age + 1)
-        for age in ages:
-            counts[age] += 1
+    def numFriendRequests(self, ages):
+        """
+        :type ages: List[int]
+        :rtype: int
+        """
+        def request(a, b):
+            return 0.5*a+7 < b <= a
 
-        prefix = counts[:]
-        for age in range(1, max_age + 1):
-            prefix[age] += prefix[age - 1]
+        c = collections.Counter(ages)
+        return sum(int(request(a, b)) * c[a]*(c[b]-int(a == b))
+                   for a in c
+                   for b in c)
 
-        requests = 0
-        for sender_age in range(15, max_age + 1):
-            senders = counts[sender_age]
-            if senders == 0:
-                continue
-
-            lower_cutoff = sender_age // 2 + 7
-            eligible_people = prefix[sender_age] - prefix[lower_cutoff]
-            requests += senders * (eligible_people - 1)
-
-        return requests

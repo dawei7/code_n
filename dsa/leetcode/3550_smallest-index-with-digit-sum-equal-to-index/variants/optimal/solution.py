@@ -1,6 +1,10 @@
 class Solution:
     def smallestIndex(self, nums: List[int]) -> int:
-        for index, value in enumerate(nums[:28]):
-            if sum(map(int, str(value))) == index:
-                return index
+        for i, x in enumerate(nums):
+            s = 0
+            while x:
+                s += x % 10
+                x //= 10
+            if s == i:
+                return i
         return -1

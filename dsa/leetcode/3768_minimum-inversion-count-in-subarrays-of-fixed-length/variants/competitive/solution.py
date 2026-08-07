@@ -1,42 +1,43 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+# sort, coordinate compression, fenwick tree, sliding window
+class BIT(object):  # 0-indexed.
+    def __init__(self, n):
+        self.__bit = [0]*(n+1)  # Extra one for dummy node.
+
+    def add(self, i, val):
+        i += 1  # Extra one for dummy node.
+        while i < len(self.__bit):
+            self.__bit[i] += val
+            i += (i & -i)
+
+    def query(self, i):
+        i += 1  # Extra one for dummy node.
+        ret = 0
+        while i > 0:
+            ret += self.__bit[i]
+            i -= (i & -i)
+        return ret
 
 
 class Solution:
-    def minInversionCount(self, nums: List[int], k: int) -> int:
-        values = sorted(set(nums))
-        tree = [0] * (len(values) + 1)
-
-        def rank(value: int) -> int:
-            return bisect_left(values, value) + 1
-
-        def add(index: int, delta: int) -> None:
-            while index < len(tree):
-                tree[index] += delta
-                index += index & -index
-
-        def prefix_sum(index: int) -> int:
-            total = 0
-            while index:
-                total += tree[index]
-                index -= index & -index
-            return total
-
-        inversions = 0
-        for index in range(k):
-            compressed = rank(nums[index])
-            inversions += index - prefix_sum(compressed)
-            add(compressed, 1)
-
-        answer = inversions
-        for right in range(k, len(nums)):
-            outgoing = rank(nums[right - k])
-            inversions -= prefix_sum(outgoing - 1)
-            add(outgoing, -1)
-
-            incoming = rank(nums[right])
-            inversions += (k - 1) - prefix_sum(incoming)
-            add(incoming, 1)
-            answer = min(answer, inversions)
-
-        return answer
+    def minInversionCount(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        val_to_idx = {x:i for i, x in enumerate(sorted(set(nums)))}
+        bit = BIT(len(val_to_idx))
+        result = float("inf")
+        cnt = 0
+        for i in range(len(nums)):
+            cnt += bit.query(len(val_to_idx)-1)-bit.query(val_to_idx[nums[i]])
+            bit.add(val_to_idx[nums[i]], +1)
+            if i-(k-1) < 0:
+                continue
+            result = min(result, cnt)
+            bit.add(val_to_idx[nums[i-(k-1)]], -1)
+            cnt -= bit.query(val_to_idx[nums[i-(k-1)]]-1)
+        return result

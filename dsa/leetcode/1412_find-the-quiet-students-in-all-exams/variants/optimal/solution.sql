@@ -1,20 +1,22 @@
-WITH RankedScores AS (
-    SELECT exam_id,
-           student_id,
-           RANK() OVER (PARTITION BY exam_id ORDER BY score) AS low_rank,
-           RANK() OVER (PARTITION BY exam_id ORDER BY score DESC) AS high_rank
-    FROM Exam
-),
-QuietStudents AS (
-    SELECT student_id
-    FROM RankedScores
-    GROUP BY student_id
-    HAVING MIN(low_rank) > 1
-       AND MIN(high_rank) > 1
-)
-SELECT s.student_id,
-       s.student_name
-FROM Student AS s
-JOIN QuietStudents AS q
-  ON q.student_id = s.student_id
-ORDER BY s.student_id;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            student_id,
+            RANK() OVER (
+                PARTITION BY exam_id
+                ORDER BY score
+            ) AS rk1,
+            RANK() OVER (
+                PARTITION BY exam_id
+                ORDER BY score DESC
+            ) AS rk2
+        FROM Exam
+    )
+SELECT student_id, student_name
+FROM
+    T
+    JOIN Student USING (student_id)
+GROUP BY 1
+HAVING SUM(rk1 = 1) = 0 AND SUM(rk2 = 1) = 0
+ORDER BY 1;

@@ -1,27 +1,21 @@
-from typing import List
-
-
 class Solution:
     def largestEvenSum(self, nums: List[int], k: int) -> int:
-        nums.sort(reverse=True)
-        total = sum(nums[:k])
-        if total % 2 == 0:
-            return total
-
-        smallest_selected = [None, None]
-        for value in nums[:k]:
-            smallest_selected[value % 2] = value
-
-        largest_unselected = [None, None]
-        for value in nums[k:]:
-            parity = value % 2
-            if largest_unselected[parity] is None:
-                largest_unselected[parity] = value
-
-        best = -1
-        for selected_parity in (0, 1):
-            selected = smallest_selected[selected_parity]
-            replacement = largest_unselected[1 - selected_parity]
-            if selected is not None and replacement is not None:
-                best = max(best, total - selected + replacement)
-        return best
+        nums.sort()
+        ans = sum(nums[-k:])
+        if ans % 2 == 0:
+            return ans
+        n = len(nums)
+        mx1 = mx2 = -inf
+        for x in nums[: n - k]:
+            if x & 1:
+                mx1 = x
+            else:
+                mx2 = x
+        mi1 = mi2 = inf
+        for x in nums[-k:][::-1]:
+            if x & 1:
+                mi2 = x
+            else:
+                mi1 = x
+        ans = max(ans - mi1 + mx1, ans - mi2 + mx2, -1)
+        return -1 if ans < 0 else ans

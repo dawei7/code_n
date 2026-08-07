@@ -1,25 +1,42 @@
-from typing import List
+# Time:  O(n)
+# Space: O(t)
 
-
+# simulation, trie
 class Solution:
-    def partitionString(self, s: str) -> List[str]:
-        root = {}
-        segments = []
-        start = 0
+    def partitionString(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        class Trie(object):
+            def __init__(self):
+                self.__nodes = []
+                self.__new_node()
+                self.__curr = 0
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*26)
+                return len(self.__nodes)-1
 
-        while start < len(s):
-            node = root
-            end = start
+            def add(self, c):
+                x = ord(c)-ord('a')
+                if self.__nodes[self.__curr][x] == -1:
+                    self.__nodes[self.__curr][x] = self.__new_node()
+                    self.__curr = 0
+                    return
+                self.__curr = self.__nodes[self.__curr][x]
 
-            while end < len(s) and s[end] in node:
-                node = node[s[end]]
-                end += 1
+            def curr(self):
+                return self.__curr
 
-            if end == len(s):
-                break
-
-            node[s[end]] = {}
-            segments.append(s[start : end + 1])
-            start = end + 1
-
-        return segments
+        result = []
+        trie = Trie()
+        curr = []
+        for x in s:
+            curr.append(x)
+            trie.add(x)
+            if trie.curr():
+                continue
+            result.append("".join(curr))
+            curr = []
+        return result

@@ -1,36 +1,32 @@
+# Time:  O(m * n)
+# Space: O(1)
+
+# constructive algorithms
+PATTERNS = [
+    [],
+    [["."]], 
+    [["..", ".."]],
+    [["..", "..", ".."], ["...", "..."]],
+    [["..", "..", "..", ".."], ["....", "...."], ["..#", "...", "#.."]],
+]
 class Solution:
-    def createGrid(self, m: int, n: int, k: int) -> list[str]:
-        grid = [["#"] * n for _ in range(m)]
-        blocked = set()
-
-        if k == 1:
-            height = width = 1
-        elif k == 2 and m >= 2 and n >= 2:
-            height, width = 2, 2
-        elif k == 3 and m >= 2 and n >= 3:
-            height, width = 2, 3
-        elif k == 3 and m >= 3 and n >= 2:
-            height, width = 3, 2
-        elif k == 4 and m >= 2 and n >= 4:
-            height, width = 2, 4
-        elif k == 4 and m >= 4 and n >= 2:
-            height, width = 4, 2
-        elif k == 4 and m >= 3 and n >= 3:
-            height = width = 3
-            blocked = {(0, 2), (2, 0)}
-        else:
-            return []
-
-        for row in range(height):
-            for col in range(width):
-                if (row, col) not in blocked:
-                    grid[row][col] = "."
-
-        exit_row = height - 1
-        exit_col = width - 1
-        for col in range(exit_col, n):
-            grid[exit_row][col] = "."
-        for row in range(exit_row, m):
-            grid[row][n - 1] = "."
-
-        return ["".join(row) for row in grid]
+    def createGrid(self, m, n, k):
+        """
+        :type m: int
+        :type n: int
+        :type k: int
+        :rtype: List[str]
+        """
+        for p in PATTERNS[k]:
+            if not (len(p) <= m and len(p[0]) <= n):
+                continue
+            result = [['#']*n for _ in range(m)]
+            for i in range(len(p)):
+                for j in range(len(p[0])):
+                    result[i][j] = p[i][j]
+            for i in range(len(p), m):
+                result[i][len(p[0])-1] = '.'
+            for j in range(len(p[0]), n):
+                result[m-1][j] = '.'
+            return ["".join(row) for row in result]
+        return []

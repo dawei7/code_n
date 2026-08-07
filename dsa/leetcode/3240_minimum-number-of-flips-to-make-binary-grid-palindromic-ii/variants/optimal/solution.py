@@ -1,51 +1,26 @@
-from typing import List
-
-
 class Solution:
     def minFlips(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        flips = 0
-
-        for top in range(rows // 2):
-            for left in range(columns // 2):
-                ones = (
-                    grid[top][left]
-                    + grid[top][columns - 1 - left]
-                    + grid[rows - 1 - top][left]
-                    + grid[rows - 1 - top][columns - 1 - left]
-                )
-                flips += min(ones, 4 - ones)
-
-        mismatched_pairs = 0
-        matched_pair_ones = 0
-
-        if rows % 2:
-            middle_row = rows // 2
-            for left in range(columns // 2):
-                first = grid[middle_row][left]
-                second = grid[middle_row][columns - 1 - left]
-                if first != second:
-                    mismatched_pairs += 1
+        m, n = len(grid), len(grid[0])
+        ans = 0
+        for i in range(m // 2):
+            for j in range(n // 2):
+                x, y = m - i - 1, n - j - 1
+                cnt1 = grid[i][j] + grid[x][j] + grid[i][y] + grid[x][y]
+                ans += min(cnt1, 4 - cnt1)
+        if m % 2 and n % 2:
+            ans += grid[m // 2][n // 2]
+        diff = cnt1 = 0
+        if m % 2:
+            for j in range(n // 2):
+                if grid[m // 2][j] == grid[m // 2][n - j - 1]:
+                    cnt1 += grid[m // 2][j] * 2
                 else:
-                    matched_pair_ones += first + second
-
-        if columns % 2:
-            middle_column = columns // 2
-            for top in range(rows // 2):
-                first = grid[top][middle_column]
-                second = grid[rows - 1 - top][middle_column]
-                if first != second:
-                    mismatched_pairs += 1
+                    diff += 1
+        if n % 2:
+            for i in range(m // 2):
+                if grid[i][n // 2] == grid[m - i - 1][n // 2]:
+                    cnt1 += grid[i][n // 2] * 2
                 else:
-                    matched_pair_ones += first + second
-
-        flips += mismatched_pairs
-
-        if rows % 2 and columns % 2:
-            flips += grid[rows // 2][columns // 2]
-
-        if mismatched_pairs == 0 and matched_pair_ones % 4 == 2:
-            flips += 2
-
-        return flips
+                    diff += 1
+        ans += diff if cnt1 % 4 == 0 or diff else 2
+        return ans

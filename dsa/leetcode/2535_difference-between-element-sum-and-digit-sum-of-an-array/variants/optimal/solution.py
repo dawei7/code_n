@@ -1,14 +1,9 @@
-from typing import List
-
-
 class Solution:
     def differenceOfSum(self, nums: List[int]) -> int:
-        element_sum = sum(nums)
-        digit_sum = 0
-
-        for value in nums:
-            while value:
-                digit_sum += value % 10
-                value //= 10
-
-        return abs(element_sum - digit_sum)
+        x = y = 0
+        for v in nums:
+            x += v
+            while v:
+                y += v % 10
+                v //= 10
+        return x - y

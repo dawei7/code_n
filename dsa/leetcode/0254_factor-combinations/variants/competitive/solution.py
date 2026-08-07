@@ -1,18 +1,24 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(logn)
 
 class Solution:
-    def getFactors(self, n: int) -> List[List[int]]:
-        combinations = []
+    # @param {integer} n
+    # @return {integer[][]}
+    def getFactors(self, n):
+        result = []
+        factors = []
+        self.getResult(n, result, factors)
+        return result
 
-        def search(remainder: int, minimum: int, path: List[int]) -> None:
-            factor = minimum
-            while factor * factor <= remainder:
-                if remainder % factor == 0:
-                    quotient = remainder // factor
-                    combinations.append(path + [factor, quotient])
-                    search(quotient, factor, path + [factor])
-                factor += 1
+    def getResult(self, n, result, factors):
+        i = 2 if not factors else factors[-1]
+        while i <= n / i:
+            if n % i == 0:
+                factors.append(i)
+                factors.append(n / i)
+                result.append(list(factors))
+                factors.pop()
+                self.getResult(n / i, result, factors)
+                factors.pop()
+            i += 1
 
-        search(n, 2, [])
-        return combinations

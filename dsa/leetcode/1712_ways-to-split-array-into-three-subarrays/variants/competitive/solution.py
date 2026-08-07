@@ -1,27 +1,25 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def waysToSplit(self, nums: List[int]) -> int:
-        modulo = 1_000_000_007
+    def waysToSplit(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+
         prefix = [0]
-        for value in nums:
-            prefix.append(prefix[-1] + value)
+        for x in nums:
+            prefix.append(prefix[-1]+x)
 
-        total = prefix[-1]
-        ways = 0
-        first_middle_end = 2
-        first_too_large = 2
-
-        for left_end in range(1, len(nums) - 1):
-            first_middle_end = max(first_middle_end, left_end + 1)
-            while first_middle_end < len(nums) and prefix[first_middle_end] < 2 * prefix[left_end]:
-                first_middle_end += 1
-
-            first_too_large = max(first_too_large, first_middle_end)
-            while first_too_large < len(nums) and 2 * prefix[first_too_large] <= total + prefix[left_end]:
-                first_too_large += 1
-
-            ways += first_too_large - first_middle_end
-
-        return ways % modulo
+        result = left = right = 0 
+        for i in range(len(nums)): 
+            left = max(left, i+1)
+            while left+1 < len(nums) and prefix[i+1] > prefix[left+1]-prefix[i+1]:
+                left += 1
+            right = max(right, left)
+            while right+1 < len(nums) and prefix[right+1]-prefix[i+1] <= prefix[-1]-prefix[right+1]:
+                right += 1
+            result = (result + (right-left))%MOD
+        return result

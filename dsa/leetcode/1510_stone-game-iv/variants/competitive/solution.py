@@ -1,12 +1,18 @@
+# Time:  O(n * sqrt(n))
+# Space: O(n)
+
 class Solution:
-    def winnerSquareGame(self, n: int) -> bool:
-        squares = [value * value for value in range(1, int(n**0.5) + 1)]
-        winning = bytearray(n + 1)
-        for stones in range(1, n + 1):
-            for square in squares:
-                if square > stones:
+    def winnerSquareGame(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        dp = [False]*(n+1)
+        for i in range(1, n+1):
+            j = 1
+            while j*j <= i:
+                if not dp[i-j*j]:
+                    dp[i] = True
                     break
-                if not winning[stones - square]:
-                    winning[stones] = 1
-                    break
-        return bool(winning[n])
+                j += 1
+        return dp[-1]

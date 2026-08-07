@@ -1,43 +1,23 @@
-from functools import lru_cache
-
-
 class Solution:
     def countBalanced(self, low: int, high: int) -> int:
-        @lru_cache(None)
-        def ways(remaining: int, difference: int, next_is_odd: bool) -> int:
-            if remaining == 0:
-                return int(difference == 0)
+        @cache
+        def dfs(pos: int, diff: int, lim: int) -> int:
+            if pos >= len(num):
+                return 1 if diff == 0 else 0
+            res = 0
+            up = int(num[pos]) if lim else 9
+            for i in range(up + 1):
+                res += dfs(
+                    pos + 1, diff + i * (1 if pos % 2 == 0 else -1), lim and i == up
+                )
+            return res
 
-            total = 0
-            for digit in range(10):
-                next_difference = difference + digit if next_is_odd else difference - digit
-                total += ways(remaining - 1, next_difference, not next_is_odd)
-            return total
-
-        def count_up_to(bound: int) -> int:
-            if bound < 10:
-                return 0
-
-            digits = [int(char) for char in str(bound)]
-            digit_count = len(digits)
-            total = 0
-
-            for length in range(2, digit_count):
-                for first_digit in range(1, 10):
-                    total += ways(length - 1, first_digit, False)
-
-            difference = 0
-            for position, limit in enumerate(digits):
-                first = position == 0
-                for digit in range(1 if first else 0, limit):
-                    next_difference = difference + digit if position % 2 == 0 else difference - digit
-                    total += ways(
-                        digit_count - position - 1,
-                        next_difference,
-                        position % 2 == 1,
-                    )
-                difference += limit if position % 2 == 0 else -limit
-
-            return total + int(difference == 0)
-
-        return count_up_to(high) - count_up_to(low - 1)
+        if high < 11:
+            return 0
+        low = max(low, 11)
+        num = str(low - 1)
+        a = dfs(0, 0, True)
+        dfs.cache_clear()
+        num = str(high)
+        b = dfs(0, 0, True)
+        return b - a

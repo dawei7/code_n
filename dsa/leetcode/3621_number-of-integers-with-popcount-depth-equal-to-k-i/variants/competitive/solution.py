@@ -1,35 +1,42 @@
-from math import comb
+# Time:  precompute: O((logr)^2), r = max(n)
+#        runtime:    O((logn)^2)
+# Space: O((logr)^2)
+
+# combinatorics
+def popcount(x):
+    return bin(x).count('1')
 
 
+MAX_N = 10**15
+MAX_BIT_LEN = MAX_N.bit_length()
+NCR = [[0]*(MAX_BIT_LEN+1) for _ in range(MAX_BIT_LEN+1)]
+for i in range(MAX_BIT_LEN+1):
+    for j in range(i+1):
+        NCR[i][j] = NCR[i-1][j]+NCR[i-1][j-1] if 0 < j < i else 1
+D = [0]*(MAX_BIT_LEN+1)
+for i in range(2, MAX_BIT_LEN+1):
+    D[i] = D[popcount(i)]+1
 class Solution:
-    def popcountDepth(self, n: int, k: int) -> int:
+    def popcountDepth(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def count(c):
+            result = cnt = 0
+            for i in reversed(range(n.bit_length())):
+                if not (n&(1<<i)):
+                    continue
+                if 0 <= c-cnt <= i:
+                    result += NCR[i][c-cnt]
+                cnt += 1
+            if cnt == c:
+                result += 1
+            return result
+
         if k == 0:
             return 1
-
-        bit_count = n.bit_length()
-        depth = [0] * (bit_count + 1)
-        for value in range(2, bit_count + 1):
-            depth[value] = 1 + depth[value.bit_count()]
-
-        def count_with_ones(ones: int) -> int:
-            total = 0
-            remaining = ones
-
-            for bit in range(bit_count - 1, -1, -1):
-                if (n >> bit) & 1:
-                    if remaining <= bit:
-                        total += comb(bit, remaining)
-                    remaining -= 1
-                    if remaining < 0:
-                        break
-            else:
-                if remaining == 0:
-                    total += 1
-
-            return total
-
-        answer = sum(count_with_ones(ones) for ones in range(1, bit_count + 1) if depth[ones] == k - 1)
-
         if k == 1:
-            answer -= 1
-        return answer
+            return n.bit_length()-1
+        return sum(count(c) for c in range(2, n.bit_length()+1) if D[c] == k-1)

@@ -1,17 +1,27 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, line sweep
 class Solution:
-    def minEnergy(self, n: int, brightness: int, intervals: list[list[int]]) -> int:
-        intervals.sort()
+    def minEnergy(self, n, brightness, intervals):
+        """
+        :type n: int
+        :type brightness: int
+        :type intervals: List[List[int]]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        active_time = 0
-        current_start, current_end = intervals[0]
-
-        for start, end in intervals[1:]:
-            if start > current_end:
-                active_time += current_end - current_start + 1
-                current_start, current_end = start, end
-            elif end > current_end:
-                current_end = end
-
-        active_time += current_end - current_start + 1
-        bulbs_needed = (brightness + 2) // 3
-        return bulbs_needed * active_time
+        intervals.sort(key=lambda x: x[0])
+        result = 0
+        left, right = 0, -1
+        for l, r in intervals:
+            if l <= right+1:
+                right = max(right, r)
+                continue
+            result += right-left+1
+            left, right = l, r
+        result += right-left+1
+        result *= ceil_divide(brightness, 3)
+        return result

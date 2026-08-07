@@ -1,27 +1,23 @@
-from typing import List
-
+# Time:  O(n^3)
+# Space: O(n^2)
 
 class Solution:
-    def minTrioDegree(self, n: int, edges: List[List[int]]) -> int:
-        connected = [[False] * (n + 1) for _ in range(n + 1)]
-        degree = [0] * (n + 1)
-
-        for first, second in edges:
-            connected[first][second] = True
-            connected[second][first] = True
-            degree[first] += 1
-            degree[second] += 1
-
-        best = float("inf")
-        for first in range(1, n + 1):
-            for second in range(first + 1, n + 1):
-                if not connected[first][second]:
-                    continue
-                for third in range(second + 1, n + 1):
-                    if connected[first][third] and connected[second][third]:
-                        best = min(
-                            best,
-                            degree[first] + degree[second] + degree[third] - 6,
-                        )
-
-        return -1 if best == float("inf") else int(best)
+    def minTrioDegree(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        adj = [set() for _ in range(n+1)]
+        degree = [0]*(n+1)
+        for u, v in edges:
+            adj[min(u, v)].add(max(u, v))
+            degree[u] += 1
+            degree[v] += 1
+        result = float("inf")
+        for u in range(1, n+1):
+            for v in adj[u]:
+                for w in adj[u]:
+                    if v < w and w in adj[v]:
+                        result = min(result, degree[u]+degree[v]+degree[w] - 6)
+        return result if result != float("inf") else -1

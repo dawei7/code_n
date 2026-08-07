@@ -1,14 +1,18 @@
-from bisect import bisect_right
-from itertools import accumulate
-from typing import List
+# Time:  O(nlogn + qlogn)
+# Space: O(1)
+
+import bisect
 
 
+# greedy, sort, binary search
 class Solution:
-    def answerQueries(
-        self,
-        nums: List[int],
-        queries: List[int],
-    ) -> List[int]:
+    def answerQueries(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
         nums.sort()
-        prefix_sums = list(accumulate(nums))
-        return [bisect_right(prefix_sums, query) for query in queries]
+        for i in range(len(nums)-1):
+            nums[i+1] += nums[i]
+        return [bisect.bisect_right(nums, q) for q in queries]

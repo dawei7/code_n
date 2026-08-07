@@ -1,28 +1,27 @@
-WITH weekly_hours AS (
-    SELECT
-        employee_id,
-        date(
-            meeting_date,
-            '-' || ((CAST(strftime('%w', meeting_date) AS INTEGER) + 6) % 7) || ' days'
-        ) AS week_start,
-        SUM(duration_hours) AS total_hours
-    FROM meetings
-    GROUP BY
-        employee_id,
-        date(
-            meeting_date,
-            '-' || ((CAST(strftime('%w', meeting_date) AS INTEGER) + 6) % 7) || ' days'
-        )
-    HAVING SUM(duration_hours) > 20
-)
-SELECT
-    e.employee_id,
-    e.employee_name,
-    e.department,
-    COUNT(*) AS meeting_heavy_weeks
-FROM weekly_hours AS w
-JOIN employees AS e
-    ON e.employee_id = w.employee_id
-GROUP BY e.employee_id, e.employee_name, e.department
-HAVING COUNT(*) >= 2
-ORDER BY meeting_heavy_weeks DESC, e.employee_name ASC;
+# Write your MySQL query statement below
+WITH
+    week_meeting_hours AS (
+        SELECT
+            employee_id,
+            YEAR(meeting_date) AS year,
+            WEEK(meeting_date, 1) AS week,
+            SUM(duration_hours) hours
+        FROM meetings
+        GROUP BY 1, 2, 3
+    ),
+    intensive_weeks AS (
+        SELECT
+            employee_id,
+            employee_name,
+            department,
+            count(1) AS meeting_heavy_weeks
+        FROM
+            week_meeting_hours
+            JOIN employees USING (employee_id)
+        WHERE hours >= 20
+        GROUP BY 1
+    )
+SELECT employee_id, employee_name, department, meeting_heavy_weeks
+FROM intensive_weeks
+WHERE meeting_heavy_weeks >= 2
+ORDER BY 4 DESC, 2;

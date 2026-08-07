@@ -1,29 +1,16 @@
-from typing import List
-
-
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        top, bottom = 0, len(matrix) - 1
-        left, right = 0, len(matrix[0]) - 1
-        order = []
-
-        while top <= bottom and left <= right:
-            for column in range(left, right + 1):
-                order.append(matrix[top][column])
-            top += 1
-
-            for row in range(top, bottom + 1):
-                order.append(matrix[row][right])
-            right -= 1
-
-            if top <= bottom:
-                for column in range(right, left - 1, -1):
-                    order.append(matrix[bottom][column])
-                bottom -= 1
-
-            if left <= right:
-                for row in range(bottom, top - 1, -1):
-                    order.append(matrix[row][left])
-                left += 1
-
-        return order
+        m, n = len(matrix), len(matrix[0])
+        dirs = (0, 1, 0, -1, 0)
+        vis = [[False] * n for _ in range(m)]
+        i = j = k = 0
+        ans = []
+        for _ in range(m * n):
+            ans.append(matrix[i][j])
+            vis[i][j] = True
+            x, y = i + dirs[k], j + dirs[k + 1]
+            if x < 0 or x >= m or y < 0 or y >= n or vis[x][y]:
+                k = (k + 1) % 4
+            i += dirs[k]
+            j += dirs[k + 1]
+        return ans

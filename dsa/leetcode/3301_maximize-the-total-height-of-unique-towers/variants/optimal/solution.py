@@ -1,17 +1,11 @@
-from typing import List
-
-
 class Solution:
     def maximumTotalSum(self, maximumHeight: List[int]) -> int:
-        maximumHeight.sort(reverse=True)
-        next_height = 10**18
-        total = 0
-
-        for limit in maximumHeight:
-            height = min(limit, next_height - 1)
-            if height <= 0:
+        maximumHeight.sort()
+        ans, mx = 0, inf
+        for x in maximumHeight[::-1]:
+            x = min(x, mx - 1)
+            if x <= 0:
                 return -1
-            total += height
-            next_height = height
-
-        return total
+            ans += x
+            mx = x
+        return ans

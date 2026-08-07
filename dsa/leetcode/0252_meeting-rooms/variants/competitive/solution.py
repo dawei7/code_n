@@ -1,7 +1,15 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
-        intervals.sort()
-        return all(intervals[i - 1][1] <= intervals[i][0] for i in range(1, len(intervals)))
+    def canAttendMeetings(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: bool
+        """
+        intervals.sort(key=lambda x: x[0])
+
+        for i in range(1, len(intervals)):
+            if intervals[i][0] < intervals[i-1][1]:
+                return False
+        return True

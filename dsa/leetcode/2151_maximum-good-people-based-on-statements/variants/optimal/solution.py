@@ -1,23 +1,13 @@
-from typing import List
-
-
 class Solution:
     def maximumGood(self, statements: List[List[int]]) -> int:
-        people = len(statements)
-        maximum = 0
+        def check(mask: int) -> int:
+            cnt = 0
+            for i, row in enumerate(statements):
+                if mask >> i & 1:
+                    for j, x in enumerate(row):
+                        if x < 2 and (mask >> j & 1) != x:
+                            return 0
+                    cnt += 1
+            return cnt
 
-        for mask in range(1 << people):
-            consistent = True
-            for person in range(people):
-                if not (mask >> person) & 1:
-                    continue
-                for target, statement in enumerate(statements[person]):
-                    if statement != 2 and statement != ((mask >> target) & 1):
-                        consistent = False
-                        break
-                if not consistent:
-                    break
-            if consistent:
-                maximum = max(maximum, mask.bit_count())
-
-        return maximum
+        return max(check(i) for i in range(1, 1 << len(statements)))

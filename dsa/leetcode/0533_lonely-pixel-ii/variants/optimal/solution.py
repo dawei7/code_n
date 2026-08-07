@@ -1,24 +1,17 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def findBlackPixel(self, picture: List[List[str]], target: int) -> int:
-        cols = len(picture[0])
-        col_counts = [0] * cols
-        patterns = Counter()
-        for row in picture:
-            pattern = tuple(row)
-            black_count = 0
-            for col, pixel in enumerate(row):
-                if pixel == "B":
-                    black_count += 1
-                    col_counts[col] += 1
-            if black_count == target:
-                patterns[pattern] += 1
-
-        answer = 0
-        for pattern, frequency in patterns.items():
-            if frequency == target:
-                answer += target * sum(pixel == "B" and col_counts[col] == target for col, pixel in enumerate(pattern))
-        return answer
+        rows = [0] * len(picture)
+        g = defaultdict(list)
+        for i, row in enumerate(picture):
+            for j, x in enumerate(row):
+                if x == "B":
+                    rows[i] += 1
+                    g[j].append(i)
+        ans = 0
+        for j in g:
+            i1 = g[j][0]
+            if rows[i1] != target:
+                continue
+            if len(g[j]) == rows[i1] and all(picture[i2] == picture[i1] for i2 in g[j]):
+                ans += target
+        return ans

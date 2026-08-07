@@ -1,17 +1,47 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def addStrings(self, num1: str, num2: str) -> str:
-        left = len(num1) - 1
-        right = len(num2) - 1
-        carry = 0
-        reversed_digits = []
+    def addStrings(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        result = []
+        i, j, carry = len(num1) - 1, len(num2) - 1, 0
 
-        while left >= 0 or right >= 0 or carry:
-            left_digit = ord(num1[left]) - ord("0") if left >= 0 else 0
-            right_digit = ord(num2[right]) - ord("0") if right >= 0 else 0
-            total = left_digit + right_digit + carry
-            reversed_digits.append(chr(ord("0") + total % 10))
-            carry = total // 10
-            left -= 1
-            right -= 1
+        while i >= 0 or j >= 0 or carry:
+            if i >= 0:
+                carry += ord(num1[i]) - ord('0')
+                i -= 1
+            if j >= 0:
+                carry += ord(num2[j]) - ord('0')
+                j -= 1
+            result.append(str(carry % 10))
+            carry /= 10
+        result.reverse()
 
-        return "".join(reversed(reversed_digits))
+        return "".join(result)
+
+    def addStrings2(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+        length = max(len(num1), len(num2))
+        num1 = num1.zfill(length)[::-1]
+        num2 = num2.zfill(length)[::-1]
+        res, plus = '', 0
+        for index, num in enumerate(num1):
+            tmp = str(int(num) + int(num2[index]) + plus)
+            res += tmp[-1]
+            if int(tmp) > 9:
+                plus = 1
+            else:
+                plus = 0
+        if plus:
+            res += '1'
+        return res[::-1]
+

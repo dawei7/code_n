@@ -1,16 +1,24 @@
-from itertools import permutations
-from typing import List
+# Time:  O(1)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def largestTimeFromDigits(self, arr: List[int]) -> str:
-        best = -1
-        for first, second, third, fourth in permutations(arr):
-            hour = first * 10 + second
-            minute = third * 10 + fourth
-            if hour < 24 and minute < 60:
-                best = max(best, hour * 60 + minute)
-
-        if best < 0:
-            return ""
-        return f"{best // 60:02d}:{best % 60:02d}"
+    def largestTimeFromDigits(self, A):
+        """
+        :type A: List[int]
+        :rtype: str
+        """
+        result = ""
+        for i in range(len(A)):
+            A[i] *= -1
+        A.sort()
+        for h1, h2, m1, m2 in itertools.permutations(A):
+            hours = -(10*h1 + h2)
+            mins = -(10*m1 + m2)
+            if 0 <= hours < 24 and 0 <= mins < 60:
+                result = "{:02}:{:02}".format(hours, mins)
+                break
+        return result
+ 

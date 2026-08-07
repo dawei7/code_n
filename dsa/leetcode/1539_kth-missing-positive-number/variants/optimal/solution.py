@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def findKthPositive(self, arr: List[int], k: int) -> int:
-        left = 0
-        right = len(arr)
-
+        if arr[0] > k:
+            return k
+        left, right = 0, len(arr)
         while left < right:
-            middle = (left + right) // 2
-            missing = arr[middle] - middle - 1
-            if missing < k:
-                left = middle + 1
+            mid = (left + right) >> 1
+            if arr[mid] - mid - 1 >= k:
+                right = mid
             else:
-                right = middle
-
-        return left + k
+                left = mid + 1
+        return arr[left - 1] + k - (arr[left - 1] - (left - 1) - 1)

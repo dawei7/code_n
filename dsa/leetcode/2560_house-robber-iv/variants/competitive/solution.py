@@ -1,23 +1,60 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# binary search, greedy
 class Solution:
-    def minCapability(self, nums: List[int], k: int) -> int:
-        low = min(nums)
-        high = max(nums)
-
-        while low < high:
-            capability = (low + high) // 2
-            robbed = 0
-            index = 0
-
-            while index < len(nums):
-                if nums[index] <= capability:
-                    robbed += 1
-                    index += 2
+    def minCapability(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(x):
+            cnt = i = 0
+            while i < len(nums):
+                if nums[i] <= x:
+                    cnt += 1
+                    i += 2
                 else:
-                    index += 1
+                    i += 1
+            return cnt >= k
 
-            if robbed >= k:
-                high = capability
+        sorted_nums = sorted(set(nums))
+        left, right = 0, len(sorted_nums)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(sorted_nums[mid]):
+                right = mid-1
             else:
-                low = capability + 1
+                left = mid+1
+        return sorted_nums[left]
 
-        return low
+
+# Time:  O(nlogr)
+# Space: O(1)
+# binary search, greedy
+class Solution2(object):
+    def minCapability(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def check(x):
+            cnt = i = 0
+            while i < len(nums):
+                if nums[i] <= x:
+                    cnt += 1
+                    i += 2
+                else:
+                    i += 1
+            return cnt >= k
+    
+        left, right = min(nums), max(nums)
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(mid):
+                right = mid-1
+            else:
+                left = mid+1
+        return left

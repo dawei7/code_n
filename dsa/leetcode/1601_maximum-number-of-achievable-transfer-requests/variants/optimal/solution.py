@@ -1,27 +1,16 @@
-from typing import List
-
-
 class Solution:
     def maximumRequests(self, n: int, requests: List[List[int]]) -> int:
-        balance = [0] * n
-        best = 0
+        def check(mask: int) -> bool:
+            cnt = [0] * n
+            for i, (f, t) in enumerate(requests):
+                if mask >> i & 1:
+                    cnt[f] -= 1
+                    cnt[t] += 1
+            return all(v == 0 for v in cnt)
 
-        def search(index: int, chosen: int) -> None:
-            nonlocal best
-            if chosen + len(requests) - index <= best:
-                return
-            if index == len(requests):
-                if all(change == 0 for change in balance):
-                    best = chosen
-                return
-
-            source, destination = requests[index]
-            balance[source] -= 1
-            balance[destination] += 1
-            search(index + 1, chosen + 1)
-            balance[source] += 1
-            balance[destination] -= 1
-            search(index + 1, chosen)
-
-        search(0, 0)
-        return best
+        ans = 0
+        for mask in range(1 << len(requests)):
+            cnt = mask.bit_count()
+            if ans < cnt and check(mask):
+                ans = cnt
+        return ans

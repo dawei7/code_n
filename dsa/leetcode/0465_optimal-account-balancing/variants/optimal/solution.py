@@ -1,33 +1,22 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def minTransfers(self, transactions: List[List[int]]) -> int:
-        net = defaultdict(int)
-        for payer, recipient, amount in transactions:
-            net[payer] -= amount
-            net[recipient] += amount
-        balances = [balance for balance in net.values() if balance]
-
-        def settle(start: int) -> int:
-            while start < len(balances) and balances[start] == 0:
-                start += 1
-            if start == len(balances):
-                return 0
-
-            best = len(balances)
-            tried = set()
-            for partner in range(start + 1, len(balances)):
-                if balances[start] * balances[partner] >= 0 or balances[partner] in tried:
-                    continue
-                tried.add(balances[partner])
-                original = balances[partner]
-                balances[partner] += balances[start]
-                best = min(best, 1 + settle(start + 1))
-                balances[partner] = original
-                if original + balances[start] == 0:
-                    break
-            return best
-
-        return settle(0)
+        g = defaultdict(int)
+        for f, t, x in transactions:
+            g[f] -= x
+            g[t] += x
+        nums = [x for x in g.values() if x]
+        m = len(nums)
+        f = [inf] * (1 << m)
+        f[0] = 0
+        for i in range(1, 1 << m):
+            s = 0
+            for j, x in enumerate(nums):
+                if i >> j & 1:
+                    s += x
+            if s == 0:
+                f[i] = i.bit_count() - 1
+                j = (i - 1) & i
+                while j > 0:
+                    f[i] = min(f[i], f[j] + f[i ^ j])
+                    j = (j - 1) & i
+        return f[-1]

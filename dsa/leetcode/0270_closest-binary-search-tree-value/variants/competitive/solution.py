@@ -1,14 +1,23 @@
-from typing import Optional
-
+# Time:  O(h)
+# Space: O(1)
 
 class Solution:
-    def closestValue(self, root: Optional["TreeNode"], target: float) -> int:
-        closest = root.val
-        node = root
-        while node is not None:
-            if (abs(node.val - target), node.val) < (abs(closest - target), closest):
-                closest = node.val
-            if node.val == target:
-                return node.val
-            node = node.left if target < node.val else node.right
+    def closestValue(self, root, target):
+        """
+        :type root: TreeNode
+        :type target: float
+        :rtype: int
+        """
+        gap = float("inf")
+        closest = float("inf")
+        while root:
+            if abs(root.val - target) < gap:
+                gap = abs(root.val - target)
+                closest = root.val
+            if target == root.val:
+                break
+            elif target < root.val:
+                root = root.left
+            else:
+                root = root.right
         return closest

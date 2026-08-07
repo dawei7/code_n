@@ -1,28 +1,51 @@
-from typing import List
+# Time:  O(n^2 * r * logq), r = max(nums)
+# Space: O(r)
 
-
+# binary search, dp
 class Solution:
-    def minZeroArray(self, nums: List[int], queries: List[List[int]]) -> int:
-        length = len(nums)
-        possible = [1] * length
-        masks = [(1 << (target + 1)) - 1 for target in nums]
-        satisfied = [target == 0 for target in nums]
-        remaining = sum(not state for state in satisfied)
+    def minZeroArray(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        if remaining == 0:
-            return 0
+        def check(l):
+            def valid(arr, target):
+                dp = [False]*(target+1)
+                dp[0] = 1
+                for i in range(len(arr)):
+                    dp = [dp[j] or (j-arr[i] >= 0 and dp[j-arr[i]]) for j in range(target+1)]
+                return dp[target]
 
-        for query_index, (left, right, value) in enumerate(queries, start=1):
-            for index in range(left, right + 1):
-                if satisfied[index]:
-                    continue
-                possible[index] |= possible[index] << value
-                possible[index] &= masks[index]
-                if (possible[index] >> nums[index]) & 1:
-                    satisfied[index] = True
-                    remaining -= 1
+            return all(valid([queries[j][2] for j in range(l) if queries[j][0] <= i <= queries[j][1]], nums[i]) for i in range(len(nums)))
 
-            if remaining == 0:
-                return query_index
+        result = binary_search(0, len(queries), check)
+        return result if result <= len(queries) else -1
 
-        return -1
+
+# Time:  O(q * n * 2^n)
+# Space: O(n * 2^n)
+# dp
+class Solution2(object):
+    def minZeroArray(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: int
+        """
+        dp = [{0} for _ in range(len(nums))]
+        for i, (l, r, v) in enumerate(queries):
+            if all(nums[i] in dp[i] for i in range(len(dp))):
+                return i
+            for j in range(l, r+1):
+                dp[j] |= set(x+v for x in dp[j])
+        return len(queries) if all(nums[i] in dp[i] for i in range(len(dp))) else -1

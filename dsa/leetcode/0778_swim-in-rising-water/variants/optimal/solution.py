@@ -1,28 +1,24 @@
-import heapq
-from typing import List
-
-
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
-        side = len(grid)
-        frontier = [(grid[0][0], 0, 0)]
-        visited = {(0, 0)}
-        water_level = 0
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        while frontier:
-            elevation, row, column = heapq.heappop(frontier)
-            water_level = max(water_level, elevation)
-            if row == side - 1 and column == side - 1:
-                return water_level
-
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-                if 0 <= next_row < side and 0 <= next_column < side and (next_row, next_column) not in visited:
-                    visited.add((next_row, next_column))
-                    heapq.heappush(
-                        frontier,
-                        (grid[next_row][next_column], next_row, next_column),
-                    )
-
-        raise ValueError("the destination must be reachable")
+        n = len(grid)
+        m = n * n
+        p = list(range(m))
+        hi = [0] * m
+        for i, row in enumerate(grid):
+            for j, h in enumerate(row):
+                hi[h] = i * n + j
+        dirs = (-1, 0, 1, 0, -1)
+        for t in range(m):
+            x, y = divmod(hi[t], n)
+            for dx, dy in pairwise(dirs):
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < n and 0 <= ny < n and grid[nx][ny] <= t:
+                    p[find(x * n + y)] = find(nx * n + ny)
+            if find(0) == find(m - 1):
+                return t
+        return 0

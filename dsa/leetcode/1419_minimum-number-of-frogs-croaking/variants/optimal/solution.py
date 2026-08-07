@@ -1,23 +1,19 @@
 class Solution:
     def minNumberOfFrogs(self, croakOfFrogs: str) -> int:
-        sound = "croak"
-        waiting = [0] * 4
-        active = 0
-        maximum_active = 0
-
-        for character in croakOfFrogs:
-            stage = sound.find(character)
-            if stage == 0:
-                waiting[0] += 1
-                active += 1
-                maximum_active = max(maximum_active, active)
-            elif stage > 0 and waiting[stage - 1] > 0:
-                waiting[stage - 1] -= 1
-                if stage == 4:
-                    active -= 1
-                else:
-                    waiting[stage] += 1
+        if len(croakOfFrogs) % 5 != 0:
+            return -1
+        idx = {c: i for i, c in enumerate('croak')}
+        cnt = [0] * 5
+        ans = x = 0
+        for i in map(idx.get, croakOfFrogs):
+            cnt[i] += 1
+            if i == 0:
+                x += 1
+                ans = max(ans, x)
             else:
-                return -1
-
-        return maximum_active if active == 0 else -1
+                if cnt[i - 1] == 0:
+                    return -1
+                cnt[i - 1] -= 1
+                if i == 4:
+                    x -= 1
+        return -1 if x else ans

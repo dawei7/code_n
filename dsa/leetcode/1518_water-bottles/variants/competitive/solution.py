@@ -1,3 +1,16 @@
+# Time:  O(logn/logm), n is numBottles, m is numExchange
+# Space: O(1)
+
 class Solution:
-    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
-        return numBottles + (numBottles - 1) // (numExchange - 1)
+    def numWaterBottles(self, numBottles, numExchange):
+        """
+        :type numBottles: int
+        :type numExchange: int
+        :rtype: int
+        """
+        result = numBottles
+        while numBottles >= numExchange:
+            numBottles, remainder = divmod(numBottles, numExchange)
+            result += numBottles
+            numBottles += remainder
+        return result

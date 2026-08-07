@@ -1,25 +1,29 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, two pointers, sliding window
 class Solution:
-    def maxSum(self, nums: List[int], m: int, k: int) -> int:
-        frequencies = defaultdict(int)
-        window_sum = 0
-        best_sum = 0
-
-        for right, value in enumerate(nums):
-            frequencies[value] += 1
-            window_sum += value
-
-            if right >= k:
-                outgoing = nums[right - k]
-                window_sum -= outgoing
-                frequencies[outgoing] -= 1
-                if frequencies[outgoing] == 0:
-                    del frequencies[outgoing]
-
-            if right >= k - 1 and len(frequencies) >= m:
-                best_sum = max(best_sum, window_sum)
-
-        return best_sum
+    def maxSum(self, nums, m, k):
+        """
+        :type nums: List[int]
+        :type m: int
+        :type k: int
+        :rtype: int
+        """
+        lookup = collections.Counter()
+        result = curr = left = 0
+        for right in range(len(nums)):
+            curr += nums[right]
+            lookup[nums[right]] += 1
+            if right-left+1 == k+1:
+                lookup[nums[left]] -= 1
+                if lookup[nums[left]] == 0:
+                    del lookup[nums[left]]
+                curr -= nums[left]
+                left += 1
+            if right-left+1 == k and len(lookup) >= m:
+                result = max(result, curr)
+        return result

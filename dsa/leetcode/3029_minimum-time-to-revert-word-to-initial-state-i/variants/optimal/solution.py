@@ -1,9 +1,7 @@
 class Solution:
     def minimumTimeToInitialState(self, word: str, k: int) -> int:
         n = len(word)
-
-        for removed in range(k, n, k):
-            if word[removed:] == word[: n - removed]:
-                return removed // k
-
+        for i in range(k, n, k):
+            if word[i:] == word[:-i]:
+                return i // k
         return (n + k - 1) // k

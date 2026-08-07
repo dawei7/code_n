@@ -1,3 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minChanges(self, s: str) -> int:
-        return sum(s[index] != s[index + 1] for index in range(0, len(s), 2))
+    def minChanges(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return sum(s[i] != s[i+1] for i in range(0, len(s), 2))

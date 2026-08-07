@@ -1,3 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def concatWithReverse(self, nums: list[int]) -> list[int]:
-        return nums + nums[::-1]
+    def concatWithReverse(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        nums.extend(reversed(nums))
+        return nums

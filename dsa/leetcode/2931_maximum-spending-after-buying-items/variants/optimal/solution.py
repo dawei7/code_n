@@ -1,20 +1,13 @@
-from heapq import heapify, heappop, heappush
-from typing import List
-
-
 class Solution:
     def maxSpending(self, values: List[List[int]]) -> int:
-        columns = len(values[0])
-        heap = [(row[-1], shop, columns - 1) for shop, row in enumerate(values)]
-        heapify(heap)
-
-        spending = 0
-        day = 1
-        while heap:
-            value, shop, column = heappop(heap)
-            spending += day * value
-            day += 1
-            if column > 0:
-                heappush(heap, (values[shop][column - 1], shop, column - 1))
-
-        return spending
+        n = len(values[0])
+        pq = [(row[-1], i, n - 1) for i, row in enumerate(values)]
+        heapify(pq)
+        ans = d = 0
+        while pq:
+            d += 1
+            v, i, j = heappop(pq)
+            ans += v * d
+            if j:
+                heappush(pq, (values[i][j - 1], i, j - 1))
+        return ans

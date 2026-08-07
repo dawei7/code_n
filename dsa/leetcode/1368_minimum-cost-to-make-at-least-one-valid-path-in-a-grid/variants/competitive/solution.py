@@ -1,29 +1,67 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
 
-
+# A* Search Algorithm without heap
 class Solution:
-    def minCost(self, grid: List[List[int]]) -> int:
-        directions = ((0, 1), (0, -1), (1, 0), (-1, 0))
-        rows, cols = len(grid), len(grid[0])
-        distance = [[10**9] * cols for _ in range(rows)]
-        distance[0][0] = 0
-        queue = deque([(0, 0)])
+    def minCost(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        def a_star(grid, b, t):
+            f, dh = 0, 1
+            closer, detour = [b], []
+            lookup = set()
+            while closer or detour:
+                if not closer:
+                    f += dh
+                    closer, detour = detour, closer
+                b = closer.pop()
+                if b in lookup:
+                    continue
+                lookup.add(b)
+                if b == t:
+                    return f
+                for nd, (dr, dc) in enumerate(directions, 1):
+                    nb = (b[0]+dr, b[1]+dc)
+                    if not (0 <= nb[0] < len(grid) and 0 <= nb[1] < len(grid[0]) and nb not in lookup):
+                        continue
+                    (closer if nd == grid[b[0]][b[1]] else detour).append(nb)
+            return -1
 
-        while queue:
-            row, col = queue.popleft()
-            for code, (dr, dc) in enumerate(directions, start=1):
-                next_row, next_col = row + dr, col + dc
-                if not (0 <= next_row < rows and 0 <= next_col < cols):
+        return a_star(grid, (0, 0), (len(grid)-1, len(grid[0])-1))
+
+
+# Time:  O(m * n)
+# Space: O(m * n)
+import collections
+
+
+#  0-1 bfs solution
+class Solution2(object):
+    def minCost(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        b, t = (0, 0), (len(grid)-1, len(grid[0])-1)
+        dq = collections.deque([(b, 0)])
+        lookup = set()
+        while dq:
+            b, d = dq.popleft()
+            if b in lookup:
+                continue
+            lookup.add(b)
+            if b == t:
+                return d
+            for nd, (dr, dc) in enumerate(directions, 1):
+                nb = (b[0]+dr, b[1]+dc)
+                if not (0 <= nb[0] < len(grid) and 0 <= nb[1] < len(grid[0]) and nb not in lookup):
                     continue
-                weight = 0 if grid[row][col] == code else 1
-                candidate = distance[row][col] + weight
-                if candidate >= distance[next_row][next_col]:
-                    continue
-                distance[next_row][next_col] = candidate
-                if weight == 0:
-                    queue.appendleft((next_row, next_col))
+                if nd == grid[b[0]][b[1]]:
+                    dq.appendleft((nb, d))
                 else:
-                    queue.append((next_row, next_col))
-
-        return distance[-1][-1]
+                    dq.append((nb, d+1))
+        return -1  # never reach here

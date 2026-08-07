@@ -1,27 +1,14 @@
-from typing import List
-
-
 class Solution:
     def numMovesStonesII(self, stones: List[int]) -> List[int]:
-        positions = sorted(stones)
-        stone_count = len(positions)
-
-        maximum_moves = max(
-            positions[-1] - positions[1] - (stone_count - 2),
-            positions[-2] - positions[0] - (stone_count - 2),
-        )
-
-        minimum_moves = stone_count
-        left = 0
-        for right, position in enumerate(positions):
-            while position - positions[left] + 1 > stone_count:
-                left += 1
-
-            stones_in_window = right - left + 1
-            consecutive_span = position - positions[left] + 1
-            if stones_in_window == stone_count - 1 and consecutive_span == stone_count - 1:
-                minimum_moves = min(minimum_moves, 2)
+        stones.sort()
+        mi = n = len(stones)
+        mx = max(stones[-1] - stones[1] + 1, stones[-2] - stones[0] + 1) - (n - 1)
+        i = 0
+        for j, x in enumerate(stones):
+            while x - stones[i] + 1 > n:
+                i += 1
+            if j - i + 1 == n - 1 and x - stones[i] == n - 2:
+                mi = min(mi, 2)
             else:
-                minimum_moves = min(minimum_moves, stone_count - stones_in_window)
-
-        return [minimum_moves, maximum_moves]
+                mi = min(mi, n - (j - i + 1))
+        return [mi, mx]

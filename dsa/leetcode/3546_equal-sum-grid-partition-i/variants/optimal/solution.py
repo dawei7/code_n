@@ -1,18 +1,16 @@
 class Solution:
     def canPartitionGrid(self, grid: List[List[int]]) -> bool:
-        total = sum(map(sum, grid))
-
-        prefix = 0
-        for row in grid[:-1]:
-            prefix += sum(row)
-            if prefix * 2 == total:
+        s = sum(sum(row) for row in grid)
+        if s % 2:
+            return False
+        pre = 0
+        for i, row in enumerate(grid):
+            pre += sum(row)
+            if pre * 2 == s and i != len(grid) - 1:
                 return True
-
-        prefix = 0
-        for column in range(len(grid[0]) - 1):
-            for row in grid:
-                prefix += row[column]
-            if prefix * 2 == total:
+        pre = 0
+        for j, col in enumerate(zip(*grid)):
+            pre += sum(col)
+            if pre * 2 == s and j != len(grid[0]) - 1:
                 return True
-
         return False

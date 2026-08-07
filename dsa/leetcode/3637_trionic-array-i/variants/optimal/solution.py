@@ -1,24 +1,16 @@
-from typing import List
-
-
 class Solution:
     def isTrionic(self, nums: List[int]) -> bool:
         n = len(nums)
-        index = 1
-
-        while index < n and nums[index] > nums[index - 1]:
-            index += 1
-        if index == 1 or index == n:
+        p = 0
+        while p < n - 2 and nums[p] < nums[p + 1]:
+            p += 1
+        if p == 0:
             return False
-
-        decreasing_start = index
-        while index < n and nums[index] < nums[index - 1]:
-            index += 1
-        if index == decreasing_start or index == n:
+        q = p
+        while q < n - 1 and nums[q] > nums[q + 1]:
+            q += 1
+        if q == p or q == n - 1:
             return False
-
-        increasing_start = index
-        while index < n and nums[index] > nums[index - 1]:
-            index += 1
-
-        return index == n and index > increasing_start
+        while q < n - 1 and nums[q] < nums[q + 1]:
+            q += 1
+        return q == n - 1

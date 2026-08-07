@@ -1,17 +1,19 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def numWays(self, words: List[str], target: str) -> int:
-        modulus = 1_000_000_007
-        column_counts = [Counter(column) for column in zip(*words)]
-        ways = [1] + [0] * len(target)
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i >= m:
+                return 1
+            if j >= n:
+                return 0
+            ans = dfs(i + 1, j + 1) * cnt[j][ord(target[i]) - ord('a')]
+            ans = (ans + dfs(i, j + 1)) % mod
+            return ans
 
-        for column_index, counts in enumerate(column_counts):
-            last_target_index = min(len(target) - 1, column_index)
-            for target_index in range(last_target_index, -1, -1):
-                ways[target_index + 1] += ways[target_index] * counts[target[target_index]]
-                ways[target_index + 1] %= modulus
-
-        return ways[-1]
+        m, n = len(target), len(words[0])
+        cnt = [[0] * 26 for _ in range(n)]
+        for w in words:
+            for j, c in enumerate(w):
+                cnt[j][ord(c) - ord('a')] += 1
+        mod = 10**9 + 7
+        return dfs(0, 0)

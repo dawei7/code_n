@@ -1,3 +1,11 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def distinctIntegers(self, n: int) -> int:
-        return max(1, n - 1)
+    def distinctIntegers(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        return n-1 if n >= 2 else 1

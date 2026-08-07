@@ -1,12 +1,23 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
 
 class Solution:
-    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+    def findContentChildren(self, g, s):
+        """
+        :type g: List[int]
+        :type s: List[int]
+        :rtype: int
+        """
         g.sort()
         s.sort()
-        child = 0
-        for cookie in s:
-            if child < len(g) and cookie >= g[child]:
-                child += 1
-        return child
+
+        result, i = 0, 0
+        for j in range(len(s)):
+            if i == len(g):
+                break
+            if s[j] >= g[i]:
+                result += 1
+                i += 1
+        return result
+

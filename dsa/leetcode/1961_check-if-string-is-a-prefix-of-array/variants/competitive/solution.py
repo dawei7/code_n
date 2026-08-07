@@ -1,17 +1,39 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def isPrefixString(self, s: str, words: List[str]) -> bool:
-        position = 0
+    def isPrefixString(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: bool
+        """
+        i = j = 0
+        for c in s:
+            if i == len(words) or words[i][j] != c:
+                return False 
+            j += 1
+            if j == len(words[i]):
+                i += 1
+                j = 0
+        return j == 0
 
+
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def isPrefixString(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: bool
+        """
+        i = 0
         for word in words:
-            for character in word:
-                if position == len(s) or s[position] != character:
+            for c in word:
+                if i == len(s) or s[i] != c:
                     return False
-                position += 1
-
-            if position == len(s):
+                i += 1
+            if i == len(s):
                 return True
-
         return False

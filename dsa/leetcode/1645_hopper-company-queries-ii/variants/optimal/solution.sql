@@ -1,40 +1,37 @@
-WITH RECURSIVE Months AS (
-    SELECT 1 AS month
-    UNION ALL
-    SELECT month + 1
-    FROM Months
-    WHERE month < 12
-)
+# Write your MySQL query statement below
+WITH RECURSIVE
+    Month AS (
+        SELECT 1 AS month
+        UNION
+        SELECT month + 1
+        FROM Month
+        WHERE month < 12
+    ),
+    S AS (
+        SELECT month, driver_id, join_date
+        FROM
+            Month AS m
+            LEFT JOIN Drivers AS d
+                ON YEAR(d.join_date) < 2020
+                OR (YEAR(d.join_date) = 2020 AND MONTH(d.join_date) <= month)
+    ),
+    T AS (
+        SELECT driver_id, requested_at
+        FROM
+            Rides
+            JOIN AcceptedRides USING (ride_id)
+        WHERE YEAR(requested_at) = 2020
+    )
 SELECT
-    m.month,
-    ROUND(
-        IFNULL(
-            100.0 * (
-                SELECT COUNT(DISTINCT ar.driver_id)
-                FROM AcceptedRides AS ar
-                JOIN Rides AS r ON r.ride_id = ar.ride_id
-                WHERE r.requested_at >= date(
-                    '2020-01-01',
-                    printf('+%d months', m.month - 1)
-                )
-                  AND r.requested_at < date(
-                    '2020-01-01',
-                    printf('+%d months', m.month)
-                )
-            ) / NULLIF(
-                (
-                    SELECT COUNT(*)
-                    FROM Drivers AS d
-                    WHERE d.join_date < date(
-                        '2020-01-01',
-                        printf('+%d months', m.month)
-                    )
-                ),
-                0
-            ),
-            0
-        ),
-        2
+    month,
+    IFNULL(
+        ROUND(COUNT(DISTINCT t.driver_id) * 100 / COUNT(DISTINCT s.driver_id), 2),
+        0
     ) AS working_percentage
-FROM Months AS m
-ORDER BY m.month;
+FROM
+    S AS s
+    LEFT JOIN T AS t
+        ON s.driver_id = t.driver_id
+        AND s.join_date <= t.requested_at
+        AND s.month = MONTH(t.requested_at)
+GROUP BY 1;

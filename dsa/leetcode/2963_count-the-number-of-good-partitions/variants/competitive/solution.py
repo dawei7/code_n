@@ -1,15 +1,19 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table, combinatorics
 class Solution:
-    def numberOfGoodPartitions(self, nums: List[int]) -> int:
-        last = {value: index for index, value in enumerate(nums)}
-        components = 0
-        rightmost = 0
-
-        for index, value in enumerate(nums):
-            rightmost = max(rightmost, last[value])
-            if index == rightmost:
-                components += 1
-
-        return pow(2, components - 1, 1_000_000_007)
+    def numberOfGoodPartitions(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        lookup = {x:i for i, x in enumerate(nums)}
+        result = 1
+        right = cnt = 0
+        for left, x in enumerate(nums):
+            if left == right+1:
+                cnt += 1
+            right = max(right, lookup[x])
+        return pow(2, cnt, MOD)

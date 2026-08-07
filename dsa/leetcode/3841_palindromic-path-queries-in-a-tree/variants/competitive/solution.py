@@ -1,111 +1,217 @@
+# Time:  O((n + q) * logn)
+# Space: O(n)
+
+# hld, lca, fenwick tree
 class Solution:
-    def palindromePath(
-        self,
-        n: int,
-        edges: list[list[int]],
-        s: str,
-        queries: list[str],
-    ) -> list[bool]:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+    def palindromePath(self, n, edges, s, queries):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type s: str
+        :type queries: List[str]
+        :rtype: List[bool]
+        """
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
 
-        node_mask = [1 << (ord(character) - ord("a")) for character in s]
-        parent = [0] * n
-        depth = [0] * n
-        entry = [0] * n
-        exit_time = [0] * n
-        initial_root_mask = [0] * n
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] ^= val  # modified
+                    i += (i & -i)
 
-        timer = 0
-        stack = [(0, 0, False)]
-        while stack:
-            node, previous, leaving = stack.pop()
-            if leaving:
-                exit_time[node] = timer
-                continue
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret ^= self.__bit[i]  # modified
+                    i -= (i & -i)
+                return ret
 
-            parent[node] = previous
-            if node != 0:
-                depth[node] = depth[previous] + 1
-                initial_root_mask[node] = initial_root_mask[previous] ^ node_mask[node]
+
+        def build_hld(adj, cb):
+            parent, depth, size, heavy, head = [-1]*len(adj), [0]*len(adj), [1]*len(adj), [-1]*len(adj), list(range(len(adj)))
+            stk = [(1, 0, -1)]
+            while stk:
+                step, u, p = stk.pop()
+                if step == 1:
+                    cb(u, p)
+                    parent[u], depth[u] = p, (depth[p]+1 if p != -1 else 0)
+                    stk.append((2, u, p))
+                    for v in adj[u]:
+                        if v == p:
+                            continue
+                        stk.append((1, v, u))
+                elif step == 2:
+                    for v in adj[u]:
+                        if v == parent[u]:
+                            continue
+                        size[u] += size[v]
+                        if heavy[u] == -1 or size[v] > size[heavy[u]]:
+                            heavy[u] = v
+            idx = -1
+            left, right = [-1]*len(adj), [-1]*len(adj)
+            stk = [(1, 0, 0)]
+            while stk:
+                step, u, h = stk.pop()
+                if step == 1:
+                    idx += 1
+                    head[u], left[u] = h, idx
+                    stk.append((2, u, h))
+                    for v in adj[u]:
+                        if v == parent[u] or v == heavy[u]:
+                            continue
+                        stk.append((1, v, v))
+                    if heavy[u] != -1:
+                        stk.append((1, heavy[u], h))
+                elif step == 2:
+                    right[u] = idx
+            return parent, depth, head, left, right
+    
+        def lca(u, v):
+            while head[u] != head[v]:
+                if depth[head[u]] < depth[head[v]]:
+                    u, v = v, u
+                u = parent[head[u]]
+            return u if depth[u] < depth[v] else v
+
+        def callback(u, p):
+            prefix[u] = (prefix[p] if p != -1 else 0)^(1<<(ord(s[u])-ord('a')))
+
+        s = list(s)
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        prefix = [0]*n
+        parent, depth, head, left, right = build_hld(adj, callback)
+        bit = BIT(n+1)
+        result = []
+        for q in queries:
+            args = q.split()
+            op = args[0]
+            u = int(args[1])
+            if op == "update":
+                c = args[2]
+                diff = (1<<(ord(s[u])-ord('a')))^(1<<(ord(c)-ord('a')))
+                if not diff:
+                    continue
+                s[u] = c
+                bit.add(left[u], diff)
+                bit.add(right[u]+1, diff)
             else:
-                initial_root_mask[node] = node_mask[node]
+                v = int(args[2])
+                l = lca(u, v)
+                mask = (prefix[u]^bit.query(left[u]))^(prefix[v]^bit.query(left[v]))^(1<<(ord(s[l])-ord('a')))
+                result.append((mask&(mask-1)) == 0)
+        return result
 
-            entry[node] = timer
-            timer += 1
-            stack.append((node, previous, True))
-            for neighbor in reversed(graph[node]):
-                if neighbor != previous:
-                    stack.append((neighbor, node, False))
 
-        ancestors = [parent]
-        for _ in range(1, n.bit_length()):
-            previous_level = ancestors[-1]
-            ancestors.append([previous_level[previous_level[node]] for node in range(n)])
+# Time:  O((n + q) * logn)
+# Space: O(nlogn)
+# dfs, lca, binary lifting, fenwick tree
+class Solution2(object):
+    def palindromePath(self, n, edges, s, queries):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type s: str
+        :type queries: List[str]
+        :rtype: List[bool]
+        """
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
 
-        def lowest_common_ancestor(first: int, second: int) -> int:
-            if depth[first] < depth[second]:
-                first, second = second, first
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] ^= val  # modified
+                    i += (i & -i)
 
-            difference = depth[first] - depth[second]
-            level = 0
-            while difference:
-                if difference & 1:
-                    first = ancestors[level][first]
-                difference >>= 1
-                level += 1
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret ^= self.__bit[i]  # modified
+                    i -= (i & -i)
+                return ret
 
-            if first == second:
-                return first
 
-            for level in range(len(ancestors) - 1, -1, -1):
-                if ancestors[level][first] != ancestors[level][second]:
-                    first = ancestors[level][first]
-                    second = ancestors[level][second]
+        class TreeInfos(object):  # Time: O(NlogN), Space: O(NlogN), N is the number of nodes
+            def __init__(self, adj):
+                N = len(adj)
+                L, R, D, P = [0]*N, [0]*N, [0]*N, [[] for _ in range(N)]
+                idx = -1
+                stk = [(1, (0, -1))]
+                while stk:
+                    step, args = stk.pop()
+                    if step == 1:
+                        u, p = args
+                        D[u] = 1 if p == -1 else D[p]+1
+                        if p != -1:
+                            P[u].append(p)
+                        i = 0
+                        while i < len(P[u]) and i < len(P[P[u][i]]):
+                            P[u].append(P[P[u][i]][i])
+                            i += 1
+                        idx += 1
+                        L[u] = idx
+                        stk.append((2, (u,)))
+                        for i in reversed(range(len(adj[u]))):
+                            v = adj[u][i]
+                            if v == p:
+                                continue
+                            stk.append((1, (v, u)))
+                    elif step == 2:
+                        u = args[0]
+                        R[u] = idx
+                assert(idx == N-1)
+                self.L, self.R, self.D, self.P = L, R, D, P
 
-            return parent[first]
+            # Template:
+            # https://github.com/kamyu104/FacebookHackerCup-2019/blob/master/Final%20Round/little_boat_on_the_sea.py
+            def is_ancestor(self, a, b):  # includes itself
+                return self.L[a] <= self.L[b] <= self.R[b] <= self.R[a]
 
-        difference_tree = [0] * (n + 1)
+            def lca(self, a, b):
+                if self.D[a] > self.D[b]:
+                    a, b = b, a
+                if self.is_ancestor(a, b):
+                    return a
+                for i in reversed(range(len(self.P[a]))):  # O(logN)
+                    if i < len(self.P[a]) and not self.is_ancestor(self.P[a][i], b):
+                        a = self.P[a][i]
+                return self.P[a][0]
 
-        def apply_from(index: int, mask: int) -> None:
-            index += 1
-            while index <= n:
-                difference_tree[index] ^= mask
-                index += index & -index
-
-        def accumulated_at(index: int) -> int:
-            result = 0
-            index += 1
-            while index:
-                result ^= difference_tree[index]
-                index -= index & -index
-            return result
-
-        answers = []
-        for operation in queries:
-            parts = operation.split()
-            if parts[0] == "update":
-                node = int(parts[1])
-                replacement = 1 << (ord(parts[2]) - ord("a"))
-                difference = node_mask[node] ^ replacement
-                if difference:
-                    apply_from(entry[node], difference)
-                    if exit_time[node] < n:
-                        apply_from(exit_time[node], difference)
-                    node_mask[node] = replacement
+        s = list(s)
+        adj = [[] for _ in range(n)]
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+        tree_infos = TreeInfos(adj)
+        bit = BIT(n+1)
+        for u in range(n):
+            diff = 1<<(ord(s[u])-ord('a'))
+            bit.add(tree_infos.L[u], diff)
+            bit.add(tree_infos.R[u]+1, diff)
+        result = []
+        for q in queries:
+            args = q.split()
+            op = args[0]
+            u = int(args[1])
+            if op == "update":
+                c = args[2]
+                diff = (1<<(ord(s[u])-ord('a')))^(1<<(ord(c)-ord('a')))
+                if not diff:
+                    continue
+                s[u] = c
+                bit.add(tree_infos.L[u], diff)
+                bit.add(tree_infos.R[u]+1, diff)
             else:
-                first = int(parts[1])
-                second = int(parts[2])
-                ancestor = lowest_common_ancestor(first, second)
-                path_mask = (
-                    initial_root_mask[first]
-                    ^ accumulated_at(entry[first])
-                    ^ initial_root_mask[second]
-                    ^ accumulated_at(entry[second])
-                    ^ node_mask[ancestor]
-                )
-                answers.append(path_mask & (path_mask - 1) == 0)
-
-        return answers
+                v = int(args[2])
+                l = tree_infos.lca(u, v)
+                mask = bit.query(tree_infos.L[u])^bit.query(tree_infos.L[v])^(1<<(ord(s[l])-ord('a')))
+                result.append(mask == 0 or (mask&(mask-1)) == 0)
+        return result

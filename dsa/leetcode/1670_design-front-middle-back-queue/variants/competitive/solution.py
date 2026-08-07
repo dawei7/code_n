@@ -1,50 +1,65 @@
-from collections import deque
+# Time:  O(1)
+# Space: O(n)
+
+import collections
 
 
-class FrontMiddleBackQueue:
+class FrontMiddleBackQueue(object):
+
     def __init__(self):
-        self.left = deque()
-        self.right = deque()
+        self.__left, self.__right = collections.deque(), collections.deque()   
 
-    def _rebalance(self) -> None:
-        if len(self.left) > len(self.right) + 1:
-            self.right.appendleft(self.left.pop())
-        elif len(self.left) < len(self.right):
-            self.left.append(self.right.popleft())
+    def pushFront(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        self.__left.appendleft(val)
+        self.__balance()        
 
-    def pushFront(self, val: int) -> None:
-        self.left.appendleft(val)
-        self._rebalance()
+    def pushMiddle(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        if len(self.__left) > len(self.__right):
+            self.__right.appendleft(self.__left.pop())
+        self.__left.append(val)
 
-    def pushMiddle(self, val: int) -> None:
-        if len(self.left) > len(self.right):
-            self.right.appendleft(self.left.pop())
-        self.left.append(val)
+    def pushBack(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """
+        self.__right.append(val)
+        self.__balance()
 
-    def pushBack(self, val: int) -> None:
-        self.right.append(val)
-        self._rebalance()
+    def popFront(self):
+        """
+        :rtype: int
+        """
+        val = (self.__left or collections.deque([-1])).popleft()
+        self.__balance()
+        return val
 
-    def popFront(self) -> int:
-        if not self.left:
-            return -1
-        value = self.left.popleft()
-        self._rebalance()
-        return value
+    def popMiddle(self):
+        """
+        :rtype: int
+        """
+        val = (self.__left or [-1]).pop()
+        self.__balance()
+        return val
 
-    def popMiddle(self) -> int:
-        if not self.left:
-            return -1
-        value = self.left.pop()
-        self._rebalance()
-        return value
+    def popBack(self):
+        """
+        :rtype: int
+        """
+        val = (self.__right or self.__left or [-1]).pop()
+        self.__balance()
+        return val
 
-    def popBack(self) -> int:
-        if self.right:
-            value = self.right.pop()
-        elif self.left:
-            value = self.left.pop()
-        else:
-            return -1
-        self._rebalance()
-        return value
+    def __balance(self):
+        if len(self.__left) > len(self.__right)+1:
+            self.__right.appendleft(self.__left.pop())
+        elif len(self.__left) < len(self.__right):
+            self.__left.append(self.__right.popleft())

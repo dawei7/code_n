@@ -1,16 +1,12 @@
-from typing import List
-
-
 class Solution:
     def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        seen = {0}
-        stack = [0]
+        def dfs(i: int):
+            if i in vis:
+                return
+            vis.add(i)
+            for j in rooms[i]:
+                dfs(j)
 
-        while stack:
-            room = stack.pop()
-            for key in rooms[room]:
-                if key not in seen:
-                    seen.add(key)
-                    stack.append(key)
-
-        return len(seen) == len(rooms)
+        vis = set()
+        dfs(0)
+        return len(vis) == len(rooms)

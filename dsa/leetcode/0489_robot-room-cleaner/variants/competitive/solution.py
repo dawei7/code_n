@@ -1,34 +1,32 @@
-# LeetCode supplies this interface; the solution must not inspect its implementation.
-# class Robot:
-#     def move(self) -> bool: ...
-#     def turnLeft(self) -> None: ...
-#     def turnRight(self) -> None: ...
-#     def clean(self) -> None: ...
-
+# Time:  O(n), n is the number of cells
+# Space: O(n)
 
 class Solution:
     def cleanRoom(self, robot):
-        directions = ((-1, 0), (0, 1), (1, 0), (0, -1))
-        visited = set()
+        """
+        :type robot: Robot
+        :rtype: None
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
-        def go_back():
-            robot.turnRight()
-            robot.turnRight()
+        def goBack(robot):
+            robot.turnLeft()
+            robot.turnLeft()
             robot.move()
             robot.turnRight()
             robot.turnRight()
 
-        def backtrack(row, col, direction):
-            visited.add((row, col))
+        def dfs(pos, robot, d, lookup):
             robot.clean()
-
-            for offset in range(4):
-                next_direction = (direction + offset) % 4
-                delta_row, delta_col = directions[next_direction]
-                next_cell = (row + delta_row, col + delta_col)
-                if next_cell not in visited and robot.move():
-                    backtrack(next_cell[0], next_cell[1], next_direction)
-                    go_back()
+            for _ in directions:
+                new_pos = (pos[0]+directions[d][0],
+                           pos[1]+directions[d][1])
+                if new_pos not in lookup:
+                    lookup.add(new_pos)
+                    if robot.move():
+                        dfs(new_pos, robot, d, lookup)
+                        goBack(robot)
                 robot.turnRight()
-
-        backtrack(0, 0, 0)
+                d = (d+1) % len(directions)
+        
+        dfs((0, 0), robot, 0, set())

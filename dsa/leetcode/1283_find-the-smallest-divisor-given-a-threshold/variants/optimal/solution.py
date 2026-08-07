@@ -1,17 +1,7 @@
-from typing import List
-
-
 class Solution:
     def smallestDivisor(self, nums: List[int], threshold: int) -> int:
-        left = 1
-        right = max(nums)
+        def f(v: int) -> bool:
+            v += 1
+            return sum((x + v - 1) // v for x in nums) <= threshold
 
-        while left < right:
-            divisor = (left + right) // 2
-            rounded_sum = sum((value + divisor - 1) // divisor for value in nums)
-            if rounded_sum <= threshold:
-                right = divisor
-            else:
-                left = divisor + 1
-
-        return left
+        return bisect_left(range(max(nums)), True, key=f) + 1

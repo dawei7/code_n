@@ -1,6 +1,14 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
 class Solution:
-    def arrangeWords(self, text: str) -> str:
-        words = text.lower().split()
-        words.sort(key=len)
-        arranged = " ".join(words)
-        return arranged[0].upper() + arranged[1:]
+    def arrangeWords(self, text):
+        """
+        :type text: str
+        :rtype: str
+        """
+        result = text.split()
+        result[0] = result[0].lower()
+        result.sort(key=len) 
+        result[0] = result[0].title()
+        return " ".join(result)

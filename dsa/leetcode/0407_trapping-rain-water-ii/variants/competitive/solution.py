@@ -1,32 +1,44 @@
-from heapq import heappop, heappush
+# Time:  O(m * n * log(m + n)) ~ O(m * n * log(m * n))
+# Space: O(m * n)
 
+from heapq import heappush, heappop
 
 class Solution:
-    def trapRainWater(self, heightMap: List[List[int]]) -> int:
-        rows = len(heightMap)
-        columns = len(heightMap[0])
-        if rows < 3 or columns < 3:
+    def trapRainWater(self, heightMap):
+        """
+        :type heightMap: List[List[int]]
+        :rtype: int
+        """
+        m = len(heightMap)
+        if not m:
+            return 0
+        n = len(heightMap[0])
+        if not n:
             return 0
 
-        visited = [[False] * columns for _ in range(rows)]
-        frontier = []
+        is_visited = [[False for i in range(n)] for j in range(m)]
 
-        for row in range(rows):
-            for column in range(columns):
-                if row in (0, rows - 1) or column in (0, columns - 1):
-                    visited[row][column] = True
-                    heappush(frontier, (heightMap[row][column], row, column))
+        heap = []
+        for i in range(m):
+            heappush(heap, [heightMap[i][0], i, 0])
+            is_visited[i][0] = True
+            heappush(heap, [heightMap[i][n-1], i, n-1])
+            is_visited[i][n-1] = True
+        for j in range(1, n-1):
+            heappush(heap, [heightMap[0][j], 0, j])
+            is_visited[0][j] = True
+            heappush(heap, [heightMap[m-1][j], m-1, j])
+            is_visited[m-1][j] = True
 
-        trapped = 0
-        while frontier:
-            wall, row, column = heappop(frontier)
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-                if 0 <= next_row < rows and 0 <= next_column < columns and not visited[next_row][next_column]:
-                    visited[next_row][next_column] = True
-                    terrain = heightMap[next_row][next_column]
-                    trapped += max(0, wall - terrain)
-                    heappush(frontier, (max(wall, terrain), next_row, next_column))
+        trap = 0
+        while heap:
+            height, i, j = heappop(heap)
+            for (dx, dy) in [(1,0), (-1,0), (0,1), (0,-1)]:
+                x, y = i+dx, j+dy
+                if 0 <= x < m and 0 <= y < n and not is_visited[x][y]:
+                    trap += max(0, height - heightMap[x][y])
+                    heappush(heap, [max(height, heightMap[x][y]), x, y])
+                    is_visited[x][y] = True
 
-        return trapped
+        return trap
+

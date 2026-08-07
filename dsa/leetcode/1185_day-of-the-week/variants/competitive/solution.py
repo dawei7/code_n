@@ -1,21 +1,21 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def dayOfTheWeek(self, day: int, month: int, year: int) -> str:
+    def dayOfTheWeek(self, day, month, year):
+        """
+        :type day: int
+        :type month: int
+        :type year: int
+        :rtype: str
+        """
+        DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", \
+                "Thursday", "Friday", "Saturday"]
+
+        # Zeller Formula
         if month < 3:
             month += 12
             year -= 1
-
-        century = year // 100
-        year_in_century = year % 100
-        weekday = (
-            century // 4 - 2 * century + year_in_century + year_in_century // 4 + 13 * (month + 1) // 5 + day - 1
-        ) % 7
-        names = [
-            "Sunday",
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-        ]
-        return names[weekday]
+        c, y = divmod(year, 100)
+        w = (c//4 - 2*c + y + y//4 + 13*(month+1)//5 + day - 1) % 7
+        return DAYS[w]

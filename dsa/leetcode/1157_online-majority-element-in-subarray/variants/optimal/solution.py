@@ -1,50 +1,72 @@
-from bisect import bisect_left, bisect_right
-from collections import defaultdict
+class Node:
+    __slots__ = ("l", "r", "x", "cnt")
+
+    def __init__(self):
+        self.l = self.r = 0
+        self.x = self.cnt = 0
+
+
+class SegmentTree:
+    def __init__(self, nums):
+        self.nums = nums
+        n = len(nums)
+        self.tr = [Node() for _ in range(n << 2)]
+        self.build(1, 1, n)
+
+    def build(self, u, l, r):
+        self.tr[u].l, self.tr[u].r = l, r
+        if l == r:
+            self.tr[u].x = self.nums[l - 1]
+            self.tr[u].cnt = 1
+            return
+        mid = (l + r) >> 1
+        self.build(u << 1, l, mid)
+        self.build(u << 1 | 1, mid + 1, r)
+        self.pushup(u)
+
+    def query(self, u, l, r):
+        if self.tr[u].l >= l and self.tr[u].r <= r:
+            return self.tr[u].x, self.tr[u].cnt
+        mid = (self.tr[u].l + self.tr[u].r) >> 1
+        if r <= mid:
+            return self.query(u << 1, l, r)
+        if l > mid:
+            return self.query(u << 1 | 1, l, r)
+        x1, cnt1 = self.query(u << 1, l, r)
+        x2, cnt2 = self.query(u << 1 | 1, l, r)
+        if x1 == x2:
+            return x1, cnt1 + cnt2
+        if cnt1 >= cnt2:
+            return x1, cnt1 - cnt2
+        else:
+            return x2, cnt2 - cnt1
+
+    def pushup(self, u):
+        if self.tr[u << 1].x == self.tr[u << 1 | 1].x:
+            self.tr[u].x = self.tr[u << 1].x
+            self.tr[u].cnt = self.tr[u << 1].cnt + self.tr[u << 1 | 1].cnt
+        elif self.tr[u << 1].cnt >= self.tr[u << 1 | 1].cnt:
+            self.tr[u].x = self.tr[u << 1].x
+            self.tr[u].cnt = self.tr[u << 1].cnt - self.tr[u << 1 | 1].cnt
+        else:
+            self.tr[u].x = self.tr[u << 1 | 1].x
+            self.tr[u].cnt = self.tr[u << 1 | 1].cnt - self.tr[u << 1].cnt
 
 
 class MajorityChecker:
     def __init__(self, arr: List[int]):
-        self.positions = defaultdict(list)
-        for index, value in enumerate(arr):
-            self.positions[value].append(index)
-
-        size = 1
-        while size < len(arr):
-            size *= 2
-        self.size = size
-        self.tree = [(0, 0)] * (2 * size)
-        for index, value in enumerate(arr):
-            self.tree[size + index] = (value, 1)
-        for index in range(size - 1, 0, -1):
-            self.tree[index] = self._merge(self.tree[index * 2], self.tree[index * 2 + 1])
-
-    def _merge(self, left, right):
-        left_value, left_count = left
-        right_value, right_count = right
-        if left_value == right_value:
-            return left_value, left_count + right_count
-        if left_count > right_count:
-            return left_value, left_count - right_count
-        return right_value, right_count - left_count
-
-    def _candidate(self, left, right):
-        left += self.size
-        right += self.size
-        left_result = (0, 0)
-        right_result = (0, 0)
-        while left <= right:
-            if left % 2 == 1:
-                left_result = self._merge(left_result, self.tree[left])
-                left += 1
-            if right % 2 == 0:
-                right_result = self._merge(self.tree[right], right_result)
-                right -= 1
-            left //= 2
-            right //= 2
-        return self._merge(left_result, right_result)[0]
+        self.tree = SegmentTree(arr)
+        self.d = defaultdict(list)
+        for i, x in enumerate(arr):
+            self.d[x].append(i)
 
     def query(self, left: int, right: int, threshold: int) -> int:
-        candidate = self._candidate(left, right)
-        indexes = self.positions[candidate]
-        count = bisect_right(indexes, right) - bisect_left(indexes, left)
-        return candidate if count >= threshold else -1
+        x, _ = self.tree.query(1, left + 1, right + 1)
+        l = bisect_left(self.d[x], left)
+        r = bisect_left(self.d[x], right + 1)
+        return x if r - l >= threshold else -1
+
+
+# Your MajorityChecker object will be instantiated and called as such:
+# obj = MajorityChecker(arr)
+# param_1 = obj.query(left,right,threshold)

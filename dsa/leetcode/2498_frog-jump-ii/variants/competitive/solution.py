@@ -1,6 +1,11 @@
-class Solution:
-    def maxJump(self, stones: List[int]) -> int:
-        if len(stones) == 2:
-            return stones[1] - stones[0]
+# Time:  O(n)
+# Space: O(1)
 
-        return max(stones[index] - stones[index - 2] for index in range(2, len(stones)))
+# greedy
+class Solution:
+    def maxJump(self, stones):
+        """
+        :type stones: List[int]
+        :rtype: int
+        """
+        return stones[1]-stones[0] if len(stones) == 2 else max(stones[i+2]-stones[i] for i in range(len(stones)-2))

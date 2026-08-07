@@ -1,11 +1,9 @@
 class Solution:
     def countPoints(self, rings: str) -> int:
-        color_bit = {"R": 1, "G": 2, "B": 4}
-        rods = [0] * 10
-
-        for index in range(0, len(rings), 2):
-            color = rings[index]
-            rod = int(rings[index + 1])
-            rods[rod] |= color_bit[color]
-
-        return sum(mask == 7 for mask in rods)
+        mask = [0] * 10
+        d = {"R": 1, "G": 2, "B": 4}
+        for i in range(0, len(rings), 2):
+            c = rings[i]
+            j = int(rings[i + 1])
+            mask[j] |= d[c]
+        return mask.count(7)

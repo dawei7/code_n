@@ -1,34 +1,20 @@
-from typing import List
-
-
 class Solution:
     def minCost(self, n: int, edges: List[List[int]], k: int) -> int:
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
+
         if k == n:
             return 0
-
-        parent = list(range(n))
-        size = [1] * n
-
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        components = n
-        for u, v, weight in sorted(edges, key=lambda edge: edge[2]):
-            root_u = find(u)
-            root_v = find(v)
-            if root_u == root_v:
-                continue
-
-            if size[root_u] < size[root_v]:
-                root_u, root_v = root_v, root_u
-            parent[root_v] = root_u
-            size[root_u] += size[root_v]
-            components -= 1
-
-            if components == k:
-                return weight
-
+        edges.sort(key=lambda x: x[2])
+        cnt = n
+        p = list(range(n))
+        for u, v, w in edges:
+            pu, pv = find(u), find(v)
+            if pu != pv:
+                p[pu] = pv
+                cnt -= 1
+                if cnt <= k:
+                    return w
         return 0

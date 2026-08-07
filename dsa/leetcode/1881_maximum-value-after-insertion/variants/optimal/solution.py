@@ -1,12 +1,11 @@
 class Solution:
     def maxValue(self, n: str, x: int) -> str:
-        digit = str(x)
+        i = 0
         if n[0] == "-":
-            for index in range(1, len(n)):
-                if n[index] > digit:
-                    return n[:index] + digit + n[index:]
+            i += 1
+            while i < len(n) and int(n[i]) <= x:
+                i += 1
         else:
-            for index, current in enumerate(n):
-                if current < digit:
-                    return n[:index] + digit + n[index:]
-        return n + digit
+            while i < len(n) and int(n[i]) >= x:
+                i += 1
+        return n[:i] + str(x) + n[i:]

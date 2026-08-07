@@ -1,20 +1,20 @@
-from collections import deque
-from typing import List
-
-
 class FirstUnique:
     def __init__(self, nums: List[int]):
-        self.counts = {}
-        self.unique = deque()
-        for value in nums:
-            self.add(value)
+        self.cnt = Counter(nums)
+        self.unique = OrderedDict({v: 1 for v in nums if self.cnt[v] == 1})
 
     def showFirstUnique(self) -> int:
-        while self.unique and self.counts[self.unique[0]] > 1:
-            self.unique.popleft()
-        return self.unique[0] if self.unique else -1
+        return -1 if not self.unique else next(v for v in self.unique.keys())
 
     def add(self, value: int) -> None:
-        self.counts[value] = self.counts.get(value, 0) + 1
-        if self.counts[value] == 1:
-            self.unique.append(value)
+        self.cnt[value] += 1
+        if self.cnt[value] == 1:
+            self.unique[value] = 1
+        elif value in self.unique:
+            self.unique.pop(value)
+
+
+# Your FirstUnique object will be instantiated and called as such:
+# obj = FirstUnique(nums)
+# param_1 = obj.showFirstUnique()
+# obj.add(value)

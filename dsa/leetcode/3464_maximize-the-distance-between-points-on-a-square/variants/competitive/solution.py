@@ -1,63 +1,205 @@
+# Time:  O(nlogn + nlogs), s = side
+# Space: O(n)
+
+# sort, binary search, greedy, two pointers, sliding window
 class Solution:
-    def maxDistance(self, side: int, points: List[List[int]], k: int) -> int:
-        perimeter = 4 * side
-        positions = []
+    def maxDistance(self, side, points, k):
+        """
+        :type side: int
+        :type points: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
 
+        def check(d):
+            intervals = [(0, 0, 1)]
+            i = 0
+            for right in range(1, len(p)):
+                left, cnt = right, 1
+                while i < len(intervals):
+                    l, r, c = intervals[i]
+                    if p[right]-p[r] < d:
+                        break
+                    if (p[l]+4*side)-p[right] >= d:
+                        if c+1 >= cnt:
+                            cnt = c+1
+                            left = l
+                    i += 1
+                intervals.append((left, right, cnt))
+            return max(x[2] for x in intervals) >= k
+
+        p = []
         for x, y in points:
-            if y == 0:
-                positions.append(x)
-            elif x == side:
-                positions.append(side + y)
+            if x == 0:
+                p.append(0*side+y)
             elif y == side:
-                positions.append(3 * side - x)
+                p.append(1*side+x)
+            elif x == side:
+                p.append(2*side+(side-y))
             else:
-                positions.append(4 * side - y)
+                p.append(3*side+(side-x))
+        p.sort()
+        return binary_search_right(1, 4*side//k, check)
 
-        positions.sort()
-        count = len(positions)
-        extended = positions + [position + perimeter for position in positions]
-        doubled_count = 2 * count
-        levels = (k - 1).bit_length()
 
-        def can_place(minimum: int) -> bool:
-            next_index = [doubled_count] * (doubled_count + 1)
-            right = 1
+# Time:  O(nlogn + nlogs), s = side
+# Space: O(n)
+# sort, binary search, greedy, two pointers, sliding window
+class Solution2(object):
+    def maxDistance(self, side, points, k):
+        """
+        :type side: int
+        :type points: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
 
-            for left in range(doubled_count):
-                if right <= left:
-                    right = left + 1
-                target = extended[left] + minimum
-                while right < doubled_count and extended[right] < target:
-                    right += 1
-                next_index[left] = right
+        def check(d):
+            intervals = [(0, 0, 1)]
+            i = 0
+            for right in range(1, len(sorted_points)):
+                left, cnt = right, 1
+                while i < len(intervals):
+                    l, r, c = intervals[i]
+                    if abs(sorted_points[right][0]-sorted_points[r][0])+abs(sorted_points[right][1]-sorted_points[r][1]) < d:
+                        break
+                    if abs(sorted_points[right][0]-sorted_points[l][0])+abs(sorted_points[right][1]-sorted_points[l][1]) >= d:
+                        if c+1 >= cnt:
+                            cnt = c+1
+                            left = l
+                    i += 1
+                intervals.append((left, right, cnt))
+            return max(x[2] for x in intervals) >= k
 
-            jumps = [next_index]
-            for _ in range(1, levels):
-                previous = jumps[-1]
-                jumps.append([previous[previous[index]] for index in range(doubled_count + 1)])
+        p = [[] for _ in range(4)]
+        for x, y in points:
+            if x == 0:
+                p[0].append((x, y))
+            elif y == side:
+                p[1].append((x, y))
+            elif x == side:
+                p[2].append((x, y))
+            else:
+                p[3].append((x, y))
+        p[0].sort()
+        p[1].sort()
+        p[2].sort(reverse=True)
+        p[3].sort(reverse=True)
+        sorted_points = [x for i in range(4) for x in p[i]]
+        return binary_search_right(1, 4*side//k, check)
 
-            for start in range(count):
-                current = start
-                remaining = k - 1
-                bit = 0
-                while remaining:
-                    if remaining & 1:
-                        current = jumps[bit][current]
-                    remaining >>= 1
-                    bit += 1
 
-                if current < doubled_count and extended[current] <= positions[start] + perimeter - minimum:
-                    return True
+# Time:  O(nlogn + n * (k * logn) * logs), s = side
+# Space: O(n)
+import bisect
 
+
+# sort, binary search, greedy
+class Solution3(object):
+    def maxDistance(self, side, points, k):
+        """
+        :type side: int
+        :type points: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
+
+        def check(i, d):
+            j = i
+            for _ in range(k-1):
+                j = bisect.bisect_left(p, p[j]+d, lo=j+1)
+                if j == len(p):
+                    return False
+            return (p[i]+4*side)-p[j] >= d
+
+        p = []
+        for x, y in points:
+            if x == 0:
+                p.append(0*side+y)
+            elif y == side:
+                p.append(1*side+x)
+            elif x == side:
+                p.append(2*side+(side-y))
+            else:
+                p.append(3*side+(side-x))
+        p.sort()
+        result = 1
+        for i in range(len(p)-k+1):
+            if p[-1]-p[i] <= result*(k-1):  # to speed up
+                break
+            result = binary_search_right(result+1, 4*side//k, lambda x: check(i, x))
+        return result
+
+
+# Time:  O(nlogn + (n * k * logn) * logs), s = side
+# Space: O(n)
+import bisect
+
+
+# sort, binary search, greedy
+class Solution4(object):
+    def maxDistance(self, side, points, k):
+        """
+        :type side: int
+        :type points: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if not check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return right
+
+        def check(d):
+            for i in range(len(points)):
+                j = i
+                for _ in range(k-1):
+                    j = bisect.bisect_left(p, p[j]+d, lo=j+1, hi=i+len(points))
+                    if j == i+len(points):
+                        break
+                else:
+                    if p[i+len(points)]-p[j] >= d:
+                        return True
             return False
 
-        low = 1
-        high = side
-        while low < high:
-            middle = (low + high + 1) // 2
-            if can_place(middle):
-                low = middle
+        p = []
+        for x, y in points:
+            if x == 0:
+                p.append(0*side+y)
+            elif y == side:
+                p.append(1*side+x)
+            elif x == side:
+                p.append(2*side+(side-y))
             else:
-                high = middle - 1
-
-        return low
+                p.append(3*side+(side-x))
+        p.sort()
+        p += [x+4*side for x in p]
+        return binary_search_right(1, 4*side//k, check)

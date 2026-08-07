@@ -1,19 +1,21 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def longestPalindrome(self, words: List[str]) -> int:
-        unmatched = Counter()
-        length = 0
-        for word in words:
-            reverse = word[::-1]
-            if unmatched[reverse]:
-                unmatched[reverse] -= 1
-                length += 4
-            else:
-                unmatched[word] += 1
-
-        if any(word[0] == word[1] and count for word, count in unmatched.items()):
-            length += 2
-        return length
+    def longestPalindrome(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        cnt = collections.Counter(words)
+        result = remain = 0
+        for x, c in cnt.items():
+            if x == x[::-1]:
+                result += c//2
+                remain |= c%2
+            elif x < x[::-1] and x[::-1] in cnt:
+                result += min(c, cnt[x[::-1]])
+        return result*4+remain*2

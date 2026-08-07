@@ -1,41 +1,21 @@
 class Solution:
     def earliestSecondToMarkIndices(
-        self,
-        nums: List[int],
-        changeIndices: List[int],
+        self, nums: List[int], changeIndices: List[int]
     ) -> int:
-        index_count = len(nums)
-
-        def can_finish(seconds: int) -> bool:
-            last_occurrence = [-1] * index_count
-            for second in range(seconds):
-                last_occurrence[changeIndices[second] - 1] = second
-
-            if -1 in last_occurrence:
-                return False
-
-            available_decrements = 0
-            for second in range(seconds):
-                index = changeIndices[second] - 1
-                if second == last_occurrence[index]:
-                    if available_decrements < nums[index]:
+        def check(t: int) -> bool:
+            decrement = 0
+            marked = 0
+            last = {i: s for s, i in enumerate(changeIndices[:t])}
+            for s, i in enumerate(changeIndices[:t]):
+                if last[i] == s:
+                    if decrement < nums[i - 1]:
                         return False
-                    available_decrements -= nums[index]
+                    decrement -= nums[i - 1]
+                    marked += 1
                 else:
-                    available_decrements += 1
+                    decrement += 1
+            return marked == len(nums)
 
-            return True
-
-        left = 1
-        right = len(changeIndices)
-        answer = -1
-
-        while left <= right:
-            middle = (left + right) // 2
-            if can_finish(middle):
-                answer = middle
-                right = middle - 1
-            else:
-                left = middle + 1
-
-        return answer
+        m = len(changeIndices)
+        l = bisect_left(range(1, m + 2), True, key=check) + 1
+        return -1 if l > m else l

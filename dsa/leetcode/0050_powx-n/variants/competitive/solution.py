@@ -1,13 +1,42 @@
-class Solution:
-    def myPow(self, x: float, n: int) -> float:
-        if n < 0:
-            x = 1.0 / x
-            n = -n
+# Time:  O(logn)
+# Space: O(1)
 
-        result = 1.0
-        while n:
-            if n & 1:
+class Solution:
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        result = 1
+        abs_n = abs(n)
+        while abs_n:
+            if abs_n & 1:
                 result *= x
+            abs_n >>= 1
             x *= x
-            n >>= 1
-        return result
+
+        return 1 / result if n < 0 else result
+
+
+# Time:  O(logn)
+# Space: O(logn)
+# Recursive solution.
+class Solution2(object):
+    def myPow(self, x, n):
+        """
+        :type x: float
+        :type n: int
+        :rtype: float
+        """
+        if n < 0 and n != -n:
+            return 1.0 / self.myPow(x, -n)
+        if n == 0:
+            return 1
+        v = self.myPow(x, n / 2)
+        if n % 2 == 0:
+            return v * v
+        else:
+            return v * v * x
+
+

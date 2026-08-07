@@ -1,73 +1,49 @@
-from collections import Counter, deque
-from typing import List
+# Time:  O(n^4 * 2^n)
+# Space: O(n + e)
 
-
+# bitmasks, dp, freq table
 class Solution:
-    def maxLen(self, n: int, edges: List[List[int]], label: str) -> int:
-        if len(edges) == n * (n - 1) // 2:
-            odd_counts = sum(count % 2 for count in Counter(label).values())
-            return n - max(0, odd_counts - 1)
+    def maxLen(self, n, edges, label):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type label: str
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
 
-        adjacency = [0] * n
+        if len(edges) == n*(n-1)//2:  # to improve performance
+            cnt = [0]*26
+            for x in label:
+                cnt[ord(x)-ord('a')] += 1
+            return 2*sum(c//2 for c in cnt)+1*any(c%2 for c in cnt)
+
+        adj = [[] for _ in range(n)]
         for u, v in edges:
-            adjacency[u] |= 1 << v
-            adjacency[v] |= 1 << u
-
-        label_masks = {}
-        for node, character in enumerate(label):
-            label_masks[character] = label_masks.get(character, 0) | (1 << node)
-
-        queue = deque()
-        seen = set()
-
-        for node in range(n):
-            mask = 1 << node
-            state = (mask * n + node) * n + node
-            seen.add(state)
-            queue.append((mask, node, node))
-
-        answer = 1
+            adj[u].append(v)
+            adj[v].append(u)
+        dp = [[[False]*n for _ in range(n)]for _ in range(1<<n)]
+        for u in range(n):
+            dp[1<<u][u][u] = True
         for u, v in edges:
-            if label[u] != label[v]:
-                continue
-            if u > v:
-                u, v = v, u
-            mask = (1 << u) | (1 << v)
-            state = (mask * n + u) * n + v
-            if state not in seen:
-                seen.add(state)
-                queue.append((mask, u, v))
-            answer = 2
-
-        while queue:
-            mask, left_endpoint, right_endpoint = queue.popleft()
-            unused_left = adjacency[left_endpoint] & ~mask
-
-            while unused_left:
-                left_bit = unused_left & -unused_left
-                left_node = left_bit.bit_length() - 1
-                unused_left -= left_bit
-
-                unused_right = adjacency[right_endpoint] & ~mask & label_masks[label[left_node]] & ~left_bit
-                while unused_right:
-                    right_bit = unused_right & -unused_right
-                    right_node = right_bit.bit_length() - 1
-                    unused_right -= right_bit
-
-                    if left_node > right_node:
-                        first, second = right_node, left_node
-                    else:
-                        first, second = left_node, right_node
-                    new_mask = mask | left_bit | right_bit
-                    state = (new_mask * n + first) * n + second
-                    if state in seen:
+            if label[u] == label[v]:
+                dp[(1<<u)|(1<<v)][min(u, v)][max(u, v)] = True
+        result = 0
+        for mask in range(1, 1<<n):
+            for u in range(n):
+                for v in range(u, n):
+                    if not dp[mask][u][v]:
                         continue
-
-                    seen.add(state)
-                    queue.append((new_mask, first, second))
-                    length = new_mask.bit_count()
-                    if length == n:
-                        return n
-                    answer = max(answer, length)
-
-        return answer
+                    result = max(result, popcount(mask))
+                    for nu in adj[u]:
+                        if mask&(1<<nu):
+                            continue
+                        for nv in adj[v]:
+                            if mask&(1<<nv):
+                                continue
+                            if nu == nv:
+                                continue
+                            if label[nu] == label[nv]:
+                                dp[mask|(1<<nu)|(1<<nv)][min(nu, nv)][max(nu, nv)] = True
+        return result

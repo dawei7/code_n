@@ -1,24 +1,17 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def rob(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
-        states = {}
-        stack = [(root, False)]
-        while stack:
-            node, expanded = stack.pop()
-            if node is None:
-                continue
-            if not expanded:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-                continue
-            left_skip, left_take = states.get(node.left, (0, 0))
-            right_skip, right_take = states.get(node.right, (0, 0))
-            take = node.val + left_skip + right_skip
-            skip = max(left_skip, left_take) + max(right_skip, right_take)
-            states[node] = (skip, take)
-        return max(states[root])
+    def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def robHelper(root):
+            if not root:
+                return (0, 0)
+            left, right = robHelper(root.left), robHelper(root.right)
+            return (root.val + left[1] + right[1], max(left) + max(right))
+
+        return max(robHelper(root))
+

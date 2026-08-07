@@ -1,6 +1,7 @@
-SELECT
-    home.team_name AS home_team,
-    away.team_name AS away_team
-FROM Teams AS home
-CROSS JOIN Teams AS away
-WHERE home.team_name <> away.team_name;
+# Time:  O(n^2)
+# Space: O(n^2)
+
+SELECT a.team_name home_team,
+       b.team_name away_team
+FROM Teams a CROSS JOIN Teams b
+ON a.team_name != b.team_name;

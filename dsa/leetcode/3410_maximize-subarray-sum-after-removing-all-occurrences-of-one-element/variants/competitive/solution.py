@@ -1,54 +1,133 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# hash table, greedy, kadane's algorithm
 class Solution:
-    def maxSubarraySum(self, nums: List[int]) -> int:
-        n = len(nums)
-        size = 1
-        while size < n:
-            size <<= 1
+    def maxSubarraySum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = float("-inf")
+        curr = mn = mn0 = 0
+        mn1 = collections.defaultdict(int)
+        for x in nums:
+            curr += x
+            result = max(result, curr-mn)
+            mn1[x] = min(mn1[x], mn0)+x
+            mn0 = min(mn0, curr)
+            mn = min(mn, mn1[x], mn0)
+        return result
 
-        negative_infinity = -(10**30)
-        tree = [(0, negative_infinity, negative_infinity, negative_infinity) for _ in range(2 * size)]
 
-        def make_node(value: int) -> tuple[int, int, int, int]:
-            return (value, value, value, value)
+# Time:  O(n)
+# Space: O(n)
+import collections
 
-        def make_removed_node() -> tuple[int, int, int, int]:
-            return (0, negative_infinity, negative_infinity, negative_infinity)
 
-        def merge(left, right):
-            total = left[0] + right[0]
-            prefix = max(left[1], left[0] + right[1])
-            suffix = max(right[2], right[0] + left[2])
-            best = max(left[3], right[3], left[2] + right[1])
-            return (total, prefix, suffix, best)
+# hash table, greedy, kadane's algorithm
+class Solution2(object):
+    def maxSubarraySum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = float("-inf")
+        curr = mn = mn0 = 0
+        mn1 = collections.defaultdict(int)
+        for x in nums:
+            curr += x
+            result = max(result, curr-mn)
+            if x < 0:
+                mn1[x] = min(mn1[x], mn0)+x
+                mn = min(mn, mn1[x])
+            mn0 = min(mn0, curr)
+            mn = min(mn, mn0)
+        return result
 
-        for index, value in enumerate(nums):
-            tree[size + index] = make_node(value)
-        for index in range(size - 1, 0, -1):
-            tree[index] = merge(tree[index * 2], tree[index * 2 + 1])
 
-        def update(position: int, value: int | None) -> None:
-            index = size + position
-            tree[index] = make_removed_node() if value is None else make_node(value)
-            index //= 2
-            while index:
-                tree[index] = merge(tree[index * 2], tree[index * 2 + 1])
-                index //= 2
+# Time:  O(nlogn)
+# Space: O(n)
+import collections
 
-        positions = defaultdict(list)
-        for index, value in enumerate(nums):
-            if value < 0:
-                positions[value].append(index)
 
-        answer = tree[1][3]
-        for value, indices in positions.items():
-            for index in indices:
-                update(index, None)
-            answer = max(answer, tree[1][3])
-            for index in indices:
-                update(index, value)
+# segment tree
+class Solution_TLE(object):
+    def maxSubarraySum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MAX, TOTAL, PREFIX, SUFFIX = range(4)
+        # Template:
+        # https://github.com/kamyu104/LeetCode-Solutions/blob/master/Python/block-placement-queries.py
+        class SegmentTree(object):
+            def __init__(self, N,
+                        build_fn=lambda _: None,
+                        query_fn=lambda x, y: y if x is None else x if y is None else max(x, y),
+                        update_fn=lambda x: x):
+                self.tree = [None]*(1<<((N-1).bit_length()+1))
+                self.base = len(self.tree)>>1
+                self.query_fn = query_fn
+                self.update_fn = update_fn
+                for i in range(self.base, self.base+N):
+                    self.tree[i] = build_fn(i-self.base)
+                for i in reversed(range(1, self.base)):
+                    self.tree[i] = query_fn(self.tree[i<<1], self.tree[(i<<1)+1])
 
-        return answer
+            def update(self, i, h):
+                x = self.base+i
+                self.tree[x] = self.update_fn(h)
+                while x > 1:
+                    x >>= 1
+                    self.tree[x] = self.query_fn(self.tree[x<<1], self.tree[(x<<1)+1])
+
+            def query(self, L, R):
+                L += self.base
+                R += self.base
+                left = right = None
+                while L <= R:
+                    if L & 1:
+                        left = self.query_fn(left, self.tree[L])
+                        L += 1
+                    if R & 1 == 0:
+                        right = self.query_fn(self.tree[R], right)
+                        R -= 1
+                    L >>= 1
+                    R >>= 1
+                return self.query_fn(left, right)
+        
+        def build(i):
+            return [nums[i]]*4
+        
+        def query(x, y):
+            if x is None:
+                return y
+            if y is None:
+                return x
+            return [max(x[MAX], y[MAX], x[SUFFIX]+y[PREFIX]),
+                    x[TOTAL]+y[TOTAL],
+                    max(x[PREFIX], x[TOTAL]+y[PREFIX]),
+                    max(y[SUFFIX], x[SUFFIX]+y[TOTAL])]
+
+        mx = max(nums)
+        if mx < 0:
+            return mx
+        mn = min(nums)
+        if mn >= 0:
+            return sum(nums)
+        groups = collections.defaultdict(list)
+        for i, x in enumerate(nums):
+            groups[x].append(i)
+        st = SegmentTree(len(nums), build_fn=build, query_fn=query)
+        result = st.tree[1][0]  # st.query(0, len(nums)-1)[0]
+        for k, v in groups.items():
+            for i in v:
+                st.update(i, None)
+            result = max(result, st.tree[1][0])  # st.query(0, len(nums)-1)[0]
+            for i in v:
+                st.update(i, [k]*4)
+        return result

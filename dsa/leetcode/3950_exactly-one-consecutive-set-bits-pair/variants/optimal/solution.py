@@ -1,4 +1,13 @@
 class Solution:
     def consecutiveSetBits(self, n: int) -> bool:
-        adjacent_pairs = n & (n >> 1)
-        return adjacent_pairs != 0 and (adjacent_pairs & (adjacent_pairs - 1)) == 0
+        pre = 0
+        vis = False
+        while n:
+            cur = n & 1
+            if pre == cur == 1:
+                if vis:
+                    return False
+                vis = True
+            pre = cur
+            n = n >> 1
+        return vis

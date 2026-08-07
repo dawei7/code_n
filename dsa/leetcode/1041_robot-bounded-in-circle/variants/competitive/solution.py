@@ -1,18 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def isRobotBounded(self, instructions: str) -> bool:
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        x = 0
-        y = 0
-        direction = 0
-
+    def isRobotBounded(self, instructions):
+        """
+        :type instructions: str
+        :rtype: bool
+        """
+        directions = [[ 1, 0], [0, -1], [-1, 0], [0, 1]]
+        x, y, i = 0, 0, 0
         for instruction in instructions:
-            if instruction == "G":
-                dx, dy = directions[direction]
-                x += dx
-                y += dy
-            elif instruction == "L":
-                direction = (direction - 1) % 4
+            if instruction == 'R':
+                i = (i+1) % 4
+            elif instruction == 'L':
+                i = (i-1) % 4
             else:
-                direction = (direction + 1) % 4
-
-        return (x == 0 and y == 0) or direction != 0
+                x += directions[i][0]
+                y += directions[i][1]
+        return (x == 0 and y == 0) or i > 0

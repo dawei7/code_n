@@ -1,29 +1,27 @@
-from typing import List
-
+# Time:  O(nlogn + nlogr), r is the range of positions
+# Space: O(1)
 
 class Solution:
-    def maxDistance(self, position: List[int], m: int) -> int:
+    def maxDistance(self, position, m):
+        """
+        :type position: List[int]
+        :type m: int
+        :rtype: int
+        """
+        def check(position, m, x):
+            count, prev = 1, position[0]
+            for i in range(1, len(position)):
+                if position[i]-prev >= x:
+                    count += 1
+                    prev = position[i]
+            return count >= m
+        
         position.sort()
-
-        def feasible(distance: int) -> bool:
-            placed = 1
-            last = position[0]
-            for point in position[1:]:
-                if point - last >= distance:
-                    placed += 1
-                    last = point
-                    if placed == m:
-                        return True
-            return False
-
-        low = 1
-        high = (position[-1] - position[0]) // (m - 1)
-
-        while low <= high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                low = middle + 1
+        left, right = 1, position[-1]-position[0]
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(position, m, mid):
+                right = mid-1
             else:
-                high = middle - 1
-
-        return high
+                left = mid+1
+        return right

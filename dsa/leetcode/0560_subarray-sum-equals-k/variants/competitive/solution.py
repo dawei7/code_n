@@ -1,15 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def subarraySum(self, nums: List[int], k: int) -> int:
-        prefix_frequency = {0: 1}
-        prefix = 0
-        answer = 0
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        accumulated_sum = 0
+        lookup = collections.defaultdict(int)
+        lookup[0] += 1
+        for num in nums:
+            accumulated_sum += num
+            result += lookup[accumulated_sum - k]
+            lookup[accumulated_sum] += 1
+        return result
 
-        for value in nums:
-            prefix += value
-            answer += prefix_frequency.get(prefix - k, 0)
-            prefix_frequency[prefix] = prefix_frequency.get(prefix, 0) + 1
-
-        return answer

@@ -1,55 +1,17 @@
-from typing import List
-
-
 class Solution:
     def countUnguarded(
-        self,
-        m: int,
-        n: int,
-        guards: List[List[int]],
-        walls: List[List[int]],
+        self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]
     ) -> int:
-        empty, guard, wall, watched = 0, 1, 2, 3
-        grid = [[empty] * n for _ in range(m)]
-        for row, column in guards:
-            grid[row][column] = guard
-        for row, column in walls:
-            grid[row][column] = wall
-
-        for row in range(m):
-            visible = False
-            for column in range(n):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-            visible = False
-            for column in range(n - 1, -1, -1):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-
-        for column in range(n):
-            visible = False
-            for row in range(m):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-            visible = False
-            for row in range(m - 1, -1, -1):
-                if grid[row][column] == guard:
-                    visible = True
-                elif grid[row][column] == wall:
-                    visible = False
-                elif visible:
-                    grid[row][column] = watched
-
-        return sum(cell == empty for row in grid for cell in row)
+        g = [[0] * n for _ in range(m)]
+        for i, j in guards:
+            g[i][j] = 2
+        for i, j in walls:
+            g[i][j] = 2
+        dirs = (-1, 0, 1, 0, -1)
+        for i, j in guards:
+            for a, b in pairwise(dirs):
+                x, y = i, j
+                while 0 <= x + a < m and 0 <= y + b < n and g[x + a][y + b] < 2:
+                    x, y = x + a, y + b
+                    g[x][y] = 1
+        return sum(v == 0 for row in g for v in row)

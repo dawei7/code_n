@@ -2,19 +2,16 @@ class Solution:
     def strongPasswordCheckerII(self, password: str) -> bool:
         if len(password) < 8:
             return False
-
-        has_lowercase = False
-        has_uppercase = False
-        has_digit = False
-        has_special = False
-        special = set("!@#$%^&*()-+")
-
-        for index, character in enumerate(password):
-            if index and character == password[index - 1]:
+        mask = 0
+        for i, c in enumerate(password):
+            if i and c == password[i - 1]:
                 return False
-            has_lowercase |= character.islower()
-            has_uppercase |= character.isupper()
-            has_digit |= character.isdigit()
-            has_special |= character in special
-
-        return has_lowercase and has_uppercase and has_digit and has_special
+            if c.islower():
+                mask |= 1
+            elif c.isupper():
+                mask |= 2
+            elif c.isdigit():
+                mask |= 4
+            else:
+                mask |= 8
+        return mask == 15

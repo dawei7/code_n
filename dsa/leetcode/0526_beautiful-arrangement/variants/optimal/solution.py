@@ -1,23 +1,23 @@
-from functools import cache
-
-
 class Solution:
     def countArrangement(self, n: int) -> int:
-        full_mask = (1 << n) - 1
+        def dfs(i):
+            nonlocal ans, n
+            if i == n + 1:
+                ans += 1
+                return
+            for j in match[i]:
+                if not vis[j]:
+                    vis[j] = True
+                    dfs(i + 1)
+                    vis[j] = False
 
-        @cache
-        def count_completions(used_mask: int) -> int:
-            if used_mask == full_mask:
-                return 1
+        ans = 0
+        vis = [False] * (n + 1)
+        match = defaultdict(list)
+        for i in range(1, n + 1):
+            for j in range(1, n + 1):
+                if j % i == 0 or i % j == 0:
+                    match[i].append(j)
 
-            position = used_mask.bit_count() + 1
-            total = 0
-            for value in range(1, n + 1):
-                bit = 1 << (value - 1)
-                if used_mask & bit:
-                    continue
-                if value % position == 0 or position % value == 0:
-                    total += count_completions(used_mask | bit)
-            return total
-
-        return count_completions(0)
+        dfs(1)
+        return ans

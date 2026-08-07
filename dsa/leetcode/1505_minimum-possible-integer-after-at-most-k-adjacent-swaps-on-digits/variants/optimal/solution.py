@@ -1,44 +1,43 @@
-from collections import deque
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    @staticmethod
+    def lowbit(x):
+        return x & -x
+
+    def update(self, x, delta):
+        while x <= self.n:
+            self.c[x] += delta
+            x += BinaryIndexedTree.lowbit(x)
+
+    def query(self, x):
+        s = 0
+        while x:
+            s += self.c[x]
+            x -= BinaryIndexedTree.lowbit(x)
+        return s
 
 
 class Solution:
     def minInteger(self, num: str, k: int) -> str:
-        length = len(num)
-        positions = [deque() for _ in range(10)]
-        for index, character in enumerate(num):
-            positions[ord(character) - ord("0")].append(index)
-
-        removed = [0] * (length + 1)
-
-        def removed_through(index: int) -> int:
-            total = 0
-            index += 1
-            while index > 0:
-                total += removed[index]
-                index -= index & -index
-            return total
-
-        def mark_removed(index: int) -> None:
-            index += 1
-            while index <= length:
-                removed[index] += 1
-                index += index & -index
-
-        answer = []
-        for _ in range(length):
-            for digit in range(10):
-                if not positions[digit]:
-                    continue
-
-                original_index = positions[digit][0]
-                swaps = original_index - removed_through(original_index)
-                if swaps > k:
-                    continue
-
-                k -= swaps
-                positions[digit].popleft()
-                mark_removed(original_index)
-                answer.append(chr(ord("0") + digit))
-                break
-
-        return "".join(answer)
+        pos = defaultdict(deque)
+        for i, v in enumerate(num, 1):
+            pos[int(v)].append(i)
+        ans = []
+        n = len(num)
+        tree = BinaryIndexedTree(n)
+        for i in range(1, n + 1):
+            for v in range(10):
+                q = pos[v]
+                if q:
+                    j = q[0]
+                    dist = tree.query(n) - tree.query(j) + j - i
+                    if dist <= k:
+                        k -= dist
+                        q.popleft()
+                        ans.append(str(v))
+                        tree.update(j, 1)
+                        break
+        return ''.join(ans)

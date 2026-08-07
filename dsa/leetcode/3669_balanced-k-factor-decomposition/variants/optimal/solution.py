@@ -1,30 +1,27 @@
-from typing import List
+mx = 10**5 + 1
+g = [[] for _ in range(mx)]
+for i in range(1, mx):
+    for j in range(i, mx, i):
+        g[j].append(i)
 
 
 class Solution:
     def minDifference(self, n: int, k: int) -> List[int]:
-        best = [1] * (k - 1) + [n]
-        best_difference = n - 1
-        factors = []
-
-        def search(remaining: int, slots: int, minimum: int) -> None:
-            nonlocal best, best_difference
-            if slots == 1:
-                if remaining >= minimum:
-                    candidate = factors + [remaining]
-                    difference = candidate[-1] - candidate[0]
-                    if difference < best_difference:
-                        best = candidate
-                        best_difference = difference
+        def dfs(i: int, x: int, mi: int, mx: int):
+            if i == 0:
+                nonlocal cur, ans
+                d = max(mx, x) - min(mi, x)
+                if d < cur:
+                    cur = d
+                    path[i] = x
+                    ans = path[:]
                 return
+            for y in g[x]:
+                path[i] = y
+                dfs(i - 1, x // y, min(mi, y), max(mx, y))
 
-            factor = minimum
-            while factor**slots <= remaining:
-                if remaining % factor == 0:
-                    factors.append(factor)
-                    search(remaining // factor, slots - 1, factor)
-                    factors.pop()
-                factor += 1
-
-        search(n, k, 1)
-        return best
+        ans = None
+        path = [0] * k
+        cur = inf
+        dfs(k - 1, n, inf, 0)
+        return ans

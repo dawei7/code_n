@@ -1,31 +1,38 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# tree diameter, bfs
 class Solution:
-    def findSpecialNodes(self, n: int, edges: List[List[int]]) -> str:
-        graph = [[] for _ in range(n)]
+    def findSpecialNodes(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: str
+        """
+        def bfs(u):
+            lookup = [False]*len(adj)
+            lookup[u] = True
+            q = [u]
+            new_q = []
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q, new_q = new_q, q
+            return new_q
+        
+        adj = [[] for _ in range(len(edges)+1)]
         for u, v in edges:
-            graph[u].append(v)
-            graph[v].append(u)
-
-        def distances(start: int) -> List[int]:
-            distance = [-1] * n
-            distance[start] = 0
-            queue = deque([start])
-            while queue:
-                node = queue.popleft()
-                for neighbor in graph[node]:
-                    if distance[neighbor] == -1:
-                        distance[neighbor] = distance[node] + 1
-                        queue.append(neighbor)
-            return distance
-
-        from_zero = distances(0)
-        endpoint_a = max(range(n), key=from_zero.__getitem__)
-        from_a = distances(endpoint_a)
-        endpoint_b = max(range(n), key=from_a.__getitem__)
-        from_b = distances(endpoint_b)
-        diameter = from_a[endpoint_b]
-
-        return "".join("1" if max(from_a[node], from_b[node]) == diameter else "0" for node in range(n))
+            adj[u].append(v)
+            adj[v].append(u)
+        result = ['0']*n
+        far = bfs(0)
+        for u in far:
+            result[u] = '1'
+        for u in bfs(far[0]):
+            result[u] = '1'
+        return "".join(result)

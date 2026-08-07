@@ -1,54 +1,32 @@
-from functools import lru_cache
-from typing import List
-
+# Time:  O(n^2) states * O(n^2) per state = O(n^4)
+# Space: O(n^2 + (n/2)^2 + (n/4)^2 + ... ) = O(n^2)
 
 class Solution:
-    def earliestAndLatest(self, n: int, firstPlayer: int, secondPlayer: int) -> List[int]:
-        @lru_cache(None)
-        def search(player_count: int, first: int, second: int) -> tuple[int, int]:
-            if first + second == player_count + 1:
-                return 1, 1
-
-            positions = {(0, 0)}
-            for left in range(1, player_count // 2 + 1):
-                right = player_count + 1 - left
-                if first in (left, right):
-                    winners = (first,)
-                elif second in (left, right):
-                    winners = (second,)
-                else:
-                    winners = (left, right)
-
-                next_positions = set()
-                for before_first, before_second in positions:
-                    for winner in winners:
-                        next_positions.add(
-                            (
-                                before_first + (winner < first),
-                                before_second + (winner < second),
-                            )
-                        )
-                positions = next_positions
-
-            if player_count % 2:
-                middle = player_count // 2 + 1
-                positions = {
-                    (
-                        before_first + (middle < first),
-                        before_second + (middle < second),
-                    )
-                    for before_first, before_second in positions
-                }
-
-            earliest = player_count
-            latest = 0
-            next_count = (player_count + 1) // 2
-            for before_first, before_second in positions:
-                next_first = before_first + 1
-                next_second = before_second + 1
-                child_earliest, child_latest = search(next_count, next_first, next_second)
-                earliest = min(earliest, child_earliest + 1)
-                latest = max(latest, child_latest + 1)
-            return earliest, latest
-
-        return list(search(n, firstPlayer, secondPlayer))
+    def earliestAndLatest(self, n, firstPlayer, secondPlayer):
+        """
+        :type n: int
+        :type firstPlayer: int
+        :type secondPlayer: int
+        :rtype: List[int]
+        """
+        def memoization(t, l, r, lookup):
+            # t: total number of players,
+            # l: number of players left to the nearest top2 player,
+            # r: number of players right to the nearest top2 player
+            if (t, l, r) not in lookup:
+                if l == r:
+                    return (1, 1)
+                if l > r:  # make sure l <= r
+                    l, r, = r, l
+                result = [float("inf"), 0]
+                for i in range(l+1):
+                    l_win_cnt, l_lose_cnt, nt, pair_cnt = i+1, l-i, (t+1)//2, t//2
+                    min_j = max(l_lose_cnt, r-(pair_cnt-l_lose_cnt))  # j >= l_lose_cnt and j >= r-(pair_cnt-l_lose_cnt)
+                    max_j = min(r-l_win_cnt, (nt-l_win_cnt)-1)  # j <= r-l_win_cnt and j <= (nt-l_win_cnt)-1
+                    for j in range(min_j, max_j+1):
+                        tmp = memoization(nt, i, j, lookup)
+                        result = min(result[0], tmp[0]+1), max(result[1], tmp[1]+1)
+                lookup[t, l, r] = result
+            return lookup[t, l, r]
+        
+        return memoization(n, firstPlayer-1, n-secondPlayer, {})

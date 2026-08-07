@@ -1,17 +1,14 @@
 class Solution:
     def distinctPrimeFactors(self, nums: List[int]) -> int:
-        factors = set()
-
-        for number in nums:
-            divisor = 2
-            while divisor * divisor <= number:
-                if number % divisor == 0:
-                    factors.add(divisor)
-                    while number % divisor == 0:
-                        number //= divisor
-                divisor += 1
-
-            if number > 1:
-                factors.add(number)
-
-        return len(factors)
+        s = set()
+        for n in nums:
+            i = 2
+            while i <= n // i:
+                if n % i == 0:
+                    s.add(i)
+                    while n % i == 0:
+                        n //= i
+                i += 1
+            if n > 1:
+                s.add(n)
+        return len(s)

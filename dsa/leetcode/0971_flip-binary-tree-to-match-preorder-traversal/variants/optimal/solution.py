@@ -1,29 +1,29 @@
-from typing import List
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def flipMatchVoyage(self, root, voyage: List[int]) -> List[int]:
-        flips = []
-        index = 0
-        stack = [root]
-
-        while stack:
-            node = stack.pop()
-            if index >= len(voyage) or node.val != voyage[index]:
-                return [-1]
-            index += 1
-
-            should_flip = node.left is not None and index < len(voyage) and node.left.val != voyage[index]
-            if should_flip:
-                flips.append(node.val)
-                if node.left is not None:
-                    stack.append(node.left)
-                if node.right is not None:
-                    stack.append(node.right)
+    def flipMatchVoyage(self, root: Optional[TreeNode], voyage: List[int]) -> List[int]:
+        def dfs(root):
+            nonlocal i, ok
+            if root is None or not ok:
+                return
+            if root.val != voyage[i]:
+                ok = False
+                return
+            i += 1
+            if root.left is None or root.left.val == voyage[i]:
+                dfs(root.left)
+                dfs(root.right)
             else:
-                if node.right is not None:
-                    stack.append(node.right)
-                if node.left is not None:
-                    stack.append(node.left)
+                ans.append(root.val)
+                dfs(root.right)
+                dfs(root.left)
 
-        return flips if index == len(voyage) else [-1]
+        ans = []
+        i = 0
+        ok = True
+        dfs(root)
+        return ans if ok else [-1]

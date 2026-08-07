@@ -1,9 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
-        total = 0
-        for (x1, y1), (x2, y2) in zip(points, points[1:]):
-            total += max(abs(x2 - x1), abs(y2 - y1))
-        return total
+    def minTimeToVisitAllPoints(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        return sum(max(abs(points[i+1][0] - points[i][0]),
+                       abs(points[i+1][1] - points[i][1]))
+                   for i in range(len(points)-1))

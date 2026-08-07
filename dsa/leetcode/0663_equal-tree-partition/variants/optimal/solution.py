@@ -1,14 +1,21 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def checkEqualTree(self, root):
-        subtree_sums = []
-
-        def total(node):
-            if node is None:
+    def checkEqualTree(self, root: TreeNode) -> bool:
+        def sum(root):
+            if root is None:
                 return 0
-            value = node.val + total(node.left) + total(node.right)
-            subtree_sums.append(value)
-            return value
+            l, r = sum(root.left), sum(root.right)
+            seen.append(l + r + root.val)
+            return seen[-1]
 
-        tree_sum = total(root)
-        subtree_sums.pop()
-        return tree_sum % 2 == 0 and tree_sum // 2 in subtree_sums
+        seen = []
+        s = sum(root)
+        if s % 2 == 1:
+            return False
+        seen.pop()
+        return s // 2 in seen

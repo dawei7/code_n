@@ -1,30 +1,15 @@
-from typing import List
-
-
 class Solution:
     def braceExpansionII(self, expression: str) -> List[str]:
-        index = 0
+        def dfs(exp):
+            j = exp.find('}')
+            if j == -1:
+                s.add(exp)
+                return
+            i = exp.rfind('{', 0, j - 1)
+            a, c = exp[:i], exp[j + 1 :]
+            for b in exp[i + 1 : j].split(','):
+                dfs(a + b + c)
 
-        def parse_union() -> set[str]:
-            nonlocal index
-            result = parse_concatenation()
-            while index < len(expression) and expression[index] == ",":
-                index += 1
-                result |= parse_concatenation()
-            return result
-
-        def parse_concatenation() -> set[str]:
-            nonlocal index
-            result = {""}
-            while index < len(expression) and expression[index] not in ",}":
-                if expression[index] == "{":
-                    index += 1
-                    factor = parse_union()
-                    index += 1
-                else:
-                    factor = {expression[index]}
-                    index += 1
-                result = {prefix + suffix for prefix in result for suffix in factor}
-            return result
-
-        return sorted(parse_union())
+        s = set()
+        dfs(expression)
+        return sorted(s)

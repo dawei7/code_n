@@ -1,6 +1,26 @@
-class Solution:
-    def reverseByType(self, s: str) -> str:
-        letters = [character for character in s if character.isalpha()]
-        special_characters = [character for character in s if not character.isalpha()]
+# Time:  O(n)
+# Space: O(1)
 
-        return "".join(letters.pop() if character.isalpha() else special_characters.pop() for character in s)
+# string
+class Solution:
+    def reverseByType(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def reverse(s, check):
+            left, right = 0, len(s)-1
+            while left < right:
+                if not check(s[left]):
+                    left += 1
+                elif not check(s[right]):
+                    right -= 1
+                else:
+                    s[left], s[right] = s[right], s[left]
+                    left += 1
+                    right -= 1
+
+        result = list(s)
+        reverse(result, lambda x: x.isalpha())
+        reverse(result, lambda x: not x.isalpha())
+        return "".join(result)

@@ -1,3 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minOperations(self, nums: list[int]) -> int:
-        return sum(max(0, left - right) for left, right in zip(nums, nums[1:]))
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(max(nums[i]-nums[i+1], 0) for i in range(len(nums)-1))

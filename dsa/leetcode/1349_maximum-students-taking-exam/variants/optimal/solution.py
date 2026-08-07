@@ -1,26 +1,28 @@
-from typing import List
-
-
 class Solution:
     def maxStudents(self, seats: List[List[str]]) -> int:
-        columns = len(seats[0])
-        dp = {0: 0}
+        def f(seat: List[str]) -> int:
+            mask = 0
+            for i, c in enumerate(seat):
+                if c == '.':
+                    mask |= 1 << i
+            return mask
 
-        for row in seats:
-            usable = 0
-            for column, seat in enumerate(row):
-                if seat == ".":
-                    usable |= 1 << column
+        @cache
+        def dfs(seat: int, i: int) -> int:
+            ans = 0
+            for mask in range(1 << n):
+                if (seat | mask) != seat or (mask & (mask << 1)):
+                    continue
+                cnt = mask.bit_count()
+                if i == len(ss) - 1:
+                    ans = max(ans, cnt)
+                else:
+                    nxt = ss[i + 1]
+                    nxt &= ~(mask << 1)
+                    nxt &= ~(mask >> 1)
+                    ans = max(ans, cnt + dfs(nxt, i + 1))
+            return ans
 
-            valid_masks = [mask for mask in range(1 << columns) if mask & ~usable == 0 and mask & (mask << 1) == 0]
-            next_dp = {}
-            for mask in valid_masks:
-                students = mask.bit_count()
-                next_dp[mask] = max(
-                    total + students
-                    for previous, total in dp.items()
-                    if mask & (previous << 1) == 0 and mask & (previous >> 1) == 0
-                )
-            dp = next_dp
-
-        return max(dp.values())
+        n = len(seats[0])
+        ss = [f(s) for s in seats]
+        return dfs(ss[0], 0)

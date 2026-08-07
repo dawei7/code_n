@@ -1,35 +1,27 @@
 class Solution:
     def countWinningSequences(self, s: str) -> int:
-        modulus = 1_000_000_007
-        moves = {"F": 0, "W": 1, "E": 2}
-        n = len(s)
-        offset = n
-        width = 2 * n + 1
-
-        def score(bob: int, alice: int) -> int:
-            if bob == alice:
+        def calc(x: int, y: int) -> int:
+            if x == y:
                 return 0
-            return 1 if (bob - alice) % 3 == 1 else -1
+            if x < y:
+                return 1 if x == 0 and y == 2 else -1
+            return -1 if x == 2 and y == 0 else 1
 
-        dp = [[0] * width for _ in range(3)]
-        alice = moves[s[0]]
-        for bob in range(3):
-            dp[bob][offset + score(bob, alice)] = 1
+        @cache
+        def dfs(i: int, j: int, k: int) -> int:
+            if len(s) - i <= j:
+                return 0
+            if i >= len(s):
+                return int(j < 0)
+            res = 0
+            for l in range(3):
+                if l == k:
+                    continue
+                res = (res + dfs(i + 1, j + calc(d[s[i]], l), l)) % mod
+            return res
 
-        for round_index in range(1, n):
-            alice = moves[s[round_index]]
-            next_dp = [[0] * width for _ in range(3)]
-
-            for previous in range(3):
-                for difference in range(-round_index, round_index + 1):
-                    ways = dp[previous][offset + difference]
-                    if ways == 0:
-                        continue
-                    for bob in range(3):
-                        if bob != previous:
-                            index = offset + difference + score(bob, alice)
-                            next_dp[bob][index] = (next_dp[bob][index] + ways) % modulus
-
-            dp = next_dp
-
-        return sum(dp[last][offset + difference] for last in range(3) for difference in range(1, n + 1)) % modulus
+        mod = 10**9 + 7
+        d = {"F": 0, "W": 1, "E": 2}
+        ans = dfs(0, 0, -1)
+        dfs.cache_clear()
+        return ans

@@ -1,10 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# math, freq table
 class Solution:
-    def maxScore(self, prices: List[int]) -> int:
-        totals = {}
-        for index, price in enumerate(prices):
-            key = price - index
-            totals[key] = totals.get(key, 0) + price
-        return max(totals.values())
+    def maxScore(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        cnt = collections.Counter()
+        for i, x in enumerate(prices):
+            cnt[x-i] += x
+        return max(cnt.values())

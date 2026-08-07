@@ -1,57 +1,62 @@
-from heapq import heappop, heappush
+# """
+# This is GridMaster's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+# class GridMaster(object):
+#    def canMove(self, direction: str) -> bool:
+#
+#
+#    def move(self, direction: str) -> int:
+#
+#
+#    def isTarget(self) -> bool:
+#
+#
 
 
 class Solution:
     def findShortestPath(self, master: "GridMaster") -> int:
-        directions = (
-            ("U", -1, 0, "D"),
-            ("R", 0, 1, "L"),
-            ("D", 1, 0, "U"),
-            ("L", 0, -1, "R"),
-        )
-        costs = {(0, 0): 0}
-        target = None
-        stack = [[0, 0, 0, None]]
-
-        while stack:
-            row, column, next_direction, back_direction = stack[-1]
-            if next_direction == len(directions):
-                stack.pop()
-                if back_direction is not None:
-                    master.move(back_direction)
-                continue
-
-            direction, row_delta, column_delta, opposite = directions[next_direction]
-            stack[-1][2] += 1
-            neighbor = (row + row_delta, column + column_delta)
-            if neighbor in costs or not master.canMove(direction):
-                continue
-
-            costs[neighbor] = master.move(direction)
+        def dfs(x: int, y: int) -> None:
+            nonlocal target
             if master.isTarget():
-                target = neighbor
-            stack.append([neighbor[0], neighbor[1], 0, opposite])
+                target = (x, y)
+            for k in range(4):
+                dx, dy = dirs[k], dirs[k + 1]
+                nx, ny = x + dx, y + dy
+                if (
+                    0 <= nx < m
+                    and 0 <= ny < n
+                    and g[nx][ny] == -1
+                    and master.canMove(s[k])
+                ):
+                    g[nx][ny] = master.move(s[k])
+                    dfs(nx, ny)
+                    master.move(s[(k + 2) % 4])
 
-        if target is None:
+        dirs = (-1, 0, 1, 0, -1)
+        s = "URDL"
+        m = n = 200
+        g = [[-1] * n for _ in range(m)]
+        target = (-1, -1)
+        sx = sy = 100
+        dfs(sx, sy)
+        if target == (-1, -1):
             return -1
-
-        distances = {(0, 0): 0}
-        heap = [(0, 0, 0)]
-        while heap:
-            distance, row, column = heappop(heap)
-            position = (row, column)
-            if distance != distances[position]:
-                continue
-            if position == target:
-                return distance
-
-            for _, row_delta, column_delta, _ in directions:
-                neighbor = (row + row_delta, column + column_delta)
-                if neighbor not in costs:
-                    continue
-                candidate = distance + costs[neighbor]
-                if candidate < distances.get(neighbor, float("inf")):
-                    distances[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor[0], neighbor[1]))
-
+        pq = [(0, sx, sy)]
+        dist = [[inf] * n for _ in range(m)]
+        dist[sx][sy] = 0
+        while pq:
+            w, x, y = heappop(pq)
+            if (x, y) == target:
+                return w
+            for dx, dy in pairwise(dirs):
+                nx, ny = x + dx, y + dy
+                if (
+                    0 <= nx < m
+                    and 0 <= ny < n
+                    and g[nx][ny] != -1
+                    and w + g[nx][ny] < dist[nx][ny]
+                ):
+                    dist[nx][ny] = w + g[nx][ny]
+                    heappush(pq, (dist[nx][ny], nx, ny))
         return -1

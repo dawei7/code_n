@@ -1,24 +1,24 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+# Time:  O(n)
+# Space: O(1)
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        pass
+
+
+# linked list
 class Solution:
     def mergeNodes(self, head):
-        read = head.next
-        write = head
-
-        while read:
-            segment_sum = 0
-            while read.val != 0:
-                segment_sum += read.val
-                read = read.next
-
-            write.val = segment_sum
-            read = read.next
-            if read:
-                write = write.next
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        curr, zero = head.next, head
+        while curr:
+            if curr.val:
+                zero.val += curr.val
             else:
-                write.next = None
-
+                zero.next = curr if curr.next else None
+                zero = curr
+            curr = curr.next
         return head

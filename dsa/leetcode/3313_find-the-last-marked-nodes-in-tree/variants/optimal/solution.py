@@ -1,34 +1,29 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def lastMarkedNodes(self, edges: List[List[int]]) -> List[int]:
+        def dfs(i: int, fa: int, dist: List[int]):
+            for j in g[i]:
+                if j != fa:
+                    dist[j] = dist[i] + 1
+                    dfs(j, i, dist)
+
         n = len(edges) + 1
-        graph = [[] for _ in range(n)]
+        g = [[] for _ in range(n)]
         for u, v in edges:
-            graph[u].append(v)
-            graph[v].append(u)
+            g[u].append(v)
+            g[v].append(u)
 
-        def distances(start: int) -> tuple[int, List[int]]:
-            dist = [-1] * n
-            dist[start] = 0
-            queue = deque([start])
-            farthest = start
+        dist1 = [-1] * n
+        dist1[0] = 0
+        dfs(0, -1, dist1)
+        a = dist1.index(max(dist1))
 
-            while queue:
-                node = queue.popleft()
-                if dist[node] > dist[farthest]:
-                    farthest = node
-                for neighbor in graph[node]:
-                    if dist[neighbor] == -1:
-                        dist[neighbor] = dist[node] + 1
-                        queue.append(neighbor)
+        dist2 = [-1] * n
+        dist2[a] = 0
+        dfs(a, -1, dist2)
+        b = dist2.index(max(dist2))
 
-            return farthest, dist
+        dist3 = [-1] * n
+        dist3[b] = 0
+        dfs(b, -1, dist3)
 
-        endpoint_a, _ = distances(0)
-        endpoint_b, dist_a = distances(endpoint_a)
-        _, dist_b = distances(endpoint_b)
-
-        return [endpoint_a if dist_a[node] > dist_b[node] else endpoint_b for node in range(n)]
+        return [a if x > y else b for x, y in zip(dist2, dist3)]

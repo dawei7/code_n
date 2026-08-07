@@ -1,14 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def maxArrayValue(self, nums: List[int]) -> int:
-        merged = nums[-1]
-
-        for index in range(len(nums) - 2, -1, -1):
-            if nums[index] <= merged:
-                merged += nums[index]
-            else:
-                merged = nums[index]
-
-        return merged
+    def maxArrayValue(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for i in reversed(range(len(nums))):
+            if nums[i] > curr:
+                curr = 0
+            curr += nums[i]
+            result = max(result, curr)
+        return result

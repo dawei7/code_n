@@ -1,11 +1,11 @@
-from typing import List
-
-
 class Solution:
     def findAndReplacePattern(self, words: List[str], pattern: str) -> List[str]:
-        def signature(text: str) -> tuple[int, ...]:
-            identifiers = {}
-            return tuple(identifiers.setdefault(character, len(identifiers)) for character in text)
+        def match(s, t):
+            m1, m2 = [0] * 128, [0] * 128
+            for i, (a, b) in enumerate(zip(s, t), 1):
+                if m1[ord(a)] != m2[ord(b)]:
+                    return False
+                m1[ord(a)] = m2[ord(b)] = i
+            return True
 
-        target = signature(pattern)
-        return [word for word in words if signature(word) == target]
+        return [word for word in words if match(word, pattern)]

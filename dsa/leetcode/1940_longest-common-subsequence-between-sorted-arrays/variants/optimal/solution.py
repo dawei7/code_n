@@ -1,15 +1,7 @@
-from typing import List
-
-
 class Solution:
-    def longestCommonSubsequence(
-        self,
-        arrays: List[List[int]],
-    ) -> List[int]:
-        frequencies = [0] * 101
-        for array in arrays:
-            for value in array:
-                frequencies[value] += 1
-
-        required = len(arrays)
-        return [value for value in range(1, 101) if frequencies[value] == required]
+    def longestCommonSubsequence(self, arrays: List[List[int]]) -> List[int]:
+        cnt = [0] * 101
+        for row in arrays:
+            for x in row:
+                cnt[x] += 1
+        return [x for x, v in enumerate(cnt) if v == len(arrays)]

@@ -1,24 +1,50 @@
-from math import isqrt
-
+# Time:  O(sqrt(n))
+# Space: O(1)
 
 class Solution:
-    def kthFactor(self, n: int, k: int) -> int:
-        limit = isqrt(n)
+    def kthFactor(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def kth_factor(n, k=0):
+            mid = None
+            i = 1
+            while i*i <= n:
+                if not n%i:
+                    mid = i
+                    k -= 1
+                    if not k:
+                        break
+                i += 1
+            return mid, -k
+    
+        mid, count = kth_factor(n)
+        total = 2*count-(mid*mid == n)
+        if k > total:
+            return -1
+        result = kth_factor(n, k if k <= count else total-(k-1))[0]
+        return result if k <= count else n//result
 
-        for divisor in range(1, limit + 1):
-            if n % divisor == 0:
+
+# Time:  O(sqrt(n))
+# Space: O(sqrt(n))
+class Solution2(object):
+    def kthFactor(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        result = []
+        i = 1
+        while i*i <= n:
+            if not n%i:
+                if i*i != n:
+                    result.append(i)
                 k -= 1
-                if k == 0:
-                    return divisor
-
-        for divisor in range(limit, 0, -1):
-            if n % divisor != 0:
-                continue
-            quotient = n // divisor
-            if quotient == divisor:
-                continue
-            k -= 1
-            if k == 0:
-                return quotient
-
-        return -1
+                if not k:
+                    return i
+            i += 1
+        return -1 if k > len(result) else n//result[-k]

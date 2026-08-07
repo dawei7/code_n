@@ -1,12 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def findCelebrity(self, n: int) -> int:
+    def findCelebrity(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
         candidate = 0
-        for person in range(1, n):
-            if knows(candidate, person):
-                candidate = person
-        for person in range(n):
-            if person == candidate:
-                continue
-            if knows(candidate, person) or not knows(person, candidate):
+        # Find the candidate.
+        for i in range(1, n):
+            if knows(candidate, i):  # noqa
+                candidate = i        # All candidates < i are not celebrity candidates.
+        # Verify the candidate.
+        for i in range(n):
+            candidate_knows_i = knows(candidate, i) # noqa
+            i_knows_candidate = knows(i, candidate) # noqa
+            if i != candidate and (candidate_knows_i or
+                                   not i_knows_candidate):
                 return -1
         return candidate
+

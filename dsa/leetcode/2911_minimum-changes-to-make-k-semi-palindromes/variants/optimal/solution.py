@@ -1,38 +1,25 @@
 class Solution:
     def minimumChanges(self, s: str, k: int) -> int:
         n = len(s)
-        divisors = [[] for _ in range(n + 1)]
-        for divisor in range(1, n):
-            for length in range(divisor * 2, n + 1, divisor):
-                divisors[length].append(divisor)
+        g = [[inf] * (n + 1) for _ in range(n + 1)]
+        for i in range(1, n + 1):
+            for j in range(i, n + 1):
+                m = j - i + 1
+                for d in range(1, m):
+                    if m % d == 0:
+                        cnt = 0
+                        for l in range(m):
+                            r = (m // d - 1 - l // d) * d + l % d
+                            if l >= r:
+                                break
+                            if s[i - 1 + l] != s[i - 1 + r]:
+                                cnt += 1
+                        g[i][j] = min(g[i][j], cnt)
 
-        repair = [[0] * n for _ in range(n)]
-        for length in range(2, n + 1):
-            repetitions = [(d, length // d) for d in divisors[length]]
-            for start in range(n - length + 1):
-                best = length
-                for divisor, group_length in repetitions:
-                    changes = 0
-                    for offset in range(divisor):
-                        left = start + offset
-                        right = left + (group_length - 1) * divisor
-                        while left < right:
-                            changes += s[left] != s[right]
-                            left += divisor
-                            right -= divisor
-                    best = min(best, changes)
-                repair[start][start + length - 1] = best
-
-        infinity = n + 1
-        dp = [[infinity] * (n + 1) for _ in range(k + 1)]
-        dp[0][0] = 0
-
-        for parts in range(1, k + 1):
-            for end in range(parts * 2, n + 1):
-                for split in range((parts - 1) * 2, end - 1):
-                    dp[parts][end] = min(
-                        dp[parts][end],
-                        dp[parts - 1][split] + repair[split][end - 1],
-                    )
-
-        return dp[k][n]
+        f = [[inf] * (k + 1) for _ in range(n + 1)]
+        f[0][0] = 0
+        for i in range(1, n + 1):
+            for j in range(1, k + 1):
+                for h in range(i - 1):
+                    f[i][j] = min(f[i][j], f[h][j - 1] + g[h + 1][i])
+        return f[n][k]

@@ -1,11 +1,17 @@
+# Time:  O(n)
+# Space: O(n)
+
+# stack
 class Solution:
-    def minLength(self, s: str) -> int:
-        stack = []
-
-        for char in s:
-            if stack and ((stack[-1] == "A" and char == "B") or (stack[-1] == "C" and char == "D")):
-                stack.pop()
-            else:
-                stack.append(char)
-
-        return len(stack)
+    def minLength(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stk = []
+        for c in s:
+            if stk and ((stk[-1] == 'A' and c == 'B') or (stk[-1] == 'C' and c == 'D')):
+                stk.pop()
+                continue
+            stk.append(c)
+        return len(stk)

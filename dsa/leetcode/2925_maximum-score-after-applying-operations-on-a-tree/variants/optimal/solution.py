@@ -1,33 +1,22 @@
-from typing import List
-
-
 class Solution:
     def maximumScoreAfterOperations(
-        self,
-        edges: List[List[int]],
-        values: List[int],
+        self, edges: List[List[int]], values: List[int]
     ) -> int:
-        n = len(values)
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+        def dfs(i: int, fa: int = -1) -> (int, int):
+            a = b = 0
+            leaf = True
+            for j in g[i]:
+                if j != fa:
+                    leaf = False
+                    aa, bb = dfs(j, i)
+                    a += aa
+                    b += bb
+            if leaf:
+                return values[i], 0
+            return values[i] + a, max(values[i] + b, a)
 
-        parent = [-2] * n
-        parent[0] = -1
-        order = [0]
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor != parent[node]:
-                    parent[neighbor] = node
-                    order.append(neighbor)
-
-        minimum_retained = [0] * n
-        for node in reversed(order):
-            child_loss = sum(minimum_retained[neighbor] for neighbor in graph[node] if parent[neighbor] == node)
-            if child_loss == 0:
-                minimum_retained[node] = values[node]
-            else:
-                minimum_retained[node] = min(values[node], child_loss)
-
-        return sum(values) - minimum_retained[0]
+        g = [[] for _ in range(len(values))]
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        return dfs(0)[1]

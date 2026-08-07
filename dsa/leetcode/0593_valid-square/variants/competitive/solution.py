@@ -1,24 +1,20 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def validSquare(
-        self,
-        p1: list[int],
-        p2: list[int],
-        p3: list[int],
-        p4: list[int],
-    ) -> bool:
-        def squared_distance(first, second):
-            dx = first[0] - second[0]
-            dy = first[1] - second[1]
-            return dx * dx + dy * dy
+    def validSquare(self, p1, p2, p3, p4):
+        """
+        :type p1: List[int]
+        :type p2: List[int]
+        :type p3: List[int]
+        :type p4: List[int]
+        :rtype: bool
+        """
+        def dist(p1, p2):
+            return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
 
-        points = [p1, p2, p3, p4]
-        distances = sorted(
-            squared_distance(points[first], points[second]) for first in range(4) for second in range(first + 1, 4)
-        )
+        lookup = set([dist(p1, p2), dist(p1, p3),\
+                      dist(p1, p4), dist(p2, p3),\
+                      dist(p2, p4), dist(p3, p4)])
+        return 0 not in lookup and len(lookup) == 2
 
-        return (
-            distances[0] > 0
-            and distances[0] == distances[1] == distances[2] == distances[3]
-            and distances[4] == distances[5]
-            and distances[4] == 2 * distances[0]
-        )

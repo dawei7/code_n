@@ -1,24 +1,30 @@
-from typing import List
+# Time:  O(n)
+# Space: O(t), t is the number of nodes in trie
+
+import collections
 
 
 class Solution:
-    def replaceWords(self, dictionary: List[str], sentence: str) -> str:
-        terminal = "#"
-        trie = {}
-        for root in dictionary:
-            node = trie
-            for character in root:
-                node = node.setdefault(character, {})
-            node[terminal] = True
+    def replaceWords(self, dictionary, sentence):
+        """
+        :type dictionary: List[str]
+        :type sentence: str
+        :rtype: str
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        for word in dictionary:
+            reduce(dict.__getitem__, word, trie).setdefault("_end")
 
-        def replacement(word):
-            node = trie
-            for index, character in enumerate(word):
-                if character not in node:
-                    return word
-                node = node[character]
-                if terminal in node:
-                    return word[: index + 1]
+        def replace(word):
+            curr = trie
+            for i, c in enumerate(word):
+                if c not in curr:
+                    break
+                curr = curr[c]
+                if "_end" in curr:
+                    return word[:i+1]
             return word
 
-        return " ".join(replacement(word) for word in sentence.split())
+        return " ".join(map(replace, sentence.split()))
+

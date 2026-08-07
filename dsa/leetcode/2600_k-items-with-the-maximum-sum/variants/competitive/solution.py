@@ -1,5 +1,14 @@
+# Time:  O(1)
+# Space: O(1)
+
+# greedy, math
 class Solution:
-    def kItemsWithMaximumSum(self, numOnes: int, numZeros: int, numNegOnes: int, k: int) -> int:
-        selected_ones = min(numOnes, k)
-        selected_neg_ones = max(0, k - numOnes - numZeros)
-        return selected_ones - selected_neg_ones
+    def kItemsWithMaximumSum(self, numOnes, numZeros, numNegOnes, k):
+        """
+        :type numOnes: int
+        :type numZeros: int
+        :type numNegOnes: int
+        :type k: int
+        :rtype: int
+        """
+        return min(numOnes, k)-max(k-numOnes-numZeros, 0)

@@ -1,16 +1,11 @@
-from typing import List
-
-
 class Solution:
     def partitionDisjoint(self, nums: List[int]) -> int:
-        left_max = nums[0]
-        seen_max = nums[0]
-        boundary = 0
-
-        for index in range(1, len(nums)):
-            seen_max = max(seen_max, nums[index])
-            if nums[index] < left_max:
-                boundary = index
-                left_max = seen_max
-
-        return boundary + 1
+        n = len(nums)
+        mi = [inf] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            mi[i] = min(nums[i], mi[i + 1])
+        mx = 0
+        for i, v in enumerate(nums, 1):
+            mx = max(mx, v)
+            if mx <= mi[i]:
+                return i

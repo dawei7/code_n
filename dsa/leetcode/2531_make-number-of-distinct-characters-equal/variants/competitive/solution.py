@@ -1,23 +1,34 @@
-from collections import Counter
+# Time:  O(m + n + 26^2)
+# Space: O(26)
+
+import collections
 
 
+# freq table
 class Solution:
-    def isItPossible(self, word1: str, word2: str) -> bool:
-        first = Counter(word1)
-        second = Counter(word2)
-        distinct_first = len(first)
-        distinct_second = len(second)
-
-        for outgoing_first in first:
-            for outgoing_second in second:
-                if outgoing_first == outgoing_second:
-                    if distinct_first == distinct_second:
+    def isItPossible(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: bool
+        """
+        cnt1 = collections.Counter(word1)
+        cnt2 = collections.Counter(word2)
+        for i in cnt1.keys():
+            for j in cnt2.keys():
+                if i == j:
+                    if len(cnt1) == len(cnt2):
                         return True
-                    continue
-
-                after_first = distinct_first - (first[outgoing_first] == 1) + (outgoing_second not in first)
-                after_second = distinct_second - (second[outgoing_second] == 1) + (outgoing_first not in second)
-                if after_first == after_second:
-                    return True
-
+                else:
+                    new_c1, new_c2 = len(cnt1), len(cnt2)
+                    if cnt1[i] == 1:
+                        new_c1 -= 1
+                    if j not in cnt1:
+                        new_c1 += 1
+                    if cnt2[j] == 1:
+                        new_c2 -= 1
+                    if i not in cnt2:
+                        new_c2 += 1
+                    if new_c1 == new_c2:
+                        return True
         return False

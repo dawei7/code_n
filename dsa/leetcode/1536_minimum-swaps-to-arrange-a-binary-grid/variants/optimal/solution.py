@@ -1,27 +1,23 @@
-from typing import List
-
-
 class Solution:
     def minSwaps(self, grid: List[List[int]]) -> int:
         n = len(grid)
-        trailing_zeros = []
-        for row in grid:
-            zeros = 0
-            for value in reversed(row):
-                if value == 1:
+        pos = [-1] * n
+        for i in range(n):
+            for j in range(n - 1, -1, -1):
+                if grid[i][j] == 1:
+                    pos[i] = j
                     break
-                zeros += 1
-            trailing_zeros.append(zeros)
-
-        swaps = 0
-        for position in range(n):
-            required = n - position - 1
-            candidate = position
-            while candidate < n and trailing_zeros[candidate] < required:
-                candidate += 1
-            if candidate == n:
+        ans = 0
+        for i in range(n):
+            k = -1
+            for j in range(i, n):
+                if pos[j] <= i:
+                    ans += j - i
+                    k = j
+                    break
+            if k == -1:
                 return -1
-            swaps += candidate - position
-            trailing_zeros[position + 1 : candidate + 1] = trailing_zeros[position:candidate]
-            trailing_zeros[position] = required
-        return swaps
+            while k > i:
+                pos[k], pos[k - 1] = pos[k - 1], pos[k]
+                k -= 1
+        return ans

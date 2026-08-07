@@ -1,22 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxSatisfied(
-        self,
-        customers: List[int],
-        grumpy: List[int],
-        minutes: int,
-    ) -> int:
-        baseline = sum(customer for customer, is_grumpy in zip(customers, grumpy) if not is_grumpy)
-
-        window_gain = 0
-        best_gain = 0
-        for index, (customer, is_grumpy) in enumerate(zip(customers, grumpy)):
-            if is_grumpy:
-                window_gain += customer
-            if index >= minutes and grumpy[index - minutes]:
-                window_gain -= customers[index - minutes]
-            best_gain = max(best_gain, window_gain)
-
-        return baseline + best_gain
+    def maxSatisfied(self, customers, grumpy, X):
+        """
+        :type customers: List[int]
+        :type grumpy: List[int]
+        :type X: int
+        :rtype: int
+        """
+        result, max_extra, extra = 0, 0, 0
+        for i in range(len(customers)):
+            result += 0 if grumpy[i] else customers[i]
+            extra += customers[i] if grumpy[i] else 0
+            if i >= X:
+                extra -= customers[i-X] if grumpy[i-X] else 0
+            max_extra = max(max_extra, extra)
+        return result + max_extra

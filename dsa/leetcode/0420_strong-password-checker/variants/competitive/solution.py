@@ -1,40 +1,50 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def strongPasswordChecker(self, password: str) -> int:
-        missing_types = (
-            int(not any(character.islower() for character in password))
-            + int(not any(character.isupper() for character in password))
-            + int(not any(character.isdigit() for character in password))
-        )
+    def strongPasswordChecker(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        missing_type_cnt = 3
+        if any('a' <= c <= 'z' for c in s):
+            missing_type_cnt -= 1
+        if any('A' <= c <= 'Z' for c in s):
+            missing_type_cnt -= 1
+        if any(c.isdigit() for c in s):
+            missing_type_cnt -= 1
 
-        runs = []
-        index = 0
-        while index < len(password):
-            end = index + 1
-            while end < len(password) and password[end] == password[index]:
-                end += 1
-            if end - index >= 3:
-                runs.append(end - index)
-            index = end
+        total_change_cnt = 0
+        one_change_cnt, two_change_cnt, three_change_cnt = 0, 0, 0
+        i = 2
+        while i < len(s):
+            if s[i] == s[i-1] == s[i-2]:
+                length = 2
+                while i < len(s) and s[i] == s[i-1]:
+                    length += 1
+                    i += 1
 
-        if len(password) < 6:
-            return max(6 - len(password), missing_types)
+                total_change_cnt += length / 3
+                if length % 3 == 0:
+                    one_change_cnt += 1
+                elif length % 3 == 1:
+                    two_change_cnt += 1
+                else:
+                    three_change_cnt += 1
+            else:
+                i += 1
 
-        replacements = sum(length // 3 for length in runs)
-        if len(password) <= 20:
-            return max(missing_types, replacements)
+        if len(s) < 6:
+            return max(missing_type_cnt, 6 - len(s))
+        elif len(s) <= 20:
+            return max(missing_type_cnt, total_change_cnt)
+        else:
+            delete_cnt = len(s) - 20
 
-        deletions = len(password) - 20
-        remaining_deletions = deletions
+            total_change_cnt -= min(delete_cnt, one_change_cnt * 1) / 1
+            total_change_cnt -= min(max(delete_cnt - one_change_cnt, 0), two_change_cnt * 2) / 2
+            total_change_cnt -= min(max(delete_cnt - one_change_cnt - 2 * two_change_cnt, 0), three_change_cnt * 3) / 3
 
-        remainder_zero = sum(1 for length in runs if length % 3 == 0)
-        used = min(remaining_deletions, remainder_zero)
-        replacements -= used
-        remaining_deletions -= used
+            return delete_cnt + max(missing_type_cnt, total_change_cnt)
 
-        remainder_one = sum(1 for length in runs if length % 3 == 1)
-        used = min(remaining_deletions // 2, remainder_one)
-        replacements -= used
-        remaining_deletions -= 2 * used
-
-        replacements -= min(replacements, remaining_deletions // 3)
-        return deletions + max(missing_types, replacements)

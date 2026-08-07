@@ -1,50 +1,53 @@
-from collections import deque
+# """
+# This is GridMaster's API interface.
+# You should not implement it, or speculate about its implementation
+# """
+# class GridMaster(object):
+#    def canMove(self, direction: str) -> bool:
+#
+#
+#    def move(self, direction: str) -> bool:
+#
+#
+#    def isTarget(self) -> None:
+#
+#
 
 
 class Solution:
     def findShortestPath(self, master: "GridMaster") -> int:
-        directions = (
-            ("U", -1, 0, "D"),
-            ("R", 0, 1, "L"),
-            ("D", 1, 0, "U"),
-            ("L", 0, -1, "R"),
-        )
-        reachable = {(0, 0)}
-        target = (0, 0) if master.isTarget() else None
-        stack = [[0, 0, 0, None]]
-
-        while stack:
-            row, column, next_direction, back_direction = stack[-1]
-            if next_direction == len(directions):
-                stack.pop()
-                if back_direction is not None:
-                    master.move(back_direction)
-                continue
-
-            direction, row_delta, column_delta, opposite = directions[next_direction]
-            stack[-1][2] += 1
-            neighbor = (row + row_delta, column + column_delta)
-            if neighbor in reachable or not master.canMove(direction):
-                continue
-
-            master.move(direction)
-            reachable.add(neighbor)
+        def dfs(i: int, j: int):
             if master.isTarget():
-                target = neighbor
-            stack.append([neighbor[0], neighbor[1], 0, opposite])
+                nonlocal target
+                target = (i, j)
+                return
+            for k, c in enumerate(s):
+                x, y = i + dirs[k], j + dirs[k + 1]
+                if master.canMove(c) and (x, y) not in vis:
+                    vis.add((x, y))
+                    master.move(c)
+                    dfs(x, y)
+                    master.move(s[(k + 2) % 4])
 
+        s = "URDL"
+        dirs = (-1, 0, 1, 0, -1)
+        target = None
+        vis = set()
+        dfs(0, 0)
         if target is None:
             return -1
-
-        queue = deque([((0, 0), 0)])
-        seen = {(0, 0)}
-        while queue:
-            (row, column), distance = queue.popleft()
-            if (row, column) == target:
-                return distance
-            for _, row_delta, column_delta, _ in directions:
-                neighbor = (row + row_delta, column + column_delta)
-                if neighbor in reachable and neighbor not in seen:
-                    seen.add(neighbor)
-                    queue.append((neighbor, distance + 1))
+        vis.discard((0, 0))
+        q = deque([(0, 0)])
+        ans = -1
+        while q:
+            ans += 1
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                if (i, j) == target:
+                    return ans
+                for a, b in pairwise(dirs):
+                    x, y = i + a, j + b
+                    if (x, y) in vis:
+                        vis.remove((x, y))
+                        q.append((x, y))
         return -1

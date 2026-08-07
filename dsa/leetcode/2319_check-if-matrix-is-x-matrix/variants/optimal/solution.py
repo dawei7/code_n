@@ -1,14 +1,10 @@
-from typing import List
-
-
 class Solution:
     def checkXMatrix(self, grid: List[List[int]]) -> bool:
-        size = len(grid)
-
-        for row in range(size):
-            for column in range(size):
-                on_diagonal = row == column or row + column == size - 1
-                if on_diagonal == (grid[row][column] == 0):
+        for i, row in enumerate(grid):
+            for j, v in enumerate(row):
+                if i == j or i + j == len(grid) - 1:
+                    if v == 0:
+                        return False
+                elif v:
                     return False
-
         return True

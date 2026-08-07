@@ -1,37 +1,32 @@
-from typing import List
-
+# Time:  O(nlogd), d is the max day of bloomDay
+# Space: O(1)
 
 class Solution:
-    def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
-        flower_count = len(bloomDay)
-        if m * k > flower_count:
+    def minDays(self, bloomDay, m, k):
+        """
+        :type bloomDay: List[int]
+        :type m: int
+        :type k: int
+        :rtype: int
+        """
+        def check(bloomDay, m, k, x):
+            result = count = 0
+            for d in bloomDay:
+                count = count+1 if d <= x else 0
+                if count == k:
+                    count = 0
+                    result += 1
+                    if result == m:
+                        break
+            return result >= m
+
+        if m*k > len(bloomDay):
             return -1
-
-        def can_make(day: int) -> bool:
-            bouquets = 0
-            adjacent = 0
-
-            for bloom in bloomDay:
-                if bloom <= day:
-                    adjacent += 1
-                    if adjacent == k:
-                        bouquets += 1
-                        if bouquets == m:
-                            return True
-                        adjacent = 0
-                else:
-                    adjacent = 0
-
-            return False
-
-        left = min(bloomDay)
-        right = max(bloomDay)
-
-        while left < right:
-            middle = left + (right - left) // 2
-            if can_make(middle):
-                right = middle
+        left, right = 1, max(bloomDay)
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(bloomDay, m, k, mid):
+                right = mid-1
             else:
-                left = middle + 1
-
+                left = mid+1
         return left

@@ -1,63 +1,69 @@
-from collections import deque
-from typing import List
+# Time:  O(n * d * l), l is the average string length
+# Space: O(n)
+
+import collections
+import functools
 
 
+# 59ms
 class Solution:
-    def addBoldTag(self, s: str, words: List[str]) -> str:
-        alphabet = sorted(set(s).union(*(set(word) for word in words)))
-        char_index = {char: index for index, char in enumerate(alphabet)}
+    def addBoldTag(self, s, dict):
+        """
+        :type s: str
+        :type dict: List[str]
+        :rtype: str
+        """
+        lookup = [0] * len(s)
+        for d in dict:
+            pos = s.find(d)
+            while pos != -1:
+                lookup[pos:pos+len(d)] = [1] * len(d)
+                pos = s.find(d, pos + 1)
 
-        children = [{}]
-        longest = [0]
-        for word in words:
-            state = 0
-            for char in word:
-                if char not in children[state]:
-                    children[state][char] = len(children)
-                    children.append({})
-                    longest.append(0)
-                state = children[state][char]
-            longest[state] = max(longest[state], len(word))
+        result = []
+        for i in range(len(s)):
+            if lookup[i] and (i == 0 or not lookup[i-1]):
+                result.append("<b>")
+            result.append(s[i])
+            if lookup[i] and (i == len(s)-1 or not lookup[i+1]):
+                result.append("</b>")
+        return "".join(result)
 
-        transitions = [[0] * len(alphabet) for _ in children]
-        for state, edges in enumerate(children):
-            for char, next_state in edges.items():
-                transitions[state][char_index[char]] = next_state
 
-        failure = [0] * len(children)
-        queue = deque(children[0].values())
-        while queue:
-            state = queue.popleft()
-            longest[state] = max(longest[state], longest[failure[state]])
-            for char, index in char_index.items():
-                child = children[state].get(char)
-                if child is None:
-                    transitions[state][index] = transitions[failure[state]][index]
-                else:
-                    failure[child] = transitions[failure[state]][index]
-                    queue.append(child)
+# Time:  O(n * l), l is the average string length
+# Space: O(t)    , t is the size of trie
+# trie solution, 439ms
+class Solution2(object):
+    def addBoldTag(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: str
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        for i, word in enumerate(words):
+            functools.reduce(dict.__getitem__, word, trie).setdefault("_end")
 
-        difference = [0] * (len(s) + 1)
-        state = 0
-        for end, char in enumerate(s):
-            state = transitions[state][char_index[char]]
-            length = longest[state]
-            if length:
-                difference[end - length + 1] += 1
-                difference[end + 1] -= 1
+        lookup = [False] * len(s)
+        for i in range(len(s)):
+            curr = trie
+            k = -1
+            for j in range(i, len(s)):
+                if s[j] not in curr:
+                    break
+                curr = curr[s[j]]
+                if "_end" in curr:
+                    k = j
+            for j in range(i, k+1):
+                lookup[j] = True
 
-        answer = []
-        active = 0
-        was_bold = False
-        for index, char in enumerate(s):
-            active += difference[index]
-            is_bold = active > 0
-            if is_bold and not was_bold:
-                answer.append("<b>")
-            elif was_bold and not is_bold:
-                answer.append("</b>")
-            answer.append(char)
-            was_bold = is_bold
-        if was_bold:
-            answer.append("</b>")
-        return "".join(answer)
+        result = []
+        for i in range(len(s)):
+            if lookup[i] and (i == 0 or not lookup[i-1]):
+                result.append("<b>")
+            result.append(s[i])
+            if lookup[i] and (i == len(s)-1 or not lookup[i+1]):
+                result.append("</b>")
+        return "".join(result)
+

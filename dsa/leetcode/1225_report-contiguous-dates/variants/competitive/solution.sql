@@ -1,24 +1,27 @@
-WITH periods AS (
-    SELECT fail_date AS period_date, 'failed' AS period_state
-    FROM Failed
-    WHERE fail_date BETWEEN '2019-01-01' AND '2019-12-31'
-    UNION ALL
-    SELECT success_date AS period_date, 'succeeded' AS period_state
-    FROM Succeeded
-    WHERE success_date BETWEEN '2019-01-01' AND '2019-12-31'
-),
-islands AS (
-    SELECT period_state,
-           period_date,
-           DATE(
-               period_date,
-               PRINTF('-%d day', ROW_NUMBER() OVER (PARTITION BY period_state ORDER BY period_date))
-           ) AS island_key
-    FROM periods
-)
-SELECT period_state,
-       MIN(period_date) AS start_date,
-       MAX(period_date) AS end_date
-FROM islands
-GROUP BY period_state, island_key
-ORDER BY start_date;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT state     AS period_state, 
+       Min(date) AS start_date, 
+       Max(date) AS end_date 
+FROM   (SELECT state, 
+               date, 
+               @rank := CASE 
+                          WHEN @prev = state THEN @rank 
+                          ELSE @rank + 1 
+                        end   AS rank, 
+               @prev := state AS prev 
+        FROM   (SELECT * 
+                FROM   (SELECT fail_date AS date, 
+                               "failed"  AS state 
+                        FROM   failed 
+                        UNION ALL 
+                        SELECT success_date AS date, 
+                               "succeeded"  AS state 
+                        FROM   succeeded) a 
+                WHERE  date BETWEEN '2019-01-01' AND '2019-12-31' 
+                ORDER  BY date ASC) b, 
+               (SELECT @rank := 0, 
+                       @prev := "unknown") c) d 
+GROUP  BY d.rank 
+ORDER  BY start_date ASC 

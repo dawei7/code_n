@@ -1,11 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def busyStudent(
-        self,
-        startTime: List[int],
-        endTime: List[int],
-        queryTime: int,
-    ) -> int:
-        return sum(start <= queryTime <= end for start, end in zip(startTime, endTime))
+    def busyStudent(self, startTime, endTime, queryTime):
+        """
+        :type startTime: List[int]
+        :type endTime: List[int]
+        :type queryTime: int
+        :rtype: int
+        """
+        return sum(s <= queryTime <= e for s, e in itertools.izip(startTime, endTime))

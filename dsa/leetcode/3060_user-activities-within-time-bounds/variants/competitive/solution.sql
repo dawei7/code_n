@@ -1,15 +1,16 @@
-WITH session_history AS (
-    SELECT
-        user_id,
-        session_start,
-        MAX(session_end) OVER (
-            PARTITION BY user_id, session_type
-            ORDER BY session_start, session_id
-            ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING
-        ) AS latest_prior_end
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH diff_cte AS (
+    SELECT *,
+           TIMESTAMPDIFF(
+               HOUR,
+               session_end,
+               LEAD(session_start) OVER(PARTITION BY user_id, session_type ORDER BY session_start)) AS diff
     FROM Sessions
 )
+
 SELECT DISTINCT user_id
-FROM session_history
-WHERE JULIANDAY(session_start) <= JULIANDAY(latest_prior_end) + 0.5
-ORDER BY user_id ASC;
+FROM diff_cte
+WHERE diff <= 12
+ORDER BY 1;

@@ -1,23 +1,32 @@
-from bisect import bisect_right
-from random import randrange
-from typing import List
+# Time:  ctor: O(n)
+#        pick: O(logn)
+# Space: O(n)
+
+import random
+import bisect
 
 
 class Solution:
-    def __init__(self, rects: List[List[int]]):
-        self.rects = rects
-        self.prefix = []
-        total = 0
-        for x1, y1, x2, y2 in rects:
-            total += (x2 - x1 + 1) * (y2 - y1 + 1)
-            self.prefix.append(total)
-        self.total = total
 
-    def pick(self) -> List[int]:
-        ticket = randrange(self.total)
-        rectangle_index = bisect_right(self.prefix, ticket)
-        previous_total = self.prefix[rectangle_index - 1] if rectangle_index else 0
-        offset = ticket - previous_total
-        x1, y1, x2, _ = self.rects[rectangle_index]
-        width = x2 - x1 + 1
-        return [x1 + offset % width, y1 + offset // width]
+    def __init__(self, rects):
+        """
+        :type rects: List[List[int]]
+        """
+        self.__rects = list(rects)
+        self.__prefix_sum = map(lambda x : (x[2]-x[0]+1)*(x[3]-x[1]+1), rects)
+        for i in range(1, len(self.__prefix_sum)):
+            self.__prefix_sum[i] += self.__prefix_sum[i-1]
+
+    def pick(self):
+        """
+        :rtype: List[int]
+        """
+        target = random.randint(0, self.__prefix_sum[-1]-1)
+        left = bisect.bisect_right(self.__prefix_sum, target)
+        rect = self.__rects[left]
+        width, height = rect[2]-rect[0]+1, rect[3]-rect[1]+1
+        base = self.__prefix_sum[left]-width*height
+        return [rect[0]+(target-base)%width, rect[1]+(target-base)//width]
+
+
+

@@ -1,29 +1,17 @@
 class Solution:
     def numDupDigitsAtMostN(self, n: int) -> int:
-        def permutations(available: int, slots: int) -> int:
-            result = 1
-            for offset in range(slots):
-                result *= available - offset
-            return result
+        @cache
+        def dfs(i: int, mask: int, lead: bool, limit: bool) -> int:
+            if i >= len(s):
+                return lead ^ 1
+            up = int(s[i]) if limit else 9
+            ans = 0
+            for j in range(up + 1):
+                if lead and j == 0:
+                    ans += dfs(i + 1, mask, True, False)
+                elif mask >> j & 1 ^ 1:
+                    ans += dfs(i + 1, mask | 1 << j, False, limit and j == up)
+            return ans
 
-        digits = [int(character) for character in str(n)]
-        length = len(digits)
-        unique = 0
-
-        for shorter in range(1, length):
-            unique += 9 * permutations(9, shorter - 1)
-
-        used = set()
-        for index, digit in enumerate(digits):
-            first = 1 if index == 0 else 0
-            for candidate in range(first, digit):
-                if candidate not in used:
-                    unique += permutations(10 - index - 1, length - index - 1)
-
-            if digit in used:
-                break
-            used.add(digit)
-        else:
-            unique += 1
-
-        return n - unique
+        s = str(n)
+        return n - dfs(0, 0, True, True)

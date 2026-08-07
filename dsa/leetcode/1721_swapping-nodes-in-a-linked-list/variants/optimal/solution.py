@@ -3,19 +3,14 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-
-
 class Solution:
-    def swapNodes(self, head: "ListNode", k: int) -> "ListNode":
-        kth_from_start = head
+    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        fast = slow = head
         for _ in range(k - 1):
-            kth_from_start = kth_from_start.next
-
-        kth_from_end = head
-        runner = kth_from_start
-        while runner.next is not None:
-            runner = runner.next
-            kth_from_end = kth_from_end.next
-
-        kth_from_start.val, kth_from_end.val = kth_from_end.val, kth_from_start.val
+            fast = fast.next
+        p = fast
+        while fast.next:
+            fast, slow = fast.next, slow.next
+        q = slow
+        p.val, q.val = q.val, p.val
         return head

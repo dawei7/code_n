@@ -1,18 +1,13 @@
-from collections import Counter
-
-
 class Solution:
     def minimumDeletions(self, word: str, k: int) -> int:
-        frequencies = list(Counter(word).values())
-        answer = len(word)
+        def f(v: int) -> int:
+            ans = 0
+            for x in nums:
+                if x < v:
+                    ans += x
+                elif x > v + k:
+                    ans += x - v - k
+            return ans
 
-        for minimum in frequencies:
-            deletions = 0
-            for frequency in frequencies:
-                if frequency < minimum:
-                    deletions += frequency
-                elif frequency > minimum + k:
-                    deletions += frequency - minimum - k
-            answer = min(answer, deletions)
-
-        return answer
+        nums = Counter(word).values()
+        return min(f(v) for v in range(len(word) + 1))

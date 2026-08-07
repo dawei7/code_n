@@ -1,17 +1,22 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def numSplits(self, s: str) -> int:
-        left = set()
-        right = Counter(s)
-        answer = 0
-
-        for char in s[:-1]:
-            left.add(char)
-            right[char] -= 1
-            if right[char] == 0:
-                del right[char]
-            answer += len(left) == len(right)
-
-        return answer
+    def numSplits(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        left_count, right_count = collections.Counter(), collections.Counter(s)
+        result = 0
+        for c in s:
+            left_count[c] += 1
+            right_count[c] -= 1
+            if not right_count[c]:
+                del right_count[c]
+            if len(left_count) == len(right_count):
+                result += 1
+        return result

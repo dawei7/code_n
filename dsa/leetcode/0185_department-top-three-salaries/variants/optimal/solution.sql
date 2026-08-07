@@ -1,16 +1,15 @@
-WITH Ranked AS (
-    SELECT
-        d.name AS Department,
-        e.name AS Employee,
-        e.salary AS Salary,
-        DENSE_RANK() OVER (
-            PARTITION BY e.departmentId
-            ORDER BY e.salary DESC
-        ) AS salary_rank
-    FROM Employee AS e
-    INNER JOIN Department AS d
-        ON d.id = e.departmentId
-)
-SELECT Department, Employee, Salary
-FROM Ranked
-WHERE salary_rank <= 3;
+SELECT
+    Department.NAME AS Department,
+    Employee.NAME AS Employee,
+    Salary
+FROM
+    Employee,
+    Department
+WHERE
+    Employee.DepartmentId = Department.Id
+    AND (
+        SELECT
+            COUNT(DISTINCT e2.Salary)
+        FROM Employee AS e2
+        WHERE e2.Salary > Employee.Salary AND Employee.DepartmentId = e2.DepartmentId
+    ) < 3;

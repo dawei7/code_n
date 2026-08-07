@@ -1,14 +1,7 @@
 class Solution:
     def maxScore(self, nums: List[int], x: int) -> int:
-        unreachable = -(10**30)
-        best = [unreachable, unreachable]
-        best[nums[0] % 2] = nums[0]
-
-        for value in nums[1:]:
-            parity = value % 2
-            best[parity] = max(
-                best[parity] + value,
-                best[1 - parity] + value - x,
-            )
-
-        return max(best)
+        f = [-inf] * 2
+        f[nums[0] & 1] = nums[0]
+        for v in nums[1:]:
+            f[v & 1] = max(f[v & 1], f[v & 1 ^ 1] - x) + v
+        return max(f)

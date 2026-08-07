@@ -1,10 +1,8 @@
 class Solution:
     def makeSmallestPalindrome(self, s: str) -> str:
-        chars = list(s)
-        left, right = 0, len(chars) - 1
-        while left < right:
-            smaller = min(chars[left], chars[right])
-            chars[left] = chars[right] = smaller
-            left += 1
-            right -= 1
-        return "".join(chars)
+        cs = list(s)
+        i, j = 0, len(s) - 1
+        while i < j:
+            cs[i] = cs[j] = min(cs[i], cs[j])
+            i, j = i + 1, j - 1
+        return "".join(cs)

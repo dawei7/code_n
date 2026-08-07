@@ -1,4 +1,5 @@
 class Solution:
-    def findMissingElements(self, nums: list[int]) -> list[int]:
-        present = set(nums)
-        return [value for value in range(min(nums), max(nums) + 1) if value not in present]
+    def findMissingElements(self, nums: List[int]) -> List[int]:
+        mn, mx = min(nums), max(nums)
+        s = set(nums)
+        return [x for x in range(mn + 1, mx) if x not in s]

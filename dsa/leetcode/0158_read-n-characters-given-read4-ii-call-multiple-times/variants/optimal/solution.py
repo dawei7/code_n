@@ -1,22 +1,22 @@
-from typing import List
+# The read4 API is already defined for you.
+# def read4(buf4: List[str]) -> int:
 
 
 class Solution:
     def __init__(self):
-        self.temporary = [""] * 4
-        self.available = 0
-        self.position = 0
+        self.buf4 = [None] * 4
+        self.i = self.size = 0
 
     def read(self, buf: List[str], n: int) -> int:
-        copied = 0
-        while copied < n:
-            if self.position == self.available:
-                self.available = read4(self.temporary)
-                self.position = 0
-                if self.available == 0:
+        j = 0
+        while j < n:
+            if self.i == self.size:
+                self.size = read4(self.buf4)
+                self.i = 0
+                if self.size == 0:
                     break
-            while self.position < self.available and copied < n:
-                buf[copied] = self.temporary[self.position]
-                copied += 1
-                self.position += 1
-        return copied
+            while j < n and self.i < self.size:
+                buf[j] = self.buf4[self.i]
+                self.i += 1
+                j += 1
+        return j

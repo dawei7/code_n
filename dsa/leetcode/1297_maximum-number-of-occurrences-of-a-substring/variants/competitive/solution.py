@@ -1,29 +1,54 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# rolling hash (Rabin-Karp Algorithm)
 class Solution:
-    def maxFreq(self, s: str, maxLetters: int, minSize: int, maxSize: int) -> int:
-        del maxSize
-        letters = [0] * 26
-        distinct = 0
-        frequencies = Counter()
-        best = 0
+    def maxFreq(self, s, maxLetters, minSize, maxSize):
+        """
+        :type s: str
+        :type maxLetters: int
+        :type minSize: int
+        :type maxSize: int
+        :rtype: int
+        """
+        M, p = 10**9+7, 113
+        power, rolling_hash = pow(p, minSize-1, M), 0
 
-        for right, character in enumerate(s):
-            index = ord(character) - ord("a")
-            if letters[index] == 0:
-                distinct += 1
-            letters[index] += 1
+        left = 0
+        lookup, count = collections.defaultdict(int), collections.defaultdict(int)
+        for right in range(len(s)):
+            count[s[right]] += 1
+            if right-left+1 > minSize:
+                count[s[left]] -= 1
+                rolling_hash = (rolling_hash - ord(s[left])*power) % M
+                if count[s[left]] == 0:
+                    count.pop(s[left])
+                left += 1
+            rolling_hash = (rolling_hash*p + ord(s[right])) % M
+            if right-left+1 == minSize and len(count) <= maxLetters:
+                lookup[rolling_hash] += 1
+        return max(lookup.values() or [0])
 
-            if right >= minSize:
-                outgoing = ord(s[right - minSize]) - ord("a")
-                letters[outgoing] -= 1
-                if letters[outgoing] == 0:
-                    distinct -= 1
 
-            if right + 1 >= minSize and distinct <= maxLetters:
-                window = s[right - minSize + 1 : right + 1]
-                frequencies[window] += 1
-                best = max(best, frequencies[window])
-
-        return best
+# Time:  O(m * n), m = 26
+# Space: O(m * n)
+class Solution2(object):
+    def maxFreq(self, s, maxLetters, minSize, maxSize):
+        """
+        :type s: str
+        :type maxLetters: int
+        :type minSize: int
+        :type maxSize: int
+        :rtype: int
+        """
+        lookup = {}
+        for right in range(minSize-1, len(s)):
+            word = s[right-minSize+1:right+1]
+            if word in lookup:
+                lookup[word] += 1
+            elif len(collections.Counter(word)) <= maxLetters:
+                lookup[word] = 1
+        return max(lookup.values() or [0])

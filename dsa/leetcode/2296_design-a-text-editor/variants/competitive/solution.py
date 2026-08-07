@@ -1,23 +1,56 @@
-class TextEditor:
+# Time:  ctor:        O(1)
+#        addText:     O(l)
+#        deleteText:  O(k)
+#        cursorLeft:  O(k)
+#        cursorRight: O(k)
+# Space: O(n)
+
+# design, stack
+class TextEditor(object):
+
     def __init__(self):
-        self._left = []
-        self._right = []
+        self.__LAST_COUNT = 10
+        self.__left = []
+        self.__right = []
 
-    def addText(self, text: str) -> None:
-        self._left.extend(text)
+    def addText(self, text):
+        """
+        :type text: str
+        :rtype: None
+        """
+        for x in text:
+            self.__left.append(x)
 
-    def deleteText(self, k: int) -> int:
-        deleted = min(k, len(self._left))
-        if deleted:
-            del self._left[-deleted:]
-        return deleted
+    def deleteText(self, k):
+        """
+        :type k: int
+        :rtype: int
+        """
+        return self.__move(k, self.__left, None)
 
-    def cursorLeft(self, k: int) -> str:
-        for _ in range(min(k, len(self._left))):
-            self._right.append(self._left.pop())
-        return "".join(self._left[-10:])
+    def cursorLeft(self, k):
+        """
+        :type k: int
+        :rtype: str
+        """
+        self.__move(k, self.__left, self.__right)
+        return self.__last_characters()
 
-    def cursorRight(self, k: int) -> str:
-        for _ in range(min(k, len(self._right))):
-            self._left.append(self._right.pop())
-        return "".join(self._left[-10:])
+    def cursorRight(self, k):
+        """
+        :type k: int
+        :rtype: str
+        """
+        self.__move(k, self.__right, self.__left)
+        return self.__last_characters()
+
+    def __move(self, k, src, dst):
+        cnt = min(k, len(src))
+        for _ in range(cnt):
+            if dst is not None:
+                dst.append(src[-1])
+            src.pop()
+        return cnt
+
+    def __last_characters(self):
+        return "".join(self.__left[-self.__LAST_COUNT:])

@@ -1,15 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def countLetters(self, s: str) -> int:
-        total = 0
-        run_length = 0
-        previous = ""
-
-        for character in s:
-            if character == previous:
-                run_length += 1
+    def countLetters(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        result = len(S)
+        left = 0
+        for right in range(1, len(S)):
+            if S[right] == S[left]:
+                result += right-left
             else:
-                previous = character
-                run_length = 1
-            total += run_length
-
-        return total
+                left = right
+        return result

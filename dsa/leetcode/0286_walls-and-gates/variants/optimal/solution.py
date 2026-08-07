@@ -1,27 +1,18 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def wallsAndGates(self, rooms: List[List[int]]) -> None:
-        if not rooms or not rooms[0]:
-            return
-        empty = 2147483647
-        queue = deque(
-            (row, column) for row in range(len(rooms)) for column in range(len(rooms[0])) if rooms[row][column] == 0
-        )
-        while queue:
-            row, column = queue.popleft()
-            for next_row, next_column in (
-                (row - 1, column),
-                (row + 1, column),
-                (row, column - 1),
-                (row, column + 1),
-            ):
-                if (
-                    0 <= next_row < len(rooms)
-                    and 0 <= next_column < len(rooms[0])
-                    and rooms[next_row][next_column] == empty
-                ):
-                    rooms[next_row][next_column] = rooms[row][column] + 1
-                    queue.append((next_row, next_column))
+        """
+        Do not return anything, modify rooms in-place instead.
+        """
+        m, n = len(rooms), len(rooms[0])
+        inf = 2**31 - 1
+        q = deque([(i, j) for i in range(m) for j in range(n) if rooms[i][j] == 0])
+        d = 0
+        while q:
+            d += 1
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                for a, b in [[0, 1], [0, -1], [1, 0], [-1, 0]]:
+                    x, y = i + a, j + b
+                    if 0 <= x < m and 0 <= y < n and rooms[x][y] == inf:
+                        rooms[x][y] = d
+                        q.append((x, y))

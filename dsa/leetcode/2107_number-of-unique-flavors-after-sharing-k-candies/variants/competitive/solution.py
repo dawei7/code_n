@@ -1,20 +1,21 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def shareCandies(self, candies: List[int], k: int) -> int:
-        kept = Counter(candies[k:])
-        answer = len(kept)
-
-        for right in range(k, len(candies)):
-            kept[candies[right - k]] += 1
-
-            entering_shared = candies[right]
-            kept[entering_shared] -= 1
-            if kept[entering_shared] == 0:
-                del kept[entering_shared]
-
-            answer = max(answer, len(kept))
-
-        return answer
+    def shareCandies(self, candies, k):
+        """
+        :type candies: List[int]
+        :type k: int
+        :rtype: int
+        """
+        cnt = collections.Counter(candies[i] for i in range(k, len(candies)))
+        result = curr = len(cnt)
+        for i in range(k, len(candies)):
+            cnt[candies[i]] -= 1
+            curr += (cnt[candies[i-k]] == 0) - (cnt[candies[i]] == 0)
+            cnt[candies[i-k]] += 1
+            result = max(result, curr)
+        return result

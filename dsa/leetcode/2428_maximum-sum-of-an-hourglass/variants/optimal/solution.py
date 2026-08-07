@@ -1,23 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maxSum(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        answer = 0
-
-        for row in range(rows - 2):
-            for column in range(columns - 2):
-                current = (
-                    grid[row][column]
-                    + grid[row][column + 1]
-                    + grid[row][column + 2]
-                    + grid[row + 1][column + 1]
-                    + grid[row + 2][column]
-                    + grid[row + 2][column + 1]
-                    + grid[row + 2][column + 2]
+        m, n = len(grid), len(grid[0])
+        ans = 0
+        for i in range(1, m - 1):
+            for j in range(1, n - 1):
+                s = -grid[i][j - 1] - grid[i][j + 1]
+                s += sum(
+                    grid[x][y] for x in range(i - 1, i + 2) for y in range(j - 1, j + 2)
                 )
-                answer = max(answer, current)
-
-        return answer
+                ans = max(ans, s)
+        return ans

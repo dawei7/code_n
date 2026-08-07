@@ -1,19 +1,21 @@
-from functools import cache
-from typing import List
-
+# Time:  O(n*(logn)^2)
+# Space: O(nlogn)
 
 class Solution:
-    def stoneGameII(self, piles: List[int]) -> int:
-        n = len(piles)
-        suffix = [0] * (n + 1)
-        for index in range(n - 1, -1, -1):
-            suffix[index] = suffix[index + 1] + piles[index]
+    def stoneGameII(self, piles):
+        """
+        :type piles: List[int]
+        :rtype: int
+        """
+        def dp(piles, lookup, i, m):
+            if i+2*m >= len(piles):
+                return piles[i]
+            if (i, m) not in lookup:
+                lookup[i, m] = piles[i] - \
+                               min(dp(piles, lookup, i+x, max(m, x))
+                                   for x in range(1, 2*m+1))
+            return lookup[i, m]
 
-        @cache
-        def best(index: int, m: int) -> int:
-            if index + 2 * m >= n:
-                return suffix[index]
-            opponent = min(best(index + taken, max(m, taken)) for taken in range(1, 2 * m + 1))
-            return suffix[index] - opponent
-
-        return best(0, 1)
+        for i in reversed(range(len(piles)-1)):
+            piles[i] += piles[i+1]
+        return dp(piles, {}, 0, 1)

@@ -1,23 +1,17 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def minimumOperations(self, nums: List[int]) -> int:
-        if len(nums) == 1:
-            return 0
+        def f(i: int) -> Tuple[int, int, int, int]:
+            k1 = k2 = 0
+            cnt = Counter(nums[i::2])
+            for k, v in cnt.items():
+                if cnt[k1] < v:
+                    k2, k1 = k1, k
+                elif cnt[k2] < v:
+                    k2 = k
+            return k1, cnt[k1], k2, cnt[k2]
 
-        even = Counter(nums[::2]).most_common(2)
-        odd = Counter(nums[1::2]).most_common(2)
-        even += [(None, 0)] * (2 - len(even))
-        odd += [(None, 0)] * (2 - len(odd))
-
-        if even[0][0] != odd[0][0]:
-            unchanged = even[0][1] + odd[0][1]
-        else:
-            unchanged = max(
-                even[0][1] + odd[1][1],
-                even[1][1] + odd[0][1],
-            )
-
-        return len(nums) - unchanged
+        a, b = f(0), f(1)
+        n = len(nums)
+        if a[0] != b[0]:
+            return n - (a[1] + b[1])
+        return n - max(a[1] + b[3], a[3] + b[1])

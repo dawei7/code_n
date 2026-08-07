@@ -1,19 +1,19 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def findSecondMinimumValue(self, root) -> int:
-        minimum = root.val
+    def findSecondMinimumValue(self, root: Optional[TreeNode]) -> int:
+        def dfs(root):
+            if root:
+                dfs(root.left)
+                dfs(root.right)
+                nonlocal ans, v
+                if root.val > v:
+                    ans = root.val if ans == -1 else min(ans, root.val)
 
-        def second_in_subtree(node):
-            if node is None:
-                return -1
-            if node.val > minimum:
-                return node.val
-
-            left = second_in_subtree(node.left)
-            right = second_in_subtree(node.right)
-            if left == -1:
-                return right
-            if right == -1:
-                return left
-            return min(left, right)
-
-        return second_in_subtree(root)
+        ans, v = -1, root.val
+        dfs(root)
+        return ans

@@ -1,20 +1,12 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def isPossibleDivide(self, nums: List[int], k: int) -> bool:
-        if len(nums) % k != 0:
+        if len(nums) % k:
             return False
-
-        counts = Counter(nums)
-        for start in sorted(counts):
-            copies = counts[start]
-            if copies == 0:
-                continue
-            for value in range(start, start + k):
-                if counts[value] < copies:
-                    return False
-                counts[value] -= copies
-
+        cnt = Counter(nums)
+        for x in sorted(nums):
+            if cnt[x]:
+                for y in range(x, x + k):
+                    if cnt[y] == 0:
+                        return False
+                    cnt[y] -= 1
         return True

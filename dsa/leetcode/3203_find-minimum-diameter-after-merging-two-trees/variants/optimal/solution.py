@@ -1,38 +1,26 @@
-from collections import deque
-
-
 class Solution:
     def minimumDiameterAfterMerge(
-        self,
-        edges1: List[List[int]],
-        edges2: List[List[int]],
+        self, edges1: List[List[int]], edges2: List[List[int]]
     ) -> int:
-        def diameter(edges: List[List[int]]) -> int:
-            node_count = len(edges) + 1
-            graph = [[] for _ in range(node_count)]
-            for left, right in edges:
-                graph[left].append(right)
-                graph[right].append(left)
+        d1 = self.treeDiameter(edges1)
+        d2 = self.treeDiameter(edges2)
+        return max(d1, d2, (d1 + 1) // 2 + (d2 + 1) // 2 + 1)
 
-            def farthest(start: int) -> tuple[int, int]:
-                queue = deque([(start, -1, 0)])
-                farthest_node = start
-                farthest_distance = 0
-                while queue:
-                    node, parent, distance = queue.popleft()
-                    if distance > farthest_distance:
-                        farthest_node = node
-                        farthest_distance = distance
-                    for neighbor in graph[node]:
-                        if neighbor != parent:
-                            queue.append((neighbor, node, distance + 1))
-                return farthest_node, farthest_distance
+    def treeDiameter(self, edges: List[List[int]]) -> int:
+        def dfs(i: int, fa: int, t: int):
+            for j in g[i]:
+                if j != fa:
+                    dfs(j, i, t + 1)
+            nonlocal ans, a
+            if ans < t:
+                ans = t
+                a = i
 
-            endpoint, _ = farthest(0)
-            _, tree_diameter = farthest(endpoint)
-            return tree_diameter
-
-        first_diameter = diameter(edges1)
-        second_diameter = diameter(edges2)
-        merged_path = (first_diameter + 1) // 2 + (second_diameter + 1) // 2 + 1
-        return max(first_diameter, second_diameter, merged_path)
+        g = defaultdict(list)
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        ans = a = 0
+        dfs(0, -1, 0)
+        dfs(a, -1, 0)
+        return ans

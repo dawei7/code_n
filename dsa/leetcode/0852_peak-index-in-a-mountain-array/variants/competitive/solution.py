@@ -1,16 +1,18 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        left = 0
-        right = len(arr) - 1
-
-        while left < right:
-            middle = (left + right) // 2
-            if arr[middle] < arr[middle + 1]:
-                left = middle + 1
+    def peakIndexInMountainArray(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(arr)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if arr[mid] > arr[mid+1]:
+                right = mid-1
             else:
-                right = middle
-
+                left = mid+1
         return left
+

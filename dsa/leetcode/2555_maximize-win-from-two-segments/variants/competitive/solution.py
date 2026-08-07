@@ -1,16 +1,19 @@
+# Time:  O(n)
+# Space: O(n)
+
+# two pointers, sliding window, dp
 class Solution:
-    def maximizeWin(self, prizePositions: List[int], k: int) -> int:
-        n = len(prizePositions)
-        best_prefix = [0] * (n + 1)
-        answer = 0
-        left = 0
-
-        for right, position in enumerate(prizePositions):
-            while position - prizePositions[left] > k:
+    def maximizeWin(self, prizePositions, k):
+        """
+        :type prizePositions: List[int]
+        :type k: int
+        :rtype: int
+        """
+        dp = [0]*(len(prizePositions)+1)
+        result = left = 0
+        for right in range(len(prizePositions)):
+            while prizePositions[right]-prizePositions[left] > k:
                 left += 1
-
-            current = right - left + 1
-            answer = max(answer, current + best_prefix[left])
-            best_prefix[right + 1] = max(best_prefix[right], current)
-
-        return answer
+            dp[right+1] = max(dp[right], right-left+1)
+            result = max(result, dp[left]+(right-left+1))
+        return result

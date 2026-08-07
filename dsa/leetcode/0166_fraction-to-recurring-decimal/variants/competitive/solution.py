@@ -1,25 +1,34 @@
+# Time:  O(logn), where logn is the length of result strings
+# Space: O(1)
+
 class Solution:
-    def fractionToDecimal(self, numerator: int, denominator: int) -> str:
-        if numerator == 0:
-            return "0"
+    def fractionToDecimal(self, numerator, denominator):
+        """
+        :type numerator: int
+        :type denominator: int
+        :rtype: str
+        """
+        result = ""
+        if (numerator > 0 and denominator < 0) or (numerator < 0 and denominator > 0):
+            result = "-"
 
-        negative = (numerator < 0) != (denominator < 0)
-        numerator = abs(numerator)
-        denominator = abs(denominator)
-        integer, remainder = divmod(numerator, denominator)
-        prefix = ("-" if negative else "") + str(integer)
-        if remainder == 0:
-            return prefix
+        dvd, dvs = abs(numerator), abs(denominator)
+        result += str(dvd / dvs)
+        dvd %= dvs
 
-        digits = []
-        positions = {}
-        while remainder != 0:
-            if remainder in positions:
-                start = positions[remainder]
-                digits.insert(start, "(")
-                digits.append(")")
-                break
-            positions[remainder] = len(digits)
-            digit, remainder = divmod(remainder * 10, denominator)
-            digits.append(str(digit))
-        return prefix + "." + "".join(digits)
+        if dvd > 0:
+            result += "."
+
+        lookup = {}
+        while dvd and dvd not in lookup:
+            lookup[dvd] = len(result)
+            dvd *= 10
+            result += str(dvd / dvs)
+            dvd %= dvs
+
+        if dvd in lookup:
+            result = result[:lookup[dvd]] + "(" + result[lookup[dvd]:] + ")"
+
+        return result
+
+

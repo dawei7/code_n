@@ -1,18 +1,31 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
+import itertools
 
 
 class Solution:
-    def alertNames(self, keyName: List[str], keyTime: List[str]) -> List[str]:
-        uses_by_name = defaultdict(list)
-        for name, timestamp in zip(keyName, keyTime):
-            hour, minute = map(int, timestamp.split(":"))
-            uses_by_name[name].append(hour * 60 + minute)
-
-        alerted = []
-        for name, uses in uses_by_name.items():
-            uses.sort()
-            if any(uses[i] - uses[i - 2] <= 60 for i in range(2, len(uses))):
-                alerted.append(name)
-
-        return sorted(alerted)
+    def alertNames(self, keyName, keyTime):
+        """
+        :type keyName: List[str]
+        :type keyTime: List[str]
+        :rtype: List[str]
+        """
+        THRESHOLD = 3
+        name_to_times = collections.defaultdict(list)
+        for name, hour_minute in itertools.izip(keyName, keyTime):
+            hour, minute = map(int, hour_minute.split(':'))
+            name_to_times[name].append(hour*60 + minute)
+        names = []    
+        for name, times in name_to_times.items():
+            times.sort()
+            left = 0
+            for right, time in enumerate(times):
+                while time-times[left] > 60:
+                    left += 1
+                if right-left+1 >= THRESHOLD:
+                    names.append(name)
+                    break
+        names.sort()
+        return names

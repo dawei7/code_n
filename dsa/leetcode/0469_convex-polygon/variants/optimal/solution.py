@@ -1,18 +1,15 @@
-from typing import List
-
-
 class Solution:
     def isConvex(self, points: List[List[int]]) -> bool:
-        orientation = 0
-        count = len(points)
-        for index in range(count):
-            first = points[index]
-            second = points[(index + 1) % count]
-            third = points[(index + 2) % count]
-            cross = (second[0] - first[0]) * (third[1] - second[1]) - (second[1] - first[1]) * (third[0] - second[0])
-            if cross == 0:
-                continue
-            if orientation and (cross > 0) != (orientation > 0):
-                return False
-            orientation = cross
+        n = len(points)
+        pre = cur = 0
+        for i in range(n):
+            x1 = points[(i + 1) % n][0] - points[i][0]
+            y1 = points[(i + 1) % n][1] - points[i][1]
+            x2 = points[(i + 2) % n][0] - points[i][0]
+            y2 = points[(i + 2) % n][1] - points[i][1]
+            cur = x1 * y2 - x2 * y1
+            if cur != 0:
+                if cur * pre < 0:
+                    return False
+                pre = cur
         return True

@@ -1,23 +1,16 @@
-from typing import List
-
-
 class Solution:
     def findShortestSubArray(self, nums: List[int]) -> int:
-        first_index = {}
-        counts = {}
-        degree = 0
-        shortest = len(nums)
-
-        for index, value in enumerate(nums):
-            if value not in first_index:
-                first_index[value] = index
-            counts[value] = counts.get(value, 0) + 1
-            span = index - first_index[value] + 1
-
-            if counts[value] > degree:
-                degree = counts[value]
-                shortest = span
-            elif counts[value] == degree:
-                shortest = min(shortest, span)
-
-        return shortest
+        cnt = Counter(nums)
+        degree = cnt.most_common()[0][1]
+        left, right = {}, {}
+        for i, v in enumerate(nums):
+            if v not in left:
+                left[v] = i
+            right[v] = i
+        ans = inf
+        for v in nums:
+            if cnt[v] == degree:
+                t = right[v] - left[v] + 1
+                if ans > t:
+                    ans = t
+        return ans

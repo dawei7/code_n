@@ -1,17 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def reverseOnlyLetters(self, s: str) -> str:
-        characters = list(s)
-        left = 0
-        right = len(characters) - 1
+    def reverseOnlyLetters(self, S):
+        """
+        :type S: str
+        :rtype: str
+        """
+        def getNext(S):
+            for i in reversed(range(len(S))):
+                if S[i].isalpha():
+                    yield S[i]
 
-        while left < right:
-            if not characters[left].isalpha():
-                left += 1
-            elif not characters[right].isalpha():
-                right -= 1
+        result = []
+        letter = getNext(S)
+        for i in range(len(S)):
+            if S[i].isalpha():
+                result.append(letter.next())
             else:
-                characters[left], characters[right] = characters[right], characters[left]
-                left += 1
-                right -= 1
+                result.append(S[i])
+        return "".join(result)
 
-        return "".join(characters)

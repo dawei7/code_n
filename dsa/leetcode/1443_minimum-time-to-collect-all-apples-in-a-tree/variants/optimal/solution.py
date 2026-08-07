@@ -1,36 +1,19 @@
-from typing import List
-
-
 class Solution:
-    def minTime(
-        self,
-        n: int,
-        edges: List[List[int]],
-        hasApple: List[bool],
-    ) -> int:
-        adjacency = [[] for _ in range(n)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
+    def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
+        def dfs(u, cost):
+            if vis[u]:
+                return 0
+            vis[u] = True
+            nxt_cost = 0
+            for v in g[u]:
+                nxt_cost += dfs(v, 2)
+            if not hasApple[u] and nxt_cost == 0:
+                return 0
+            return cost + nxt_cost
 
-        parent = [-2] * n
-        parent[0] = -1
-        order = []
-        stack = [0]
-
-        while stack:
-            node = stack.pop()
-            order.append(node)
-            for neighbor in adjacency[node]:
-                if parent[neighbor] == -2:
-                    parent[neighbor] = node
-                    stack.append(neighbor)
-
-        needed = list(hasApple)
-        total_time = 0
-        for node in reversed(order[1:]):
-            if needed[node]:
-                total_time += 2
-                needed[parent[node]] = True
-
-        return total_time
+        g = defaultdict(list)
+        for u, v in edges:
+            g[u].append(v)
+            g[v].append(u)
+        vis = [False] * n
+        return dfs(0, 0)

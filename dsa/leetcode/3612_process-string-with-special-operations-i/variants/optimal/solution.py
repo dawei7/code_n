@@ -1,27 +1,13 @@
-from collections import deque
-
-
 class Solution:
     def processStr(self, s: str) -> str:
-        result = deque()
-        is_reversed = False
-
-        for character in s:
-            if character == "*":
-                if result:
-                    if is_reversed:
-                        result.popleft()
-                    else:
-                        result.pop()
-            elif character == "#":
-                result.extend(list(result))
-            elif character == "%":
-                is_reversed = not is_reversed
-            elif is_reversed:
-                result.appendleft(character)
-            else:
-                result.append(character)
-
-        if is_reversed:
-            return "".join(reversed(result))
+        result = []
+        for c in s:
+            if c.isalpha():
+                result.append(c)
+            elif c == "*" and result:
+                result.pop()
+            elif c == "#":
+                result.extend(result)
+            elif c == "%":
+                result.reverse()
         return "".join(result)

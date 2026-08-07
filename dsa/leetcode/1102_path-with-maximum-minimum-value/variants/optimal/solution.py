@@ -1,27 +1,23 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def maximumMinimumPath(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        heap = [(-grid[0][0], 0, 0)]
-        visited = [[False] * columns for _ in range(rows)]
+        def find(x: int) -> int:
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        while heap:
-            negative_score, row, column = heappop(heap)
-            if visited[row][column]:
-                continue
-            score = -negative_score
-            if row == rows - 1 and column == columns - 1:
-                return score
-            visited[row][column] = True
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and not visited[next_row][next_column]:
-                    candidate = min(score, grid[next_row][next_column])
-                    heappush(heap, (-candidate, next_row, next_column))
-
-        return -1
+        m, n = len(grid), len(grid[0])
+        p = list(range(m * n))
+        q = [(v, i, j) for i, row in enumerate(grid) for j, v in enumerate(row)]
+        q.sort()
+        ans = 0
+        dirs = (-1, 0, 1, 0, -1)
+        vis = set()
+        while find(0) != find(m * n - 1):
+            v, i, j = q.pop()
+            ans = v
+            vis.add((i, j))
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if (x, y) in vis:
+                    p[find(i * n + j)] = find(x * n + y)
+        return ans

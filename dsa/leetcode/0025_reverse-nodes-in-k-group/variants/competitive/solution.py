@@ -1,27 +1,46 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
 
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, repr(self.next))
 
 class Solution:
-    def reverseKGroup(self, head: Optional["ListNode"], k: int) -> Optional["ListNode"]:
-        sentinel = ListNode(0, head)
-        group_prev = sentinel
+    # @param head, a ListNode
+    # @param k, an integer
+    # @return a ListNode
+    def reverseKGroup(self, head, k):
+        dummy = ListNode(-1)
+        dummy.next = head
 
-        while True:
-            kth = group_prev
-            for _ in range(k):
-                kth = kth.next
-                if kth is None:
-                    return sentinel.next
+        cur, cur_dummy = head, dummy
+        length = 0
 
-            group_next = kth.next
-            previous = group_next
-            current = group_prev.next
-            while current is not group_next:
-                following = current.next
-                current.next = previous
-                previous = current
-                current = following
+        while cur:
+            next_cur = cur.next
+            length = (length + 1) % k
 
-            old_start = group_prev.next
-            group_prev.next = kth
-            group_prev = old_start
+            if length == 0:
+                next_dummy = cur_dummy.next
+                self.reverse(cur_dummy, cur.next)
+                cur_dummy = next_dummy
+
+            cur = next_cur
+
+        return dummy.next
+
+    def reverse(self, begin, end):
+            first = begin.next
+            cur = first.next
+
+            while cur != end:
+                first.next = cur.next
+                cur.next = begin.next
+                begin.next = cur
+                cur = first.next
+

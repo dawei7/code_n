@@ -1,20 +1,21 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
-        if k <= 1:
-            return 0
+    def numSubarrayProductLessThanK(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        if k <= 1: return 0
+        result, start, prod = 0, 0, 1
+        for i, num in enumerate(nums):
+            prod *= num
+            while prod >= k:
+                prod /= nums[start]
+                start += 1
+            result += i-start+1
+        return result
 
-        product = 1
-        left = 0
-        answer = 0
 
-        for right, value in enumerate(nums):
-            product *= value
-            while product >= k:
-                product //= nums[left]
-                left += 1
-            answer += right - left + 1
-
-        return answer

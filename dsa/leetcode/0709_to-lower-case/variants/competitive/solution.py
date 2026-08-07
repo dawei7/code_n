@@ -1,11 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def toLowerCase(self, s: str) -> str:
-        characters = []
+    def toLowerCase(self, str):
+        """
+        :type str: str
+        :rtype: str
+        """
+        return "".join([chr(ord('a')+ord(c)-ord('A')) 
+                        if 'A' <= c <= 'Z' else c for c in str])
 
-        for character in s:
-            if "A" <= character <= "Z":
-                characters.append(chr(ord(character) + 32))
-            else:
-                characters.append(character)
-
-        return "".join(characters)

@@ -1,19 +1,11 @@
-from typing import List
-
-
 class Solution:
     def maximalSquare(self, matrix: List[List[str]]) -> int:
-        columns = len(matrix[0])
-        dp = [0] * (columns + 1)
-        largest = 0
-        for row in matrix:
-            diagonal = 0
-            for column in range(1, columns + 1):
-                above = dp[column]
-                if row[column - 1] == "1":
-                    dp[column] = 1 + min(dp[column], dp[column - 1], diagonal)
-                    largest = max(largest, dp[column])
-                else:
-                    dp[column] = 0
-                diagonal = above
-        return largest * largest
+        m, n = len(matrix), len(matrix[0])
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+        mx = 0
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == '1':
+                    dp[i + 1][j + 1] = min(dp[i][j + 1], dp[i + 1][j], dp[i][j]) + 1
+                    mx = max(mx, dp[i + 1][j + 1])
+        return mx * mx

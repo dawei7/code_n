@@ -1,29 +1,38 @@
-from functools import cache
-from math import gcd
+# Time:  O(n^2 * 2^n)
+# Space: O(2^n)
+
+import itertools
+from fractions import gcd
 
 
 class Solution:
-    def maxScore(self, nums: list[int]) -> int:
-        length = len(nums)
-        pair_gcd = [[gcd(nums[i], nums[j]) for j in range(length)] for i in range(length)]
+    def maxScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def popcount(n):
+            count = 0
+            while n:
+                n &= n-1
+                count += 1
+            return count
 
-        @cache
-        def best(mask: int) -> int:
-            operation = mask.bit_count() // 2 + 1
-            answer = 0
-
-            for i in range(length):
-                if mask & (1 << i):
-                    continue
-                for j in range(i + 1, length):
-                    if mask & (1 << j):
-                        continue
-                    next_mask = mask | (1 << i) | (1 << j)
-                    answer = max(
-                        answer,
-                        operation * pair_gcd[i][j] + best(next_mask),
-                    )
-
-            return answer
-
-        return best(0)
+        def bits(mask):
+            result = []
+            i = 0
+            while mask:
+                if mask&1:
+                    result.append(i)
+                i += 1
+                mask >>= 1
+            return result
+            
+        dp = [0]*(2**len(nums))
+        for mask in range(3, len(dp)):
+            cnt = popcount(mask)
+            if cnt%2:
+                continue
+            for i, j in itertools.combinations(bits(mask), 2):  # Time: O(n^2)
+                dp[mask] = max(dp[mask], cnt//2*gcd(nums[i], nums[j]) + dp[mask^(1<<i)^(1<<j)])
+        return dp[-1]

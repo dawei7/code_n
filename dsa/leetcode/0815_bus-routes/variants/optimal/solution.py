@@ -1,35 +1,26 @@
-from collections import defaultdict, deque
-from typing import List
-
-
 class Solution:
-    def numBusesToDestination(self, routes: List[List[int]], source: int, target: int) -> int:
+    def numBusesToDestination(
+        self, routes: List[List[int]], source: int, target: int
+    ) -> int:
         if source == target:
             return 0
-
-        routes_by_stop = defaultdict(list)
-        for route_index, stops in enumerate(routes):
-            for stop in stops:
-                routes_by_stop[stop].append(route_index)
-
-        queue = deque([source])
-        visited_stops = {source}
-        visited_routes = set()
-        buses = 0
-
-        while queue:
-            buses += 1
-            for _ in range(len(queue)):
-                stop = queue.popleft()
-                for route_index in routes_by_stop[stop]:
-                    if route_index in visited_routes:
-                        continue
-                    visited_routes.add(route_index)
-                    for next_stop in routes[route_index]:
-                        if next_stop == target:
-                            return buses
-                        if next_stop not in visited_stops:
-                            visited_stops.add(next_stop)
-                            queue.append(next_stop)
-
+        g = defaultdict(list)
+        for i, route in enumerate(routes):
+            for stop in route:
+                g[stop].append(i)
+        if source not in g or target not in g:
+            return -1
+        q = [(source, 0)]
+        vis_bus = set()
+        vis_stop = {source}
+        for stop, bus_count in q:
+            if stop == target:
+                return bus_count
+            for bus in g[stop]:
+                if bus not in vis_bus:
+                    vis_bus.add(bus)
+                    for next_stop in routes[bus]:
+                        if next_stop not in vis_stop:
+                            vis_stop.add(next_stop)
+                            q.append((next_stop, bus_count + 1))
         return -1

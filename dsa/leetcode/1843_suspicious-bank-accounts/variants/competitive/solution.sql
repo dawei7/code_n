@@ -1,23 +1,24 @@
-WITH monthly_income AS (
-    SELECT
-        account_id,
-        EXTRACT(YEAR_MONTH FROM day) AS income_month,
-        SUM(amount) AS total_income
-    FROM Transactions
-    WHERE type = 'Creditor'
-    GROUP BY account_id, EXTRACT(YEAR_MONTH FROM day)
-),
-over_limit AS (
-    SELECT
-        monthly_income.account_id,
-        monthly_income.income_month
-    FROM monthly_income
-    INNER JOIN Accounts
-        ON Accounts.account_id = monthly_income.account_id
-    WHERE monthly_income.total_income > Accounts.max_income
-)
-SELECT DISTINCT first_month.account_id
-FROM over_limit AS first_month
-INNER JOIN over_limit AS next_month
-    ON next_month.account_id = first_month.account_id
-    AND PERIOD_DIFF(next_month.income_month, first_month.income_month) = 1;
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH transaction_cte AS
+  (SELECT t.account_id,
+          DATE_FORMAT(DAY, '%Y%m') AS month,
+          SUM(amount) AS total_income,
+          a.max_income
+   FROM Transactions t
+        LEFT JOIN Accounts a
+               ON a.account_id = t.account_id
+   WHERE t.type = 'Creditor'
+   GROUP BY 1, 2
+   HAVING total_income > a.max_income
+   ORDER BY NULL),
+     consecutive_cte AS
+  (SELECT account_id,
+          LEAD(month, 1) OVER(PARTITION BY account_id
+                              ORDER BY month) - month AS month_diff
+   FROM transaction_cte)
+
+SELECT DISTINCT account_id
+FROM consecutive_cte
+WHERE month_diff = 1;

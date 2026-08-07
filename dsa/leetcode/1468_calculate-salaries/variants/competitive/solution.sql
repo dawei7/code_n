@@ -1,19 +1,19 @@
-WITH company_rates AS (
-    SELECT
-        company_id,
-        CASE
-            WHEN MAX(salary) < 1000 THEN 100
-            WHEN MAX(salary) <= 10000 THEN 76
-            ELSE 51
-        END AS take_home_percent
-    FROM Salaries
-    GROUP BY company_id
-)
-SELECT
-    salaries.company_id,
-    salaries.employee_id,
-    salaries.employee_name,
-    ROUND(salaries.salary * company_rates.take_home_percent / 100.0) AS salary
-FROM Salaries AS salaries
-JOIN company_rates
-    ON company_rates.company_id = salaries.company_id;
+# Time:  O(m + n)
+# Space: O(m + n)
+
+SELECT s.company_id,
+       s.employee_id,
+       s.employee_name,
+       ROUND(s.salary * t.rate) salary
+FROM Salaries s
+INNER JOIN
+  (SELECT company_id,
+          CASE
+              WHEN MAX(salary) < 1000 THEN 1.0
+              WHEN MAX(salary) <= 10000 THEN 0.76
+              ELSE 0.51
+          END AS rate
+   FROM Salaries
+   GROUP BY company_id
+   ORDER BY NULL) t ON s.company_id = t.company_id;
+ 

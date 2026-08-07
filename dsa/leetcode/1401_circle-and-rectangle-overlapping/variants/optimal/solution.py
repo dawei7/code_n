@@ -9,8 +9,11 @@ class Solution:
         x2: int,
         y2: int,
     ) -> bool:
-        closest_x = min(max(xCenter, x1), x2)
-        closest_y = min(max(yCenter, y1), y2)
-        delta_x = xCenter - closest_x
-        delta_y = yCenter - closest_y
-        return delta_x * delta_x + delta_y * delta_y <= radius * radius
+        def f(i: int, j: int, k: int) -> int:
+            if i <= k <= j:
+                return 0
+            return i - k if k < i else k - j
+
+        a = f(x1, x2, xCenter)
+        b = f(y1, y2, yCenter)
+        return a * a + b * b <= radius * radius

@@ -1,37 +1,19 @@
-WITH events AS (
-    SELECT bus_id, arrival_time, 1 AS event_kind, 0 AS passenger_delta
-    FROM Buses
+# Time:  O(p * b + blogb)
+# Space: O(p * b)
 
-    UNION ALL
-
-    SELECT NULL AS bus_id, arrival_time, 0 AS event_kind, 1 AS passenger_delta
-    FROM Passengers
-),
-running AS (
-    SELECT
-        bus_id,
-        arrival_time,
-        SUM(passenger_delta) OVER (
-            ORDER BY arrival_time, event_kind
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS arrived_passengers
-    FROM events
-),
-bus_totals AS (
-    SELECT bus_id, arrival_time, arrived_passengers
-    FROM running
-    WHERE bus_id IS NOT NULL
-),
-counts AS (
-    SELECT
-        bus_id,
-        arrived_passengers
-            - COALESCE(
-                LAG(arrived_passengers) OVER (ORDER BY arrival_time),
-                0
-            ) AS passengers_cnt
-    FROM bus_totals
+WITH arrival_time_cte AS
+(
+    SELECT passenger_id, MIN(b.arrival_time) AS arrival_time
+    FROM Passengers p
+    INNER JOIN Buses b
+    ON p.arrival_time <= b.arrival_time
+    GROUP BY passenger_id
+    ORDER BY NULL
 )
-SELECT bus_id, passengers_cnt
-FROM counts
+
+SELECT bus_id, COUNT(a.arrival_time) AS passengers_cnt
+FROM Buses b
+LEFT JOIN arrival_time_cte a
+ON b.arrival_time = a.arrival_time
+GROUP BY bus_id
 ORDER BY bus_id;

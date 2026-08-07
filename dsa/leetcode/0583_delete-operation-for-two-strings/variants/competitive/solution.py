@@ -1,21 +1,19 @@
+# Time:  O(m * n)
+# Space: O(n)
+
 class Solution:
-    def minDistance(self, word1: str, word2: str) -> int:
-        if len(word1) < len(word2):
-            longer, shorter = word2, word1
-        else:
-            longer, shorter = word1, word2
+    def minDistance(self, word1, word2):
+        """
+        :type word1: str
+        :type word2: str
+        :rtype: int
+        """
+        m, n = len(word1), len(word2)
+        dp = [[0] * (n+1) for _ in range(2)]
+        for i in range(m):
+            for j in range(n):
+                dp[(i+1)%2][j+1] = max(dp[i%2][j+1], \
+                                       dp[(i+1)%2][j], \
+                                       dp[i%2][j] + (word1[i] == word2[j]))
+        return m + n - 2*dp[m%2][n]
 
-        previous = [0] * (len(shorter) + 1)
-        for left_char in longer:
-            current = [0] * (len(shorter) + 1)
-            for column, right_char in enumerate(shorter, start=1):
-                if left_char == right_char:
-                    current[column] = previous[column - 1] + 1
-                else:
-                    current[column] = max(
-                        previous[column],
-                        current[column - 1],
-                    )
-            previous = current
-
-        return len(word1) + len(word2) - 2 * previous[-1]

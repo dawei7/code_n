@@ -1,33 +1,63 @@
-from typing import List
+# Time:  O(n)
+# Space: O(t), t is the number of nodes in trie
+
+import collections
+import string
 
 
 class Solution:
-    def longestWord(self, words: List[str]) -> str:
-        children = [{}]
-        terminal_word = [None]
+    def longestWord(self, words):
+        """
+        :type words: List[str]
+        :rtype: str
+        """
+        def iter_dfs(words, node):
+            result = -1
+            stk = [node]
+            while stk:
+                node = stk.pop()
+                if result == -1 or len(words[node["_end"]]) > len(words[result]):
+                    result = node["_end"]
+                for c in reversed(string.ascii_lowercase):
+                    if c not in node or "_end" not in node[c]:
+                        continue
+                    stk.append(node[c])
+            return result       
+    
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        trie["_end"] = -1
+        for i, word in enumerate(words):
+            reduce(dict.__getitem__, word, trie)["_end"] = i
+        result = iter_dfs(words, trie)
+        return words[result] if result != -1 else "" 
 
-        for word in words:
-            node = 0
-            for character in word:
-                next_node = children[node].get(character)
-                if next_node is None:
-                    next_node = len(children)
-                    children[node][character] = next_node
-                    children.append({})
-                    terminal_word.append(None)
-                node = next_node
-            terminal_word[node] = word
 
-        answer = ""
-        stack = [0]
-        while stack:
-            node = stack.pop()
-            for next_node in children[node].values():
-                word = terminal_word[next_node]
-                if word is None:
+# Time:  O(n)
+# Space: O(t), t is the number of nodes in trie
+import collections
+import string
+
+
+class Solution2(object):
+    def longestWord(self, words):
+        """
+        :type words: List[str]
+        :rtype: str
+        """
+        def dfs(words, node, result):
+            if result[0] == -1 or len(words[node["_end"]]) > len(words[result[0]]):
+                result[0] = node["_end"]
+            for c in string.ascii_lowercase:
+                if c not in node or "_end" not in node[c]:
                     continue
-                if len(word) > len(answer) or (len(word) == len(answer) and word < answer):
-                    answer = word
-                stack.append(next_node)
-
-        return answer
+                dfs(words, node[c], result)
+    
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        trie["_end"] = -1
+        for i, word in enumerate(words):
+            reduce(dict.__getitem__, word, trie)["_end"] = i
+        result = [-1]
+        dfs(words, trie, result)
+        return words[result[0]] if result[0] != -1 else ""

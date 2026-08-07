@@ -1,16 +1,14 @@
-from typing import List
-
-
 class Solution:
     def maxProfit(self, k: int, prices: List[int]) -> int:
-        if k == 0 or len(prices) < 2:
-            return 0
-        if k >= len(prices) // 2:
-            return sum(max(0, prices[i] - prices[i - 1]) for i in range(1, len(prices)))
-        buy = [float("-inf")] * (k + 1)
-        sell = [0] * (k + 1)
-        for price in prices:
-            for transaction in range(1, k + 1):
-                buy[transaction] = max(buy[transaction], sell[transaction - 1] - price)
-                sell[transaction] = max(sell[transaction], buy[transaction] + price)
-        return sell[k]
+        @cache
+        def dfs(i: int, j: int, k: int) -> int:
+            if i >= len(prices):
+                return 0
+            ans = dfs(i + 1, j, k)
+            if k:
+                ans = max(ans, prices[i] + dfs(i + 1, j, 0))
+            elif j:
+                ans = max(ans, -prices[i] + dfs(i + 1, j - 1, 1))
+            return ans
+
+        return dfs(0, k, 0)

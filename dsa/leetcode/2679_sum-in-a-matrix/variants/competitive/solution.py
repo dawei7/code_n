@@ -1,5 +1,13 @@
+# Time:  O(m * nlogn)
+# Space: O(1)
+
+# sort
 class Solution:
-    def matrixSum(self, nums: List[List[int]]) -> int:
+    def matrixSum(self, nums):
+        """
+        :type nums: List[List[int]]
+        :rtype: int
+        """
         for row in nums:
             row.sort()
-        return sum(max(column) for column in zip(*nums))
+        return sum(max(nums[r][c] for r in range(len(nums))) for c in range(len(nums[0])))

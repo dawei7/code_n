@@ -1,19 +1,23 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def countTriplets(self, arr: List[int]) -> int:
-        occurrence_count = defaultdict(int)
-        position_sum = defaultdict(int)
-        occurrence_count[0] = 1
-
-        prefix = 0
-        answer = 0
-        for index, value in enumerate(arr):
-            prefix ^= value
-            answer += occurrence_count[prefix] * index - position_sum[prefix]
-            occurrence_count[prefix] += 1
-            position_sum[prefix] += index + 1
-
-        return answer
+    def countTriplets(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        count_sum = collections.defaultdict(lambda: [0, 0])
+        count_sum[0] = [1, 0]
+        result, prefix = 0, 0
+        for i, x in enumerate(arr):
+            prefix ^= x
+            c, t = count_sum[prefix]
+            # sum(i-(j+1) for j in index[prefix])
+            # = len(index[prefix])*i - sum((j+1) for j in index[prefix])
+            result += c*i - t
+            count_sum[prefix] = [c+1, t+i+1]
+        return result

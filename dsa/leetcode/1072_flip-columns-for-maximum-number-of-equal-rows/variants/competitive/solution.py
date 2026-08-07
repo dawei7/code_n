@@ -1,12 +1,15 @@
-from collections import Counter
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
+
+import collections
 
 
 class Solution:
-    def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
-        patterns = Counter()
-        for row in matrix:
-            first = row[0]
-            pattern = tuple(value ^ first for value in row)
-            patterns[pattern] += 1
-        return max(patterns.values())
+    def maxEqualRowsAfterFlips(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: int
+        """
+        count = collections.Counter(tuple(x^row[0] for x in row)
+                                          for row in matrix)
+        return max(count.values())

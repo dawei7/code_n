@@ -1,16 +1,27 @@
-from math import gcd
+# Time:  O(n^2 * logn + n * 2^n) = O(n * 2^n)
+# Space: O(n^2 + 2^n) = O(2^n)
 
-
+# bitmasks, dp
 class Solution:
-    def selfDivisiblePermutationCount(self, n: int) -> int:
-        ways = [0] * (1 << n)
-        ways[0] = 1
+    def selfDivisiblePermutationCount(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        def popcount(x):
+            return bin(x).count('1')
 
-        for mask in range(1 << n):
-            position = mask.bit_count() + 1
-            for value in range(1, n + 1):
-                bit = 1 << (value - 1)
-                if mask & bit == 0 and gcd(value, position) == 1:
-                    ways[mask | bit] += ways[mask]
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        return ways[-1]
+        lookup = [[gcd(i+1, j+1) == 1 for j in range(n)] for i in range(n)]
+        dp = [0]*(1<<n)
+        dp[0] = 1
+        for mask in range(1<<n):
+            i = popcount(mask)
+            for j in range(n):
+                if mask&(1<<j) == 0 and lookup[i][j]:
+                    dp[mask|(1<<j)] += dp[mask]
+        return dp[-1]

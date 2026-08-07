@@ -1,19 +1,16 @@
-MODULUS = 1000000007
-
-
 class Solution:
-    def assignEdgeWeights(self, edges: list[list[int]]) -> int:
-        node_count = len(edges) + 1
-        adjacency: list[list[int]] = [[] for _ in range(node_count + 1)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
-        maximum_depth = 0
-        stack = [(1, 0, 0)]
-        while stack:
-            node, parent, depth = stack.pop()
-            maximum_depth = max(maximum_depth, depth)
-            for neighbor in adjacency[node]:
-                if neighbor != parent:
-                    stack.append((neighbor, node, depth + 1))
-        return pow(2, maximum_depth - 1, MODULUS)
+    def assignEdgeWeights(self, edges: List[List[int]]) -> int:
+        def dfs(i: int, fa: int = 0) -> int:
+            res = 0
+            for j in g[i]:
+                if j != fa:
+                    res = max(res, dfs(j, i) + 1)
+            return res
+
+        n = len(edges) + 1
+        g = [[] for _ in range(n + 1)]
+        for u, v in edges:
+            g[u].append(v)
+            g[v].append(u)
+        d = dfs(1)
+        return pow(2, d - 1, 10**9 + 7)

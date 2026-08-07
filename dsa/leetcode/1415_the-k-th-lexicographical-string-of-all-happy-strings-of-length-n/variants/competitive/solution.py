@@ -1,16 +1,20 @@
-class Solution:
-    def getHappyString(self, n: int, k: int) -> str:
-        if k > 3 * (1 << (n - 1)):
-            return ""
+# Time:  O(n)
+# Space: O(1)
 
-        answer = []
-        previous = ""
-        for index in range(n):
-            choices = [character for character in "abc" if character != previous]
-            block_size = 1 << (n - index - 1)
-            block = (k - 1) // block_size
-            character = choices[block]
-            answer.append(character)
-            previous = character
-            k -= block * block_size
-        return "".join(answer)
+class Solution:
+    def getHappyString(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: str
+        """
+        base = 2**(n-1)
+        if k > 3*base:
+            return ""
+        result = [chr(ord('a')+(k-1)//base)]
+        while base > 1:
+            k -= (k-1)//base*base
+            base //= 2
+            result.append(('a' if result[-1] != 'a' else 'b') if (k-1)//base == 0 else
+                          ('c' if result[-1] != 'c' else 'b'))
+        return "".join(result)

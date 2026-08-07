@@ -1,17 +1,27 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, nums: List[int]) -> int:
-        length = len(nums)
-        zero_index = nums.index(0)
+        n = len(nums)
 
-        cyclic_increasing = all(nums[(index + 1) % length] == (nums[index] + 1) % length for index in range(length))
-        if cyclic_increasing:
-            return min(zero_index, length - zero_index + 2)
+        zero = nums.index(0)
 
-        cyclic_decreasing = all(nums[(index + 1) % length] == (nums[index] - 1) % length for index in range(length))
-        if cyclic_decreasing:
-            return min(length - zero_index, zero_index + 2)
+        def check(step: int) -> bool:
+            for i in range(1, n):
+                prev = (zero + (i - 1) * step) % n
+                curr = (zero + i * step) % n
 
-        return -1
+                if nums[prev] > nums[curr]:
+                    return False
+
+            return True
+
+        ans = inf
+
+        if check(1):
+            ans = min(ans, zero)
+            ans = min(ans, n - zero + 2)
+
+        if check(-1):
+            ans = min(ans, zero + 2)
+            ans = min(ans, n - zero)
+
+        return -1 if ans == inf else ans

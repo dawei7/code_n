@@ -1,11 +1,11 @@
-from typing import List
-
+# Time:  O(n * l)
+# Space: O(l)
 
 class Solution:
-    def sumOfDigits(self, nums: List[int]) -> int:
-        value = min(nums)
-        digit_sum = 0
-        while value:
-            digit_sum += value % 10
-            value //= 10
-        return int(digit_sum % 2 == 0)
+    def sumOfDigits(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        total = sum([int(c) for c in str(min(A))])
+        return 1 if total % 2 == 0 else 0

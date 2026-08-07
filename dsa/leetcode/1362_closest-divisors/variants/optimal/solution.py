@@ -1,17 +1,10 @@
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def closestDivisors(self, num: int) -> List[int]:
-        def closest_pair(value: int) -> List[int]:
-            divisor = isqrt(value)
-            while value % divisor:
-                divisor -= 1
-            return [divisor, value // divisor]
+        def f(x):
+            for i in range(int(sqrt(x)), 0, -1):
+                if x % i == 0:
+                    return [i, x // i]
 
-        first = closest_pair(num + 1)
-        second = closest_pair(num + 2)
-        if second[1] - second[0] < first[1] - first[0]:
-            return second
-        return first
+        a = f(num + 1)
+        b = f(num + 2)
+        return a if abs(a[0] - a[1]) < abs(b[0] - b[1]) else b

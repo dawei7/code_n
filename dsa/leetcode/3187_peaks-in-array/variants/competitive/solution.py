@@ -1,58 +1,103 @@
-class FenwickTree:
-    def __init__(self, size: int):
-        self.tree = [0] * (size + 1)
+# Time:  O(n + qlogn)
+# Space: O(n)
 
-    def add(self, index: int, delta: int) -> None:
-        index += 1
-        while index < len(self.tree):
-            self.tree[index] += delta
-            index += index & -index
-
-    def prefix_sum(self, index: int) -> int:
-        total = 0
-        index += 1
-        while index > 0:
-            total += self.tree[index]
-            index -= index & -index
-        return total
-
-    def range_sum(self, left: int, right: int) -> int:
-        if left > right:
-            return 0
-        return self.prefix_sum(right) - self.prefix_sum(left - 1)
-
-
+# bit, fenwick tree
 class Solution:
-    def countOfPeaks(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        nums = list(nums)
-        n = len(nums)
-        peak = [0] * n
-        peaks = FenwickTree(n)
+    def countOfPeaks(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        class BIT(object):  # 0-indexed.
+            def __init__(self, nums):
+                self.__bit = [0]*(len(nums)+1)  # Extra one for dummy node.
+                for i in range(1, len(self.__bit)):
+                    self.__bit[i] = nums[i-1] + self.__bit[i-1]
+                for i in reversed(range(1, len(self.__bit))):
+                    last_i = i - (i & -i)
+                    self.__bit[i] -= self.__bit[last_i]
 
-        def is_peak(index: int) -> int:
-            return int(0 < index < n - 1 and nums[index] > nums[index - 1] and nums[index] > nums[index + 1])
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] += val
+                    i += (i & -i)
 
-        for index in range(1, n - 1):
-            peak[index] = is_peak(index)
-            if peak[index]:
-                peaks.add(index, 1)
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret += self.__bit[i]
+                    i -= (i & -i)
+                return ret
 
-        answer = []
-        for query_type, first, second in queries:
-            if query_type == 1:
-                answer.append(peaks.range_sum(first + 1, second - 1))
+        def check(i):
+            return nums[i-1] < nums[i] > nums[i+1]
+
+        def update(x, d):
+            for i in range(max(x-1, 1), min((x+1)+1, len(nums)-1)):
+                if check(i):
+                    bit.add(i, d)
+
+        bit = BIT([int(1 <= i <= len(nums)-2 and check(i)) for i in range(len(nums))])
+        result = []
+        for t, x, y in queries:
+            if t == 1:
+                result.append(bit.query(y-1)-bit.query((x+1)-1) if y-1 >= x+1 else 0)
                 continue
+            update(x, -1)
+            nums[x] = y
+            update(x, +1)
+        return result
 
-            affected = range(max(1, first - 1), min(n - 2, first + 1) + 1)
-            for index in affected:
-                if peak[index]:
-                    peaks.add(index, -1)
 
-            nums[first] = second
+# Time:  O(nlogn + qlogn)
+# Space: O(n)
+# bit, fenwick tree
+class Solution2(object):
+    def countOfPeaks(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        class BIT(object):  # 0-indexed.
+            def __init__(self, n):
+                self.__bit = [0]*(n+1)  # Extra one for dummy node.
 
-            for index in affected:
-                peak[index] = is_peak(index)
-                if peak[index]:
-                    peaks.add(index, 1)
+            def add(self, i, val):
+                i += 1  # Extra one for dummy node.
+                while i < len(self.__bit):
+                    self.__bit[i] += val
+                    i += (i & -i)
 
-        return answer
+            def query(self, i):
+                i += 1  # Extra one for dummy node.
+                ret = 0
+                while i > 0:
+                    ret += self.__bit[i]
+                    i -= (i & -i)
+                return ret
+
+        def check(i):
+            return nums[i-1] < nums[i] > nums[i+1]
+
+        def update(x, d):
+            for i in range(max(x-1, 1), min((x+1)+1, len(nums)-1)):
+                if check(i):
+                    bit.add(i, d)
+
+        bit = BIT(len(nums))
+        for i in range(1, len(nums)-1):
+            if check(i):
+                bit.add(i, +1)
+        result = []
+        for t, x, y in queries:
+            if t == 1:
+                result.append(bit.query(y-1)-bit.query((x+1)-1) if y-1 >= x+1 else 0)
+                continue
+            update(x, -1)
+            nums[x] = y
+            update(x, +1)
+        return result

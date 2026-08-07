@@ -1,20 +1,48 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def nextPermutation(self, nums: List[int]) -> None:
-        pivot = len(nums) - 2
-        while pivot >= 0 and nums[pivot] >= nums[pivot + 1]:
-            pivot -= 1
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        k, l = -1, 0
+        for i in reversed(range(len(nums)-1)):
+            if nums[i] < nums[i+1]:
+                k = i
+                break
+        else:
+            nums.reverse()
+            return
 
-        if pivot >= 0:
-            successor = len(nums) - 1
-            while nums[successor] <= nums[pivot]:
-                successor -= 1
-            nums[pivot], nums[successor] = nums[successor], nums[pivot]
+        for i in reversed(range(k+1, len(nums))):
+            if nums[i] > nums[k]:
+                l = i
+                break
+        nums[k], nums[l] = nums[l], nums[k]
+        nums[k+1:] = nums[:k:-1]
+        
 
-        left, right = pivot + 1, len(nums) - 1
-        while left < right:
-            nums[left], nums[right] = nums[right], nums[left]
-            left += 1
-            right -= 1
+# Time:  O(n)
+# Space: O(1)
+class Solution2(object):
+    def nextPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: None Do not return anything, modify nums in-place instead.
+        """
+        k, l = -1, 0
+        for i in range(len(nums)-1):
+            if nums[i] < nums[i+1]:
+                k = i
+
+        if k == -1:
+            nums.reverse()
+            return
+
+        for i in range(k+1, len(nums)):
+            if nums[i] > nums[k]:
+                l = i
+        nums[k], nums[l] = nums[l], nums[k]
+        nums[k+1:] = nums[:k:-1]

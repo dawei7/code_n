@@ -1,11 +1,10 @@
 class Solution:
-    def findLengthOfLCIS(self, nums: list[int]) -> int:
-        current = 1
-        longest = 1
-        for index in range(1, len(nums)):
-            if nums[index] > nums[index - 1]:
-                current += 1
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        ans = cnt = 1
+        for i, x in enumerate(nums[1:]):
+            if nums[i] < x:
+                cnt += 1
+                ans = max(ans, cnt)
             else:
-                current = 1
-            longest = max(longest, current)
-        return longest
+                cnt = 1
+        return ans

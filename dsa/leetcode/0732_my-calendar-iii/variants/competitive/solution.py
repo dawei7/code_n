@@ -1,44 +1,66 @@
-class _Node:
-    def __init__(self):
-        self.maximum = 0
-        self.lazy = 0
-        self.left = None
-        self.right = None
+# Time:  O(nlogn) ~ O(n^2)
+# Space: O(n)
+
+import bisect
 
 
-class MyCalendarThree:
-    DOMAIN_LEFT = 0
-    DOMAIN_RIGHT = 10**9 - 1
+class MyCalendarThree(object):
 
     def __init__(self):
-        self.root = _Node()
+        self.__books = [[-1, 0]]
+        self.__count = 0
 
-    def _add(self, node, left, right, query_left, query_right):
-        if query_left <= left and right <= query_right:
-            node.maximum += 1
-            node.lazy += 1
-            return
+    def book(self, start, end):
+        """
+        :type start: int
+        :type end: int
+        :rtype: int
+        """
+        i = bisect.bisect_right(self.__books, [start, float("inf")])
+        if self.__books[i-1][0] == start:
+            i -= 1
+        else:
+            self.__books.insert(i, [start, self.__books[i-1][1]])
+        j = bisect.bisect_right(self.__books, [end, float("inf")])
+        if self.__books[j-1][0] == end:
+            j -= 1
+        else:
+            self.__books.insert(j, [end, self.__books[j-1][1]])            
+        for k in range(i, j):
+            self.__books[k][1] += 1
+            self.__count = max(self.__count, self.__books[k][1])
+        return self.__count
 
-        middle = (left + right) // 2
-        if query_left <= middle:
-            if node.left is None:
-                node.left = _Node()
-            self._add(node.left, left, middle, query_left, query_right)
-        if query_right > middle:
-            if node.right is None:
-                node.right = _Node()
-            self._add(node.right, middle + 1, right, query_left, query_right)
 
-        left_maximum = node.left.maximum if node.left is not None else 0
-        right_maximum = node.right.maximum if node.right is not None else 0
-        node.maximum = node.lazy + max(left_maximum, right_maximum)
+# Time:  O(n^2)
+# Space: O(n)
+class MyCalendarThree2(object):
 
-    def book(self, start: int, end: int) -> int:
-        self._add(
-            self.root,
-            self.DOMAIN_LEFT,
-            self.DOMAIN_RIGHT,
-            start,
-            end - 1,
-        )
-        return self.root.maximum
+    def __init__(self):
+        self.__books = []
+
+
+    def book(self, start, end):
+        """
+        :type start: int
+        :type end: int
+        :rtype: int
+        """
+        i = bisect.bisect_left(self.__books, (start, 1))
+        if i < len(self.__books) and self.__books[i][0] == start:
+            self.__books[i] = (self.__books[i][0], self.__books[i][1]+1)
+        else:
+            self.__books.insert(i, (start, 1))
+
+        j = bisect.bisect_left(self.__books, (end, 1))
+        if j < len(self.__books) and self.__books[j][0] == end:
+            self.__books[j] = (self.__books[j][0], self.__books[j][1]-1)
+        else:
+            self.__books.insert(j, (end, -1))
+
+        result, cnt = 0, 0
+        for book in self.__books:
+            cnt += book[1]
+            result = max(result, cnt)
+        return result
+

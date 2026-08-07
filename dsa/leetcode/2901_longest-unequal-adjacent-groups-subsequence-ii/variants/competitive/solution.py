@@ -1,37 +1,86 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(n)
+
+import itertools
 
 
+# dp, backtracing
 class Solution:
-    def getWordsInLongestSubsequence(self, words: List[str], groups: List[int]) -> List[str]:
-        count = len(words)
-        lengths = [1] * count
-        previous = [-1] * count
-        best_end = 0
+    def getWordsInLongestSubsequence(self, n, words, groups):
+        """
+        :type n: int
+        :type words: List[str]
+        :type groups: List[int]
+        :rtype: List[str]
+        """
+        def check(s1, s2):
+            return len(s1) == len(s2) and sum(a != b for a, b in itertools.izip(s1, s2)) == 1
 
-        for end in range(count):
-            for start in range(end):
-                if groups[start] == groups[end]:
-                    continue
-                if len(words[start]) != len(words[end]):
-                    continue
+        dp = [[1, -1] for _ in range(n)]
+        for i in reversed(range(n)):
+            for j in range(i+1, n):
+                if groups[i] != groups[j] and check(words[j], words[i]):
+                    dp[i] = max(dp[i], [dp[j][0]+1, j])
+        result = []
+        i = max(range(n), key=lambda x: dp[x])
+        while i != -1:
+            result.append(words[i])
+            i = dp[i][1]
+        return result
 
-                differences = 0
-                for left, right in zip(words[start], words[end]):
-                    if left != right:
-                        differences += 1
-                        if differences > 1:
-                            break
 
-                if differences == 1 and lengths[start] + 1 > lengths[end]:
-                    lengths[end] = lengths[start] + 1
-                    previous[end] = start
+# Time:  O(n^2)
+# Space: O(n)
+import itertools
 
-            if lengths[end] > lengths[best_end]:
-                best_end = end
 
-        answer = []
-        while best_end != -1:
-            answer.append(words[best_end])
-            best_end = previous[best_end]
-        answer.reverse()
-        return answer
+# dp, backtracing
+class Solution2(object):
+    def getWordsInLongestSubsequence(self, n, words, groups):
+        """
+        :type n: int
+        :type words: List[str]
+        :type groups: List[int]
+        :rtype: List[str]
+        """
+        def check(s1, s2):
+            return len(s1) == len(s2) and sum(a != b for a, b in itertools.izip(s1, s2)) == 1
+
+        dp = [[1, -1] for _ in range(n)]
+        for i in range(n):
+            for j in range(i):
+                if groups[i] != groups[j] and check(words[j], words[i]):
+                    dp[i] = max(dp[i], [dp[j][0]+1, j])
+        result = []
+        i = max(range(n), key=lambda x: dp[x])
+        while i != -1:
+            result.append(words[i])
+            i = dp[i][1]
+        result.reverse()
+        return result
+
+
+# Time:  O(n^2)
+# Space: O(n^2)
+import itertools
+
+
+# lis dp
+class Solution3(object):
+    def getWordsInLongestSubsequence(self, n, words, groups):
+        """
+        :type n: int
+        :type words: List[str]
+        :type groups: List[int]
+        :rtype: List[str]
+        """
+        def check(s1, s2):
+            return len(s1) == len(s2) and sum(a != b for a, b in itertools.izip(s1, s2)) == 1
+
+        dp = [[] for _ in range(n)]
+        for i in range(n):
+            for j in range(i):
+                if groups[i] != groups[j] and check(words[j], words[i]) and len(dp[j]) > len(dp[i]):
+                    dp[i] = dp[j]
+            dp[i] = dp[i]+[i]
+        return map(lambda x: words[x], max(dp, key=lambda x: len(x)))

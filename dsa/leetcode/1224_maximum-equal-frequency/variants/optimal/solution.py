@@ -1,26 +1,18 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def maxEqualFreq(self, nums: List[int]) -> int:
-        counts = Counter()
-        frequency_counts = Counter()
-        answer = 0
-        maximum_frequency = 0
-
-        for length, value in enumerate(nums, 1):
-            old_frequency = counts[value]
-            if old_frequency:
-                frequency_counts[old_frequency] -= 1
-            counts[value] = old_frequency + 1
-            frequency_counts[old_frequency + 1] += 1
-            maximum_frequency = max(maximum_frequency, old_frequency + 1)
-
-            if (
-                maximum_frequency == 1
-                or maximum_frequency * frequency_counts[maximum_frequency] + 1 == length
-                or (maximum_frequency - 1) * (frequency_counts[maximum_frequency - 1] + 1) + 1 == length
-            ):
-                answer = length
-        return answer
+        cnt = Counter()
+        ccnt = Counter()
+        ans = mx = 0
+        for i, v in enumerate(nums, 1):
+            if v in cnt:
+                ccnt[cnt[v]] -= 1
+            cnt[v] += 1
+            mx = max(mx, cnt[v])
+            ccnt[cnt[v]] += 1
+            if mx == 1:
+                ans = i
+            elif ccnt[mx] * mx + ccnt[mx - 1] * (mx - 1) == i and ccnt[mx] == 1:
+                ans = i
+            elif ccnt[mx] * mx + 1 == i and ccnt[1] == 1:
+                ans = i
+        return ans

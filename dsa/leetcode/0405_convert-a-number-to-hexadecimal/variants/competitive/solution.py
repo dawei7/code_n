@@ -1,14 +1,24 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def toHex(self, num: int) -> str:
-        if num == 0:
+    def toHex(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        if not num:
             return "0"
 
-        digits = "0123456789abcdef"
-        value = num & 0xFFFFFFFF
         result = []
+        while num and len(result) != 8:
+            h = num & 15
+            if h < 10:
+                result.append(str(chr(ord('0') + h)))
+            else:
+                result.append(str(chr(ord('a') + h-10)))
+            num >>= 4
+        result.reverse()
 
-        while value:
-            result.append(digits[value & 0xF])
-            value >>= 4
+        return "".join(result)
 
-        return "".join(reversed(result))

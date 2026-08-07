@@ -1,41 +1,36 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def smallestMissingValueSubtree(
-        self,
-        parents: List[int],
-        nums: List[int],
-    ) -> List[int]:
-        length = len(parents)
-        answer = [1] * length
-
-        try:
-            current = nums.index(1)
-        except ValueError:
-            return answer
-
-        children = [[] for _ in range(length)]
-        for node in range(1, length):
-            children[parents[node]].append(node)
-
-        visited = [False] * length
-        present = set()
-        missing = 1
-
-        while current != -1:
-            stack = [current]
-            while stack:
-                node = stack.pop()
-                if visited[node]:
+    def smallestMissingValueSubtree(self, parents, nums):
+        """
+        :type parents: List[int]
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def iter_dfs(adj, nums, i, lookup):
+            stk = [i]
+            while stk:
+                i = stk.pop()
+                if nums[i] in lookup:
                     continue
-                visited[node] = True
-                present.add(nums[node])
-                stack.extend(children[node])
+                lookup.add(nums[i])
+                for j in adj[i]:
+                    stk.append(j)
 
-            while missing in present:
-                missing += 1
-            answer[current] = missing
-            current = parents[current]
-
-        return answer
+        result = [1]*len(parents)
+        i = next((i for i in range(len(nums)) if nums[i] == 1), -1)
+        if i == -1:
+            return result
+        adj = [[] for _ in range(len(parents))]
+        for j in range(1, len(parents)):
+            adj[parents[j]].append(j)
+        lookup = set()
+        miss = 1
+        while i >= 0:
+            iter_dfs(adj, nums, i, lookup)
+            while miss in lookup:
+                miss += 1
+            result[i] = miss
+            i = parents[i]
+        return result

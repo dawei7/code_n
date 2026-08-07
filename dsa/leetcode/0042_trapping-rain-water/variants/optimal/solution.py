@@ -1,17 +1,9 @@
-from typing import List
-
-
 class Solution:
     def trap(self, height: List[int]) -> int:
-        left, right = 0, len(height) - 1
-        left_max = right_max = water = 0
-        while left <= right:
-            if height[left] <= height[right]:
-                left_max = max(left_max, height[left])
-                water += left_max - height[left]
-                left += 1
-            else:
-                right_max = max(right_max, height[right])
-                water += right_max - height[right]
-                right -= 1
-        return water
+        n = len(height)
+        left = [height[0]] * n
+        right = [height[-1]] * n
+        for i in range(1, n):
+            left[i] = max(left[i - 1], height[i])
+            right[n - i - 1] = max(right[n - i], height[n - i - 1])
+        return sum(min(l, r) - h for l, r, h in zip(left, right, height))

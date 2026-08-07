@@ -1,23 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minConnectedGroups(self, intervals: List[List[int]], k: int) -> int:
         intervals.sort()
-        merged = []
-
-        for start, end in intervals:
-            if merged and start <= merged[-1][1]:
-                merged[-1][1] = max(merged[-1][1], end)
+        merged = [intervals[0]]
+        for s, e in intervals[1:]:
+            if merged[-1][1] < s:
+                merged.append([s, e])
             else:
-                merged.append([start, end])
-
-        left = 0
-        most_joined = 1
-
-        for right in range(len(merged)):
-            while merged[right][0] - merged[left][1] > k:
-                left += 1
-            most_joined = max(most_joined, right - left + 1)
-
-        return len(merged) - most_joined + 1
+                merged[-1][1] = max(merged[-1][1], e)
+        ans = len(merged)
+        for i, (_, e) in enumerate(merged):
+            j = bisect_left(merged, [e + k + 1, 0])
+            ans = min(ans, len(merged) - (j - i - 1))
+        return ans

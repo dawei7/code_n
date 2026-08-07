@@ -1,30 +1,18 @@
-from typing import List
-
-
 class Solution:
     def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        if len(nums1) > len(nums2):
-            nums1, nums2 = nums2, nums1
+        def f(i: int, j: int, k: int) -> int:
+            if i >= m:
+                return nums2[j + k - 1]
+            if j >= n:
+                return nums1[i + k - 1]
+            if k == 1:
+                return min(nums1[i], nums2[j])
+            p = k // 2
+            x = nums1[i + p - 1] if i + p - 1 < m else inf
+            y = nums2[j + p - 1] if j + p - 1 < n else inf
+            return f(i + p, j, k - p) if x < y else f(i, j + p, k - p)
 
-        total = len(nums1) + len(nums2)
-        left_size = (total + 1) // 2
-        low, high = 0, len(nums1)
-
-        while low <= high:
-            cut1 = (low + high) // 2
-            cut2 = left_size - cut1
-            left1 = nums1[cut1 - 1] if cut1 else float("-inf")
-            right1 = nums1[cut1] if cut1 < len(nums1) else float("inf")
-            left2 = nums2[cut2 - 1] if cut2 else float("-inf")
-            right2 = nums2[cut2] if cut2 < len(nums2) else float("inf")
-
-            if left1 <= right2 and left2 <= right1:
-                if total % 2:
-                    return float(max(left1, left2))
-                return (max(left1, left2) + min(right1, right2)) / 2.0
-            if left1 > right2:
-                high = cut1 - 1
-            else:
-                low = cut1 + 1
-
-        raise ValueError("invalid sorted arrays")
+        m, n = len(nums1), len(nums2)
+        a = f(0, 0, (m + n + 1) // 2)
+        b = f(0, 0, (m + n + 2) // 2)
+        return (a + b) / 2

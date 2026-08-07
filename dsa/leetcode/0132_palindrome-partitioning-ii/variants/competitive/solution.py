@@ -1,12 +1,18 @@
+# Time:  O(n^2)
+# Space: O(n^2)
+
 class Solution:
-    def minCut(self, s: str) -> int:
-        size = len(s)
-        palindrome = [[False] * size for _ in range(size)]
-        cuts = [0] * size
-        for end in range(size):
-            cuts[end] = end
-            for start in range(end + 1):
-                if s[start] == s[end] and (end - start < 2 or palindrome[start + 1][end - 1]):
-                    palindrome[start][end] = True
-                    cuts[end] = 0 if start == 0 else min(cuts[end], cuts[start - 1] + 1)
-        return cuts[-1]
+    # @param s, a string
+    # @return an integer
+    def minCut(self, s):
+        lookup = [[False for j in range(len(s))] for i in range(len(s))]
+        mincut = [len(s) - 1 - i for i in range(len(s) + 1)]
+
+        for i in reversed(range(len(s))):
+            for j in range(i, len(s)):
+                if s[i] == s[j]  and (j - i < 2 or lookup[i + 1][j - 1]):
+                    lookup[i][j] = True
+                    mincut[i] = min(mincut[i], mincut[j + 1] + 1)
+
+        return mincut[0]
+

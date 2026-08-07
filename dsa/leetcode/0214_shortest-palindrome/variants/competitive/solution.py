@@ -1,13 +1,98 @@
+# Time:  O(n)
+# Space: O(n)
+
+# optimized from Solution2
 class Solution:
-    def shortestPalindrome(self, s: str) -> str:
-        combined = s + "#" + s[::-1]
-        prefix = [0] * len(combined)
-        for index in range(1, len(combined)):
-            matched = prefix[index - 1]
-            while matched and combined[index] != combined[matched]:
-                matched = prefix[matched - 1]
-            if combined[index] == combined[matched]:
-                matched += 1
-            prefix[index] = matched
-        palindrome_length = prefix[-1] if prefix else 0
-        return s[palindrome_length:][::-1] + s
+    def shortestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def getPrefix(pattern):
+            prefix = [-1] * len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j > -1 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+
+        if not s:
+            return s
+
+        A = s + '#' + s[::-1]
+        return s[getPrefix(A)[-1]+1:][::-1] + s
+
+
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def shortestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def getPrefix(pattern):
+            prefix = [-1] * len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j > -1 and pattern[j+1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+
+        if not s:
+            return s
+
+        A = s + s[::-1]
+        prefix = getPrefix(A)
+        i = prefix[-1]
+        while i >= len(s):
+            i = prefix[i]
+        return s[i+1:][::-1] + s
+
+
+# Time:  O(n)
+# Space: O(n)
+# Manacher's Algorithm
+class Solution3(object):
+    def shortestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def preProcess(s):
+            if not s:
+                return ['^', '$']
+            string = ['^']
+            for c in s:
+                string +=  ['#', c]
+            string += ['#', '$']
+            return string
+
+        string = preProcess(s)
+        palindrome = [0] * len(string)
+        center, right = 0, 0
+        for i in range(1, len(string) - 1):
+            i_mirror = 2 * center - i
+            if right > i:
+                palindrome[i] = min(right - i, palindrome[i_mirror])
+            else:
+                palindrome[i] = 0
+
+            while string[i + 1 + palindrome[i]] == string[i - 1 - palindrome[i]]:
+                palindrome[i] += 1
+
+            if i + palindrome[i] > right:
+                center, right = i, i + palindrome[i]
+
+        max_len = 0
+        for i in range(1, len(string) - 1):
+            if i - palindrome[i] == 1:
+                max_len = palindrome[i]
+        return s[len(s)-1:max_len-1:-1] + s
+

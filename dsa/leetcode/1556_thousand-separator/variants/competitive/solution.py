@@ -1,10 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def thousandSeparator(self, n: int) -> str:
-        digits = str(n)
-        groups = []
-
-        while digits:
-            groups.append(digits[-3:])
-            digits = digits[:-3]
-
-        return ".".join(reversed(groups))
+    def thousandSeparator(self, n):
+        """
+        :type n: int
+        :rtype: str
+        """
+        result = []
+        s = str(n)
+        for i, c in enumerate(str(n)):
+            if i and (len(s)-i)%3 == 0:
+                result.append(".")
+            result.append(c)
+        return "".join(result)

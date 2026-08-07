@@ -1,13 +1,19 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
 class Solution:
-    def connectSticks(self, sticks: List[int]) -> int:
-        heapify(sticks)
-        total = 0
+    def connectSticks(self, sticks):
+        """
+        :type sticks: List[int]
+        :rtype: int
+        """
+        heapq.heapify(sticks)
+        result = 0
         while len(sticks) > 1:
-            combined = heappop(sticks) + heappop(sticks)
-            total += combined
-            heappush(sticks, combined)
-        return total
+            x, y = heapq.heappop(sticks), heapq.heappop(sticks)
+            result += x+y
+            heapq.heappush(sticks, x+y)
+        return result

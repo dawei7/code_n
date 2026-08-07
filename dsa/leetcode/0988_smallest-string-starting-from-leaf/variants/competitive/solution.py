@@ -1,35 +1,31 @@
-from typing import Optional
-
+# Time:  O(n + l * h), l is the number of leaves
+# Space: O(h)
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def smallestFromLeaf(self, root: Optional[TreeNode]) -> str:
-        path = []
-        best = None
-        stack = [(root, False)]
+    def smallestFromLeaf(self, root):
+        """
+        :type root: TreeNode
+        :rtype: str
+        """
+        def dfs(node, candidate, result):
+            if not node:
+                return
 
-        while stack:
-            node, exiting = stack.pop()
-            if exiting:
-                path.pop()
-                continue
+            candidate.append(chr(ord('a') + node.val))
+            if not node.left and not node.right:
+                result[0] = min(result[0], "".join(reversed(candidate)))
+            dfs(node.left, candidate, result)
+            dfs(node.right, candidate, result)
+            candidate.pop()
 
-            path.append(chr(ord("a") + node.val))
-            stack.append((node, True))
-
-            if node.left is None and node.right is None:
-                candidate = "".join(reversed(path))
-                if best is None or candidate < best:
-                    best = candidate
-            else:
-                if node.right is not None:
-                    stack.append((node.right, False))
-                if node.left is not None:
-                    stack.append((node.left, False))
-
-        return best
+        result = ["~"]
+        dfs(root, [], result)
+        return result[0]

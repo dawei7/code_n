@@ -1,13 +1,13 @@
 class Solution:
     def countVowelPermutation(self, n: int) -> int:
-        modulus = 1_000_000_007
-        a = e = i = o = u = 1
-        for _ in range(1, n):
-            a, e, i, o, u = (
-                (e + i + u) % modulus,
-                (a + i) % modulus,
-                (e + o) % modulus,
-                i,
-                (i + o) % modulus,
-            )
-        return (a + e + i + o + u) % modulus
+        f = [1] * 5
+        mod = 10**9 + 7
+        for _ in range(n - 1):
+            g = [0] * 5
+            g[0] = (f[1] + f[2] + f[4]) % mod
+            g[1] = (f[0] + f[2]) % mod
+            g[2] = (f[1] + f[3]) % mod
+            g[3] = f[2]
+            g[4] = (f[2] + f[3]) % mod
+            f = g
+        return sum(f) % mod

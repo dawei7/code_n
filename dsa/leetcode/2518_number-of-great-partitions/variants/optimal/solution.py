@@ -1,16 +1,16 @@
 class Solution:
     def countPartitions(self, nums: List[int], k: int) -> int:
-        mod = 1_000_000_007
-
-        if sum(nums) < 2 * k:
+        if sum(nums) < k * 2:
             return 0
-
-        ways_by_sum = [0] * k
-        ways_by_sum[0] = 1
-
-        for value in nums:
-            for subtotal in range(k - 1, value - 1, -1):
-                ways_by_sum[subtotal] = (ways_by_sum[subtotal] + ways_by_sum[subtotal - value]) % mod
-
-        bad_groups = sum(ways_by_sum) % mod
-        return (pow(2, len(nums), mod) - 2 * bad_groups) % mod
+        mod = 10**9 + 7
+        n = len(nums)
+        f = [[0] * k for _ in range(n + 1)]
+        f[0][0] = 1
+        ans = 1
+        for i in range(1, n + 1):
+            ans = ans * 2 % mod
+            for j in range(k):
+                f[i][j] = f[i - 1][j]
+                if j >= nums[i - 1]:
+                    f[i][j] = (f[i][j] + f[i - 1][j - nums[i - 1]]) % mod
+        return (ans - sum(f[-1]) * 2 + mod) % mod

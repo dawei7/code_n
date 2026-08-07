@@ -1,31 +1,26 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum, dp
 class Solution:
-    def numOfSubsequences(self, s: str) -> int:
-        l_count = 0
-        c_count = 0
-        lc_count = 0
-        ct_count = 0
-        lct_count = 0
-        total_t = s.count("T")
-
-        for char in s:
-            if char == "L":
-                l_count += 1
-            elif char == "C":
-                c_count += 1
-                lc_count += l_count
-            elif char == "T":
-                ct_count += c_count
-                lct_count += lc_count
-
-        best_c_gain = 0
-        left_l = 0
-        right_t = total_t
-        for char in s:
-            best_c_gain = max(best_c_gain, left_l * right_t)
-            if char == "L":
-                left_l += 1
-            elif char == "T":
-                right_t -= 1
-        best_c_gain = max(best_c_gain, left_l * right_t)
-
-        return lct_count + max(ct_count, lc_count, best_c_gain)
+    def numOfSubsequences(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        cnt_l = cnt_c = 0
+        cnt_t = s.count('T')
+        mx_cnt_lt = cnt_lct = cnt_lc = cnt_ct = 0
+        for x in s:
+            mx_cnt_lt = max(mx_cnt_lt, cnt_l*cnt_t)
+            if x == 'L':
+                cnt_l += 1
+            elif x == 'C':
+                cnt_c += 1
+                cnt_lc += cnt_l
+            elif x == 'T':
+                cnt_t -= 1
+                cnt_ct += cnt_c
+                cnt_lct += cnt_lc
+        mx = max(mx_cnt_lt, cnt_l*cnt_t)
+        return cnt_lct+max(cnt_ct, mx_cnt_lt, cnt_lc)

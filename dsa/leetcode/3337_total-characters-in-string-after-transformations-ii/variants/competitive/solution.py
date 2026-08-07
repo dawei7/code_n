@@ -1,44 +1,38 @@
-from typing import List
+# Time:  O(n + 26^3 * logt)
+# Space: O(26^2)
+
+import itertools
 
 
+# matrix fast exponentiation
 class Solution:
-    def lengthAfterTransformations(self, s: str, t: int, nums: List[int]) -> int:
-        mod = 1_000_000_007
-        alphabet_size = 26
+    def lengthAfterTransformations(self, s, t, nums):
+        """
+        :type s: str
+        :type t: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def matrix_mult(A, B):
+            ZB = zip(*B)
+            return [[sum(a*b % MOD for a, b in itertools.izip(row, col)) % MOD for col in ZB] for row in A]
+ 
+        def matrix_expo(A, K):
+            result = [[int(i == j) for j in range(len(A))] for i in range(len(A))]
+            while K:
+                if K % 2:
+                    result = matrix_mult(result, A)
+                A = matrix_mult(A, A)
+                K /= 2
+            return result
 
-        def multiply_matrices(left, right):
-            product = [[0] * alphabet_size for _ in range(alphabet_size)]
-            for source in range(alphabet_size):
-                product_row = product[source]
-                for middle, left_value in enumerate(left[source]):
-                    if left_value == 0:
-                        continue
-                    for destination, right_value in enumerate(right[middle]):
-                        product_row[destination] = (product_row[destination] + left_value * right_value) % mod
-            return product
-
-        def multiply_vector(vector, matrix):
-            product = [0] * alphabet_size
-            for source, count in enumerate(vector):
-                if count == 0:
-                    continue
-                for destination, ways in enumerate(matrix[source]):
-                    product[destination] = (product[destination] + count * ways) % mod
-            return product
-
-        transition = [[0] * alphabet_size for _ in range(alphabet_size)]
-        for source, length in enumerate(nums):
-            for shift in range(1, length + 1):
-                transition[source][(source + shift) % alphabet_size] = 1
-
-        counts = [0] * alphabet_size
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
-
-        while t > 0:
-            if t & 1:
-                counts = multiply_vector(counts, transition)
-            transition = multiply_matrices(transition, transition)
-            t >>= 1
-
-        return sum(counts) % mod
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        matrix = [[0]*26 for _ in range(26)]
+        for i in range(len(nums)):
+            for j in range(1, nums[i]+1):
+                matrix[i][(i+j)%26] = 1
+        matrix_pow_t = matrix_expo(matrix, t)
+        return reduce(lambda accu, x: (accu+x)%MOD, matrix_mult([cnt], matrix_pow_t)[0], 0)

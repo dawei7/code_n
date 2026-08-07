@@ -1,10 +1,10 @@
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        forward = {}
-        reverse = {}
-        for source, target in zip(s, t):
-            if forward.get(source, target) != target or reverse.get(target, source) != source:
+        d1 = {}
+        d2 = {}
+        for a, b in zip(s, t):
+            if (a in d1 and d1[a] != b) or (b in d2 and d2[b] != a):
                 return False
-            forward[source] = target
-            reverse[target] = source
+            d1[a] = b
+            d2[b] = a
         return True

@@ -1,12 +1,30 @@
-class LUPrefix:
-    def __init__(self, n: int):
-        self.uploaded = [False] * (n + 2)
-        self.prefix = 0
+# Time:  ctor:    O(1)
+#        upload:  O(1), amortized
+#        longest: O(1)
+# Space: O(n)
 
-    def upload(self, video: int) -> None:
-        self.uploaded[video] = True
-        while self.uploaded[self.prefix + 1]:
-            self.prefix += 1
+# hash table
+class LUPrefix(object):
 
-    def longest(self) -> int:
-        return self.prefix
+    def __init__(self, n):
+        """
+        :type n: int
+        """
+        self.__lookup = set()
+        self.__curr = 0
+
+    def upload(self, video):
+        """
+        :type video: int
+        :rtype: None
+        """
+        self.__lookup.add(video-1)
+        while self.__curr in self.__lookup:
+            self.__lookup.remove(self.__curr)
+            self.__curr += 1
+
+    def longest(self):
+        """
+        :rtype: int
+        """
+        return self.__curr

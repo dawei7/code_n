@@ -1,16 +1,12 @@
 class Solution:
     def modifyString(self, s: str) -> str:
-        characters = list(s)
-
-        for index, character in enumerate(characters):
-            if character != "?":
-                continue
-
-            previous = characters[index - 1] if index > 0 else ""
-            following = characters[index + 1] if index + 1 < len(characters) else ""
-            for replacement in "abc":
-                if replacement != previous and replacement != following:
-                    characters[index] = replacement
+        s = list(s)
+        n = len(s)
+        for i in range(n):
+            if s[i] == "?":
+                for c in "abc":
+                    if (i and s[i - 1] == c) or (i + 1 < n and s[i + 1] == c):
+                        continue
+                    s[i] = c
                     break
-
-        return "".join(characters)
+        return "".join(s)

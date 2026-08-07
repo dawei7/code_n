@@ -1,20 +1,18 @@
-from typing import List
+# Time:  O(n * l^2)
+# Space: O(n * l)
+
+import collections
 
 
 class Solution:
-    def longestStrChain(self, words: List[str]) -> int:
-        longest_by_word = {}
-        best = 1
-
-        for word in sorted(words, key=len):
-            longest = 1
-            for index in range(len(word)):
-                predecessor = word[:index] + word[index + 1 :]
-                longest = max(
-                    longest,
-                    longest_by_word.get(predecessor, 0) + 1,
-                )
-            longest_by_word[word] = longest
-            best = max(best, longest)
-
-        return best
+    def longestStrChain(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        words.sort(key=len)
+        dp = collections.defaultdict(int)
+        for w in words:
+            for i in range(len(w)):
+                dp[w] = max(dp[w], dp[w[:i]+w[i+1:]]+1)
+        return max(dp.values())

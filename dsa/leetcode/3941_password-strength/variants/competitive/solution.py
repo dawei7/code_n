@@ -1,15 +1,11 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string, hash table
 class Solution:
-    def passwordStrength(self, password: str) -> int:
-        strength = 0
-
-        for character in set(password):
-            if "a" <= character <= "z":
-                strength += 1
-            elif "A" <= character <= "Z":
-                strength += 2
-            elif "0" <= character <= "9":
-                strength += 3
-            else:
-                strength += 5
-
-        return strength
+    def passwordStrength(self, password):
+        """
+        :type password: str
+        :rtype: int
+        """
+        return sum(1 if x.islower() else 2 if x.isupper() else 3 if x.isdigit() else 5 for x in set(password))

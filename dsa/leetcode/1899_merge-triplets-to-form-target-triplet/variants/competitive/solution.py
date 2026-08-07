@@ -1,12 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        matched = [False, False, False]
-        for triplet in triplets:
-            if all(value <= limit for value, limit in zip(triplet, target)):
-                for coordinate in range(3):
-                    if triplet[coordinate] == target[coordinate]:
-                        matched[coordinate] = True
-        return all(matched)
+    def mergeTriplets(self, triplets, target):
+        """
+        :type triplets: List[List[int]]
+        :type target: List[int]
+        :rtype: bool
+        """
+        result = [0]*3
+        for t in triplets:
+            if all(t[i] <= target[i] for i in range(3)):
+                result = [max(result[i], t[i]) for i in range(3)]
+        return result == target

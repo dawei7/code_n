@@ -1,36 +1,37 @@
-from typing import Optional
-
+# Time:  O(n)
+# Space: O(h)
 
 class Solution:
-    def largestBSTSubtree(self, root: Optional[TreeNode]) -> int:
+    def largestBSTSubtree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
         if root is None:
             return 0
 
-        empty = (True, float("inf"), float("-inf"), 0, 0)
-        summaries = {}
-        stack = [(root, False)]
-        while stack:
-            node, expanded = stack.pop()
-            if node is None:
-                continue
-            if not expanded:
-                stack.append((node, True))
-                stack.append((node.right, False))
-                stack.append((node.left, False))
-                continue
+        max_size = [1]
+        def largestBSTSubtreeHelper(root):
+            if root.left is None and root.right is None:
+                return 1, root.val, root.val
 
-            left_valid, left_minimum, left_maximum, left_size, left_best = summaries.get(node.left, empty)
-            right_valid, right_minimum, right_maximum, right_size, right_best = summaries.get(node.right, empty)
-            if left_valid and right_valid and left_maximum < node.val < right_minimum:
+            left_size, left_min, left_max = 0, root.val, root.val
+            if root.left is not None:
+                left_size, left_min, left_max = largestBSTSubtreeHelper(root.left)
+
+            right_size, right_min, right_max = 0, root.val, root.val
+            if root.right is not None:
+                right_size, right_min, right_max = largestBSTSubtreeHelper(root.right)
+
+            size = 0
+            if (root.left is None or left_size > 0) and \
+               (root.right is None or right_size > 0) and \
+               left_max <= root.val <= right_min:
                 size = 1 + left_size + right_size
-                summaries[node] = (
-                    True,
-                    min(left_minimum, node.val),
-                    max(right_maximum, node.val),
-                    size,
-                    size,
-                )
-            else:
-                summaries[node] = (False, 0, 0, 0, max(left_best, right_best))
+                max_size[0] = max(max_size[0], size)
 
-        return summaries[root][4]
+            return size, left_min, right_max
+
+        largestBSTSubtreeHelper(root)
+        return max_size[0]
+

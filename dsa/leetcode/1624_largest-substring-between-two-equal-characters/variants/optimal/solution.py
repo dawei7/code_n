@@ -1,10 +1,10 @@
 class Solution:
     def maxLengthBetweenEqualCharacters(self, s: str) -> int:
-        first = {}
-        longest = -1
-        for index, character in enumerate(s):
-            if character in first:
-                longest = max(longest, index - first[character] - 1)
+        d = {}
+        ans = -1
+        for i, c in enumerate(s):
+            if c in d:
+                ans = max(ans, i - d[c] - 1)
             else:
-                first[character] = index
-        return longest
+                d[c] = i
+        return ans

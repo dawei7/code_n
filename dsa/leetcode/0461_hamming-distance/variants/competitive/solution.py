@@ -1,8 +1,25 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def hammingDistance(self, x: int, y: int) -> int:
-        difference = x ^ y
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
         distance = 0
-        while difference:
-            difference &= difference - 1
+        z = x ^ y
+        while z:
             distance += 1
+            z &= z - 1
         return distance
+
+    def hammingDistance2(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        return bin(x ^ y).count('1')
+

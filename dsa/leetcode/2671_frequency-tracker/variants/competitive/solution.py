@@ -1,30 +1,47 @@
-from collections import defaultdict
+# Time:  ctor:         O(1)
+#        add:          O(1)
+#        deleteOne:    O(1)
+#        hasFrequency: O(1)
+# Space: O(min(n, r))
 
+# freq table
+class FrequencyTracker(object):
 
-class FrequencyTracker:
     def __init__(self):
-        self.number_frequency = defaultdict(int)
-        self.frequency_count = defaultdict(int)
+        self.__cnt = collections.Counter()
+        self.__freq = collections.Counter()
 
-    def add(self, number: int) -> None:
-        old_frequency = self.number_frequency[number]
-        if old_frequency > 0:
-            self.frequency_count[old_frequency] -= 1
+    def add(self, number):
+        """
+        :type number: int
+        :rtype: None
+        """
+        self.__freq[self.__cnt[number]] -= 1
+        if self.__freq[self.__cnt[number]] == 0:
+            del self.__freq[self.__cnt[number]]
+        self.__cnt[number] += 1
+        self.__freq[self.__cnt[number]] += 1
+        
 
-        new_frequency = old_frequency + 1
-        self.number_frequency[number] = new_frequency
-        self.frequency_count[new_frequency] += 1
-
-    def deleteOne(self, number: int) -> None:
-        old_frequency = self.number_frequency[number]
-        if old_frequency == 0:
+    def deleteOne(self, number):
+        """
+        :type number: int
+        :rtype: None
+        """
+        if self.__cnt[number] == 0:
             return
+        self.__freq[self.__cnt[number]] -= 1
+        if self.__freq[self.__cnt[number]] == 0:
+            del self.__freq[self.__cnt[number]]
+        self.__cnt[number] -= 1
+        self.__freq[self.__cnt[number]] += 1
+        if self.__cnt[number] == 0:
+            del self.__cnt[number]
+        
 
-        self.frequency_count[old_frequency] -= 1
-        new_frequency = old_frequency - 1
-        self.number_frequency[number] = new_frequency
-        if new_frequency > 0:
-            self.frequency_count[new_frequency] += 1
-
-    def hasFrequency(self, frequency: int) -> bool:
-        return self.frequency_count[frequency] > 0
+    def hasFrequency(self, frequency):
+        """
+        :type frequency: int
+        :rtype: bool
+        """
+        return frequency in self.__freq

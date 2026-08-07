@@ -1,11 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        suffix_values = set()
-        for index in range(len(nums) - 1, -1, -1):
-            if nums[index] in suffix_values:
-                return index // 3 + 1
-            suffix_values.add(nums[index])
-        return 0
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        L = 3
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+
+        lookup = set()
+        while nums:
+            if nums[-1] in lookup:
+                break
+            lookup.add(nums.pop())
+        return ceil_divide(len(nums), L)

@@ -1,17 +1,9 @@
-from typing import List
-
-
 class Solution:
     def numMovesStones(self, a: int, b: int, c: int) -> List[int]:
-        x, y, z = sorted((a, b, c))
-        left_gap = y - x
-        right_gap = z - y
-
-        if left_gap == 1 and right_gap == 1:
-            minimum = 0
-        elif left_gap <= 2 or right_gap <= 2:
-            minimum = 1
-        else:
-            minimum = 2
-
-        return [minimum, z - x - 2]
+        x, z = min(a, b, c), max(a, b, c)
+        y = a + b + c - x - z
+        mi = mx = 0
+        if z - x > 2:
+            mi = 1 if y - x < 3 or z - y < 3 else 2
+            mx = z - x - 2
+        return [mi, mx]

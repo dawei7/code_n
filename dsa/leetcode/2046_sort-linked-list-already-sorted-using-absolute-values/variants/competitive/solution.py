@@ -1,17 +1,23 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(1)
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
 class Solution:
-    def sortLinkedList(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        current = head
-
-        while current.next is not None:
-            if current.next.val < 0:
-                moved = current.next
-                current.next = moved.next
-                moved.next = head
-                head = moved
+    def sortLinkedList(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        tail, curr, head.next = head, head.next, None
+        while curr:
+            if curr.val > 0:
+                curr.next, tail.next, tail, curr = None, curr, curr, curr.next
             else:
-                current = current.next
-
+                curr.next, head, curr = head, curr, curr.next
         return head

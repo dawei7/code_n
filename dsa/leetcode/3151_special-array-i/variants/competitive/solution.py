@@ -1,9 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def isArraySpecial(self, nums: List[int]) -> bool:
-        for i in range(1, len(nums)):
-            if nums[i] % 2 == nums[i - 1] % 2:
-                return False
-        return True
+    def isArraySpecial(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return all(nums[i]&1 != nums[i+1]&1 for i in range(len(nums)-1))

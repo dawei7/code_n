@@ -1,12 +1,12 @@
 class Solution:
     def paintWalls(self, cost: List[int], time: List[int]) -> int:
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if n - i <= j:
+                return 0
+            if i >= n:
+                return inf
+            return min(dfs(i + 1, j + time[i]) + cost[i], dfs(i + 1, j - 1))
+
         n = len(cost)
-        dp = [float("inf")] * (n + 1)
-        dp[0] = 0
-
-        for price, duration in zip(cost, time):
-            for covered in range(n, -1, -1):
-                next_covered = min(n, covered + duration + 1)
-                dp[next_covered] = min(dp[next_covered], dp[covered] + price)
-
-        return dp[n]
+        return dfs(0, 0)

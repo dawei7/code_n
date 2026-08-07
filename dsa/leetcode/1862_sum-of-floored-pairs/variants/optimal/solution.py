@@ -1,27 +1,17 @@
-from typing import List
-
-
 class Solution:
     def sumOfFlooredPairs(self, nums: List[int]) -> int:
-        modulo = 1_000_000_007
-        maximum = max(nums)
-        frequency = [0] * (maximum + 1)
-        for value in nums:
-            frequency[value] += 1
-
-        prefix_count = [0] * (maximum + 1)
-        for value in range(1, maximum + 1):
-            prefix_count[value] = prefix_count[value - 1] + frequency[value]
-
-        answer = 0
-        for denominator in range(1, maximum + 1):
-            denominator_count = frequency[denominator]
-            if denominator_count == 0:
-                continue
-
-            for lower in range(denominator, maximum + 1, denominator):
-                upper = min(lower + denominator - 1, maximum)
-                numerator_count = prefix_count[upper] - prefix_count[lower - 1]
-                answer += denominator_count * (lower // denominator) * numerator_count
-
-        return answer % modulo
+        mod = 10**9 + 7
+        cnt = Counter(nums)
+        mx = max(nums)
+        s = [0] * (mx + 1)
+        for i in range(1, mx + 1):
+            s[i] = s[i - 1] + cnt[i]
+        ans = 0
+        for y in range(1, mx + 1):
+            if cnt[y]:
+                d = 1
+                while d * y <= mx:
+                    ans += cnt[y] * d * (s[min(mx, d * y + y - 1)] - s[d * y - 1])
+                    ans %= mod
+                    d += 1
+        return ans

@@ -1,22 +1,22 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(1)
 
-
+# binary search
 class Solution:
-    def minimumTime(self, time: List[int], totalTrips: int) -> int:
-        low = 1
-        high = min(time) * totalTrips
+    def minimumTime(self, time, totalTrips):
+        """
+        :type time: List[int]
+        :type totalTrips: int
+        :rtype: int
+        """
+        def check(time, totalTrips, x):
+            return sum(x//t for t in time) >= totalTrips
 
-        while low < high:
-            middle = (low + high) // 2
-            completed = 0
-            for duration in time:
-                completed += middle // duration
-                if completed >= totalTrips:
-                    break
-
-            if completed >= totalTrips:
-                high = middle
+        left, right = 1, max(time)*totalTrips
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(time, totalTrips, mid):
+                right = mid-1
             else:
-                low = middle + 1
-
-        return low
+                left = mid+1
+        return left

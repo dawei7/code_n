@@ -1,45 +1,33 @@
-from typing import List
+# Time:  O((n + r) * logr), r = max(nums)
+# Space: O(n + r)
 
-
+# sos dp, principle of inclusion and exclusion
 class Solution:
-    def countEffective(self, nums: List[int]) -> int:
-        modulo = 1_000_000_007
-        full_or = 0
-        for value in nums:
-            full_or |= value
-
-        bit_positions = [bit for bit in range(full_or.bit_length()) if full_or & (1 << bit)]
-        state_count = 1 << len(bit_positions)
-        subset_counts = [0] * state_count
-
-        for value in nums:
-            dense_mask = 0
-            for dense_bit, original_bit in enumerate(bit_positions):
-                if value & (1 << original_bit):
-                    dense_mask |= 1 << dense_bit
-            subset_counts[dense_mask] += 1
-
-        half_block = 1
-        while half_block < state_count:
-            block = half_block << 1
-            for start in range(0, state_count, block):
-                upper = start + half_block
-                for offset in range(half_block):
-                    subset_counts[upper + offset] += subset_counts[start + offset]
-            half_block = block
-
-        powers_of_two = [1] * (len(nums) + 1)
-        for exponent in range(1, len(nums) + 1):
-            powers_of_two[exponent] = powers_of_two[exponent - 1] * 2 % modulo
-
-        full_mask = state_count - 1
-        answer = 0
-        for missing_bits in range(1, state_count):
-            allowed_bits = full_mask ^ missing_bits
-            term = powers_of_two[subset_counts[allowed_bits]]
-            if missing_bits.bit_count() & 1:
-                answer += term
-            else:
-                answer -= term
-
-        return answer % modulo
+    def countEffective(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        total = reduce(lambda accu, x: accu|x, nums, 0)
+        bits = [i for i in range(total.bit_length()) if total&(1<<i)]
+        dp = [0]*(1<<len(bits))
+        for x in nums:
+            mask = 0
+            for i in range(len(bits)):
+                if x&(1<<bits[i]):
+                    mask |= 1<<i
+            dp[mask] += 1
+        for i in range(len(bits)):
+            for mask in range(len(dp)):
+                if mask&(1<<i):
+                    dp[mask] += dp[mask^(1<<i)]
+        cnt = [0]*(1<<len(bits))
+        for mask in range(1, len(cnt)):
+            cnt[mask] = cnt[mask&(mask-1)]+1
+        pow2 = [0]*(len(nums)+1)
+        pow2[0] = 1
+        for i in range(len(nums)):
+            pow2[i+1] = (pow2[i]*2)%MOD
+        full = (1<<len(bits))-1
+        return reduce(lambda accu, x: (accu+x)%MOD, ((1 if cnt[mask]&1 else -1)*pow2[dp[full^mask]] for mask in range(1, len(cnt))), 0)

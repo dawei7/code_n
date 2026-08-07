@@ -1,10 +1,27 @@
+# Time:  O(nlogr)
+# Space: O(1)
+
+# hash table
 class Solution:
-    def maxSum(self, nums: List[int]) -> int:
-        best_by_digit = [-1] * 10
-        answer = -1
-        for number in nums:
-            largest_digit = max(map(int, str(number)))
-            if best_by_digit[largest_digit] != -1:
-                answer = max(answer, best_by_digit[largest_digit] + number)
-            best_by_digit[largest_digit] = max(best_by_digit[largest_digit], number)
-        return answer
+    def maxSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def max_digit(x):
+            result = 0
+            while x:
+                x, r = divmod(x, 10)
+                result = max(result, r)
+            return result
+    
+        result = -1
+        lookup = {}
+        for x in nums:
+            mx = max_digit(x)
+            if mx not in lookup:
+                lookup[mx] = x
+                continue
+            result = max(result, lookup[mx]+x)
+            lookup[mx] = max(lookup[mx], x)
+        return result

@@ -1,14 +1,41 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
-        left = 0
-        right = len(nums) - 1
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(nums)
+        target = nums[-1]
+
         while left < right:
-            middle = (left + right) // 2
-            if nums[middle] > nums[right]:
-                left = middle + 1
+            mid = left + (right - left) / 2
+
+            if nums[mid] <= target:
+                right = mid
             else:
-                right = middle
+                left = mid + 1
+
         return nums[left]
+
+
+class Solution2(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left, right = 0, len(nums) - 1
+        while left < right and nums[left] >= nums[right]:
+            mid = left + (right - left) / 2
+
+            if nums[mid] < nums[left]:
+                right = mid
+            else:
+                left = mid + 1
+
+        return nums[left]
+
+

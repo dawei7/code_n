@@ -1,19 +1,15 @@
-from typing import List
-
+# Time:  O(m + n)
+# Space: O(1)
 
 class Solution:
-    def countNegatives(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        row = rows - 1
-        column = 0
-        negatives = 0
-
-        while row >= 0 and column < columns:
-            if grid[row][column] < 0:
-                negatives += columns - column
-                row -= 1
-            else:
-                column += 1
-
-        return negatives
+    def countNegatives(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        result, c = 0, len(grid[0])-1
+        for row in grid:
+            while c >= 0 and row[c] < 0:
+                c -= 1
+            result += len(grid[0])-1-c
+        return result

@@ -1,30 +1,42 @@
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
+
+
 class Solution:
-    def minimumCost(self, n: int, edges: List[List[int]], query: List[List[int]]) -> List[int]:
-        parent = list(range(n))
-        size = [1] * n
-
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
+    def minimumCost(
+        self, n: int, edges: List[List[int]], query: List[List[int]]
+    ) -> List[int]:
+        g = [-1] * n
+        uf = UnionFind(n)
         for u, v, _ in edges:
-            root_u = find(u)
-            root_v = find(v)
-            if root_u == root_v:
-                continue
-            if size[root_u] < size[root_v]:
-                root_u, root_v = root_v, root_u
-            parent[root_v] = root_u
-            size[root_u] += size[root_v]
+            uf.union(u, v)
+        for u, _, w in edges:
+            root = uf.find(u)
+            g[root] &= w
 
-        component_cost = [-1] * n
-        for u, _, weight in edges:
-            component_cost[find(u)] &= weight
+        def f(u: int, v: int) -> int:
+            if u == v:
+                return 0
+            a, b = uf.find(u), uf.find(v)
+            return g[a] if a == b else -1
 
-        answer = []
-        for start, target in query:
-            root = find(start)
-            answer.append(component_cost[root] if root == find(target) else -1)
-        return answer
+        return [f(s, t) for s, t in query]

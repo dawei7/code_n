@@ -1,34 +1,32 @@
+# Time:  O(n^2)
+# Space: O(n^2)
+
+# flood fill, bfs, math
 class Solution:
-    def sumRemoteness(self, grid: List[List[int]]) -> int:
-        n = len(grid)
-        total = sum(value for row in grid for value in row if value != -1)
-        visited = [[False] * n for _ in range(n)]
-        answer = 0
-
-        for start_row in range(n):
-            for start_col in range(n):
-                if grid[start_row][start_col] == -1 or visited[start_row][start_col]:
-                    continue
-
-                stack = [(start_row, start_col)]
-                visited[start_row][start_col] = True
-                component_sum = 0
-                component_size = 0
-
-                while stack:
-                    row, col = stack.pop()
-                    component_sum += grid[row][col]
-                    component_size += 1
-                    for next_row, next_col in ((row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)):
-                        if (
-                            0 <= next_row < n
-                            and 0 <= next_col < n
-                            and grid[next_row][next_col] != -1
-                            and not visited[next_row][next_col]
-                        ):
-                            visited[next_row][next_col] = True
-                            stack.append((next_row, next_col))
-
-                answer += component_size * (total - component_sum)
-
-        return answer
+    def sumRemoteness(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        def bfs(i, j):
+            total, cnt = grid[i][j], 1
+            grid[i][j] = -1
+            q = [(i, j)]
+            while q:
+                new_q = []
+                for i, j in q:
+                    for di, dj in DIRECTIONS:
+                        ni, nj = i+di, j+dj
+                        if not (0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and grid[ni][nj] != -1):
+                            continue
+                        total += grid[ni][nj]
+                        cnt += 1
+                        grid[ni][nj] = -1
+                        new_q.append((ni, nj))
+                q = new_q
+            return total, cnt
+    
+        groups = [bfs(i, j) for i in range(len(grid)) for j in range(len(grid[0])) if grid[i][j] != -1]
+        total = sum(t for t, _ in groups)
+        return sum((total-t)*c for t, c in groups)

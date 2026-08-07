@@ -1,46 +1,52 @@
+class FenwickTree:
+    def __init__(self, n):
+        self.n = n
+        self.tree = [0] * (n + 1)
+
+    def update(self, index: int, val: int) -> None:
+        while index <= self.n:
+            self.tree[index] = max(self.tree[index], val)
+            index += index & (-index)  # 往后更新
+
+    def preSum(self, pos):
+        # 按照预期的方式求前缀最大值
+        ans = 0
+        while pos >= 1:
+            ans = max(ans, self.tree[pos])
+            pos -= pos & (-pos)
+        return ans
+
+
 class Solution:
     def maxAlternatingSum(self, nums: list[int], k: int) -> int:
-        values = sorted(set(nums))
-        value_count = len(values)
-        rank_of = {value: rank for rank, value in enumerate(values, 1)}
-        ranks = [rank_of[value] for value in nums]
-
-        smaller_down = [0] * (value_count + 1)
-        larger_up = [0] * (value_count + 1)
-
-        def update(tree: list[int], index: int, score: int) -> None:
-            while index <= value_count:
-                if score > tree[index]:
-                    tree[index] = score
-                index += index & -index
-
-        def query(tree: list[int], index: int) -> int:
-            best = 0
-            while index > 0:
-                if tree[index] > best:
-                    best = tree[index]
-                index -= index & -index
-            return best
+        stl = sorted(set(nums))  # 将nums中不同的数字进行排序
+        rank = {
+            v: i + 1 for i, v in enumerate(stl)
+        }  # 将nums中的值快速转换成stl中的索引
+        fwt0 = FenwickTree(len(stl))
+        fwt1 = FenwickTree(len(stl))
 
         n = len(nums)
-        up = [0] * n
-        down = [0] * n
-        answer = 0
+        dp = [[0, 0] for _ in range(n)]
+        res = nums[0]
+        for i in range(n):
+            dp[i][0] = dp[i][1] = nums[i]
+            if i >= k:
+                indx = rank[nums[i]]  # 找到nums[i]在stl中的索引
+                dp[i][1] = max(
+                    dp[i][1], fwt0.preSum(indx - 1) + nums[i]
+                )  # indx-1即表示小于nums[i]的部分
+                dp[i][0] = max(
+                    dp[i][0], fwt1.preSum(len(stl) - indx) + nums[i]
+                )  # len(stl)-indx即表示在倒序列表中大于nums[i]的部分
 
-        for index, value in enumerate(nums):
-            eligible = index - k
-            if eligible >= 0:
-                eligible_rank = ranks[eligible]
-                update(smaller_down, eligible_rank, down[eligible])
-                update(
-                    larger_up,
-                    value_count - eligible_rank + 1,
-                    up[eligible],
-                )
+            if i - k + 1 >= 0:
+                indx = rank[nums[i - k + 1]]
+                fwt0.update(indx, dp[i - k + 1][0])  # 在正序列表中更新i-k+1位置的值
+                fwt1.update(
+                    len(stl) - indx + 1, dp[i - k + 1][1]
+                )  # 在倒序列表中更新i-k+1位置的值
 
-            rank = ranks[index]
-            up[index] = value + query(smaller_down, rank - 1)
-            down[index] = value + query(larger_up, value_count - rank)
-            answer = max(answer, up[index], down[index])
+            res = max(res, dp[i][0], dp[i][1])  # 更新答案
 
-        return answer
+        return res

@@ -1,21 +1,17 @@
 class Solution:
     def minOperations(self, s1: str, s2: str, x: int) -> int:
-        mismatch_positions = [index for index, (first, second) in enumerate(zip(s1, s2)) if first != second]
-        mismatch_count = len(mismatch_positions)
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i > j:
+                return 0
+            a = dfs(i + 1, j - 1) + x
+            b = dfs(i + 2, j) + idx[i + 1] - idx[i]
+            c = dfs(i, j - 2) + idx[j] - idx[j - 1]
+            return min(a, b, c)
 
-        if mismatch_count % 2:
+        n = len(s1)
+        idx = [i for i in range(n) if s1[i] != s2[i]]
+        m = len(idx)
+        if m & 1:
             return -1
-        if mismatch_count == 0:
-            return 0
-
-        previous_two = 0
-        previous_one = x
-
-        for index in range(1, mismatch_count):
-            current = min(
-                previous_one + x,
-                previous_two + 2 * (mismatch_positions[index] - mismatch_positions[index - 1]),
-            )
-            previous_two, previous_one = previous_one, current
-
-        return previous_one // 2
+        return dfs(0, m - 1)

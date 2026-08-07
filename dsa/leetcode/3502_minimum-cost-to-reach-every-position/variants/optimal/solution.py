@@ -1,10 +1,9 @@
 class Solution:
     def minCosts(self, cost: List[int]) -> List[int]:
-        answer = []
-        best = cost[0]
-
-        for value in cost:
-            best = min(best, value)
-            answer.append(best)
-
-        return answer
+        n = len(cost)
+        ans = [0] * n
+        mi = cost[0]
+        for i, c in enumerate(cost):
+            mi = min(mi, c)
+            ans[i] = mi
+        return ans

@@ -1,13 +1,16 @@
-from typing import List
+# Time:  O(n)
+# Space: O(26) = O(1)
+
+from collections import Counter
 
 
 class Solution:
-    def leastInterval(self, tasks: List[str], n: int) -> int:
-        counts = [0] * 26
-        for task in tasks:
-            counts[ord(task) - ord("A")] += 1
-
-        maximum = max(counts)
-        leaders = sum(frequency == maximum for frequency in counts)
-        frame_bound = (maximum - 1) * (n + 1) + leaders
-        return max(len(tasks), frame_bound)
+    def leastInterval(self, tasks, n):
+        """
+        :type tasks: List[str]
+        :type n: int
+        :rtype: int
+        """
+        counter = Counter(tasks)
+        _, max_count = counter.most_common(1)[0]
+        return max((max_count-1) * (n+1) + counter.values().count(max_count), len(tasks))

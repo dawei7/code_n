@@ -1,23 +1,20 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def rotateTheBox(self, boxGrid: List[List[str]]) -> List[List[str]]:
-        row_count = len(boxGrid)
-        column_count = len(boxGrid[0])
-        rotated = [["."] * row_count for _ in range(column_count)]
-
-        for row in range(row_count):
-            landing_column = column_count - 1
-            rotated_column = row_count - 1 - row
-
-            for column in range(column_count - 1, -1, -1):
-                cell = boxGrid[row][column]
-                if cell == "*":
-                    rotated[column][rotated_column] = "*"
-                    landing_column = column - 1
-                elif cell == "#":
-                    rotated[landing_column][rotated_column] = "#"
-                    landing_column -= 1
-
-        return rotated
+    def rotateTheBox(self, box):
+        """
+        :type box: List[List[str]]
+        :rtype: List[List[str]]
+        """
+        result = [['.']*len(box) for _ in range(len(box[0]))]
+        for i in range(len(box)):
+            k = len(box[0])-1
+            for j in reversed(range(len(box[0]))):
+                if box[i][j] == '.':
+                    continue
+                if box[i][j] == '*':
+                    k = j
+                result[k][-1-i] = box[i][j]
+                k -= 1
+        return result

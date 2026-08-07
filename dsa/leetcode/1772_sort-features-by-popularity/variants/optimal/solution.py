@@ -1,17 +1,7 @@
-from typing import List
-
-
 class Solution:
     def sortFeatures(self, features: List[str], responses: List[str]) -> List[str]:
-        original_index = {feature: index for index, feature in enumerate(features)}
-        popularity = {feature: 0 for feature in features}
-
-        for response in responses:
-            for word in set(response.split()):
-                if word in popularity:
-                    popularity[word] += 1
-
-        return sorted(
-            features,
-            key=lambda feature: (-popularity[feature], original_index[feature]),
-        )
+        cnt = Counter()
+        for s in responses:
+            for w in set(s.split()):
+                cnt[w] += 1
+        return sorted(features, key=lambda w: -cnt[w])

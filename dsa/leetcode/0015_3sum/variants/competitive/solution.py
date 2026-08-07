@@ -1,27 +1,59 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
         result = []
-        for index, fixed in enumerate(nums):
-            if fixed > 0:
-                break
-            if index > 0 and fixed == nums[index - 1]:
+        nums.sort()
+        for i in reversed(range(2, len(nums))):
+            if i+1 < len(nums) and nums[i] == nums[i+1]:
                 continue
-            left, right = index + 1, len(nums) - 1
+            target = -nums[i]
+            left, right = 0, i-1
             while left < right:
-                total = fixed + nums[left] + nums[right]
-                if total < 0:
+                if nums[left]+nums[right] < target:
                     left += 1
-                elif total > 0:
+                elif nums[left]+nums[right] > target:
                     right -= 1
                 else:
-                    result.append([fixed, nums[left], nums[right]])
-                    left_value, right_value = nums[left], nums[right]
-                    while left < right and nums[left] == left_value:
+                    result.append([nums[left], nums[right], nums[i]])
+                    left += 1
+                    right -= 1
+                    while left < right and nums[left] == nums[left-1]:
                         left += 1
-                    while left < right and nums[right] == right_value:
+                    while left < right and nums[right] == nums[right+1]:
                         right -= 1
         return result
+
+
+# Time:  O(n^2)
+# Space: O(1)
+class Solution2(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums, result, i = sorted(nums), [], 0
+        while i < len(nums) - 2:
+            if i == 0 or nums[i] != nums[i - 1]:
+                j, k = i + 1, len(nums) - 1
+                while j < k:
+                    if nums[i] + nums[j] + nums[k] < 0:
+                        j += 1
+                    elif nums[i] + nums[j] + nums[k] > 0:
+                        k -= 1
+                    else:
+                        result.append([nums[i], nums[j], nums[k]])
+                        j, k = j + 1, k - 1
+                        while j < k and nums[j] == nums[j - 1]:
+                            j += 1
+                        while j < k and nums[k] == nums[k + 1]:
+                            k -= 1
+            i += 1
+        return result
+

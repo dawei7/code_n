@@ -1,10 +1,16 @@
+# Time:  O(logx)
+# Space: O(1)
+
+# math
 class Solution:
-    def sumOfTheDigitsOfHarshadNumber(self, x: int) -> int:
-        original = x
-        digit_sum = 0
-
-        while x:
-            digit_sum += x % 10
-            x //= 10
-
-        return digit_sum if original % digit_sum == 0 else -1
+    def sumOfTheDigitsOfHarshadNumber(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        result = 0
+        y = x
+        while y:
+            y, r = divmod(y, 10)
+            result += r
+        return result if x%result == 0 else -1

@@ -1,15 +1,9 @@
-from heapq import heappop, heappush
-from typing import List
-
-
 class Solution:
     def maximumScore(self, nums: List[int], s: str) -> int:
-        available = []
-        score = 0
-
-        for value, bit in zip(nums, s):
-            heappush(available, -value)
-            if bit == "1":
-                score -= heappop(available)
-
-        return score
+        ans = 0
+        pq = []
+        for x, c in zip(nums, s):
+            heappush(pq, -x)
+            if c == "1":
+                ans -= heappop(pq)
+        return ans

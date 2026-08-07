@@ -1,19 +1,33 @@
-MODULUS = 1000000007
+# Time:  O(n)
+# Space: O(n)
 
-
+# bfs, combinatorics
 class Solution:
-    def assignEdgeWeights(self, edges: list[list[int]]) -> int:
-        node_count = len(edges) + 1
-        adjacency: list[list[int]] = [[] for _ in range(node_count + 1)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
-        maximum_depth = 0
-        stack = [(1, 0, 0)]
-        while stack:
-            node, parent, depth = stack.pop()
-            maximum_depth = max(maximum_depth, depth)
-            for neighbor in adjacency[node]:
-                if neighbor != parent:
-                    stack.append((neighbor, node, depth + 1))
-        return pow(2, maximum_depth - 1, MODULUS)
+    def assignEdgeWeights(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def bfs():
+            lookup = [False]*len(adj)
+            lookup[0] = True
+            d = -1
+            q = [0]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
+                d += 1
+            return d
+
+        adj = [[] for _ in range(len(edges)+1)]
+        for u, v in edges:
+            adj[u-1].append(v-1)
+            adj[v-1].append(u-1)
+        return pow(2, bfs()-1, MOD)

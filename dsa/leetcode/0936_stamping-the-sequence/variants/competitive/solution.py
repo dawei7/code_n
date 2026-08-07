@@ -1,53 +1,47 @@
-from collections import deque
-from typing import List
+# Time:  O((n - m) * m)
+# Space: O((n - m) * m)
+
+import collections
 
 
 class Solution:
-    def movesToStamp(self, stamp: str, target: str) -> List[int]:
-        stamp_length = len(stamp)
-        target_length = len(target)
-        window_count = target_length - stamp_length + 1
-        made_positions = []
-        unresolved = []
-        dependents = [[] for _ in range(target_length)]
+    def movesToStamp(self, stamp, target):
+        M, N = len(stamp), len(target)
 
-        for start in range(window_count):
-            made = []
-            todo = set()
-            for offset, stamp_character in enumerate(stamp):
-                position = start + offset
-                if target[position] == stamp_character:
-                    made.append(position)
+        q = collections.deque()
+        lookup = [False]*N
+        result = []
+        A = []
+        for i in range(N-M+1):
+            made, todo = set(), set()
+            for j, c in enumerate(stamp):
+                if c == target[i+j]:
+                    made.add(i+j)
                 else:
-                    todo.add(position)
-                    dependents[position].append(start)
-            made_positions.append(made)
-            unresolved.append(todo)
+                    todo.add(i+j)
+            A.append((made, todo))
+            if todo:
+                continue
+            result.append(i)
+            for m in made:
+                if lookup[m]:
+                    continue
+                q.append(m)
+                lookup[m] = True
 
-        erased = [False] * target_length
-        used_window = [False] * window_count
-        queue = deque()
-        reverse_moves = []
-
-        def use_window(start):
-            used_window[start] = True
-            reverse_moves.append(start)
-            for position in made_positions[start]:
-                if not erased[position]:
-                    erased[position] = True
-                    queue.append(position)
-
-        for start in range(window_count):
-            if not unresolved[start]:
-                use_window(start)
-
-        while queue:
-            position = queue.popleft()
-            for start in dependents[position]:
-                unresolved[start].discard(position)
-                if not unresolved[start] and not used_window[start]:
-                    use_window(start)
-
-        if not all(erased):
-            return []
-        return reverse_moves[::-1]
+        while q:
+            i = q.popleft()
+            for j in range(max(0, i-M+1), min(N-M, i)+1):
+                made, todo = A[j]
+                if i not in todo:
+                    continue
+                todo.discard(i)
+                if todo:
+                    continue
+                result.append(j)
+                for m in made:
+                    if lookup[m]:
+                        continue
+                    q.append(m)
+                    lookup[m] = True
+        return result[::-1] if all(lookup) else []

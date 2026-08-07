@@ -1,18 +1,21 @@
-from typing import List
-
+# Time:  O(nlogm), m is the max of nums
+# Space: O(1)
 
 class Solution:
-    def minimumSize(self, nums: List[int], maxOperations: int) -> int:
-        low = 1
-        high = max(nums)
-
-        while low < high:
-            penalty = (low + high) // 2
-            required = sum((balls - 1) // penalty for balls in nums)
-
-            if required <= maxOperations:
-                high = penalty
+    def minimumSize(self, nums, maxOperations):
+        """
+        :type nums: List[int]
+        :type maxOperations: int
+        :rtype: int
+        """
+        def check(nums, maxOperations, x):
+            return sum((num+x-1)//x-1 for num in nums) <= maxOperations
+    
+        left, right = 1, max(nums)
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(nums, maxOperations, mid):
+                right = mid-1
             else:
-                low = penalty + 1
-
-        return low
+                left = mid+1
+        return left

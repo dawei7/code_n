@@ -1,26 +1,14 @@
 class Solution:
     def canChange(self, start: str, target: str) -> bool:
-        n = len(start)
-        i = j = 0
-
-        while i < n or j < n:
-            while i < n and start[i] == "_":
-                i += 1
-            while j < n and target[j] == "_":
-                j += 1
-
-            if i == n or j == n:
-                return i == n and j == n
-
-            piece = start[i]
-            if piece != target[j]:
+        a = [(v, i) for i, v in enumerate(start) if v != '_']
+        b = [(v, i) for i, v in enumerate(target) if v != '_']
+        if len(a) != len(b):
+            return False
+        for (c, i), (d, j) in zip(a, b):
+            if c != d:
                 return False
-            if piece == "L" and i < j:
+            if c == 'L' and i < j:
                 return False
-            if piece == "R" and i > j:
+            if c == 'R' and i > j:
                 return False
-
-            i += 1
-            j += 1
-
         return True

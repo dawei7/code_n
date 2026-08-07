@@ -1,19 +1,22 @@
-from heapq import heappop, heappush
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
+# prefix sum, greedy, heap
 class Solution:
-    def makePrefSumNonNegative(self, nums: List[int]) -> int:
-        prefix_sum = 0
-        operations = 0
-        negatives = []
-
-        for number in nums:
-            prefix_sum += number
-            if number < 0:
-                heappush(negatives, number)
-
-            if prefix_sum < 0:
-                prefix_sum -= heappop(negatives)
-                operations += 1
-
-        return operations
+    def makePrefSumNonNegative(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = prefix = 0
+        min_heap = []
+        for x in nums:
+            heapq.heappush(min_heap, x)
+            prefix += x
+            if prefix < 0:
+                prefix -= heapq.heappop(min_heap)
+                result += 1
+        return result

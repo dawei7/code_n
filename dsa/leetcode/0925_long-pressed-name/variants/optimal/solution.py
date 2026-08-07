@@ -1,9 +1,17 @@
 class Solution:
     def isLongPressedName(self, name: str, typed: str) -> bool:
-        name_index = 0
-        for typed_index, character in enumerate(typed):
-            if name_index < len(name) and character == name[name_index]:
-                name_index += 1
-            elif typed_index == 0 or character != typed[typed_index - 1]:
+        m, n = len(name), len(typed)
+        i = j = 0
+        while i < m and j < n:
+            if name[i] != typed[j]:
                 return False
-        return name_index == len(name)
+            x = i + 1
+            while x < m and name[x] == name[i]:
+                x += 1
+            y = j + 1
+            while y < n and typed[y] == typed[j]:
+                y += 1
+            if x - i > y - j:
+                return False
+            i, j = x, y
+        return i == m and j == n

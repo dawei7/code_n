@@ -1,16 +1,38 @@
+# Time:  O(31)
+# Space: O(1)
+
 class Solution:
-    def minFlips(self, a: int, b: int, c: int) -> int:
-        flips = 0
-        while a or b or c:
-            a_bit = a & 1
-            b_bit = b & 1
-            c_bit = c & 1
-            if c_bit:
-                if not (a_bit or b_bit):
-                    flips += 1
-            else:
-                flips += a_bit + b_bit
-            a >>= 1
-            b >>= 1
-            c >>= 1
-        return flips
+    def minFlips(self, a, b, c):
+        """
+        :type a: int
+        :type b: int
+        :type c: int
+        :rtype: int
+        """
+        def number_of_1_bits(n):
+            result = 0
+            while n:
+                n &= n-1
+                result += 1
+            return result
+
+        return number_of_1_bits((a|b)^c) + number_of_1_bits(a&b&~c)
+
+
+# Time:  O(31)
+# Space: O(1)
+class Solution2(object):
+    def minFlips(self, a, b, c):
+        """
+        :type a: int
+        :type b: int
+        :type c: int
+        :rtype: int
+        """
+        result = 0
+        for i in range(31):
+            a_i, b_i, c_i = map(lambda x: x&1, [a, b, c])
+            if (a_i | b_i) != c_i:
+                result += 2 if a_i == b_i == 1 else 1
+            a, b, c = a >> 1, b >> 1, c >> 1
+        return result

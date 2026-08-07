@@ -1,22 +1,24 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def merge(
-        self,
-        nums1: List[int],
-        m: int,
-        nums2: List[int],
-        n: int,
-    ) -> None:
-        first = m - 1
-        second = n - 1
-        destination = m + n - 1
-        while second >= 0:
-            if first >= 0 and nums1[first] > nums2[second]:
-                nums1[destination] = nums1[first]
-                first -= 1
+    # @param A  a list of integers
+    # @param m  an integer, length of A
+    # @param B  a list of integers
+    # @param n  an integer, length of B
+    # @return nothing
+    def merge(self, A, m, B, n):
+        last, i, j = m + n - 1, m - 1, n - 1
+
+        while i >= 0 and j >= 0:
+            if A[i] > B[j]:
+                A[last] = A[i]
+                last, i = last - 1, i - 1
             else:
-                nums1[destination] = nums2[second]
-                second -= 1
-            destination -= 1
+                A[last] = B[j]
+                last, j = last - 1, j - 1
+
+        while j >= 0:
+                A[last] = B[j]
+                last, j = last - 1, j - 1
+

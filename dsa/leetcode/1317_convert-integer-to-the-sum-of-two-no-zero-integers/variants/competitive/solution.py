@@ -1,11 +1,29 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def getNoZeroIntegers(self, n: int) -> list[int]:
-        def has_no_zero(value: int) -> bool:
-            return "0" not in str(value)
+    def getNoZeroIntegers(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        a, curr, base = 0, n, 1
+        while curr: 
+            if curr % 10 == 0 or (curr % 10 == 1 and curr != 1):
+                a += base
+                curr -= 10  # carry
+            a += base
+            base *= 10
+            curr //= 10
+        return [a, n-a]
 
-        for first in range(1, n):
-            second = n - first
-            if has_no_zero(first) and has_no_zero(second):
-                return [first, second]
 
-        raise ValueError("the problem guarantees a valid decomposition")
+# Time:  O(nlogn)
+# Space: O(logn)
+class Solution2(object):
+    def getNoZeroIntegers(self, n):
+        """
+        :type n: int
+        :rtype: List[int]
+        """
+        return next([a, n-a] for a in range(1, n) if '0' not in '{}{}'.format(a, n-a))

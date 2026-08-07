@@ -1,27 +1,24 @@
-from typing import List
-
-
 class Solution:
-    def maxFreeTime(self, eventTime: int, startTime: List[int], endTime: List[int]) -> int:
+    def maxFreeTime(
+        self, eventTime: int, startTime: List[int], endTime: List[int]
+    ) -> int:
         n = len(startTime)
-        gaps = [startTime[0]]
-        gaps.extend(startTime[i] - endTime[i - 1] for i in range(1, n))
-        gaps.append(eventTime - endTime[-1])
-
-        prefix = gaps.copy()
-        for i in range(1, n + 1):
-            prefix[i] = max(prefix[i], prefix[i - 1])
-
-        suffix = gaps.copy()
-        for i in range(n - 1, -1, -1):
-            suffix[i] = max(suffix[i], suffix[i + 1])
-
-        best = 0
+        pre = [0] * n
+        suf = [0] * n
+        pre[0] = startTime[0]
+        suf[n - 1] = eventTime - endTime[-1]
+        for i in range(1, n):
+            pre[i] = max(pre[i - 1], startTime[i] - endTime[i - 1])
+        for i in range(n - 2, -1, -1):
+            suf[i] = max(suf[i + 1], startTime[i + 1] - endTime[i])
+        ans = 0
         for i in range(n):
-            duration = endTime[i] - startTime[i]
-            other_gap = max(prefix[i - 1] if i else 0, suffix[i + 2] if i + 2 <= n else 0)
-            merged = gaps[i] + gaps[i + 1]
-            if other_gap >= duration:
-                merged += duration
-            best = max(best, merged)
-        return best
+            l = 0 if i == 0 else endTime[i - 1]
+            r = eventTime if i == n - 1 else startTime[i + 1]
+            w = endTime[i] - startTime[i]
+            ans = max(ans, r - l - w)
+            if i and pre[i - 1] >= w:
+                ans = max(ans, r - l)
+            elif i + 1 < n and suf[i + 1] >= w:
+                ans = max(ans, r - l)
+        return ans

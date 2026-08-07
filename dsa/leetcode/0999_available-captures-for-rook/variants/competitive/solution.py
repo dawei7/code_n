@@ -1,29 +1,30 @@
-from typing import List
-
+# Time:  O(1)
+# Space: O(1)
 
 class Solution:
-    def numRookCaptures(self, board: List[List[str]]) -> int:
-        rook_row = rook_column = -1
-        for row in range(8):
-            for column in range(8):
-                if board[row][column] == "R":
-                    rook_row, rook_column = row, column
-                    break
-            if rook_row != -1:
+    def numRookCaptures(self, board):
+        """
+        :type board: List[List[str]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
+        r, c = None, None
+        for i in range(8):
+            if r is not None:
                 break
-
-        captures = 0
-        for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-            row = rook_row + row_step
-            column = rook_column + column_step
-            while 0 <= row < 8 and 0 <= column < 8:
-                piece = board[row][column]
-                if piece == "B":
+            for j in range(8):
+                if board[i][j] == 'R':
+                    r, c = i, j
                     break
-                if piece == "p":
-                    captures += 1
-                    break
-                row += row_step
-                column += column_step
 
-        return captures
+        result = 0
+        for d in directions:
+            nr, nc = r+d[0], c+d[1]
+            while 0 <= nr < 8 and 0 <= nc < 8:
+                if board[nr][nc] == 'p':
+                    result += 1
+                if board[nr][nc] != '.':
+                    break
+                nr, nc= nr+d[0], nc+d[1]
+        return result

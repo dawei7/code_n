@@ -1,29 +1,28 @@
-from typing import List
+# Time:  O(n * l^4)
+# Space: O(l^2)
 
-
+# dp
 class Solution:
-    def minCost(self, n: int, cost: List[List[int]]) -> int:
-        inf = float("inf")
-        dp = [[inf] * 3 for _ in range(3)]
-        for left_color in range(3):
-            for right_color in range(3):
-                if left_color != right_color:
-                    dp[left_color][right_color] = cost[0][left_color] + cost[n - 1][right_color]
-
-        for left in range(1, n // 2):
-            right = n - 1 - left
-            next_dp = [[inf] * 3 for _ in range(3)]
-            for previous_left in range(3):
-                for previous_right in range(3):
-                    current = dp[previous_left][previous_right]
-                    for left_color in range(3):
-                        if left_color == previous_left:
+    def minCost(self, n, cost):
+        """
+        :type n: int
+        :type cost: List[List[int]]
+        :rtype: int
+        """
+        l = len(cost[0])
+        dp = [[0]*l for i in range(l)]
+        for k in range(n//2):
+            new_dp = [[float("inf")]*l for i in range(l)]
+            for i in range(l):
+                for j in range(l):
+                    if j == i:
+                        continue
+                    for ni in range(l):
+                        if ni == i:
                             continue
-                        for right_color in range(3):
-                            if right_color == previous_right or right_color == left_color:
+                        for nj in range(l):
+                            if nj == j or ni == nj:
                                 continue
-                            candidate = current + cost[left][left_color] + cost[right][right_color]
-                            next_dp[left_color][right_color] = min(next_dp[left_color][right_color], candidate)
-            dp = next_dp
-
-        return min(map(min, dp))
+                            new_dp[ni][nj] = min(new_dp[ni][nj], dp[i][j]+cost[k][ni]+cost[~k][nj])
+            dp = new_dp
+        return min(dp[i][j] for i in range(l) for j in range(l) if i != j)

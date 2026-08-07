@@ -1,29 +1,27 @@
-from typing import List
-
+# Time:  O(n + k)
+# Space: O(k)
 
 class Solution:
-    def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
-        blocked = {tuple(obstacle) for obstacle in obstacles}
-        directions = ((0, 1), (1, 0), (0, -1), (-1, 0))
-        direction = 0
-        x = 0
-        y = 0
-        best = 0
-
-        for command in commands:
-            if command == -2:
-                direction = (direction - 1) % 4
-            elif command == -1:
-                direction = (direction + 1) % 4
+    def robotSim(self, commands, obstacles):
+        """
+        :type commands: List[int]
+        :type obstacles: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        x, y, i = 0, 0, 0
+        lookup = set(map(tuple, obstacles))
+        result = 0
+        for cmd in commands:
+            if cmd == -2:
+                i = (i-1) % 4
+            elif cmd == -1:
+                i = (i+1) % 4
             else:
-                dx, dy = directions[direction]
-                for _ in range(command):
-                    next_x = x + dx
-                    next_y = y + dy
-                    if (next_x, next_y) in blocked:
-                        break
-                    x = next_x
-                    y = next_y
-                    best = max(best, x * x + y * y)
+                for k in range(cmd):
+                    if (x+directions[i][0], y+directions[i][1]) not in lookup:
+                        x += directions[i][0]
+                        y += directions[i][1]
+                        result = max(result, x*x + y*y)
+        return result
 
-        return best

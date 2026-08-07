@@ -1,7 +1,13 @@
+# Time:  O(n)
+# Space: O(1)
+
+# combinatorics
 class Solution:
-    def countSubstrings(self, s: str, c: str) -> int:
-        occurrences = 0
-        for char in s:
-            if char == c:
-                occurrences += 1
-        return occurrences * (occurrences + 1) // 2
+    def countSubstrings(self, s, c):
+        """
+        :type s: str
+        :type c: str
+        :rtype: int
+        """
+        n = s.count(c)
+        return (n+1)*n//2

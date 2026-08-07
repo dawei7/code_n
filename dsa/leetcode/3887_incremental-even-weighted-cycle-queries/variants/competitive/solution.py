@@ -1,42 +1,44 @@
-from typing import List
+# Time:  O(n + e)
+# Space: O(n)
 
-
+# union find
 class Solution:
-    def numberOfEdgesAdded(self, n: int, edges: List[List[int]]) -> int:
-        parent = list(range(n))
-        size = [1] * n
-        parity = [0] * n
+    def numberOfEdgesAdded(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: int
+        """
+        class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+            def __init__(self, n):
+                self.set = range(n)
+                self.rank = [0]*n
+                self.parity = [0]*n  # added
 
-        def find(node: int) -> int:
-            if parent[node] != node:
-                previous_parent = parent[node]
-                parent[node] = find(previous_parent)
-                parity[node] ^= parity[previous_parent]
-            return parent[node]
+            def find_set(self, x):
+                stk = []
+                while self.set[x] != x:  # path compression
+                    stk.append(x)
+                    x = self.set[x]
+                prev = self.parity[x]  # added
+                while stk:
+                    self.parity[stk[-1]] ^= prev  # added
+                    prev = self.parity[stk[-1]]  # added
+                    self.set[stk.pop()] = x
+                return x
 
-        accepted = 0
-
-        for left, right, weight in edges:
-            left_root = find(left)
-            right_root = find(right)
-            left_parity = parity[left]
-            right_parity = parity[right]
-
-            if left_root == right_root:
-                if left_parity ^ right_parity == weight:
-                    accepted += 1
-                continue
-
-            accepted += 1
-            root_parity = left_parity ^ right_parity ^ weight
-
-            if size[left_root] < size[right_root]:
-                parent[left_root] = right_root
-                parity[left_root] = root_parity
-                size[right_root] += size[left_root]
-            else:
-                parent[right_root] = left_root
-                parity[right_root] = root_parity
-                size[left_root] += size[right_root]
-
-        return accepted
+            def union_set(self, x, y, w):
+                x0, y0 = x, y
+                x, y = self.find_set(x), self.find_set(y)
+                if x == y:
+                    return self.parity[x0]^w^self.parity[y0] == 0  # modified
+                if self.rank[x] > self.rank[y]:  # union by rank
+                    x, y = y, x
+                elif self.rank[x] == self.rank[y]:
+                    self.rank[y] += 1
+                self.set[x] = self.set[y]
+                self.parity[x] = self.parity[x0]^w^self.parity[y0]  # added
+                return True
+    
+        uf = UnionFind(n)
+        return sum(uf.union_set(u, v, w) for u, v, w in edges)

@@ -1,14 +1,15 @@
 class Solution:
     def licenseKeyFormatting(self, s: str, k: int) -> str:
-        cleaned = []
-        for character in s:
-            if character != "-":
-                cleaned.append(character.upper())
-        if not cleaned:
-            return ""
-
-        first = len(cleaned) % k or k
-        groups = ["".join(cleaned[:first])]
-        for start in range(first, len(cleaned), k):
-            groups.append("".join(cleaned[start : start + k]))
-        return "-".join(groups)
+        n = len(s)
+        cnt = (n - s.count("-")) % k or k
+        ans = []
+        for i, c in enumerate(s):
+            if c == "-":
+                continue
+            ans.append(c.upper())
+            cnt -= 1
+            if cnt == 0:
+                cnt = k
+                if i != n - 1:
+                    ans.append("-")
+        return "".join(ans).rstrip("-")

@@ -1,13 +1,16 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def hasAlternatingBits(self, n: int) -> bool:
-        previous = n & 1
-        n >>= 1
-
-        while n:
-            current = n & 1
-            if current == previous:
+    def hasAlternatingBits(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        n, curr = divmod(n, 2)
+        while n > 0:
+            if curr == n % 2:
                 return False
-            previous = current
-            n >>= 1
-
+            n, curr = divmod(n, 2)
         return True
+

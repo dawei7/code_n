@@ -1,10 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def xorQueries(self, arr: List[int], queries: List[List[int]]) -> List[int]:
-        prefix = [0]
-        for value in arr:
-            prefix.append(prefix[-1] ^ value)
-
-        return [prefix[right + 1] ^ prefix[left] for left, right in queries]
+    def xorQueries(self, arr, queries):
+        """
+        :type arr: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        for i in range(1, len(arr)):
+            arr[i] ^= arr[i-1]
+        return [arr[right] ^ arr[left-1] if left else arr[right] for left, right in queries]

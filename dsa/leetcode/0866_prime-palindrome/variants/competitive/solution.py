@@ -1,40 +1,22 @@
+# Time:  O(n^(1/2) * (logn + n^(1/2)))
+# Space: O(logn)
+
+
 class Solution:
-    def primePalindrome(self, n: int) -> int:
-        for small_prime_palindrome in (2, 3, 5, 7, 11):
-            if n <= small_prime_palindrome:
-                return small_prime_palindrome
+    def primePalindrome(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        def is_prime(n):
+            if n < 2 or n % 2 == 0:
+                return n == 2
+            return all(n % d for d in range(3, int(n**.5) + 1, 2))
 
-        digit_count = 0
-        remaining = n
-        while remaining:
-            digit_count += 1
-            remaining //= 10
+        if 8 <= N <= 11:
+            return 11
+        for i in range(10**(len(str(N))//2), 10**5):
+            j = int(str(i) + str(i)[-2::-1])
+            if j >= N and is_prime(j):
+                return j
 
-        if digit_count % 2 == 0:
-            prefix = 10 ** (digit_count // 2)
-        else:
-            prefix = n // (10 ** (digit_count // 2))
-
-        while True:
-            candidate = prefix
-            tail = prefix // 10
-            while tail:
-                candidate = candidate * 10 + tail % 10
-                tail //= 10
-
-            if candidate >= n and self._is_prime(candidate):
-                return candidate
-            prefix += 1
-
-    def _is_prime(self, value: int) -> bool:
-        if value < 2:
-            return False
-        if value % 2 == 0:
-            return value == 2
-
-        factor = 3
-        while factor * factor <= value:
-            if value % factor == 0:
-                return False
-            factor += 2
-        return True

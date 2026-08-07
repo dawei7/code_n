@@ -1,10 +1,18 @@
-from typing import List
-
+# Time:  O(e)
+# Space: O(n)
 
 class Solution:
-    def findSmallestSetOfVertices(self, n: int, edges: List[List[int]]) -> List[int]:
-        has_incoming_edge = [False] * n
-        for _, destination in edges:
-            has_incoming_edge[destination] = True
-
-        return [vertex for vertex in range(n) if not has_incoming_edge[vertex]]
+    def findSmallestSetOfVertices(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        result = []
+        lookup = set()
+        for u, v in edges:
+            lookup.add(v)
+        for i in range(n):
+            if i not in lookup:
+                result.append(i)
+        return result

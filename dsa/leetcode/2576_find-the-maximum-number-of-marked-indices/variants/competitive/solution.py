@@ -1,12 +1,33 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, greedy, two pointers
 class Solution:
-    def maxNumOfMarkedIndices(self, nums: List[int]) -> int:
+    def maxNumOfMarkedIndices(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         nums.sort()
-        small = 0
-        large = len(nums) // 2
+        left = 0
+        for right in range((len(nums)+1)//2, len(nums)):
+            if nums[right] >= 2*nums[left]:
+                left += 1
+        return left*2
 
-        while small < len(nums) // 2 and large < len(nums):
-            if 2 * nums[small] <= nums[large]:
-                small += 1
-            large += 1
 
-        return 2 * small
+# Time:  O(nlogn)
+# Space: O(1)
+# sort, greedy, two pointers
+class Solution2(object):
+    def maxNumOfMarkedIndices(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        nums.sort()
+        left = 0
+        for right in range(len(nums)):
+            if nums[right] >= 2*nums[left]:
+                left += 1
+        return min(left, len(nums)//2)*2

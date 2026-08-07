@@ -1,25 +1,16 @@
-from functools import lru_cache
-
-
 class Solution:
     def rotatedDigits(self, n: int) -> int:
-        digits = [int(digit) for digit in str(n)]
-        valid = {0, 1, 2, 5, 6, 8, 9}
-        changing = {2, 5, 6, 9}
+        def check(x):
+            y, t = 0, x
+            k = 1
+            while t:
+                v = t % 10
+                if d[v] == -1:
+                    return False
+                y = d[v] * k + y
+                k *= 10
+                t //= 10
+            return x != y
 
-        @lru_cache(maxsize=None)
-        def count(position: int, tight: bool, changed: bool) -> int:
-            if position == len(digits):
-                return int(changed)
-            limit = digits[position] if tight else 9
-            total = 0
-            for digit in range(limit + 1):
-                if digit in valid:
-                    total += count(
-                        position + 1,
-                        tight and digit == limit,
-                        changed or digit in changing,
-                    )
-            return total
-
-        return count(0, True, False)
+        d = [0, 1, 5, -1, -1, 2, 9, -1, 8, 6]
+        return sum(check(i) for i in range(1, n + 1))

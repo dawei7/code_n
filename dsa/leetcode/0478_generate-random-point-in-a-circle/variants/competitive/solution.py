@@ -1,18 +1,30 @@
-from math import cos, pi, sin, sqrt
-from random import random
-from typing import List
+# Time:  O(1)
+# Space: O(1)
 
+import random
+import math
 
 class Solution:
-    def __init__(self, radius: float, x_center: float, y_center: float):
-        self.radius = radius
-        self.x_center = x_center
-        self.y_center = y_center
 
-    def randPoint(self) -> List[float]:
-        distance = self.radius * sqrt(random())
-        angle = 2 * pi * random()
-        return [
-            self.x_center + distance * cos(angle),
-            self.y_center + distance * sin(angle),
-        ]
+    def __init__(self, radius, x_center, y_center):
+        """
+        :type radius: float
+        :type x_center: float
+        :type y_center: float
+        """
+        self.__radius = radius
+        self.__x_center = x_center
+        self.__y_center = y_center
+        
+
+    def randPoint(self):
+        """
+        :rtype: List[float]
+        """
+        r = (self.__radius) * math.sqrt(random.uniform(0, 1))
+        theta = (2*math.pi) * random.uniform(0, 1)
+        return (r*math.cos(theta) + self.__x_center,
+                r*math.sin(theta) + self.__y_center)
+
+
+

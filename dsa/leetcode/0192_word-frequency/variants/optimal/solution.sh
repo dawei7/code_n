@@ -1,7 +1,2 @@
-#!/usr/bin/env bash
-tr -s '[:space:]' '\n' < words.txt \
-  | grep -v '^$' \
-  | sort \
-  | uniq -c \
-  | sort -k1,1nr -k2,2r \
-  | awk '{print $2 " " $1}'
+# Read from the file words.txt and output the word frequency list to stdout.
+cat words.txt | tr -s ' ' '\n' | sort | uniq -c | sort -nr | awk '{print $2, $1}'

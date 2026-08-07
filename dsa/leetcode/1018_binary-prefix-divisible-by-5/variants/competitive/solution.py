@@ -1,13 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def prefixesDivBy5(self, nums: List[int]) -> List[bool]:
-        remainder = 0
-        answer = []
-
-        for bit in nums:
-            remainder = (remainder * 2 + bit) % 5
-            answer.append(remainder == 0)
-
-        return answer
+    def prefixesDivBy5(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[bool]
+        """
+        for i in range(1, len(A)):
+            A[i] += A[i-1] * 2 % 5
+        return [x % 5 == 0 for x in A]

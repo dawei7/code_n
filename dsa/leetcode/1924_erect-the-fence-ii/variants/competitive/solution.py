@@ -1,70 +1,62 @@
-from math import hypot
-from random import Random
-from typing import List
+# Time:  O(n) on average
+# Space: O(n)
+
+import random
 
 
+# reference: https://en.wikipedia.org/wiki/Smallest-circle_problem
 class Solution:
-    def outerTrees(self, trees: List[List[int]]) -> List[float]:
-        points = [(float(x), float(y)) for x, y in trees]
-        Random(0).shuffle(points)
-        epsilon = 1e-10
+    def outerTrees(self, trees):
+        """
+        :type trees: List[List[int]]
+        :rtype: List[float]
+        """
+        def dist(a, b):
+            return ((a[0]-b[0])**2 + (a[1]-b[1])**2)**0.5
 
-        def contains(circle: tuple[float, float, float], point: tuple[float, float]) -> bool:
-            return hypot(point[0] - circle[0], point[1] - circle[1]) <= circle[2] + epsilon
+        def inside(c, p):
+            return dist(c[0], p) < c[1]+EPS
 
-        def diameter(
-            first: tuple[float, float],
-            second: tuple[float, float],
-        ) -> tuple[float, float, float]:
-            center_x = (first[0] + second[0]) / 2.0
-            center_y = (first[1] + second[1]) / 2.0
-            return center_x, center_y, hypot(first[0] - second[0], first[1] - second[1]) / 2.0
+        def circle_center(bx, by, cx, cy):
+            B = bx*bx + by*by
+            C = cx*cx + cy*cy
+            D = bx*cy - by*cx
+            return [float(cy*B - by*C)/(2*D),
+                    float(bx*C - cx*B)/(2*D)]
 
-        def through_three(
-            first: tuple[float, float],
-            second: tuple[float, float],
-            third: tuple[float, float],
-        ) -> tuple[float, float, float]:
-            ax, ay = first
-            bx, by = second
-            cx, cy = third
-            divisor = 2.0 * (ax * (by - cy) + bx * (cy - ay) + cx * (ay - by))
+        def circle_from_2_points(A, B):
+            C = [(A[0]+B[0])/2.0, (A[1]+B[1])/2.0]
+            return [C, dist(A, B)/2.0]
 
-            if abs(divisor) <= epsilon:
-                candidates = [
-                    diameter(first, second),
-                    diameter(first, third),
-                    diameter(second, third),
-                ]
-                return min(
-                    (
-                        circle
-                        for circle in candidates
-                        if all(contains(circle, point) for point in (first, second, third))
-                    ),
-                    key=lambda circle: circle[2],
-                )
+        def circle_from_3_points(A, B, C):
+            I = circle_center(B[0]-A[0], B[1]-A[1],
+                              C[0]-A[0], C[1]-A[1])
+            I[0] += A[0]
+            I[1] += A[1]
+            return [I, dist(I, A)]
 
-            first_norm = ax * ax + ay * ay
-            second_norm = bx * bx + by * by
-            third_norm = cx * cx + cy * cy
-            center_x = (first_norm * (by - cy) + second_norm * (cy - ay) + third_norm * (ay - by)) / divisor
-            center_y = (first_norm * (cx - bx) + second_norm * (ax - cx) + third_norm * (bx - ax)) / divisor
-            return center_x, center_y, hypot(center_x - ax, center_y - ay)
+        def trivial(boundaries):  # circumscribed circle
+            if not boundaries:
+                return None
+            if len(boundaries) == 1:
+                return [boundaries[0], 0.0]
+            if len(boundaries) == 2:
+                return circle_from_2_points(boundaries[0], boundaries[1])
+            return circle_from_3_points(boundaries[0], boundaries[1], boundaries[2])
 
-        circle = (points[0][0], points[0][1], 0.0)
-        for first_index, first in enumerate(points):
-            if contains(circle, first):
-                continue
-            circle = (first[0], first[1], 0.0)
-            for second_index in range(first_index):
-                second = points[second_index]
-                if contains(circle, second):
-                    continue
-                circle = diameter(first, second)
-                for third_index in range(second_index):
-                    third = points[third_index]
-                    if not contains(circle, third):
-                        circle = through_three(first, second, third)
+        def Welzl(points, boundaries, curr):
+            if curr == len(points) or len(boundaries) == 3:
+                return trivial(boundaries)
+            result = Welzl(points, boundaries, curr+1)
+            if result is not None and inside(result, points[curr]):
+                return result
+            boundaries.append(points[curr])
+            result = Welzl(points, boundaries, curr+1)
+            boundaries.pop()
+            return result
 
-        return [circle[0], circle[1], circle[2]]
+        EPS = 1e-5
+        random.seed(0)
+        random.shuffle(trees)
+        result = Welzl(trees, [], 0)
+        return result[0][0], result[0][1], result[1]

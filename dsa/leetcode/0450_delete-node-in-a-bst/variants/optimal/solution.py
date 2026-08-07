@@ -1,7 +1,4 @@
-from typing import Optional
-
-
-# Definition for a binary tree node is provided by LeetCode.
+# Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
@@ -11,19 +8,19 @@ class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         if root is None:
             return None
-        if key < root.val:
+        if root.val > key:
             root.left = self.deleteNode(root.left, key)
-        elif key > root.val:
+            return root
+        if root.val < key:
             root.right = self.deleteNode(root.right, key)
-        else:
-            if root.left is None:
-                return root.right
-            if root.right is None:
-                return root.left
-
-            successor = root.right
-            while successor.left is not None:
-                successor = successor.left
-            root.val = successor.val
-            root.right = self.deleteNode(root.right, successor.val)
+            return root
+        if root.left is None:
+            return root.right
+        if root.right is None:
+            return root.left
+        node = root.right
+        while node.left:
+            node = node.left
+        node.left = root.left
+        root = root.right
         return root

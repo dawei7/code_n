@@ -1,18 +1,22 @@
+# Time:  O(1)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def countDaysTogether(
-        self,
-        arriveAlice: str,
-        leaveAlice: str,
-        arriveBob: str,
-        leaveBob: str,
-    ) -> int:
-        days_before_month = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
+    def countDaysTogether(self, arriveAlice, leaveAlice, arriveBob, leaveBob):
+        """
+        :type arriveAlice: str
+        :type leaveAlice: str
+        :type arriveBob: str
+        :type leaveBob: str
+        :rtype: int
+        """
+        NUMS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        prefix = [0]*(len(NUMS)+1)
+        for i in range(len(NUMS)):
+            prefix[i+1] += prefix[i]+NUMS[i]
+    
+        def day(date):
+            return prefix[int(date[:2])-1]+int(date[3:])
 
-        def ordinal(date: str) -> int:
-            month = int(date[:2])
-            day = int(date[3:])
-            return days_before_month[month - 1] + day
-
-        overlap_start = max(ordinal(arriveAlice), ordinal(arriveBob))
-        overlap_end = min(ordinal(leaveAlice), ordinal(leaveBob))
-        return max(0, overlap_end - overlap_start + 1)
+        return max(day(min(leaveAlice, leaveBob))-day(max(arriveAlice, arriveBob))+1, 0)

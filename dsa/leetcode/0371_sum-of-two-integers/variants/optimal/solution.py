@@ -1,11 +1,7 @@
 class Solution:
     def getSum(self, a: int, b: int) -> int:
-        mask = 0xFFFFFFFF
-        maximum_positive = 0x7FFFFFFF
-        left = a & mask
-        right = b & mask
-
-        while right:
-            left, right = (left ^ right) & mask, ((left & right) << 1) & mask
-
-        return left if left <= maximum_positive else ~(left ^ mask)
+        a, b = a & 0xFFFFFFFF, b & 0xFFFFFFFF
+        while b:
+            carry = ((a & b) << 1) & 0xFFFFFFFF
+            a, b = a ^ b, carry
+        return a if a < 0x80000000 else ~(a ^ 0xFFFFFFFF)

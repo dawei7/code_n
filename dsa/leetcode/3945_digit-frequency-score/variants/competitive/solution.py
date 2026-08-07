@@ -1,9 +1,15 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# freq table
 class Solution:
-    def digitFrequencyScore(self, n: int) -> int:
-        score = 0
-
+    def digitFrequencyScore(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        cnt = [0]*10
         while n:
-            n, digit = divmod(n, 10)
-            score += digit
-
-        return score
+            n, r = divmod(n, 10)
+            cnt[r] += 1
+        return sum(i*x for i, x in enumerate(cnt))

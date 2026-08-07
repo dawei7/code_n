@@ -1,15 +1,14 @@
-from typing import List
-
+# Time:  O(|V|^3)
+# Space: O(|E|)
 
 class Solution:
-    def numberOfPaths(self, n: int, corridors: List[List[int]]) -> int:
-        neighbors = [set() for _ in range(n + 1)]
-        for first, second in corridors:
-            neighbors[first].add(second)
-            neighbors[second].add(first)
-
-        shared_neighbors = 0
-        for first, second in corridors:
-            shared_neighbors += len(neighbors[first] & neighbors[second])
-
-        return shared_neighbors // 3
+    def numberOfPaths(self, n, corridors):
+        """
+        :type n: int
+        :type corridors: List[List[int]]
+        :rtype: int
+        """
+        adj = [set() for _ in range(n)]
+        for u, v in corridors:
+            adj[min(u, v)-1].add(max(u, v)-1)
+        return sum(k in adj[i] for i in range(n) for j in adj[i] for k in adj[j])

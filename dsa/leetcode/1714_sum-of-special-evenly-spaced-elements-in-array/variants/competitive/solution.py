@@ -1,32 +1,29 @@
-from collections import defaultdict
-from math import isqrt
-from typing import List
-
+# Time:  O(n * sqrt(n))
+# Space: O(n * sqrt(n))
 
 class Solution:
-    def solve(self, nums: List[int], queries: List[List[int]]) -> List[int]:
-        modulo = 1_000_000_007
-        threshold = isqrt(len(nums)) + 1
-        grouped = defaultdict(list)
-        for query_index, (start, step) in enumerate(queries):
-            grouped[step].append((query_index, start))
+    def solve(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        MOD = 10**9+7
 
-        answers = [0] * len(queries)
-        for step, pending in grouped.items():
-            if step < threshold:
-                suffix = [0] * len(nums)
-                for index in range(len(nums) - 1, -1, -1):
-                    suffix[index] = nums[index]
-                    if index + step < len(nums):
-                        suffix[index] += suffix[index + step]
-                    suffix[index] %= modulo
-                for query_index, start in pending:
-                    answers[query_index] = suffix[start]
+        prefix = {}          
+        result = []
+        for x, y in queries:
+            if y*y > len(nums):
+                total = 0
+                for i in range(x, len(nums), y):
+                    total += nums[i]
+                    total %= MOD
+                result.append(total)
             else:
-                for query_index, start in pending:
-                    total = 0
-                    for index in range(start, len(nums), step):
-                        total += nums[index]
-                    answers[query_index] = total % modulo
-
-        return answers
+                begin = x%y
+                if (begin, y) not in prefix:
+                    prefix[(begin, y)] = [0]
+                    for i in range(begin, len(nums), y):
+                        prefix[(begin, y)].append((prefix[(begin, y)][-1] + nums[i]) % MOD)
+                result.append((prefix[(begin, y)][-1]-prefix[(begin, y)][x//y]) % MOD)
+        return result

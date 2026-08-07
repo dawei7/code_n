@@ -1,14 +1,45 @@
-from collections import Counter
-from typing import List
-
+# Time:  O(n)
+# Space: O(k)
 
 class Solution:
-    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
-        counts = Counter({0: 1})
-        odd_prefix = 0
-        answer = 0
-        for value in nums:
-            odd_prefix += value % 2
-            answer += counts[odd_prefix - k]
-            counts[odd_prefix] += 1
-        return answer
+    def numberOfSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def atMost(nums, k):
+            result, left, count = 0, 0, 0
+            for right, x in enumerate(nums):
+                count += x%2
+                while count > k:
+                    count -= nums[left]%2
+                    left += 1
+                result += right-left+1
+            return result
+
+        return atMost(nums, k) - atMost(nums, k-1)
+
+
+# Time:  O(n)
+# Space: O(k)
+import collections
+
+
+class Solution2(object):
+    def numberOfSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        dq = collections.deque([-1])
+        for i in range(len(nums)):
+            if nums[i]%2:
+                dq.append(i)
+            if len(dq) > k+1:
+                dq.popleft()
+            if len(dq) == k+1:
+                result += dq[1]-dq[0]
+        return result

@@ -1,23 +1,29 @@
+# Time:  O(n^3) on average
+# Space: O(n^2)
+
 class Solution:
-    def encode(self, s: str) -> str:
-        length = len(s)
-        best = [[""] * length for _ in range(length)]
-        for width in range(1, length + 1):
-            for left in range(length - width + 1):
-                right = left + width - 1
-                text = s[left : right + 1]
-                answer = text
+    def encode(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def encode_substr(dp, s, i, j):
+            temp = s[i:j+1]
+            pos = (temp + temp).find(temp, 1)  # O(n) on average
+            if pos >= len(temp):
+                return temp
+            return str(len(temp)/pos) + '[' + dp[i][i + pos - 1] + ']'
 
-                for split in range(left, right):
-                    candidate = best[left][split] + best[split + 1][right]
-                    if len(candidate) < len(answer):
-                        answer = candidate
+        dp = [["" for _ in range(len(s))] for _ in range(len(s))]
+        for length in range(1, len(s)+1):
+            for i in range(len(s)+1-length):
+                j = i+length-1
+                dp[i][j] = s[i:i+length]
+                for k in range(i, j):
+                    if len(dp[i][k]) + len(dp[k+1][j]) < len(dp[i][j]):
+                        dp[i][j] = dp[i][k] + dp[k+1][j]
+                encoded_string = encode_substr(dp, s, i, j)
+                if len(encoded_string) < len(dp[i][j]):
+                    dp[i][j] = encoded_string
+        return dp[0][len(s) - 1]
 
-                period = (text + text).find(text, 1)
-                if period < width and width % period == 0:
-                    unit = best[left][left + period - 1]
-                    candidate = f"{width // period}[{unit}]"
-                    if len(candidate) < len(answer):
-                        answer = candidate
-                best[left][right] = answer
-        return best[0][length - 1]

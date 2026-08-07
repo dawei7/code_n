@@ -1,12 +1,36 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def maxOperations(self, s: str) -> int:
-        ones = 0
-        operations = 0
+    def maxOperations(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = curr = 0
+        for i in range(len(s)):
+            if s[i] == '1':
+                curr += 1
+            elif i+1 == len(s) or s[i+1] == '1':
+                result += curr
+        return result
 
-        for index, character in enumerate(s):
-            if character == "1":
-                ones += 1
-            elif index > 0 and s[index - 1] == "1":
-                operations += ones
 
-        return operations
+# Time:  O(n)
+# Space: O(1)
+# greedy
+class Solution2(object):
+    def maxOperations(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = curr = 0
+        for i in range(len(s)):
+            if s[i] != '1':
+                continue
+            curr += 1
+            if i+1 < len(s) and s[i+1] == '0':
+                result += curr
+        return result

@@ -1,49 +1,26 @@
-import re
-
-
 class Solution:
     def calculate(self, s: str) -> int:
-        tokens = re.findall(r"\d+|[()+\-*/]", s)
-        position = 0
+        def dfs(q):
+            num, sign, stk = 0, "+", []
+            while q:
+                c = q.popleft()
+                if c.isdigit():
+                    num = num * 10 + int(c)
+                if c == "(":
+                    num = dfs(q)
+                if c in "+-*/)" or not q:
+                    match sign:
+                        case "+":
+                            stk.append(num)
+                        case "-":
+                            stk.append(-num)
+                        case "*":
+                            stk.append(stk.pop() * num)
+                        case "/":
+                            stk.append(int(stk.pop() / num))
+                    num, sign = 0, c
+                if c == ")":
+                    break
+            return sum(stk)
 
-        def truncate_division(dividend: int, divisor: int) -> int:
-            quotient = abs(dividend) // abs(divisor)
-            return -quotient if (dividend < 0) != (divisor < 0) else quotient
-
-        def parse_expression() -> int:
-            nonlocal position
-            value = parse_term()
-            while position < len(tokens) and tokens[position] in {"+", "-"}:
-                operator = tokens[position]
-                position += 1
-                term = parse_term()
-                value = value + term if operator == "+" else value - term
-            return value
-
-        def parse_term() -> int:
-            nonlocal position
-            value = parse_factor()
-            while position < len(tokens) and tokens[position] in {"*", "/"}:
-                operator = tokens[position]
-                position += 1
-                factor = parse_factor()
-                value = value * factor if operator == "*" else truncate_division(value, factor)
-            return value
-
-        def parse_factor() -> int:
-            nonlocal position
-            sign = 1
-            while position < len(tokens) and tokens[position] in {"+", "-"}:
-                if tokens[position] == "-":
-                    sign = -sign
-                position += 1
-
-            token = tokens[position]
-            position += 1
-            if token == "(":
-                value = parse_expression()
-                position += 1
-                return sign * value
-            return sign * int(token)
-
-        return parse_expression()
+        return dfs(deque(s))

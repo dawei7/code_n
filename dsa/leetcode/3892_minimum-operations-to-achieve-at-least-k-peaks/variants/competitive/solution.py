@@ -1,39 +1,40 @@
+# Time:  O(n + klogn)
+# Space: O(n)
+
+import heapq
+
+
+# greedy, heap, doubly linked list
 class Solution:
-    def minOperations(self, nums: list[int], k: int) -> int:
-        n = len(nums)
-        if k == 0:
-            return 0
-        if k > n // 2:
+    def minOperations(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        if 2*k > len(nums):
             return -1
-
-        def peak_cost(index: int) -> int:
-            required = max(nums[(index - 1) % n], nums[(index + 1) % n]) + 1
-            return max(0, required - nums[index])
-
-        infinity = 10**30
-
-        def path_cost(left: int, right: int, picks: int) -> int:
-            if picks == 0:
-                return 0
-            if left > right or picks > (right - left + 2) // 2:
-                return infinity
-
-            skip = [infinity] * (picks + 1)
-            take = [infinity] * (picks + 1)
-            skip[0] = 0
-            processed = 0
-
-            for index in range(left, right + 1):
-                upper = min(picks, (processed + 2) // 2)
-                weight = peak_cost(index)
-                for count in range(upper, 0, -1):
-                    old_take = take[count]
-                    take[count] = skip[count - 1] + weight
-                    skip[count] = min(skip[count], old_take)
-                processed += 1
-
-            return min(skip[picks], take[picks])
-
-        without_first = path_cost(1, n - 1, k)
-        with_first = peak_cost(0) + path_cost(2, n - 2, k - 1)
-        return min(without_first, with_first)
+        if not k:
+            return 0
+        lookup = [False]*len(nums)
+        left = [(i-1)%len(nums) for i in range(len(nums))]
+        right = [(i+1)%len(nums) for i in range(len(nums))]
+        cost = [max((max(nums[left[i]], nums[right[i]])+1)-nums[i], 0) for i in range(len(nums))]
+        min_heap = [(cost[i], i) for i in range(len(nums))]
+        heapq.heapify(min_heap)
+        result = 0
+        while min_heap:
+            c, i = heapq.heappop(min_heap)
+            if lookup[i]:
+                continue
+            result += c
+            k -= 1
+            if not k:
+                break
+            cost[i] = cost[left[i]]+cost[right[i]]-cost[i]
+            heapq.heappush(min_heap, (cost[i], i))
+            lookup[left[i]] = lookup[right[i]] = True
+            left[i] = left[left[i]]
+            right[i] = right[right[i]]
+            right[left[i]] = left[right[i]] = i
+        return result

@@ -1,15 +1,11 @@
-from typing import List
-
-
 class Solution:
     def probabilityOfHeads(self, prob: List[float], target: int) -> float:
-        probabilities = [0.0] * (target + 1)
-        probabilities[0] = 1.0
-
-        for processed, head_probability in enumerate(prob, 1):
-            for heads in range(min(target, processed), 0, -1):
-                probabilities[heads] = (
-                    probabilities[heads] * (1.0 - head_probability) + probabilities[heads - 1] * head_probability
-                )
-            probabilities[0] *= 1.0 - head_probability
-        return probabilities[target]
+        n = len(prob)
+        f = [[0] * (target + 1) for _ in range(n + 1)]
+        f[0][0] = 1
+        for i, p in enumerate(prob, 1):
+            for j in range(min(i, target) + 1):
+                f[i][j] = (1 - p) * f[i - 1][j]
+                if j:
+                    f[i][j] += p * f[i - 1][j - 1]
+        return f[n][target]

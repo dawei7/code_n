@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def maximumEvenSplit(self, finalSum: int) -> List[int]:
-        if finalSum % 2:
+        if finalSum & 1:
             return []
-
-        answer = []
-        next_even = 2
-        while finalSum >= next_even:
-            answer.append(next_even)
-            finalSum -= next_even
-            next_even += 2
-
-        answer[-1] += finalSum
-        return answer
+        ans = []
+        i = 2
+        while i <= finalSum:
+            finalSum -= i
+            ans.append(i)
+            i += 2
+        ans[-1] += finalSum
+        return ans

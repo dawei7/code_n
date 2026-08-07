@@ -1,6 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def lateFee(self, daysLate: List[int]) -> int:
-        return sum(1 if days == 1 else 2 * days if days <= 5 else 3 * days for days in daysLate)
+    def lateFee(self, daysLate):
+        """
+        :type daysLate: List[int]
+        :rtype: int
+        """
+        return sum(1 if i == 1 else 3*i if i >= 6 else 2*i for i in daysLate)

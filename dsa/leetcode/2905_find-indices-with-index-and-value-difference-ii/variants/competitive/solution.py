@@ -1,26 +1,26 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# prefix sum
 class Solution:
-    def findIndices(
-        self,
-        nums: List[int],
-        indexDifference: int,
-        valueDifference: int,
-    ) -> List[int]:
-        minimum_index = 0
-        maximum_index = 0
-
-        for right in range(indexDifference, len(nums)):
-            eligible = right - indexDifference
-            if nums[eligible] < nums[minimum_index]:
-                minimum_index = eligible
-            if nums[eligible] > nums[maximum_index]:
-                maximum_index = eligible
-
-            if nums[right] - nums[minimum_index] >= valueDifference:
-                return [minimum_index, right]
-            if nums[maximum_index] - nums[right] >= valueDifference:
-                return [maximum_index, right]
-
-        return [-1, -1]
+    def findIndices(self, nums, indexDifference, valueDifference):
+        """
+        :type nums: List[int]
+        :type indexDifference: int
+        :type valueDifference: int
+        :rtype: List[int]
+        """
+        mx_i = mn_i = 0
+        for i in range(len(nums)-indexDifference):
+            if nums[i] > nums[mx_i]:
+                mx_i = i
+            elif nums[i] < nums[mn_i]:
+                mn_i = i
+            # we don't need to add abs for the difference since
+            # - if nums[mx_i]-nums[i+indexDifference] < 0, then checking nums[i+indexDifference]-nums[mn_i] >= -(nums[mx_i]-nums[i+indexDifference]) > 0 can cover the case
+            # - if nums[i+indexDifference]-nums[mn_i] < 0, then checking nums[mx_i]-nums[i+indexDifference] >= -(nums[i+indexDifference]-nums[mn_i]) > 0 can cover the case
+            if nums[mx_i]-nums[i+indexDifference] >= valueDifference:
+                return [mx_i, i+indexDifference]
+            if nums[i+indexDifference]-nums[mn_i] >= valueDifference:
+                return [mn_i, i+indexDifference]
+        return [-1]*2

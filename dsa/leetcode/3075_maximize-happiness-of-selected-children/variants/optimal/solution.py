@@ -1,12 +1,8 @@
 class Solution:
     def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
-        ordered_happiness = sorted(happiness, reverse=True)
-        total = 0
-
-        for turn in range(k):
-            contribution = ordered_happiness[turn] - turn
-            if contribution <= 0:
-                break
-            total += contribution
-
-        return total
+        happiness.sort(reverse=True)
+        ans = 0
+        for i, x in enumerate(happiness[:k]):
+            x -= i
+            ans += max(x, 0)
+        return ans

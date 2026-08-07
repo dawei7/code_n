@@ -1,13 +1,20 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort, array
 class Solution:
-    def countWays(self, ranges: List[List[int]]) -> int:
-        modulus = 1_000_000_007
+    def countWays(self, ranges):
+        """
+        :type ranges: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+
         ranges.sort()
-        ways = 1
-        current_end = -1
-
-        for start, end in ranges:
-            if start > current_end:
-                ways = ways * 2 % modulus
-            current_end = max(current_end, end)
-
-        return ways
+        cnt = 0
+        curr = float("-inf")
+        for l, r in ranges:
+            if l > curr:
+                cnt += 1
+            curr = max(curr, r)
+        return pow(2, cnt, MOD)

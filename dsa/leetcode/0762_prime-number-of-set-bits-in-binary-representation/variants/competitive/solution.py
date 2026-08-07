@@ -1,4 +1,21 @@
+# Time:  O(log(R - L)) = O(1)
+# Space: O(1)
+
 class Solution:
-    def countPrimeSetBits(self, left: int, right: int) -> int:
-        prime_counts = {2, 3, 5, 7, 11, 13, 17, 19}
-        return sum(value.bit_count() in prime_counts for value in range(left, right + 1))
+    def countPrimeSetBits(self, L, R):
+        """
+        :type L: int
+        :type R: int
+        :rtype: int
+        """
+        def bitCount(n):
+            result = 0
+            while n:
+                n &= n-1
+                result += 1
+            return result
+
+        primes = {2, 3, 5, 7, 11, 13, 17, 19}
+        return sum(bitCount(i) in primes
+                   for i in range(L, R+1))
+

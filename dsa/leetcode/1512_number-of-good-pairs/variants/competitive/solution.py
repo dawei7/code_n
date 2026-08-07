@@ -1,11 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def numIdenticalPairs(self, nums: List[int]) -> int:
-        frequencies = {}
-        pairs = 0
-        for value in nums:
-            pairs += frequencies.get(value, 0)
-            frequencies[value] = frequencies.get(value, 0) + 1
-        return pairs
+    def numIdenticalPairs(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(c*(c-1)//2 for c in collections.Counter(nums).itervalues())

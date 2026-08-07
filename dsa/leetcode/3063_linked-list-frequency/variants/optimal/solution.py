@@ -5,17 +5,11 @@
 #         self.next = next
 class Solution:
     def frequenciesOfElements(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        frequencies = {}
-        current = head
-
-        while current is not None:
-            frequencies[current.val] = frequencies.get(current.val, 0) + 1
-            current = current.next
-
+        cnt = Counter()
+        while head:
+            cnt[head.val] += 1
+            head = head.next
         dummy = ListNode()
-        tail = dummy
-        for frequency in frequencies.values():
-            tail.next = ListNode(frequency)
-            tail = tail.next
-
+        for val in cnt.values():
+            dummy.next = ListNode(val, dummy.next)
         return dummy.next

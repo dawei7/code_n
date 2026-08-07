@@ -1,18 +1,24 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def splitLoopedString(self, strs: List[str]) -> str:
-        oriented = [max(value, value[::-1]) for value in strs]
-        best = ""
+    def splitLoopedString(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        tmp = []
+        for s in strs:
+            tmp += max(s, s[::-1])
+        s = "".join(tmp)
 
-        for split_index, original in enumerate(strs):
-            middle = "".join(oriented[split_index + 1 :] + oriented[:split_index])
+        result, st = "a", 0
+        for i in range(len(strs)):
+            body = "".join([s[st + len(strs[i]):], s[0:st]])
+            for p in strs[i], strs[i][::-1]:
+                for j in range(len(strs[i])):
+                    if p[j] >= result[0]:
+                        result = max(result, "".join([p[j:], body, p[:j]]))
+            st += len(strs[i])
+        return result
 
-            for split_word in (original, original[::-1]):
-                for cut in range(len(split_word)):
-                    candidate = split_word[cut:] + middle + split_word[:cut]
-                    if candidate > best:
-                        best = candidate
-
-        return best

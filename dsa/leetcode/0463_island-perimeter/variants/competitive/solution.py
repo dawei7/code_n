@@ -1,16 +1,31 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
+
+import operator
 
 
 class Solution:
-    def islandPerimeter(self, grid: List[List[int]]) -> int:
-        perimeter = 0
-        for row in range(len(grid)):
-            for column in range(len(grid[0])):
-                if grid[row][column] == 0:
-                    continue
-                perimeter += 4
-                if row > 0 and grid[row - 1][column] == 1:
-                    perimeter -= 2
-                if column > 0 and grid[row][column - 1] == 1:
-                    perimeter -= 2
-        return perimeter
+    def islandPerimeter(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        count, repeat = 0, 0
+
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if grid[i][j] == 1:
+                    count += 1
+                    if i != 0 and grid[i - 1][j] == 1:
+                        repeat += 1
+                    if j != 0 and grid[i][j - 1] == 1:
+                        repeat += 1
+
+        return 4*count - 2*repeat
+
+# Since there are no lakes, every pair of neighbour cells with different values is part of the perimeter
+# (more precisely, the edge between them is). So just count the differing pairs, both horizontally and vertically
+# (for the latter I simply transpose the grid).
+    def islandPerimeter2(self, grid):
+        return sum(sum(map(operator.ne, [0] + row, row + [0])) for row in grid + map(list, zip(*grid)))
+

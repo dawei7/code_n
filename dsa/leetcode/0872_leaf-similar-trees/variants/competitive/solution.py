@@ -1,33 +1,33 @@
-from itertools import zip_longest
-from typing import Iterator, Optional
+# Time:  O(n)
+# Space: O(h)
+
+import itertools
 
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def leafSimilar(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> bool:
-        def leaf_values(root: Optional[TreeNode]) -> Iterator[int]:
-            stack = [root] if root is not None else []
-            while stack:
-                node = stack.pop()
-                if node.left is None and node.right is None:
-                    yield node.val
-                    continue
-                if node.right is not None:
-                    stack.append(node.right)
-                if node.left is not None:
-                    stack.append(node.left)
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
-        missing = object()
-        return all(
-            first == second
-            for first, second in zip_longest(
-                leaf_values(root1),
-                leaf_values(root2),
-                fillvalue=missing,
-            )
-        )
+
+class Solution:
+    def leafSimilar(self, root1, root2):
+        """
+        :type root1: TreeNode
+        :type root2: TreeNode
+        :rtype: bool
+        """
+        def dfs(node):
+            if not node:
+                return
+            if not node.left and not node.right:
+                yield node.val
+            for i in dfs(node.left):
+                yield i
+            for i in dfs(node.right):
+                yield i
+        return all(a == b for a, b in
+                   itertools.izip_longest(dfs(root1), dfs(root2)))
+

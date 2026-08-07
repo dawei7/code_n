@@ -1,17 +1,12 @@
-from collections import Counter
-
-
 class Solution:
     def numSplits(self, s: str) -> int:
-        left = set()
-        right = Counter(s)
-        answer = 0
-
-        for char in s[:-1]:
-            left.add(char)
-            right[char] -= 1
-            if right[char] == 0:
-                del right[char]
-            answer += len(left) == len(right)
-
-        return answer
+        cnt = Counter(s)
+        vis = set()
+        ans = 0
+        for c in s:
+            vis.add(c)
+            cnt[c] -= 1
+            if cnt[c] == 0:
+                cnt.pop(c)
+            ans += len(vis) == len(cnt)
+        return ans

@@ -1,40 +1,55 @@
-from collections import deque
-from heapq import heappop, heappush
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
 
 
 class Solution:
     def maximumSafenessFactor(self, grid: List[List[int]]) -> int:
         n = len(grid)
-        distance = [[-1] * n for _ in range(n)]
-        queue = deque()
-        for row in range(n):
-            for column in range(n):
-                if grid[row][column] == 1:
-                    distance[row][column] = 0
-                    queue.append((row, column))
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        while queue:
-            row, column = queue.popleft()
-            for dr, dc in directions:
-                next_row, next_column = row + dr, column + dc
-                if 0 <= next_row < n and 0 <= next_column < n and distance[next_row][next_column] == -1:
-                    distance[next_row][next_column] = distance[row][column] + 1
-                    queue.append((next_row, next_column))
-        best = [[-1] * n for _ in range(n)]
-        best[0][0] = distance[0][0]
-        heap = [(-distance[0][0], 0, 0)]
-        while heap:
-            negative_safety, row, column = heappop(heap)
-            safety = -negative_safety
-            if safety < best[row][column]:
-                continue
-            if row == n - 1 and column == n - 1:
-                return safety
-            for dr, dc in directions:
-                next_row, next_column = row + dr, column + dc
-                if 0 <= next_row < n and 0 <= next_column < n:
-                    candidate = min(safety, distance[next_row][next_column])
-                    if candidate > best[next_row][next_column]:
-                        best[next_row][next_column] = candidate
-                        heappush(heap, (-candidate, next_row, next_column))
+        if grid[0][0] or grid[n - 1][n - 1]:
+            return 0
+        q = deque()
+        dist = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                if grid[i][j]:
+                    q.append((i, j))
+                    dist[i][j] = 0
+        dirs = (-1, 0, 1, 0, -1)
+        while q:
+            i, j = q.popleft()
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < n and 0 <= y < n and dist[x][y] == inf:
+                    dist[x][y] = dist[i][j] + 1
+                    q.append((x, y))
+
+        q = ((dist[i][j], i, j) for i in range(n) for j in range(n))
+        q = sorted(q, reverse=True)
+        uf = UnionFind(n * n)
+        for d, i, j in q:
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < n and 0 <= y < n and dist[x][y] >= d:
+                    uf.union(i * n + j, x * n + y)
+            if uf.find(0) == uf.find(n * n - 1):
+                return int(d)
         return 0

@@ -1,20 +1,27 @@
-class Solution:
-    def minRemoveToMakeValid(self, s: str) -> str:
-        kept = []
-        balance = 0
-        for char in s:
-            if char == "(":
-                balance += 1
-            elif char == ")":
-                if balance == 0:
-                    continue
-                balance -= 1
-            kept.append(char)
+# Time:  O(n)
+# Space: O(n)
 
-        result = []
-        for char in reversed(kept):
-            if char == "(" and balance:
-                balance -= 1
-                continue
-            result.append(char)
-        return "".join(reversed(result))
+class Solution:
+    def minRemoveToMakeValid(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = list(s)
+        count = 0
+        for i, v in enumerate(result):
+            if v == '(':
+                count += 1
+            elif v == ')':
+                if count:
+                    count -= 1
+                else:
+                    result[i] = ""
+        if count:
+            for i in reversed(range(len(result))):
+                if result[i] == '(':
+                    result[i] = ""
+                    count -= 1
+                    if not count:
+                        break
+        return "".join(result)

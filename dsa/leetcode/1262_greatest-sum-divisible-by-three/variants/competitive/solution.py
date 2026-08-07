@@ -1,13 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxSumDivThree(self, nums: List[int]) -> int:
-        dp = [0, float("-inf"), float("-inf")]
-        for value in nums:
-            current = dp[:]
-            for residue in range(3):
-                destination = (residue + value) % 3
-                current[destination] = max(current[destination], dp[residue] + value)
-            dp = current
+    def maxSumDivThree(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = [0, 0, 0]
+        for num in nums:
+            for i in [num+x for x in dp]:
+                dp[i%3] = max(dp[i%3], i)
         return dp[0]

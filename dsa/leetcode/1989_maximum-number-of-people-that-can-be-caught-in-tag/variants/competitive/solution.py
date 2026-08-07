@@ -1,24 +1,48 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy with two pointers solution
 class Solution:
-    def catchMaximumAmountofPeople(self, team: List[int], dist: int) -> int:
-        catchers = [index for index, value in enumerate(team) if value == 1]
-        people = [index for index, value in enumerate(team) if value == 0]
-        catcher_index = 0
-        person_index = 0
-        caught = 0
-
-        while catcher_index < len(catchers) and person_index < len(people):
-            catcher = catchers[catcher_index]
-            person = people[person_index]
-            if person < catcher - dist:
-                person_index += 1
-            elif catcher < person - dist:
-                catcher_index += 1
+    def catchMaximumAmountofPeople(self, team, dist):
+        """
+        :type team: List[int]
+        :type dist: int
+        :rtype: int
+        """
+        result = i = j = 0
+        while i < len(team) and j < len(team):
+            if i+dist < j or team[i] != 1:
+                i += 1
+            elif j+dist < i or team[j] != 0:
+                j += 1
             else:
-                caught += 1
-                catcher_index += 1
-                person_index += 1
+                result += 1
+                i += 1
+                j += 1
+        return result
 
-        return caught
+
+# Time:  O(n)
+# Space: O(1)
+# greedy with sliding window solution
+class Solution2(object):
+    def catchMaximumAmountofPeople(self, team, dist):
+        """
+        :type team: List[int]
+        :type dist: int
+        :rtype: int
+        """
+        result = j = 0
+        for i in range(len(team)):
+            if not team[i]:
+                continue
+            while j < i-dist:
+                j += 1
+            while j <= min(i+dist, len(team)-1):
+                if team[j] == 0:
+                    break
+                j += 1
+            if j <= min(i+dist, len(team)-1):
+                result += 1
+                j += 1
+        return result

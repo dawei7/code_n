@@ -1,23 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def reconstructMatrix(self, upper: int, lower: int, colsum: List[int]) -> List[List[int]]:
-        top = [0] * len(colsum)
-        bottom = [0] * len(colsum)
-        for index, value in enumerate(colsum):
-            if value == 2:
-                top[index] = bottom[index] = 1
-                upper -= 1
-                lower -= 1
-        if upper < 0 or lower < 0:
-            return []
-        for index, value in enumerate(colsum):
-            if value == 1:
-                if upper > lower:
-                    top[index] = 1
-                    upper -= 1
-                else:
-                    bottom[index] = 1
-                    lower -= 1
-        return [top, bottom] if upper == 0 and lower == 0 else []
+    def reconstructMatrix(self, upper, lower, colsum):
+        """
+        :type upper: int
+        :type lower: int
+        :type colsum: List[int]
+        :rtype: List[List[int]]
+        """
+        upper_matrix, lower_matrix = [0]*len(colsum), [0]*len(colsum)
+        for i in range(len(colsum)):
+            upper_matrix[i] = int(upper > 0 and colsum[i] != 0)
+            lower_matrix[i] = colsum[i]-upper_matrix[i]
+            upper -= upper_matrix[i]
+            lower -= lower_matrix[i]
+        return [upper_matrix, lower_matrix] if upper == lower == 0 else []

@@ -1,9 +1,16 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+from operator import xor
+from functools import reduce
 
 
 class Solution:
-    def xorGame(self, nums: List[int]) -> bool:
-        total_xor = 0
-        for value in nums:
-            total_xor ^= value
-        return total_xor == 0 or len(nums) % 2 == 0
+    def xorGame(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return reduce(xor, nums) == 0 or \
+            len(nums) % 2 == 0
+

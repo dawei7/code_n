@@ -1,9 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# simulation, stack
 class Solution:
-    def resultingString(self, s: str) -> str:
-        stack = []
-        for char in s:
-            if stack and abs(ord(stack[-1]) - ord(char)) in (1, 25):
-                stack.pop()
-            else:
-                stack.append(char)
-        return "".join(stack)
+    def resultingString(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        result = []
+        for x in s:
+            if result:
+                diff = abs(ord(x)-ord(result[-1]))
+                if diff in (1, 25):
+                    result.pop()
+                    continue
+            result.append(x)
+        return "".join(result)

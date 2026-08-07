@@ -1,29 +1,24 @@
-import sys
-
-
 class Solution:
-    def countPairsOfConnectableServers(self, edges: List[List[int]], signalSpeed: int) -> List[int]:
+    def countPairsOfConnectableServers(
+        self, edges: List[List[int]], signalSpeed: int
+    ) -> List[int]:
+        def dfs(a: int, fa: int, ws: int) -> int:
+            cnt = 0 if ws % signalSpeed else 1
+            for b, w in g[a]:
+                if b != fa:
+                    cnt += dfs(b, a, ws + w)
+            return cnt
+
         n = len(edges) + 1
-        graph = [[] for _ in range(n)]
-        for first, second, weight in edges:
-            graph[first].append((second, weight))
-            graph[second].append((first, weight))
-
-        sys.setrecursionlimit(max(sys.getrecursionlimit(), 2 * n + 50))
-
-        def count_divisible(node: int, parent: int, distance: int) -> int:
-            count = int(distance % signalSpeed == 0)
-            for neighbor, weight in graph[node]:
-                if neighbor != parent:
-                    count += count_divisible(neighbor, node, distance + weight)
-            return count
-
-        answer = [0] * n
-        for root in range(n):
-            qualifying_before = 0
-            for neighbor, weight in graph[root]:
-                branch_count = count_divisible(neighbor, root, weight)
-                answer[root] += qualifying_before * branch_count
-                qualifying_before += branch_count
-
-        return answer
+        g = [[] for _ in range(n)]
+        for a, b, w in edges:
+            g[a].append((b, w))
+            g[b].append((a, w))
+        ans = [0] * n
+        for a in range(n):
+            s = 0
+            for b, w in g[a]:
+                t = dfs(b, a, w)
+                ans[a] += s * t
+                s += t
+        return ans

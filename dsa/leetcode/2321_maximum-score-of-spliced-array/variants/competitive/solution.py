@@ -1,21 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy, kadane's algorithm
 class Solution:
-    def maximumsSplicedArray(
-        self,
-        nums1: List[int],
-        nums2: List[int],
-    ) -> int:
-        def greatest_gain(target: List[int], source: List[int]) -> int:
-            ending_here = 0
-            best = 0
-            for target_value, source_value in zip(target, source):
-                ending_here = max(0, ending_here + source_value - target_value)
-                best = max(best, ending_here)
-            return best
-
-        return max(
-            sum(nums1) + greatest_gain(nums1, nums2),
-            sum(nums2) + greatest_gain(nums2, nums1),
-        )
+    def maximumsSplicedArray(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        def kadane(a):
+            result = curr = 0
+            for x in a:
+                curr = max(curr+x, 0)
+                result = max(result, curr)
+            return result
+    
+        return max(sum(nums1)+kadane((nums2[i]-nums1[i] for i in range(len(nums1)))),
+                   sum(nums2)+kadane((nums1[i]-nums2[i] for i in range(len(nums2)))))

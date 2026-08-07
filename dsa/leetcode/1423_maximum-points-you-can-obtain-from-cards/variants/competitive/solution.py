@@ -1,16 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxScore(self, cardPoints: List[int], k: int) -> int:
-        total = sum(cardPoints)
-        remaining_length = len(cardPoints) - k
-        if remaining_length == 0:
-            return total
-
-        remaining_sum = sum(cardPoints[:remaining_length])
-        minimum_remaining = remaining_sum
-        for right in range(remaining_length, len(cardPoints)):
-            remaining_sum += cardPoints[right] - cardPoints[right - remaining_length]
-            minimum_remaining = min(minimum_remaining, remaining_sum)
-        return total - minimum_remaining
+    def maxScore(self, cardPoints, k):
+        """
+        :type cardPoints: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result, total, curr, left = float("inf"), 0, 0, 0
+        for right, point in enumerate(cardPoints):
+            total += point
+            curr += point
+            if right-left+1 > len(cardPoints)-k:
+                curr -= cardPoints[left]
+                left += 1
+            if right-left+1 == len(cardPoints)-k:
+                result = min(result, curr)
+        return total-result

@@ -1,18 +1,11 @@
 class Solution:
     def reformatNumber(self, number: str) -> str:
-        digits = "".join(character for character in number if character.isdigit())
-        blocks = []
-        index = 0
-
-        while len(digits) - index > 4:
-            blocks.append(digits[index : index + 3])
-            index += 3
-
-        remaining = len(digits) - index
-        if remaining == 4:
-            blocks.append(digits[index : index + 2])
-            blocks.append(digits[index + 2 :])
-        else:
-            blocks.append(digits[index:])
-
-        return "-".join(blocks)
+        number = number.replace("-", "").replace(" ", "")
+        n = len(number)
+        ans = [number[i * 3 : i * 3 + 3] for i in range(n // 3)]
+        if n % 3 == 1:
+            ans[-1] = ans[-1][:2]
+            ans.append(number[-2:])
+        elif n % 3 == 2:
+            ans.append(number[-2:])
+        return "-".join(ans)

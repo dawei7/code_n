@@ -1,14 +1,11 @@
-from typing import List
-
-
 class Solution:
     def find132pattern(self, nums: List[int]) -> bool:
-        stack = []
-        middle = float("-inf")
-        for value in reversed(nums):
-            if value < middle:
+        vk = -inf
+        stk = []
+        for x in nums[::-1]:
+            if x < vk:
                 return True
-            while stack and value > stack[-1]:
-                middle = stack.pop()
-            stack.append(value)
+            while stk and stk[-1] < x:
+                vk = stk.pop()
+            stk.append(x)
         return False

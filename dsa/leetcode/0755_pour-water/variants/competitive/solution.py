@@ -1,21 +1,24 @@
-from typing import List
-
+# Time:  O(v * n)
+# Space: O(1)
 
 class Solution:
-    def pourWater(self, heights: List[int], volume: int, k: int) -> List[int]:
-        for _ in range(volume):
-            destination = k
-
-            for direction in (-1, 1):
-                position = k
-                while 0 <= position + direction < len(heights) and heights[position + direction] <= heights[position]:
-                    position += direction
-                    if heights[position] < heights[destination]:
-                        destination = position
-
-                if destination != k:
+    def pourWater(self, heights, V, K):
+        """
+        :type heights: List[int]
+        :type V: int
+        :type K: int
+        :rtype: List[int]
+        """
+        for _ in range(V):
+            best = K
+            for d in (-1, 1):
+                i = K
+                while 0 <= i+d < len(heights) and \
+                      heights[i+d] <= heights[i]:
+                    if heights[i+d] < heights[i]: best = i+d
+                    i += d
+                if best != K:
                     break
-
-            heights[destination] += 1
-
+            heights[best] += 1
         return heights
+

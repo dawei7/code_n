@@ -1,15 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import itertools
 
 
 class Solution:
-    def flipgame(self, fronts: List[int], backs: List[int]) -> int:
-        blocked = {front for front, back in zip(fronts, backs) if front == back}
+    def flipgame(self, fronts, backs):
+        """
+        :type fronts: List[int]
+        :type backs: List[int]
+        :rtype: int
+        """
+        same = {n for i, n in enumerate(fronts) if n == backs[i]}
+        result = float("inf")
+        for n in itertools.chain(fronts, backs):
+            if n not in same:
+                result = min(result, n)
+        return result if result < float("inf") else 0
 
-        smallest = None
-        for front, back in zip(fronts, backs):
-            if front not in blocked and (smallest is None or front < smallest):
-                smallest = front
-            if back not in blocked and (smallest is None or back < smallest):
-                smallest = back
-
-        return 0 if smallest is None else smallest

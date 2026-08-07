@@ -1,28 +1,15 @@
-WITH ordered_transactions AS (
-    SELECT
-        user_id,
-        spend,
-        transaction_date,
-        ROW_NUMBER() OVER (
-            PARTITION BY user_id
-            ORDER BY transaction_date
-        ) AS transaction_number,
-        LAG(spend, 1) OVER (
-            PARTITION BY user_id
-            ORDER BY transaction_date
-        ) AS previous_spend,
-        LAG(spend, 2) OVER (
-            PARTITION BY user_id
-            ORDER BY transaction_date
-        ) AS first_spend
+# Time:  O(nlogn)
+# Space: O(n)
+
+WITH prev_cte AS (
+    SELECT *,
+           RANK () OVER (PARTITION BY user_id ORDER BY transaction_date) AS rnk,
+           LAG(spend, 1) OVER (PARTITION BY user_id ORDER BY transaction_date) AS prev1,
+           LAG(spend, 2) OVER (PARTITION BY user_id ORDER BY transaction_date) AS prev2
     FROM Transactions
 )
-SELECT
-    user_id,
-    spend AS third_transaction_spend,
-    transaction_date AS third_transaction_date
-FROM ordered_transactions
-WHERE transaction_number = 3
-  AND spend > previous_spend
-  AND spend > first_spend
-ORDER BY user_id;
+
+SELECT user_id, spend AS third_transaction_spend, transaction_date AS third_transaction_date
+FROM prev_cte
+WHERE rnk = 3 AND prev2 < spend AND prev1 < spend
+ORDER BY 1;

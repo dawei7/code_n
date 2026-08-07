@@ -1,24 +1,48 @@
+# Time:  O(n)
+# Space: O(n)
+
+# prefix sum
 class Solution:
-    def longestSubarray(self, nums: List[int]) -> int:
-        n = len(nums)
-        left = [1] * n
-        right = [1] * n
+    def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        right = [1]*len(nums)
+        for i in reversed(range(len(nums)-1)):
+            if nums[i] <= nums[i+1]:
+                right[i] = right[i+1]+1
+        result = min(max(right)+1, len(nums))
+        left = 1
+        for i in range(1, len(nums)-1):
+            if nums[i-1] <= nums[i+1]:
+                result = max(result, left+1+right[i+1])
+            if nums[i-1] <= nums[i]:
+                left += 1
+            else:
+                left = 1
+        return result
 
-        for index in range(1, n):
-            if nums[index - 1] <= nums[index]:
-                left[index] = left[index - 1] + 1
 
-        for index in range(n - 2, -1, -1):
-            if nums[index] <= nums[index + 1]:
-                right[index] = right[index + 1] + 1
-
-        answer = max(left)
-        for index in range(n):
-            if index > 0:
-                answer = max(answer, left[index - 1] + 1)
-            if index + 1 < n:
-                answer = max(answer, right[index + 1] + 1)
-            if 0 < index < n - 1 and nums[index - 1] <= nums[index + 1]:
-                answer = max(answer, left[index - 1] + 1 + right[index + 1])
-
-        return min(answer, n)
+# Time:  O(n)
+# Space: O(n)
+# prefix sum
+class Solution2(object):
+    def longestSubarray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left = [1]*len(nums)
+        for i in range(len(nums)-1):
+            if nums[i] <= nums[i+1]:
+                left[i+1] = left[i]+1
+        right = [1]*len(nums)
+        for i in reversed(range(len(nums)-1)):
+            if nums[i] <= nums[i+1]:
+                right[i] = right[i+1]+1
+        result = min(max(left)+1, len(nums))
+        for i in range(1, len(nums)-1):
+            if nums[i-1] <= nums[i+1]:
+                result = max(result, left[i-1]+1+right[i+1])
+        return result

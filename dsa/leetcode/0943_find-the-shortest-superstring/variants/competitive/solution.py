@@ -1,53 +1,48 @@
-from typing import List
-
+# Time:  O(n^2 * (l^2 + 2^n))
+# Space: O(n^2)
 
 class Solution:
-    def shortestSuperstring(self, words: List[str]) -> str:
-        n = len(words)
-        overlap = [[0] * n for _ in range(n)]
-        for left in range(n):
-            for right in range(n):
-                if left == right:
-                    continue
-                limit = min(len(words[left]), len(words[right]))
-                for length in range(limit, 0, -1):
-                    if words[left].endswith(words[right][:length]):
-                        overlap[left][right] = length
+    def shortestSuperstring(self, A):
+        """
+        :type A: List[str]
+        :rtype: str
+        """
+        n = len(A)
+        overlaps = [[0]*n for _ in range(n)]
+        for i, x in enumerate(A):
+            for j, y in enumerate(A):
+                for l in reversed(range(min(len(x), len(y)))):
+                    if y[:l].startswith(x[len(x)-l:]):
+                        overlaps[i][j] = l
                         break
 
-        state_count = 1 << n
-        dp = [[-1] * n for _ in range(state_count)]
-        parent = [[-1] * n for _ in range(state_count)]
-        for index in range(n):
-            dp[1 << index][index] = 0
-
-        for mask in range(1, state_count):
-            for last in range(n):
-                if not mask & (1 << last):
+        dp = [[0]*n for _ in range(1<<n)]
+        prev = [[None]*n for _ in range(1<<n)]
+        for mask in range(1, 1<<n):
+            for bit in range(n):
+                if ((mask>>bit) & 1) == 0:
                     continue
-                previous_mask = mask ^ (1 << last)
-                if previous_mask == 0:
-                    continue
-                for previous in range(n):
-                    if dp[previous_mask][previous] < 0:
+                prev_mask = mask^(1<<bit)
+                for i in range(n):
+                    if ((prev_mask>>i) & 1) == 0:
                         continue
-                    candidate = dp[previous_mask][previous] + overlap[previous][last]
-                    if candidate > dp[mask][last]:
-                        dp[mask][last] = candidate
-                        parent[mask][last] = previous
+                    value = dp[prev_mask][i] + overlaps[i][bit]
+                    if value > dp[mask][bit]:
+                        dp[mask][bit] = value
+                        prev[mask][bit] = i
+        
+        bit = max(range(n), key = dp[-1].__getitem__)
+        words = []
+        mask = (1<<n)-1
+        while bit is not None:
+            words.append(bit)
+            mask, bit = mask^(1<<bit), prev[mask][bit]
+        words.reverse()
+        lookup = set(words)
+        words.extend([i for i in range(n) if i not in lookup])
 
-        full_mask = state_count - 1
-        last = max(range(n), key=lambda index: dp[full_mask][index])
-        order = []
-        mask = full_mask
-        while last != -1:
-            order.append(last)
-            previous = parent[mask][last]
-            mask ^= 1 << last
-            last = previous
-        order.reverse()
-
-        result = words[order[0]]
-        for left, right in zip(order, order[1:]):
-            result += words[right][overlap[left][right] :]
-        return result
+        result = [A[words[0]]]
+        for i in range(1, len(words)):
+            overlap = overlaps[words[i-1]][words[i]]
+            result.append(A[words[i]][overlap:])
+        return "".join(result)

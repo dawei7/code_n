@@ -1,52 +1,38 @@
+# Time:  O(n * k^2)
+# Space: O(n * k)
+# if k is large, the per-merge cyclic convolution can be done in O(klogk) via NTT + CRT, Time: O(n * klogk), Space: O(n * k) in total
+
+# topological sort, tree dp
 class Solution:
-    def countValidSubsets(
-        self,
-        parent: list[int],
-        nums: list[int],
-        k: int,
-    ) -> int:
-        modulo = 1_000_000_007
-        node_count = len(parent)
-        not_selected = [[0] * k for _ in range(node_count)]
-        selected = [[0] * k for _ in range(node_count)]
+    def countValidSubsets(self, parent, nums, k):
+        """
+        :type parent: List[int]
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        def merge(a, b):
+            result = [0]*k
+            for i in range(k):
+                if not a[i]:
+                    continue
+                for j in range(k):
+                    if not b[j]:
+                        continue
+                    result[(i+j)%k] = (result[(i+j)%k]+a[i]*b[j])%MOD
+            return result
 
-        for node, value in enumerate(nums):
-            not_selected[node][0] = 1
-            selected[node][value % k] = 1
-
-        for node in range(node_count - 1, 0, -1):
-            ancestor = parent[node]
-            ancestor_not = not_selected[ancestor]
-            ancestor_yes = selected[ancestor]
-            child_not = not_selected[node]
-            child_yes = selected[node]
-
-            ancestor_states = [
-                (remainder, count_not, ancestor_yes[remainder])
-                for remainder, count_not in enumerate(ancestor_not)
-                if count_not or ancestor_yes[remainder]
-            ]
-            child_states = []
-            for remainder, count_not in enumerate(child_not):
-                count_any = count_not + child_yes[remainder]
-                if count_any >= modulo:
-                    count_any -= modulo
-                if count_any or count_not:
-                    child_states.append((remainder, count_not, count_any))
-
-            merged_not = [0] * k
-            merged_yes = [0] * k
-            for left_remainder, left_not, left_yes in ancestor_states:
-                for right_remainder, right_not, right_any in child_states:
-                    remainder = left_remainder + right_remainder
-                    if remainder >= k:
-                        remainder -= k
-                    if left_not and right_any:
-                        merged_not[remainder] += left_not * right_any
-                    if left_yes and right_not:
-                        merged_yes[remainder] += left_yes * right_not
-
-            not_selected[ancestor] = [count % modulo for count in merged_not]
-            selected[ancestor] = [count % modulo for count in merged_yes]
-
-        return (not_selected[0][0] + selected[0][0] - 1) % modulo
+        adj = [[] for _ in range(len(nums))]
+        for v in range(1, len(parent)):
+            adj[parent[v]].append(v)
+        dp = [[[0]*k for _ in range(2)] for _ in range(len(nums))]
+        for u in reversed(range(len(nums))):
+            new_dp = [[0]*k for _ in range(2)]
+            new_dp[0][0] = 1
+            new_dp[1][nums[u]%k] = 1
+            for v in adj[u]:
+                new_dp[0] = merge(new_dp[0], [(dp[v][0][i]+dp[v][1][i])%MOD for i in range(k)])
+                new_dp[1] = merge(new_dp[1], dp[v][0])
+            dp[u] = new_dp
+        return (dp[0][0][0]+dp[0][1][0]-1)%MOD

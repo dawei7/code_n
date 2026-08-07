@@ -1,15 +1,18 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def minElement(self, nums: List[int]) -> int:
-        answer = 10**9
+    def minElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def f(x):
+            result = 0
+            while x:
+                result += x%10
+                x //= 10
+            return result
 
-        for number in nums:
-            digit_sum = 0
-            while number > 0:
-                digit_sum += number % 10
-                number //= 10
-            answer = min(answer, digit_sum)
-
-        return answer
+        return min(f(x) for x in nums)

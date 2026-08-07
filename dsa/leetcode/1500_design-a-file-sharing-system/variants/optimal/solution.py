@@ -1,42 +1,37 @@
-from collections import defaultdict
-from heapq import heappop, heappush
-from typing import List
-
-
 class FileSharing:
     def __init__(self, m: int):
-        self.next_id = 1
-        self.available_ids = []
-        self.user_chunks = {}
-        self.chunk_users = defaultdict(set)
+        self.cur = 0
+        self.chunks = m
+        self.reused = []
+        self.user_chunks = defaultdict(set)
 
     def join(self, ownedChunks: List[int]) -> int:
-        if self.available_ids:
-            user_id = heappop(self.available_ids)
+        if self.reused:
+            userID = heappop(self.reused)
         else:
-            user_id = self.next_id
-            self.next_id += 1
-
-        chunks = set(ownedChunks)
-        self.user_chunks[user_id] = chunks
-        for chunk_id in chunks:
-            self.chunk_users[chunk_id].add(user_id)
-        return user_id
+            self.cur += 1
+            userID = self.cur
+        self.user_chunks[userID] = set(ownedChunks)
+        return userID
 
     def leave(self, userID: int) -> None:
-        for chunk_id in self.user_chunks.pop(userID):
-            owners = self.chunk_users[chunk_id]
-            owners.remove(userID)
-            if not owners:
-                del self.chunk_users[chunk_id]
-        heappush(self.available_ids, userID)
+        heappush(self.reused, userID)
+        self.user_chunks.pop(userID)
 
     def request(self, userID: int, chunkID: int) -> List[int]:
-        owners = self.chunk_users.get(chunkID)
-        if not owners:
+        if chunkID < 1 or chunkID > self.chunks:
             return []
+        res = []
+        for k, v in self.user_chunks.items():
+            if chunkID in v:
+                res.append(k)
+        if res:
+            self.user_chunks[userID].add(chunkID)
+        return sorted(res)
 
-        result = sorted(owners)
-        owners.add(userID)
-        self.user_chunks[userID].add(chunkID)
-        return result
+
+# Your FileSharing object will be instantiated and called as such:
+# obj = FileSharing(m)
+# param_1 = obj.join(ownedChunks)
+# obj.leave(userID)
+# param_3 = obj.request(userID,chunkID)

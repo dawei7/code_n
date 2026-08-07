@@ -1,9 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import operator
 
 
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
-        missing = len(nums)
-        for index, value in enumerate(nums):
-            missing ^= index ^ value
-        return missing
+    def missingNumber(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return reduce(operator.xor, nums,
+                      reduce(operator.xor, range(len(nums) + 1)))
+
+
+class Solution2(object):
+    def missingNumber(self, nums):
+        return sum(range(len(nums)+1)) - sum(nums)
+

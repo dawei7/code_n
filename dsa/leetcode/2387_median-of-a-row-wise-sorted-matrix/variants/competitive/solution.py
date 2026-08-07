@@ -1,19 +1,24 @@
-from bisect import bisect_right
-from typing import List
+# Time:  O(logr * mlogn), r = O(right-left+1) = O(10^6), O(logr) = O(20)
+# Space: O(1)
+
+import bisect
 
 
+# binary search
 class Solution:
-    def matrixMedian(self, grid: List[List[int]]) -> int:
-        low = min(row[0] for row in grid)
-        high = max(row[-1] for row in grid)
-        target = (len(grid) * len(grid[0])) // 2 + 1
+    def matrixMedian(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        def check(x):
+            return sum(bisect_right(row, x) for row in grid) > (len(grid)*len(grid[0]))//2
 
-        while low < high:
-            middle = (low + high) // 2
-            not_greater = sum(bisect_right(row, middle) for row in grid)
-            if not_greater < target:
-                low = middle + 1
+        left, right = min(row[0] for row in grid), max(row[-1] for row in grid)
+        while left <= right:
+            mid = left + (right-left)//2
+            if check(mid):
+                right = mid-1
             else:
-                high = middle
-
-        return low
+                left = mid+1
+        return left

@@ -1,19 +1,23 @@
-from typing import List
-
+# Time:  O(n + logk)
+# Space: O(1)
 
 class Solution:
-    def addToArrayForm(self, num: List[int], k: int) -> List[int]:
-        answer = []
-        index = len(num) - 1
-        carry = k
-
-        while index >= 0 or carry:
-            total = carry
-            if index >= 0:
-                total += num[index]
-            answer.append(total % 10)
-            carry = total // 10
-            index -= 1
-
-        answer.reverse()
-        return answer
+    def addToArrayForm(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: List[int]
+        """
+        A.reverse()
+        carry, i = K, 0
+        A[i] += carry
+        carry, A[i] = divmod(A[i], 10)
+        while carry:
+            i += 1
+            if i < len(A):
+                A[i] += carry
+            else:
+                A.append(carry)
+            carry, A[i] = divmod(A[i], 10)
+        A.reverse()
+        return A

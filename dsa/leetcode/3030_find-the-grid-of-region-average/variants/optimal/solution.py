@@ -1,38 +1,39 @@
-from typing import List
-
-
 class Solution:
     def resultGrid(self, image: List[List[int]], threshold: int) -> List[List[int]]:
-        rows = len(image)
-        cols = len(image[0])
-        totals = [[0] * cols for _ in range(rows)]
-        counts = [[0] * cols for _ in range(rows)]
+        n, m = len(image), len(image[0])
+        ans = [[0] * m for _ in range(n)]
+        ct = [[0] * m for _ in range(n)]
+        for i in range(n - 2):
+            for j in range(m - 2):
+                region = True
+                for k in range(3):
+                    for l in range(2):
+                        region &= (
+                            abs(image[i + k][j + l] - image[i + k][j + l + 1])
+                            <= threshold
+                        )
+                for k in range(2):
+                    for l in range(3):
+                        region &= (
+                            abs(image[i + k][j + l] - image[i + k + 1][j + l])
+                            <= threshold
+                        )
 
-        for top in range(rows - 2):
-            for left in range(cols - 2):
-                valid = True
+                if region:
+                    tot = 0
+                    for k in range(3):
+                        for l in range(3):
+                            tot += image[i + k][j + l]
+                    for k in range(3):
+                        for l in range(3):
+                            ct[i + k][j + l] += 1
+                            ans[i + k][j + l] += tot // 9
 
-                for row in range(top, top + 3):
-                    for col in range(left, left + 2):
-                        if abs(image[row][col] - image[row][col + 1]) > threshold:
-                            valid = False
+        for i in range(n):
+            for j in range(m):
+                if ct[i][j] == 0:
+                    ans[i][j] = image[i][j]
+                else:
+                    ans[i][j] //= ct[i][j]
 
-                for row in range(top, top + 2):
-                    for col in range(left, left + 3):
-                        if abs(image[row][col] - image[row + 1][col]) > threshold:
-                            valid = False
-
-                if not valid:
-                    continue
-
-                average = sum(image[row][col] for row in range(top, top + 3) for col in range(left, left + 3)) // 9
-
-                for row in range(top, top + 3):
-                    for col in range(left, left + 3):
-                        totals[row][col] += average
-                        counts[row][col] += 1
-
-        return [
-            [totals[row][col] // counts[row][col] if counts[row][col] else image[row][col] for col in range(cols)]
-            for row in range(rows)
-        ]
+        return ans

@@ -1,9 +1,13 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def findArray(self, pref: List[int]) -> List[int]:
-        original = [pref[0]]
-        for index in range(1, len(pref)):
-            original.append(pref[index - 1] ^ pref[index])
-        return original
+    def findArray(self, pref):
+        """
+        :type pref: List[int]
+        :rtype: List[int]
+        """
+        for i in reversed(range(1, len(pref))):
+            pref[i] ^= pref[i-1]
+        return pref

@@ -1,23 +1,31 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def btreeGameWinningMove(self, root: Optional[TreeNode], n: int, x: int) -> bool:
-        left_size = right_size = 0
+# Time:  O(n)
+# Space: O(h)
 
-        def count(node):
-            nonlocal left_size, right_size
-            if node is None:
+# Definition for a binary tree node.
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
+class Solution:
+    def btreeGameWinningMove(self, root, n, x):
+        """
+        :type root: TreeNode
+        :type n: int
+        :type x: int
+        :rtype: bool
+        """
+        def count(node, x, left_right):
+            if not node:
                 return 0
-            left = count(node.left)
-            right = count(node.right)
+            left, right = count(node.left, x, left_right), count(node.right, x, left_right)
             if node.val == x:
-                left_size, right_size = left, right
+                left_right[0], left_right[1] = left, right
             return left + right + 1
 
-        count(root)
-        parent_size = n - left_size - right_size - 1
-        return max(left_size, right_size, parent_size) > n // 2
+        left_right = [0, 0]
+        count(root, x, left_right)
+        blue = max(max(left_right), n-(sum(left_right)+1))
+        return blue > n-blue

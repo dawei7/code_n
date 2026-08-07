@@ -1,24 +1,48 @@
+# Time:  O(nlogr)
+# Space: O(1)
+
+# array
 class Solution:
-    def maxDigitRange(self, nums: list[int]) -> int:
-        best_range = -1
-        answer = 0
+    def maxDigitRange(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def count(n):
+            mx, mn = -1, 10
+            while n:
+                n, r = divmod(n, 10)
+                mx = max(mx, r)
+                mn = min(mn, r)
+            return mx-mn
+        
+        result = mx = 0
+        for x in nums:
+            v = count(x)
+            if v > mx:
+                mx = v
+                result = x
+            elif v == mx:
+                result += x
+        return result
 
-        for value in nums:
-            remaining = value
-            smallest = 9
-            largest = 0
 
-            while remaining:
-                digit = remaining % 10
-                smallest = min(smallest, digit)
-                largest = max(largest, digit)
-                remaining //= 10
-
-            digit_range = largest - smallest
-            if digit_range > best_range:
-                best_range = digit_range
-                answer = value
-            elif digit_range == best_range:
-                answer += value
-
-        return answer
+# Time:  O(nlogr)
+# Space: O(1)
+# array
+class Solution2(object):
+    def maxDigitRange(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def count(n):
+            mx, mn = -1, 10
+            while n:
+                n, r = divmod(n, 10)
+                mx = max(mx, r)
+                mn = min(mn, r)
+            return mx-mn
+        
+        mx = max(count(x) for x in nums)
+        return sum(x for x in nums if count(x) == mx)

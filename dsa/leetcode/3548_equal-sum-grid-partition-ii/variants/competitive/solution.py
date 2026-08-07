@@ -1,33 +1,39 @@
+# Time:  O(m * n)
+# Space: O(m * n)
+
+# array, hash table
 class Solution:
-    def canPartitionGrid(self, grid: list[list[int]]) -> bool:
-
-        def can_discount_from_prefix(matrix: list[list[int]]) -> bool:
-            total = sum(map(sum, matrix))
-            prefix = 0
-            seen: set[int] = set()
-            width = len(matrix[0])
-            for row_index in range(len(matrix) - 1):
-                prefix += sum(matrix[row_index])
-                seen.update(matrix[row_index])
-                difference = 2 * prefix - total
-                if difference == 0:
+    def canPartitionGrid(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        def check(range1, range2, get):
+            curr = 0
+            lookup = set()
+            begin = -1
+            for i in range1:
+                if begin == -1:
+                    begin = i
+                for j in range2:
+                    curr += get(i, j)
+                    lookup.add(get(i, j))
+                diff = curr-(total-curr)
+                if diff == 0:
                     return True
-                if difference <= 0:
-                    continue
-                if row_index == 0:
-                    if difference in (matrix[0][0], matrix[0][-1]):
+                if i != begin and j != 0:
+                    if diff in lookup:
                         return True
-                elif width == 1:
-                    if difference in (matrix[0][0], matrix[row_index][0]):
+                elif i == begin:
+                    if diff in [get(begin, 0), get(begin, j)]:
                         return True
-                elif difference in seen:
-                    return True
+                else:
+                    if diff in [get(begin, 0), (get(i, 0))]:
+                        return True
             return False
-
-        transposed = [list(column) for column in zip(*grid)]
-        return (
-            can_discount_from_prefix(grid)
-            or can_discount_from_prefix(grid[::-1])
-            or can_discount_from_prefix(transposed)
-            or can_discount_from_prefix(transposed[::-1])
-        )
+    
+        total = sum(sum(row) for row in grid)
+        return check(range(len(grid)), range(len(grid[0])), lambda i, j: grid[i][j]) or \
+               check(reversed(range(len(grid))), range(len(grid[0])), lambda i, j: grid[i][j]) or \
+               check(range(len(grid[0])), range(len(grid)), lambda i, j: grid[j][i]) or \
+               check(reversed(range(len(grid[0]))), range(len(grid)), lambda i, j: grid[j][i])

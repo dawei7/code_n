@@ -1,8 +1,7 @@
 class Solution:
     def findDerangement(self, n: int) -> int:
-        modulus = 1_000_000_007
-        two_back = 1
-        one_back = 0
-        for size in range(2, n + 1):
-            two_back, one_back = one_back, (size - 1) * (one_back + two_back) % modulus
-        return one_back
+        mod = 10**9 + 7
+        f = [1] + [0] * n
+        for i in range(2, n + 1):
+            f[i] = (i - 1) * (f[i - 1] + f[i - 2]) % mod
+        return f[n]

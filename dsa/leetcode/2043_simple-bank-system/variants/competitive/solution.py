@@ -1,31 +1,46 @@
-from typing import List
+# Time:  ctor:     O(1)
+#        transer:  O(1)
+#        deposit:  O(1)
+#        withdraw: O(1)
+# Space: O(1)
 
+class Bank(object):
 
-class Bank:
-    def __init__(self, balance: List[int]):
-        self.balance = [0] + balance
+    def __init__(self, balance):
+        """
+        :type balance: List[int]
+        """
+        self.__balance = balance
 
-    def _valid(self, account: int) -> bool:
-        return 1 <= account < len(self.balance)
+    def transfer(self, account1, account2, money):
+        """
+        :type account1: int
+        :type account2: int
+        :type money: int
+        :rtype: bool
+        """
+        if 1 <= account2 <= len(self.__balance) and self.withdraw(account1, money):
+            return self.deposit(account2, money)
+        return False
 
-    def transfer(self, account1: int, account2: int, money: int) -> bool:
-        if not self._valid(account1) or not self._valid(account2) or self.balance[account1] < money:
-            return False
+    def deposit(self, account, money):
+        """
+        :type account: int
+        :type money: int
+        :rtype: bool
+        """
+        if 1 <= account <= len(self.__balance):
+            self.__balance[account-1] += money
+            return True
+        return False
 
-        self.balance[account1] -= money
-        self.balance[account2] += money
-        return True
-
-    def deposit(self, account: int, money: int) -> bool:
-        if not self._valid(account):
-            return False
-
-        self.balance[account] += money
-        return True
-
-    def withdraw(self, account: int, money: int) -> bool:
-        if not self._valid(account) or self.balance[account] < money:
-            return False
-
-        self.balance[account] -= money
-        return True
+    def withdraw(self, account, money):
+        """
+        :type account: int
+        :type money: int
+        :rtype: bool
+        """
+        if 1 <= account <= len(self.__balance) and self.__balance[account-1] >= money:
+            self.__balance[account-1] -= money
+            return True
+        return False

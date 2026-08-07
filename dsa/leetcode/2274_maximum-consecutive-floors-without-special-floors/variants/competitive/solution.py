@@ -1,9 +1,17 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
+# sort
 class Solution:
-    def maxConsecutive(self, bottom: int, top: int, special: List[int]) -> int:
+    def maxConsecutive(self, bottom, top, special):
+        """
+        :type bottom: int
+        :type top: int
+        :type special: List[int]
+        :rtype: int
+        """
         special.sort()
-        answer = special[0] - bottom
-
-        for previous, current in zip(special, special[1:]):
-            answer = max(answer, current - previous - 1)
-
-        return max(answer, top - special[-1])
+        result = max(special[0]-bottom, top-special[-1])
+        for i in range(1, len(special)):
+            result = max(result, special[i]-special[i-1]-1)
+        return result

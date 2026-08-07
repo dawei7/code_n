@@ -1,15 +1,14 @@
 class Solution:
     def countBattleships(self, board: List[List[str]]) -> int:
-        ships = 0
-
-        for row in range(len(board)):
-            for column in range(len(board[0])):
-                if board[row][column] != "X":
+        m, n = len(board), len(board[0])
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == '.':
                     continue
-                if row > 0 and board[row - 1][column] == "X":
+                if i > 0 and board[i - 1][j] == 'X':
                     continue
-                if column > 0 and board[row][column - 1] == "X":
+                if j > 0 and board[i][j - 1] == 'X':
                     continue
-                ships += 1
-
-        return ships
+                ans += 1
+        return ans

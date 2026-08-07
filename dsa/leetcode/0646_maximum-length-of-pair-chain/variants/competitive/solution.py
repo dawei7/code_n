@@ -1,13 +1,17 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def findLongestChain(self, pairs: List[List[int]]) -> int:
-        chain_length = 0
-        chain_end = float("-inf")
+    def findLongestChain(self, pairs):
+        """
+        :type pairs: List[List[int]]
+        :rtype: int
+        """
+        pairs.sort(key=lambda x: x[1])
+        cnt, i = 0, 0
+        for j in range(len(pairs)):
+            if j == 0 or pairs[i][1] < pairs[j][0]:
+                cnt += 1
+                i = j
+        return cnt
 
-        for left, right in sorted(pairs, key=lambda pair: pair[1]):
-            if left > chain_end:
-                chain_length += 1
-                chain_end = right
-        return chain_length

@@ -1,33 +1,33 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n * 2^n), n is the size of the debt.
+# Space: O(2^n)
+
+import collections
 
 
 class Solution:
-    def minTransfers(self, transactions: List[List[int]]) -> int:
-        net = defaultdict(int)
-        for payer, recipient, amount in transactions:
-            net[payer] -= amount
-            net[recipient] += amount
-        balances = [balance for balance in net.values() if balance]
+    def minTransfers(self, transactions):
+        """
+        :type transactions: List[List[int]]
+        :rtype: int
+        """
+        accounts = collections.defaultdict(int)
+        for src, dst, amount in transactions:
+            accounts[src] += amount
+            accounts[dst] -= amount
 
-        def settle(start: int) -> int:
-            while start < len(balances) and balances[start] == 0:
-                start += 1
-            if start == len(balances):
-                return 0
+        debts = [account for account in accounts.values() if account]
 
-            best = len(balances)
-            tried = set()
-            for partner in range(start + 1, len(balances)):
-                if balances[start] * balances[partner] >= 0 or balances[partner] in tried:
-                    continue
-                tried.add(balances[partner])
-                original = balances[partner]
-                balances[partner] += balances[start]
-                best = min(best, 1 + settle(start + 1))
-                balances[partner] = original
-                if original + balances[start] == 0:
-                    break
-            return best
-
-        return settle(0)
+        dp = [0]*(2**len(debts))
+        sums = [0]*(2**len(debts))
+        for i in range(len(dp)):
+            bit = 1
+            for j in range(len(debts)):
+                if (i & bit) == 0:
+                    nxt = i | bit
+                    sums[nxt] = sums[i]+debts[j]
+                    if sums[nxt] == 0:
+                        dp[nxt] = max(dp[nxt], dp[i]+1)
+                    else:
+                        dp[nxt] = max(dp[nxt], dp[i])
+                bit <<= 1
+        return len(debts)-dp[-1]

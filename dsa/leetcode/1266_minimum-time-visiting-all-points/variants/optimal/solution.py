@@ -1,9 +1,5 @@
-from typing import List
-
-
 class Solution:
     def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
-        total = 0
-        for (x1, y1), (x2, y2) in zip(points, points[1:]):
-            total += max(abs(x2 - x1), abs(y2 - y1))
-        return total
+        return sum(
+            max(abs(p1[0] - p2[0]), abs(p1[1] - p2[1])) for p1, p2 in pairwise(points)
+        )

@@ -1,7 +1,15 @@
-from collections import Counter
+# Time:  O(n + 26)
+# Space: O(26)
 
-
+# freq table
 class Solution:
-    def filterCharacters(self, s: str, k: int) -> str:
-        frequency = Counter(s)
-        return "".join(character for character in s if frequency[character] < k)
+    def filterCharacters(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        return "".join(x for x in s if cnt[ord(x)-ord('a')] < k)

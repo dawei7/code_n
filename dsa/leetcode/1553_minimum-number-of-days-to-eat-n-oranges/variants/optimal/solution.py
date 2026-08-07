@@ -1,15 +1,9 @@
-from functools import cache
-
-
 class Solution:
     def minDays(self, n: int) -> int:
         @cache
-        def days(oranges: int) -> int:
-            if oranges <= 1:
-                return oranges
-            return 1 + min(
-                oranges % 2 + days(oranges // 2),
-                oranges % 3 + days(oranges // 3),
-            )
+        def dfs(n: int) -> int:
+            if n < 2:
+                return n
+            return 1 + min(n % 2 + dfs(n // 2), n % 3 + dfs(n // 3))
 
-        return days(n)
+        return dfs(n)

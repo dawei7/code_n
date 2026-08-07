@@ -1,24 +1,11 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
-    def splitPainting(
-        self,
-        segments: List[List[int]],
-    ) -> List[List[int]]:
-        changes = defaultdict(int)
-        for start, end, color in segments:
-            changes[start] += color
-            changes[end] -= color
-
-        painting = []
-        mixed_color = 0
-        previous = None
-        for coordinate in sorted(changes):
-            if previous is not None and mixed_color:
-                painting.append([previous, coordinate, mixed_color])
-            mixed_color += changes[coordinate]
-            previous = coordinate
-
-        return painting
+    def splitPainting(self, segments: List[List[int]]) -> List[List[int]]:
+        d = defaultdict(int)
+        for l, r, c in segments:
+            d[l] += c
+            d[r] -= c
+        s = sorted([[k, v] for k, v in d.items()])
+        n = len(s)
+        for i in range(1, n):
+            s[i][1] += s[i - 1][1]
+        return [[s[i][0], s[i + 1][0], s[i][1]] for i in range(n - 1) if s[i][1]]

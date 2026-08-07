@@ -1,10 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def calculateTime(self, keyboard: str, word: str) -> int:
-        positions = {character: index for index, character in enumerate(keyboard)}
-        current = 0
-        total = 0
-        for character in word:
-            destination = positions[character]
-            total += abs(destination - current)
-            current = destination
-        return total
+    def calculateTime(self, keyboard, word):
+        """
+        :type keyboard: str
+        :type word: str
+        :rtype: int
+        """
+        lookup = {c:i for i, c in enumerate(keyboard)}
+        result, prev = 0, 0
+        for c in word:
+            result += abs(lookup[c]-prev)
+            prev = lookup[c]
+        return result

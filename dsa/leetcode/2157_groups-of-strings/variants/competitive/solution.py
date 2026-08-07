@@ -1,56 +1,55 @@
-from typing import List
+# Time:  O(26 * n)
+# Space: O(26 * n)
+
+class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+    def __init__(self, n):
+        self.set = range(n)
+        self.rank = [0]*n
+        self.size = [1]*n
+        self.total = n
+
+    def find_set(self, x):
+        stk = []
+        while self.set[x] != x:  # path compression
+            stk.append(x)
+            x = self.set[x]
+        while stk:
+            self.set[stk.pop()] = x
+        return x
+
+    def union_set(self, x, y):
+        x, y = self.find_set(x), self.find_set(y)
+        if x == y:
+            return False
+        if self.rank[x] > self.rank[y]:  # union by rank
+            x, y = y, x
+        self.set[x] = self.set[y]
+        if self.rank[x] == self.rank[y]:
+            self.rank[y] += 1
+        self.size[y] += self.size[x]
+        self.total -= 1
+        return True
 
 
+# bitmasks, union find
 class Solution:
-    def groupStrings(self, words: List[str]) -> List[int]:
-        mask_counts = {}
-        for word in words:
-            mask = 0
-            for letter in word:
-                mask |= 1 << (ord(letter) - ord("a"))
-            mask_counts[mask] = mask_counts.get(mask, 0) + 1
-
-        masks = list(mask_counts)
-        indices = {mask: index for index, mask in enumerate(masks)}
-        parent = list(range(len(masks)))
-        sizes = [mask_counts[mask] for mask in masks]
-        group_count = len(masks)
-        largest_group = max(sizes)
-
-        def find(node):
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(first, second):
-            nonlocal group_count, largest_group
-            first_root = find(first)
-            second_root = find(second)
-            if first_root == second_root:
-                return
-            if sizes[first_root] < sizes[second_root]:
-                first_root, second_root = second_root, first_root
-            parent[second_root] = first_root
-            sizes[first_root] += sizes[second_root]
-            group_count -= 1
-            largest_group = max(largest_group, sizes[first_root])
-
-        deleted_owner = {}
-        for index, mask in enumerate(masks):
-            for bit in range(26):
-                neighbor = mask ^ (1 << bit)
-                if neighbor in indices:
-                    union(index, indices[neighbor])
-
-            remaining = mask
-            while remaining:
-                bit = remaining & -remaining
-                deleted = mask ^ bit
-                if deleted in deleted_owner:
-                    union(index, deleted_owner[deleted])
-                else:
-                    deleted_owner[deleted] = index
-                remaining ^= bit
-
-        return [group_count, largest_group]
+    def groupStrings(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        uf = UnionFind(len(words))
+        lookup = {}
+        for i, x in enumerate(words):
+            mask = reduce(lambda x, y: x|(1<<(ord(y)-ord('a'))), x, 0)
+            if mask not in lookup:
+                lookup[mask] = i
+            uf.union_set(i, lookup[mask])
+            bit = 1
+            while bit <= mask:
+                if mask&bit:
+                    if mask^bit not in lookup:
+                        lookup[mask^bit] = i
+                    uf.union_set(i, lookup[mask^bit])
+                bit <<= 1
+        return [uf.total, max(uf.size)]

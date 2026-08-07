@@ -1,18 +1,27 @@
-from typing import List, Optional
+# Time:  O(m + n), m is the number of G, n is the number of nodes
+# Space: O(m)
+
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
 
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
-    def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
-        selected = set(nums)
-        components = 0
-        current = head
-        while current is not None:
-            if current.val in selected and (current.next is None or current.next.val not in selected):
-                components += 1
-            current = current.next
-        return components
+    def numComponents(self, head, G):
+        """
+        :type head: ListNode
+        :type G: List[int]
+        :rtype: int
+        """
+        lookup = set(G)
+        dummy = ListNode(-1)
+        dummy.next = head
+        curr = dummy
+        result = 0
+        while curr and curr.next:
+            if curr.val not in lookup and curr.next.val in lookup:
+                result += 1
+            curr = curr.next
+        return result
+

@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for singly-linked list.
 # class ListNode:
 #     def __init__(self, val=0, next=None):
@@ -8,11 +5,12 @@ from typing import List, Optional
 #         self.next = next
 class Solution:
     def numComponents(self, head: Optional[ListNode], nums: List[int]) -> int:
-        selected = set(nums)
-        components = 0
-        current = head
-        while current is not None:
-            if current.val in selected and (current.next is None or current.next.val not in selected):
-                components += 1
-            current = current.next
-        return components
+        ans = 0
+        s = set(nums)
+        while head:
+            while head and head.val not in s:
+                head = head.next
+            ans += head is not None
+            while head and head.val in s:
+                head = head.next
+        return ans

@@ -1,12 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        previous = nums[0]
-        for value in nums[1:]:
-            adjusted = max(value, previous + 1)
-            operations += adjusted - value
-            previous = adjusted
-        return operations
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = prev = 0
+        for curr in nums:
+            if prev < curr:
+                prev = curr
+                continue
+            prev += 1
+            result += prev-curr                
+        return result

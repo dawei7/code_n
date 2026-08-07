@@ -1,13 +1,17 @@
+# Time:  O(n)
+# Space: O(n)
+
+# freq table
 class Solution:
-    def isGood(self, nums: List[int]) -> bool:
-        n = len(nums) - 1
-        if n < 1:
-            return False
-
-        counts = [0] * (n + 1)
-        for value in nums:
-            if value < 1 or value > n:
+    def isGood(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        cnt = [0]*len(nums)
+        for x in nums:
+            if x < len(cnt):
+                cnt[x] += 1
+            else:
                 return False
-            counts[value] += 1
-
-        return counts[n] == 2 and all(counts[value] == 1 for value in range(1, n))
+        return all(cnt[x] == 1 for x in range(1, len(nums)-1))

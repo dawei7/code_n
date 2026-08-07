@@ -1,12 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def chalkReplacer(self, chalk: List[int], k: int) -> int:
-        remaining = k % sum(chalk)
-        for student, needed in enumerate(chalk):
-            if remaining < needed:
-                return student
-            remaining -= needed
-
-        raise RuntimeError("a student must replace the chalk")
+    def chalkReplacer(self, chalk, k):
+        """
+        :type chalk: List[int]
+        :type k: int
+        :rtype: int
+        """
+        k %= sum(chalk)
+        for i, x in enumerate(chalk):
+            if k < x:
+                return i
+            k -= x
+        return -1

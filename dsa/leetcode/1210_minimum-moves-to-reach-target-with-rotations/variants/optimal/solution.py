@@ -1,37 +1,34 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def minimumMoves(self, grid: List[List[int]]) -> int:
+        def move(i1, j1, i2, j2):
+            if 0 <= i1 < n and 0 <= j1 < n and 0 <= i2 < n and 0 <= j2 < n:
+                a, b = i1 * n + j1, i2 * n + j2
+                status = 0 if i1 == i2 else 1
+                if (a, status) not in vis and grid[i1][j1] == 0 and grid[i2][j2] == 0:
+                    q.append((a, b))
+                    vis.add((a, status))
+
         n = len(grid)
-        target = (n - 1, n - 2, 0)
-        queue = deque([(0, 0, 0, 0)])
-        seen = {(0, 0, 0)}
-        while queue:
-            row, column, orientation, moves = queue.popleft()
-            if (row, column, orientation) == target:
-                return moves
-            if orientation == 0:
-                if column + 2 < n and grid[row][column + 2] == 0:
-                    state = (row, column + 1, 0)
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((*state, moves + 1))
-                if row + 1 < n and grid[row + 1][column] == 0 and grid[row + 1][column + 1] == 0:
-                    for state in ((row + 1, column, 0), (row, column, 1)):
-                        if state not in seen:
-                            seen.add(state)
-                            queue.append((*state, moves + 1))
-            else:
-                if row + 2 < n and grid[row + 2][column] == 0:
-                    state = (row + 1, column, 1)
-                    if state not in seen:
-                        seen.add(state)
-                        queue.append((*state, moves + 1))
-                if column + 1 < n and grid[row][column + 1] == 0 and grid[row + 1][column + 1] == 0:
-                    for state in ((row, column + 1, 1), (row, column, 0)):
-                        if state not in seen:
-                            seen.add(state)
-                            queue.append((*state, moves + 1))
+        target = (n * n - 2, n * n - 1)
+        q = deque([(0, 1)])
+        vis = {(0, 0)}
+        ans = 0
+        while q:
+            for _ in range(len(q)):
+                a, b = q.popleft()
+                if (a, b) == target:
+                    return ans
+                i1, j1 = a // n, a % n
+                i2, j2 = b // n, b % n
+                # 尝试向右平移（保持身体水平/垂直状态）
+                move(i1, j1 + 1, i2, j2 + 1)
+                # 尝试向下平移（保持身体水平/垂直状态）
+                move(i1 + 1, j1, i2 + 1, j2)
+                # 当前处于水平状态，且 grid[i1 + 1][j2] 无障碍，尝试顺时针旋转90°
+                if i1 == i2 and i1 + 1 < n and grid[i1 + 1][j2] == 0:
+                    move(i1, j1, i1 + 1, j1)
+                # 当前处于垂直状态，且 grid[i2][j1 + 1] 无障碍，尝试逆时针旋转90°
+                if j1 == j2 and j1 + 1 < n and grid[i2][j1 + 1] == 0:
+                    move(i1, j1, i1, j1 + 1)
+            ans += 1
         return -1

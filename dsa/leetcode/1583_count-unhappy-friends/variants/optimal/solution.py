@@ -1,23 +1,19 @@
 class Solution:
-    def unhappyFriends(self, n: int, preferences: List[List[int]], pairs: List[List[int]]) -> int:
-        rank = [[0] * n for _ in range(n)]
-        for friend in range(n):
-            for position, other in enumerate(preferences[friend]):
-                rank[friend][other] = position
-
-        partner = [0] * n
-        for left, right in pairs:
-            partner[left] = right
-            partner[right] = left
-
-        unhappy = 0
-        for friend in range(n):
-            current = partner[friend]
-            for preferred in preferences[friend]:
-                if preferred == current:
+    def unhappyFriends(
+        self, n: int, preferences: List[List[int]], pairs: List[List[int]]
+    ) -> int:
+        d = [{x: j for j, x in enumerate(p)} for p in preferences]
+        p = {}
+        for x, y in pairs:
+            p[x] = y
+            p[y] = x
+        ans = 0
+        for x in range(n):
+            y = p[x]
+            for i in range(d[x][y]):
+                u = preferences[x][i]
+                v = p[u]
+                if d[u][x] < d[u][v]:
+                    ans += 1
                     break
-                if rank[preferred][friend] < rank[preferred][partner[preferred]]:
-                    unhappy += 1
-                    break
-
-        return unhappy
+        return ans

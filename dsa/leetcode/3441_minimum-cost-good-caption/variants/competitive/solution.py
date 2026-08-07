@@ -1,70 +1,38 @@
-from array import array
+# Time:  O(26 * n)
+# Space: O(26 * n)
 
-
+# dp, backtracing
 class Solution:
-    def minCostGoodCaption(self, caption: str) -> str:
+    def minCostGoodCaption(self, caption):
+        """
+        :type caption: str
+        :rtype: str
+        """
+        L = 3
         n = len(caption)
-        if n < 3:
+        if n < L:
             return ""
-
-        values = [ord(char) - ord("a") for char in caption]
-        inf = 2_000_000
-        dp = [array("I", [0]) * (n + 1) for _ in range(26)]
-
-        for i in range(n - 1, -1, -1):
-            best_value = inf
-            second_value = inf
-            best_char = -1
-            if i + 3 <= n:
-                for char in range(26):
-                    value = (
-                        abs(values[i] - char) + abs(values[i + 1] - char) + abs(values[i + 2] - char) + dp[char][i + 3]
-                    )
-                    if value < best_value:
-                        second_value = best_value
-                        best_value = value
-                        best_char = char
-                    elif value < second_value:
-                        second_value = value
-
-            for last in range(26):
-                extend = abs(values[i] - last) + dp[last][i + 1]
-                switch = second_value if best_char == last else best_value
-                dp[last][i] = min(extend, switch)
-
-        best_cost = inf
-        first_char = 0
-        for char in range(26):
-            cost = abs(values[0] - char) + abs(values[1] - char) + abs(values[2] - char) + dp[char][3]
-            if cost < best_cost:
-                best_cost = cost
-                first_char = char
-
-        answer = [chr(first_char + ord("a"))] * 3
-        i = 3
-        last = first_char
-        while i < n:
-            target = dp[last][i]
-            chosen = 26
-            if abs(values[i] - last) + dp[last][i + 1] == target:
-                chosen = last
-
-            if i + 3 <= n:
-                for char in range(26):
-                    if char == last:
-                        continue
-                    cost = (
-                        abs(values[i] - char) + abs(values[i + 1] - char) + abs(values[i + 2] - char) + dp[char][i + 3]
-                    )
-                    if cost == target:
-                        chosen = min(chosen, char)
-
-            if chosen == last:
-                answer.append(chr(last + ord("a")))
-                i += 1
-            else:
-                last = chosen
-                answer.extend([chr(last + ord("a"))] * 3)
-                i += 3
-
-        return "".join(answer)
+        dp = [[[0]*2 for _ in range(26)] for _ in range(n-L+1)]
+        mn = [[0]*2 for _ in range(n-L+1)]
+        cap = map(lambda x: ord(x)-ord('a'), caption)
+        for i in reversed(range(n-L+1)):
+            for j in range(26):
+                if i == n-L:
+                    dp[i][j][:] = [sum(abs(cap[k]-j) for k in range(i, i+L)), L]
+                    continue
+                dp[i][j][:] = [dp[i+1][j][0]+abs(cap[i]-j), 1]
+                if i+L < n-2:
+                    curr, c = mn[i+L]
+                    curr += sum(abs(cap[k]-j) for k in range(i, i+L))
+                    if curr < dp[i][j][0] or (curr == dp[i][j][0] and c < j):
+                        dp[i][j][:] = [curr, L]
+            mn[i] = min([dp[i][j][0], j] for j in range(26))
+        result = []
+        i, j, l = 0, mn[0][1], 1
+        while i != n:
+            if l == L:
+                j = mn[i][1]
+            l = dp[i][j][1]
+            result.append(chr(ord('a')+j)*l)
+            i += l
+        return "".join(result)

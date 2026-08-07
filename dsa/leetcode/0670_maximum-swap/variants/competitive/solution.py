@@ -1,18 +1,20 @@
-class Solution:
-    def maximumSwap(self, num: int) -> int:
-        digits = list(str(num))
-        last = [0] * 10
-        for index, digit in enumerate(digits):
-            last[int(digit)] = index
+# Time:  O(logn), logn is the length of the number string
+# Space: O(logn)
 
-        for index, digit in enumerate(digits):
-            current = int(digit)
-            for replacement in range(9, current, -1):
-                replacement_index = last[replacement]
-                if replacement_index > index:
-                    digits[index], digits[replacement_index] = (
-                        digits[replacement_index],
-                        digits[index],
-                    )
-                    return int("".join(digits))
-        return num
+class Solution:
+    def maximumSwap(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        digits = list(str(num))
+        left, right = 0, 0
+        max_idx = len(digits)-1
+        for i in reversed(range(len(digits))):
+            if digits[i] > digits[max_idx]:
+                max_idx = i
+            elif digits[max_idx] > digits[i]:
+                left, right = i, max_idx
+        digits[left], digits[right] = digits[right], digits[left]
+        return int("".join(digits))
+

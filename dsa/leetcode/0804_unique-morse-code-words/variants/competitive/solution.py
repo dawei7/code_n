@@ -1,35 +1,18 @@
-from typing import List
-
+# Time:  O(n), n is the sume of all word lengths
+# Space: O(n)
 
 class Solution:
-    def uniqueMorseRepresentations(self, words: List[str]) -> int:
-        morse = (
-            ".-",
-            "-...",
-            "-.-.",
-            "-..",
-            ".",
-            "..-.",
-            "--.",
-            "....",
-            "..",
-            ".---",
-            "-.-",
-            ".-..",
-            "--",
-            "-.",
-            "---",
-            ".--.",
-            "--.-",
-            ".-.",
-            "...",
-            "-",
-            "..-",
-            "...-",
-            ".--",
-            "-..-",
-            "-.--",
-            "--..",
-        )
-        transformations = {"".join(morse[ord(char) - ord("a")] for char in word) for word in words}
-        return len(transformations)
+    def uniqueMorseRepresentations(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        MORSE = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.",
+                 "....", "..", ".---", "-.-", ".-..", "--", "-.",
+                 "---", ".--.", "--.-", ".-.", "...", "-", "..-",
+                 "...-", ".--", "-..-", "-.--", "--.."]
+
+        lookup = {"".join(MORSE[ord(c) - ord('a')] for c in word) \
+                  for word in words}
+        return len(lookup)
+

@@ -1,11 +1,17 @@
+# Time:  O(n)
+# Space: O(n)
+
+import itertools
+
+
 class Solution:
-    def sortSentence(self, s: str) -> str:
-        ordered = [""] * 9
-        word_count = 0
-
-        for token in s.split():
-            position = int(token[-1]) - 1
-            ordered[position] = token[:-1]
-            word_count += 1
-
-        return " ".join(ordered[:word_count])
+    def sortSentence(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        words = s.split()
+        for i in range(len(words)):
+            while int(words[i][-1])-1 != i:
+                words[int(words[i][-1])-1], words[i] = words[i], words[int(words[i][-1])-1]
+        return " ".join(itertools.imap(lambda x: x[:-1], words))

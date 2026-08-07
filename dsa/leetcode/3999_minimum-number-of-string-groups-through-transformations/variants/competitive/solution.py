@@ -1,41 +1,33 @@
+# Time:  O(n * l)
+# Space: O(n * l)
+
+# hash table, string
 class Solution:
-    def minimumGroups(self, words: List[str]) -> int:
-        def minimal_rotation(text):
-            if not text:
-                return ""
-
-            doubled = text + text
-            length = len(text)
-            first = 0
-            second = 1
-            offset = 0
-            while first < length and second < length and offset < length:
-                first_char = doubled[first + offset]
-                second_char = doubled[second + offset]
-                if first_char == second_char:
-                    offset += 1
-                    continue
-
-                if first_char > second_char:
-                    first = first + offset + 1
-                    if first == second:
-                        first += 1
+    def minimumGroups(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        def least_rotation(s):
+            n = len(s)
+            i, j, k = 0, 1, 0
+            while i < n and j < n and k < n:
+                a = s[(i+k)%n]
+                b = s[(j+k)%n]
+                if a == b:
+                    k += 1
                 else:
-                    second = second + offset + 1
-                    if first == second:
-                        second += 1
-                offset = 0
+                    if a > b:
+                        i += k+1
+                    else:
+                        j += k+1
+                    if i == j:
+                        j += 1
+                    k = 0
+            return min(i, j)
 
-            start = min(first, second)
-            return doubled[start : start + length]
+        def canonical(s):
+            i = least_rotation(s)
+            return s[i:]+s[:i]
 
-        signatures = set()
-        for word in words:
-            signatures.add(
-                (
-                    minimal_rotation(word[::2]),
-                    minimal_rotation(word[1::2]),
-                )
-            )
-
-        return len(signatures)
+        return len({(canonical(w[::2]), canonical(w[1::2])) for w in words})

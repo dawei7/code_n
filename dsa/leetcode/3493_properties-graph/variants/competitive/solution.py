@@ -1,40 +1,78 @@
-from typing import List
+# Time:  O(n^2 * m)
+# Space: O(n)
 
-
+# graph, flood fill, bfs
 class Solution:
-    def numberOfComponents(self, properties: List[List[int]], k: int) -> int:
-        masks = []
-        for row in properties:
-            mask = 0
-            for value in row:
-                mask |= 1 << value
-            masks.append(mask)
+    def numberOfComponents(self, properties, k):
+        """
+        :type properties: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        def bfs(u):
+            q = [u]
+            while q:
+                new_q = []
+                for u in q:
+                    for v in adj[u]:
+                        if lookup[v]:
+                            continue
+                        lookup[v] = True
+                        new_q.append(v)
+                q = new_q
 
-        n = len(properties)
-        parent = list(range(n))
-        size = [1] * n
-        components = n
+        p_set = [set(p) for p in properties]
+        adj = [[] for _ in range(len(properties))]
+        for i in range(len(p_set)):
+            for j in range(i+1, len(p_set)):
+                if sum(x in p_set[j] for x in p_set[i]) >= k:
+                    adj[i].append(j)
+                    adj[j].append(i)
+        lookup = [False]*len(properties)
+        result = 0
+        for i in range(len(properties)):
+            if lookup[i]:
+                continue
+            bfs(i)
+            result += 1
+        return result
 
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
 
-        for left in range(n):
-            for right in range(left + 1, n):
-                if (masks[left] & masks[right]).bit_count() < k:
-                    continue
+# Time:  O(n^2 * m)
+# Space: O(n)
+# graph, union find
+class Solution2(object):
+    def numberOfComponents(self, properties, k):
+        """
+        :type properties: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+            def __init__(self, n):
+                self.set = range(n)
+                self.rank = [0]*n
 
-                root_left = find(left)
-                root_right = find(right)
-                if root_left == root_right:
-                    continue
+            def find_set(self, x):
+                stk = []
+                while self.set[x] != x:  # path compression
+                    stk.append(x)
+                    x = self.set[x]
+                while stk:
+                    self.set[stk.pop()] = x
+                return x
 
-                if size[root_left] < size[root_right]:
-                    root_left, root_right = root_right, root_left
-                parent[root_right] = root_left
-                size[root_left] += size[root_right]
-                components -= 1
-
-        return components
+            def union_set(self, x, y):
+                x, y = self.find_set(x), self.find_set(y)
+                if x == y:
+                    return False
+                if self.rank[x] > self.rank[y]:  # union by rank
+                    x, y = y, x
+                self.set[x] = self.set[y]
+                if self.rank[x] == self.rank[y]:
+                    self.rank[y] += 1
+                return True
+    
+        p_set = [set(p) for p in properties]
+        uf = UnionFind(len(properties))
+        return len(properties)-sum(sum(x in p_set[j] for x in p_set[i]) >= k and uf.union_set(i, j) for i in range(len(p_set)) for j in range(i+1, len(p_set)))

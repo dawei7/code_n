@@ -1,28 +1,75 @@
+# Time:  O(5^(n/2))
+# Space: O(n)
+
 class Solution:
-    def strobogrammaticInRange(self, low: str, high: str) -> int:
-        pairs = (("0", "0"), ("1", "1"), ("6", "9"), ("8", "8"), ("9", "6"))
-        total = 0
+    lookup = {'0':'0', '1':'1', '6':'9', '8':'8', '9':'6'}
+    cache = {}
 
-        for length in range(len(low), len(high) + 1):
-            digits = [""] * length
+    # @param {string} low
+    # @param {string} high
+    # @return {integer}
+    def strobogrammaticInRange(self, low, high):
+        count = self.countStrobogrammaticUntil(high, False) - \
+                self.countStrobogrammaticUntil(low, False) + \
+                self.isStrobogrammatic(low)
+        return count if count >= 0 else 0
 
-            def search(left: int, right: int) -> None:
-                nonlocal total
-                if left > right:
-                    value = "".join(digits)
-                    if length == len(low) and value < low:
-                        return
-                    if length == len(high) and value > high:
-                        return
-                    total += 1
-                    return
-                for first, second in pairs:
-                    if left == 0 and length > 1 and first == "0":
-                        continue
-                    if left == right and first != second:
-                        continue
-                    digits[left], digits[right] = first, second
-                    search(left + 1, right - 1)
+    def countStrobogrammaticUntil(self, num,  can_start_with_0):
+        if can_start_with_0 and num in self.cache:
+            return self.cache[num]
 
-            search(0, length - 1)
-        return total
+        count = 0
+        if len(num) == 1:
+            for c in ['0', '1', '8']:
+                if num[0] >= c:
+                    count += 1
+            self.cache[num] = count
+            return count
+
+        for key, val in self.lookup.items():
+            if can_start_with_0 or key != '0':
+                if num[0] > key:
+                    if len(num) == 2:  # num is like "21"
+                        count += 1
+                    else:  # num is like "201"
+                        count += self.countStrobogrammaticUntil('9' * (len(num) - 2), True)
+                elif num[0] == key:
+                    if len(num) == 2:  # num is like 12".
+                        if num[-1] >= val:
+                            count += 1
+                    else:
+                        if num[-1] >= val:  # num is like "102".
+                            count += self.countStrobogrammaticUntil(self.getMid(num), True)
+                        elif (self.getMid(num) != '0' * (len(num) - 2)):  # num is like "110".
+                            count += self.countStrobogrammaticUntil(self.getMid(num), True) - \
+                                     self.isStrobogrammatic(self.getMid(num))
+
+        if not can_start_with_0: # Sum up each length.
+            for i in range(len(num) - 1, 0, -1):
+                count += self.countStrobogrammaticByLength(i)
+        else:
+            self.cache[num] = count
+
+        return count
+
+    def getMid(self, num):
+        return num[1:len(num) - 1]
+
+    def countStrobogrammaticByLength(self, n):
+        if n == 1:
+            return 3
+        elif n == 2:
+            return 4
+        elif n == 3:
+            return 4 * 3
+        else:
+            return 5 * self.countStrobogrammaticByLength(n - 2)
+
+    def isStrobogrammatic(self, num):
+        n = len(num)
+        for i in range((n+1) / 2):
+            if num[n-1-i] not in self.lookup or \
+               num[i] != self.lookup[num[n-1-i]]:
+                return False
+        return True
+

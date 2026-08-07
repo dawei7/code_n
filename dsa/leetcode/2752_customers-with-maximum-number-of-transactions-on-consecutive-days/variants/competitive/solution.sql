@@ -1,26 +1,20 @@
-WITH dated AS (
-    SELECT
-        customer_id,
-        CAST(julianday(transaction_date) AS INTEGER)
-            - ROW_NUMBER() OVER (
-                PARTITION BY customer_id
-                ORDER BY transaction_date
-            ) AS island_key
-    FROM Transactions
-),
-streaks AS (
-    SELECT customer_id, COUNT(*) AS streak_length
-    FROM dated
-    GROUP BY customer_id, island_key
-),
-ranked AS (
-    SELECT
-        customer_id,
-        DENSE_RANK() OVER (ORDER BY streak_length DESC) AS streak_rank
-    FROM streaks
-)
-SELECT customer_id
-FROM ranked
-WHERE streak_rank = 1
-ORDER BY customer_id
+# Time:  O(nlogn)
+# Space: O(n)
 
+WITH group_cte AS (
+    SELECT customer_id, 
+           (DATEDIFF(transaction_date, MIN(transaction_date) OVER (PARTITION BY customer_id)))+1
+           - (ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY transaction_date)) AS diff
+    FROM transactions
+),
+cnt_cte AS (
+    SELECT customer_id, COUNT(*) AS cnt
+    FROM group_cte
+    GROUP BY customer_id, diff
+    ORDER BY NULL
+)
+
+SELECT customer_id
+FROM cnt_cte
+WHERE cnt = (SELECT MAX(cnt) FROM cnt_cte) 
+ORDER BY customer_id;

@@ -1,25 +1,22 @@
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def createBinaryTree(self, descriptions: List[List[int]]) -> Optional[TreeNode]:
-        nodes = {}
+        nodes = defaultdict(TreeNode)
         children = set()
-
-        for parent_value, child_value, is_left in descriptions:
-            if parent_value not in nodes:
-                nodes[parent_value] = TreeNode(parent_value)
-            if child_value not in nodes:
-                nodes[child_value] = TreeNode(child_value)
-
-            if is_left:
-                nodes[parent_value].left = nodes[child_value]
+        for parent, child, isLeft in descriptions:
+            if parent not in nodes:
+                nodes[parent] = TreeNode(parent)
+            if child not in nodes:
+                nodes[child] = TreeNode(child)
+            children.add(child)
+            if isLeft:
+                nodes[parent].left = nodes[child]
             else:
-                nodes[parent_value].right = nodes[child_value]
-            children.add(child_value)
-
-        for value, node in nodes.items():
-            if value not in children:
-                return node
-
-        return None
+                nodes[parent].right = nodes[child]
+        root = (set(nodes.keys()) - children).pop()
+        return nodes[root]

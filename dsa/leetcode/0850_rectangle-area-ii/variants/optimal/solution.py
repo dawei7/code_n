@@ -1,43 +1,64 @@
-from typing import List
+class Node:
+    def __init__(self):
+        self.l = self.r = 0
+        self.cnt = self.length = 0
+
+
+class SegmentTree:
+    def __init__(self, nums):
+        n = len(nums) - 1
+        self.nums = nums
+        self.tr = [Node() for _ in range(n << 2)]
+        self.build(1, 0, n - 1)
+
+    def build(self, u, l, r):
+        self.tr[u].l, self.tr[u].r = l, r
+        if l != r:
+            mid = (l + r) >> 1
+            self.build(u << 1, l, mid)
+            self.build(u << 1 | 1, mid + 1, r)
+
+    def modify(self, u, l, r, k):
+        if self.tr[u].l >= l and self.tr[u].r <= r:
+            self.tr[u].cnt += k
+        else:
+            mid = (self.tr[u].l + self.tr[u].r) >> 1
+            if l <= mid:
+                self.modify(u << 1, l, r, k)
+            if r > mid:
+                self.modify(u << 1 | 1, l, r, k)
+        self.pushup(u)
+
+    def pushup(self, u):
+        if self.tr[u].cnt:
+            self.tr[u].length = self.nums[self.tr[u].r + 1] - self.nums[self.tr[u].l]
+        elif self.tr[u].l == self.tr[u].r:
+            self.tr[u].length = 0
+        else:
+            self.tr[u].length = self.tr[u << 1].length + self.tr[u << 1 | 1].length
+
+    @property
+    def length(self):
+        return self.tr[1].length
 
 
 class Solution:
     def rectangleArea(self, rectangles: List[List[int]]) -> int:
-        modulo = 1_000_000_007
-        y_values = sorted({y for _, y1, _, y2 in rectangles for y in (y1, y2)})
-        y_index = {value: index for index, value in enumerate(y_values)}
-        interval_count = len(y_values) - 1
-        cover_count = [0] * (4 * interval_count)
-        covered_length = [0] * (4 * interval_count)
-
-        def update(node: int, left: int, right: int, query_left: int, query_right: int, delta: int) -> None:
-            if query_left <= left and right <= query_right:
-                cover_count[node] += delta
-            else:
-                middle = (left + right) // 2
-                if query_left <= middle:
-                    update(node * 2, left, middle, query_left, query_right, delta)
-                if query_right > middle:
-                    update(node * 2 + 1, middle + 1, right, query_left, query_right, delta)
-
-            if cover_count[node] > 0:
-                covered_length[node] = y_values[right + 1] - y_values[left]
-            elif left == right:
-                covered_length[node] = 0
-            else:
-                covered_length[node] = covered_length[node * 2] + covered_length[node * 2 + 1]
-
-        events = []
+        segs = []
+        alls = set()
         for x1, y1, x2, y2 in rectangles:
-            events.append((x1, y1, y2, 1))
-            events.append((x2, y1, y2, -1))
-        events.sort()
+            segs.append((x1, y1, y2, 1))
+            segs.append((x2, y1, y2, -1))
+            alls.update([y1, y2])
 
-        area = 0
-        previous_x = events[0][0]
-        for x, y1, y2, delta in events:
-            area += (x - previous_x) * covered_length[1]
-            update(1, 0, interval_count - 1, y_index[y1], y_index[y2] - 1, delta)
-            previous_x = x
-
-        return area % modulo
+        segs.sort()
+        alls = sorted(alls)
+        tree = SegmentTree(alls)
+        m = {v: i for i, v in enumerate(alls)}
+        ans = 0
+        for i, (x, y1, y2, k) in enumerate(segs):
+            if i:
+                ans += tree.length * (x - segs[i - 1][0])
+            tree.modify(1, m[y1], m[y2] - 1, k)
+        ans %= int(1e9 + 7)
+        return ans

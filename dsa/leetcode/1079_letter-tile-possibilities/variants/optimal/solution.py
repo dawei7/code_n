@@ -1,20 +1,14 @@
-from collections import Counter
-from functools import cache
-
-
 class Solution:
     def numTilePossibilities(self, tiles: str) -> int:
-        initial = tuple(Counter(tiles).values())
+        def dfs(cnt: Counter) -> int:
+            ans = 0
+            for i, x in cnt.items():
+                if x > 0:
+                    ans += 1
+                    cnt[i] -= 1
+                    ans += dfs(cnt)
+                    cnt[i] += 1
+            return ans
 
-        @cache
-        def count_sequences(remaining: tuple[int, ...]) -> int:
-            total = 0
-            for index, count in enumerate(remaining):
-                if count == 0:
-                    continue
-                next_remaining = list(remaining)
-                next_remaining[index] -= 1
-                total += 1 + count_sequences(tuple(next_remaining))
-            return total
-
-        return count_sequences(initial)
+        cnt = Counter(tiles)
+        return dfs(cnt)

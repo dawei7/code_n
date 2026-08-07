@@ -1,23 +1,16 @@
-from typing import List
+# Time:  O((m + n)logn), m is the number of queries, n is the number of words
+# Space: O(n)
+
+import bisect
 
 
 class Solution:
-    def numSmallerByFrequency(self, queries: List[str], words: List[str]) -> List[int]:
-        def frequency(value: str) -> int:
-            smallest = "{"
-            count = 0
-            for character in value:
-                if character < smallest:
-                    smallest = character
-                    count = 1
-                elif character == smallest:
-                    count += 1
-            return count
-
-        counts = [0] * 11
-        for word in words:
-            counts[frequency(word)] += 1
-        greater = [0] * 11
-        for score in range(9, 0, -1):
-            greater[score] = greater[score + 1] + counts[score + 1]
-        return [greater[frequency(query)] for query in queries]
+    def numSmallerByFrequency(self, queries, words):
+        """
+        :type queries: List[str]
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        words_freq = sorted(word.count(min(word)) for word in words)
+        return [len(words)-bisect.bisect_right(words_freq, query.count(min(query))) \
+                for query in queries]

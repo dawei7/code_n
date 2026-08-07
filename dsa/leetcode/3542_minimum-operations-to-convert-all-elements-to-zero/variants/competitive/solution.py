@@ -1,13 +1,19 @@
+# Time:  O(n)
+# Space: O(n)
+
+# greedy, mono stack
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        stack = [0]
-        operations = 0
-
-        for value in nums:
-            while stack[-1] > value:
-                stack.pop()
-            if stack[-1] < value:
-                stack.append(value)
-                operations += 1
-
-        return operations
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        stk = [0]
+        for x in nums:
+            while stk and stk[-1] > x:
+                stk.pop()
+            if stk[-1] < x:
+                result += 1
+                stk.append(x)
+        return result

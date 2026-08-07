@@ -1,14 +1,19 @@
-class Solution:
-    def isHappy(self, n: int) -> bool:
-        def next_value(number: int) -> int:
-            total = 0
-            while number:
-                number, digit = divmod(number, 10)
-                total += digit * digit
-            return total
+# Time:  O(k), where k is the steps to be happy number
+# Space: O(k)
 
-        slow, fast = n, next_value(n)
-        while slow != fast:
-            slow = next_value(slow)
-            fast = next_value(next_value(fast))
-        return slow == 1
+class Solution:
+    # @param {integer} n
+    # @return {boolean}
+    def isHappy(self, n):
+        lookup = {}
+        while n != 1 and n not in lookup:
+            lookup[n] = True
+            n = self.nextNumber(n)
+        return n == 1
+
+    def nextNumber(self, n):
+        new = 0
+        for char in str(n):
+            new += int(char)**2
+        return new
+

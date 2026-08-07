@@ -1,13 +1,12 @@
-SELECT
-    t.request_at AS Day,
-    ROUND(AVG(CASE WHEN t.status = 'completed' THEN 0 ELSE 1 END), 2) AS `Cancellation Rate`
-FROM Trips AS t
-JOIN Users AS client
-    ON client.users_id = t.client_id
-   AND client.banned = 'No'
-JOIN Users AS driver
-    ON driver.users_id = t.driver_id
-   AND driver.banned = 'No'
-WHERE t.request_at BETWEEN '2013-10-01' AND '2013-10-03'
-GROUP BY t.request_at
-ORDER BY t.request_at;
+# Time:  O((t * u) + tlogt)
+# Space: O(t)
+
+select 
+t.Request_at Day, 
+round(sum(case when t.Status = 'completed' then 0 else 1 end) / count(*), 2) Rate
+from Trips t
+inner join Users u 
+on t.Client_Id = u.Users_Id and u.Banned = 'No'
+where t.Request_at between '2013-10-01' and '2013-10-03'
+group by t.Request_at
+

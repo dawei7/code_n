@@ -1,24 +1,16 @@
-from typing import List
-
-
 class Solution:
     def validStrings(self, n: int) -> List[str]:
-        valid: List[str] = []
-        path: List[str] = []
-
-        def generate() -> None:
-            if len(path) == n:
-                valid.append("".join(path))
+        def dfs(i: int):
+            if i >= n:
+                ans.append("".join(t))
                 return
+            for j in range(2):
+                if (j == 0 and (i == 0 or t[i - 1] == "1")) or j == 1:
+                    t.append(str(j))
+                    dfs(i + 1)
+                    t.pop()
 
-            path.append("1")
-            generate()
-            path.pop()
-
-            if not path or path[-1] != "0":
-                path.append("0")
-                generate()
-                path.pop()
-
-        generate()
-        return valid
+        ans = []
+        t = []
+        dfs(0)
+        return ans

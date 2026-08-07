@@ -1,23 +1,74 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# merge sort solution
 class Solution:
-    def sortArray(self, nums: List[int]) -> List[int]:
-        def sift_down(root: int, end: int) -> None:
-            while 2 * root + 1 <= end:
-                child = 2 * root + 1
-                if child + 1 <= end and nums[child] < nums[child + 1]:
-                    child += 1
-                if nums[root] >= nums[child]:
+    def sortArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def mergeSort(left, right, nums):
+            if left == right:
+                return
+            mid = left + (right-left)//2
+            mergeSort(left, mid, nums)
+            mergeSort(mid+1, right,  nums)
+            r = mid+1
+            tmp = []
+            for l in range(left, mid+1):
+                while r <= right and nums[r] < nums[l]:
+                    tmp.append(nums[r])
+                    r += 1
+                tmp.append(nums[l])
+            nums[left:left+len(tmp)] = tmp
+
+        mergeSort(0, len(nums)-1, nums)
+        return nums
+
+
+# Time:  O(nlogn), on average
+# Space: O(logn)
+import random
+# quick sort solution
+class Solution2(object):
+    def sortArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        def nth_element(nums, left, n, right, compare=lambda a, b: a < b):
+            def tri_partition(nums, left, right, target):
+                i = left
+                while i <= right:
+                    if compare(nums[i], target):
+                        nums[i], nums[left] = nums[left], nums[i]
+                        left += 1
+                        i += 1
+                    elif compare(target, nums[i]):
+                        nums[i], nums[right] = nums[right], nums[i]
+                        right -= 1
+                    else:
+                        i += 1
+                return left, right
+
+            while left <= right:
+                pivot_idx = random.randint(left, right)
+                pivot_left, pivot_right = tri_partition(nums, left, right, nums[pivot_idx])
+                if pivot_left <= n <= pivot_right:
                     return
-                nums[root], nums[child] = nums[child], nums[root]
-                root = child
+                elif pivot_left > n:
+                    right = pivot_left-1
+                else:  # pivot_right < n.
+                    left = pivot_right+1
 
-        for root in range(len(nums) // 2 - 1, -1, -1):
-            sift_down(root, len(nums) - 1)
+        def quickSort(left, right, nums):
+            if left > right:
+                return
+            mid = left + (right-left)//2
+            nth_element(nums, left, mid, right)
+            quickSort(left, mid-1, nums)
+            quickSort(mid+1, right, nums)
 
-        for end in range(len(nums) - 1, 0, -1):
-            nums[0], nums[end] = nums[end], nums[0]
-            sift_down(0, end - 1)
-
+        quickSort(0, len(nums)-1, nums)
         return nums

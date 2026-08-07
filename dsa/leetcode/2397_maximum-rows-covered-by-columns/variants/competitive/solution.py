@@ -1,26 +1,25 @@
-from itertools import combinations
-from typing import List
+# Time:  O(m * n + m * C(n, k))
+# Space: O(m)
 
-
+# bitmasks, hakmem-175
 class Solution:
-    def maximumRows(self, matrix: List[List[int]], numSelect: int) -> int:
-        column_count = len(matrix[0])
-        row_masks = []
+    def maximumRows(self, matrix, numSelect):
+        """
+        :type matrix: List[List[int]]
+        :type numSelect: int
+        :rtype: int
+        """
+        def next_popcount(n):  # reference: https://massivealgorithms.blogspot.com/2014/06/hakmem-item-175.html
+            lowest_bit = n&-n
+            left_bits = n+lowest_bit
+            changed_bits = n^left_bits
+            right_bits = (changed_bits//lowest_bit)>>2
+            return left_bits|right_bits
 
-        for row in matrix:
-            row_mask = 0
-            for column, value in enumerate(row):
-                if value:
-                    row_mask |= 1 << column
-            row_masks.append(row_mask)
-
-        maximum = 0
-        for selected_columns in combinations(range(column_count), numSelect):
-            selected_mask = 0
-            for column in selected_columns:
-                selected_mask |= 1 << column
-
-            covered = sum(row_mask & selected_mask == row_mask for row_mask in row_masks)
-            maximum = max(maximum, covered)
-
-        return maximum
+        masks = [reduce(lambda m, c: m|(matrix[r][-1-c]<<c), range(len(matrix[0])), 0) for r in range(len(matrix))]
+        result = 0
+        mask = (1<<numSelect)-1
+        while mask < 1<<len(matrix[0]):
+            result = max(result, sum((m&mask) == m for m in masks))
+            mask = next_popcount(mask)
+        return result

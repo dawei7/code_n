@@ -1,14 +1,11 @@
-from typing import List
-
-
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
-        size = len(nums)
-        for index in range(size):
-            while 1 <= nums[index] <= size and nums[nums[index] - 1] != nums[index]:
-                destination = nums[index] - 1
-                nums[index], nums[destination] = nums[destination], nums[index]
-        for index, value in enumerate(nums):
-            if value != index + 1:
-                return index + 1
-        return size + 1
+        n = len(nums)
+        for i in range(n):
+            while 1 <= nums[i] <= n and nums[i] != nums[nums[i] - 1]:
+                j = nums[i] - 1
+                nums[i], nums[j] = nums[j], nums[i]
+        for i in range(n):
+            if nums[i] != i + 1:
+                return i + 1
+        return n + 1

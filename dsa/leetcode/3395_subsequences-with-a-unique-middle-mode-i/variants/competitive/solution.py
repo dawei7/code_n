@@ -1,60 +1,66 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, prefix sum, combinatorics
 class Solution:
-    def subsequencesWithMiddleMode(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
+    def subsequencesWithMiddleMode(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def nC2(x):
+            return x*(x-1)//2
 
-        def choose_two(count: int) -> int:
-            return count * (count - 1) // 2
+        MOD = 10**9+7
+        result = 0
+        left = collections.defaultdict(int)
+        right = collections.defaultdict(int)
+        for x in nums:
+            right[x] += 1
+        left_x_sq = 0  # sum(left[x]^2 for x != v)
+        right_x_sq = sum(v**2 for v in right.values())  # sum(right[x]^2 for x != v)
+        left_x_right_x = 0  # sum(left[x]*right[x] for x != v)
+        left_x_sq_right_x = 0  # sum(left[x]^2*right[x] for x != v)
+        left_x_right_x_sq = 0  # sum(left[x]*right[x]^2 for x != v)
+        for i, v in enumerate(nums):
+            left_x_sq -= left[v]**2
+            right_x_sq -= right[v]**2
+            left_x_right_x -= left[v]*right[v]
+            left_x_sq_right_x -= left[v]**2*right[v]
+            left_x_right_x_sq -= left[v]*right[v]**2
+            right[v] -= 1
 
-        left = Counter()
-        right = Counter(nums)
-        left_pairs = 0
-        right_pairs = sum(choose_two(count) for count in right.values())
-        sum_left_right = 0
-        sum_left_right_squared = 0
-        sum_left_squared_right = 0
-        answer = 0
-        length = len(nums)
+            l, r = i, len(nums)-(i+1)
+            # all possibles
+            result += nC2(l)*nC2(r)
+            # only mid is a
+            result -= nC2(l-left[v])*nC2(r-right[v])
+            # bb/a/ac
+            # sum((left[x]*(left[x]-1)//2)*right[v]*((r-right[v])-right[x]) for x != v)
+            result -= ((left_x_sq-(l-left[v]))*(r-right[v])-(left_x_sq_right_x-left_x_right_x))*right[v]//2
+            # ac/a/bb
+            # sum(left[v]*((l-left[v])-left[x])*(right[x]*(right[x]-1)//2) for x != v)
+            result -= ((right_x_sq-(r-right[v]))*(l-left[v])-(left_x_right_x_sq-left_x_right_x))*left[v]//2
+            # ab/a/bc
+            # sum(left[v]*left[x]*right[x]*((r-right[v])-right[x]) for x != v)
+            result -= left[v]*left_x_right_x*(r-right[v])-left[v]*left_x_right_x_sq
+            # bc/a/ab
+            # sum(left[x]*((l-left[v])-left[x])*right[v]*right[x] for x != v)
+            result -= right[v]*left_x_right_x*(l-left[v])-right[v]*left_x_sq_right_x
+            # bb/a/ab
+            # sum((left[x]*(left[x]-1)//2)*right[v]*right[x] for x != v)
+            result -= right[v]*(left_x_sq_right_x-left_x_right_x)//2
+            # ab/a/bb
+            # sum((right[x]*(right[x]-1)//2)*left[v]*left[x] for x != v)
+            result -= left[v]*(left_x_right_x_sq-left_x_right_x)//2
 
-        for index, middle in enumerate(nums):
-            left_middle = left[middle]
-            old_right_middle = right[middle]
-            right_middle = old_right_middle - 1
-
-            right_pairs -= right_middle
-            sum_left_right -= left_middle
-            sum_left_right_squared += left_middle * (right_middle * right_middle - old_right_middle * old_right_middle)
-            sum_left_squared_right -= left_middle * left_middle
-            right[middle] = right_middle
-
-            left_size = index
-            right_size = length - index - 1
-            left_other = left_size - left_middle
-            right_other = right_size - right_middle
-
-            other_left_pairs = left_pairs - choose_two(left_middle)
-            other_right_pairs = right_pairs - choose_two(right_middle)
-            other_cross = sum_left_right - left_middle * right_middle
-            other_left_right_squared = sum_left_right_squared - left_middle * right_middle * right_middle
-            other_left_squared_right = sum_left_squared_right - left_middle * left_middle * right_middle
-
-            total = choose_two(left_size) * choose_two(right_size)
-            invalid = choose_two(left_other) * choose_two(right_other)
-            invalid += left_middle * (
-                left_other * other_right_pairs + right_other * other_cross - other_left_right_squared
-            )
-            invalid += right_middle * (
-                right_other * other_left_pairs + left_other * other_cross - other_left_squared_right
-            )
-            answer = (answer + total - invalid) % modulus
-
-            left_pairs += left_middle
-            sum_left_right += right_middle
-            sum_left_right_squared += right_middle * right_middle
-            sum_left_squared_right += (2 * left_middle + 1) * right_middle
-            left[middle] = left_middle + 1
-
-        return answer
+            left[v] += 1
+            left_x_sq += left[v]**2
+            right_x_sq += right[v]**2
+            left_x_right_x += left[v]*right[v]
+            left_x_sq_right_x += left[v]**2*right[v]
+            left_x_right_x_sq += left[v]*right[v]**2
+        return result % MOD

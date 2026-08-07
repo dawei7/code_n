@@ -1,11 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxSubArray(self, nums: List[int]) -> int:
-        ending_here = nums[0]
-        best = nums[0]
-        for value in nums[1:]:
-            ending_here = max(value, ending_here + value)
-            best = max(best, ending_here)
-        return best
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result, curr = float("-inf"), float("-inf")
+        for x in nums:
+            curr = max(curr+x, x)
+            result = max(result, curr)
+        return result

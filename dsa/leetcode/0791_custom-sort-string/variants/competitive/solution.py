@@ -1,12 +1,18 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def customSortString(self, order: str, s: str) -> str:
-        frequencies = Counter(s)
-        pieces = []
-        for character in order:
-            pieces.append(character * frequencies.pop(character, 0))
-        for character, frequency in frequencies.items():
-            pieces.append(character * frequency)
-        return "".join(pieces)
+    def customSortString(self, S, T):
+        """
+        :type S: str
+        :type T: str
+        :rtype: str
+        """
+        counter, s = collections.Counter(T), set(S)
+        result = [c*counter[c] for c in S]
+        result.extend([c*counter for c, counter in counter.items() if c not in s])
+        return "".join(result)
+

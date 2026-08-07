@@ -1,23 +1,21 @@
-WITH monthly_income AS (
-    SELECT
-        account_id,
-        EXTRACT(YEAR_MONTH FROM day) AS income_month,
-        SUM(amount) AS total_income
-    FROM Transactions
-    WHERE type = 'Creditor'
-    GROUP BY account_id, EXTRACT(YEAR_MONTH FROM day)
-),
-over_limit AS (
-    SELECT
-        monthly_income.account_id,
-        monthly_income.income_month
-    FROM monthly_income
-    INNER JOIN Accounts
-        ON Accounts.account_id = monthly_income.account_id
-    WHERE monthly_income.total_income > Accounts.max_income
-)
-SELECT DISTINCT first_month.account_id
-FROM over_limit AS first_month
-INNER JOIN over_limit AS next_month
-    ON next_month.account_id = first_month.account_id
-    AND PERIOD_DIFF(next_month.income_month, first_month.income_month) = 1;
+# Write your MySQL query statement below
+WITH
+    S AS (
+        SELECT DISTINCT
+            t.account_id,
+            DATE_FORMAT(day, '%Y-%m-01') AS day,
+            transaction_id AS tx,
+            SUM(amount) OVER (
+                PARTITION BY account_id, DATE_FORMAT(day, '%Y-%m-01')
+            ) > max_income AS marked
+        FROM
+            Transactions AS t
+            LEFT JOIN Accounts AS a ON t.account_id = a.account_id
+        WHERE type = 'Creditor'
+    )
+SELECT DISTINCT s1.account_id
+FROM
+    S AS s1
+    LEFT JOIN S AS s2 ON s1.account_id = s2.account_id AND TIMESTAMPDIFF(Month, s1.day, s2.day) = 1
+WHERE s1.marked = 1 AND s2.marked = 1
+ORDER BY s1.tx;

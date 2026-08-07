@@ -1,11 +1,10 @@
-from typing import List
-
-
 class Solution:
     def missingRolls(self, rolls: List[int], mean: int, n: int) -> List[int]:
-        missing_sum = mean * (len(rolls) + n) - sum(rolls)
-        if missing_sum < n or missing_sum > 6 * n:
+        m = len(rolls)
+        s = (n + m) * mean - sum(rolls)
+        if s > n * 6 or s < n:
             return []
-
-        quotient, remainder = divmod(missing_sum, n)
-        return [quotient + 1] * remainder + [quotient] * (n - remainder)
+        ans = [s // n] * n
+        for i in range(s % n):
+            ans[i] += 1
+        return ans

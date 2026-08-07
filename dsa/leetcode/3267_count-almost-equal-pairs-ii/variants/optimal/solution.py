@@ -1,42 +1,22 @@
-from collections import defaultdict
-
-
 class Solution:
     def countPairs(self, nums: List[int]) -> int:
-        seen = defaultdict(int)
-        pairs = 0
-
-        for value in sorted(nums):
-            digits = list(str(value))
-            reachable = {value}
-            width = len(digits)
-
-            for first_left in range(width):
-                for first_right in range(first_left + 1, width):
-                    digits[first_left], digits[first_right] = (
-                        digits[first_right],
-                        digits[first_left],
-                    )
-                    reachable.add(int("".join(digits)))
-
-                    for second_left in range(width):
-                        for second_right in range(second_left + 1, width):
-                            digits[second_left], digits[second_right] = (
-                                digits[second_right],
-                                digits[second_left],
-                            )
-                            reachable.add(int("".join(digits)))
-                            digits[second_left], digits[second_right] = (
-                                digits[second_right],
-                                digits[second_left],
-                            )
-
-                    digits[first_left], digits[first_right] = (
-                        digits[first_right],
-                        digits[first_left],
-                    )
-
-            pairs += sum(seen[candidate] for candidate in reachable)
-            seen[value] += 1
-
-        return pairs
+        nums.sort()
+        ans = 0
+        cnt = defaultdict(int)
+        for x in nums:
+            vis = {x}
+            s = list(str(x))
+            m = len(s)
+            for j in range(m):
+                for i in range(j):
+                    s[i], s[j] = s[j], s[i]
+                    vis.add(int("".join(s)))
+                    for q in range(i + 1, m):
+                        for p in range(i + 1, q):
+                            s[p], s[q] = s[q], s[p]
+                            vis.add(int("".join(s)))
+                            s[p], s[q] = s[q], s[p]
+                    s[i], s[j] = s[j], s[i]
+            ans += sum(cnt[x] for x in vis)
+            cnt[x] += 1
+        return ans

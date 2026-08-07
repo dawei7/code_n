@@ -1,26 +1,45 @@
+# Time:  O(n)
+# Space: O(1)
+
+# math
 class Solution:
-    def minimumCost(
-        self,
-        s: str,
-        t: str,
-        flipCost: int,
-        swapCost: int,
-        crossCost: int,
-    ) -> int:
-        zero_to_one = 0
-        one_to_zero = 0
-
-        for source, target in zip(s, t):
-            if source == target:
+    def minimumCost(self, s, t, flipCost, swapCost, crossCost):
+        """
+        :type s: str
+        :type t: str
+        :type flipCost: int
+        :type swapCost: int
+        :type crossCost: int
+        :rtype: int
+        """
+        cnt = [0]*2
+        for i in range(len(s)):
+            if s[i] == t[i]:
                 continue
-            if source == "0":
-                zero_to_one += 1
-            else:
-                one_to_zero += 1
+            cnt[ord(s[i])-ord('0')] += 1
+        mn, mx = min(cnt[0], cnt[1]), max(cnt[0], cnt[1])
+        q, r = divmod(mx-mn, 2)
+        return mn*min(swapCost, 2*flipCost)+q*min(crossCost+swapCost, 2*flipCost)+r*flipCost
 
-        opposite_pairs = min(zero_to_one, one_to_zero)
-        remainder = abs(zero_to_one - one_to_zero)
-        opposite_cost = min(swapCost, 2 * flipCost)
-        same_cost = min(crossCost + swapCost, 2 * flipCost)
 
-        return opposite_pairs * opposite_cost + (remainder // 2) * same_cost + (remainder % 2) * flipCost
+# Time:  O(n)
+# Space: O(1)
+# math
+class Solution2(object):
+    def minimumCost(self, s, t, flipCost, swapCost, crossCost):
+        """
+        :type s: str
+        :type t: str
+        :type flipCost: int
+        :type swapCost: int
+        :type crossCost: int
+        :rtype: int
+        """
+        cnt = [0]*2
+        for i in range(len(s)):
+            if s[i] == t[i]:
+                continue
+            cnt[ord(s[i])-ord('0')] += 1
+        mn, mx = min(cnt[0], cnt[1]), max(cnt[0], cnt[1])
+        q, r = divmod(mx-mn, 2)
+        return min((mx+mn)*flipCost, mn*swapCost+(mx-mn)*flipCost, mn*swapCost+q*(crossCost+swapCost)+r*flipCost)

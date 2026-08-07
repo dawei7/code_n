@@ -1,26 +1,65 @@
-class Codec:
-    def serialize(self, root: "Node") -> str:
-        if root is None:
-            return "#"
-        tokens = []
+# Time:  O(n)
+# Space: O(h)
 
-        def encode(node: "Node") -> None:
-            tokens.append(str(node.val))
-            tokens.append(str(len(node.children)))
+class Node(object):
+    def __init__(self, val, children):
+        self.val = val
+        self.children = children
+
+
+class Codec(object):
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: Node
+        :rtype: str
+        """
+        def dfs(node, vals):
+            if not node:
+                return
+            vals.append(str(node.val))
             for child in node.children:
-                encode(child)
+                dfs(child, vals)
+            vals.append("#")
+        
+        vals = []
+        dfs(root, vals)
+        return " ".join(vals)
 
-        encode(root)
-        return " ".join(tokens)
 
-    def deserialize(self, data: str) -> "Node":
-        if data == "#":
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: Node
+        """
+        def isplit(source, sep):
+            sepsize = len(sep)
+            start = 0
+            while True:
+                idx = source.find(sep, start)
+                if idx == -1:
+                    yield source[start:]
+                    return
+                yield source[start:idx]
+                start = idx + sepsize
+                
+        def dfs(vals):
+            val = next(vals)
+            if val == "#":
+                return None
+            root = Node(int(val), [])
+            child = dfs(vals)
+            while child:
+                root.children.append(child)
+                child = dfs(vals)
+            return root
+
+        if not data:
             return None
-        tokens = iter(data.split())
+    
+        return dfs(iter(isplit(data, ' ')))
+        
 
-        def decode() -> "Node":
-            value = int(next(tokens))
-            child_count = int(next(tokens))
-            return Node(value, [decode() for _ in range(child_count)])
 
-        return decode()

@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        rows, columns = len(matrix), len(matrix[0])
-        left, right = 0, rows * columns - 1
-        while left <= right:
-            middle = (left + right) // 2
-            value = matrix[middle // columns][middle % columns]
-            if value == target:
-                return True
-            if value < target:
-                left = middle + 1
+        m, n = len(matrix), len(matrix[0])
+        left, right = 0, m * n - 1
+        while left < right:
+            mid = (left + right) >> 1
+            x, y = divmod(mid, n)
+            if matrix[x][y] >= target:
+                right = mid
             else:
-                right = middle - 1
-        return False
+                left = mid + 1
+        return matrix[left // n][left % n] == target

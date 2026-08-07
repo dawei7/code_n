@@ -1,10 +1,11 @@
 class Solution:
-    def pathExistenceQueries(self, n: int, nums: List[int], maxDiff: int, queries: List[List[int]]) -> List[bool]:
-        component = [0] * n
-
-        for index in range(1, n):
-            component[index] = component[index - 1]
-            if nums[index] - nums[index - 1] > maxDiff:
-                component[index] += 1
-
-        return [component[source] == component[target] for source, target in queries]
+    def pathExistenceQueries(
+        self, n: int, nums: List[int], maxDiff: int, queries: List[List[int]]
+    ) -> List[bool]:
+        g = [0] * n
+        cnt = 0
+        for i in range(1, n):
+            if nums[i] - nums[i - 1] > maxDiff:
+                cnt += 1
+            g[i] = cnt
+        return [g[u] == g[v] for u, v in queries]

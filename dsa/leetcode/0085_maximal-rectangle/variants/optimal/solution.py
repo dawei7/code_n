@@ -1,19 +1,33 @@
-from typing import List
-
-
 class Solution:
     def maximalRectangle(self, matrix: List[List[str]]) -> int:
         heights = [0] * len(matrix[0])
-        best = 0
+        ans = 0
         for row in matrix:
-            for column, value in enumerate(row):
-                heights[column] = heights[column] + 1 if value == "1" else 0
+            for j, v in enumerate(row):
+                if v == "1":
+                    heights[j] += 1
+                else:
+                    heights[j] = 0
+            ans = max(ans, self.largestRectangleArea(heights))
+        return ans
 
-            stack = []
-            for index, height in enumerate(heights + [0]):
-                start = index
-                while stack and stack[-1][1] > height:
-                    start, previous_height = stack.pop()
-                    best = max(best, previous_height * (index - start))
-                stack.append((start, height))
-        return best
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        n = len(heights)
+        stk = []
+        left = [-1] * n
+        right = [n] * n
+        for i, h in enumerate(heights):
+            while stk and heights[stk[-1]] >= h:
+                stk.pop()
+            if stk:
+                left[i] = stk[-1]
+            stk.append(i)
+        stk = []
+        for i in range(n - 1, -1, -1):
+            h = heights[i]
+            while stk and heights[stk[-1]] >= h:
+                stk.pop()
+            if stk:
+                right[i] = stk[-1]
+            stk.append(i)
+        return max(h * (right[i] - left[i] - 1) for i, h in enumerate(heights))

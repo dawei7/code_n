@@ -1,36 +1,27 @@
+# Time:  O(k * n^2)
+# Space: O(n^2)
+
 class Solution:
-    def knightProbability(
-        self,
-        n: int,
-        k: int,
-        row: int,
-        column: int,
-    ) -> float:
-        moves = (
-            (-2, -1),
-            (-2, 1),
-            (-1, -2),
-            (-1, 2),
-            (1, -2),
-            (1, 2),
-            (2, -1),
-            (2, 1),
-        )
-        current = [[0.0] * n for _ in range(n)]
-        current[row][column] = 1.0
+    def knightProbability(self, N, K, r, c):
+        """
+        :type N: int
+        :type K: int
+        :type r: int
+        :type c: int
+        :rtype: float
+        """
+        directions = \
+            [[ 1, 2], [ 1, -2], [ 2, 1], [ 2, -1], \
+             [-1, 2], [-1, -2], [-2, 1], [-2, -1]]
+        dp = [[[1 for _ in range(N)] for _ in range(N)] for _ in range(2)]
+        for step in range(1, K+1):
+            for i in range(N):
+                for j in range(N):
+                    dp[step%2][i][j] = 0
+                    for direction in directions:
+                        rr, cc = i+direction[0], j+direction[1]
+                        if 0 <= cc < N and 0 <= rr < N:
+                            dp[step%2][i][j] += 0.125 * dp[(step-1)%2][rr][cc]
 
-        for _ in range(k):
-            following = [[0.0] * n for _ in range(n)]
-            for current_row in range(n):
-                for current_column in range(n):
-                    if current[current_row][current_column] == 0.0:
-                        continue
-                    contribution = current[current_row][current_column] / 8.0
-                    for row_delta, column_delta in moves:
-                        next_row = current_row + row_delta
-                        next_column = current_column + column_delta
-                        if 0 <= next_row < n and 0 <= next_column < n:
-                            following[next_row][next_column] += contribution
-            current = following
+        return dp[K%2][r][c]
 
-        return sum(map(sum, current))

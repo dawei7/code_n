@@ -1,26 +1,21 @@
-from typing import List
-
+# Time:  O(1)
+# Space: O(1)
 
 class Solution:
-    def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:
-        occupied = {tuple(queen) for queen in queens}
-        answer = []
-        directions = (
-            (1, 0),
-            (-1, 0),
-            (0, 1),
-            (0, -1),
-            (1, 1),
-            (1, -1),
-            (-1, 1),
-            (-1, -1),
-        )
-        for row_change, column_change in directions:
-            row, column = king[0] + row_change, king[1] + column_change
-            while 0 <= row < 8 and 0 <= column < 8:
-                if (row, column) in occupied:
-                    answer.append([row, column])
+    def queensAttacktheKing(self, queens, king):
+        """
+        :type queens: List[List[int]]
+        :type king: List[int]
+        :rtype: List[List[int]]
+        """
+        dirctions = [(-1, 0), (0, 1), (1, 0), (0, -1),
+                     (-1, 1), (1, 1), (1, -1), (-1, -1)]
+        result = []
+        lookup = {(i, j) for i, j in queens}
+        for dx, dy in dirctions:
+            for i in range(1, 8):
+                x, y = king[0] + dx*i, king[1] + dy*i
+                if (x, y) in lookup:
+                    result.append([x, y])
                     break
-                row += row_change
-                column += column_change
-        return answer
+        return result

@@ -1,10 +1,16 @@
+# Time:  O(n^2)
+# Space: O(1)
+
 class Solution:
-    def beautySum(self, s: str) -> int:
-        total = 0
-        for start in range(len(s)):
-            frequencies = [0] * 26
-            for end in range(start, len(s)):
-                frequencies[ord(s[end]) - ord("a")] += 1
-                minimum = min(frequency for frequency in frequencies if frequency > 0)
-                total += max(frequencies) - minimum
-        return total
+    def beautySum(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0 
+        for i in range(len(s)):
+            lookup = [0]*26
+            for j in range(i, len(s)):
+                lookup[ord(s[j])-ord('a')] += 1
+                result += max(lookup) - min(x for x in lookup if x)
+        return result

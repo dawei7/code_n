@@ -1,51 +1,30 @@
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
 
+    def update(self, x, v):
+        while x <= self.n:
+            self.c[x] += v
+            x += x & -x
 
-def _count_range_sums(nums: List[int], lower: int, upper: int) -> int:
-    prefixes = [0]
-    for value in nums:
-        prefixes.append(prefixes[-1] + value)
-    buffer = [0] * len(prefixes)
-
-    def sort_and_count(left: int, right: int) -> int:
-        if right - left <= 1:
-            return 0
-        middle = (left + right) // 2
-        count = sort_and_count(left, middle) + sort_and_count(middle, right)
-
-        lower_index = upper_index = middle
-        for first in range(left, middle):
-            while lower_index < right and prefixes[lower_index] - prefixes[first] < lower:
-                lower_index += 1
-            while upper_index < right and prefixes[upper_index] - prefixes[first] <= upper:
-                upper_index += 1
-            count += upper_index - lower_index
-
-        first = left
-        second = middle
-        output = left
-        while first < middle and second < right:
-            if prefixes[first] <= prefixes[second]:
-                buffer[output] = prefixes[first]
-                first += 1
-            else:
-                buffer[output] = prefixes[second]
-                second += 1
-            output += 1
-        while first < middle:
-            buffer[output] = prefixes[first]
-            first += 1
-            output += 1
-        while second < right:
-            buffer[output] = prefixes[second]
-            second += 1
-            output += 1
-        prefixes[left:right] = buffer[left:right]
-        return count
-
-    return sort_and_count(0, len(prefixes))
+    def query(self, x):
+        s = 0
+        while x > 0:
+            s += self.c[x]
+            x -= x & -x
+        return s
 
 
 class Solution:
     def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
-        return _count_range_sums(nums, lower, upper)
+        s = list(accumulate(nums, initial=0))
+        arr = sorted(set(v for x in s for v in (x, x - lower, x - upper)))
+        tree = BinaryIndexedTree(len(arr))
+        ans = 0
+        for x in s:
+            l = bisect_left(arr, x - upper) + 1
+            r = bisect_left(arr, x - lower) + 1
+            ans += tree.query(r) - tree.query(l - 1)
+            tree.update(bisect_left(arr, x) + 1, 1)
+        return ans

@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        def reverse(left: int, right: int) -> None:
-            while left < right:
-                nums[left], nums[right] = nums[right], nums[left]
-                left += 1
-                right -= 1
+        def reverse(i: int, j: int):
+            while i < j:
+                nums[i], nums[j] = nums[j], nums[i]
+                i, j = i + 1, j - 1
 
-        k %= len(nums)
-        reverse(0, len(nums) - 1)
+        n = len(nums)
+        k %= n
+        reverse(0, n - 1)
         reverse(0, k - 1)
-        reverse(k, len(nums) - 1)
+        reverse(k, n - 1)

@@ -1,63 +1,35 @@
-from typing import List
+# Time:  O(n * k * l), l = limits
+# Space: O(n * k * l)
+
+import collections
 
 
+# dp
 class Solution:
-    def maxProduct(self, nums: List[int], k: int, limit: int) -> int:
+    def maxProduct(self, nums, k, limit):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type limit: int
+        :rtype: int
+        """
         total = sum(nums)
-        if abs(k) > total:
+        if k > total or k < -total:  # optimized to speed up
             return -1
-
-        offset = total
-        width = 2 * total + 1
-        mask = (1 << width) - 1
-
-        without_zero = [0, 0]
-        with_zero = [0, 0]
-        products = {}
-
-        for value in nums:
-            even_without, odd_without = without_zero
-            even_with, odd_with = with_zero
-
-            if value == 0:
-                with_zero = [
-                    even_with | odd_with | odd_without,
-                    odd_with | even_with | even_without | (1 << offset),
-                ]
+        dp = collections.defaultdict(set)
+        for x in nums:
+            new_dp = collections.defaultdict(set, {k:set(v) for k, v in dp.items()})
+            new_dp[(1, x)].add(min(x, limit+1))
+            for (p, total), products in dp.items():
+                new_state = (p^1, total+(x if p == 0 else -x))
+                for v in products:
+                    new_dp[new_state].add(min(v*x, limit+1))
+            dp = new_dp
+        result = -1
+        for (p, total), products in dp.items():
+            if total != k:
                 continue
-
-            without_zero = [
-                even_without | (odd_without >> value),
-                odd_without | ((even_without << value) & mask) | (1 << (offset + value)),
-            ]
-            with_zero = [
-                even_with | (odd_with >> value),
-                odd_with | ((even_with << value) & mask),
-            ]
-
-            additions = {}
-            if value <= limit:
-                additions[value] = [0, 1 << (offset + value)]
-
-            for product, (even_sums, odd_sums) in list(products.items()):
-                next_product = product * value
-                if next_product > limit:
-                    continue
-                target = additions.setdefault(next_product, [0, 0])
-                target[0] |= odd_sums >> value
-                target[1] |= (even_sums << value) & mask
-
-            for product, (even_sums, odd_sums) in additions.items():
-                target = products.setdefault(product, [0, 0])
-                target[0] |= even_sums
-                target[1] |= odd_sums
-
-        target_bit = 1 << (offset + k)
-        answer = -1
-        for product, (even_sums, odd_sums) in products.items():
-            if (even_sums | odd_sums) & target_bit:
-                answer = max(answer, product)
-
-        if answer != -1:
-            return answer
-        return 0 if (with_zero[0] | with_zero[1]) & target_bit else -1
+            for v in products:
+                if v <= limit:
+                    result = max(result, v)
+        return result

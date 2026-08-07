@@ -1,11 +1,18 @@
 class Solution:
     def minKnightMoves(self, x: int, y: int) -> int:
-        larger, smaller = sorted((abs(x), abs(y)), reverse=True)
-        if (larger, smaller) == (1, 0):
-            return 3
-        if (larger, smaller) == (2, 2):
-            return 4
-
-        moves = max((larger + 1) // 2, (larger + smaller + 2) // 3)
-        moves += (moves + larger + smaller) % 2
-        return moves
+        q = deque([(0, 0)])
+        ans = 0
+        vis = {(0, 0)}
+        dirs = ((-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1))
+        while q:
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                if (i, j) == (x, y):
+                    return ans
+                for a, b in dirs:
+                    c, d = i + a, j + b
+                    if (c, d) not in vis:
+                        vis.add((c, d))
+                        q.append((c, d))
+            ans += 1
+        return -1

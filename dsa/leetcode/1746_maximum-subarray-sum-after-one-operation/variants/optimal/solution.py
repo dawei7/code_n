@@ -1,20 +1,10 @@
-from typing import List
-
-
 class Solution:
     def maxSumAfterOperation(self, nums: List[int]) -> int:
-        plain = nums[0]
-        squared = nums[0] * nums[0]
-        best = squared
-
-        for value in nums[1:]:
-            new_squared = max(
-                value * value,
-                plain + value * value,
-                squared + value,
-            )
-            new_plain = max(value, plain + value)
-            plain, squared = new_plain, new_squared
-            best = max(best, squared)
-
-        return best
+        f = g = 0
+        ans = -inf
+        for x in nums:
+            ff = max(f, 0) + x
+            gg = max(max(f, 0) + x * x, g + x)
+            f, g = ff, gg
+            ans = max(ans, f, g)
+        return ans

@@ -1,17 +1,13 @@
-WITH first_values AS (
-    SELECT
-        first_col,
-        ROW_NUMBER() OVER (ORDER BY first_col ASC) AS position
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT first_col, second_col
+FROM (
+    SELECT first_col, ROW_NUMBER() OVER(ORDER BY first_col ASC) AS rnk
     FROM Data
-),
-second_values AS (
-    SELECT
-        second_col,
-        ROW_NUMBER() OVER (ORDER BY second_col DESC) AS position
+) a
+INNER JOIN (
+    SELECT second_col, ROW_NUMBER() OVER(ORDER BY second_col DESC) AS rnk
     FROM Data
-)
-SELECT first_values.first_col, second_values.second_col
-FROM first_values
-JOIN second_values
-  ON second_values.position = first_values.position
-ORDER BY first_values.position;
+) b
+ON a.rnk = b.rnk;

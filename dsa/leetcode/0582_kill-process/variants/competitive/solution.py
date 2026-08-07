@@ -1,22 +1,57 @@
-from collections import defaultdict
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# DFS solution.
 class Solution:
-    def killProcess(
-        self,
-        pid: list[int],
-        ppid: list[int],
-        kill: int,
-    ) -> list[int]:
-        children = defaultdict(list)
-        for process, parent in zip(pid, ppid):
-            children[parent].append(process)
+    def killProcess(self, pid, ppid, kill):
+        """
+        :type pid: List[int]
+        :type ppid: List[int]
+        :type kill: int
+        :rtype: List[int]
+        """
+        def killAll(pid, children, killed):
+            killed.append(pid)
+            for child in children[pid]:
+                killAll(child, children, killed)
 
-        killed = []
-        stack = [kill]
-        while stack:
-            process = stack.pop()
-            killed.append(process)
-            stack.extend(children[process])
+        result = []
+        children = collections.defaultdict(set)
+        for i in range(len(pid)):
+            children[ppid[i]].add(pid[i])
+        killAll(kill, children, result)
+        return result
 
-        return killed
+
+# Time:  O(n)
+# Space: O(n)
+# BFS solution.
+class Solution2(object):
+    def killProcess(self, pid, ppid, kill):
+        """
+        :type pid: List[int]
+        :type ppid: List[int]
+        :type kill: int
+        :rtype: List[int]
+        """
+        def killAll(pid, children, killed):
+            killed.append(pid)
+            for child in children[pid]:
+                killAll(child, children, killed)
+
+        result = []
+        children = collections.defaultdict(set)
+        for i in range(len(pid)):
+            children[ppid[i]].add(pid[i])
+        q = collections.deque()
+        q.append(kill)
+        while q:
+            p = q.popleft()
+            result.append(p)
+            for child in children[p]:
+                q.append(child)
+        return result
+

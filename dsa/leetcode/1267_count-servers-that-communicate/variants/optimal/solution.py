@@ -1,21 +1,14 @@
-from typing import List
-
-
 class Solution:
     def countServers(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        cols = len(grid[0])
-        row_counts = [0] * rows
-        col_counts = [0] * cols
-
-        for row in range(rows):
-            for col in range(cols):
-                if grid[row][col] == 1:
-                    row_counts[row] += 1
-                    col_counts[col] += 1
-
+        m, n = len(grid), len(grid[0])
+        row = [0] * m
+        col = [0] * n
+        for i in range(m):
+            for j in range(n):
+                row[i] += grid[i][j]
+                col[j] += grid[i][j]
         return sum(
-            grid[row][col] == 1 and (row_counts[row] > 1 or col_counts[col] > 1)
-            for row in range(rows)
-            for col in range(cols)
+            grid[i][j] and (row[i] > 1 or col[j] > 1)
+            for i in range(m)
+            for j in range(n)
         )

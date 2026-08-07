@@ -1,18 +1,13 @@
 class Solution:
     def checkZeroOnes(self, s: str) -> bool:
-        longest = [0, 0]
-        current_digit = s[0]
-        current_length = 0
+        def f(x: str) -> int:
+            cnt = mx = 0
+            for c in s:
+                if c == x:
+                    cnt += 1
+                    mx = max(mx, cnt)
+                else:
+                    cnt = 0
+            return mx
 
-        for digit in s:
-            if digit == current_digit:
-                current_length += 1
-            else:
-                index = 1 if current_digit == "1" else 0
-                longest[index] = max(longest[index], current_length)
-                current_digit = digit
-                current_length = 1
-
-        index = 1 if current_digit == "1" else 0
-        longest[index] = max(longest[index], current_length)
-        return longest[1] > longest[0]
+        return f("1") > f("0")

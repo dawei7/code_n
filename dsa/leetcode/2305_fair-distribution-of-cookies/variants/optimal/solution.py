@@ -1,27 +1,19 @@
-from typing import List
-
-
 class Solution:
     def distributeCookies(self, cookies: List[int], k: int) -> int:
-        cookies.sort(reverse=True)
-        loads = [0] * k
-        answer = sum(cookies)
-
-        def search(bag_index: int) -> None:
-            nonlocal answer
-            if bag_index == len(cookies):
-                answer = min(answer, max(loads))
+        def dfs(i):
+            if i >= len(cookies):
+                nonlocal ans
+                ans = max(cnt)
                 return
-
-            bag = cookies[bag_index]
-            used = set()
-            for child in range(k):
-                if loads[child] in used or loads[child] + bag >= answer:
+            for j in range(k):
+                if cnt[j] + cookies[i] >= ans or (j and cnt[j] == cnt[j - 1]):
                     continue
-                used.add(loads[child])
-                loads[child] += bag
-                search(bag_index + 1)
-                loads[child] -= bag
+                cnt[j] += cookies[i]
+                dfs(i + 1)
+                cnt[j] -= cookies[i]
 
-        search(0)
-        return answer
+        ans = inf
+        cnt = [0] * k
+        cookies.sort(reverse=True)
+        dfs(0)
+        return ans

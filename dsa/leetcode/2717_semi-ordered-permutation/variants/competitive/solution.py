@@ -1,6 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def semiOrderedPermutation(self, nums: List[int]) -> int:
-        one_index = nums.index(1)
-        maximum_index = nums.index(len(nums))
-        overlap = 1 if one_index > maximum_index else 0
-        return one_index + len(nums) - 1 - maximum_index - overlap
+    def semiOrderedPermutation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        i, j = nums.index(1), nums.index(len(nums))
+        return i+((len(nums)-1)-j)-int(i > j)

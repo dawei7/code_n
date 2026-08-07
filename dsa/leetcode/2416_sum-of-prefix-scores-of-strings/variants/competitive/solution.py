@@ -1,30 +1,29 @@
-from typing import List
+# Time:  O(n * l), n is the number of words, l is the max length of words
+# Space: O(t), t is the size of trie
+    
+import collections
 
 
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.count = 0
-
-
+# trie
 class Solution:
-    def sumPrefixScores(self, words: List[str]) -> List[int]:
-        root = TrieNode()
-
-        for word in words:
-            node = root
-            for character in word:
-                if character not in node.children:
-                    node.children[character] = TrieNode()
-                node = node.children[character]
-                node.count += 1
-
-        answer = []
-        for word in words:
-            node = root
-            score = 0
-            for character in word:
-                node = node.children[character]
-                score += node.count
-            answer.append(score)
-        return answer
+    def sumPrefixScores(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        _trie = lambda: collections.defaultdict(_trie)
+        trie = _trie()
+        for w in words:
+            curr = trie
+            for c in w:
+                curr = curr[c]
+                curr["_cnt"] = curr["_cnt"]+1 if "_cnt" in curr else 1
+        result = []
+        for w in words:
+            cnt = 0
+            curr = trie
+            for c in w:
+                curr = curr[c]
+                cnt += curr["_cnt"]
+            result.append(cnt)
+        return result

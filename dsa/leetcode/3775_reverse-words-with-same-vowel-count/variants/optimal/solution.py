@@ -1,11 +1,14 @@
 class Solution:
     def reverseWords(self, s: str) -> str:
-        vowels = set("aeiou")
+        def calc(w: str) -> int:
+            return sum(c in "aeiou" for c in w)
+
         words = s.split()
-        target = sum(character in vowels for character in words[0])
-
-        for index in range(1, len(words)):
-            if sum(character in vowels for character in words[index]) == target:
-                words[index] = words[index][::-1]
-
-        return " ".join(words)
+        cnt = calc(words[0])
+        ans = [words[0]]
+        for w in words[1:]:
+            if calc(w) == cnt:
+                ans.append(w[::-1])
+            else:
+                ans.append(w)
+        return " ".join(ans)

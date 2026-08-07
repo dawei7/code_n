@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,29 +6,20 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def isCousins(self, root: Optional[TreeNode], x: int, y: int) -> bool:
-        queue = [(root, None)]
-        head = 0
-
-        while head < len(queue):
-            level_end = len(queue)
-            parent_x = parent_y = None
-            found_x = found_y = False
-
-            while head < level_end:
-                node, parent = queue[head]
-                head += 1
+        q = deque([(root, None)])
+        depth = 0
+        p1 = p2 = None
+        d1 = d2 = None
+        while q:
+            for _ in range(len(q)):
+                node, parent = q.popleft()
                 if node.val == x:
-                    parent_x = parent
-                    found_x = True
+                    p1, d1 = parent, depth
                 elif node.val == y:
-                    parent_y = parent
-                    found_y = True
-                if node.left is not None:
-                    queue.append((node.left, node))
-                if node.right is not None:
-                    queue.append((node.right, node))
-
-            if found_x or found_y:
-                return found_x and found_y and parent_x is not parent_y
-
-        return False
+                    p2, d2 = parent, depth
+                if node.left:
+                    q.append((node.left, node))
+                if node.right:
+                    q.append((node.right, node))
+            depth += 1
+        return p1 != p2 and d1 == d2

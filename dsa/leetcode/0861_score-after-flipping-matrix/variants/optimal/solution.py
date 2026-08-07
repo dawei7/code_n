@@ -1,18 +1,12 @@
-from typing import List
-
-
 class Solution:
     def matrixScore(self, grid: List[List[int]]) -> int:
-        row_count = len(grid)
-        column_count = len(grid[0])
-        score = 0
-
-        for column in range(column_count):
-            effective_ones = 0
-            for row in range(row_count):
-                effective_ones += grid[row][column] ^ (1 - grid[row][0])
-
-            best_ones = max(effective_ones, row_count - effective_ones)
-            score += best_ones << (column_count - 1 - column)
-
-        return score
+        m, n = len(grid), len(grid[0])
+        for i in range(m):
+            if grid[i][0] == 0:
+                for j in range(n):
+                    grid[i][j] ^= 1
+        ans = 0
+        for j in range(n):
+            cnt = sum(grid[i][j] for i in range(m))
+            ans += max(cnt, m - cnt) * (1 << (n - j - 1))
+        return ans

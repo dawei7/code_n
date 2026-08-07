@@ -1,20 +1,20 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn + qlogn)
+# Space: O(n)
 
-
+# sort, binary search, prefix sum
 class Solution:
-    def minOperations(self, nums: List[int], queries: List[int]) -> List[int]:
+    def minOperations(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :rtype: List[int]
+        """
         nums.sort()
-        prefix = [0]
-        for number in nums:
-            prefix.append(prefix[-1] + number)
-
-        n = len(nums)
-        answer = []
-        for query in queries:
-            split = bisect_left(nums, query)
-            left_cost = query * split - prefix[split]
-            right_cost = prefix[n] - prefix[split] - query * (n - split)
-            answer.append(left_cost + right_cost)
-
-        return answer
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        result = [0]*len(queries)
+        for i, q in enumerate(queries):
+            j = bisect.bisect_left(nums, q)
+            result[i] = (q*j-prefix[j])+((prefix[-1]-prefix[j])-q*(len(nums)-j))
+        return result

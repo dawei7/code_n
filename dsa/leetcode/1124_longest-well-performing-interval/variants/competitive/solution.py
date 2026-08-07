@@ -1,18 +1,22 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def longestWPI(self, hours: List[int]) -> int:
-        score = 0
-        first_seen = {}
-        best = 0
-
-        for index, hour in enumerate(hours):
-            score += 1 if hour > 8 else -1
-            if score > 0:
-                best = index + 1
-            else:
-                first_seen.setdefault(score, index)
-                if score - 1 in first_seen:
-                    best = max(best, index - first_seen[score - 1])
-        return best
+    def longestWPI(self, hours):
+        """
+        :type hours: List[int]
+        :rtype: int
+        """
+        result, accu = 0, 0
+        lookup = {}
+        for i, h in enumerate(hours):
+            accu = accu+1 if h > 8 else accu-1
+            if accu > 0:
+                result = i+1
+            elif accu-1 in lookup:
+                # lookup[accu-1] is the leftmost idx with smaller accu,
+                # because for i from 1 to some positive k,
+                # lookup[accu-i] is a strickly increasing sequence
+                result = max(result, i-lookup[accu-1])
+            lookup.setdefault(accu, i)
+        return result

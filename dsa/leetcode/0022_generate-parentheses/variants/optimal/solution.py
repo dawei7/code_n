@@ -1,23 +1,14 @@
-from typing import List
-
-
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        result = []
-        path = []
-
-        def build(opened: int, closed: int) -> None:
-            if len(path) == 2 * n:
-                result.append("".join(path))
+        def dfs(l: int, r: int, t: str):
+            if l > n or r > n or l < r:
                 return
-            if opened < n:
-                path.append("(")
-                build(opened + 1, closed)
-                path.pop()
-            if closed < opened:
-                path.append(")")
-                build(opened, closed + 1)
-                path.pop()
+            if l == n and r == n:
+                ans.append(t)
+                return
+            dfs(l + 1, r, t + "(")
+            dfs(l, r + 1, t + ")")
 
-        build(0, 0)
-        return result
+        ans = []
+        dfs(0, 0, "")
+        return ans

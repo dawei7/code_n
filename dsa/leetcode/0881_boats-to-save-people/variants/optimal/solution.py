@@ -1,17 +1,11 @@
-from typing import List
-
-
 class Solution:
     def numRescueBoats(self, people: List[int], limit: int) -> int:
-        weights = sorted(people)
-        light = 0
-        heavy = len(weights) - 1
-        boats = 0
-
-        while light <= heavy:
-            if weights[light] + weights[heavy] <= limit:
-                light += 1
-            heavy -= 1
-            boats += 1
-
-        return boats
+        people.sort()
+        ans = 0
+        i, j = 0, len(people) - 1
+        while i <= j:
+            if people[i] + people[j] <= limit:
+                i += 1
+            j -= 1
+            ans += 1
+        return ans

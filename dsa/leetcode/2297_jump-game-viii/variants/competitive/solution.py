@@ -1,24 +1,22 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp, mono stack
 class Solution:
-    def minCost(self, nums: List[int], costs: List[int]) -> int:
-        n = len(nums)
-        best = [10**30] * n
-        best[0] = 0
-        nonincreasing = []
-        increasing = []
-
-        for index, value in enumerate(nums):
-            while nonincreasing and nums[nonincreasing[-1]] <= value:
-                source = nonincreasing.pop()
-                best[index] = min(best[index], best[source] + costs[index])
-
-            while increasing and nums[increasing[-1]] > value:
-                source = increasing.pop()
-                best[index] = min(best[index], best[source] + costs[index])
-
-            nonincreasing.append(index)
-            increasing.append(index)
-
-        return best[-1]
+    def minCost(self, nums, costs):
+        """
+        :type nums: List[int]
+        :type costs: List[int]
+        :rtype: int
+        """
+        stk1, stk2 = [], []
+        dp = [float("inf")]*len(nums)
+        dp[0] = 0
+        for i in range(len(nums)):
+            while stk1 and nums[stk1[-1]] <= nums[i]:
+                dp[i] = min(dp[i], dp[stk1.pop()]+costs[i])
+            stk1.append(i)
+            while stk2 and nums[stk2[-1]] > nums[i]:
+                dp[i] = min(dp[i], dp[stk2.pop()]+costs[i])
+            stk2.append(i)
+        return dp[-1]

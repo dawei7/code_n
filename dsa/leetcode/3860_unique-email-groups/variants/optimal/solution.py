@@ -1,10 +1,10 @@
 class Solution:
     def uniqueEmailGroups(self, emails: list[str]) -> int:
-        normalized = set()
-
+        st = set()
         for email in emails:
             local, domain = email.split("@")
-            local = local.split("+", 1)[0].replace(".", "").lower()
-            normalized.add(f"{local}@{domain.lower()}")
-
-        return len(normalized)
+            local = local.split("+")[0].replace(".", "").lower()
+            domain = domain.lower()
+            normalized = local + domain
+            st.add(normalized)
+        return len(st)

@@ -1,26 +1,32 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import bisect
 
 
 class Solution:
-    def minimumMountainRemovals(self, nums: List[int]) -> int:
-        def increasing_lengths(values: List[int]) -> List[int]:
-            tails = []
-            lengths = []
-            for value in values:
-                position = bisect_left(tails, value)
-                if position == len(tails):
-                    tails.append(value)
-                else:
-                    tails[position] = value
-                lengths.append(position + 1)
-            return lengths
-
-        increasing = increasing_lengths(nums)
-        decreasing = increasing_lengths(nums[::-1])[::-1]
-        longest = max(
-            increasing[index] + decreasing[index] - 1
-            for index in range(1, len(nums) - 1)
-            if increasing[index] > 1 and decreasing[index] > 1
-        )
-        return len(nums) - longest
+    def minimumMountainRemovals(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        left_lis_len = [0]*len(nums)
+        lis = []
+        for i in range(len(nums)-1):
+            j = bisect.bisect_left(lis, nums[i])
+            if j == len(lis):
+                lis.append(nums[i])
+            else:
+                lis[j] = nums[i]
+            left_lis_len[i] = j
+        max_len = 0
+        lis = []
+        for i in reversed(range(1, len(nums))):
+            j = bisect.bisect_left(lis, nums[i])
+            if j == len(lis):
+                lis.append(nums[i])
+            else:
+                lis[j] = nums[i]
+            if i < len(nums)-1:
+                max_len = max(max_len, left_lis_len[i]+j)
+        return len(nums) - (1+max_len)

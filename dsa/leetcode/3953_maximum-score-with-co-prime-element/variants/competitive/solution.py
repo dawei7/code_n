@@ -1,52 +1,55 @@
+# Time:  O(n + rlogr)
+# Space: O(r)
+
+# dp, number theory, mobius function, principle of inclusion-exclusion
 class Solution:
-    def maxScore(self, nums: list[int], maxVal: int) -> int:
-        limit = max(maxVal, max(nums))
-        frequency = [0] * (limit + 1)
-        for value in nums:
-            frequency[value] += 1
+    def maxScore(self, nums, maxVal):
+        """
+        :type nums: List[int]
+        :type maxVal: int
+        :rtype: int
+        """
+        def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+            primes = []
+            spf = [-1]*(n+1)  # the smallest prime factor
+            for i in range(2, n+1):
+                if spf[i] == -1:
+                    spf[i] = i
+                    primes.append(i)
+                for p in primes:
+                    if i*p > n or p > spf[i]:
+                        break
+                    spf[i*p] = p
+            return spf
 
-        divisible_count = [0] * (limit + 1)
-        for divisor in range(1, limit + 1):
-            divisible_count[divisor] = sum(frequency[multiple] for multiple in range(divisor, limit + 1, divisor))
+        # https://www.geeksforgeeks.org/program-for-mobius-function-set-2/
+        def mobius(spf):  # Time: O(n), Space: O(n)
+            mu = [0]*len(spf)
+            for i in range(1, len(mu)):
+                mu[i] = 1 if i == 1 else 0 if spf[i//spf[i]] == spf[i] else -mu[i//spf[i]]
+            return mu
 
-        smallest_prime = list(range(limit + 1))
-        factor = 2
-        while factor * factor <= limit:
-            if smallest_prime[factor] == factor:
-                for multiple in range(factor * factor, limit + 1, factor):
-                    if smallest_prime[multiple] == multiple:
-                        smallest_prime[multiple] = factor
-            factor += 1
-
-        best_score = 0
-
-        for selected_value in range(1, limit + 1):
-            if selected_value > maxVal and frequency[selected_value] == 0:
+        mx = max(max(nums), maxVal)
+        spf = linear_sieve_of_eratosthenes(mx)
+        mu = mobius(spf)
+        cnt = [0]*(mx+1)
+        for x in nums:
+            cnt[x] += 1
+        multiple_cnt = [0]*(mx+1)
+        for i in range(1, mx+1):
+            for j in range(i, mx+1, i):
+                multiple_cnt[i] += cnt[j]
+        coprime_cnt = [0]*(mx+1)
+        for i in range(1, mx+1):
+            if not mu[i]*multiple_cnt[i]:
                 continue
-
-            remaining = selected_value
-            prime_factors = []
-            while remaining > 1:
-                prime = smallest_prime[remaining]
-                prime_factors.append(prime)
-                while remaining % prime == 0:
-                    remaining //= prime
-
-            signed_products = [(1, -1)]
-            for prime in prime_factors:
-                signed_products += [(product * prime, -sign) for product, sign in signed_products]
-
-            shared_factor_count = sum(sign * divisible_count[product] for product, sign in signed_products[1:])
-
-            if frequency[selected_value] > 0:
-                modification_cost = shared_factor_count
-                if selected_value > 1:
-                    modification_cost -= 1
-            elif shared_factor_count > 0:
-                modification_cost = shared_factor_count
-            else:
-                modification_cost = 1
-
-            best_score = max(best_score, selected_value - modification_cost)
-
-        return best_score
+            for j in range(i, mx+1, i):
+                coprime_cnt[j] += mu[i]*multiple_cnt[i]
+        result = 0
+        for i in range(1, mx+1):
+            c = len(nums)-coprime_cnt[i]
+            if cnt[i]:
+                result = max(result, i-(c-1 if i != 1 else 0))
+            elif i <= maxVal:
+                result = max(result, i-max(c, 1))
+        return result

@@ -1,49 +1,35 @@
-from collections import deque
-
-
 class Solution:
-    def cutOffTree(self, forest: list[list[int]]) -> int:
-        rows = len(forest)
-        columns = len(forest[0])
-        trees = sorted(
-            (forest[row][column], row, column)
-            for row in range(rows)
-            for column in range(columns)
-            if forest[row][column] > 1
-        )
-        if trees and forest[0][0] == 0:
+    def cutOffTree(self, forest: List[List[int]]) -> int:
+        def f(i, j, x, y):
+            return abs(i - x) + abs(j - y)
+
+        def bfs(i, j, x, y):
+            q = [(f(i, j, x, y), i, j)]
+            dist = {i * n + j: 0}
+            while q:
+                _, i, j = heappop(q)
+                step = dist[i * n + j]
+                if (i, j) == (x, y):
+                    return step
+                for a, b in [[0, -1], [0, 1], [-1, 0], [1, 0]]:
+                    c, d = i + a, j + b
+                    if 0 <= c < m and 0 <= d < n and forest[c][d] > 0:
+                        if c * n + d not in dist or dist[c * n + d] > step + 1:
+                            dist[c * n + d] = step + 1
+                            heappush(q, (dist[c * n + d] + f(c, d, x, y), c, d))
             return -1
 
-        def distance(start_row, start_column, target_row, target_column):
-            if (start_row, start_column) == (target_row, target_column):
-                return 0
-            queue = deque([(start_row, start_column, 0)])
-            visited = {(start_row, start_column)}
-            while queue:
-                row, column, steps = queue.popleft()
-                for next_row, next_column in (
-                    (row - 1, column),
-                    (row + 1, column),
-                    (row, column - 1),
-                    (row, column + 1),
-                ):
-                    if not (0 <= next_row < rows and 0 <= next_column < columns):
-                        continue
-                    if forest[next_row][next_column] == 0:
-                        continue
-                    if (next_row, next_column) in visited:
-                        continue
-                    if (next_row, next_column) == (target_row, target_column):
-                        return steps + 1
-                    visited.add((next_row, next_column))
-                    queue.append((next_row, next_column, steps + 1))
-            return -1
-
-        row = column = total = 0
-        for _, target_row, target_column in trees:
-            steps = distance(row, column, target_row, target_column)
-            if steps == -1:
+        m, n = len(forest), len(forest[0])
+        trees = [
+            (forest[i][j], i, j) for i in range(m) for j in range(n) if forest[i][j] > 1
+        ]
+        trees.sort()
+        i = j = 0
+        ans = 0
+        for _, x, y in trees:
+            t = bfs(i, j, x, y)
+            if t == -1:
                 return -1
-            total += steps
-            row, column = target_row, target_column
-        return total
+            ans += t
+            i, j = x, y
+        return ans

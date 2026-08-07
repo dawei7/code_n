@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,24 +6,22 @@ from typing import Optional
 #         self.right = right
 class Solution:
     def maxProduct(self, root: Optional[TreeNode]) -> int:
-        subtree_sum = {}
-        sums = []
-        stack = [(root, False)]
+        def sum(root: Optional[TreeNode]) -> int:
+            if root is None:
+                return 0
+            return root.val + sum(root.left) + sum(root.right)
 
-        while stack:
-            node, processed = stack.pop()
-            if not processed:
-                stack.append((node, True))
-                if node.right is not None:
-                    stack.append((node.right, False))
-                if node.left is not None:
-                    stack.append((node.left, False))
-                continue
+        def dfs(root: Optional[TreeNode]) -> int:
+            if root is None:
+                return 0
+            t = root.val + dfs(root.left) + dfs(root.right)
+            nonlocal ans, s
+            if t < s:
+                ans = max(ans, t * (s - t))
+            return t
 
-            current_sum = node.val + subtree_sum.get(node.left, 0) + subtree_sum.get(node.right, 0)
-            subtree_sum[node] = current_sum
-            sums.append(current_sum)
-
-        total = subtree_sum[root]
-        best = max(part * (total - part) for part in sums[:-1])
-        return best % 1_000_000_007
+        mod = 10**9 + 7
+        s = sum(root)
+        ans = 0
+        dfs(root)
+        return ans % mod

@@ -1,31 +1,30 @@
 class Solution:
     def shortestCommonSupersequence(self, str1: str, str2: str) -> str:
-        left_length = len(str1)
-        right_length = len(str2)
-        lcs = [[0] * (right_length + 1) for _ in range(left_length + 1)]
-
-        for left in range(1, left_length + 1):
-            for right in range(1, right_length + 1):
-                if str1[left - 1] == str2[right - 1]:
-                    lcs[left][right] = lcs[left - 1][right - 1] + 1
+        m, n = len(str1), len(str2)
+        f = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                if str1[i - 1] == str2[j - 1]:
+                    f[i][j] = f[i - 1][j - 1] + 1
                 else:
-                    lcs[left][right] = max(lcs[left - 1][right], lcs[left][right - 1])
-
-        reversed_result = []
-        left = left_length
-        right = right_length
-        while left and right:
-            if str1[left - 1] == str2[right - 1]:
-                reversed_result.append(str1[left - 1])
-                left -= 1
-                right -= 1
-            elif lcs[left - 1][right] > lcs[left][right - 1]:
-                reversed_result.append(str1[left - 1])
-                left -= 1
+                    f[i][j] = max(f[i - 1][j], f[i][j - 1])
+        ans = []
+        i, j = m, n
+        while i or j:
+            if i == 0:
+                j -= 1
+                ans.append(str2[j])
+            elif j == 0:
+                i -= 1
+                ans.append(str1[i])
             else:
-                reversed_result.append(str2[right - 1])
-                right -= 1
-
-        reversed_result.extend(reversed(str1[:left]))
-        reversed_result.extend(reversed(str2[:right]))
-        return "".join(reversed(reversed_result))
+                if f[i][j] == f[i - 1][j]:
+                    i -= 1
+                    ans.append(str1[i])
+                elif f[i][j] == f[i][j - 1]:
+                    j -= 1
+                    ans.append(str2[j])
+                else:
+                    i, j = i - 1, j - 1
+                    ans.append(str1[i])
+        return ''.join(ans[::-1])

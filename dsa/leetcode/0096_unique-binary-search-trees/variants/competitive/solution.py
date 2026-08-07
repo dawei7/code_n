@@ -1,11 +1,35 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def numTrees(self, n: int) -> int:
-        count = [0] * (n + 1)
-        count[0] = 1
+    def numTrees(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        if n == 0:
+            return 1
 
-        for nodes in range(1, n + 1):
-            for left_size in range(nodes):
-                right_size = nodes - 1 - left_size
-                count[nodes] += count[left_size] * count[right_size]
+        def combination(n, k):
+            count = 1
+            # C(n, k) = (n) / 1 * (n - 1) / 2 ... * (n - k + 1) / k
+            for i in range(1, k + 1):
+                count = count * (n - i + 1) / i
+            return count
 
-        return count[n]
+        return combination(2 * n, n) - combination(2 * n, n - 1)
+
+# Time:  O(n^2)
+# Space: O(n)
+# DP solution.
+class Solution2(object):
+    # @return an integer
+    def numTrees(self, n):
+        counts = [1, 1]
+        for i in range(2, n + 1):
+            count = 0
+            for j in range(i):
+                count += counts[j] * counts[i - j - 1]
+            counts.append(count)
+        return counts[-1]
+

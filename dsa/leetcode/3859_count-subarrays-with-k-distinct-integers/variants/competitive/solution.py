@@ -1,42 +1,36 @@
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+
+
+# freq table, two pointers
 class Solution:
-    def countSubarrays(self, nums: list[int], k: int, m: int) -> int:
-        counts: dict[int, int] = {}
-        left = 0
-        distinct = 0
-        qualified = 0
-        removable_prefix = 0
-        answer = 0
-
-        for value in nums:
-            previous = counts.get(value, 0)
-            counts[value] = previous + 1
-
-            if previous == 0:
-                distinct += 1
-            if previous + 1 == m:
-                qualified += 1
-
-            if distinct > k:
-                while distinct > k:
-                    outgoing = nums[left]
-                    if counts[outgoing] == m:
-                        qualified -= 1
-
-                    counts[outgoing] -= 1
-                    left += 1
-
-                    if counts[outgoing] == 0:
-                        del counts[outgoing]
-                        distinct -= 1
-
-                removable_prefix = 0
-
-            if distinct == k and qualified == k:
-                while counts[nums[left]] > m:
-                    counts[nums[left]] -= 1
-                    left += 1
-                    removable_prefix += 1
-
-                answer += removable_prefix + 1
-
-        return answer
+    def countSubarrays(self, nums, k, m):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type m: int
+        :rtype: int
+        """
+        cnt1, cnt2 = collections.defaultdict(int), collections.defaultdict(int)
+        result = left = right = l = 0
+        for x in nums:
+            cnt1[x] += 1
+            while len(cnt1) == k+1:
+                cnt1[nums[left]] -= 1
+                if cnt1[nums[left]] == 0:
+                    del cnt1[nums[left]]
+                left += 1
+            cnt2[x] += 1
+            if cnt2[x] == m:
+                l += 1
+            while l == k:
+                if cnt2[nums[right]] == m:
+                    l -= 1
+                cnt2[nums[right]] -= 1
+                if cnt2[nums[right]] == 0:
+                    del cnt2[nums[right]]
+                right += 1
+            result += max(right-left, 0)
+        return result

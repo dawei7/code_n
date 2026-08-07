@@ -1,11 +1,30 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def subtractProductAndSum(self, n: int) -> int:
-        product = 1
-        digit_sum = 0
-
+    def subtractProductAndSum(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        product, total = 1, 0
         while n:
-            n, digit = divmod(n, 10)
-            product *= digit
-            digit_sum += digit
+            n, r = divmod(n, 10)
+            product *= r
+            total += r
+        return product-total
 
-        return product - digit_sum
+
+# Time:  O(logn)
+# Space: O(logn)
+import operator
+
+
+class Solution2(object):
+    def subtractProductAndSum(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        A = map(int, str(n))
+        return reduce(operator.mul, A) - sum(A)

@@ -1,12 +1,21 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# brute force
 class Solution:
-    def smallestNumber(self, n: int, t: int) -> int:
-        for candidate in range(n, n + 10):
-            digit_product = 1
-            value = candidate
-
-            while value:
-                digit_product *= value % 10
-                value //= 10
-
-            if digit_product % t == 0:
-                return candidate
+    def smallestNumber(self, n, t):
+        """
+        :type n: int
+        :type t: int
+        :rtype: int
+        """
+        def check(x):
+            result = 1
+            while x:
+                result = (result*(x%10))%t
+                x //= 10
+            return result == 0
+    
+        while not check(n):
+            n += 1
+        return n

@@ -1,35 +1,75 @@
-from typing import List
+# Time:  O(m * n * α(n)) ~= O(m * n)
+# Space: O(m * n)
+
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+        self.count = n
+
+    def find_set(self, x):
+       if self.set[x] != x:
+           self.set[x] = self.find_set(self.set[x])  # path compression.
+       return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root != y_root:
+            self.set[min(x_root, y_root)] = max(x_root, y_root)
+            self.count -= 1
 
 
 class Solution:
-    def containsCycle(self, grid: List[List[str]]) -> bool:
-        rows = len(grid)
-        columns = len(grid[0])
-        seen = [[False] * columns for _ in range(rows)]
+    def containsCycle(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: bool
+        """
+        def index(n, i, j):
+            return i*n + j
+    
+        union_find = UnionFind(len(grid)*len(grid[0]))
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i and j and grid[i][j] == grid[i-1][j] == grid[i][j-1] and \
+                   union_find.find_set(index(len(grid[0]), i-1, j)) == \
+                   union_find.find_set(index(len(grid[0]), i, j-1)):
+                    return True
+                if i and grid[i][j] == grid[i-1][j]:
+                    union_find.union_set(index(len(grid[0]), i-1, j),
+                                         index(len(grid[0]),i, j))
+                if j and grid[i][j] == grid[i][j-1]:
+                    union_find.union_set(index(len(grid[0]), i, j-1),
+                                         index(len(grid[0]), i, j))
+        return False
 
-        for start_row in range(rows):
-            for start_column in range(columns):
-                if seen[start_row][start_column]:
+
+# Time:  O(m * n)
+# Space: O(m * n)
+class Solution2(object):
+    def containsCycle(self, grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: bool
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if not grid[i][j]:
                     continue
-
-                seen[start_row][start_column] = True
-                stack = [(start_row, start_column, -1, -1)]
-
-                while stack:
-                    row, column, parent_row, parent_column = stack.pop()
-                    for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_column = column + column_step
-                        if not (0 <= next_row < rows and 0 <= next_column < columns):
-                            continue
-                        if grid[next_row][next_column] != grid[row][column]:
-                            continue
-                        if (next_row, next_column) == (parent_row, parent_column):
-                            continue
-                        if seen[next_row][next_column]:
+                val = grid[i][j]
+                q = [(i, j)]
+                while q:
+                    new_q = []
+                    for r, c in q:
+                        if not grid[r][c]:
                             return True
-
-                        seen[next_row][next_column] = True
-                        stack.append((next_row, next_column, row, column))
-
+                        grid[r][c] = 0
+                        for dr, dc in directions:
+                            nr, nc = r+dr, c+dc
+                            if not (0 <= nr < len(grid) and
+                                    0 <= nc < len(grid[0]) and
+                                    grid[nr][nc] == val):
+                                continue
+                            new_q.append((nr, nc))
+                    q = new_q
         return False

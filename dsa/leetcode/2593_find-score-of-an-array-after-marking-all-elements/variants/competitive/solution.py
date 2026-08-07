@@ -1,17 +1,24 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+# simulation, sort, hash table
 class Solution:
-    def findScore(self, nums: List[int]) -> int:
-        marked = [False] * len(nums)
-        score = 0
-
-        for value, index in sorted((value, index) for index, value in enumerate(nums)):
-            if marked[index]:
+    def findScore(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        idxs = range(len(nums))
+        idxs.sort(key=lambda x: (nums[x], x))
+        lookup = [False]*len(nums)
+        result = 0
+        for i in idxs:
+            if lookup[i]:
                 continue
-
-            score += value
-            marked[index] = True
-            if index > 0:
-                marked[index - 1] = True
-            if index + 1 < len(nums):
-                marked[index + 1] = True
-
-        return score
+            lookup[i] = True
+            if i-1 >= 0:
+                lookup[i-1] = True
+            if i+1 < len(lookup):
+                lookup[i+1] = True
+            result += nums[i]
+        return result

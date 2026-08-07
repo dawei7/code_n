@@ -1,13 +1,25 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def longestPalindrome(self, s: str) -> int:
-        unmatched = set()
-        length = 0
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        odds = 0
+        for k, v in collections.Counter(s).iteritems():
+            odds += v & 1
+        return len(s) - odds + int(odds > 0)
 
-        for character in s:
-            if character in unmatched:
-                unmatched.remove(character)
-                length += 2
-            else:
-                unmatched.add(character)
+    def longestPalindrome2(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        odd = sum(map(lambda x: x & 1, collections.Counter(s).values()))
+        return len(s) - odd + int(odd > 0)
 
-        return length + bool(unmatched)

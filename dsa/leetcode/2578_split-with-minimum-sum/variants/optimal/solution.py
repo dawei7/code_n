@@ -1,12 +1,16 @@
 class Solution:
     def splitNum(self, num: int) -> int:
-        digits = sorted(str(num))
-        first = second = 0
-
-        for index, digit in enumerate(digits):
-            if index % 2 == 0:
-                first = first * 10 + int(digit)
-            else:
-                second = second * 10 + int(digit)
-
-        return first + second
+        cnt = Counter()
+        n = 0
+        while num:
+            cnt[num % 10] += 1
+            num //= 10
+            n += 1
+        ans = [0] * 2
+        j = 0
+        for i in range(n):
+            while cnt[j] == 0:
+                j += 1
+            cnt[j] -= 1
+            ans[i & 1] = ans[i & 1] * 10 + j
+        return sum(ans)

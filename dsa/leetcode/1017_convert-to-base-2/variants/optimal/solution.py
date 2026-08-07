@@ -1,12 +1,13 @@
 class Solution:
     def baseNeg2(self, n: int) -> str:
-        if n == 0:
-            return "0"
-
-        digits = []
-        while n != 0:
-            remainder = n & 1
-            digits.append(str(remainder))
-            n = (n - remainder) // -2
-
-        return "".join(reversed(digits))
+        k = 1
+        ans = []
+        while n:
+            if n % 2:
+                ans.append('1')
+                n -= k
+            else:
+                ans.append('0')
+            n //= 2
+            k *= -1
+        return ''.join(ans[::-1]) or '0'

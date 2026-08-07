@@ -1,47 +1,69 @@
-from collections import deque
+# Time:  O(m * n)
+# Space: O(m * n)
 
-
+# simulation, bfs
 class Solution:
-    def minimumSeconds(self, land: List[List[str]]) -> int:
-        rows, columns = len(land), len(land[0])
-        flood_time = [[float("inf")] * columns for _ in range(rows)]
-        flood_queue = deque()
-        start = None
-        for row in range(rows):
-            for column in range(columns):
-                if land[row][column] == "*":
-                    flood_time[row][column] = 0
-                    flood_queue.append((row, column))
-                elif land[row][column] == "S":
-                    start = (row, column)
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        while flood_queue:
-            row, column = flood_queue.popleft()
-            for dr, dc in directions:
-                next_row, next_column = row + dr, column + dc
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and land[next_row][next_column] == "."
-                    and flood_time[next_row][next_column] == float("inf")
-                ):
-                    flood_time[next_row][next_column] = flood_time[row][column] + 1
-                    flood_queue.append((next_row, next_column))
-        queue = deque([(start[0], start[1], 0)])
-        seen = {start}
-        while queue:
-            row, column, time = queue.popleft()
-            for dr, dc in directions:
-                next_row, next_column = row + dr, column + dc
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
-                    continue
-                if land[next_row][next_column] == "D":
-                    return time + 1
-                if (
-                    land[next_row][next_column] == "."
-                    and (next_row, next_column) not in seen
-                    and time + 1 < flood_time[next_row][next_column]
-                ):
-                    seen.add((next_row, next_column))
-                    queue.append((next_row, next_column, time + 1))
+    def minimumSeconds(self, land):
+        """
+        :type land: List[List[str]]
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        lookup = [[-1 if land[i][j] == "*" else 0 for j in range(len(land[0]))] for i in range(len(land))]
+        q = [(i, j, -1) for i in range(len(land)) for j in range(len(land[0])) if land[i][j] == "*"]
+        q.append(next((i, j, 1) for i in range(len(land)) for j in range(len(land[0])) if land[i][j] == "S"))
+        lookup[q[-1][0]][q[-1][1]] = 1
+        while q:
+            new_q = []
+            for i, j, d in q:
+                if land[i][j] == "D":
+                    return d-1
+                for di, dj in DIRECTIONS:
+                    ni, nj = i+di, j+dj
+                    if not (0 <= ni < len(land) and 0 <= nj < len(land[0]) and land[ni][nj] != "X" and lookup[ni][nj] != -1):
+                        continue
+                    if d != -1 and lookup[ni][nj] == 0:
+                        lookup[ni][nj] = 1
+                        new_q.append((ni, nj, d+1))
+                    elif d == -1 and land[ni][nj] != "D":
+                        lookup[ni][nj] = -1
+                        new_q.append((ni, nj, -1))
+            q = new_q
+        return -1
+
+
+# Time:  O(m * n)
+# Space: O(m * n)
+# simulation, bfs
+class Solution2(object):
+    def minimumSeconds(self, land):
+        """
+        :type land: List[List[str]]
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        lookup1 = [[0 if land[i][j] == "*" else -1 for j in range(len(land[0]))] for i in range(len(land))]
+        lookup2 = [[-1]*len(land[0]) for _ in range(len(land))]
+        q1 = [(i, j) for i in range(len(land)) for j in range(len(land[0])) if land[i][j] == "*"]
+        q2 = [next((i, j) for i in range(len(land)) for j in range(len(land[0])) if land[i][j] == "S")]
+        lookup2[q2[0][0]][q2[0][1]] = 0
+        while q1 or q2:
+            new_q1, new_q2 = [], []
+            for i, j in q1:
+                for di, dj in DIRECTIONS:
+                    ni, nj = i+di, j+dj
+                    if not (0 <= ni < len(land) and 0 <= nj < len(land[0]) and land[ni][nj] != "X" and land[ni][nj] != "D" and lookup1[ni][nj] == -1):
+                        continue
+                    lookup1[ni][nj] = 0
+                    new_q1.append((ni, nj))
+            for i, j in q2:
+                if land[i][j] == "D":
+                    return lookup2[i][j]
+                for di, dj in DIRECTIONS:
+                    ni, nj = i+di, j+dj
+                    if not (0 <= ni < len(land) and 0 <= nj < len(land[0]) and land[ni][nj] != "X" and lookup2[ni][nj] == lookup1[ni][nj] == -1):
+                        continue
+                    lookup2[ni][nj] = lookup2[i][j]+1
+                    new_q2.append((ni, nj))
+            q1, q2 = new_q1, new_q2
         return -1

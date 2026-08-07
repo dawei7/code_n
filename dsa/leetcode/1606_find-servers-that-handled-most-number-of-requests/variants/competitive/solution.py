@@ -1,56 +1,69 @@
+# Time:  O(nlogk)
+# Space: O(k)
+
+import itertools
 import heapq
-from typing import List
 
 
 class Solution:
-    def busiestServers(self, k: int, arrival: List[int], load: List[int]) -> List[int]:
-        available = [0] + [index & -index for index in range(1, k + 1)]
-
-        def add(server: int, delta: int) -> None:
-            index = server + 1
-            while index <= k:
-                available[index] += delta
-                index += index & -index
-
-        def prefix(count: int) -> int:
-            total = 0
-            while count:
-                total += available[count]
-                count -= count & -count
-            return total
-
-        def server_with_order(order: int) -> int:
-            index = 0
-            step = 1 << (k.bit_length() - 1)
-            while step:
-                candidate = index + step
-                if candidate <= k and available[candidate] < order:
-                    index = candidate
-                    order -= available[candidate]
-                step >>= 1
-            return index
-
-        busy = []
-        handled = [0] * k
-        for request, (start_time, duration) in enumerate(zip(arrival, load)):
-            while busy and busy[0][0] <= start_time:
-                _, server = heapq.heappop(busy)
-                add(server, 1)
-
-            total_available = prefix(k)
-            if total_available == 0:
+    def busiestServers(self, k, arrival, load):
+        """
+        :type k: int
+        :type arrival: List[int]
+        :type load: List[int]
+        :rtype: List[int]
+        """
+        count = [0]*k
+        min_heap_of_endtimes = []
+        min_heap_of_nodes_after_curr = []
+        min_heap_of_nodes_before_curr = range(k)
+        for i, (t, l) in enumerate(itertools.izip(arrival, load)):
+            if i % k == 0:
+                min_heap_of_nodes_before_curr, min_heap_of_nodes_after_curr = [], min_heap_of_nodes_before_curr
+            while min_heap_of_endtimes and min_heap_of_endtimes[0][0] <= t:
+                _, free = heapq.heappop(min_heap_of_endtimes)
+                if free < i % k:
+                    heapq.heappush(min_heap_of_nodes_before_curr, free)
+                else:
+                    heapq.heappush(min_heap_of_nodes_after_curr, free)
+            min_heap_of_candidates = min_heap_of_nodes_after_curr if min_heap_of_nodes_after_curr else min_heap_of_nodes_before_curr
+            if not min_heap_of_candidates:
                 continue
+            node = heapq.heappop(min_heap_of_candidates)
+            count[node] += 1
+            heapq.heappush(min_heap_of_endtimes, (t+l, node))
+        max_count = max(count)
+        return [i for i in range(k) if count[i] == max_count]
 
-            preferred = request % k
-            before_preferred = prefix(preferred)
-            if total_available > before_preferred:
-                order = before_preferred + 1
-            else:
-                order = 1
-            server = server_with_order(order)
-            add(server, -1)
-            handled[server] += 1
-            heapq.heappush(busy, (start_time + duration, server))
 
-        busiest_count = max(handled)
-        return [server for server, count in enumerate(handled) if count == busiest_count]
+# Time:  O(nlogk)
+# Space: O(k)
+import sortedcontainers  # required to do pip install
+import itertools
+import heapq
+
+
+# reference: http://www.grantjenks.com/docs/sortedcontainers/sortedlist.html
+class Solution2(object):
+    def busiestServers(self, k, arrival, load):
+        """
+        :type k: int
+        :type arrival: List[int]
+        :type load: List[int]
+        :rtype: List[int]
+        """
+        count = [0]*k 
+        min_heap_of_endtimes = []
+        availables = sortedcontainers.SortedList(range(k))  # O(klogk)
+        for i, (t, l) in enumerate(itertools.izip(arrival, load)):
+            while min_heap_of_endtimes and min_heap_of_endtimes[0][0] <= t:
+                _, free = heapq.heappop(min_heap_of_endtimes)  # O(logk)
+                availables.add(free)  # O(logk)
+            if not availables: 
+                continue
+            idx = availables.bisect_left(i % k) % len(availables)  # O(logk)
+            node = availables.pop(idx)  # O(logk)
+            count[node] += 1
+            heapq.heappush(min_heap_of_endtimes, (t+l, node))  # O(logk)
+        max_count = max(count)
+        return [i for i in range(k) if count[i] == max_count]

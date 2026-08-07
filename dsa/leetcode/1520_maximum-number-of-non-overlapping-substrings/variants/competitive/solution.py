@@ -1,36 +1,73 @@
-from typing import List
-
+# Time:  O(n)
+# space: O(1)
 
 class Solution:
-    def maxNumOfSubstrings(self, s: str) -> List[str]:
-        first = [len(s)] * 26
-        last = [-1] * 26
-        for index, char in enumerate(s):
-            label = ord(char) - ord("a")
-            first[label] = min(first[label], index)
-            last[label] = index
-
-        answer = []
-        selected_end = -1
-        for left, char in enumerate(s):
-            label = ord(char) - ord("a")
-            if first[label] != left:
+    def maxNumOfSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        def find_right_from_left(s, first, last, left):
+            right, i = last[ord(s[left])-ord('a')], left
+            while i <= right:
+                if first[ord(s[i])-ord('a')] < left:
+                    return -1
+                right = max(right, last[ord(s[i])-ord('a')])
+                i += 1
+            return right
+            
+        first, last = [float("inf")]*26, [float("-inf")]*26
+        for i, c in enumerate(s):
+            first[ord(c)-ord('a')] = min(first[ord(c)-ord('a')], i)
+            last[ord(c)-ord('a')] = max(last[ord(c)-ord('a')], i)
+        result = [""]
+        right = float("inf")
+        for left, c in enumerate(s):
+            if left != first[ord(c)-ord('a')]:
                 continue
+            new_right = find_right_from_left(s, first, last, left)
+            if new_right == -1:
+                continue
+            if left > right:
+                result.append("")
+            right = new_right
+            result[-1] = s[left:right+1]
+        return result
 
-            right = last[label]
-            index = left
-            while index <= right:
-                inner = ord(s[index]) - ord("a")
-                if first[inner] < left:
-                    break
-                right = max(right, last[inner])
-                index += 1
-            else:
-                substring = s[left : right + 1]
-                if left > selected_end:
-                    answer.append(substring)
-                else:
-                    answer[-1] = substring
-                selected_end = right
 
-        return answer
+# Time:  O(n)
+# space: O(1)
+class Solution2(object):
+    def maxNumOfSubstrings(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        def find_right_from_left(s, first, last, left):
+            right, i = last[ord(s[left])-ord('a')], left
+            while i <= right:
+                if first[ord(s[i])-ord('a')] < left:
+                    return -1
+                right = max(right, last[ord(s[i])-ord('a')])
+                i += 1
+            return right
+
+        first, last = [float("inf")]*26, [float("-inf")]*26
+        for i, c in enumerate(s):
+            first[ord(c)-ord('a')] = min(first[ord(c)-ord('a')], i)
+            last[ord(c)-ord('a')] = max(last[ord(c)-ord('a')], i)
+        intervals = []
+        for c in range(len(first)):
+            if first[c] == float("inf"):
+                continue
+            left, right = first[c], find_right_from_left(s, first, last, first[c])
+            if right != -1:
+                intervals.append((right, left))
+        intervals.sort()  # Time: O(26log26)
+        result, prev = [], -1
+        for right, left in intervals:
+            if left <= prev:
+                continue
+            result.append(s[left:right+1])
+            prev = right
+        return result

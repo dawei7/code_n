@@ -1,16 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
+
+
 class Solution:
-    def canConvertString(self, s: str, t: str, k: int) -> bool:
+    def canConvertString(self, s, t, k):
+        """
+        :type s: str
+        :type t: str
+        :type k: int
+        :rtype: bool
+        """
         if len(s) != len(t):
             return False
-
-        used = [0] * 26
-        for source, target in zip(s, t):
-            shift = (ord(target) - ord(source)) % 26
-            if shift == 0:
-                continue
-            move = shift + 26 * used[shift]
-            if move > k:
+        cnt = [0]*26
+        for a, b in itertools.izip(s, t):
+            diff = (ord(b)-ord(a)) % len(cnt)
+            if diff != 0 and cnt[diff]*len(cnt) + diff > k:
                 return False
-            used[shift] += 1
-
+            cnt[diff] += 1
         return True

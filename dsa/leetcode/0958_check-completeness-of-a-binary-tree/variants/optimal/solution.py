@@ -1,7 +1,3 @@
-from collections import deque
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,17 +5,12 @@ from typing import Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
-        queue = deque([root])
-        missing_seen = False
-
-        while queue:
-            node = queue.popleft()
+    def isCompleteTree(self, root: TreeNode) -> bool:
+        q = deque([root])
+        while q:
+            node = q.popleft()
             if node is None:
-                missing_seen = True
-                continue
-            if missing_seen:
-                return False
-            queue.append(node.left)
-            queue.append(node.right)
-        return True
+                break
+            q.append(node.left)
+            q.append(node.right)
+        return all(node is None for node in q)

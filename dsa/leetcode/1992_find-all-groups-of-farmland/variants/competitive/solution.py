@@ -1,27 +1,24 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(1)
 
 class Solution:
-    def findFarmland(self, land: List[List[int]]) -> List[List[int]]:
-        rows = len(land)
-        columns = len(land[0])
-        groups = []
-
-        for row in range(rows):
-            for column in range(columns):
-                if land[row][column] == 0:
+    def findFarmland(self, land):
+        """
+        :type land: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        result = []
+        for i in range(len(land)):
+            for j in range(len(land[0])):
+                if land[i][j] != 1:
                     continue
-                if row > 0 and land[row - 1][column] == 1:
-                    continue
-                if column > 0 and land[row][column - 1] == 1:
-                    continue
-
-                bottom = row
-                while bottom + 1 < rows and land[bottom + 1][column] == 1:
-                    bottom += 1
-                right = column
-                while right + 1 < columns and land[row][right + 1] == 1:
-                    right += 1
-                groups.append([row, column, bottom, right])
-
-        return groups
+                ni, nj = i, j
+                while ni+1 < len(land) and land[ni+1][j] == 1:
+                    ni += 1
+                while nj+1 < len(land[0]) and land[i][nj+1] == 1:
+                    nj += 1
+                for r in range(i, ni+1):
+                    for c in range(j, nj+1):
+                        land[r][c] = -1
+                result.append([i, j, ni, nj])
+        return result

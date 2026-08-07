@@ -1,17 +1,21 @@
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional["TreeNode"]) -> bool:
-        stack = [(root, float("-inf"), float("inf"))]
-
-        while stack:
-            node, lower, upper = stack.pop()
-            if node is None:
-                continue
-            if not lower < node.val < upper:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root: Optional[TreeNode]) -> bool:
+            if root is None:
+                return True
+            if not dfs(root.left):
                 return False
-            stack.append((node.right, node.val, upper))
-            stack.append((node.left, lower, node.val))
+            nonlocal prev
+            if prev >= root.val:
+                return False
+            prev = root.val
+            return dfs(root.right)
 
-        return True
+        prev = -inf
+        return dfs(root)

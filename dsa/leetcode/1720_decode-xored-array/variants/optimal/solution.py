@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     def decode(self, encoded: List[int], first: int) -> List[int]:
-        decoded = [first]
-        for value in encoded:
-            decoded.append(decoded[-1] ^ value)
-        return decoded
+        ans = [first]
+        for x in encoded:
+            ans.append(ans[-1] ^ x)
+        return ans

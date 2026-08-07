@@ -1,18 +1,13 @@
 class Solution:
-    def minIncrease(self, nums: list[int]) -> int:
-        def cost(index: int) -> int:
-            required = max(nums[index - 1], nums[index + 1]) + 1
-            return max(0, required - nums[index])
+    def minIncrease(self, nums: List[int]) -> int:
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i >= len(nums) - 1:
+                return 0
+            cost = max(0, max(nums[i - 1], nums[i + 1]) + 1 - nums[i])
+            ans = cost + dfs(i + 2, j)
+            if j:
+                ans = min(ans, dfs(i + 1, 0))
+            return ans
 
-        n = len(nums)
-        if n % 2 == 1:
-            return sum(cost(index) for index in range(1, n - 1, 2))
-
-        current = sum(cost(index) for index in range(2, n - 1, 2))
-        answer = current
-
-        for even_index in range(2, n - 1, 2):
-            current += cost(even_index - 1) - cost(even_index)
-            answer = min(answer, current)
-
-        return answer
+        return dfs(1, len(nums) & 1 ^ 1)

@@ -1,6 +1,8 @@
 class Solution:
     def passThePillow(self, n: int, time: int) -> int:
-        traversals, offset = divmod(time, n - 1)
-        if traversals % 2 == 0:
-            return offset + 1
-        return n - offset
+        ans = k = 1
+        for _ in range(time):
+            ans += k
+            if ans == 1 or ans == n:
+                k *= -1
+        return ans

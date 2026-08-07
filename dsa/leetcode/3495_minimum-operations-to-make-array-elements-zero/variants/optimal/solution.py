@@ -1,21 +1,18 @@
-from typing import List
-
-
 class Solution:
     def minOperations(self, queries: List[List[int]]) -> int:
-        def prefix_steps(upto: int) -> int:
-            total = 0
-            start = 1
-            steps = 1
-            while start <= upto:
-                next_start = start * 4
-                total += (min(upto + 1, next_start) - start) * steps
-                start = next_start
-                steps += 1
-            return total
+        def f(x: int) -> int:
+            res = 0
+            p = i = 1
+            while p <= x:
+                cnt = min(p * 4 - 1, x) - p + 1
+                res += cnt * i
+                i += 1
+                p *= 4
+            return res
 
-        answer = 0
-        for left, right in queries:
-            required = prefix_steps(right) - prefix_steps(left - 1)
-            answer += (required + 1) // 2
-        return answer
+        ans = 0
+        for l, r in queries:
+            s = f(r) - f(l - 1)
+            mx = f(r) - f(r - 1)
+            ans += max((s + 1) // 2, mx)
+        return ans

@@ -1,21 +1,12 @@
-from typing import List
-
-
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
-        left = 0
-        zeros = 0
-        best = 0
-
-        for right, value in enumerate(nums):
-            if value == 0:
-                zeros += 1
-
-            while zeros > 1:
-                if nums[left] == 0:
-                    zeros -= 1
-                left += 1
-
-            best = max(best, right - left)
-
-        return best
+        n = len(nums)
+        left = [0] * (n + 1)
+        right = [0] * (n + 1)
+        for i, x in enumerate(nums, 1):
+            if x:
+                left[i] = left[i - 1] + 1
+        for i in range(n - 1, -1, -1):
+            if nums[i]:
+                right[i] = right[i + 1] + 1
+        return max(left[i] + right[i + 1] for i in range(n))

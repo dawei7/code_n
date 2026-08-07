@@ -1,18 +1,19 @@
+LIMIT = 10**9
+
+cnt = defaultdict(int)
+cubes = [i**3 for i in range(1001)]
+
+for a in range(1, 1001):
+    for b in range(a, 1001):
+        x = cubes[a] + cubes[b]
+        if x > LIMIT:
+            break
+        cnt[x] += 1
+
+GOOD = sorted(x for x, v in cnt.items() if v > 1)
+
+
 class Solution:
     def findGoodIntegers(self, n: int) -> list[int]:
-        cubes = []
-        value = 1
-        while value * value * value + 1 <= n:
-            cubes.append(value * value * value)
-            value += 1
-
-        representations = {}
-        for right in range(len(cubes)):
-            right_cube = cubes[right]
-            for left in range(right + 1):
-                total = cubes[left] + right_cube
-                if total > n:
-                    break
-                representations[total] = representations.get(total, 0) + 1
-
-        return sorted(total for total, count in representations.items() if count >= 2)
+        idx = bisect_right(GOOD, n)
+        return GOOD[:idx]

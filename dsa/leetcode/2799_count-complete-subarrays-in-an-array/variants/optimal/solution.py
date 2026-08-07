@@ -1,19 +1,11 @@
 class Solution:
     def countCompleteSubarrays(self, nums: List[int]) -> int:
-        required = len(set(nums))
-        frequencies = {}
-        left = 0
-        answer = 0
-
-        for right, value in enumerate(nums):
-            frequencies[value] = frequencies.get(value, 0) + 1
-
-            while len(frequencies) == required:
-                answer += len(nums) - right
-                outgoing = nums[left]
-                frequencies[outgoing] -= 1
-                if frequencies[outgoing] == 0:
-                    del frequencies[outgoing]
-                left += 1
-
-        return answer
+        cnt = len(set(nums))
+        ans, n = 0, len(nums)
+        for i in range(n):
+            s = set()
+            for x in nums[i:]:
+                s.add(x)
+                if len(s) == cnt:
+                    ans += 1
+        return ans

@@ -1,37 +1,30 @@
-from typing import List
+# Time:  O(n), n is the total sum of the lengths of words
+# Space: O(t), t is the number of nodes in trie
 
-
-class _Node:
-    def __init__(self):
-        self.children = [None] * 26
-        self.word = None
+from collections import defaultdict
+from operator import getitem
 
 
 class Solution:
-    def longestWord(self, words: List[str]) -> str:
-        root = _Node()
+    def longestWord(self, words):
+        """
+        :type words: List[str]
+        :rtype: str
+        """
+        _trie = lambda: defaultdict(_trie)
+        trie = _trie()
+        for i, word in enumerate(words):
+            reduce(getitem, word, trie)["_end"] = i
 
-        for word in words:
-            node = root
-            for character in word:
-                index = ord(character) - ord("a")
-                if node.children[index] is None:
-                    node.children[index] = _Node()
-                node = node.children[index]
-            node.word = word
-
-        best = ""
-        stack = [root]
-
+        # DFS
+        stack = trie.values()
+        result = ""
         while stack:
-            node = stack.pop()
-            if node.word is not None and (
-                len(node.word) > len(best) or (len(node.word) == len(best) and node.word < best)
-            ):
-                best = node.word
+            curr = stack.pop()
+            if "_end" in curr:
+                word = words[curr["_end"]]
+                if len(word) > len(result) or (len(word) == len(result) and word < result):
+                    result = word
+                stack += [curr[letter] for letter in curr if letter != "_end"]
+        return result
 
-            for child in node.children:
-                if child is not None and child.word is not None:
-                    stack.append(child)
-
-        return best

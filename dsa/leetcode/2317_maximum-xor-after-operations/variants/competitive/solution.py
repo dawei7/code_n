@@ -1,9 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# bit manipulation
 class Solution:
-    def maximumXOR(self, nums: List[int]) -> int:
-        answer = 0
-        for value in nums:
-            answer |= value
-        return answer
+    def maximumXOR(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return reduce(lambda x, y: x|y, nums)

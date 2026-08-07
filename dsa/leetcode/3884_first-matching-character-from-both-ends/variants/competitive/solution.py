@@ -1,7 +1,11 @@
-class Solution:
-    def firstMatchingIndex(self, s: str) -> int:
-        for index in range(len(s)):
-            if s[index] == s[len(s) - index - 1]:
-                return index
+# Time:  O(n)
+# Space: O(1)
 
-        return -1
+# string
+class Solution:
+    def firstMatchingIndex(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        return next((i for i in range(len(s)) if s[i] == s[~i]), -1)

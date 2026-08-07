@@ -1,19 +1,42 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
+# simulation, doubly linked list, sorted list
 class Solution:
-    def minimumPairRemoval(self, nums: List[int]) -> int:
-        values = nums[:]
-        operations = 0
+    def minimumPairRemoval(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def add(i):
+            if 0 <= i < right[i] < len(nums):
+                sl.add([nums[i]+nums[right[i]], i])
+                if nums[i] > nums[right[i]]:
+                    cnt[0] += 1
 
-        while any(values[index] > values[index + 1] for index in range(len(values) - 1)):
-            best_index = 0
-            for index in range(1, len(values) - 1):
-                if values[index] + values[index + 1] < values[best_index] + values[best_index + 1]:
-                    best_index = index
+        def remove(i):
+            if 0 <= i < right[i] < len(nums):
+                sl.remove([nums[i]+nums[right[i]], i])
+                if nums[i] > nums[right[i]]:
+                    cnt[0] -= 1
 
-            values[best_index] += values[best_index + 1]
-            values.pop(best_index + 1)
-            operations += 1
-
-        return operations
+        left = range(-1, (len(nums)+1)-1)
+        right = range(1, len(nums)+1)
+        cnt = [sum(nums[i] > nums[i+1] for i in range(len(nums)-1))]
+        sl = SortedList([nums[i]+nums[i+1], i] for i in range(len(nums)-1))
+        result = 0
+        while cnt[0]:
+            _, i = sl[0]
+            remove(left[i])
+            remove(i)
+            remove(right[i])
+            nums[i] += nums[right[i]]
+            left[right[right[i]]] = i
+            right[i] = right[right[i]]
+            add(left[i])
+            add(i)
+            result += 1
+        return result

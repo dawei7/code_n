@@ -1,42 +1,24 @@
-from typing import List
-
-
 class Solution:
     def cherryPickup(self, grid: List[List[int]]) -> int:
-        size = len(grid)
-        unreachable = -(10**9)
-        previous = [[unreachable] * size for _ in range(size)]
-        previous[0][0] = grid[0][0]
-
-        for step in range(1, 2 * size - 1):
-            current = [[unreachable] * size for _ in range(size)]
-            row_start = max(0, step - size + 1)
-            row_end = min(size - 1, step)
-
-            for first_row in range(row_start, row_end + 1):
-                first_column = step - first_row
-                if grid[first_row][first_column] == -1:
-                    continue
-                for second_row in range(row_start, row_end + 1):
-                    second_column = step - second_row
-                    if grid[second_row][second_column] == -1:
+        n = len(grid)
+        f = [[[-inf] * n for _ in range(n)] for _ in range((n << 1) - 1)]
+        f[0][0][0] = grid[0][0]
+        for k in range(1, (n << 1) - 1):
+            for i1 in range(n):
+                for i2 in range(n):
+                    j1, j2 = k - i1, k - i2
+                    if (
+                        not 0 <= j1 < n
+                        or not 0 <= j2 < n
+                        or grid[i1][j1] == -1
+                        or grid[i2][j2] == -1
+                    ):
                         continue
-
-                    best = previous[first_row][second_row]
-                    if first_row > 0:
-                        best = max(best, previous[first_row - 1][second_row])
-                    if second_row > 0:
-                        best = max(best, previous[first_row][second_row - 1])
-                    if first_row > 0 and second_row > 0:
-                        best = max(best, previous[first_row - 1][second_row - 1])
-                    if best == unreachable:
-                        continue
-
-                    cherries = grid[first_row][first_column]
-                    if first_row != second_row:
-                        cherries += grid[second_row][second_column]
-                    current[first_row][second_row] = best + cherries
-
-            previous = current
-
-        return max(0, previous[size - 1][size - 1])
+                    t = grid[i1][j1]
+                    if i1 != i2:
+                        t += grid[i2][j2]
+                    for x1 in range(i1 - 1, i1 + 1):
+                        for x2 in range(i2 - 1, i2 + 1):
+                            if x1 >= 0 and x2 >= 0:
+                                f[k][i1][i2] = max(f[k][i1][i2], f[k - 1][x1][x2] + t)
+        return max(0, f[-1][-1][-1])

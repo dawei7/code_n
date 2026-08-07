@@ -1,20 +1,15 @@
 class Solution:
     def maximumStrength(self, nums: List[int], k: int) -> int:
-        negative_infinity = -(10**30)
-        best = [negative_infinity] * (k + 1)
-        ending = [negative_infinity] * (k + 1)
-        best[0] = 0
-
-        for value in nums:
-            for used in range(k, 0, -1):
-                weight = k - used + 1
-                if used % 2 == 0:
-                    weight = -weight
-                contribution = weight * value
-                ending[used] = max(
-                    ending[used] + contribution,
-                    best[used - 1] + contribution,
-                )
-                best[used] = max(best[used], ending[used])
-
-        return best[k]
+        n = len(nums)
+        f = [[[-inf, -inf] for _ in range(k + 1)] for _ in range(n + 1)]
+        f[0][0][0] = 0
+        for i, x in enumerate(nums, 1):
+            for j in range(k + 1):
+                sign = 1 if j & 1 else -1
+                f[i][j][0] = max(f[i - 1][j][0], f[i - 1][j][1])
+                f[i][j][1] = max(f[i][j][1], f[i - 1][j][1] + sign * x * (k - j + 1))
+                if j:
+                    f[i][j][1] = max(
+                        f[i][j][1], max(f[i - 1][j - 1]) + sign * x * (k - j + 1)
+                    )
+        return max(f[n][k])

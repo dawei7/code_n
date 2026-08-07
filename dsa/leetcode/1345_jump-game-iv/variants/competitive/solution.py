@@ -1,26 +1,29 @@
-from collections import defaultdict, deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def minJumps(self, arr: List[int]) -> int:
-        if len(arr) == 1:
-            return 0
-
-        positions = defaultdict(list)
-        for index, value in enumerate(arr):
-            positions[value].append(index)
-
-        queue = deque([(0, 0)])
-        seen = {0}
-        while queue:
-            index, jumps = queue.popleft()
-            destinations = positions.pop(arr[index], ())
-            for next_index in (*destinations, index - 1, index + 1):
-                if next_index == len(arr) - 1:
-                    return jumps + 1
-                if 0 <= next_index < len(arr) and next_index not in seen:
-                    seen.add(next_index)
-                    queue.append((next_index, jumps + 1))
-
-        return -1
+    def minJumps(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        groups = collections.defaultdict(list)
+        for i, x in enumerate(arr):
+            groups[x].append(i)
+        q = collections.deque([(0, 0)])
+        lookup = set([0])
+        while q:
+            pos, step = q.popleft()
+            if pos == len(arr)-1:
+                break
+            neighbors = set(groups[arr[pos]] + [pos-1, pos+1])
+            groups[arr[pos]] = []
+            for p in neighbors:
+                if p in lookup or not 0 <= p < len(arr):
+                    continue
+                lookup.add(p)
+                q.append((p, step+1)) 
+        return step

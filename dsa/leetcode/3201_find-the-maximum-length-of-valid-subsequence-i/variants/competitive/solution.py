@@ -1,21 +1,34 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def maximumLength(self, nums: List[int]) -> int:
-        even_count = 0
-        odd_count = 0
-        alternating_end_even = 0
-        alternating_end_odd = 0
+    def maximumLength(self, nums):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        k = 2
+        result = 0
+        for i in range(k):
+            dp = [0]*k
+            for x in nums:
+                dp[x%k] = dp[(i-x)%k]+1
+            result = max(result, max(dp))
+        return result
 
-        for value in nums:
-            if value % 2 == 0:
-                even_count += 1
-                alternating_end_even = alternating_end_odd + 1
-            else:
-                odd_count += 1
-                alternating_end_odd = alternating_end_even + 1
 
-        return max(
-            even_count,
-            odd_count,
-            alternating_end_even,
-            alternating_end_odd,
-        )
+# Time:  O(n)
+# Space: O(1)
+# brute force
+class Solution2(object):
+    def maximumLength(self, nums):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        return max(sum(x%2 == 0 for x in nums),
+                   sum(x%2 == 1 for x in nums),
+                   sum(nums[i]%2 != nums[i+1]%2 for i in range(len(nums)-1))+1)

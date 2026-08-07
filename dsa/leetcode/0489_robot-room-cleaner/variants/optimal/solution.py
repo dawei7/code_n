@@ -1,34 +1,58 @@
-# LeetCode supplies this interface; the solution must not inspect its implementation.
+# """
+# This is the robot's control interface.
+# You should not implement it, or speculate about its implementation
+# """
 # class Robot:
-#     def move(self) -> bool: ...
-#     def turnLeft(self) -> None: ...
-#     def turnRight(self) -> None: ...
-#     def clean(self) -> None: ...
+#    def move(self):
+#        """
+#        Returns true if the cell in front is open and robot moves into the cell.
+#        Returns false if the cell in front is blocked and robot stays in the current cell.
+#        :rtype bool
+#        """
+#
+#    def turnLeft(self):
+#        """
+#        Robot will stay in the same cell after calling turnLeft/turnRight.
+#        Each turn will be 90 degrees.
+#        :rtype void
+#        """
+#
+#    def turnRight(self):
+#        """
+#        Robot will stay in the same cell after calling turnLeft/turnRight.
+#        Each turn will be 90 degrees.
+#        :rtype void
+#        """
+#
+#    def clean(self):
+#        """
+#        Clean the current cell.
+#        :rtype void
+#        """
 
 
 class Solution:
     def cleanRoom(self, robot):
-        directions = ((-1, 0), (0, 1), (1, 0), (0, -1))
-        visited = set()
+        """
+        :type robot: Robot
+        :rtype: None
+        """
 
-        def go_back():
-            robot.turnRight()
-            robot.turnRight()
-            robot.move()
-            robot.turnRight()
-            robot.turnRight()
-
-        def backtrack(row, col, direction):
-            visited.add((row, col))
+        def dfs(i, j, d):
+            vis.add((i, j))
             robot.clean()
-
-            for offset in range(4):
-                next_direction = (direction + offset) % 4
-                delta_row, delta_col = directions[next_direction]
-                next_cell = (row + delta_row, col + delta_col)
-                if next_cell not in visited and robot.move():
-                    backtrack(next_cell[0], next_cell[1], next_direction)
-                    go_back()
+            for k in range(4):
+                nd = (d + k) % 4
+                x, y = i + dirs[nd], j + dirs[nd + 1]
+                if (x, y) not in vis and robot.move():
+                    dfs(x, y, nd)
+                    robot.turnRight()
+                    robot.turnRight()
+                    robot.move()
+                    robot.turnRight()
+                    robot.turnRight()
                 robot.turnRight()
 
-        backtrack(0, 0, 0)
+        dirs = (-1, 0, 1, 0, -1)
+        vis = set()
+        dfs(0, 0, 0)

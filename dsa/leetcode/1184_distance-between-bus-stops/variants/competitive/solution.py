@@ -1,16 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
 class Solution:
-    def distanceBetweenBusStops(self, distance: List[int], start: int, destination: int) -> int:
+    def distanceBetweenBusStops(self, distance, start, destination):
+        """
+        :type distance: List[int]
+        :type start: int
+        :type destination: int
+        :rtype: int
+        """
         if start > destination:
             start, destination = destination, start
-
-        total = 0
-        direct = 0
-        for index, edge in enumerate(distance):
-            total += edge
-            if start <= index < destination:
-                direct += edge
-
-        return min(direct, total - direct)
+        s_to_d = sum(itertools.islice(distance, start, destination))
+        d_to_s = sum(itertools.islice(distance, 0, start)) + \
+                 sum(itertools.islice(distance, destination, len(distance)))
+        return min(s_to_d, d_to_s)

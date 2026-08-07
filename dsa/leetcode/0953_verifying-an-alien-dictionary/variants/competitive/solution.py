@@ -1,14 +1,23 @@
-from typing import List
-
+# Time:  O(n * l), l is the average length of words
+# Space: O(1)
 
 class Solution:
-    def isAlienSorted(self, words: List[str], order: str) -> bool:
-        rank = {character: index for index, character in enumerate(order)}
-
-        def ordered(first, second):
-            for left, right in zip(first, second):
-                if left != right:
-                    return rank[left] < rank[right]
-            return len(first) <= len(second)
-
-        return all(ordered(first, second) for first, second in zip(words, words[1:]))
+    def isAlienSorted(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
+        lookup = {c: i for i, c in enumerate(order)}
+        for i in range(len(words)-1):
+            word1 = words[i]
+            word2 = words[i+1]
+            for k in range(min(len(word1), len(word2))):
+                if word1[k] != word2[k]:
+                    if lookup[word1[k]] > lookup[word2[k]]:
+                        return False
+                    break
+            else:
+                if len(word1) > len(word2):
+                    return False
+        return True

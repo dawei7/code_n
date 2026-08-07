@@ -1,29 +1,30 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def zigzagLevelSum(self, root: TreeNode | None) -> list[int]:
-        if root is None:
-            return []
-
-        answer: list[int] = []
-        level = [root]
-        odd_level = True
-
-        while level:
-            level_sum = 0
-            traversal = level if odd_level else reversed(level)
-            for node in traversal:
-                required_child = node.left if odd_level else node.right
-                if required_child is None:
+        q = [root]
+        ans = []
+        left = True
+        while q:
+            nq = []
+            for node in q:
+                if node.left:
+                    nq.append(node.left)
+                if node.right:
+                    nq.append(node.right)
+            m = len(q)
+            s = 0
+            for i in range(m):
+                node = q[i] if left else q[m - i - 1]
+                child = node.left if left else node.right
+                if not child:
                     break
-                level_sum += node.val
-            answer.append(level_sum)
-
-            next_level = []
-            for node in level:
-                if node.left is not None:
-                    next_level.append(node.left)
-                if node.right is not None:
-                    next_level.append(node.right)
-            level = next_level
-            odd_level = not odd_level
-
-        return answer
+                s += node.val
+            ans.append(s)
+            left = not left
+            q = nq
+        return ans

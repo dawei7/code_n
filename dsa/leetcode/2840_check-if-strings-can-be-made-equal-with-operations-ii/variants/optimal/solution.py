@@ -1,10 +1,5 @@
 class Solution:
     def checkStrings(self, s1: str, s2: str) -> bool:
-        balance = [0] * 52
-
-        for index, (left, right) in enumerate(zip(s1, s2)):
-            offset = 26 * (index & 1)
-            balance[offset + ord(left) - ord("a")] += 1
-            balance[offset + ord(right) - ord("a")] -= 1
-
-        return not any(balance)
+        return Counter(s1[::2]) == Counter(s2[::2]) and Counter(s1[1::2]) == Counter(
+            s2[1::2]
+        )

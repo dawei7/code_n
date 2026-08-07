@@ -1,51 +1,107 @@
-from collections import deque
-from typing import List
+# Time:  O(n * alpha(n)) = O(n)
+# Space: O(n)
+
+class UnionFind(object):  # Time: O(n * alpha(n)), Space: O(n)
+    def __init__(self, n):
+        self.set = range(n)
+        self.rank = [0]*n
+        self.right = range(n)  # added
+
+    def find_set(self, x):
+        stk = []
+        while self.set[x] != x:  # path compression
+            stk.append(x)
+            x = self.set[x]
+        while stk:
+            self.set[stk.pop()] = x
+        return x
+
+    def union_set(self, x, y):
+        x, y = self.find_set(x), self.find_set(y)
+        if x == y:
+            return False
+        if self.rank[x] > self.rank[y]:  # union by rank
+            x, y = y, x
+        self.set[x] = self.set[y]
+        if self.rank[x] == self.rank[y]:
+            self.rank[y] += 1
+        self.right[y] = max(self.right[x], self.right[y])  # added
+        return True
+
+    def right_set(self, x):  # added
+        return self.right[self.find_set(x)]
 
 
+# bfs, union find
 class Solution:
-    def minReverseOperations(self, n: int, p: int, banned: List[int], k: int) -> List[int]:
-        values = [list(range(parity, n, 2)) for parity in range(2)]
-        parent = [list(range(len(values[parity]) + 1)) for parity in range(2)]
+    def minReverseOperations(self, n, p, banned, k):
+        """
+        :type n: int
+        :type p: int
+        :type banned: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        lookup = [False]*n
+        for i in banned:
+            lookup[i] = True
+        d = 0
+        result = [-1]*n
+        result[p] = d
+        uf = UnionFind(n+2)
+        uf.union_set(p, p+2)
+        q = [p]
+        d += 1
+        while q:
+            new_q = []
+            for p in q:
+                left, right = 2*max(p-(k-1), 0)+(k-1)-p, 2*min(p+(k-1), n-1)-(k-1)-p
+                p = uf.right_set(left)
+                while p <= right:
+                    if not lookup[p]:
+                        result[p] = d
+                        new_q.append(p)
+                    uf.union_set(p, p+2)
+                    p = uf.right_set(p)
+            q = new_q
+            d += 1
+        return result
 
-        def find(parity: int, index: int) -> int:
-            root = index
-            while parent[parity][root] != root:
-                root = parent[parity][root]
-            while parent[parity][index] != index:
-                following = parent[parity][index]
-                parent[parity][index] = root
-                index = following
-            return root
 
-        def remove(index: int) -> None:
-            parity = index & 1
-            compressed = index // 2
-            parent[parity][compressed] = find(parity, compressed + 1)
+# Time:  O(nlogn)
+# Space: O(n)
+from sortedcontainers import SortedList
 
-        for index in banned:
-            remove(index)
-        remove(p)
 
-        answer = [-1] * n
-        answer[p] = 0
-        queue = deque([p])
-
-        while queue:
-            current = queue.popleft()
-            left_start = max(0, current - k + 1)
-            right_start = min(n - k, current)
-            low = 2 * left_start + k - 1 - current
-            high = 2 * right_start + k - 1 - current
-            parity = low & 1
-
-            first = (low - parity + 1) // 2
-            last = (high - parity) // 2
-            cursor = find(parity, first)
-            while cursor <= last:
-                next_position = values[parity][cursor]
-                answer[next_position] = answer[current] + 1
-                queue.append(next_position)
-                parent[parity][cursor] = find(parity, cursor + 1)
-                cursor = find(parity, cursor)
-
-        return answer
+# bfs, sorted list
+class Solution2(object):
+    def minReverseOperations(self, n, p, banned, k):
+        """
+        :type n: int
+        :type p: int
+        :type banned: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        lookup = [False]*n
+        for i in banned:
+            lookup[i] = True
+        d = 0
+        result = [-1]*n
+        result[p] = d
+        sl = [SortedList(i for i in range(0, n, 2)), SortedList(i for i in range(1, n, 2))]
+        sl[p%2].remove(p)
+        q = [p]
+        d += 1
+        while q:
+            new_q = []
+            for p in q:
+                left, right = 2*max(p-(k-1), 0)+(k-1)-p, 2*min(p+(k-1), n-1)-(k-1)-p
+                for p in list(sl[left%2].irange(left, right)):
+                    if not lookup[p]:
+                        result[p] = d
+                        new_q.append(p)
+                    sl[left%2].remove(p)
+            q = new_q
+            d += 1
+        return result

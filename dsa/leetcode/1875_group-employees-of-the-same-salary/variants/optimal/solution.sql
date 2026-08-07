@@ -1,15 +1,17 @@
-WITH salary_counts AS (
-    SELECT salary, COUNT(*) AS employee_count
-    FROM Employees
-    GROUP BY salary
-)
-SELECT
-    e.employee_id,
-    e.name,
-    e.salary,
-    DENSE_RANK() OVER (ORDER BY e.salary) AS team_id
-FROM Employees AS e
-JOIN salary_counts AS c
-  ON c.salary = e.salary
-WHERE c.employee_count > 1
-ORDER BY team_id, e.employee_id;
+# Write your MySQL query statement below
+WITH
+    S AS (
+        SELECT salary
+        FROM Employees
+        GROUP BY salary
+        HAVING COUNT(1) > 1
+    ),
+    T AS (
+        SELECT salary, ROW_NUMBER() OVER (ORDER BY salary) AS team_id
+        FROM S
+    )
+SELECT e.*, t.team_id
+FROM
+    Employees AS e
+    JOIN T AS t ON e.salary = t.salary
+ORDER BY 4, 1;

@@ -1,24 +1,21 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def longestUnivaluePath(self, root) -> int:
-        longest = 0
-
-        def downward(node):
-            nonlocal longest
-            if node is None:
+    def longestUnivaluePath(self, root: Optional[TreeNode]) -> int:
+        def dfs(root: Optional[TreeNode]) -> int:
+            if root is None:
                 return 0
+            l, r = dfs(root.left), dfs(root.right)
+            l = l + 1 if root.left and root.left.val == root.val else 0
+            r = r + 1 if root.right and root.right.val == root.val else 0
+            nonlocal ans
+            ans = max(ans, l + r)
+            return max(l, r)
 
-            left_length = downward(node.left)
-            right_length = downward(node.right)
-            left_arm = 0
-            right_arm = 0
-
-            if node.left is not None and node.left.val == node.val:
-                left_arm = left_length + 1
-            if node.right is not None and node.right.val == node.val:
-                right_arm = right_length + 1
-
-            longest = max(longest, left_arm + right_arm)
-            return max(left_arm, right_arm)
-
-        downward(root)
-        return longest
+        ans = 0
+        dfs(root)
+        return ans

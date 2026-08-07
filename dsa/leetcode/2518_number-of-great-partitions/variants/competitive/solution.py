@@ -1,16 +1,20 @@
+# Time:  O(n * k)
+# Space: O(k)
+
+# knapsack dp
 class Solution:
-    def countPartitions(self, nums: List[int], k: int) -> int:
-        mod = 1_000_000_007
-
-        if sum(nums) < 2 * k:
+    def countPartitions(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        if sum(nums) < 2*k:
             return 0
-
-        ways_by_sum = [0] * k
-        ways_by_sum[0] = 1
-
-        for value in nums:
-            for subtotal in range(k - 1, value - 1, -1):
-                ways_by_sum[subtotal] = (ways_by_sum[subtotal] + ways_by_sum[subtotal - value]) % mod
-
-        bad_groups = sum(ways_by_sum) % mod
-        return (pow(2, len(nums), mod) - 2 * bad_groups) % mod
+        dp = [0]*k
+        dp[0] = 1
+        for x in nums:
+            for i in reversed(range(k-x)):
+                dp[i+x] = (dp[i+x]+dp[i])%MOD
+        return (pow(2, len(nums), MOD)-2*reduce(lambda total, x: (total+x)%MOD, dp, 0))%MOD

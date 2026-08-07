@@ -1,26 +1,30 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def ipToCIDR(self, ip: str, n: int) -> List[str]:
-        current = 0
-        for octet in ip.split("."):
-            current = (current << 8) | int(octet)
+    def ipToCIDR(self, ip, n):
+        """
+        :type ip: str
+        :type n: int
+        :rtype: List[str]
+        """
+        def ipToInt(ip):
+            result = 0
+            for i in ip.split('.'):
+                result = 256 * result + int(i)
+            return result
 
-        blocks = []
-        remaining = n
+        def intToIP(n):
+            return ".".join(str((n >> i) % 256) \
+                            for i in (24, 16, 8, 0))
 
-        while remaining:
-            aligned_size = current & -current
-            if aligned_size == 0:
-                aligned_size = 1 << 32
-            remaining_size = 1 << (remaining.bit_length() - 1)
-            block_size = min(aligned_size, remaining_size)
-            prefix_length = 32 - (block_size.bit_length() - 1)
+        start = ipToInt(ip)
+        result = []
+        while n:
+            mask = max(33-(start & ~(start-1)).bit_length(), \
+                       33-n.bit_length())
+            result.append(intToIP(start) + '/' + str(mask))
+            start += 1 << (32-mask)
+            n -= 1 << (32-mask)
+        return result
 
-            address = ".".join(str((current >> shift) & 255) for shift in (24, 16, 8, 0))
-            blocks.append(f"{address}/{prefix_length}")
-            current += block_size
-            remaining -= block_size
-
-        return blocks

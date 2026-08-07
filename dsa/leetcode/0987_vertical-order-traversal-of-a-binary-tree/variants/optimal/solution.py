@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -9,23 +6,21 @@ from typing import List, Optional
 #         self.right = right
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
-        coordinates = []
-        stack = [(root, 0, 0)]
+        def dfs(root: Optional[TreeNode], i: int, j: int):
+            if root is None:
+                return
+            nodes.append((j, i, root.val))
+            dfs(root.left, i + 1, j - 1)
+            dfs(root.right, i + 1, j + 1)
 
-        while stack:
-            node, row, column = stack.pop()
-            coordinates.append((column, row, node.val))
-            if node.left is not None:
-                stack.append((node.left, row + 1, column - 1))
-            if node.right is not None:
-                stack.append((node.right, row + 1, column + 1))
-
-        coordinates.sort()
-        answer = []
-        previous_column = None
-        for column, _, value in coordinates:
-            if column != previous_column:
-                answer.append([])
-                previous_column = column
-            answer[-1].append(value)
-        return answer
+        nodes = []
+        dfs(root, 0, 0)
+        nodes.sort()
+        ans = []
+        prev = -2000
+        for j, _, val in nodes:
+            if prev != j:
+                ans.append([])
+                prev = j
+            ans[-1].append(val)
+        return ans

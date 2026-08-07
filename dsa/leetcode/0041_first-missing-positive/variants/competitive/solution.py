@@ -1,14 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def firstMissingPositive(self, nums: List[int]) -> int:
-        size = len(nums)
-        for index in range(size):
-            while 1 <= nums[index] <= size and nums[nums[index] - 1] != nums[index]:
-                destination = nums[index] - 1
-                nums[index], nums[destination] = nums[destination], nums[index]
-        for index, value in enumerate(nums):
-            if value != index + 1:
-                return index + 1
-        return size + 1
+    def firstMissingPositive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        for i in range(len(nums)):
+            while 1 <= nums[i] <= len(nums) and nums[nums[i]-1] != nums[i]:
+                nums[nums[i]-1], nums[i] = nums[i], nums[nums[i]-1]
+        return next(((i+1) for i, x in enumerate(nums) if x != i+1), len(nums)+1)

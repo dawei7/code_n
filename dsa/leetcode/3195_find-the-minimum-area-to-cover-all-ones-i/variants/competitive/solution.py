@@ -1,14 +1,17 @@
+# Time:  O(n * m)
+# Space: O(1)
+
+# array
 class Solution:
-    def minimumArea(self, grid: List[List[int]]) -> int:
-        top, bottom = len(grid), -1
-        left, right = len(grid[0]), -1
-
-        for row, values in enumerate(grid):
-            for column, value in enumerate(values):
-                if value:
-                    top = min(top, row)
-                    bottom = max(bottom, row)
-                    left = min(left, column)
-                    right = max(right, column)
-
-        return (bottom - top + 1) * (right - left + 1)
+    def minimumArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        min_r, max_r, min_c, max_c = len(grid), -1, len(grid[0]), -1
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 0:
+                    continue
+                min_r, max_r, min_c, max_c = min(min_r, i), max(max_r, i), min(min_c, j), max(max_c, j)
+        return (max_r-min_r+1)*(max_c-min_c+1)

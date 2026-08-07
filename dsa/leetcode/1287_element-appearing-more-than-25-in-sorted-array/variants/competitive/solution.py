@@ -1,13 +1,16 @@
-from bisect import bisect_left, bisect_right
-from typing import List
+# Time:  O(logn)
+# Space: O(1)
+
+import bisect
 
 
 class Solution:
-    def findSpecialInteger(self, arr: List[int]) -> int:
-        length = len(arr)
-        for index in (length // 4, length // 2, 3 * length // 4):
-            candidate = arr[index]
-            frequency = bisect_right(arr, candidate) - bisect_left(arr, candidate)
-            if 4 * frequency > length:
-                return candidate
-        raise ValueError("the required over-quarter element is missing")
+    def findSpecialInteger(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        for x in [arr[len(arr)//4], arr[len(arr)//2], arr[len(arr)*3//4]]:
+            if (bisect.bisect_right(arr, x) - bisect.bisect_left(arr, x)) * 4 > len(arr):
+                return x
+        return -1

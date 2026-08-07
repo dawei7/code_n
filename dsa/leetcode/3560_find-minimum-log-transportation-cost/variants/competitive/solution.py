@@ -1,3 +1,13 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def minCuttingCost(self, n: int, m: int, k: int) -> int:
-        return max(0, max(n, m) - k) * k
+    def minCuttingCost(self, n, m, k):
+        """
+        :type n: int
+        :type m: int
+        :type k: int
+        :rtype: int
+        """
+        return k*max(n-k, m-k, 0)

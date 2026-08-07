@@ -1,18 +1,21 @@
+# Time:  O(n)
+# Space: O(p)
+
 class Solution:
-    def minSubarray(self, nums: List[int], p: int) -> int:
-        target = sum(nums) % p
-        if target == 0:
+    def minSubarray(self, nums, p):
+        """
+        :type nums: List[int]
+        :type p: int
+        :rtype: int
+        """
+        residue = sum(nums) % p
+        if not residue:
             return 0
-
-        latest = {0: -1}
-        prefix = 0
-        best = len(nums)
-
-        for index, value in enumerate(nums):
-            prefix = (prefix + value) % p
-            needed = (prefix - target) % p
-            if needed in latest:
-                best = min(best, index - latest[needed])
-            latest[prefix] = index
-
-        return best if best < len(nums) else -1
+        result = len(nums)
+        curr, lookup = 0, {0: -1}
+        for i, num in enumerate(nums):
+            curr = (curr+num) % p
+            lookup[curr] = i
+            if (curr-residue) % p in lookup:
+                result = min(result, i-lookup[(curr-residue)%p])
+        return result if result < len(nums) else -1

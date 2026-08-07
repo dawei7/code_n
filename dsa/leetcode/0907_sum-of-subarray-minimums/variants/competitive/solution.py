@@ -1,18 +1,33 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import itertools
 
 
+# Ascending stack solution
 class Solution:
-    def sumSubarrayMins(self, arr: List[int]) -> int:
-        modulus = 1_000_000_007
-        stack = []
-        total = 0
+    def sumSubarrayMins(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        M = 10**9 + 7
 
-        for right in range(len(arr) + 1):
-            current = arr[right] if right < len(arr) else -1
-            while stack and arr[stack[-1]] >= current:
-                middle = stack.pop()
-                left = stack[-1] if stack else -1
-                total += arr[middle] * (middle - left) * (right - middle)
-            stack.append(right)
+        left, s1 = [0]*len(A), []
+        for i in range(len(A)):
+            count = 1
+            while s1 and s1[-1][0] > A[i]:
+                count += s1.pop()[1]
+            left[i] = count
+            s1.append([A[i], count])
 
-        return total % modulus
+        right, s2 = [0]*len(A), []
+        for i in reversed(range(len(A))):
+            count = 1
+            while s2 and s2[-1][0] >= A[i]:
+                count += s2.pop()[1]
+            right[i] = count
+            s2.append([A[i], count])
+
+        return sum(a*l*r for a, l, r in itertools.izip(A, left, right)) % M
+

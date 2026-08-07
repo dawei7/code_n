@@ -1,25 +1,29 @@
-from typing import List
-
+# Time:  O(nlogn + nlogw), n = len(nums), w = max(nums)-min(nums)
+# Space: O(1)
 
 class Solution:
-    def smallestDistancePair(self, nums: List[int], k: int) -> int:
-        nums.sort()
-        low = 0
-        high = nums[-1] - nums[0]
-
-        while low < high:
-            middle = (low + high) // 2
-            count = 0
-            left = 0
-
-            for right, value in enumerate(nums):
-                while value - nums[left] > middle:
+    def smallestDistancePair(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        # Sliding window solution
+        def possible(guess, nums, k):
+            count, left = 0, 0
+            for right, num in enumerate(nums):
+                while num-nums[left] > guess:
                     left += 1
-                count += right - left
+                count += right-left
+            return count >= k
 
-            if count >= k:
-                high = middle
+        nums.sort()
+        left, right = 0, nums[-1]-nums[0]+1
+        while left < right:
+            mid = left + (right-left)/2
+            if possible(mid, nums, k):
+                right = mid
             else:
-                low = middle + 1
+                left = mid+1
+        return left
 
-        return low

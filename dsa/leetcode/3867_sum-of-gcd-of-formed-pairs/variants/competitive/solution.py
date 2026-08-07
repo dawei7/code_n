@@ -1,23 +1,28 @@
-from math import gcd
+# Time:  O(nlogr)
+# Space: O(n)
 
-
+# prefix sum, sort, two pointers
 class Solution:
-    def gcdSum(self, nums: list[int]) -> int:
-        prefix_gcd: list[int] = []
-        maximum = 0
+    def gcdSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        for value in nums:
-            maximum = max(maximum, value)
-            prefix_gcd.append(gcd(value, maximum))
-
-        prefix_gcd.sort()
-
-        total = 0
-        left = 0
-        right = len(prefix_gcd) - 1
+        mx = 0
+        prefix = []
+        for x in nums:
+            mx = max(mx, x)
+            prefix.append(gcd(mx, x))
+        prefix.sort()
+        result = 0
+        left, right = 0, len(nums)-1
         while left < right:
-            total += gcd(prefix_gcd[left], prefix_gcd[right])
+            result += gcd(prefix[left], prefix[right])
             left += 1
             right -= 1
-
-        return total
+        return result

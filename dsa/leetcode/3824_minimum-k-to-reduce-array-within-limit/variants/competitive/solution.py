@@ -1,26 +1,27 @@
-from math import isqrt
-from typing import List
+# Time:  O(nlogr + nlogn)
+# Space: O(1)
 
-
+# binary search
 class Solution:
-    def minimumK(self, nums: List[int]) -> int:
-        def feasible(k: int) -> bool:
-            limit = k * k
-            operations = 0
-            for value in nums:
-                operations += (value + k - 1) // k
-                if operations > limit:
-                    return False
-            return True
+    def minimumK(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
 
-        low = 1
-        high = max(max(nums), isqrt(len(nums) - 1) + 1)
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        while low < high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                high = middle
-            else:
-                low = middle + 1
+        def check(k):
+            return sum((ceil_divide(x, k)) for x in nums) <= k**2
 
-        return low
+        right = max(max(nums), int(ceil(sqrt(len(nums)))))
+        return binary_search(1, right, check)

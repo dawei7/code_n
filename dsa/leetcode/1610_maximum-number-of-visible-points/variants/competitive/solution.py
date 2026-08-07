@@ -1,36 +1,29 @@
-from math import atan2, pi
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import math
 
 
 class Solution:
-    def visiblePoints(
-        self,
-        points: List[List[int]],
-        angle: int,
-        location: List[int],
-    ) -> int:
-        origin_x, origin_y = location
-        directions = []
-        coincident = 0
-
-        for point_x, point_y in points:
-            delta_x = point_x - origin_x
-            delta_y = point_y - origin_y
-            if delta_x == 0 and delta_y == 0:
-                coincident += 1
-            else:
-                directions.append(atan2(delta_y, delta_x))
-
-        directions.sort()
-        original_count = len(directions)
-        directions.extend(value + 2 * pi for value in directions[:original_count])
-        width = angle * pi / 180
-
-        best = 0
-        left = 0
-        for right, direction in enumerate(directions):
-            while direction - directions[left] > width + 1e-12:
+    def visiblePoints(self, points, angle, location):
+        """
+        :type points: List[List[int]]
+        :type angle: int
+        :type location: List[int]
+        :rtype: int
+        """
+        arr, extra = [], 0
+        for p in points:
+            if p == location:
+                extra += 1
+                continue
+            arr.append(math.atan2(p[1]-location[1], p[0]-location[0]))
+        arr.sort()
+        arr.extend([x + 2.0*math.pi for x in arr])  # make it circular
+        d = 2.0*math.pi * (angle/360.0)
+        left = result = 0
+        for right in range(len(arr)):
+            while arr[right]-arr[left] > d:
                 left += 1
-            best = max(best, right - left + 1)
-
-        return coincident + min(best, original_count)
+            result = max(result, right-left+1)
+        return result + extra

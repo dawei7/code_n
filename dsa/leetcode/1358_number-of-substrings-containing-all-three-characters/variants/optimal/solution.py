@@ -1,10 +1,8 @@
 class Solution:
     def numberOfSubstrings(self, s: str) -> int:
-        last = [-1, -1, -1]
-        total = 0
-
-        for index, char in enumerate(s):
-            last[ord(char) - ord("a")] = index
-            total += min(last) + 1
-
-        return total
+        d = {"a": -1, "b": -1, "c": -1}
+        ans = 0
+        for i, c in enumerate(s):
+            d[c] = i
+            ans += min(d["a"], d["b"], d["c"]) + 1
+        return ans

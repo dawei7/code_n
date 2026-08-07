@@ -1,14 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# freq table
 class Solution:
-    def edgeScore(self, edges: List[int]) -> int:
-        scores = [0] * len(edges)
-        for source, target in enumerate(edges):
-            scores[target] += source
-
-        answer = 0
-        for node in range(1, len(edges)):
-            if scores[node] > scores[answer]:
-                answer = node
-        return answer
+    def edgeScore(self, edges):
+        """
+        :type edges: List[int]
+        :rtype: int
+        """
+        score = [0]*len(edges)
+        for u, v in enumerate(edges):
+            score[v] += u
+        return max(range(len(edges)), key=lambda x:score[x])
+    

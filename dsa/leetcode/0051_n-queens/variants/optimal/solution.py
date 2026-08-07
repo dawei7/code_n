@@ -1,28 +1,21 @@
-from typing import List
-
-
 class Solution:
     def solveNQueens(self, n: int) -> List[List[str]]:
-        board_mask = (1 << n) - 1
-        positions = []
-        solutions = []
-
-        def place(columns: int, descending: int, ascending: int) -> None:
-            if len(positions) == n:
-                solutions.append(["." * column + "Q" + "." * (n - column - 1) for column in positions])
+        def dfs(i: int):
+            if i == n:
+                ans.append(["".join(row) for row in g])
                 return
+            for j in range(n):
+                if col[j] + dg[i + j] + udg[n - i + j] == 0:
+                    g[i][j] = "Q"
+                    col[j] = dg[i + j] = udg[n - i + j] = 1
+                    dfs(i + 1)
+                    col[j] = dg[i + j] = udg[n - i + j] = 0
+                    g[i][j] = "."
 
-            free = board_mask & ~(columns | descending | ascending)
-            while free:
-                bit = free & -free
-                free -= bit
-                positions.append(bit.bit_length() - 1)
-                place(
-                    columns | bit,
-                    ((descending | bit) << 1) & board_mask,
-                    (ascending | bit) >> 1,
-                )
-                positions.pop()
-
-        place(0, 0, 0)
-        return solutions
+        ans = []
+        g = [["."] * n for _ in range(n)]
+        col = [0] * n
+        dg = [0] * (n << 1)
+        udg = [0] * (n << 1)
+        dfs(0)
+        return ans

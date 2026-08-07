@@ -1,41 +1,26 @@
 class Solution:
     def calcEquation(
-        self,
-        equations: List[List[str]],
-        values: List[float],
-        queries: List[List[str]],
+        self, equations: List[List[str]], values: List[float], queries: List[List[str]]
     ) -> List[float]:
-        parent = {}
-        weight = {}
+        def find(x):
+            if p[x] != x:
+                origin = p[x]
+                p[x] = find(p[x])
+                w[x] *= w[origin]
+            return p[x]
 
-        def add(variable):
-            if variable not in parent:
-                parent[variable] = variable
-                weight[variable] = 1.0
-
-        def find(variable):
-            if parent[variable] != variable:
-                old_parent = parent[variable]
-                parent[variable] = find(old_parent)
-                weight[variable] *= weight[old_parent]
-            return parent[variable]
-
-        for (numerator, denominator), value in zip(equations, values):
-            add(numerator)
-            add(denominator)
-            numerator_root = find(numerator)
-            denominator_root = find(denominator)
-            if numerator_root != denominator_root:
-                parent[numerator_root] = denominator_root
-                weight[numerator_root] = value * weight[denominator] / weight[numerator]
-
-        results = []
-        for numerator, denominator in queries:
-            if numerator not in parent or denominator not in parent:
-                results.append(-1.0)
-            elif find(numerator) != find(denominator):
-                results.append(-1.0)
-            else:
-                results.append(weight[numerator] / weight[denominator])
-
-        return results
+        w = defaultdict(lambda: 1)
+        p = defaultdict()
+        for a, b in equations:
+            p[a], p[b] = a, b
+        for i, v in enumerate(values):
+            a, b = equations[i]
+            pa, pb = find(a), find(b)
+            if pa == pb:
+                continue
+            p[pa] = pb
+            w[pa] = w[b] * v / w[a]
+        return [
+            -1 if c not in p or d not in p or find(c) != find(d) else w[c] / w[d]
+            for c, d in queries
+        ]

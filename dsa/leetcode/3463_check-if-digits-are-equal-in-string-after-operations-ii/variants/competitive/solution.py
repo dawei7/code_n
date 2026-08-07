@@ -1,30 +1,78 @@
-class Solution:
-    def hasSameDigits(self, s: str) -> bool:
-        steps = len(s) - 2
-        choose_mod_five = (
-            (1, 0, 0, 0, 0),
-            (1, 1, 0, 0, 0),
-            (1, 2, 1, 0, 0),
-            (1, 3, 3, 1, 0),
-            (1, 4, 1, 4, 1),
-        )
+# Time:  O(nlogn)
+# Space: O(1)
 
-        def binomial_mod_five(total: int, selected: int) -> int:
+# fast exponentiation
+class Solution:
+    def hasSameDigits(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        def check(mod):
+            def decompose(x, mod):  # x = a * mod^cnt
+                cnt = 0
+                while x > 1 and x%mod == 0:
+                    x //= mod
+                    cnt += 1
+                return x, cnt
+
+            result = cnt = 0
+            curr = 1
+            for i in range(len(s)-1):
+                if cnt == 0:
+                    result = (result+curr*(ord(s[i])-ord(s[i+1])))%mod
+                x, c = decompose(len(s)-2-i, mod)
+                curr = (curr*x)%mod
+                cnt += c
+                x, c = decompose(i+1, mod)
+                curr = (curr*pow(x, mod-2, mod))%mod
+                cnt -= c
+            return result == 0
+
+        return check(2) and check(5)
+
+
+# Time:  O(nlogn)
+# Space: O(1)
+LOOKUP = [[-1]*(5+1) for _ in range(5+1)]
+
+
+# lucas's theorem
+class Solution2(object):
+    def hasSameDigits(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        def nCr(n, r):
+            if n-r < r:
+                r = n-r
+            if LOOKUP[n][r] == -1:
+                c = 1
+                for k in range(1, r+1):
+                    c *= n-k+1
+                    c //= k
+                LOOKUP[n][r] = c
+            return LOOKUP[n][r]
+
+        # https://en.wikipedia.org/wiki/Lucas%27s_theorem
+        def nCr_mod(n, r, mod):
             result = 1
-            while total or selected:
-                top = total % 5
-                bottom = selected % 5
-                if bottom > top:
+            while n > 0 or r > 0:
+                n, ni = divmod(n, mod)
+                r, ri = divmod(r, mod)
+                if ni < ri:
                     return 0
-                result = result * choose_mod_five[top][bottom] % 5
-                total //= 5
-                selected //= 5
+                result = (result*nCr(ni, ri))%mod
             return result
 
-        difference = 0
-        for index in range(steps + 1):
-            mod_two = int((index & (steps - index)) == 0)
-            mod_five = binomial_mod_five(steps, index)
-            coefficient = mod_five if mod_five % 2 == mod_two else mod_five + 5
-            difference = (difference + coefficient * (ord(s[index]) - ord(s[index + 1]))) % 10
-        return difference == 0
+        def nC10(n, k):
+            return lookup[nCr_mod(n, k, 2)][nCr_mod(n, k, 5)]
+
+        lookup = [[0]*5 for _ in range(2)]
+        for i in range(10):
+            lookup[i%2][i%5] = i
+        total = 0
+        for i in range(len(s)-1):
+            total = (total+nC10(len(s)-2, i)*(ord(s[i])-ord(s[i+1])))%10
+        return total == 0

@@ -1,22 +1,10 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
-        graph = [[] for _ in range(n)]
-        for start, end in connections:
-            graph[start].append((end, 1))
-            graph[end].append((start, 0))
+        def dfs(a: int, fa: int) -> int:
+            return sum(c + dfs(b, a) for b, c in g[a] if b != fa)
 
-        reversals = 0
-        visited = [False] * n
-        visited[0] = True
-        stack = [0]
-
-        while stack:
-            city = stack.pop()
-            for neighbor, cost in graph[city]:
-                if visited[neighbor]:
-                    continue
-                visited[neighbor] = True
-                reversals += cost
-                stack.append(neighbor)
-
-        return reversals
+        g = [[] for _ in range(n)]
+        for a, b in connections:
+            g[a].append((b, 1))
+            g[b].append((a, 0))
+        return dfs(0, -1)

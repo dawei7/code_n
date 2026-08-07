@@ -1,12 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def compressedString(self, word: str) -> str:
-        pieces = []
-        start = 0
-        while start < len(word):
-            end = start
-            while end < len(word) and word[end] == word[start] and end - start < 9:
-                end += 1
-            pieces.append(str(end - start))
-            pieces.append(word[start])
-            start = end
-        return "".join(pieces)
+    def compressedString(self, word):
+        """
+        :type word: str
+        :rtype: str
+        """
+        result = []
+        cnt = 0
+        for i in range(len(word)):
+            cnt += 1
+            if cnt == 9 or (i+1 == len(word) or word[i+1] != word[i]):
+                result.append("%s%s" % (cnt, word[i]))
+                cnt = 0
+        return "".join(result)

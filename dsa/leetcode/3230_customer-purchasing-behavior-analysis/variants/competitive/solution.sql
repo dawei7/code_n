@@ -1,53 +1,30 @@
-WITH purchase_details AS (
-    SELECT
-        t.customer_id,
-        t.transaction_date,
-        t.amount,
-        p.category
-    FROM Transactions AS t
-    INNER JOIN Products AS p
-        ON p.product_id = t.product_id
-),
-category_counts AS (
-    SELECT
-        customer_id,
-        category,
-        COUNT(*) AS purchase_count,
-        MAX(transaction_date) AS latest_transaction
-    FROM purchase_details
-    GROUP BY customer_id, category
-),
-ranked_categories AS (
-    SELECT
-        customer_id,
-        category,
-        ROW_NUMBER() OVER (
-            PARTITION BY customer_id
-            ORDER BY purchase_count DESC, latest_transaction DESC, category
-        ) AS category_rank
-    FROM category_counts
-),
-customer_totals AS (
-    SELECT
-        customer_id,
-        ROUND(SUM(amount), 2) AS total_amount,
-        COUNT(*) AS transaction_count,
-        COUNT(DISTINCT category) AS unique_categories,
-        ROUND(AVG(amount), 2) AS avg_transaction_amount,
-        ROUND(COUNT(*) * 10 + SUM(amount) / 100.0, 2) AS loyalty_score
-    FROM purchase_details
-    GROUP BY customer_id
+# Time:  O(nlogn)
+# Space: O(n)
+# window function
+
+WITH transaction_product_cte AS (
+    SELECT t.*, p.category
+    FROM Transactions AS t INNER JOIN Products AS p ON t.product_id = p.product_id
+    ORDER BY NULL
+), customer_category_cte AS (
+    SELECT customer_id,
+           category,
+           SUM(amount) AS amount,
+           COUNT(*) AS cnt,
+           MAX(transaction_date),
+           FIRST_VALUE(category) OVER (PARTITION BY customer_id ORDER BY COUNT(*) DESC, MAX(transaction_date) DESC) AS top_category
+    FROM transaction_product_cte 
+    GROUP BY 1, 2
+    ORDER BY NULL
 )
-SELECT
-    totals.customer_id,
-    totals.total_amount,
-    totals.transaction_count,
-    totals.unique_categories,
-    totals.avg_transaction_amount,
-    categories.category AS top_category,
-    totals.loyalty_score
-FROM customer_totals AS totals
-INNER JOIN ranked_categories AS categories
-    ON categories.customer_id = totals.customer_id
-   AND categories.category_rank = 1
-ORDER BY totals.loyalty_score DESC, totals.customer_id;
+
+SELECT customer_id,
+       ROUND(SUM(amount), 2) AS total_amount,
+       SUM(cnt) AS transaction_count,
+       COUNT(*) AS unique_categories,
+       ROUND(1.0 * SUM(amount) / SUM(cnt), 2) AS avg_transaction_amount,
+       top_category,
+       ROUND((SUM(cnt) * 10.0 + SUM(amount) / 100.0), 2) AS loyalty_score
+FROM customer_category_cte
+GROUP BY 1
+ORDER BY 7 DESC, 1;

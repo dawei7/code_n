@@ -1,35 +1,27 @@
-from typing import List
-
-
 class Solution:
-    def maximalPathQuality(self, values: List[int], edges: List[List[int]], maxTime: int) -> int:
-        graph = [[] for _ in values]
-        for first, second, travel_time in edges:
-            graph[first].append((second, travel_time))
-            graph[second].append((first, travel_time))
+    def maximalPathQuality(
+        self, values: List[int], edges: List[List[int]], maxTime: int
+    ) -> int:
+        def dfs(u: int, cost: int, value: int):
+            if u == 0:
+                nonlocal ans
+                ans = max(ans, value)
+            for v, t in g[u]:
+                if cost + t <= maxTime:
+                    if vis[v]:
+                        dfs(v, cost + t, value)
+                    else:
+                        vis[v] = True
+                        dfs(v, cost + t, value + values[v])
+                        vis[v] = False
 
-        visits = [0] * len(values)
-        visits[0] = 1
-        best = values[0]
-
-        def search(node: int, elapsed: int, quality: int) -> None:
-            nonlocal best
-            if node == 0:
-                best = max(best, quality)
-
-            for neighbor, travel_time in graph[node]:
-                next_time = elapsed + travel_time
-                if next_time > maxTime:
-                    continue
-
-                first_visit = visits[neighbor] == 0
-                visits[neighbor] += 1
-                search(
-                    neighbor,
-                    next_time,
-                    quality + (values[neighbor] if first_visit else 0),
-                )
-                visits[neighbor] -= 1
-
-        search(0, 0, values[0])
-        return best
+        n = len(values)
+        g = [[] for _ in range(n)]
+        for u, v, t in edges:
+            g[u].append((v, t))
+            g[v].append((u, t))
+        vis = [False] * n
+        vis[0] = True
+        ans = 0
+        dfs(0, 0, values[0])
+        return ans

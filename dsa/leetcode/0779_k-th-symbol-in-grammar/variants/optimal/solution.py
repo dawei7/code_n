@@ -1,8 +1,7 @@
 class Solution:
     def kthGrammar(self, n: int, k: int) -> int:
-        position = k - 1
-        symbol = 0
-        while position:
-            symbol ^= position & 1
-            position >>= 1
-        return symbol
+        if n == 1:
+            return 0
+        if k <= (1 << (n - 2)):
+            return self.kthGrammar(n - 1, k)
+        return self.kthGrammar(n - 1, k - (1 << (n - 2))) ^ 1

@@ -1,32 +1,20 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
-    def sequenceReconstruction(self, nums: List[int], sequences: List[List[int]]) -> bool:
-        graph = {value: set() for value in nums}
-        indegree = {value: 0 for value in nums}
-        observed = set()
-
-        for sequence in sequences:
-            for value in sequence:
-                if value not in graph:
-                    return False
-                observed.add(value)
-            for left, right in zip(sequence, sequence[1:]):
-                if right not in graph[left]:
-                    graph[left].add(right)
-                    indegree[right] += 1
-
-        if len(observed) != len(nums):
-            return False
-
-        available = deque(value for value in nums if indegree[value] == 0)
-        for expected in nums:
-            if len(available) != 1 or available.popleft() != expected:
-                return False
-            for neighbor in graph[expected]:
-                indegree[neighbor] -= 1
-                if indegree[neighbor] == 0:
-                    available.append(neighbor)
-        return True
+    def sequenceReconstruction(
+        self, nums: List[int], sequences: List[List[int]]
+    ) -> bool:
+        n = len(nums)
+        g = [[] for _ in range(n)]
+        indeg = [0] * n
+        for seq in sequences:
+            for a, b in pairwise(seq):
+                a, b = a - 1, b - 1
+                g[a].append(b)
+                indeg[b] += 1
+        q = deque(i for i, x in enumerate(indeg) if x == 0)
+        while len(q) == 1:
+            i = q.popleft()
+            for j in g[i]:
+                indeg[j] -= 1
+                if indeg[j] == 0:
+                    q.append(j)
+        return len(q) == 0

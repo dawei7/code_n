@@ -1,19 +1,44 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def addBinary(self, a: str, b: str) -> str:
-        left = len(a) - 1
-        right = len(b) - 1
+    # @param a, a string
+    # @param b, a string
+    # @return a string
+    def addBinary(self, a, b):
+        result, carry, val = "", 0, 0
+        for i in range(max(len(a), len(b))):
+            val = carry
+            if i < len(a):
+                val += int(a[-(i + 1)])
+            if i < len(b):
+                val += int(b[-(i + 1)])
+            carry, val = divmod(val, 2)
+            result += str(val)
+        if carry:
+            result += str(carry)
+        return result[::-1]
+
+
+# Time:  O(n)
+# Space: O(1)
+from itertools import izip_longest
+
+
+class Solution2(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        result = ""
         carry = 0
-        result = []
-
-        while left >= 0 or right >= 0 or carry:
-            total = carry
-            if left >= 0:
-                total += ord(a[left]) - ord("0")
-                left -= 1
-            if right >= 0:
-                total += ord(b[right]) - ord("0")
-                right -= 1
-            result.append(str(total & 1))
-            carry = total >> 1
-
-        return "".join(reversed(result))
+        for x, y in izip_longest(reversed(a), reversed(b), fillvalue="0"):
+            carry, remainder = divmod(int(x)+int(y)+carry, 2)
+            result += str(remainder)
+        
+        if carry:
+            result += str(carry)
+        
+        return result[::-1]

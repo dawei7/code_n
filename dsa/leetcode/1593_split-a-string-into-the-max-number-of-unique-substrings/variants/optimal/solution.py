@@ -1,24 +1,19 @@
 class Solution:
     def maxUniqueSplit(self, s: str) -> int:
-        used: set[str] = set()
-        best = 0
-
-        def search(start: int) -> None:
-            nonlocal best
-
-            if len(used) + len(s) - start <= best:
+        def dfs(i: int):
+            nonlocal ans
+            if len(st) + len(s) - i <= ans:
                 return
-            if start == len(s):
-                best = len(used)
+            if i >= len(s):
+                ans = max(ans, len(st))
                 return
+            for j in range(i + 1, len(s) + 1):
+                if s[i:j] not in st:
+                    st.add(s[i:j])
+                    dfs(j)
+                    st.remove(s[i:j])
 
-            for end in range(start + 1, len(s) + 1):
-                part = s[start:end]
-                if part in used:
-                    continue
-                used.add(part)
-                search(end)
-                used.remove(part)
-
-        search(0)
-        return best
+        ans = 0
+        st = set()
+        dfs(0)
+        return ans

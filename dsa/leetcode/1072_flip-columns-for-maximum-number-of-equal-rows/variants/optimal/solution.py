@@ -1,12 +1,7 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def maxEqualRowsAfterFlips(self, matrix: List[List[int]]) -> int:
-        patterns = Counter()
+        cnt = Counter()
         for row in matrix:
-            first = row[0]
-            pattern = tuple(value ^ first for value in row)
-            patterns[pattern] += 1
-        return max(patterns.values())
+            t = tuple(row) if row[0] == 0 else tuple(x ^ 1 for x in row)
+            cnt[t] += 1
+        return max(cnt.values())

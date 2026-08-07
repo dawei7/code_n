@@ -1,54 +1,55 @@
-from heapq import heappop, heappush
+import heapq
 
 
 class Solution:
-    def minOperations(self, n: int, m: int) -> int:
-        digit_count = len(str(n))
-        limit = 10**digit_count
-        lower_bound = 0 if digit_count == 1 else limit // 10
+    def __init__(self):
+        self.sieve = []
 
-        is_prime = bytearray(b"\x01") * limit
-        is_prime[0:2] = b"\x00\x00"
-        for value in range(2, int(limit**0.5) + 1):
-            if is_prime[value]:
-                start = value * value
-                count = (limit - 1 - start) // value + 1
-                is_prime[start:limit:value] = b"\x00" * count
+    def run_sieve(self):
+        self.sieve = [True] * 100000
+        self.sieve[0], self.sieve[1] = False, False
+        for i in range(2, 100000):
+            if self.sieve[i]:
+                for j in range(2 * i, 100000, i):
+                    self.sieve[j] = False
 
-        if is_prime[n] or is_prime[m]:
-            return -1
+    def solve(self, n, m):
+        pq = []
+        heapq.heappush(pq, (n, n))
+        visited = set()
 
-        distances = [10**18] * limit
-        distances[n] = n
-        queue = [(n, n)]
+        while pq:
+            sum_, cur = heapq.heappop(pq)
 
-        while queue:
-            cost, value = heappop(queue)
-            if cost != distances[value]:
+            if cur in visited:
                 continue
-            if value == m:
-                return cost
+            visited.add(cur)
 
-            place = 1
-            for _ in range(digit_count):
-                digit = value // place % 10
+            if cur == m:
+                return sum_
 
-                if digit < 9:
-                    neighbor = value + place
-                    if not is_prime[neighbor]:
-                        next_cost = cost + neighbor
-                        if next_cost < distances[neighbor]:
-                            distances[neighbor] = next_cost
-                            heappush(queue, (next_cost, neighbor))
+            s = list(str(cur))
+            for i in range(len(s)):
+                c = s[i]
 
-                if digit > 0:
-                    neighbor = value - place
-                    if neighbor >= lower_bound and not is_prime[neighbor]:
-                        next_cost = cost + neighbor
-                        if next_cost < distances[neighbor]:
-                            distances[neighbor] = next_cost
-                            heappush(queue, (next_cost, neighbor))
+                if s[i] < '9':
+                    s[i] = chr(ord(s[i]) + 1)
+                    next_ = int(''.join(s))
+                    if not self.sieve[next_] and next_ not in visited:
+                        heapq.heappush(pq, (sum_ + next_, next_))
+                    s[i] = c
 
-                place *= 10
+                if s[i] > '0' and not (i == 0 and s[i] == '1'):
+                    s[i] = chr(ord(s[i]) - 1)
+                    next_ = int(''.join(s))
+                    if not self.sieve[next_] and next_ not in visited:
+                        heapq.heappush(pq, (sum_ + next_, next_))
+                    s[i] = c
 
         return -1
+
+    def minOperations(self, n, m):
+        self.run_sieve()
+        if self.sieve[n] or self.sieve[m]:
+            return -1
+        return self.solve(n, m)

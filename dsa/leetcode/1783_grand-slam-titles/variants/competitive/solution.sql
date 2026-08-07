@@ -1,16 +1,23 @@
-SELECT
-    p.player_id,
-    p.player_name,
-    COUNT(*) AS grand_slams_count
-FROM Players AS p
-JOIN (
-    SELECT Wimbledon AS player_id FROM Championships
-    UNION ALL
-    SELECT Fr_open AS player_id FROM Championships
-    UNION ALL
-    SELECT US_open AS player_id FROM Championships
-    UNION ALL
-    SELECT Au_open AS player_id FROM Championships
-) AS winners
-    ON winners.player_id = p.player_id
-GROUP BY p.player_id, p.player_name;
+# Time:  O(n)
+# Space: O(n)
+
+WITH cte
+     AS (SELECT wimbledon AS id
+         FROM   championships
+         UNION ALL
+         SELECT fr_open AS id
+         FROM   championships
+         UNION ALL
+         SELECT us_open AS id
+         FROM   championships
+         UNION ALL
+         SELECT au_open AS id
+         FROM   championships)
+SELECT player_id,
+       player_name,
+       Count(*) AS grand_slams_count
+FROM   players
+       INNER JOIN cte
+               ON players.player_id = cte.id
+GROUP  BY 1, 2
+ORDER  BY NULL; 

@@ -1,34 +1,44 @@
+# Time:  O(26 * n)
+# Space: O(26)
+
+# freq table, greedy
 class Solution:
-    def lexGreaterPermutation(self, s: str, target: str) -> str:
-        counts = [0] * 26
-        for character in s:
-            counts[ord(character) - ord("a")] += 1
+    def lexGreaterPermutation(self, s, target):
+        """
+        :type s: str
+        :type target: str
+        :rtype: str
+        """
+        def nxt(cnt, x):
+            for i in range(ord(x)-ord('a')+1, len(cnt)):
+                if not cnt[i]:
+                    continue
+                return chr(ord('a')+i)
+            return ' '
 
-        prefix = []
-        position = 0
-        while position < len(target):
-            index = ord(target[position]) - ord("a")
-            if counts[index] == 0:
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        tmp = cnt[:]
+        j = -1
+        for i, x in enumerate(target):
+            y = nxt(tmp, x)
+            if y != ' ':
+                j = i
+            if not tmp[ord(x)-ord('a')]:
                 break
-            prefix.append(target[position])
-            counts[index] -= 1
-            position += 1
-
-        while True:
-            if position < len(target):
-                target_index = ord(target[position]) - ord("a")
-                for index in range(target_index + 1, 26):
-                    if counts[index] == 0:
-                        continue
-
-                    counts[index] -= 1
-                    suffix = "".join(chr(ord("a") + letter) * counts[letter] for letter in range(26))
-                    return "".join(prefix) + chr(ord("a") + index) + suffix
-
-            if not prefix:
-                break
-            position -= 1
-            restored = prefix.pop()
-            counts[ord(restored) - ord("a")] += 1
-
-        return ""
+            tmp[ord(x)-ord('a')] -= 1
+        if j == -1:
+            return ""
+        result = []
+        for i in range(j):
+            result.append(target[i])
+            cnt[ord(target[i])-ord('a')] -= 1
+        y = nxt(cnt, target[j])
+        result.append(y)
+        cnt[ord(y)-ord('a')] -= 1
+        for i in range(len(cnt)):
+            for _ in range(cnt[i]):
+                result.append(chr(ord('a')+i))
+                cnt[i] -= 1
+        return "".join(result)

@@ -1,18 +1,57 @@
-class Solution:
-    def checkIfCanBreak(self, s1: str, s2: str) -> bool:
-        counts1 = [0] * 26
-        counts2 = [0] * 26
-        for left, right in zip(s1, s2):
-            counts1[ord(left) - ord("a")] += 1
-            counts2[ord(right) - ord("a")] += 1
+# Time:  O(n)
+# Space: O(1)
 
-        balance = 0
-        saw_positive = False
-        saw_negative = False
-        for left_count, right_count in zip(counts1, counts2):
-            balance += left_count - right_count
-            saw_positive |= balance > 0
-            saw_negative |= balance < 0
-            if saw_positive and saw_negative:
-                return False
-        return True
+import collections
+import string
+
+
+class Solution:
+    def checkIfCanBreak(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        def is_break(count1, count2):
+            curr1, curr2 = 0, 0
+            for c in string.ascii_lowercase:
+                curr1 += count1[c]
+                curr2 += count2[c]
+                if curr1 < curr2:
+                    return False
+            return True
+
+        count1, count2 = collections.Counter(s1), collections.Counter(s2)
+        return is_break(count1, count2) or is_break(count2, count1)
+    
+
+# Time:  O(nlogn)
+# Space: O(1)
+import itertools
+
+
+class Solution2(object):
+    def checkIfCanBreak(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        return not {1, -1}.issubset(set(cmp(a, b) for a, b in itertools.izip(sorted(s1), sorted(s2))))
+
+
+# Time:  O(nlogn)
+# Space: O(1)
+import itertools
+
+
+class Solution3(object):
+    def checkIfCanBreak(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: bool
+        """
+        s1, s2 = sorted(s1), sorted(s2)
+        return all(a >= b for a, b in itertools.izip(s1, s2)) or \
+               all(a <= b for a, b in itertools.izip(s1, s2))

@@ -1,35 +1,46 @@
 class Solution:
     def countNoZeroPairs(self, n: int) -> int:
-        digits = [int(digit) for digit in reversed(str(n))]
-        digits.append(0)
+        digits = list(map(int, str(n)))[::-1]
+        digits.append(0)  # absorb final carry
+        L = len(digits)
 
-        states = {(0, True, True): 1}
+        # dp[carry][aliveA][aliveB]
+        dp = [[[0] * 2 for _ in range(2)] for _ in range(2)]
+        dp[0][1][1] = 1
 
-        for position, target_digit in enumerate(digits):
-            next_states: dict[tuple[int, bool, bool], int] = {}
-
-            for (carry, a_active, b_active), ways in states.items():
-                a_digits = range(1, 10) if position == 0 else range(10)
-                b_digits = range(1, 10) if position == 0 else range(10)
-
-                if not a_active:
-                    a_digits = (0,)
-                if not b_active:
-                    b_digits = (0,)
-
-                for a_digit in a_digits:
-                    for b_digit in b_digits:
-                        digit_sum = a_digit + b_digit + carry
-                        if digit_sum % 10 != target_digit:
+        for pos in range(L):
+            ndp = [[[0] * 2 for _ in range(2)] for _ in range(2)]
+            target = digits[pos]
+            for carry in range(2):
+                for aliveA in range(2):
+                    for aliveB in range(2):
+                        ways = dp[carry][aliveA][aliveB]
+                        if ways == 0:
                             continue
 
-                        state = (
-                            digit_sum // 10,
-                            a_active and a_digit != 0,
-                            b_active and b_digit != 0,
-                        )
-                        next_states[state] = next_states.get(state, 0) + ways
+                        if aliveA:
+                            A = [(d, 1) for d in range(1, 10)]
+                            if pos > 0:
+                                A.append((0, 0))  # end number here
+                        else:
+                            A = [(0, 0)]
 
-            states = next_states
+                        if aliveB:
+                            B = [(d, 1) for d in range(1, 10)]
+                            if pos > 0:
+                                B.append((0, 0))
+                        else:
+                            B = [(0, 0)]
 
-        return states.get((0, False, False), 0)
+                        for da, na in A:
+                            for db, nb in B:
+                                s = da + db + carry
+                                if s % 10 != target:
+                                    continue
+                                ndp[s // 10][na][nb] += ways
+            dp = ndp
+
+        return dp[0][0][0]
+
+    def countPairs(self, n: int) -> int:
+        return self.countNoZeroPairs(n)

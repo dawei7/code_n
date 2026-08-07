@@ -1,14 +1,9 @@
-from typing import List
-
-
 class Solution:
     def rotate(self, matrix: List[List[int]]) -> None:
-        size = len(matrix)
-        for row in range(size):
-            for column in range(row + 1, size):
-                matrix[row][column], matrix[column][row] = (
-                    matrix[column][row],
-                    matrix[row][column],
-                )
-        for row in matrix:
-            row.reverse()
+        n = len(matrix)
+        for i in range(n >> 1):
+            for j in range(n):
+                matrix[i][j], matrix[n - i - 1][j] = matrix[n - i - 1][j], matrix[i][j]
+        for i in range(n):
+            for j in range(i):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]

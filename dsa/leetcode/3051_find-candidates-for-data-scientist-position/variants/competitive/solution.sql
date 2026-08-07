@@ -1,6 +1,9 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
 SELECT candidate_id
-FROM Candidates
+FROM candidates
 WHERE skill IN ('Python', 'Tableau', 'PostgreSQL')
-GROUP BY candidate_id
-HAVING COUNT(DISTINCT skill) = 3
-ORDER BY candidate_id ASC;
+GROUP BY 1
+HAVING COUNT(skill) = 3
+ORDER BY 1;

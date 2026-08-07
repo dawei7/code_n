@@ -1,17 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minSwaps(self, nums: List[int]) -> int:
-        n = len(nums)
-        ones = sum(nums)
-        if ones <= 1:
-            return 0
-
-        zeros = ones - sum(nums[:ones])
-        answer = zeros
-        for right in range(ones, ones + n - 1):
-            zeros += 1 - nums[right % n]
-            zeros -= 1 - nums[(right - ones) % n]
-            answer = min(answer, zeros)
-        return answer
+    def minSwaps(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = cnt = w = nums.count(1)
+        for i in range(len(nums)+(w-1)):
+            if i >= w:
+                cnt += nums[(i-w)%len(nums)]
+            cnt -= nums[i%len(nums)]
+            result = min(result, cnt)
+        return result

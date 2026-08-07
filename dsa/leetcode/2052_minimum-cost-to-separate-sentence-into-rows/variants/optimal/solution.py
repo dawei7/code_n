@@ -1,23 +1,17 @@
 class Solution:
     def minimumCost(self, sentence: str, k: int) -> int:
-        words = sentence.split()
-        word_count = len(words)
-        best = [float("inf")] * (word_count + 1)
-        best[0] = 0
+        @cache
+        def dfs(i: int) -> int:
+            if s[n] - s[i] + n - i - 1 <= k:
+                return 0
+            ans = inf
+            j = i + 1
+            while j < n and (m := s[j] - s[i] + j - i - 1) <= k:
+                ans = min(ans, dfs(j) + (k - m) ** 2)
+                j += 1
+            return ans
 
-        for start in range(word_count):
-            row_length = 0
-            for end in range(start, word_count):
-                row_length += len(words[end])
-                if end > start:
-                    row_length += 1
-                if row_length > k:
-                    break
-
-                row_cost = 0 if end == word_count - 1 else (k - row_length) ** 2
-                best[end + 1] = min(
-                    best[end + 1],
-                    best[start] + row_cost,
-                )
-
-        return int(best[word_count])
+        nums = [len(s) for s in sentence.split()]
+        n = len(nums)
+        s = list(accumulate(nums, initial=0))
+        return dfs(0)

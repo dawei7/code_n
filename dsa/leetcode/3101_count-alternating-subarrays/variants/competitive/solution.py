@@ -1,13 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# dp
 class Solution:
-    def countAlternatingSubarrays(self, nums: List[int]) -> int:
-        answer = 1
-        ending_here = 1
-
-        for index in range(1, len(nums)):
-            if nums[index] != nums[index - 1]:
-                ending_here += 1
-            else:
-                ending_here = 1
-            answer += ending_here
-
-        return answer
+    def countAlternatingSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = curr = 0
+        for i in range(len(nums)):
+            if i-1 >= 0 and nums[i-1] == nums[i]:
+                curr = 0
+            curr += 1
+            result += curr
+        return result

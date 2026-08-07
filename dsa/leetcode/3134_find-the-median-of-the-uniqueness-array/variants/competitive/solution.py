@@ -1,41 +1,38 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
+# binary search, two pointers, sliding window
 class Solution:
-    def medianOfUniquenessArray(self, nums: List[int]) -> int:
-        n = len(nums)
-        total_subarrays = n * (n + 1) // 2
-        target_rank = (total_subarrays + 1) // 2
+    def medianOfUniquenessArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left + (right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        def reaches_target(limit: int) -> bool:
-            frequencies = {}
+        def check(k):
+            result = 0
+            cnt = collections.Counter()
             left = 0
-            count = 0
-
-            for right, value in enumerate(nums):
-                frequencies[value] = frequencies.get(value, 0) + 1
-
-                while len(frequencies) > limit:
-                    outgoing = nums[left]
-                    frequencies[outgoing] -= 1
-                    if frequencies[outgoing] == 0:
-                        del frequencies[outgoing]
+            for right in range(len(nums)):
+                cnt[nums[right]] += 1
+                while len(cnt) == k+1:
+                    cnt[nums[left]] -= 1
+                    if cnt[nums[left]] == 0:
+                        del cnt[nums[left]]
                     left += 1
+                result += right-left+1
+            return result >= total-result
 
-                count += right - left + 1
-                if count >= target_rank:
-                    return True
-
-            return False
-
-        low = 1
-        high = len(set(nums))
-
-        while low < high:
-            middle = (low + high) // 2
-            if reaches_target(middle):
-                high = middle
-            else:
-                low = middle + 1
-
-        return low
+        total = (len(nums)+1)*len(nums)//2
+        return binary_search(1, len(set(nums)), check)

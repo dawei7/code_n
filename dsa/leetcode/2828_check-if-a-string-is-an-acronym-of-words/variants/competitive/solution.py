@@ -1,9 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import itertools
 
 
+# string
 class Solution:
-    def isAcronym(self, words: List[str], s: str) -> bool:
-        if len(words) != len(s):
-            return False
-
-        return all(word[0] == character for word, character in zip(words, s))
+    def isAcronym(self, words, s):
+        """
+        :type words: List[str]
+        :type s: str
+        :rtype: bool
+        """
+        return len(words) == len(s) and all(w[0] == c for w, c in itertools.izip(words, s))

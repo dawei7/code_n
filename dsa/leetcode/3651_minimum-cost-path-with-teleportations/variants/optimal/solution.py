@@ -1,50 +1,31 @@
-from typing import List
-
-
 class Solution:
     def minCost(self, grid: List[List[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        infinity = float("inf")
-        cells = sorted((grid[row][column], row, column) for row in range(rows) for column in range(columns))
-        cells.reverse()
-
-        def close_normal_moves(costs: List[List[float]]) -> None:
-            for row in range(rows):
-                for column in range(columns):
-                    if row > 0:
-                        costs[row][column] = min(
-                            costs[row][column],
-                            costs[row - 1][column] + grid[row][column],
-                        )
-                    if column > 0:
-                        costs[row][column] = min(
-                            costs[row][column],
-                            costs[row][column - 1] + grid[row][column],
-                        )
-
-        costs = [[infinity] * columns for _ in range(rows)]
-        costs[0][0] = 0
-        close_normal_moves(costs)
-
-        for _ in range(k):
-            next_costs = [row[:] for row in costs]
-            best_source = infinity
-            index = 0
-
-            while index < len(cells):
-                end = index
-                value = cells[index][0]
-                while end < len(cells) and cells[end][0] == value:
-                    _, row, column = cells[end]
-                    best_source = min(best_source, costs[row][column])
-                    end += 1
-                for position in range(index, end):
-                    _, row, column = cells[position]
-                    next_costs[row][column] = min(next_costs[row][column], best_source)
-                index = end
-
-            close_normal_moves(next_costs)
-            costs = next_costs
-
-        return int(costs[-1][-1])
+        m, n = len(grid), len(grid[0])
+        f = [[[inf] * n for _ in range(m)] for _ in range(k + 1)]
+        f[0][0][0] = 0
+        for i in range(m):
+            for j in range(n):
+                if i:
+                    f[0][i][j] = min(f[0][i][j], f[0][i - 1][j] + grid[i][j])
+                if j:
+                    f[0][i][j] = min(f[0][i][j], f[0][i][j - 1] + grid[i][j])
+        g = defaultdict(list)
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                g[x].append((i, j))
+        keys = sorted(g, reverse=True)
+        for t in range(1, k + 1):
+            mn = inf
+            for key in keys:
+                pos = g[key]
+                for i, j in pos:
+                    mn = min(mn, f[t - 1][i][j])
+                for i, j in pos:
+                    f[t][i][j] = mn
+            for i in range(m):
+                for j in range(n):
+                    if i:
+                        f[t][i][j] = min(f[t][i][j], f[t][i - 1][j] + grid[i][j])
+                    if j:
+                        f[t][i][j] = min(f[t][i][j], f[t][i][j - 1] + grid[i][j])
+        return min(f[t][m - 1][n - 1] for t in range(k + 1))

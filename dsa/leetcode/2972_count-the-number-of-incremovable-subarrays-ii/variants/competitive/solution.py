@@ -1,22 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# two pointers
 class Solution:
-    def incremovableSubarrayCount(self, nums: List[int]) -> int:
-        n = len(nums)
-        left = 0
-        while left + 1 < n and nums[left] < nums[left + 1]:
-            left += 1
-
-        if left == n - 1:
-            return n * (n + 1) // 2
-
-        answer = left + 2
-        right = n - 1
-        while right == n - 1 or nums[right] < nums[right + 1]:
-            while left >= 0 and nums[left] >= nums[right]:
-                left -= 1
-            answer += left + 2
-            right -= 1
-
-        return answer
+    def incremovableSubarrayCount(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        for j in reversed(range(1, len(nums))):
+            if not nums[j-1] < nums[j]:
+                break
+        else:
+            return (len(nums)+1)*len(nums)//2
+        result = len(nums)-j+1
+        for i in range(len(nums)-1):
+            while j < len(nums) and not (nums[i] < nums[j]):
+                j += 1
+            result += len(nums)-j+1
+            if not (nums[i] < nums[i+1]):
+                break
+        return result

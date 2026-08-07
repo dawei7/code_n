@@ -1,48 +1,27 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# dp, kadane's algorithm
 class Solution:
-    def maxSubarraySum(self, nums: List[int], k: int) -> int:
-        value = nums[0]
-        divided = value // k if value >= 0 else -((-value) // k)
+    def maxSubarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def sign(x):
+            return 1 if x >= 0 else -1
 
-        no_operation = value
-        multiplying = value * k
-        dividing = divided
-        finished = -(10**30)
-        answer = max(no_operation, multiplying, dividing)
-
-        for value in nums[1:]:
-            multiplied = value * k
-            divided = value // k if value >= 0 else -((-value) // k)
-
-            next_no_operation = max(value, no_operation + value)
-            next_multiplying = max(
-                multiplied,
-                no_operation + multiplied,
-                multiplying + multiplied,
-            )
-            next_dividing = max(
-                divided,
-                no_operation + divided,
-                dividing + divided,
-            )
-            next_finished = max(
-                multiplying + value,
-                dividing + value,
-                finished + value,
-            )
-
-            no_operation = next_no_operation
-            multiplying = next_multiplying
-            dividing = next_dividing
-            finished = next_finished
-            answer = max(
-                answer,
-                no_operation,
-                multiplying,
-                dividing,
-                finished,
-            )
-
-        return answer
+        NEG_ING = float("-inf")
+        INIT, MULT, DIV, DONE = range(4)
+        result = NEG_ING
+        dp = [NEG_ING]*4
+        for x in nums:
+            dp[:] = [
+                max(dp[INIT], 0)+x,
+                max(dp[MULT], dp[INIT], 0)+x*k,
+                max(dp[DIV], dp[INIT], 0)+sign(x)*(abs(x)//k),
+                max(dp[DONE], dp[MULT], dp[DIV], 0)+x,
+            ]
+            result = max(result, max(dp))
+        return result

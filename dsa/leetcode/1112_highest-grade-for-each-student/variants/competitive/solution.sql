@@ -1,15 +1,14 @@
-WITH ranked AS (
-    SELECT
-        student_id,
-        course_id,
-        grade,
-        ROW_NUMBER() OVER (
-            PARTITION BY student_id
-            ORDER BY grade DESC, course_id ASC
-        ) AS position
-    FROM Enrollments
-)
-SELECT student_id, course_id, grade
-FROM ranked
-WHERE position = 1
-ORDER BY student_id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT student_id, 
+       Min(course_id) AS course_id, 
+       grade 
+FROM   enrollments 
+WHERE  ( student_id, grade ) IN (SELECT student_id, 
+                                        Max(grade) 
+                                 FROM   enrollments 
+                                 GROUP  BY student_id 
+                                 ORDER  BY NULL) 
+GROUP  BY student_id 
+ORDER  BY student_id 

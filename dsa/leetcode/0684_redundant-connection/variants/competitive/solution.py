@@ -1,23 +1,31 @@
+# Time:  O(nlog*n) ~= O(n), n is the length of the positions
+# Space: O(n)
+
+class UnionFind(object):
+    def __init__(self, n):
+        self.set = range(n)
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root == y_root:
+            return False
+        self.set[min(x_root, y_root)] = max(x_root, y_root)
+        return True
+
+
 class Solution:
-    def findRedundantConnection(self, edges: list[list[int]]) -> list[int]:
-        parent = list(range(len(edges) + 1))
-        size = [1] * (len(edges) + 1)
-
-        def find(node: int) -> int:
-            while node != parent[node]:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        for left, right in edges:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
-                return [left, right]
-
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-
+    def findRedundantConnection(self, edges):
+        """
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        union_find = UnionFind(len(edges)+1)
+        for edge in edges:
+            if not union_find.union_set(*edge):
+                return edge
         return []

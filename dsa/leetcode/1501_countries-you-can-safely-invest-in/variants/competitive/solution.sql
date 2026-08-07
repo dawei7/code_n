@@ -1,17 +1,10 @@
-WITH call_endpoints AS (
-    SELECT caller_id AS person_id, duration
-    FROM Calls
-    UNION ALL
-    SELECT callee_id AS person_id, duration
-    FROM Calls
-)
-SELECT
-    c.name AS country
-FROM call_endpoints AS e
-INNER JOIN Person AS p
-    ON p.id = e.person_id
-INNER JOIN Country AS c
-    ON c.country_code = SUBSTR(p.phone_number, 1, 3)
-GROUP BY c.country_code, c.name
-HAVING AVG(e.duration) > (SELECT AVG(duration) FROM Calls)
-ORDER BY country;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT co.name AS country
+FROM person p
+INNER JOIN country co ON SUBSTRING(phone_number, 1, 3) = country_code
+INNER JOIN calls c ON (p.id = c.caller_id OR p.id = c.callee_id)
+GROUP BY co.name
+HAVING AVG(duration) > (SELECT AVG(duration) as avg_duration FROM calls)
+ORDER BY NULL;

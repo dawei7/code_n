@@ -1,34 +1,12 @@
-from typing import List
-
-
 class Solution:
-    def checkArithmeticSubarrays(self, nums: List[int], l: List[int], r: List[int]) -> List[bool]:
-        answers = []
-        for left, right in zip(l, r):
-            length = right - left + 1
-            values = nums[left : right + 1]
-            minimum = min(values)
-            maximum = max(values)
-            span = maximum - minimum
-            if span % (length - 1) != 0:
-                answers.append(False)
-                continue
-            difference = span // (length - 1)
-            if difference == 0:
-                answers.append(True)
-                continue
+    def checkArithmeticSubarrays(
+        self, nums: List[int], l: List[int], r: List[int]
+    ) -> List[bool]:
+        def check(nums, l, r):
+            n = r - l + 1
+            s = set(nums[l : l + n])
+            a1, an = min(nums[l : l + n]), max(nums[l : l + n])
+            d, mod = divmod(an - a1, n - 1)
+            return mod == 0 and all((a1 + (i - 1) * d) in s for i in range(1, n))
 
-            positions = set()
-            valid = True
-            for value in values:
-                offset = value - minimum
-                if offset % difference != 0:
-                    valid = False
-                    break
-                position = offset // difference
-                if position in positions:
-                    valid = False
-                    break
-                positions.add(position)
-            answers.append(valid)
-        return answers
+        return [check(nums, left, right) for left, right in zip(l, r)]

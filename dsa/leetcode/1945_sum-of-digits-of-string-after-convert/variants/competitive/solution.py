@@ -1,15 +1,19 @@
+# Time:  O(n + logn + log(logn) + ...) = O(n)
+# Space: O(1)
+
 class Solution:
-    def getLucky(self, s: str, k: int) -> int:
-        value = 0
-        for character in s:
-            position = ord(character) - ord("a") + 1
-            value += position // 10 + position % 10
-
-        for _ in range(k - 1):
-            digit_sum = 0
-            while value:
-                digit_sum += value % 10
-                value //= 10
-            value = digit_sum
-
-        return value
+    def getLucky(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        total = reduce(lambda total, x: total+sum(divmod((ord(x)-ord('a')+1), 10)), s, 0)
+        while k > 1 and total > 9:
+            new_total = 0
+            while total:
+                total, x = divmod(total, 10)
+                new_total += x
+            total = new_total
+            k -= 1
+        return total

@@ -1,47 +1,16 @@
 class Solution:
     def makeAntiPalindrome(self, s: str) -> str:
-        n = len(s)
-        half = n // 2
-        counts = [0] * 26
-        for ch in s:
-            counts[ord(ch) - ord("a")] += 1
-
-        if max(counts) > half:
-            return "-1"
-
-        remaining = counts[:]
-        first = []
-        needed = half
-        for letter in range(26):
-            take = min(remaining[letter], needed)
-            first.extend(chr(ord("a") + letter) for _ in range(take))
-            remaining[letter] -= take
-            needed -= take
-
-        forbidden_counts = [0] * 26
-        for ch in first:
-            forbidden_counts[ord(ch) - ord("a")] += 1
-
-        second = []
-        slots = half
-        for forbidden_ch in reversed(first):
-            forbidden = ord(forbidden_ch) - ord("a")
-            forbidden_counts[forbidden] -= 1
-            slots -= 1
-
-            pick = -1
-            for letter in range(26):
-                if remaining[letter] > slots - forbidden_counts[letter]:
-                    pick = letter
-                    break
-
-            if pick == -1:
-                for letter in range(26):
-                    if remaining[letter] and letter != forbidden:
-                        pick = letter
-                        break
-
-            remaining[pick] -= 1
-            second.append(chr(ord("a") + pick))
-
-        return "".join(first + second)
+        cs = sorted(s)
+        n = len(cs)
+        m = n // 2
+        if cs[m] == cs[m - 1]:
+            i = m
+            while i < n and cs[i] == cs[i - 1]:
+                i += 1
+            j = m
+            while j < n and cs[j] == cs[n - j - 1]:
+                if i >= n:
+                    return "-1"
+                cs[i], cs[j] = cs[j], cs[i]
+                i, j = i + 1, j + 1
+        return "".join(cs)

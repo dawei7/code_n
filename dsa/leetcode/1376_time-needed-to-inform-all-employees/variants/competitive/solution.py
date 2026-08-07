@@ -1,26 +1,57 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# dfs solution with stack
 class Solution:
-    def numOfMinutes(
-        self,
-        n: int,
-        headID: int,
-        manager: List[int],
-        informTime: List[int],
-    ) -> int:
-        reports = [[] for _ in range(n)]
-        for employee, manager_id in enumerate(manager):
-            if manager_id != -1:
-                reports[manager_id].append(employee)
+    def numOfMinutes(self, n, headID, manager, informTime):
+        """
+        :type n: int
+        :type headID: int
+        :type manager: List[int]
+        :type informTime: List[int]
+        :rtype: int
+        """
+        children = collections.defaultdict(list)
+        for child, parent in enumerate(manager):
+            if parent != -1:
+                children[parent].append(child)
 
-        total_time = 0
-        stack = [(headID, 0)]
-        while stack:
-            employee, received_at = stack.pop()
-            total_time = max(total_time, received_at)
-            next_time = received_at + informTime[employee]
-            for report in reports[employee]:
-                stack.append((report, next_time))
+        result = 0
+        stk = [(headID, 0)]
+        while stk:
+            node, curr = stk.pop()
+            curr += informTime[node]
+            result = max(result, curr)
+            if node not in children:
+                continue
+            for c in children[node]:
+                stk.append((c, curr))
+        return result
 
-        return total_time
+    
+# Time:  O(n)
+# Space: O(n)
+# dfs solution with recursion
+class Solution2(object):
+    def numOfMinutes(self, n, headID, manager, informTime):
+        """
+        :type n: int
+        :type headID: int
+        :type manager: List[int]
+        :type informTime: List[int]
+        :rtype: int
+        """
+        def dfs(informTime, children, node):
+            return (max(dfs(informTime, children, c)
+                        for c in children[node])
+                    if node in children
+                    else 0) + informTime[node]
+
+        children = collections.defaultdict(list)
+        for child, parent in enumerate(manager):
+            if parent != -1:
+                children[parent].append(child)
+        return dfs(informTime, children, headID)

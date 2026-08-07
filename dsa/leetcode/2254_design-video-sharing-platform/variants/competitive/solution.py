@@ -1,48 +1,97 @@
+# Time:  ctor:                O(1)
+#        upload:              O(logn+l)
+#        remove:              O(logn)
+#        like:                O(1)
+#        dislike:             O(1)
+#        view:                O(l)
+#        getLikesAndDislikes: O(1)
+#        getViews:            O(1)
+# Space: O(n * l), n = len(videos), l = max(len(v) for v in videos) 
+
 import heapq
-from typing import List
 
 
-class VideoSharingPlatform:
+# design, heap
+class VideoSharingPlatform(object):
+
     def __init__(self):
-        self.videos = {}
-        self.available_ids = []
-        self.next_id = 0
+        self.__avails = []
+        self.__videos = []
+        self.__likes = []
+        self.__dislikes = []
+        self.__views = []
 
-    def upload(self, video: str) -> int:
-        if self.available_ids:
-            video_id = heapq.heappop(self.available_ids)
+    def upload(self, video):
+        """
+        :type video: str
+        :rtype: int
+        """
+        if self.__avails:
+            i = heapq.heappop(self.__avails)
         else:
-            video_id = self.next_id
-            self.next_id += 1
-        self.videos[video_id] = [video, 0, 0, 0]
-        return video_id
-
-    def remove(self, videoId: int) -> None:
-        if videoId in self.videos:
-            del self.videos[videoId]
-            heapq.heappush(self.available_ids, videoId)
-
-    def watch(self, videoId: int, startMinute: int, endMinute: int) -> str:
-        if videoId not in self.videos:
+            i = len(self.__videos)
+            self.__videos.append(None)
+            self.__likes.append(0)
+            self.__dislikes.append(0)
+            self.__views.append(0)
+        self.__videos[i] = video
+        return i
+        
+    def remove(self, videoId):
+        """
+        :type videoId: int
+        :rtype: None
+        """
+        if videoId >= len(self.__videos) or not self.__videos[videoId]:
+            return
+        heapq.heappush(self.__avails, videoId)
+        self.__videos[videoId] = None
+        self.__likes[videoId] = self.__dislikes[videoId] = self.__views[videoId] = 0
+        
+    def watch(self, videoId, startMinute, endMinute):
+        """
+        :type videoId: int
+        :type startMinute: int
+        :type endMinute: int
+        :rtype: str
+        """
+        if videoId >= len(self.__videos) or not self.__videos[videoId]:
             return "-1"
-        record = self.videos[videoId]
-        record[1] += 1
-        return record[0][startMinute : endMinute + 1]
+        self.__views[videoId] += 1
+        return self.__videos[videoId][startMinute:endMinute+1]
 
-    def like(self, videoId: int) -> None:
-        if videoId in self.videos:
-            self.videos[videoId][2] += 1
+    def like(self, videoId):
+        """
+        :type videoId: int
+        :rtype: None
+        """
+        if videoId >= len(self.__videos) or not self.__videos[videoId]:
+            return
+        self.__likes[videoId] += 1
 
-    def dislike(self, videoId: int) -> None:
-        if videoId in self.videos:
-            self.videos[videoId][3] += 1
+    def dislike(self, videoId):
+        """
+        :type videoId: int
+        :rtype: None
+        """
+        if videoId >= len(self.__videos) or not self.__videos[videoId]:
+            return
+        self.__dislikes[videoId] += 1
 
-    def getLikesAndDislikes(self, videoId: int) -> List[int]:
-        if videoId not in self.videos:
+    def getLikesAndDislikes(self, videoId):
+        """
+        :type videoId: int
+        :rtype: List[int]
+        """
+        if videoId >= len(self.__videos) or not self.__videos[videoId]:
             return [-1]
-        return self.videos[videoId][2:4]
+        return [self.__likes[videoId], self.__dislikes[videoId]]
 
-    def getViews(self, videoId: int) -> int:
-        if videoId not in self.videos:
+    def getViews(self, videoId):
+        """
+        :type videoId: int
+        :rtype: int
+        """
+        if videoId >= len(self.__videos) or not self.__videos[videoId]:
             return -1
-        return self.videos[videoId][1]
+        return self.__views[videoId]

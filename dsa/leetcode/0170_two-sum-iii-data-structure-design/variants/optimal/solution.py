@@ -1,15 +1,20 @@
 class TwoSum:
+
     def __init__(self):
-        self.counts = {}
+        self.cnt = defaultdict(int)
 
     def add(self, number: int) -> None:
-        self.counts[number] = self.counts.get(number, 0) + 1
+        self.cnt[number] += 1
 
     def find(self, value: int) -> bool:
-        for number, count in self.counts.items():
-            complement = value - number
-            if complement not in self.counts:
-                continue
-            if complement != number or count >= 2:
+        for x, v in self.cnt.items():
+            y = value - x
+            if y in self.cnt and (x != y or v > 1):
                 return True
         return False
+
+
+# Your TwoSum object will be instantiated and called as such:
+# obj = TwoSum()
+# obj.add(number)
+# param_2 = obj.find(value)

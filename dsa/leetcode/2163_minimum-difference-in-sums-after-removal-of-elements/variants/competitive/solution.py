@@ -1,34 +1,32 @@
-from heapq import heapreplace, heapify
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
+# heap, prefix sum
 class Solution:
-    def minimumDifference(self, nums: List[int]) -> int:
-        n = len(nums) // 3
+    def minimumDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        max_heap = []
+        for i in range(len(nums)//3):
+            heapq.heappush(max_heap, -nums[i])
+        prefix = [0]*(len(nums)//3+1)
+        prefix[0] = -sum(max_heap)
+        for i in range(len(nums)//3):
+            x = -heapq.heappushpop(max_heap, -nums[i+len(nums)//3])
+            prefix[i+1] = prefix[i]-x+nums[i+len(nums)//3]
 
-        left_heap = [-value for value in nums[:n]]
-        heapify(left_heap)
-        left_sum = sum(nums[:n])
-        left = [0] * (2 * n)
-        left[n - 1] = left_sum
-
-        for index in range(n, 2 * n):
-            value = nums[index]
-            if value < -left_heap[0]:
-                removed = -heapreplace(left_heap, -value)
-                left_sum += value - removed
-            left[index] = left_sum
-
-        right_heap = nums[2 * n :]
-        heapify(right_heap)
-        right_sum = sum(right_heap)
-        answer = left[2 * n - 1] - right_sum
-
-        for index in range(2 * n - 1, n - 1, -1):
-            value = nums[index]
-            if value > right_heap[0]:
-                removed = heapreplace(right_heap, value)
-                right_sum += value - removed
-            answer = min(answer, left[index - 1] - right_sum)
-
-        return answer
+        min_heap = []
+        for i in reversed(range(len(nums)//3*2, len(nums))):
+            heapq.heappush(min_heap, nums[i])
+        suffix = sum(min_heap)
+        result = prefix[len(nums)//3]-suffix
+        for i in reversed(range(len(nums)//3)):
+            x = heapq.heappushpop(min_heap, nums[i+len(nums)//3])
+            suffix += -x+nums[i+len(nums)//3]
+            result = min(result, prefix[i]-suffix)
+        return result

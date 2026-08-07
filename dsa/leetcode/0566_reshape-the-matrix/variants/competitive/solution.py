@@ -1,25 +1,23 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m * n)
 
 class Solution:
-    def matrixReshape(
-        self,
-        mat: List[List[int]],
-        r: int,
-        c: int,
-    ) -> List[List[int]]:
-        rows = len(mat)
-        columns = len(mat[0])
+    def matrixReshape(self, nums, r, c):
+        """
+        :type nums: List[List[int]]
+        :type r: int
+        :type c: int
+        :rtype: List[List[int]]
+        """
+        if not nums or \
+           r*c != len(nums) * len(nums[0]):
+            return nums
 
-        if rows * columns != r * c:
-            return mat
+        result = [[0 for _ in range(c)] for _ in range(r)]
+        count = 0
+        for i in range(len(nums)):
+            for j in range(len(nums[0])):
+                result[count/c][count%c] = nums[i][j]
+                count += 1
+        return result
 
-        reshaped = [[] for _ in range(r)]
-        flat_index = 0
-
-        for row in mat:
-            for value in row:
-                reshaped[flat_index // c].append(value)
-                flat_index += 1
-
-        return reshaped

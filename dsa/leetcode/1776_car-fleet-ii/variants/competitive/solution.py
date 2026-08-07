@@ -1,26 +1,20 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def getCollisionTimes(self, cars: List[List[int]]) -> List[float]:
-        collision_times = [-1.0] * len(cars)
-        stack: List[int] = []
-
-        for index in range(len(cars) - 1, -1, -1):
-            position, speed = cars[index]
-            while stack:
-                ahead = stack[-1]
-                ahead_position, ahead_speed = cars[ahead]
-                if speed <= ahead_speed:
-                    stack.pop()
-                    continue
-
-                collision_time = (ahead_position - position) / (speed - ahead_speed)
-                if collision_times[ahead] < 0 or collision_time <= collision_times[ahead]:
-                    collision_times[index] = collision_time
-                    break
-                stack.pop()
-
-            stack.append(index)
-
-        return collision_times
+    def getCollisionTimes(self, cars):
+        """
+        :type cars: List[List[int]]
+        :rtype: List[float]
+        """
+        stk = []
+        result = [-1.0]*len(cars)
+        for i in reversed(range(len(cars))):
+            p, s = cars[i]
+            while stk and (cars[stk[-1]][1] >= s or 
+                           0 < result[stk[-1]] <= float(cars[stk[-1]][0]-p)/(s-cars[stk[-1]][1])):
+                stk.pop()
+            if stk:
+                result[i] = float(cars[stk[-1]][0]-p)/(s-cars[stk[-1]][1])
+            stk.append(i)
+        return result

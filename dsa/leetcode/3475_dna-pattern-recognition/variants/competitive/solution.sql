@@ -1,15 +1,11 @@
-SELECT
-    sample_id,
-    dna_sequence,
-    species,
-    CASE WHEN dna_sequence LIKE 'ATG%' THEN 1 ELSE 0 END AS has_start,
-    CASE
-        WHEN dna_sequence LIKE '%TAA'
-          OR dna_sequence LIKE '%TAG'
-          OR dna_sequence LIKE '%TGA'
-        THEN 1 ELSE 0
-    END AS has_stop,
-    CASE WHEN dna_sequence LIKE '%ATAT%' THEN 1 ELSE 0 END AS has_atat,
-    CASE WHEN dna_sequence LIKE '%GGG%' THEN 1 ELSE 0 END AS has_ggg
-FROM Samples
+# Time:  O(nlogn)
+# Space: O(n)
+
+# regular expression
+SELECT *,
+       dna_sequence REGEXP '^ATG' AS has_start,
+       dna_sequence REGEXP 'TAA$|TAG$|TGA$' AS has_stop,
+       dna_sequence REGEXP 'ATAT' AS has_atat,
+       dna_sequence REGEXP 'GGG' AS has_ggg
+FROM samples
 ORDER BY sample_id;

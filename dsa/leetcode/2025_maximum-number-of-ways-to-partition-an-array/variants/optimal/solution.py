@@ -1,29 +1,23 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def waysToPartition(self, nums: List[int], k: int) -> int:
-        total = sum(nums)
-        right = Counter()
-        prefix = 0
+        n = len(nums)
+        s = [nums[0]] * n
+        right = defaultdict(int)
+        for i in range(1, n):
+            s[i] = s[i - 1] + nums[i]
+            right[s[i - 1]] += 1
 
-        for pivot in range(1, len(nums)):
-            prefix += nums[pivot - 1]
-            right[2 * prefix - total] += 1
+        ans = 0
+        if s[-1] % 2 == 0:
+            ans = right[s[-1] // 2]
 
-        answer = right[0]
-        left = Counter()
-        prefix = 0
-
-        for index, value in enumerate(nums):
-            if index > 0:
-                prefix += nums[index - 1]
-                balance = 2 * prefix - total
-                right[balance] -= 1
-                left[balance] += 1
-
-            change = k - value
-            answer = max(answer, left[change] + right[-change])
-
-        return answer
+        left = defaultdict(int)
+        for v, x in zip(s, nums):
+            d = k - x
+            if (s[-1] + d) % 2 == 0:
+                t = left[(s[-1] + d) // 2] + right[(s[-1] - d) // 2]
+                if ans < t:
+                    ans = t
+            left[v] += 1
+            right[v] -= 1
+        return ans

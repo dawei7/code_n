@@ -1,44 +1,47 @@
 class Solution:
     def longestBalanced(self, s: str) -> int:
-        best = 1
+        def calc1(s: str) -> int:
+            res = 0
+            i, n = 0, len(s)
+            while i < n:
+                j = i + 1
+                while j < n and s[j] == s[i]:
+                    j += 1
+                res = max(res, j - i)
+                i = j
+            return res
 
-        run = 0
-        previous = ""
-        for char in s:
-            if char == previous:
-                run += 1
-            else:
-                previous = char
-                run = 1
-            best = max(best, run)
+        def calc2(s: str, a: str, b: str) -> int:
+            res = 0
+            i, n = 0, len(s)
+            while i < n:
+                while i < n and s[i] not in (a, b):
+                    i += 1
+                pos = {0: i - 1}
+                d = 0
+                while i < n and s[i] in (a, b):
+                    d += 1 if s[i] == a else -1
+                    if d in pos:
+                        res = max(res, i - pos[d])
+                    else:
+                        pos[d] = i
+                    i += 1
+            return res
 
-        alphabet = "abc"
-        for excluded in alphabet:
-            allowed = [char for char in alphabet if char != excluded]
-            difference = 0
-            earliest = {0: -1}
-
-            for index, char in enumerate(s):
-                if char == excluded:
-                    difference = 0
-                    earliest = {0: index}
-                    continue
-
-                difference += 1 if char == allowed[0] else -1
-                if difference in earliest:
-                    best = max(best, index - earliest[difference])
+        def calc3(s: str) -> int:
+            pos = {(0, 0): -1}
+            cnt = Counter()
+            res = 0
+            for i, c in enumerate(s):
+                cnt[c] += 1
+                k = (cnt["a"] - cnt["b"], cnt["b"] - cnt["c"])
+                if k in pos:
+                    res = max(res, i - pos[k])
                 else:
-                    earliest[difference] = index
+                    pos[k] = i
+            return res
 
-        counts = [0, 0, 0]
-        earliest_state = {(0, 0): -1}
-
-        for index, char in enumerate(s):
-            counts[ord(char) - ord("a")] += 1
-            state = (counts[0] - counts[1], counts[0] - counts[2])
-            if state in earliest_state:
-                best = max(best, index - earliest_state[state])
-            else:
-                earliest_state[state] = index
-
-        return best
+        x = calc1(s)
+        y = max(calc2(s, "a", "b"), calc2(s, "b", "c"), calc2(s, "a", "c"))
+        z = calc3(s)
+        return max(x, y, z)

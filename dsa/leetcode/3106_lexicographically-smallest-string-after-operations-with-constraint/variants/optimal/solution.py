@@ -1,16 +1,13 @@
 class Solution:
     def getSmallestString(self, s: str, k: int) -> str:
-        characters = list(s)
-
-        for index, character in enumerate(characters):
-            value = ord(character) - ord("a")
-            distance_to_a = min(value, 26 - value)
-
-            if distance_to_a <= k:
-                characters[index] = "a"
-                k -= distance_to_a
-            else:
-                characters[index] = chr(ord(character) - k)
-                break
-
-        return "".join(characters)
+        cs = list(s)
+        for i, c1 in enumerate(s):
+            for c2 in ascii_lowercase:
+                if c2 >= c1:
+                    break
+                d = min(ord(c1) - ord(c2), 26 - ord(c1) + ord(c2))
+                if d <= k:
+                    cs[i] = c2
+                    k -= d
+                    break
+        return "".join(cs)

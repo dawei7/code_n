@@ -1,26 +1,27 @@
-from typing import List
+# Time:  O(q + n^2)
+# Space: O(1)
 
-
+# line sweep, difference matrix (2d difference array)
 class Solution:
-    def rangeAddQueries(self, n: int, queries: List[List[int]]) -> List[List[int]]:
-        difference = [[0] * n for _ in range(n)]
-
-        for row1, col1, row2, col2 in queries:
-            difference[row1][col1] += 1
-            if row2 + 1 < n:
-                difference[row2 + 1][col1] -= 1
-            if col2 + 1 < n:
-                difference[row1][col2 + 1] -= 1
-            if row2 + 1 < n and col2 + 1 < n:
-                difference[row2 + 1][col2 + 1] += 1
-
-        for row in range(n):
-            for col in range(n):
-                if row:
-                    difference[row][col] += difference[row - 1][col]
-                if col:
-                    difference[row][col] += difference[row][col - 1]
-                if row and col:
-                    difference[row][col] -= difference[row - 1][col - 1]
-
-        return difference
+    def rangeAddQueries(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        result = [[0]*n for _ in range(n)]
+        for r1, c1, r2, c2 in queries:
+            result[r1][c1] += 1
+            if c2+1 < len(result[0]):
+                result[r1][c2+1] -= 1
+            if r2+1 < len(result):
+                result[r2+1][c1] -= 1
+            if r2+1 < len(result) and c2+1 < len(result[0]):
+                result[r2+1][c2+1] += 1
+        for r in range(len(result)):
+            for c in range(len(result[0])-1):
+                result[r][c+1] += result[r][c]
+        for r in range(len(result)-1):
+            for c in range(len(result[0])):
+                result[r+1][c] += result[r][c]
+        return result

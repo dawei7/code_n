@@ -1,33 +1,74 @@
+# Time:  O(k * nlogn)
+# Space: O(n)
+
+# sort, math
 class Solution:
-    def maxNumberOfAlloys(
-        self,
-        n: int,
-        k: int,
-        budget: int,
-        composition: List[List[int]],
-        stock: List[int],
-        cost: List[int],
-    ) -> int:
-        answer = 0
+    def maxNumberOfAlloys(self, n, k, budget, composition, stock, cost):
+        """
+        :type n: int
+        :type k: int
+        :type budget: int
+        :type composition: List[List[int]]
+        :type stock: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        def count(machine, budget):
+            def cnt(x):
+                return stock[x]//machine[x]
+    
+            idxs = range(n)
+            idxs.sort(key=cnt)
+            result = cnt(idxs[0])
+            prefix = curr = discount = 0
+            for i in range(n):
+                curr += cost[idxs[i]]*machine[idxs[i]]
+                discount += cost[idxs[i]]*(stock[idxs[i]]%machine[idxs[i]])
+                if i+1 != n and cnt(idxs[i+1])-cnt(idxs[i]) == 0:
+                    continue
+                prefix += curr
+                budget += discount
+                curr = discount = 0
+                mn = min((cnt(idxs[i+1])-cnt(idxs[i]) if i+1 < n else float("inf")), budget//prefix)
+                if mn == 0:
+                    break
+                budget -= prefix*mn
+                result += mn
+            return result
 
-        for recipe in composition:
-            low = 0
-            high = min((stock[metal] + budget // cost[metal]) // recipe[metal] for metal in range(n))
+        return max(count(machine, budget) for machine in composition)
 
-            while low <= high:
-                alloys = (low + high) // 2
-                expense = 0
 
-                for metal in range(n):
-                    missing = max(0, recipe[metal] * alloys - stock[metal])
-                    expense += missing * cost[metal]
-                    if expense > budget:
+# Time:  O(k * n * logr), r = min(stock)+budget
+# Space: O(1)
+# binary search
+class Solution2(object):
+    def maxNumberOfAlloys(self, n, k, budget, composition, stock, cost):
+        """
+        :type n: int
+        :type k: int
+        :type budget: int
+        :type composition: List[List[int]]
+        :type stock: List[int]
+        :type cost: List[int]
+        :rtype: int
+        """
+        def check(x):
+            for machine in composition:
+                curr = 0
+                for i in range(n):
+                    curr += max(x*machine[i]-stock[i], 0)*cost[i]
+                    if curr > budget:
                         break
+                if curr <= budget:
+                    return True
+            return False
 
-                if expense <= budget:
-                    answer = max(answer, alloys)
-                    low = alloys + 1
-                else:
-                    high = alloys - 1
-
-        return answer
+        left, right = 1, min(stock)+budget
+        while left <= right:
+            mid = left+(right-left)//2
+            if not check(mid):
+                right = mid-1
+            else:
+                left = mid+1
+        return right

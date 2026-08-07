@@ -1,21 +1,20 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+# Time:  O(n)
+# Space: O(1)
+
+# linked list
 class Solution:
-    def frequenciesOfElements(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        frequencies = {}
-        current = head
-
-        while current is not None:
-            frequencies[current.val] = frequencies.get(current.val, 0) + 1
-            current = current.next
-
-        dummy = ListNode()
-        tail = dummy
-        for frequency in frequencies.values():
-            tail.next = ListNode(frequency)
-            tail = tail.next
-
+    def frequenciesOfElements(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        curr = dummy = ListNode(0)
+        cnt = 0
+        while head:
+            cnt += 1
+            if not head.next or head.next.val != head.val:
+                curr.next = ListNode(cnt)
+                curr = curr.next
+                cnt = 0
+            head = head.next
         return dummy.next

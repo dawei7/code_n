@@ -1,15 +1,12 @@
-WITH spam_posts AS (
-    SELECT DISTINCT action_date, post_id
-    FROM Actions
-    WHERE action = 'report' AND extra = 'spam'
-),
-daily_percentages AS (
-    SELECT
-        spam_posts.action_date,
-        100.0 * COUNT(Removals.post_id) / COUNT(*) AS daily_percent
-    FROM spam_posts
-    LEFT JOIN Removals ON Removals.post_id = spam_posts.post_id
-    GROUP BY spam_posts.action_date
-)
-SELECT ROUND(AVG(daily_percent), 2) AS average_daily_percent
-FROM daily_percentages;
+# Time:  O(m + n)
+# Space: O(n)
+
+SELECT ROUND(AVG(removal_percent), 2) average_daily_percent
+FROM
+  (SELECT a.action_date,
+          COUNT(DISTINCT r.post_id) / COUNT(DISTINCT a.post_id) * 100 removal_percent
+   FROM Actions a
+   LEFT JOIN Removals r ON a.post_id = r.post_id
+   WHERE a.extra = 'spam'
+   GROUP BY a.action_date
+   ORDER BY NULL) tmp

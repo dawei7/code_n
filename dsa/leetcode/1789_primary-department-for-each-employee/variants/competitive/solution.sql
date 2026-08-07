@@ -1,8 +1,14 @@
-SELECT
-    employee_id,
-    COALESCE(
-        MAX(CASE WHEN primary_flag = 'Y' THEN department_id END),
-        MAX(department_id)
-    ) AS department_id
+# Time:  O(n)
+# Space: O(n)
+
+(SELECT employee_id,
+      department_id
 FROM Employee
-GROUP BY employee_id;
+WHERE primary_flag = 'Y')
+UNION
+(SELECT employee_id,
+      department_id
+FROM Employee
+GROUP BY employee_id
+HAVING COUNT(employee_id) = 1
+ORDER BY NULL);

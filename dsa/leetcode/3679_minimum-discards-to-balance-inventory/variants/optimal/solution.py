@@ -1,20 +1,15 @@
-from collections import defaultdict, deque
-from typing import List
-
-
 class Solution:
     def minArrivalsToDiscard(self, arrivals: List[int], w: int, m: int) -> int:
-        kept_days = defaultdict(deque)
-        discarded = 0
-
-        for day, item_type in enumerate(arrivals):
-            days = kept_days[item_type]
-            while days and days[0] <= day - w:
-                days.popleft()
-
-            if len(days) == m:
-                discarded += 1
+        cnt = Counter()
+        n = len(arrivals)
+        marked = [0] * n
+        ans = 0
+        for i, x in enumerate(arrivals):
+            if i >= w:
+                cnt[arrivals[i - w]] -= marked[i - w]
+            if cnt[x] >= m:
+                ans += 1
             else:
-                days.append(day)
-
-        return discarded
+                marked[i] = 1
+                cnt[x] += 1
+        return ans

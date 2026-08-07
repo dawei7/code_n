@@ -1,29 +1,24 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
+# freq table, greedy
 class Solution:
-    def largestPalindromic(self, num: str) -> str:
-        counts = Counter(num)
-        left_parts = []
-
-        for digit in "987654321":
-            pairs = counts[digit] // 2
-            if pairs:
-                left_parts.append(digit * pairs)
-                counts[digit] -= 2 * pairs
-
-        if left_parts:
-            zero_pairs = counts["0"] // 2
-            if zero_pairs:
-                left_parts.append("0" * zero_pairs)
-                counts["0"] -= 2 * zero_pairs
-
-        left = "".join(left_parts)
-        center = next(
-            (digit for digit in "9876543210" if counts[digit] > 0),
-            "",
-        )
-
-        if not left:
-            return center or "0"
-        return left + center + left[::-1]
+    def largestPalindromic(self, num):
+        """
+        :type num: str
+        :rtype: str
+        """
+        cnt = collections.Counter(num)
+        result = []
+        for i in reversed(range(10)):
+            if not cnt[str(i)]//2 or (i == 0 and not result):
+                continue
+            for _ in range(cnt[str(i)]//2):
+                result.append(str(i))
+        result.append(max([k for k, v in cnt.items() if v%2] or [""]))
+        for i in reversed(range(len(result)-1)):
+            result.append(result[i])
+        return "".join(result) or "0"

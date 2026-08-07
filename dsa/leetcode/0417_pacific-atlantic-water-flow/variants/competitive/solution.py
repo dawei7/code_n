@@ -1,34 +1,41 @@
-from collections import deque
-
+# Time:  O(m * n)
+# Space: O(m * n)
 
 class Solution:
-    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows = len(heights)
-        columns = len(heights[0])
+    def pacificAtlantic(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        PACIFIC, ATLANTIC = 1, 2
 
-        def reverse_reachable(starts):
-            reached = set(starts)
-            queue = deque(starts)
-            while queue:
-                row, column = queue.popleft()
-                for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_delta
-                    next_column = column + column_delta
-                    next_cell = (next_row, next_column)
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and next_cell not in reached
-                        and heights[next_row][next_column] >= heights[row][column]
-                    ):
-                        reached.add(next_cell)
-                        queue.append(next_cell)
-            return reached
+        def pacificAtlanticHelper(matrix, x, y, prev_height, prev_val, visited, res):
+            if (not 0 <= x < len(matrix)) or \
+               (not 0 <= y < len(matrix[0])) or \
+               matrix[x][y] < prev_height or \
+               (visited[x][y] | prev_val) == visited[x][y]:
+                return
 
-        pacific_starts = {(0, column) for column in range(columns)}
-        pacific_starts.update((row, 0) for row in range(rows))
-        atlantic_starts = {(rows - 1, column) for column in range(columns)}
-        atlantic_starts.update((row, columns - 1) for row in range(rows))
+            visited[x][y] |= prev_val
+            if visited[x][y] == (PACIFIC | ATLANTIC):
+                res.append((x, y))
 
-        both = reverse_reachable(pacific_starts) & reverse_reachable(atlantic_starts)
-        return [[row, column] for row in range(rows) for column in range(columns) if (row, column) in both]
+            for d in [(0, -1), (0, 1), (-1, 0), (1, 0)]:
+                pacificAtlanticHelper(matrix, x + d[0], y + d[1], matrix[x][y], visited[x][y], visited, res)
+
+        if not matrix:
+            return []
+
+        res = []
+        m, n = len(matrix),len(matrix[0])
+        visited = [[0 for _ in range(n)] for _ in range(m)]
+
+        for i in range(m):
+            pacificAtlanticHelper(matrix, i, 0, float("-inf"), PACIFIC, visited, res)
+            pacificAtlanticHelper(matrix, i, n - 1, float("-inf"), ATLANTIC, visited, res)
+        for j in range(n):
+            pacificAtlanticHelper(matrix, 0, j, float("-inf"), PACIFIC, visited, res)
+            pacificAtlanticHelper(matrix, m - 1, j, float("-inf"), ATLANTIC, visited, res)
+
+        return res
+

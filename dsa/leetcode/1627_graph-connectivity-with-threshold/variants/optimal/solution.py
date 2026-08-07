@@ -1,29 +1,32 @@
-from typing import List
+class UnionFind:
+    def __init__(self, n):
+        self.p = list(range(n))
+        self.size = [1] * n
+
+    def find(self, x):
+        if self.p[x] != x:
+            self.p[x] = self.find(self.p[x])
+        return self.p[x]
+
+    def union(self, a, b):
+        pa, pb = self.find(a), self.find(b)
+        if pa == pb:
+            return False
+        if self.size[pa] > self.size[pb]:
+            self.p[pb] = pa
+            self.size[pa] += self.size[pb]
+        else:
+            self.p[pa] = pb
+            self.size[pb] += self.size[pa]
+        return True
 
 
 class Solution:
-    def areConnected(self, n: int, threshold: int, queries: List[List[int]]) -> List[bool]:
-        parent = list(range(n + 1))
-        size = [1] * (n + 1)
-
-        def find(node: int) -> int:
-            while parent[node] != node:
-                parent[node] = parent[parent[node]]
-                node = parent[node]
-            return node
-
-        def union(left: int, right: int) -> None:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
-                return
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-
-        for divisor in range(threshold + 1, n + 1):
-            for multiple in range(divisor * 2, n + 1, divisor):
-                union(divisor, multiple)
-
-        return [find(left) == find(right) for left, right in queries]
+    def areConnected(
+        self, n: int, threshold: int, queries: List[List[int]]
+    ) -> List[bool]:
+        uf = UnionFind(n + 1)
+        for a in range(threshold + 1, n + 1):
+            for b in range(a + a, n + 1, a):
+                uf.union(a, b)
+        return [uf.find(a) == uf.find(b) for a, b in queries]

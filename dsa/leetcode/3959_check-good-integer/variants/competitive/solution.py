@@ -1,8 +1,15 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def checkGoodInteger(self, n: int) -> bool:
-        score = 0
+    def checkGoodInteger(self, n):
+        """
+        :type n: int
+        :rtype: bool
+        """
+        result = 0
         while n:
-            digit = n % 10
-            score += digit * digit - digit
-            n //= 10
-        return score >= 50
+            n, r = divmod(n, 10)
+            result += r*r-r
+        return result >= 50

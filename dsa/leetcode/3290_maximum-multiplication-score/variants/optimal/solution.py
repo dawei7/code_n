@@ -1,16 +1,11 @@
-from typing import List
-
-
 class Solution:
     def maxScore(self, a: List[int], b: List[int]) -> int:
-        negative_infinity = float("-inf")
-        best = [0, negative_infinity, negative_infinity, negative_infinity, negative_infinity]
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if j >= len(b):
+                return 0 if i >= len(a) else -inf
+            if i >= len(a):
+                return 0
+            return max(dfs(i, j + 1), a[i] * b[j] + dfs(i + 1, j + 1))
 
-        for value in b:
-            for chosen in range(3, -1, -1):
-                best[chosen + 1] = max(
-                    best[chosen + 1],
-                    best[chosen] + a[chosen] * value,
-                )
-
-        return int(best[4])
+        return dfs(0, 0)

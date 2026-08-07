@@ -1,9 +1,26 @@
-class Solution:
-    def minDeletion(self, s: str, k: int) -> int:
-        counts = [0] * 26
-        for char in s:
-            counts[ord(char) - ord("a")] += 1
+# Time:  O(n + 26)
+# Space: O(n + 26)
 
-        frequencies = sorted(count for count in counts if count)
-        remove = max(0, len(frequencies) - k)
-        return sum(frequencies[:remove])
+# freq table, counting sort, greedy
+class Solution:
+    def minDeletion(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        cnt = [0]*26
+        for x in s:
+            cnt[ord(x)-ord('a')] += 1
+        cnt2 = [0]*(max(cnt)+1)
+        for x in cnt:
+            cnt2[x] += 1
+        result = 0
+        total = 26-k
+        for i, x in enumerate(cnt2):
+            c = min(total, x)
+            result += i*c
+            total -= c
+            if total == 0:
+                break
+        return result

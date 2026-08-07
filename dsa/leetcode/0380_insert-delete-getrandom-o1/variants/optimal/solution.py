@@ -1,29 +1,31 @@
-from random import choice
-
-
 class RandomizedSet:
     def __init__(self):
-        self.values = []
-        self.indices = {}
+        self.d = {}
+        self.q = []
 
     def insert(self, val: int) -> bool:
-        if val in self.indices:
+        if val in self.d:
             return False
-        self.indices[val] = len(self.values)
-        self.values.append(val)
+        self.d[val] = len(self.q)
+        self.q.append(val)
         return True
 
     def remove(self, val: int) -> bool:
-        if val not in self.indices:
+        if val not in self.d:
             return False
-
-        remove_index = self.indices[val]
-        final_value = self.values[-1]
-        self.values[remove_index] = final_value
-        self.indices[final_value] = remove_index
-        self.values.pop()
-        del self.indices[val]
+        i = self.d[val]
+        self.d[self.q[-1]] = i
+        self.q[i] = self.q[-1]
+        self.q.pop()
+        self.d.pop(val)
         return True
 
     def getRandom(self) -> int:
-        return choice(self.values)
+        return choice(self.q)
+
+
+# Your RandomizedSet object will be instantiated and called as such:
+# obj = RandomizedSet()
+# param_1 = obj.insert(val)
+# param_2 = obj.remove(val)
+# param_3 = obj.getRandom()

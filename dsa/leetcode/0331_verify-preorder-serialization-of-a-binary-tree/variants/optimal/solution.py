@@ -1,15 +1,9 @@
 class Solution:
     def isValidSerialization(self, preorder: str) -> bool:
-        slots = 1
-        index = 0
-        length = len(preorder)
-        while index < length:
-            if slots == 0:
-                return False
-            slots -= 1
-            if preorder[index] != "#":
-                slots += 2
-            while index < length and preorder[index] != ",":
-                index += 1
-            index += 1
-        return slots == 0
+        stk = []
+        for c in preorder.split(","):
+            stk.append(c)
+            while len(stk) > 2 and stk[-1] == stk[-2] == "#" and stk[-3] != "#":
+                stk = stk[:-3]
+                stk.append("#")
+        return len(stk) == 1 and stk[0] == "#"

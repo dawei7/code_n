@@ -1,33 +1,30 @@
-from typing import List
+# Time:  O(n * l)
+# Space: O(n)
 
-
+# prefix sum
 class Solution:
-    def longestCommonPrefix(self, words: List[str]) -> List[int]:
-        def lcp(first: str, second: str) -> int:
-            length = 0
-            limit = min(len(first), len(second))
-            while length < limit and first[length] == second[length]:
-                length += 1
-            return length
-
-        n = len(words)
-        adjacent = [lcp(words[i], words[i + 1]) for i in range(n - 1)]
-
-        prefix_max = adjacent[:]
-        for i in range(1, n - 1):
-            prefix_max[i] = max(prefix_max[i], prefix_max[i - 1])
-
-        suffix_max = adjacent[:]
-        for i in range(n - 3, -1, -1):
-            suffix_max[i] = max(suffix_max[i], suffix_max[i + 1])
-
-        answer = [0] * n
-        for i in range(n):
-            if i >= 2:
-                answer[i] = max(answer[i], prefix_max[i - 2])
-            if i + 1 < n - 1:
-                answer[i] = max(answer[i], suffix_max[i + 1])
-            if 0 < i < n - 1:
-                answer[i] = max(answer[i], lcp(words[i - 1], words[i + 1]))
-
-        return answer
+    def longestCommonPrefix(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        def lcp(i, j):
+            if i < 0 or j >= len(words):
+                return 0
+            s1, s2 = words[i], words[j]
+            for k in range(min(len(s1), len(s2))):
+                if s1[k] != s2[k]:
+                    return k
+            return k+1
+    
+        lcps = [lcp(i, i+1) for i in range(len(words)-1)]
+        right = [0]*(len(lcps)+2)
+        for i in reversed(range(len(lcps))):
+            right[i] = max(right[i+1], lcps[i])
+        result = [0]*len(words)
+        left = 0
+        for i in range(len(words)):
+            if i-2 >= 0:
+                left = max(left, lcps[i-2])
+            result[i] = max(left, right[i+1], lcp(i-1, i+1))
+        return result

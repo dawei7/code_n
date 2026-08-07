@@ -1,8 +1,13 @@
-SELECT s.buyer_id
-FROM Sales AS s
-INNER JOIN Product AS p
-    ON p.product_id = s.product_id
-GROUP BY s.buyer_id
-HAVING SUM(CASE WHEN p.product_name = 'S8' THEN 1 ELSE 0 END) > 0
-   AND SUM(CASE WHEN p.product_name = 'iPhone' THEN 1 ELSE 0 END) = 0
-ORDER BY s.buyer_id;
+# Time:  O(m + n)
+# Space: O(m + n)
+
+SELECT DISTINCT buyer_id 
+FROM   sales 
+       INNER JOIN product 
+         ON sales.product_id = product.product_id 
+WHERE  product.product_name = "s8" 
+       AND buyer_id NOT IN (SELECT DISTINCT buyer_id 
+                            FROM   sales 
+                                   INNER JOIN product 
+                                     ON sales.product_id = product.product_id 
+                            WHERE  product.product_name = "iphone"); 

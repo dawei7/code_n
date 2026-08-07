@@ -1,38 +1,36 @@
 class Solution:
     def tilingRectangle(self, n: int, m: int) -> int:
-        if {n, m} == {11, 13}:
-            return 6
-        height, width = sorted((n, m))
-        skyline = [0] * width
-        best = height * width
-        seen = {}
-
-        def search(used: int) -> None:
-            nonlocal best
-            if used >= best:
+        def dfs(i: int, j: int, t: int):
+            nonlocal ans
+            if j == m:
+                i += 1
+                j = 0
+            if i == n:
+                ans = t
                 return
-            state = tuple(skyline)
-            if seen.get(state, best) <= used:
-                return
-            seen[state] = used
+            if filled[i] >> j & 1:
+                dfs(i, j + 1, t)
+            elif t + 1 < ans:
+                r = c = 0
+                for k in range(i, n):
+                    if filled[k] >> j & 1:
+                        break
+                    r += 1
+                for k in range(j, m):
+                    if filled[i] >> k & 1:
+                        break
+                    c += 1
+                mx = r if r < c else c
+                for w in range(1, mx + 1):
+                    for k in range(w):
+                        filled[i + w - 1] |= 1 << (j + k)
+                        filled[i + k] |= 1 << (j + w - 1)
+                    dfs(i, j + w, t + 1)
+                for x in range(i, i + mx):
+                    for y in range(j, j + mx):
+                        filled[x] ^= 1 << y
 
-            minimum = min(skyline)
-            if minimum == height:
-                best = used
-                return
-
-            left = skyline.index(minimum)
-            right = left
-            while right < width and skyline[right] == minimum:
-                right += 1
-            maximum_side = min(height - minimum, right - left)
-
-            for side in range(maximum_side, 0, -1):
-                for column in range(left, left + side):
-                    skyline[column] += side
-                search(used + 1)
-                for column in range(left, left + side):
-                    skyline[column] -= side
-
-        search(0)
-        return best
+        ans = n * m
+        filled = [0] * n
+        dfs(0, 0, 0)
+        return ans

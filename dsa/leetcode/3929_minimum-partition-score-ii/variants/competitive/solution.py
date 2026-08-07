@@ -1,58 +1,54 @@
-from typing import List
+# Time:  O(n * log(n * r)) = O(nlogn + nlogr), r = max(nums)
+# Space: O(n)
+
+import collections
 
 
+# prefix sum, dp, convex hull trick, wqs binary search, alien trick
 class Solution:
-    def minPartitionScore(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        total = sum(nums)
-        slopes = [0] * (n + 1)
-        intercepts = [0] * (n + 1)
-        counts = [0] * (n + 1)
+    def minPartitionScore(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        def run(penalty: int) -> tuple[int, int]:
-            head = tail = 0
-            slopes[0] = intercepts[0] = counts[0] = 0
-            prefix = 0
-            cost = parts = 0
+        def check(l1, l2, l3):
+            return (l2[1]-l1[1])*(l2[0]-l3[0]) < (l3[1]-l2[1])*(l1[0]-l2[0])
 
-            for number in nums:
-                prefix += number
+        def max_lambda():
+            mx, total = 0, prefix[-1]*(prefix[-1]+1)//2
+            for i in range(1, len(nums)):
+                c1, c2 = prefix[i], prefix[-1]-prefix[i]
+                mx = max(mx, total-(c1*(c1+1)//2+c2*(c2+1)//2))
+            return mx
 
-                while head < tail:
-                    first = slopes[head] * prefix + intercepts[head]
-                    second = slopes[head + 1] * prefix + intercepts[head + 1]
-                    if second < first or (second == first and counts[head + 1] > counts[head]):
-                        head += 1
-                    else:
-                        break
+        def f(l):
+            dp = cnt = 0
+            hull = collections.deque([(0, 0, 0)])
+            for i in range(len(nums)):
+                x = prefix[i+1]
+                while len(hull) >= 2 and hull[0][0]*x+hull[0][1] > hull[1][0]*x+hull[1][1]:
+                    hull.popleft()
+                dp, cnt = (hull[0][0]*x+hull[0][1])+(x*x+x)//2+l, hull[0][2]+1
+                line = (-x, dp+(x*x-x)//2, cnt)
+                while len(hull) >= 2 and not check(hull[-2], hull[-1], line):
+                    hull.pop()
+                hull.append(line)
+            return dp, cnt
 
-                cost = prefix * prefix + prefix + slopes[head] * prefix + intercepts[head] + penalty
-                parts = counts[head] + 1
-                new_slope = -2 * prefix
-                new_intercept = cost + prefix * prefix - prefix
-
-                while head < tail:
-                    left = (intercepts[tail] - intercepts[tail - 1]) * (slopes[tail] - new_slope)
-                    right = (new_intercept - intercepts[tail]) * (slopes[tail - 1] - slopes[tail])
-                    if left <= right:
-                        break
-                    tail -= 1
-
-                tail += 1
-                slopes[tail] = new_slope
-                intercepts[tail] = new_intercept
-                counts[tail] = parts
-
-            return cost, parts
-
-        low, high = 0, total * total
-        while low < high:
-            middle = (low + high + 1) // 2
-            _, parts = run(middle)
-            if parts >= k:
-                low = middle
-            else:
-                high = middle - 1
-
-        penalized_cost, _ = run(low)
-        return (penalized_cost - low * k) // 2
+        prefix = [0]*(len(nums)+1)
+        for i in range(len(nums)):
+            prefix[i+1] = prefix[i]+nums[i]
+        mx = max_lambda()
+        assert(f(mx)[1] == 1)
+        l = binary_search(0, mx, lambda x: f(x)[1] <= k)
+        return f(l)[0]-k*l

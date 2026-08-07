@@ -1,21 +1,20 @@
-from typing import List
-
-
 class Solution:
     def longestCycle(self, edges: List[int]) -> int:
-        visited = [False] * len(edges)
-        answer = -1
-        for start in range(len(edges)):
-            if visited[start]:
+        n = len(edges)
+        vis = [False] * n
+        ans = -1
+        for i in range(n):
+            if vis[i]:
                 continue
-            first_step = {}
-            node = start
-            step = 0
-            while node != -1 and not visited[node]:
-                visited[node] = True
-                first_step[node] = step
-                step += 1
-                node = edges[node]
-            if node in first_step:
-                answer = max(answer, step - first_step[node])
-        return answer
+            j = i
+            cycle = []
+            while j != -1 and not vis[j]:
+                vis[j] = True
+                cycle.append(j)
+                j = edges[j]
+            if j == -1:
+                continue
+            m = len(cycle)
+            k = next((k for k in range(m) if cycle[k] == j), inf)
+            ans = max(ans, m - k)
+        return ans

@@ -1,27 +1,21 @@
-from typing import List
-
-
 class Solution:
     def getSum(self, nums: List[int]) -> int:
-        modulus = 1_000_000_007
-        limit = max(nums) + 2
-        increasing_count = [0] * limit
-        increasing_sum = [0] * limit
-        decreasing_count = [0] * limit
-        decreasing_sum = [0] * limit
-        answer = 0
+        def calc(nums: List[int]) -> int:
+            n = len(nums)
+            left = [0] * n
+            right = [0] * n
+            cnt = Counter()
+            for i in range(1, n):
+                cnt[nums[i - 1]] += 1 + cnt[nums[i - 1] - 1]
+                left[i] = cnt[nums[i] - 1]
+            cnt = Counter()
+            for i in range(n - 2, -1, -1):
+                cnt[nums[i + 1]] += 1 + cnt[nums[i + 1] + 1]
+                right[i] = cnt[nums[i] + 1]
+            return sum((l + r + l * r) * x for l, r, x in zip(left, right, nums)) % mod
 
-        for value in nums:
-            new_increasing_count = (1 + increasing_count[value - 1]) % modulus
-            new_increasing_sum = (value + increasing_sum[value - 1] + value * increasing_count[value - 1]) % modulus
-
-            new_decreasing_count = (1 + decreasing_count[value + 1]) % modulus
-            new_decreasing_sum = (value + decreasing_sum[value + 1] + value * decreasing_count[value + 1]) % modulus
-
-            answer = (answer + new_increasing_sum + new_decreasing_sum - value) % modulus
-            increasing_count[value] = (increasing_count[value] + new_increasing_count) % modulus
-            increasing_sum[value] = (increasing_sum[value] + new_increasing_sum) % modulus
-            decreasing_count[value] = (decreasing_count[value] + new_decreasing_count) % modulus
-            decreasing_sum[value] = (decreasing_sum[value] + new_decreasing_sum) % modulus
-
-        return answer
+        mod = 10**9 + 7
+        x = calc(nums)
+        nums.reverse()
+        y = calc(nums)
+        return (x + y + sum(nums)) % mod

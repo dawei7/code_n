@@ -1,49 +1,44 @@
-WITH ordered_sessions AS (
-    SELECT
-        ss.*,
-        ROW_NUMBER() OVER (
-            PARTITION BY student_id
-            ORDER BY session_date, session_id
-        ) AS session_number,
-        LAG(session_date) OVER (
-            PARTITION BY student_id
-            ORDER BY session_date, session_id
-        ) AS previous_date
-    FROM study_sessions AS ss
+# Time:  O(nlogn)
+# Space: O(n)
+
+# window function
+WITH gaps_cte AS (
+  SELECT student_id,
+         subject,
+         session_date,
+         hours_studied,
+         DATEDIFF(session_date, LAG(session_date) OVER (PARTITION BY student_id ORDER BY session_date)) AS gap
+  FROM study_sessions
 ),
-student_stats AS (
-    SELECT
-        student_id,
-        COUNT(*) AS session_count,
-        COUNT(DISTINCT subject) AS cycle_length,
-        SUM(hours_studied) AS total_study_hours
-    FROM ordered_sessions
-    GROUP BY student_id
-    HAVING COUNT(DISTINCT subject) >= 3
-       AND COUNT(*) >= 2 * COUNT(DISTINCT subject)
-       AND MAX(julianday(session_date) - julianday(previous_date)) <= 2
+groups_cte AS (
+  SELECT student_id,
+         subject,
+         session_date,
+         hours_studied,
+         SUM(CASE WHEN gap IS NULL OR gap > 2 THEN 1 ELSE 0 END) OVER (PARTITION BY student_id ORDER BY session_date) AS group_id
+  FROM gaps_cte
 ),
-valid_patterns AS (
-    SELECT current_session.student_id
-    FROM ordered_sessions AS current_session
-    JOIN student_stats AS stats
-        ON stats.student_id = current_session.student_id
-    JOIN ordered_sessions AS first_cycle
-        ON first_cycle.student_id = current_session.student_id
-       AND first_cycle.session_number =
-           ((current_session.session_number - 1) % stats.cycle_length) + 1
-    GROUP BY current_session.student_id
-    HAVING SUM(current_session.subject <> first_cycle.subject) = 0
+patterns_cte AS (
+  SELECT g.student_id,
+         g.group_id,
+         GROUP_CONCAT(g.subject ORDER BY g.session_date SEPARATOR ',') AS seq,
+         COUNT(*) AS total_sessions,
+         COUNT(DISTINCT g.subject) AS cycle_length,
+         ROUND(SUM(g.hours_studied), 1) AS total_study_hours
+  FROM groups_cte g
+  GROUP BY 1, 2
+  HAVING total_sessions >= 6 
+     AND cycle_length >= 3
+     AND total_sessions % cycle_length = 0
+     AND REPEAT(CONCAT(SUBSTRING_INDEX(seq, ',', cycle_length), ','), total_sessions / cycle_length) = CONCAT(seq, ',')
+  ORDER BY NULL
 )
-SELECT
-    students.student_id,
-    students.student_name,
-    students.major,
-    stats.cycle_length,
-    stats.total_study_hours
-FROM valid_patterns
-JOIN student_stats AS stats
-    ON stats.student_id = valid_patterns.student_id
-JOIN students
-    ON students.student_id = valid_patterns.student_id
-ORDER BY stats.cycle_length DESC, stats.total_study_hours DESC;
+
+SELECT p.student_id,
+       s.student_name,
+       s.major,
+       p.cycle_length,
+       p.total_study_hours
+FROM patterns_cte p
+INNER JOIN students s ON p.student_id = s.student_id
+ORDER BY 4 DESC, 5 DESC;

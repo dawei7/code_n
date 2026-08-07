@@ -1,22 +1,36 @@
-from collections import Counter
-from typing import List
+# Time:  ctor:    O(m + d), m is len(keys), d is sum(len(x) for x in dictionary)
+#        encrypt: O(n)
+#        decrypt: O(n)
+# Space: O(m + d)
+
+import collections
+import itertools
 
 
-class Encrypter:
-    def __init__(
-        self,
-        keys: List[str],
-        values: List[str],
-        dictionary: List[str],
-    ):
-        self.mapping = dict(zip(keys, values))
-        self.encrypted_dictionary = Counter(encrypted for word in dictionary if (encrypted := self.encrypt(word)))
+# freq table
+class Encrypter(object):
 
-    def encrypt(self, word1: str) -> str:
-        try:
-            return "".join(self.mapping[character] for character in word1)
-        except KeyError:
+    def __init__(self, keys, values, dictionary):
+        """
+        :type keys: List[str]
+        :type values: List[str]
+        :type dictionary: List[str]
+        """
+        self.__lookup = {k: v for k, v in itertools.izip(keys, values)}
+        self.__cnt = collections.Counter(self.encrypt(x) for x in dictionary)
+        
+    def encrypt(self, word1):
+        """
+        :type word1: str
+        :rtype: str
+        """
+        if any(c not in self.__lookup for c in word1):
             return ""
+        return "".join(self.__lookup[c] for c in word1)
 
-    def decrypt(self, word2: str) -> int:
-        return self.encrypted_dictionary[word2]
+    def decrypt(self, word2):
+        """
+        :type word2: str
+        :rtype: int
+        """
+        return self.__cnt[word2]

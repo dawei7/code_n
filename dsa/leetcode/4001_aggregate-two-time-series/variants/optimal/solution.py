@@ -1,27 +1,27 @@
 class Solution:
-    def aggregateTimeSeries(self, series1: list[list[int]], series2: list[list[int]]) -> list[list[int]]:
-        index1 = len(series1) - 1
-        index2 = len(series2) - 1
-        next_value1 = 0
-        next_value2 = 0
-        answer = []
-
-        while index1 >= 0 or index2 >= 0:
-            if index2 < 0 or (index1 >= 0 and series1[index1][0] > series2[index2][0]):
-                timestamp = series1[index1][0]
-            elif index1 < 0 or series2[index2][0] > series1[index1][0]:
-                timestamp = series2[index2][0]
+    def aggregateTimeSeries(
+        self, series1: list[list[int]], series2: list[list[int]]
+    ) -> list[list[int]]:
+        m, n = len(series1), len(series2)
+        i = j = 0
+        ans = []
+        while i < m and j < n:
+            t1, v1 = series1[i]
+            t2, v2 = series2[j]
+            if t1 == t2:
+                ans.append([t1, v1 + v2])
+                i += 1
+                j += 1
+            elif t1 < t2:
+                ans.append([t1, v1 + v2])
+                i += 1
             else:
-                timestamp = series1[index1][0]
-
-            if index1 >= 0 and series1[index1][0] == timestamp:
-                next_value1 = series1[index1][1]
-                index1 -= 1
-            if index2 >= 0 and series2[index2][0] == timestamp:
-                next_value2 = series2[index2][1]
-                index2 -= 1
-
-            answer.append([timestamp, next_value1 + next_value2])
-
-        answer.reverse()
-        return answer
+                ans.append([t2, v1 + v2])
+                j += 1
+        while i < m:
+            ans.append(series1[i])
+            i += 1
+        while j < n:
+            ans.append(series2[j])
+            j += 1
+        return ans

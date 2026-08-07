@@ -1,17 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def countGoodRectangles(self, rectangles: List[List[int]]) -> int:
-        best_side = 0
-        count = 0
-
-        for length, width in rectangles:
-            side = min(length, width)
-            if side > best_side:
-                best_side = side
-                count = 1
-            elif side == best_side:
-                count += 1
-
-        return count
+    def countGoodRectangles(self, rectangles):
+        """
+        :type rectangles: List[List[int]]
+        :rtype: int
+        """
+        result = mx = 0
+        for l, w in rectangles:
+            side = min(l, w)
+            if side > mx:
+                result, mx = 1, side
+            elif side == mx:
+                result += 1
+        return result

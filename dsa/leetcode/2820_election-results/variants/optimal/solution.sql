@@ -1,25 +1,24 @@
-WITH allocated AS (
-    SELECT
-        candidate,
-        COUNT(candidate) OVER (PARTITION BY voter) AS choices
-    FROM Votes
-),
-totals AS (
-    SELECT
-        candidate,
-        SUM(1.0 / choices) AS votes
-    FROM allocated
-    WHERE candidate IS NOT NULL
-    GROUP BY candidate
-),
-ranked AS (
-    SELECT
-        candidate,
-        DENSE_RANK() OVER (ORDER BY votes DESC) AS vote_rank
-    FROM totals
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT candidate, SUM(vote) AS tot
+        FROM
+            (
+                SELECT
+                    candidate,
+                    1 / (COUNT(candidate) OVER (PARTITION BY voter)) AS vote
+                FROM Votes
+                WHERE candidate IS NOT NULL
+            ) AS t
+        GROUP BY 1
+    ),
+    P AS (
+        SELECT
+            candidate,
+            RANK() OVER (ORDER BY tot DESC) AS rk
+        FROM T
+    )
 SELECT candidate
-FROM ranked
-WHERE vote_rank = 1
-ORDER BY candidate;
-
+FROM P
+WHERE rk = 1
+ORDER BY 1;

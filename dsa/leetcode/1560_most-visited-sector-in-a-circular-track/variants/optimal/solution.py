@@ -1,11 +1,5 @@
-from typing import List
-
-
 class Solution:
     def mostVisited(self, n: int, rounds: List[int]) -> List[int]:
-        start = rounds[0]
-        end = rounds[-1]
-
-        if start <= end:
-            return list(range(start, end + 1))
-        return list(range(1, end + 1)) + list(range(start, n + 1))
+        if rounds[0] <= rounds[-1]:
+            return list(range(rounds[0], rounds[-1] + 1))
+        return list(range(1, rounds[-1] + 1)) + list(range(rounds[0], n + 1))

@@ -1,8 +1,6 @@
-from math import isqrt
-
-
 class Solution:
     def pivotInteger(self, n: int) -> int:
-        total = n * (n + 1) // 2
-        pivot = isqrt(total)
-        return pivot if pivot * pivot == total else -1
+        for x in range(1, n + 1):
+            if (1 + x) * x == (x + n) * (n - x + 1):
+                return x
+        return -1

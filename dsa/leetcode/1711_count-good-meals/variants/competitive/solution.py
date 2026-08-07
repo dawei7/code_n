@@ -1,18 +1,26 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import collections
 
 
 class Solution:
-    def countPairs(self, deliciousness: List[int]) -> int:
-        modulo = 1_000_000_007
-        seen = defaultdict(int)
-        pairs = 0
+    def countPairs(self, deliciousness):
+        """
+        :type deliciousness: List[int]
+        :rtype: int
+        """
+        def floor_log2_x(x):
+            return x.bit_length()-1
 
-        for value in deliciousness:
-            power = 1
-            while power <= 1 << 21:
-                pairs += seen[power - value]
-                power <<= 1
-            seen[value] += 1
-
-        return pairs % modulo
+        MOD = 10**9+7
+        max_pow = floor_log2_x(max(deliciousness))+1
+        cnt = collections.Counter()
+        result = 0
+        for d in deliciousness:
+            p = 1
+            for i in range(max_pow+1):
+                result = (result+cnt[p-d])%MOD
+                p <<= 1
+            cnt[d] += 1    
+        return result

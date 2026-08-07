@@ -1,11 +1,13 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def replaceElements(self, arr: List[int]) -> List[int]:
-        best = -1
-        for index in range(len(arr) - 1, -1, -1):
-            original = arr[index]
-            arr[index] = best
-            best = max(best, original)
+    def replaceElements(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[int]
+        """
+        curr_max = -1
+        for i in reversed(range(len(arr))):
+            arr[i], curr_max = curr_max, max(curr_max, arr[i])
         return arr

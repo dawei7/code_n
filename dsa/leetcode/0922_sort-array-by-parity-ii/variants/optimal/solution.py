@@ -1,16 +1,9 @@
-from typing import List
-
-
 class Solution:
     def sortArrayByParityII(self, nums: List[int]) -> List[int]:
-        even_index = 0
-        odd_index = 1
-
-        while even_index < len(nums):
-            if nums[even_index] % 2:
-                while nums[odd_index] % 2:
-                    odd_index += 2
-                nums[even_index], nums[odd_index] = nums[odd_index], nums[even_index]
-            even_index += 2
-
+        n, j = len(nums), 1
+        for i in range(0, n, 2):
+            if nums[i] % 2:
+                while nums[j] % 2:
+                    j += 2
+                nums[i], nums[j] = nums[j], nums[i]
         return nums

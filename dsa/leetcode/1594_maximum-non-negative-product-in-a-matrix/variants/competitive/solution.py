@@ -1,29 +1,27 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(n)
 
-
+# dp with rolling window
 class Solution:
-    def maxProductPath(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        minimum = [[0] * columns for _ in range(rows)]
-        maximum = [[0] * columns for _ in range(rows)]
-        minimum[0][0] = maximum[0][0] = grid[0][0]
-
-        for row in range(rows):
-            for column in range(columns):
-                if row == 0 and column == 0:
+    def maxProductPath(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        max_dp = [[0]*len(grid[0]) for _ in range(2)]
+        min_dp = [[0]*len(grid[0]) for _ in range(2)]
+        for i in range(len(grid)):
+            for j in range(len(grid[i])):
+                if i == 0 and j == 0:
+                    max_dp[i%2][j] = min_dp[i%2][j] = grid[i][j]
                     continue
-
-                value = grid[row][column]
-                candidates = []
-                if row > 0:
-                    candidates.append(minimum[row - 1][column] * value)
-                    candidates.append(maximum[row - 1][column] * value)
-                if column > 0:
-                    candidates.append(minimum[row][column - 1] * value)
-                    candidates.append(maximum[row][column - 1] * value)
-                minimum[row][column] = min(candidates)
-                maximum[row][column] = max(candidates)
-
-        answer = maximum[-1][-1]
-        return answer % 1_000_000_007 if answer >= 0 else -1
+                curr_max = max(max_dp[(i-1)%2][j] if i > 0 else max_dp[i%2][j-1],
+                               max_dp[i%2][j-1] if j > 0 else max_dp[(i-1)%2][j])
+                curr_min = min(min_dp[(i-1)%2][j] if i > 0 else min_dp[i%2][j-1],
+                               min_dp[i%2][j-1] if j > 0 else min_dp[(i-1)%2][j])
+                if grid[i][j] < 0:
+                    curr_max, curr_min = curr_min, curr_max
+                max_dp[i%2][j] = curr_max*grid[i][j]
+                min_dp[i%2][j] = curr_min*grid[i][j]
+        return max_dp[(len(grid)-1)%2][-1]%MOD if max_dp[(len(grid)-1)%2][-1] >= 0 else -1

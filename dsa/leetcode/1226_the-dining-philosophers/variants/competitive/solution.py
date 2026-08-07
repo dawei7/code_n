@@ -1,23 +1,35 @@
-from threading import Lock
-from typing import Callable
+# Time:  O(n)
+# Space: O(1)
+
+import threading
 
 
-class DiningPhilosophers:
+class DiningPhilosophers(object):
     def __init__(self):
-        self.transaction = Lock()
+        self._l = [threading.Lock() for _ in range(5)]
 
-    def wantsToEat(
-        self,
-        philosopher: int,
-        pickLeftFork: "Callable[[], None]",
-        pickRightFork: "Callable[[], None]",
-        eat: "Callable[[], None]",
-        putLeftFork: "Callable[[], None]",
-        putRightFork: "Callable[[], None]",
-    ) -> None:
-        with self.transaction:
-            pickLeftFork()
-            pickRightFork()
-            eat()
-            putRightFork()
-            putLeftFork()
+    # call the functions directly to execute, for example, eat()
+    def wantsToEat(self, philosopher, pickLeftFork, pickRightFork, eat, putLeftFork, putRightFork):
+        """
+        :type philosopher: int
+        :type pickLeftFork: method
+        :type pickRightFork: method
+        :type eat: method
+        :type putLeftFork: method
+        :type putRightFork: method
+        :rtype: void
+        """
+        left, right = philosopher, (philosopher+4)%5
+        first, second = left, right
+        if  philosopher%2 == 0:
+            first, second = left, right
+        else:
+            first, second = right, left
+
+        with self._l[first]:
+            with self._l[second]:
+                pickLeftFork()
+                pickRightFork()
+                eat()
+                putLeftFork()
+                putRightFork()

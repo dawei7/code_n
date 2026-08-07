@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     def restoreString(self, s: str, indices: List[int]) -> str:
-        shuffled = [""] * len(s)
-        for character, destination in zip(s, indices):
-            shuffled[destination] = character
-        return "".join(shuffled)
+        ans = [None] * len(s)
+        for c, j in zip(s, indices):
+            ans[j] = c
+        return "".join(ans)

@@ -1,52 +1,28 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def shortestBridge(self, grid: List[List[int]]) -> int:
+        def dfs(i, j):
+            q.append((i, j))
+            grid[i][j] = 2
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < n and 0 <= y < n and grid[x][y] == 1:
+                    dfs(x, y)
+
         n = len(grid)
-        visited = [[False] * n for _ in range(n)]
-        first_island = []
-
-        for start_row in range(n):
-            if first_island:
-                break
-            for start_col in range(n):
-                if grid[start_row][start_col] != 1:
-                    continue
-                stack = [(start_row, start_col)]
-                visited[start_row][start_col] = True
-                while stack:
-                    row, col = stack.pop()
-                    first_island.append((row, col))
-                    for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_col = col + col_step
-                        if (
-                            0 <= next_row < n
-                            and 0 <= next_col < n
-                            and not visited[next_row][next_col]
-                            and grid[next_row][next_col] == 1
-                        ):
-                            visited[next_row][next_col] = True
-                            stack.append((next_row, next_col))
-                break
-
-        queue = deque(first_island)
-        distance = 0
-        while queue:
-            for _ in range(len(queue)):
-                row, col = queue.popleft()
-                for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_step
-                    next_col = col + col_step
-                    if not (0 <= next_row < n and 0 <= next_col < n):
-                        continue
-                    if visited[next_row][next_col]:
-                        continue
-                    if grid[next_row][next_col] == 1:
-                        return distance
-                    visited[next_row][next_col] = True
-                    queue.append((next_row, next_col))
-            distance += 1
-        return -1
+        dirs = (-1, 0, 1, 0, -1)
+        q = deque()
+        i, j = next((i, j) for i in range(n) for j in range(n) if grid[i][j])
+        dfs(i, j)
+        ans = 0
+        while 1:
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                for a, b in pairwise(dirs):
+                    x, y = i + a, j + b
+                    if 0 <= x < n and 0 <= y < n:
+                        if grid[x][y] == 1:
+                            return ans
+                        if grid[x][y] == 0:
+                            grid[x][y] = 2
+                            q.append((x, y))
+            ans += 1

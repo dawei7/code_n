@@ -1,26 +1,19 @@
-from typing import List
-
-
 class Solution:
     def loudAndRich(self, richer: List[List[int]], quiet: List[int]) -> List[int]:
-        richer_people = [[] for _ in quiet]
-        for rich, poor in richer:
-            richer_people[poor].append(rich)
+        def dfs(i: int):
+            if ans[i] != -1:
+                return
+            ans[i] = i
+            for j in g[i]:
+                dfs(j)
+                if quiet[ans[j]] < quiet[ans[i]]:
+                    ans[i] = ans[j]
 
-        answer = [-1] * len(quiet)
-
-        def quietest(person: int) -> int:
-            if answer[person] != -1:
-                return answer[person]
-
-            answer[person] = person
-            for richer_person in richer_people[person]:
-                candidate = quietest(richer_person)
-                if quiet[candidate] < quiet[answer[person]]:
-                    answer[person] = candidate
-            return answer[person]
-
-        for person in range(len(quiet)):
-            quietest(person)
-
-        return answer
+        g = defaultdict(list)
+        for a, b in richer:
+            g[b].append(a)
+        n = len(quiet)
+        ans = [-1] * n
+        for i in range(n):
+            dfs(i)
+        return ans

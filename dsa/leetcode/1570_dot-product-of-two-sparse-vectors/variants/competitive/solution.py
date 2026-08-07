@@ -1,14 +1,19 @@
-from typing import Dict, List
-
+# Time:  ctor: O(n)
+#        dot_product: O(min(n, m))
+# Space: O(n)
 
 class SparseVector:
-    def __init__(self, nums: List[int]):
-        self.values: Dict[int, int] = {index: value for index, value in enumerate(nums) if value != 0}
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.lookup = {i:v for i, v in enumerate(nums) if v}
 
-    def dotProduct(self, vec: "SparseVector") -> int:
-        smaller = self.values
-        larger = vec.values
-        if len(smaller) > len(larger):
-            smaller, larger = larger, smaller
-
-        return sum(value * larger.get(index, 0) for index, value in smaller.items())
+    def dotProduct(self, vec):
+        """
+        :type vec: 'SparseVector'
+        :rtype: int
+        """
+        if len(self.lookup) > len(vec.lookup):
+            self, vec = vec, self
+        return sum(v*vec.lookup[i] for i, v in self.lookup.items() if i in vec.lookup)

@@ -1,13 +1,15 @@
-WITH ranked_transactions AS (
-    SELECT
-        transaction_id,
-        RANK() OVER (
-            PARTITION BY DATE(day)
-            ORDER BY amount DESC
-        ) AS amount_rank
-    FROM Transactions
-)
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT
+            transaction_id,
+            RANK() OVER (
+                PARTITION BY DAY(day)
+                ORDER BY amount DESC
+            ) AS rk
+        FROM Transactions
+    )
 SELECT transaction_id
-FROM ranked_transactions
-WHERE amount_rank = 1
-ORDER BY transaction_id;
+FROM T
+WHERE rk = 1
+ORDER BY 1;

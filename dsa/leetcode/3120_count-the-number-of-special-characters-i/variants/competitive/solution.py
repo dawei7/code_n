@@ -1,12 +1,21 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+import itertools
+
+
+# hash table
 class Solution:
-    def numberOfSpecialChars(self, word: str) -> int:
-        lowercase = 0
-        uppercase = 0
-
-        for character in word:
-            if "a" <= character <= "z":
-                lowercase |= 1 << (ord(character) - ord("a"))
+    def numberOfSpecialChars(self, word):
+        """
+        :type word: str
+        :rtype: int
+        """
+        lookup1 = [False]*26
+        lookup2 = [False]*26
+        for x in word:
+            if x.islower():
+                lookup1[ord(x)-ord('a')] = True
             else:
-                uppercase |= 1 << (ord(character) - ord("A"))
-
-        return (lowercase & uppercase).bit_count()
+                lookup2[ord(x)-ord('A')] = True
+        return sum(x == y == True for x, y in itertools.izip(lookup1, lookup2))

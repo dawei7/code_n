@@ -1,13 +1,21 @@
-WITH purchase_intervals AS (
-    SELECT
-        user_id,
-        created_at,
-        LAG(created_at) OVER (
-            PARTITION BY user_id
-            ORDER BY created_at
-        ) AS previous_purchase
-    FROM Users
-)
-SELECT DISTINCT user_id
-FROM purchase_intervals
-WHERE julianday(created_at) - julianday(previous_purchase) <= 7;
+# Write your MySQL query statement
+SELECT DISTINCT
+    user_id
+FROM Users
+WHERE
+    user_id IN (
+        SELECT
+            user_id
+        FROM
+            (
+                SELECT
+                    user_id,
+                    created_at,
+                    LAG(created_at, 1) OVER (
+                        PARTITION BY user_id
+                        ORDER BY created_at
+                    ) AS prev_created_at
+                FROM Users
+            ) AS t
+        WHERE DATEDIFF(created_at, prev_created_at) <= 7
+    );

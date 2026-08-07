@@ -1,36 +1,31 @@
 # Definition for a binary tree node.
 # class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def findDistance(self, root: "TreeNode", p: int, q: int) -> int:
-        parent = {root.val: None}
-        depth = {root.val: 0}
-        stack = [root]
+    def findDistance(self, root: Optional[TreeNode], p: int, q: int) -> int:
+        def lca(root, p, q):
+            if root is None or root.val in [p, q]:
+                return root
+            left = lca(root.left, p, q)
+            right = lca(root.right, p, q)
+            if left is None:
+                return right
+            if right is None:
+                return left
+            return root
 
-        while stack:
-            node = stack.pop()
-            for child in (node.left, node.right):
-                if child is not None:
-                    parent[child.val] = node.val
-                    depth[child.val] = depth[node.val] + 1
-                    stack.append(child)
+        def dfs(root, v):
+            if root is None:
+                return -1
+            if root.val == v:
+                return 0
+            left, right = dfs(root.left, v), dfs(root.right, v)
+            if left == right == -1:
+                return -1
+            return 1 + max(left, right)
 
-        first, second = p, q
-        distance = 0
-        while depth[first] > depth[second]:
-            first = parent[first]
-            distance += 1
-        while depth[second] > depth[first]:
-            second = parent[second]
-            distance += 1
-        while first != second:
-            first = parent[first]
-            second = parent[second]
-            distance += 2
-
-        return distance
+        g = lca(root, p, q)
+        return dfs(g, p) + dfs(g, q)

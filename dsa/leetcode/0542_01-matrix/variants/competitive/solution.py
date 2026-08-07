@@ -1,27 +1,93 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# dp solution
 class Solution:
-    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
-        rows, cols = len(mat), len(mat[0])
-        distances = [[-1] * cols for _ in range(rows)]
-        queue = deque()
-        for row in range(rows):
-            for col in range(cols):
-                if mat[row][col] == 0:
-                    distances[row][col] = 0
-                    queue.append((row, col))
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if not matrix[i][j]:
+                    continue
+                matrix[i][j] = float("inf")
+                if i > 0:
+                    matrix[i][j] = min(matrix[i][j], matrix[i-1][j]+1)
+                if j > 0:
+                    matrix[i][j] = min(matrix[i][j], matrix[i][j-1]+1)
+        for i in reversed(range(len(matrix))):
+            for j in reversed(range(len(matrix[i]))):
+                if not matrix[i][j]:
+                    continue
+                if i < len(matrix)-1:
+                    matrix[i][j] = min(matrix[i][j], matrix[i+1][j]+1)
+                if j < len(matrix[i])-1:
+                    matrix[i][j] = min(matrix[i][j], matrix[i][j+1]+1)
+        return matrix
 
+
+# Time:  O(m * n)
+# Space: O(m * n)
+# dp solution
+class Solution2(object):
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        dp = [[float("inf")]*len(matrix[0]) for _ in range(len(matrix))]
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                if matrix[i][j] == 0:
+                    dp[i][j] = 0
+                else:
+                    if i > 0:
+                        dp[i][j] = min(dp[i][j], dp[i-1][j]+1)
+                    if j > 0:
+                        dp[i][j] = min(dp[i][j], dp[i][j-1]+1)
+        for i in reversed(range(len(matrix))):
+            for j in reversed(range(len(matrix[i]))):
+                if matrix[i][j] == 0:
+                    dp[i][j] = 0
+                else:
+                    if i < len(matrix)-1:
+                        dp[i][j] = min(dp[i][j], dp[i+1][j]+1)
+                    if j < len(matrix[i])-1:
+                        dp[i][j] = min(dp[i][j], dp[i][j+1]+1)
+        return dp
+
+
+# Time:  O(m * n)
+# Space: O(m * n)
+import collections
+
+
+class Solution3(object):
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        queue = collections.deque()
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                if matrix[i][j] == 0:
+                    queue.append((i, j))
+                else:
+                    matrix[i][j] = float("inf")
+
+        dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
         while queue:
-            row, col = queue.popleft()
-            for next_row, next_col in (
-                (row - 1, col),
-                (row + 1, col),
-                (row, col - 1),
-                (row, col + 1),
-            ):
-                if 0 <= next_row < rows and 0 <= next_col < cols and distances[next_row][next_col] == -1:
-                    distances[next_row][next_col] = distances[row][col] + 1
-                    queue.append((next_row, next_col))
-        return distances
+            cell = queue.popleft()
+            for dir in dirs:
+                i, j = cell[0]+dir[0], cell[1]+dir[1]
+                if not (0 <= i < len(matrix) and
+                        0 <= j < len(matrix[0]) and
+                        matrix[i][j] > matrix[cell[0]][cell[1]]+1):
+                    continue
+                queue.append((i, j))
+                matrix[i][j] = matrix[cell[0]][cell[1]]+1
+
+        return matrix

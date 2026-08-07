@@ -1,34 +1,23 @@
-WITH DistinctListens AS (
-    SELECT DISTINCT user_id, song_id, day
-    FROM Listens
-),
-QualifiedDays AS (
-    SELECT
-        first_user.user_id AS user1_id,
-        second_user.user_id AS user2_id,
-        first_user.day
-    FROM DistinctListens AS first_user
-    INNER JOIN DistinctListens AS second_user
-        ON first_user.day = second_user.day
-       AND first_user.song_id = second_user.song_id
-       AND first_user.user_id < second_user.user_id
-    GROUP BY first_user.user_id, second_user.user_id, first_user.day
-    HAVING COUNT(*) >= 3
-),
-QualifiedPairs AS (
-    SELECT DISTINCT user1_id, user2_id
-    FROM QualifiedDays
-),
-NewPairs AS (
-    SELECT pair.user1_id, pair.user2_id
-    FROM QualifiedPairs AS pair
-    LEFT JOIN Friendship AS friendship
-        ON friendship.user1_id = pair.user1_id
-       AND friendship.user2_id = pair.user2_id
-    WHERE friendship.user1_id IS NULL
-)
-SELECT user1_id AS user_id, user2_id AS recommended_id
-FROM NewPairs
-UNION ALL
-SELECT user2_id AS user_id, user1_id AS recommended_id
-FROM NewPairs;
+# Time:  O(n^2)
+# Space: O(n^2)
+
+WITH recommend_cte
+     AS (SELECT DISTINCT a.user_id user_id,
+                         b.user_id recommended_id
+         FROM   listens a
+                INNER JOIN listens b ON a.user_id != b.user_id AND a.day = b.day AND a.song_id = b.song_id
+         GROUP  BY a.user_id,
+                   b.user_id,
+                   a.day
+         HAVING Count(DISTINCT a.song_id) >= 3
+         ORDER  BY NULL)
+
+SELECT user_id,
+       recommended_id
+FROM   recommend_cte a
+WHERE  NOT EXISTS
+     (SELECT 1
+      FROM   friendship b
+      WHERE  (a.user_id = b.user1_id AND a.recommended_id = b.user2_id)
+             OR
+             (a.user_id = b.user2_id AND a.recommended_id = b.user1_id)); 

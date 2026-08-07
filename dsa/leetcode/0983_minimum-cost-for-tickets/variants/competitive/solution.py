@@ -1,21 +1,23 @@
-from typing import List
-
+# Time:  O(n)
+# space: O(1)
 
 class Solution:
-    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
-        dp = [0] * (len(days) + 1)
-        week = 0
-        month = 0
-
-        for i, day in enumerate(days):
-            while days[week] < day - 6:
-                week += 1
-            while days[month] < day - 29:
-                month += 1
-            dp[i + 1] = min(
-                dp[i] + costs[0],
-                dp[week] + costs[1],
-                dp[month] + costs[2],
-            )
-
-        return dp[-1]
+    def mincostTickets(self, days, costs):
+        """
+        :type days: List[int]
+        :type costs: List[int]
+        :rtype: int
+        """
+        durations = [1, 7, 30]
+        W = durations[-1]
+        dp = [float("inf") for i in range(W)]
+        dp[0] = 0
+        last_buy_days = [0, 0, 0]
+        for i in range(1,len(days)+1):
+            dp[i%W] = float("inf")
+            for j in range(len(durations)):
+                while i-1 < len(days) and \
+                      days[i-1] > days[last_buy_days[j]]+durations[j]-1:
+                    last_buy_days[j] += 1  # Time: O(n)
+                dp[i%W] = min(dp[i%W], dp[last_buy_days[j]%W]+costs[j])
+        return dp[len(days)%W]

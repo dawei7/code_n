@@ -1,32 +1,30 @@
+# Time:  O((n - k) * k^3)
+# Space: O(k^2)
+
+import collections
+
+
+# prefix sum, dp
 class Solution:
-    def minTravelTime(self, l: int, n: int, k: int, position: List[int], time: List[int]) -> int:
-        prefix_time = [0]
-        for value in time:
-            prefix_time.append(prefix_time[-1] + value)
-
-        infinity = 10**30
-        dp = [[[infinity] * (k + 1) for _ in range(k + 1)] for _ in range(n)]
-        dp[0][0][0] = 0
-
-        for current in range(n - 1):
-            for removed in range(k + 1):
-                for before in range(k + 1):
-                    cost = dp[current][removed][before]
-                    if cost == infinity:
-                        continue
-
-                    rate = prefix_time[current + 1] - prefix_time[current - before]
-                    max_skipped = min(
-                        k - removed,
-                        n - 2 - current,
-                    )
-
-                    for skipped in range(max_skipped + 1):
-                        next_sign = current + skipped + 1
-                        total = cost + (position[next_sign] - position[current]) * rate
-                        dp[next_sign][removed + skipped][skipped] = min(
-                            dp[next_sign][removed + skipped][skipped],
-                            total,
-                        )
-
-        return min(dp[n - 1][k])
+    def minTravelTime(self, l, n, k, position, time):
+        """
+        :type l: int
+        :type n: int
+        :type k: int
+        :type position: List[int]
+        :type time: List[int]
+        :rtype: int
+        """
+        prefix = [0]*(n+1)
+        for i in range(n):
+            prefix[i+1] = prefix[i]+time[i]
+        dp = collections.defaultdict(lambda: collections.defaultdict(lambda: float("inf")))
+        dp[0][time[0]] = 0
+        for cnt in range(2, (n-k)+1):
+            new_dp = collections.defaultdict(lambda: collections.defaultdict(lambda: float("inf")))
+            for i in range(cnt-1, (cnt-1)+(k+1)):
+                for j in range(cnt-2, i):
+                    for t, c in dp[j].iteritems():
+                        new_dp[i][prefix[i+1]-prefix[j+1]] = min(new_dp[i][prefix[i+1]-prefix[j+1]], (position[i]-position[j])*t+c)
+            dp = new_dp
+        return min(dp[n-1].itervalues())

@@ -1,26 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
 
 class Solution:
-    def longestMountain(self, arr: List[int]) -> int:
-        longest = 0
-        up = 0
-        down = 0
+    def longestMountain(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result, up_len, down_len = 0, 0, 0
+        for i in range(1, len(A)):
+            if (down_len and A[i-1] < A[i]) or A[i-1] == A[i]:
+                up_len, down_len = 0, 0
+            up_len += A[i-1] < A[i]
+            down_len += A[i-1] > A[i]
+            if up_len and down_len:
+                result = max(result, up_len+down_len+1)
+        return result
 
-        for index in range(1, len(arr)):
-            rising = arr[index - 1] < arr[index]
-            equal = arr[index - 1] == arr[index]
-
-            if equal or (down > 0 and rising):
-                up = 0
-                down = 0
-
-            if rising:
-                up += 1
-            elif not equal:
-                down += 1
-
-            if up > 0 and down > 0:
-                longest = max(longest, up + down + 1)
-
-        return longest

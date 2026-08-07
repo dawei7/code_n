@@ -1,29 +1,19 @@
-from collections import Counter
-
-
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         need = Counter(t)
-        missing = len(t)
-        left = 0
-        best_start = 0
-        best_length = len(s) + 1
-
-        for right, character in enumerate(s):
-            if need[character] > 0:
-                missing -= 1
-            need[character] -= 1
-
-            while missing == 0:
-                length = right - left + 1
-                if length < best_length:
-                    best_start, best_length = left, length
-                outgoing = s[left]
-                need[outgoing] += 1
-                left += 1
-                if need[outgoing] > 0:
-                    missing += 1
-
-        if best_length > len(s):
-            return ""
-        return s[best_start : best_start + best_length]
+        window = Counter()
+        cnt = l = 0
+        k, mi = -1, inf
+        for r, c in enumerate(s):
+            window[c] += 1
+            if need[c] >= window[c]:
+                cnt += 1
+            while cnt == len(t):
+                if r - l + 1 < mi:
+                    mi = r - l + 1
+                    k = l
+                if need[s[l]] >= window[s[l]]:
+                    cnt -= 1
+                window[s[l]] -= 1
+                l += 1
+        return "" if k < 0 else s[k : k + mi]

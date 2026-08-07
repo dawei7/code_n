@@ -1,17 +1,36 @@
+# Time:  O(n)
+# Space: O(n)
+
+# stack
 class Solution:
-    def removeSubstring(self, s: str, k: int) -> str:
-        runs: list[list[str | int]] = []
-
-        for character in s:
-            if runs and runs[-1][0] == character:
-                runs[-1][1] += 1
+    def removeSubstring(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        def count(x):
+            if x == '(':
+                if cnt[0] < k:
+                    cnt[0] += 1
+                elif cnt[0] > k:
+                    cnt[0] = 1
             else:
-                runs.append([character, 1])
-
-            if character == ")" and len(runs) >= 2 and runs[-1][1] == k and runs[-2][0] == "(" and runs[-2][1] >= k:
-                runs.pop()
-                runs[-1][1] -= k
-                if runs[-1][1] == 0:
-                    runs.pop()
-
-        return "".join(character * count for character, count in runs)
+                if cnt[0] >= k:
+                    cnt[0] += 1
+                else:
+                    cnt[0] = 0
+                    
+        result = []
+        cnt = [0]
+        for x in s:
+            result.append(x)
+            count(x)
+            if cnt[0] != 2*k:
+                continue
+            for _ in range(2*k):
+                result.pop()
+            cnt[0] = 0
+            for i in range(max(len(result)-(2*k-1), 0), len(result)):
+                count(result[i])  
+        return "".join(result)

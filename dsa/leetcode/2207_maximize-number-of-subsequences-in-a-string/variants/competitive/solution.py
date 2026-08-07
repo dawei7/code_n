@@ -1,14 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
+# counting, greedy
 class Solution:
-    def maximumSubsequenceCount(self, text: str, pattern: str) -> int:
-        first_count = 0
-        second_count = 0
-        existing = 0
-
-        for character in text:
-            if character == pattern[1]:
-                existing += first_count
-                second_count += 1
-            if character == pattern[0]:
-                first_count += 1
-
-        return existing + max(first_count, second_count)
+    def maximumSubsequenceCount(self, text, pattern):
+        """
+        :type text: str
+        :type pattern: str
+        :rtype: int
+        """
+        result = cnt1 = cnt2 = 0
+        for c in text:
+            if c == pattern[1]:
+                result += cnt1
+                cnt2 += 1
+            if c == pattern[0]:
+                cnt1 += 1
+        return result + max(cnt1, cnt2)  # add pattern[1] at back or pattern[0] at front

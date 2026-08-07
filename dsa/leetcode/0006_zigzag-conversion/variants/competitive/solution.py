@@ -1,16 +1,20 @@
-class Solution:
-    def convert(self, s: str, numRows: int) -> str:
-        if numRows == 1 or numRows >= len(s):
-            return s
+# Time:  O(n)
+# Space: O(1)
 
-        rows = [[] for _ in range(numRows)]
-        row = 0
-        direction = 1
-        for char in s:
-            rows[row].append(char)
-            if row == 0:
-                direction = 1
-            elif row == numRows - 1:
-                direction = -1
-            row += direction
-        return "".join("".join(chars) for chars in rows)
+class Solution:
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if numRows == 1:
+            return s
+        step, zigzag = 2 * numRows - 2, ""
+        for i in range(numRows):
+            for j in range(i, len(s), step):
+                zigzag += s[j]
+                if 0 < i < numRows - 1 and j + step - 2 * i < len(s):
+                    zigzag += s[j + step - 2 * i]
+        return zigzag
+

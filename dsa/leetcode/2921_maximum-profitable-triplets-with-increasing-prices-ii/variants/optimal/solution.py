@@ -1,37 +1,39 @@
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n: int):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    def update(self, x: int, v: int):
+        while x <= self.n:
+            self.c[x] = max(self.c[x], v)
+            x += x & -x
+
+    def query(self, x: int) -> int:
+        mx = 0
+        while x:
+            mx = max(mx, self.c[x])
+            x -= x & -x
+        return mx
 
 
 class Solution:
     def maxProfit(self, prices: List[int], profits: List[int]) -> int:
-        maximum_price = max(prices)
+        n = len(prices)
+        left = [0] * n
+        right = [0] * n
 
-        def update(tree: List[int], index: int, value: int) -> None:
-            while index < len(tree):
-                tree[index] = max(tree[index], value)
-                index += index & -index
+        m = max(prices)
+        tree1 = BinaryIndexedTree(m + 1)
+        tree2 = BinaryIndexedTree(m + 1)
 
-        def query(tree: List[int], index: int) -> int:
-            best = 0
-            while index > 0:
-                best = max(best, tree[index])
-                index -= index & -index
-            return best
+        for i, x in enumerate(prices):
+            left[i] = tree1.query(x - 1)
+            tree1.update(x, profits[i])
+        for i in range(n - 1, -1, -1):
+            x = m + 1 - prices[i]
+            right[i] = tree2.query(x - 1)
+            tree2.update(x, profits[i])
 
-        tree = [0] * (maximum_price + 2)
-        best_left = [0] * len(prices)
-
-        for index, (price, profit) in enumerate(zip(prices, profits)):
-            best_left[index] = query(tree, price - 1)
-            update(tree, price, profit)
-
-        tree = [0] * (maximum_price + 2)
-        answer = -1
-
-        for index in range(len(prices) - 1, -1, -1):
-            reverse_price = maximum_price - prices[index] + 1
-            best_right = query(tree, reverse_price - 1)
-            if best_left[index] and best_right:
-                answer = max(answer, best_left[index] + profits[index] + best_right)
-            update(tree, reverse_price, profits[index])
-
-        return answer
+        return max(
+            (l + x + r for l, x, r in zip(left, profits, right) if l and r), default=-1
+        )

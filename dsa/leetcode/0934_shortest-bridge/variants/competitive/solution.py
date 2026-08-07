@@ -1,52 +1,51 @@
-from collections import deque
-from typing import List
+# Time:  O(n^2)
+# Space: O(n^2)
+
+import collections
 
 
 class Solution:
-    def shortestBridge(self, grid: List[List[int]]) -> int:
-        n = len(grid)
-        visited = [[False] * n for _ in range(n)]
-        first_island = []
+    def shortestBridge(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
-        for start_row in range(n):
-            if first_island:
-                break
-            for start_col in range(n):
-                if grid[start_row][start_col] != 1:
+        def get_islands(A):
+            islands = []
+            done = set()
+            for r, row in enumerate(A):
+                for c, val in enumerate(row):
+                    if val == 0 or (r, c) in done:
+                        continue
+                    s = [(r, c)]
+                    lookup = set(s)
+                    while s:
+                        node = s.pop()
+                        for d in directions:
+                            nei = node[0]+d[0], node[1]+d[1]
+                            if not (0 <= nei[0] < len(A) and 0 <= nei[1] < len(A[0])) or \
+                               nei in lookup or A[nei[0]][nei[1]] == 0:
+                                continue
+                            s.append(nei)
+                            lookup.add(nei)
+                    done |= lookup
+                    islands.append(lookup)
+                    if len(islands) == 2:
+                        break
+            return islands
+
+        lookup, target = get_islands(A)
+        q = collections.deque([(node, 0) for node in lookup])
+        while q:
+            node, dis = q.popleft()
+            if node in target:
+                return dis-1
+            for d in directions:
+                nei = node[0]+d[0], node[1]+d[1]
+                if not (0 <= nei[0] < len(A) and 0 <= nei[1] < len(A[0])) or \
+                   nei in lookup:
                     continue
-                stack = [(start_row, start_col)]
-                visited[start_row][start_col] = True
-                while stack:
-                    row, col = stack.pop()
-                    first_island.append((row, col))
-                    for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                        next_row = row + row_step
-                        next_col = col + col_step
-                        if (
-                            0 <= next_row < n
-                            and 0 <= next_col < n
-                            and not visited[next_row][next_col]
-                            and grid[next_row][next_col] == 1
-                        ):
-                            visited[next_row][next_col] = True
-                            stack.append((next_row, next_col))
-                break
-
-        queue = deque(first_island)
-        distance = 0
-        while queue:
-            for _ in range(len(queue)):
-                row, col = queue.popleft()
-                for row_step, col_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                    next_row = row + row_step
-                    next_col = col + col_step
-                    if not (0 <= next_row < n and 0 <= next_col < n):
-                        continue
-                    if visited[next_row][next_col]:
-                        continue
-                    if grid[next_row][next_col] == 1:
-                        return distance
-                    visited[next_row][next_col] = True
-                    queue.append((next_row, next_col))
-            distance += 1
-        return -1
+                q.append((nei, dis+1))
+                lookup.add(nei)

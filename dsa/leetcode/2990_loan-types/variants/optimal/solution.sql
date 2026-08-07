@@ -1,7 +1,6 @@
+# Write your MySQL query statement below
 SELECT user_id
 FROM Loans
-GROUP BY user_id
-HAVING COUNT(DISTINCT CASE
-    WHEN loan_type IN ('Mortgage', 'Refinance') THEN loan_type
-END) = 2
-ORDER BY user_id;
+GROUP BY 1
+HAVING SUM(loan_type = 'Refinance') > 0 AND SUM(loan_type = 'Mortgage') > 0
+ORDER BY 1;

@@ -1,23 +1,27 @@
+# Time:  O(nlogs), s is the sum of nums
+# Space: O(1)
+
 class Solution:
-    def splitArray(self, nums: List[int], k: int) -> int:
-        lower = max(nums)
-        upper = sum(nums)
+    def splitArray(self, nums, m):
+        """
+        :type nums: List[int]
+        :type m: int
+        :rtype: int
+        """
+        def check(nums, m, s):
+            cnt, curr_sum = 1, 0
+            for num in nums:
+                curr_sum += num
+                if curr_sum > s:
+                    curr_sum = num
+                    cnt += 1
+            return cnt <= m
 
-        while lower < upper:
-            limit = (lower + upper) // 2
-            groups = 1
-            current = 0
-
-            for value in nums:
-                if current + value > limit:
-                    groups += 1
-                    current = value
-                else:
-                    current += value
-
-            if groups <= k:
-                upper = limit
+        left, right = max(nums), sum(nums)
+        while left <= right:
+            mid = left + (right - left) // 2
+            if check(nums, m, mid):
+                right = mid - 1
             else:
-                lower = limit + 1
-
-        return lower
+                left = mid + 1
+        return left

@@ -1,21 +1,18 @@
 class Solution:
     def generateValidStrings(self, n: int, k: int) -> list[str]:
-        valid_strings = []
-        path = []
-
-        def backtrack(index: int, cost: int, previous_one: bool) -> None:
-            if index == n:
-                valid_strings.append("".join(path))
+        def dfs(i: int, tot: int):
+            if i >= n:
+                ans.append("".join(path))
                 return
-
             path.append("0")
-            backtrack(index + 1, cost, False)
+            dfs(i + 1, tot)
             path.pop()
-
-            if not previous_one and cost + index <= k:
+            if (not path or path[-1] == "0") and tot + i <= k:
                 path.append("1")
-                backtrack(index + 1, cost + index, True)
+                dfs(i + 1, tot + i)
                 path.pop()
 
-        backtrack(0, 0, False)
-        return valid_strings
+        ans = []
+        path = []
+        dfs(0, 0)
+        return ans

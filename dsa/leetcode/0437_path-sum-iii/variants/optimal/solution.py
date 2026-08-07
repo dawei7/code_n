@@ -1,21 +1,21 @@
-from collections import defaultdict
-from typing import Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def pathSum(self, root: Optional["TreeNode"], targetSum: int) -> int:
-        prefix_counts = defaultdict(int)
-        prefix_counts[0] = 1
-
-        def count_paths(node: Optional["TreeNode"], current_sum: int) -> int:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        def dfs(node, s):
             if node is None:
                 return 0
-            current_sum += node.val
-            total = prefix_counts[current_sum - targetSum]
-            prefix_counts[current_sum] += 1
-            total += count_paths(node.left, current_sum)
-            total += count_paths(node.right, current_sum)
-            prefix_counts[current_sum] -= 1
-            return total
+            s += node.val
+            ans = cnt[s - targetSum]
+            cnt[s] += 1
+            ans += dfs(node.left, s)
+            ans += dfs(node.right, s)
+            cnt[s] -= 1
+            return ans
 
-        return count_paths(root, 0)
+        cnt = Counter({0: 1})
+        return dfs(root, 0)

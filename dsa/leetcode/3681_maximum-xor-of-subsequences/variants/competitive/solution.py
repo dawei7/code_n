@@ -1,22 +1,55 @@
-from typing import List
+# Time:  O(nlogr), r = max(nums)
+# Space: O(r)
 
-
+# bitmasks, greedy
 class Solution:
-    def maxXorSubsequences(self, nums: List[int]) -> int:
-        basis = [0] * 31
+    def maxXorSubsequences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def max_xor_subset(nums):  # Time: O(nlogr)
+            base = [0]*l 
+            for x in nums:  # gaussian elimination over GF(2)
+                for b in base:
+                    if x^b < x:
+                        x ^= b
+                if x:
+                    base.append(x)
+            max_xor = 0
+            for b in base:  # greedy
+                if (max_xor^b) > max_xor:
+                    max_xor ^= b
+            return max_xor
 
-        for value in nums:
-            current = value
-            for bit in range(30, -1, -1):
-                if not (current >> bit) & 1:
-                    continue
-                if basis[bit]:
-                    current ^= basis[bit]
-                else:
-                    basis[bit] = current
-                    break
+        l = max(nums).bit_length()
+        return max_xor_subset(nums)
 
-        answer = 0
-        for vector in reversed(basis):
-            answer = max(answer, answer ^ vector)
-        return answer
+
+# Time:  O(nlogr), r = max(nums)
+# Space: O(r)
+# bitmasks, greedy
+class Solution2(object):
+    def maxXorSubsequences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def max_xor_subset(nums):  # Time: O(nlogr)
+            base = [0]*l 
+            for x in nums:  # gaussian elimination over GF(2)
+                for i in reversed(range(len(base))):
+                    if not x&(1<<i):
+                        continue
+                    if base[i] == 0:
+                        base[i] = x
+                        break
+                    x ^= base[i]
+            max_xor = 0
+            for b in reversed(base):  # greedy
+                if (max_xor^b) > max_xor:
+                    max_xor ^= b
+            return max_xor
+
+        l = max(nums).bit_length()
+        return max_xor_subset(nums)

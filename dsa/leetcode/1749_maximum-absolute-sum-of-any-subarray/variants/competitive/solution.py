@@ -1,15 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxAbsoluteSum(self, nums: List[int]) -> int:
-        prefix = 0
-        minimum_prefix = 0
-        maximum_prefix = 0
-
-        for value in nums:
-            prefix += value
-            minimum_prefix = min(minimum_prefix, prefix)
-            maximum_prefix = max(maximum_prefix, prefix)
-
-        return maximum_prefix - minimum_prefix
+    def maxAbsoluteSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        curr = mx = mn = 0
+        for num in nums:
+            curr += num
+            mx = max(mx, curr)
+            mn = min(mn, curr)
+        return mx-mn

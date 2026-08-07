@@ -1,13 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maximumSumScore(self, nums: List[int]) -> int:
-        left = 0
-        right = sum(nums)
-        answer = -(10**30)
-        for value in nums:
-            left += value
-            answer = max(answer, left, right)
-            right -= value
-        return answer
+        l, r = 0, sum(nums)
+        ans = -inf
+        for x in nums:
+            l += x
+            ans = max(ans, l, r)
+            r -= x
+        return ans

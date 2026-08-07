@@ -1,28 +1,18 @@
 class Solution:
     def maxCount(self, banned: List[int], n: int, maxSum: int) -> int:
-        blocked = sorted(set(value for value in banned if value <= n))
-        answer = 0
-        start = 1
-        remaining = maxSum
-
-        for stop in blocked + [n + 1]:
-            length = stop - start
-            if length > 0:
-                low, high = 0, length
-                while low < high:
-                    middle = (low + high + 1) // 2
-                    cost = middle * (2 * start + middle - 1) // 2
-                    if cost <= remaining:
-                        low = middle
-                    else:
-                        high = middle - 1
-
-                take = low
-                answer += take
-                remaining -= take * (2 * start + take - 1) // 2
-                if take < length:
-                    return answer
-
-            start = max(start, stop + 1)
-
-        return answer
+        banned.extend([0, n + 1])
+        ban = sorted(set(banned))
+        ans = 0
+        for i, j in pairwise(ban):
+            left, right = 0, j - i - 1
+            while left < right:
+                mid = (left + right + 1) >> 1
+                if (i + 1 + i + mid) * mid // 2 <= maxSum:
+                    left = mid
+                else:
+                    right = mid - 1
+            ans += left
+            maxSum -= (i + 1 + i + left) * left // 2
+            if maxSum <= 0:
+                break
+        return ans

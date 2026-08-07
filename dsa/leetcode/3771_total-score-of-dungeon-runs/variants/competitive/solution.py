@@ -1,18 +1,24 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import bisect
 
 
+# prefix sum, binary search
 class Solution:
-    def totalScore(self, hp: int, damage: List[int], requirement: List[int]) -> int:
-        prefix_damage = [0]
-        total_damage = 0
-        answer = 0
-
-        for room_damage, room_requirement in zip(damage, requirement):
-            total_damage += room_damage
-            minimum_prefix = total_damage + room_requirement - hp
-            first_valid = bisect_left(prefix_damage, minimum_prefix)
-            answer += len(prefix_damage) - first_valid
-            prefix_damage.append(total_damage)
-
-        return answer
+    def totalScore(self, hp, damage, requirement):
+        """
+        :type hp: int
+        :type damage: List[int]
+        :type requirement: List[int]
+        :rtype: int
+        """
+        prefix = [0]*(len(damage)+1)
+        for i in range(len(prefix)-1):
+            prefix[i+1] = prefix[i]+damage[i]
+        result = 0
+        for i in range(len(damage)):
+            j = bisect.bisect_left(prefix, prefix[i+1]+requirement[i]-hp)
+            if j <= i:
+                result += i-j+1
+        return result

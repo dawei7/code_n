@@ -1,40 +1,42 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
+
+
 class Solution:
-    def longestRepeatingSubstring(self, s: str) -> int:
-        length = len(s)
-        base = 911_382_323
-        moduli = (1_000_000_007, 1_000_000_009)
-        powers = [[1] * (length + 1) for _ in moduli]
-        prefixes = [[0] * (length + 1) for _ in moduli]
+    def longestRepeatingSubstring(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        M = 10**9+7
+        D = 26
 
-        for modulus_index, modulus in enumerate(moduli):
-            for index, character in enumerate(s):
-                powers[modulus_index][index + 1] = powers[modulus_index][index] * base % modulus
-                prefixes[modulus_index][index + 1] = (prefixes[modulus_index][index] * base + ord(character)) % modulus
+        def check(S, L):
+            p = pow(D, L, M)
+            curr = reduce(lambda x, y: (D*x+ord(y)-ord('a')) % M, S[:L], 0)
+            lookup = collections.defaultdict(list)
+            lookup[curr].append(L-1)
+            result = 0
+            for i in range(L, len(S)):
+                curr = ((D*curr) % M + ord(S[i])-ord('a') -
+                        ((ord(S[i-L])-ord('a'))*p) % M) % M
+                if curr in lookup:
+                    for j in lookup[curr]:
+                        if S[j-L+1:j+1] == S[i-L+1:i+1]:
+                            if result == 0:
+                                result = i
+                            return result-L+1
+                lookup[curr].append(i)
+            return result
 
-        def window_hash(start: int, window_length: int):
-            end = start + window_length
-            return tuple(
-                (prefixes[modulus_index][end] - prefixes[modulus_index][start] * powers[modulus_index][window_length])
-                % modulus
-                for modulus_index, modulus in enumerate(moduli)
-            )
-
-        def has_repeat(window_length: int) -> bool:
-            starts_by_hash = {}
-            for start in range(length - window_length + 1):
-                signature = window_hash(start, window_length)
-                for previous in starts_by_hash.get(signature, []):
-                    if s[previous : previous + window_length] == s[start : start + window_length]:
-                        return True
-                starts_by_hash.setdefault(signature, []).append(start)
-            return False
-
-        low = 0
-        high = length - 1
-        while low < high:
-            middle = (low + high + 1) // 2
-            if has_repeat(middle):
-                low = middle
+        left, right = 0, len(S)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(S, mid):
+                right = mid-1
             else:
-                high = middle - 1
-        return low
+                left = mid+1
+        return right
+        

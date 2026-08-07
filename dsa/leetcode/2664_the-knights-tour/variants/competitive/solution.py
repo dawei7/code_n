@@ -1,48 +1,76 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
 
-
+# backtracking, greedy, warnsdorff's rule
 class Solution:
-    def tourOfKnight(self, m: int, n: int, r: int, c: int) -> List[List[int]]:
-        board = [[-1] * n for _ in range(m)]
-        moves = (
-            (-2, -1),
-            (-2, 1),
-            (-1, -2),
-            (-1, 2),
-            (1, -2),
-            (1, 2),
-            (2, -1),
-            (2, 1),
-        )
+    def tourOfKnight(self, m, n, r, c):
+        """
+        :type m: int
+        :type n: int
+        :type r: int
+        :type c: int
+        :rtype: List[List[int]]
+        """
+        DIRECTIONS = ((1, 2), (-1, 2), (1, -2), (-1, -2),
+                      (2, 1), (-2, 1), (2, -1), (-2, -1))
+        def backtracking(r, c, i):
+            def degree(x):
+                cnt = 0
+                r, c = x
+                for dr, dc in DIRECTIONS:
+                    nr, nc = r+dr, c+dc
+                    if 0 <= nr < m and 0 <= nc < n and result[nr][nc] == -1:
+                        cnt += 1
+                return cnt
 
-        def available_degree(row: int, column: int) -> int:
-            degree = 0
-            for row_change, column_change in moves:
-                next_row = row + row_change
-                next_column = column + column_change
-                if 0 <= next_row < m and 0 <= next_column < n and board[next_row][next_column] == -1:
-                    degree += 1
-            return degree
-
-        def search(row: int, column: int, visit: int) -> bool:
-            if visit == m * n:
+            if i == m*n:
                 return True
-
             candidates = []
-            for row_change, column_change in moves:
-                next_row = row + row_change
-                next_column = column + column_change
-                if 0 <= next_row < m and 0 <= next_column < n and board[next_row][next_column] == -1:
-                    candidates.append((available_degree(next_row, next_column), next_row, next_column))
-
-            candidates.sort()
-            for _, next_row, next_column in candidates:
-                board[next_row][next_column] = visit
-                if search(next_row, next_column, visit + 1):
+            for dr, dc in DIRECTIONS:
+                nr, nc = r+dr, c+dc
+                if 0 <= nr < m and 0 <= nc < n and result[nr][nc] == -1:
+                    candidates.append((nr, nc))
+            for nr, nc in sorted(candidates, key=degree):  # warnsdorff's rule
+                result[nr][nc] = i
+                if backtracking(nr, nc, i+1):
                     return True
-                board[next_row][next_column] = -1
+                result[nr][nc] = -1
             return False
+    
+        result = [[-1]*n for _ in range(m)]
+        result[r][c] = 0
+        backtracking(r, c, 1)
+        return result
 
-        board[r][c] = 0
-        search(r, c, 1)
-        return board
+
+# Time:  O(8^(m * n - 1))
+# Space: O(1)
+# backtracking
+class Solution2(object):
+    def tourOfKnight(self, m, n, r, c):
+        """
+        :type m: int
+        :type n: int
+        :type r: int
+        :type c: int
+        :rtype: List[List[int]]
+        """
+        DIRECTIONS = ((1, 2), (-1, 2), (1, -2), (-1, -2),
+                      (2, 1), (-2, 1), (2, -1), (-2, -1))
+        def backtracking(r, c, i):
+            if i == m*n:
+                return True
+            for dr, dc in DIRECTIONS:
+                nr, nc = r+dr, c+dc
+                if not (0 <= nr < m and 0 <= nc < n and result[nr][nc] == -1):
+                    continue
+                result[nr][nc] = i
+                if backtracking(nr, nc, i+1):
+                    return True
+                result[nr][nc] = -1
+            return False
+    
+        result = [[-1]*n for _ in range(m)]
+        result[r][c] = 0
+        backtracking(r, c, 1)
+        return result

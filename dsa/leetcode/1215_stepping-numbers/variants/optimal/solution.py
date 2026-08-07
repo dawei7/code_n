@@ -1,27 +1,18 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def countSteppingNumbers(self, low: int, high: int) -> List[int]:
-        result = [0] if low == 0 else []
-        queue = deque(range(1, 10))
-
-        while queue:
-            number = queue.popleft()
-            if number > high:
-                continue
-            if number >= low:
-                result.append(number)
-
-            last_digit = number % 10
-            if last_digit > 0:
-                child = number * 10 + last_digit - 1
-                if child <= high:
-                    queue.append(child)
-            if last_digit < 9:
-                child = number * 10 + last_digit + 1
-                if child <= high:
-                    queue.append(child)
-
-        return result
+        ans = []
+        if low == 0:
+            ans.append(0)
+        q = deque(range(1, 10))
+        while q:
+            v = q.popleft()
+            if v > high:
+                break
+            if v >= low:
+                ans.append(v)
+            x = v % 10
+            if x:
+                q.append(v * 10 + x - 1)
+            if x < 9:
+                q.append(v * 10 + x + 1)
+        return ans

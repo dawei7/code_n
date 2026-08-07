@@ -1,9 +1,10 @@
 class Solution:
-    def stoneGameVIII(self, stones: list[int]) -> int:
-        for index in range(1, len(stones)):
-            stones[index] += stones[index - 1]
+    def stoneGameVIII(self, stones: List[int]) -> int:
+        @cache
+        def dfs(i: int) -> int:
+            if i >= len(stones) - 1:
+                return s[-1]
+            return max(dfs(i + 1), s[i] - dfs(i + 1))
 
-        best = stones[-1]
-        for index in range(len(stones) - 2, 0, -1):
-            best = max(best, stones[index] - best)
-        return best
+        s = list(accumulate(stones))
+        return dfs(1)

@@ -1,30 +1,26 @@
-from typing import List
+# Time:  O(nlogn + mlogm)
+# Space: O(1)
 
-
+# sort, two pointers
 class Solution:
-    def latestTimeCatchTheBus(
-        self,
-        buses: List[int],
-        passengers: List[int],
-        capacity: int,
-    ) -> int:
+    def latestTimeCatchTheBus(self, buses, passengers, capacity):
+        """
+        :type buses: List[int]
+        :type passengers: List[int]
+        :type capacity: int
+        :rtype: int
+        """
         buses.sort()
         passengers.sort()
-        occupied = set(passengers)
-        passenger_index = 0
-        boarded = 0
-
-        for bus in buses:
-            boarded = 0
-            while boarded < capacity and passenger_index < len(passengers) and passengers[passenger_index] <= bus:
-                passenger_index += 1
-                boarded += 1
-
-        if boarded < capacity:
-            candidate = buses[-1]
-        else:
-            candidate = passengers[passenger_index - 1] - 1
-
-        while candidate in occupied:
-            candidate -= 1
-        return candidate
+        cnt = j = 0
+        for i in range(len(buses)-1):
+            while j < len(passengers) and passengers[j] <= buses[i]:
+                cnt += 1
+                j += 1
+            cnt = max(cnt-capacity, 0)
+        j -= max(cnt-capacity, 0)
+        cnt = min(cnt, capacity)
+        while j < len(passengers) and passengers[j] <= buses[-1] and cnt+1 <= capacity:
+            cnt += 1
+            j += 1
+        return buses[-1] if cnt < capacity and (j-1 < 0 or passengers[j-1] != buses[-1]) else next(passengers[i]-1 for i in reversed(range(j)) if i-1 < 0 or passengers[i]-1 != passengers[i-1])

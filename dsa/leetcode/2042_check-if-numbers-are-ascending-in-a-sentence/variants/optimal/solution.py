@@ -1,12 +1,9 @@
 class Solution:
     def areNumbersAscending(self, s: str) -> bool:
-        previous = 0
-
-        for token in s.split():
-            if token.isdigit():
-                current = int(token)
-                if current <= previous:
+        pre = 0
+        for t in s.split():
+            if t[0].isdigit():
+                if (cur := int(t)) <= pre:
                     return False
-                previous = current
-
+                pre = cur
         return True

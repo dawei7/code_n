@@ -1,9 +1,11 @@
-from typing import List
+# Time:  O(1)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def sumOfThree(self, num: int) -> List[int]:
-        if num % 3:
-            return []
-        middle = num // 3
-        return [middle - 1, middle, middle + 1]
+    def sumOfThree(self, num):
+        """
+        :type num: int
+        :rtype: List[int]
+        """
+        return [num//3-1, num//3, num//3+1] if num%3 == 0 else []

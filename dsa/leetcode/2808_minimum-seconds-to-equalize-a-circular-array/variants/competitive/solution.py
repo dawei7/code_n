@@ -1,18 +1,20 @@
-from collections import defaultdict
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# hash table
 class Solution:
-    def minimumSeconds(self, nums: List[int]) -> int:
-        positions = defaultdict(list)
-        for index, value in enumerate(nums):
-            positions[value].append(index)
-
-        n = len(nums)
-        answer = n
-        for indices in positions.values():
-            largest_gap = n + indices[0] - indices[-1]
-            for left, right in zip(indices, indices[1:]):
-                largest_gap = max(largest_gap, right - left)
-            answer = min(answer, largest_gap // 2)
-
-        return answer
+    def minimumSeconds(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        lookup = collections.defaultdict(int)
+        dist = collections.defaultdict(int)
+        for i in range(2*len(nums)):
+            x = nums[i%len(nums)]
+            dist[x] = max(dist[x], i-lookup[x])
+            lookup[x] = i
+        return min(dist.values())//2

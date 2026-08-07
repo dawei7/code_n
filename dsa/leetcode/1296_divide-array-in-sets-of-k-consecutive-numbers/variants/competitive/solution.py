@@ -1,20 +1,23 @@
-from collections import Counter
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def isPossibleDivide(self, nums: List[int], k: int) -> bool:
-        if len(nums) % k != 0:
-            return False
-
-        counts = Counter(nums)
-        for start in sorted(counts):
-            copies = counts[start]
-            if copies == 0:
+    def isPossibleDivide(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        count = collections.Counter(nums)
+        for num in sorted(count.keys()):
+            c = count[num]
+            if not c:
                 continue
-            for value in range(start, start + k):
-                if counts[value] < copies:
+            for i in range(num, num+k):
+                if count[i] < c:
                     return False
-                counts[value] -= copies
-
+                count[i] -= c
         return True

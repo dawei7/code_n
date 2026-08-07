@@ -1,23 +1,15 @@
-from typing import List
-
-
 class Solution:
     def checkArray(self, nums: List[int], k: int) -> bool:
-        expiration = [0] * (len(nums) + 1)
-        active_decrements = 0
-
-        for index, value in enumerate(nums):
-            active_decrements -= expiration[index]
-            required = value - active_decrements
-
-            if required < 0:
-                return False
-            if required == 0:
+        n = len(nums)
+        d = [0] * (n + 1)
+        s = 0
+        for i, x in enumerate(nums):
+            s += d[i]
+            x += s
+            if x == 0:
                 continue
-            if index + k > len(nums):
+            if x < 0 or i + k > n:
                 return False
-
-            active_decrements += required
-            expiration[index + k] += required
-
+            s -= x
+            d[i + k] += x
         return True

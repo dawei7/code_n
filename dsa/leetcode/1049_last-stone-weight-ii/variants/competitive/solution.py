@@ -1,13 +1,14 @@
-from typing import List
-
+# Time:  O(2^n)
+# Space: O(2^n)
 
 class Solution:
-    def lastStoneWeightII(self, stones: List[int]) -> int:
-        total = sum(stones)
-        reachable = {0}
-
+    def lastStoneWeightII(self, stones):
+        """
+        :type stones: List[int]
+        :rtype: int
+        """
+        dp = {0}
         for stone in stones:
-            reachable |= {subtotal + stone for subtotal in reachable}
-
-        best = max(subtotal for subtotal in reachable if subtotal <= total // 2)
-        return total - 2 * best
+            dp |= {stone+i for i in dp}
+        S = sum(stones)
+        return min(abs(i-(S-i)) for i in dp)

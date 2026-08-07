@@ -1,28 +1,30 @@
-from typing import List
-
+# Time:  O(m * n * log(min(m, n)))
+# Space: O(m * n)
 
 class Solution:
-    def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
-        rows = len(mat)
-        columns = len(mat[0])
-        prefix = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for row in range(rows):
-            for column in range(columns):
-                prefix[row + 1][column + 1] = (
-                    mat[row][column] + prefix[row][column + 1] + prefix[row + 1][column] - prefix[row][column]
-                )
+    def maxSideLength(self, mat, threshold):
+        """
+        :type mat: List[List[int]]
+        :type threshold: int
+        :rtype: int
+        """
+        def check(dp, mid, threshold):
+            for i in range(mid, len(dp)):
+                for j in range(mid, len(dp[0])):
+                    if dp[i][j] - dp[i-mid][j] - dp[i][j-mid] + dp[i-mid][j-mid] <= threshold:
+                        return True
+            return False
+        
+        dp = [[0 for _ in range(len(mat[0])+1)] for _ in range(len(mat)+1)]
+        for i in range(1, len(mat)+1):
+            for j in range(1, len(mat[0])+1):
+                dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + mat[i-1][j-1]
 
-        def square_sum(row: int, column: int, side: int) -> int:
-            return (
-                prefix[row + side][column + side]
-                - prefix[row][column + side]
-                - prefix[row + side][column]
-                + prefix[row][column]
-            )
-
-        best = 0
-        for row in range(rows):
-            for column in range(columns):
-                while row + best < rows and column + best < columns and square_sum(row, column, best + 1) <= threshold:
-                    best += 1
-        return best
+        left, right = 0, min(len(mat), len(mat[0])+1)
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(dp, mid, threshold):
+                right = mid-1
+            else:
+                left = mid+1
+        return right

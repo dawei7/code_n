@@ -1,33 +1,22 @@
-from typing import List
-
-
 class Solution:
     def countKConstraintSubstrings(
-        self,
-        s: str,
-        k: int,
-        queries: List[List[int]],
+        self, s: str, k: int, queries: List[List[int]]
     ) -> List[int]:
-        length = len(s)
-        rightmost_valid = [length - 1] * length
-        valid_suffix_prefix = [0] * (length + 1)
-
-        counts = [0, 0]
-        left = 0
-        for right, bit in enumerate(s):
-            counts[int(bit)] += 1
-            while counts[0] > k and counts[1] > k:
-                rightmost_valid[left] = right - 1
-                counts[int(s[left])] -= 1
-                left += 1
-            valid_suffix_prefix[right + 1] = valid_suffix_prefix[right] + right - left + 1
-
-        answer = []
-        for query_left, query_right in queries:
-            prefix_end = min(query_right, rightmost_valid[query_left])
-            prefix_length = prefix_end - query_left + 1
-            prefix_count = prefix_length * (prefix_length + 1) // 2
-            tail_count = valid_suffix_prefix[query_right + 1] - valid_suffix_prefix[prefix_end + 1]
-            answer.append(prefix_count + tail_count)
-
-        return answer
+        cnt = [0, 0]
+        i, n = 0, len(s)
+        d = [n] * n
+        pre = [0] * (n + 1)
+        for j, x in enumerate(map(int, s)):
+            cnt[x] += 1
+            while cnt[0] > k and cnt[1] > k:
+                d[i] = j
+                cnt[int(s[i])] -= 1
+                i += 1
+            pre[j + 1] = pre[j] + j - i + 1
+        ans = []
+        for l, r in queries:
+            p = min(r + 1, d[l])
+            a = (1 + p - l) * (p - l) // 2
+            b = pre[r + 1] - pre[p]
+            ans.append(a + b)
+        return ans

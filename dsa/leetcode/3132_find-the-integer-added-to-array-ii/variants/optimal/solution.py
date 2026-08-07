@@ -1,13 +1,20 @@
 class Solution:
     def minimumAddedInteger(self, nums1: List[int], nums2: List[int]) -> int:
+        def f(x: int) -> bool:
+            i = j = cnt = 0
+            while i < len(nums1) and j < len(nums2):
+                if nums2[j] - nums1[i] != x:
+                    cnt += 1
+                else:
+                    j += 1
+                i += 1
+            return cnt <= 2
+
         nums1.sort()
         nums2.sort()
-
-        for start in range(2, -1, -1):
-            x = nums2[0] - nums1[start]
-            j = 0
-            for value in nums1:
-                if j < len(nums2) and value + x == nums2[j]:
-                    j += 1
-            if j == len(nums2):
-                return x
+        ans = inf
+        for i in range(3):
+            x = nums2[0] - nums1[i]
+            if f(x):
+                ans = min(ans, x)
+        return ans

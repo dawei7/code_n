@@ -1,6 +1,11 @@
-from typing import List
+# Time:  O(1)
+# Space: O(1)
 
-
+# greedy, game theory
 class Solution:
-    def finalElement(self, nums: List[int]) -> int:
+    def finalElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         return max(nums[0], nums[-1])

@@ -1,26 +1,34 @@
-WITH distinct_logins AS (
-    SELECT DISTINCT id, login_date
-    FROM Logins
-),
-numbered_logins AS (
-    SELECT
-        id,
-        login_date,
-        julianday(login_date)
-            - ROW_NUMBER() OVER (
-                PARTITION BY id
-                ORDER BY login_date
-            ) AS streak_key
-    FROM distinct_logins
-),
-active_ids AS (
-    SELECT DISTINCT id
-    FROM numbered_logins
-    GROUP BY id, streak_key
-    HAVING COUNT(*) >= 5
-)
-SELECT accounts.id, accounts.name
-FROM Accounts AS accounts
-JOIN active_ids
-    ON active_ids.id = accounts.id
-ORDER BY accounts.id;
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT DISTINCT 
+       r.id,
+       r.name
+FROM
+  (SELECT a_l.id,
+          a_l.name,
+          @accu := CASE
+                       WHEN a_l.name = @prev AND 
+                            DATEDIFF(a_l.login_date, @login_date) = 1
+                       THEN @accu + 1
+                       ELSE 1
+                   END AS accu,
+          @prev := a_l.name AS prev,
+          @login_date := a_l.login_date AS login_date
+   FROM (
+           (SELECT DISTINCT
+                   a.id,
+                   a.name,
+                   l.login_date
+            FROM accounts a
+            LEFT JOIN logins l
+            ON a.id = l.id
+            ORDER BY a.id,
+                     a.name,
+                     l.login_date) a_l,
+           (SELECT @accu := 0,
+                   @prev := "",
+                   @login_date := "") init
+        )
+  ) r
+WHERE r.accu = 5;

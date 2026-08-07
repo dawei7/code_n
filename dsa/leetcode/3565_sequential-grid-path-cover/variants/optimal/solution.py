@@ -1,33 +1,39 @@
 class Solution:
-    def findPath(self, grid: list[list[int]], k: int) -> list[list[int]]:
-        rows = len(grid)
-        columns = len(grid[0])
-        total_cells = rows * columns
-        visited = [[False] * columns for _ in range(rows)]
-        path: list[list[int]] = []
+    def findPath(self, grid: List[List[int]], k: int) -> List[List[int]]:
+        def f(i: int, j: int) -> int:
+            return i * n + j
 
-        def search(row: int, column: int, next_checkpoint: int) -> list[list[int]] | None:
-            checkpoint = grid[row][column]
-            if checkpoint != 0:
-                if checkpoint != next_checkpoint:
-                    return None
-                next_checkpoint += 1
-            visited[row][column] = True
-            path.append([row, column])
-            if len(path) == total_cells:
-                return [position[:] for position in path]
-            for next_row, next_column in ((row + 1, column), (row - 1, column), (row, column + 1), (row, column - 1)):
-                if 0 <= next_row < rows and 0 <= next_column < columns and (not visited[next_row][next_column]):
-                    answer = search(next_row, next_column, next_checkpoint)
-                    if answer is not None:
-                        return answer
+        def dfs(i: int, j: int, v: int):
+            nonlocal st
+            path.append([i, j])
+            if len(path) == m * n:
+                return True
+            st |= 1 << f(i, j)
+            if grid[i][j] == v:
+                v += 1
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if (
+                    0 <= x < m
+                    and 0 <= y < n
+                    and (st & 1 << f(x, y)) == 0
+                    and grid[x][y] in (0, v)
+                ):
+                    if dfs(x, y, v):
+                        return True
             path.pop()
-            visited[row][column] = False
-            return None
+            st ^= 1 << f(i, j)
+            return False
 
-        for start_row in range(rows):
-            for start_column in range(columns):
-                answer = search(start_row, start_column, 1)
-                if answer is not None:
-                    return answer
+        m, n = len(grid), len(grid[0])
+        st = 0
+        path = []
+        dirs = (-1, 0, 1, 0, -1)
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] in (0, 1):
+                    if dfs(i, j, 1):
+                        return path
+                    path.clear()
+                    st = 0
         return []

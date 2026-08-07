@@ -1,25 +1,14 @@
-from typing import List
-
-
 class Solution:
     def getMaximumGold(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-
-        def dfs(row: int, column: int) -> int:
-            if not (0 <= row < rows and 0 <= column < columns) or grid[row][column] == 0:
+        def dfs(i: int, j: int) -> int:
+            if not (0 <= i < m and 0 <= j < n and grid[i][j]):
                 return 0
-            gold = grid[row][column]
-            grid[row][column] = 0
-            best_next = 0
-            for row_change, column_change in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                best_next = max(best_next, dfs(row + row_change, column + column_change))
-            grid[row][column] = gold
-            return gold + best_next
+            v = grid[i][j]
+            grid[i][j] = 0
+            ans = max(dfs(i + a, j + b) for a, b in pairwise(dirs)) + v
+            grid[i][j] = v
+            return ans
 
-        answer = 0
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column]:
-                    answer = max(answer, dfs(row, column))
-        return answer
+        m, n = len(grid), len(grid[0])
+        dirs = (-1, 0, 1, 0, -1)
+        return max(dfs(i, j) for i in range(m) for j in range(n))

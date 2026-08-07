@@ -1,9 +1,13 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math
 class Solution:
-    def findClosest(self, x: int, y: int, z: int) -> int:
-        first_distance = abs(x - z)
-        second_distance = abs(y - z)
-        if first_distance == second_distance:
-            return 0
-        if first_distance < second_distance:
-            return 1
-        return 2
+    def findClosest(self, x, y, z):
+        """
+        :type x: int
+        :type y: int
+        :type z: int
+        :rtype: int
+        """
+        return range(3)[cmp(abs(y-z), abs(x-z))]

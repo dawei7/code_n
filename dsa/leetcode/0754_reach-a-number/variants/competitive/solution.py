@@ -1,18 +1,33 @@
-from math import isqrt
+# Time:  O(logn)
+# Space: O(1)
+
+import math
 
 
 class Solution:
-    def reachNumber(self, target: int) -> int:
-        distance = abs(target)
-        steps = (isqrt(1 + 8 * distance) - 1) // 2
-        total = steps * (steps + 1) // 2
+    def reachNumber(self, target):
+        """
+        :type target: int
+        :rtype: int
+        """
+        target = abs(target)
+        k = int(math.ceil((-1+math.sqrt(1+8*target))/2))
+        target -= k*(k+1)/2
+        return k if target%2 == 0 else k+1+k%2
 
-        if total < distance:
-            steps += 1
-            total += steps
 
-        while (total - distance) % 2:
-            steps += 1
-            total += steps
+# Time:  O(sqrt(n))
+# Space: O(1)
+class Solution2(object):
+    def reachNumber(self, target):
+        """
+        :type target: int
+        :rtype: int
+        """
+        target = abs(target)
+        k = 0
+        while target > 0:
+            k += 1
+            target -= k
+        return k if target%2 == 0 else k+1+k%2
 
-        return steps

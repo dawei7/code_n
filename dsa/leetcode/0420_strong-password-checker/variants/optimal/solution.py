@@ -1,40 +1,60 @@
 class Solution:
     def strongPasswordChecker(self, password: str) -> int:
-        missing_types = (
-            int(not any(character.islower() for character in password))
-            + int(not any(character.isupper() for character in password))
-            + int(not any(character.isdigit() for character in password))
-        )
+        def countTypes(s):
+            a = b = c = 0
+            for ch in s:
+                if ch.islower():
+                    a = 1
+                elif ch.isupper():
+                    b = 1
+                elif ch.isdigit():
+                    c = 1
+            return a + b + c
 
-        runs = []
-        index = 0
-        while index < len(password):
-            end = index + 1
-            while end < len(password) and password[end] == password[index]:
-                end += 1
-            if end - index >= 3:
-                runs.append(end - index)
-            index = end
+        types = countTypes(password)
+        n = len(password)
+        if n < 6:
+            return max(6 - n, 3 - types)
+        if n <= 20:
+            replace = cnt = 0
+            prev = '~'
+            for curr in password:
+                if curr == prev:
+                    cnt += 1
+                else:
+                    replace += cnt // 3
+                    cnt = 1
+                    prev = curr
+            replace += cnt // 3
+            return max(replace, 3 - types)
+        replace = cnt = 0
+        remove, remove2 = n - 20, 0
+        prev = '~'
+        for curr in password:
+            if curr == prev:
+                cnt += 1
+            else:
+                if remove > 0 and cnt >= 3:
+                    if cnt % 3 == 0:
+                        remove -= 1
+                        replace -= 1
+                    elif cnt % 3 == 1:
+                        remove2 += 1
+                replace += cnt // 3
+                cnt = 1
+                prev = curr
+        if remove > 0 and cnt >= 3:
+            if cnt % 3 == 0:
+                remove -= 1
+                replace -= 1
+            elif cnt % 3 == 1:
+                remove2 += 1
+        replace += cnt // 3
+        use2 = min(replace, remove2, remove // 2)
+        replace -= use2
+        remove -= use2 * 2
 
-        if len(password) < 6:
-            return max(6 - len(password), missing_types)
-
-        replacements = sum(length // 3 for length in runs)
-        if len(password) <= 20:
-            return max(missing_types, replacements)
-
-        deletions = len(password) - 20
-        remaining_deletions = deletions
-
-        remainder_zero = sum(1 for length in runs if length % 3 == 0)
-        used = min(remaining_deletions, remainder_zero)
-        replacements -= used
-        remaining_deletions -= used
-
-        remainder_one = sum(1 for length in runs if length % 3 == 1)
-        used = min(remaining_deletions // 2, remainder_one)
-        replacements -= used
-        remaining_deletions -= 2 * used
-
-        replacements -= min(replacements, remaining_deletions // 3)
-        return deletions + max(missing_types, replacements)
+        use3 = min(replace, remove // 3)
+        replace -= use3
+        remove -= use3 * 3
+        return n - 20 + max(replace, 3 - types)

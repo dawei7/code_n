@@ -1,20 +1,30 @@
+# Time:  O(nlogn)
+# Space: O(n)
+
 from collections import Counter
-from typing import List
+from heapq import heapify, heappop
 
 
 class Solution:
-    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
-        if len(hand) % groupSize != 0:
+    def isNStraightHand(self, hand, W):
+        """
+        :type hand: List[int]
+        :type W: int
+        :rtype: bool
+        """
+        if len(hand) % W:
             return False
 
         counts = Counter(hand)
-        for start in sorted(counts):
-            copies = counts[start]
-            if copies == 0:
-                continue
-            for value in range(start, start + groupSize):
-                if counts[value] < copies:
+        min_heap = list(hand)
+        heapify(min_heap)
+        for _ in range(len(min_heap)//W):
+            while counts[min_heap[0]] == 0:
+                heappop(min_heap)
+            start = heappop(min_heap)
+            for _ in range(W):
+                counts[start] -= 1
+                if counts[start] < 0:
                     return False
-                counts[value] -= copies
-
+                start += 1
         return True

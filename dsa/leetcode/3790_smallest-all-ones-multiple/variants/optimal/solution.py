@@ -1,12 +1,12 @@
 class Solution:
     def minAllOneMultiple(self, k: int) -> int:
-        if k % 2 == 0 or k % 5 == 0:
+        if k % 2 == 0:
             return -1
-
-        remainder = 0
-        for length in range(1, k + 1):
-            remainder = (remainder * 10 + 1) % k
-            if remainder == 0:
-                return length
-
+        x = 1 % k
+        ans = 1
+        for _ in range(k):
+            x = (x * 10 + 1) % k
+            ans += 1
+            if x == 0:
+                return ans
         return -1

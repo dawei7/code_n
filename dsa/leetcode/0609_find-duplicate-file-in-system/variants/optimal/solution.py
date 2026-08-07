@@ -1,17 +1,10 @@
-from typing import List
-
-
 class Solution:
     def findDuplicate(self, paths: List[str]) -> List[List[str]]:
-        by_content = {}
-
-        for description in paths:
-            parts = description.split()
-            directory = parts[0]
-            for file_record in parts[1:]:
-                opening = file_record.index("(")
-                filename = file_record[:opening]
-                content = file_record[opening + 1 : -1]
-                by_content.setdefault(content, []).append(directory + "/" + filename)
-
-        return [group for group in by_content.values() if len(group) > 1]
+        d = defaultdict(list)
+        for p in paths:
+            ps = p.split()
+            for f in ps[1:]:
+                i = f.find('(')
+                name, content = f[:i], f[i + 1 : -1]
+                d[content].append(ps[0] + '/' + name)
+        return [v for v in d.values() if len(v) > 1]

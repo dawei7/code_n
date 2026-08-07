@@ -1,14 +1,15 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def canDivideIntoSubsequences(self, nums: List[int], k: int) -> bool:
-        maximum_frequency = current_frequency = 1
-        for index in range(1, len(nums)):
-            if nums[index] == nums[index - 1]:
-                current_frequency += 1
-            else:
-                maximum_frequency = max(maximum_frequency, current_frequency)
-                current_frequency = 1
-        maximum_frequency = max(maximum_frequency, current_frequency)
-        return len(nums) >= maximum_frequency * k
+    def canDivideIntoSubsequences(self, nums, K):
+        """
+        :type nums: List[int]
+        :type K: int
+        :rtype: bool
+        """
+        curr, max_count = 1, 1
+        for i in range(1, len(nums)):
+            curr = 1 if nums[i-1] < nums[i] else curr+1
+            max_count = max(max_count, curr)
+        return K*max_count <= len(nums)

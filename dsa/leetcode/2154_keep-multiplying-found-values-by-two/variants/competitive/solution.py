@@ -1,9 +1,15 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def findFinalValue(self, nums: List[int], original: int) -> int:
-        values = set(nums)
-        while original in values:
+    def findFinalValue(self, nums, original):
+        """
+        :type nums: List[int]
+        :type original: int
+        :rtype: int
+        """
+        lookup = set(nums)
+        while original in lookup:
             original *= 2
         return original

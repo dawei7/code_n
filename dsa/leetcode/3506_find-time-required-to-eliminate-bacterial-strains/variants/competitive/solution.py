@@ -1,15 +1,18 @@
+# Time:  O(nlogn)
+# Space: O(1)
+
 import heapq
-from typing import List
 
 
+# heap, greedy
 class Solution:
-    def minEliminationTime(self, timeReq: List[int], splitTime: int) -> int:
-        completion_times = timeReq[:]
-        heapq.heapify(completion_times)
-
-        while len(completion_times) > 1:
-            heapq.heappop(completion_times)
-            slower = heapq.heappop(completion_times)
-            heapq.heappush(completion_times, slower + splitTime)
-
-        return completion_times[0]
+    def minEliminationTime(self, timeReq, splitTime):
+        """
+        :type timeReq: List[int]
+        :type splitTime: int
+        :rtype: int
+        """
+        heapq.heapify(timeReq)
+        for _ in range(len(timeReq)-1):
+            heapq.heappush(timeReq, max(heapq.heappop(timeReq), heapq.heappop(timeReq))+splitTime)
+        return timeReq[0]

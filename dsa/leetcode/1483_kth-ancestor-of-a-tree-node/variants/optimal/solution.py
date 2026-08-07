@@ -1,23 +1,23 @@
-from typing import List
-
-
 class TreeAncestor:
     def __init__(self, n: int, parent: List[int]):
-        levels = max(1, n.bit_length())
-        self.up = [list(parent)]
-
-        for _ in range(1, levels):
-            previous = self.up[-1]
-            current = [-1 if ancestor == -1 else previous[ancestor] for ancestor in previous]
-            self.up.append(current)
+        self.p = [[-1] * 18 for _ in range(n)]
+        for i, fa in enumerate(parent):
+            self.p[i][0] = fa
+        for j in range(1, 18):
+            for i in range(n):
+                if self.p[i][j - 1] == -1:
+                    continue
+                self.p[i][j] = self.p[self.p[i][j - 1]][j - 1]
 
     def getKthAncestor(self, node: int, k: int) -> int:
-        bit = 0
-
-        while k and node != -1:
-            if k & 1:
-                node = self.up[bit][node]
-            k >>= 1
-            bit += 1
-
+        for i in range(17, -1, -1):
+            if k >> i & 1:
+                node = self.p[node][i]
+                if node == -1:
+                    break
         return node
+
+
+# Your TreeAncestor object will be instantiated and called as such:
+# obj = TreeAncestor(n, parent)
+# param_1 = obj.getKthAncestor(node,k)

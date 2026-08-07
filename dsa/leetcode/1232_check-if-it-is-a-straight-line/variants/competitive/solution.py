@@ -1,14 +1,14 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
-        x0, y0 = coordinates[0]
-        x1, y1 = coordinates[1]
-        dx = x1 - x0
-        dy = y1 - y0
-
-        for x, y in coordinates[2:]:
-            if (x - x0) * dy != (y - y0) * dx:
-                return False
-        return True
+    def checkStraightLine(self, coordinates):
+        """
+        :type coordinates: List[List[int]]
+        :rtype: bool
+        """
+        i, j = coordinates[:2]
+        return all(i[0] * j[1] - j[0] * i[1] +
+                   j[0] * k[1] - k[0] * j[1] +
+                   k[0] * i[1] - i[0] * k[1] == 0
+                   for k in coordinates)

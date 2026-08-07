@@ -1,47 +1,108 @@
-from math import comb
+# Time:  O(n^2), n = len(r)
+# Space: O(n)
 
-
+# math, stars and bars, combinatorics
 class Solution:
-    MODULO = 1_000_000_007
+    def countNumbers(self, l, r, b):
+        """
+        :type l: str
+        :type r: str
+        :type b: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
 
-    def countNumbers(self, l: str, r: str, b: int) -> int:
-        def count_up_to(value: int) -> int:
-            if value < 0:
-                return 0
+        def nHr(n, k):
+            return nCr(n+k-1, k)
 
-            digits = []
-            current = value
-            if current == 0:
-                digits.append(0)
-            while current:
-                digits.append(current % b)
-                current //= b
-            digits.reverse()
-
-            if value == 0:
-                return 1
-
-            total = 1
-            length = len(digits)
-            for shorter in range(1, length):
-                total += comb(shorter + b - 2, b - 2)
-
-            minimum = 1
-            for index, digit in enumerate(digits):
-                remaining = length - index - 1
-                for chosen in range(minimum, digit):
-                    total += comb(
-                        remaining + b - chosen - 1,
-                        b - chosen - 1,
-                    )
-                if digit < minimum:
+        def count(x):
+            digits_base = []
+            while x:
+                x, r = divmod(x, b)
+                digits_base.append(r)
+            digits_base.reverse()
+            if not digits_base:
+                digits_base.append(0)
+            result = 0
+            for i in range(len(digits_base)):
+                if i-1 >= 0 and digits_base[i-1] > digits_base[i]:
                     break
-                minimum = digit
+                for j in range(digits_base[i-1] if i-1 >= 0 else 0, digits_base[i]):
+                    result = (result + nHr((b-1)-j+1, len(digits_base)-(i+1))) % MOD
             else:
-                total += 1
+                result = (result+1)%MOD
+            return result
 
-            return total % self.MODULO
+        return (count(int(r)) - count(int(l)-1)) % MOD
 
-        lower = int(l) - 1
-        upper = int(r)
-        return (count_up_to(upper) - count_up_to(lower)) % self.MODULO
+
+# Time:  O(n^2), n = len(r)
+# Space: O(n)
+# math, stars and bars, combinatorics
+class Solution2(object):
+    def countNumbers(self, l, r, b):
+        """
+        :type l: str
+        :type r: str
+        :type b: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
+
+        def nHr(n, k):
+            return nCr(n+k-1, k)
+
+        def decrease(digits):
+            for i in reversed(range(len(digits))):
+                if digits[i]:
+                    digits[i] -= 1
+                    break
+                digits[i] = 9
+
+        def divide(digits, base):
+            result = []
+            r = 0
+            for d in digits:
+                q, r = divmod(r*10+d, base)
+                if result or q:
+                    result.append(q)
+            return result, r
+
+        def to_base(digits, base):
+            result = []
+            while digits:
+                digits, r = divide(digits, base)
+                result.append(r)
+            result.reverse()
+            return result
+
+        def count(digits):
+            digits_base = to_base(digits, b)
+            result = 0
+            for i in range(len(digits_base)):
+                if i-1 >= 0 and digits_base[i-1] > digits_base[i]:
+                    break
+                for j in range(digits_base[i-1] if i-1 >= 0 else 0, digits_base[i]):
+                    result = (result + nHr((b-1)-j+1, len(digits_base)-(i+1))) % MOD
+            else:
+                result = (result+1)%MOD
+            return result
+
+        digits_l = map(int, l)
+        decrease(digits_l)
+        digits_r = map(int, r)
+        return (count(digits_r) - count(digits_l)) % MOD

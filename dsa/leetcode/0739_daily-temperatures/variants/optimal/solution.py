@@ -1,15 +1,12 @@
-from typing import List
-
-
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        waits = [0] * len(temperatures)
-        unresolved = []
-
-        for index, temperature in enumerate(temperatures):
-            while unresolved and temperatures[unresolved[-1]] < temperature:
-                previous = unresolved.pop()
-                waits[previous] = index - previous
-            unresolved.append(index)
-
-        return waits
+        stk = []
+        n = len(temperatures)
+        ans = [0] * n
+        for i in range(n - 1, -1, -1):
+            while stk and temperatures[stk[-1]] <= temperatures[i]:
+                stk.pop()
+            if stk:
+                ans[i] = stk[-1] - i
+            stk.append(i)
+        return ans

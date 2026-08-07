@@ -1,9 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+# hash table
 class Solution:
-    def repeatedCharacter(self, s: str) -> str:
-        seen = 0
-        for character in s:
-            bit = 1 << (ord(character) - ord("a"))
-            if seen & bit:
-                return character
-            seen |= bit
-        return ""
+    def repeatedCharacter(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        lookup = set()
+        for c in s:
+            if c in lookup:
+                break
+            lookup.add(c)
+        return c

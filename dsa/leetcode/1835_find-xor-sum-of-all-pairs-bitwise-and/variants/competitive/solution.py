@@ -1,14 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
+
+import operator
 
 
 class Solution:
-    def getXORSum(self, arr1: List[int], arr2: List[int]) -> int:
-        first_xor = 0
-        for value in arr1:
-            first_xor ^= value
-
-        second_xor = 0
-        for value in arr2:
-            second_xor ^= value
-
-        return first_xor & second_xor
+    def getXORSum(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: int
+        """
+        return reduce(operator.xor, arr1) & reduce(operator.xor, arr2)

@@ -1,12 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def largestInteger(self, n: int, s: int) -> int:
-        if s > 9 * n:
-            return -1
-
-        answer = 0
+    def largestInteger(self, n, s):
+        """
+        :type n: int
+        :type s: int
+        :rtype: int
+        """
+        result = 0
         for _ in range(n):
-            digit = min(9, s)
-            answer = answer * 10 + digit
-            s -= digit
-
-        return answer
+            x = min(s, 9)
+            result = result*10+x
+            s -= x
+        return result if not s else -1

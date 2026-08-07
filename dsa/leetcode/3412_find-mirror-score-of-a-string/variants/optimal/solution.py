@@ -1,14 +1,12 @@
 class Solution:
     def calculateScore(self, s: str) -> int:
-        unmatched = [[] for _ in range(26)]
-        score = 0
-
-        for index, character in enumerate(s):
-            letter = ord(character) - ord("a")
-            mirror = 25 - letter
-            if unmatched[mirror]:
-                score += index - unmatched[mirror].pop()
+        d = defaultdict(list)
+        ans = 0
+        for i, x in enumerate(s):
+            y = chr(ord("a") + ord("z") - ord(x))
+            if d[y]:
+                j = d[y].pop()
+                ans += i - j
             else:
-                unmatched[letter].append(index)
-
-        return score
+                d[x].append(i)
+        return ans

@@ -1,33 +1,25 @@
-from typing import List
-
-
 class Solution:
     def numberOfSets(self, n: int, maxDistance: int, roads: List[List[int]]) -> int:
-        infinity = 10**15
-        valid = 0
-
+        ans = 0
         for mask in range(1 << n):
-            distance = [[infinity] * n for _ in range(n)]
-            for branch in range(n):
-                if mask >> branch & 1:
-                    distance[branch][branch] = 0
-
-            for first, second, length in roads:
-                if mask >> first & 1 and mask >> second & 1:
-                    if length < distance[first][second]:
-                        distance[first][second] = length
-                        distance[second][first] = length
-
-            active = [branch for branch in range(n) if mask >> branch & 1]
-            for middle in active:
-                for first in active:
-                    through_middle = distance[first][middle]
-                    for second in active:
-                        candidate = through_middle + distance[middle][second]
-                        if candidate < distance[first][second]:
-                            distance[first][second] = candidate
-
-            if all(distance[first][second] <= maxDistance for first in active for second in active):
-                valid += 1
-
-        return valid
+            g = [[inf] * n for _ in range(n)]
+            for u, v, w in roads:
+                if mask >> u & 1 and mask >> v & 1:
+                    g[u][v] = min(g[u][v], w)
+                    g[v][u] = min(g[v][u], w)
+            for k in range(n):
+                if mask >> k & 1:
+                    g[k][k] = 0
+                    for i in range(n):
+                        for j in range(n):
+                            # g[i][j] = min(g[i][j], g[i][k] + g[k][j])
+                            if g[i][k] + g[k][j] < g[i][j]:
+                                g[i][j] = g[i][k] + g[k][j]
+            if all(
+                g[i][j] <= maxDistance
+                for i in range(n)
+                for j in range(n)
+                if mask >> i & 1 and mask >> j & 1
+            ):
+                ans += 1
+        return ans

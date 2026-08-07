@@ -1,12 +1,18 @@
+# Time:  O(logn)
+# Space: O(1)
+
 class Solution:
-    def brokenCalc(self, startValue: int, target: int) -> int:
-        operations = 0
-
-        while target > startValue:
-            if target % 2:
-                target += 1
+    def brokenCalc(self, X, Y):
+        """
+        :type X: int
+        :type Y: int
+        :rtype: int
+        """
+        result = 0
+        while X < Y:
+            if Y%2:
+                Y += 1
             else:
-                target //= 2
-            operations += 1
-
-        return operations + startValue - target
+                Y /= 2
+            result += 1
+        return result + X-Y

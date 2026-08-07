@@ -1,33 +1,39 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def sumOfDistancesInTree(self, n: int, edges: List[List[int]]) -> List[int]:
-        graph = [[] for _ in range(n)]
-        for first, second in edges:
-            graph[first].append(second)
-            graph[second].append(first)
+    def sumOfDistancesInTree(self, N, edges):
+        """
+        :type N: int
+        :type edges: List[List[int]]
+        :rtype: List[int]
+        """
+        def dfs(graph, node, parent, count, result):
+            for nei in graph[node]:
+                if nei != parent:
+                    dfs(graph, nei, node, count, result)
+                    count[node] += count[nei]
+                    result[node] += result[nei]+count[nei]
 
-        parent = [-1] * n
-        parent[0] = 0
-        depth = [0] * n
-        order = [0]
+        def dfs2(graph, node, parent, count, result):
+            for nei in graph[node]:
+                if nei != parent:
+                    result[nei] = result[node]-count[nei] + \
+                                  len(count)-count[nei]
+                    dfs2(graph, nei, node, count, result)
 
-        for node in order:
-            for neighbor in graph[node]:
-                if neighbor == parent[node]:
-                    continue
-                parent[neighbor] = node
-                depth[neighbor] = depth[node] + 1
-                order.append(neighbor)
+        graph = collections.defaultdict(list)
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
 
-        subtree_size = [1] * n
-        for node in reversed(order[1:]):
-            subtree_size[parent[node]] += subtree_size[node]
+        count = [1] * N
+        result = [0] * N
 
-        answer = [0] * n
-        answer[0] = sum(depth)
-        for node in order[1:]:
-            answer[node] = answer[parent[node]] + n - 2 * subtree_size[node]
+        dfs(graph, 0, None, count, result)
+        dfs2(graph, 0, None, count, result)
+        return result
 
-        return answer

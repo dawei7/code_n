@@ -1,31 +1,22 @@
-from typing import List
-
+# Time:  O(n^2 * k)
+# Space: O(k)
 
 class Solution:
-    def maxVacationDays(
-        self,
-        flights: List[List[int]],
-        days: List[List[int]],
-    ) -> int:
-        city_count = len(flights)
-        week_count = len(days[0])
-        unreachable = float("-inf")
-        totals = [unreachable] * city_count
-        totals[0] = 0
+    def maxVacationDays(self, flights, days):
+        """
+        :type flights: List[List[int]]
+        :type days: List[List[int]]
+        :rtype: int
+        """
+        if not days or not flights:
+            return 0
+        dp = [[0] * len(days) for _ in range(2)]
+        for week in reversed(range(len(days[0]))):
+            for cur_city in range(len(days)):
+                dp[week % 2][cur_city] = days[cur_city][week] + dp[(week+1) % 2][cur_city]
+                for dest_city in range(len(days)):
+                    if flights[cur_city][dest_city] == 1:
+                        dp[week % 2][cur_city] = max(dp[week % 2][cur_city], \
+                                                     days[dest_city][week] + dp[(week+1) % 2][dest_city])
+        return dp[0][0]
 
-        for week in range(week_count):
-            next_totals = [unreachable] * city_count
-
-            for origin in range(city_count):
-                if totals[origin] == unreachable:
-                    continue
-                for destination in range(city_count):
-                    if origin == destination or flights[origin][destination]:
-                        next_totals[destination] = max(
-                            next_totals[destination],
-                            totals[origin] + days[destination][week],
-                        )
-
-            totals = next_totals
-
-        return int(max(totals))

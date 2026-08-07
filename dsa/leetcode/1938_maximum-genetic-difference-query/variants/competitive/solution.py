@@ -1,69 +1,127 @@
-from typing import List
+# Time:  O(nlogk + mlogk), k is max(max(vals), n-1)
+# Space: O(n + logk)
+
+import collections
+
+
+class Trie(object):
+    def __init__(self, bit_count):
+        self.__root = {}
+        self.__bit_count = bit_count
+        
+    def insert(self, num, v):
+        node = self.__root
+        for i in reversed(range(self.__bit_count)):
+            curr = (num>>i) & 1
+            new_node = node.setdefault(curr, collections.defaultdict(int))
+            new_node["_cnt"] += v
+            if not new_node["_cnt"]:
+                del node[curr]
+                break
+            node = new_node
+                
+    def query(self, num):
+        node, result = self.__root, 0
+        for i in reversed(range(self.__bit_count)):
+            curr = (num>>i) & 1
+            if 1^curr in node:
+                node = node[1^curr]
+                result |= 1<<i
+            else:
+                node = node[curr]
+        return result
 
 
 class Solution:
-    def maxGeneticDifference(
-        self,
-        parents: List[int],
-        queries: List[List[int]],
-    ) -> List[int]:
-        node_count = len(parents)
-        children = [[] for _ in range(node_count)]
-        root = 0
+    def maxGeneticDifference(self, parents, queries):
+        """
+        :type parents: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def iter_dfs(adj, qs, trie, result):
+            stk = [(1, adj[-1][0])]
+            while stk:
+                step, node = stk.pop()
+                if step == 1:
+                    trie.insert(node, 1)
+                    for i, val in qs[node]:
+                        result[i] = trie.query(val)
+                    stk.append((2, node))
+                    for child in reversed(adj[node]):
+                        stk.append((1, child))
+                elif step == 2:
+                    trie.insert(node, -1)
+    
+        adj = collections.defaultdict(list)
         for node, parent in enumerate(parents):
-            if parent == -1:
-                root = node
+            adj[parent].append(node)
+        qs = collections.defaultdict(list)
+        max_val = len(parents)-1
+        for i, (node, val) in enumerate(queries):
+            qs[node].append((i, val))
+            max_val = max(max_val, val)
+        result = [0]*len(queries)
+        iter_dfs(adj, qs, Trie(max_val.bit_length()), result)
+        return result
+
+
+# Time:  O(nlogk + mlogk), k is max(max(vals), n-1)
+# Space: O(n + logk)
+import collections
+
+
+class Trie(object):
+    def __init__(self, bit_count):
+        self.__root = {}
+        self.__bit_count = bit_count
+        
+    def insert(self, num, v):
+        node = self.__root
+        for i in reversed(range(self.__bit_count)):
+            curr = (num>>i) & 1
+            new_node = node.setdefault(curr, collections.defaultdict(int))
+            new_node["_cnt"] += v
+            if not new_node["_cnt"]:
+                del node[curr]
+                break
+            node = new_node
+                
+    def query(self, num):
+        node, result = self.__root, 0
+        for i in reversed(range(self.__bit_count)):
+            curr = (num>>i) & 1
+            if 1^curr in node:
+                node = node[1^curr]
+                result |= 1<<i
             else:
-                children[parent].append(node)
+                node = node[curr]
+        return result
 
-        queries_by_node = [[] for _ in range(node_count)]
-        maximum_value = node_count - 1
-        for query_index, (node, value) in enumerate(queries):
-            queries_by_node[node].append((value, query_index))
-            maximum_value = max(maximum_value, value)
-        highest_bit = maximum_value.bit_length() - 1
 
-        trie = [[-1, -1, 0]]
+class Solution2(object):
+    def maxGeneticDifference(self, parents, queries):
+        """
+        :type parents: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def dfs(adj, qs, node, trie, result):
+            trie.insert(node, 1)
+            for i, val in qs[node]:
+                result[i] = trie.query(val)
+            for child in adj[node]:
+                dfs(adj, qs, child, trie, result)
+            trie.insert(node, -1)
 
-        def update(value: int, change: int) -> None:
-            trie[0][2] += change
-            trie_node = 0
-            for bit in range(highest_bit, -1, -1):
-                direction = (value >> bit) & 1
-                next_node = trie[trie_node][direction]
-                if next_node == -1:
-                    next_node = len(trie)
-                    trie[trie_node][direction] = next_node
-                    trie.append([-1, -1, 0])
-                trie_node = next_node
-                trie[trie_node][2] += change
-
-        def maximum_xor(value: int) -> int:
-            trie_node = 0
-            result = 0
-            for bit in range(highest_bit, -1, -1):
-                direction = (value >> bit) & 1
-                preferred = direction ^ 1
-                next_node = trie[trie_node][preferred]
-                if next_node != -1 and trie[next_node][2] > 0:
-                    result |= 1 << bit
-                    trie_node = next_node
-                else:
-                    trie_node = trie[trie_node][direction]
-            return result
-
-        answers = [0] * len(queries)
-        stack = [(root, True)]
-        while stack:
-            node, entering = stack.pop()
-            if entering:
-                update(node, 1)
-                for value, query_index in queries_by_node[node]:
-                    answers[query_index] = maximum_xor(value)
-                stack.append((node, False))
-                for child in children[node]:
-                    stack.append((child, True))
-            else:
-                update(node, -1)
-
-        return answers
+        adj = collections.defaultdict(list)
+        for node, parent in enumerate(parents):
+            adj[parent].append(node)
+        qs = collections.defaultdict(list)
+        max_val = len(parents)-1
+        for i, (node, val) in enumerate(queries):
+            qs[node].append((i, val))
+            max_val = max(max_val, val)
+        result = [0]*len(queries)
+        dfs(adj, qs, adj[-1][0], Trie(max_val.bit_length()), result)
+        return result

@@ -1,30 +1,22 @@
+# Time:  O(n^2)
+# Space: O(n)
+
 class Solution:
-    def splitString(self, s: str) -> bool:
-        n = len(s)
-
-        for first_end in range(1, n):
-            previous = int(s[:first_end])
-            position = first_end
-
-            while position < n and previous > 0:
-                target = previous - 1
-                if target == 0:
-                    if all(char == "0" for char in s[position:]):
-                        return True
+    def splitString(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        def backtracking(s, i, num, cnt):
+            if i == len(s):
+                return cnt >= 2
+            new_num = 0
+            for j in range(i, len(s)):
+                new_num = new_num*10 + int(s[j])
+                if new_num >= num >= 0:
                     break
-
-                cursor = position
-                value = 0
-                while cursor < n and value < target:
-                    value = value * 10 + int(s[cursor])
-                    cursor += 1
-
-                if value != target:
-                    break
-
-                position = cursor
-                previous = target
-                if position == n:
+                if (num == -1 or num-1 == new_num) and backtracking(s, j+1, new_num, cnt+1):
                     return True
-
-        return False
+            return False
+            
+        return backtracking(s, 0, -1, 0)

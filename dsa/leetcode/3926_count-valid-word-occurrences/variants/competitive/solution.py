@@ -1,34 +1,75 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table
 class Solution:
-    def countWordOccurrences(
-        self,
-        chunks: list[str],
-        queries: list[str],
-    ) -> list[int]:
-        text = "".join(chunks)
-        word_counts: Counter[str] = Counter()
-        word_start = -1
-
-        for index, character in enumerate(text):
-            is_letter = "a" <= character <= "z"
-            is_joiner = (
-                character == "-"
-                and index > 0
-                and index + 1 < len(text)
-                and "a" <= text[index - 1] <= "z"
-                and "a" <= text[index + 1] <= "z"
+    def countWordOccurrences(self, chunks, queries):
+        """
+        :type chunks: List[str]
+        :type queries: List[str]
+        :rtype: List[int]
+        """
+        def check(i, j):
+            return (
+                chunks[i][j].islower() or
+                (chunks[i][j] == '-' and
+                 (curr and curr[-1].islower()) and
+                 ((j+1 < len(chunks[i]) and chunks[i][j+1].islower()) or (j+1 == len(chunks[i]) and i+1 < len(chunks) and chunks[i+1][0].islower()))
+                )
             )
 
-            if is_letter or is_joiner:
-                if word_start == -1:
-                    word_start = index
-            elif word_start != -1:
-                word_counts[text[word_start:index]] += 1
-                word_start = -1
+        curr = []
+        cnt = collections.defaultdict(int)
+        for i in range(len(chunks)):
+            for j in range(len(chunks[i])):
+                if check(i, j):
+                    curr.append(chunks[i][j])
+                    continue
+                if curr:
+                    cnt["".join(curr)] += 1
+                    curr = []
+        if curr:
+            cnt["".join(curr)] += 1
+            curr = []
+        return [cnt[x] if x in cnt else 0 for x in queries]
 
-        if word_start != -1:
-            word_counts[text[word_start:]] += 1
 
-        return [word_counts[query] for query in queries]
+# Time:  O(n)
+# Space: O(n)
+import collections
+
+
+# freq table
+class Solution2(object):
+    def countWordOccurrences(self, chunks, queries):
+        """
+        :type chunks: List[str]
+        :type queries: List[str]
+        :rtype: List[int]
+        """
+        def check(i):
+            return (
+                s[i].islower() or
+                (s[i] == '-' and
+                 (i-1 >= 0 and s[i-1].islower()) and
+                 (i+1 < len(s) and s[i+1].islower())
+                )
+            )
+
+        s = "".join(chunks)
+        curr = []
+        cnt = collections.defaultdict(int)
+        for i in range(len(s)):
+            if check(i):
+                curr.append(s[i])
+                continue
+            if curr:
+                cnt["".join(curr)] += 1
+                curr = []
+        if curr:
+            cnt["".join(curr)] += 1
+            curr = []
+        return [cnt[x] if x in cnt else 0 for x in queries]

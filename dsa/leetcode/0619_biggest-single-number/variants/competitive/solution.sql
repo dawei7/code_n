@@ -1,7 +1,20 @@
-SELECT MAX(num) AS num
-FROM (
-    SELECT num
-    FROM MyNumbers
-    GROUP BY num
-    HAVING COUNT(*) = 1
-) AS single_numbers;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT
+IFNULL(
+    (SELECT
+        MAX(num)
+    FROM
+        (SELECT
+            num
+        FROM
+            number
+        GROUP BY num
+        HAVING COUNT(num) = 1
+        ORDER BY NULL) AS t
+    )
+    , NULL
+) AS num
+;
+

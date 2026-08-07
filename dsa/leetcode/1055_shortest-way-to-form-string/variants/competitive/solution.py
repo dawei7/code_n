@@ -1,23 +1,28 @@
+# Time:  O(m + n), m is the length of source
+#                , n is the length of target
+# Space: O(m)
+
+# greedy solution
 class Solution:
-    def shortestWay(self, source: str, target: str) -> int:
-        source_length = len(source)
-        next_position = [[-1] * 26 for _ in range(source_length + 1)]
+    def shortestWay(self, source, target):
+        """
+        :type source: str
+        :type target: str
+        :rtype: int
+        """
+        lookup = [[None for _ in range(26)] for _ in range(len(source)+1)]
+        find_char_next_pos = [None]*26
+        for i in reversed(range(len(source))):
+            find_char_next_pos[ord(source[i])-ord('a')] = i+1
+            lookup[i] = list(find_char_next_pos)
 
-        for index in range(source_length - 1, -1, -1):
-            next_position[index] = next_position[index + 1][:]
-            next_position[index][ord(source[index]) - ord("a")] = index
-
-        subsequences = 1
-        source_index = 0
-
-        for character in target:
-            letter = ord(character) - ord("a")
-            position = next_position[source_index][letter]
-            if position < 0:
-                subsequences += 1
-                position = next_position[0][letter]
-                if position < 0:
-                    return -1
-            source_index = position + 1
-
-        return subsequences
+        result, start = 1, 0
+        for c in target:
+            start = lookup[start][ord(c)-ord('a')]
+            if start != None:
+                continue
+            result += 1
+            start = lookup[0][ord(c)-ord('a')]
+            if start == None:
+                return -1
+        return result

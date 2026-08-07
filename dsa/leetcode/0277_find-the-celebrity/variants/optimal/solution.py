@@ -1,12 +1,16 @@
+# The knows API is already defined for you.
+# return a bool, whether a knows b
+# def knows(a: int, b: int) -> bool:
+
+
 class Solution:
     def findCelebrity(self, n: int) -> int:
-        candidate = 0
-        for person in range(1, n):
-            if knows(candidate, person):
-                candidate = person
-        for person in range(n):
-            if person == candidate:
-                continue
-            if knows(candidate, person) or not knows(person, candidate):
-                return -1
-        return candidate
+        ans = 0
+        for i in range(1, n):
+            if knows(ans, i):
+                ans = i
+        for i in range(n):
+            if ans != i:
+                if knows(ans, i) or not knows(i, ans):
+                    return -1
+        return ans

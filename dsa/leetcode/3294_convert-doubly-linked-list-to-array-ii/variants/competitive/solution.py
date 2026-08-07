@@ -1,21 +1,17 @@
-from typing import List, Optional
+# Time:  O(n)
+# Space: O(1)
 
-
-# Definition for a Node.
-# class Node:
-#     def __init__(self, val, prev=None, next=None):
-#         self.val = val
-#         self.prev = prev
-#         self.next = next
-
-
+# linked list
 class Solution:
-    def toArray(self, node: "Optional[Node]") -> List[int]:
-        while node is not None and node.prev is not None:
+    def toArray(self, node):
+        """
+        :type head: Node
+        :rtype: List[int]
+        """
+        while node.prev:
             node = node.prev
-
-        values = []
-        while node is not None:
-            values.append(node.val)
+        result = []
+        while node:
+            result.append(node.val)
             node = node.next
-        return values
+        return result

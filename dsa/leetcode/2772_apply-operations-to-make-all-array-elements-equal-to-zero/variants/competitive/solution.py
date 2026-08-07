@@ -1,23 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy, sliding window
 class Solution:
-    def checkArray(self, nums: List[int], k: int) -> bool:
-        expiration = [0] * (len(nums) + 1)
-        active_decrements = 0
-
-        for index, value in enumerate(nums):
-            active_decrements -= expiration[index]
-            required = value - active_decrements
-
-            if required < 0:
+    def checkArray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        curr = 0
+        for i, x in enumerate(nums):
+            if x-curr < 0:
                 return False
-            if required == 0:
-                continue
-            if index + k > len(nums):
-                return False
-
-            active_decrements += required
-            expiration[index + k] += required
-
-        return True
+            nums[i] -= curr
+            curr += nums[i]
+            if i-(k-1) >= 0:
+                curr -= nums[i-(k-1)]
+        return curr == 0

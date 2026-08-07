@@ -1,22 +1,26 @@
 class Solution:
-    def outerTrees(self, trees: list[list[int]]) -> list[list[int]]:
-        points = sorted(map(tuple, trees))
-        if len(points) <= 1:
-            return [list(point) for point in points]
+    def outerTrees(self, trees: List[List[int]]) -> List[List[int]]:
+        def cross(i, j, k):
+            a, b, c = trees[i], trees[j], trees[k]
+            return (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0])
 
-        def cross(origin, first, second):
-            return (first[0] - origin[0]) * (second[1] - origin[1]) - (first[1] - origin[1]) * (second[0] - origin[0])
-
-        lower = []
-        for point in points:
-            while len(lower) >= 2 and cross(lower[-2], lower[-1], point) < 0:
-                lower.pop()
-            lower.append(point)
-
-        upper = []
-        for point in reversed(points):
-            while len(upper) >= 2 and cross(upper[-2], upper[-1], point) < 0:
-                upper.pop()
-            upper.append(point)
-
-        return [list(point) for point in set(lower[:-1] + upper[:-1])]
+        n = len(trees)
+        if n < 4:
+            return trees
+        trees.sort()
+        vis = [False] * n
+        stk = [0]
+        for i in range(1, n):
+            while len(stk) > 1 and cross(stk[-2], stk[-1], i) < 0:
+                vis[stk.pop()] = False
+            vis[i] = True
+            stk.append(i)
+        m = len(stk)
+        for i in range(n - 2, -1, -1):
+            if vis[i]:
+                continue
+            while len(stk) > m and cross(stk[-2], stk[-1], i) < 0:
+                stk.pop()
+            stk.append(i)
+        stk.pop()
+        return [trees[i] for i in stk]

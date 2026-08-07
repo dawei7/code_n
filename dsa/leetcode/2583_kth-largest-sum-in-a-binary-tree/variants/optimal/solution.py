@@ -1,25 +1,21 @@
-from collections import deque
-from heapq import heappush, heappushpop
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def kthLargestLevelSum(self, root: Optional[TreeNode], k: int) -> int:
-        largest = []
-        queue = deque([root])
-
-        while queue:
-            level_sum = 0
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                level_sum += node.val
-                if node.left is not None:
-                    queue.append(node.left)
-                if node.right is not None:
-                    queue.append(node.right)
-
-            if len(largest) < k:
-                heappush(largest, level_sum)
-            elif level_sum > largest[0]:
-                heappushpop(largest, level_sum)
-
-        return largest[0] if len(largest) == k else -1
+        arr = []
+        q = deque([root])
+        while q:
+            t = 0
+            for _ in range(len(q)):
+                root = q.popleft()
+                t += root.val
+                if root.left:
+                    q.append(root.left)
+                if root.right:
+                    q.append(root.right)
+            arr.append(t)
+        return -1 if len(arr) < k else nlargest(k, arr)[-1]

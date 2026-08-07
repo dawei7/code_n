@@ -1,15 +1,30 @@
-from typing import List
+# Time:  O(nlogr), r = max(nums)
+# Space: O(n)
 
-
+# hash table   
 class Solution:
-    def countDistinctIntegers(self, nums: List[int]) -> int:
-        values = set(nums)
+    def countDistinctIntegers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def reverse(n):
+            result = 0
+            while n:
+                result = result*10 + n%10
+                n //= 10
+            return result
 
-        for value in nums:
-            reversed_value = 0
-            while value:
-                reversed_value = reversed_value * 10 + value % 10
-                value //= 10
-            values.add(reversed_value)
+        return len({y for x in nums for y in (x, reverse(x))})
 
-        return len(values)
+
+# Time:  O(nlogr), r = max(nums)
+# Space: O(n)
+# hash table   
+class Solution2(object):
+    def countDistinctIntegers(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return len({y for x in nums for y in (x, int(str(x)[::-1]))})

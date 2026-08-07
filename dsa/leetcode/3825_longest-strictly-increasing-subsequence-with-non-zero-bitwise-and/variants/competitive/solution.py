@@ -1,26 +1,26 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(logr * nlogn)
+# Space: O(n)
+
+import bisect
 
 
+# bitmasks, lis, binary search
 class Solution:
-    def longestSubsequence(self, nums: List[int]) -> int:
-        tails = [[] for _ in range(30)]
-        answer = 0
-
-        for value in nums:
-            remaining_bits = value
-            while remaining_bits:
-                lowest_bit = remaining_bits & -remaining_bits
-                bit = lowest_bit.bit_length() - 1
-                bit_tails = tails[bit]
-                position = bisect_left(bit_tails, value)
-
-                if position == len(bit_tails):
-                    bit_tails.append(value)
+    def longestSubsequence(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        def lis(base):
+            result = []
+            for x in nums:
+                if not x&base:
+                    continue
+                if not result or result[-1] < x:
+                    result.append(x)
                 else:
-                    bit_tails[position] = value
-
-                answer = max(answer, position + 1)
-                remaining_bits -= lowest_bit
-
-        return answer
+                    result[bisect.bisect_left(result, x)] = x
+            return len(result)
+    
+        mx = max(nums)
+        return max(lis(1<<l) for l in range(mx.bit_length())) if mx else 0

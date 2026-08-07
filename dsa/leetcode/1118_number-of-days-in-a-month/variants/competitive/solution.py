@@ -1,6 +1,13 @@
+# Time:  O(1)
+# Space: O(1)
+
 class Solution:
-    def numberOfDays(self, year: int, month: int) -> int:
-        if month == 2:
-            leap = year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)
-            return 29 if leap else 28
-        return 30 if month in {4, 6, 9, 11} else 31
+    def numberOfDays(self, Y, M):
+        """
+        :type Y: int
+        :type M: int
+        :rtype: int
+        """
+        leap = 1 if ((Y % 4 == 0) and (Y % 100 != 0)) or (Y % 400 == 0) else 0
+        return (28+leap if (M == 2) else 31-(M-1)%7%2)
+        

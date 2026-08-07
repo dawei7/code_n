@@ -1,19 +1,13 @@
-from functools import cache
-from typing import List
-
-
 class Solution:
     def stoneGameII(self, piles: List[int]) -> int:
-        n = len(piles)
-        suffix = [0] * (n + 1)
-        for index in range(n - 1, -1, -1):
-            suffix[index] = suffix[index + 1] + piles[index]
-
         @cache
-        def best(index: int, m: int) -> int:
-            if index + 2 * m >= n:
-                return suffix[index]
-            opponent = min(best(index + taken, max(m, taken)) for taken in range(1, 2 * m + 1))
-            return suffix[index] - opponent
+        def dfs(i, m):
+            if m * 2 >= n - i:
+                return s[n] - s[i]
+            return max(
+                s[n] - s[i] - dfs(i + x, max(m, x)) for x in range(1, m << 1 | 1)
+            )
 
-        return best(0, 1)
+        n = len(piles)
+        s = list(accumulate(piles, initial=0))
+        return dfs(0, 1)

@@ -1,11 +1,21 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# math, freq table
 class Solution:
-    def partitionArray(self, nums: List[int], k: int) -> bool:
-        if len(nums) % k:
+    def partitionArray(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: bool
+        """
+        if len(nums)%k:
             return False
-
-        group_count = len(nums) // k
-        return max(Counter(nums).values()) <= group_count
+        group_cnt = len(nums)//k 
+        cnt = collections.defaultdict(int)
+        for x in nums:
+            cnt[x] += 1 
+        return all(x <= group_cnt for x in cnt.values())

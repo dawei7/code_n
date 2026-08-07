@@ -1,44 +1,46 @@
-from typing import List
+# Time:  O((n + q) * l)
+# Space: O(t)
 
-
+# trie
 class Solution:
-    def stringIndices(self, wordsContainer: List[str], wordsQuery: List[str]) -> List[int]:
-        children = [{}]
-        best = [-1]
+    def stringIndices(self, wordsContainer, wordsQuery):
+        """
+        :type wordsContainer: List[str]
+        :type wordsQuery: List[str]
+        :rtype: List[int]
+        """
+        INF = float("INF")
+        class Trie(object):
+            def __init__(self):
+                self.__nodes = []
+                self.__mns = []
+                self.__new_node()
+            
+            def __new_node(self):
+                self.__nodes.append([-1]*26)
+                self.__mns.append((INF, INF))
+                return len(self.__nodes)-1
 
-        for index, word in enumerate(wordsContainer):
-            node = 0
-            priority = (len(word), index)
-
-            if best[node] == -1 or priority < (
-                len(wordsContainer[best[node]]),
-                best[node],
-            ):
-                best[node] = index
-
-            for char in reversed(word):
-                next_node = children[node].get(char)
-                if next_node is None:
-                    next_node = len(children)
-                    children[node][char] = next_node
-                    children.append({})
-                    best.append(-1)
-
-                node = next_node
-                if best[node] == -1 or priority < (
-                    len(wordsContainer[best[node]]),
-                    best[node],
-                ):
-                    best[node] = index
-
-        answer = []
-        for query in wordsQuery:
-            node = 0
-            for char in reversed(query):
-                next_node = children[node].get(char)
-                if next_node is None:
-                    break
-                node = next_node
-            answer.append(best[node])
-
-        return answer
+            def add(self, i, w):
+                curr = 0
+                self.__mns[curr] = min(self.__mns[curr], (len(w), i))
+                for c in reversed(w):
+                    x = ord(c)-ord('a')
+                    if self.__nodes[curr][x] == -1:
+                        self.__nodes[curr][x] = self.__new_node()
+                    curr = self.__nodes[curr][x]
+                    self.__mns[curr] = min(self.__mns[curr], (len(w), i))
+            
+            def query(self, w):
+                curr = 0
+                for c in reversed(w):
+                    x = ord(c)-ord('a')
+                    if self.__nodes[curr][x] == -1:
+                        break
+                    curr = self.__nodes[curr][x]
+                return self.__mns[curr][1]
+    
+        trie = Trie()
+        for i, w in enumerate(wordsContainer): 
+            trie.add(i, w)
+        return [trie.query(w) for w in wordsQuery]

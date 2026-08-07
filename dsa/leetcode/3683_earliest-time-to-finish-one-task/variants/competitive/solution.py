@@ -1,6 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def earliestTime(self, tasks: List[List[int]]) -> int:
-        return min(start + duration for start, duration in tasks)
+    def earliestTime(self, tasks):
+        """
+        :type tasks: List[List[int]]
+        :rtype: int
+        """
+        return min(s+t for s, t in tasks)

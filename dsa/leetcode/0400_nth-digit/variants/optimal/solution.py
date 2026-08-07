@@ -1,16 +1,10 @@
 class Solution:
     def findNthDigit(self, n: int) -> int:
-        digits = 1
-        count = 9
-        start = 1
-
-        while n > digits * count:
-            n -= digits * count
-            digits += 1
-            count *= 10
-            start *= 10
-
-        offset = n - 1
-        number = start + offset // digits
-        index = offset % digits
-        return number // (10 ** (digits - 1 - index)) % 10
+        k, cnt = 1, 9
+        while k * cnt < n:
+            n -= k * cnt
+            k += 1
+            cnt *= 10
+        num = 10 ** (k - 1) + (n - 1) // k
+        idx = (n - 1) % k
+        return int(str(num)[idx])

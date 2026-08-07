@@ -1,9 +1,6 @@
-from typing import List
-
-
 class Solution:
     def uniqueMorseRepresentations(self, words: List[str]) -> int:
-        morse = (
+        codes = [
             ".-",
             "-...",
             "-.-.",
@@ -30,6 +27,6 @@ class Solution:
             "-..-",
             "-.--",
             "--..",
-        )
-        transformations = {"".join(morse[ord(char) - ord("a")] for char in word) for word in words}
-        return len(transformations)
+        ]
+        s = {''.join([codes[ord(c) - ord('a')] for c in word]) for word in words}
+        return len(s)

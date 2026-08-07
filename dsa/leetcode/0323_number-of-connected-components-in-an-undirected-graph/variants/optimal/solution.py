@@ -1,31 +1,16 @@
-from typing import List
-
-
-def _count_components(n: int, edges: List[List[int]]) -> int:
-    parent = list(range(n))
-    size = [1] * n
-    components = n
-
-    def find(vertex: int) -> int:
-        while vertex != parent[vertex]:
-            parent[vertex] = parent[parent[vertex]]
-            vertex = parent[vertex]
-        return vertex
-
-    for first, second in edges:
-        first_root = find(first)
-        second_root = find(second)
-        if first_root == second_root:
-            continue
-        if size[first_root] < size[second_root]:
-            first_root, second_root = second_root, first_root
-        parent[second_root] = first_root
-        size[first_root] += size[second_root]
-        components -= 1
-
-    return components
-
-
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        return _count_components(n, edges)
+        def dfs(i: int) -> int:
+            if i in vis:
+                return 0
+            vis.add(i)
+            for j in g[i]:
+                dfs(j)
+            return 1
+
+        g = [[] for _ in range(n)]
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        vis = set()
+        return sum(dfs(i) for i in range(n))

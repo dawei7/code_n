@@ -1,39 +1,58 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def makeParityAlternating(self, nums: List[int]) -> List[int]:
-        def evaluate(first_parity: int) -> tuple[int, int]:
-            operations = 0
-            largest_lower_choice = -(10**10)
-            smallest_upper_choice = 10**10
-
-            for index, value in enumerate(nums):
-                required_parity = first_parity ^ (index & 1)
-
-                if (value & 1) == required_parity:
-                    lower_choice = value
-                    upper_choice = value
+    def makeParityAlternating(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        POS_INF = float("inf")
+        NEG_INF = float("-inf")
+        def count(target):
+            cnt = 0
+            mn, mx = POS_INF, NEG_INF
+            for i, x in enumerate(nums):
+                if (x%2) == (i%2)^target:
+                    mn = min(mn, x)
+                    mx = max(mx, x)
                 else:
-                    operations += 1
-                    lower_choice = value - 1
-                    upper_choice = value + 1
+                    cnt += 1
+                    mn = min(mn, x+1)
+                    mx = max(mx, x-1)
+            return [cnt, 0 if len(nums) == 1 else 1 if max(nums) == min(nums) else mx-mn]
+        
+        return min(count(0), count(1))
 
-                largest_lower_choice = max(largest_lower_choice, lower_choice)
-                smallest_upper_choice = min(smallest_upper_choice, upper_choice)
 
-            if len(nums) == 1:
-                minimum_range = 0
-            else:
-                minimum_range = max(1, largest_lower_choice - smallest_upper_choice)
-
-            return operations, minimum_range
-
-        even_first = evaluate(0)
-        odd_first = evaluate(1)
-        minimum_operations = min(even_first[0], odd_first[0])
-        minimum_range = min(
-            range_value for operations, range_value in (even_first, odd_first) if operations == minimum_operations
-        )
-
-        return [minimum_operations, minimum_range]
+# Time:  O(n)
+# Space: O(1)
+# greedy
+class Solution2(object):
+    def makeParityAlternating(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        POS_INF = float("inf")
+        NEG_INF = float("-inf")
+        def count(target):
+            cnt = 0
+            mn, mx = min(nums), max(nums)
+            mn2, mx2 = POS_INF, NEG_INF
+            for i, x in enumerate(nums):
+                if (x%2) == (i%2)^target:
+                    mn2 = min(mn2, x)
+                    mx2 = max(mx2, x)
+                else:
+                    cnt += 1
+                    if x == mn:
+                        mn2 = min(mn2, x+1)
+                        mx2 = max(mx2, x+1)
+                    elif x == mx:
+                        mn2 = min(mn2, x-1)
+                        mx2 = max(mx2, x-1)
+            return [cnt, mx2-mn2]
+        
+        return min(count(0), count(1))

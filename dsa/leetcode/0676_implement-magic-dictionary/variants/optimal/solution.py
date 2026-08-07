@@ -1,32 +1,44 @@
-class MagicDictionary:
-    _END = "$"
+class Trie:
+    __slots__ = ["children", "is_end"]
 
     def __init__(self):
-        self.root = {}
+        self.children = {}
+        self.is_end = False
 
-    def buildDict(self, dictionary: list[str]) -> None:
-        self.root = {}
-        for word in dictionary:
-            node = self.root
-            for character in word:
-                node = node.setdefault(character, {})
-            node[self._END] = True
+    def insert(self, w: str) -> None:
+        node = self
+        for c in w:
+            if c not in node.children:
+                node.children[c] = Trie()
+            node = node.children[c]
+        node.is_end = True
+
+    def search(self, w: str) -> bool:
+        def dfs(i: int, node: Trie, diff: int) -> bool:
+            if i == len(w):
+                return diff == 1 and node.is_end
+            if w[i] in node.children and dfs(i + 1, node.children[w[i]], diff):
+                return True
+            return diff == 0 and any(
+                dfs(i + 1, node.children[c], 1) for c in node.children if c != w[i]
+            )
+
+        return dfs(0, self, 0)
+
+
+class MagicDictionary:
+    def __init__(self):
+        self.trie = Trie()
+
+    def buildDict(self, dictionary: List[str]) -> None:
+        for w in dictionary:
+            self.trie.insert(w)
 
     def search(self, searchWord: str) -> bool:
-        def matches(node, index, changed):
-            if index == len(searchWord):
-                return changed and self._END in node
+        return self.trie.search(searchWord)
 
-            character = searchWord[index]
-            exact = node.get(character)
-            if exact is not None and matches(exact, index + 1, changed):
-                return True
 
-            if not changed:
-                for next_character, child in node.items():
-                    if next_character not in (self._END, character):
-                        if matches(child, index + 1, True):
-                            return True
-            return False
-
-        return matches(self.root, 0, False)
+# Your MagicDictionary object will be instantiated and called as such:
+# obj = MagicDictionary()
+# obj.buildDict(dictionary)
+# param_2 = obj.search(searchWord)

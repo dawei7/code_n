@@ -1,20 +1,28 @@
-from math import isqrt
-from typing import List
+# Time:  precompute: O(max_n), max_n = max(len(nums))
+#        runtime:    O(n)
+# Space: O(max_n)
+
+# number theory
+def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+    primes = []
+    spf = [-1]*(n+1)  # the smallest prime factor
+    for i in range(2, n+1):
+        if spf[i] == -1:
+            spf[i] = i
+            primes.append(i)
+        for p in primes:
+            if i*p > n or p > spf[i]:
+                break
+            spf[i*p] = p
+    return spf
 
 
+MAX_IDX = 10**5-1
+SPF = linear_sieve_of_eratosthenes(MAX_IDX)
 class Solution:
-    def splitArray(self, nums: List[int]) -> int:
-        length = len(nums)
-        is_prime = bytearray(b"\x01") * length
-        is_prime[0] = 0
-        if length > 1:
-            is_prime[1] = 0
-
-        for value in range(2, isqrt(length - 1) + 1):
-            if is_prime[value]:
-                start = value * value
-                count = (length - 1 - start) // value + 1
-                is_prime[start:length:value] = b"\x00" * count
-
-        prime_sum = sum(number for index, number in enumerate(nums) if is_prime[index])
-        return abs(2 * prime_sum - sum(nums))
+    def splitArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return abs(sum(x if SPF[i] == i else -x for i, x in enumerate(nums)))

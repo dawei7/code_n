@@ -1,21 +1,14 @@
-from bisect import bisect_right
-from typing import List
-
-
 class Solution:
     def maxTwoEvents(self, events: List[List[int]]) -> int:
         events.sort()
-        starts = [event[0] for event in events]
-        suffix_best = [0] * (len(events) + 1)
-
-        for index in range(len(events) - 1, -1, -1):
-            suffix_best[index] = max(
-                suffix_best[index + 1],
-                events[index][2],
-            )
-
-        answer = 0
-        for start, end, value in events:
-            next_index = bisect_right(starts, end)
-            answer = max(answer, value + suffix_best[next_index])
-        return answer
+        n = len(events)
+        f = [events[-1][2]] * n
+        for i in range(n - 2, -1, -1):
+            f[i] = max(f[i + 1], events[i][2])
+        ans = 0
+        for _, e, v in events:
+            idx = bisect_right(events, e, key=lambda x: x[0])
+            if idx < n:
+                v += f[idx]
+            ans = max(ans, v)
+        return ans

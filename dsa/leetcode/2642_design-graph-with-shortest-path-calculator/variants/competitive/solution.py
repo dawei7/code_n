@@ -1,39 +1,50 @@
-from heapq import heappop, heappush
+# Time:  ctor:         O(|V| + |E|)
+#        addEdge:      O(1)
+#        shortestPath: O((|E| + |V|) * log|V|) = O(|E| * log|V|)
+# Space: O(|E| + |V|) = O(|E|)
+
+import heapq
 
 
-class Graph:
-    def __init__(self, n: int, edges: List[List[int]]):
-        self.n = n
-        self.adjacency = [[] for _ in range(n)]
-        for source, target, cost in edges:
-            self.adjacency[source].append((target, cost))
+# dijkstra's algorithm
+class Graph(object):
 
-    def addEdge(self, edge: List[int]) -> None:
-        source, target, cost = edge
-        self.adjacency[source].append((target, cost))
+    def __init__(self, n, edges):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        """
+        self.__adj = [[] for _ in range(n)]
+        for edge in edges:
+            self.addEdge(edge)
 
-    def shortestPath(self, node1: int, node2: int) -> int:
-        distance = [float("inf")] * self.n
-        distance[node1] = 0
-        heap = [(0, node1)]
+    def addEdge(self, edge):
+        """
+        :type edge: List[int]
+        :rtype: None
+        """
+        u, v, w = edge
+        self.__adj[u].append((v, w))
 
-        while heap:
-            cost, node = heappop(heap)
-            if node == node2:
-                return cost
-            if cost != distance[node]:
-                continue
+    def shortestPath(self, node1, node2):
+        """
+        :type node1: int
+        :type node2: int
+        :rtype: int
+        """
+        def dijkstra(adj, start, target):
+            best = [float("inf")]*len(adj)
+            best[start] = 0
+            min_heap = [(best[start], start)]
+            while min_heap:
+                curr, u = heapq.heappop(min_heap)
+                if curr > best[u]:
+                    continue
+                for v, w in adj[u]:                
+                    if not (curr+w < best[v]):
+                        continue
+                    best[v] = curr+w
+                    heapq.heappush(min_heap, (best[v], v))
+            return best[target] if best[target] != float("inf") else -1
 
-            for neighbor, edge_cost in self.adjacency[node]:
-                candidate = cost + edge_cost
-                if candidate < distance[neighbor]:
-                    distance[neighbor] = candidate
-                    heappush(heap, (candidate, neighbor))
-
-        return -1
-
-
-# Your Graph object will be instantiated and called as such:
-# obj = Graph(n, edges)
-# obj.addEdge(edge)
-# param_2 = obj.shortestPath(node1,node2)
+        return dijkstra(self.__adj, node1, node2)

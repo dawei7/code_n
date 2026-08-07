@@ -1,6 +1,3 @@
-from typing import List, Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -8,35 +5,33 @@ from typing import List, Optional
 #         self.left = left
 #         self.right = right
 class Solution:
-    def getAllElements(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> List[int]:
-        def inorder(root: Optional[TreeNode]) -> List[int]:
-            values = []
-            stack = []
-            node = root
+    def getAllElements(
+        self, root1: Optional[TreeNode], root2: Optional[TreeNode]
+    ) -> List[int]:
+        def dfs(root: Optional[TreeNode], nums: List[int]) -> int:
+            if root is None:
+                return
+            dfs(root.left, nums)
+            nums.append(root.val)
+            dfs(root.right, nums)
 
-            while node is not None or stack:
-                while node is not None:
-                    stack.append(node)
-                    node = node.left
-                node = stack.pop()
-                values.append(node.val)
-                node = node.right
-
-            return values
-
-        first = inorder(root1)
-        second = inorder(root2)
-        merged = []
+        a, b = [], []
+        dfs(root1, a)
+        dfs(root2, b)
+        m, n = len(a), len(b)
         i = j = 0
-
-        while i < len(first) and j < len(second):
-            if first[i] <= second[j]:
-                merged.append(first[i])
+        ans = []
+        while i < m and j < n:
+            if a[i] <= b[j]:
+                ans.append(a[i])
                 i += 1
             else:
-                merged.append(second[j])
+                ans.append(b[j])
                 j += 1
-
-        merged.extend(first[i:])
-        merged.extend(second[j:])
-        return merged
+        while i < m:
+            ans.append(a[i])
+            i += 1
+        while j < n:
+            ans.append(b[j])
+            j += 1
+        return ans

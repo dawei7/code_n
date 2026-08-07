@@ -1,22 +1,16 @@
-from typing import List
-
-
 class Solution:
     def canBeIncreasing(self, nums: List[int]) -> bool:
-        removed = False
-        previous = nums[0]
+        def check(k: int) -> bool:
+            pre = -inf
+            for i, x in enumerate(nums):
+                if i == k:
+                    continue
+                if pre >= x:
+                    return False
+                pre = x
+            return True
 
-        for index in range(1, len(nums)):
-            current = nums[index]
-            if current > previous:
-                previous = current
-                continue
-
-            if removed:
-                return False
-            removed = True
-
-            if index == 1 or current > nums[index - 2]:
-                previous = current
-
-        return True
+        i = 0
+        while i + 1 < len(nums) and nums[i] < nums[i + 1]:
+            i += 1
+        return check(i) or check(i + 1)

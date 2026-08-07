@@ -1,15 +1,10 @@
 class Solution:
     def distMoney(self, money: int, children: int) -> int:
-        money -= children
-        if money < 0:
+        if money < children:
             return -1
-
-        eight_dollar_children = min(money // 7, children)
-        money -= eight_dollar_children * 7
-
-        if eight_dollar_children == children and money > 0:
-            eight_dollar_children -= 1
-        elif eight_dollar_children == children - 1 and money == 3:
-            eight_dollar_children -= 1
-
-        return eight_dollar_children
+        if money > 8 * children:
+            return children - 1
+        if money == 8 * children - 4:
+            return children - 2
+        # money-8x >= children-x, x <= (money-children)/7
+        return (money - children) // 7

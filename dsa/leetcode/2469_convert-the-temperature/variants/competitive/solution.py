@@ -1,8 +1,11 @@
-from typing import List
+# Time:  O(1)
+# Space: O(1)
 
-
+# math
 class Solution:
-    def convertTemperature(self, celsius: float) -> List[float]:
-        kelvin = celsius + 273.15
-        fahrenheit = celsius * 1.8 + 32.0
-        return [kelvin, fahrenheit]
+    def convertTemperature(self, celsius):
+        """
+        :type celsius: float
+        :rtype: List[float]
+        """
+        return [celsius+273.15, celsius*1.80+32.00]

@@ -1,17 +1,12 @@
 class Solution:
     def findMinFibonacciNumbers(self, k: int) -> int:
-        fibonacci = [1]
-        previous, current = 1, 1
-        while current <= k:
-            if current != fibonacci[-1]:
-                fibonacci.append(current)
-            previous, current = current, previous + current
-
-        terms = 0
-        for value in reversed(fibonacci):
-            if value <= k:
-                k -= value
-                terms += 1
-            if k == 0:
-                break
-        return terms
+        a = b = 1
+        while b <= k:
+            a, b = b, a + b
+        ans = 0
+        while k:
+            if k >= b:
+                k -= b
+                ans += 1
+            a, b = b - a, a
+        return ans

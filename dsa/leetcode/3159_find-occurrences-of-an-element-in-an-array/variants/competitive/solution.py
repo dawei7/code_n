@@ -1,8 +1,14 @@
-from typing import List
+# Time:  O(n + q)
+# Space: O(n)
 
-
+# array
 class Solution:
-    def occurrencesOfElement(self, nums: List[int], queries: List[int], x: int) -> List[int]:
-        positions = [index for index, value in enumerate(nums) if value == x]
-
-        return [positions[occurrence - 1] if occurrence <= len(positions) else -1 for occurrence in queries]
+    def occurrencesOfElement(self, nums, queries, x):
+        """
+        :type nums: List[int]
+        :type queries: List[int]
+        :type x: int
+        :rtype: List[int]
+        """
+        lookup = [i for i, y in enumerate(nums) if y == x]
+        return [lookup[q-1] if q-1 < len(lookup) else -1 for q in queries]

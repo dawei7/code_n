@@ -1,16 +1,19 @@
 class Solution:
-    def divide(self, dividend: int, divisor: int) -> int:
-        negative = (dividend < 0) != (divisor < 0)
-        remainder = abs(dividend)
-        divisor_magnitude = abs(divisor)
-        quotient = 0
-
-        for shift in range(max(0, remainder.bit_length() - divisor_magnitude.bit_length()), -1, -1):
-            shifted = divisor_magnitude << shift
-            if shifted <= remainder:
-                remainder -= shifted
-                quotient |= 1 << shift
-
-        if negative:
-            quotient = -quotient
-        return min(2**31 - 1, max(-(2**31), quotient))
+    def divide(self, a: int, b: int) -> int:
+        if b == 1:
+            return a
+        if a == -(2**31) and b == -1:
+            return 2**31 - 1
+        sign = (a > 0 and b > 0) or (a < 0 and b < 0)
+        a = -a if a > 0 else a
+        b = -b if b > 0 else b
+        ans = 0
+        while a <= b:
+            x = b
+            cnt = 1
+            while x >= (-(2**30)) and a <= (x << 1):
+                x <<= 1
+                cnt <<= 1
+            a -= x
+            ans += cnt
+        return ans if sign else -ans

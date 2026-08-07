@@ -1,92 +1,128 @@
-from bisect import bisect_left, bisect_right
-from math import isqrt
-from typing import List
+# Time:  O(nlogn + qlogq + (n + q) * sqrt(n) + q * n)
+# Space: O(n + q)
 
-
+# sort, coordinate compression, mo's algorithm
 class Solution:
-    def subarrayMajority(
-        self,
-        nums: List[int],
-        queries: List[List[int]],
-    ) -> List[int]:
-        n = len(nums)
-        values = sorted(set(nums))
-        value_to_rank = {value: rank for rank, value in enumerate(values)}
-        ranked = [value_to_rank[value] for value in nums]
-        unique_count = len(values)
+    def subarrayMajority(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
+        def mo_s_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N) + Q * N)
+            def add(i):  # Time: O(F) = O(1)
+                idx = num_to_idx[nums[i]]
+                if cnt[idx]:
+                    cnt2[cnt[idx]] -= 1
+                cnt[idx] += 1
+                cnt2[cnt[idx]] += 1
+                max_freq[0] = max(max_freq[0], cnt[idx])
 
-        positions = [[] for _ in values]
-        for index, rank in enumerate(ranked):
-            positions[rank].append(index)
+            def remove(i):  # Time: O(F) = O(1)
+                idx = num_to_idx[nums[i]]
+                cnt2[cnt[idx]] -= 1
+                if not cnt2[max_freq[0]]:
+                    max_freq[0] -= 1
+                cnt[idx] -= 1
+                if cnt[idx]:
+                    cnt2[cnt[idx]] += 1
 
-        block_size = isqrt(n) + 1
-        block_count = (n + block_size - 1) // block_size
-        block_modes = [[-1] * block_count for _ in range(block_count)]
+            def get_ans(t):  # Time: O(A) = O(N)
+                if max_freq[0] < t:
+                    return -1
+                i = next(i for i in range(len(cnt)) if cnt[i] == max_freq[0])
+                return sorted_nums[i]
 
-        for start_block in range(block_count):
-            frequencies = [0] * unique_count
-            best_rank = -1
-            best_frequency = 0
-            start = start_block * block_size
-            for index in range(start, n):
-                rank = ranked[index]
-                frequencies[rank] += 1
-                frequency = frequencies[rank]
-                if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
-                    best_rank = rank
-                    best_frequency = frequency
-                if (index + 1) % block_size == 0 or index == n - 1:
-                    block_modes[start_block][index // block_size] = best_rank
+            cnt = [0]*len(num_to_idx)
+            cnt2 = [0]*(len(nums)+1)
+            max_freq = [0]
+            result = [-1]*len(queries)
+            block_size = int(len(nums)**0.5)+1  # O(S) = O(sqrt(N))
+            idxs = range(len(queries))
+            idxs.sort(key=lambda x: (queries[x][0]//block_size, queries[x][1] if (queries[x][0]//block_size)&1 else -queries[x][1]))  # Time: O(QlogQ)
+            left, right = 0, -1
+            for i in idxs:  # Time: O((N / S) * N * F + S * Q * F + Q * A) = O((N + Q) * sqrt(N) + Q * N), O(S) = O(sqrt(N)), O(F) = O(logN), O(A) = O(1)
+                l, r, t = queries[i]
+                while left > l:
+                    left -= 1
+                    add(left)
+                while right < r:
+                    right += 1
+                    add(right)
+                while left < l:
+                    remove(left)
+                    left += 1
+                while right > r:
+                    remove(right)
+                    right -= 1
+                result[i] = get_ans(t)
+            return result
 
-        def range_frequency(rank: int, left: int, right: int) -> int:
-            indices = positions[rank]
-            return bisect_right(indices, right) - bisect_left(indices, left)
+        sorted_nums = sorted(set(nums))
+        num_to_idx = {x:i for i, x in enumerate(sorted_nums)}
+        return mo_s_algorithm()
 
-        answers = []
-        for left, right, threshold in queries:
-            left_block = left // block_size
-            right_block = right // block_size
 
-            if right_block - left_block <= 1:
-                frequencies = {}
-                best_rank = -1
-                best_frequency = 0
-                for index in range(left, right + 1):
-                    rank = ranked[index]
-                    frequency = frequencies.get(rank, 0) + 1
-                    frequencies[rank] = frequency
-                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
-                        best_rank = rank
-                        best_frequency = frequency
-            else:
-                middle_start = left_block + 1
-                middle_end = right_block - 1
-                best_rank = block_modes[middle_start][middle_end]
-                best_frequency = range_frequency(best_rank, left, right)
-                seen = {best_rank}
+# Time:  O(nlogn + qlogq + (n + q) * sqrt(n) * logn)
+# Space: O(n + q)
+from sortedcontainers import SortedList
 
-                left_boundary_end = middle_start * block_size
-                right_boundary_start = (middle_end + 1) * block_size
-                for index in range(left, left_boundary_end):
-                    rank = ranked[index]
-                    if rank in seen:
-                        continue
-                    seen.add(rank)
-                    frequency = range_frequency(rank, left, right)
-                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
-                        best_rank = rank
-                        best_frequency = frequency
 
-                for index in range(right_boundary_start, right + 1):
-                    rank = ranked[index]
-                    if rank in seen:
-                        continue
-                    seen.add(rank)
-                    frequency = range_frequency(rank, left, right)
-                    if frequency > best_frequency or frequency == best_frequency and rank < best_rank:
-                        best_rank = rank
-                        best_frequency = frequency
+# sort, coordinate compression, mo's algorithm, sorted list
+class Solution_TLE(object):
+    def subarrayMajority(self, nums, queries):
+        """
+        :type nums: List[int]
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        # reference: https://cp-algorithms.com/data_structures/sqrt_decomposition.html
+        def mo_s_algorithm():  # Time: O(QlogQ + (N + Q) * sqrt(N) * logN)
+            def add(i):  # Time: O(F) = O(logN)
+                idx = num_to_idx[nums[i]]
+                if cnt[idx]:
+                    lookup[cnt[idx]].remove(nums[i])
+                cnt[idx] += 1
+                lookup[cnt[idx]].add(nums[i])
+                max_freq[0] = max(max_freq[0], cnt[idx])
 
-            answers.append(values[best_rank] if best_frequency >= threshold else -1)
+            def remove(i):  # Time: O(F) = O(logN)
+                idx = num_to_idx[nums[i]]
+                lookup[cnt[idx]].remove(nums[i])
+                if not lookup[max_freq[0]]:
+                    max_freq[0] -= 1
+                cnt[idx] -= 1
+                if cnt[idx]:
+                    lookup[cnt[idx]].add(nums[i])
 
-        return answers
+            def get_ans(t):  # Time: O(A) = O(logN)
+                return lookup[max_freq[0]][0] if max_freq[0] >= t else -1
+
+            cnt = [0]*len(num_to_idx)
+            lookup = [SortedList() for _ in range(len(nums)+1)]
+            max_freq = [0]
+            result = [-1]*len(queries)
+            block_size = int(len(nums)**0.5)+1  # O(S) = O(sqrt(N))
+            idxs = range(len(queries))
+            idxs.sort(key=lambda x: (queries[x][0]//block_size, queries[x][1] if (queries[x][0]//block_size)&1 else -queries[x][1]))  # Time: O(QlogQ)
+            left, right = 0, -1
+            for i in idxs:  # Time: O((N / S) * N * F + S * Q * F + Q * A) = O((N + Q) * sqrt(N) * logN), O(S) = O(sqrt(N)), O(F) = O(logN), O(A) = O(1)
+                l, r, t = queries[i]
+                while left > l:
+                    left -= 1
+                    add(left)
+                while right < r:
+                    right += 1
+                    add(right)
+                while left < l:
+                    remove(left)
+                    left += 1
+                while right > r:
+                    remove(right)
+                    right -= 1
+                result[i] = get_ans(t)
+            return result
+
+        num_to_idx = {x:i for i, x in enumerate(sorted(set(nums)))}
+        return mo_s_algorithm()

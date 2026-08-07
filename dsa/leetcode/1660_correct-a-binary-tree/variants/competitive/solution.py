@@ -1,24 +1,30 @@
+# Time:  O(n)
+# Space: O(w)
+
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        pass
 
 
 class Solution:
-    def correctBinaryTree(self, root: "TreeNode") -> "TreeNode":
-        seen = set()
-
-        def repair(node):
-            if node is None:
-                return None
-            if node.right in seen:
-                return None
-
-            seen.add(node)
-            node.right = repair(node.right)
-            node.left = repair(node.left)
-            return node
-
-        return repair(root)
+    def correctBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        q = {root:None}
+        while q:
+            new_q = {}
+            for node, parent in q.items():
+                if node.right in q:
+                    if parent.left == node:
+                        parent.left = None
+                    else:
+                        parent.right = None
+                    return root
+                if node.left:
+                    new_q[node.left] = node
+                if node.right:
+                    new_q[node.right] = node
+            q = new_q

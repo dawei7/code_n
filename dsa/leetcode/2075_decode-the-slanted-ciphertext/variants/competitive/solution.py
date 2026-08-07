@@ -1,14 +1,50 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def decodeCiphertext(self, encodedText: str, rows: int) -> str:
-        columns = len(encodedText) // rows
-        decoded = []
+    def decodeCiphertext(self, encodedText, rows):
+        """
+        :type encodedText: str
+        :type rows: int
+        :rtype: str
+        """
+        cols = len(encodedText)//rows
+        k = len(encodedText)
+        for i in reversed(range(cols)):
+            for j in reversed(range(i, len(encodedText), cols+1)):
+                if encodedText[j] != ' ':
+                    k = j
+                    break
+            else:
+                continue
+            break
+        result = []
+        for i in range(cols):
+            for j in range(i, len(encodedText), cols+1):
+                result.append(encodedText[j])
+                if j == k:
+                    break
+            else:
+                continue
+            break
+        return "".join(result)
 
-        for start_column in range(columns):
-            row = 0
-            column = start_column
-            while row < rows and column < columns:
-                decoded.append(encodedText[row * columns + column])
-                row += 1
-                column += 1
 
-        return "".join(decoded).rstrip()
+# Time:  O(n)
+# Space: O(n)
+class Solution2(object):
+    def decodeCiphertext(self, encodedText, rows):
+        """
+        :type encodedText: str
+        :type rows: int
+        :rtype: str
+        """
+        cols = len(encodedText)//rows
+        result = []
+        for i in range(cols):
+            for j in range(i, len(encodedText), cols+1):
+                result.append(encodedText[j])
+        while result and result[-1] == ' ':
+            result.pop()
+        return "".join(result)
+

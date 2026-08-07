@@ -1,27 +1,22 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(g)
 
+from collections import deque
 
 class Solution:
-    def wallsAndGates(self, rooms: List[List[int]]) -> None:
-        if not rooms or not rooms[0]:
-            return
-        empty = 2147483647
-        queue = deque(
-            (row, column) for row in range(len(rooms)) for column in range(len(rooms[0])) if rooms[row][column] == 0
-        )
-        while queue:
-            row, column = queue.popleft()
-            for next_row, next_column in (
-                (row - 1, column),
-                (row + 1, column),
-                (row, column - 1),
-                (row, column + 1),
-            ):
-                if (
-                    0 <= next_row < len(rooms)
-                    and 0 <= next_column < len(rooms[0])
-                    and rooms[next_row][next_column] == empty
-                ):
-                    rooms[next_row][next_column] = rooms[row][column] + 1
-                    queue.append((next_row, next_column))
+    def wallsAndGates(self, rooms):
+        """
+        :type rooms: List[List[int]]
+        :rtype: void Do not return anything, modify rooms in-place instead.
+        """
+        INF = 2147483647
+        q = deque([(i, j) for i, row in enumerate(rooms) for j, r in enumerate(row) if not r])
+        while q:
+            (i, j) = q.popleft()
+            for I, J in (i+1, j), (i-1, j), (i, j+1), (i, j-1):
+                if 0 <= I < len(rooms) and 0 <= J < len(rooms[0]) and \
+                   rooms[I][J] == INF:
+                    rooms[I][J] = rooms[i][j] + 1
+                    q.append((I, J))
+
+

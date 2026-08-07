@@ -1,13 +1,12 @@
-from typing import List
+# Time:  O(n * l)
+# Space: O(l)
 
-
+# string
 class Solution:
-    def splitWordsBySeparator(self, words: List[str], separator: str) -> List[str]:
-        result = []
-
-        for word in words:
-            for part in word.split(separator):
-                if part:
-                    result.append(part)
-
-        return result
+    def splitWordsBySeparator(self, words, separator):
+        """
+        :type words: List[str]
+        :type separator: str
+        :rtype: List[str]
+        """
+        return [w for word in words for w in word.split(separator) if w]

@@ -1,3 +1,3 @@
 class Solution:
     def convertDateToBinary(self, date: str) -> str:
-        return "-".join(format(int(part), "b") for part in date.split("-"))
+        return "-".join(f"{int(s):b}" for s in date.split("-"))

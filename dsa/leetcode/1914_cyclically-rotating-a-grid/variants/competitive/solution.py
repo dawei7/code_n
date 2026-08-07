@@ -1,26 +1,74 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(1)
+
+import fractions
 
 
+# inplace rotation
 class Solution:
-    def rotateGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
-        rows = len(grid)
-        columns = len(grid[0])
-        result = [row[:] for row in grid]
+    def rotateGrid(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        def get_index(m, n, l):
+            if l < m-1:
+                return l, 0
+            if l < (m-1)+(n-1):
+                return m-1, l-(m-1)
+            if l < (m-1)+(n-1)+(m-1):
+                return (m-1)-(l-((m-1)+(n-1))), n-1
+            return 0, (n-1)-(l-((m-1)+(n-1)+(m-1)))
 
-        for layer in range(min(rows, columns) // 2):
-            top = left = layer
-            bottom = rows - 1 - layer
-            right = columns - 1 - layer
+        m, n = len(grid), len(grid[0])
+        for i in range(min(m, n)//2):
+            total = 2*((m-1)+(n-1))
+            nk = k%total
+            num_cycles = fractions.gcd(total, nk)
+            cycle_len = total//num_cycles
+            for offset in range(num_cycles):
+                r, c = get_index(m, n, offset)
+                for j in range(1, cycle_len):
+                    nr, nc = get_index(m, n, (offset+j*nk)%total)
+                    grid[i+nr][i+nc], grid[i+r][i+c] = grid[i+r][i+c], grid[i+nr][i+nc]
+            m, n = m-2, n-2
+        return grid
 
-            coordinates = []
-            coordinates.extend((row, left) for row in range(top, bottom + 1))
-            coordinates.extend((bottom, column) for column in range(left + 1, right + 1))
-            coordinates.extend((row, right) for row in range(bottom - 1, top - 1, -1))
-            coordinates.extend((top, column) for column in range(right - 1, left, -1))
 
-            shift = k % len(coordinates)
-            for index, (row, column) in enumerate(coordinates):
-                target_row, target_column = coordinates[(index + shift) % len(coordinates)]
-                result[target_row][target_column] = grid[row][column]
+# Time:  O(m * n)
+# Space: O(1)
+# inplace rotation
+class Solution2(object):
+    def rotateGrid(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: List[List[int]]
+        """
+        def get_index(m, n, l):
+            if l < m-1:
+                return l, 0
+            if l < (m-1)+(n-1):
+                return m-1, l-(m-1)
+            if l < (m-1)+(n-1)+(m-1):
+                return (m-1)-(l-((m-1)+(n-1))), n-1
+            return 0, (n-1)-(l-((m-1)+(n-1)+(m-1)))
 
-        return result
+        def reverse(grid, m, n, i, left, right):
+            while left < right:
+                lr, lc = get_index(m, n, left)
+                rr, rc = get_index(m, n, right)
+                grid[i+lr][i+lc], grid[i+rr][i+rc] = grid[i+rr][i+rc], grid[i+lr][i+lc]
+                left += 1
+                right -= 1
+
+        m, n = len(grid), len(grid[0])
+        for i in range(min(m, n)//2):
+            total = 2*((m-1)+(n-1))
+            nk = k%total
+            reverse(grid, m, n, i, 0, total-1)
+            reverse(grid, m, n, i, 0, nk-1)
+            reverse(grid, m, n, i, nk, total-1)
+            m, n = m-2, n-2
+        return grid

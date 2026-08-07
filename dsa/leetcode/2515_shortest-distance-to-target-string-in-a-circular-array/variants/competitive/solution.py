@@ -1,15 +1,18 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def closestTarget(self, words: List[str], target: str, startIndex: int) -> int:
-        length = len(words)
-        best = length + 1
-
-        for index, word in enumerate(words):
-            if word != target:
-                continue
-            direct_distance = abs(index - startIndex)
-            best = min(best, direct_distance, length - direct_distance)
-
-        return -1 if best == length + 1 else best
+    def closetTarget(self, words, target, startIndex):
+        """
+        :type words: List[str]
+        :type target: str
+        :type startIndex: int
+        :rtype: int
+        """
+        INF = float("inf")
+        result = INF
+        for i, w in enumerate(words):
+            if w == target:
+                result = min(result, (i-startIndex)%len(words), (startIndex-i)%len(words))
+        return result if result != INF else -1

@@ -1,31 +1,37 @@
-from typing import List, Optional
+# Time:  O(nlogn)
+# Space: O(n)
+
+import collections
 
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
+
 class Solution:
-    def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
-        coordinates = []
-        stack = [(root, 0, 0)]
+    def verticalTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        def dfs(node, lookup, x, y):
+            if not node:
+                return
+            lookup[x][y].append(node)
+            dfs(node.left, lookup, x-1, y+1)
+            dfs(node.right, lookup, x+1, y+1)
+                
+        lookup = collections.defaultdict(lambda: collections.defaultdict(list))
+        dfs(root, lookup, 0, 0)
 
-        while stack:
-            node, row, column = stack.pop()
-            coordinates.append((column, row, node.val))
-            if node.left is not None:
-                stack.append((node.left, row + 1, column - 1))
-            if node.right is not None:
-                stack.append((node.right, row + 1, column + 1))
-
-        coordinates.sort()
-        answer = []
-        previous_column = None
-        for column, _, value in coordinates:
-            if column != previous_column:
-                answer.append([])
-                previous_column = column
-            answer[-1].append(value)
-        return answer
+        result = []
+        for x in sorted(lookup):
+            report = []
+            for y in sorted(lookup[x]):
+                report.extend(sorted(node.val for node in lookup[x][y]))
+            result.append(report)
+        return result

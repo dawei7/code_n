@@ -1,15 +1,16 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# hash table
 class Solution:
-    def checkDistances(self, s: str, distance: List[int]) -> bool:
-        first_positions = [-1] * 26
-
-        for index, letter in enumerate(s):
-            letter_index = ord(letter) - ord("a")
-            if first_positions[letter_index] == -1:
-                first_positions[letter_index] = index
-            elif index - first_positions[letter_index] - 1 != distance[letter_index]:
+    def checkDistances(self, s, distance):
+        """
+        :type s: str
+        :type distance: List[int]
+        :rtype: bool
+        """
+        for i in range(len(s)):
+            if i+distance[ord(s[i])-ord('a')]+1 >= len(s) or s[i+distance[ord(s[i])-ord('a')]+1] != s[i]:
                 return False
-
+            distance[ord(s[i])-ord('a')] = -1
         return True

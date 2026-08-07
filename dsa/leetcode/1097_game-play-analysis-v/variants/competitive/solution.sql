@@ -1,14 +1,17 @@
-WITH installs AS (
-    SELECT player_id, MIN(event_date) AS install_dt
-    FROM Activity
-    GROUP BY player_id
-)
-SELECT
-    i.install_dt,
-    COUNT(*) AS installs,
-    ROUND(AVG(CASE WHEN next_day.player_id IS NULL THEN 0.0 ELSE 1.0 END), 2) AS Day1_retention
-FROM installs AS i
-LEFT JOIN Activity AS next_day
-    ON next_day.player_id = i.player_id
-   AND next_day.event_date = date(i.install_dt, '+1 day')
-GROUP BY i.install_dt;
+# Time:  O(n^2)
+# Space: O(n)
+
+SELECT install_dt, 
+       Count(player_id)                             AS installs, 
+       Round(Count(next_day) / Count(player_id), 2) AS Day1_retention 
+FROM   (SELECT a.player_id, 
+               a.install_dt, 
+               b.event_date AS next_day 
+        FROM   (SELECT player_id, 
+                       Min(event_date) AS install_dt 
+                FROM   activity 
+                GROUP  BY player_id) AS a 
+               LEFT JOIN activity AS b 
+                      ON Datediff(b.event_date, a.install_dt) = 1
+                         AND a.player_id = b.player_id ) AS t 
+GROUP  BY install_dt; 

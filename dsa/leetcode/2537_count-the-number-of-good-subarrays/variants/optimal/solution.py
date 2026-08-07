@@ -1,23 +1,15 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def countGood(self, nums: List[int], k: int) -> int:
-        frequencies = defaultdict(int)
-        pairs = 0
-        left = 0
-        answer = 0
-
-        for right, value in enumerate(nums):
-            pairs += frequencies[value]
-            frequencies[value] += 1
-
-            while pairs >= k:
-                answer += len(nums) - right
-                outgoing = nums[left]
-                frequencies[outgoing] -= 1
-                pairs -= frequencies[outgoing]
-                left += 1
-
-        return answer
+        cnt = Counter()
+        ans = cur = 0
+        i = 0
+        for x in nums:
+            cur += cnt[x]
+            cnt[x] += 1
+            while cur - cnt[nums[i]] + 1 >= k:
+                cnt[nums[i]] -= 1
+                cur -= cnt[nums[i]]
+                i += 1
+            if cur >= k:
+                ans += i + 1
+        return ans

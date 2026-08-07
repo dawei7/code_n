@@ -1,12 +1,9 @@
 class Solution:
     def maxScore(self, s: str) -> int:
-        left_zeros = 0
-        right_ones = s.count("1")
-        best = 0
-        for character in s[:-1]:
-            if character == "0":
-                left_zeros += 1
-            else:
-                right_ones -= 1
-            best = max(best, left_zeros + right_ones)
-        return best
+        l, r = 0, s.count("1")
+        ans = 0
+        for x in s[:-1]:
+            l += int(x) ^ 1
+            r -= int(x)
+            ans = max(ans, l + r)
+        return ans

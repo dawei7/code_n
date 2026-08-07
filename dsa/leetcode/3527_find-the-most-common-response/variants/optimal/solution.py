@@ -1,9 +1,11 @@
 class Solution:
     def findCommonResponse(self, responses: List[List[str]]) -> str:
-        frequency = {}
-
-        for day in responses:
-            for response in set(day):
-                frequency[response] = frequency.get(response, 0) + 1
-
-        return min(frequency, key=lambda response: (-frequency[response], response))
+        cnt = Counter()
+        for ws in responses:
+            for w in set(ws):
+                cnt[w] += 1
+        ans = responses[0][0]
+        for w, x in cnt.items():
+            if cnt[ans] < x or (cnt[ans] == x and w < ans):
+                ans = w
+        return ans

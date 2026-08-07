@@ -1,54 +1,36 @@
-from functools import lru_cache
-from typing import List
+@cache
+def dfs(l: int, r: int, n: int):
+    if l + r == n - 1:
+        return [1, 1]
+    res = [inf, -inf]
+    m = n >> 1
+    for i in range(1 << m):
+        win = [False] * n
+        for j in range(m):
+            if i >> j & 1:
+                win[j] = True
+            else:
+                win[n - 1 - j] = True
+        if n & 1:
+            win[m] = True
+        win[n - 1 - l] = win[n - 1 - r] = False
+        win[l] = win[r] = True
+        a = b = c = 0
+        for j in range(n):
+            if j == l:
+                a = c
+            if j == r:
+                b = c
+            if win[j]:
+                c += 1
+        x, y = dfs(a, b, c)
+        res[0] = min(res[0], x + 1)
+        res[1] = max(res[1], y + 1)
+    return res
 
 
 class Solution:
-    def earliestAndLatest(self, n: int, firstPlayer: int, secondPlayer: int) -> List[int]:
-        @lru_cache(None)
-        def search(player_count: int, first: int, second: int) -> tuple[int, int]:
-            if first + second == player_count + 1:
-                return 1, 1
-
-            positions = {(0, 0)}
-            for left in range(1, player_count // 2 + 1):
-                right = player_count + 1 - left
-                if first in (left, right):
-                    winners = (first,)
-                elif second in (left, right):
-                    winners = (second,)
-                else:
-                    winners = (left, right)
-
-                next_positions = set()
-                for before_first, before_second in positions:
-                    for winner in winners:
-                        next_positions.add(
-                            (
-                                before_first + (winner < first),
-                                before_second + (winner < second),
-                            )
-                        )
-                positions = next_positions
-
-            if player_count % 2:
-                middle = player_count // 2 + 1
-                positions = {
-                    (
-                        before_first + (middle < first),
-                        before_second + (middle < second),
-                    )
-                    for before_first, before_second in positions
-                }
-
-            earliest = player_count
-            latest = 0
-            next_count = (player_count + 1) // 2
-            for before_first, before_second in positions:
-                next_first = before_first + 1
-                next_second = before_second + 1
-                child_earliest, child_latest = search(next_count, next_first, next_second)
-                earliest = min(earliest, child_earliest + 1)
-                latest = max(latest, child_latest + 1)
-            return earliest, latest
-
-        return list(search(n, firstPlayer, secondPlayer))
+    def earliestAndLatest(
+        self, n: int, firstPlayer: int, secondPlayer: int
+    ) -> List[int]:
+        return dfs(firstPlayer - 1, secondPlayer - 1, n)

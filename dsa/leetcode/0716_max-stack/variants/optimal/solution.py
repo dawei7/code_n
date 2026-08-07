@@ -1,65 +1,68 @@
-import heapq
+class Node:
+    def __init__(self, val=0):
+        self.val = val
+        self.prev: Union[Node, None] = None
+        self.next: Union[Node, None] = None
 
 
-class _Node:
-    def __init__(self, value: int = 0, identifier: int = 0):
-        self.value = value
-        self.identifier = identifier
-        self.previous = None
-        self.next = None
+class DoubleLinkedList:
+    def __init__(self):
+        self.head = Node()
+        self.tail = Node()
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def append(self, val) -> Node:
+        node = Node(val)
+        node.next = self.tail
+        node.prev = self.tail.prev
+        self.tail.prev = node
+        node.prev.next = node
+        return node
+
+    @staticmethod
+    def remove(node) -> Node:
+        node.prev.next = node.next
+        node.next.prev = node.prev
+        return node
+
+    def pop(self) -> Node:
+        return self.remove(self.tail.prev)
+
+    def peek(self):
+        return self.tail.prev.val
 
 
 class MaxStack:
     def __init__(self):
-        self.head = _Node()
-        self.tail = _Node()
-        self.head.next = self.tail
-        self.tail.previous = self.head
-        self.maximums = []
-        self.active = {}
-        self.next_identifier = 0
-
-    def _append(self, node: _Node) -> None:
-        previous = self.tail.previous
-        previous.next = node
-        node.previous = previous
-        node.next = self.tail
-        self.tail.previous = node
-
-    @staticmethod
-    def _unlink(node: _Node) -> None:
-        node.previous.next = node.next
-        node.next.previous = node.previous
-
-    def _discard_stale_maximums(self) -> None:
-        while self.maximums and -self.maximums[0][1] not in self.active:
-            heapq.heappop(self.maximums)
+        self.stk = DoubleLinkedList()
+        self.sl = SortedList(key=lambda x: x.val)
 
     def push(self, x: int) -> None:
-        self.next_identifier += 1
-        identifier = self.next_identifier
-        node = _Node(x, identifier)
-        self._append(node)
-        self.active[identifier] = node
-        heapq.heappush(self.maximums, (-x, -identifier))
+        node = self.stk.append(x)
+        self.sl.add(node)
 
     def pop(self) -> int:
-        node = self.tail.previous
-        self._unlink(node)
-        del self.active[node.identifier]
-        return node.value
+        node = self.stk.pop()
+        self.sl.remove(node)
+        return node.val
 
     def top(self) -> int:
-        return self.tail.previous.value
+        return self.stk.peek()
 
     def peekMax(self) -> int:
-        self._discard_stale_maximums()
-        return -self.maximums[0][0]
+        return self.sl[-1].val
 
     def popMax(self) -> int:
-        self._discard_stale_maximums()
-        negative_value, negative_identifier = heapq.heappop(self.maximums)
-        identifier = -negative_identifier
-        node = self.active.pop(identifier)
-        self._unlink(node)
-        return -negative_value
+        node = self.sl.pop()
+        DoubleLinkedList.remove(node)
+        return node.val
+
+
+# Your MaxStack object will be instantiated and called as such:
+# obj = MaxStack()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.peekMax()
+# param_5 = obj.popMax()

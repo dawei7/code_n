@@ -1,25 +1,26 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
-    def shortestDistanceAfterQueries(self, n: int, queries: List[List[int]]) -> List[int]:
-        graph = [[city + 1] for city in range(n - 1)] + [[]]
-        answer = []
+    def shortestDistanceAfterQueries(
+        self, n: int, queries: List[List[int]]
+    ) -> List[int]:
+        def bfs(i: int) -> int:
+            q = deque([i])
+            vis = [False] * n
+            vis[i] = True
+            d = 0
+            while 1:
+                for _ in range(len(q)):
+                    u = q.popleft()
+                    if u == n - 1:
+                        return d
+                    for v in g[u]:
+                        if not vis[v]:
+                            vis[v] = True
+                            q.append(v)
+                d += 1
 
-        for source, destination in queries:
-            graph[source].append(destination)
-            distance = [-1] * n
-            distance[0] = 0
-            queue = deque([0])
-
-            while queue:
-                city = queue.popleft()
-                for neighbor in graph[city]:
-                    if distance[neighbor] == -1:
-                        distance[neighbor] = distance[city] + 1
-                        queue.append(neighbor)
-
-            answer.append(distance[n - 1])
-
-        return answer
+        g = [[i + 1] for i in range(n - 1)]
+        ans = []
+        for u, v in queries:
+            g[u].append(v)
+            ans.append(bfs(0))
+        return ans

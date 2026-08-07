@@ -1,26 +1,22 @@
-from collections import defaultdict, deque
-from typing import Any
-
-
-def _vertical_order(root: Any | None) -> list[list[int]]:
-    if root is None:
-        return []
-    columns: dict[int, list[int]] = defaultdict(list)
-    leftmost = 0
-    rightmost = 0
-    queue = deque([(root, 0)])
-    while queue:
-        node, column = queue.popleft()
-        columns[column].append(node.val)
-        leftmost = min(leftmost, column)
-        rightmost = max(rightmost, column)
-        if node.left is not None:
-            queue.append((node.left, column - 1))
-        if node.right is not None:
-            queue.append((node.right, column + 1))
-    return [columns[column] for column in range(leftmost, rightmost + 1)]
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
-    def verticalOrder(self, root: Any | None) -> list[list[int]]:
-        return _vertical_order(root)
+    def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        def dfs(root, depth, offset):
+            if root is None:
+                return
+            d[offset].append((depth, root.val))
+            dfs(root.left, depth + 1, offset - 1)
+            dfs(root.right, depth + 1, offset + 1)
+
+        d = defaultdict(list)
+        dfs(root, 0, 0)
+        ans = []
+        for _, v in sorted(d.items()):
+            v.sort(key=lambda x: x[0])
+            ans.append([x[1] for x in v])
+        return ans

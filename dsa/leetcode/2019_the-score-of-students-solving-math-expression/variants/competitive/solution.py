@@ -1,36 +1,70 @@
-from typing import List
-
+# Time:  O(n^3 * a^2)
+# Space: O(n^2)
 
 class Solution:
-    def scoreOfStudents(self, s: str, answers: List[int]) -> int:
-        numbers = [int(s[index]) for index in range(0, len(s), 2)]
-        operators = [s[index] for index in range(1, len(s), 2)]
+    def scoreOfStudents(self, s, answers):
+        """
+        :type s: str
+        :type answers: List[int]
+        :rtype: int
+        """
+        MAX_ANS = 1000
+        n = (len(s)+1)//2
+        dp = [[set() for _ in range(n)] for _ in range(n)]
+        for i in range(n):
+            dp[i][i].add(int(s[i*2]))
+        for l in range(1, n):
+            for left in range(n-l):
+                right = left+l
+                for k in range(left, right):
+                    if s[2*k+1] == '+':
+                        dp[left][right].update((x+y for x in dp[left][k] for y in dp[k+1][right] if x+y <= MAX_ANS))
+                    else:
+                        dp[left][right].update((x*y for x in dp[left][k] for y in dp[k+1][right] if x*y <= MAX_ANS))
+        target = eval(s)
+        return sum(5 if ans == target else 2 if ans in dp[0][-1] else 0 for ans in answers)
 
-        correct = 0
-        product = numbers[0]
-        for operator, number in zip(operators, numbers[1:]):
-            if operator == "*":
-                product *= number
-            else:
-                correct += product
-                product = number
-        correct += product
 
-        count = len(numbers)
-        possible = [[set() for _ in range(count)] for _ in range(count)]
-        for index, number in enumerate(numbers):
-            possible[index][index].add(number)
+# Time:  O(n^3 * a^2)
+# Space: O(n^2)
+class Solution2(object):
+    def scoreOfStudents(self, s, answers):
+        """
+        :type s: str
+        :type answers: List[int]
+        :rtype: int
+        """
+        MAX_ANS = 1000
+        def evaluate(s):
+            def compute(operands, operators):
+                right, left = operands.pop(), operands.pop()
+                operands.append(ops[operators.pop()](left, right))
 
-        for length in range(2, count + 1):
-            for left in range(count - length + 1):
-                right = left + length - 1
-                for split in range(left, right):
-                    operator = operators[split]
-                    for first in possible[left][split]:
-                        for second in possible[split + 1][right]:
-                            value = first + second if operator == "+" else first * second
-                            if value <= 1000:
-                                possible[left][right].add(value)
+            ops = {'+':operator.add, '*':operator.mul}
+            precedence = {'+':0, '*':1}
+            operands, operators, operand = [], [], 0
+            for c in s:
+                if c.isdigit():
+                    operands.append(int(c))
+                else:
+                    while operators and precedence[operators[-1]] >= precedence[c]:
+                        compute(operands, operators)
+                    operators.append(c)
+            while operators:
+                compute(operands, operators)
+            return operands[-1]
 
-        plausible = possible[0][count - 1]
-        return sum(5 if answer == correct else 2 if answer in plausible else 0 for answer in answers)
+        n = (len(s)+1)//2
+        dp = [[set() for _ in range(n)] for _ in range(n)]
+        for i in range(n):
+            dp[i][i].add(int(s[i*2]))
+        for l in range(1, n):
+            for left in range(n-l):
+                right = left+l
+                for k in range(left, right):
+                    if s[2*k+1] == '+':
+                        dp[left][right].update((x+y for x in dp[left][k] for y in dp[k+1][right] if x+y <= MAX_ANS))
+                    else:
+                        dp[left][right].update((x*y for x in dp[left][k] for y in dp[k+1][right] if x*y <= MAX_ANS))
+        target = evaluate(s)
+        return sum(5 if ans == target else 2 if ans in dp[0][-1] else 0 for ans in answers)

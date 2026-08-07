@@ -1,14 +1,22 @@
 class Solution:
     def minSwaps(self, nums: List[int]) -> int:
-        key = lambda x: (sum(map(int, str(x))), x)
-        target = sorted(nums, key=key)
-        position = {x: i for i, x in enumerate(nums)}
-        swaps = 0
-        for i, x in enumerate(target):
-            j = position[x]
-            if i != j:
-                y = nums[i]
-                nums[i], nums[j] = nums[j], y
-                position[x], position[y] = i, j
-                swaps += 1
-        return swaps
+        def f(x: int) -> int:
+            s = 0
+            while x:
+                s += x % 10
+                x //= 10
+            return s
+
+        n = len(nums)
+        arr = sorted((f(x), x) for x in nums)
+        d = {a[1]: i for i, a in enumerate(arr)}
+        ans = n
+        vis = [False] * n
+        for i in range(n):
+            if not vis[i]:
+                ans -= 1
+                j = i
+                while not vis[j]:
+                    vis[j] = True
+                    j = d[nums[j]]
+        return ans

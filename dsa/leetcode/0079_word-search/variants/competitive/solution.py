@@ -1,34 +1,33 @@
-from collections import Counter
-from typing import List
-
+# Time:  O(m * n * 4 * 3^(l - 1)) ~= O(m * n * 3^l), l is the length of the word
+# Space: O(l)
 
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
-        available = Counter(character for row in board for character in row)
-        required = Counter(word)
-        if any(available[character] < count for character, count in required.items()):
+    # @param board, a list of lists of 1 length string
+    # @param word, a string
+    # @return a boolean
+    def exist(self, board, word):
+        visited = [[False for j in range(len(board[0]))] for i in range(len(board))]
+
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if self.existRecu(board, word, 0, i, j, visited):
+                    return True
+
+        return False
+
+    def existRecu(self, board, word, cur, i, j, visited):
+        if cur == len(word):
+            return True
+
+        if i < 0 or i >= len(board) or j < 0 or j >= len(board[0]) or visited[i][j] or board[i][j] != word[cur]:
             return False
-        if available[word[0]] > available[word[-1]]:
-            word = word[::-1]
 
-        rows, columns = len(board), len(board[0])
+        visited[i][j] = True
+        result = self.existRecu(board, word, cur + 1, i + 1, j, visited) or\
+                 self.existRecu(board, word, cur + 1, i - 1, j, visited) or\
+                 self.existRecu(board, word, cur + 1, i, j + 1, visited) or\
+                 self.existRecu(board, word, cur + 1, i, j - 1, visited)
+        visited[i][j] = False
 
-        def search(row: int, column: int, index: int) -> bool:
-            if board[row][column] != word[index]:
-                return False
-            if index == len(word) - 1:
-                return True
+        return result
 
-            character = board[row][column]
-            board[row][column] = "#"
-            found = False
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and search(next_row, next_column, index + 1):
-                    found = True
-                    break
-            board[row][column] = character
-            return found
-
-        return any(search(row, column, 0) for row in range(rows) for column in range(columns))

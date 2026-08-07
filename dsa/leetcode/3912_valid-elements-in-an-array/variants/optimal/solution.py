@@ -1,18 +1,13 @@
 class Solution:
     def findValidElements(self, nums: list[int]) -> list[int]:
         n = len(nums)
-        valid = [False] * n
-
-        maximum = 0
-        for index, value in enumerate(nums):
-            if value > maximum:
-                valid[index] = True
-                maximum = value
-
-        maximum = 0
-        for index in range(n - 1, -1, -1):
-            if nums[index] > maximum:
-                valid[index] = True
-                maximum = nums[index]
-
-        return [value for index, value in enumerate(nums) if valid[index]]
+        right = [nums[-1]] * n
+        for i in range(n - 2, -1, -1):
+            right[i] = max(right[i + 1], nums[i])
+        left = 0
+        ans = []
+        for i, x in enumerate(nums):
+            if x > left or i == n - 1 or x > right[i + 1]:
+                ans.append(x)
+            left = max(left, x)
+        return ans

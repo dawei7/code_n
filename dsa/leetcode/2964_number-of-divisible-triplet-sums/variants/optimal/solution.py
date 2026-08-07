@@ -1,18 +1,10 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def divisibleTripletCount(self, nums: List[int], d: int) -> int:
-        singles = defaultdict(int)
-        pairs = defaultdict(int)
-        answer = 0
-
-        for value in nums:
-            remainder = value % d
-            answer += pairs[(-remainder) % d]
-            for previous, count in singles.items():
-                pairs[(previous + remainder) % d] += count
-            singles[remainder] += 1
-
-        return answer
+        cnt = defaultdict(int)
+        ans, n = 0, len(nums)
+        for j in range(n):
+            for k in range(j + 1, n):
+                x = (d - (nums[j] + nums[k]) % d) % d
+                ans += cnt[x]
+            cnt[nums[j] % d] += 1
+        return ans

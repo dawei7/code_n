@@ -1,17 +1,22 @@
 class Solution:
     def maximumLength(self, s: str) -> int:
-        longest_runs = [[0, 0, 0] for _ in range(26)]
+        def check(x: int) -> bool:
+            cnt = defaultdict(int)
+            i = 0
+            while i < n:
+                j = i + 1
+                while j < n and s[j] == s[i]:
+                    j += 1
+                cnt[s[i]] += max(0, j - i - x + 1)
+                i = j
+            return max(cnt.values()) >= 3
 
-        start = 0
-        for end in range(1, len(s) + 1):
-            if end == len(s) or s[end] != s[start]:
-                runs = longest_runs[ord(s[start]) - ord("a")]
-                runs.append(end - start)
-                runs.sort(reverse=True)
-                runs.pop()
-                start = end
-
-        answer = 0
-        for first, second, third in longest_runs:
-            answer = max(answer, first - 2, min(first - 1, second), third)
-        return answer if answer > 0 else -1
+        n = len(s)
+        l, r = 0, n
+        while l < r:
+            mid = (l + r + 1) >> 1
+            if check(mid):
+                l = mid
+            else:
+                r = mid - 1
+        return -1 if l == 0 else l

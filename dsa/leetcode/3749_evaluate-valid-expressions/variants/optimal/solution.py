@@ -1,36 +1,34 @@
 class Solution:
     def evaluateExpression(self, expression: str) -> int:
-        values = []
-        operators = []
-        index = 0
+        def parse(i: int) -> (int, int):
+            if expression[i].isdigit() or expression[i] == "-":
+                j = i
+                if expression[j] == "-":
+                    j += 1
+                while j < len(expression) and expression[j].isdigit():
+                    j += 1
+                return int(expression[i:j]), j
 
-        while index < len(expression):
-            character = expression[index]
+            j = i
+            while expression[j] != "(":
+                j += 1
+            op = expression[i:j]
+            j += 1
+            val1, j = parse(j)
 
-            if character.isalpha():
-                operators.append(expression[index : index + 3])
-                index += 3
-            elif character == "-" or character.isdigit():
-                end = index + (character == "-")
-                while end < len(expression) and expression[end].isdigit():
-                    end += 1
-                values.append(int(expression[index:end]))
-                index = end
-            elif character == ")":
-                right = values.pop()
-                left = values.pop()
-                operator = operators.pop()
+            j += 1
+            val2, j = parse(j)
+            j += 1
+            res = 0
+            match op:
+                case "add":
+                    res = val1 + val2
+                case "sub":
+                    res = val1 - val2
+                case "mul":
+                    res = val1 * val2
+                case "div":
+                    res = val1 // val2
+            return res, j
 
-                if operator == "add":
-                    values.append(left + right)
-                elif operator == "sub":
-                    values.append(left - right)
-                elif operator == "mul":
-                    values.append(left * right)
-                else:
-                    values.append(left // right)
-                index += 1
-            else:
-                index += 1
-
-        return values[0]
+        return parse(0)[0]

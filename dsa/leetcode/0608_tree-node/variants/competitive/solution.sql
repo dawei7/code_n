@@ -1,17 +1,12 @@
-WITH parent_ids AS (
-    SELECT DISTINCT p_id
-    FROM Tree
-    WHERE p_id IS NOT NULL
-)
+# Time:  O(n^2)
+# Space: O(n)
+
 SELECT
-    node.id,
-    CASE
-        WHEN node.p_id IS NULL THEN 'Root'
-        WHEN parent_ids.p_id IS NOT NULL THEN 'Inner'
-        ELSE 'Leaf'
-    END AS type
-FROM Tree AS node
-LEFT JOIN parent_ids
-    ON parent_ids.p_id = node.id
-ORDER BY node.id;
+    atree.id,
+    IF(ISNULL(atree.p_id),
+        'Root',
+        IF(atree.id IN (SELECT p_id FROM tree), 'Inner','Leaf')) AS Type
+FROM
+    tree AS atree
+ORDER BY atree.id
 

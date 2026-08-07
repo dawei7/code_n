@@ -1,40 +1,27 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(n)
 
 class Solution:
-    def pathsWithMaxScore(self, board: List[str]) -> List[int]:
-        modulus = 1_000_000_007
-        n = len(board)
-        scores = [[-1] * n for _ in range(n)]
-        ways = [[0] * n for _ in range(n)]
-        scores[n - 1][n - 1] = 0
-        ways[n - 1][n - 1] = 1
-
-        for row in range(n - 1, -1, -1):
-            for column in range(n - 1, -1, -1):
-                if board[row][column] == "X" or (row == n - 1 and column == n - 1):
+    def pathsWithMaxScore(self, board):
+        """
+        :type board: List[str]
+        :rtype: List[int]
+        """
+        MOD = 10**9+7
+        directions = [[1, 0], [0, 1], [1, 1]]
+        dp = [[[0, 0] for r in range(len(board[0])+1)]
+              for r in range(2)]
+        dp[(len(board)-1)%2][len(board[0])-1] = [0, 1]
+        for r in reversed(range(len(board))):
+            for c in reversed(range(len(board[0]))):
+                if board[r][c] in "XS":
                     continue
-
-                best_score = -1
-                best_ways = 0
-                for next_row, next_column in (
-                    (row + 1, column),
-                    (row, column + 1),
-                    (row + 1, column + 1),
-                ):
-                    if next_row >= n or next_column >= n or scores[next_row][next_column] < 0:
-                        continue
-                    if scores[next_row][next_column] > best_score:
-                        best_score = scores[next_row][next_column]
-                        best_ways = ways[next_row][next_column]
-                    elif scores[next_row][next_column] == best_score:
-                        best_ways = (best_ways + ways[next_row][next_column]) % modulus
-
-                if best_score >= 0:
-                    cell_value = 0 if board[row][column] == "E" else int(board[row][column])
-                    scores[row][column] = best_score + cell_value
-                    ways[row][column] = best_ways
-
-        if scores[0][0] < 0:
-            return [0, 0]
-        return [scores[0][0], ways[0][0] % modulus]
+                dp[r%2][c] = [0, 0]
+                for dr, dc in directions:
+                    if dp[r%2][c][0] < dp[(r+dr)%2][c+dc][0]:
+                        dp[r%2][c] = dp[(r+dr)%2][c+dc][:]
+                    elif dp[r%2][c][0] == dp[(r+dr)%2][c+dc][0]:
+                        dp[r%2][c][1] = (dp[r%2][c][1]+dp[(r+dr)%2][c+dc][1]) % MOD
+                if dp[r%2][c][1] and board[r][c] != 'E':
+                    dp[r%2][c][0] += int(board[r][c])
+        return dp[0][0]

@@ -1,34 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minCost(
-        self,
-        maxTime: int,
-        edges: List[List[int]],
-        passingFees: List[int],
+        self, maxTime: int, edges: List[List[int]], passingFees: List[int]
     ) -> int:
-        city_count = len(passingFees)
-        infinity = 10**18
-        costs = [[infinity] * city_count for _ in range(maxTime + 1)]
-        costs[0][0] = passingFees[0]
-
-        for elapsed in range(1, maxTime + 1):
-            current = costs[elapsed]
-            for first, second, travel_time in edges:
-                if travel_time > elapsed:
-                    continue
-                previous = costs[elapsed - travel_time]
-                if previous[first] != infinity:
-                    current[second] = min(
-                        current[second],
-                        previous[first] + passingFees[second],
-                    )
-                if previous[second] != infinity:
-                    current[first] = min(
-                        current[first],
-                        previous[second] + passingFees[first],
-                    )
-
-        answer = min(costs[elapsed][-1] for elapsed in range(maxTime + 1))
-        return -1 if answer == infinity else answer
+        m, n = maxTime, len(passingFees)
+        f = [[inf] * n for _ in range(m + 1)]
+        f[0][0] = passingFees[0]
+        for i in range(1, m + 1):
+            for x, y, t in edges:
+                if t <= i:
+                    f[i][x] = min(f[i][x], f[i - t][y] + passingFees[x])
+                    f[i][y] = min(f[i][y], f[i - t][x] + passingFees[y])
+        ans = min(f[i][n - 1] for i in range(m + 1))
+        return ans if ans < inf else -1

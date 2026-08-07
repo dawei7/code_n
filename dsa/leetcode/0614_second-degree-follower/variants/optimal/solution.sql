@@ -1,12 +1,12 @@
-WITH active_followers AS (
-    SELECT DISTINCT follower AS user_id
-    FROM Follow
-)
-SELECT
-    relationships.followee AS follower,
-    COUNT(*) AS num
-FROM Follow AS relationships
-JOIN active_followers
-    ON active_followers.user_id = relationships.followee
-GROUP BY relationships.followee
-ORDER BY follower;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT f1.follower AS follower, f2.follower AS followee
+        FROM
+            Follow AS f1
+            JOIN Follow AS f2 ON f1.follower = f2.followee
+    )
+SELECT follower, COUNT(DISTINCT followee) AS num
+FROM T
+GROUP BY 1
+ORDER BY 1;

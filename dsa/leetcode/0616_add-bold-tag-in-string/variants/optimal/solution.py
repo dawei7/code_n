@@ -1,63 +1,59 @@
-from collections import deque
-from typing import List
+class Trie:
+    def __init__(self):
+        self.children = [None] * 128
+        self.is_end = False
+
+    def insert(self, word):
+        node = self
+        for c in word:
+            idx = ord(c)
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+        node.is_end = True
 
 
 class Solution:
     def addBoldTag(self, s: str, words: List[str]) -> str:
-        alphabet = sorted(set(s).union(*(set(word) for word in words)))
-        char_index = {char: index for index, char in enumerate(alphabet)}
+        trie = Trie()
+        for w in words:
+            trie.insert(w)
+        n = len(s)
+        pairs = []
+        for i in range(n):
+            node = trie
+            for j in range(i, n):
+                idx = ord(s[j])
+                if node.children[idx] is None:
+                    break
+                node = node.children[idx]
+                if node.is_end:
+                    pairs.append([i, j])
+        if not pairs:
+            return s
+        st, ed = pairs[0]
+        t = []
+        for a, b in pairs[1:]:
+            if ed + 1 < a:
+                t.append([st, ed])
+                st, ed = a, b
+            else:
+                ed = max(ed, b)
+        t.append([st, ed])
 
-        children = [{}]
-        longest = [0]
-        for word in words:
-            state = 0
-            for char in word:
-                if char not in children[state]:
-                    children[state][char] = len(children)
-                    children.append({})
-                    longest.append(0)
-                state = children[state][char]
-            longest[state] = max(longest[state], len(word))
+        ans = []
+        i = j = 0
+        while i < n:
+            if j == len(t):
+                ans.append(s[i:])
+                break
+            st, ed = t[j]
+            if i < st:
+                ans.append(s[i:st])
+            ans.append('<b>')
+            ans.append(s[st : ed + 1])
+            ans.append('</b>')
+            j += 1
+            i = ed + 1
 
-        transitions = [[0] * len(alphabet) for _ in children]
-        for state, edges in enumerate(children):
-            for char, next_state in edges.items():
-                transitions[state][char_index[char]] = next_state
-
-        failure = [0] * len(children)
-        queue = deque(children[0].values())
-        while queue:
-            state = queue.popleft()
-            longest[state] = max(longest[state], longest[failure[state]])
-            for char, index in char_index.items():
-                child = children[state].get(char)
-                if child is None:
-                    transitions[state][index] = transitions[failure[state]][index]
-                else:
-                    failure[child] = transitions[failure[state]][index]
-                    queue.append(child)
-
-        difference = [0] * (len(s) + 1)
-        state = 0
-        for end, char in enumerate(s):
-            state = transitions[state][char_index[char]]
-            length = longest[state]
-            if length:
-                difference[end - length + 1] += 1
-                difference[end + 1] -= 1
-
-        answer = []
-        active = 0
-        was_bold = False
-        for index, char in enumerate(s):
-            active += difference[index]
-            is_bold = active > 0
-            if is_bold and not was_bold:
-                answer.append("<b>")
-            elif was_bold and not is_bold:
-                answer.append("</b>")
-            answer.append(char)
-            was_bold = is_bold
-        if was_bold:
-            answer.append("</b>")
-        return "".join(answer)
+        return ''.join(ans)

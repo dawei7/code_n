@@ -1,14 +1,11 @@
-from typing import List
+# Time:  O(n^2)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def checkXMatrix(self, grid: List[List[int]]) -> bool:
-        size = len(grid)
-
-        for row in range(size):
-            for column in range(size):
-                on_diagonal = row == column or row + column == size - 1
-                if on_diagonal == (grid[row][column] == 0):
-                    return False
-
-        return True
+    def checkXMatrix(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: bool
+        """
+        return all((i-j == 0 or i+j == len(grid)-1) == (grid[i][j] != 0) for i in range(len(grid)) for j in range(len(grid[0])))

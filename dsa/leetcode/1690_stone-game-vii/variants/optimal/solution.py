@@ -1,19 +1,14 @@
-from typing import List
-
-
 class Solution:
     def stoneGameVII(self, stones: List[int]) -> int:
-        n = len(stones)
-        prefix = [0]
-        for value in stones:
-            prefix.append(prefix[-1] + value)
+        @cache
+        def dfs(i: int, j: int) -> int:
+            if i > j:
+                return 0
+            a = s[j + 1] - s[i + 1] - dfs(i + 1, j)
+            b = s[j] - s[i] - dfs(i, j - 1)
+            return max(a, b)
 
-        advantage = [0] * n
-        for length in range(2, n + 1):
-            for left in range(n - length + 1):
-                right = left + length - 1
-                remove_left = prefix[right + 1] - prefix[left + 1] - advantage[left + 1]
-                remove_right = prefix[right] - prefix[left] - advantage[left]
-                advantage[left] = max(remove_left, remove_right)
-
-        return advantage[0]
+        s = list(accumulate(stones, initial=0))
+        ans = dfs(0, len(stones) - 1)
+        dfs.cache_clear()
+        return ans

@@ -1,34 +1,35 @@
-def _minimum_area(image, x: int, y: int) -> int:
-    rows = len(image)
-    columns = len(image[0])
+# Time:  O(nlogn)
+# Space: O(1)
 
-    def search_columns(left: int, right: int, seek_black: bool) -> int:
-        while left < right:
-            middle = (left + right) // 2
-            has_black = any(image[row][middle] == "1" for row in range(rows))
-            if has_black == seek_black:
-                right = middle
-            else:
-                left = middle + 1
-        return left
-
-    def search_rows(top: int, bottom: int, seek_black: bool) -> int:
-        while top < bottom:
-            middle = (top + bottom) // 2
-            has_black = any(image[middle][column] == "1" for column in range(columns))
-            if has_black == seek_black:
-                bottom = middle
-            else:
-                top = middle + 1
-        return top
-
-    left = search_columns(0, y, True)
-    right = search_columns(y + 1, columns, False)
-    top = search_rows(0, x, True)
-    bottom = search_rows(x + 1, rows, False)
-    return (right - left) * (bottom - top)
+import bisect
+import itertools
 
 
 class Solution:
-    def minArea(self, image: list[list[str]], x: int, y: int) -> int:
-        return _minimum_area(image, x, y)
+    def minArea(self, image, x, y):
+        """
+        :type image: List[List[str]]
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        def binarySearch(left, right, find, image, has_one):
+            while left <= right:  # O(logn) times
+                mid = left + (right - left) / 2
+                if find(image, has_one, mid):  # Time: O(n)
+                    right = mid - 1
+                else:
+                    left = mid + 1
+            return left
+
+
+        searchColumns = lambda image, has_one, mid: any([int(row[mid]) for row in image]) == has_one
+        left = binarySearch(0, y - 1, searchColumns, image, True)
+        right = binarySearch(y + 1, len(image[0]) - 1, searchColumns, image, False)
+
+        searchRows = lambda image, has_one, mid: any(itertools.imap(int, image[mid])) == has_one
+        top = binarySearch(0, x - 1, searchRows, image, True)
+        bottom = binarySearch(x + 1, len(image) - 1, searchRows, image, False)
+
+        return (right - left) * (bottom - top)
+

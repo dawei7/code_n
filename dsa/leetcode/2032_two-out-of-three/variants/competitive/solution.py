@@ -1,11 +1,43 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(min(n, r)), r is the range size of nums
+
+import collections
 
 
 class Solution:
-    def twoOutOfThree(self, nums1: List[int], nums2: List[int], nums3: List[int]) -> List[int]:
-        appearances = Counter()
-        for values in (nums1, nums2, nums3):
-            for value in set(values):
-                appearances[value] += 1
-        return [value for value, count in appearances.items() if count >= 2]
+    def twoOutOfThree(self, nums1, nums2, nums3):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type nums3: List[int]
+        :rtype: List[int]
+        """
+        K = 2
+        cnt = collections.Counter()
+        for nums in nums1, nums2, nums3:
+            cnt.update(set(nums))
+        return [x for x, c in cnt.items() if c >= K]
+
+
+# Time:  O(n)
+# Space: O(min(n, r)), r is the range size of nums
+import collections
+
+
+class Solution2(object):
+    def twoOutOfThree(self, nums1, nums2, nums3):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type nums3: List[int]
+        :rtype: List[int]
+        """
+        K = 2
+        cnt = collections.Counter()
+        result = []
+        for nums in nums1, nums2, nums3:
+            for x in set(nums):
+                cnt[x] += 1
+                if cnt[x] == K:
+                    result.append(x)
+        return result

@@ -1,35 +1,64 @@
-from typing import List
+# Time:  O(h)
+# Space: O(h)
+
+import itertools
 
 
+# line sweep, difference array
 class Solution:
-    def maxArea(self, height: int, positions: List[int], directions: str) -> int:
-        period = 2 * height
-        events = {}
-        slope = 0
-
-        for position, direction in zip(positions, directions):
-            phase = position if direction == "U" else (period - position) % period
-
-            if phase < height:
-                slope += 1
-                top_time = height - phase
-                bottom_time = period - phase
+    def maxArea(self, height, positions, directions):
+        """
+        :type height: int
+        :type positions: List[int]
+        :type directions: str
+        :rtype: int
+        """
+        diff = [0]*(2*height+1)
+        for d, i in itertools.izip(directions, positions):
+            if d == 'U':
+                diff[height-i] -= 1
+                diff[(height-i)+height] += 1
             else:
-                slope -= 1
-                bottom_time = period - phase
-                top_time = 3 * height - phase
+                diff[i] += 1
+                diff[i+height] -= 1
+        result = total = sum(positions)
+        cnt = directions.count('U')
+        for t in range(1, len(diff)):
+            total += -(len(directions)-cnt)+cnt
+            result = max(result, total)
+            cnt += diff[t]
+        return result
 
-            events[top_time] = events.get(top_time, 0) - 2
-            events[bottom_time] = events.get(bottom_time, 0) + 2
 
-        area = sum(positions)
-        maximum = area
-        previous_time = 0
+# Time:  O(nlogn)
+# Space: O(n)
+import collections
+import itertools
 
-        for time in sorted(events):
-            area += slope * (time - previous_time)
-            maximum = max(maximum, area)
-            slope += events[time]
-            previous_time = time
 
-        return maximum
+# sort, line sweep, difference array
+class Solution2(object):
+    def maxArea(self, height, positions, directions):
+        """
+        :type height: int
+        :type positions: List[int]
+        :type directions: str
+        :rtype: int
+        """
+        diff = collections.defaultdict(int)
+        for d, i in itertools.izip(directions, positions):
+            if d == 'U':
+                diff[height-i] -= 1
+                diff[(height-i)+height] += 1
+            else:
+                diff[i] += 1
+                diff[i+height] -= 1
+        result = total = sum(positions)
+        cnt = directions.count('U')
+        prev = 0
+        for t, d in sorted(diff.items()):
+            total += (t-prev)*(-(len(directions)-cnt)+cnt)
+            result = max(result, total)
+            cnt += d
+            prev = t
+        return result

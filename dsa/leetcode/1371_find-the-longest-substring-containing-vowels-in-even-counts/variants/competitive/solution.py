@@ -1,18 +1,19 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def findTheLongestSubstring(self, s: str) -> int:
-        vowel_bits = {"a": 0, "e": 1, "i": 2, "o": 3, "u": 4}
-        first_index = [-2] * 32
-        first_index[0] = -1
-        mask = 0
-        longest = 0
-
-        for index, char in enumerate(s):
-            bit = vowel_bits.get(char)
-            if bit is not None:
-                mask ^= 1 << bit
-            if first_index[mask] == -2:
-                first_index[mask] = index
-            else:
-                longest = max(longest, index - first_index[mask])
-
-        return longest
+    def findTheLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        VOWELS = "aeiou"
+        result, mask, lookup = 0, 0, [-2]*(2**len(VOWELS))
+        lookup[0] = -1
+        for i, c in enumerate(s):
+            index = VOWELS.find(c)
+            mask ^= (1 << index) if index >= 0 else 0
+            if lookup[mask] == -2:
+                lookup[mask] = i
+            result = max(result, i-lookup[mask])
+        return result

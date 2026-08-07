@@ -1,14 +1,12 @@
-from typing import List
-
-
 class Solution:
     def canMakePaliQueries(self, s: str, queries: List[List[int]]) -> List[bool]:
-        masks = [0]
-        for character in s:
-            masks.append(masks[-1] ^ (1 << (ord(character) - ord("a"))))
-
-        answers = []
-        for left, right, replacements in queries:
-            odd_count = (masks[right + 1] ^ masks[left]).bit_count()
-            answers.append(odd_count // 2 <= replacements)
-        return answers
+        n = len(s)
+        ss = [[0] * 26 for _ in range(n + 1)]
+        for i, c in enumerate(s, 1):
+            ss[i] = ss[i - 1][:]
+            ss[i][ord(c) - ord("a")] += 1
+        ans = []
+        for l, r, k in queries:
+            cnt = sum((ss[r + 1][j] - ss[l][j]) & 1 for j in range(26))
+            ans.append(cnt // 2 <= k)
+        return ans

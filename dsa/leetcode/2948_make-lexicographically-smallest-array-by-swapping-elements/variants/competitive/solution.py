@@ -1,21 +1,23 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
 
-
+# sort
 class Solution:
-    def lexicographicallySmallestArray(self, nums: List[int], limit: int) -> List[int]:
-        ordered = sorted((value, index) for index, value in enumerate(nums))
-        answer = [0] * len(nums)
-        start = 0
-
-        while start < len(ordered):
-            end = start + 1
-            while end < len(ordered) and ordered[end][0] - ordered[end - 1][0] <= limit:
-                end += 1
-
-            indices = sorted(index for _, index in ordered[start:end])
-            for index, (value, _) in zip(indices, ordered[start:end]):
-                answer[index] = value
-
-            start = end
-
-        return answer
+    def lexicographicallySmallestArray(self, nums, limit):
+        """
+        :type nums: List[int]
+        :type limit: int
+        :rtype: List[int]
+        """
+        idxs = range(len(nums))
+        idxs.sort(key=lambda x: nums[x])
+        groups = []
+        for i in range(len(nums)):
+            if i-1 < 0 or nums[idxs[i]]-nums[idxs[i-1]] > limit:
+                groups.append([])
+            groups[-1].append(idxs[i])
+        result = [-1]*len(nums)
+        for g in groups:
+            for i, j in enumerate(sorted(g)):
+                result[j] = nums[g[i]]
+        return result

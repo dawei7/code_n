@@ -1,19 +1,25 @@
+# Time:  O(logr * logk)
+# Space: O(1)
+
+# binary search, fast exponentiation
 class Solution:
-    def countKthRoots(self, l: int, r: int, k: int) -> int:
-        if k == 1:
-            return r - l + 1
-
-        def count_at_most(limit: int) -> int:
-            if limit < 0:
-                return 0
-
-            low, high = 0, limit
-            while low <= high:
-                middle = (low + high) // 2
-                if middle**k <= limit:
-                    low = middle + 1
+    def countKthRoots(self, l, r, k):
+        """
+        :type l: int
+        :type r: int
+        :type k: int
+        :rtype: int
+        """
+        def binary_search_right(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if not check(mid):
+                    right = mid-1
                 else:
-                    high = middle - 1
-            return low
+                    left = mid+1
+            return right
 
-        return count_at_most(r) - count_at_most(l - 1)
+        def count(right):
+            return binary_search_right(0, right, lambda x: x**k <= right)-0+1
+        
+        return count(r)-count(l-1)

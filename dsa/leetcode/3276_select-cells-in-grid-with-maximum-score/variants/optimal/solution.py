@@ -1,33 +1,17 @@
-from functools import lru_cache
-from typing import List
-
-
 class Solution:
     def maxScore(self, grid: List[List[int]]) -> int:
-        rows_by_value = {}
-
-        for row_index, row in enumerate(grid):
-            for value in set(row):
-                rows_by_value.setdefault(value, []).append(row_index)
-
-        values = list(rows_by_value)
-
-        @lru_cache(None)
-        def search(value_index: int, used_rows: int) -> int:
-            if value_index == len(values):
-                return 0
-
-            value = values[value_index]
-            answer = search(value_index + 1, used_rows)
-
-            for row_index in rows_by_value[value]:
-                row_bit = 1 << row_index
-                if used_rows & row_bit == 0:
-                    answer = max(
-                        answer,
-                        value + search(value_index + 1, used_rows | row_bit),
-                    )
-
-            return answer
-
-        return search(0, 0)
+        g = defaultdict(set)
+        mx = 0
+        for i, row in enumerate(grid):
+            for x in row:
+                g[x].add(i)
+                mx = max(mx, x)
+        m = len(grid)
+        f = [[0] * (1 << m) for _ in range(mx + 1)]
+        for i in range(1, mx + 1):
+            for j in range(1 << m):
+                f[i][j] = f[i - 1][j]
+                for k in g[i]:
+                    if j >> k & 1:
+                        f[i][j] = max(f[i][j], f[i - 1][j ^ 1 << k] + i)
+        return f[-1][-1]

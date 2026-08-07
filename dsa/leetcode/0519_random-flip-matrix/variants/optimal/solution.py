@@ -1,23 +1,23 @@
-from random import randrange
-from typing import List
-
-
 class Solution:
     def __init__(self, m: int, n: int):
-        self.rows = m
-        self.cols = n
+        self.m = m
+        self.n = n
         self.total = m * n
-        self.remaining = self.total
-        self.remap = {}
+        self.mp = {}
 
     def flip(self) -> List[int]:
-        ticket = randrange(self.remaining)
-        selected = self.remap.get(ticket, ticket)
-        self.remaining -= 1
-        self.remap[ticket] = self.remap.get(self.remaining, self.remaining)
-        self.remap.pop(self.remaining, None)
-        return [selected // self.cols, selected % self.cols]
+        self.total -= 1
+        x = random.randint(0, self.total)
+        idx = self.mp.get(x, x)
+        self.mp[x] = self.mp.get(self.total, self.total)
+        return [idx // self.n, idx % self.n]
 
     def reset(self) -> None:
-        self.remaining = self.total
-        self.remap.clear()
+        self.total = self.m * self.n
+        self.mp.clear()
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(m, n)
+# param_1 = obj.flip()
+# obj.reset()

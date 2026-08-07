@@ -1,20 +1,17 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def maxSumAfterOperation(self, nums: List[int]) -> int:
-        plain = nums[0]
-        squared = nums[0] * nums[0]
-        best = squared
-
-        for value in nums[1:]:
-            new_squared = max(
-                value * value,
-                plain + value * value,
-                squared + value,
-            )
-            new_plain = max(value, plain + value)
-            plain, squared = new_plain, new_squared
-            best = max(best, squared)
-
-        return best
+    def maxSumAfterOperation(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        prev_with_square = prev_without_square = 0
+        result = 0
+        for num in nums:
+            without_square = max(num, num+prev_without_square)
+            with_square = max(num*num, num*num+prev_without_square, num+prev_with_square)
+            result = max(result, with_square)
+            prev_with_square, prev_without_square = with_square, without_square
+        return result

@@ -1,23 +1,14 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def findOriginalArray(self, changed: List[int]) -> List[int]:
-        if len(changed) % 2:
-            return []
-
-        remaining = Counter(changed)
-        original = []
-
-        for value in sorted(changed):
-            if remaining[value] == 0:
+        changed.sort()
+        cnt = Counter(changed)
+        ans = []
+        for x in changed:
+            if cnt[x] == 0:
                 continue
-            if remaining[2 * value] == 0:
+            cnt[x] -= 1
+            if cnt[x << 1] <= 0:
                 return []
-
-            original.append(value)
-            remaining[value] -= 1
-            remaining[2 * value] -= 1
-
-        return original
+            cnt[x << 1] -= 1
+            ans.append(x)
+        return ans

@@ -1,16 +1,10 @@
-from typing import List
-
-
 class Solution:
     def waysToMakeFair(self, nums: List[int]) -> int:
-        right = [sum(nums[::2]), sum(nums[1::2])]
-        left = [0, 0]
-        answer = 0
-
-        for index, value in enumerate(nums):
-            right[index % 2] -= value
-            if left[0] + right[1] == left[1] + right[0]:
-                answer += 1
-            left[index % 2] += value
-
-        return answer
+        s1, s2 = sum(nums[::2]), sum(nums[1::2])
+        ans = t1 = t2 = 0
+        for i, v in enumerate(nums):
+            ans += i % 2 == 0 and t2 + s1 - t1 - v == t1 + s2 - t2
+            ans += i % 2 == 1 and t2 + s1 - t1 == t1 + s2 - t2 - v
+            t1 += v if i % 2 == 0 else 0
+            t2 += v if i % 2 == 1 else 0
+        return ans

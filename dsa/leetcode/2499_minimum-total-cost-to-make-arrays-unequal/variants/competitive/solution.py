@@ -1,28 +1,36 @@
-from collections import Counter
+# Time:  O(n)
+# Space: O(n)
+
+import collections
+import itertools
 
 
+# greedy
 class Solution:
-    def minimumTotalCost(self, nums1: List[int], nums2: List[int]) -> int:
-        frequencies = Counter()
-        cost = 0
-        selected = 0
-        dominant_value = 0
-        dominant_count = 0
-
-        for index, (left, right) in enumerate(zip(nums1, nums2)):
-            if left == right:
-                cost += index
-                selected += 1
-                frequencies[left] += 1
-                if frequencies[left] > dominant_count:
-                    dominant_value = left
-                    dominant_count = frequencies[left]
-
-        for index, (left, right) in enumerate(zip(nums1, nums2)):
-            if dominant_count * 2 <= selected:
-                break
-            if left != right and left != dominant_value and right != dominant_value:
-                cost += index
-                selected += 1
-
-        return cost if dominant_count * 2 <= selected else -1
+    def minimumTotalCost(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        cnt = collections.Counter()
+        result = 0
+        for i, (x, y) in enumerate(itertools.izip(nums1, nums2)):
+            if x != y:
+                continue
+            cnt[x] += 1
+            result += i
+        if not cnt:
+            return 0
+        majority = max(cnt.keys(), key=lambda x: cnt[x])
+        remain = cnt[majority]-(sum(cnt.values())-cnt[majority])
+        if remain <= 0:
+            return result
+        for i, (x, y) in enumerate(itertools.izip(nums1, nums2)):
+            if x == y or majority in (x, y):
+                continue
+            result += i
+            remain -= 1
+            if not remain:
+                return result
+        return -1

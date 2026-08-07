@@ -1,32 +1,28 @@
-from typing import List
+# Time:  O(n + s), n is the sum of all word lengths, s is the length of S
+# Space: O(l + s), l is the max word length
+
+import itertools
 
 
 class Solution:
-    def expressiveWords(self, s: str, words: List[str]) -> int:
-        def groups(text: str):
-            result = []
-            index = 0
-            while index < len(text):
-                end = index + 1
-                while end < len(text) and text[end] == text[index]:
-                    end += 1
-                result.append((text[index], end - index))
-                index = end
-            return result
+    def expressiveWords(self, S, words):
+        """
+        :type S: str
+        :type words: List[str]
+        :rtype: int
+        """
+        # Run length encoding
+        def RLE(S):
+            return itertools.izip(*[(k, len(list(grp)))
+                                  for k, grp in itertools.groupby(S)])
 
-        target_groups = groups(s)
-        expressive = 0
+        R, count = RLE(S)
+        result = 0
         for word in words:
-            word_groups = groups(word)
-            if len(word_groups) != len(target_groups):
+            R2, count2 = RLE(word)
+            if R2 != R:
                 continue
-            valid = True
-            for (target_char, target_count), (word_char, word_count) in zip(target_groups, word_groups):
-                if target_char != word_char or word_count > target_count:
-                    valid = False
-                    break
-                if word_count != target_count and target_count < 3:
-                    valid = False
-                    break
-            expressive += valid
-        return expressive
+            result += all(c1 >= max(c2, 3) or c1 == c2
+                          for c1, c2 in itertools.izip(count, count2))
+        return result
+

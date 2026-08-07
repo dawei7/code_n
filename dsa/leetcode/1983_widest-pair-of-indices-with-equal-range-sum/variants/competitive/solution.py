@@ -1,17 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import itertools
 
 
 class Solution:
-    def widestPairOfIndices(self, nums1: List[int], nums2: List[int]) -> int:
-        earliest = {0: -1}
-        difference = 0
-        widest = 0
-
-        for index, (left, right) in enumerate(zip(nums1, nums2)):
-            difference += left - right
-            if difference in earliest:
-                widest = max(widest, index - earliest[difference])
-            else:
-                earliest[difference] = index
-
-        return widest
+    def widestPairOfIndices(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        lookup = {0:-1}
+        result = total = 0
+        for i, (n1, n2) in enumerate(itertools.izip(nums1, nums2)):
+            total += n1-n2
+            if total not in lookup:
+                lookup[total] = i
+            result = max(result, i-lookup[total])
+        return result

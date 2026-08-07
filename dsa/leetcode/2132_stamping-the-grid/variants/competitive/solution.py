@@ -1,42 +1,29 @@
-from typing import List
-
+# Time:  O(m * n)
+# Space: O(m * n)
 
 class Solution:
-    def possibleToStamp(
-        self,
-        grid: List[List[int]],
-        stampHeight: int,
-        stampWidth: int,
-    ) -> bool:
-        rows = len(grid)
-        columns = len(grid[0])
-        occupied = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for row in range(rows):
-            running = 0
-            for column in range(columns):
-                running += grid[row][column]
-                occupied[row + 1][column + 1] = occupied[row][column + 1] + running
-
-        difference = [[0] * (columns + 1) for _ in range(rows + 1)]
-        for top in range(rows - stampHeight + 1):
-            bottom = top + stampHeight
-            for left in range(columns - stampWidth + 1):
-                right = left + stampWidth
-                total = occupied[bottom][right] - occupied[top][right] - occupied[bottom][left] + occupied[top][left]
-                if total == 0:
-                    difference[top][left] += 1
-                    difference[bottom][left] -= 1
-                    difference[top][right] -= 1
-                    difference[bottom][right] += 1
-
-        for row in range(rows):
-            for column in range(columns):
-                if row:
-                    difference[row][column] += difference[row - 1][column]
-                if column:
-                    difference[row][column] += difference[row][column - 1]
-                if row and column:
-                    difference[row][column] -= difference[row - 1][column - 1]
-                if grid[row][column] == 0 and difference[row][column] == 0:
+    def possibleToStamp(self, grid, stampHeight, stampWidth):
+        """
+        :type grid: List[List[int]]
+        :type stampHeight: int
+        :type stampWidth: int
+        :rtype: bool
+        """
+        prefix = [[0]*(len(grid[0])+1) for _ in range(len(grid)+1)]
+        fit = [[0]*len(grid[0]) for _ in range(len(grid))]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                prefix[i+1][j+1] = prefix[i+1][j]+prefix[i][j+1]-prefix[i][j]+(1^grid[i][j])
+                if i+1 >= stampHeight and j+1 >= stampWidth:
+                    x, y = i+1-stampHeight, j+1-stampWidth
+                    fit[i][j] = int(prefix[i+1][j+1]-prefix[x][j+1]-prefix[i+1][y]+prefix[x][y] == stampWidth*stampHeight)
+        prefix2 = [[0]*(len(grid[0])+1) for _ in range(len(grid)+1)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                prefix2[i+1][j+1] = prefix2[i+1][j]+prefix2[i][j+1]-prefix2[i][j]+fit[i][j]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                x, y = min(i+stampHeight, len(grid)), min(j+stampWidth, len(grid[0]))
+                if not grid[i][j] and not prefix2[x][y]-prefix2[i][y]-prefix2[x][j]+prefix2[i][j]:
                     return False
         return True

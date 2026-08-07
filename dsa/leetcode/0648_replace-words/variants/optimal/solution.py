@@ -1,24 +1,32 @@
-from typing import List
+class Trie:
+    def __init__(self):
+        self.children = [None] * 26
+        self.is_end = False
+
+    def insert(self, w: str) -> None:
+        node = self
+        for c in w:
+            idx = ord(c) - ord("a")
+            if node.children[idx] is None:
+                node.children[idx] = Trie()
+            node = node.children[idx]
+        node.is_end = True
+
+    def search(self, w: str) -> str:
+        node = self
+        for i, c in enumerate(w, 1):
+            idx = ord(c) - ord("a")
+            if node.children[idx] is None:
+                return w
+            node = node.children[idx]
+            if node.is_end:
+                return w[:i]
+        return w
 
 
 class Solution:
     def replaceWords(self, dictionary: List[str], sentence: str) -> str:
-        terminal = "#"
-        trie = {}
-        for root in dictionary:
-            node = trie
-            for character in root:
-                node = node.setdefault(character, {})
-            node[terminal] = True
-
-        def replacement(word):
-            node = trie
-            for index, character in enumerate(word):
-                if character not in node:
-                    return word
-                node = node[character]
-                if terminal in node:
-                    return word[: index + 1]
-            return word
-
-        return " ".join(replacement(word) for word in sentence.split())
+        trie = Trie()
+        for w in dictionary:
+            trie.insert(w)
+        return " ".join(trie.search(w) for w in sentence.split())

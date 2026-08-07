@@ -1,16 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minimumSwap(self, s1: str, s2: str) -> int:
-        xy = 0
-        yx = 0
-
-        for left, right in zip(s1, s2):
-            if left == right:
+    def minimumSwap(self, s1, s2):
+        """
+        :type s1: str
+        :type s2: str
+        :rtype: int
+        """
+        x1, y1 = 0, 0
+        for i in range(len(s1)):
+            if s1[i] == s2[i]:
                 continue
-            if left == "x":
-                xy += 1
-            else:
-                yx += 1
-
-        if (xy + yx) % 2:
+            x1 += int(s1[i] == 'x')
+            y1 += int(s1[i] == 'y')
+        if x1%2 !=  y1%2:  # impossible
             return -1
-        return xy // 2 + yx // 2 + 2 * (xy % 2)
+        # case1: per xx or yy needs one swap, (x1//2 + y1//2) 
+        # case2: per xy or yx needs two swaps, (x1%2 + y1%2)
+        return (x1//2 + y1//2) + (x1%2 + y1%2)

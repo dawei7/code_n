@@ -1,15 +1,12 @@
 class Solution:
     def numTilings(self, n: int) -> int:
-        modulus = 1_000_000_007
-        if n == 1:
-            return 1
-        if n == 2:
-            return 2
-
-        three_back = 1
-        two_back = 1
-        one_back = 2
-        for _ in range(3, n + 1):
-            current = (2 * one_back + three_back) % modulus
-            three_back, two_back, one_back = two_back, one_back, current
-        return one_back
+        f = [1, 0, 0, 0]
+        mod = 10**9 + 7
+        for i in range(1, n + 1):
+            g = [0] * 4
+            g[0] = (f[0] + f[1] + f[2] + f[3]) % mod
+            g[1] = (f[2] + f[3]) % mod
+            g[2] = (f[1] + f[3]) % mod
+            g[3] = f[0]
+            f = g
+        return f[0]

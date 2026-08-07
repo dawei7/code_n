@@ -1,75 +1,75 @@
-from typing import List
-
-
 class Solution:
     def longestBalanced(self, nums: List[int]) -> int:
         n = len(nums)
-        minimum = [0] * (4 * n)
-        maximum = [0] * (4 * n)
-        lazy = [0] * (4 * n)
 
-        def apply(node: int, change: int) -> None:
-            minimum[node] += change
-            maximum[node] += change
-            lazy[node] += change
+        class Node:
+            __slots__ = ("l", "r", "mn", "mx", "lazy")
 
-        def push(node: int) -> None:
-            if lazy[node] != 0:
-                apply(node * 2, lazy[node])
-                apply(node * 2 + 1, lazy[node])
-                lazy[node] = 0
+            def __init__(self):
+                self.l = self.r = 0
+                self.mn = self.mx = 0
+                self.lazy = 0
 
-        def add(
-            node: int,
-            left: int,
-            right: int,
-            query_left: int,
-            query_right: int,
-            change: int,
-        ) -> None:
-            if query_left <= left and right <= query_right:
-                apply(node, change)
+        tr = [Node() for _ in range((n + 1) * 4)]
+
+        def build(u: int, l: int, r: int):
+            tr[u].l, tr[u].r = l, r
+            tr[u].mn = tr[u].mx = tr[u].lazy = 0
+            if l == r:
                 return
+            mid = (l + r) >> 1
+            build(u << 1, l, mid)
+            build(u << 1 | 1, mid + 1, r)
 
-            push(node)
-            middle = (left + right) // 2
-            if query_left <= middle:
-                add(node * 2, left, middle, query_left, query_right, change)
-            if query_right > middle:
-                add(node * 2 + 1, middle + 1, right, query_left, query_right, change)
-            minimum[node] = min(minimum[node * 2], minimum[node * 2 + 1])
-            maximum[node] = max(maximum[node * 2], maximum[node * 2 + 1])
+        def apply(u: int, v: int):
+            tr[u].mn += v
+            tr[u].mx += v
+            tr[u].lazy += v
 
-        def first_zero(node: int, left: int, right: int, limit: int) -> int:
-            if left > limit or minimum[node] > 0 or maximum[node] < 0:
-                return -1
-            if left == right:
-                return left
+        def pushdown(u: int):
+            if tr[u].lazy:
+                apply(u << 1, tr[u].lazy)
+                apply(u << 1 | 1, tr[u].lazy)
+                tr[u].lazy = 0
 
-            push(node)
-            middle = (left + right) // 2
-            answer = first_zero(node * 2, left, middle, limit)
-            if answer != -1:
-                return answer
-            return first_zero(node * 2 + 1, middle + 1, right, limit)
+        def pushup(u: int):
+            tr[u].mn = min(tr[u << 1].mn, tr[u << 1 | 1].mn)
+            tr[u].mx = max(tr[u << 1].mx, tr[u << 1 | 1].mx)
 
-        last_position = [-1] * 100001
-        longest = 0
+        def modify(u: int, l: int, r: int, v: int):
+            if tr[u].l >= l and tr[u].r <= r:
+                apply(u, v)
+                return
+            pushdown(u)
+            mid = (tr[u].l + tr[u].r) >> 1
+            if l <= mid:
+                modify(u << 1, l, r, v)
+            if r > mid:
+                modify(u << 1 | 1, l, r, v)
+            pushup(u)
 
-        for right, value in enumerate(nums):
-            change = 1 if value % 2 == 0 else -1
-            add(
-                1,
-                0,
-                n - 1,
-                last_position[value] + 1,
-                right,
-                change,
-            )
-            last_position[value] = right
+        def query(u: int, target: int) -> int:
+            if tr[u].l == tr[u].r:
+                return tr[u].l
+            pushdown(u)
+            if tr[u << 1].mn <= target <= tr[u << 1].mx:
+                return query(u << 1, target)
+            return query(u << 1 | 1, target)
 
-            left = first_zero(1, 0, n - 1, right)
-            if left != -1:
-                longest = max(longest, right - left + 1)
+        build(1, 0, n)
 
-        return longest
+        last = {}
+        now = ans = 0
+
+        for i, x in enumerate(nums, start=1):
+            det = 1 if (x & 1) else -1
+            if x in last:
+                modify(1, last[x], n, -det)
+                now -= det
+            last[x] = i
+            modify(1, i, n, det)
+            now += det
+            pos = query(1, now)
+            ans = max(ans, i - pos)
+
+        return ans

@@ -1,28 +1,28 @@
+# Time:  O(n)
+# Space: O(n)
+
+# difference array, greedy
 class Solution:
-    def minLights(self, lights: list[int]) -> int:
-        n = len(lights)
-        difference = [0] * (n + 1)
-
-        for position, radius in enumerate(lights):
-            if radius:
-                left = max(0, position - radius)
-                right = min(n - 1, position + radius)
-                difference[left] += 1
-                difference[right + 1] -= 1
-
-        visible = [False] * n
-        active = 0
-        for position in range(n):
-            active += difference[position]
-            visible[position] = active > 0
-
-        additional = 0
-        position = 0
-        while position < n:
-            if visible[position]:
-                position += 1
+    def minLights(self, lights):
+        """
+        :type lights: List[int]
+        :rtype: int
+        """
+        def ceil_divide(a, b):
+            return (a+b-1)//b
+        
+        diff = [0]*(len(lights)+1)
+        for i in range(len(lights)):
+            if not lights[i]:
+                continue
+            diff[max(i-lights[i], 0)] += 1
+            diff[min(i+lights[i], len(lights)-1)+1] -= 1
+        result = curr = cnt = 0
+        for i in range(len(diff)):
+            curr += diff[i]
+            if i+1 == len(diff) or curr:
+                result += ceil_divide(cnt, 3)
+                cnt = 0
             else:
-                additional += 1
-                position += 3
-
-        return additional
+                cnt += 1
+        return result

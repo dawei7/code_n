@@ -1,69 +1,57 @@
-from typing import List
-
-
 class Solution:
-    def smallestUniqueSubarray(self, nums: List[int]) -> int:
-        transitions = [{}]
-        suffix_link = [-1]
-        maximum_length = [0]
-        occurrences = [0]
-        last = 0
+    def smallestUniqueSubarray(self, nums: list[int]) -> int:
+        self.nums = nums
 
-        for value in nums:
-            current = len(transitions)
-            transitions.append({})
-            suffix_link.append(0)
-            maximum_length.append(maximum_length[last] + 1)
-            occurrences.append(1)
+        self.base = 19
+        self.modulo = 10**9 + 7
+        self.powers = [1] * (len(nums) + 1)
 
-            state = last
-            while state != -1 and value not in transitions[state]:
-                transitions[state][value] = current
-                state = suffix_link[state]
+        self.hash_values: dict[int, int] = dict()
 
-            if state == -1:
-                suffix_link[current] = 0
+        min_possible_len = len(nums)  # Base case.
+
+        min_len, max_len = 1, len(nums)  # For binary search usage.
+
+        while min_len <= max_len:
+            mid_len = (min_len + max_len) // 2
+
+            if self._check_uniqueness(mid_len):
+                if mid_len < min_possible_len:
+                    min_possible_len = mid_len
+                max_len = mid_len - 1
+
             else:
-                target = transitions[state][value]
-                if maximum_length[state] + 1 == maximum_length[target]:
-                    suffix_link[current] = target
-                else:
-                    clone = len(transitions)
-                    transitions.append(transitions[target].copy())
-                    suffix_link.append(suffix_link[target])
-                    maximum_length.append(maximum_length[state] + 1)
-                    occurrences.append(0)
+                min_len = mid_len + 1
 
-                    while state != -1 and transitions[state].get(value) == target:
-                        transitions[state][value] = clone
-                        state = suffix_link[state]
+        return min_possible_len
 
-                    suffix_link[target] = clone
-                    suffix_link[current] = clone
+    def _check_uniqueness(self, subarray_len: int) -> bool:
+        # Only need to reset leftmost power to 1 before usage.
+        self.powers[0] = 1  # Because powers are calculated by bottom-up.
 
-            last = current
+        for idx in range(1, len(self.nums) + 1):
+            self.powers[idx] = (self.powers[idx - 1] * self.base) % self.modulo
 
-        length_counts = [0] * (len(nums) + 1)
-        for length in maximum_length:
-            length_counts[length] += 1
-        for length in range(1, len(length_counts)):
-            length_counts[length] += length_counts[length - 1]
+        current_hash = 0
+        for idx in range(subarray_len):
+            current_hash *= self.base
+            current_hash += self.nums[idx]
+            current_hash %= self.modulo
 
-        order = [0] * len(transitions)
-        for state in range(len(transitions) - 1, -1, -1):
-            length = maximum_length[state]
-            length_counts[length] -= 1
-            order[length_counts[length]] = state
+        self.hash_values.clear()  # Clear before usage.
+        self.hash_values[current_hash] = 1
 
-        for state in reversed(order[1:]):
-            occurrences[suffix_link[state]] += occurrences[state]
+        for idx in range(1, len(self.nums) - subarray_len + 1):
+            # Window shifts: deduct leftmost num's share from hash value.
+            current_hash -= self.powers[subarray_len - 1] * self.nums[idx - 1]
 
-        answer = len(nums)
-        for state in range(1, len(transitions)):
-            if occurrences[state] == 1:
-                answer = min(
-                    answer,
-                    maximum_length[suffix_link[state]] + 1,
-                )
+            # Integrate newly added num's share into hash value.
+            current_hash *= self.base
+            current_hash += self.nums[idx + subarray_len - 1]
+            current_hash %= self.modulo
 
-        return answer
+            if current_hash not in self.hash_values.keys():
+                self.hash_values.update({current_hash: 0})
+            self.hash_values[current_hash] += 1
+
+        return 1 in self.hash_values.values()

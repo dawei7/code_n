@@ -1,19 +1,19 @@
-from bisect import bisect_left
-from typing import List
-
-
 class Solution:
     def atMostNGivenDigitSet(self, digits: List[str], n: int) -> int:
-        boundary = str(n)
-        choices = len(digits)
-        length = len(boundary)
-        total = sum(choices**size for size in range(1, length))
+        @cache
+        def dfs(i: int, lead: int, limit: bool) -> int:
+            if i >= len(s):
+                return lead ^ 1
 
-        for index, target in enumerate(boundary):
-            smaller = bisect_left(digits, target)
-            remaining = length - index - 1
-            total += smaller * choices**remaining
-            if smaller == choices or digits[smaller] != target:
-                return total
+            up = int(s[i]) if limit else 9
+            ans = 0
+            for j in range(up + 1):
+                if j == 0 and lead:
+                    ans += dfs(i + 1, 1, limit and j == up)
+                elif j in nums:
+                    ans += dfs(i + 1, 0, limit and j == up)
+            return ans
 
-        return total + 1
+        s = str(n)
+        nums = {int(x) for x in digits}
+        return dfs(0, 1, True)

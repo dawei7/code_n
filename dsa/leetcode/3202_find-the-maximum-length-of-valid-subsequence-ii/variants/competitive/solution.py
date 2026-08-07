@@ -1,12 +1,18 @@
+# Time:  O(n * k)
+# Space: O(k)
+
+# dp
 class Solution:
-    def maximumLength(self, nums: List[int], k: int) -> int:
-        dp = [[0] * k for _ in range(k)]
-        best = 0
-
-        for value in nums:
-            remainder = value % k
-            for previous in range(k):
-                dp[previous][remainder] = dp[remainder][previous] + 1
-                best = max(best, dp[previous][remainder])
-
-        return best
+    def maximumLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = 0
+        for i in range(k):
+            dp = [0]*k
+            for x in nums:
+                dp[x%k] = dp[(i-x)%k]+1
+            result = max(result, max(dp))
+        return result

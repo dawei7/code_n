@@ -1,17 +1,46 @@
-from collections import Counter
-from typing import List
+# Time:  O(l * (w + n)), l is the length of a word, w is the number of words, n is the length of target
+# Space: O(n)
+
+import collections
 
 
+# optimized from Solution2
 class Solution:
-    def numWays(self, words: List[str], target: str) -> int:
-        modulus = 1_000_000_007
-        column_counts = [Counter(column) for column in zip(*words)]
-        ways = [1] + [0] * len(target)
+    def numWays(self, words, target):
+        """
+        :type words: List[str]
+        :type target: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [0]*(len(target)+1)
+        dp[0] = 1
+        for i in range(len(words[0])):
+            count = collections.Counter(w[i] for w in words)
+            for j in reversed(range(len(target))):
+                dp[j+1] += dp[j]*count[target[j]] % MOD
+        return dp[-1] % MOD
 
-        for column_index, counts in enumerate(column_counts):
-            last_target_index = min(len(target) - 1, column_index)
-            for target_index in range(last_target_index, -1, -1):
-                ways[target_index + 1] += ways[target_index] * counts[target[target_index]]
-                ways[target_index + 1] %= modulus
 
-        return ways[-1]
+# Time:  O(l * (w + n)), l is the length of a word, w is the number of words, n is the length of target
+# Space: O(n)
+import collections
+
+
+class Solution2(object):
+    def numWays(self, words, target):
+        """
+        :type words: List[str]
+        :type target: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        # dp[i+1][j+1]: number of ways of target[0..j] using count[0..i].
+        dp = [[0]*(len(target)+1) for _ in range(2)]
+        for i in range(len(dp)):
+            dp[i][0] = 1
+        for i in range(len(words[0])):
+            count = collections.Counter(w[i] for w in words)
+            for j in reversed(range(len(target))):
+                dp[(i+1)%2][j+1] = dp[i%2][j+1]+dp[i%2][j]*count[target[j]] % MOD
+        return dp[(len(words[0]))%2][-1] % MOD

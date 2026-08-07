@@ -1,18 +1,22 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minInsertions(self, s: str) -> int:
-        insertions = 0
-        needed = 0
-
-        for character in s:
-            if character == "(":
-                if needed % 2 == 1:
-                    insertions += 1
-                    needed -= 1
-                needed += 2
+    def minInsertions(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        add, bal = 0, 0
+        for c in s:
+            if c == '(':
+                if bal > 0 and bal%2:
+                    add += 1
+                    bal -= 1
+                bal += 2
             else:
-                needed -= 1
-                if needed < 0:
-                    insertions += 1
-                    needed = 1
-
-        return insertions + needed
+                bal -= 1
+                if bal < 0:
+                    add += 1
+                    bal += 2
+        return add + bal

@@ -1,36 +1,32 @@
-from typing import List
+# Time:  O(m * n)
+# Space: O(m + n)
 
-
+# bfs, flood fill
 class Solution:
-    def countIslands(self, grid: List[List[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        divisible_islands = 0
+    def countIslands(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        DIRECTIONS = ((1, 0), (0, 1), (-1, 0), (0, -1))
+        def bfs(i, j):
+            if not grid[i][j]:
+                return False
+            total = grid[i][j]%k
+            grid[i][j] = 0
+            q = [(i, j)]
+            while q:
+                new_q = []
+                for i, j in q:
+                    for di, dj in DIRECTIONS:
+                        ni, nj = i+di, j+dj
+                        if not (0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and grid[ni][nj]):
+                            continue
+                        total = (total+grid[ni][nj])%k
+                        grid[ni][nj] = 0
+                        new_q.append((ni, nj))
+                q = new_q
+            return total == 0
 
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] <= 0:
-                    continue
-
-                total_modulo = 0
-                stack = [(row, column)]
-                grid[row][column] = -grid[row][column]
-
-                while stack:
-                    current_row, current_column = stack.pop()
-                    total_modulo = (total_modulo - grid[current_row][current_column]) % k
-
-                    for next_row, next_column in (
-                        (current_row - 1, current_column),
-                        (current_row + 1, current_column),
-                        (current_row, current_column - 1),
-                        (current_row, current_column + 1),
-                    ):
-                        if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] > 0:
-                            grid[next_row][next_column] = -grid[next_row][next_column]
-                            stack.append((next_row, next_column))
-
-                if total_modulo == 0:
-                    divisible_islands += 1
-
-        return divisible_islands
+        return sum(bfs(i, j) for i in range(len(grid)) for j in range(len(grid[0])))

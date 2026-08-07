@@ -1,17 +1,20 @@
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def surfaceArea(self, grid: List[List[int]]) -> int:
-        area = 0
-        for row in range(len(grid)):
-            for column in range(len(grid)):
-                height = grid[row][column]
-                if height == 0:
-                    continue
-                area += 4 * height + 2
-                if row > 0:
-                    area -= 2 * min(height, grid[row - 1][column])
-                if column > 0:
-                    area -= 2 * min(height, grid[row][column - 1])
-        return area
+    def surfaceArea(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(grid)):
+            for j in range(len(grid)):
+                if grid[i][j]:
+                    result += 2 + grid[i][j]*4
+                if i:
+                    result -= min(grid[i][j], grid[i-1][j])*2
+                if j:
+                    result -= min(grid[i][j], grid[i][j-1])*2
+        return result
+

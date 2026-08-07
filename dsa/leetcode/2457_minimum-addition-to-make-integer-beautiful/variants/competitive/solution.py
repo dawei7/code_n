@@ -1,24 +1,26 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def makeIntegerBeautiful(self, n: int, target: int) -> int:
-        original = n
-        digit_sum = sum(int(character) for character in str(n))
-        place = 1
-
-        while digit_sum > target:
-            digit = (n // place) % 10
-            if digit == 0:
-                place *= 10
-                continue
-
-            prefix = n // (place * 10)
-            trailing_nines = 0
-            scan = prefix
-            while scan % 10 == 9:
-                trailing_nines += 1
-                scan //= 10
-
-            digit_sum = digit_sum - digit + 1 - 9 * trailing_nines
-            n += (10 - digit) * place
-            place *= 10
-
-        return n - original
+    def makeIntegerBeautiful(self, n, target):
+        """
+        :type n: int
+        :type target: int
+        :rtype: int
+        """
+        total, m = 0, n
+        while m:
+            total += m%10
+            m //= 10
+        m, l = n, 0
+        while total > target:
+            while True:
+                total -= m%10
+                m //= 10
+                l += 1
+                if m%10 != 9:
+                    break
+            total += 1
+            m += 1
+        return m*10**l-n

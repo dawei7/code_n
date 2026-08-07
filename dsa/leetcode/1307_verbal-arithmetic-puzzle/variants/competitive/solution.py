@@ -1,67 +1,46 @@
-from typing import List
+# Time:  O(10! * n * l)
+# Space: O(n * l)
+
+import collections
 
 
 class Solution:
-    def isSolvable(self, words: List[str], result: str) -> bool:
-        addends = list(words)
-        max_length = max(map(len, addends + [result]))
-        leading = {word[0] for word in addends + [result] if len(word) > 1}
-        coefficients = {}
-        for word in addends:
-            for place, letter in enumerate(reversed(word)):
-                coefficients[letter] = coefficients.get(letter, 0) + 10**place
-        for place, letter in enumerate(reversed(result)):
-            coefficients[letter] = coefficients.get(letter, 0) - 10**place
-        assignment = {}
-        used = [False] * 10
+    def isSolvable(self, words, result):
+        """
+        :type words: List[str]
+        :type result: str
+        :rtype: bool
+        """
+        def backtracking(words, result, i, j, carry, lookup, used):
+            if j == len(result):
+                return carry == 0
 
-        if len(result) < max(map(len, addends)):
-            return False
-        if len(set("".join(addends) + result)) > 10:
-            return False
-
-        def search(column: int, row: int, total: int) -> bool:
-            if column == max_length:
-                return total == 0
-
-            if row < len(addends):
-                word = addends[row]
-                if column >= len(word):
-                    return search(column, row + 1, total)
-
-                letter = word[-1 - column]
-                if letter in assignment:
-                    return search(column, row + 1, total + assignment[letter])
-
-                digits = range(9, -1, -1) if len(addends) == 2 and coefficients[letter] > 0 else range(10)
-                for digit in digits:
-                    if used[digit] or (digit == 0 and letter in leading):
+            if i != len(words):
+                if j >= len(words[i]) or words[i][j] in lookup:
+                    return backtracking(words, result, i+1, j, carry, lookup, used)     
+                for val in range(10):
+                    if val in used or (val == 0 and j == len(words[i])-1):
                         continue
-                    assignment[letter] = digit
-                    used[digit] = True
-                    if search(column, row + 1, total + digit):
+                    lookup[words[i][j]] = val
+                    used.add(val)
+                    if backtracking(words, result, i+1, j, carry, lookup, used):
                         return True
-                    used[digit] = False
-                    del assignment[letter]
+                    used.remove(val)
+                    del lookup[words[i][j]]
                 return False
 
-            letter = result[-1 - column] if column < len(result) else None
-            digit = total % 10
-            carry = total // 10
-
-            if letter is None:
-                return digit == 0 and search(column + 1, 0, carry)
-            if letter in assignment:
-                return assignment[letter] == digit and search(column + 1, 0, carry)
-            if used[digit] or (digit == 0 and letter in leading):
+            carry, val = divmod(carry + sum(lookup[w[j]] for w in words if j < len(w)), 10)
+            if result[j] in lookup:
+                return val == lookup[result[j]] and \
+                       backtracking(words, result, 0, j+1, carry, lookup, used)
+            if val in used or (val == 0 and j == len(result)-1):
                 return False
-
-            assignment[letter] = digit
-            used[digit] = True
-            if search(column + 1, 0, carry):
+            lookup[result[j]] = val
+            used.add(val)
+            if backtracking(words, result, 0, j+1, carry, lookup, used):
                 return True
-            used[digit] = False
-            del assignment[letter]
+            used.remove(val)
+            del lookup[result[j]]
             return False
-
-        return search(0, 0, 0)
+        
+        return backtracking([w[::-1] for w in words], result[::-1], 0, 0, 0, {}, set())

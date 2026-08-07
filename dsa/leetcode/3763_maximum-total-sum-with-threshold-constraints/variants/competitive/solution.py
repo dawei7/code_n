@@ -1,21 +1,23 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# counting sort, greedy
 class Solution:
-    def maxSum(self, nums: List[int], threshold: List[int]) -> int:
-        count_by_threshold = [0] * (len(nums) + 1)
-        sum_by_threshold = [0] * (len(nums) + 1)
-        for value, release_step in zip(nums, threshold):
-            count_by_threshold[release_step] += 1
-            sum_by_threshold[release_step] += value
-
-        available = 0
-        released_sum = 0
-        for step in range(1, len(nums) + 1):
-            available += count_by_threshold[step]
-            released_sum += sum_by_threshold[step]
-            if available == 0:
-                return released_sum
-            available -= 1
-
-        return released_sum
+    def maxSum(self, nums, threshold):
+        """
+        :type nums: List[int]
+        :type threshold: List[int]
+        :rtype: int
+        """
+        groups = [[] for _ in range(len(nums))]
+        for i, x in enumerate(threshold):
+            groups[x-1].append(i)
+        sorted_idxs = []
+        for i, g in enumerate(groups):
+            sorted_idxs.extend(g)
+        result = 0
+        for step, i in enumerate(sorted_idxs, 1):
+            if step < threshold[i]:
+                break
+            result += nums[i]
+        return result

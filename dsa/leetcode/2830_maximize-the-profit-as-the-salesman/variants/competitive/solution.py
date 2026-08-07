@@ -1,16 +1,20 @@
-from typing import List
+# Time:  O(n + m), m = len(offers)
+# Space: O(n + m)
 
-
+# dp
 class Solution:
-    def maximizeTheProfit(self, n: int, offers: List[List[int]]) -> int:
-        offers_by_end = [[] for _ in range(n)]
-        for start, end, gold in offers:
-            offers_by_end[end].append((start, gold))
-
-        best = [0] * (n + 1)
-        for end in range(n):
-            best[end + 1] = best[end]
-            for start, gold in offers_by_end[end]:
-                best[end + 1] = max(best[end + 1], best[start] + gold)
-
-        return best[n]
+    def maximizeTheProfit(self, n, offers):
+        """
+        :type n: int
+        :type offers: List[List[int]]
+        :rtype: int
+        """
+        lookup = [[] for _ in range(n)]
+        for s, e, g in offers:
+            lookup[e].append([s, g])
+        dp = [0]*(n+1)
+        for e in range(n):
+            dp[e+1] = dp[(e-1)+1]
+            for s, g in lookup[e]:
+                dp[e+1] = max(dp[e+1], dp[(s-1)+1]+g)
+        return dp[-1]

@@ -1,46 +1,62 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n)
+# Space: O(m * n)
 
-
+# topological sort, bottom-up dp
 class Solution:
-    def countPaths(self, grid: List[List[int]]) -> int:
-        modulus = 1_000_000_007
-        directions = ((1, 0), (-1, 0), (0, 1), (0, -1))
-        rows, columns = len(grid), len(grid[0])
-        smaller_neighbors = [[0] * columns for _ in range(rows)]
-        path_count = [[1] * columns for _ in range(rows)]
+    def countPaths(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        in_degree = [[0]*len(grid[0]) for _ in range(len(grid))]
+        q = []
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                for di, dj in directions:
+                    ni, nj = i+di, j+dj
+                    if 0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and grid[i][j] > grid[ni][nj]:
+                        in_degree[i][j] += 1
+                if not in_degree[i][j]:
+                    q.append((i, j))
+        dp = [[1]*len(grid[0]) for _ in range(len(grid))]
+        result = 0
+        while q:
+            new_q = []
+            for i, j in q:
+                result = (result+dp[i][j])%MOD
+                for di, dj in directions:
+                    ni, nj = i+di, j+dj
+                    if not (0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and grid[i][j] < grid[ni][nj]):
+                        continue
+                    dp[ni][nj] = (dp[ni][nj]+dp[i][j])%MOD
+                    in_degree[ni][nj] -= 1
+                    if not in_degree[ni][nj]:
+                        new_q.append((ni, nj))
+            q = new_q
+        return result
 
-        for row in range(rows):
-            for column in range(columns):
-                for row_step, column_step in directions:
-                    next_row = row + row_step
-                    next_column = column + column_step
-                    if (
-                        0 <= next_row < rows
-                        and 0 <= next_column < columns
-                        and grid[next_row][next_column] < grid[row][column]
-                    ):
-                        smaller_neighbors[row][column] += 1
 
-        queue = deque(
-            (row, column) for row in range(rows) for column in range(columns) if smaller_neighbors[row][column] == 0
-        )
+# Time:  O(m * n)
+# Space: O(m * n)
+# top-down dp, memoization
+class Solution2(object):
+    def countPaths(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        MOD = 10**9+7
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        def memoization(grid, i, j, lookup):
+            if not lookup[i][j]:
+                lookup[i][j] = 1
+                for di, dj in directions:
+                    ni, nj = i+di, j+dj
+                    if 0 <= ni < len(grid) and 0 <= nj < len(grid[0]) and grid[i][j] < grid[ni][nj]:
+                        lookup[i][j] = (lookup[i][j]+memoization(grid, ni, nj, lookup)) % MOD
+            return lookup[i][j]
 
-        while queue:
-            row, column = queue.popleft()
-            for row_step, column_step in directions:
-                next_row = row + row_step
-                next_column = column + column_step
-                if (
-                    0 <= next_row < rows
-                    and 0 <= next_column < columns
-                    and grid[next_row][next_column] > grid[row][column]
-                ):
-                    path_count[next_row][next_column] = (
-                        path_count[next_row][next_column] + path_count[row][column]
-                    ) % modulus
-                    smaller_neighbors[next_row][next_column] -= 1
-                    if smaller_neighbors[next_row][next_column] == 0:
-                        queue.append((next_row, next_column))
-
-        return sum(map(sum, path_count)) % modulus
+        lookup = [[0]*len(grid[0]) for _ in range(len(grid))]
+        return sum(memoization(grid, i, j, lookup) for i in range(len(grid)) for j in range(len(grid[0]))) % MOD

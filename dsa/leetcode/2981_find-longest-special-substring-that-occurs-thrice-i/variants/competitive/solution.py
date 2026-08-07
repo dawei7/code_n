@@ -1,22 +1,47 @@
+# Time:  O(26 * 3 + n * 3)
+# Space: O(26 * 3)
+
+# string, hash table
 class Solution:
-    def maximumLength(self, s: str) -> int:
-        longest_runs = [[0, 0, 0] for _ in range(26)]
+    def maximumLength(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        lookup = [[0]*3 for _ in range(26)]
+        result = cnt = 0
+        for i, c in enumerate(s):
+            cnt += 1
+            if i+1 != len(s) and s[i+1] == s[i]:
+                continue
+            curr = lookup[ord(c)-ord('a')]
+            for j in range(len(curr)):
+                if curr[j] < cnt:
+                    cnt, curr[j] = curr[j], cnt
+            cnt = 0
+            result = max(result, max(curr[0]-2, min(curr[0]-1, curr[1]), curr[2]))
+        return result if result else -1
 
-        start = 0
-        for end in range(1, len(s) + 1):
-            if end == len(s) or s[end] != s[start]:
-                runs = longest_runs[ord(s[start]) - ord("a")]
-                runs.append(end - start)
-                runs.sort(reverse=True)
-                runs.pop()
-                start = end
 
-        answer = 0
-        for first, second, third in longest_runs:
-            answer = max(
-                answer,
-                first - 2,
-                min(first - 1, second),
-                third,
-            )
-        return answer if answer > 0 else -1
+# Time:  O(26 + n^2)
+# Space: O(26 + n^2)
+# string, brute force, freq table
+class Solution2(object):
+    def maximumLength(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        lookup = [[0] for _ in range(26)]
+        result = 0
+        for i, c in enumerate(s):
+            curr = lookup[ord(c)-ord('a')]
+            for j in range(i, len(s)):
+                if s[j] != s[i]:
+                    break
+                if j-i+1 == len(curr):
+                    curr.append(0)
+                curr[j-i+1] += 1
+                if curr[j-i+1] == 3:
+                    result = max(result, j-i+1)
+        return result if result else -1

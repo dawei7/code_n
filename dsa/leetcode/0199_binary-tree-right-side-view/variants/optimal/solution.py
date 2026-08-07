@@ -1,19 +1,21 @@
-from collections import deque
-from typing import List, Optional
-
-
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        ans = []
         if root is None:
-            return []
-        queue = deque([root])
-        view = []
-        while queue:
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                if node.left:
-                    queue.append(node.left)
+            return ans
+        q = deque([root])
+        while q:
+            ans.append(q[0].val)
+            for _ in range(len(q)):
+                node = q.popleft()
                 if node.right:
-                    queue.append(node.right)
-            view.append(node.val)
-        return view
+                    q.append(node.right)
+                if node.left:
+                    q.append(node.left)
+        return ans

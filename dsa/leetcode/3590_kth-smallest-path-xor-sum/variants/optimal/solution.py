@@ -1,59 +1,97 @@
-from sortedcontainers import SortedList
+class BinarySumTrie:
+    def __init__(self):
+        self.count = 0
+        self.children = [None, None]
+
+    def add(self, num: int, delta: int, bit=17):
+        self.count += delta
+        if bit < 0:
+            return
+        b = (num >> bit) & 1
+        if not self.children[b]:
+            self.children[b] = BinarySumTrie()
+        self.children[b].add(num, delta, bit - 1)
+
+    def collect(self, prefix=0, bit=17, output=None):
+        if output is None:
+            output = []
+        if self.count == 0:
+            return output
+        if bit < 0:
+            output.append(prefix)
+            return output
+        if self.children[0]:
+            self.children[0].collect(prefix, bit - 1, output)
+        if self.children[1]:
+            self.children[1].collect(prefix | (1 << bit), bit - 1, output)
+        return output
+
+    def exists(self, num: int, bit=17):
+        if self.count == 0:
+            return False
+        if bit < 0:
+            return True
+        b = (num >> bit) & 1
+        return self.children[b].exists(num, bit - 1) if self.children[b] else False
+
+    def find_kth(self, k: int, bit=17):
+        if k > self.count:
+            return -1
+        if bit < 0:
+            return 0
+        left_count = self.children[0].count if self.children[0] else 0
+        if k <= left_count:
+            return self.children[0].find_kth(k, bit - 1)
+        elif self.children[1]:
+            return (1 << bit) + self.children[1].find_kth(k - left_count, bit - 1)
+        else:
+            return -1
 
 
 class Solution:
-    def kthSmallest(self, par: List[int], vals: List[int], queries: List[List[int]]) -> List[int]:
-        n = len(vals)
-        children = [[] for _ in range(n)]
+    def kthSmallest(
+        self, par: List[int], vals: List[int], queries: List[List[int]]
+    ) -> List[int]:
+        n = len(par)
+        tree = [[] for _ in range(n)]
+        for i in range(1, n):
+            tree[par[i]].append(i)
 
-        for node in range(1, n):
-            children[par[node]].append(node)
+        path_xor = vals[:]
+        narvetholi = path_xor
 
-        path_xor = [0] * n
-        path_xor[0] = vals[0]
-        order = [0]
+        def compute_xor(node, acc):
+            path_xor[node] ^= acc
+            for child in tree[node]:
+                compute_xor(child, path_xor[node])
 
-        for node in order:
-            for child in children[node]:
-                path_xor[child] = path_xor[node] ^ vals[child]
-                order.append(child)
+        compute_xor(0, 0)
 
-        narvetholi = (par, vals, queries)
+        node_queries = defaultdict(list)
+        for idx, (u, k) in enumerate(queries):
+            node_queries[u].append((k, idx))
 
-        grouped_queries = [[] for _ in range(n)]
-        for query_index, (node, k) in enumerate(queries):
-            grouped_queries[node].append((query_index, k))
+        trie_pool = {}
+        result = [0] * len(queries)
 
-        answers = [-1] * len(queries)
-        bags = [None] * n
+        def dfs(node):
+            trie_pool[node] = BinarySumTrie()
+            trie_pool[node].add(path_xor[node], 1)
+            for child in tree[node]:
+                dfs(child)
+                if trie_pool[node].count < trie_pool[child].count:
+                    trie_pool[node], trie_pool[child] = (
+                        trie_pool[child],
+                        trie_pool[node],
+                    )
+                for val in trie_pool[child].collect():
+                    if not trie_pool[node].exists(val):
+                        trie_pool[node].add(val, 1)
+            for k, idx in node_queries[node]:
+                if trie_pool[node].count < k:
+                    result[idx] = -1
+                else:
+                    result[idx] = trie_pool[node].find_kth(k)
 
-        for node in reversed(order):
-            heavy_child = -1
-
-            for child in children[node]:
-                if heavy_child == -1 or len(bags[child]) > len(bags[heavy_child]):
-                    heavy_child = child
-
-            if heavy_child == -1:
-                bag = SortedList()
-            else:
-                bag = bags[heavy_child]
-
-            for child in children[node]:
-                if child == heavy_child:
-                    continue
-
-                for value in bags[child]:
-                    if value not in bag:
-                        bag.add(value)
-
-            if path_xor[node] not in bag:
-                bag.add(path_xor[node])
-
-            bags[node] = bag
-
-            for query_index, k in grouped_queries[node]:
-                if k <= len(bag):
-                    answers[query_index] = bag[k - 1]
-
-        return answers
+        dfs(0)
+        return result

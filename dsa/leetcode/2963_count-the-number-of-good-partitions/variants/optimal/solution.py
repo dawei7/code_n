@@ -1,15 +1,9 @@
-from typing import List
-
-
 class Solution:
     def numberOfGoodPartitions(self, nums: List[int]) -> int:
-        last = {value: index for index, value in enumerate(nums)}
-        components = 0
-        rightmost = 0
-
-        for index, value in enumerate(nums):
-            rightmost = max(rightmost, last[value])
-            if index == rightmost:
-                components += 1
-
-        return pow(2, components - 1, 1_000_000_007)
+        last = {x: i for i, x in enumerate(nums)}
+        mod = 10**9 + 7
+        j, k = -1, 0
+        for i, x in enumerate(nums):
+            j = max(j, last[x])
+            k += i == j
+        return pow(2, k - 1, mod)

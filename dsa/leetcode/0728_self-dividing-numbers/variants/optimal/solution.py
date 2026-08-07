@@ -1,18 +1,11 @@
-from typing import List
-
-
 class Solution:
     def selfDividingNumbers(self, left: int, right: int) -> List[int]:
-        result = []
+        def check(x: int) -> bool:
+            y = x
+            while y:
+                if y % 10 == 0 or x % (y % 10):
+                    return False
+                y //= 10
+            return True
 
-        for candidate in range(left, right + 1):
-            working = candidate
-            while working:
-                digit = working % 10
-                if digit == 0 or candidate % digit != 0:
-                    break
-                working //= 10
-            else:
-                result.append(candidate)
-
-        return result
+        return [x for x in range(left, right + 1) if check(x)]

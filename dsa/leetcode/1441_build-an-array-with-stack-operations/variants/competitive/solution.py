@@ -1,16 +1,16 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def buildArray(self, target: List[int], n: int) -> List[str]:
-        operations = []
-        target_index = 0
-        for current in range(1, target[-1] + 1):
-            operations.append("Push")
-            if current == target[target_index]:
-                target_index += 1
-                if target_index == len(target):
-                    break
-            else:
-                operations.append("Pop")
-        return operations
+    def buildArray(self, target, n):
+        """
+        :type target: List[int]
+        :type n: int
+        :rtype: List[str]
+        """
+        result, curr = [], 1
+        for t in target:
+            result.extend(["Push", "Pop"]*(t-curr))
+            result.append("Push")
+            curr = t+1
+        return result

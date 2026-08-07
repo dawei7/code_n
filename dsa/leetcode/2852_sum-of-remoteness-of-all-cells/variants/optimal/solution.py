@@ -1,34 +1,22 @@
 class Solution:
     def sumRemoteness(self, grid: List[List[int]]) -> int:
+        def dfs(i: int, j: int) -> (int, int):
+            s, t = grid[i][j], 1
+            grid[i][j] = 0
+            for a, b in pairwise(dirs):
+                x, y = i + a, j + b
+                if 0 <= x < n and 0 <= y < n and grid[x][y] > 0:
+                    s1, t1 = dfs(x, y)
+                    s, t = s + s1, t + t1
+            return s, t
+
         n = len(grid)
-        total = sum(value for row in grid for value in row if value != -1)
-        visited = [[False] * n for _ in range(n)]
-        answer = 0
-
-        for start_row in range(n):
-            for start_col in range(n):
-                if grid[start_row][start_col] == -1 or visited[start_row][start_col]:
-                    continue
-
-                stack = [(start_row, start_col)]
-                visited[start_row][start_col] = True
-                component_sum = 0
-                component_size = 0
-
-                while stack:
-                    row, col = stack.pop()
-                    component_sum += grid[row][col]
-                    component_size += 1
-                    for next_row, next_col in ((row - 1, col), (row + 1, col), (row, col - 1), (row, col + 1)):
-                        if (
-                            0 <= next_row < n
-                            and 0 <= next_col < n
-                            and grid[next_row][next_col] != -1
-                            and not visited[next_row][next_col]
-                        ):
-                            visited[next_row][next_col] = True
-                            stack.append((next_row, next_col))
-
-                answer += component_size * (total - component_sum)
-
-        return answer
+        dirs = (-1, 0, 1, 0, -1)
+        cnt = sum(x > 0 for row in grid for x in row)
+        ans = 0
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                if x > 0:
+                    s, t = dfs(i, j)
+                    ans += (cnt - t) * s
+        return ans

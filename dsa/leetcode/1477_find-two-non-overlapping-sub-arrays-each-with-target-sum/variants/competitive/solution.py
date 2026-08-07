@@ -1,31 +1,23 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def minSumOfLengths(self, arr: List[int], target: int) -> int:
-        infinity = len(arr) + 1
-        best_until = [infinity] * len(arr)
-        best_length = infinity
-        answer = infinity
-        left = 0
-        window_sum = 0
-
-        for right, value in enumerate(arr):
-            window_sum += value
-
-            while window_sum > target:
-                window_sum -= arr[left]
-                left += 1
-
-            if window_sum == target:
-                current_length = right - left + 1
-                if left > 0 and best_until[left - 1] != infinity:
-                    answer = min(
-                        answer,
-                        current_length + best_until[left - 1],
-                    )
-                best_length = min(best_length, current_length)
-
-            best_until[right] = best_length
-
-        return -1 if answer == infinity else answer
+    def minSumOfLengths(self, arr, target):
+        """
+        :type arr: List[int]
+        :type target: int
+        :rtype: int
+        """
+        prefix, dp = {0: -1}, [0]*len(arr)  # dp[i], min len of target subarray until i
+        result = min_len = float("inf")
+        accu = 0
+        for right in range(len(arr)):
+            accu += arr[right]
+            prefix[accu] = right
+            if accu-target in prefix:
+                left = prefix[accu-target]
+                min_len = min(min_len, right-left)
+                if left != -1:
+                    result = min(result, dp[left] + (right-left))
+            dp[right] = min_len
+        return result if result != float("inf") else -1

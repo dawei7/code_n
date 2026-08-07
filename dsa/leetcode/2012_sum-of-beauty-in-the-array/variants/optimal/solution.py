@@ -1,21 +1,16 @@
-from typing import List
-
-
 class Solution:
     def sumOfBeauties(self, nums: List[int]) -> int:
-        length = len(nums)
-        suffix_minimum = [float("inf")] * (length + 1)
-
-        for index in range(length - 1, -1, -1):
-            suffix_minimum[index] = min(nums[index], suffix_minimum[index + 1])
-
-        beauty = 0
-        prefix_maximum = nums[0]
-        for index in range(1, length - 1):
-            if prefix_maximum < nums[index] < suffix_minimum[index + 1]:
-                beauty += 2
-            elif nums[index - 1] < nums[index] < nums[index + 1]:
-                beauty += 1
-            prefix_maximum = max(prefix_maximum, nums[index])
-
-        return beauty
+        n = len(nums)
+        right = [nums[-1]] * n
+        for i in range(n - 2, -1, -1):
+            right[i] = min(right[i + 1], nums[i])
+        ans = 0
+        l = nums[0]
+        for i in range(1, n - 1):
+            r = right[i + 1]
+            if l < nums[i] < r:
+                ans += 2
+            elif nums[i - 1] < nums[i] < nums[i + 1]:
+                ans += 1
+            l = max(l, nums[i])
+        return ans

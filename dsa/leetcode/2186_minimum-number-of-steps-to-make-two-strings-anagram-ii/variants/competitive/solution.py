@@ -1,8 +1,16 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
+# freq table
 class Solution:
-    def minSteps(self, s: str, t: str) -> int:
-        differences = [0] * 26
-        for character in s:
-            differences[ord(character) - ord("a")] += 1
-        for character in t:
-            differences[ord(character) - ord("a")] -= 1
-        return sum(abs(difference) for difference in differences)
+    def minSteps(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: int
+        """
+        cnt1, cnt2 = collections.Counter(s), collections.Counter(t)
+        return sum((cnt1-cnt2).itervalues())+sum((cnt2-cnt1).itervalues())

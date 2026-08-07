@@ -1,50 +1,66 @@
-from typing import List
+# Time:  O(k * (m * n + r))
+# Space: O(m * n + r)
 
-
+# dp, prefix sum
 class Solution:
-    def minCost(self, grid: List[List[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        infinity = float("inf")
-        cells = sorted((grid[row][column], row, column) for row in range(rows) for column in range(columns))
-        cells.reverse()
+    def minCost(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        m = len(grid)
+        n = len(grid[0])
+        dp = [[float("inf")]*n for _ in range(m)]
+        dp[-1][-1] = 0
+        mx = max(max(row) for row in grid)
+        prefix = [float("inf")]*(mx+1)
+        for i in range(k+1):
+            for r in reversed(range(m)):
+                for c in reversed(range(n)):
+                    if r+1 < m:
+                        if dp[r+1][c]+grid[r+1][c] < dp[r][c]:
+                            dp[r][c] = dp[r+1][c]+grid[r+1][c]
+                    if c+1 < n:
+                        if dp[r][c+1]+grid[r][c+1] < dp[r][c]:
+                            dp[r][c] = dp[r][c+1]+grid[r][c+1]
+                    if prefix[grid[r][c]] < dp[r][c]:
+                        dp[r][c] = prefix[grid[r][c]]
+            for r in range(m):
+                for c in range(n):
+                    if dp[r][c] < prefix[grid[r][c]]:
+                        prefix[grid[r][c]] = dp[r][c]
+            for i in range(mx):
+                if prefix[i] < prefix[i+1]:
+                    prefix[i+1] = prefix[i]
+        return dp[0][0]
 
-        def close_normal_moves(costs: List[List[float]]) -> None:
-            for row in range(rows):
-                for column in range(columns):
-                    if row > 0:
-                        costs[row][column] = min(
-                            costs[row][column],
-                            costs[row - 1][column] + grid[row][column],
-                        )
-                    if column > 0:
-                        costs[row][column] = min(
-                            costs[row][column],
-                            costs[row][column - 1] + grid[row][column],
-                        )
 
-        costs = [[infinity] * columns for _ in range(rows)]
-        costs[0][0] = 0
-        close_normal_moves(costs)
-
-        for _ in range(k):
-            next_costs = [row[:] for row in costs]
-            best_source = infinity
-            index = 0
-
-            while index < len(cells):
-                end = index
-                value = cells[index][0]
-                while end < len(cells) and cells[end][0] == value:
-                    _, row, column = cells[end]
-                    best_source = min(best_source, costs[row][column])
-                    end += 1
-                for position in range(index, end):
-                    _, row, column = cells[position]
-                    next_costs[row][column] = min(next_costs[row][column], best_source)
-                index = end
-
-            close_normal_moves(next_costs)
-            costs = next_costs
-
-        return int(costs[-1][-1])
+# Time:  O(k * (m * n + r))
+# Space: O(m * n + r)
+# dp, prefix sum
+class Solution2(object):
+    def minCost(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        dp = [[float("inf")]*len(grid[0]) for _ in range(len(grid))]
+        dp[-1][-1] = 0
+        mx = max(max(row) for row in grid)
+        prefix = [float("inf")]*(mx+1)
+        for i in range(k+1):
+            for r in reversed(range(len(grid))):
+                for c in reversed(range(len(grid[0]))):
+                    if r+1 < len(grid):
+                        dp[r][c] = min(dp[r][c], dp[r+1][c]+grid[r+1][c])
+                    if c+1 < len(grid[0]):
+                        dp[r][c] = min(dp[r][c], dp[r][c+1]+grid[r][c+1])
+                    dp[r][c] = min(dp[r][c], prefix[grid[r][c]])
+            for r in range(len(grid)):
+                for c in range(len(grid[0])):
+                    prefix[grid[r][c]] = min(prefix[grid[r][c]], dp[r][c])
+            for i in range(len(prefix)-1):
+                prefix[i+1] = min(prefix[i+1], prefix[i])
+        return dp[0][0]

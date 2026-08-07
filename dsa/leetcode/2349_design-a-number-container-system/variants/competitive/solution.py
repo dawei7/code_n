@@ -1,20 +1,34 @@
-import heapq
+# Time:  ctor:   O(1)
+#        change: O(logn)
+#        find:   O(1)
+# Space: O(n)
+
+from sortedcontainers import SortedList
 
 
-class NumberContainers:
+# sorted list
+class NumberContainers(object):
+
     def __init__(self):
-        self.index_to_number = {}
-        self.number_to_indices = {}
+        self.__idx_to_num = {}
+        self.__num_to_idxs = collections.defaultdict(SortedList)
 
-    def change(self, index: int, number: int) -> None:
-        if self.index_to_number.get(index) == number:
-            return
-        self.index_to_number[index] = number
-        heap = self.number_to_indices.setdefault(number, [])
-        heapq.heappush(heap, index)
+    def change(self, index, number):
+        """
+        :type index: int
+        :type number: int
+        :rtype: None
+        """
+        if index in self.__idx_to_num:
+            self.__num_to_idxs[self.__idx_to_num[index]].remove(index)
+            if not self.__num_to_idxs[self.__idx_to_num[index]]:
+                del self.__num_to_idxs[self.__idx_to_num[index]]
+        self.__idx_to_num[index] = number
+        self.__num_to_idxs[number].add(index)
 
-    def find(self, number: int) -> int:
-        heap = self.number_to_indices.get(number, [])
-        while heap and self.index_to_number.get(heap[0]) != number:
-            heapq.heappop(heap)
-        return heap[0] if heap else -1
+    def find(self, number):
+        """
+        :type number: int
+        :rtype: int
+        """
+        return self.__num_to_idxs[number][0] if number in self.__num_to_idxs else -1

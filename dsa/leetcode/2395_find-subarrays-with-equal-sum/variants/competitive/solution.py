@@ -1,14 +1,16 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def findSubarrays(self, nums: List[int]) -> bool:
-        seen_sums = set()
-
-        for index in range(len(nums) - 1):
-            pair_sum = nums[index] + nums[index + 1]
-            if pair_sum in seen_sums:
+    def findSubarrays(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        lookup = set()
+        for i in range(len(nums)-1):
+            if nums[i]+nums[i+1] in lookup:
                 return True
-            seen_sums.add(pair_sum)
-
+            lookup.add(nums[i]+nums[i+1])
         return False

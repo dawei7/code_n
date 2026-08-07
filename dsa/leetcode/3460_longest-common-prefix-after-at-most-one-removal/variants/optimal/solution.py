@@ -1,17 +1,14 @@
 class Solution:
     def longestCommonPrefix(self, s: str, t: str) -> int:
-        source = 0
-        target = 0
-        removed = False
-
-        while source < len(s) and target < len(t):
-            if s[source] == t[target]:
-                source += 1
-                target += 1
-            elif not removed:
-                removed = True
-                source += 1
+        n, m = len(s), len(t)
+        i = j = 0
+        rem = False
+        while i < n and j < m:
+            if s[i] != t[j]:
+                if rem:
+                    break
+                rem = True
             else:
-                break
-
-        return target
+                j += 1
+            i += 1
+        return j

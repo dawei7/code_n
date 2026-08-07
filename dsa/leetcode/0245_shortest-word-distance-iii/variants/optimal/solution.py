@@ -1,21 +1,20 @@
 class Solution:
-    def shortestWordDistance(self, wordsDict: list[str], word1: str, word2: str) -> int:
-        answer = len(wordsDict)
+    def shortestWordDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        ans = len(wordsDict)
         if word1 == word2:
-            previous = -1
-            for index, word in enumerate(wordsDict):
-                if word == word1:
-                    if previous >= 0:
-                        answer = min(answer, index - previous)
-                    previous = index
-            return answer
-
-        latest1 = latest2 = -1
-        for index, word in enumerate(wordsDict):
-            if word == word1:
-                latest1 = index
-            elif word == word2:
-                latest2 = index
-            if latest1 >= 0 and latest2 >= 0:
-                answer = min(answer, abs(latest1 - latest2))
-        return answer
+            j = -1
+            for i, w in enumerate(wordsDict):
+                if w == word1:
+                    if j != -1:
+                        ans = min(ans, i - j)
+                    j = i
+        else:
+            i = j = -1
+            for k, w in enumerate(wordsDict):
+                if w == word1:
+                    i = k
+                if w == word2:
+                    j = k
+                if i != -1 and j != -1:
+                    ans = min(ans, abs(i - j))
+        return ans

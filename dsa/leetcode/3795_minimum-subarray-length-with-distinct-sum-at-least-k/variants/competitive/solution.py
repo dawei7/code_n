@@ -1,26 +1,29 @@
-from collections import defaultdict
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# freq table, two pointers
 class Solution:
-    def minLength(self, nums: List[int], k: int) -> int:
-        frequencies = defaultdict(int)
-        distinct_sum = 0
-        left = 0
-        best = len(nums) + 1
-
-        for right, value in enumerate(nums):
-            if frequencies[value] == 0:
-                distinct_sum += value
-            frequencies[value] += 1
-
-            while distinct_sum >= k:
-                best = min(best, right - left + 1)
-                outgoing = nums[left]
-                frequencies[outgoing] -= 1
-                if frequencies[outgoing] == 0:
-                    distinct_sum -= outgoing
-                    del frequencies[outgoing]
+    def minLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        INF = float("inf")
+        cnt = collections.defaultdict(int)
+        result = INF
+        left = curr = 0
+        for right in range(len(nums)):
+            cnt[nums[right]] += 1
+            if cnt[nums[right]] == 1:
+                curr += nums[right]
+            while curr >= k:
+                result = min(result, right-left+1)
+                if cnt[nums[left]] == 1:
+                    curr -= nums[left]
+                cnt[nums[left]] -= 1
                 left += 1
-
-        return best if best <= len(nums) else -1
+        return result if result is not INF else -1

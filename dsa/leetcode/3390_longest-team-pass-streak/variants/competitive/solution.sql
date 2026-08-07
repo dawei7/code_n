@@ -1,40 +1,40 @@
-WITH pass_results AS (
-    SELECT
-        passing_team.team_name,
-        p.time_stamp,
-        CASE
-            WHEN passing_team.team_name = receiving_team.team_name THEN 1
-            ELSE 0
-        END AS successful
-    FROM Passes AS p
-    INNER JOIN Teams AS passing_team
-        ON passing_team.player_id = p.pass_from
-    INNER JOIN Teams AS receiving_team
-        ON receiving_team.player_id = p.pass_to
+# Time:  O(plogp + t)
+# Space: O(p + t)
+
+# recursive cte, window function
+WITH RECURSIVE edges_cte AS (
+    SELECT  t1.team_name AS team1, 
+            t2.team_name AS team2, 
+            time_stamp
+    FROM Passes p
+    INNER JOIN Teams t1 ON p.pass_from = t1.player_id
+    INNER JOIN Teams t2 ON p.pass_to = t2.player_id    
 ),
-streak_groups AS (
-    SELECT
-        team_name,
-        successful,
-        SUM(CASE WHEN successful = 0 THEN 1 ELSE 0 END) OVER (
-            PARTITION BY team_name
-            ORDER BY time_stamp
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-        ) AS streak_group
-    FROM pass_results
+sorted_edges_cte AS (
+    SELECT team1, 
+           team2, 
+           RANK() OVER (PARTITION BY team1 ORDER BY time_stamp) AS rnk 
+    FROM edges_cte
 ),
-streak_lengths AS (
-    SELECT
-        team_name,
-        streak_group,
-        SUM(successful) AS streak_length
-    FROM streak_groups
-    WHERE successful = 1
-    GROUP BY team_name, streak_group
+scores_cte AS (
+    SELECT team1, 
+           team2, 
+           rnk, 
+           IF(team1 = team2, 1, 0) AS score 
+    FROM sorted_edges_cte
+    WHERE rnk = 1
+    UNION
+    SELECT sorted_edges_cte.team1, 
+           sorted_edges_cte.team2, 
+           sorted_edges_cte.rnk, 
+           IF(sorted_edges_cte.team1 = sorted_edges_cte.team2, scores_cte.score + 1, 0) AS score 
+    FROM sorted_edges_cte
+    INNER JOIN scores_cte ON sorted_edges_cte.rnk = scores_cte.rnk + 1 AND sorted_edges_cte.team1 = scores_cte.team1
 )
-SELECT
-    team_name,
-    MAX(streak_length) AS longest_streak
-FROM streak_lengths
-GROUP BY team_name
-ORDER BY team_name;
+
+SELECT team1 AS team_name, 
+       MAX(score) AS longest_streak 
+FROM scores_cte
+GROUP BY 1 
+HAVING longest_streak > 0 
+ORDER BY 1;

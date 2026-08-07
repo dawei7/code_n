@@ -1,8 +1,27 @@
-from typing import List
+# Time:  O(r * c)
+# Space: O(1)
 
 
 class Solution:
-    def transpose(self, matrix: List[List[int]]) -> List[List[int]]:
-        row_count = len(matrix)
-        column_count = len(matrix[0])
-        return [[matrix[row][column] for row in range(row_count)] for column in range(column_count)]
+    def transpose(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        result = [[None] * len(A) for _ in range(len(A[0]))]
+        for r, row in enumerate(A):
+            for c, val in enumerate(row):
+                result[c][r] = val
+        return result
+
+
+# Time:  O(r * c)
+# Space: O(1)
+class Solution2(object):
+    def transpose(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        return zip(*A)
+

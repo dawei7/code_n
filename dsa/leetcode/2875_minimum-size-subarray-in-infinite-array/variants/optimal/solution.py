@@ -1,24 +1,21 @@
 class Solution:
     def minSizeSubarray(self, nums: List[int], target: int) -> int:
+        s = sum(nums)
         n = len(nums)
-        total = sum(nums)
-        full_cycles, remainder = divmod(target, total)
-
-        if remainder == 0:
-            return full_cycles * n
-
-        left = 0
-        window_sum = 0
-        best = 2 * n + 1
-
-        for right in range(2 * n):
-            window_sum += nums[right % n]
-            while window_sum > remainder:
-                window_sum -= nums[left % n]
-                left += 1
-            if window_sum == remainder:
-                best = min(best, right - left + 1)
-
-        if best == 2 * n + 1:
-            return -1
-        return full_cycles * n + best
+        a = 0
+        if target > s:
+            a = n * (target // s)
+            target -= target // s * s
+        if target == s:
+            return n
+        pos = {0: -1}
+        pre = 0
+        b = inf
+        for i, x in enumerate(nums):
+            pre += x
+            if (t := pre - target) in pos:
+                b = min(b, i - pos[t])
+            if (t := pre - (s - target)) in pos:
+                b = min(b, n - (i - pos[t]))
+            pos[pre] = i
+        return -1 if b == inf else a + b

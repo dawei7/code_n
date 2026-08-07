@@ -1,12 +1,11 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def alternatingSum(self, nums: List[int]) -> int:
-        answer = 0
-        for index, value in enumerate(nums):
-            if index % 2 == 0:
-                answer += value
-            else:
-                answer -= value
-        return answer
+    def alternatingSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return sum(nums[i] for i in range(0, len(nums), 2))-sum(nums[i] for i in range(1, len(nums), 2))

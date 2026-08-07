@@ -1,27 +1,75 @@
+# Time:  O(n), n is the length of sequence
+# Space: O(m), m is the length of word
+
+# optimized kmp solution
 class Solution:
-    def maxRepeating(self, sequence: str, word: str) -> int:
-        prefix = [0] * len(word)
-        matched = 0
-        for index in range(1, len(word)):
-            while matched and word[index] != word[matched]:
-                matched = prefix[matched - 1]
-            if word[index] == word[matched]:
-                matched += 1
-            prefix[index] = matched
+    def maxRepeating(self, sequence, word):
+        """
+        :type sequence: str
+        :type word: str
+        :rtype: int
+        """
+        def getPrefix(pattern):
+            prefix = [-1] * len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j > -1 and pattern[j + 1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
 
-        repeats = [0] * len(sequence)
-        matched = 0
-        answer = 0
-        width = len(word)
+        if len(sequence) < len(word):
+            return 0
 
-        for index, character in enumerate(sequence):
-            while matched and character != word[matched]:
-                matched = prefix[matched - 1]
-            if character == word[matched]:
-                matched += 1
-            if matched == width:
-                repeats[index] = 1 + (repeats[index - width] if index >= width else 0)
-                answer = max(answer, repeats[index])
-                matched = prefix[matched - 1]
+        prefix = getPrefix(word)
+        result, count, j, prev = 0, 0, -1, -1
+        for i in range(len(sequence)):
+            while j > -1 and word[j+1] != sequence[i]:
+                j = prefix[j]
+            if word[j+1] == sequence[i]:
+                j += 1
+            if j+1 == len(word):     
+                count = count+1 if i-prev == len(word) else 1
+                result = max(result, count)
+                j, prev = -1, i
+        return result
 
-        return answer
+
+# Time:  O(n), n is the length of sequence
+# Space: O(n)
+# kmp solution
+class Solution2(object):
+    def maxRepeating(self, sequence, word):
+        """
+        :type sequence: str
+        :type word: str
+        :rtype: int
+        """
+        def getPrefix(pattern):
+            prefix = [-1] * len(pattern)
+            j = -1
+            for i in range(1, len(pattern)):
+                while j > -1 and pattern[j + 1] != pattern[i]:
+                    j = prefix[j]
+                if pattern[j+1] == pattern[i]:
+                    j += 1
+                prefix[i] = j
+            return prefix
+
+        if len(sequence) < len(word):
+            return 0
+
+        new_word = word*(len(sequence)//len(word))
+        prefix = getPrefix(new_word)
+        result, j = 0, -1
+        for i in range(len(sequence)):
+            while j > -1 and new_word[j+1] != sequence[i]:
+                j = prefix[j]
+            if new_word[j+1] == sequence[i]:
+                j += 1
+            result = max(result, j+1)
+            if j+1 == len(new_word):     
+                break
+        return result//len(word)

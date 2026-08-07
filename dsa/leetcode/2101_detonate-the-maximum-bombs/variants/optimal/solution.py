@@ -1,30 +1,26 @@
-from typing import List
-
-
 class Solution:
     def maximumDetonation(self, bombs: List[List[int]]) -> int:
         n = len(bombs)
-        adjacency = [[] for _ in range(n)]
-
-        for source, (x_source, y_source, radius) in enumerate(bombs):
-            radius_squared = radius * radius
-            for target, (x_target, y_target, _) in enumerate(bombs):
-                if source == target:
-                    continue
-                dx = x_source - x_target
-                dy = y_source - y_target
-                if dx * dx + dy * dy <= radius_squared:
-                    adjacency[source].append(target)
-
-        maximum = 1
-        for start in range(n):
-            seen = {start}
-            stack = [start]
-            while stack:
-                bomb = stack.pop()
-                for neighbor in adjacency[bomb]:
-                    if neighbor not in seen:
-                        seen.add(neighbor)
-                        stack.append(neighbor)
-            maximum = max(maximum, len(seen))
-        return maximum
+        g = [[] for _ in range(n)]
+        for i in range(n - 1):
+            x1, y1, r1 = bombs[i]
+            for j in range(i + 1, n):
+                x2, y2, r2 = bombs[j]
+                dist = hypot(x1 - x2, y1 - y2)
+                if dist <= r1:
+                    g[i].append(j)
+                if dist <= r2:
+                    g[j].append(i)
+        ans = 0
+        for k in range(n):
+            vis = {k}
+            q = [k]
+            for i in q:
+                for j in g[i]:
+                    if j not in vis:
+                        vis.add(j)
+                        q.append(j)
+            if len(vis) == n:
+                return n
+            ans = max(ans, len(vis))
+        return ans

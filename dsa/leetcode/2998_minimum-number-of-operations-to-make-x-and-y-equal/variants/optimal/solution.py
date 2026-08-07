@@ -1,23 +1,14 @@
-from functools import cache
-
-
 class Solution:
     def minimumOperationsToMakeEqual(self, x: int, y: int) -> int:
         @cache
-        def visit(value: int) -> int:
-            if value <= y:
-                return y - value
+        def dfs(x: int) -> int:
+            if y >= x:
+                return y - x
+            ans = x - y
+            ans = min(ans, x % 5 + 1 + dfs(x // 5))
+            ans = min(ans, 5 - x % 5 + 1 + dfs(x // 5 + 1))
+            ans = min(ans, x % 11 + 1 + dfs(x // 11))
+            ans = min(ans, 11 - x % 11 + 1 + dfs(x // 11 + 1))
+            return ans
 
-            answer = value - y
-            for divisor in (5, 11):
-                remainder = value % divisor
-                answer = min(answer, remainder + 1 + visit(value // divisor))
-
-                increase = (-value) % divisor
-                answer = min(
-                    answer,
-                    increase + 1 + visit((value + increase) // divisor),
-                )
-            return answer
-
-        return visit(x)
+        return dfs(x)

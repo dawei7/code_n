@@ -1,22 +1,28 @@
-from typing import List
+# Time:  O(k * n^2)
+# Space: O(n)
 
 
 class Solution:
-    def largestSumOfAverages(self, nums: List[int], k: int) -> float:
-        n = len(nums)
-        prefix = [0]
-        for value in nums:
-            prefix.append(prefix[-1] + value)
+    def largestSumOfAverages(self, A, K):
+        """
+        :type A: List[int]
+        :type K: int
+        :rtype: float
+        """
+        accum_sum = [A[0]]
+        for i in range(1, len(A)):
+            accum_sum.append(A[i]+accum_sum[-1])
 
-        dp = [0.0] * (n + 1)
-        for end in range(1, n + 1):
-            dp[end] = prefix[end] / end
+        dp = [[0]*len(A) for _ in range(2)]
+        for k in range(1, K+1):
+            for i in range(k-1, len(A)):
+                if k == 1:
+                    dp[k % 2][i] = float(accum_sum[i])/(i+1)
+                else:
+                    for j in range(k-2, i):
+                        dp[k % 2][i] = \
+                            max(dp[k % 2][i],
+                                dp[(k-1) % 2][j] +
+                                float(accum_sum[i]-accum_sum[j])/(i-j))
+        return dp[K % 2][-1]
 
-        for groups in range(2, k + 1):
-            next_dp = [0.0] * (n + 1)
-            for end in range(groups, n + 1):
-                next_dp[end] = max(
-                    dp[split] + (prefix[end] - prefix[split]) / (end - split) for split in range(groups - 1, end)
-                )
-            dp = next_dp
-        return dp[n]

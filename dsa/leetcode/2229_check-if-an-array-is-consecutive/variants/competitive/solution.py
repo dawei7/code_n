@@ -1,7 +1,24 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def isConsecutive(self, nums: List[int]) -> bool:
-        distinct = set(nums)
-        return len(distinct) == len(nums) and max(nums) - min(nums) == len(nums) - 1
+    def isConsecutive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        return max(nums)-min(nums)+1 == len(nums) == len(set(nums))
+
+
+# Time:  O(nlogn)
+# Space: O(1)
+# sort
+class Solution2(object):
+    def isConsecutive(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        nums.sort()
+        return all(nums[i]+1 == nums[i+1] for i in range(len(nums)-1))

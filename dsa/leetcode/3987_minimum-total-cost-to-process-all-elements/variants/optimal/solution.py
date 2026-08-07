@@ -1,4 +1,14 @@
 class Solution:
     def minimumCost(self, nums: list[int], k: int) -> int:
-        operations = (sum(nums) - 1) // k
-        return operations * (operations + 1) // 2 % 1_000_000_007
+        cnt = 0
+        cur = k
+        mod = 10**9 + 7
+        for x in nums:
+            diff = x - cur
+            if diff > 0:
+                m = (diff + k - 1) // k
+                cur += m * k
+                cnt += m
+            cur -= x
+        cnt %= mod
+        return (1 + cnt) * cnt // 2 % mod

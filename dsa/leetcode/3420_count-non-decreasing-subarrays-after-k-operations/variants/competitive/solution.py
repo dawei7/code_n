@@ -1,28 +1,30 @@
-from collections import deque
-from typing import List
+# Time:  O(n)
+# Space: O(n)
+
+import collections
 
 
+# mono deque, two pointers, sliding window
 class Solution:
-    def countNonDecreasingSubarrays(self, nums: List[int], k: int) -> int:
-        n = len(nums)
-        right = n - 1
-        cost = 0
-        answer = 0
-        blocks = deque()
-
-        for left in range(n - 1, -1, -1):
-            while blocks and nums[left] > nums[blocks[-1]]:
-                index = blocks.pop()
-                next_index = blocks[-1] if blocks else right + 1
-                cost += (next_index - index) * (nums[left] - nums[index])
-            blocks.append(left)
-
-            while cost > k:
-                cost -= nums[blocks[0]] - nums[right]
-                if blocks[0] == right:
-                    blocks.popleft()
+    def countNonDecreasingSubarrays(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        result = cnt = 0
+        dq = collections.deque()
+        right = len(nums)-1
+        for left in reversed(range(len(nums))):
+            while dq and nums[dq[-1]] < nums[left]:
+                l = dq.pop()
+                r = dq[-1]-1 if dq else right
+                cnt += (r-l+1)*(nums[left]-nums[l])
+            dq.append(left)
+            while cnt > k:
+                cnt -= nums[dq[0]]-nums[right]
+                if dq[0] == right:
+                    dq.popleft()
                 right -= 1
-
-            answer += right - left + 1
-
-        return answer
+            result += right-left+1
+        return result

@@ -1,15 +1,20 @@
-from typing import List
+# Time:  O(nlogr)
+# Space: O(10 * logr)
 
-
+# prefix sum
 class Solution:
-    def sumDigitDifferences(self, nums: List[int]) -> int:
-        positions = len(str(nums[0]))
-        counts = [[0] * 10 for _ in range(positions)]
-        total = 0
-        for seen, value in enumerate(nums):
-            for position in range(positions):
-                digit = value % 10
-                total += seen - counts[position][digit]
-                counts[position][digit] += 1
-                value //= 10
-        return total
+    def sumDigitDifferences(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        base, l = 1, 0
+        while base <= nums[0]:
+            base *= 10
+            l += 1
+        cnts = [[0]*10 for _ in range(l)]
+        for x in nums:
+            for i in range(l):
+                cnts[i][x%10] += 1
+                x //= 10
+        return sum(c*(len(nums)-c) for cnt in cnts for c in cnt)//2

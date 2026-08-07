@@ -1,25 +1,30 @@
-from typing import List
+# Time:  O(n + q)
+# Space: O(n)
 
-
+# array
 class Solution:
-    def colorTheArray(self, n: int, queries: List[List[int]]) -> List[int]:
-        colors = [0] * n
-        adjacent_pairs = 0
-        answer = []
+    def colorTheArray(self, n, queries):
+        """
+        :type n: int
+        :type queries: List[List[int]]
+        :rtype: List[int]
+        """
+        def update(i):
+            if not nums[i]:
+                return 0
+            cnt = 0
+            if i-1 >= 0 and nums[i-1] == nums[i]:
+                cnt += 1
+            if i+1 < n and nums[i+1] == nums[i]:
+                cnt += 1
+            return cnt
 
-        for index, new_color in queries:
-            old_color = colors[index]
-            if old_color != 0:
-                if index > 0 and colors[index - 1] == old_color:
-                    adjacent_pairs -= 1
-                if index + 1 < n and colors[index + 1] == old_color:
-                    adjacent_pairs -= 1
-
-            colors[index] = new_color
-            if index > 0 and colors[index - 1] == new_color:
-                adjacent_pairs += 1
-            if index + 1 < n and colors[index + 1] == new_color:
-                adjacent_pairs += 1
-            answer.append(adjacent_pairs)
-
-        return answer
+        nums = [0]*n
+        result = [0]*len(queries)
+        curr = 0
+        for idx, (i, c) in enumerate(queries):
+            curr -= update(i)
+            nums[i] = c
+            curr += update(i)
+            result[idx] = curr
+        return result

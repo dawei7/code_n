@@ -1,17 +1,21 @@
+# Time:  O(n)
+# Space: O(1)
+
+# freq table
 class Solution:
-    def scoreValidator(self, events: list[str]) -> list[int]:
-        score = 0
-        counter = 0
-
-        for event in events:
-            if event == "W":
-                counter += 1
-            elif event == "WD" or event == "NB":
-                score += 1
+    def scoreValidator(self, events):
+        """
+        :type events: List[str]
+        :rtype: List[int]
+        """
+        result = [0]*2
+        for x in events:
+            if x == "W":
+                result[1] += 1
+                if result[1] == 10:
+                    break
+            elif x in ("WD", "NB"):
+                result[0] += 1
             else:
-                score += int(event)
-
-            if counter == 10:
-                break
-
-        return [score, counter]
+                result[0] += int(x)
+        return result

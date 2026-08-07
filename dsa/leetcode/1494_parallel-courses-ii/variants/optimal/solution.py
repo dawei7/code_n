@@ -1,40 +1,27 @@
-from itertools import combinations
-from typing import List
-
-
 class Solution:
     def minNumberOfSemesters(self, n: int, relations: List[List[int]], k: int) -> int:
-        if not relations:
-            return (n + k - 1) // k
-
-        prerequisites = [0] * n
-        for previous, following in relations:
-            prerequisites[following - 1] |= 1 << (previous - 1)
-
-        full_mask = (1 << n) - 1
-        unreachable = n + 1
-        semesters = [unreachable] * (1 << n)
-        semesters[0] = 0
-
-        for done in range(full_mask):
-            if semesters[done] == unreachable:
-                continue
-
-            available_bits = []
-            for course in range(n):
-                bit = 1 << course
-                if done & bit == 0 and prerequisites[course] & done == prerequisites[course]:
-                    available_bits.append(bit)
-
-            if len(available_bits) <= k:
-                take = sum(available_bits)
-                next_state = done | take
-                semesters[next_state] = min(semesters[next_state], semesters[done] + 1)
-                continue
-
-            for chosen in combinations(available_bits, k):
-                take = sum(chosen)
-                next_state = done | take
-                semesters[next_state] = min(semesters[next_state], semesters[done] + 1)
-
-        return semesters[full_mask]
+        d = [0] * (n + 1)
+        for x, y in relations:
+            d[y] |= 1 << x
+        q = deque([(0, 0)])
+        vis = {0}
+        while q:
+            cur, t = q.popleft()
+            if cur == (1 << (n + 1)) - 2:
+                return t
+            nxt = 0
+            for i in range(1, n + 1):
+                if (cur & d[i]) == d[i]:
+                    nxt |= 1 << i
+            nxt ^= cur
+            if nxt.bit_count() <= k:
+                if (nxt | cur) not in vis:
+                    vis.add(nxt | cur)
+                    q.append((nxt | cur, t + 1))
+            else:
+                x = nxt
+                while nxt:
+                    if nxt.bit_count() == k and (nxt | cur) not in vis:
+                        vis.add(nxt | cur)
+                        q.append((nxt | cur, t + 1))
+                    nxt = (nxt - 1) & x

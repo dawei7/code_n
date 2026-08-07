@@ -1,12 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+# prefix sum
 class Solution:
-    def leftRightDifference(self, nums: List[int]) -> List[int]:
-        left_sum = 0
-        right_sum = sum(nums)
-        answer = []
-
-        for value in nums:
-            right_sum -= value
-            answer.append(abs(left_sum - right_sum))
-            left_sum += value
-
-        return answer
+    def leftRightDifference(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        total = sum(nums)
+        result = []
+        curr = 0
+        for x in nums:
+            curr += x
+            result.append(abs((curr-x)-(total-curr)))
+        return result

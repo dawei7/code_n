@@ -1,8 +1,7 @@
 class Solution:
     def checkGoodInteger(self, n: int) -> bool:
-        score = 0
+        s = 0
         while n:
-            digit = n % 10
-            score += digit * digit - digit
-            n //= 10
-        return score >= 50
+            n, x = divmod(n, 10)
+            s += x * (x - 1)
+        return s >= 50

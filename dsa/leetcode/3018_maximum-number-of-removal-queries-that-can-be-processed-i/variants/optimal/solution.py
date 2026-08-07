@@ -1,27 +1,18 @@
-from typing import List
-
-
 class Solution:
     def maximumProcessableQueries(self, nums: List[int], queries: List[int]) -> int:
-        query_count = len(queries)
-        current = [0]
-        answer = 0
-
-        for length in range(len(nums), 0, -1):
-            following = [-1] * (len(current) + 1)
-
-            for left, processed in enumerate(current):
-                if processed < 0:
-                    continue
-
-                right = left + length - 1
-                answer = max(answer, processed)
-                take_left = processed + int(processed < query_count and nums[left] >= queries[processed])
-                take_right = processed + int(processed < query_count and nums[right] >= queries[processed])
-
-                following[left + 1] = max(following[left + 1], processed, take_left)
-                following[left] = max(following[left], processed, take_right)
-
-            current = following
-
-        return max(answer, max(current))
+        n = len(nums)
+        f = [[0] * n for _ in range(n)]
+        m = len(queries)
+        for i in range(n):
+            for j in range(n - 1, i - 1, -1):
+                if i:
+                    f[i][j] = max(
+                        f[i][j], f[i - 1][j] + (nums[i - 1] >= queries[f[i - 1][j]])
+                    )
+                if j + 1 < n:
+                    f[i][j] = max(
+                        f[i][j], f[i][j + 1] + (nums[j + 1] >= queries[f[i][j + 1]])
+                    )
+                if f[i][j] == m:
+                    return m
+        return max(f[i][i] + (nums[i] >= queries[f[i][i]]) for i in range(n))

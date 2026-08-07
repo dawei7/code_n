@@ -1,24 +1,20 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minOperations(self, nums1: List[int], nums2: List[int]) -> int:
-        operations = 1
-        appended_target = nums2[-1]
-        extra = float("inf")
-
-        for current, target in zip(nums1, nums2):
-            operations += abs(current - target)
-            low = min(current, target)
-            high = max(current, target)
-
-            if low <= appended_target <= high:
-                extra = 0
-            else:
-                extra = min(
-                    extra,
-                    abs(appended_target - low),
-                    abs(appended_target - high),
-                )
-
-        return operations + extra
+    def minOperations(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        result = 0
+        cnt = float("inf")
+        for i in range(len(nums1)):
+            result += abs(nums1[i]-nums2[i])
+            if (nums2[-1]-nums1[i])*(nums2[-1]-nums2[i]) <= 0:
+                cnt = 0
+            cnt = min(cnt, abs(nums2[-1]-nums1[i]), abs(nums2[-1]-nums2[i]))
+        result += 1+cnt
+        return result

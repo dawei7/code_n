@@ -1,6 +1,11 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# bit manipulation, math
 class Solution:
-    def uniqueXorTriplets(self, nums: List[int]) -> int:
-        size = len(nums)
-        if size < 3:
-            return size
-        return 1 << size.bit_length()
+    def uniqueXorTriplets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        return 1<<len(nums).bit_length() if len(nums) >= 3 else len(nums)

@@ -1,21 +1,17 @@
-from bisect import bisect_left
-from typing import List
+# Time:  O(mlogm + nlogm)
+# Space: O(1)
 
-
+# binary search
 class Solution:
-    def successfulPairs(
-        self,
-        spells: List[int],
-        potions: List[int],
-        success: int,
-    ) -> List[int]:
+    def successfulPairs(self, spells, potions, success):
+        """
+        :type spells: List[int]
+        :type potions: List[int]
+        :type success: int
+        :rtype: List[int]
+        """
+        def ceil_divide(a, b):
+            return (a+(b-1))//b
+            
         potions.sort()
-        potion_count = len(potions)
-        answer = []
-
-        for spell in spells:
-            required = (success + spell - 1) // spell
-            first = bisect_left(potions, required)
-            answer.append(potion_count - first)
-
-        return answer
+        return [len(potions)-bisect.bisect_left(potions, ceil_divide(success, s)) for s in spells]

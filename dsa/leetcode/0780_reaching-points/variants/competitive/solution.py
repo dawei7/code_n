@@ -1,13 +1,23 @@
+# Time:  O(log(max(m, n)))
+# Space: O(1)
+
 class Solution:
-    def reachingPoints(self, sx: int, sy: int, tx: int, ty: int) -> bool:
-        while tx > sx and ty > sy:
-            if tx > ty:
+    def reachingPoints(self, sx, sy, tx, ty):
+        """
+        :type sx: int
+        :type sy: int
+        :type tx: int
+        :type ty: int
+        :rtype: bool
+        """
+        while tx >= sx and ty >= sy:
+            if tx < ty:
+                sx, sy = sy, sx
+                tx, ty = ty, tx
+            if ty > sy:
                 tx %= ty
             else:
-                ty %= tx
+                return (tx - sx) % ty == 0
 
-        if tx == sx:
-            return ty >= sy and (ty - sy) % sx == 0
-        if ty == sy:
-            return tx >= sx and (tx - sx) % sy == 0
         return False
+

@@ -1,16 +1,21 @@
-from typing import List
+# Time:  O(nlogn)
+# Space: O(1)
 
-
+# sort, line sweep
 class Solution:
-    def numberOfPoints(self, nums: List[List[int]]) -> int:
-        difference = [0] * 102
-        for start, end in nums:
-            difference[start] += 1
-            difference[end + 1] -= 1
-
-        covered = 0
-        active = 0
-        for point in range(1, 101):
-            active += difference[point]
-            covered += active > 0
-        return covered
+    def numberOfPoints(self, nums):
+        """
+        :type nums: List[List[int]]
+        :rtype: int
+        """
+        nums.sort()
+        result = 0
+        curr = nums[0]
+        for i in range(1, len(nums)):
+            if nums[i][0] <= curr[1]:
+                curr[1] = max(curr[1], nums[i][1])
+            else:
+                result += curr[1]-curr[0]+1
+                curr = nums[i]
+        result += curr[1]-curr[0]+1
+        return result

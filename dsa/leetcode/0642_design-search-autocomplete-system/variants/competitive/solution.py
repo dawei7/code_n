@@ -1,46 +1,76 @@
-from collections import Counter
-from typing import List
+# Time:  O(p^2), p is the length of the prefix
+# Space: O(p * t + s), t is the number of nodes of trie
+#                    , s is the size of the sentences
+
+import collections
 
 
-class TrieNode:
+class TrieNode(object):
+
     def __init__(self):
-        self.children = {}
-        self.hot = []
+        self.__TOP_COUNT = 3
+        self.infos = []
+        self.leaves = {}
 
 
-class AutocompleteSystem:
-    def __init__(self, sentences: List[str], times: List[int]):
-        self.frequency = Counter()
+    def insert(self, s, times):
+        cur = self
+        cur.add_info(s, times)
+        for c in s:
+            if c not in cur.leaves:
+                cur.leaves[c] = TrieNode()
+            cur = cur.leaves[c]
+            cur.add_info(s, times)
+
+
+    def add_info(self, s, times):
+        for p in self.infos:
+            if p[1] == s:
+                p[0] = -times
+                break
+        else:
+            self.infos.append([-times, s])
+        self.infos.sort()
+        if len(self.infos) > self.__TOP_COUNT:
+            self.infos.pop()
+
+
+class AutocompleteSystem(object):
+
+    def __init__(self, sentences, times):
+        """
+        :type sentences: List[str]
+        :type times: List[int]
+        """
+        self.__trie = TrieNode()
+        self.__cur_node = self.__trie
+        self.__search = []
+        self.__sentence_to_count = collections.defaultdict(int)
         for sentence, count in zip(sentences, times):
-            self.frequency[sentence] += count
+            self.__sentence_to_count[sentence] = count
+            self.__trie.insert(sentence, count)
 
-        self.root = TrieNode()
-        for sentence in self.frequency:
-            self.insert(sentence)
-        self.current = ""
-        self.node = self.root
 
-    def refresh(self, node, sentence):
-        if sentence not in node.hot:
-            node.hot.append(sentence)
-        node.hot.sort(key=lambda candidate: (-self.frequency[candidate], candidate))
-        del node.hot[3:]
+    def input(self, c):
+        """
+        :type c: str
+        :rtype: List[str]
+        """
+        result = []
+        if c == '#':
+            self.__sentence_to_count["".join(self.__search)] += 1
+            self.__trie.insert("".join(self.__search), self.__sentence_to_count["".join(self.__search)])
+            self.__cur_node = self.__trie
+            self.__search = []
+        else:
+            self.__search.append(c)
+            if self.__cur_node:
+                if c not in self.__cur_node.leaves:
+                    self.__cur_node = None
+                    return []
+                self.__cur_node = self.__cur_node.leaves[c]
+                result = [p[1] for p in self.__cur_node.infos]
+        return result
 
-    def insert(self, sentence):
-        node = self.root
-        for character in sentence:
-            node = node.children.setdefault(character, TrieNode())
-            self.refresh(node, sentence)
 
-    def input(self, c: str) -> List[str]:
-        if c == "#":
-            self.frequency[self.current] += 1
-            self.insert(self.current)
-            self.current = ""
-            self.node = self.root
-            return []
 
-        self.current += c
-        if self.node is not None:
-            self.node = self.node.children.get(c)
-        return [] if self.node is None else list(self.node.hot)

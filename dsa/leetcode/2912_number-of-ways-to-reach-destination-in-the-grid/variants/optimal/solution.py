@@ -1,28 +1,15 @@
-from typing import List
-
-
 class Solution:
     def numberOfWays(
-        self,
-        n: int,
-        m: int,
-        k: int,
-        source: List[int],
-        dest: List[int],
+        self, n: int, m: int, k: int, source: List[int], dest: List[int]
     ) -> int:
-        mod = 1_000_000_007
-
-        at_dest = int(source[0] == dest[0] and source[1] == dest[1])
-        same_row = int(source[0] == dest[0] and source[1] != dest[1])
-        same_col = int(source[0] != dest[0] and source[1] == dest[1])
-        neither = int(source[0] != dest[0] and source[1] != dest[1])
-
+        mod = 10**9 + 7
+        a, b, c, d = 1, 0, 0, 0
         for _ in range(k):
-            at_dest, same_row, same_col, neither = (
-                (same_row + same_col) % mod,
-                (at_dest * (m - 1) + same_row * (m - 2) + neither) % mod,
-                (at_dest * (n - 1) + same_col * (n - 2) + neither) % mod,
-                (same_row * (n - 1) + same_col * (m - 1) + neither * (n + m - 4)) % mod,
-            )
-
-        return at_dest
+            aa = ((n - 1) * b + (m - 1) * c) % mod
+            bb = (a + (n - 2) * b + (m - 1) * d) % mod
+            cc = (a + (m - 2) * c + (n - 1) * d) % mod
+            dd = (b + c + (n - 2) * d + (m - 2) * d) % mod
+            a, b, c, d = aa, bb, cc, dd
+        if source[0] == dest[0]:
+            return a if source[1] == dest[1] else c
+        return b if source[1] == dest[1] else d

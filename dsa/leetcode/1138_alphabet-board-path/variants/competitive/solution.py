@@ -1,14 +1,20 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def alphabetBoardPath(self, target: str) -> str:
-        row = 0
-        column = 0
-        commands = []
-        for character in target:
-            next_row, next_column = divmod(ord(character) - ord("a"), 5)
-            commands.append("U" * max(0, row - next_row))
-            commands.append("L" * max(0, column - next_column))
-            commands.append("R" * max(0, next_column - column))
-            commands.append("D" * max(0, next_row - row))
-            commands.append("!")
-            row, column = next_row, next_column
-        return "".join(commands)
+    def alphabetBoardPath(self, target):
+        """
+        :type target: str
+        :rtype: str
+        """
+        x, y = 0, 0
+        result = []
+        for c in target:
+            y1, x1 = divmod(ord(c)-ord('a'), 5)
+            result.append('U' * max(y-y1, 0))
+            result.append('L' * max(x-x1, 0))
+            result.append('R' * max(x1-x, 0))
+            result.append('D' * max(y1-y, 0))
+            result.append('!')
+            x, y = x1, y1
+        return "".join(result)

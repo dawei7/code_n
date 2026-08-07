@@ -1,16 +1,10 @@
-from typing import List
-
-
 class Solution:
     def minDeletionSize(self, strs: List[str]) -> int:
-        rows = len(strs)
-        columns = len(strs[0])
-        deleted = 0
-
-        for column in range(columns):
-            for row in range(rows - 1):
-                if strs[row][column] > strs[row + 1][column]:
-                    deleted += 1
+        m, n = len(strs[0]), len(strs)
+        ans = 0
+        for j in range(m):
+            for i in range(1, n):
+                if strs[i][j] < strs[i - 1][j]:
+                    ans += 1
                     break
-
-        return deleted
+        return ans

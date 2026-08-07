@@ -1,34 +1,26 @@
-from collections import Counter
+# Time:  O(26 * n)
+# Space: O(n)
+
+import collections
 
 
+# combinatorics
 class Solution:
-    def countGoodSubsequences(self, s: str) -> int:
-        modulus = 1_000_000_007
-        frequencies = Counter(s)
-        length = len(s)
+    def countGoodSubsequences(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            if not (0 <= k <= n):
+                return 0
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
 
-        factorial = [1] * (length + 1)
-        for value in range(1, length + 1):
-            factorial[value] = factorial[value - 1] * value % modulus
-
-        inverse_factorial = [1] * (length + 1)
-        inverse_factorial[length] = pow(factorial[length], modulus - 2, modulus)
-        for value in range(length, 0, -1):
-            inverse_factorial[value - 1] = inverse_factorial[value] * value % modulus
-
-        answer = 0
-        for chosen_frequency in range(1, max(frequencies.values()) + 1):
-            ways = 1
-            for frequency in frequencies.values():
-                if frequency < chosen_frequency:
-                    continue
-                combinations = (
-                    factorial[frequency]
-                    * inverse_factorial[chosen_frequency]
-                    * inverse_factorial[frequency - chosen_frequency]
-                    % modulus
-                )
-                ways = ways * (combinations + 1) % modulus
-            answer = (answer + ways - 1) % modulus
-
-        return answer
+        cnt = collections.Counter(s)
+        return reduce(lambda total, k: (total+reduce(lambda total, x: total*(1+nCr(x, k))%MOD, cnt.values(), 1)-1)%MOD, range(1, max(cnt.values())+1), 0)

@@ -1,20 +1,15 @@
 class Solution:
     def checkValidString(self, s: str) -> bool:
-        low = 0
-        high = 0
-        for character in s:
-            if character == "(":
-                low += 1
-                high += 1
-            elif character == ")":
-                low -= 1
-                high -= 1
-            else:
-                low -= 1
-                high += 1
-
-            if high < 0:
-                return False
-            low = max(low, 0)
-
-        return low == 0
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+        for i, c in enumerate(s):
+            dp[i][i] = c == '*'
+        for i in range(n - 2, -1, -1):
+            for j in range(i + 1, n):
+                dp[i][j] = (
+                    s[i] in '(*' and s[j] in '*)' and (i + 1 == j or dp[i + 1][j - 1])
+                )
+                dp[i][j] = dp[i][j] or any(
+                    dp[i][k] and dp[k + 1][j] for k in range(i, j)
+                )
+        return dp[0][-1]

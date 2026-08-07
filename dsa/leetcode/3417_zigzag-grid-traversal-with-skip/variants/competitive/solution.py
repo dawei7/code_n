@@ -1,20 +1,17 @@
-from typing import List
+# Time:  O(n * m)
+# Space: O(1)
 
-
+# array
 class Solution:
-    def zigzagTraversal(self, grid: List[List[int]]) -> List[int]:
+    def zigzagTraversal(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: List[int]
+        """
         result = []
-        take = True
-
-        for row, values in enumerate(grid):
-            if row % 2 == 0:
-                columns = range(len(values))
+        for i in range(len(grid)):
+            if i%2 == 0:
+                result.extend(grid[i][j] for j in range(0, len(grid[0]), 2))
             else:
-                columns = range(len(values) - 1, -1, -1)
-
-            for column in columns:
-                if take:
-                    result.append(values[column])
-                take = not take
-
+                result.extend(grid[i][j] for j in reversed(range(1, len(grid[0]), 2)))
         return result

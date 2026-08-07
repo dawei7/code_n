@@ -1,49 +1,35 @@
-from typing import List
-
-
 class Solution:
     def areSentencesSimilarTwo(
-        self,
-        sentence1: List[str],
-        sentence2: List[str],
-        similarPairs: List[List[str]],
+        self, sentence1: List[str], sentence2: List[str], similarPairs: List[List[str]]
     ) -> bool:
         if len(sentence1) != len(sentence2):
             return False
+        n = len(similarPairs)
+        p = list(range(n << 1))
 
-        parent = {}
-        size = {}
+        def find(x):
+            if p[x] != x:
+                p[x] = find(p[x])
+            return p[x]
 
-        def add(word):
-            if word not in parent:
-                parent[word] = word
-                size[word] = 1
+        words = {}
+        idx = 0
+        for a, b in similarPairs:
+            if a not in words:
+                words[a] = idx
+                idx += 1
+            if b not in words:
+                words[b] = idx
+                idx += 1
+            p[find(words[a])] = find(words[b])
 
-        def find(word):
-            root = word
-            while parent[root] != root:
-                root = parent[root]
-            while word != root:
-                parent_word = parent[word]
-                parent[word] = root
-                word = parent_word
-            return root
-
-        for left, right in similarPairs:
-            add(left)
-            add(right)
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
+        for i in range(len(sentence1)):
+            if sentence1[i] == sentence2[i]:
                 continue
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-
-        for first, second in zip(sentence1, sentence2):
-            if first == second:
-                continue
-            if first not in parent or second not in parent or find(first) != find(second):
+            if (
+                sentence1[i] not in words
+                or sentence2[i] not in words
+                or find(words[sentence1[i]]) != find(words[sentence2[i]])
+            ):
                 return False
         return True

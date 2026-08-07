@@ -1,9 +1,8 @@
 class Solution:
     def minMaxDifference(self, num: int) -> int:
-        digits = str(num)
-        maximize_digit = next((digit for digit in digits if digit != "9"), "9")
-
-        maximum = int(digits.replace(maximize_digit, "9"))
-        minimum = int(digits.replace(digits[0], "0"))
-
-        return maximum - minimum
+        s = str(num)
+        mi = int(s.replace(s[0], '0'))
+        for c in s:
+            if c != '9':
+                return int(s.replace(c, '9')) - mi
+        return num - mi

@@ -1,37 +1,14 @@
-from typing import List
-
-
 class Solution:
     def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
-        flower_count = len(bloomDay)
-        if m * k > flower_count:
-            return -1
+        def check(days: int) -> int:
+            cnt = cur = 0
+            for x in bloomDay:
+                cur = cur + 1 if x <= days else 0
+                if cur == k:
+                    cnt += 1
+                    cur = 0
+            return cnt >= m
 
-        def can_make(day: int) -> bool:
-            bouquets = 0
-            adjacent = 0
-
-            for bloom in bloomDay:
-                if bloom <= day:
-                    adjacent += 1
-                    if adjacent == k:
-                        bouquets += 1
-                        if bouquets == m:
-                            return True
-                        adjacent = 0
-                else:
-                    adjacent = 0
-
-            return False
-
-        left = min(bloomDay)
-        right = max(bloomDay)
-
-        while left < right:
-            middle = left + (right - left) // 2
-            if can_make(middle):
-                right = middle
-            else:
-                left = middle + 1
-
-        return left
+        mx = max(bloomDay)
+        l = bisect_left(range(mx + 2), True, key=check)
+        return -1 if l > mx else l

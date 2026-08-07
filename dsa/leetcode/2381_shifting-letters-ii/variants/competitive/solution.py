@@ -1,24 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# line sweep
 class Solution:
-    def shiftingLetters(
-        self,
-        s: str,
-        shifts: List[List[int]],
-    ) -> str:
-        difference = [0] * (len(s) + 1)
-
-        for start, end, direction in shifts:
-            amount = 1 if direction == 1 else -1
-            difference[start] += amount
-            difference[end + 1] -= amount
-
-        answer = []
-        running_shift = 0
-        for index, char in enumerate(s):
-            running_shift += difference[index]
-            shifted = (ord(char) - ord("a") + running_shift) % 26
-            answer.append(chr(ord("a") + shifted))
-
-        return "".join(answer)
+    def shiftingLetters(self, s, shifts):
+        """
+        :type s: str
+        :type shifts: List[List[int]]
+        :rtype: str
+        """
+        events = [0]*(len(s)+1)
+        for b, e, d in shifts:
+            events[b] += 1 if d else -1
+            events[e+1] -= 1 if d else -1
+        result = []
+        curr = 0
+        for i in range(len(s)):
+            curr += events[i]
+            result.append(chr(ord('a')+(ord(s[i])-ord('a')+curr)%26))
+        return "".join(result)

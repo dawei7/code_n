@@ -1,23 +1,15 @@
-WITH traffic AS (
-    SELECT departure_airport AS airport_id, flights_count
-    FROM Flights
-
-    UNION ALL
-
-    SELECT arrival_airport AS airport_id, flights_count
-    FROM Flights
-),
-totals AS (
-    SELECT airport_id, SUM(flights_count) AS total_flights
-    FROM traffic
-    GROUP BY airport_id
-),
-ranked AS (
-    SELECT
-        airport_id,
-        DENSE_RANK() OVER (ORDER BY total_flights DESC) AS traffic_rank
-    FROM totals
-)
-SELECT airport_id
-FROM ranked
-WHERE traffic_rank = 1;
+# Write your MySQL query statement below
+WITH
+    T AS (
+        SELECT * FROM Flights
+        UNION
+        SELECT arrival_airport, departure_airport, flights_count FROM Flights
+    ),
+    P AS (
+        SELECT departure_airport, SUM(flights_count) AS cnt
+        FROM T
+        GROUP BY 1
+    )
+SELECT departure_airport AS airport_id
+FROM P
+WHERE cnt = (SELECT MAX(cnt) FROM P);

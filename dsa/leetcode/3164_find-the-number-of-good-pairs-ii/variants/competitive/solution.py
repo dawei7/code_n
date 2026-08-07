@@ -1,18 +1,20 @@
-from collections import Counter
+# Time:  O(rlogr + n + m)
+# Space: O(r)
+
+import collections
 
 
+# number theory, freq table
 class Solution:
-    def numberOfPairs(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        limit = max(nums1) // k
-        frequency = [0] * (limit + 1)
-
-        for value in nums1:
-            if value % k == 0:
-                frequency[value // k] += 1
-
-        total = 0
-        for divisor, copies in Counter(nums2).items():
-            for multiple in range(divisor, limit + 1, divisor):
-                total += frequency[multiple] * copies
-
-        return total
+    def numberOfPairs(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: int
+        """
+        cnt = [0]*(max(nums1)+1)
+        for x, c in collections.Counter(k*x for x in nums2).iteritems():
+            for i in range(1, (len(cnt)-1)//x+1):
+                cnt[i*x] += c
+        return sum(cnt[x] for x in nums1)

@@ -1,50 +1,52 @@
-from typing import List
+# Time:  O(nlogn), n is the number of total emails,
+#                  and the max length ofemail is 320, p.s. {64}@{255}
+# Space: O(n)
+
+import collections
+
+
+class UnionFind(object):
+    def __init__(self):
+        self.set = []
+
+    def get_id(self):
+        self.set.append(len(self.set))
+        return len(self.set)-1
+
+    def find_set(self, x):
+        if self.set[x] != x:
+            self.set[x] = self.find_set(self.set[x])  # path compression.
+        return self.set[x]
+
+    def union_set(self, x, y):
+        x_root, y_root = map(self.find_set, (x, y))
+        if x_root != y_root:
+            self.set[min(x_root, y_root)] = max(x_root, y_root)
 
 
 class Solution:
-    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
-        parent = {}
-        size = {}
+    def accountsMerge(self, accounts):
+        """
+        :type accounts: List[List[str]]
+        :rtype: List[List[str]]
+        """
+        union_find = UnionFind()
         email_to_name = {}
-
-        def add(email: str) -> None:
-            if email not in parent:
-                parent[email] = email
-                size[email] = 1
-
-        def find(email: str) -> str:
-            while parent[email] != email:
-                parent[email] = parent[parent[email]]
-                email = parent[email]
-            return email
-
-        def union(left: str, right: str) -> None:
-            left_root = find(left)
-            right_root = find(right)
-            if left_root == right_root:
-                return
-            if size[left_root] < size[right_root]:
-                left_root, right_root = right_root, left_root
-            parent[right_root] = left_root
-            size[left_root] += size[right_root]
-
+        email_to_id = {}
         for account in accounts:
             name = account[0]
-            first_email = account[1]
-            add(first_email)
-            email_to_name[first_email] = name
-            for email in account[2:]:
-                add(email)
-                email_to_name[email] = name
-                union(first_email, email)
+            for i in range(1, len(account)):
+                if account[i] not in email_to_id:
+                    email_to_name[account[i]] = name
+                    email_to_id[account[i]] = union_find.get_id()
+                union_find.union_set(email_to_id[account[1]],
+                                     email_to_id[account[i]])
 
-        groups = {}
-        for email in parent:
-            groups.setdefault(find(email), []).append(email)
-
-        merged = []
-        for emails in groups.values():
+        result = collections.defaultdict(list)
+        for email in email_to_name.keys():
+            result[union_find.find_set(email_to_id[email])].append(email)
+        for emails in result.values():
             emails.sort()
-            merged.append([email_to_name[emails[0]], *emails])
+        return [[email_to_name[emails[0]]] + emails
+                for emails in result.values()]
 
-        return merged

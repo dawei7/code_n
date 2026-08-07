@@ -1,23 +1,46 @@
+# Time:  O(n)
+# Space: O(h)
+
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+
 class Solution:
-    def goodNodes(self, root: TreeNode) -> int:
-        good = 0
-        stack = [(root, root.val)]
+    def goodNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        result = 0
+        stk = [(root, root.val)]
+        while stk:
+            node, curr_max = stk.pop()
+            if not node:
+                continue
+            curr_max = max(curr_max, node.val)
+            result += int(curr_max <= node.val)
+            stk.append((node.right, curr_max))
+            stk.append((node.left, curr_max))
+        return result
 
-        while stack:
-            node, path_maximum = stack.pop()
-            if node.val >= path_maximum:
-                good += 1
 
-            next_maximum = max(path_maximum, node.val)
-            if node.left is not None:
-                stack.append((node.left, next_maximum))
-            if node.right is not None:
-                stack.append((node.right, next_maximum))
-
-        return good
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def goodNodes(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        def dfs(node, curr_max):
+            if not node:
+                return 0
+            curr_max = max(curr_max, node.val)
+            return (int(curr_max <= node.val) +
+                    dfs(node.left, curr_max) + dfs(node.right, curr_max))
+        
+        return dfs(root, root.val)

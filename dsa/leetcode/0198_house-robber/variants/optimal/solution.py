@@ -1,10 +1,9 @@
-from typing import List
-
-
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        before_previous = 0
-        previous = 0
-        for amount in nums:
-            before_previous, previous = previous, max(previous, before_previous + amount)
-        return previous
+        @cache
+        def dfs(i: int) -> int:
+            if i >= len(nums):
+                return 0
+            return max(nums[i] + dfs(i + 2), dfs(i + 1))
+
+        return dfs(0)

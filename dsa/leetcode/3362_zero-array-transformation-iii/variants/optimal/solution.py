@@ -1,29 +1,17 @@
-from heapq import heappop, heappush
-
-
 class Solution:
     def maxRemoval(self, nums: List[int], queries: List[List[int]]) -> int:
         queries.sort()
-        available = []
-        difference = [0] * (len(nums) + 1)
-        coverage = 0
-        selected = 0
-        query_index = 0
-
-        for index, required in enumerate(nums):
-            coverage += difference[index]
-
-            while query_index < len(queries) and queries[query_index][0] <= index:
-                heappush(available, -queries[query_index][1])
-                query_index += 1
-
-            while coverage < required:
-                if not available or -available[0] < index:
-                    return -1
-
-                end = -heappop(available)
-                coverage += 1
-                difference[end + 1] -= 1
-                selected += 1
-
-        return len(queries) - selected
+        pq = []
+        d = [0] * (len(nums) + 1)
+        s = j = 0
+        for i, x in enumerate(nums):
+            s += d[i]
+            while j < len(queries) and queries[j][0] <= i:
+                heappush(pq, -queries[j][1])
+                j += 1
+            while s < x and pq and -pq[0] >= i:
+                s += 1
+                d[-heappop(pq) + 1] -= 1
+            if s < x:
+                return -1
+        return len(pq)

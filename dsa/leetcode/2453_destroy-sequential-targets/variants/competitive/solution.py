@@ -1,8 +1,17 @@
-from collections import Counter
-from typing import List
+# Time:  O(n)
+# Space: O(s), s is the value of space
+
+import collections
 
 
+# freq table
 class Solution:
-    def destroyTargets(self, nums: List[int], space: int) -> int:
-        remainder_counts = Counter(value % space for value in nums)
-        return min(nums, key=lambda value: (-remainder_counts[value % space], value))
+    def destroyTargets(self, nums, space):
+        """
+        :type nums: List[int]
+        :type space: int
+        :rtype: int
+        """
+        cnt = collections.Counter(x%space for x in nums)
+        mx = max(cnt.values())
+        return min(x for x in nums if cnt[x%space] == mx)

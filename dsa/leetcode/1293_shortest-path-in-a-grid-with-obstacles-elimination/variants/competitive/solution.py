@@ -1,33 +1,42 @@
-from collections import deque
-from typing import List
+# Time:  O(m * n * k)
+# Space: O(m * n)
 
-
+# A* Search Algorithm without heap
 class Solution:
-    def shortestPath(self, grid: List[List[int]], k: int) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        if rows == 1 and columns == 1:
-            return 0
-        if k >= rows + columns - 3:
-            return rows + columns - 2
+    def shortestPath(self, grid, k):
+        """
+        :type grid: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        def dot(a, b):
+            return a[0]*b[0]+a[1]*b[1]
 
-        queue = deque([(0, 0, k, 0)])
-        best_remaining = [[-1] * columns for _ in range(rows)]
-        best_remaining[0][0] = k
-
-        while queue:
-            row, column, remaining, steps = queue.popleft()
-            for row_delta, column_delta in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_delta
-                next_column = column + column_delta
-                if not (0 <= next_row < rows and 0 <= next_column < columns):
+        def g(a, b):
+            return abs(a[0]-b[0])+abs(a[1]-b[1])
+        
+        def a_star(grid, b, t, k):
+            f, dh = g(b, t), 2
+            closer, detour = [(b, k)], []
+            lookup = {}
+            while closer or detour:
+                if not closer:
+                    f += dh
+                    closer, detour = detour, closer
+                b, k = closer.pop()
+                if b == t:
+                    return f
+                if b in lookup and lookup[b] >= k:
                     continue
-                next_remaining = remaining - grid[next_row][next_column]
-                if next_remaining < 0 or best_remaining[next_row][next_column] >= next_remaining:
-                    continue
-                if next_row == rows - 1 and next_column == columns - 1:
-                    return steps + 1
-                best_remaining[next_row][next_column] = next_remaining
-                queue.append((next_row, next_column, next_remaining, steps + 1))
+                lookup[b] = k
+                for dx, dy in directions:
+                    nb = (b[0]+dx, b[1]+dy)
+                    if not (0 <= nb[0] < len(grid) and 0 <= nb[1] < len(grid[0]) and
+                            (grid[nb[0]][nb[1]] == 0 or k > 0) and
+                            (nb not in lookup or lookup[nb] < k)):
+                        continue
+                    (closer if dot((dx, dy), (t[0]-b[0], t[1]-b[1])) > 0 else detour).append((nb, k-int(grid[nb[0]][nb[1]] == 1)))
+            return -1
 
-        return -1
+        return a_star(grid, (0, 0), (len(grid)-1, len(grid[0])-1), k)

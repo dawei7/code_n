@@ -1,32 +1,26 @@
-from typing import List
-
-
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        queue = []
-        fresh = 0
-
-        for row in range(rows):
-            for column in range(columns):
-                if grid[row][column] == 2:
-                    queue.append((row, column, 0))
-                elif grid[row][column] == 1:
-                    fresh += 1
-
-        head = 0
-        minutes = 0
-        while head < len(queue):
-            row, column, minute = queue[head]
-            head += 1
-            minutes = max(minutes, minute)
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and grid[next_row][next_column] == 1:
-                    grid[next_row][next_column] = 2
-                    fresh -= 1
-                    queue.append((next_row, next_column, minute + 1))
-
-        return minutes if fresh == 0 else -1
+        m, n = len(grid), len(grid[0])
+        cnt = 0
+        q = deque()
+        for i, row in enumerate(grid):
+            for j, x in enumerate(row):
+                if x == 2:
+                    q.append((i, j))
+                elif x == 1:
+                    cnt += 1
+        ans = 0
+        dirs = (-1, 0, 1, 0, -1)
+        while q and cnt:
+            ans += 1
+            for _ in range(len(q)):
+                i, j = q.popleft()
+                for a, b in pairwise(dirs):
+                    x, y = i + a, j + b
+                    if 0 <= x < m and 0 <= y < n and grid[x][y] == 1:
+                        grid[x][y] = 2
+                        q.append((x, y))
+                        cnt -= 1
+                        if cnt == 0:
+                            return ans
+        return -1 if cnt else 0

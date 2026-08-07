@@ -1,6 +1,3 @@
-from typing import Optional
-
-
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -10,9 +7,9 @@ from typing import Optional
 class Solution:
     def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if root is None:
-            return None
+            return root
         root.left = self.pruneTree(root.left)
         root.right = self.pruneTree(root.right)
-        if root.val == 0 and root.left is None and root.right is None:
+        if root.val == 0 and root.left == root.right:
             return None
         return root

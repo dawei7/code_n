@@ -1,34 +1,48 @@
-def _minimum_area(image, x: int, y: int) -> int:
-    rows = len(image)
-    columns = len(image[0])
-
-    def search_columns(left: int, right: int, seek_black: bool) -> int:
-        while left < right:
-            middle = (left + right) // 2
-            has_black = any(image[row][middle] == "1" for row in range(rows))
-            if has_black == seek_black:
-                right = middle
-            else:
-                left = middle + 1
-        return left
-
-    def search_rows(top: int, bottom: int, seek_black: bool) -> int:
-        while top < bottom:
-            middle = (top + bottom) // 2
-            has_black = any(image[middle][column] == "1" for column in range(columns))
-            if has_black == seek_black:
-                bottom = middle
-            else:
-                top = middle + 1
-        return top
-
-    left = search_columns(0, y, True)
-    right = search_columns(y + 1, columns, False)
-    top = search_rows(0, x, True)
-    bottom = search_rows(x + 1, rows, False)
-    return (right - left) * (bottom - top)
-
-
 class Solution:
-    def minArea(self, image: list[list[str]], x: int, y: int) -> int:
-        return _minimum_area(image, x, y)
+    def minArea(self, image: List[List[str]], x: int, y: int) -> int:
+        m, n = len(image), len(image[0])
+        left, right = 0, x
+        while left < right:
+            mid = (left + right) >> 1
+            c = 0
+            while c < n and image[mid][c] == '0':
+                c += 1
+            if c < n:
+                right = mid
+            else:
+                left = mid + 1
+        u = left
+        left, right = x, m - 1
+        while left < right:
+            mid = (left + right + 1) >> 1
+            c = 0
+            while c < n and image[mid][c] == '0':
+                c += 1
+            if c < n:
+                left = mid
+            else:
+                right = mid - 1
+        d = left
+        left, right = 0, y
+        while left < right:
+            mid = (left + right) >> 1
+            r = 0
+            while r < m and image[r][mid] == '0':
+                r += 1
+            if r < m:
+                right = mid
+            else:
+                left = mid + 1
+        l = left
+        left, right = y, n - 1
+        while left < right:
+            mid = (left + right + 1) >> 1
+            r = 0
+            while r < m and image[r][mid] == '0':
+                r += 1
+            if r < m:
+                left = mid
+            else:
+                right = mid - 1
+        r = left
+        return (d - u + 1) * (r - l + 1)

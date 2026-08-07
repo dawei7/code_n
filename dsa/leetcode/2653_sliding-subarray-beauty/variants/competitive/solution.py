@@ -1,30 +1,24 @@
-from typing import List
+# Time:  O(nlogk)
+# Space: O(k)
+
+from sortedcontainers import SortedList
 
 
+# sorted list, two pointers
 class Solution:
-    def getSubarrayBeauty(self, nums: List[int], k: int, x: int) -> List[int]:
-        negative_counts = [0] * 51
-        beauties = []
-
-        for right, value in enumerate(nums):
-            if value < 0:
-                negative_counts[-value] += 1
-
-            if right >= k:
-                outgoing = nums[right - k]
-                if outgoing < 0:
-                    negative_counts[-outgoing] -= 1
-
-            if right < k - 1:
-                continue
-
-            remaining = x
-            beauty = 0
-            for magnitude in range(50, 0, -1):
-                remaining -= negative_counts[magnitude]
-                if remaining <= 0:
-                    beauty = -magnitude
-                    break
-            beauties.append(beauty)
-
-        return beauties
+    def getSubarrayBeauty(self, nums, k, x):
+        """
+        :type nums: List[int]
+        :type k: int
+        :type x: int
+        :rtype: List[int]
+        """
+        result = []
+        sl = SortedList()
+        for i, v in enumerate(nums): 
+            if i-k >= 0:
+                sl.remove(nums[i-k])
+            sl.add(v)
+            if i-k+1 >= 0:
+                result.append(min(sl[x-1], 0))
+        return result 

@@ -1,18 +1,21 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# prefix sum
 class Solution:
-    def maxScoreIndices(self, nums: List[int]) -> List[int]:
-        score = sum(nums)
-        best = score
-        answer = [0]
-
-        for index, value in enumerate(nums, start=1):
-            score += 1 if value == 0 else -1
-            if score > best:
-                best = score
-                answer = [index]
-            elif score == best:
-                answer.append(index)
-
-        return answer
+    def maxScoreIndices(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        result = []
+        mx = zeros = 0
+        total = sum(nums)
+        for i in range(len(nums)+1):
+            zeros += ((nums[i-1] if i else 0) == 0)
+            if zeros+(total-(i-zeros)) > mx:
+                mx = zeros+(total-(i-zeros))
+                result = []
+            if zeros+(total-(i-zeros)) == mx:
+                result.append(i)
+        return result

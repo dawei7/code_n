@@ -1,16 +1,11 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def unequalTriplets(self, nums: List[int]) -> int:
-        answer = 0
-        left = 0
-        right = len(nums)
-
-        for count in Counter(nums).values():
-            right -= count
-            answer += left * count * right
-            left += count
-
-        return answer
+        n = len(nums)
+        ans = 0
+        for i in range(n):
+            for j in range(i + 1, n):
+                for k in range(j + 1, n):
+                    ans += (
+                        nums[i] != nums[j] and nums[j] != nums[k] and nums[i] != nums[k]
+                    )
+        return ans

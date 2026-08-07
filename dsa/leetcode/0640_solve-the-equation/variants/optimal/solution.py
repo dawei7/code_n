@@ -1,34 +1,27 @@
 class Solution:
     def solveEquation(self, equation: str) -> str:
-        def parse(expression):
-            coefficient = 0
-            constant = 0
-            index = 0
-            while index < len(expression):
-                sign = 1
-                if expression[index] in "+-":
-                    sign = 1 if expression[index] == "+" else -1
-                    index += 1
-
-                value = 0
-                has_digits = False
-                while index < len(expression) and expression[index].isdigit():
-                    value = value * 10 + int(expression[index])
-                    has_digits = True
-                    index += 1
-
-                if index < len(expression) and expression[index] == "x":
-                    coefficient += sign * (value if has_digits else 1)
-                    index += 1
+        def f(s):
+            x = y = 0
+            if s[0] != '-':
+                s = '+' + s
+            i, n = 0, len(s)
+            while i < n:
+                sign = 1 if s[i] == '+' else -1
+                i += 1
+                j = i
+                while j < n and s[j] not in '+-':
+                    j += 1
+                v = s[i:j]
+                if v[-1] == 'x':
+                    x += sign * (int(v[:-1]) if len(v) > 1 else 1)
                 else:
-                    constant += sign * value
-            return coefficient, constant
+                    y += sign * int(v)
+                i = j
+            return x, y
 
-        left, right = equation.split("=")
-        left_coefficient, left_constant = parse(left)
-        right_coefficient, right_constant = parse(right)
-        coefficient = left_coefficient - right_coefficient
-        constant = right_constant - left_constant
-        if coefficient == 0:
-            return "Infinite solutions" if constant == 0 else "No solution"
-        return f"x={constant // coefficient}"
+        a, b = equation.split('=')
+        x1, y1 = f(a)
+        x2, y2 = f(b)
+        if x1 == x2:
+            return 'Infinite solutions' if y1 == y2 else 'No solution'
+        return f'x={(y2 - y1) // (x1 - x2)}'

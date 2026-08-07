@@ -1,17 +1,12 @@
-from typing import List
-
-
 class Solution:
     def findMinMoves(self, machines: List[int]) -> int:
-        total = sum(machines)
-        if total % len(machines) != 0:
+        n = len(machines)
+        k, mod = divmod(sum(machines), n)
+        if mod:
             return -1
-
-        target = total // len(machines)
-        prefix_balance = 0
-        moves = 0
-        for load in machines:
-            excess = load - target
-            prefix_balance += excess
-            moves = max(moves, excess, abs(prefix_balance))
-        return moves
+        ans = s = 0
+        for x in machines:
+            x -= k
+            s += x
+            ans = max(ans, abs(s), x)
+        return ans

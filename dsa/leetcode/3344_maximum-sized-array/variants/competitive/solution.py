@@ -1,29 +1,22 @@
+# Time:  precompute: O(max_s^(1/5) * log(max_s))
+#        runtime:    O(log(max_s))
+# Space: O(max_s^(1/5))
+
+import bisect 
+
+
+# precompute, bitmasks, combinatorics, binary search
+i, area = 1, 0
+vol = [0]
 class Solution:
-    def maxSizedArray(self, s: int) -> int:
-        def array_sum(size: int) -> int:
-            index_sum = size * (size - 1) // 2
-            pair_or_sum = 0
-            bit = 1
-
-            while bit < size:
-                cycle = bit * 2
-                zero_count = (size // cycle) * bit + min(size % cycle, bit)
-                pair_or_sum += bit * (size * size - zero_count * zero_count)
-                bit *= 2
-
-            return index_sum * pair_or_sum
-
-        low = 1
-        high = 2
-        while array_sum(high) <= s:
-            low = high
-            high *= 2
-
-        while low + 1 < high:
-            middle = (low + high) // 2
-            if array_sum(middle) <= s:
-                low = middle
-            else:
-                high = middle
-
-        return low
+    def maxSizedArray(self, s):
+        """
+        :type s: int
+        :rtype: int
+        """
+        global i, area
+        while vol[-1] <= s:
+            area += 2*((i-1)*i+sum((((i-1)>>(bit+1))*(1<<bit))*(1<<bit) for bit in range((i-1).bit_length()) if not (i-1)&(1<<bit)))-((i-1)|(i-1))
+            vol.append(((0+(i-1))*i//2)*area)
+            i += 1
+        return bisect.bisect_right(vol, s)-1

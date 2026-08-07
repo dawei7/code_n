@@ -1,110 +1,122 @@
-from functools import lru_cache
+# Time:  O(n + logt)
+# Space: O(1)
 
-
-DIGIT_FACTORS = (
-    (0, 0, 0, 0),
-    (0, 0, 0, 0),
-    (1, 0, 0, 0),
-    (0, 1, 0, 0),
-    (2, 0, 0, 0),
-    (0, 0, 1, 0),
-    (1, 1, 0, 0),
-    (0, 0, 0, 1),
-    (3, 0, 0, 0),
-    (0, 2, 0, 0),
-)
-PACK_DIGITS = (
-    (2, 1, 0),
-    (3, 0, 1),
-    (4, 2, 0),
-    (6, 1, 1),
-    (8, 3, 0),
-    (9, 0, 2),
-)
-
-
+# freq table, greedy, prefix sum, number theory
 class Solution:
-    def smallestNumber(self, num: str, t: int) -> str:
-        required = []
-        remainder = t
-        for prime in (2, 3, 5, 7):
-            exponent = 0
-            while remainder % prime == 0:
-                remainder //= prime
-                exponent += 1
-            required.append(exponent)
+    def smallestNumber(self, num, t):
+        """
+        :type num: str
+        :type t: int
+        :rtype: str
+        """
+        LOOKUP = [[(0, 0, 0, 0), (0, 1, 0, 0)],
+                  [(1, 0, 0, 0), (0, 0, 0, 1)],
+                  [(0, 0, 1, 0), (1, 0, 0, 1)]]
+        def count(x):
+            cnt = [0]*10
+            for i in range(2, 9+1):
+                while x%i == 0:
+                    x //= i
+                    cnt[i] += 1
+                if x == 1:
+                    return cnt
+            return []
+    
+        def update(total, cnt, d):
+            for i, x in enumerate(cnt):
+                total[i] += d*x
 
-        if remainder != 1:
+        def diff(expect, total):
+            return [max(expect[i]-total[i], 0) for i in range(len(expect))]
+
+        def min_factors(cnt):
+            cnt8, r2 = divmod(cnt[2], 3)
+            cnt9, r3 = divmod(cnt[3], 2)
+            cnt2, cnt3, cnt4, cnt6 = LOOKUP[r2][r3]
+            return (cnt2, cnt3, cnt4, cnt[5], cnt6, cnt[7], cnt8, cnt9)
+    
+        def format(cnt, l):
+            return '1'*(l-sum(cnt))+"".join(str(x)*cnt[x-2] for x in range(2, 9+1))
+    
+        expect = count(t)
+        if not expect:
             return "-1"
-
-        @lru_cache(None)
-        def pack_twos_threes(twos: int, threes: int) -> str:
-            if twos == 0 and threes == 0:
-                return ""
-
-            best = None
-            for digit, adds_two, adds_three in PACK_DIGITS:
-                next_twos = max(0, twos - adds_two)
-                next_threes = max(0, threes - adds_three)
-                if next_twos == twos and next_threes == threes:
+        nums = map(int, num)
+        i = next((i for i in range(len(nums)) if not nums[i]), len(nums))
+        for j in range(i, len(nums)):
+            nums[j] = 1
+        total = [0]*10
+        for x in nums:
+            update(total, count(x), +1)
+        if all(d == 0 for d in diff(expect, total)):
+            return "".join(map(str, nums))
+        for i in reversed(range(len(nums))):
+            update(total, count(nums[i]), -1)
+            for x in range(nums[i]+1, 9+1):
+                update(total, count(x), +1)
+                tmp = min_factors(diff(expect, total))
+                update(total, count(x), -1)
+                if sum(tmp) > len(nums)-1-i:
                     continue
+                return "".join(map(str, nums[:i]))+str(x)+format(tmp, len(nums)-1-i)
+        return format(min_factors(diff(expect, total)), len(nums)+1)
 
-                candidate = "".join(sorted(str(digit) + pack_twos_threes(next_twos, next_threes)))
-                if best is None or (len(candidate), candidate) < (len(best), best):
-                    best = candidate
 
-            return best
+# Time:  O(nlogt)
+# Space: O(logt)
+# freq table, greedy, prefix sum, number theory
+class Solution2(object):
+    def smallestNumber(self, num, t):
+        """
+        :type num: str
+        :type t: int
+        :rtype: str
+        """
+        def gcd(a, b):
+            while b:
+                a, b = b, a%b
+            return a
 
-        def deficits(exponents):
-            return tuple(max(0, required[index] - exponents[index]) for index in range(4))
+        def find_candidates(t, l):  # Time: O(logt)
+            candidates = []
+            for x in reversed(range(2, 9+1)):
+                while t%x == 0:
+                    t //= x
+                    candidates.append(x)
+                    if len(candidates) > l:
+                        return []
+                if t == 1:
+                    candidates.reverse()
+                    return candidates
+            return []
+    
+        def format(candidates, l):
+            result = [1]*l
+            i = len(result)-len(candidates)
+            for x in candidates:
+                result[i] = x
+                i += 1
+            return "".join(map(str, result))
 
-        def minimum_digits(missing):
-            return len(pack_twos_threes(missing[0], missing[1])) + missing[2] + missing[3]
-
-        def smallest_suffix(length, missing):
-            packed = pack_twos_threes(missing[0], missing[1]) + "5" * missing[2] + "7" * missing[3]
-            packed = "".join(sorted(packed))
-            return "1" * (length - len(packed)) + packed
-
-        total = [0, 0, 0, 0]
-        first_zero = len(num)
-        for index, char in enumerate(num):
-            digit = ord(char) - ord("0")
-            if digit == 0:
-                first_zero = index
-                break
-            factors = DIGIT_FACTORS[digit]
-            for prime_index in range(4):
-                total[prime_index] += factors[prime_index]
-
-        if first_zero == len(num) and all(total[index] >= required[index] for index in range(4)):
-            return num
-
-        start = min(first_zero, len(num) - 1)
-        prefix = [0, 0, 0, 0]
-        for char in num[:start]:
-            factors = DIGIT_FACTORS[ord(char) - ord("0")]
-            for prime_index in range(4):
-                prefix[prime_index] += factors[prime_index]
-
-        for index in range(start, -1, -1):
-            if index < start:
-                factors = DIGIT_FACTORS[ord(num[index]) - ord("0")]
-                for prime_index in range(4):
-                    prefix[prime_index] -= factors[prime_index]
-
-            suffix_length = len(num) - index - 1
-            current = ord(num[index]) - ord("0")
-            for digit in range(current + 1, 10):
-                factors = DIGIT_FACTORS[digit]
-                covered = tuple(prefix[prime_index] + factors[prime_index] for prime_index in range(4))
-                missing = deficits(covered)
-                if minimum_digits(missing) <= suffix_length:
-                    return num[:index] + str(digit) + smallest_suffix(suffix_length, missing)
-
-        missing = tuple(required)
-        answer_length = max(
-            len(num) + 1,
-            minimum_digits(missing),
-        )
-        return smallest_suffix(answer_length, missing)
+        nums = map(int, num)
+        candidates = find_candidates(t, float("inf"))
+        if t != 1 and not candidates:
+            return "-1"
+        i = next((i for i in range(len(nums)) if not nums[i]), len(nums))
+        for j in range(i, len(nums)):
+            nums[j] = 1
+        prefix = [1]*(len(nums)+1)
+        for i in range(len(prefix)-1):
+            prefix[i+1] = (prefix[i]*nums[i])%t
+        if not prefix[-1]:
+            return "".join(map(str, nums))
+        for i in reversed(range(len(nums))):
+             target = t//gcd(t, prefix[i])
+             for x in range(nums[i]+1, 9+1):
+                new_target = target//gcd(target, x)
+                tmp = find_candidates(new_target, len(nums)-1-i)
+                if new_target != 1 and not tmp:
+                    continue
+                nums[i] = x
+                return "".join(map(str, nums[:i+1]))+format(tmp, len(nums)-1-i)
+        return format(candidates, max(len(nums)+1, len(candidates)))

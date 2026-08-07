@@ -1,37 +1,92 @@
+# Time:  O(sqrt(m) + n + m * (logm + pi(sqrt(m)))) = O(sqrt(m) + n + m * (logm + sqrt(m)/log(sqrt(m)))), pi(n) = number of primes in a range [1, n] = O(n/logn) by prime number theorem, see https://en.wikipedia.org/wiki/Prime_number_theorem
+# Space: O(sqrt(m) + n + logm)
+
+import collections
+
+
+# dp, factorization, combinatorics
 class Solution:
-    def idealArrays(self, n: int, maxValue: int) -> int:
-        mod = 1_000_000_007
-        max_exponent = maxValue.bit_length() - 1
-        combinations = [1] * (max_exponent + 1)
-        inverses = [0] * (max_exponent + 1)
-        if max_exponent >= 1:
-            inverses[1] = 1
-        for exponent in range(1, max_exponent + 1):
-            if exponent > 1:
-                inverses[exponent] = mod - (mod // exponent) * inverses[mod % exponent] % mod
-            combinations[exponent] = combinations[exponent - 1] * (n + exponent - 1) % mod * inverses[exponent] % mod
+    def idealArrays(self, n, maxValue):
+        """
+        :type n: int
+        :type maxValue: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
 
-        smallest_prime = [0] * (maxValue + 1)
-        for value in range(2, maxValue + 1):
-            if smallest_prime[value] != 0:
-                continue
-            smallest_prime[value] = value
-            if value * value <= maxValue:
-                for multiple in range(value * value, maxValue + 1, value):
-                    if smallest_prime[multiple] == 0:
-                        smallest_prime[multiple] = value
+        def linear_sieve_of_eratosthenes(n):  # Time: O(n), Space: O(n)
+            primes = []
+            spf = [-1]*(n+1)  # the smallest prime factor
+            for i in range(2, n+1):
+                if spf[i] == -1:
+                    spf[i] = i
+                    primes.append(i)
+                for p in primes:
+                    if i*p > n or p > spf[i]:
+                        break
+                    spf[i*p] = p
+            return primes
 
-        answer = 0
-        for final_value in range(1, maxValue + 1):
-            ways = 1
-            remaining = final_value
-            while remaining > 1:
-                prime = smallest_prime[remaining]
-                exponent = 0
-                while remaining % prime == 0:
-                    remaining //= prime
-                    exponent += 1
-                ways = ways * combinations[exponent] % mod
-            answer = (answer + ways) % mod
+        def prime_factors(x):
+            factors = collections.Counter()
+            for p in primes:
+                if p*p > x:
+                    break
+                while x%p == 0:
+                    factors[p] += 1
+                    x //= p
+            if x != 1:
+                factors[x] += 1
+            return factors
 
-        return answer
+        primes = linear_sieve_of_eratosthenes(int(maxValue**0.5))
+        result = 0
+        for k in range(1, maxValue+1):
+            total = 1
+            for c in prime_factors(k).itervalues():
+                total = (total*nCr(n+c-1, c))%MOD  # H(n, c) = nCr(n+c-1, n)
+            result = (result+total)%MOD
+        return result
+
+
+# Time:  O(n * mlogm)
+# Space: O(n + m)
+import collections
+
+
+# dp, combinatorics
+class Solution2(object):
+    def idealArrays(self, n, maxValue):
+        """
+        :type n: int
+        :type maxValue: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        fact, inv, inv_fact = [[1]*2 for _ in range(3)]
+        def nCr(n, k):
+            while len(inv) <= n:  # lazy initialization
+                fact.append(fact[-1]*len(inv) % MOD)
+                inv.append(inv[MOD%len(inv)]*(MOD-MOD//len(inv)) % MOD)  # https://cp-algorithms.com/algebra/module-inverse.html
+                inv_fact.append(inv_fact[-1]*inv[-1] % MOD)
+            return (fact[n]*inv_fact[n-k] % MOD) * inv_fact[k] % MOD
+
+        result = 0
+        dp = collections.Counter(range(1, maxValue+1))
+        for i in range(n): 
+            new_dp = collections.Counter()
+            total = 0
+            for x, c in dp.items():
+                total = (total+c)%MOD
+                for y in range(x+x, maxValue+1, x): 
+                    new_dp[y] += c
+            result = (result+total*nCr(n-1, i))%MOD
+            dp = new_dp
+        return result

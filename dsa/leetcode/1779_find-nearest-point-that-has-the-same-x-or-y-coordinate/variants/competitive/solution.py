@@ -1,19 +1,18 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def nearestValidPoint(
-        self,
-        x: int,
-        y: int,
-        points: List[List[int]],
-    ) -> int:
-        best_index = -1
-        best_distance = float("inf")
-        for index, (point_x, point_y) in enumerate(points):
-            if point_x == x or point_y == y:
-                distance = abs(point_x - x) + abs(point_y - y)
-                if distance < best_distance:
-                    best_distance = distance
-                    best_index = index
-        return best_index
+    def nearestValidPoint(self, x, y, points):
+        """
+        :type x: int
+        :type y: int
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        smallest, idx = float("inf"), -1
+        for i, (r, c) in enumerate(points):
+            dx, dy = x-r, y-c
+            if dx*dy == 0 and abs(dx)+abs(dy) < smallest:
+                smallest = abs(dx)+abs(dy)
+                idx = i
+        return idx

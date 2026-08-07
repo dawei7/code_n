@@ -1,13 +1,15 @@
-WITH endpoints AS (
-    SELECT requester_id AS id
-    FROM RequestAccepted
-    UNION ALL
-    SELECT accepter_id AS id
-    FROM RequestAccepted
-)
-SELECT id, COUNT(*) AS num
-FROM endpoints
-GROUP BY id
+# Time:  O(nlogn)
+# Space: O(n)
+
+SELECT ids as id, COUNT(*) AS num
+   FROM
+   (
+        SELECT requester_id AS ids FROM request_accepted
+        UNION ALL
+        SELECT accepter_id FROM request_accepted
+    ) AS tmp
+GROUP BY ids
 ORDER BY num DESC
-LIMIT 1;
+LIMIT 1
+;
 

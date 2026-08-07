@@ -1,20 +1,25 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def countQuadruples(self, firstString: str, secondString: str) -> int:
-        first_occurrence = {}
-        for index, character in enumerate(firstString):
-            first_occurrence.setdefault(character, index)
-
-        last_occurrence = {}
-        for index, character in enumerate(secondString):
-            last_occurrence[character] = index
-
-        differences = [
-            first_index - last_occurrence[character]
-            for character, first_index in first_occurrence.items()
-            if character in last_occurrence
-        ]
-        if not differences:
-            return 0
-
-        minimum = min(differences)
-        return sum(difference == minimum for difference in differences)
+    def countQuadruples(self, firstString, secondString):
+        """
+        :type firstString: str
+        :type secondString: str
+        :rtype: int
+        """
+        lookup1 = [-1]*26
+        for i in reversed(range(len(firstString))):
+            lookup1[ord(firstString[i])-ord('a')] = i
+        lookup2 = [-1]*26
+        for i in range(len(secondString)):
+            lookup2[ord(secondString[i])-ord('a')] = i
+        result, diff = 0, float("inf")
+        for i in range(26):
+            if lookup1[i] == -1 or lookup2[i] == -1:
+                continue
+            if lookup1[i]-lookup2[i] < diff:
+                diff = lookup1[i]-lookup2[i]
+                result = 0
+            result += int(lookup1[i]-lookup2[i] == diff)
+        return result

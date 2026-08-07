@@ -1,17 +1,22 @@
-WITH invoice_totals AS (
-    SELECT pu.invoice_id, SUM(pu.quantity * pr.price) AS total
-    FROM Purchases AS pu
-    JOIN Products AS pr ON pr.product_id = pu.product_id
-    GROUP BY pu.invoice_id
-),
-selected AS (
-    SELECT invoice_id
-    FROM invoice_totals
-    ORDER BY total DESC, invoice_id ASC
-    LIMIT 1
+# Time:  O(m + nlogn)
+# Space: O(n + m)
+
+WITH details_cte AS (
+    SELECT p1.invoice_id, p1.product_id, p1.quantity, p1.quantity * p2.price AS price
+    FROM Purchases p1 INNER JOIN Products p2 ON p1.product_id = p2.product_id
+), 
+rank_cte AS (
+    SELECT invoice_id, RANK() OVER (ORDER BY SUM(price) DESC) AS rnk
+    FROM details_cte
+    GROUP BY invoice_id
+    ORDER BY NULL
+), 
+min_invoice_id_cte AS (
+    SELECT MIN(invoice_id)
+    FROM rank_cte
+    WHERE rnk = 1
 )
-SELECT pu.product_id, pu.quantity, pu.quantity * pr.price AS price
-FROM Purchases AS pu
-JOIN Products AS pr ON pr.product_id = pu.product_id
-JOIN selected AS s ON s.invoice_id = pu.invoice_id
-ORDER BY pu.product_id;
+
+SELECT product_id, quantity, price
+FROM details_cte
+WHERE invoice_id IN (SELECT * FROM min_invoice_id_cte);

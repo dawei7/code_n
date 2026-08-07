@@ -1,36 +1,60 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# iterative dfs, hash table
 class Solution:
-    def findSubtreeSizes(self, parent: List[int], s: str) -> List[int]:
-        node_count = len(parent)
-        children = [[] for _ in range(node_count)]
-        for node in range(1, node_count):
-            children[parent[node]].append(node)
+    def findSubtreeSizes(self, parent, s):
+        """
+        :type parent: List[int]
+        :type s: str
+        :rtype: List[int]
+        """
+        def iter_dfs():
+            lookup = [[] for _ in range(26)]
+            result = [1]*len(parent)
+            stk = [(1, 0)]
+            while stk:
+                step, u = stk.pop()
+                if step == 1:
+                    lookup[ord(s[u])-ord('a')].append(u)
+                    stk.append((2, u))
+                    for v in reversed(adj[u]):
+                        stk.append((1, v))
+                elif step == 2:
+                    for v in adj[u]:
+                        result[lookup[ord(s[v])-ord('a')][-1] if lookup[ord(s[v])-ord('a')] else u] += result[v]
+                    lookup[ord(s[u])-ord('a')].pop()
+            return result
+        
+        adj = [[] for _ in range(len(parent))]
+        for v, u in enumerate(parent):
+            if u != -1:
+                adj[u].append(v)
+        return iter_dfs()
 
-        character_paths = [[] for _ in range(26)]
-        subtree_sizes = [1] * node_count
-        stack = [(0, True)]
 
-        while stack:
-            node, entering = stack.pop()
-            character = ord(s[node]) - ord("a")
-
-            if entering:
-                character_paths[character].append(node)
-                stack.append((node, False))
-                for child in reversed(children[node]):
-                    stack.append((child, True))
-                continue
-
-            character_paths[character].pop()
-            if node == 0:
-                continue
-
-            if character_paths[character]:
-                final_parent = character_paths[character][-1]
-            else:
-                final_parent = parent[node]
-            subtree_sizes[final_parent] += subtree_sizes[node]
-
-        return subtree_sizes
+# Time:  O(n)
+# Space: O(n)
+# dfs, hash table
+class Solution2(object):
+    def findSubtreeSizes(self, parent, s):
+        """
+        :type parent: List[int]
+        :type s: str
+        :rtype: List[int]
+        """
+        def dfs(u):
+            lookup[ord(s[u])-ord('a')].append(u)
+            for v in adj[u]:
+                dfs(v)
+                result[lookup[ord(s[v])-ord('a')][-1] if lookup[ord(s[v])-ord('a')] else u] += result[v]
+            lookup[ord(s[u])-ord('a')].pop()
+        
+        adj = [[] for _ in range(len(parent))]
+        for v, u in enumerate(parent):
+            if u != -1:
+                adj[u].append(v)
+        lookup = [[] for _ in range(26)]
+        result = [1]*len(parent)
+        dfs(0)
+        return result

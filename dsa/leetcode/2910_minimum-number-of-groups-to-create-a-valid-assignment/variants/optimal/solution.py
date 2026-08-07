@@ -1,19 +1,12 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
-    def minGroupsForValidAssignment(self, balls: List[int]) -> int:
-        frequencies = list(Counter(balls).values())
-
-        for smaller_size in range(min(frequencies), 0, -1):
-            total_groups = 0
-            for frequency in frequencies:
-                groups = (frequency + smaller_size) // (smaller_size + 1)
-                if groups * smaller_size > frequency:
+    def minGroupsForValidAssignment(self, nums: List[int]) -> int:
+        cnt = Counter(nums)
+        for k in range(min(cnt.values()), 0, -1):
+            ans = 0
+            for v in cnt.values():
+                if v // k < v % k:
+                    ans = 0
                     break
-                total_groups += groups
-            else:
-                return total_groups
-
-        return len(balls)
+                ans += (v + k) // (k + 1)
+            if ans:
+                return ans

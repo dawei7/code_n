@@ -1,16 +1,34 @@
-from typing import List
-
+# Time:  O(n * l)
+# Space: O(1)
 
 class Solution:
-    def minDeletionSize(self, strs: List[str]) -> int:
-        rows = len(strs)
-        columns = len(strs[0])
-        deleted = 0
-
-        for column in range(columns):
-            for row in range(rows - 1):
-                if strs[row][column] > strs[row + 1][column]:
-                    deleted += 1
+    def minDeletionSize(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """
+        result = 0
+        for c in range(len(A[0])):
+            for r in range(1, len(A)):
+                if A[r-1][c] > A[r][c]:
+                    result += 1
                     break
+        return result
 
-        return deleted
+
+# Time:  O(n * l)
+# Space: O(n)
+import itertools
+
+
+class Solution2(object):
+    def minDeletionSize(self, A):
+        """
+        :type A: List[str]
+        :rtype: int
+        """
+        result = 0
+        for col in itertools.izip(*A):
+            if any(col[i] > col[i+1] for i in range(len(col)-1)):
+                result += 1
+        return result

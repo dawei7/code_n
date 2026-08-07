@@ -1,27 +1,18 @@
-from collections import deque
-from typing import List
-
-
 class Solution:
     def highestPeak(self, isWater: List[List[int]]) -> List[List[int]]:
-        rows = len(isWater)
-        columns = len(isWater[0])
-        heights = [[-1] * columns for _ in range(rows)]
-        queue = deque()
-
-        for row in range(rows):
-            for column in range(columns):
-                if isWater[row][column] == 1:
-                    heights[row][column] = 0
-                    queue.append((row, column))
-
-        while queue:
-            row, column = queue.popleft()
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and heights[next_row][next_column] == -1:
-                    heights[next_row][next_column] = heights[row][column] + 1
-                    queue.append((next_row, next_column))
-
-        return heights
+        m, n = len(isWater), len(isWater[0])
+        ans = [[-1] * n for _ in range(m)]
+        q = deque()
+        for i, row in enumerate(isWater):
+            for j, v in enumerate(row):
+                if v:
+                    q.append((i, j))
+                    ans[i][j] = 0
+        while q:
+            i, j = q.popleft()
+            for a, b in pairwise((-1, 0, 1, 0, -1)):
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and ans[x][y] == -1:
+                    ans[x][y] = ans[i][j] + 1
+                    q.append((x, y))
+        return ans

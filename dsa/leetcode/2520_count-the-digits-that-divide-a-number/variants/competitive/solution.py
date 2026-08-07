@@ -1,12 +1,16 @@
+# Time:  O(logn)
+# Space: O(1)
+
+# math
 class Solution:
-    def countDigits(self, num: int) -> int:
-        original = num
-        answer = 0
-
-        while num:
-            digit = num % 10
-            if original % digit == 0:
-                answer += 1
-            num //= 10
-
-        return answer
+    def countDigits(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        result = 0
+        curr = num
+        while curr:
+            result += int(num%(curr%10) == 0)
+            curr //= 10
+        return result

@@ -1,42 +1,27 @@
-from typing import List
-
-
 class Solution:
     def componentValue(self, nums: List[int], edges: List[List[int]]) -> int:
-        node_count = len(nums)
-        adjacency = [[] for _ in range(node_count)]
-        for first, second in edges:
-            adjacency[first].append(second)
-            adjacency[second].append(first)
+        def dfs(i, fa):
+            x = nums[i]
+            for j in g[i]:
+                if j != fa:
+                    y = dfs(j, i)
+                    if y == -1:
+                        return -1
+                    x += y
+            if x > t:
+                return -1
+            return x if x < t else 0
 
-        parent = [-1] * node_count
-        order = [0]
-        for node in order:
-            for neighbor in adjacency[node]:
-                if neighbor == parent[node]:
-                    continue
-                parent[neighbor] = node
-                order.append(neighbor)
-
-        total = sum(nums)
-        maximum_components = total // max(nums)
-
-        for component_count in range(maximum_components, 1, -1):
-            if total % component_count:
-                continue
-
-            target = total // component_count
-            subtotal = nums.copy()
-            valid = True
-
-            for node in reversed(order[1:]):
-                if subtotal[node] > target:
-                    valid = False
-                    break
-                if subtotal[node] < target:
-                    subtotal[parent[node]] += subtotal[node]
-
-            if valid and subtotal[0] == target:
-                return component_count - 1
-
+        n = len(nums)
+        g = defaultdict(list)
+        for a, b in edges:
+            g[a].append(b)
+            g[b].append(a)
+        s = sum(nums)
+        mx = max(nums)
+        for k in range(min(n, s // mx), 1, -1):
+            if s % k == 0:
+                t = s // k
+                if dfs(0, -1) == 0:
+                    return k - 1
         return 0

@@ -1,20 +1,22 @@
+# Time:  O(n + 26)
+# Space: O(26)
+
+# hash table
+KEYBOARD = ("qwertyuiop", "asdfghjkl", "zxcvbnm")
+LOOKUP = [None]*26
+for r, row in enumerate(KEYBOARD):
+    for c, x in enumerate(row):
+        LOOKUP[ord(x)-ord('a')] = (r, c)
 class Solution:
-    def totalDistance(self, s: str) -> int:
-        keyboard = (
-            "qwertyuiop",
-            "asdfghjkl",
-            "zxcvbnm",
-        )
-        positions = {
-            character: (row, column) for row, keys in enumerate(keyboard) for column, character in enumerate(keys)
-        }
-
-        row, column = positions["a"]
-        total = 0
-
-        for character in s:
-            next_row, next_column = positions[character]
-            total += abs(row - next_row) + abs(column - next_column)
-            row, column = next_row, next_column
-
-        return total
+    def totalDistance(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        result = 0
+        prev = LOOKUP[0]
+        for x in s:
+            curr = LOOKUP[ord(x)-ord('a')]
+            result += abs(curr[0]-prev[0])+abs(curr[1]-prev[1])
+            prev = curr
+        return result

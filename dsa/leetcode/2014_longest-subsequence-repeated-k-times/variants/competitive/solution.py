@@ -1,40 +1,52 @@
-from collections import Counter
+# Time:  O(n * (n/k)!)
+# Space: O(n)
+
+import collections
 
 
 class Solution:
-    def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
-        eligible = sorted(character for character, frequency in Counter(s).items() if frequency >= k)
-
-        def is_repeated(candidate: str) -> bool:
-            index = 0
-            completed = 0
-
-            for character in s:
-                if character != candidate[index]:
+    def longestSubsequenceRepeatedK(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """
+        def check(s, k, curr):
+            if not curr:
+                return True
+            i = 0
+            for c in s:
+                if c != curr[i]:
                     continue
-                index += 1
-                if index == len(candidate):
-                    completed += 1
-                    if completed == k:
-                        return True
-                    index = 0
-
+                i += 1
+                if i != len(curr):
+                    continue
+                i = 0
+                k -= 1
+                if not k:
+                    return True
             return False
 
-        frontier = [""]
-        answer = ""
-
-        while frontier:
-            following = []
-            for prefix in frontier:
-                for character in eligible:
-                    candidate = prefix + character
-                    if is_repeated(candidate):
-                        following.append(candidate)
-
-            if not following:
-                break
-            answer = max(following)
-            frontier = following
-
-        return answer
+        def backtracking(s, k, curr, cnts, result):
+            if not check(s, k, curr):
+                return
+            if len(curr) > len(result):
+                result[:] = curr
+            for c in reversed(string.ascii_lowercase):
+                if cnts[c] < k:
+                    continue
+                cnts[c] -= k
+                curr.append(c)
+                backtracking(s, k, curr, cnts, result)
+                curr.pop()
+                cnts[c] += k
+                    
+        cnts = collections.Counter(s)
+        new_s = []
+        for c in s:
+            if cnts[c] < k:
+                continue
+            new_s.append(c)
+        result =[]
+        backtracking(new_s, k, [], cnts, result)
+        return "".join(result)

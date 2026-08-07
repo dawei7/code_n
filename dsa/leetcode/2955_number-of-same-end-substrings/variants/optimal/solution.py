@@ -1,21 +1,17 @@
-from typing import List
-
-
 class Solution:
     def sameEndSubstringCount(self, s: str, queries: List[List[int]]) -> List[int]:
-        prefix = [[0] * 26]
-
-        for character in s:
-            current = prefix[-1].copy()
-            current[ord(character) - ord("a")] += 1
-            prefix.append(current)
-
-        answer = []
-        for left, right in queries:
-            total = 0
-            for letter in range(26):
-                frequency = prefix[right + 1][letter] - prefix[left][letter]
-                total += frequency * (frequency + 1) // 2
-            answer.append(total)
-
-        return answer
+        n = len(s)
+        cs = set(s)
+        cnt = {c: [0] * (n + 1) for c in cs}
+        for i, a in enumerate(s, 1):
+            for c in cs:
+                cnt[c][i] = cnt[c][i - 1]
+            cnt[a][i] += 1
+        ans = []
+        for l, r in queries:
+            t = r - l + 1
+            for c in cs:
+                x = cnt[c][r + 1] - cnt[c][l]
+                t += x * (x - 1) // 2
+            ans.append(t)
+        return ans

@@ -1,46 +1,64 @@
-from typing import List
+# Time:  ctor:    O(n)
+#        lock:    O(1)
+#        unlock:  O(1)
+#        upgrade: O(n)
+# Space: O(n)
 
+class LockingTree(object):
 
-class LockingTree:
-    def __init__(self, parent: List[int]):
-        self.parent = parent
-        self.children = [[] for _ in parent]
-        for node in range(1, len(parent)):
-            self.children[parent[node]].append(node)
-        self.locked_by = [0] * len(parent)
+    def __init__(self, parent):
+        """
+        :type parent: List[int]
+        """
+        self.__parent = parent
+        self.__children = [[] for _ in range(len(parent))]
+        for i, x in enumerate(parent):
+            if x != -1:
+                self.__children[x].append(i)
+        self.__locked = {}
 
-    def lock(self, num: int, user: int) -> bool:
-        if self.locked_by[num] != 0:
+    def lock(self, num, user):
+        """
+        :type num: int
+        :type user: int
+        :rtype: bool
+        """
+        if num in self.__locked:
             return False
-        self.locked_by[num] = user
+        self.__locked[num] = user
         return True
 
-    def unlock(self, num: int, user: int) -> bool:
-        if self.locked_by[num] != user:
+    def unlock(self, num, user):
+        """
+        :type num: int
+        :type user: int
+        :rtype: bool
+        """
+        if self.__locked.get(num) != user:
             return False
-        self.locked_by[num] = 0
+        del self.__locked[num]
         return True
 
-    def upgrade(self, num: int, user: int) -> bool:
-        if self.locked_by[num] != 0:
-            return False
-
-        ancestor = self.parent[num]
-        while ancestor != -1:
-            if self.locked_by[ancestor] != 0:
+    def upgrade(self, num, user):
+        """
+        :type num: int
+        :type user: int
+        :rtype: bool
+        """
+        node = num
+        while node != -1:
+            if node in self.__locked:
                 return False
-            ancestor = self.parent[ancestor]
-
-        found_locked_descendant = False
-        stack = list(self.children[num])
-        while stack:
-            node = stack.pop()
-            if self.locked_by[node] != 0:
-                found_locked_descendant = True
-                self.locked_by[node] = 0
-            stack.extend(self.children[node])
-
-        if not found_locked_descendant:
-            return False
-        self.locked_by[num] = user
-        return True
+            node = self.__parent[node]
+        result = False
+        stk = [num]
+        while stk:
+            node = stk.pop()
+            if node in self.__locked:
+                del self.__locked[node]
+                result = True
+            for child in self.__children[node]:
+                stk.append(child)
+        if result:
+            self.__locked[num] = user
+        return result

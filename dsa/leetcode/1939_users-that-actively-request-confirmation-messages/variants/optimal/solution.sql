@@ -1,13 +1,7 @@
-WITH OrderedRequests AS (
-    SELECT
-        user_id,
-        time_stamp,
-        LAG(time_stamp) OVER (
-            PARTITION BY user_id
-            ORDER BY time_stamp
-        ) AS previous_time
-    FROM Confirmations
-)
 SELECT DISTINCT user_id
-FROM OrderedRequests
-WHERE time_stamp <= datetime(previous_time, '+24 hours');
+FROM
+    Confirmations AS c1
+    JOIN Confirmations AS c2 USING (user_id)
+WHERE
+    c1.time_stamp < c2.time_stamp
+    AND TIMESTAMPDIFF(SECOND, c1.time_stamp, c2.time_stamp) <= 24 * 60 * 60;

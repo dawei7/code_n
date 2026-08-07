@@ -1,10 +1,16 @@
-SELECT sale_date,
-       SUM(
-           CASE
-               WHEN fruit = 'apples' THEN sold_num
-               ELSE -sold_num
-           END
-       ) AS diff
-FROM Sales
-GROUP BY sale_date
-ORDER BY sale_date;
+# Time:  O(n)
+# Space: O(n)
+
+SELECT a.sale_date,
+       a.sold_num - b.sold_num AS diff
+FROM
+  (SELECT sale_date,
+          sold_num
+   FROM sales
+   WHERE fruit = "apples") a
+INNER JOIN
+  (SELECT sale_date,
+          sold_num
+   FROM sales
+   WHERE fruit = "oranges") b
+ON a.sale_date = b.sale_date;

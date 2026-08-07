@@ -1,17 +1,13 @@
-from typing import List
-
-
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
-        cost = [0] * len(grid[0])
-        for row_index, row in enumerate(grid):
-            for column, value in enumerate(row):
-                if row_index == 0 and column == 0:
-                    cost[column] = value
-                elif row_index == 0:
-                    cost[column] = cost[column - 1] + value
-                elif column == 0:
-                    cost[column] += value
-                else:
-                    cost[column] = min(cost[column], cost[column - 1]) + value
-        return cost[-1]
+        m, n = len(grid), len(grid[0])
+        f = [[0] * n for _ in range(m)]
+        f[0][0] = grid[0][0]
+        for i in range(1, m):
+            f[i][0] = f[i - 1][0] + grid[i][0]
+        for j in range(1, n):
+            f[0][j] = f[0][j - 1] + grid[0][j]
+        for i in range(1, m):
+            for j in range(1, n):
+                f[i][j] = min(f[i - 1][j], f[i][j - 1]) + grid[i][j]
+        return f[-1][-1]

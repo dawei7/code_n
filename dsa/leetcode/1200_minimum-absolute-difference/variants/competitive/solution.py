@@ -1,17 +1,20 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(n)
 
 class Solution:
-    def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
-        values = sorted(arr)
-        best_gap = float("inf")
-        pairs = []
-
-        for left, right in zip(values, values[1:]):
-            gap = right - left
-            if gap < best_gap:
-                best_gap = gap
-                pairs = [[left, right]]
-            elif gap == best_gap:
-                pairs.append([left, right])
-        return pairs
+    def minimumAbsDifference(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: List[List[int]]
+        """
+        result = []
+        min_diff = float("inf")
+        arr.sort()
+        for i in range(len(arr)-1):
+            diff = arr[i+1]-arr[i]
+            if diff < min_diff:
+                min_diff = diff
+                result = [[arr[i], arr[i+1]]]
+            elif diff == min_diff:
+                result.append([arr[i], arr[i+1]])
+        return result

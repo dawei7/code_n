@@ -1,11 +1,4 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
     def findLucky(self, arr: List[int]) -> int:
-        frequencies = Counter(arr)
-        return max(
-            (value for value, frequency in frequencies.items() if value == frequency),
-            default=-1,
-        )
+        cnt = Counter(arr)
+        return max((x for x, v in cnt.items() if x == v), default=-1)

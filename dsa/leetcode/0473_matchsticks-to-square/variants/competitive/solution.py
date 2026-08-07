@@ -1,23 +1,36 @@
-from typing import List
-
+# Time:  O(n * s * 2^n), s is the number of subset of which sum equals to side length.
+# Space: O(n * (2^n + s))
 
 class Solution:
-    def makesquare(self, matchsticks: List[int]) -> bool:
-        total = sum(matchsticks)
-        if total == 0 or total % 4:
-            return False
-        target = total // 4
-        if max(matchsticks) > target:
+    def makesquare(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        total_len = sum(nums)
+        if total_len % 4:
             return False
 
-        progress = [-1] * (1 << len(matchsticks))
-        progress[0] = 0
-        for mask in range(len(progress)):
-            if progress[mask] < 0:
-                continue
-            for index, stick in enumerate(matchsticks):
-                bit = 1 << index
-                if mask & bit or progress[mask] + stick > target:
-                    continue
-                progress[mask | bit] = (progress[mask] + stick) % target
-        return progress[-1] == 0
+        side_len = total_len / 4
+        fullset = (1 << len(nums)) - 1
+
+        used_subsets = []
+        valid_half_subsets = [0] * (1 << len(nums))
+
+        for subset in range(fullset+1):
+            subset_total_len = 0
+            for i in range(len(nums)):
+                if subset & (1 << i):
+                    subset_total_len += nums[i]
+
+            if subset_total_len == side_len:
+                for used_subset in used_subsets:
+                    if (used_subset & subset) == 0:
+                        valid_half_subset = used_subset | subset
+                        valid_half_subsets[valid_half_subset] = True
+                        if valid_half_subsets[fullset ^ valid_half_subset]:
+                            return True
+                used_subsets.append(subset)
+
+        return False
+

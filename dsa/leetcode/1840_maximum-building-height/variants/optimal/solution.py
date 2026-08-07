@@ -1,23 +1,17 @@
-from typing import List
-
-
 class Solution:
     def maxBuilding(self, n: int, restrictions: List[List[int]]) -> int:
-        limits = [[1, 0], *restrictions, [n, n - 1]]
-        limits.sort()
-
-        for index in range(1, len(limits)):
-            distance = limits[index][0] - limits[index - 1][0]
-            limits[index][1] = min(limits[index][1], limits[index - 1][1] + distance)
-
-        for index in range(len(limits) - 2, -1, -1):
-            distance = limits[index + 1][0] - limits[index][0]
-            limits[index][1] = min(limits[index][1], limits[index + 1][1] + distance)
-
-        answer = 0
-        for index in range(1, len(limits)):
-            distance = limits[index][0] - limits[index - 1][0]
-            peak = (limits[index - 1][1] + limits[index][1] + distance) // 2
-            answer = max(answer, peak)
-
-        return answer
+        r = restrictions
+        r.append([1, 0])
+        r.sort()
+        if r[-1][0] != n:
+            r.append([n, n - 1])
+        m = len(r)
+        for i in range(1, m):
+            r[i][1] = min(r[i][1], r[i - 1][1] + r[i][0] - r[i - 1][0])
+        for i in range(m - 2, 0, -1):
+            r[i][1] = min(r[i][1], r[i + 1][1] + r[i + 1][0] - r[i][0])
+        ans = 0
+        for i in range(m - 1):
+            t = (r[i][1] + r[i + 1][1] + r[i + 1][0] - r[i][0]) // 2
+            ans = max(ans, t)
+        return ans

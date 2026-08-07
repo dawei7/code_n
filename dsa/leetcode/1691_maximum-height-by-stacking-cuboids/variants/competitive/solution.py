@@ -1,14 +1,19 @@
-from typing import List
-
-
+# Time:  O(n^2)
+# Space: O(n)
+    
 class Solution:
-    def maxHeight(self, cuboids: List[List[int]]) -> int:
-        normalized = sorted(sorted(cuboid) for cuboid in cuboids)
-        best = [cuboid[2] for cuboid in normalized]
-
-        for bottom in range(len(normalized)):
-            for top in range(bottom):
-                if all(normalized[top][dimension] <= normalized[bottom][dimension] for dimension in range(3)):
-                    best[bottom] = max(best[bottom], best[top] + normalized[bottom][2])
-
-        return max(best)
+    def maxHeight(self, cuboids):
+        """
+        :type cuboids: List[List[int]]
+        :rtype: int
+        """
+        for cuboid in cuboids:
+            cuboid.sort()
+        cuboids.append([0, 0, 0])
+        cuboids.sort()
+        dp = [0]*len(cuboids)
+        for i in range(1, len(cuboids)):
+            for j in range(i):
+                if all(cuboids[j][k] <= cuboids[i][k] for k in range(3)):
+                    dp[i] = max(dp[i], dp[j]+cuboids[i][2])
+        return max(dp)

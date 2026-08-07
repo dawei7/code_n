@@ -1,30 +1,42 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(k), k is maxWidth.
 
 class Solution:
-    def fullJustify(self, words: List[str], maxWidth: int) -> List[str]:
-        lines = []
-        index = 0
+    def fullJustify(self, words, maxWidth):
+        """
+        :type words: List[str]
+        :type maxWidth: int
+        :rtype: List[str]
+        """
+        def addSpaces(i, spaceCnt, maxWidth, is_last):
+            if i < spaceCnt:
+                # For the last line of text, it should be left justified,
+                # and no extra space is inserted between words.
+                return 1 if is_last else (maxWidth // spaceCnt) + int(i < maxWidth % spaceCnt)
+            return 0
 
-        while index < len(words):
-            start = index
-            letters = 0
-            while index < len(words) and letters + len(words[index]) + (index - start) <= maxWidth:
-                letters += len(words[index])
-                index += 1
+        def connect(words, maxWidth, begin, end, length, is_last):
+            s = []  # The extra space O(k) is spent here.
+            n = end - begin
+            for i in range(n):
+                s += words[begin + i],
+                s += ' ' * addSpaces(i, n - 1, maxWidth - length, is_last),
+            # For only one word in a line.
+            line = "".join(s)
+            if len(line) < maxWidth:
+                line += ' ' * (maxWidth - len(line))
+            return line
 
-            count = index - start
-            if index == len(words) or count == 1:
-                line = " ".join(words[start:index]).ljust(maxWidth)
-            else:
-                gaps = count - 1
-                base, extra = divmod(maxWidth - letters, gaps)
-                pieces = []
-                for offset in range(gaps):
-                    pieces.append(words[start + offset])
-                    pieces.append(" " * (base + (offset < extra)))
-                pieces.append(words[index - 1])
-                line = "".join(pieces)
-            lines.append(line)
+        res = []
+        begin, length = 0, 0
+        for i in range(len(words)):
+            if length + len(words[i]) + (i - begin) > maxWidth:
+                res += connect(words, maxWidth, begin, i, length, False),
+                begin, length = i, 0
+            length += len(words[i])
 
-        return lines
+        # Last line.
+        res += connect(words, maxWidth, begin, len(words), length, True),
+        return res
+
+

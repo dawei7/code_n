@@ -1,28 +1,22 @@
 class Solution:
     def minLights(self, lights: list[int]) -> int:
         n = len(lights)
-        difference = [0] * (n + 1)
-
-        for position, radius in enumerate(lights):
-            if radius:
-                left = max(0, position - radius)
-                right = min(n - 1, position + radius)
-                difference[left] += 1
-                difference[right + 1] -= 1
-
-        visible = [False] * n
-        active = 0
-        for position in range(n):
-            active += difference[position]
-            visible[position] = active > 0
-
-        additional = 0
-        position = 0
-        while position < n:
-            if visible[position]:
-                position += 1
+        d = [0] * n
+        for i, v in enumerate(lights):
+            if v > 0:
+                l = max(0, i - v)
+                r = min(n - 1, i + v)
+                d[l] += 1
+                if r + 1 < n:
+                    d[r + 1] -= 1
+        s = cnt = 0
+        ans = 0
+        for x in d:
+            s += x
+            if s == 0:
+                cnt += 1
             else:
-                additional += 1
-                position += 3
-
-        return additional
+                ans += (cnt + 2) // 3
+                cnt = 0
+        ans += (cnt + 2) // 3
+        return ans

@@ -1,11 +1,21 @@
-class StockSpanner:
-    def __init__(self):
-        self.stack = []
+# Time:  O(n)
+# Space: O(n)
 
-    def next(self, price: int) -> int:
-        span = 1
-        while self.stack and self.stack[-1][0] <= price:
-            _, previous_span = self.stack.pop()
-            span += previous_span
-        self.stack.append((price, span))
-        return span
+class StockSpanner(object):
+
+    def __init__(self):
+        self.__s = []
+
+    def next(self, price):
+        """
+        :type price: int
+        :rtype: int
+        """
+        result = 1
+        while self.__s and self.__s[-1][0] <= price:
+            result += self.__s.pop()[1]
+        self.__s.append([price, result])
+        return result
+
+
+

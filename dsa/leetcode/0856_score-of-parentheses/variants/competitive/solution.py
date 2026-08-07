@@ -1,16 +1,38 @@
-class Solution:
-    def scoreOfParentheses(self, s: str) -> int:
-        score = 0
-        depth = 0
-        previous = ""
+# Time:  O(n)
+# Space: O(1)
 
-        for character in s:
-            if character == "(":
+
+class Solution:
+    def scoreOfParentheses(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        result, depth = 0, 0
+        for i in range(len(S)):
+            if S[i] == '(':
                 depth += 1
             else:
                 depth -= 1
-                if previous == "(":
-                    score += 1 << depth
-            previous = character
+                if S[i-1] == '(':
+                    result += 2**depth
+        return result
 
-        return score
+
+# Time:  O(n)
+# Space: O(h)
+class Solution2(object):
+    def scoreOfParentheses(self, S):
+        """
+        :type S: str
+        :rtype: int
+        """
+        stack = [0]
+        for c in S:
+            if c == '(':
+                stack.append(0)
+            else:
+                last = stack.pop()
+                stack[-1] += max(1, 2*last)
+        return stack[0]
+

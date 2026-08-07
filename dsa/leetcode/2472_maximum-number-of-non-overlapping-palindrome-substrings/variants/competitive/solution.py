@@ -1,22 +1,21 @@
+# Time:  O(n * k)
+# Space: O(1)
+
+# two pointers, greedy
 class Solution:
-    def maxPalindromes(self, s: str, k: int) -> int:
-        answer = 0
-        available = 0
-
-        def is_palindrome(left: int, right: int) -> bool:
-            while left < right:
-                if s[left] != s[right]:
-                    return False
-                left += 1
-                right -= 1
-            return True
-
-        for right in range(k - 1, len(s)):
-            for length in (k, k + 1):
-                left = right - length + 1
-                if left >= available and is_palindrome(left, right):
-                    answer += 1
-                    available = right + 1
+    def maxPalindromes(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        result = prev = 0
+        for mid in range(2*len(s)-1):
+            left, right = mid//2, mid//2+mid%2
+            while left >= prev and right < len(s) and s[left] == s[right]:
+                if right-left+1 >= k:
+                    prev = right+1
+                    result += 1
                     break
-
-        return answer
+                left, right = left-1, right+1
+        return result

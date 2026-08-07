@@ -1,39 +1,35 @@
-from bisect import bisect_left, bisect_right
-from typing import List
+# Time:  O(nlogn + mlogm)
+# Space: O(n)
 
-
+# sort, dp, two pointers
 class Solution:
-    def maxWalls(self, robots: List[int], distance: List[int], walls: List[int]) -> int:
-        ordered = sorted(zip(robots, distance))
-        positions = [position for position, _ in ordered]
-        ranges = [shot_range for _, shot_range in ordered]
-        robot_positions = set(positions)
-        fixed = sum(wall in robot_positions for wall in walls)
-        free_walls = sorted(wall for wall in walls if wall not in robot_positions)
-
-        def count_between(left: int, right: int) -> int:
-            if left > right:
-                return 0
-            return bisect_right(free_walls, right) - bisect_left(free_walls, left)
-
-        left_exterior = count_between(positions[0] - ranges[0], positions[0])
-        dp_left = left_exterior
-        dp_right = 0
-
-        for i in range(1, len(positions)):
-            left_robot = positions[i - 1]
-            right_robot = positions[i]
-
-            right_end = min(left_robot + ranges[i - 1], right_robot)
-            left_start = max(right_robot - ranges[i], left_robot)
-            from_left = count_between(left_robot, right_end)
-            from_right = count_between(left_start, right_robot)
-            overlap = count_between(left_start, right_end)
-            both = from_left + from_right - overlap
-
-            next_left = max(dp_left + from_right, dp_right + both)
-            next_right = max(dp_left, dp_right + from_left)
-            dp_left, dp_right = next_left, next_right
-
-        right_exterior = count_between(positions[-1], positions[-1] + ranges[-1])
-        return fixed + max(dp_left, dp_right + right_exterior)
+    def maxWalls(self, robots, distance, walls):
+        """
+        :type robots: List[int]
+        :type distance: List[int]
+        :type walls: List[int]
+        :rtype: int
+        """
+        x_d = [(0, 0)]+sorted(zip(robots, distance), key=lambda x: x[0])+[(float("inf"), 0)]
+        walls.sort()
+        left0 = left1 = right = curr = 0
+        dp, new_dp = [0]*2, [0]*2
+        for i in range(1, len(x_d)-1):
+            while curr < len(walls) and walls[curr] < x_d[i][0]:
+                curr += 1
+            r = min(x_d[i][0]+x_d[i][1], x_d[i+1][0]-1)
+            while right < len(walls) and walls[right] <= r:
+                right += 1
+            new_dp[1] = max(dp[0], dp[1])+(right-curr)
+            if curr < len(walls) and walls[curr] == x_d[i][0]:
+                curr += 1
+            l0 = max(x_d[i][0]-x_d[i][1], x_d[i-1][0]+1)
+            while left0 < len(walls) and walls[left0] < l0:
+                left0 += 1
+            l1 = max(min(x_d[i-1][0]+x_d[i-1][1], x_d[i][0]-1)+1,
+                     max(x_d[i][0]-x_d[i][1], x_d[i-1][0]+1))
+            while left1 < len(walls) and walls[left1] < l1:
+                left1 += 1
+            new_dp[0] = max(dp[0]+(curr-left0), dp[1]+(curr-left1))
+            dp, new_dp = new_dp, dp
+        return max(dp[0], dp[1])

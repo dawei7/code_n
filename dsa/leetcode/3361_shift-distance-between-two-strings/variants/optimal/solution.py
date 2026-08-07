@@ -1,27 +1,17 @@
 class Solution:
-    def shiftDistance(self, s: str, t: str, nextCost: List[int], previousCost: List[int]) -> int:
-        next_prefix = [0] * 27
-        previous_prefix = [0] * 27
-
-        for i in range(26):
-            next_prefix[i + 1] = next_prefix[i] + nextCost[i]
-            previous_prefix[i + 1] = previous_prefix[i] + previousCost[i]
-
-        answer = 0
-        for source, target in zip(s, t):
-            start = ord(source) - ord("a")
-            end = ord(target) - ord("a")
-
-            if end >= start:
-                forward = next_prefix[end] - next_prefix[start]
-            else:
-                forward = next_prefix[26] - next_prefix[start] + next_prefix[end]
-
-            if end <= start:
-                backward = previous_prefix[start + 1] - previous_prefix[end + 1]
-            else:
-                backward = previous_prefix[start + 1] + previous_prefix[26] - previous_prefix[end + 1]
-
-            answer += min(forward, backward)
-
-        return answer
+    def shiftDistance(
+        self, s: str, t: str, nextCost: List[int], previousCost: List[int]
+    ) -> int:
+        m = 26
+        s1 = [0] * (m << 1 | 1)
+        s2 = [0] * (m << 1 | 1)
+        for i in range(m << 1):
+            s1[i + 1] = s1[i] + nextCost[i % m]
+            s2[i + 1] = s2[i] + previousCost[(i + 1) % m]
+        ans = 0
+        for a, b in zip(s, t):
+            x, y = ord(a) - ord("a"), ord(b) - ord("a")
+            c1 = s1[y + m if y < x else y] - s1[x]
+            c2 = s2[x + m if x < y else x] - s2[y]
+            ans += min(c1, c2)
+        return ans

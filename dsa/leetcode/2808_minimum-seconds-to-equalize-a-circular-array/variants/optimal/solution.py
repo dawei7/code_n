@@ -1,18 +1,13 @@
-from collections import defaultdict
-
-
 class Solution:
     def minimumSeconds(self, nums: List[int]) -> int:
-        positions = defaultdict(list)
-        for index, value in enumerate(nums):
-            positions[value].append(index)
-
+        d = defaultdict(list)
+        for i, x in enumerate(nums):
+            d[x].append(i)
+        ans = inf
         n = len(nums)
-        answer = n
-        for indices in positions.values():
-            largest_gap = n + indices[0] - indices[-1]
-            for left, right in zip(indices, indices[1:]):
-                largest_gap = max(largest_gap, right - left)
-            answer = min(answer, largest_gap // 2)
-
-        return answer
+        for idx in d.values():
+            t = idx[0] + n - idx[-1]
+            for i, j in pairwise(idx):
+                t = max(t, j - i)
+            ans = min(ans, t // 2)
+        return ans

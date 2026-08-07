@@ -1,22 +1,16 @@
-from typing import List
-
-
 class Solution:
     def arrayNesting(self, nums: List[int]) -> int:
-        visited = [False] * len(nums)
-        longest = 0
-
-        for start in range(len(nums)):
-            if visited[start]:
+        n = len(nums)
+        vis = [False] * n
+        res = 0
+        for i in range(n):
+            if vis[i]:
                 continue
-
-            length = 0
-            index = start
-            while not visited[index]:
-                visited[index] = True
-                length += 1
-                index = nums[index]
-
-            longest = max(longest, length)
-
-        return longest
+            cur, m = nums[i], 1
+            vis[cur] = True
+            while nums[cur] != nums[i]:
+                cur = nums[cur]
+                m += 1
+                vis[cur] = True
+            res = max(res, m)
+        return res

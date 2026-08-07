@@ -1,62 +1,30 @@
-from typing import List
-
-
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
-        full = (1 << 9) - 1
-        rows = [0] * 9
-        columns = [0] * 9
-        boxes = [0] * 9
-        empty = []
+        def dfs(k):
+            nonlocal ok
+            if k == len(t):
+                ok = True
+                return
+            i, j = t[k]
+            for v in range(9):
+                if row[i][v] == col[j][v] == block[i // 3][j // 3][v] == False:
+                    row[i][v] = col[j][v] = block[i // 3][j // 3][v] = True
+                    board[i][j] = str(v + 1)
+                    dfs(k + 1)
+                    row[i][v] = col[j][v] = block[i // 3][j // 3][v] = False
+                if ok:
+                    return
 
-        for row in range(9):
-            for column in range(9):
-                value = board[row][column]
-                if value == ".":
-                    empty.append((row, column))
-                    continue
-                bit = 1 << (int(value) - 1)
-                box = (row // 3) * 3 + column // 3
-                rows[row] |= bit
-                columns[column] |= bit
-                boxes[box] |= bit
-
-        def fill(position: int) -> bool:
-            if position == len(empty):
-                return True
-
-            best = position
-            best_candidates = full
-            for index in range(position, len(empty)):
-                row, column = empty[index]
-                box = (row // 3) * 3 + column // 3
-                candidates = full & ~(rows[row] | columns[column] | boxes[box])
-                if candidates.bit_count() < best_candidates.bit_count():
-                    best = index
-                    best_candidates = candidates
-                    if candidates.bit_count() <= 1:
-                        break
-            if best_candidates == 0:
-                return False
-
-            empty[position], empty[best] = empty[best], empty[position]
-            row, column = empty[position]
-            box = (row // 3) * 3 + column // 3
-            candidates = full & ~(rows[row] | columns[column] | boxes[box])
-            while candidates:
-                bit = candidates & -candidates
-                candidates ^= bit
-                board[row][column] = str(bit.bit_length())
-                rows[row] |= bit
-                columns[column] |= bit
-                boxes[box] |= bit
-                if fill(position + 1):
-                    return True
-                rows[row] ^= bit
-                columns[column] ^= bit
-                boxes[box] ^= bit
-                board[row][column] = "."
-            empty[position], empty[best] = empty[best], empty[position]
-            return False
-
-        fill(0)
+        row = [[False] * 9 for _ in range(9)]
+        col = [[False] * 9 for _ in range(9)]
+        block = [[[False] * 9 for _ in range(3)] for _ in range(3)]
+        t = []
+        ok = False
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    t.append((i, j))
+                else:
+                    v = int(board[i][j]) - 1
+                    row[i][v] = col[j][v] = block[i // 3][j // 3][v] = True
+        dfs(0)

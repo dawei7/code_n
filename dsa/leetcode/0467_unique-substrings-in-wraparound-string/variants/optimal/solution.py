@@ -1,13 +1,11 @@
 class Solution:
-    def findSubstringInWraproundString(self, p: str) -> int:
-        longest = [0] * 26
-        run = 0
-        for index, character in enumerate(p):
-            if index > 0 and (ord(character) - ord(p[index - 1])) % 26 == 1:
-                run += 1
+    def findSubstringInWraproundString(self, s: str) -> int:
+        f = defaultdict(int)
+        k = 0
+        for i, c in enumerate(s):
+            if i and (ord(c) - ord(s[i - 1])) % 26 == 1:
+                k += 1
             else:
-                run = 1
-            ending = ord(character) - ord("a")
-            if run > longest[ending]:
-                longest[ending] = run
-        return sum(longest)
+                k = 1
+            f[c] = max(f[c], k)
+        return sum(f.values())

@@ -1,15 +1,19 @@
-from typing import List
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def hIndex(self, citations: List[int]) -> int:
-        paper_count = len(citations)
-        left = 0
-        right = paper_count
-        while left < right:
-            middle = (left + right) // 2
-            if citations[middle] >= paper_count - middle:
-                right = middle
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        n = len(citations)
+        left, right = 0, n - 1
+        while left <= right:
+            mid = (left + right) / 2
+            if citations[mid] >= n - mid:
+                right = mid - 1
             else:
-                left = middle + 1
-        return paper_count - left
+                left = mid + 1
+        return n - left
+

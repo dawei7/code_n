@@ -1,22 +1,17 @@
+# Definition for a rope tree node.
+# class RopeTreeNode(object):
+#     def __init__(self, len=0, val="", left=None, right=None):
+#         self.len = len
+#         self.val = val
+#         self.left = left
+#         self.right = right
 class Solution:
     def getKthCharacter(self, root: Optional[object], k: int) -> str:
-        """
-        :type root: Optional[RopeTreeNode]
-        """
-        node = root
+        def dfs(root):
+            if root is None:
+                return ""
+            if root.len == 0:
+                return root.val
+            return dfs(root.left) + dfs(root.right)
 
-        while node.val == "":
-            if node.left is None:
-                left_length = 0
-            elif node.left.len > 0:
-                left_length = node.left.len
-            else:
-                left_length = len(node.left.val)
-
-            if k <= left_length:
-                node = node.left
-            else:
-                k -= left_length
-                node = node.right
-
-        return node.val[k - 1]
+        return dfs(root)[k - 1]

@@ -1,19 +1,19 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def maxNonOverlapping(self, nums: List[int], target: int) -> int:
-        seen = {0}
-        prefix = 0
-        answer = 0
-
-        for number in nums:
-            prefix += number
-            if prefix - target in seen:
-                answer += 1
-                seen = {0}
-                prefix = 0
-            else:
-                seen.add(prefix)
-
-        return answer
+    def maxNonOverlapping(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        lookup = {0:-1}
+        result, accu, right = 0, 0, -1
+        for i, num in enumerate(nums):
+            accu += num
+            if accu-target in lookup and lookup[accu-target] >= right:
+                right = i
+                result += 1  # greedy
+            lookup[accu] = i
+        return result

@@ -1,21 +1,12 @@
 class Solution:
     def minSwaps(self, s: str) -> int:
-        zero_count = s.count("0")
-        one_count = len(s) - zero_count
-        if abs(zero_count - one_count) > 1:
+        def calc(c: int) -> int:
+            return sum((c ^ i & 1) != x for i, x in enumerate(map(int, s))) // 2
+
+        n0 = s.count("0")
+        n1 = len(s) - n0
+        if abs(n0 - n1) > 1:
             return -1
-
-        def swaps_for(start: str) -> int:
-            mismatches = 0
-            expected = start
-            for character in s:
-                if character != expected:
-                    mismatches += 1
-                expected = "1" if expected == "0" else "0"
-            return mismatches // 2
-
-        if zero_count > one_count:
-            return swaps_for("0")
-        if one_count > zero_count:
-            return swaps_for("1")
-        return min(swaps_for("0"), swaps_for("1"))
+        if n0 == n1:
+            return min(calc(0), calc(1))
+        return calc(0 if n0 > n1 else 1)

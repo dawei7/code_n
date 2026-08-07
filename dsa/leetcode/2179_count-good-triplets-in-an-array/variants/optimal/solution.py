@@ -1,35 +1,35 @@
-from typing import List
+class BinaryIndexedTree:
+    def __init__(self, n):
+        self.n = n
+        self.c = [0] * (n + 1)
+
+    @staticmethod
+    def lowbit(x):
+        return x & -x
+
+    def update(self, x, delta):
+        while x <= self.n:
+            self.c[x] += delta
+            x += BinaryIndexedTree.lowbit(x)
+
+    def query(self, x):
+        s = 0
+        while x > 0:
+            s += self.c[x]
+            x -= BinaryIndexedTree.lowbit(x)
+        return s
 
 
 class Solution:
     def goodTriplets(self, nums1: List[int], nums2: List[int]) -> int:
+        pos = {v: i for i, v in enumerate(nums2, 1)}
+        ans = 0
         n = len(nums1)
-        position = [0] * n
-        for index, value in enumerate(nums2):
-            position[value] = index
-
-        tree = [0] * (n + 1)
-
-        def prefix_count(end: int) -> int:
-            total = 0
-            while end > 0:
-                total += tree[end]
-                end -= end & -end
-            return total
-
-        def add(index: int) -> None:
-            index += 1
-            while index <= n:
-                tree[index] += 1
-                index += index & -index
-
-        answer = 0
-        for first_index, value in enumerate(nums1):
-            second_index = position[value]
-            earlier_smaller = prefix_count(second_index)
-            earlier_larger = first_index - earlier_smaller
-            later_larger = n - 1 - second_index - earlier_larger
-            answer += earlier_smaller * later_larger
-            add(second_index)
-
-        return answer
+        tree = BinaryIndexedTree(n)
+        for num in nums1:
+            p = pos[num]
+            left = tree.query(p)
+            right = n - p - (tree.query(n) - tree.query(p))
+            ans += left * right
+            tree.update(p, 1)
+        return ans

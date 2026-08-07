@@ -1,20 +1,16 @@
-from collections import deque
-
-
 class Solution:
     def findInteger(self, k: int, digit1: int, digit2: int) -> int:
-        limit = 2**31 - 1
-        digits = sorted({digit1, digit2})
-        queue = deque(digit for digit in digits if digit != 0)
-
-        while queue:
-            value = queue.popleft()
-            if value > k and value % k == 0:
-                return value
-
-            for digit in digits:
-                following = value * 10 + digit
-                if following <= limit:
-                    queue.append(following)
-
-        return -1
+        if digit1 == 0 and digit2 == 0:
+            return -1
+        if digit1 > digit2:
+            return self.findInteger(k, digit2, digit1)
+        q = deque([0])
+        while 1:
+            x = q.popleft()
+            if x > 2**31 - 1:
+                return -1
+            if x > k and x % k == 0:
+                return x
+            q.append(x * 10 + digit1)
+            if digit1 != digit2:
+                q.append(x * 10 + digit2)

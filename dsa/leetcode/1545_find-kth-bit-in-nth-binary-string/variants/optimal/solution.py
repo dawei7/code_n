@@ -1,14 +1,13 @@
 class Solution:
     def findKthBit(self, n: int, k: int) -> str:
-        if n == 1:
-            return "0"
+        def dfs(n: int, k: int) -> int:
+            if k == 1:
+                return 0
+            if (k & (k - 1)) == 0:
+                return 1
+            m = 1 << n
+            if k * 2 < m - 1:
+                return dfs(n - 1, k)
+            return dfs(n - 1, m - k) ^ 1
 
-        middle = 1 << (n - 1)
-        if k == middle:
-            return "1"
-        if k < middle:
-            return self.findKthBit(n - 1, k)
-
-        mirrored = (1 << n) - k
-        bit = self.findKthBit(n - 1, mirrored)
-        return "1" if bit == "0" else "0"
+        return str(dfs(n, k))

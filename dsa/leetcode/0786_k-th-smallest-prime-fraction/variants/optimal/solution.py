@@ -1,36 +1,9 @@
-import heapq
-from typing import List
-
-
-class _FractionEntry:
-    __slots__ = ("numerator", "denominator", "values")
-
-    def __init__(self, numerator: int, denominator: int, values: List[int]):
-        self.numerator = numerator
-        self.denominator = denominator
-        self.values = values
-
-    def __lt__(self, other: "_FractionEntry") -> bool:
-        return (
-            self.values[self.numerator] * self.values[other.denominator]
-            < self.values[other.numerator] * self.values[self.denominator]
-        )
-
-
 class Solution:
     def kthSmallestPrimeFraction(self, arr: List[int], k: int) -> List[int]:
-        last = len(arr) - 1
-        heap = [_FractionEntry(index, last, arr) for index in range(last)]
-        heapq.heapify(heap)
-
-        entry = heap[0]
-        for _ in range(k):
-            entry = heapq.heappop(heap)
-            next_denominator = entry.denominator - 1
-            if next_denominator > entry.numerator:
-                heapq.heappush(
-                    heap,
-                    _FractionEntry(entry.numerator, next_denominator, arr),
-                )
-
-        return [arr[entry.numerator], arr[entry.denominator]]
+        h = [(1 / y, 0, j + 1) for j, y in enumerate(arr[1:])]
+        heapify(h)
+        for _ in range(k - 1):
+            _, i, j = heappop(h)
+            if i + 1 < j:
+                heappush(h, (arr[i + 1] / arr[j], i + 1, j))
+        return [arr[h[0][1]], arr[h[0][2]]]

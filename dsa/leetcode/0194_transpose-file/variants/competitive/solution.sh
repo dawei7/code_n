@@ -1,13 +1,19 @@
-#!/usr/bin/env bash
+# Time:  O(n^2)
+# Space: O(n^2)
+
 awk '
 {
-    if (NR == 1) columns = NF
-    for (column = 1; column <= NF; column++) {
-        if (NR == 1) output[column] = $column
-        else output[column] = output[column] " " $column
+    for (i = 1; i <= NF; i++) {
+        if(NR == 1) {
+            s[i] = $i;
+        } else {
+            s[i] = s[i] " " $i;
+        }
     }
 }
 END {
-    for (column = 1; column <= columns; column++) print output[column]
-}
-' file.txt
+    for (i = 1; s[i] != ""; i++) {
+        print s[i];
+    }
+}' file.txt
+

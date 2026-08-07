@@ -1,7 +1,13 @@
 class Solution:
-    def groupStrings(self, strings: list[str]) -> list[list[str]]:
-        groups = {}
-        for string in strings:
-            key = tuple((ord(string[i]) - ord(string[i - 1])) % 26 for i in range(1, len(string)))
-            groups.setdefault(key, []).append(string)
-        return list(groups.values())
+    def groupStrings(self, strings: List[str]) -> List[List[str]]:
+        g = defaultdict(list)
+        for s in strings:
+            diff = ord(s[0]) - ord("a")
+            t = []
+            for c in s:
+                c = ord(c) - diff
+                if c < ord("a"):
+                    c += 26
+                t.append(chr(c))
+            g["".join(t)].append(s)
+        return list(g.values())

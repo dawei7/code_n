@@ -1,35 +1,53 @@
-from cmath import exp, pi
-
-
-def _fft(values: list[complex], sign: int) -> None:
-    length = len(values)
-    if length < 2:
-        return
-    even = values[::2]
-    odd = values[1::2]
-    _fft(even, sign)
-    _fft(odd, sign)
-    factor = 1
-    root = exp(sign * 2j * pi / length)
-    half = length // 2
-    for i in range(half):
-        contribution = factor * odd[i]
-        values[i] = even[i] + contribution
-        values[i + half] = even[i] - contribution
-        factor *= root
-
-
 class Solution:
-    def multiply(self, poly1: list[int], poly2: list[int]) -> list[int]:
-        result_length = len(poly1) + len(poly2) - 1
-        transform_length = 1
-        while transform_length < result_length:
-            transform_length *= 2
-        first = [complex(value) for value in poly1] + [0j] * (transform_length - len(poly1))
-        second = [complex(value) for value in poly2] + [0j] * (transform_length - len(poly2))
-        _fft(first, -1)
-        _fft(second, -1)
-        for i in range(transform_length):
-            first[i] *= second[i]
-        _fft(first, 1)
-        return [round(first[i].real / transform_length) for i in range(result_length)]
+    def multiply(self, poly1: List[int], poly2: List[int]) -> List[int]:
+        if not poly1 or not poly2:
+            return []
+
+        m = len(poly1) + len(poly2) - 1
+        n = 1
+        while n < m:
+            n <<= 1
+
+        fa = list(map(complex, poly1)) + [0j] * (n - len(poly1))
+        fb = list(map(complex, poly2)) + [0j] * (n - len(poly2))
+
+        self._fft(fa, invert=False)
+        self._fft(fb, invert=False)
+
+        for i in range(n):
+            fa[i] *= fb[i]
+
+        self._fft(fa, invert=True)
+        return [int(round(fa[i].real)) for i in range(m)]
+
+    def _fft(self, a: List[complex], invert: bool) -> None:
+        n = len(a)
+
+        j = 0
+        for i in range(1, n):
+            bit = n >> 1
+            while j & bit:
+                j ^= bit
+                bit >>= 1
+            j ^= bit
+            if i < j:
+                a[i], a[j] = a[j], a[i]
+
+        len_ = 2
+        while len_ <= n:
+            ang = 2 * math.pi / len_ * (-1 if invert else 1)
+            wlen = complex(math.cos(ang), math.sin(ang))
+            for i in range(0, n, len_):
+                w = 1 + 0j
+                half = i + len_ // 2
+                for j in range(i, half):
+                    u = a[j]
+                    v = a[j + len_ // 2] * w
+                    a[j] = u + v
+                    a[j + len_ // 2] = u - v
+                    w *= wlen
+            len_ <<= 1
+
+        if invert:
+            for i in range(n):
+                a[i] /= n

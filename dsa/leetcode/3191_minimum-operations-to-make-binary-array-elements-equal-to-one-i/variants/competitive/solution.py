@@ -1,10 +1,18 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minOperations(self, nums: List[int]) -> int:
-        operations = 0
-        for i in range(len(nums) - 2):
-            if nums[i] == 0:
-                nums[i] ^= 1
-                nums[i + 1] ^= 1
-                nums[i + 2] ^= 1
-                operations += 1
-        return operations if nums[-2] == nums[-1] == 1 else -1
+    def minOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        result = 0
+        for i in range(len(nums)-2):
+            if nums[i]:
+                continue
+            nums[i+1] ^= 1
+            nums[i+2] ^= 1
+            result += 1
+        return result if nums[-2] == nums[-1] == 1 else -1

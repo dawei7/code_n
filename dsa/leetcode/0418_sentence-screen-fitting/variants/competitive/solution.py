@@ -1,31 +1,33 @@
+# Time:  O(r + n * c)
+# Space: O(n)
+
 class Solution:
-    def wordsTyping(self, sentence: List[str], rows: int, cols: int) -> int:
-        cycle = " ".join(sentence) + " "
-        cycle_length = len(cycle)
-        position = 0
-        row = 0
-        seen = {}
+    def wordsTyping(self, sentence, rows, cols):
+        """
+        :type sentence: List[str]
+        :type rows: int
+        :type cols: int
+        :rtype: int
+        """
+        def words_fit(sentence, start, cols):
+            if len(sentence[start]) > cols:
+                return 0
 
-        while row < rows:
-            offset = position % cycle_length
-            if offset in seen:
-                previous_row, previous_position = seen[offset]
-                cycle_rows = row - previous_row
-                cycle_characters = position - previous_position
-                repetitions = (rows - row) // cycle_rows
-                if repetitions:
-                    row += repetitions * cycle_rows
-                    position += repetitions * cycle_characters
-                    continue
-            else:
-                seen[offset] = (row, position)
+            s, count = len(sentence[start]), 1
+            i = (start + 1) % len(sentence)
+            while s + 1 + len(sentence[i]) <= cols:
+                s += 1 + len(sentence[i])
+                count += 1
+                i = (i + 1) % len(sentence)
+            return count
 
-            position += cols
-            if cycle[position % cycle_length] == " ":
-                position += 1
-            else:
-                while position > 0 and cycle[(position - 1) % cycle_length] != " ":
-                    position -= 1
-            row += 1
+        wc = [0] * len(sentence)
+        for i in range(len(sentence)):
+            wc[i] = words_fit(sentence, i, cols)
 
-        return position // cycle_length
+        words, start = 0, 0
+        for i in range(rows):
+            words += wc[start]
+            start = (start + wc[start]) % len(sentence)
+        return words / len(sentence)
+

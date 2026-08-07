@@ -1,26 +1,16 @@
-from math import isqrt
-from typing import List
-
-
 class Solution:
     def minimumK(self, nums: List[int]) -> int:
-        def feasible(k: int) -> bool:
-            limit = k * k
-            operations = 0
-            for value in nums:
-                operations += (value + k - 1) // k
-                if operations > limit:
-                    return False
-            return True
+        def check(k: int) -> bool:
+            t = 0
+            for x in nums:
+                t += (x + k - 1) // k
+            return t <= k * k
 
-        low = 1
-        high = max(max(nums), isqrt(len(nums) - 1) + 1)
-
-        while low < high:
-            middle = (low + high) // 2
-            if feasible(middle):
-                high = middle
+        l, r = 1, 10**5
+        while l < r:
+            mid = (l + r) >> 1
+            if check(mid):
+                r = mid
             else:
-                low = middle + 1
-
-        return low
+                l = mid + 1
+        return l

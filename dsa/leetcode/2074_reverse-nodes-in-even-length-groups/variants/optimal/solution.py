@@ -1,33 +1,39 @@
-from typing import Optional
-
-
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution:
     def reverseEvenLengthGroups(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        group_tail = head
-        target_length = 2
+        def reverse(head, l):
+            prev, cur, tail = None, head, head
+            i = 0
+            while cur and i < l:
+                t = cur.next
+                cur.next = prev
+                prev = cur
+                cur = t
+                i += 1
+            tail.next = cur
+            return prev
 
-        while group_tail is not None and group_tail.next is not None:
-            actual_length = 0
-            after_group = group_tail.next
-            while actual_length < target_length and after_group is not None:
-                actual_length += 1
-                after_group = after_group.next
-
-            if actual_length % 2 == 0:
-                old_head = group_tail.next
-                current = old_head
-                previous = after_group
-                for _ in range(actual_length):
-                    following = current.next
-                    current.next = previous
-                    previous = current
-                    current = following
-                group_tail.next = previous
-                group_tail = old_head
-            else:
-                for _ in range(actual_length):
-                    group_tail = group_tail.next
-
-            target_length += 1
-
-        return head
+        n = 0
+        t = head
+        while t:
+            t = t.next
+            n += 1
+        dummy = ListNode(0, head)
+        prev = dummy
+        l = 1
+        while (1 + l) * l // 2 <= n and prev:
+            if l % 2 == 0:
+                prev.next = reverse(prev.next, l)
+            i = 0
+            while i < l and prev:
+                prev = prev.next
+                i += 1
+            l += 1
+        left = n - l * (l - 1) // 2
+        if left > 0 and left % 2 == 0:
+            prev.next = reverse(prev.next, left)
+        return dummy.next

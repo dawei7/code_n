@@ -1,17 +1,11 @@
-from typing import List
-
-
 class Solution:
     def stoneGameVI(self, aliceValues: List[int], bobValues: List[int]) -> int:
-        order = sorted(
-            range(len(aliceValues)),
-            key=lambda index: aliceValues[index] + bobValues[index],
-            reverse=True,
-        )
-        score_difference = 0
-        for turn, index in enumerate(order):
-            if turn % 2 == 0:
-                score_difference += aliceValues[index]
-            else:
-                score_difference -= bobValues[index]
-        return (score_difference > 0) - (score_difference < 0)
+        vals = [(a + b, i) for i, (a, b) in enumerate(zip(aliceValues, bobValues))]
+        vals.sort(reverse=True)
+        a = sum(aliceValues[i] for _, i in vals[::2])
+        b = sum(bobValues[i] for _, i in vals[1::2])
+        if a > b:
+            return 1
+        if a < b:
+            return -1
+        return 0

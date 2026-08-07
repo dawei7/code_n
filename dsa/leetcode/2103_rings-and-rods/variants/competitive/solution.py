@@ -1,11 +1,17 @@
+# Time:  O(n)
+# Space: O(1)
+
+import collections
+
+
 class Solution:
-    def countPoints(self, rings: str) -> int:
-        color_bit = {"R": 1, "G": 2, "B": 4}
-        rods = [0] * 10
-
-        for index in range(0, len(rings), 2):
-            color = rings[index]
-            rod = int(rings[index + 1])
-            rods[rod] |= color_bit[color]
-
-        return sum(mask == 7 for mask in rods)
+    def countPoints(self, rings):
+        """
+        :type rings: str
+        :rtype: int
+        """
+        bits = {'R':0b001, 'G':0b010, 'B':0b100}
+        rods = collections.defaultdict(int)
+        for i in range(0, len(rings), 2):
+            rods[int(rings[i+1])] |= bits[rings[i]]
+        return sum(x == 0b111 for x in rods.values())

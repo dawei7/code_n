@@ -1,45 +1,24 @@
-from collections import Counter
-from typing import List
-
-
 class Solution:
-    def gridIllumination(self, n: int, lamps: List[List[int]], queries: List[List[int]]) -> List[int]:
-        active = set()
-        rows = Counter()
-        columns = Counter()
-        diagonals = Counter()
-        anti_diagonals = Counter()
-
-        for row, column in lamps:
-            if (row, column) in active:
-                continue
-            active.add((row, column))
-            rows[row] += 1
-            columns[column] += 1
-            diagonals[row - column] += 1
-            anti_diagonals[row + column] += 1
-
-        answer = []
-        for row, column in queries:
-            answer.append(
-                int(
-                    rows[row] > 0
-                    or columns[column] > 0
-                    or diagonals[row - column] > 0
-                    or anti_diagonals[row + column] > 0
-                )
-            )
-
-            for row_step in (-1, 0, 1):
-                for column_step in (-1, 0, 1):
-                    neighbor = (row + row_step, column + column_step)
-                    if neighbor not in active:
-                        continue
-                    active.remove(neighbor)
-                    lamp_row, lamp_column = neighbor
-                    rows[lamp_row] -= 1
-                    columns[lamp_column] -= 1
-                    diagonals[lamp_row - lamp_column] -= 1
-                    anti_diagonals[lamp_row + lamp_column] -= 1
-
-        return answer
+    def gridIllumination(
+        self, n: int, lamps: List[List[int]], queries: List[List[int]]
+    ) -> List[int]:
+        s = {(i, j) for i, j in lamps}
+        row, col, diag1, diag2 = Counter(), Counter(), Counter(), Counter()
+        for i, j in s:
+            row[i] += 1
+            col[j] += 1
+            diag1[i - j] += 1
+            diag2[i + j] += 1
+        ans = [0] * len(queries)
+        for k, (i, j) in enumerate(queries):
+            if row[i] or col[j] or diag1[i - j] or diag2[i + j]:
+                ans[k] = 1
+            for x in range(i - 1, i + 2):
+                for y in range(j - 1, j + 2):
+                    if (x, y) in s:
+                        s.remove((x, y))
+                        row[x] -= 1
+                        col[y] -= 1
+                        diag1[x - y] -= 1
+                        diag2[x + y] -= 1
+        return ans

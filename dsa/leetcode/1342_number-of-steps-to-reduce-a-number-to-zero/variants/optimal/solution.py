@@ -1,10 +1,10 @@
 class Solution:
     def numberOfSteps(self, num: int) -> int:
-        steps = 0
+        ans = 0
         while num:
             if num & 1:
                 num -= 1
             else:
-                num //= 2
-            steps += 1
-        return steps
+                num >>= 1
+            ans += 1
+        return ans

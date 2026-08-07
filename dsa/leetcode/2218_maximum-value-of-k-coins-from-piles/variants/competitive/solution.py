@@ -1,16 +1,21 @@
-from typing import List
+# Time:  O(min(n * k^2, m * k)), m = sum(len(pile) for pile in piles)
+# Space: O(k)
 
-
+# dp
 class Solution:
-    def maxValueOfCoins(self, piles: List[List[int]], k: int) -> int:
-        impossible = -(10**30)
-        best = [0] + [impossible] * k
+    def maxValueOfCoins(self, piles, k):
+        """
+        :type piles: List[List[int]]
+        :type k: int
+        :rtype: int
+        """
+        dp = [0]
         for pile in piles:
-            updated = best[:]
-            prefix = 0
-            for taken, value in enumerate(pile[:k], start=1):
-                prefix += value
-                for previous in range(k - taken + 1):
-                    updated[previous + taken] = max(updated[previous + taken], best[previous] + prefix)
-            best = updated
-        return best[k]
+            new_dp = [0]*min(len(dp)+len(pile), k+1)
+            for i in range(len(dp)):
+                curr = 0
+                for j in range(min(k-i, len(pile))+1):
+                    new_dp[i+j] = max(new_dp[i+j], dp[i]+curr)
+                    curr += pile[j] if j < len(pile) else 0
+            dp = new_dp
+        return dp[-1]

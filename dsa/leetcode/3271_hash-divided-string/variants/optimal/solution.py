@@ -1,11 +1,10 @@
 class Solution:
     def stringHash(self, s: str, k: int) -> str:
-        result = []
-
-        for start in range(0, len(s), k):
-            group_sum = 0
-            for index in range(start, start + k):
-                group_sum += ord(s[index]) - ord("a")
-            result.append(chr(ord("a") + group_sum % 26))
-
-        return "".join(result)
+        ans = []
+        for i in range(0, len(s), k):
+            t = 0
+            for j in range(i, i + k):
+                t += ord(s[j]) - ord("a")
+            hashedChar = t % 26
+            ans.append(chr(ord("a") + hashedChar))
+        return "".join(ans)

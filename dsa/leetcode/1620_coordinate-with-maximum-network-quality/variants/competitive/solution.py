@@ -1,24 +1,26 @@
-from math import floor, sqrt
-from typing import List
-
+# Time:  O(n^2)
+# Space: O(1)
 
 class Solution:
-    def bestCoordinate(self, towers: List[List[int]], radius: int) -> List[int]:
-        maximum_x = max(tower[0] for tower in towers)
-        maximum_y = max(tower[1] for tower in towers)
-        radius_squared = radius * radius
-        best = [0, 0]
-        best_quality = -1
-
-        for x in range(maximum_x + 1):
-            for y in range(maximum_y + 1):
-                quality = 0
-                for tower_x, tower_y, tower_quality in towers:
-                    distance_squared = (x - tower_x) ** 2 + (y - tower_y) ** 2
-                    if distance_squared <= radius_squared:
-                        quality += floor(tower_quality / (1 + sqrt(distance_squared)))
-                if quality > best_quality:
-                    best_quality = quality
-                    best = [x, y]
-
-        return best
+    def bestCoordinate(self, towers, radius):
+        """
+        :type towers: List[List[int]]
+        :type radius: int
+        :rtype: List[int]
+        """
+        min_x = min(towers, key=lambda x:x[0])[0]
+        max_x = max(towers, key=lambda x:x[0])[0]
+        min_y = min(towers, key=lambda x:x[1])[1]
+        max_y = max(towers, key=lambda x:x[1])[1]
+        max_quality = 0
+        for x in range(min_x, max_x+1):
+            for y in range(min_y, max_y+1):
+                q = 0
+                for nx, ny, nq in towers:
+                    d = ((nx-x)**2+(ny-y)**2)**0.5
+                    if d <= radius:
+                        q += int(nq/(1+d))
+                if q > max_quality:
+                    max_quality = q
+                    result = x, y
+        return result

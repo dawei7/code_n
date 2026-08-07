@@ -1,25 +1,22 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def insert(
-        self,
-        intervals: List[List[int]],
-        newInterval: List[int],
-    ) -> List[List[int]]:
+    def insert(self, intervals, newInterval):
+        """
+        :type intervals: List[List[int]]
+        :type newInterval: List[int]
+        :rtype: List[List[int]]
+        """
         result = []
-        index = 0
-        start, end = newInterval
-
-        while index < len(intervals) and intervals[index][1] < start:
-            result.append(intervals[index][:])
-            index += 1
-
-        while index < len(intervals) and intervals[index][0] <= end:
-            start = min(start, intervals[index][0])
-            end = max(end, intervals[index][1])
-            index += 1
-
-        result.append([start, end])
-        result.extend(interval[:] for interval in intervals[index:])
+        i = 0
+        while i < len(intervals) and newInterval[0] > intervals[i][1]:
+            result += intervals[i],
+            i += 1
+        while i < len(intervals) and newInterval[1] >= intervals[i][0]:
+            newInterval = [min(newInterval[0], intervals[i][0]),
+                           max(newInterval[1], intervals[i][1])]
+            i += 1
+        result.append(newInterval)
+        result.extend(intervals[i:])
         return result

@@ -1,17 +1,18 @@
-from typing import List
+# Time:  O(n * k)
+# Space: O(k)
 
-
+# dp, combinatorics
 class Solution:
-    def sumOfPower(self, nums: List[int], k: int) -> int:
-        mod = 1_000_000_007
-        dp = [0] * (k + 1)
+    def sumOfPower(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        dp = [0]*(k+1)
         dp[0] = 1
-
-        for value in nums:
-            next_dp = [ways * 2 % mod for ways in dp]
-            if value <= k:
-                for total in range(value, k + 1):
-                    next_dp[total] = (next_dp[total] + dp[total - value]) % mod
-            dp = next_dp
-
+        for x in nums:
+            for i in reversed(range(k+1)):
+                dp[i] = (dp[i]+(dp[i]+(dp[i-x] if i-x >= 0 else 0)))%MOD
         return dp[k]

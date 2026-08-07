@@ -1,16 +1,12 @@
-from typing import List
-
-
 class Solution:
     def largeGroupPositions(self, s: str) -> List[List[int]]:
-        groups = []
-        run_start = 0
-
-        for end in range(1, len(s) + 1):
-            if end < len(s) and s[end] == s[run_start]:
-                continue
-            if end - run_start >= 3:
-                groups.append([run_start, end - 1])
-            run_start = end
-
-        return groups
+        i, n = 0, len(s)
+        ans = []
+        while i < n:
+            j = i
+            while j < n and s[j] == s[i]:
+                j += 1
+            if j - i >= 3:
+                ans.append([i, j - 1])
+            i = j
+        return ans

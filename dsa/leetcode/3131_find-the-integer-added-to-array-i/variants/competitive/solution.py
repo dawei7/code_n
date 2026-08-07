@@ -1,3 +1,12 @@
+# Time:  O(n)
+# Space: O(1)
+
+# array
 class Solution:
-    def addedInteger(self, nums1: List[int], nums2: List[int]) -> int:
-        return min(nums2) - min(nums1)
+    def addedInteger(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: int
+        """
+        return max(nums2)-max(nums1)

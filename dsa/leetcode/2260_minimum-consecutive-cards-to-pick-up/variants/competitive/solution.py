@@ -1,12 +1,17 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# hash table
 class Solution:
-    def minimumCardPickup(self, cards: List[int]) -> int:
-        last_index = {}
-        best = len(cards) + 1
-        for index, value in enumerate(cards):
-            if value in last_index:
-                best = min(best, index - last_index[value] + 1)
-            last_index[value] = index
-        return best if best <= len(cards) else -1
+    def minimumCardPickup(self, cards):
+        """
+        :type cards: List[int]
+        :rtype: int
+        """
+        lookup = {}
+        result = float("inf")
+        for i, x in enumerate(cards):
+            if x in lookup:
+                result = min(result, i-lookup[x]+1)
+            lookup[x] = i
+        return result if result != float("inf") else -1

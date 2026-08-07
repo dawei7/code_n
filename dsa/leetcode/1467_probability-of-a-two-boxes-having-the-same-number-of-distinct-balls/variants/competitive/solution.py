@@ -1,23 +1,40 @@
-from math import comb
+# Time:  O(k^3 * n^2)
+# Space: O(k^2 * n)
+
+import collections
 
 
 class Solution:
-    def getProbability(self, balls: List[int]) -> float:
+    def getProbability(self, balls):
+        """
+        :type balls: List[int]
+        :rtype: float
+        """
+        def nCrs(n):  # Time: O(n), Space: O(1)
+            c = 1
+            for k in range(n+1):
+                yield c
+                c *= n-(k+1)+1
+                c //= k+1
+        
+        def nCr(n, r):  # Time: O(n), Space: O(1)
+            if n-r < r:
+                return nCr(n, n-r)
+            c = 1
+            for k in range(1, r+1):
+                c *= n-k+1
+                c //= k
+            return c
+        
+        dp = collections.defaultdict(int)
+        dp[0, 0] = 1  # dp[i, j] is the number of ways with number difference i and color difference j
+        for n in balls:  # O(k) times
+            new_dp = collections.defaultdict(int)
+            for (ndiff, cdiff), count in dp.items():  # O(k^2 * n) times
+                for k, new_count in enumerate(nCrs(n)):  # O(n) times
+                    new_ndiff = ndiff+(k-(n-k))
+                    new_cdiff = cdiff-1 if k == 0 else (cdiff+1 if k == n else cdiff)
+                    new_dp[new_ndiff, new_cdiff] += count*new_count
+            dp = new_dp
         total = sum(balls)
-        half = total // 2
-        states = {(0, 0): 1}
-
-        for count in balls:
-            next_states = {}
-            for (used, difference), ways in states.items():
-                for take in range(count + 1):
-                    next_used = used + take
-                    if next_used > half:
-                        break
-                    next_difference = difference + (take > 0) - (take < count)
-                    key = (next_used, next_difference)
-                    next_states[key] = next_states.get(key, 0) + ways * comb(count, take)
-            states = next_states
-
-        favorable = states.get((half, 0), 0)
-        return favorable / comb(total, half)
+        return float(dp[0, 0])/nCr(total, total//2)

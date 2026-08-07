@@ -1,16 +1,23 @@
+# Time:  O(n)
+# Space: O(1)
+
+# greedy
 class Solution:
-    def minArrayLength(self, nums: List[int], k: int) -> int:
+    def minArrayLength(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
         if 0 in nums:
             return 1
-
-        groups = 1
-        product = nums[0]
-
-        for value in nums[1:]:
-            if product <= k // value:
-                product *= value
+        result = len(nums)
+        curr = nums[0]
+        for i in range(1, len(nums)):
+            if curr*nums[i] > k:
+                curr = nums[i]
             else:
-                groups += 1
-                product = value
-
-        return groups
+                curr *= nums[i]
+                result -= 1
+        return result
+ 

@@ -1,24 +1,66 @@
-from collections import deque
+# Time:  O(n! * n * m)
+# Space: O(n! * n)
 
-
+# bi-bfs
 class Solution:
-    def sortArray(self, nums: List[int], pre: List[int]) -> int:
-        start = tuple(nums)
-        target = tuple(range(len(nums)))
-        if start == target:
-            return 0
+    def sortArray(self, nums, pre):
+        """
+        :type nums: List[int]
+        :type pre: List[int]
+        :rtype: int
+        """
+        def bi_bfs(start, target):
+            left, right = {start}, {target}
+            lookup = set()
+            steps = 0
+            while left:
+                if len(left) > len(right): 
+                    left, right = right, left
+                for x in left:
+                    lookup.add(x)
+                new_left = set()
+                for x in left:
+                    if x in right: 
+                        return steps
+                    for i in pre:
+                        nx = tuple(reversed(x[:i]))+x[i:]
+                        if nx in lookup:
+                            continue
+                        new_left.add(nx)
+                left = new_left
+                steps += 1
+            return -1
 
-        queue = deque([(start, 0)])
-        seen = {start}
+        return bi_bfs(tuple(nums), tuple(range(len(nums))))
 
-        while queue:
-            current, distance = queue.popleft()
-            for length in pre:
-                next_state = current[:length][::-1] + current[length:]
-                if next_state == target:
-                    return distance + 1
-                if next_state not in seen:
-                    seen.add(next_state)
-                    queue.append((next_state, distance + 1))
 
-        return -1
+# Time:  O(n! * n * m)
+# Space: O(n! * n)
+# bfs
+class Solution2(object):
+    def sortArray(self, nums, pre):
+        """
+        :type nums: List[int]
+        :type pre: List[int]
+        :rtype: int
+        """
+        def bfs(start, target):
+            lookup = {start}
+            q = [start]
+            steps = 0
+            while q:
+                new_q = []
+                for x in q:
+                    if x == target:
+                        return steps
+                    for i in pre:
+                        nx = tuple(reversed(x[:i]))+x[i:]
+                        if nx in lookup:
+                            continue
+                        lookup.add(nx)
+                        new_q.append(nx)
+                q = new_q
+                steps += 1
+            return -1
+
+        return bfs(tuple(nums), tuple(range(len(nums))))

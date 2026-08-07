@@ -1,13 +1,12 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def numberOfWeeks(self, milestones: List[int]) -> int:
-        total = sum(milestones)
-        largest = max(milestones)
-        rest = total - largest
-
-        if largest <= rest + 1:
-            return total
-
-        return 2 * rest + 1
+    def numberOfWeeks(self, milestones):
+        """
+        :type milestones: List[int]
+        :rtype: int
+        """
+        total, max_num = sum(milestones), max(milestones)
+        other_total = (total-max_num)
+        return other_total+min(other_total+1, max_num)

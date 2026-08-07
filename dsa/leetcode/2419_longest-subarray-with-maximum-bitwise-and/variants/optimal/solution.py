@@ -1,16 +1,11 @@
-from typing import List
-
-
 class Solution:
     def longestSubarray(self, nums: List[int]) -> int:
-        maximum = max(nums)
-        longest = 0
-        current = 0
-
-        for value in nums:
-            if value == maximum:
-                current += 1
-                longest = max(longest, current)
+        mx = max(nums)
+        ans = cnt = 0
+        for x in nums:
+            if x == mx:
+                cnt += 1
+                ans = max(ans, cnt)
             else:
-                current = 0
-        return longest
+                cnt = 0
+        return ans

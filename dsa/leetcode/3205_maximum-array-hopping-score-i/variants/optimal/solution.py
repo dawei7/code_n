@@ -1,11 +1,9 @@
-from typing import List
-
-
 class Solution:
     def maxScore(self, nums: List[int]) -> int:
-        suffix_maximum = 0
-        score = 0
-        for index in range(len(nums) - 1, 0, -1):
-            suffix_maximum = max(suffix_maximum, nums[index])
-            score += suffix_maximum
-        return score
+        @cache
+        def dfs(i: int) -> int:
+            return max(
+                [(j - i) * nums[j] + dfs(j) for j in range(i + 1, len(nums))] or [0]
+            )
+
+        return dfs(0)

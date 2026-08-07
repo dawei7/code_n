@@ -1,23 +1,18 @@
-from collections import defaultdict
-from typing import List
-
-
 class Solution:
     def countSubranges(self, nums1: List[int], nums2: List[int]) -> int:
-        modulo = 1_000_000_007
-        ending = {}
-        answer = 0
-
-        for first, second in zip(nums1, nums2):
-            current = defaultdict(int)
-            current[first] += 1
-            current[-second] += 1
-
-            for difference, count in ending.items():
-                current[difference + first] = (current[difference + first] + count) % modulo
-                current[difference - second] = (current[difference - second] + count) % modulo
-
-            ending = current
-            answer = (answer + ending[0]) % modulo
-
-        return answer
+        n = len(nums1)
+        s1, s2 = sum(nums1), sum(nums2)
+        f = [[0] * (s1 + s2 + 1) for _ in range(n)]
+        ans = 0
+        mod = 10**9 + 7
+        for i, (a, b) in enumerate(zip(nums1, nums2)):
+            f[i][a + s2] += 1
+            f[i][-b + s2] += 1
+            if i:
+                for j in range(s1 + s2 + 1):
+                    if j >= a:
+                        f[i][j] = (f[i][j] + f[i - 1][j - a]) % mod
+                    if j + b < s1 + s2 + 1:
+                        f[i][j] = (f[i][j] + f[i - 1][j + b]) % mod
+            ans = (ans + f[i][s2]) % mod
+        return ans

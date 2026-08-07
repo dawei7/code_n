@@ -1,13 +1,16 @@
-#!/usr/bin/env bash
+# Read from the file file.txt and print its transposed content to stdout.
 awk '
 {
-    if (NR == 1) columns = NF
-    for (column = 1; column <= NF; column++) {
-        if (NR == 1) output[column] = $column
-        else output[column] = output[column] " " $column
+  for (i=1; i<=NF; i++) {
+    if(NR == 1) {
+      res[i] = re$i
+    } else {
+      res[i] = res[i]" "$i
     }
-}
-END {
-    for (column = 1; column <= columns; column++) print output[column]
+  }
+}END {
+  for (i=1;i<=NF;i++) {
+    print res[i]
+  }
 }
 ' file.txt

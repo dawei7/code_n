@@ -1,11 +1,42 @@
+# Time:  O(n)
+# Space: O(1)
+
+# string
 class Solution:
-    def discountPrices(self, sentence: str, discount: int) -> str:
-        remaining_percent = 100 - discount
-        words = sentence.split(" ")
+    def discountPrices(self, sentence, discount):
+        """
+        :type sentence: str
+        :type discount: int
+        :rtype: str
+        """
+        result = []
+        i = 0
+        while i < len(sentence):
+            j = sentence.find(' ', i)
+            if j == -1: j = len(sentence)
+            if sentence[i] == '$' and j-(i+1) > 0 and all(sentence[k].isdigit() for k in range(i+1, j)):
+                cnt = reduce(lambda x, y: x*10+int(y), (sentence[k] for k in range(i+1, j)), 0)
+                result.append("${:d}.{:02d}".format(*divmod(cnt*(100-discount), 100)))
+            else:
+                for k in range(i, j):
+                    result.append(sentence[k])
+            if j != len(sentence):
+                result.append(' ')
+            i = j+1
+        return "".join(result)
 
-        for index, word in enumerate(words):
-            if len(word) > 1 and word[0] == "$" and word[1:].isdigit():
-                discounted_cents = int(word[1:]) * remaining_percent
-                words[index] = f"${discounted_cents // 100}.{discounted_cents % 100:02d}"
+    
+# Time:  O(n)
+# Space: O(n)
+# string
+class Solution2(object):
+    def discountPrices(self, sentence, discount):
+        """
+        :type sentence: str
+        :type discount: int
+        :rtype: str
+        """
+        def format(discount, x):
+            return "${:d}.{:02d}".format(*divmod(int(x[1:])*(100-discount), 100)) if x[0] == '$' and x[1:].isdigit() else x
 
-        return " ".join(words)
+        return " ".join(format(discount, x) for x in sentence.split())

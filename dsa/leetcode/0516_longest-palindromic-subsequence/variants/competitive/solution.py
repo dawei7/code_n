@@ -1,15 +1,21 @@
+# Time:  O(n^2)
+# Space: O(n)
+
 class Solution:
-    def longestPalindromeSubseq(self, s: str) -> int:
-        size = len(s)
-        dp = [0] * size
-        for left in range(size - 1, -1, -1):
-            dp[left] = 1
-            diagonal = 0
-            for right in range(left + 1, size):
-                previous_row = dp[right]
-                if s[left] == s[right]:
-                    dp[right] = diagonal + 2
+    def longestPalindromeSubseq(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        if s == s[::-1]:  # optional, to optimize special case
+            return len(s)
+
+        dp = [[1] * len(s) for _ in range(2)]
+        for i in reversed(range(len(s))):
+            for j in range(i+1, len(s)):
+                if s[i] == s[j]:
+                    dp[i%2][j] = 2 + dp[(i+1)%2][j-1] if i+1 <= j-1 else 2
                 else:
-                    dp[right] = max(dp[right], dp[right - 1])
-                diagonal = previous_row
-        return dp[-1]
+                    dp[i%2][j] = max(dp[(i+1)%2][j], dp[i%2][j-1])
+        return dp[0][-1]
+

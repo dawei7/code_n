@@ -1,29 +1,23 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(1)
 
 class Solution:
-    def minDistance(
-        self,
-        height: int,
-        width: int,
-        tree: List[int],
-        squirrel: List[int],
-        nuts: List[List[int]],
-    ) -> int:
-        del height, width
+    def minDistance(self, height, width, tree, squirrel, nuts):
+        """
+        :type height: int
+        :type width: int
+        :type tree: List[int]
+        :type squirrel: List[int]
+        :type nuts: List[List[int]]
+        :rtype: int
+        """
+        def distance(a, b):
+            return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
-        def distance(first: List[int], second: List[int]) -> int:
-            return abs(first[0] - second[0]) + abs(first[1] - second[1])
-
-        baseline = 0
-        best_saving = float("-inf")
-
+        result = 0
+        d = float("inf")
         for nut in nuts:
-            tree_distance = distance(tree, nut)
-            baseline += 2 * tree_distance
-            best_saving = max(
-                best_saving,
-                tree_distance - distance(squirrel, nut),
-            )
+            result += (distance(nut, tree) * 2)
+            d = min(d, distance(nut, squirrel) - distance(nut, tree))
+        return result + d
 
-        return int(baseline - best_saving)

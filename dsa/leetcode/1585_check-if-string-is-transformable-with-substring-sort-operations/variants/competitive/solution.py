@@ -1,20 +1,22 @@
+# Time:  O(n)
+# Space: O(n)
+
 class Solution:
-    def isTransformable(self, s: str, t: str) -> bool:
-        positions = [[] for _ in range(10)]
-        for index, character in enumerate(s):
-            positions[ord(character) - ord("0")].append(index)
-
-        used = [0] * 10
-        for character in t:
-            digit = ord(character) - ord("0")
-            if used[digit] == len(positions[digit]):
+    def isTransformable(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        idxs = [[] for _ in range(10)]
+        for i in reversed(range(len(s))):
+            idxs[int(s[i])].append(i)
+        for c in t:
+            d = int(c)
+            if not idxs[d]:
                 return False
-
-            source_index = positions[digit][used[digit]]
-            for smaller in range(digit):
-                if used[smaller] < len(positions[smaller]) and positions[smaller][used[smaller]] < source_index:
+            for k in range(d):  # a char can be moved left to the current position if it meets no smaller one
+                if idxs[k] and idxs[k][-1] < idxs[d][-1]:
                     return False
-
-            used[digit] += 1
-
+            idxs[d].pop()
         return True

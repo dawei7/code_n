@@ -1,15 +1,12 @@
-WITH yearly AS (
-    SELECT
-        product_id,
-        CAST(strftime('%Y', purchase_date) AS INTEGER) AS purchase_year
-    FROM Orders
-    GROUP BY
-        product_id,
-        CAST(strftime('%Y', purchase_date) AS INTEGER)
-    HAVING COUNT(*) >= 3
-)
-SELECT DISTINCT current_year.product_id
-FROM yearly AS current_year
-INNER JOIN yearly AS next_year
-    ON next_year.product_id = current_year.product_id
-    AND next_year.purchase_year = current_year.purchase_year + 1;
+# Write your MySQL query statement below
+WITH
+    P AS (
+        SELECT product_id, YEAR(purchase_date) AS y, COUNT(1) >= 3 AS mark
+        FROM Orders
+        GROUP BY 1, 2
+    )
+SELECT DISTINCT p1.product_id
+FROM
+    P AS p1
+    JOIN P AS p2 ON p1.y = p2.y - 1 AND p1.product_id = p2.product_id
+WHERE p1.mark AND p2.mark;

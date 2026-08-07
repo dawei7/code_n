@@ -1,12 +1,12 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# greedy
 class Solution:
-    def minimumArrayLength(self, nums: List[int]) -> int:
-        minimum = min(nums)
-        minimum_count = nums.count(minimum)
-
-        if any(value % minimum != 0 for value in nums):
-            return 1
-
-        return (minimum_count + 1) // 2
+    def minimumArrayLength(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mn = min(nums)
+        return (nums.count(mn)+1)//2 if all(x%mn == 0 for x in nums) else 1

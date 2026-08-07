@@ -1,21 +1,23 @@
-from typing import List
-
+# Time:  O(n)
+# Space: O(n)
 
 class Solution:
-    def addNegabinary(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        first = len(arr1) - 1
-        second = len(arr2) - 1
-        carry = 0
+    def addNegabinary(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: List[int]
+        """
         result = []
-
-        while first >= 0 or second >= 0 or carry:
-            carry += arr1[first] if first >= 0 else 0
-            carry += arr2[second] if second >= 0 else 0
+        carry = 0
+        while arr1 or arr2 or carry:
+            if arr1:
+                carry += arr1.pop()
+            if arr2:
+                carry += arr2.pop()
             result.append(carry & 1)
             carry = -(carry >> 1)
-            first -= 1
-            second -= 1
-
         while len(result) > 1 and result[-1] == 0:
             result.pop()
-        return result[::-1]
+        result.reverse()
+        return result

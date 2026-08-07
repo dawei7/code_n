@@ -1,21 +1,25 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def minSwaps(self, s: str) -> int:
-        zero_count = s.count("0")
-        one_count = len(s) - zero_count
-        if abs(zero_count - one_count) > 1:
+    def minSwaps(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        def cost(s, x): 
+            diff = 0 
+            for c in s:
+                diff += int(c) != x
+                x ^= 1
+            return diff//2
+    
+        ones = s.count('1')
+        zeros = len(s)-ones 
+        if abs(ones-zeros) > 1:
             return -1
-
-        def swaps_for(start: str) -> int:
-            mismatches = 0
-            expected = start
-            for character in s:
-                if character != expected:
-                    mismatches += 1
-                expected = "1" if expected == "0" else "0"
-            return mismatches // 2
-
-        if zero_count > one_count:
-            return swaps_for("0")
-        if one_count > zero_count:
-            return swaps_for("1")
-        return min(swaps_for("0"), swaps_for("1"))
+        if ones > zeros:
+            return cost(s, 1)
+        if ones < zeros:
+            return cost(s, 0)
+        return min(cost(s, 1), cost(s, 0))

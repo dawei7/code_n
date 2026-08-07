@@ -1,14 +1,20 @@
-from typing import List
+# Time:  O(n * k)
+# Space: O(n * k)
+
+import collections
 
 
+# freq table
 class Solution:
-    def prefixConnected(self, words: List[str], k: int) -> int:
-        prefix_counts: dict[str, int] = {}
-
-        for word in words:
-            if len(word) < k:
+    def prefixConnected(self, words, k):
+        """
+        :type words: List[str]
+        :type k: int
+        :rtype: int
+        """
+        cnt = collections.defaultdict(int)
+        for w in words:
+            if len(w) < k:
                 continue
-            prefix = word[:k]
-            prefix_counts[prefix] = prefix_counts.get(prefix, 0) + 1
-
-        return sum(count >= 2 for count in prefix_counts.values())
+            cnt[w[:k]] += 1
+        return sum(v >= 2 for v in cnt.values())

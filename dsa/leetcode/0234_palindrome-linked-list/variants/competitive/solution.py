@@ -1,31 +1,27 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        slow = fast = head
-        while fast is not None and fast.next is not None:
-            slow = slow.next
+    # @param {ListNode} head
+    # @return {boolean}
+    def isPalindrome(self, head):
+        reverse, fast = None, head
+        # Reverse the first half part of the list.
+        while fast and fast.next:
             fast = fast.next.next
+            head.next, reverse, head = reverse, head, head.next
 
-        previous = None
-        current = slow
-        while current is not None:
-            following = current.next
-            current.next = previous
-            previous = current
-            current = following
+        # If the number of the nodes is odd,
+        # set the head of the tail list to the next of the median node.
+        tail = head.next if fast else head
 
-        left, right = head, previous
-        palindrome = True
-        while right is not None:
-            if left.val != right.val:
-                palindrome = False
-                break
-            left = left.next
-            right = right.next
+        # Compare the reversed first half list with the second half list.
+        # And restore the reversed first half list.
+        is_palindrome = True
+        while reverse:
+            is_palindrome = is_palindrome and reverse.val == tail.val
+            reverse.next, head, reverse = head, reverse, reverse.next
+            tail = tail.next
 
-        current, previous = previous, None
-        while current is not None:
-            following = current.next
-            current.next = previous
-            previous = current
-            current = following
-        return palindrome
+        return is_palindrome
+

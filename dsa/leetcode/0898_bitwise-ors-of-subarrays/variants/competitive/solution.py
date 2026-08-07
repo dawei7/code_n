@@ -1,13 +1,15 @@
-from typing import List
-
+# Time:  O(32 * n)
+# Space: O(1)
 
 class Solution:
-    def subarrayBitwiseORs(self, arr: List[int]) -> int:
-        ending = set()
-        results = set()
+    def subarrayBitwiseORs(self, A):
+        """
+        :type A: List[int]
+        :rtype: int
+        """
+        result, curr = set(), {0}
+        for i in A:
+            curr = {i} | {i | j for j in curr}
+            result |= curr
+        return len(result)
 
-        for value in arr:
-            ending = {value} | {previous | value for previous in ending}
-            results.update(ending)
-
-        return len(results)

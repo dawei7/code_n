@@ -1,28 +1,39 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
-        modulus = 1_000_000_007
+        mod = int(1e9 + 7)
+        n = len(s)
 
-        def single_count(character):
-            if character == "*":
-                return 9
-            return 0 if character == "0" else 1
+        # dp[i - 2], dp[i - 1], dp[i]
+        a, b, c = 0, 1, 0
+        for i in range(1, n + 1):
+            # 1 digit
+            if s[i - 1] == "*":
+                c = 9 * b % mod
+            elif s[i - 1] != "0":
+                c = b
+            else:
+                c = 0
 
-        def pair_count(first, second):
-            if first == "*" and second == "*":
-                return 15
-            if first == "*":
-                return 2 if second <= "6" else 1
-            if second == "*":
-                if first == "1":
-                    return 9
-                if first == "2":
-                    return 6
-                return 0
-            return int(10 <= int(first + second) <= 26)
+            # 2 digits
+            if i > 1:
+                if s[i - 2] == "*" and s[i - 1] == "*":
+                    c = (c + 15 * a) % mod
+                elif s[i - 2] == "*":
+                    if s[i - 1] > "6":
+                        c = (c + a) % mod
+                    else:
+                        c = (c + 2 * a) % mod
+                elif s[i - 1] == "*":
+                    if s[i - 2] == "1":
+                        c = (c + 9 * a) % mod
+                    elif s[i - 2] == "2":
+                        c = (c + 6 * a) % mod
+                elif (
+                    s[i - 2] != "0"
+                    and (ord(s[i - 2]) - ord("0")) * 10 + ord(s[i - 1]) - ord("0") <= 26
+                ):
+                    c = (c + a) % mod
 
-        two_back = 1
-        one_back = single_count(s[0])
-        for index in range(1, len(s)):
-            current = (single_count(s[index]) * one_back + pair_count(s[index - 1], s[index]) * two_back) % modulus
-            two_back, one_back = one_back, current
-        return one_back
+            a, b = b, c
+
+        return c

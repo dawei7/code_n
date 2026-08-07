@@ -1,25 +1,33 @@
-from typing import List
+# Time:  O(|V| + |E|)
+# Space: O(|V| + |E|)
+
+import collections
 
 
 class Solution:
-    def possibleBipartition(self, n: int, dislikes: List[List[int]]) -> bool:
-        graph = [[] for _ in range(n + 1)]
-        for first, second in dislikes:
-            graph[first].append(second)
-            graph[second].append(first)
+    def possibleBipartition(self, N, dislikes):
+        """
+        :type N: int
+        :type dislikes: List[List[int]]
+        :rtype: bool
+        """
+        adj = [[] for _ in range(N)]
+        for u, v in dislikes:
+            adj[u-1].append(v-1)
+            adj[v-1].append(u-1)
 
-        colors = [0] * (n + 1)
-        for person in range(1, n + 1):
-            if colors[person] != 0:
-                continue
-            colors[person] = 1
-            stack = [person]
-            while stack:
-                current = stack.pop()
-                for neighbor in graph[current]:
-                    if colors[neighbor] == 0:
-                        colors[neighbor] = -colors[current]
-                        stack.append(neighbor)
-                    elif colors[neighbor] == colors[current]:
-                        return False
+        color = [0]*N
+        color[0] = 1
+        q = collections.deque([0])
+        while q:
+            cur = q.popleft()
+            for nei in adj[cur]:
+                if color[nei] == color[cur]:
+                    return False
+                elif color[nei] == -color[cur]:
+                    continue
+                color[nei] = -color[cur]
+                q.append(nei)
         return True
+ 
+

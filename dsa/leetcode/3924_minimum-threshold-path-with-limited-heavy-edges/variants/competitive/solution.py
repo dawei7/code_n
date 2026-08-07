@@ -1,58 +1,51 @@
-from collections import deque
-from typing import List
+# Time:  O((n + e) * loge)
+# Space: O(n + e)
+
+import collections
 
 
+# binary search, 0-1 bfs, deque
 class Solution:
-    def minimumThreshold(
-        self,
-        n: int,
-        edges: List[List[int]],
-        source: int,
-        target: int,
-        k: int,
-    ) -> int:
-        if source == target:
-            return 0
+    def minimumThreshold(self, n, edges, source, target, k):
+        """
+        :type n: int
+        :type edges: List[List[int]]
+        :type source: int
+        :type target: int
+        :type k: int
+        :rtype: int
+        """
+        def binary_search(left, right, check):
+            while left <= right:
+                mid = left+(right-left)//2
+                if check(mid):
+                    right = mid-1
+                else:
+                    left = mid+1
+            return left
 
-        graph = [[] for _ in range(n)]
-        thresholds = {0}
-        for u, v, weight in edges:
-            graph[u].append((v, weight))
-            graph[v].append((u, weight))
-            thresholds.add(weight)
-
-        candidates = sorted(thresholds)
-
-        def is_possible(threshold: int) -> bool:
-            heavy_edges = [k + 1] * n
-            heavy_edges[source] = 0
-            queue = deque([source])
-
-            while queue:
-                node = queue.popleft()
-                for neighbor, weight in graph[node]:
-                    cost = int(weight > threshold)
-                    next_count = heavy_edges[node] + cost
-                    if next_count >= heavy_edges[neighbor] or next_count > k:
-                        continue
-
-                    heavy_edges[neighbor] = next_count
-                    if cost == 0:
-                        queue.appendleft(neighbor)
+        def check(i):
+            t = weights[i]
+            lookup = [False]*n
+            dq = collections.deque([(source, 0)])
+            while dq:
+                u, d = dq.popleft()
+                if lookup[u]:
+                    continue
+                lookup[u] = True
+                if u == target:
+                    return d <= k
+                for v, w in adj[u]:
+                    if w <= t:
+                        dq.appendleft((v, d))
                     else:
-                        queue.append(neighbor)
+                        dq.append((v, d+1))
+            return False
 
-            return heavy_edges[target] <= k
-
-        if not is_possible(candidates[-1]):
-            return -1
-
-        left, right = 0, len(candidates) - 1
-        while left < right:
-            middle = (left + right) // 2
-            if is_possible(candidates[middle]):
-                right = middle
-            else:
-                left = middle + 1
-
-        return candidates[left]
+        adj = [[] for _ in range(n)]
+        for u, v, w in edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        weights = sorted(set([0]+[w[2] for w in edges]))
+        i = binary_search(0, len(weights)-1, check)
+        return weights[i] if i < len(weights) else -1

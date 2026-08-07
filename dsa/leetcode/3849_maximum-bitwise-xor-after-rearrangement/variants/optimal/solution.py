@@ -1,22 +1,14 @@
 class Solution:
     def maximumXor(self, s: str, t: str) -> str:
-        zeros = t.count("0")
-        ones = len(t) - zeros
-        result = []
-
-        for bit in s:
-            if bit == "0":
-                if ones:
-                    result.append("1")
-                    ones -= 1
-                else:
-                    result.append("0")
-                    zeros -= 1
-            elif zeros:
-                result.append("1")
-                zeros -= 1
+        cnt = [0, 0]
+        for c in t:
+            cnt[int(c)] += 1
+        ans = ['0'] * len(s)
+        for i, c in enumerate(s):
+            x = int(c)
+            if cnt[x ^ 1]:
+                cnt[x ^ 1] -= 1
+                ans[i] = '1'
             else:
-                result.append("0")
-                ones -= 1
-
-        return "".join(result)
+                cnt[x] -= 1
+        return ''.join(ans)

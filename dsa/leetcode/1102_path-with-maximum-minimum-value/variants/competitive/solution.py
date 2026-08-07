@@ -1,27 +1,70 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(m * n * log(m * n))
+# Space: O(m * n)
 
-
+# binary search + dfs solution
 class Solution:
-    def maximumMinimumPath(self, grid: List[List[int]]) -> int:
-        rows = len(grid)
-        columns = len(grid[0])
-        heap = [(-grid[0][0], 0, 0)]
-        visited = [[False] * columns for _ in range(rows)]
+    def maximumMinimumPath(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        
+        def check(A, val, r, c, lookup):
+            if r == len(A)-1 and c == len(A[0])-1:
+                return True
+            lookup.add((r, c))
+            for d in directions:
+                nr, nc = r + d[0], c + d[1]
+                if 0 <= nr < len(A) and \
+                   0 <= nc < len(A[0]) and \
+                   (nr, nc) not in lookup and \
+                   A[nr][nc] >= val and \
+                   check(A, val, nr, nc, lookup):
+                    return True
+            return False
+        
+        vals, ceil = [], min(A[0][0], A[-1][-1])
+        for i in range(len(A)):
+            for j in range(len(A[0])):
+                if A[i][j] <= ceil:
+                    vals.append(A[i][j])
+        vals = list(set(vals))
+        vals.sort()
+        left, right = 0, len(vals)-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if not check(A, vals[mid], 0, 0, set()):
+                right = mid-1
+            else:
+                left = mid+1
+        return vals[right]
 
-        while heap:
-            negative_score, row, column = heappop(heap)
-            if visited[row][column]:
-                continue
-            score = -negative_score
-            if row == rows - 1 and column == columns - 1:
-                return score
-            visited[row][column] = True
-            for row_step, column_step in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                next_row = row + row_step
-                next_column = column + column_step
-                if 0 <= next_row < rows and 0 <= next_column < columns and not visited[next_row][next_column]:
-                    candidate = min(score, grid[next_row][next_column])
-                    heappush(heap, (-candidate, next_row, next_column))
 
+# Time:  O(m * n * log(m * n))
+# Space: O(m * n)
+import heapq
+
+
+# Dijkstra algorithm solution
+class Solution2(object):
+    def maximumMinimumPath(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: int
+        """
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+        max_heap = [(-A[0][0], 0, 0)]
+        lookup = set([(0, 0)])
+        while max_heap:
+            i, r, c = heapq.heappop(max_heap)
+            if r == len(A)-1 and c == len(A[0])-1:
+                return -i
+            for d in directions:
+                nr, nc = r+d[0], c+d[1]
+                if 0 <= nr < len(A) and \
+                   0 <= nc < len(A[0]) and \
+                   (nr, nc) not in lookup:
+                    heapq.heappush(max_heap, (-min(-i, A[nr][nc]), nr, nc))
+                    lookup.add((nr, nc))    
         return -1

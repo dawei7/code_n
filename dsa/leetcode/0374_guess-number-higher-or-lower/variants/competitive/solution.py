@@ -1,20 +1,18 @@
-# The guess API is already defined for you.
-# def guess(num: int) -> int:
-
+# Time:  O(logn)
+# Space: O(1)
 
 class Solution:
-    def guessNumber(self, n: int) -> int:
-        left = 1
-        right = n
-
+    def guessNumber(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        left, right = 1, n
         while left <= right:
-            middle = left + (right - left) // 2
-            response = guess(middle)
-            if response == 0:
-                return middle
-            if response < 0:
-                right = middle - 1
+            mid = left + (right - left) / 2
+            if guess(mid) <= 0: # noqa
+                right = mid - 1
             else:
-                left = middle + 1
+                left = mid + 1
+        return left
 
-        return -1

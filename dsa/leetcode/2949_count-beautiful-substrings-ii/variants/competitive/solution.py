@@ -1,31 +1,37 @@
+# Time:  O(n + sqrt(k))
+# Space: O(1)
+
+import collections
+
+
+# number theory, prefix sum, freq table
 class Solution:
-    def beautifulSubstrings(self, s: str, k: int) -> int:
-        remaining = k
-        required = 1
-        factor = 2
-
-        while factor * factor <= remaining:
-            exponent = 0
-            while remaining % factor == 0:
-                remaining //= factor
-                exponent += 1
-            if exponent:
-                required *= factor ** ((exponent + 1) // 2)
-            factor += 1
-
-        if remaining > 1:
-            required *= remaining
-
-        period = 2 * required
-        vowels = set("aeiou")
-        balance = 0
-        answer = 0
-        frequency = {(0, 0): 1}
-
-        for end, character in enumerate(s, start=1):
-            balance += 1 if character in vowels else -1
-            state = (balance, end % period)
-            answer += frequency.get(state, 0)
-            frequency[state] = frequency.get(state, 0) + 1
-
-        return answer
+    def beautifulSubstrings(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: int
+        """
+        VOWELS = set("aeiou")
+        prefix = [0]*(len(s)+1)
+        for i in range(len(s)):
+            prefix[i+1] = prefix[i]+(+1 if s[i] in VOWELS else -1)
+        new_k = 1
+        x = k
+        for i in range(2, k+1):
+            if i*i > k:
+                break
+            cnt = 0
+            while x%i == 0:
+                x //= i
+                cnt += 1
+            if cnt:
+                new_k *= i**((cnt+1)//2+int(i == 2))
+        if x != 1:
+            new_k *= x**((1+1)//2+int(x == 2))
+        cnt = collections.Counter()
+        result = 0
+        for i, p in enumerate(prefix):
+            result += cnt[p, i%new_k]
+            cnt[p, i%new_k] += 1
+        return result

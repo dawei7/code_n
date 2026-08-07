@@ -1,18 +1,15 @@
-from collections import Counter
-
-
 class Solution:
     def maximumTotalDamage(self, power: List[int]) -> int:
-        damage_by_power = Counter(power)
-        unique_powers = sorted(damage_by_power)
-        best = [0] * (len(unique_powers) + 1)
-        compatible_count = 0
+        @cache
+        def dfs(i: int) -> int:
+            if i >= n:
+                return 0
+            a = dfs(i + cnt[power[i]])
+            b = power[i] * cnt[power[i]] + dfs(nxt[i])
+            return max(a, b)
 
-        for index, value in enumerate(unique_powers):
-            while unique_powers[compatible_count] < value - 2:
-                compatible_count += 1
-
-            take = value * damage_by_power[value] + best[compatible_count]
-            best[index + 1] = max(best[index], take)
-
-        return best[-1]
+        n = len(power)
+        cnt = Counter(power)
+        power.sort()
+        nxt = [bisect_right(power, x + 2, lo=i + 1) for i, x in enumerate(power)]
+        return dfs(0)

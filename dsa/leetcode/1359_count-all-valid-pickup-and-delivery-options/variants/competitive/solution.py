@@ -1,9 +1,14 @@
+# Time:  O(n)
+# Space: O(1)
+
 class Solution:
-    def countOrders(self, n: int) -> int:
-        modulus = 1_000_000_007
-        count = 1
-
-        for orders in range(1, n + 1):
-            count = count * orders * (2 * orders - 1) % modulus
-
-        return count
+    def countOrders(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        MOD = 10**9+7
+        result = 1
+        for i in reversed(range(2, 2*n+1, 2)):
+            result = result * i*(i-1)//2 % MOD
+        return result

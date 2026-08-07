@@ -1,14 +1,14 @@
-from typing import List
+# Time:  O(n)
+# Space: O(n)
 
-
+# dp
 class Solution:
-    def mostPoints(self, questions: List[List[int]]) -> int:
-        count = len(questions)
-        best = [0] * (count + 1)
-
-        for index in range(count - 1, -1, -1):
-            points, brainpower = questions[index]
-            next_index = min(count, index + brainpower + 1)
-            best[index] = max(best[index + 1], points + best[next_index])
-
-        return best[0]
+    def mostPoints(self, questions):
+        """
+        :type questions: List[List[int]]
+        :rtype: int
+        """
+        dp = [0]*(len(questions)+1)
+        for i in reversed(range(len(dp)-1)):
+            dp[i] = max(dp[i+1], questions[i][0] + (dp[i+1+questions[i][1]] if i+1+questions[i][1] < len(dp) else 0))
+        return dp[0]

@@ -1,14 +1,7 @@
 class Solution:
     def findLatestTime(self, s: str) -> str:
-        chars = list(s)
-
-        if chars[0] == "?":
-            chars[0] = "1" if chars[1] in {"?", "0", "1"} else "0"
-        if chars[1] == "?":
-            chars[1] = "1" if chars[0] == "1" else "9"
-        if chars[3] == "?":
-            chars[3] = "5"
-        if chars[4] == "?":
-            chars[4] = "9"
-
-        return "".join(chars)
+        for h in range(11, -1, -1):
+            for m in range(59, -1, -1):
+                t = f"{h:02d}:{m:02d}"
+                if all(a == b for a, b in zip(s, t) if a != "?"):
+                    return t

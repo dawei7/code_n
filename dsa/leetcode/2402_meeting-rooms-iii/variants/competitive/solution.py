@@ -1,28 +1,55 @@
-from heapq import heapify, heappop, heappush
-from typing import List
+# Time:  O(mlogm + n + mlogn)
+# Space: O(n)
+
+import heapq
 
 
+# one heap solution
 class Solution:
-    def mostBooked(self, n: int, meetings: List[List[int]]) -> int:
-        available_rooms = list(range(n))
-        heapify(available_rooms)
-        occupied_rooms = []
-        meeting_counts = [0] * n
+    def mostBooked(self, n, meetings):
+        """
+        :type n: int
+        :type meetings: List[List[int]]
+        :rtype: int
+        """
+        meetings.sort()
+        min_heap = [(meetings[0][0], i) for i in range(n)]
+        result = [0]*n
+        for s, e in meetings:
+            while min_heap and min_heap[0][0] < s:
+                _, i = heapq.heappop(min_heap)
+                heapq.heappush(min_heap, (s, i))
+            e2, i = heapq.heappop(min_heap)
+            heapq.heappush(min_heap, (e2+(e-s), i))
+            result[i] += 1
+        return max(range(n), key=lambda x:result[x])
 
-        for start, end in sorted(meetings):
-            while occupied_rooms and occupied_rooms[0][0] <= start:
-                _, room = heappop(occupied_rooms)
-                heappush(available_rooms, room)
 
-            duration = end - start
-            if available_rooms:
-                room = heappop(available_rooms)
-                finish = end
+# Time:  O(mlogm + n + mlogn)
+# Space: O(n)
+import heapq
+
+
+# two heaps solution
+class Solution2(object):
+    def mostBooked(self, n, meetings):
+        """
+        :type n: int
+        :type meetings: List[List[int]]
+        :rtype: 
+        """
+        meetings.sort()
+        unused, used = range(n), []
+        result = [0]*n
+        for s, e in meetings:
+            while used and used[0][0] <= s:
+                _, i = heapq.heappop(used)
+                heapq.heappush(unused, i)
+            if unused:
+                i = heapq.heappop(unused)
+                heapq.heappush(used, (e, i))
             else:
-                finish, room = heappop(occupied_rooms)
-                finish += duration
-
-            heappush(occupied_rooms, (finish, room))
-            meeting_counts[room] += 1
-
-        return meeting_counts.index(max(meeting_counts))
+                e2, i = heapq.heappop(used)
+                heapq.heappush(used, (e2+(e-s), i))
+            result[i] += 1
+        return max(range(n), key=lambda x:result[x])

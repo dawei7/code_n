@@ -1,13 +1,6 @@
-from typing import List
-
-
 class Solution:
-    def createTargetArray(
-        self,
-        nums: List[int],
-        index: List[int],
-    ) -> List[int]:
+    def createTargetArray(self, nums: List[int], index: List[int]) -> List[int]:
         target = []
-        for value, position in zip(nums, index):
-            target.insert(position, value)
+        for x, i in zip(nums, index):
+            target.insert(i, x)
         return target

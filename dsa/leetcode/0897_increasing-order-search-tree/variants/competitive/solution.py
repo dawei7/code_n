@@ -1,24 +1,25 @@
-from typing import Optional
+# Time:  O(n)
+# Space: O(h)
+
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
 
 
 class Solution:
-    def increasingBST(self, root: Optional["TreeNode"]) -> Optional["TreeNode"]:
-        dummy = TreeNode()
-        tail = dummy
-        stack = []
-        current = root
+    def increasingBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        def increasingBSTHelper(root, tail):
+            if not root:
+                return tail
+            result = increasingBSTHelper(root.left, root)
+            root.left = None
+            root.right = increasingBSTHelper(root.right, tail)
+            return result
+        return increasingBSTHelper(root, None)
 
-        while stack or current is not None:
-            while current is not None:
-                stack.append(current)
-                current = current.left
-
-            current = stack.pop()
-            original_right = current.right
-            current.left = None
-            tail.right = current
-            tail = current
-            current = original_right
-
-        tail.right = None
-        return dummy.right

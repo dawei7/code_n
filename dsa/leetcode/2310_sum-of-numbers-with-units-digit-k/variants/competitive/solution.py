@@ -1,10 +1,12 @@
-class Solution:
-    def minimumNumbers(self, num: int, k: int) -> int:
-        if num == 0:
-            return 0
+# Time:  O(1)
+# Space: O(1)
 
-        for count in range(1, 11):
-            minimum_sum = count * k
-            if minimum_sum <= num and minimum_sum % 10 == num % 10:
-                return count
-        return -1
+# math
+class Solution:
+    def minimumNumbers(self, num, k):
+        """
+        :type num: int
+        :type k: int
+        :rtype: int
+        """
+        return next((i for i in range(1, (min(num//k, 10) if k else 1)+1) if (num-i*k)%10 == 0), -1) if num else 0

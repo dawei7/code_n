@@ -1,8 +1,17 @@
-class Solution:
-    def minimumSum(self, n: int, k: int) -> int:
-        small_count = min(n, k // 2)
-        remaining = n - small_count
+# Time:  O(1)
+# Space: O(1)
 
-        small_sum = small_count * (small_count + 1) // 2
-        large_sum = remaining * (2 * k + remaining - 1) // 2
-        return small_sum + large_sum
+# constructive algorithms, math
+class Solution:
+    def minimumSum(self, n, k):
+        """
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        def arithmetic_progression_sum(a, d, n):
+            return (a+(a+(n-1)*d))*n//2
+    
+        a = min(k//2, n)
+        b = n-a
+        return arithmetic_progression_sum(1, 1, a)+arithmetic_progression_sum(k, 1, b)

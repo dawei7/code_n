@@ -1,31 +1,29 @@
-from heapq import heappop, heappush
-from typing import List
+# Time:  O(nlogn)
+# Space: O(n)
+
+import heapq
 
 
+# sort, greedy, two pointers, heap
 class Solution:
-    def findMaxSum(self, nums1: List[int], nums2: List[int], k: int) -> List[int]:
-        indices = sorted(range(len(nums1)), key=nums1.__getitem__)
-        answer = [0] * len(nums1)
-        largest_values = []
-        largest_sum = 0
-
-        group_start = 0
-        while group_start < len(indices):
-            group_end = group_start + 1
-            group_value = nums1[indices[group_start]]
-            while group_end < len(indices) and nums1[indices[group_end]] == group_value:
-                group_end += 1
-
-            for position in range(group_start, group_end):
-                answer[indices[position]] = largest_sum
-
-            for position in range(group_start, group_end):
-                value = nums2[indices[position]]
-                heappush(largest_values, value)
-                largest_sum += value
-                if len(largest_values) > k:
-                    largest_sum -= heappop(largest_values)
-
-            group_start = group_end
-
-        return answer
+    def findMaxSum(self, nums1, nums2, k):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        result = [0]*len(nums1)
+        min_heap = []
+        idxs = range(len(nums1))
+        idxs.sort(key=lambda x: nums1[x])
+        total = j = 0
+        for i in range(len(idxs)):
+            while nums1[idxs[j]] < nums1[idxs[i]]:
+                total += nums2[idxs[j]]
+                heapq.heappush(min_heap, nums2[idxs[j]])
+                if len(min_heap) == k+1:
+                    total -= heapq.heappop(min_heap)
+                j += 1
+            result[idxs[i]] = total            
+        return result

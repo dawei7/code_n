@@ -1,28 +1,26 @@
-WITH top_performers AS (
-    SELECT user_id
-    FROM course_completions
-    GROUP BY user_id
-    HAVING COUNT(*) >= 5
-       AND AVG(course_rating) >= 4
-),
-course_sequences AS (
-    SELECT
-        course_name AS first_course,
-        LEAD(course_name) OVER (
-            PARTITION BY user_id
-            ORDER BY completion_date
-        ) AS second_course
-    FROM course_completions
-    WHERE user_id IN (SELECT user_id FROM top_performers)
-)
+# Write your MySQL query statement below
+WITH
+    top_students AS (
+        SELECT user_id
+        FROM course_completions
+        GROUP BY user_id
+        HAVING COUNT(1) >= 5 AND AVG(course_rating) >= 4
+    ),
+    course_pairs AS (
+        SELECT
+            course_name AS first_course,
+            LEAD(course_name) OVER (
+                PARTITION BY user_id
+                ORDER BY completion_date
+            ) second_course
+        FROM
+            top_students
+            JOIN course_completions USING (user_id)
+    )
 SELECT
-    first_course,
-    second_course,
-    COUNT(*) AS transition_count
-FROM course_sequences
+    *,
+    COUNT(1) transition_count
+FROM course_pairs
 WHERE second_course IS NOT NULL
-GROUP BY first_course, second_course
-ORDER BY
-    transition_count DESC,
-    first_course ASC,
-    second_course ASC;
+GROUP BY 1, 2
+ORDER BY 3 DESC, 1, 2;

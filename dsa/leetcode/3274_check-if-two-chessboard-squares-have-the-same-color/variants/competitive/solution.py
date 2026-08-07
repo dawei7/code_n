@@ -1,5 +1,15 @@
+# Time:  O(1)
+# Space: O(1)
+
+# math, parity
 class Solution:
-    def checkTwoChessboards(self, coordinate1: str, coordinate2: str) -> bool:
-        first_color = (ord(coordinate1[0]) - ord("a") + int(coordinate1[1])) % 2
-        second_color = (ord(coordinate2[0]) - ord("a") + int(coordinate2[1])) % 2
-        return first_color == second_color
+    def checkTwoChessboards(self, coordinate1, coordinate2):
+        """
+        :type coordinate1: str
+        :type coordinate2: str
+        :rtype: bool
+        """
+        def parity(a):
+            return reduce(lambda accu, x: (accu+x)%2, (ord(x) for x in a), 0)
+        
+        return parity(coordinate1) == parity(coordinate2)

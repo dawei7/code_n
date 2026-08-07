@@ -1,17 +1,16 @@
-from typing import List
-
+# Time:  O(nlogn)
+# Space: O(1)
 
 class Solution:
-    def maxIceCream(self, costs: List[int], coins: int) -> int:
-        frequencies = [0] * (max(costs) + 1)
-        for cost in costs:
-            frequencies[cost] += 1
-
-        bars = 0
-        for cost in range(1, len(frequencies)):
-            affordable = min(frequencies[cost], coins // cost)
-            bars += affordable
-            coins -= affordable * cost
-            if affordable < frequencies[cost]:
-                break
-        return bars
+    def maxIceCream(self, costs, coins):
+        """
+        :type costs: List[int]
+        :type coins: int
+        :rtype: int
+        """
+        costs.sort()
+        for i, c in enumerate(costs):
+            coins -= c
+            if coins < 0:
+                return i
+        return len(costs)

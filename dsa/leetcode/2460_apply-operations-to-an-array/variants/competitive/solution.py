@@ -1,22 +1,22 @@
-from typing import List
+# Time:  O(n)
+# Space: O(1)
 
-
+# inplace, array
 class Solution:
-    def applyOperations(self, nums: List[int]) -> List[int]:
-        n = len(nums)
-        for index in range(n - 1):
-            if nums[index] == nums[index + 1]:
-                nums[index] *= 2
-                nums[index + 1] = 0
-
-        write = 0
-        for value in nums:
-            if value != 0:
-                nums[write] = value
-                write += 1
-
-        while write < n:
-            nums[write] = 0
-            write += 1
-
+    def applyOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[int]
+        """
+        for i in range(len(nums)-1):
+            if nums[i] == nums[i+1]:
+                nums[i], nums[i+1] = 2*nums[i], 0
+        i = 0
+        for x in nums:
+            if not x:
+                continue
+            nums[i] = x
+            i += 1
+        for i in range(i, len(nums)):
+            nums[i] = 0
         return nums
