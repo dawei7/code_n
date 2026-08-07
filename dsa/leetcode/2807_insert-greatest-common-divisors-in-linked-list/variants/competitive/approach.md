@@ -1,20 +1,19 @@
 ## General
 ### Beginner-Friendly Intuition & Strategy
-The core task in **Insert Greatest Common Divisors in Linked List** is to the head of a linked list `head`, in which each node contains an integer value. The input is a **Singly-Linked List** where elements are connected sequentially by pointers (`val`, `next`). The algorithm iterates through the list using pointer manipulation, updating linkages step-by-step without requiring extra array allocations.
+The core task in **Insert Greatest Common Divisors in Linked List** is to the head of a linked list `head`, in which each node contains an integer value. The input is a **Singly-Linked List** where nodes are linked sequentially (`val`, `next`). The algorithm iterates through the list using pointer manipulation, updating linkages or traversing step-by-step without requiring extra array allocations.
 
 ### Step-by-Step Execution Guide
-**Step 1: Setup & Initial State**  
-We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
-**Step 2: Core Processing & Decisions**  
-1. Iterate sequentially through each element in the input.  
-2. Apply the operational rules to update running state variables.  
-3. Continue until all elements are evaluated.  
-**Step 3: Completion & Result Return**  
+**Step 1: Setup & Base Cases**  
+We set up tracking pointers (e.g. `prev`, `curr`, `head`) to navigate node linkages safely.  
+**Step 2: Core Processing & Traversal**  
+1. Advance through node linkages using `curr = curr.next`.  
+2. Perform values computation or link reversals.  
+3. Continue until `curr` reaches `None`.  
+**Step 3: Completion & Return**  
 When processing finishes, the algorithm outputs the final validated solution.
 
 ### Why This Handles Edge Cases Gracefully
-- **Large Numbers:** Modulo arithmetic prevents numerical overflow.
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+- **Empty or Single-Node Lists:** Pointer checks (`while head:`) handle empty or single-element lists without throwing exceptions.
 
 
 ## Complexity detail

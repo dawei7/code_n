@@ -1,24 +1,23 @@
 ## General
 ### Beginner-Friendly Intuition & Strategy
-The core task in **Balance a Binary Search Tree** is to the `root` of a binary search tree, return *a **balanced** binary search tree with the same node values*. If there is more than one answer, return **any of them**. Instead of scanning every element one by one in $O(n)$ time, this solution uses **Binary Search**. Think of looking up a word in a dictionary: you open it in the middle, see if your word comes before or after, and discard half of the remaining pages. By halving the candidate window at each step, we find the answer in fast logarithmic $O(\log n)$ time.
+The core task in **Balance a Binary Search Tree** is to the `root` of a binary search tree, return *a **balanced** binary search tree with the same node values*. If there is more than one answer, return **any of them**. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
 ### Step-by-Step Execution Guide
-**Step 1: Setup & Initial State**  
-We initialize an empty hash map (`dict`). This map will act as our fast memory bank, storing elements and their corresponding indices or frequencies as we scan through the data.  
-**Step 2: Core Processing & Decisions**  
-1. Calculate `mid = (left + right) // 2`.  
-2. Compare `array[mid]` with our target value.  
-3. If `array[mid] == target`, we have found our answer!  
-4. If `array[mid] < target`, the target must lie in the right half, so we set `left = mid + 1`.  
-5. If `array[mid] > target`, the target must lie in the left half, so we set `right = mid - 1`.  
-6. Repeat until `left > right`.  
-**Step 3: Completion & Result Return**  
-Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates for set operations in $O(1)$ hardware instructions.  
+**Step 1: Setup & Base Cases**  
+We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
+**Step 2: Core Processing & Traversal**  
+1. Inspect the current node values (e.g. `p.val` and `q.val`).  
+2. If values differ, return `False` immediately.  
+3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
+4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
+5. Return `True` only if both left and right subtrees match.  
+**Step 3: Completion & Return**  
+Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates in $O(1)$ hardware instructions.  
 When processing finishes, the algorithm outputs the final validated solution.
 
 ### Why This Handles Edge Cases Gracefully
-- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
+- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
 
 
 ## Complexity detail

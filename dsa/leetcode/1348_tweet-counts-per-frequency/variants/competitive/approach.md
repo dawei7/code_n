@@ -1,22 +1,20 @@
 ## General
 ### Beginner-Friendly Intuition & Strategy
-The core task in **Tweet Counts Per Frequency** is to A social media company is trying to monitor activity on their site by analyzing the number of tweets that occur in select periods of time. These periods can be partitioned into smaller **time chunks** based on a certain frequency (every **minute**, **hour**, or **day**). To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
+The core task in **Tweet Counts Per Frequency** is to A social media company is trying to monitor activity on their site by analyzing the number of tweets that occur in select periods of time. These periods can be partitioned into smaller **time chunks** based on a certain frequency (every **minute**, **hour**, or **day**). The input is a **Singly-Linked List** where nodes are linked sequentially (`val`, `next`). The algorithm iterates through the list using pointer manipulation, updating linkages or traversing step-by-step without requiring extra array allocations.
 
 ### Step-by-Step Execution Guide
-**Step 1: Setup & Initial State**  
-We initialize an empty hash map (`dict`). This map will act as our fast memory bank, storing elements and their corresponding indices or frequencies as we scan through the data.  
-**Step 2: Core Processing & Decisions**  
-1. Loop through each item in the input.  
-2. Calculate the required complement (e.g. `target - current_value`).  
-3. Check if the complement is already in our hash map. If yes, we immediately return the matching pair!  
-4. If no, store the current value and index in the hash map and move to the next item.  
-**Step 3: Completion & Result Return**  
-Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates for set operations in $O(1)$ hardware instructions.  
+**Step 1: Setup & Base Cases**  
+We set up tracking pointers (e.g. `prev`, `curr`, `head`) to navigate node linkages safely.  
+**Step 2: Core Processing & Traversal**  
+1. Advance through node linkages using `curr = curr.next`.  
+2. Perform values computation or link reversals.  
+3. Continue until `curr` reaches `None`.  
+**Step 3: Completion & Return**  
+Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates in $O(1)$ hardware instructions.  
 When processing finishes, the algorithm outputs the final validated solution.
 
 ### Why This Handles Edge Cases Gracefully
-- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+- **Empty or Single-Node Lists:** Pointer checks (`while head:`) handle empty or single-element lists without throwing exceptions.
 
 
 ## Complexity detail

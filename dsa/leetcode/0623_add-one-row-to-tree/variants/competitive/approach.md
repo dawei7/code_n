@@ -1,19 +1,22 @@
 ## General
 ### Beginner-Friendly Intuition & Strategy
-The core task in **Add One Row to Tree** is to the `root` of a binary tree and two integers `val` and `depth`, add a row of nodes with value `val` at the given depth `depth`. The data is structured as a **Binary Tree** made of connected nodes. The algorithm traverses the tree recursively, visiting each node's left and right child pointers (`val`, `left`, `right`) to inspect or transform the tree structure.
+The core task in **Add One Row to Tree** is to the `root` of a binary tree and two integers `val` and `depth`, add a row of nodes with value `val` at the given depth `depth`. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
 ### Step-by-Step Execution Guide
-**Step 1: Setup & Initial State**  
-We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results as we process the input.  
-**Step 2: Core Processing & Decisions**  
-1. Iterate sequentially through each element in the input.  
-2. Apply the operational rules to update running state variables.  
-3. Continue until all elements are evaluated.  
-**Step 3: Completion & Result Return**  
+**Step 1: Setup & Base Cases**  
+We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
+**Step 2: Core Processing & Traversal**  
+1. Inspect the current node values (e.g. `p.val` and `q.val`).  
+2. If values differ, return `False` immediately.  
+3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
+4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
+5. Return `True` only if both left and right subtrees match.  
+**Step 3: Completion & Return**  
 When processing finishes, the algorithm outputs the final validated solution.
 
 ### Why This Handles Edge Cases Gracefully
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
+- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
 
 
 ## Complexity detail

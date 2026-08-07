@@ -1,21 +1,22 @@
 ## General
 ### Beginner-Friendly Intuition & Strategy
-The core task in **Number of Strings That Appear as Substrings in Word** is to an array of strings `patterns` and a string `word`, return *the **number** of strings in *`patterns`* that exist as a **substring** in *`word`. To avoid nested loops that slow down execution, this solution uses a **Hash Table (Hash Map / Hash Set)**. Think of a index index-cards file: instead of scanning through all cards to check if a number exists, the hash table allows us to instantly look up any value in constant $O(1)$ time.
+The core task in **Number of Strings That Appear as Substrings in Word** is to an array of strings `patterns` and a string `word`, return *the **number** of strings in *`patterns`* that exist as a **substring** in *`word`. The data is structured as a **Binary Tree** where each node contains a value (`val`) and pointers to its `left` and `right` children. Instead of treating the tree as an array, the algorithm uses **Tree Traversal (Recursion / DFS)** to process each node and its subtrees. At every node, it recursively compares or transforms the left and right child subtrees, combining their results to solve the problem for the entire tree.
 
 ### Step-by-Step Execution Guide
-**Step 1: Setup & Initial State**  
-We initialize an empty hash map (`dict`). This map will act as our fast memory bank, storing elements and their corresponding indices or frequencies as we scan through the data.  
-**Step 2: Core Processing & Decisions**  
-1. Loop through each item in the input.  
-2. Calculate the required complement (e.g. `target - current_value`).  
-3. Check if the complement is already in our hash map. If yes, we immediately return the matching pair!  
-4. If no, store the current value and index in the hash map and move to the next item.  
-**Step 3: Completion & Result Return**  
+**Step 1: Setup & Base Cases**  
+We check the base conditions for tree nodes. If a tree node is `None` (empty), we return the base boundary value (e.g., `True` for equality or `0` for depth).  
+**Step 2: Core Processing & Traversal**  
+1. Inspect the current node values (e.g. `p.val` and `q.val`).  
+2. If values differ, return `False` immediately.  
+3. Recursively invoke traversal on left child subtrees (`self.isSameTree(p.left, q.left)`).  
+4. Recursively invoke traversal on right child subtrees (`self.isSameTree(p.right, q.right)`).  
+5. Return `True` only if both left and right subtrees match.  
+**Step 3: Completion & Return**  
 When processing finishes, the algorithm outputs the final validated solution.
 
 ### Why This Handles Edge Cases Gracefully
-- **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
+- **Both Nodes Empty (`None`):** Returns `True` as two empty subtrees are identical.
+- **One Node Empty, One Non-Empty:** Returns `False` immediately, preventing null pointer attribute access (`AttributeError`).
 
 
 ## Complexity detail

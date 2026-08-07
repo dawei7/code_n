@@ -3,19 +3,17 @@
 The core task in **Maximize Value of Function in a Ball Passing Game** is to an integer array `receiver` of length `n` and an integer `k`. `n` players are playing a ball-passing game. The algorithm processes the input using a single-pass linear iteration, maintaining state variables that update as each element is inspected to produce the result cleanly.
 
 ### Step-by-Step Execution Guide
-**Step 1: Setup & Initial State**  
-We initialize a double-ended queue (`collections.deque`) to keep track of active window bounds or nodes waiting to be processed in order.  
-**Step 2: Core Processing & Decisions**  
-1. Iterate sequentially through each element in the input.  
-2. Apply the operational rules to update running state variables.  
-3. Continue until all elements are evaluated.  
-**Step 3: Completion & Result Return**  
-Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates for set operations in $O(1)$ hardware instructions.  
+**Step 1: Setup & Base Cases**  
+We set up tracking variables (accumulators, counters, or pointers) to hold intermediate results.  
+**Step 2: Core Processing & Traversal**  
+1. Iterate sequentially through each element.  
+2. Apply operational rules to update state variables.  
+**Step 3: Completion & Return**  
+Bitwise operators (`&`, `|`, `^`, `<<`, `>>`) allow ultra-fast bitmask updates in $O(1)$ hardware instructions.  
 When processing finishes, the algorithm outputs the final validated solution.
 
 ### Why This Handles Edge Cases Gracefully
 - **Empty / Null Inputs:** Early guard checks return empty results immediately without crashing.
-- **Single Element / Border Cases:** Loop bounds handle single items and empty inputs naturally without array index out-of-bounds exceptions.
 
 
 ## Complexity detail
