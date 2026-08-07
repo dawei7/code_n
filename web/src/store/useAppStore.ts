@@ -129,6 +129,8 @@ export interface AppState {
   // Run args
   mode: RunMode;
   selectedCaseIds: string[];
+  sqlEngine: 'sqlite' | 'postgres';
+  setSqlEngine: (engine: 'sqlite' | 'postgres') => void;
   customCaseInput: string;
   userCases: UserTestCase[];
 
@@ -285,6 +287,8 @@ export const useAppStore = create<AppState>((set, get) => ({
   solutionResetRevision: 0,
   mode: 'practice',
   selectedCaseIds: [],
+  sqlEngine: 'sqlite',
+  setSqlEngine: (sqlEngine) => set({ sqlEngine }),
   customCaseInput: '',
   userCases: [],
   isRunning: false,
@@ -589,6 +593,37 @@ export const useAppStore = create<AppState>((set, get) => ({
       } catch {
         source = starterForLanguage(currentDetail, codeLanguage);
       }
+      if (codeLanguage === 'sql' && get().sqlEngine === 'postgres') {
+        const { runPostgreSQLQuery } = await import('../utils/pgliteRunner');
+        let inputData: Record<string, any> = {};
+        if (customCases.length > 0) {
+          inputData = customCases[0].input;
+        } else if ((currentDetail as any).cases && (currentDetail as any).cases.length > 0) {
+          inputData = (currentDetail as any).cases[0].input;
+        }
+
+        const pgRes = await runPostgreSQLQuery(source, inputData);
+        const pgResult = {
+          passed: pgRes.ok,
+          user_ast_ops: Math.round(pgRes.runtime_ms),
+          runtime_user_ms: pgRes.runtime_ms,
+          error_message: pgRes.error_message,
+          cases: [
+            {
+              id: 'pg_1',
+              name: 'PostgreSQL (PGlite WASM)',
+              passed: pgRes.ok,
+              value: pgRes.value,
+              stdout: pgRes.stdout,
+              stderr: pgRes.stderr,
+              error_message: pgRes.error_message
+            }
+          ]
+        };
+        set({ runResult: pgResult as any, source });
+        return;
+      }
+
       const result = await runApi.runChallenge({
         challengeId: currentDetail.id,
         source,
