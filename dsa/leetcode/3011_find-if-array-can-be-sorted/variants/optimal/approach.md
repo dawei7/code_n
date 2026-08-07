@@ -1,29 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Find if Array Can Be Sorted**.
 
-**The popcount sequence is fixed.** Swapping equal-popcount neighbors exchanges
-their values but leaves the popcount at both positions unchanged. Therefore no
-value can cross a boundary between two maximal contiguous blocks with different
-set-bit counts.
-
-Inside one block, adjacent swaps can realize any permutation, so that block's
-values may be sorted freely. The entire array is sortable exactly when every
-value in one block can precede every value in the next. It is enough to compare
-the current block's minimum with the maximum value over all preceding blocks.
-
-Scan each block, compute its minimum and maximum, reject if its minimum is below
-the previous maximum, and otherwise carry its maximum forward. Passing every
-boundary proves that sorting each block yields a globally non-decreasing array.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Every element is inspected once. The method uses $O(N)$ time and $O(1)$
-auxiliary space.
+- **Time Complexity**: $O(N)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Sort each popcount block:** This directly constructs the best reachable array but costs $O(N\log N)$ time.
-- **Simulate allowed bubble swaps:** Repeatedly swapping legal inversions is correct but can cost $O(N^2)$ time.
-- **Group values globally by popcount:** Values with the same count but separated by another count cannot cross that intervening block.
-- **Already sorted:** The block boundary inequalities hold even if no swap is needed.
-- **Single element:** One value is trivially sorted.
-- **Duplicate values:** Equality across or within block boundaries is allowed.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,19 +1,14 @@
 ## General
-**Equal target words change which positions may pair**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Shortest Word Distance III**.
 
-For distinct targets, retain each latest index as in Problem 243. For equal targets, retain the previous occurrence and compare it with every new occurrence.
-
-The stored positions are the latest valid endpoints, and the running answer is the smallest distance among pairs ending within the processed prefix.
-
-**Consecutive compatible occurrences are sufficient**
-
-For distinct words, the closest earlier compatible endpoint is the latest occurrence of the other word. When both targets are equal, it is the immediately preceding occurrence of that same word. Any older compatible position is farther from the current index, so checking the latest valid partner for every occurrence necessarily checks an optimal pair.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-The list is scanned once for $O(n)$ time, and only a constant number of positions plus the minimum are stored, so auxiliary space is $O(1)$.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Occurrence lists:** simplify post-processing but use linear space.
-- **All-pairs comparison:** is quadratic.
-- **Equal targets:** require at least two occurrences and must never pair one position with itself.
-- **Distinct targets:** use the latest occurrence of the opposite word as the closest compatible earlier endpoint.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

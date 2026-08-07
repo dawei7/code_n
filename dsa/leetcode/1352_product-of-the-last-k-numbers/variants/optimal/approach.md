@@ -1,16 +1,14 @@
 ## General
-**Store prefix products after the latest zero.** Keep a list beginning with the sentinel product `1`. For a nonzero addition, append the previous prefix product multiplied by the new number. If the current zero-free segment has values $x_1,\ldots,x_a$, the list stores $1,x_1,x_1x_2,\ldots,x_1\cdots x_a$.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Product of the Last K Numbers**.
 
-**Reset at zero.** When zero is added, replace the list with just `[1]`. The list length minus one is therefore exactly the number of consecutive nonzero values after the most recent zero.
-
-For `getProduct(k)`, if $k$ is at least the current list length, the requested suffix crosses the latest zero and its product is zero. Otherwise, divide the full segment prefix by the prefix immediately before the requested suffix: `prefix[-1] // prefix[-1 - k]`. All stored factors are integers and the denominator is an exact factor of the numerator, so this quotient is precisely the suffix product.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each `add` and `getProduct` performs a constant number of list and arithmetic operations in the standard unit-cost model, so $q$ operations take $O(q)$ time. At most one prefix product is stored per addition after the latest zero, bounded by $O(q)$ space.
+- **Time Complexity**: $O(q)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(q)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Store raw values:** Appending is constant time, but multiplying the last $k$ values makes a query $O(k)$ and repeated growing queries quadratic overall.
-- **Keep every historical prefix across zeroes:** Division cannot recover a suffix that crosses a zero, so zero positions still need special handling; resetting makes that boundary explicit.
-- **Query crosses a zero:** The prefix-list length detects this immediately and the answer is zero.
-- **Consecutive zeroes:** Each zero simply resets the same sentinel state.
-- **Product of one value:** Dividing adjacent prefixes returns the latest number.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

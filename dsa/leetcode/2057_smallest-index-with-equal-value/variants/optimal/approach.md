@@ -1,18 +1,14 @@
 ## General
-**Order supplies the minimum**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Smallest Index With Equal Value**.
 
-Scan indices from left to right and compare `index % 10` with the current value. Return immediately on equality. Since every smaller index has already failed, the first match is necessarily the requested smallest one.
-
-**Handling the absence of a match**
-
-If the scan reaches the end, every legal index has been tested and rejected, so return `-1`. No stored history is needed: each decision depends only on the current index and value.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-In the worst case, all $n$ entries are inspected once, giving $O(n)$ time. The scan keeps only the current pair and uses $O(1)$ auxiliary space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Collect all matches:** Building a list and taking its minimum is correct but uses unnecessary $O(n)$ space and cannot stop early.
-- **Repeated prefix search:** Rescanning every prefix for its first match is correct but can take $O(n^2)$ time on a no-match array.
-- Index zero qualifies only when `nums[0]` is zero.
-- Indices at least ten compare using the repeated remainder, not their full index value.
-- Several positions may qualify; only the smallest is returned.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

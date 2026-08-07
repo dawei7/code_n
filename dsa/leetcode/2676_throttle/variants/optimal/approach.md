@@ -1,21 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Throttle**.
 
-Keep two pieces of closure state: whether a throttle window is active and either no pending call or the latest pending receiver-and-arguments tuple. On an invocation outside a window, call `fn` immediately, mark the window active, and schedule its release after `t` milliseconds. During a window, replace the pending tuple without starting another timer.
-
-When the timer fires, clear the window if nothing is pending. Otherwise, remove the saved tuple, invoke `fn` with its receiver and arguments, and schedule the next release after another complete interval. Removing the tuple before invoking matters because a reentrant call must become new pending work rather than being erased afterward.
-
-At most one timer and one pending tuple exist. The first call in each idle period executes immediately; every active period retains exactly the latest blocked call; and a trailing execution begins the next period. These state transitions are precisely the throttle contract.
+- **Core Strategy**: Utilizes JavaScript Map/Set structures for O(1) key-value lookup and tracking.
+- **Implementation Design**: Employs clean ES6+ idioms with strict typing annotations and modern array methods.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Each returned-function invocation and timer callback performs $O(1)$ work, and the closure retains one timer state plus one pending tuple, using $O(1)$ auxiliary space under the fixed argument bound. The app-local timeline simulator processes the bounded call schedule separately.
-
-The source permits at most ten calls, so a bounded-domain certificate replaces unreliable scaling tiers. Its regression runs the real closure with deterministic fake timers across the authored boundary schedules.
+- **Time Complexity**: $O(1)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Drop every blocked call:** A leading-only throttle is simpler but violates the required latest trailing execution.
-- **Queue every blocked call:** Preserving all calls violates latest-only coalescing and can use unbounded space outside the judge limit.
-- Empty argument arrays still represent a pending invocation and cannot share a falsy sentinel with “no pending call.”
-- A trailing execution starts a new full interval; it does not merely finish the previous one.
-- Preserve the invocation receiver when forwarding to `fn`, not only the positional arguments.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

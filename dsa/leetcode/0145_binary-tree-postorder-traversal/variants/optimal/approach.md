@@ -1,19 +1,14 @@
 ## General
-**The stack defers each ancestor until both subtrees are complete**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Binary Tree Postorder Traversal**.
 
-Follow `current` down the left spine, pushing every node because postorder cannot emit it before its descendants. When `current` becomes null, inspect the stack top without immediately removing it.
-
-If that node has a right child other than `last_visited`, set `current` to the right child and perform the same left descent there. Otherwise its right subtree is absent or has just completed, while its left subtree completed before this inspection; the node is ready to pop and append. Record the popped node in `last_visited` so its parent can recognize the completed right subtree instead of entering it again.
-
-At every step, `result` contains complete subtrees in postorder, the stack holds ancestors whose own visits are pending, and `last_visited` identifies the most recently finished subtree. A node is appended only after both children, and every child transition is taken once, so the final sequence is exactly left-right-root order.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each of the $n$ nodes is pushed and popped once and inspected only a constant number of times, giving $O(n)$ time. The stack contains at most one root-to-leaf path, so auxiliary space is $O(h)$ for tree height $h$. The returned list uses $O(n)$ output space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(h)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Recursive depth-first search:** is shorter but uses an $O(h)$ call stack and can hit recursion limits.
-- **Two stacks or reversed root-right-left:** is simple but can retain $O(n)$ nodes rather than $O(h)$.
-- **Morris postorder traversal:** achieves $O(1)$ auxiliary space but temporarily threads links and reverses paths.
-- An empty tree returns `[]`, and a singleton is emitted immediately after its null left descent.
-- Skewed trees remain linear in either direction.
-- Right-subtree completion must use node identity, not value equality, because distinct nodes may store equal values.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

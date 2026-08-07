@@ -1,18 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Calculate Product Final Price**.
 
-Start from `Products` because every product must appear in the result. Left-join `Discounts` on equal `category`; this attaches the one applicable percentage when it exists while retaining products whose categories have no discount row.
-
-For an unmatched row, the joined discount is `NULL`. `COALESCE(d.discount, 0)` treats that absence as a zero-percent discount. Multiplying `price` by the remaining percentage and dividing by 100 then handles matched, zero-percent, full-price, and 100-percent discounts with one expression. Finally, sort by `product_id` ascending as required.
+- **Core Strategy**: Employs relational JOIN operations and grouped aggregations to evaluate target conditions.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $P$ and $D$ be the row counts of `Products` and `Discounts`. With ordinary indexed, hash, or sort-based relational operators, joining and ordering require at most $O((P+D)\log(P+D))$ time and $O(P+D)$ working space. Exact access paths and constants depend on the database engine and available indexes.
+- **Time Complexity**: $O((P + D) log(P + D))$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(P + D)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Inner join:** This incorrectly removes every product whose category has no discount.
-- **Correlated scalar subquery:** Looking up the discount separately for each product is expressible but can repeat work when many products share a category.
-- **Missing discount:** `COALESCE` converts the joined `NULL` to zero, preserving the original price.
-- **Zero or full discount:** Percentages 0 and 100 naturally produce the original price and zero, respectively.
-- **Decimal arithmetic:** The percentage expression retains decimal price semantics and must not truncate fractional prices prematurely.
-- **Output order:** The explicit `ORDER BY` is necessary because relational results otherwise have no guaranteed order.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,20 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Change Null Values in a Table to the Previous Value**.
 
-The numeric `id` does not define “previous,” so first attach `ROW_NUMBER() OVER ()` to the table's presented scan order. This yields a consecutive `sequence_number` without reordering by `id`.
-
-Seed a recursive CTE with sequence number one. For each following number, join the current source row to the previously filled row. If the current drink is non-null, retain it; otherwise `COALESCE(current_row.drink, previous_row.drink)` carries forward the already resolved drink.
-
-Because the first drink is guaranteed non-null, the recursive state always contains a valid value to propagate. Inductively, after producing sequence position $i$, its drink equals the closest non-null source drink at or before $i$: the current non-null value replaces the state, while a null inherits the correct state from $i-1$. Ordering the final rows by `sequence_number` restores exactly the assigned input sequence.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $R$ be the number of `CoffeeShop` rows. Assigning and ordering sequence numbers and joining successive sequence positions requires $O(R\log R)$ logical work under the intended indexed/materialized execution plan, with $O(R)$ intermediate space. Actual SQL cost depends on the database optimizer, materialization strategy, and internal indexes.
+- **Time Complexity**: $O(R log R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **User-defined variable:** A MySQL session variable can carry the previous drink in one scan, but expression-evaluation order and variable assignment make that formulation less portable and harder to reason about.
-- **Correlated previous-row search:** Looking backward separately for every null row can require $O(R^2)$ work.
-- **Order by `id`:** Numeric identifier order is unrelated to the presented row sequence and changes the meaning of “previous.”
-- **Consecutive nulls:** The recursion inherits the already filled value, so runs of any length receive the same preceding drink.
-- **Non-null row:** A new drink replaces the carried state immediately.
-- **First row:** The contract's non-null guarantee provides the recursion's base value.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

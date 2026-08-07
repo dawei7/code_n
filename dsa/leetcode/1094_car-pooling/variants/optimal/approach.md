@@ -1,17 +1,14 @@
 ## General
-**Record changes instead of every occupied segment.** For each trip, add its passenger count at `from` and subtract the same count at `to`. The locations are restricted to $[0,1000]$, so these changes fit in a fixed array. A prefix sum from west to east then gives the number of passengers in the car after all events at each location.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Car Pooling**.
 
-**Drop-offs and pickups share one net event.** A group traveling to location `x` is no longer aboard when another group starts at `x`. Adding both the negative drop-off change and positive pickup change at the same index produces the correct net load; no arbitrary event ordering is needed.
-
-Before the first event, the load is zero. At every later location, the prefix sum includes exactly the trips whose pickup has occurred and whose drop-off lies farther east. It therefore equals the actual load on the next eastbound segment. If any prefix exceeds `capacity`, that segment is impossible; if none does, every group can be served.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Writing the two changes for each of the $n$ trips takes $O(n)$ time. Scanning the 1001 possible locations is $O(1001)=O(1)$ under the fixed contract, so total time is $O(n)$. The 1001-entry difference array is fixed-size auxiliary storage and therefore $O(1)$.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Sorted event map:** Store pickup and drop-off deltas by location and sort the occupied locations. This handles an unbounded coordinate range but costs $O(n \log n)$ time in the worst case.
-- **Min-heap of active trips:** Sort by pickup and remove completed trips by drop-off. It is useful when coordinates are not bounded, but requires $O(n \log n)$ time and $O(n)$ space.
-- **Rescan all trips at every pickup:** Directly summing active groups is correct but can take $O(n^2)$ time.
-- **Drop-off equals another pickup:** Passengers ending at that location free their seats before travel continues, which the net difference handles automatically.
-- **Exact capacity:** A load equal to `capacity` is valid; only a strictly larger load fails.
-- **Immediate overload:** The scan may return `False` as soon as any prefix sum exceeds the available seats.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

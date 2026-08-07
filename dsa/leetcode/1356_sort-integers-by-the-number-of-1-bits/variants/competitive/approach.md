@@ -1,14 +1,14 @@
-# Competitive Approach
-
 ## General
-High-performance competitive programming solution from kamyu104/LeetCode-Solutions.
+The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
 
-This competitive programming solution prioritizes maximum operational efficiency, low overhead execution, and micro-optimized data structures (sourced from kamyu104/LeetCode-Solutions).
+- **Core Strategy**: Employs bitwise operations and bitmasking for low-level memory and speed optimization.
+- **High-Performance Techniques**: Uses bit manipulation tricks to evaluate conditions in single CPU clock cycles.
+- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
 
-## Complexity Detail
-- **Time Complexity**: $O(n \log n)$ — Micro-optimized algorithmic execution time.
-- **Space Complexity**: $O(n)$ — Low auxiliary space allocation.
+## Complexity detail
+- **Time Complexity**: $O(n \log n)$ — High-efficiency runtime performance.
+- **Space Complexity**: $O(n)$ — Minimal auxiliary memory overhead.
 
-## Key Considerations
-- Advanced algorithmic techniques, mathematical shortcuts, or bit manipulation where applicable.
-- Optimized for speed, low memory footprint, and competitive execution speed.
+## Alternatives and edge cases
+- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
+- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.

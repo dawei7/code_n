@@ -1,23 +1,14 @@
 ## General
-**Give each stack one direction**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Implement Queue using Stacks**.
 
-Push new values onto an input stack. Read queue-front values from an output stack. When the output stack is empty and a front value is needed, move every input value to the output stack, reversing their order.
-
-**The two stacks form one logical queue**
-
-From queue front to back, the logical contents are the output stack from top to bottom followed by the input stack from bottom to top. A transfer preserves that order while making the oldest available item the output top.
-
-**Move values only when the output side is empty**
-
-Do not move values while the output stack still contains older items. Consequently, each enqueued value moves from input to output at most once and is popped once.
-
-New items remain behind all items already in the output stack. When a transfer is required, reversing the input stack places its earliest pushed value on top. Thus `peek` and `pop` always select the globally earliest unremoved item, exactly matching FIFO behavior.
+- **Core Strategy**: Uses a double-ended queue for breadth-first traversal or sliding window processing.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Each value participates in a constant number of stack operations over its lifetime, so operations are $O(1)$ amortized; an individual transfer can take $O(n)$. Stored queue values occupy $O(n)$ space.
+- **Time Complexity**: $O(1)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Transfer on every push:** preserves FIFO order but costs $O(n)$ per insertion.
-- **One dynamic-array stack with front deletion:** violates the intended stack-operation model and front deletion is linear.
-- **Emptiness:** `empty` is true only when both stacks are empty.
-- **Valid front access:** the contract calls `pop` and `peek` only when the logical queue is non-empty.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

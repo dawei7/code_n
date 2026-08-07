@@ -1,18 +1,14 @@
 ## General
-**Encode the shape, not the starting letter**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Group Shifted Strings**.
 
-For each neighboring pair, record how far the second character lies after the first modulo 26. The resulting tuple captures every relative step while ignoring the absolute first letter. Strings of different lengths naturally produce keys of different lengths.
-
-After processing a string, its key records its complete shift-invariant shape, and the hash bucket contains exactly the earlier strings with that shape.
-
-**Equal step sequences are exactly equal shift groups**
-
-A uniform alphabet shift preserves every adjacent modular difference, so shifted strings must share a key. Conversely, suppose two strings share every recorded step. Shift the first string so its first character matches the second; because their first steps agree, their second characters then match, and repeating this argument aligns every later character. Equal keys are therefore sufficient as well as necessary.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-If `L` is the total number of input characters, building all keys and groups takes $O(L)$ time and space including the returned grouping.
+- **Time Complexity**: $O(L)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(L)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Shift each string until it starts with `a`:** is also linear but constructs another normalized string.
-- **One-character strings:** all share the empty-difference key because any single letter can shift to any other.
-- **Alphabet wraparound:** is handled by reducing every adjacent difference modulo 26, so `az` and `ba` share a key.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

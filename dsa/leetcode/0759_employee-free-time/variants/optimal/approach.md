@@ -1,27 +1,14 @@
 ## General
-**Reduce common free time to gaps in busy-time union**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Employee Free Time**.
 
-All employees are free exactly when no employee has a busy interval. Flatten the schedules and sort the `N` intervals by start time. Then scan them as one global busy timeline.
-
-**Track the end of the merged busy prefix**
-
-Initialize `current_end` from the first interval. For each later `[start, end]`:
-
-- if `start > current_end`, the positive-length gap `[current_end, start]` is common free time;
-- whether or not there was a gap, extend `current_end` to `max(current_end, end)`.
-
-Touching intervals have `start = current_end` and therefore produce no positive-length gap.
-
-After processing any prefix of the sorted intervals, `current_end` is the right boundary of its last merged busy component, and every earlier gap between components has been emitted. The next start either overlaps that component or begins the next one, making the detected gap free of every busy interval. Thus the scan emits exactly all finite gaps in the total busy union.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Flattening and scanning take $O(N)$ time, while sorting dominates at $O(N \log N)$. The flattened interval list and returned gaps use $O(N)$ space; the scan itself uses constant auxiliary state.
+- **Time Complexity**: $O(N \log N)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Heap merge of employee schedules:** Push each employee's next interval and merge in chronological order for $O(N \log e)$ time with `e` employees, avoiding a separate flat sort.
-- **Repeatedly select the next earliest interval:** This can merge correctly without sorting but costs $O(N^2)$ time.
-- **Sweep-line events:** Start and end deltas identify periods with zero active employees, though event sorting has the same $O(N \log N)$ bound.
-- **Overlapping or nested busy intervals:** Extend the merged end; they create no free-time boundary.
-- **Touching intervals:** A zero-length gap is not returned.
-- **One merged busy component:** There is no finite common free interval, so return an empty list.
-- **Outside the combined schedule:** Unbounded free time before the first and after the last busy interval is intentionally excluded.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

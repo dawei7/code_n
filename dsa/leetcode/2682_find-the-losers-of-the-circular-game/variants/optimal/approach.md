@@ -1,19 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Find the Losers of the Circular Game**.
 
-Represent friends internally by zero-based positions. Friend 1 is position zero, and moving `distance` steps clockwise from `current` reaches `(current + distance) % n`. A boolean array provides constant-time membership tests for who has already received the ball.
-
-Start at position zero with turn number one. While the current position has not been visited, mark it, advance by `turn * k` modulo `n`, and increment the turn. The first position encountered twice is not marked again because that repetition is exactly the stopping condition.
-
-Before each iteration, `current` is the holder for that turn and every true boolean corresponds exactly to an earlier holder. The modular update implements the required clockwise pass distance. Consequently the loop marks precisely the friends who receive the ball before termination. Scanning the boolean array from left to right and returning the false positions plus one produces exactly the losers in ascending order.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-At most $n$ distinct friends can be marked before a repetition, and the final scan examines all $n$ entries. The running time is $O(n)$ and the visited array uses $O(n)$ space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Set of positions:** A hash set also gives expected $O(1)$ membership and $O(n)$ total time, but a fixed boolean array is simpler for the dense range from 1 through `n`.
-- **List membership:** Keeping recipients in a list is correct, but repeated membership tests and loser checks can take $O(n^2)$ time.
-- **One friend:** Friend 1 starts with the ball, so nobody is a loser even though the next pass immediately repeats friend 1.
-- **Distance divisible by `n`:** A pass whose distance is a multiple of `n` returns to the current holder and ends the game.
-- **Output order:** Collect unvisited positions by increasing index rather than by pass order.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

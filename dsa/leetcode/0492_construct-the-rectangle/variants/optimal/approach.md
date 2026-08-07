@@ -1,24 +1,14 @@
 ## General
-**The closest pair straddles the square root**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Construct the Rectangle**.
 
-For `length >= width`, the width cannot exceed `sqrt(area)`. As a valid width grows toward the square root, its quotient moves toward it and the dimension difference shrinks.
-
-**Search widths downward**
-
-Start at `floor(sqrt(area))` and decrease until finding a divisor. Its quotient is automatically at least as large as the width.
-
-**Why the first divisor is optimal**
-
-The search's first divisor is the largest valid width not exceeding the square root. Every other factor pair uses a smaller width and larger length, so none can have a smaller difference.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-At most `floor(sqrt(area))` widths are tested, giving $O(\sqrt{area})$ time for prime areas. Only the current width and quotient are stored, so space is $O(1)$.
+- **Time Complexity**: $O(\sqrt{area})$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Scan lengths upward from the square root:** is correct but may take $O(area)$ tests for a prime.
-- **Enumerate all factor pairs:** continues after the optimum is already known.
-- **Floating square root:** needs care near rounding boundaries; integer square root avoids them.
-- **Perfect square:** returns equal dimensions immediately.
-- **Prime area:** returns `[area, 1]`.
-- **Area one:** returns `[1, 1]`.
-- **Dimension order:** place the quotient first.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,28 +1,14 @@
 ## General
-**Index every occurrence during initialization**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Random Pick Index**.
 
-Scan `nums` once and append each position to a list keyed by its value. Occurrences remain separate even when their values are equal, which is essential because the contract assigns probability to indices, not merely to distinct values.
-
-**Choose uniformly within one target's index list**
-
-For a pick, retrieve the target's stored positions and choose one list element uniformly at random. If there are `c` occurrences, every matching array index occupies exactly one of the `c` equally likely list positions and therefore has probability $1 / c$.
-
-**Judge random output semantically**
-
-A finite run cannot establish a distribution and should not require a predetermined random sequence. The package verifies that each returned integer `i` is in bounds and that `nums[i]` equals its corresponding target. The uniform-list-choice implementation provides the probability guarantee.
-
-**Why preprocessing fits repeated picks**
-
-Construction pays for one complete scan, after which each query performs only a dictionary lookup and random choice. No prior random result changes the stored occurrence lists, so all picks remain independent and use the same correct candidate set.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Let `n` be the array length and `q` the number of app-adapter picks. Building the map takes $O(n)$ time and stores exactly `n` indices. Each pick is $O(1)$, giving $O(n + q)$ total time and $O(n)$ space.
+- **Time Complexity**: $O(n + q)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Reservoir sampling per pick:** uses $O(1)$ extra storage and selects occurrences uniformly, but scans all `n` values for every query.
-- **Collect matching indices per pick:** is simple but repeatedly allocates and scans, taking $O(n)$ time and space per call.
-- **Choose a random array index until it matches:** can be arbitrarily slow when the target is rare.
-- A target with one occurrence always returns its sole index.
-- Duplicate values at different positions must all remain eligible.
-- Negative and zero values work as ordinary dictionary keys.
-- Repeated calls for the same target must not remove or favor previous choices.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

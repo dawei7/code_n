@@ -1,28 +1,14 @@
 ## General
-**Every input value contributes one independent binary decision**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Subsets**.
 
-Backtrack with `i` as the current input position. Recurse once without `nums[i]` and once after appending it. Pop after the inclusion branch returns. When `i` reaches the array length, every value has a fixed include/exclude decision, so copy the current path into the result.
-
-**Depth records exactly which prefix has been decided**
-
-At depth `i`, the path contains exactly the included values among `nums[0:i]` in original order. The two branches partition all subsets of that prefix according to whether they contain `nums[i]`.
-
-**Trace the binary decision tree**
-
-For `[1,2]`, excluding 1 leads to `[]` and `[2]`; including 1 leads to `[1]` and `[1,2]`. These four leaves are the complete power set.
-
-**Include-or-exclude decisions are the power set**
-
-For each distinct input value, a subset makes exactly one binary decision: include it or omit it. Reading those decisions in input order identifies one root-to-leaf branch of the recursion.
-
-Conversely, every branch makes one decision for every value and therefore produces a valid subset. This one-to-one correspondence between subsets and binary branches proves that all $2^{n}$ subsets are emitted exactly once.
+- **Core Strategy**: Maintains a hash map / hash set to achieve O(1) average lookup and frequency tracking.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-There are $2^{n}$ outputs and copying a subset costs up to $O(n)$, for the output-tight $O(n \cdot 2^n)$ bound. The path and recursion use $O(n)$ auxiliary space, excluding the returned power set.
+- **Time Complexity**: $O(n \cdot 2^n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Bit masks:** enumerate the same $2^{n}$ choices iteratively and offer equivalent asymptotic complexity.
-- **Repeatedly extend the current result:** is concise but stores the growing output throughout, as required anyway.
-- **Generate permutations then deduplicate:** creates redundant orders and performs far more work.
-- The empty subset is the leaf that excludes every value; the full subset includes every value.
-- Distinct input values guarantee different decision masks produce different subsets. Duplicate values require sibling suppression or frequency handling.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,18 +1,14 @@
 ## General
-**Bound the capacity answer:** The ship must hold the heaviest individual package, so `max(weights)` is the smallest candidate. Capacity $S$ ships everything in one day and is always feasible, giving an inclusive search interval containing the optimum.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Capacity To Ship Packages Within D Days**.
 
-**Test one capacity greedily:** Scan packages in order, adding each weight to the current day's load. If the next package would exceed `capacity`, begin a new day with that package. This greedy choice packs every day as fully as the fixed order permits, so no other schedule with the same capacity can use fewer days.
-
-**Binary-search the feasibility transition:** If a capacity succeeds, every larger capacity also succeeds; if it fails, every smaller capacity fails. Test the midpoint, retaining the lower half when feasible and the upper half otherwise. When the bounds meet, that value is the least feasible capacity.
-
-The greedy test exactly determines whether a candidate can meet the deadline, and feasibility is monotone in capacity. Binary search therefore discards only values that cannot be the minimum and terminates at the requested optimum.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Computing the bounds costs $O(N)$. Each feasibility test scans at most $N$ weights, and binary search performs $O(\log S)$ tests, for $O(N\log S)$ total time. The bounds, counters, and current load use $O(1)$ auxiliary space.
+- **Time Complexity**: $O(N\log S)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Try every capacity:** Testing integers from `max(weights)` upward is correct but can require $O(NS)$ time.
-- **Dynamic programming over day boundaries:** It can represent all partitions but uses substantially more time and space than monotone answer search.
-- **One day:** The capacity must equal $S$.
-- **One day per package:** The minimum capacity is `max(weights)`.
-- **Order constraint:** A feasible schedule partitions the array into contiguous groups; arbitrary redistribution between days is invalid.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

@@ -1,20 +1,14 @@
 ## General
-This is an **anti-join**: retain a customer only when no related order exists. One formulation starts from `Customers`, left-joins `Orders` on `Orders.customerId = Customers.id`, and keeps only null-extended rows.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Customers Who Never Order**.
 
-Test a right-side column that is guaranteed non-null for real orders, such as `Orders.id`. If it is `NULL` after the join, no order row matched. Testing a nullable business column would be unsafe because a real matched row could itself contain null.
-
-Multiple orders may expand one customer into several joined rows, but all of those rows have non-null order ids and are filtered out. A customer with no orders produces exactly one null-extended row and survives.
-
-An equally direct formulation is `WHERE NOT EXISTS (SELECT 1 FROM Orders ... )`. Most optimizers recognize both forms as an anti-join. `NOT EXISTS` often communicates intent most clearly and avoids dependence on a chosen non-null right-side column.
-
-For a customer with at least one matching order, the left join produces only matched rows whose non-null order id fails the null filter, so the customer is excluded. For a customer with no matching order, left-join semantics produce one row with all order columns null; that row passes the filter and returns the customer's name. These are exhaustive cases, so the result contains exactly customers who never ordered.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-A hash anti-join can scan `c` customers and `o` orders in $O(c + o)$ time while using $O(o)$ auxiliary storage. With an index on `Orders.customerId`, the engine may perform indexed existence checks instead. Physical complexity depends on the selected plan and indexes.
+- **Time Complexity**: $O(c + o)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(c + o)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- `NOT EXISTS` expresses the absence test directly and is null-safe.
-- `NOT IN (SELECT customerId ...)` can evaluate to unknown for every candidate if the subquery contains a null, unless nullability is guaranteed or filtered.
-- Grouping and counting orders per customer works but computes more information than the boolean existence condition needs.
-- An empty `Orders` table returns every customer; an empty `Customers` table returns nothing.
-- One or many orders both exclude the customer exactly once.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

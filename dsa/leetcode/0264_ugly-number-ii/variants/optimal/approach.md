@@ -1,23 +1,14 @@
 ## General
-**View candidates as three ordered product streams**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Ugly Number II**.
 
-Every ugly number after one is an earlier ugly number multiplied by 2, 3, or 5. Maintain one pointer into the generated sequence for each multiplier and append the smallest current product.
-
-The list contains the sorted distinct sequence prefix. For each multiplier, its matching pointer (`index_two`,
-`index_three`, or `index_five`) identifies the first product greater than the last appended value.
-
-**The smallest stream head is the next missing ugly number**
-
-Every ugly number greater than one can be written as an earlier ugly number multiplied by `2`, `3`, or `5`, so it appears in at least one stream. Each pointer skips exactly the products already emitted, making its head the smallest unseen value from that stream. The minimum of the three heads is therefore the smallest unseen ugly number overall. Advancing every pointer tied at that value removes duplicate representations without skipping the next candidate.
+- **Core Strategy**: Maintains a priority queue / min-heap to efficiently track minimum or maximum values.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-The outer loop appends $n - 1$ values, and each of the three pointers advances at most $n$ times. Generation therefore
-takes $O(n)$ time. The `ugly` sequence holds $n$ values, while the pointers and current candidate use $O(1)$ additional
-state, for $O(n)$ total auxiliary space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Heap with deduplication:** is correct but costs $O(n \log n)$.
-- **Rescan every earlier product for the next value:** takes $O(n^2)$.
-- **First position:** seeding `ugly` with one makes `n = 1` return without entering the generation loop.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

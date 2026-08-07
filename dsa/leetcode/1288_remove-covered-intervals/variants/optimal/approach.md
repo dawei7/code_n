@@ -1,15 +1,14 @@
 ## General
-**Choose an order that exposes every possible cover.** Sort intervals by ascending left endpoint and, when left endpoints tie, by descending right endpoint. Thus any interval capable of covering the current one appears earlier. The descending tie-break is essential: the widest interval with a shared start must be processed before the narrower ones it covers.
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Remove Covered Intervals**.
 
-Sweep through this order while storing the farthest right endpoint seen. If the current right endpoint is at most that maximum, an earlier interval starts no later and ends no earlier, so the current interval is covered. Otherwise it cannot be covered by any earlier interval, and no later interval starts early enough to cover it; count it as remaining and update the maximum. These two cases prove that the sweep counts exactly the uncovered intervals.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Sorting $n$ intervals in place takes $O(n \log n)$ time, and the subsequent sweep is $O(n)$. Python's list sort may use $O(n)$ temporary space. The sweep itself stores only a counter and one endpoint.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Compare every pair:** Testing each interval against every other interval is direct but takes $O(n^2)$ time.
-- **Ascending end tie-break:** With equal starts, processing the shorter interval first can count it before discovering the longer interval that covers it.
-- **Overlap without coverage:** Crossing intervals such as `[0,10)` and `[5,12)` both remain.
-- **Equal right endpoints:** Of intervals ending together, only one with the earliest start can remain.
-- **Half-open boundaries:** Coverage uses the given endpoints directly; equality at a boundary still permits coverage.
-- **Input mutation:** The accepted implementation reorders `intervals`; copy it first if a surrounding caller must preserve the original order.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

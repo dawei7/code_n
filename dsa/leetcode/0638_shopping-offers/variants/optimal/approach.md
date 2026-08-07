@@ -1,29 +1,14 @@
 ## General
-**Use remaining needs as the complete state**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Shopping Offers**.
 
-After any sequence of bundle purchases, future choices depend only on the quantities still required, not on the order used to reach them. Represent that state as an immutable tuple so equivalent subproblems share one memoized result.
-
-**Keep individual purchases as a universal fallback**
-
-For each state, buying every remaining item individually is always legal and gives an initial upper bound. Then try each bundle whose quantities do not exceed the remaining needs, subtract it componentwise, and combine its price with the optimal cost of the smaller state.
-
-**Discard bundles that cannot improve a solution**
-
-Ignore a bundle containing no items, which would not advance recursion. A bundle priced at least as high as its items bought individually is also unnecessary: replacing it with those individual purchases never costs more and preserves exact quantities.
-
-**Why the recurrence finds the global minimum**
-
-Any optimal plan either uses no further bundle, in which case the individual fallback matches it, or has a first bundle. That first bundle must fit the current needs, and the remainder of the plan is an optimal solution to the reduced state; otherwise it could be replaced by a cheaper remainder. Evaluating every legal first bundle and memoizing the minimum therefore covers and optimizes every valid plan.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-There are at most $Π(\mathit{needs}_{i} + 1)$ remaining-quantity states. Each state checks `S` bundles across `M` item types, giving $O(SM \cdot \prod(needs_i + 1))$ time. Memo keys and recursion frames store `M` quantities per reachable state, using $O(M \cdot \prod(needs_i + 1))$ space.
+- **Time Complexity**: $O(SM \cdot \prod(needs_i + 1))$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(M \cdot \prod(needs_i + 1))$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Backtracking without memoization:** explores the same legal bundle sequences but recomputes equivalent remaining states exponentially many times.
-- **Bottom-up multidimensional dynamic programming:** has the same state bound but is awkward to index when the number of item types varies.
-- **Enumerate bundle usage counts:** bounding each offer independently creates a large Cartesian product and still needs exact-quantity checks.
-- A bundle that exceeds any remaining quantity is illegal even when its price is attractive.
-- Bundles may be reused as long as every application fits the remaining needs.
-- Zero needs cost zero regardless of available offers.
-- Non-discounted bundles may be ignored because individual purchases remain available.
-- The modulus is not involved; return the exact minimum integer cost.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

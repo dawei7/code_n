@@ -1,46 +1,14 @@
 ## General
-**Making the stored matrix the current source of truth**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Subrectangle Queries**.
 
-Keep the constructor's `rectangle` reference as the object's live state, exactly as in the Accepted design. At every moment, `rectangle[r][c]` directly stores the value that a query for coordinate `(r,c)` must return. Updates therefore mutate the supplied matrix as well as the state observed by later method calls.
-
-Because updates are assignments rather than additions, no previous value is needed once a cell is covered. Writing updates immediately therefore gives point queries the simplest possible implementation: one indexed lookup.
-
-**Applying an inclusive rectangle**
-
-For an update, iterate `row` from `row1` through `row2`. Inside each selected row, iterate `col` from `col1` through `col2` and perform `rectangle[row][col] = newValue`.
-
-Both endpoints are inclusive. The number of assignments is exactly
-
-$$
-(\texttt{row2}-\texttt{row1}+1)
-(\texttt{col2}-\texttt{col1}+1).
-$$
-
-A one-row, one-column, or one-cell rectangle follows from the same loops without special handling.
-
-**Why overlapping updates need no extra machinery**
-
-Suppose a cell belongs to several update rectangles. The operations are processed in chronological order, and each covering update overwrites that cell. Consequently, after any prefix of operations, the stored value equals the value written by the latest covering update in that prefix, or its constructor value if no update covered it. This is exactly the object's required state.
-
-A query performs no reconstruction: the invariant already makes the indexed cell current. Induction over operations proves correctness. Construction establishes the invariant from the initial matrix; an update changes precisely the coordinates specified and leaves every other cell intact; a query reads without changing state.
-
-**Adapting the class to the local runner**
-
-The `solve` adapter creates the class once, then dispatches operations in their given order. It appends `None` after each void update and appends the integer returned by each query, preserving the platform call trace in JSON-compatible form.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Construction stores one reference in $O(1)$ time. Across all updates, the nested loops perform exactly $U$ cell assignments. Dispatching $Q$ calls and answering each point query adds $O(Q)$ time, for $O(U+Q)$ total.
-
-The input matrix already contains the $RC$ values; the object stores only its reference, and each method uses only loop counters and arguments. The design therefore uses $O(1)$ auxiliary space. The app-only adapter additionally materializes the required $O(Q)$ output trace.
+- **Time Complexity**: $O(U+Q)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Store updates lazily:** Append every update and answer a query by scanning updates backward for the most recent covering rectangle. This makes updates $O(1)$ but queries $O(k)$ after $k$ updates, which may be preferable only for update-heavy workloads with very few queries.
-- **Copy the entire matrix for every update:** Persistent snapshots make historical versions available, but the source asks only for current state; copying all $RC$ cells for a one-cell update wastes time and space.
-- **Two-dimensional difference array:** Range increments can be batched efficiently, but these are ordered assignments and queries may occur between updates, so overlapping last-write-wins semantics do not combine through a simple sum.
-- **Quadtree or interval structures:** More advanced spatial structures can trade update and query costs, but their complexity is unjustified for dimensions and operation counts at most $100$ and $500$.
-- **Single-cell update:** Equal corner coordinates must write exactly that one cell.
-- **Whole-matrix update:** Coordinates `(0,0)` through `(R-1,C-1)` overwrite every entry.
-- **Overlapping rectangles:** Only cells in the later rectangle change again; earlier values outside it remain current.
-- **One-row or one-column matrix:** Inclusive loops work unchanged even when one dimension equals one.
-- **Maximum values:** Values up to $10^9$ are stored directly; no arithmetic or overflow-sensitive aggregation is performed.
-- **Input aliasing:** The class intentionally retains and mutates the supplied matrix, matching the Accepted constructor. Callers that need an untouched matrix must copy it before construction.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

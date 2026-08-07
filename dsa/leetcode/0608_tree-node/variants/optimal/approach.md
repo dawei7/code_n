@@ -1,29 +1,14 @@
 ## General
-**Recognize the root from its own row**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Tree Node**.
 
-A null `p_id` directly identifies the root. Test this condition first because the root may also appear as a parent and must still be labeled `Root`.
-
-**Collect all actual parent identifiers**
-
-Select distinct non-null `p_id` values. Any nonroot node whose `id` occurs in this set has at least one child and is therefore an inner node.
-
-**Classify everything else as a leaf**
-
-Left join every tree row to the parent-ID set. After the root case, a match means `Inner`; a missing match means the node has no children and is `Leaf`.
-
-**Why the three labels are exact**
-
-Every node either has a null parent or does not, separating the root from all others. Among nonroots, appearing in another row's `p_id` column is exactly the definition of having a child. That condition partitions the remaining nodes into inner nodes and leaves, so each row receives one correct label.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-For `n` rows, deduplicating parent IDs, joining them, and ordering output generally take $O(n \log n)$ time and $O(n)$ working space. Indexes on `id` and `p_id` can reduce join costs.
+- **Time Complexity**: $O(n \log n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Uncorrelated `IN` subquery:** test whether each nonroot ID belongs to the set of non-null parent IDs; it has the same semantic structure.
-- **Correlated child existence:** is direct, but without an index it may rescan the tree for every node and take $O(n^2)$ time.
-- **Root with children:** remains `Root`, not `Inner`.
-- **Single-node tree:** the only node is the root.
-- **Nonroot with one or two children:** is `Inner`.
-- **Nonroot with no children:** is `Leaf`.
-- **Nonconsecutive identifiers:** do not affect parent relationships.
-- **Input order:** does not affect classification.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

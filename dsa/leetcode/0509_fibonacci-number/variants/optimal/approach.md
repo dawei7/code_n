@@ -1,23 +1,14 @@
 ## General
-**Keep only the two values needed by the recurrence**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Fibonacci Number**.
 
-At the start of an iteration, let `previous = F(i)` and `current = F(i + 1)`. The simultaneous update `(previous, current) = (current, previous + current)` advances this relationship to the next index without storing the whole sequence.
-
-**Advance exactly n times**
-
-Initialize the pair as $(F(0), F(1)) = (0, 1)$. After `n` updates, the maintained relationship gives `previous = F(n)`, so return `previous`. This also handles $n = 0$: no update occurs and the initial zero is returned.
-
-**Why simultaneous assignment matters**
-
-The new second value must use both old values. Computing the pair together preserves them until their sum is formed; overwriting `previous` first in languages without simultaneous assignment requires a temporary variable.
+- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-The loop performs one constant-time update for each of `n` indices, giving $O(n)$ time. Two running integers and the loop counter use $O(1)$ auxiliary space.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Memoized recursion:** evaluates each index once in $O(n)$ time but uses $O(n)$ cache and call-stack space.
-- **Bottom-up array:** makes every intermediate value available later but uses $O(n)$ space unnecessarily.
-- **Naive recursion:** mirrors the recurrence directly but repeats subproblems and takes exponential time.
-- **Fast doubling or matrix exponentiation:** computes the value in $O(\log n)$ arithmetic steps and is useful for much larger indices, but is more machinery than these constraints require.
-- **Zero:** returns the first base value without entering the loop.
-- **One:** one update moves `previous` to the second base value.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

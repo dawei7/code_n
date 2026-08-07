@@ -1,31 +1,14 @@
 ## General
-**Find one first date per player**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Game Play Analysis IV**.
 
-Group `Activity` by `player_id` and compute `MIN(event_date)`. The resulting common table expression has exactly one row for each of the `P` players.
-
-**Join only the required return date**
-
-Left-join each first-login row back to `Activity` for the same player and the date exactly one calendar day later. A successful join means that player satisfies the retention condition; later returns do not count.
-
-**Aggregate matched players into a fraction**
-
-Count joined activity rows for the numerator and all first-login rows for the denominator. Multiplying by a floating-point value before division preserves the fractional result, and `ROUND(..., 2)` produces the requested precision.
-
-The native MySQL query uses `DATE_ADD(first_login, INTERVAL 1 DAY)` and MySQL's division behavior. The offline SQLite query expresses the same operations as `date(first_login, '+1 day')` and multiplies the numerator by `1.0` to force non-integer division.
-
-**Why every player is counted correctly**
-
-The grouped date is the unique earliest activity date for its player. Because the join requires both the same player and exactly the next calendar date, it matches if and only if that player returned on the required day. The table key permits at most one activity per player and date, so each player contributes either zero or one to the numerator and exactly one to the denominator.
+- **Core Strategy**: Employs relational JOIN operations and grouped aggregations to evaluate target conditions.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-For `A` activity rows, grouping typically sorts or hashes the rows in $O(A \log A)$ time, and the join can use the player-date key to probe once per player. The first-login relation stores $O(P)$ rows for `P` players. An appropriate index may allow near-linear execution.
+- **Time Complexity**: $O(A \log A)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(P)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Correlated first-date subqueries:** can express the same condition but may rescan `Activity` for every player and degrade toward $O(A^2)$.
-- **Window functions:** `MIN(event_date) OVER (PARTITION BY player_id)` can label first dates, but it retains duplicate player rows and needs another distinct aggregation step.
-- **Self-join every activity pair:** can find next-day pairs but must still ensure the earlier row is the player's first and may materialize many irrelevant pairs.
-- **Return after a gap:** activity two or more days later does not qualify.
-- **Several later sessions:** still contribute only one player to the denominator and at most one to the numerator.
-- **Month or year boundary:** calendar-date arithmetic, not integer manipulation of the date text, identifies the next day.
-- **Insertion order:** does not affect `MIN(event_date)`.
-- **Rounding:** the final ratio, rather than the individual counts, is rounded to two decimal places.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

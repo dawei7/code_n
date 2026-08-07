@@ -1,18 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Odd and Even Transactions**.
 
-Group rows by `transaction_date` so each output row represents one day. Inside each group, use two conditional `SUM` expressions. The odd expression contributes `amount` only when `amount % 2 = 1`; the even expression contributes it only when the remainder is zero.
-
-Each `CASE` uses `ELSE 0`. Consequently, a group containing no amount of a requested parity still sums explicit zeroes and returns `0`, satisfying the contract without a separate join or `COALESCE`. Since every transaction belongs to exactly one date and exactly one parity branch, the two aggregates contain precisely the required amounts. Finally, `ORDER BY transaction_date` establishes the required ascending result order.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $r$ be the row count and $d$ the number of distinct dates. A conventional engine can group and order in $O(r\log r)$ time and retain $O(d)$ aggregate state; physical indexes and hash aggregation may improve the grouping phase. The query scans the source only once.
+- **Time Complexity**: $O(r log r)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(d)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Two grouped subqueries plus a join:** This can produce the same columns but scans or aggregates the table twice and needs null handling for missing parities.
-- **Correlated sums per date:** Rechecking the table for each distinct date can degrade toward $O(rd)$ work.
-- A date containing only odd amounts must return `even_sum = 0`, not `NULL`.
-- A date containing only even amounts must return `odd_sum = 0`.
-- Multiple transactions with the same amount remain separate rows and all contribute to the sum.
-- The final `ORDER BY` is required even if the input happens to arrive chronologically.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

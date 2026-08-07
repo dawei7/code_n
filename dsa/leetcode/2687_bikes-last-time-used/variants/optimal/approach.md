@@ -1,19 +1,14 @@
 ## General
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Bikes Last Time Used **.
 
-Group all ride rows by `bike_number`. Each group then contains exactly the recorded uses of one bike, so `MAX(end_time)` is precisely that bike's final recorded use. Alias the aggregate as `end_time` to match the requested output schema.
-
-The aggregation emits one row per bike regardless of how many rides that bike has. Sort those rows by the aggregated `end_time` in descending order so the bike with the newest final ride appears first. `start_time` does not affect the answer: only the greatest ride-ending timestamp determines last use.
+- **Core Strategy**: Executes relational projection, filtering, and aggregation queries.
+- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-
-Let $R$ be the number of rows in `Bikes`. A general grouping and result-ordering plan has an $O(R\log R)$ upper bound and uses $O(R)$ working space. An index or database-specific grouping plan may improve realized performance. The benchmark uses `size` as $R$ and contrasts the grouped scan with a correlated query that recomputes a bike's maximum end time for every ride row.
+- **Time Complexity**: $O(R log R)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-
-- **Window maximum plus deduplication:** `MAX(end_time) OVER (PARTITION BY bike_number)` can annotate rows before removing duplicates, but ordinary grouping is simpler.
-- **Rank each bike's rides:** A descending row number per bike can select the newest ride, but computes more information than the required maximum.
-- **Correlated maximum:** Recomputing `MAX(end_time)` separately for every source ride repeats work and can become quadratic.
-- A bike with one ride returns that ride's `end_time` directly.
-- Interleaved source rows do not matter because grouping is by bike identifier.
-- Use `end_time`, not the latest `start_time`, to define last use.
-- The final ordering is descending by the aggregated timestamp, not by bike number or ride identifier.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.

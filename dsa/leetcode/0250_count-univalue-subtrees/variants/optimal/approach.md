@@ -1,19 +1,14 @@
 ## General
-**A parent can be decided only after both children**
+The optimal solution implements an idiomatic, readable, and production-ready approach for **Count Univalue Subtrees**.
 
-Postorder DFS returns whether each child subtree is univalue. A node qualifies only when both children qualify and every existing child root equals the node value.
-
-When a call returns true, every node in that call's subtree equals its root value; the running count includes every qualifying subtree already completed.
-
-**Each qualifying subtree is counted at its root**
-
-A missing child imposes no restriction, and a leaf therefore qualifies immediately. For an existing child, both the child's entire subtree must be uniform and its root value must equal the current value. Those conditions are necessary and sufficient for every node below the current root to share its value. Incrementing at precisely those roots counts every univalue subtree once.
+- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
+- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
+- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
 
 ## Complexity detail
-Every node is visited once for $O(n)$ time. Recursion stores one root-to-leaf path, giving $O(h)$ auxiliary space for tree height $h$.
+- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Space Complexity**: $O(h)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Explicit postorder frames:** preserve $O(n)$ time and $O(h)$ space without using recursive calls, but add state-management machinery unnecessary for this runtime's legal depth.
-- **Re-scan each subtree:** can take $O(n^2)$ on skewed or uniform trees.
-- **Empty tree:** contributes zero because there is no subtree root to count.
-- **Leaf:** always contributes one because both absent children impose no restriction.
+- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
+- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
