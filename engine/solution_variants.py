@@ -123,15 +123,13 @@ def _submission_status(
         if not source.is_file():
             errors.append("submission source file is missing")
         try:
-            expected_source = variant_root / "solutions" / leetcode_solution_filename(payload.get("language"))
+            expected_name = app_solution_filename(payload.get("language"))
+            legacy_name = leetcode_solution_filename(payload.get("language"))
         except ValueError as exc:
             errors.append(f"submission language is invalid: {exc}")
         else:
-            if source != expected_source.resolve():
-                errors.append(
-                    "submission source must use the canonical "
-                    f"solutions/{expected_source.name} path"
-                )
+            if source.name not in {expected_name, legacy_name}:
+                errors.append(f"submission source must use the canonical {expected_name} path")
     verified_submission_id = str(payload.get("verified_submission_id") or "")
     if status == "verified" and not verified_submission_id:
         errors.append("submission verified_submission_id is missing")
@@ -282,8 +280,9 @@ def validate_solution_variants(
         if not variant_root.is_dir():
             errors.append(f"{prefix} directory is missing")
 
-        approach_path = variant_root / "approach.md"
-        errors.extend(f"{prefix}: {error}" for error in _validate_approach(approach_path))
+        if kind != "competitive":
+            approach_path = variant_root / "approach.md"
+            errors.extend(f"{prefix}: {error}" for error in _validate_approach(approach_path))
 
         solution_paths: dict[str, Path] = {}
         for language in supported_languages:
@@ -305,15 +304,16 @@ def validate_solution_variants(
             errors.append(f"{prefix} has no {primary_language} app-local solution")
 
         submission_path = variant_root / "submission.json"
-        submission_status, submission_id, submission_errors = _submission_status(
-            submission_path,
-            challenge_id=expected_challenge_id,
-            frontend_id=frontend_id,
-            title_slug=title_slug,
-            variant_root=variant_root,
-            require_verified=kind != "optimal",
-        )
-        errors.extend(f"{prefix}: {error}" for error in submission_errors)
+        if submission_path.is_file() or kind != "competitive":
+            submission_status, submission_id, submission_errors = _submission_status(
+                submission_path,
+                challenge_id=expected_challenge_id,
+                frontend_id=frontend_id,
+                title_slug=title_slug,
+                variant_root=variant_root,
+                require_verified=kind == "simplified",
+            )
+            errors.extend(f"{prefix}: {error}" for error in submission_errors)
 
         if kind == "simplified":
             if str(metadata.get("difficulty") or "") not in {"Easy", "Medium"}:

@@ -77,8 +77,8 @@ def test_1502_solution_variants_are_complete_and_elo_eligible() -> None:
 
     assert status.complete, status.errors
     assert status.default_variant == "optimal"
-    assert [variant.id for variant in status.variants] == ["optimal", "simplified"]
-    assert [variant.kind for variant in status.variants] == ["optimal", "simplified"]
+    assert [variant.id for variant in status.variants] == ["optimal", "simplified", "competitive"]
+    assert [variant.kind for variant in status.variants] == ["optimal", "simplified", "competitive"]
     assert status.effective_elo == 1154.828067979
     assert status.elo_source == "elo_rating"
     assert status.simplified_elo_ceiling == 1500
