@@ -1,10 +1,10 @@
 # Write your MySQL query statement below
 SELECT
     name,
-    IFNULL(SUM(rest), 0) AS rest,
-    IFNULL(SUM(paid), 0) AS paid,
-    IFNULL(SUM(canceled), 0) AS canceled,
-    IFNULL(SUM(refunded), 0) AS refunded
+    COALESCE(SUM(rest), 0) AS rest,
+    COALESCE(SUM(paid), 0) AS paid,
+    COALESCE(SUM(canceled), 0) AS canceled,
+    COALESCE(SUM(refunded), 0) AS refunded
 FROM
     Product
     LEFT JOIN Invoice USING (product_id)

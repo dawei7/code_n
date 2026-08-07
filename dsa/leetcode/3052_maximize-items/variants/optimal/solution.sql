@@ -15,7 +15,7 @@ WHERE item_type = 'prime_eligible'
 UNION ALL
 SELECT
     'not_prime',
-    IFNULL(COUNT(1) * FLOOR(IF(s = 0, 500000, 500000 % s) / SUM(square_footage)), 0)
+    COALESCE(COUNT(1) * FLOOR(IF(s = 0, 500000, 500000 % s) / SUM(square_footage)), 0)
 FROM
     Inventory
     JOIN T

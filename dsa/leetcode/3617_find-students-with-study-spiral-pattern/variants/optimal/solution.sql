@@ -46,7 +46,7 @@ WITH
             student_id,
             group_id,
             COUNT(*) AS session_count,
-            GROUP_CONCAT(subject ORDER BY session_date) AS subject_sequence,
+            STRING_AGG(subject ORDER BY session_date, ',') AS subject_sequence,
             SUM(hours_studied) AS total_hours
         FROM session_groups
         GROUP BY student_id, group_id

@@ -19,7 +19,7 @@ WITH RECURSIVE
             JOIN Users USING (user_id)
         WHERE DAYOFWEEK(purchase_date) = 6
     )
-SELECT week_of_month, membership, IFNULL(SUM(amount_spend), 0) AS total_amount
+SELECT week_of_month, membership, COALESCE(SUM(amount_spend), 0) AS total_amount
 FROM
     T
     JOIN M

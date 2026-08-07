@@ -20,7 +20,7 @@ WITH
 SELECT
     m.month,
     COUNT(driver_id) AS active_drivers,
-    IFNULL(r.cnt, 0) AS accepted_rides
+    COALESCE(r.cnt, 0) AS accepted_rides
 FROM
     Months AS m
     LEFT JOIN Drivers AS d

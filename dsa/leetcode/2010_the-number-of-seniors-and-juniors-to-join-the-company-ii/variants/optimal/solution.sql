@@ -10,7 +10,7 @@ WITH
     j AS (
         SELECT
             employee_id,
-            IFNULL(
+            COALESCE(
                 SELECT
                     MAX(cur)
                 FROM s

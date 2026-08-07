@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
 SELECT
     state,
-    GROUP_CONCAT(city ORDER BY city SEPARATOR ', ') AS cities,
+    STRING_AGG(city ORDER BY city SEPARATOR ', ') AS cities,
     COUNT(
         CASE
             WHEN LEFT(city, 1) = LEFT(state, 1) THEN 1

@@ -17,7 +17,7 @@ WITH RECURSIVE
             )
     ),
     T AS (
-        SELECT v.user_id, visit_date, IFNULL(cnt, 0) AS cnt
+        SELECT v.user_id, visit_date, COALESCE(cnt, 0) AS cnt
         FROM
             Visits AS v
             LEFT JOIN (
