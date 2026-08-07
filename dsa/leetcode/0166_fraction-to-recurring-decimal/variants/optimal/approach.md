@@ -1,10 +1,6 @@
 ## General
-Maintains hash map (`dict`) for $O(1)$ average lookup. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Maintains hash map lookup (`dict`) for $O(1)$ average speed. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(k)$ — Operation count bound.
 - **Space Complexity**: $O(k)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

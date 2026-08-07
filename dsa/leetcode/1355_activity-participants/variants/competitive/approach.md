@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **Activity Participants**.
+Executes a SQL query for **Activity Participants** using relational predicates. Edge cases: filters aggregated group boundaries using `HAVING` clause.
 
 ## Complexity detail
 - **Time Complexity**: $O(N \log N)$ — Operation count bound.
 - **Space Complexity**: $O(A)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

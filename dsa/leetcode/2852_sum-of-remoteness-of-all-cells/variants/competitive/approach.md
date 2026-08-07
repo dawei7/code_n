@@ -1,10 +1,6 @@
 ## General
-Uses breadth-first search queue traversal. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses breadth-first search queue level traversal. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^2)$ — Operation count bound.
 - **Space Complexity**: $O(n^2)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

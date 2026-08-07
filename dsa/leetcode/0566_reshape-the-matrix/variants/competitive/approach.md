@@ -1,10 +1,6 @@
 ## General
-Uses single-pass sequential iteration.
+Algorithm uses single-pass sequential scanning. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.
 - **Space Complexity**: $O(rc)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

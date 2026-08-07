@@ -1,10 +1,6 @@
 ## General
-Implements the JavaScript solution for **Promise Pool**.
+Executes JavaScript logic for **Promise Pool** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
 
 ## Complexity detail
 - **Time Complexity**: $O(m)$ — Operation count bound.
 - **Space Complexity**: $O(min(m, n))$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

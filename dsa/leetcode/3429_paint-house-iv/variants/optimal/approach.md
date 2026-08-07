@@ -1,10 +1,6 @@
 ## General
-Uses binary search over search space. Maintains dynamic programming memoization store.
+Algorithm uses binary search over sorted domain. Maintains dynamic programming memoization array/table.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

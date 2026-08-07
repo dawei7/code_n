@@ -1,10 +1,6 @@
 ## General
-Uses two-pointer iteration. Maintains priority queue (`heapq`) for dynamic minimum/maximum tracking, tree traversal nodes (`val`, `left`, `right`).
+Algorithm uses two-pointer sliding window iteration. Maintains priority queue (`heapq`) for dynamic ordering, tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(nk)$ — Operation count bound.
 - **Space Complexity**: $O(nk)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

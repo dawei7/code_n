@@ -1,10 +1,6 @@
 ## General
-Implements the JavaScript solution for **Deep Merge of Two Objects**.
+Executes JavaScript logic for **Deep Merge of Two Objects** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.
 - **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

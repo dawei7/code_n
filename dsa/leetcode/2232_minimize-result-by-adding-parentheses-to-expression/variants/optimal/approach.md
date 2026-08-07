@@ -1,10 +1,6 @@
 ## General
-Uses two-pointer iteration. Applies walrus operator (`:=`) inline assignment.
+Algorithm uses two-pointer sliding window iteration. Applies walrus operator (`:=`) for inline assignment and zero-copy conditional check.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

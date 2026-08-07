@@ -1,10 +1,6 @@
 ## General
-Uses depth-first search / backtracking recursion. Maintains priority queue (`heapq`) for dynamic minimum/maximum tracking.
+Algorithm uses depth-first search recursion. Maintains priority queue (`heapq`) for dynamic ordering. Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(V\log V)$ — Operation count bound.
 - **Space Complexity**: $O(V)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

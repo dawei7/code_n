@@ -1,10 +1,6 @@
 ## General
-Uses depth-first search / backtracking recursion. Maintains dynamic programming memoization store.
+Algorithm uses depth-first search recursion. Maintains dynamic programming memoization array/table. Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

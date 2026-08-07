@@ -1,10 +1,6 @@
 ## General
-Uses breadth-first search queue traversal. Maintains hash map (`dict`) for $O(1)$ average lookup, hash set (`set`) for $O(1)$ existence checks. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses breadth-first search queue level traversal. Maintains hash map lookup (`dict`) for $O(1)$ average speed, hash set (`set`) for $O(1)$ duplicate check. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n + n d^5)$ — Operation count bound.
 - **Space Complexity**: $O(n + d^4)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

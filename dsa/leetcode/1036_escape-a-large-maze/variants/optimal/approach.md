@@ -1,10 +1,6 @@
 ## General
-Uses depth-first search / backtracking recursion. Maintains hash set (`set`) for $O(1)$ existence checks.
+Algorithm uses depth-first search recursion. Maintains hash set (`set`) for $O(1)$ duplicate check. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(B^2)$ — Operation count bound.
 - **Space Complexity**: $O(B^2)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

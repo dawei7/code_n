@@ -1,10 +1,6 @@
 ## General
-Uses two-pointer iteration. Maintains double-ended queue (`deque`) for $O(1)$ operations, priority queue (`heapq`) for dynamic minimum/maximum tracking.
+Algorithm uses two-pointer sliding window iteration. Maintains double-ended queue (`deque`) for $O(1)$ window bounds, priority queue (`heapq`) for dynamic ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(n log n (n + m))$ — Operation count bound.
 - **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

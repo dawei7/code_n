@@ -1,10 +1,6 @@
 ## General
-Maintains hash map (`dict`) for $O(1)$ average lookup, priority queue (`heapq`) for dynamic minimum/maximum tracking.
+Maintains hash map lookup (`dict`) for $O(1)$ average speed, priority queue (`heapq`) for dynamic ordering.
 
 ## Complexity detail
 - **Time Complexity**: $O(Q log Q + C)$ — Operation count bound.
 - **Space Complexity**: $O(U + Q)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

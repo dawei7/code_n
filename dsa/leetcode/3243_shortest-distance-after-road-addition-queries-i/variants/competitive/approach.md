@@ -1,10 +1,6 @@
 ## General
-Uses breadth-first search queue traversal. Maintains priority queue (`heapq`) for dynamic minimum/maximum tracking. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses breadth-first search queue level traversal. Maintains priority queue (`heapq`) for dynamic ordering. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(q(n+q))$ — Operation count bound.
 - **Space Complexity**: $O(n+q)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

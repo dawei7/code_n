@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **Friend Requests I: Overall Acceptance Rate**.
+Executes a SQL query for **Friend Requests I: Overall Acceptance Rate** using relational predicates. Edge cases: replaces NULL values using `COALESCE` guard.
 
 ## Complexity detail
 - **Time Complexity**: $O((R + A) \log(R + A))$ — Operation count bound.
 - **Space Complexity**: $O(R + A)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

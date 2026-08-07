@@ -1,10 +1,6 @@
 ## General
-Executes a SQL query for **Ads Performance** using GROUP BY aggregations (`COALESCE`, `STRING_AGG`).
+Executes a SQL query for **Ads Performance** using GROUP BY aggregations. Edge cases: replaces NULL values using `COALESCE` guard.
 
 ## Complexity detail
 - **Time Complexity**: $O(r+a\log a)$ — Operation count bound.
 - **Space Complexity**: $O(a)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

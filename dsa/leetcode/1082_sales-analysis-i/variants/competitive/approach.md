@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **Sales Analysis I**.
+Executes a SQL query for **Sales Analysis I** using relational predicates. Edge cases: filters aggregated group boundaries using `HAVING` clause.
 
 ## Complexity detail
 - **Time Complexity**: $O(R\log R)$ — Operation count bound.
 - **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

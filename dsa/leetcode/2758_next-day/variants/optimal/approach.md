@@ -1,10 +1,6 @@
 ## General
-Implements the JavaScript solution for **Next Day**.
+Executes JavaScript logic for **Next Day** using idiomatic control flow.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

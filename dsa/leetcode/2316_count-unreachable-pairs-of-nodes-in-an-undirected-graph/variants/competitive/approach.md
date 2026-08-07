@@ -1,10 +1,6 @@
 ## General
-Uses breadth-first search queue traversal.
+Algorithm uses breadth-first search queue level traversal.
 
 ## Complexity detail
 - **Time Complexity**: $O(n+e)$ — Operation count bound.
 - **Space Complexity**: $O(n+e)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

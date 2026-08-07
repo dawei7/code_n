@@ -1,10 +1,6 @@
 ## General
-Uses single-pass sequential iteration. Maintains dynamic programming memoization store, tree traversal nodes (`val`, `left`, `right`).
+Algorithm uses single-pass sequential scanning. Maintains dynamic programming memoization array/table, tree node traversal (`val`, `left`, `right`). Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(n)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

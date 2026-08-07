@@ -1,10 +1,6 @@
 ## General
-Maintains dynamic programming memoization store. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Maintains dynamic programming memoization array/table. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(1)$ — Operation count bound.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

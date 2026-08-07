@@ -1,10 +1,6 @@
 ## General
-Executes a SQL query for **Unpopular Books** using relational JOINs, GROUP BY aggregations (`COALESCE`, `STRING_AGG`).
+Executes a SQL query for **Unpopular Books** using relational JOINs, GROUP BY aggregations. Edge cases: replaces NULL values using `COALESCE` guard, filters aggregated group boundaries using `HAVING` clause.
 
 ## Complexity detail
 - **Time Complexity**: $O((B + O) \log (B + O))$ — Operation count bound.
 - **Space Complexity**: $O(B + O)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,10 +1,6 @@
 ## General
-Maintains hash map (`dict`) for $O(1)$ average lookup, tree traversal nodes (`val`, `left`, `right`).
+Maintains hash map lookup (`dict`) for $O(1)$ average speed, tree node traversal (`val`, `left`, `right`). Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.
 - **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,10 +1,6 @@
 ## General
-Uses single-pass sequential iteration. Maintains linked list nodes (`val`, `next`).
+Algorithm uses single-pass sequential scanning. Maintains linked list node pointer manipulation (`val`, `next`).
 
 ## Complexity detail
 - **Time Complexity**: $O(m + n)$ — Operation count bound.
 - **Space Complexity**: $O(m)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,10 +1,6 @@
 ## General
-Uses single-pass sequential iteration. Maintains hash map (`dict`) for $O(1)$ average lookup. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses single-pass sequential scanning. Maintains hash map lookup (`dict`) for $O(1)$ average speed. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(n^3)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

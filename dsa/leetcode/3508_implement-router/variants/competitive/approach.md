@@ -1,10 +1,6 @@
 ## General
-Uses breadth-first search queue traversal. Maintains hash map (`dict`) for $O(1)$ average lookup, double-ended queue (`deque`) for $O(1)$ operations, dynamic programming memoization store.
+Algorithm uses breadth-first search queue level traversal. Maintains hash map lookup (`dict`) for $O(1)$ average speed, double-ended queue (`deque`) for $O(1)$ window bounds, dynamic programming memoization array/table. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(q log q)$ — Operation count bound.
 - **Space Complexity**: $O(q)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

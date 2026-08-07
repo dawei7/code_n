@@ -1,10 +1,6 @@
 ## General
-Uses two-pointer iteration. Maintains tree traversal nodes (`val`, `left`, `right`).
+Algorithm uses two-pointer sliding window iteration. Maintains tree node traversal (`val`, `left`, `right`).
 
 ## Complexity detail
 - **Time Complexity**: $O(NH)$ — Operation count bound.
 - **Space Complexity**: $O(H)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

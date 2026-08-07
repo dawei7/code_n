@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **Article Views II**.
+Executes a SQL query for **Article Views II** using relational predicates. Edge cases: filters aggregated group boundaries using `HAVING` clause.
 
 ## Complexity detail
 - **Time Complexity**: $O(r\log r)$ — Operation count bound.
 - **Space Complexity**: $O(r)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

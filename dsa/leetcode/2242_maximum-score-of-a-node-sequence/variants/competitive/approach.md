@@ -1,10 +1,6 @@
 ## General
-Uses single-pass sequential iteration. Maintains priority queue (`heapq`) for dynamic minimum/maximum tracking. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses single-pass sequential scanning. Maintains priority queue (`heapq`) for dynamic ordering. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(n + m)$ — Operation count bound.
 - **Space Complexity**: $O(n + m)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

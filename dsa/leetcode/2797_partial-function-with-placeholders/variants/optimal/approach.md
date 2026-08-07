@@ -1,10 +1,6 @@
 ## General
-Implements the JavaScript solution for **Partial Function with Placeholders**.
+Executes JavaScript logic for **Partial Function with Placeholders** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
 
 ## Complexity detail
 - **Time Complexity**: $O(a + r)$ — Operation count bound.
 - **Space Complexity**: $O(a + r)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

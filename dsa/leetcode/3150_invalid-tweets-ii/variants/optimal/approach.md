@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **Invalid Tweets II**.
+Executes a SQL query for **Invalid Tweets II** using relational predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(S + R log R)$ — Operation count bound.
 - **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

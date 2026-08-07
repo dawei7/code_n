@@ -1,10 +1,6 @@
 ## General
-Uses breadth-first search queue traversal. Maintains double-ended queue (`deque`) for $O(1)$ operations.
+Algorithm uses breadth-first search queue level traversal. Maintains double-ended queue (`deque`) for $O(1)$ window bounds. Edge cases: handles empty/null inputs via early return guards.
 
 ## Complexity detail
 - **Time Complexity**: $O(A)$ — Operation count bound.
 - **Space Complexity**: $O(A)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

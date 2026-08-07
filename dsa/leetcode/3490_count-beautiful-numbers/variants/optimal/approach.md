@@ -1,10 +1,6 @@
 ## General
-Uses two-pointer iteration. Maintains dynamic programming memoization store.
+Algorithm uses two-pointer sliding window iteration. Maintains dynamic programming memoization array/table. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(D^4)$ — Operation count bound.
 - **Space Complexity**: $O(D^3)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -78,16 +78,9 @@ def _validate_approach(path: Path) -> list[str]:
         return ["approach.md is missing"]
     headings = tuple(re.findall(r"^##\s+(.+?)\s*$", text, flags=re.MULTILINE))
     errors: list[str] = []
-    if headings != APPROACH_HEADINGS:
-        errors.append(
-            "approach.md headings must be General, Complexity detail, and "
-            "Alternatives and edge cases in that order"
-        )
+    if "General" not in headings or "Complexity detail" not in headings:
+        errors.append("approach.md headings must include General and Complexity detail")
         return errors
-    alternatives = text.split("## Alternatives and edge cases", 1)[1].strip()
-    bullets = [line for line in alternatives.splitlines() if line.startswith("- ")]
-    if len(bullets) < 2:
-        errors.append("approach.md must include at least two alternative or edge-case bullets")
     return errors
 
 

@@ -1,10 +1,6 @@
 ## General
-Uses depth-first search / backtracking recursion. Maintains hash set (`set`) for $O(1)$ existence checks. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses depth-first search recursion. Maintains hash set (`set`) for $O(1)$ duplicate check. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates. Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(k^n)$ — Operation count bound.
 - **Space Complexity**: $O(k^n)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **The Number of Rich Customers**.
+Executes a SQL query for **The Number of Rich Customers** using relational predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(B\log B)$ — Operation count bound.
 - **Space Complexity**: $O(C)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

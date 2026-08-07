@@ -1,10 +1,6 @@
 ## General
-Uses binary search over search space. Maintains hash map (`dict`) for $O(1)$ average lookup, hash set (`set`) for $O(1)$ existence checks, dynamic programming memoization store.
+Algorithm uses binary search over sorted domain. Maintains hash map lookup (`dict`) for $O(1)$ average speed, hash set (`set`) for $O(1)$ duplicate check, dynamic programming memoization array/table. Edge cases: handles empty/null inputs via early return guards, applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(mn)$ — Operation count bound.
 - **Space Complexity**: $O(n)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

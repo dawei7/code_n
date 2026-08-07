@@ -1,10 +1,6 @@
 ## General
-Implements the competitive micro-optimized algorithm for **Fancy Sequence**.
+Edge cases: applies modulo arithmetic to prevent integer overflow.
 
 ## Complexity detail
 - **Time Complexity**: $O(Q\log M)$ — Operation count bound.
 - **Space Complexity**: $O(A)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

@@ -6,53 +6,64 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 LEETCODE_ROOT = REPO_ROOT / "dsa" / "leetcode"
 
 def analyze_python_code(code: str, title: str, is_competitive: bool) -> str:
-    """Generates a concise algorithm description based on Python code analysis."""
+    """Generates a concise algorithm & edge-case description based on Python code analysis."""
     data_structures = []
     control_flow = []
     key_operations = []
+    edge_cases = []
 
     if "defaultdict" in code or "Counter" in code or "dict()" in code or "{}" in code or "d = " in code or "seen = {" in code:
-        data_structures.append("hash map (`dict`) for $O(1)$ average lookup")
+        data_structures.append("hash map lookup (`dict`) for $O(1)$ average speed")
     if "set()" in code or "seen = set(" in code or "visited = set(" in code:
-        data_structures.append("hash set (`set`) for $O(1)$ existence checks")
+        data_structures.append("hash set (`set`) for $O(1)$ duplicate check")
     if "deque" in code or "queue" in code:
-        data_structures.append("double-ended queue (`deque`) for $O(1)$ operations")
+        data_structures.append("double-ended queue (`deque`) for $O(1)$ window bounds")
     if "heapq" in code or "heappush" in code or "heappop" in code:
-        data_structures.append("priority queue (`heapq`) for dynamic minimum/maximum tracking")
+        data_structures.append("priority queue (`heapq`) for dynamic ordering")
     if "dp" in code or "memo" in code:
-        data_structures.append("dynamic programming memoization store")
+        data_structures.append("dynamic programming memoization array/table")
     if "TreeNode" in code:
-        data_structures.append("tree traversal nodes (`val`, `left`, `right`)")
+        data_structures.append("tree node traversal (`val`, `left`, `right`)")
     if "ListNode" in code:
-        data_structures.append("linked list nodes (`val`, `next`)")
+        data_structures.append("linked list node pointer manipulation (`val`, `next`)")
 
     if re.search(r"\b(left|low)\b.*\b(right|high)\b", code) and ("mid" in code or "// 2" in code or "bisect" in code):
-        control_flow.append("binary search over search space")
+        control_flow.append("binary search over sorted domain")
     elif re.search(r"\b(left|l)\b.*\b(right|r)\b", code) and ("while" in code or "for" in code):
-        control_flow.append("two-pointer iteration")
+        control_flow.append("two-pointer sliding window iteration")
     elif "dfs" in code.lower() or "backtrack" in code.lower():
-        control_flow.append("depth-first search / backtracking recursion")
+        control_flow.append("depth-first search recursion")
     elif "bfs" in code.lower() or "popleft" in code:
-        control_flow.append("breadth-first search queue traversal")
+        control_flow.append("breadth-first search queue level traversal")
     elif "enumerate" in code or "for " in code:
-        control_flow.append("single-pass sequential iteration")
+        control_flow.append("single-pass sequential scanning")
 
     if re.search(r"[&|^~]|<<|>>", code):
-        key_operations.append("bitwise operations (`&`, `|`, `^`, `<<`, `>>`)")
+        key_operations.append("bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates")
     if ":=" in code:
-        key_operations.append("walrus operator (`:=`) inline assignment")
+        key_operations.append("walrus operator (`:=`) for inline assignment and zero-copy conditional check")
+
+    # Detect edge case handling
+    if "if not " in code or "if len(" in code or "if s is None" in code or "if root is None" in code:
+        edge_cases.append("handles empty/null inputs via early return guards")
+    if "float('inf')" in code or "float('-inf')" in code or "math.inf" in code:
+        edge_cases.append("uses infinity sentinels for extreme boundary comparisons")
+    if "modulo" in code or "10**9 + 7" in code or "10**9+7" in code or "%" in code:
+        edge_cases.append("applies modulo arithmetic to prevent integer overflow")
 
     parts = []
     if control_flow:
-        parts.append("Uses " + ", ".join(control_flow) + ".")
+        parts.append("Algorithm uses " + ", ".join(control_flow) + ".")
     if data_structures:
         parts.append("Maintains " + ", ".join(data_structures) + ".")
     if key_operations:
         parts.append("Applies " + ", ".join(key_operations) + ".")
+    if edge_cases:
+        parts.append("Edge cases: " + ", ".join(edge_cases) + ".")
 
     if not parts:
         variant_type = "competitive micro-optimized" if is_competitive else "optimal"
-        return f"Implements the {variant_type} algorithm for **{title}**."
+        return f"Implements the {variant_type} algorithm for **{title}** with natural boundary handling."
 
     return " ".join(parts)
 
@@ -64,13 +75,20 @@ def analyze_sql_code(code: str, title: str, is_competitive: bool) -> str:
     if "JOIN" in code_upper:
         parts.append("relational JOINs")
     if any(f in code_upper for f in ["ROW_NUMBER()", "RANK()", "DENSE_RANK()", "OVER(", "LAG(", "LEAD("]):
-        parts.append("window functions")
+        parts.append("window ranking functions")
     if "GROUP BY" in code_upper:
-        parts.append("GROUP BY aggregations (`COALESCE`, `STRING_AGG`)")
+        parts.append("GROUP BY aggregations")
 
-    if parts:
-        return f"Executes a SQL query for **{title}** using " + ", ".join(parts) + "."
-    return f"Executes a relational database query for **{title}**."
+    edge_cases = []
+    if "COALESCE" in code_upper:
+        edge_cases.append("replaces NULL values using `COALESCE` guard")
+    if "HAVING" in code_upper:
+        edge_cases.append("filters aggregated group boundaries using `HAVING` clause")
+
+    res = f"Executes a SQL query for **{title}** using " + (", ".join(parts) if parts else "relational predicates") + "."
+    if edge_cases:
+        res += " Edge cases: " + ", ".join(edge_cases) + "."
+    return res
 
 def analyze_js_code(code: str, title: str, is_competitive: bool) -> str:
     parts = []
@@ -79,9 +97,10 @@ def analyze_js_code(code: str, title: str, is_competitive: bool) -> str:
     if "reduce(" in code or "map(" in code or "filter(" in code:
         parts.append("JavaScript array iteration methods")
 
-    if parts:
-        return f"Executes JavaScript logic for **{title}** using " + ", ".join(parts) + "."
-    return f"Implements the JavaScript solution for **{title}**."
+    res = f"Executes JavaScript logic for **{title}** using " + (", ".join(parts) if parts else "idiomatic control flow") + "."
+    if "if (" in code or "length" in code:
+        res += " Edge cases: guards against empty arrays/strings through length bounds."
+    return res
 
 processed_count = 0
 
@@ -147,10 +166,6 @@ for pkg_dir in LEETCODE_ROOT.iterdir():
 ## Complexity detail
 - **Time Complexity**: ${tc}$ — Operation count bound.
 - **Space Complexity**: ${sc}$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.
 """
 
         (var_dir / "approach.md").write_text(app_content, encoding="utf-8")

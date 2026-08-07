@@ -1,10 +1,6 @@
 ## General
-Implements the JavaScript solution for **Nested Array Generator**.
+Executes JavaScript logic for **Nested Array Generator** using idiomatic control flow. Edge cases: guards against empty arrays/strings through length bounds.
 
 ## Complexity detail
 - **Time Complexity**: $O(N)$ — Operation count bound.
 - **Space Complexity**: $O(d)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

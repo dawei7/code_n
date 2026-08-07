@@ -1,10 +1,6 @@
 ## General
-Uses two-pointer iteration. Maintains hash map (`dict`) for $O(1)$ average lookup, double-ended queue (`deque`) for $O(1)$ operations. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`).
+Algorithm uses two-pointer sliding window iteration. Maintains hash map lookup (`dict`) for $O(1)$ average speed, double-ended queue (`deque`) for $O(1)$ window bounds. Applies bitwise operations (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
 
 ## Complexity detail
 - **Time Complexity**: $O(N log V)$ — Operation count bound.
 - **Space Complexity**: $O(N log V)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.

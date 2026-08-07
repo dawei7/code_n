@@ -1,10 +1,6 @@
 ## General
-Executes a relational database query for **Change Null Values in a Table to the Previous Value**.
+Executes a SQL query for **Change Null Values in a Table to the Previous Value** using relational predicates.
 
 ## Complexity detail
 - **Time Complexity**: $O(R log R)$ — Operation count bound.
 - **Space Complexity**: $O(R)$ — Auxiliary memory allocation bound.
-
-## Alternatives and edge cases
-- **Algorithm design:** Describes the specific algorithmic approach used in the solution.
-- **Complexity bounds:** Declares the precise time and space complexity guarantees.
