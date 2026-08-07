@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
 SELECT
     product_id,
-    price * (100 - IFNULL(discount, 0)) / 100 final_price,
+    price * (100 - COALESCE(discount, 0)) / 100 final_price,
     category
 FROM
     Products

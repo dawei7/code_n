@@ -10,8 +10,8 @@ WITH RECURSIVE
     Ride AS (
         SELECT
             month,
-            SUM(IFNULL(ride_distance, 0)) AS ride_distance,
-            SUM(IFNULL(ride_duration, 0)) AS ride_duration
+            SUM(COALESCE(ride_distance, 0)) AS ride_distance,
+            SUM(COALESCE(ride_duration, 0)) AS ride_duration
         FROM
             Months AS m
             LEFT JOIN Rides AS r ON month = MONTH(requested_at) AND YEAR(requested_at) = 2020

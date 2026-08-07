@@ -12,7 +12,7 @@ BEGIN
                 AND column_name != 'product_id'
         )
     SELECT
-        GROUP_CONCAT(
+        STRING_AGG(
             'SELECT product_id, \'',
             column_name,
             '\' store, ',

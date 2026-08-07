@@ -2,7 +2,7 @@
 SELECT
     student_id,
     department_id,
-    IFNULL(
+    COALESCE(
         ROUND(
             (
                 RANK() OVER (

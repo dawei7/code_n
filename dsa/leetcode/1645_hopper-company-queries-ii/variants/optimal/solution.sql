@@ -24,7 +24,7 @@ WITH RECURSIVE
     )
 SELECT
     month,
-    IFNULL(
+    COALESCE(
         ROUND(COUNT(DISTINCT t.driver_id) * 100 / COUNT(DISTINCT s.driver_id), 2),
         0
     ) AS working_percentage

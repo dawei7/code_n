@@ -1,7 +1,7 @@
 # Write your MySQL query statement below
 SELECT
     ROUND(
-        IFNULL(
+        COALESCE(
             (
                 SELECT COUNT(DISTINCT requester_id, accepter_id)
                 FROM RequestAccepted

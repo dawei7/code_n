@@ -42,7 +42,7 @@ WITH
 SELECT
     employee_id,
     MAX(concurrent_count) max_overlapping_shifts,
-    IFNULL(AVG(total_overlap_duration), 0) total_overlap_duration
+    COALESCE(AVG(total_overlap_duration), 0) total_overlap_duration
 FROM
     S
     LEFT JOIN U USING (employee_id)

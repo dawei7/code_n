@@ -11,4 +11,4 @@ SELECT employee_id
 FROM
     Employees
     LEFT JOIN T USING (employee_id)
-WHERE IFNULL(tot, 0) < needed_hours;
+WHERE COALESCE(tot, 0) < needed_hours;

@@ -18,7 +18,7 @@ WITH
         FROM Accounts
         GROUP BY 1
     )
-SELECT category, IFNULL(accounts_count, 0) AS accounts_count
+SELECT category, COALESCE(accounts_count, 0) AS accounts_count
 FROM
     S
     LEFT JOIN T USING (category);

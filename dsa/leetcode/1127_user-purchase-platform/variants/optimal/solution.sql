@@ -18,7 +18,7 @@ WITH
     )
 SELECT
     p.*,
-    IFNULL(SUM(amount), 0) AS total_amount,
+    COALESCE(SUM(amount), 0) AS total_amount,
     COUNT(t.user_id) AS total_users
 FROM
     P AS p

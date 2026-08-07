@@ -12,7 +12,7 @@ WITH
                 GROUP BY 1
             )
     )
-SELECT product_id, IFNULL(price, 10) AS price
+SELECT product_id, COALESCE(price, 10) AS price
 FROM
     T
     LEFT JOIN P USING (product_id);

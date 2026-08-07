@@ -18,5 +18,5 @@ WITH
         FROM Terms
     )
 SELECT
-    CONCAT(GROUP_CONCAT(it ORDER BY power DESC SEPARATOR ""), '=0') AS equation
+    CONCAT(STRING_AGG(it ORDER BY power DESC SEPARATOR "", ','), '=0') AS equation
 FROM T;
