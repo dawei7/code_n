@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-make-two-binary-strings-equal",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumCost",
   "verified_submission_id": "2085437369",
   "verified_at": "2026-07-29T01:33:43.510799+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "max-value-of-equation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findMaxValueOfEquation",
   "verified_submission_id": "2069359603",
   "verified_at": "2026-07-16T05:06:39.206487+00:00"

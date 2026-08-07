@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-convert-string-iii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2088164130",
   "verified_at": "2026-07-31T02:39:00Z"

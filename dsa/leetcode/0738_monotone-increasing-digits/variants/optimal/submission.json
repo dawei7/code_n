@@ -7,7 +7,7 @@
   "title_slug": "monotone-increasing-digits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.monotoneIncreasingDigits",
   "verified_submission_id": "2065835627",
   "verified_at": "2026-07-13T07:41:16.042248+00:00"

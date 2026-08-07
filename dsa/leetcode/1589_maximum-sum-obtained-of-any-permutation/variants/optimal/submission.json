@@ -7,7 +7,7 @@
   "title_slug": "maximum-sum-obtained-of-any-permutation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxSumRangeQuery",
   "verified_submission_id": "2069981421",
   "verified_at": "2026-07-16T14:31:50.441696+00:00"

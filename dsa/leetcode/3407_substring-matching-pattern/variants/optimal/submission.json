@@ -7,7 +7,7 @@
   "title_slug": "substring-matching-pattern",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.hasMatch",
   "verified_submission_id": "2081490146",
   "verified_at": "2026-07-26T03:59:00Z"

@@ -7,7 +7,7 @@
   "title_slug": "design-authentication-manager",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "AuthenticationManager",
   "verified_submission_id": "2071223815",
   "verified_at": "2026-07-17T14:42:52.877582+00:00"

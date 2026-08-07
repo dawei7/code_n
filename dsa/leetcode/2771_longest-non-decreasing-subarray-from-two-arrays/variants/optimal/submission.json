@@ -7,7 +7,7 @@
   "title_slug": "longest-non-decreasing-subarray-from-two-arrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxNonDecreasingLength",
   "verified_submission_id": "2076624408",
   "verified_at": "2026-07-22T05:12:00+00:00"

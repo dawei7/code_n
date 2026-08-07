@@ -7,7 +7,7 @@
   "title_slug": "maximum-bags-with-full-capacity-of-rocks",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumBags",
   "verified_submission_id": "2088524243",
   "verified_at": "2026-07-31T08:30:54.7775007Z"

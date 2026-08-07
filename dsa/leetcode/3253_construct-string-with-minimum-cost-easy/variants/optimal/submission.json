@@ -7,7 +7,7 @@
   "title_slug": "construct-string-with-minimum-cost-easy",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumCost",
   "verified_submission_id": "2080307448",
   "verified_at": "2026-07-25T05:37:46.259308+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-score-from-grid-operations",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumScore",
   "verified_submission_id": "2080168751",
   "verified_at": "2026-07-25T02:36:41.807732+00:00"

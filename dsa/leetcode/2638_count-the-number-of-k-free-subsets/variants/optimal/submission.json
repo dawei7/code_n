@@ -7,7 +7,7 @@
   "title_slug": "count-the-number-of-k-free-subsets",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countTheNumOfKFreeSubsets",
   "verified_submission_id": "2076163733",
   "verified_at": "2026-07-21T17:18:00+00:00"

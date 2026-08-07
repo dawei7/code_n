@@ -125,13 +125,9 @@ dsa/leetcode/<frontend_id:04d>_<slug>/
   variants/
     optimal/
       approach.md
-      submission.json
-      solutions/
-        solve.py                # canonical app-friendly Python reference
-        <language>.<extension>  # optional same-language references
-        leetcode.<extension>    # optional native submission candidate
-    simplified/              # optional; authored in a later reviewed pass
-      approach.md
+        solutions/
+          solution.<ext>         # primary-language solution (solution.py, solution.js, solution.sql, solution.sh)
+    simplified/                  # optional, legacy fallback
       submission.json
       solutions/
 ```

@@ -7,7 +7,7 @@
   "title_slug": "find-all-good-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findGoodStrings",
   "verified_submission_id": "2068868699",
   "verified_at": "2026-07-15T16:34:08.513595+00:00"

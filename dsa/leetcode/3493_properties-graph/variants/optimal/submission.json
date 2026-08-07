@@ -7,7 +7,7 @@
   "title_slug": "properties-graph",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numberOfComponents",
   "verified_submission_id": "2082372763",
   "verified_at": "2026-07-26T17:25:00Z"

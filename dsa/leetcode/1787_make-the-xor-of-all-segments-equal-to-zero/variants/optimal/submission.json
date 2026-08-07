@@ -7,7 +7,7 @@
   "title_slug": "make-the-xor-of-all-segments-equal-to-zero",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minChanges",
   "verified_submission_id": "2071160608",
   "verified_at": "2026-07-17T13:40:25.256147+00:00"

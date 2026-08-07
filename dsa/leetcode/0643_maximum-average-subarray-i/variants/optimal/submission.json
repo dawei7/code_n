@@ -7,7 +7,7 @@
   "title_slug": "maximum-average-subarray-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065507956",
   "verified_at": "2026-07-13T00:22:09.250270+00:00"
 }

@@ -7,7 +7,7 @@
   "title_slug": "sum-of-numbers-with-units-digit-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumNumbers",
   "verified_submission_id": "2088525010",
   "verified_at": "2026-07-31T08:30:54.7775007Z"

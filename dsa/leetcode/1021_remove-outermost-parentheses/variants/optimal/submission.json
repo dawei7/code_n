@@ -7,7 +7,7 @@
   "title_slug": "remove-outermost-parentheses",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.removeOuterParentheses",
   "verified_submission_id": "2067311862",
   "verified_at": "2026-07-14T11:52:08.771534+00:00"

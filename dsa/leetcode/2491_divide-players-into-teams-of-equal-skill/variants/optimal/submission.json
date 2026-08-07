@@ -7,7 +7,7 @@
   "title_slug": "divide-players-into-teams-of-equal-skill",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.dividePlayers",
   "verified_submission_id": "2075142483",
   "verified_at": "2026-07-21T00:00:00+00:00"

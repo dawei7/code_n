@@ -7,7 +7,7 @@
   "title_slug": "premier-league-table-ranking",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "verified_submission_id": "2080262344",
   "verified_at": "2026-07-25T04:56:08.481440+00:00"
 }

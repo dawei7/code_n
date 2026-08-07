@@ -7,7 +7,7 @@
   "title_slug": "find-indices-with-index-and-value-difference-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findIndices",
   "verified_submission_id": "2078051396",
   "verified_at": "2026-07-23T07:09:31.262170+00:00"

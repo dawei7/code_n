@@ -7,7 +7,7 @@
   "title_slug": "network-recovery-pathways",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findMaxPathScore",
   "verified_submission_id": "2083718266",
   "verified_at": "2026-07-27T17:17:00.209007+00:00"

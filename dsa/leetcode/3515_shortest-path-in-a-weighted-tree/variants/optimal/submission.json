@@ -7,7 +7,7 @@
   "title_slug": "shortest-path-in-a-weighted-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.treeQueries",
   "verified_submission_id": "2082562025",
   "verified_at": "2026-07-26T20:45:00Z"

@@ -7,7 +7,7 @@
   "title_slug": "unpopular-books",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "verified_submission_id": "2065557810",
   "verified_at": "2026-07-12T22:40:11.800026+00:00",
   "review_scope": "solution_only",

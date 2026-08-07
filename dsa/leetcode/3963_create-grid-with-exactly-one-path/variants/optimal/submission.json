@@ -7,7 +7,7 @@
   "title_slug": "create-grid-with-exactly-one-path",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.createGrid",
   "verified_submission_id": "2087812435",
   "verified_at": "2026-07-30T16:56:00+00:00"

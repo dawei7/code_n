@@ -7,7 +7,7 @@
   "title_slug": "json-deep-equal",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "areDeeplyEqual",
   "verified_submission_id": "2076083661",
   "verified_at": "2026-07-21T16:25:00+00:00"

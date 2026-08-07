@@ -7,7 +7,7 @@
   "title_slug": "find-the-minimum-possible-sum-of-a-beautiful-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumPossibleSum",
   "verified_submission_id": "2077368041",
   "verified_at": "2026-07-22T16:20:00+00:00"

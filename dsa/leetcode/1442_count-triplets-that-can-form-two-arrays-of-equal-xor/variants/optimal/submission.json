@@ -7,7 +7,7 @@
   "title_slug": "count-triplets-that-can-form-two-arrays-of-equal-xor",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countTriplets",
   "verified_submission_id": "2069150164",
   "verified_at": "2026-07-15T22:10:06.489095+00:00"

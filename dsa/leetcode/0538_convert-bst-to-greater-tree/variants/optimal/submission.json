@@ -7,7 +7,7 @@
   "title_slug": "convert-bst-to-greater-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065299721",
   "verified_at": "2026-07-12T17:48:34.815808+00:00"
 }

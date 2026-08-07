@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-to-buy-apples-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minCost",
   "verified_submission_id": "2087097198",
   "verified_at": "2026-07-30T06:48:05.562294+00:00"

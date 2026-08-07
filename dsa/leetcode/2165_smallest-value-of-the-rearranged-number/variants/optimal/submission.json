@@ -7,7 +7,7 @@
   "title_slug": "smallest-value-of-the-rearranged-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.smallestNumber",
   "verified_submission_id": "2073610125",
   "verified_at": "2026-07-19T15:19:13.009175+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-almost-equal-pairs-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countPairs",
   "verified_submission_id": "2080385933",
   "verified_at": "2026-07-25T06:41:08.786262+00:00"

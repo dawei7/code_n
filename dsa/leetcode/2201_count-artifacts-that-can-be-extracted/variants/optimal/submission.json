@@ -7,7 +7,7 @@
   "title_slug": "count-artifacts-that-can-be-extracted",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.digArtifacts",
   "verified_submission_id": "2073849559",
   "verified_at": "2026-07-19T19:10:18.242009+00:00"

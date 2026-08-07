@@ -7,7 +7,7 @@
   "title_slug": "maximize-items",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2078956882",
   "verified_at": "2026-07-24T01:23:00Z"

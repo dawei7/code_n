@@ -7,7 +7,7 @@
   "title_slug": "largest-local-values-in-a-matrix-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countLocalMaximums",
   "verified_submission_id": "2087191141",
   "verified_at": "2026-07-30T08:17:20.719569+00:00"

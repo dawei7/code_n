@@ -7,7 +7,7 @@
   "title_slug": "maximum-equal-frequency",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxEqualFreq",
   "verified_submission_id": "2067954310",
   "verified_at": "2026-07-15T01:15:39.613174+00:00"

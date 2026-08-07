@@ -7,7 +7,7 @@
   "title_slug": "falling-squares",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065601402",
   "verified_at": "2026-07-13T03:56:52.431522+00:00"
 }

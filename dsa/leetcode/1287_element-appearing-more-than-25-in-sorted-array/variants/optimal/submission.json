@@ -7,7 +7,7 @@
   "title_slug": "element-appearing-more-than-25-in-sorted-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findSpecialInteger",
   "verified_submission_id": "2068337962",
   "verified_at": "2026-07-15T08:20:49.654541+00:00"

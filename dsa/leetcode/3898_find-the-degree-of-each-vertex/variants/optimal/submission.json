@@ -7,7 +7,7 @@
   "title_slug": "find-the-degree-of-each-vertex",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findDegrees",
   "verified_submission_id": "2086755089",
   "verified_at": "2026-07-29T23:40:08.135430+00:00"

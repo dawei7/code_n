@@ -7,7 +7,7 @@
   "title_slug": "average-value-of-even-numbers-that-are-divisible-by-three",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.averageValue",
   "verified_submission_id": "2075038961",
   "verified_at": "2026-07-20T19:32:00+00:00"

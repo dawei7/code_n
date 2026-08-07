@@ -7,7 +7,7 @@
   "title_slug": "design-log-storage-system",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065471410",
   "verified_at": "2026-07-12T21:10:48.800026+00:00",
   "review_scope": "solution_only",

@@ -7,7 +7,7 @@
   "title_slug": "design-neighbor-sum-service",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "NeighborSum",
   "verified_submission_id": "2080231818",
   "verified_at": "2026-07-25T04:24:28.591449+00:00"

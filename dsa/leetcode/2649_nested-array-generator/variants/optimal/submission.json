@@ -7,7 +7,7 @@
   "title_slug": "nested-array-generator",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "inorderTraversal",
   "verified_submission_id": "2076246133",
   "verified_at": "2026-07-21T18:15:00+00:00"

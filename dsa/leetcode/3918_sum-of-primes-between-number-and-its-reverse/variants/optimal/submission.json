@@ -7,7 +7,7 @@
   "title_slug": "sum-of-primes-between-number-and-its-reverse",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.sumOfPrimesInRange",
   "verified_submission_id": "2086902286",
   "verified_at": "2026-07-30T04:26:32.725027+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "equal-row-and-column-pairs",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.equalPairs",
   "verified_submission_id": "2074329955",
   "verified_at": "2026-07-20T08:48:09.986465+00:00"

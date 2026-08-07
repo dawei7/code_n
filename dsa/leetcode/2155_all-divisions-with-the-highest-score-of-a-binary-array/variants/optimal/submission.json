@@ -7,7 +7,7 @@
   "title_slug": "all-divisions-with-the-highest-score-of-a-binary-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxScoreIndices",
   "verified_submission_id": "2073543995",
   "verified_at": "2026-07-19T14:11:40.354137+00:00"

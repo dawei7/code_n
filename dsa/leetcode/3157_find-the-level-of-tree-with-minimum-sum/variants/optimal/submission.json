@@ -7,7 +7,7 @@
   "title_slug": "find-the-level-of-tree-with-minimum-sum",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumLevel",
   "verified_submission_id": "2079862527",
   "verified_at": "2026-07-24T19:06:00+02:00"

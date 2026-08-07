@@ -7,7 +7,7 @@
   "title_slug": "binary-searchable-numbers-in-an-unsorted-array",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.binarySearchableNumbers",
   "verified_submission_id": "2072742610",
   "verified_at": "2026-07-18T19:23:25.046841+00:00"

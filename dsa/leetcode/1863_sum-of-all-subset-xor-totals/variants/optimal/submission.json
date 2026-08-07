@@ -7,7 +7,7 @@
   "title_slug": "sum-of-all-subset-xor-totals",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.subsetXORSum",
   "verified_submission_id": "2071764310",
   "verified_at": "2026-07-18T04:59:13.640920+00:00"

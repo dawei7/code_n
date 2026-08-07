@@ -7,7 +7,7 @@
   "title_slug": "minimum-time-to-kill-all-monsters",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumTime",
   "verified_submission_id": "2074617836",
   "verified_at": "2026-07-20T13:41:43.574927+00:00"

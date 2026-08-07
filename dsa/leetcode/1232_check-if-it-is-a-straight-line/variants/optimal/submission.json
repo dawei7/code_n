@@ -7,7 +7,7 @@
   "title_slug": "check-if-it-is-a-straight-line",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.checkStraightLine",
   "verified_submission_id": "2067966588",
   "verified_at": "2026-07-15T01:46:14.746308+00:00"

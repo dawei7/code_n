@@ -7,7 +7,7 @@
   "title_slug": "reschedule-meetings-for-maximum-free-time-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxFreeTime",
   "verified_submission_id": "2081823868",
   "verified_at": "2026-07-26T09:22:00Z"

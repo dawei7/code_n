@@ -7,7 +7,7 @@
   "title_slug": "check-if-array-is-sorted-and-rotated",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.check",
   "verified_submission_id": "2070980627",
   "verified_at": "2026-07-17T10:15:05.810930+00:00"

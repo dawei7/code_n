@@ -7,7 +7,7 @@
   "title_slug": "unique-orders-and-customers-per-month",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2069823481",
   "verified_at": "2026-07-16T12:03:03.360478+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "target-sum",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065095969",
   "verified_at": "2026-07-12T14:37:30.421692+00:00"
 }

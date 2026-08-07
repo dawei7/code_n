@@ -7,7 +7,7 @@
   "title_slug": "two-letter-card-game",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.score",
   "verified_submission_id": "2083979497",
   "verified_at": "2026-07-27T22:39:11.535106+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "find-the-most-common-response",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findCommonResponse",
   "verified_submission_id": "2082603172",
   "verified_at": "2026-07-26T22:29:00Z"

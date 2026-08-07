@@ -7,7 +7,7 @@
   "title_slug": "count-sorted-vowel-strings",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countVowelStrings",
   "verified_submission_id": "2070458972",
   "verified_at": "2026-07-16T23:49:16.171797+00:00"

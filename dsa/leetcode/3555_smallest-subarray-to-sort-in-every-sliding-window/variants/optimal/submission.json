@@ -7,7 +7,7 @@
     "title_slug":  "smallest-subarray-to-sort-in-every-sliding-window",
     "paid_only":  false,
     "language":  "python3",
-    "source":  "solutions/leetcode.py",
+    "source":  "solutions/solution.py",
     "native_entrypoint":  "Solution.minSubarraySort",
     "verified_submission_id":  "2089300687",
     "verified_at":  "2026-07-31T21:22:20.423+00:00"

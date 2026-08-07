@@ -7,7 +7,7 @@
   "title_slug": "html-entity-parser",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.entityParser",
   "verified_submission_id": "2068931727",
   "verified_at": "2026-07-15T17:18:25.292894+00:00"

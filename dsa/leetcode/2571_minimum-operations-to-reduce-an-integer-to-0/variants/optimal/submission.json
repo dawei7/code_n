@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-reduce-an-integer-to-0",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2075530223",
   "verified_at": "2026-07-21T08:12:00+00:00"

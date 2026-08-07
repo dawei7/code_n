@@ -7,7 +7,7 @@
   "title_slug": "check-if-numbers-are-ascending-in-a-sentence",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.areNumbersAscending",
   "verified_submission_id": "2072868646",
   "verified_at": "2026-07-19T01:14:06.797269+00:00"

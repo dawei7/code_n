@@ -7,7 +7,7 @@
   "title_slug": "count-non-adjacent-subsets-in-a-rooted-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countValidSubsets",
   "verified_submission_id": "2087380027",
   "verified_at": "2026-07-30T10:44:34.318096+00:00"

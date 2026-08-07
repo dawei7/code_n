@@ -7,7 +7,7 @@
   "title_slug": "number-of-subsequences-with-odd-sum",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.subsequenceCount",
   "verified_submission_id": "2080268721",
   "verified_at": "2026-07-25T05:02:12.194266+00:00"

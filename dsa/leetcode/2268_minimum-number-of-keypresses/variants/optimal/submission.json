@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-keypresses",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumKeypresses",
   "verified_submission_id": "2073957244",
   "verified_at": "2026-07-20T00:57:15.506099+00:00"

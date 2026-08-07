@@ -7,7 +7,7 @@
   "title_slug": "second-minimum-time-to-reach-destination",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.secondMinimum",
   "verified_submission_id": "2072871646",
   "verified_at": "2026-07-19T01:25:37.895335+00:00"

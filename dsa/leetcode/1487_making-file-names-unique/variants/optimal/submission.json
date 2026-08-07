@@ -7,7 +7,7 @@
   "title_slug": "making-file-names-unique",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.getFolderNames",
   "verified_submission_id": "2074763459",
   "verified_at": "2026-07-20T15:47:28.939841+00:00"

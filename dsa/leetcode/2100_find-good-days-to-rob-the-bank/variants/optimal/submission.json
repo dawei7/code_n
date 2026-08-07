@@ -7,7 +7,7 @@
   "title_slug": "find-good-days-to-rob-the-bank",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.goodDaysToRobBank",
   "verified_submission_id": "2073126613",
   "verified_at": "2026-07-19T06:11:23.637008+00:00"

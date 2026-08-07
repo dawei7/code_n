@@ -7,7 +7,7 @@
   "title_slug": "gcd-of-odd-and-even-sums",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.gcdOfOddEvenSums",
   "verified_submission_id": "2083970400",
   "verified_at": "2026-07-27T22:10:30.033814+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "reveal-cards-in-increasing-order",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.deckRevealedIncreasing",
   "verified_submission_id": "2067069340",
   "verified_at": "2026-07-14T07:39:56.915916+00:00"

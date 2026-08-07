@@ -7,7 +7,7 @@
   "title_slug": "harshad-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.sumOfTheDigitsOfHarshadNumber",
   "verified_submission_id": "2079285499",
   "verified_at": "2026-07-24T09:46:00+02:00"

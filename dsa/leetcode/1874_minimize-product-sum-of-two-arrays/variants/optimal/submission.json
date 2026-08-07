@@ -7,7 +7,7 @@
   "title_slug": "minimize-product-sum-of-two-arrays",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minProductSum",
   "verified_submission_id": "2071820091",
   "verified_at": "2026-07-18T05:53:33.689726+00:00"

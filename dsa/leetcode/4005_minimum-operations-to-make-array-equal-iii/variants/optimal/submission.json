@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-make-array-equal-iii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2088292216",
   "verified_at": "2026-07-31T05:06:00Z"

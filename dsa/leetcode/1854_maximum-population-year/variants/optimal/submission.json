@@ -7,7 +7,7 @@
   "title_slug": "maximum-population-year",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumPopulation",
   "verified_submission_id": "2071724821",
   "verified_at": "2026-07-18T04:14:34.035759+00:00"

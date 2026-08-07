@@ -7,7 +7,7 @@
   "title_slug": "splitting-a-string-into-descending-consecutive-values",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.splitString",
   "verified_submission_id": "2071709690",
   "verified_at": "2026-07-18T03:53:59.024098+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "average-waiting-time",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.averageWaitingTime",
   "verified_submission_id": "2070620242",
   "verified_at": "2026-07-17T04:49:06.349077+00:00"

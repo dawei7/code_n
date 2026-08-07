@@ -7,7 +7,7 @@
   "title_slug": "find-the-power-of-k-size-subarrays-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.resultsArray",
   "verified_submission_id": "2080312941",
   "verified_at": "2026-07-25T05:42:41.645548+00:00"

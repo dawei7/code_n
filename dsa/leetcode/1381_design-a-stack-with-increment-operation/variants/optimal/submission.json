@@ -7,7 +7,7 @@
   "title_slug": "design-a-stack-with-increment-operation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "CustomStack",
   "verified_submission_id": "2068793772",
   "verified_at": "2026-07-15T15:35:34.819369+00:00"

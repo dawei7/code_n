@@ -7,7 +7,7 @@
   "title_slug": "knight-probability-in-chessboard",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065574451",
   "verified_at": "2026-07-13T03:14:12.918544+00:00"
 }

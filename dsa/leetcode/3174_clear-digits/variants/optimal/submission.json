@@ -7,7 +7,7 @@
   "title_slug": "clear-digits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.clearDigits",
   "verified_submission_id": "2080033380",
   "verified_at": "2026-07-24T21:46:00+02:00"

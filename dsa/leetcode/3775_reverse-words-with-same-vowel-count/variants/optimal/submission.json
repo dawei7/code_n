@@ -7,7 +7,7 @@
   "title_slug": "reverse-words-with-same-vowel-count",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.reverseWords",
   "verified_submission_id": "2085383780",
   "verified_at": "2026-07-28T22:36:56.323401+00:00"

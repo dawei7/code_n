@@ -7,7 +7,7 @@
   "title_slug": "maximum-xor-of-two-numbers-in-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064764912",
   "verified_at": "2026-07-12T08:13:50.356289+00:00"
 }

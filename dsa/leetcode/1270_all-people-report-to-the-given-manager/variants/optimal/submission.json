@@ -7,7 +7,7 @@
   "title_slug": "all-people-report-to-the-given-manager",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2068251502",
   "verified_at": "2026-07-15T06:53:58.676353+00:00"

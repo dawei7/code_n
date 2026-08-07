@@ -7,7 +7,7 @@
   "title_slug": "number-of-smooth-descent-periods-of-a-stock",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.getDescentPeriods",
   "verified_submission_id": "2073312572",
   "verified_at": "2026-07-19T09:47:49.305903+00:00"

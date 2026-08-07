@@ -7,7 +7,7 @@
   "title_slug": "sort-transformed-array",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064599440",
   "verified_at": "2026-07-12T05:12:13.046937+00:00",
   "review_scope": "solution_only",

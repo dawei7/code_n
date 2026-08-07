@@ -7,7 +7,7 @@
   "title_slug": "longer-contiguous-segments-of-ones-than-zeros",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.checkZeroOnes",
   "verified_submission_id": "2071795873",
   "verified_at": "2026-07-18T05:30:37.171061+00:00"

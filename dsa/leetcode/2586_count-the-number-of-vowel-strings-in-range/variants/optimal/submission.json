@@ -7,7 +7,7 @@
   "title_slug": "count-the-number-of-vowel-strings-in-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.vowelStrings",
   "verified_submission_id": "2075698255",
   "verified_at": "2026-07-21T10:40:00+00:00"

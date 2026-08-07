@@ -7,7 +7,7 @@
   "title_slug": "inorder-successor-in-bst",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064308523",
   "verified_at": "2026-07-11T21:31:09.580297+00:00",
   "review_scope": "solution_only",

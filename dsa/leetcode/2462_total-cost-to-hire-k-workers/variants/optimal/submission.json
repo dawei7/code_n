@@ -7,7 +7,7 @@
   "title_slug": "total-cost-to-hire-k-workers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.totalCost",
   "verified_submission_id": "2075075347",
   "verified_at": "2026-07-20T20:35:00+00:00"

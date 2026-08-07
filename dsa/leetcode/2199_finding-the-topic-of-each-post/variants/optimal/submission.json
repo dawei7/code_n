@@ -7,7 +7,7 @@
   "title_slug": "finding-the-topic-of-each-post",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2073842142",
   "verified_at": "2026-07-19T18:58:55.762808+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximize-subarray-sum-after-removing-all-occurrences-of-one-element",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxSubarraySum",
   "verified_submission_id": "2081525128",
   "verified_at": "2026-07-26T04:38:00Z"

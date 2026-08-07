@@ -7,7 +7,7 @@
   "title_slug": "design-a-3d-binary-matrix-with-efficient-layer-tracking",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Matrix3D",
   "verified_submission_id": "2081317375",
   "verified_at": "2026-07-26T01:39:00Z"

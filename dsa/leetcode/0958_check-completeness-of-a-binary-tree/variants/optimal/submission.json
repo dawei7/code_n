@@ -7,7 +7,7 @@
   "title_slug": "check-completeness-of-a-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.isCompleteTree",
   "verified_submission_id": "2067093064",
   "verified_at": "2026-07-14T08:07:04.913748+00:00"

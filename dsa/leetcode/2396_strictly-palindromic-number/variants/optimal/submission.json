@@ -7,7 +7,7 @@
   "title_slug": "strictly-palindromic-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.isStrictlyPalindromic",
   "verified_submission_id": "2074583388",
   "verified_at": "2026-07-20T13:08:34.604707+00:00"

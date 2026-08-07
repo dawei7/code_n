@@ -7,7 +7,7 @@
   "title_slug": "find-the-number-of-winning-players",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.winningPlayerCount",
   "verified_submission_id": "2080208896",
   "verified_at": "2026-07-25T03:56:24.464249+00:00"

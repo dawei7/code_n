@@ -7,7 +7,7 @@
   "title_slug": "walking-robot-simulation",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.robotSim",
   "verified_submission_id": "2066743954",
   "verified_at": "2026-07-14T01:30:58.949840+00:00"

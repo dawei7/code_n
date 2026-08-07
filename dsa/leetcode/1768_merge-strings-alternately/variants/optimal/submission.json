@@ -7,7 +7,7 @@
   "title_slug": "merge-strings-alternately",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.mergeAlternately",
   "verified_submission_id": "2071065819",
   "verified_at": "2026-07-17T11:51:10.944682+00:00"

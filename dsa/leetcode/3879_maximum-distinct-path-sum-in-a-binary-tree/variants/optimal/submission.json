@@ -7,7 +7,7 @@
   "title_slug": "maximum-distinct-path-sum-in-a-binary-tree",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxSum",
   "verified_submission_id": "2086612339",
   "verified_at": "2026-07-29T18:49:51.434048+00:00"

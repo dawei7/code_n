@@ -7,7 +7,7 @@
   "title_slug": "nim-game",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064318000",
   "verified_at": "2026-07-11T22:02:10.183688+00:00"
 }

@@ -7,7 +7,7 @@
   "title_slug": "find-permutation",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065012161",
   "verified_at": "2026-07-12T13:09:50.655659+00:00",
   "review_scope": "solution_only",

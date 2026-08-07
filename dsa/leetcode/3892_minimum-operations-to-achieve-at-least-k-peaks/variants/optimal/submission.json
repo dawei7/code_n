@@ -7,7 +7,7 @@
   "title_slug": "minimum-operations-to-achieve-at-least-k-peaks",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minOperations",
   "verified_submission_id": "2086729428",
   "verified_at": "2026-07-29T22:09:25.602777+00:00"

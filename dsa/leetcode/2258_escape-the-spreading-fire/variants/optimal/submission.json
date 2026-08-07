@@ -7,7 +7,7 @@
   "title_slug": "escape-the-spreading-fire",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumMinutes",
   "verified_submission_id": "2073942122",
   "verified_at": "2026-07-20T00:04:33.003082+00:00"

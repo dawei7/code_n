@@ -7,7 +7,7 @@
   "title_slug": "maximum-requests-without-violating-the-limit",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxRequests",
   "verified_submission_id": "2086111060",
   "verified_at": "2026-07-29T12:41:30.452131+00:00"

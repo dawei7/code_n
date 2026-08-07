@@ -7,7 +7,7 @@
   "title_slug": "maximum-sum-with-exactly-k-elements",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximizeSum",
   "verified_submission_id": "2076283402",
   "verified_at": "2026-07-21T18:45:00+00:00"

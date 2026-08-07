@@ -7,7 +7,7 @@
   "title_slug": "sum-of-variable-length-subarrays",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.subarraySum",
   "verified_submission_id": "2081739451",
   "verified_at": "2026-07-26T07:54:00Z"

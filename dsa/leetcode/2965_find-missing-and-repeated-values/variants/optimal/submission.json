@@ -7,7 +7,7 @@
   "title_slug": "find-missing-and-repeated-values",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findMissingAndRepeatedValues",
   "verified_submission_id": "2078430902",
   "verified_at": "2026-07-23T13:26:26.942735+00:00"

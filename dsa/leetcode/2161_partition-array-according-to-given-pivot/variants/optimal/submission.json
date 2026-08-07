@@ -7,7 +7,7 @@
   "title_slug": "partition-array-according-to-given-pivot",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.pivotArray",
   "verified_submission_id": "2073578956",
   "verified_at": "2026-07-19T14:47:08.153486+00:00"

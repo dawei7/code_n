@@ -7,7 +7,7 @@
   "title_slug": "friends-with-no-mutual-friends",
   "paid_only": true,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "SQL query",
   "verified_submission_id": "2078970049",
   "verified_at": "2026-07-24T03:58:00+02:00"

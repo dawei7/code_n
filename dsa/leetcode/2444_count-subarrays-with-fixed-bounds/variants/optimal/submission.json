@@ -7,7 +7,7 @@
   "title_slug": "count-subarrays-with-fixed-bounds",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countSubarrays",
   "verified_submission_id": "2074988768",
   "verified_at": "2026-07-20T18:33:03.290364+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-containers-on-a-ship",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxContainers",
   "verified_submission_id": "2082363333",
   "verified_at": "2026-07-26T17:19:00Z"

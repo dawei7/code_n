@@ -7,7 +7,7 @@
   "title_slug": "paths-in-maze-that-lead-to-same-room",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.numberOfPaths",
   "verified_submission_id": "2073034364",
   "verified_at": "2026-07-19T04:16:00.793142+00:00"

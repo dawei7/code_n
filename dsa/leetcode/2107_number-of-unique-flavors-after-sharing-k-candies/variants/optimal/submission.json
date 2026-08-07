@@ -7,7 +7,7 @@
   "title_slug": "number-of-unique-flavors-after-sharing-k-candies",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.shareCandies",
   "verified_submission_id": "2073297321",
   "verified_at": "2026-07-19T09:29:32.586283+00:00"

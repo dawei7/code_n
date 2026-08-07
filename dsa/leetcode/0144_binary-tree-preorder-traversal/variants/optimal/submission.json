@@ -7,7 +7,7 @@
   "title_slug": "binary-tree-preorder-traversal",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064169508",
   "verified_at": "2026-07-11T18:03:56.843631+00:00"
 }

@@ -7,7 +7,7 @@
   "title_slug": "bitwise-and-of-numbers-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064199494",
   "verified_at": "2026-07-11T18:30:09.564238+00:00"
 }

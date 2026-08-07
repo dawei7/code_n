@@ -7,7 +7,7 @@
   "title_slug": "shortest-word-distance",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064260987",
   "verified_at": "2026-07-11T19:51:57.378519+00:00",
   "review_scope": "solution_only",

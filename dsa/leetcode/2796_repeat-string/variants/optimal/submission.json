@@ -7,7 +7,7 @@
   "title_slug": "repeat-string",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "String.prototype.replicate",
   "verified_submission_id": "2077081556",
   "verified_at": "2026-07-22T12:17:00+00:00"

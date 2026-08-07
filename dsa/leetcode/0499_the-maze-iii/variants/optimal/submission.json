@@ -7,7 +7,7 @@
   "title_slug": "the-maze-iii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065123405",
   "verified_at": "2026-07-12T15:06:33.440800+00:00",
   "review_scope": "solution_only",

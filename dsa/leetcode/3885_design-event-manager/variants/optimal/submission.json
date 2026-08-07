@@ -7,7 +7,7 @@
   "title_slug": "design-event-manager",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "EventManager",
   "verified_submission_id": "2086677535",
   "verified_at": "2026-07-29T20:11:45.020615+00:00"

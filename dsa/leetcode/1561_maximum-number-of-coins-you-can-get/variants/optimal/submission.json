@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-coins-you-can-get",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxCoins",
   "verified_submission_id": "2069798426",
   "verified_at": "2026-07-16T11:35:46.447077+00:00"

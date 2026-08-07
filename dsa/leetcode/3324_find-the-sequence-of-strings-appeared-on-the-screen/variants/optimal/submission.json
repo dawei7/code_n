@@ -7,7 +7,7 @@
   "title_slug": "find-the-sequence-of-strings-appeared-on-the-screen",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.stringSequence",
   "verified_submission_id": "2080945799",
   "verified_at": "2026-07-25T16:05:00Z"

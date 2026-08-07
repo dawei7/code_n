@@ -7,7 +7,7 @@
   "title_slug": "bitwise-or-of-all-subsequence-sums",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.subsequenceSumOr",
   "verified_submission_id": "2075170282",
   "verified_at": "2026-07-21T01:25:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimize-result-by-adding-parentheses-to-expression",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimizeResult",
   "verified_submission_id": "2073909970",
   "verified_at": "2026-07-19T21:49:43.838870+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "maximum-number-of-equal-length-runs",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxSameLengthRuns",
   "verified_submission_id": "2085381133",
   "verified_at": "2026-07-28T22:27:30.687925+00:00"

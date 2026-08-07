@@ -7,7 +7,7 @@
   "title_slug": "maximal-range-that-each-element-is-maximum-in-it",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumLengthOfRanges",
   "verified_submission_id": "2077348764",
   "verified_at": "2026-07-22T16:06:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "count-stepping-numbers-in-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countSteppingNumbers",
   "verified_submission_id": "2077107220",
   "verified_at": "2026-07-22T12:45:00+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "tallest-billboard",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.tallestBillboard",
   "verified_submission_id": "2067087259",
   "verified_at": "2026-07-14T08:00:34.028880+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "minimum-inversion-count-in-subarrays-of-fixed-length",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minInversionCount",
   "verified_submission_id": "2085368551",
   "verified_at": "2026-07-28T21:49:16.147397+00:00"

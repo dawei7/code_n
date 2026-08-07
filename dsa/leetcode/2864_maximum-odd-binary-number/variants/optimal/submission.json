@@ -7,7 +7,7 @@
   "title_slug": "maximum-odd-binary-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumOddBinaryNumber",
   "verified_submission_id": "2077634778",
   "verified_at": "2026-07-22T20:06:00+00:00"

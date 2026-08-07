@@ -7,7 +7,7 @@
   "title_slug": "biggest-single-number",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "verified_submission_id": "2065480282",
   "verified_at": "2026-07-12T22:44:07.547070+00:00"
 }

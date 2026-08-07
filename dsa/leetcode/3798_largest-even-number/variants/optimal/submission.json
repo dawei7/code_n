@@ -7,7 +7,7 @@
   "title_slug": "largest-even-number",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.largestEven",
   "verified_submission_id": "2085429637",
   "verified_at": "2026-07-29T01:13:19.491001+00:00"

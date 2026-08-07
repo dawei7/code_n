@@ -7,7 +7,7 @@
   "title_slug": "smallest-pair-with-different-frequencies",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minDistinctFreqPair",
   "verified_submission_id": "2086124411",
   "verified_at": "2026-07-29T12:54:16.466619+00:00"

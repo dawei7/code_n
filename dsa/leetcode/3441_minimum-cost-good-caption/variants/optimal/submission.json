@@ -7,7 +7,7 @@
   "title_slug": "minimum-cost-good-caption",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minCostGoodCaption",
   "verified_submission_id": "2081830090",
   "verified_at": "2026-07-26T09:28:00Z"

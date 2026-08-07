@@ -7,7 +7,7 @@
   "title_slug": "logger-rate-limiter",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064597420",
   "verified_at": "2026-07-12T05:09:31.585269+00:00",
   "review_scope": "solution_only",

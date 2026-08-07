@@ -7,7 +7,7 @@
   "title_slug": "reorder-routes-to-make-all-paths-lead-to-the-city-zero",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minReorder",
   "verified_submission_id": "2074747859",
   "verified_at": "2026-07-20T15:35:01.225679+00:00"

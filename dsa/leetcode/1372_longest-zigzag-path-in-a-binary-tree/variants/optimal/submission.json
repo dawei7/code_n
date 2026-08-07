@@ -7,7 +7,7 @@
   "title_slug": "longest-zigzag-path-in-a-binary-tree",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestZigZag",
   "verified_submission_id": "2068758149",
   "verified_at": "2026-07-15T15:04:09.410499+00:00"

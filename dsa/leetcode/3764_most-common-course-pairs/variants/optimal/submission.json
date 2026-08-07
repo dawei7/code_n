@@ -7,7 +7,7 @@
   "title_slug": "most-common-course-pairs",
   "paid_only": false,
   "language": "mysql",
-  "source": "solutions/leetcode.sql",
+  "source": "solutions/solution.sql",
   "native_entrypoint": "query",
   "verified_submission_id": "2085354273",
   "verified_at": "2026-07-28T21:13:23.918499+00:00"

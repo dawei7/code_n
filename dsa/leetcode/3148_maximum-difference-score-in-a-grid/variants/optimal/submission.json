@@ -7,7 +7,7 @@
   "title_slug": "maximum-difference-score-in-a-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxScore",
   "verified_submission_id": "2079760973",
   "verified_at": "2026-07-24T17:45:00+02:00"

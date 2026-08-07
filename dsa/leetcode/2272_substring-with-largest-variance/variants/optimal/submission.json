@@ -7,7 +7,7 @@
   "title_slug": "substring-with-largest-variance",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.largestVariance",
   "verified_submission_id": "2073963321",
   "verified_at": "2026-07-20T01:16:41.089585+00:00"

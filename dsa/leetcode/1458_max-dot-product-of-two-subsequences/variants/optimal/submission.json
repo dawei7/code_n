@@ -7,7 +7,7 @@
   "title_slug": "max-dot-product-of-two-subsequences",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxDotProduct",
   "verified_submission_id": "2069172396",
   "verified_at": "2026-07-15T23:33:15.783744+00:00"

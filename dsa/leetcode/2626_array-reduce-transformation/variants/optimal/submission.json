@@ -7,7 +7,7 @@
   "title_slug": "array-reduce-transformation",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "reduce",
   "verified_submission_id": "2076069181",
   "verified_at": "2026-07-21T16:15:00+00:00"

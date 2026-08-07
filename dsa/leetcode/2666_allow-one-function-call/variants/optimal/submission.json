@@ -7,7 +7,7 @@
   "title_slug": "allow-one-function-call",
   "paid_only": false,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "once",
   "verified_submission_id": "2076328829",
   "verified_at": "2026-07-21T19:38:29+00:00"

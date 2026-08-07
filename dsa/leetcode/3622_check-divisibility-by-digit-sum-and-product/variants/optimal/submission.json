@@ -7,7 +7,7 @@
   "title_slug": "check-divisibility-by-digit-sum-and-product",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.checkDivisibility",
   "verified_submission_id": "2083741464",
   "verified_at": "2026-07-27T17:31:28.759273+00:00"

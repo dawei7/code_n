@@ -7,7 +7,7 @@
   "title_slug": "transpose-matrix",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.transpose",
   "verified_submission_id": "2066732971",
   "verified_at": "2026-07-14T01:00:57.961837+00:00"

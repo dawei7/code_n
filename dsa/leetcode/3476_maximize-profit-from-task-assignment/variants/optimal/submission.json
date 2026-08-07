@@ -7,7 +7,7 @@
   "title_slug": "maximize-profit-from-task-assignment",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxProfit",
   "verified_submission_id": "2082169045",
   "verified_at": "2026-07-26T14:45:00Z"

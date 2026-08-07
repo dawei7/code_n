@@ -7,7 +7,7 @@
   "title_slug": "count-non-decreasing-arrays-with-given-digit-sums",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countArrays",
   "verified_submission_id": "2086655894",
   "verified_at": "2026-07-29T19:39:43.068415+00:00"

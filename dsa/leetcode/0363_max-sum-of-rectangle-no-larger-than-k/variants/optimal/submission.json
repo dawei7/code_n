@@ -7,7 +7,7 @@
   "title_slug": "max-sum-of-rectangle-no-larger-than-k",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2064607174",
   "verified_at": "2026-07-12T05:21:55.906401+00:00"
 }

@@ -7,7 +7,7 @@
   "title_slug": "longest-balanced-substring-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestBalanced",
   "verified_submission_id": "2084960986",
   "verified_at": "2026-07-28T15:29:04.685854+00:00"

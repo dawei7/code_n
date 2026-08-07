@@ -7,7 +7,7 @@
   "title_slug": "longest-well-performing-interval",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestWPI",
   "verified_submission_id": "2067762891",
   "verified_at": "2026-07-14T18:19:53.687308+00:00"

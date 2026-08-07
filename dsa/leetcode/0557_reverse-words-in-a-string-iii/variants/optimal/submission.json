@@ -7,7 +7,7 @@
   "title_slug": "reverse-words-in-a-string-iii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065373688",
   "verified_at": "2026-07-12T18:59:10.765765+00:00"
 }

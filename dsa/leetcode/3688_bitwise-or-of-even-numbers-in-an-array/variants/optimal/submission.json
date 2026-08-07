@@ -7,7 +7,7 @@
   "title_slug": "bitwise-or-of-even-numbers-in-an-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.evenNumberBitwiseORs",
   "verified_submission_id": "2084023894",
   "verified_at": "2026-07-28T01:01:36.473475+00:00"

@@ -7,7 +7,7 @@
   "title_slug": "query-batching",
   "paid_only": true,
   "language": "javascript",
-  "source": "solutions/leetcode.js",
+  "source": "solutions/solution.js",
   "native_entrypoint": "QueryBatcher",
   "verified_submission_id": "2076524120",
   "verified_at": "2026-07-22T03:34:00+00:00"

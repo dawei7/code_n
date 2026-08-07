@@ -7,7 +7,7 @@
   "title_slug": "minimum-score-triangulation-of-polygon",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minScoreTriangulation",
   "verified_submission_id": "2067365600",
   "verified_at": "2026-07-14T12:52:15.510595+00:00"

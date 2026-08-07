@@ -7,7 +7,7 @@
   "title_slug": "number-of-balanced-integers-in-a-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countBalanced",
   "verified_submission_id": "2085413647",
   "verified_at": "2026-07-29T00:25:25.411119+00:00"

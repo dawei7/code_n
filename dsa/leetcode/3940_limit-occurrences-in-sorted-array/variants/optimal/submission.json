@@ -7,7 +7,7 @@
   "title_slug": "limit-occurrences-in-sorted-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.limitOccurrences",
   "verified_submission_id": "2087403224",
   "verified_at": "2026-07-30T11:07:10.461588+00:00"

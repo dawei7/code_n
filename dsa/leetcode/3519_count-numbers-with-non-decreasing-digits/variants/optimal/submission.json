@@ -7,7 +7,7 @@
   "title_slug": "count-numbers-with-non-decreasing-digits",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countNumbers",
   "verified_submission_id": "2082581053",
   "verified_at": "2026-07-26T21:30:00Z"

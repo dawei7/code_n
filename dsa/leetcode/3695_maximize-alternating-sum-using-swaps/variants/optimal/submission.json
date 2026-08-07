@@ -7,7 +7,7 @@
   "title_slug": "maximize-alternating-sum-using-swaps",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxAlternatingSum",
   "verified_submission_id": "2084787870",
   "verified_at": "2026-07-28T13:17:29.224997+00:00"

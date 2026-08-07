@@ -7,7 +7,7 @@
   "title_slug": "sum-of-k-digit-numbers-in-a-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.sumOfNumbers",
   "verified_submission_id": "2086165650",
   "verified_at": "2026-07-29T13:29:18.563369+00:00"

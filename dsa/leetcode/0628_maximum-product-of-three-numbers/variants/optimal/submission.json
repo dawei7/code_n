@@ -7,7 +7,7 @@
   "title_slug": "maximum-product-of-three-numbers",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065490495",
   "verified_at": "2026-07-12T23:19:46.287051+00:00"
 }

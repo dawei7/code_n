@@ -7,7 +7,7 @@
   "title_slug": "find-the-longest-equal-subarray",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestEqualSubarray",
   "verified_submission_id": "2077336889",
   "verified_at": "2026-07-22T15:57:00+00:00"

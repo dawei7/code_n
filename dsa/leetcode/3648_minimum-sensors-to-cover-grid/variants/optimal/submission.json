@@ -7,7 +7,7 @@
   "title_slug": "minimum-sensors-to-cover-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minSensors",
   "verified_submission_id": "2083951036",
   "verified_at": "2026-07-27T21:17:46.679744+00:00"

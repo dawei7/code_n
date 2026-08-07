@@ -7,7 +7,7 @@
   "title_slug": "count-digit-appearances",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countDigitOccurrences",
   "verified_submission_id": "2086741437",
   "verified_at": "2026-07-29T22:50:06.381885+00:00"

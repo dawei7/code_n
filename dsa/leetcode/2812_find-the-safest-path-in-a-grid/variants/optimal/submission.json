@@ -7,7 +7,7 @@
   "title_slug": "find-the-safest-path-in-a-grid",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maximumSafenessFactor",
   "verified_submission_id": "2077175093",
   "verified_at": "2026-07-22T13:46:00+00:00"

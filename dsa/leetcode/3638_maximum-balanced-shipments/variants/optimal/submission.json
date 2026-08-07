@@ -7,7 +7,7 @@
   "title_slug": "maximum-balanced-shipments",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.maxBalancedShipments",
   "verified_submission_id": "2083923581",
   "verified_at": "2026-07-27T20:21:46.892273+00:00"

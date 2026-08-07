@@ -7,7 +7,7 @@
   "title_slug": "squirrel-simulation",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2065416978",
   "verified_at": "2026-07-12T20:03:29.422504+00:00",
   "review_scope": "solution_only",

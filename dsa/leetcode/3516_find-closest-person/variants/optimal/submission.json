@@ -7,7 +7,7 @@
   "title_slug": "find-closest-person",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.findClosest",
   "verified_submission_id": "2082565524",
   "verified_at": "2026-07-26T20:52:00Z"

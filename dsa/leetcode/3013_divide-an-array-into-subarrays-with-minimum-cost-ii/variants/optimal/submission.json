@@ -7,7 +7,7 @@
   "title_slug": "divide-an-array-into-subarrays-with-minimum-cost-ii",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minimumCost",
   "verified_submission_id": "2078782283",
   "verified_at": "2026-07-23T18:39:54.836561+00:00"

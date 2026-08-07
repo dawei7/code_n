@@ -7,7 +7,7 @@
   "title_slug": "shortest-distance-to-target-string-in-a-circular-array",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.closestTarget",
   "verified_submission_id": "2075200101",
   "verified_at": "2026-07-21T02:36:00+00:00"

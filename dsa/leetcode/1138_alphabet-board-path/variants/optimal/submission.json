@@ -7,7 +7,7 @@
   "title_slug": "alphabet-board-path",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.alphabetBoardPath",
   "verified_submission_id": "2067822247",
   "verified_at": "2026-07-14T19:21:12.575451+00:00"

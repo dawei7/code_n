@@ -7,7 +7,7 @@
   "title_slug": "longest-path-with-different-adjacent-characters",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.longestPath",
   "verified_submission_id": "2073927934",
   "verified_at": "2026-07-19T23:06:20.542878+00:00"

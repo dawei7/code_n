@@ -7,7 +7,7 @@
   "title_slug": "minimum-number-of-valid-strings-to-form-target-i",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.minValidStrings",
   "verified_submission_id": "2080753312",
   "verified_at": "2026-07-25T13:03:13.2542128Z"

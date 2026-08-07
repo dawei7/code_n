@@ -7,7 +7,7 @@
   "title_slug": "count-k-subsequences-of-a-string-with-maximum-beauty",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countKSubsequencesWithMaxBeauty",
   "verified_submission_id": "2077464184",
   "verified_at": "2026-07-22T17:26:00+00:00"

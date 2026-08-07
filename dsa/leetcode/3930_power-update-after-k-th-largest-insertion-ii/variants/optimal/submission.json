@@ -7,7 +7,7 @@
   "title_slug": "power-update-after-k-th-largest-insertion-ii",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.powerUpdate",
   "verified_submission_id": "2087143208",
   "verified_at": "2026-07-30T07:25:58.881205+00:00"

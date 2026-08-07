@@ -7,7 +7,7 @@
     "title_slug":  "maximize-count-of-distinct-primes-after-split",
     "paid_only":  false,
     "language":  "python3",
-    "source":  "solutions/leetcode.py",
+    "source":  "solutions/solution.py",
     "native_entrypoint":  "Solution.maximumCount",
     "verified_submission_id":  "2089301861",
     "verified_at":  "2026-07-31T21:22:20.423+00:00"

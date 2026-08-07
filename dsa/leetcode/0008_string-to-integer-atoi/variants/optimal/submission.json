@@ -7,7 +7,7 @@
   "title_slug": "string-to-integer-atoi",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "verified_submission_id": "2089309204",
   "verified_at": "2026-07-31T21:44:53.964+00:00"
 }

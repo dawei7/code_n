@@ -7,7 +7,7 @@
   "title_slug": "count-k-th-roots-in-a-range",
   "paid_only": false,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "Solution.countKthRoots",
   "verified_submission_id": "2087173963",
   "verified_at": "2026-07-30T08:00:24.486046+00:00"

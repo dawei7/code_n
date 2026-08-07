@@ -7,7 +7,7 @@
   "title_slug": "minimum-health-to-beat-game",
   "paid_only": true,
   "language": "python3",
-  "source": "solutions/leetcode.py",
+  "source": "solutions/solution.py",
   "native_entrypoint": "class Solution.minimumHealth",
   "verified_submission_id": "2073883358",
   "verified_at": "2026-07-19T20:20:23.882133+00:00"
