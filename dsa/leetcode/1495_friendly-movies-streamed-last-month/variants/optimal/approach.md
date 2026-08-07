@@ -1,14 +1,15 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Friendly Movies Streamed Last Month**.
+**Optimal Approach — Friendly Movies Streamed Last Month**
 
-- **Core Strategy**: Employs relational JOIN operations and grouped aggregations to evaluate target conditions.
-- **Implementation Design**: Structures relational queries cleanly using standard ANSI SQL / PostgreSQL aggregations (COALESCE, STRING_AGG).
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+The query executes a structured relational pipeline for **Friendly Movies Streamed Last Month**. It uses Relational JOIN operations to correlate records across tables.
+
+**Why This Approach Was Chosen:**
+Sourced for PostgreSQL standard compliance. It avoids non-standard vendor extensions (e.g. replacing SQLite `IFNULL` with ANSI `COALESCE` and `GROUP_CONCAT` with `STRING_AGG`), ensuring portable, high-performance database execution.
 
 ## Complexity detail
-- **Time Complexity**: $O(P + C + T \log T)$ — Operational efficiency across problem constraints.
+- **Time Complexity**: $O(P + C + T \log T)$ — Operation count proportional to input scale.
 - **Space Complexity**: $O(C + T)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+- **PostgreSQL Standards:** Strict alignment with ANSI/PostgreSQL syntax.
+- **Readable CTE Design:** Breaks complex multi-stage relational logic into maintainable, self-documenting subqueries.

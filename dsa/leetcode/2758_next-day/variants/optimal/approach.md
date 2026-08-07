@@ -1,14 +1,15 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Next Day**.
+**Optimal Approach — Next Day**
 
-- **Core Strategy**: Utilizes JavaScript Map/Set structures for O(1) key-value lookup and tracking.
-- **Implementation Design**: Employs clean ES6+ idioms with strict typing annotations and modern array methods.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+The JavaScript solution solves **Next Day** using idiomatic JavaScript operations.
+
+**Why This Approach Was Chosen:**
+Written using modern ES6+ features with strict type safety and high-efficiency execution in V8 environment.
 
 ## Complexity detail
-- **Time Complexity**: $O(1)$ — Operational efficiency across problem constraints.
+- **Time Complexity**: $O(1)$ — Operation count proportional to input scale.
 - **Space Complexity**: $O(1)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+- **ES6+ Best Practices:** Clean array manipulations and efficient memory usage.
+- **Type Safety:** Well-defined parameters and predictable return contracts.

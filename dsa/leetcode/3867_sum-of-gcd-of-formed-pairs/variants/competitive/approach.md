@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Sum of GCD of Formed Pairs**
 
-- **Core Strategy**: Applies mathematical identities and closed-form equations to bypass brute-force loops.
-- **High-Performance Techniques**: Optimizes memory reuse and avoids unnecessary object instantiations.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The solution employs Two-Pointer technique iterating from opposing ends or maintaining a sliding window bound.
+
+**Why This Approach Was Chosen:**
+Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `gcdSum`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
 
 ## Complexity detail
-- **Time Complexity**: $O(N log N + N log V)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(N)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(N log N + N log V)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(N)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
+- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.

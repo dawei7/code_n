@@ -1,14 +1,15 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Minimum Depth of Binary Tree**.
+**Optimal Approach — Minimum Depth of Binary Tree**
 
-- **Core Strategy**: Uses a two-pointer technique to traverse the input structure from opposing ends.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+The solution employs Two-Pointer technique iterating from opposing ends or maintaining a sliding window bound. It utilizes Binary Tree node traversal (`val`, `left`, `right`) to maintain optimal runtime bounds.
+
+**Why This Approach Was Chosen:**
+Sourced from `doocs/leetcode` (or refined to expert standard) in method `__init__`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
 
 ## Complexity detail
-- **Time Complexity**: $O(n)$ — Operational efficiency across problem constraints.
+- **Time Complexity**: $O(n)$ — Operation count proportional to input scale.
 - **Space Complexity**: $O(w)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
+- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.

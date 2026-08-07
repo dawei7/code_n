@@ -1,14 +1,15 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Minimum Edge Weight Equilibrium Queries in a Tree**.
+**Optimal Approach — Minimum Edge Weight Equilibrium Queries in a Tree**
 
-- **Core Strategy**: Uses a double-ended queue for breadth-first traversal or sliding window processing.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+The solution employs Breadth-First Search (BFS) using queue-based level-order traversal. It utilizes Double-ended queue (`collections.deque`) for efficient $O(1)$ element insertion and removal to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+
+**Why This Approach Was Chosen:**
+Sourced from `doocs/leetcode` (or refined to expert standard) in method `minOperationsQueries`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
 
 ## Complexity detail
-- **Time Complexity**: $O((n + m) log n)$ — Operational efficiency across problem constraints.
+- **Time Complexity**: $O((n + m) log n)$ — Operation count proportional to input scale.
 - **Space Complexity**: $O(n log n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
+- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.

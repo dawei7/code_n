@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Count Numbers With Unique Digits II**
 
-- **Core Strategy**: Employs bitwise operations and bitmasking for low-level memory and speed optimization.
-- **High-Performance Techniques**: Uses bit manipulation tricks to evaluate conditions in single CPU clock cycles.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The solution employs Sequential iteration scanning input elements and dynamically updating state. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates, Functional Python iterators (`zip`, `map`, `filter`) for concise element pair evaluation.
+
+**Why This Approach Was Chosen:**
+Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `numberCount`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
 
 ## Complexity detail
-- **Time Complexity**: $O(RD)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(D)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(RD)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(D)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
+- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.

@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Compute Decimal Representation**
 
-- **Core Strategy**: Applies mathematical identities and closed-form equations to bypass brute-force loops.
-- **High-Performance Techniques**: Optimizes memory reuse and avoids unnecessary object instantiations.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The solution implements an direct algorithm tailored for Compute Decimal Representation.
+
+**Why This Approach Was Chosen:**
+Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `decimalRepresentation`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
 
 ## Complexity detail
-- **Time Complexity**: $O(log n)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(log n)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(log n)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(log n)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
+- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.

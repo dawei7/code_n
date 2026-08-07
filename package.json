@@ -1,6 +1,6 @@
 {
   "name": "coden",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "private": true,
   "description": "cOde(n) — root scripts for the web rebuild (2026-06-07).",
   "scripts": {

@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Find Invalid IP Addresses**
 
-- **Core Strategy**: Optimizes relational queries using low-overhead JOINs and minimal subquery depth.
-- **High-Performance Techniques**: Uses bit manipulation tricks to evaluate conditions in single CPU clock cycles.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The query executes a structured relational pipeline for **Find Invalid IP Addresses**. It uses `GROUP BY` aggregation with PostgreSQL standard functions (`COALESCE`, `STRING_AGG`).
+
+**Why This Approach Was Chosen:**
+Sourced for PostgreSQL standard compliance. It avoids non-standard vendor extensions (e.g. replacing SQLite `IFNULL` with ANSI `COALESCE` and `GROUP_CONCAT` with `STRING_AGG`), ensuring portable, high-performance database execution.
 
 ## Complexity detail
-- **Time Complexity**: $O(S + k log k)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(S + k)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(S + k log k)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(S + k)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **PostgreSQL Standards:** Strict alignment with ANSI/PostgreSQL syntax.
+- **Readable CTE Design:** Breaks complex multi-stage relational logic into maintainable, self-documenting subqueries.

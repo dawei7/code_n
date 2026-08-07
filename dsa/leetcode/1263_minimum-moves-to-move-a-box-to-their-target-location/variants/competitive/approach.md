@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Minimum Moves to Move a Box to Their Target Location**
 
-- **Core Strategy**: Leverages compact algorithmic loops and low-overhead memory allocations.
-- **High-Performance Techniques**: Inlines loop iterations and minimizes heap allocations for maximum throughput.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The solution employs Sequential iteration scanning input elements and dynamically updating state. It utilizes Hash Set for $O(1)$ existence checks and duplicate elimination to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates.
+
+**Why This Approach Was Chosen:**
+Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `minPushBox`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
 
 ## Complexity detail
-- **Time Complexity**: $O(V^2)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(V)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(V^2)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(V)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
+- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.

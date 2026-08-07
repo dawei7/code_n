@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Finding the Topic of Each Post**
 
-- **Core Strategy**: Optimizes relational queries using low-overhead JOINs and minimal subquery depth.
-- **High-Performance Techniques**: Optimizes memory reuse and avoids unnecessary object instantiations.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The query executes a structured relational pipeline for **Finding the Topic of Each Post**. It uses Relational JOIN operations to correlate records across tables, `GROUP BY` aggregation with PostgreSQL standard functions (`COALESCE`, `STRING_AGG`).
+
+**Why This Approach Was Chosen:**
+Sourced for PostgreSQL standard compliance. It avoids non-standard vendor extensions (e.g. replacing SQLite `IFNULL` with ANSI `COALESCE` and `GROUP_CONCAT` with `STRING_AGG`), ensuring portable, high-performance database execution.
 
 ## Complexity detail
-- **Time Complexity**: $O(pkL + t log t)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(t)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(pkL + t log t)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(t)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **PostgreSQL Standards:** Strict alignment with ANSI/PostgreSQL syntax.
+- **Readable CTE Design:** Breaks complex multi-stage relational logic into maintainable, self-documenting subqueries.

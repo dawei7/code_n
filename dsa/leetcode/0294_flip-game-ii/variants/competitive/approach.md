@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Flip Game II**
 
-- **Core Strategy**: Utilizes pre-allocated hash maps or lookup arrays for rapid constant-factor execution.
-- **High-Performance Techniques**: Inlines loop iterations and minimizes heap allocations for maximum throughput.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The solution employs Depth-First Search (DFS) / Backtracking to recursively explore state choices. It utilizes Hash Map / Dictionary for $O(1)$ average lookup and frequency tracking, Dynamic Programming table / Memoization store to reuse intermediate subproblem results to maintain optimal runtime bounds. Key implementation techniques include Bitwise manipulation (`&`, `|`, `^`, `<<`, `>>`) for fast bitmask state updates, Functional Python iterators (`zip`, `map`, `filter`) for concise element pair evaluation.
+
+**Why This Approach Was Chosen:**
+Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `canWin`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
 
 ## Complexity detail
-- **Time Complexity**: $O(m + n^2)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(m)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(m + n^2)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(m)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
+- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.

@@ -1,14 +1,15 @@
 ## General
-The competitive solution optimizes for raw execution speed, low memory overhead, and minimal runtime cost (sourced from `kamyu104/LeetCode-Solutions`).
+**Competitive Approach — Count the Number of Complete Components**
 
-- **Core Strategy**: Leverages compact algorithmic loops and low-overhead memory allocations.
-- **High-Performance Techniques**: Inlines loop iterations and minimizes heap allocations for maximum throughput.
-- **Benchmark Design**: Tailored for high-throughput automated judging environments where constant-factor speed is critical.
+The solution employs Breadth-First Search (BFS) using queue-based level-order traversal.
+
+**Why This Approach Was Chosen:**
+Sourced from `kamyu104/LeetCode-Solutions`. This implementation focuses on raw computational throughput in method `countCompleteComponents`. It minimizes object instantiation overhead, avoids redundant memory passes, and leverages compact iteration loops.
 
 ## Complexity detail
-- **Time Complexity**: $O(n + e)$ — High-efficiency runtime performance.
-- **Space Complexity**: $O(n + e)$ — Minimal auxiliary memory overhead.
+- **Time Complexity**: $O(n + e)$ — Operation count proportional to input scale.
+- **Space Complexity**: $O(n + e)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Low constant factor optimization:** Minimizes object allocations, inlines loop logic, and leverages bitwise or mathematical shortcuts.
-- **Competitive judging performance:** Optimized for raw execution speed on large automated test suites.
+- **Micro-Optimization:** Eliminates unnecessary function calls and temporary allocations to maximize execution speed.
+- **Low Constant Factor:** Uses tight loop bounds and direct indexing for optimal judge performance.

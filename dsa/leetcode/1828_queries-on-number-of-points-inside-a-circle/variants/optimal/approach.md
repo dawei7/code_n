@@ -1,14 +1,15 @@
 ## General
-The optimal solution implements an idiomatic, readable, and production-ready approach for **Queries on Number of Points Inside a Circle**.
+**Optimal Approach — Queries on Number of Points Inside a Circle**
 
-- **Core Strategy**: Executes an optimal, single-pass iteration with state accumulation.
-- **Implementation Design**: Written in clean Python 3 syntax, emphasizing idiomatic readability, explicit variable naming, and optimal control flow.
-- **Best Practice Standard**: Sourced from doocs/leetcode (software engineering interview standard). Follows industry standard software engineering guidelines with intuitive variable names and robust control flow.
+The solution employs Sequential iteration scanning input elements and dynamically updating state.
+
+**Why This Approach Was Chosen:**
+Sourced from `doocs/leetcode` (or refined to expert standard) in method `countPoints`. This implementation is chosen for its exceptional readability, idiomatic Python 3 constructs, and clear structural separation of concerns suitable for technical software engineering interviews.
 
 ## Complexity detail
-- **Time Complexity**: $O(pq)$ — Operational efficiency across problem constraints.
+- **Time Complexity**: $O(pq)$ — Operation count proportional to input scale.
 - **Space Complexity**: $O(q)$ — Auxiliary memory allocation bound.
 
 ## Alternatives and edge cases
-- **Boundary handling:** Uniformly handles minimal inputs, empty cases, and extreme boundary values without explicit special-casing.
-- **Implementation trade-offs:** Prioritizes code readability, maintainability, and standard software engineering patterns while guaranteeing optimal performance.
+- **Clean Code Standards:** Uses descriptive variable names, standard Python 3 typing, and idiomatic control flow.
+- **Robust Edge Case Management:** Handles boundary states (empty inputs, single elements, zero values) naturally through algorithm design without arbitrary conditional branching.
