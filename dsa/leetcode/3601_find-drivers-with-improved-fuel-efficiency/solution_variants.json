@@ -11,6 +11,15 @@
       "summary": "Conditionally aggregates per-trip efficiency once per driver, filters strict improvement, joins names, and orders the qualifying rows.",
       "time_complexity": "O(T log T + D log D)",
       "space_complexity": "O(T + D)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(T log T + D log D)",
+      "space_complexity": "O(T + D)"
     }
   ]
 }

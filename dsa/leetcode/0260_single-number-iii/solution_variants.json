@@ -11,6 +11,15 @@
       "summary": "XORs all values, isolates one differing bit, and cancels pairs independently in the resulting two groups.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

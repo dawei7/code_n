@@ -11,6 +11,15 @@
       "summary": "Combines prefix and suffix GCD/LCM aggregates to evaluate every optional deletion in constant aggregate work.",
       "time_complexity": "O(n log M)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(n)"
     }
   ]
 }

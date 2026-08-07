@@ -11,6 +11,15 @@
       "summary": "Computes each array's minimum attainable sum and checks whether a fixed lower-sum array prevents equality.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

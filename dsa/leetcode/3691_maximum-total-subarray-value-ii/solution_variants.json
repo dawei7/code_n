@@ -11,6 +11,15 @@
       "summary": "Merges one monotone range-value sequence per left endpoint with a max-heap and segment-tree queries.",
       "time_complexity": "O(n + k log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + k log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

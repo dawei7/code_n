@@ -11,6 +11,15 @@
       "summary": "Stores positive values in encounter order and indexes backward by the current consecutive-query count.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

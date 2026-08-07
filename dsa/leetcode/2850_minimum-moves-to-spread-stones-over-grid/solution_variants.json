@@ -11,6 +11,15 @@
       "summary": "Matches each surplus stone to an empty cell with subset dynamic programming over destination masks.",
       "time_complexity": "O(k \\cdot 2^k)",
       "space_complexity": "O(2^k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(k \\cdot 2^k)",
+      "space_complexity": "O(2^k)"
     }
   ]
 }

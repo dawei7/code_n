@@ -11,6 +11,15 @@
       "summary": "Computes the support of the threefold XOR convolution with an exact Walsh-Hadamard transform.",
       "time_complexity": "O(n + M log M)",
       "space_complexity": "O(M)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + M log M)",
+      "space_complexity": "O(M)"
     }
   ]
 }

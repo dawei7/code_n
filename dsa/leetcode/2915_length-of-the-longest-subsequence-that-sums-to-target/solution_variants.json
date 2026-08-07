@@ -11,6 +11,15 @@
       "summary": "Uses descending 0/1 knapsack updates to retain the greatest subsequence length for every reachable sum through the target.",
       "time_complexity": "O(n target)",
       "space_complexity": "O(target)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n target)",
+      "space_complexity": "O(target)"
     }
   ]
 }

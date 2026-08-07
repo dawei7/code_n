@@ -11,6 +11,15 @@
       "summary": "Runs Dijkstra's algorithm on cell-and-parity states so every move, wait, entrance cost, and direction penalty is represented exactly.",
       "time_complexity": "O(mn log(mn))",
       "space_complexity": "O(mn)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn log(mn))",
+      "space_complexity": "O(mn)"
     }
   ]
 }

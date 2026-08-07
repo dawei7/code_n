@@ -11,6 +11,15 @@
       "summary": "Classifies every coordinate as diagonal or off-diagonal and checks its required zero status.",
       "time_complexity": "O(n^2)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^2)",
+      "space_complexity": "O(1)"
     }
   ]
 }

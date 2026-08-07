@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3759","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Selects the kth-largest threshold with three-way Quickselect, then counts values strictly below it.","time_complexity":"O(n)","space_complexity":"O(n)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3759",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Selects the kth-largest threshold with three-way Quickselect, then counts values strictly below it.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

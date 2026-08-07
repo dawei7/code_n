@@ -11,6 +11,15 @@
       "summary": "Counts equal square-free kernels along the active root-to-node path.",
       "time_complexity": "O(M log log M + n)",
       "space_complexity": "O(M + n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(M log log M + n)",
+      "space_complexity": "O(M + n)"
     }
   ]
 }

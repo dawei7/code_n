@@ -11,6 +11,15 @@
       "summary": "Repeatedly removes factors 2, 3, and 5, then accepts exactly when the residual quotient is 1.",
       "time_complexity": "O(\\log n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(\\log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

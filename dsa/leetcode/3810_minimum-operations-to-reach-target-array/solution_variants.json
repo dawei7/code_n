@@ -11,6 +11,15 @@
       "summary": "Counts the distinct original values occurring at mismatched positions; selecting each such value once fixes every position that requires it.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

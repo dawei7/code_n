@@ -11,6 +11,15 @@
       "summary": "Precomputes a zero-bordered 2D prefix matrix for constant-time inclusion-exclusion queries.",
       "time_complexity": "O(mn + q)",
       "space_complexity": "O(mn)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn + q)",
+      "space_complexity": "O(mn)"
     }
   ]
 }

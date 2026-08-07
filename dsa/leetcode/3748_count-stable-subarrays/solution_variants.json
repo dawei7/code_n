@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3748","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Precomputes non-decreasing run boundaries and prefix counts, then answers each query in constant time.","time_complexity":"O(n + q)","space_complexity":"O(n)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3748",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Precomputes non-decreasing run boundaries and prefix counts, then answers each query in constant time.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + q)",
+      "space_complexity": "O(n)"
+    }
+  ]
+}

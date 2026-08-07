@@ -11,6 +11,15 @@
       "summary": "Marks every adjacent 11 occurrence with one shift and AND, then tests whether that mask contains exactly one set bit.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
     }
   ]
 }

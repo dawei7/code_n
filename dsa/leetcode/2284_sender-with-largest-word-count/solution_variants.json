@@ -11,6 +11,15 @@
       "summary": "Accumulates each sender's words in one map pass and maximizes the count-name pair.",
       "time_complexity": "O(L)",
       "space_complexity": "O(s)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(L)",
+      "space_complexity": "O(s)"
     }
   ]
 }

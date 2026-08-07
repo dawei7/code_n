@@ -1,0 +1,29 @@
+class Solution:
+    def maxTotal(self, nums: list[int], s: str) -> int:
+        total = 0
+        index = 0
+
+        while index < len(nums):
+            if s[index] == "0":
+                index += 1
+                continue
+
+            run_start = index
+            block_sum = nums[index]
+            block_min = nums[index]
+            index += 1
+
+            while index < len(nums) and s[index] == "1":
+                block_sum += nums[index]
+                block_min = min(block_min, nums[index])
+                index += 1
+
+            if run_start > 0:
+                preceding_value = nums[run_start - 1]
+                block_sum += preceding_value
+                block_min = min(block_min, preceding_value)
+                block_sum -= block_min
+
+            total += block_sum
+
+        return total

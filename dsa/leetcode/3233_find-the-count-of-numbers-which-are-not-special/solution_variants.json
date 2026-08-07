@@ -11,6 +11,15 @@
       "summary": "Sieves prime roots through the square root of the upper endpoint and subtracts their in-range squares.",
       "time_complexity": "O(sqrt(r) log log sqrt(r))",
       "space_complexity": "O(sqrt(r))"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(sqrt(r) log log sqrt(r))",
+      "space_complexity": "O(sqrt(r))"
     }
   ]
 }

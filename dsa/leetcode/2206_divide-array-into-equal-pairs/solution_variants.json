@@ -11,6 +11,15 @@
       "summary": "Counts each value once and accepts exactly when every frequency is even.",
       "time_complexity": "O(m)",
       "space_complexity": "O(v)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(v)"
     }
   ]
 }

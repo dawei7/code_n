@@ -11,6 +11,15 @@
       "summary": "Prices each possible peak once and sweeps every maximum-cardinality parity switch with a running total.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

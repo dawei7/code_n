@@ -11,6 +11,15 @@
       "summary": "Chooses which adjacency slots match, chooses the first value, and assigns one of m - 1 alternatives at every remaining slot using modular combinatorics.",
       "time_complexity": "O(min(k, n - 1 - k) + log n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(min(k, n - 1 - k) + log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

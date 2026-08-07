@@ -11,6 +11,15 @@
       "summary": "Enumerate each non-decreasing divisor decomposition once and retain the factor list with minimum endpoint spread.",
       "time_complexity": "O(F)",
       "space_complexity": "O(k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(F)",
+      "space_complexity": "O(k)"
     }
   ]
 }

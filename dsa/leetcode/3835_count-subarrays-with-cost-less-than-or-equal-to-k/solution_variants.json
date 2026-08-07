@@ -11,6 +11,15 @@
       "summary": "Maintains a valid sliding window with monotonic deques for its minimum and maximum.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

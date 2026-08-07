@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Employee Bonus and meets the required complexity bound.",
       "time_complexity": "O((E + B) \\log(E + B))",
       "space_complexity": "O(E + B)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((E + B) \\log(E + B))",
+      "space_complexity": "O(E + B)"
     }
   ]
 }

@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_3220","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Groups by date and computes both parity totals with conditional aggregation in one pass.","time_complexity":"O(r log r)","space_complexity":"O(d)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_3220",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Groups by date and computes both parity totals with conditional aggregation in one pass.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(d)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(d)"
+    }
+  ]
+}

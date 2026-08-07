@@ -11,6 +11,15 @@
       "summary": "Left-joins padded, lowercased post text to whole-word keywords and aggregates distinct topic IDs in numeric order.",
       "time_complexity": "O(pkL + t log t)",
       "space_complexity": "O(t)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(pkL + t log t)",
+      "space_complexity": "O(t)"
     }
   ]
 }

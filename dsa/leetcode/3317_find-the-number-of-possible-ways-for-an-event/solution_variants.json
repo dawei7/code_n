@@ -11,6 +11,15 @@
       "summary": "Counts performer partitions with Stirling numbers, then labels and scores every nonempty band.",
       "time_complexity": "O(n min(n, x))",
       "space_complexity": "O(min(n, x))"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n min(n, x))",
+      "space_complexity": "O(min(n, x))"
     }
   ]
 }

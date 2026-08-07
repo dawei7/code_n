@@ -11,6 +11,15 @@
       "summary": "Checks the mandatory total product, then uses a divisibility-pruned include/exclude search for one target-product subset.",
       "time_complexity": "O(2^n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(2^n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

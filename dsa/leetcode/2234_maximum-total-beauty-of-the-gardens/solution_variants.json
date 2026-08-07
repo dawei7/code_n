@@ -11,6 +11,15 @@
       "summary": "Enumerates the number of complete gardens and uses prefix sums plus binary search to maximize the remaining minimum.",
       "time_complexity": "O(n log n + n log target)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n + n log target)",
+      "space_complexity": "O(n)"
     }
   ]
 }

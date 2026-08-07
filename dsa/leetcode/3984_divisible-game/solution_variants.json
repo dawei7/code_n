@@ -11,6 +11,15 @@
       "summary": "Factors the distinct values, then runs a nonempty maximum-subarray scan for every relevant prime divisor.",
       "time_complexity": "O(U sqrt(M) + P log(P) + nP)",
       "space_complexity": "O(P)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(U sqrt(M) + P log(P) + nP)",
+      "space_complexity": "O(P)"
     }
   ]
 }

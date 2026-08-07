@@ -11,6 +11,15 @@
       "summary": "Uses seat_id minus row number to label available-seat islands, aggregates each island, and dense-ranks the run lengths.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Counts how many words pass through every trie node, then sums those counts along each word's path.",
       "time_complexity": "O(S)",
       "space_complexity": "O(S)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

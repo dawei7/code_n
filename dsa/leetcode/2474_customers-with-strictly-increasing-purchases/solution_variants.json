@@ -11,6 +11,15 @@
       "summary": "Aggregates purchases by customer and year, compares adjacent totals with a window function, and rejects year gaps.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

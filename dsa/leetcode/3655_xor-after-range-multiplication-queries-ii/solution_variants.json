@@ -11,6 +11,15 @@
       "summary": "Apply large-step queries directly and batch equal small steps with multiplicative difference sweeps over residue classes.",
       "time_complexity": "O((n + q) sqrt(n) + q log MOD)",
       "space_complexity": "O(n + q)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((n + q) sqrt(n) + q log MOD)",
+      "space_complexity": "O(n + q)"
     }
   ]
 }

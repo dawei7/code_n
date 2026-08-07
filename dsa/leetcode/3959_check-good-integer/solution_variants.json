@@ -11,6 +11,15 @@
       "summary": "Extracts each decimal digit and accumulates its direct contribution to squareSum - digitSum.",
       "time_complexity": "O(log n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

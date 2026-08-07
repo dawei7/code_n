@@ -11,6 +11,15 @@
       "summary": "Recursively filters primitive leaves, compacts arrays, and prunes newly empty containers during the return phase.",
       "time_complexity": "O(V)",
       "space_complexity": "O(V)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(V)",
+      "space_complexity": "O(V)"
     }
   ]
 }

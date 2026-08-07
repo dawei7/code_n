@@ -11,6 +11,15 @@
       "summary": "Represents exact rationals by signed exponents of 2, 3, and 5, then counts action sequences with a rolling state map.",
       "time_complexity": "O(N S)",
       "space_complexity": "O(S)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N S)",
+      "space_complexity": "O(S)"
     }
   ]
 }

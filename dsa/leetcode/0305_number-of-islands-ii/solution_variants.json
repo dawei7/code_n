@@ -11,6 +11,15 @@
       "summary": "Tracks sparse land components with path-compressed union-find and union by size.",
       "time_complexity": "O(k \\cdot \\alpha(k))",
       "space_complexity": "O(k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(k \\cdot \\alpha(k))",
+      "space_complexity": "O(k)"
     }
   ]
 }

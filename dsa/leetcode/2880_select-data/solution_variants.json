@@ -11,6 +11,15 @@
       "summary": "Builds a boolean mask for student 101 and projects the matching row to the required name and age columns.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

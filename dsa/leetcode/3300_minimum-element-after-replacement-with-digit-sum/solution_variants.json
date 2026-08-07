@@ -2,7 +2,8 @@
   "schema_version": 1,
   "challenge_id": "lc_3300",
   "default_variant": "optimal",
-  "variants": [{
+  "variants": [
+    {
       "id": "optimal",
       "label": "Optimal",
       "kind": "optimal",
@@ -10,5 +11,15 @@
       "summary": "Extracts every decimal digit arithmetically and retains the smallest completed digit sum.",
       "time_complexity": "O(S)",
       "space_complexity": "O(1)"
-    }]
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(S)",
+      "space_complexity": "O(1)"
+    }
+  ]
 }

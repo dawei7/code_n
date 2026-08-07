@@ -11,6 +11,15 @@
       "summary": "Enumerates divisors in complementary pairs and squares the values at both corresponding 1-based indices.",
       "time_complexity": "O(\\sqrt{n})",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(\\sqrt{n})",
+      "space_complexity": "O(1)"
     }
   ]
 }

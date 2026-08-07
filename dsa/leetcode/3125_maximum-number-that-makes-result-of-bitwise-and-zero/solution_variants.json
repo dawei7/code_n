@@ -11,6 +11,15 @@
       "summary": "Finds the highest set-bit position of n and returns the all-ones value immediately below that power of two.",
       "time_complexity": "O(log n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

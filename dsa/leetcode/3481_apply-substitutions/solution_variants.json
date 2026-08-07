@@ -11,6 +11,15 @@
       "summary": "Memoizes each key's acyclic dependency expansion, then resolves the final text from those completed values.",
       "time_complexity": "O(L + E)",
       "space_complexity": "O(E + k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(L + E)",
+      "space_complexity": "O(E + k)"
     }
   ]
 }

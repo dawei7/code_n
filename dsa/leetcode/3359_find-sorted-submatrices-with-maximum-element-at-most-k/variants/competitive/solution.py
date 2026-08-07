@@ -1,0 +1,36 @@
+class Solution:
+    def countSubmatrices(self, grid: List[List[int]], k: int) -> int:
+        rows = len(grid)
+        columns = len(grid[0])
+        widths = [[0] * columns for _ in range(rows)]
+
+        for row_index, row in enumerate(grid):
+            run = 0
+            for column, value in enumerate(row):
+                if value > k:
+                    run = 0
+                elif column > 0 and row[column - 1] <= k and row[column - 1] >= value:
+                    run += 1
+                else:
+                    run = 1
+                widths[row_index][column] = run
+
+        answer = 0
+        for column in range(columns):
+            stack = []
+            ending_sum = 0
+
+            for row in range(rows):
+                width = widths[row][column]
+                count = 1
+
+                while stack and stack[-1][0] >= width:
+                    previous_width, previous_count = stack.pop()
+                    ending_sum -= previous_width * previous_count
+                    count += previous_count
+
+                stack.append((width, count))
+                ending_sum += width * count
+                answer += ending_sum
+
+        return answer

@@ -11,6 +11,15 @@
       "summary": "Rejects any edge count other than n - 1, then uses path-compressed union-find with union by size to detect a cycle.",
       "time_complexity": "O(n + e)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + e)",
+      "space_complexity": "O(n)"
     }
   ]
 }

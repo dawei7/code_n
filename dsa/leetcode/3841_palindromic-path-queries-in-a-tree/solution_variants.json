@@ -11,6 +11,15 @@
       "summary": "Combines Euler-tour subtree XOR updates, root-path parity masks, and binary-lifting LCA queries.",
       "time_complexity": "O((N + Q) log N)",
       "space_complexity": "O(N log N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((N + Q) log N)",
+      "space_complexity": "O(N log N)"
     }
   ]
 }

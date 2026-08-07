@@ -11,6 +11,15 @@
       "summary": "Precomputes palindromic centers and uses a rolling dynamic program to extend matching outer characters across s and reversed t.",
       "time_complexity": "O(n^2 + m^2 + nm)",
       "space_complexity": "O(n + m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^2 + m^2 + nm)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

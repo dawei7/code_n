@@ -11,6 +11,15 @@
       "summary": "Indexes each word's sorted positions once, then answers every query by merging two occurrence lists.",
       "time_complexity": "O(n + qn)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + qn)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Converts the fixed suffix into a prefix bound and counts digit-limited prefixes lexicographically.",
       "time_complexity": "O(D)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(D)",
+      "space_complexity": "O(1)"
     }
   ]
 }

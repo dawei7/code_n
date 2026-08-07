@@ -11,6 +11,15 @@
       "summary": "Maintains the live window in a deque and updates its running sum as values enter and expire.",
       "time_complexity": "O(m)",
       "space_complexity": "O(size)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m)",
+      "space_complexity": "O(size)"
     }
   ]
 }

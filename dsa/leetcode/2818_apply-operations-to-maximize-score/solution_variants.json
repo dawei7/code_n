@@ -11,6 +11,15 @@
       "summary": "Counts each index's selectable subarrays with asymmetric monotonic-stack boundaries, then greedily spends those multiplicities on values from largest to smallest.",
       "time_complexity": "O(V \\log \\log V + n \\log n)",
       "space_complexity": "O(V + n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(V \\log \\log V + n \\log n)",
+      "space_complexity": "O(V + n)"
     }
   ]
 }

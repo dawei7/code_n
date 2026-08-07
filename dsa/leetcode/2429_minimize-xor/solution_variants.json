@@ -11,6 +11,15 @@
       "summary": "Matches the most valuable set bits of num1 first, then fills the least valuable zero bits.",
       "time_complexity": "O(log U)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log U)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Dinner Plate Stacks and meets the required complexity bound.",
       "time_complexity": "O(m\\log s)",
       "space_complexity": "O(v+s)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m\\log s)",
+      "space_complexity": "O(v+s)"
     }
   ]
 }

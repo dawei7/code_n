@@ -11,6 +11,15 @@
       "summary": "Builds one word trie and backtracks board paths only while they remain dictionary prefixes.",
       "time_complexity": "O(mn4^L)",
       "space_complexity": "O(T + L)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn4^L)",
+      "space_complexity": "O(T + L)"
     }
   ]
 }

@@ -8,7 +8,16 @@
       "label": "Optimal",
       "kind": "optimal",
       "directory": "variants/optimal",
-      "summary": "Maximizes each hidden digit from left to right while respecting the 00–11 hour and 00–59 minute ranges.",
+      "summary": "Maximizes each hidden digit from left to right while respecting the 00\u201311 hour and 00\u201359 minute ranges.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
     }

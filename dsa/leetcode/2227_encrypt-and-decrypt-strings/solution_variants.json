@@ -11,6 +11,15 @@
       "summary": "Pre-encrypts the dictionary into ciphertext frequencies so each decryption is one lookup.",
       "time_complexity": "O(D + Q)",
       "space_complexity": "O(D)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(D + Q)",
+      "space_complexity": "O(D)"
     }
   ]
 }

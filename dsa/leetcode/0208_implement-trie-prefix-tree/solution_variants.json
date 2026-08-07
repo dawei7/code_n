@@ -11,6 +11,15 @@
       "summary": "Stores one hash-map edge per character and a terminal sentinel at complete-word endpoints.",
       "time_complexity": "O(L)",
       "space_complexity": "O(T)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(L)",
+      "space_complexity": "O(T)"
     }
   ]
 }

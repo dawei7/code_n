@@ -11,6 +11,15 @@
       "summary": "Greedily matches the longest possible prefix of t as a subsequence of s, leaving exactly the unmatched suffix to append.",
       "time_complexity": "O(n+m)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n+m)",
+      "space_complexity": "O(1)"
     }
   ]
 }

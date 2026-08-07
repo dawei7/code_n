@@ -11,6 +11,15 @@
       "summary": "Counts arrays by completed even-even adjacencies and the parity of the last value.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nk)",
+      "space_complexity": "O(k)"
     }
   ]
 }

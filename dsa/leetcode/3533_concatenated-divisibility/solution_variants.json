@@ -11,6 +11,15 @@
       "summary": "Memoize suffix feasibility by used-index mask and current remainder, then greedily reconstruct the smallest feasible next value.",
       "time_complexity": "O(n * k * 2^n)",
       "space_complexity": "O(k * 2^n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n * k * 2^n)",
+      "space_complexity": "O(k * 2^n)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Applies monotone-grid dynamic programming and compresses the frontier along the smaller grid dimension.",
       "time_complexity": "O(m n)",
       "space_complexity": "O(min(m, n))"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m n)",
+      "space_complexity": "O(min(m, n))"
     }
   ]
 }

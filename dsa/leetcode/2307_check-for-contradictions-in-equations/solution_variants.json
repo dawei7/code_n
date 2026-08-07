@@ -11,6 +11,15 @@
       "summary": "Maintains each connected component with weighted union-find and checks every redundant equation against its implied ratio.",
       "time_complexity": "O(m alpha(v))",
       "space_complexity": "O(v)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(m alpha(v))",
+      "space_complexity": "O(v)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Schedules the most frequent eligible letter with a max-heap and releases it after a k-position cooldown.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Backtracks directly through parity-alternating choices in numeric order.",
       "time_complexity": "O(A n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(A n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

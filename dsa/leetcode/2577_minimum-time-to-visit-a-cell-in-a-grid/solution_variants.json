@@ -11,6 +11,15 @@
       "summary": "Runs Dijkstra's algorithm over grid cells and adjusts every delayed arrival to the first reachable time with the required parity.",
       "time_complexity": "O(mn log(mn))",
       "space_complexity": "O(mn)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(mn log(mn))",
+      "space_complexity": "O(mn)"
     }
   ]
 }

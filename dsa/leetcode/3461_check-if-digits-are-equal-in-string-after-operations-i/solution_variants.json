@@ -11,6 +11,15 @@
       "summary": "Uses the binomial coefficients of the repeated adjacent-sum transformation to compare the final two digits directly.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

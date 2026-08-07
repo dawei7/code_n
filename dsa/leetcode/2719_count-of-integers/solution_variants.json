@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2719","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Uses memoized digit DP to count valid decimal prefixes at or below each interval endpoint.","time_complexity":"O(L*S)","space_complexity":"O(L*S)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2719",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Uses memoized digit DP to count valid decimal prefixes at or below each interval endpoint.",
+      "time_complexity": "O(L*S)",
+      "space_complexity": "O(L*S)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(L*S)",
+      "space_complexity": "O(L*S)"
+    }
+  ]
+}

@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Get Biggest Three Rhombus Sums in a Grid and meets the required complexity bound.",
       "time_complexity": "O(MN\\min(M,N))",
       "space_complexity": "O(MN)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(MN\\min(M,N))",
+      "space_complexity": "O(MN)"
     }
   ]
 }

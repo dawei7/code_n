@@ -11,6 +11,15 @@
       "summary": "Sorts distinct rewards and updates the bounded set of reachable totals using bulk integer-bitset operations.",
       "time_complexity": "O(n log n + nV / w)",
       "space_complexity": "O(n + V / w)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n + nV / w)",
+      "space_complexity": "O(n + V / w)"
     }
   ]
 }

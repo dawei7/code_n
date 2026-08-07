@@ -11,6 +11,15 @@
       "summary": "Counts the nonzero values already occupying the suffix reserved for all zeroes.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

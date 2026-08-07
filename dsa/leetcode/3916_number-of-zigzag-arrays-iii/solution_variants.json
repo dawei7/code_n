@@ -11,6 +11,15 @@
       "summary": "Counts small alphabets with alternating-direction DP and evaluates the resulting degree-n counting polynomial by Lagrange interpolation.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^3)",
+      "space_complexity": "O(n)"
     }
   ]
 }

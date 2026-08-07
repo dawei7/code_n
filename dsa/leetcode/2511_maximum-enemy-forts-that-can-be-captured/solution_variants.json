@@ -11,6 +11,15 @@
       "summary": "Scans consecutive non-enemy boundaries and measures gaps whose endpoints are an owned fort and an empty position.",
       "time_complexity": "O(n)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
     }
   ]
 }

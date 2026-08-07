@@ -11,6 +11,15 @@
       "summary": "Memoizes decisions by distinct value and a row bitmask that enforces both selection restrictions.",
       "time_complexity": "O(V m 2^m)",
       "space_complexity": "O(V 2^m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(V m 2^m)",
+      "space_complexity": "O(V 2^m)"
     }
   ]
 }

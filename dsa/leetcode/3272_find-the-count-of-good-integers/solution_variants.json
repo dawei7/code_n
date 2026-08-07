@@ -11,6 +11,15 @@
       "summary": "Enumerates divisible palindromes by their first half, deduplicates digit multisets, and counts their legal permutations combinatorially.",
       "time_complexity": "O(p n log n)",
       "space_complexity": "O(pn)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(p n log n)",
+      "space_complexity": "O(pn)"
     }
   ]
 }

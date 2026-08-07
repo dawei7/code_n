@@ -11,6 +11,15 @@
       "summary": "Ranks each user's latest event while attaching complete-history window aggregates.",
       "time_complexity": "O(R log R + U log U)",
       "space_complexity": "O(R + U)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(R log R + U log U)",
+      "space_complexity": "O(R + U)"
     }
   ]
 }

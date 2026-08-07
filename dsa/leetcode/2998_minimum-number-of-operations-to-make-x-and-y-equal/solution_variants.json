@@ -11,6 +11,15 @@
       "summary": "Memoizes the best cost after adjusting the current value to a multiple of 5 or 11 and dividing.",
       "time_complexity": "O(log^2 X)",
       "space_complexity": "O(log^2 X)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log^2 X)",
+      "space_complexity": "O(log^2 X)"
     }
   ]
 }

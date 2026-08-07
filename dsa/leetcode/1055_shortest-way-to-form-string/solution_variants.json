@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Shortest Way to Form String and meets the required complexity bound.",
       "time_complexity": "O(AS+T)",
       "space_complexity": "O(AS)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(AS+T)",
+      "space_complexity": "O(AS)"
     }
   ]
 }

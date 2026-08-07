@@ -11,6 +11,15 @@
       "summary": "Group elements by limit and collect the largest min(group size, limit) values from every group.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

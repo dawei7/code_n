@@ -11,6 +11,15 @@
       "summary": "Unranks the requested 50-bit string from most significant to least significant bit using binomial block counts.",
       "time_complexity": "O(B)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(B)",
+      "space_complexity": "O(1)"
     }
   ]
 }

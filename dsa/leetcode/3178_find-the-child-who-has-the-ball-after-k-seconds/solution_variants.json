@@ -11,6 +11,15 @@
       "summary": "Reduces time modulo the round-trip period and mirrors the offset on the return leg.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
     }
   ]
 }

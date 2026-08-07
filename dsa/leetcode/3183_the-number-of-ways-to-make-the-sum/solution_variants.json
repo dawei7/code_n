@@ -11,6 +11,15 @@
       "summary": "Separates the zero, one, or two value-4 coins and sums a closed-form arithmetic progression for the unlimited values 1, 2, and 6.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
     }
   ]
 }

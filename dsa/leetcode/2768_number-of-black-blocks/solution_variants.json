@@ -11,6 +11,15 @@
       "summary": "Counts only the blocks touched by a black cell, then derives the untouched-block total.",
       "time_complexity": "O(k)",
       "space_complexity": "O(k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(k)",
+      "space_complexity": "O(k)"
     }
   ]
 }

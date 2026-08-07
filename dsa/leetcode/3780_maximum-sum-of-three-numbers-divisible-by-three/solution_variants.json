@@ -11,6 +11,15 @@
       "summary": "Retains the three largest values in each residue class and evaluates every valid three-remainder pattern.",
       "time_complexity": "O(N)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(1)"
     }
   ]
 }

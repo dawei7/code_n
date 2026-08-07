@@ -11,6 +11,15 @@
       "summary": "Tests feasible divisors from most components downward using iterative postorder subtree sums.",
       "time_complexity": "O(n d(S))",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n d(S))",
+      "space_complexity": "O(n)"
     }
   ]
 }

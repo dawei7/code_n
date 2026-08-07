@@ -11,6 +11,15 @@
       "summary": "Ranks each city's records by descending degree and ascending day, then retains the first row.",
       "time_complexity": "O(r log r)",
       "space_complexity": "O(r)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(r log r)",
+      "space_complexity": "O(r)"
     }
   ]
 }

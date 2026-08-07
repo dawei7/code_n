@@ -11,6 +11,15 @@
       "summary": "Derives each team's metrics once and applies a partitioned window ranking with the complete tie order.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Store characters in a deque with a logical orientation flag so reversals are constant-time and only output-producing operations copy characters.",
       "time_complexity": "O(n + L)",
       "space_complexity": "O(L)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + L)",
+      "space_complexity": "O(L)"
     }
   ]
 }

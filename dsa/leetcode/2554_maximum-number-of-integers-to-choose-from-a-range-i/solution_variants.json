@@ -11,6 +11,15 @@
       "summary": "Stores the forbidden values in a set and greedily takes allowed integers in ascending order until the budget cannot fit the next one.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(m)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Counts two prefixes by finding their exact integer k-th roots with binary search.",
       "time_complexity": "O(log R log K)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(log R log K)",
+      "space_complexity": "O(1)"
     }
   ]
 }

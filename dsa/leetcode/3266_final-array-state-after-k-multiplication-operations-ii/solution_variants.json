@@ -11,6 +11,15 @@
       "summary": "Simulates only until values enter one multiplicative band, then distributes all remaining operations as complete sorted rounds.",
       "time_complexity": "O(n log M log n + n log k)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log M log n + n log k)",
+      "space_complexity": "O(n)"
     }
   ]
 }

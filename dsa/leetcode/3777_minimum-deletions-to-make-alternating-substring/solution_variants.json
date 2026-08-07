@@ -11,6 +11,15 @@
       "summary": "Maintains equal-adjacent edge indicators under flips and answers each deletion query as a dynamic range sum.",
       "time_complexity": "O((N + Q) log N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((N + Q) log N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

@@ -11,6 +11,15 @@
       "summary": "Builds and sorts the distinct values of every legal square window, then scans adjacent sorted values for its minimum gap.",
       "time_complexity": "O(R C k^2 log k)",
       "space_complexity": "O(k^2 + R C)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(R C k^2 log k)",
+      "space_complexity": "O(k^2 + R C)"
     }
   ]
 }

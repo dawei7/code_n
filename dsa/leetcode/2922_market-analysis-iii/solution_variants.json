@@ -11,6 +11,15 @@
       "summary": "Joins orders to seller and item brands, counts distinct mismatched items per seller, and retains every maximum-count tie.",
       "time_complexity": "O(U + I + O + W log(W))",
       "space_complexity": "O(U + I + O)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(U + I + O + W log(W))",
+      "space_complexity": "O(U + I + O)"
     }
   ]
 }

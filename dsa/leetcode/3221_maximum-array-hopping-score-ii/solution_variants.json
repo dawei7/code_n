@@ -2,13 +2,24 @@
   "schema_version": 1,
   "challenge_id": "lc_3221",
   "default_variant": "optimal",
-  "variants": [{
-    "id": "optimal",
-    "label": "Optimal",
-    "kind": "optimal",
-    "directory": "variants/optimal",
-    "summary": "Sums the best destination value available to the right of every crossed unit boundary.",
-    "time_complexity": "O(n)",
-    "space_complexity": "O(1)"
-  }]
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Sums the best destination value available to the right of every crossed unit boundary.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(1)"
+    }
+  ]
 }

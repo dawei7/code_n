@@ -11,6 +11,15 @@
       "summary": "Classifies every possible path intersection as a row segment, a column segment, or a strictly interior singleton, then applies a length-at-least-two Kadane scan.",
       "time_complexity": "O(MN)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(MN)",
+      "space_complexity": "O(1)"
     }
   ]
 }

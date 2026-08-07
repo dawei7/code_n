@@ -11,6 +11,15 @@
       "summary": "Finds the first duplicate while scanning the retained suffix from right to left, then rounds the necessary prefix removal to three-element operations.",
       "time_complexity": "O(N)",
       "space_complexity": "O(N)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(N)",
+      "space_complexity": "O(N)"
     }
   ]
 }

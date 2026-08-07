@@ -11,6 +11,15 @@
       "summary": "Enumerates every possible first addend and tests its decimal digit reversal.",
       "time_complexity": "O(num log num)",
       "space_complexity": "O(log num)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(num log num)",
+      "space_complexity": "O(log num)"
     }
   ]
 }

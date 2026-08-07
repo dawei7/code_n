@@ -11,6 +11,15 @@
       "summary": "Count the whole string once, then retain qualifying occurrences in one stable-order pass.",
       "time_complexity": "O(n)",
       "space_complexity": "O(d)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(d)"
     }
   ]
 }

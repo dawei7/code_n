@@ -11,6 +11,15 @@
       "summary": "Precomputes bounded-board knight distances, then solves the alternating capture game with bitmask minimax.",
       "time_complexity": "O(p B + p^2 2^p)",
       "space_complexity": "O(B + p 2^p)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(p B + p^2 2^p)",
+      "space_complexity": "O(B + p 2^p)"
     }
   ]
 }

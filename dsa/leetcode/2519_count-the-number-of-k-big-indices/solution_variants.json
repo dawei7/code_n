@@ -11,6 +11,15 @@
       "summary": "Uses forward and backward Fenwick-tree scans to count strictly smaller values on each side.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

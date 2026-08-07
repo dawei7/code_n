@@ -11,6 +11,15 @@
       "summary": "Maps one permutation into the other's position order and counts compatible sides with a Fenwick tree.",
       "time_complexity": "O(n log n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

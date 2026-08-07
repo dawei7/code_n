@@ -11,6 +11,15 @@
       "summary": "Counts construction paths by final length with a one-dimensional recurrence.",
       "time_complexity": "O(H)",
       "space_complexity": "O(H)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(H)",
+      "space_complexity": "O(H)"
     }
   ]
 }

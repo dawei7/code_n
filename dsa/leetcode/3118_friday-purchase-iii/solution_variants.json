@@ -11,6 +11,15 @@
       "summary": "Builds the fixed Friday-membership grid, left-joins users and same-day purchases, and aggregates every required pair including zeros.",
       "time_complexity": "O(u + p)",
       "space_complexity": "O(u + p)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(u + p)",
+      "space_complexity": "O(u + p)"
     }
   ]
 }

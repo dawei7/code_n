@@ -11,6 +11,15 @@
       "summary": "Splits on the circular boundary and runs a count-compressed minimum-cost independent-set DP on each resulting path.",
       "time_complexity": "O(nk)",
       "space_complexity": "O(k)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nk)",
+      "space_complexity": "O(k)"
     }
   ]
 }

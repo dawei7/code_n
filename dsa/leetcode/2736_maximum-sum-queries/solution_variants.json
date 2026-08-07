@@ -1,1 +1,25 @@
-{"schema_version":1,"challenge_id":"lc_2736","default_variant":"optimal","variants":[{"id":"optimal","label":"Optimal","kind":"optimal","directory":"variants/optimal","summary":"Process first-coordinate thresholds offline and use a reversed Fenwick tree for maximum sums above each second-coordinate threshold.","time_complexity":"O((n + q) log(n + q))","space_complexity":"O(n + q)"}]}
+{
+  "schema_version": 1,
+  "challenge_id": "lc_2736",
+  "default_variant": "optimal",
+  "variants": [
+    {
+      "id": "optimal",
+      "label": "Optimal",
+      "kind": "optimal",
+      "directory": "variants/optimal",
+      "summary": "Process first-coordinate thresholds offline and use a reversed Fenwick tree for maximum sums above each second-coordinate threshold.",
+      "time_complexity": "O((n + q) log(n + q))",
+      "space_complexity": "O(n + q)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((n + q) log(n + q))",
+      "space_complexity": "O(n + q)"
+    }
+  ]
+}

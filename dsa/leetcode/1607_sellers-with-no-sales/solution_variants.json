@@ -11,6 +11,15 @@
       "summary": "Uses the canonical optimal approach for Sellers With No Sales and meets the required complexity bound.",
       "time_complexity": "O((s+r)\\log(s+r))",
       "space_complexity": "O(s+r)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O((s+r)\\log(s+r))",
+      "space_complexity": "O(s+r)"
     }
   ]
 }

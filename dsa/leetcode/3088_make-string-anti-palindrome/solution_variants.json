@@ -11,6 +11,15 @@
       "summary": "Builds the smallest possible first half from letter counts, then greedily assigns the second half while preserving mirror-matching capacity.",
       "time_complexity": "O(n)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n)",
+      "space_complexity": "O(n)"
     }
   ]
 }

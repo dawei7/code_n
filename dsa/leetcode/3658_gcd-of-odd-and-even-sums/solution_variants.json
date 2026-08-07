@@ -11,6 +11,15 @@
       "summary": "Use closed forms for both sums and the coprimality of consecutive integers to show that the requested GCD is n itself.",
       "time_complexity": "O(1)",
       "space_complexity": "O(1)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(1)",
+      "space_complexity": "O(1)"
     }
   ]
 }

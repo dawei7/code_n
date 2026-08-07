@@ -11,6 +11,15 @@
       "summary": "Runs a descending 0/1 knapsack over coupon count and available budget.",
       "time_complexity": "O(nkB)",
       "space_complexity": "O(kB)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(nkB)",
+      "space_complexity": "O(kB)"
     }
   ]
 }

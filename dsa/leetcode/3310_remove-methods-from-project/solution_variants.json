@@ -11,6 +11,15 @@
       "summary": "Marks every method reachable from k, then rejects removal if any edge enters that suspicious set from outside.",
       "time_complexity": "O(n + m)",
       "space_complexity": "O(n + m)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n + m)",
+      "space_complexity": "O(n + m)"
     }
   ]
 }

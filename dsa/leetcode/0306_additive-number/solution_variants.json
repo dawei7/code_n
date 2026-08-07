@@ -11,6 +11,15 @@
       "summary": "Enumerates the first two number boundaries, then verifies each uniquely forced sum in place.",
       "time_complexity": "O(n^3)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n^3)",
+      "space_complexity": "O(n)"
     }
   ]
 }

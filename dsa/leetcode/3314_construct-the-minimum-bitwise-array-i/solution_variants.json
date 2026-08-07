@@ -11,6 +11,15 @@
       "summary": "Clears the highest bit in each prime's trailing run of one-bits to obtain the minimum predecessor.",
       "time_complexity": "O(n log M)",
       "space_complexity": "O(n)"
+    },
+    {
+      "id": "competitive",
+      "label": "Competitive",
+      "kind": "competitive",
+      "directory": "variants/competitive",
+      "summary": "High-performance competitive programming solution from kamyu104/LeetCode-Solutions.",
+      "time_complexity": "O(n log M)",
+      "space_complexity": "O(n)"
     }
   ]
 }

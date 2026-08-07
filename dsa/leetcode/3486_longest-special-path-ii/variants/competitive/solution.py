@@ -1,0 +1,79 @@
+from collections import defaultdict
+from typing import List
+import sys
+
+sys.setrecursionlimit(100000)
+
+
+class Solution:
+    def longestSpecialPath(self, edges: List[List[int]], nums: List[int]) -> List[int]:
+        node_count = len(nums)
+        graph: list[list[tuple[int, int]]] = [[] for _ in range(node_count)]
+        for first_node, second_node, length in edges:
+            graph[first_node].append((second_node, length))
+            graph[second_node].append((first_node, length))
+
+        positions: dict[int, list[int]] = defaultdict(list)
+        prefix_distance = [0] * node_count
+        best_length = 0
+        best_nodes = 1
+
+        def dfs(
+            node: int,
+            parent: int,
+            depth: int,
+            distance: int,
+            largest_second: tuple[int, int],
+            next_second: tuple[int, int],
+            largest_third: int,
+        ) -> None:
+            nonlocal best_length, best_nodes
+
+            value = nums[node]
+            value_positions = positions[value]
+
+            if value_positions:
+                new_second = value_positions[-1]
+                if largest_second[1] == value:
+                    largest_second = (new_second, value)
+                elif next_second[1] == value:
+                    next_second = (new_second, value)
+                    if next_second[0] > largest_second[0]:
+                        largest_second, next_second = next_second, largest_second
+                elif new_second > largest_second[0]:
+                    next_second = largest_second
+                    largest_second = (new_second, value)
+                elif new_second > next_second[0]:
+                    next_second = (new_second, value)
+
+            if len(value_positions) >= 2:
+                largest_third = max(largest_third, value_positions[-2])
+
+            value_positions.append(depth)
+            prefix_distance[depth] = distance
+
+            left_depth = max(largest_third, next_second[0]) + 1
+            path_length = distance - prefix_distance[left_depth]
+            path_nodes = depth - left_depth + 1
+            if path_length > best_length:
+                best_length = path_length
+                best_nodes = path_nodes
+            elif path_length == best_length and path_nodes < best_nodes:
+                best_nodes = path_nodes
+
+            for child, edge_length in graph[node]:
+                if child != parent:
+                    dfs(
+                        child,
+                        node,
+                        depth + 1,
+                        distance + edge_length,
+                        largest_second,
+                        next_second,
+                        largest_third,
+                    )
+
+            value_positions.pop()
+
+        dfs(0, -1, 0, 0, (-1, -1), (-1, -2), -1)
+        return [best_length, best_nodes]
